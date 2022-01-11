@@ -1,2 +1,2 @@
 # meteor-client
-Ideal Minimal Meteor for developers/users who dont modify API - Fast build times, read only core API
+Meteor - Kotlin / Compose Old School Runescape Client - Depends on meteor-api
