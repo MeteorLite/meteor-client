@@ -1,0 +1,6 @@
+{
+  "name": "Build Client",
+  "description": "Verifies client functionality",
+  "iconName": "gradle",
+  "categories": ["Java", "Gradle"]
+}

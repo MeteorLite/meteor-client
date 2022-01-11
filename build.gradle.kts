@@ -5,10 +5,13 @@ plugins {
     java
 }
 
+val release by rootProject.extra { "1.0.0" }
+
 group = "meteor.client"
 version = "1.0.0"
 
 repositories {
+    mavenLocal()
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
     mavenCentral()
     jcenter()
@@ -20,12 +23,12 @@ repositories {
 
 dependencies {
     // meteor-api
-    implementation(group = "meteor", name = "runescape-api", version = "1.0.0")
-    implementation(group = "meteor", name = "runelite-api", version = "1.0.0")
-    implementation(group = "meteor", name = "http-api", version = "1.0.0")
-    implementation(group = "meteor", name = "annotations", version = "1.0.0")
-    implementation(group = "meteor", name = "logger", version = "1.0.0")
-    runtimeOnly(group = "meteor", name = "injected-client", version = "1.0.0")
+    implementation(group = "meteor", name = "runescape-api", version = release)
+    implementation(group = "meteor", name = "runelite-api", version = release)
+    implementation(group = "meteor", name = "http-api", version = release)
+    implementation(group = "meteor", name = "annotations", version = release)
+    implementation(group = "meteor", name = "logger", version = release)
+    runtimeOnly(group = "meteor", name = "injected-client", version = release)
 
 
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-linux-amd64")
