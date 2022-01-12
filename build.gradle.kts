@@ -23,12 +23,12 @@ repositories {
 
 dependencies {
     // meteor-api
-    implementation(group = "meteor", name = "runescape-api", version = release)
-    implementation(group = "meteor", name = "runelite-api", version = release)
-    implementation(group = "meteor", name = "http-api", version = release)
+    implementation(group = "meteor", name = "api-rs", version = release)
+    implementation(group = "meteor", name = "api", version = release)
+    implementation(group = "meteor", name = "http", version = release)
     implementation(group = "meteor", name = "annotations", version = release)
     implementation(group = "meteor", name = "logger", version = release)
-    runtimeOnly(group = "meteor", name = "injected-client", version = release)
+    runtimeOnly(group = "meteor", name = "injected", version = release)
 
 
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-linux-amd64")

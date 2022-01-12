@@ -80,7 +80,6 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
     override fun keyPressed(e: KeyEvent?) {
         if (e!!.isAltDown) {
-            println("should be managing")
             inOverlayManagingMode = true
         }
     }
