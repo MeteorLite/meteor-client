@@ -18,6 +18,7 @@ import meteor.ui.UI
 import meteor.ui.overlay.TooltipManager
 import meteor.ui.overlay.tooltips.TooltipOverlay
 import meteor.ui.themes.MeteorliteTheme
+import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
 import net.runelite.api.Client
 import net.runelite.api.hooks.Callbacks
@@ -103,6 +104,7 @@ object Main: KoinComponent, EventSubscriber() {
         ConfigManager.loadSavedProperties()
         PluginManager
         overlayManager.add(TooltipOverlay())
+        overlayManager.add(WorldMapOverlay())
     }
 
     fun processArguments(args: Array<String>) {

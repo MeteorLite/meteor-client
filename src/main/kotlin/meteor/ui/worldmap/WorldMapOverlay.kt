@@ -52,8 +52,9 @@ import javax.inject.Singleton
 import kotlin.math.ceil
 
 
-class WorldMapOverlay( val worldMapPointManager: WorldMapPointManager) : Overlay() {
-     val mapMenuEntries: MutableList<MenuEntry> = ArrayList<MenuEntry>()
+class WorldMapOverlay : Overlay() {
+    val worldMapPointManager = WorldMapPointManager
+    val mapMenuEntries: MutableList<MenuEntry> = ArrayList<MenuEntry>()
 
     init {
         position = OverlayPosition.DYNAMIC
