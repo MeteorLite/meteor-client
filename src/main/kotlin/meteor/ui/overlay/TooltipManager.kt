@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2017, Tomas Slusny <slusnucky@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.ui.overlay
 
-import java.awt.Dimension
-import java.awt.Point
-import java.awt.Rectangle
+import java.util.ArrayList
 
-interface LayoutableRenderableEntity : RenderableEntity {
-    fun setPreferredLocation(position: Point?)
-    fun getPreferredLocation() : Point? { return Point(0,0)}
+object TooltipManager {
+    val tooltips: MutableList<Tooltip> = ArrayList()
+    fun add(tooltip: Tooltip) {
+        tooltips.add(tooltip)
+    }
 
-    fun setPreferredSize(position: Dimension?)
-    fun getPreferredSize() : Dimension? { return null}
+    fun addFront(tooltip: Tooltip) {
+        tooltips.add(0, tooltip)
+    }
 
-    fun setBounds(rectangle: Rectangle?)
-    fun getBounds() : Rectangle? { return null}
+    fun clear() {
+        tooltips.clear()
+    }
 }

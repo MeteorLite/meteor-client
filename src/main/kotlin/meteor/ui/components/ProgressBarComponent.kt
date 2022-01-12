@@ -32,6 +32,33 @@ class ProgressBarComponent : LayoutableRenderableEntity {
     enum class LabelDisplayMode {
         PERCENTAGE, FULL, TEXT_ONLY, BOTH
     }
+    private var preferredLocationp: Point? = Point()
+    private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
+    private var bounds: Rectangle? = Rectangle()
+
+    override fun getBounds(): Rectangle? {
+        return bounds
+    }
+
+    override fun getPreferredLocation(): Point? {
+        return preferredLocationp
+    }
+
+    override fun getPreferredSize(): Dimension? {
+        return this.preferredSizep
+    }
+
+    override fun setPreferredLocation(position: Point?) {
+        preferredLocationp = position
+    }
+
+    override fun setPreferredSize(position: Dimension?) {
+        this.preferredSizep = position
+    }
+
+    override fun setBounds(rectangle: Rectangle?) {
+        bounds = rectangle
+    }
 
     private val minimum: Long = 0
     private val maximum: Long = 100
@@ -43,13 +70,11 @@ class ProgressBarComponent : LayoutableRenderableEntity {
     var foregroundColor = Color(82, 161, 82)
     var backgroundColor = Color(255, 255, 255, 127)
     private val fontColor = Color.WHITE
-    override var preferredLocation: Point?  = Point()
-    override var preferredSize: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
-    override val bounds = Rectangle()
+
     override fun render(graphics: Graphics2D): Dimension {
         val metrics = graphics.fontMetrics
-        val barX = preferredLocation!!.x
-        val barY = preferredLocation!!.y
+        val barX = getPreferredLocation()!!.x
+        val barY = getPreferredLocation()!!.y
         val span = maximum - minimum
         val currentValue = value - minimum
         val pc = currentValue / span
@@ -75,8 +100,8 @@ class ProgressBarComponent : LayoutableRenderableEntity {
             }
             textToWrite += centerLabel
         }
-        val width = preferredSize!!.width
-        val height = Math.max(preferredSize!!.height, 16)
+        val width = getPreferredSize()!!.width
+        val height = Math.max(getPreferredSize()!!.height, 16)
         val progressTextX = barX + (width - metrics.stringWidth(textToWrite)) / 2
         val progressTextY = barY + (height - metrics.height) / 2 + metrics.height
         val progressFill = (width * Math.min(1.0, pc)).toInt()
@@ -107,8 +132,8 @@ class ProgressBarComponent : LayoutableRenderableEntity {
             leftTextComponent.render(graphics)
         }
         val dimension = Dimension(width, height)
-        bounds.location = preferredLocation
-        bounds.size = dimension
+        bounds!!.location = getPreferredLocation()!!
+        bounds!!.size = dimension
         return dimension
     }
 

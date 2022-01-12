@@ -62,10 +62,10 @@ object OverlayManager {
 
     private fun loadOverlay(overlay: Overlay) {
         val location: Point? = loadOverlayLocation(overlay)
-        overlay.preferredLocation = location
+        overlay.setPreferredLocation(location)
         val size: Dimension? = loadOverlaySize(overlay)
-        overlay.preferredSize = size
-        val position: OverlayPosition = loadOverlayPosition(overlay)
+        overlay.setPreferredSize(size)
+        val position: OverlayPosition? = loadOverlayPosition(overlay)
         overlay.preferredPosition = position
     }
 
@@ -90,17 +90,17 @@ object OverlayManager {
 
     private fun loadOverlayLocation(overlay: Overlay): Point? {
         val key: String = overlay.name + OVERLAY_CONFIG_PREFERRED_LOCATION
-        return overlay.preferredLocation
+        return overlay.getPreferredLocation()
     }
 
     private fun loadOverlaySize(overlay: Overlay): Dimension? {
         val key: String = overlay.name + OVERLAY_CONFIG_PREFERRED_SIZE
-        return overlay.preferredSize
+        return overlay.getPreferredSize()
     }
 
-    private fun loadOverlayPosition(overlay: Overlay): OverlayPosition {
+    private fun loadOverlayPosition(overlay: Overlay): OverlayPosition? {
         val locationKey: String = overlay.name + OVERLAY_CONFIG_PREFERRED_POSITION
-        return overlay.preferredPosition!!
+        return overlay.preferredPosition
     }
 
     @Synchronized
@@ -154,7 +154,7 @@ object OverlayManager {
         val overlayMap = ArrayListMultimap.create<Any, Overlay>()
         for (overlay in overlays) {
             var layer: OverlayLayer = overlay.layer
-            if (overlay.preferredLocation != null && overlay.preferredPosition == null) {
+            if (overlay.getPreferredLocation() != null && overlay.preferredPosition == null) {
                 // When UNDER_WIDGET overlays are in preferred locations, move to
                 // ABOVE_WIDGETS so that it can draw over interfaces
                 if (layer == OverlayLayer.UNDER_WIDGETS && overlay !is WidgetOverlay) {
@@ -183,6 +183,6 @@ object OverlayManager {
 
     @Synchronized
     fun resetOverlay(overlay: Overlay) {
-        overlay.preferredSize = (null)
+        overlay.setPreferredSize(null)
     }
 }

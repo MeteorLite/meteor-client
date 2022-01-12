@@ -31,21 +31,44 @@ import java.awt.Point
 import java.awt.Rectangle
 
 class SplitComponent : LayoutableRenderableEntity {
+    private var preferredLocationp: Point? = Point()
+    private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
+    private var bounds: Rectangle? = Rectangle()
+
+    override fun getBounds(): Rectangle? {
+        return bounds
+    }
+
+    override fun getPreferredLocation(): Point? {
+        return preferredLocationp
+    }
+
+    override fun getPreferredSize(): Dimension? {
+        return this.preferredSizep
+    }
+
+    override fun setPreferredLocation(position: Point?) {
+        preferredLocationp = position
+    }
+
+    override fun setPreferredSize(position: Dimension?) {
+        this.preferredSizep = position
+    }
+
+    override fun setBounds(rectangle: Rectangle?) {
+        bounds = rectangle
+    }
     private var first: LayoutableRenderableEntity? = null
     private var second: LayoutableRenderableEntity? = null
 
-    override var preferredLocation: Point? = Point()
-
-    override var preferredSize: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 0)
 
     private var orientation: ComponentOrientation = ComponentOrientation.VERTICAL
 
     private var gap = Point(0, 0)
 
-    override val bounds = Rectangle()
     override fun render(graphics: Graphics2D): Dimension? {
-        first!!.preferredLocation = preferredLocation
-        first!!.preferredSize = preferredSize
+        first!!.setPreferredLocation(getPreferredLocation())
+        first!!.setPreferredSize(getPreferredSize())
         val firstDimension = first!!.render(graphics)
         var x = 0
         var y = 0
@@ -54,9 +77,9 @@ class SplitComponent : LayoutableRenderableEntity {
         } else {
             x = firstDimension!!.width + gap.x
         }
-        second!!.preferredLocation = Point(x + preferredLocation!!.x, y + preferredLocation!!.y)
+        second!!.setPreferredLocation(Point(x + getPreferredLocation()!!.x, y + getPreferredLocation()!!.y))
         // Make the second component fit to whatever size is left after the first component is rendered
-        second!!.preferredSize = Dimension(preferredSize!!.width - x, preferredSize!!.height - y)
+        second!!.setPreferredSize(Dimension(getPreferredSize()!!.width - x, getPreferredSize()!!.height - y))
 
         // The total width/height need to be determined as they are now always the same as the
         // individual width/height (for example image width/height will just be the height of the image
@@ -72,8 +95,8 @@ class SplitComponent : LayoutableRenderableEntity {
             totalWidth = x + secondDimension.width
         }
         val dimension = Dimension(totalWidth, totalHeight)
-        bounds.location = preferredLocation
-        bounds.size = dimension
+        bounds!!.location = getPreferredLocation()!!
+        bounds!!.size = dimension
         return dimension
     }
 

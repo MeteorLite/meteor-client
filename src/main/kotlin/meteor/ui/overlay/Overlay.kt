@@ -39,17 +39,44 @@ import kotlin.math.abs
 abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
     : LayoutableRenderableEntity, EventSubscriber() {
     val client = Main.client
-    val drawHooks: MutableList<Int> = ArrayList()
+    val drawHooks: ArrayList<Int> = ArrayList()
     val menuEntries: ArrayList<OverlayMenuEntry> = ArrayList()
-    override var preferredLocation: Point? = Point()
-    override var preferredSize: Dimension? = null
-    var preferredPosition : OverlayPosition? = OverlayPosition.TOP_LEFT
-    override val bounds = Rectangle()
+
+    var preferredPosition : OverlayPosition? = OverlayPosition.DYNAMIC
+
     var position = OverlayPosition.TOP_LEFT
     var priority: OverlayPriority = OverlayPriority.NONE
     var resizable = false
     private val minimumSize = 32
     val resettable = true
+
+    private var preferredLocationp: Point? = Point()
+    private var preferredSizep: Dimension? = null
+    private var bounds: Rectangle? = Rectangle()
+
+    override fun getBounds(): Rectangle? {
+        return bounds
+    }
+
+    override fun getPreferredLocation(): Point? {
+        return preferredLocationp
+    }
+
+    override fun getPreferredSize(): Dimension? {
+        return this.preferredSizep
+    }
+
+    override fun setPreferredLocation(position: Point?) {
+        preferredLocationp = position
+    }
+
+    override fun setPreferredSize(position: Dimension?) {
+        this.preferredSizep = position
+    }
+
+    override fun setBounds(rectangle: Rectangle?) {
+        bounds = rectangle
+    }
 
     /**
      * Whether this overlay can be dragged onto other overlays &amp; have other overlays dragged onto

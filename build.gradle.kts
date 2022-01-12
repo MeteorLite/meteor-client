@@ -31,7 +31,6 @@ dependencies {
     runtimeOnly(group = "meteor", name = "injected", version = release)
     runtimeOnly(group = "meteor", name = "scripts", version = release)
 
-
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-linux-amd64")
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-windows-amd64")
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-windows-i586")

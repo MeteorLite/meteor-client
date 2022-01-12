@@ -32,23 +32,42 @@ import java.awt.Rectangle
 
 
 class ImageComponent(var image: BufferedImage?) : LayoutableRenderableEntity {
+    override fun getPreferredSize() : Dimension {
+        return getBounds()!!.size
+    }
+    private var preferredLocationp: Point? = Point()
+    private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
+    private var bounds: Rectangle? = Rectangle()
 
-    override val bounds = Rectangle()
-    override var preferredLocation: Point? = Point()
+    override fun getBounds(): Rectangle? {
+        return bounds
+    }
+
+    override fun getPreferredLocation(): Point? {
+        return preferredLocationp
+    }
+
+    override fun setPreferredLocation(position: Point?) {
+        preferredLocationp = position
+    }
+
+    override fun setPreferredSize(position: Dimension?) {
+        this.preferredSizep = position
+    }
+
+    override fun setBounds(rectangle: Rectangle?) {
+        bounds = rectangle
+    }
+
     override fun render(graphics: Graphics2D): Dimension? {
         if (image == null) {
             return null
         }
-        graphics.drawImage(image, preferredLocation!!.x, preferredLocation!!.y, null)
+        graphics.drawImage(image, getPreferredLocation()!!.x, getPreferredLocation()!!.y, null)
         val dimension = Dimension(image!!.width, image!!.height)
-        bounds.location = preferredLocation
-        bounds.size = dimension
+        getBounds()!!.location = getPreferredLocation()!!
+        getBounds()!!.size = dimension
         return dimension
     }
 
-    // Just use image dimensions for now
-    override var preferredSize: Dimension?
-        get() = bounds.size
-        set(dimension) {
-        }
 }

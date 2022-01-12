@@ -31,14 +31,37 @@ import java.util.ArrayList
 
 class PanelComponent : LayoutableRenderableEntity {
 
-    override val bounds = Rectangle()
+    private var preferredLocationp: Point? = Point()
+    private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 0)
+    private var bounds: Rectangle? = Rectangle()
+
+    override fun getBounds(): Rectangle? {
+        return bounds
+    }
+
+    override fun getPreferredLocation(): Point? {
+        return preferredLocationp
+    }
+
+    override fun getPreferredSize(): Dimension? {
+        return this.preferredSizep
+    }
+
+    override fun setPreferredLocation(position: Point?) {
+        preferredLocationp = position
+    }
+
+    override fun setPreferredSize(position: Dimension?) {
+        this.preferredSizep = position
+    }
+
+    override fun setBounds(rectangle: Rectangle?) {
+        bounds = rectangle
+    }
+
 
     val children: ArrayList<LayoutableRenderableEntity> = ArrayList<LayoutableRenderableEntity>()
     val childDimensions = Dimension()
-
-    override var preferredLocation: Point? = Point()
-
-    override var preferredSize: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 0)
 
     var backgroundColor = ComponentConstants.STANDARD_BACKGROUND_COLOR
 
@@ -66,13 +89,13 @@ class PanelComponent : LayoutableRenderableEntity {
 
         // Render background
         val backgroundComponent = BackgroundComponent()
-        backgroundComponent.rectangle = Rectangle(preferredLocation, dimension)
+        backgroundComponent.rectangle = Rectangle(getPreferredLocation(), dimension)
         backgroundComponent.backgroundColor = backgroundColor
         backgroundComponent.render(graphics)
 
         // Offset children
-        val baseX = preferredLocation!!.x + border.x
-        val baseY = preferredLocation!!.y + border.y
+        val baseX = getPreferredLocation()!!.x + border.x
+        val baseY = getPreferredLocation()!!.y + border.y
         var width = 0
         var height = 0
         var x = baseX
@@ -80,8 +103,8 @@ class PanelComponent : LayoutableRenderableEntity {
 
         // Create child preferred size
         val childPreferredSize = Dimension(
-                preferredSize!!.width - border.x - border.width,
-                preferredSize!!.height - border.y - border.height)
+                getPreferredSize()!!.width - border.x - border.width,
+                getPreferredSize()!!.height - border.y - border.height)
 
         // Calculate max width/height for infoboxes
         var totalHeight = 0
@@ -92,11 +115,11 @@ class PanelComponent : LayoutableRenderableEntity {
             // Correctly propagate child dimensions based on orientation and wrapping
             if (!wrap) {
                 when (orientation) {
-                    ComponentOrientation.VERTICAL -> child.preferredSize = (Dimension(childPreferredSize.width, 0))
-                    ComponentOrientation.HORIZONTAL -> child.preferredSize = (Dimension(0, childPreferredSize.height))
+                    ComponentOrientation.VERTICAL -> child.setPreferredSize((Dimension(childPreferredSize.width, 0)))
+                    ComponentOrientation.HORIZONTAL -> child.setPreferredSize((Dimension(0, childPreferredSize.height)))
                 }
             }
-            child.preferredLocation = (Point(x, y))
+            child.setPreferredLocation((Point(x, y)))
             val childDimension: Dimension? = child.render(graphics)
             when (orientation) {
                 ComponentOrientation.VERTICAL -> {
@@ -151,8 +174,8 @@ class PanelComponent : LayoutableRenderableEntity {
         childDimensions.setSize(totalWidth, totalHeight)
 
         // Cache bounds
-        bounds.location = preferredLocation
-        bounds.size = dimension
+        bounds!!.location = getPreferredLocation()!!
+        bounds!!.size = dimension
         return dimension
     }
 }

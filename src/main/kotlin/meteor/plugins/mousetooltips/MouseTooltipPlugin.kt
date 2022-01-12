@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2017, Aria <aria@ar1as.space>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.plugins.mousetooltips
 
-import java.awt.Dimension
-import java.awt.Point
-import java.awt.Rectangle
+import meteor.plugins.Plugin
+import meteor.ui.OverlayManager.add
+import meteor.ui.OverlayManager.remove
+import meteor.plugins.PluginDescriptor
+import meteor.plugins.mousetooltips.MouseTooltipConfig
+import meteor.ui.OverlayManager
+import meteor.plugins.mousetooltips.MouseTooltipOverlay
 
-interface LayoutableRenderableEntity : RenderableEntity {
-    fun setPreferredLocation(position: Point?)
-    fun getPreferredLocation() : Point? { return Point(0,0)}
+@PluginDescriptor(
+    name = "Mouse Tooltips",
+    description = "Render default actions as a tooltip",
+    tags = ["actions", "overlay"]
+)
+class MouseTooltipPlugin : Plugin() {
+    override val config = configuration<MouseTooltipConfig>()
+    private val overlayManager = OverlayManager
+    private val overlay = MouseTooltipOverlay(config)
+    override fun onStart() {
+        overlayManager.add(overlay)
+    }
 
-    fun setPreferredSize(position: Dimension?)
-    fun getPreferredSize() : Dimension? { return null}
-
-    fun setBounds(rectangle: Rectangle?)
-    fun getBounds() : Rectangle? { return null}
+    override fun onStop() {
+        overlayManager.remove(overlay)
+    }
 }

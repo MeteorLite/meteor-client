@@ -15,6 +15,8 @@ import meteor.rs.AppletConfiguration
 import meteor.ui.OverlayManager
 import meteor.ui.OverlayRenderer
 import meteor.ui.UI
+import meteor.ui.overlay.TooltipManager
+import meteor.ui.overlay.tooltips.TooltipOverlay
 import meteor.ui.themes.MeteorliteTheme
 import meteor.util.ExecutorServiceExceptionLogger
 import net.runelite.api.Client
@@ -36,6 +38,7 @@ object Main: KoinComponent, EventSubscriber() {
     val overlayRenderer = OverlayRenderer()
     val fontManager = FontManager
     val itemManager = ItemManager
+    val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
 
     @JvmStatic
@@ -99,6 +102,7 @@ object Main: KoinComponent, EventSubscriber() {
         client.callbacks = callbacks
         ConfigManager.loadSavedProperties()
         PluginManager
+        overlayManager.add(TooltipOverlay())
     }
 
     fun processArguments(args: Array<String>) {

@@ -6,6 +6,7 @@ import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
+import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
@@ -26,6 +27,7 @@ object PluginManager {
         if (Configuration.allowGPU) {
             initPlugin(GpuHDPlugin())
         }
+        initPlugin(MouseTooltipPlugin())
         initPlugin(StretchedModePlugin())
         initPlugin(WorldMapPlugin())
         initPlugin(XpTrackerPlugin())

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2017, Tyler <https://github.com/tylerthardy>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.ui.overlay
 
-import java.awt.Dimension
-import java.awt.Point
-import java.awt.Rectangle
+import meteor.ui.components.LayoutableRenderableEntity
 
-interface LayoutableRenderableEntity : RenderableEntity {
-    fun setPreferredLocation(position: Point?)
-    fun getPreferredLocation() : Point? { return Point(0,0)}
+class Tooltip {
+    var text: String? = null
+    var component: LayoutableRenderableEntity? = null
 
-    fun setPreferredSize(position: Dimension?)
-    fun getPreferredSize() : Dimension? { return null}
+    constructor(text: String?) {
+        this.text = text
+    }
 
-    fun setBounds(rectangle: Rectangle?)
-    fun getBounds() : Rectangle? { return null}
+    constructor(component: LayoutableRenderableEntity?) {
+        this.component = component
+    }
 }

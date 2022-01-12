@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, Morgan Lewis <https://github.com/MESLewis>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.plugins.mousetooltips
 
-import java.awt.Dimension
-import java.awt.Point
-import java.awt.Rectangle
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
-interface LayoutableRenderableEntity : RenderableEntity {
-    fun setPreferredLocation(position: Point?)
-    fun getPreferredLocation() : Point? { return Point(0,0)}
+@ConfigGroup("mousehighlight")
+interface MouseTooltipConfig : Config {
+    @ConfigItem(
+        position = 0,
+        keyName = "uiTooltip",
+        name = "Interface Tooltips",
+        description = "Whether or not tooltips are shown on interfaces"
+    )
+    fun uiTooltip(): Boolean {
+        return true
+    }
 
-    fun setPreferredSize(position: Dimension?)
-    fun getPreferredSize() : Dimension? { return null}
+    @ConfigItem(
+        position = 1,
+        keyName = "chatboxTooltip",
+        name = "Chatbox Tooltips",
+        description = "Whether or not tooltips are shown over the chatbox"
+    )
+    fun chatboxTooltip(): Boolean {
+        return true
+    }
 
-    fun setBounds(rectangle: Rectangle?)
-    fun getBounds() : Rectangle? { return null}
+    @ConfigItem(
+        position = 2,
+        keyName = "disableSpellbooktooltip",
+        name = "Disable Spellbook Tooltips",
+        description = "Disable Spellbook Tooltips so they don't cover descriptions"
+    )
+    fun disableSpellbooktooltip(): Boolean {
+        return false
+    }
 }

@@ -30,8 +30,34 @@ import net.runelite.api.util.Text
 import java.awt.*
 
 class LineComponent : LayoutableRenderableEntity {
+    private var preferredLocationp: Point? = Point()
+    private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 0)
+    private var bounds: Rectangle? = Rectangle()
 
-    override val bounds = Rectangle()
+    override fun getBounds(): Rectangle? {
+        return bounds
+    }
+
+    override fun getPreferredLocation(): Point? {
+        return preferredLocationp
+    }
+
+    override fun getPreferredSize(): Dimension? {
+        return this.preferredSizep
+    }
+
+    override fun setPreferredLocation(position: Point?) {
+        preferredLocationp = position
+    }
+
+    override fun setPreferredSize(position: Dimension?) {
+        this.preferredSizep = position
+    }
+
+    override fun setBounds(rectangle: Rectangle?) {
+        bounds = rectangle
+    }
+
     private var left: String? = null
     private var right: String? = null
 
@@ -40,9 +66,6 @@ class LineComponent : LayoutableRenderableEntity {
     private val leftFont: Font? = null
     private val rightFont: Font? = null
 
-    override var preferredLocation: Point? = Point()
-
-    override var preferredSize: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 0)
     override fun render(graphics: Graphics2D): Dimension? {
         // Prevent NPEs
         val left = MoreObjects.firstNonNull(left, "")
@@ -53,17 +76,17 @@ class LineComponent : LayoutableRenderableEntity {
         val rfm: FontMetrics = graphics
             .getFontMetrics(rightFont)
         val fmHeight = Math.max(lfm.height, rfm.height)
-        val baseX = preferredLocation!!.x
-        val baseY = preferredLocation!!.y + fmHeight
+        val baseX = getPreferredLocation()!!.x
+        val baseY = getPreferredLocation()!!.y + fmHeight
         var y = baseY
         val leftFullWidth = getLineWidth(left, lfm)
         val rightFullWidth = getLineWidth(right, rfm)
         val textComponent = TextComponent()
-        if (preferredSize!!.width < leftFullWidth + rightFullWidth) {
-            var leftSmallWidth = preferredSize!!.width
+        if (getPreferredSize()!!.width < leftFullWidth + rightFullWidth) {
+            var leftSmallWidth = getPreferredSize()!!.width
             var rightSmallWidth = 0
             if (!Strings.isNullOrEmpty(right)) {
-                rightSmallWidth = preferredSize!!.width / 3
+                rightSmallWidth = getPreferredSize()!!.width / 3
                 leftSmallWidth -= rightSmallWidth
             }
             val leftSplitLines = lineBreakText(left, leftSmallWidth, lfm)
@@ -82,7 +105,7 @@ class LineComponent : LayoutableRenderableEntity {
                     val rightText = rightSplitLines[i]
                     textComponent
                         .position = Point(
-                        baseX + preferredSize!!.width - getLineWidth(
+                        baseX + getPreferredSize()!!.width - getLineWidth(
                             rightText,
                             rfm
                         ), y
@@ -94,9 +117,9 @@ class LineComponent : LayoutableRenderableEntity {
                 }
                 y += fmHeight
             }
-            val dimension = Dimension(preferredSize!!.width, y - baseY)
-            bounds.location = preferredLocation
-            bounds.size = dimension
+            val dimension = Dimension(getPreferredSize()!!.width, y - baseY)
+            bounds!!.location = getPreferredLocation()!!
+            bounds!!.size = dimension
             return dimension
         }
         if (!left.isEmpty()) {
@@ -107,16 +130,16 @@ class LineComponent : LayoutableRenderableEntity {
             textComponent.render(graphics)
         }
         if (!right.isEmpty()) {
-            textComponent.position = Point(baseX + preferredSize!!.width - rightFullWidth, y)
+            textComponent.position = Point(baseX + getPreferredSize()!!.width - rightFullWidth, y)
             textComponent.text = right
             textComponent.color = rightColor
             textComponent.font = (rightFont)
             textComponent.render(graphics)
         }
         y += fmHeight
-        val dimension = Dimension(preferredSize!!.width, y - baseY)
-        bounds.location = preferredLocation
-        bounds.size = dimension
+        val dimension = Dimension(getPreferredSize()!!.width, y - baseY)
+        bounds!!.location = getPreferredLocation()!!
+        bounds!!.size = dimension
         return dimension
     }
 
