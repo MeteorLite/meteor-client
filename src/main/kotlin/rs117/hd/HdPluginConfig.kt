@@ -350,7 +350,7 @@ interface HdPluginConfig : Config {
         section = generalSettings
     )
     fun unlockFps(): Boolean {
-        return false
+        return true
     }
 
     companion object {
