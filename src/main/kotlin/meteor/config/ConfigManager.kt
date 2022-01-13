@@ -8,6 +8,7 @@ import meteor.Configuration.CONFIG_FILE
 import meteor.Configuration.MASTER_GROUP
 import meteor.config.legacy.*
 import eventbus.events.ConfigChanged
+import meteor.Configuration.METEOR_DIR
 import meteor.plugins.Plugin
 import net.runelite.api.coords.WorldPoint
 import org.rationalityfrontline.kevent.KEVENT as EventBus
@@ -228,6 +229,12 @@ object ConfigManager {
     }
 
     fun saveProperties() {
+        if (!METEOR_DIR.exists())
+            METEOR_DIR.mkdirs()
+        if (!CONFIG_FILE.exists()) {
+            CONFIG_FILE.createNewFile()
+        }
+
         CONFIG_FILE.writer(charset = StandardCharsets.UTF_8).use { out ->
             properties.store(out, "Meteor configuration")
         }
