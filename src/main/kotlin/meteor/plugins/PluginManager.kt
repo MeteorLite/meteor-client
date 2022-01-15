@@ -11,13 +11,11 @@ import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import org.rationalityfrontline.kevent.unsubscribeAll
-import rs117.hd.GpuHDEventAdapter
 import rs117.hd.GpuHDPlugin
 import java.lang.RuntimeException
 
 object PluginManager {
     var plugins = ArrayList<Plugin>()
-    var gpuAdapter = GpuHDEventAdapter()
     init {
         initPlugin(ExamplePlugin())
         initPlugin(FishingPlugin())
@@ -81,8 +79,6 @@ object PluginManager {
 
     fun stopPlugin(plugin: Plugin) {
         plugin.unsubscribe()
-        if (plugin is GpuHDPlugin)
-            gpuAdapter.unsubscribeAll()
         plugin.onStop()
         plugin.enabled = false
     }
@@ -90,8 +86,6 @@ object PluginManager {
      fun startPlugin(plugin: Plugin) {
          plugin.onStart()
          plugin.subscribe()
-         if (plugin is GpuHDPlugin)
-             gpuAdapter.registerEvents()
          plugin.enabled = true
     }
 
