@@ -126,7 +126,7 @@ tasks {
         targetCompatibility = JavaVersion.VERSION_16.name
 
         kotlinOptions {
-            jvmTarget = "16"
+            jvmTarget = "17"
             apiVersion = "1.6"
             languageVersion = "1.6"
         }
