@@ -88,9 +88,11 @@ tasks {
             nativeDistributions {
                 targetFormats(Dmg, Msi, Deb)
                 includeAllModules = true
+                windows {
+                    upgradeUuid = "9df19035-e962-4bb4-90c0-74330a07082b"
+                    iconFile.set(project.file("src/main/resources/Meteor.ico"))
+                }
             }
-            //println(sourceSets["main"].compileClasspath.joinToString("\n"){ it.path} )
-            //args("disableGPU")
             jvmArgs(
                 "-noverify",
                 "-ea",
