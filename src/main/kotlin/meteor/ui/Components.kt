@@ -19,7 +19,6 @@ import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.useResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,6 +35,7 @@ import meteor.ui.Components.Toolbar.Position.*
 import meteor.ui.UI.pluginConfigurationIsOpen
 import meteor.ui.UI.pluginsPanelIsOpen
 import meteor.ui.UI.toolbarPosition
+import net.runelite.api.events.ConfigButtonClicked
 import java.awt.BorderLayout
 import java.util.stream.Collectors
 import javax.swing.JPanel
@@ -137,6 +137,10 @@ object Components {
                                 continue
                             }
                             if (configItemDescriptor.type == Boolean::class.javaPrimitiveType) {
+                                createBooleanNode(descriptor, configItemDescriptor)
+                                continue
+                            }
+                            if (configItemDescriptor.type == java.awt.Button::class.java) {
                                 createBooleanNode(descriptor, configItemDescriptor)
                                 continue
                             }
@@ -246,6 +250,30 @@ object Components {
                                 })
                             }
                         }
+                    }
+                }
+            }
+        }
+        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+    }
+
+    @Composable
+    fun createButtonNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+        var text by remember { mutableStateOf ("" + Integer.valueOf(getConfiguration(descriptor.group.value, configItemDescriptor.key()))) }
+        Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
+                MaterialTheme(colors = UI.darkThemeColors) {
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
+                MaterialTheme(colors = UI.darkThemeColors) {
+                    OutlinedButton(onClick = {
+                        Main.client.callbacks.post(ConfigButtonClicked(descriptor.group.value, configItemDescriptor.key()))}
+                    ) {
+                            Text(configItemDescriptor.name())
                     }
                 }
             }
