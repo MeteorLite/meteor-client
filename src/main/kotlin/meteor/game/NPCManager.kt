@@ -32,8 +32,6 @@ import net.runelite.api.NpcID
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
 
 object NPCManager {
     private var statsMap: ImmutableMap<Int, NPCStats>? = null

@@ -48,7 +48,6 @@ import java.awt.Rectangle
 import java.awt.geom.Area
 import java.awt.image.BufferedImage
 import java.util.*
-import javax.inject.Singleton
 import kotlin.math.ceil
 
 

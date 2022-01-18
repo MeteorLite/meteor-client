@@ -14,7 +14,6 @@ repositories {
     mavenLocal()
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
     mavenCentral()
-    jcenter()
     maven { url = uri("https://maven.gegy1000.net/") }
     maven { url = uri("https://repo.runelite.net/") }
     maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
@@ -31,6 +30,13 @@ dependencies {
     runtimeOnly(group = "meteor", name = "injected", version = release)
     runtimeOnly(group = "meteor", name = "scripts", version = release)
 
+    //Deob
+    runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.52")
+
+    //GPU
+    implementation(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429")
+    implementation(group = "net.runelite.jogl", name = "jogl-all", version = "2.4.0-rc-20200429")
+    implementation(group = "net.runelite.jocl", name = "jocl", version = "1.0")
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-linux-amd64")
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-windows-amd64")
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429", classifier = "natives-windows-i586")
@@ -41,44 +47,30 @@ dependencies {
     runtimeOnly(group = "net.runelite.jogl", name = "jogl-all-natives-macosx", version = "2.4.0-rc-20210117")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
-    runtimeOnly(group = "net.runelite.pushingpixels", name = "trident", version = "1.5.00")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
-    implementation(group = "com.google.inject", name = "guice", version = "4.1.0", classifier = "no_aop")
+
+    implementation(compose.desktop.currentOs)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.rationalityfrontline:kevent:2.1.0")
-    implementation(group = "org.jetbrains", name = "annotations", version = "21.0.1")
-    implementation(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429")
-    implementation(group = "net.runelite.jogl", name = "jogl-all", version = "2.4.0-rc-20200429")
-    implementation(group = "net.runelite.jocl", name = "jocl", version = "1.0")
-    implementation(group = "io.reactivex.rxjava3", name = "rxjava", version = "_")
-    implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
-    implementation(group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.2")
-    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
-    implementation(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20200429")
-    implementation(group = "net.runelite.jogl", name = "jogl-all", version = "2.4.0-rc-20200429")
+    implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
+    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
     implementation(group = "com.google.guava", name = "guava", version = "_")
     implementation(group = "org.apache.commons", name = "commons-text", version = "_")
     implementation(group = "commons-io", name = "commons-io", version = "_")
     implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "_")
-    implementation(group = "io.reactivex.rxjava3", name = "rxjava", version = "_")
-    implementation(group = "com.google.code.findbugs", name = "jsr305", version = "_")
     implementation(group = "com.google.code.gson", name = "gson", version = "_")
-    implementation(group = "net.lingala.zip4j", name = "zip4j", version = "2.9.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation(group = "net.runelite", name = "discord", version = "1.4")
-    implementation("org.bouncycastle:bcprov-jdk15on:1.52")
-    implementation("xerces:xercesImpl:2.12.1")
-    implementation("com.formdev:flatlaf:_")
-    implementation("com.formdev:flatlaf-intellij-themes:_")
+    implementation("com.formdev:flatlaf:1.6.5")
+    implementation("com.formdev:flatlaf-intellij-themes:1.6.5")
     implementation("com.miglayout:miglayout:3.7.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-javafx:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-javafx:1.6.0")
     implementation("io.insert-koin:koin-core:3.1.4")
-    implementation(compose.desktop.currentOs)
     implementation("com.kitfox.svg:svg-salamander:1.0")
-    implementation("com.formdev:flatlaf-extras:1.4")
+    implementation("com.formdev:flatlaf-extras:1.6.5")
 }
 
 tasks {

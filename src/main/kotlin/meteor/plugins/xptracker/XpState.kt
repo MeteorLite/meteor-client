@@ -27,7 +27,6 @@ package meteor.plugins.xptracker
 import net.runelite.api.NPC
 import net.runelite.api.Skill
 import java.util.*
-import javax.inject.Inject
 
 /**
  * Internal state for the XpTrackerPlugin

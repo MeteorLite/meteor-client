@@ -25,10 +25,7 @@
 package meteor.rs
 
 import Main.client
-import io.reactivex.rxjava3.core.Scheduler
 import java.util.concurrent.ConcurrentLinkedQueue
-import io.reactivex.rxjava3.plugins.RxJavaPlugins
-import io.reactivex.rxjava3.schedulers.Schedulers
 import java.lang.Runnable
 import java.util.concurrent.Executor
 import java.util.function.BooleanSupplier
@@ -36,10 +33,6 @@ import java.util.function.BooleanSupplier
 
 object ClientThread : Executor {
     private val invokes = ConcurrentLinkedQueue<BooleanSupplier>()
-
-    init {
-        RxJavaPlugins.setSingleSchedulerHandler { old: Scheduler? -> Schedulers.from(this) }
-    }
 
     override fun execute(r: Runnable) {
         invoke(r)
