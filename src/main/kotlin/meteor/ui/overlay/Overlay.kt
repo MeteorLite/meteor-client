@@ -42,7 +42,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
     val drawHooks: ArrayList<Int> = ArrayList()
     val menuEntries: ArrayList<OverlayMenuEntry> = ArrayList()
 
-    var preferredPosition : OverlayPosition? = OverlayPosition.DYNAMIC
+    var preferredPosition : OverlayPosition? = OverlayPosition.TOP_LEFT
 
     var position = OverlayPosition.TOP_LEFT
     var priority: OverlayPriority = OverlayPriority.NONE
