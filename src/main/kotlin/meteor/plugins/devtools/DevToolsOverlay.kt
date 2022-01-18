@@ -37,11 +37,8 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.Font
 import java.awt.Graphics2D
-import java.util.*
 import java.util.function.Consumer
-import javax.inject.Singleton
 
-@Singleton
 class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
      var config = plugin.configuration<DevToolsConfig>()
         var toolTipManager = TooltipManager
