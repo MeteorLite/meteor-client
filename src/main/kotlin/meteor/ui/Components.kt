@@ -1,12 +1,9 @@
 package meteor.ui
 
 import Main
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -21,10 +18,14 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.useResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
+import meteor.config.ConfigManager.getConfiguration
+import meteor.config.ConfigManager.setConfiguration
 import meteor.config.legacy.ConfigDescriptor
 import meteor.config.legacy.ConfigItemDescriptor
 import meteor.plugins.Plugin
@@ -139,6 +140,10 @@ object Components {
                                 createBooleanNode(descriptor, configItemDescriptor)
                                 continue
                             }
+                            if (configItemDescriptor.type?.isEnum == true) {
+                                createEnumNode(descriptor, configItemDescriptor)
+                                continue
+                            }
                 }
             }
         }
@@ -146,7 +151,7 @@ object Components {
 
     @Composable
     fun createBooleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var toggled by remember { mutableStateOf (ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key()).toBoolean()) }
+        var toggled by remember { mutableStateOf (getConfiguration(descriptor.group.value, configItemDescriptor.key()).toBoolean()) }
         Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF121212))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                 modifier = Modifier.fillMaxWidth(0.8f).height(40.dp).background(UI.darkThemeColors.background)) {
@@ -158,7 +163,7 @@ object Components {
                 modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF121212))) {
                 MaterialTheme(colors = UI.darkThemeColors) {
                     Switch(toggled, onCheckedChange = {
-                        ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
+                        setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
                         toggled = it
                     }, enabled = true)
                 }
@@ -169,7 +174,7 @@ object Components {
 
     @Composable
     fun createIntegerTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var text by remember { mutableStateOf ("" + Integer.valueOf(ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key()))) }
+        var text by remember { mutableStateOf ("" + Integer.valueOf(getConfiguration(descriptor.group.value, configItemDescriptor.key()))) }
         Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                 modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
@@ -184,7 +189,7 @@ object Components {
                         value = text,
                         onValueChange = {
                             try {
-                                ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), "${Integer.valueOf(it)}")
+                                setConfiguration(descriptor.group.value, configItemDescriptor.key(), "${Integer.valueOf(it)}")
                                 text = it
                             } catch (e: Exception) { }
                         },
@@ -192,6 +197,56 @@ object Components {
                         modifier = Modifier.padding(all = 0.dp),
                         textStyle = TextStyle(color = Color.Cyan, fontSize = 16.sp)
                     )
+                }
+            }
+        }
+        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+    }
+
+    @Composable
+    fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+        var expanded by remember { mutableStateOf(false) }
+        val type = configItemDescriptor.type
+        val currentConfigEnum =
+            java.lang.Enum.valueOf(type as Class<out Enum<*>>, getConfiguration(descriptor.group.value, configItemDescriptor.key())!!)
+        val list: MutableList<Enum<*>> = ArrayList()
+        var currentToSet: Enum<*>? = null
+        for (o in type.enumConstants) {
+            if (o == currentConfigEnum) {
+                currentToSet = o
+            }
+            list.add(o)
+        }
+        var selectedIndex by remember { mutableStateOf(list.indexOf(currentToSet)) }
+        Row(modifier = Modifier.fillMaxWidth().height(40.dp)){
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
+                MaterialTheme(colors = UI.darkThemeColors) {
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth().height(40.dp)) {
+                MaterialTheme(colors = UI.darkThemeColors) {
+                    Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
+                        Text(list[selectedIndex].name, color = Color.Cyan, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
+                            Color(0xFF242424)))
+                        DropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false },
+                            modifier = Modifier.fillMaxWidth(.2f)
+                        ) {
+                            list.forEachIndexed { index, s ->
+                                DropdownMenuItem(onClick = {
+                                    selectedIndex = index
+                                    expanded = false
+                                    setConfiguration(descriptor.group.value, configItemDescriptor.key(), list[selectedIndex].name)
+                                }, content = {
+                                        Text(text = s.name, color = Color.Cyan, fontSize = 16.sp)
+                                })
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -241,7 +296,7 @@ object Components {
             false -> PluginManager.startPlugin(plugin)
             true -> PluginManager.stopPlugin(plugin)
         }
-        ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", plugin.enabled)
+        setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", plugin.enabled)
         switchState.value = plugin.enabled
     }
 
