@@ -245,7 +245,6 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
     }
 
     private fun shouldInvalidateBounds(): Boolean {
-        return false
         val chatbox = client.getWidget(WidgetInfo.CHATBOX)
         val resizeableChanged = isResizeable != client.isResized
         var changed = false
@@ -332,7 +331,10 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
     private fun getCorrectedOverlayPosition(overlay: Overlay): OverlayPosition? {
         var overlayPosition: OverlayPosition?
-        overlayPosition = overlay.preferredPosition
+        overlayPosition = if (overlay.preferredPosition != null)
+            overlay.preferredPosition
+        else
+            overlay.position
         if (!isResizeable) {
             // On fixed mode, ABOVE_CHATBOX_RIGHT is in the same location as
             // BOTTOM_RIGHT and CANVAS_TOP_RIGHT is same as TOP_RIGHT.
