@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import eventbus.Events
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfiguration
 import meteor.config.ConfigManager.setConfiguration
@@ -271,7 +272,8 @@ object Components {
                 modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
                 MaterialTheme(colors = UI.darkThemeColors) {
                     OutlinedButton(onClick = {
-                        Main.client.callbacks.post(ConfigButtonClicked(descriptor.group.value, configItemDescriptor.key()))}
+                        //TODO fix enum
+                        Main.client.callbacks.post(Events.CONFIG_CHANGED, ConfigButtonClicked(descriptor.group.value, configItemDescriptor.key()))}
                     ) {
                             Text(configItemDescriptor.name())
                     }

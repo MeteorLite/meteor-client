@@ -55,17 +55,13 @@ class Hooks : Callbacks {
         }
     }
 
-    override fun post(event: Any?) {
-        TODO("Should never be called in klient")
-    }
-
     override fun post(type: Enum<Events>, obj: Any) {
-            EventBus.post(type, obj)
+        EventBus.post(type, obj)
     }
 
 
-    override fun postDeferred(event: Any?) {
-        //TODO
+    override fun postDeferred(type: Enum<Events>, obj: Any) {
+        EventBus.post(type, obj)
     }
 
     override fun tick() {

@@ -72,8 +72,10 @@ object PluginManager {
     inline fun <reified T : Plugin> restartPlugin(): T? {
         for (plugin in plugins) {
             if (plugin is T) {
+                plugin.stop()
                 plugin.onStop()
                 plugin.onStart()
+                plugin.start()
             }
         }
         return null
@@ -81,12 +83,14 @@ object PluginManager {
 
     fun stopPlugin(plugin: Plugin) {
         plugin.unsubscribe()
+        plugin.stop()
         plugin.onStop()
         plugin.enabled = false
     }
 
      fun startPlugin(plugin: Plugin) {
          plugin.onStart()
+         plugin.start()
          plugin.subscribe()
          plugin.enabled = true
     }
@@ -96,6 +100,7 @@ object PluginManager {
             if (plugin.enabled) {
                 plugin.unsubscribeAll()
                 plugin.onStop()
+                plugin.stop()
                 plugin.enabled = false
             }
         }
