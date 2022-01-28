@@ -313,7 +313,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
 
     private val BORDER = 5
-    private val BORDER_TOP = 0
+    private val BORDER_TOP = 25
     private val PADDING = 2
     private val OVERLAY_RESIZE_TOLERANCE = 5
     private val SNAP_CORNER_SIZE = Dimension(80, 80)
