@@ -33,6 +33,11 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         MouseManager.registerMouseListener(this)
         EventBus.subscribe<BeforeRender>(Events.BEFORE_RENDER, onBeforeRender())
         EventBus.subscribe<ClientTick>(Events.CLIENT_TICK, onClientTick())
+        EventBus.subscribe<Unit>(Events.FOCUS_CHANGED) {
+            inOverlayDraggingMode = false
+            inOverlayManagingMode = false
+            inOverlayResizingMode = false
+        }
     }
 
     fun onClientTick(): (Any) -> Unit = {
