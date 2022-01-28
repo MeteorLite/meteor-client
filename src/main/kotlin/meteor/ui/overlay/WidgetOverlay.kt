@@ -24,10 +24,10 @@
  */
 package meteor.ui.overlay
 
-import net.runelite.api.widgets.WidgetInfo
-import java.awt.Graphics2D
 import net.runelite.api.widgets.Widget
+import net.runelite.api.widgets.WidgetInfo
 import java.awt.Dimension
+import java.awt.Graphics2D
 import java.awt.Rectangle
 import java.util.*
 
@@ -35,7 +35,7 @@ open class WidgetOverlay private constructor( private val widgetInfo: WidgetInfo
                                              overlayPosition: OverlayPosition) : Overlay() {
     override val name: String
         get() = Objects.toString(widgetInfo)
-    override var parentBounds: Rectangle = getParentBounds()
+    override var parentBounds: Rectangle = Rectangle()
 
     override fun render(graphics: Graphics2D): Dimension? {
         val widget = client.getWidget(widgetInfo)

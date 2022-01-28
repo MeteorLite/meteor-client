@@ -5,9 +5,9 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import eventbus.Events
+import eventbus.events.GameTick
 import meteor.*
 import meteor.config.ConfigManager
-import eventbus.events.GameTick
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
@@ -16,6 +16,7 @@ import meteor.ui.OverlayManager
 import meteor.ui.OverlayRenderer
 import meteor.ui.UI
 import meteor.ui.overlay.TooltipManager
+import meteor.ui.overlay.WidgetOverlay
 import meteor.ui.overlay.tooltips.TooltipOverlay
 import meteor.ui.themes.MeteorliteTheme
 import meteor.ui.worldmap.WorldMapOverlay
@@ -27,8 +28,9 @@ import okhttp3.OkHttpClient
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.util.concurrent.Executors
+import java.util.function.Consumer
+import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 object Main: KoinComponent, EventSubscriber() {
     lateinit var client: Client
@@ -62,6 +64,12 @@ object Main: KoinComponent, EventSubscriber() {
             state = rememberWindowState(width = 1280.dp, height = 720.dp),
             content = UI.Window()
         )
+    }
+
+    fun initOverlays() {
+        WidgetOverlay.createOverlays().forEach(Consumer { overlay: WidgetOverlay -> overlayManager.add(overlay) })
+        overlayManager.add(TooltipOverlay())
+        overlayManager.add(WorldMapOverlay())
     }
 
     private fun suppressEventWarnings() {
@@ -103,8 +111,7 @@ object Main: KoinComponent, EventSubscriber() {
         client.callbacks = callbacks
         ConfigManager.loadSavedProperties()
         PluginManager
-        overlayManager.add(TooltipOverlay())
-        overlayManager.add(WorldMapOverlay())
+        initOverlays()
     }
 
     fun processArguments(args: Array<String>) {

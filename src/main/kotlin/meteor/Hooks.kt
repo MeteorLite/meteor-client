@@ -20,13 +20,13 @@ import net.runelite.api.hooks.Callbacks
 import net.runelite.api.hooks.DrawCallbacks
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetItem
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.*
 import java.awt.event.KeyEvent
 import java.awt.event.MouseEvent
 import java.awt.event.MouseWheelEvent
 import java.awt.image.BufferedImage
 import java.awt.image.VolatileImage
+import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 @Suppress("UNCHECKED_CAST")
 class Hooks : Callbacks {
@@ -105,7 +105,14 @@ class Hooks : Callbacks {
     }
 
     override fun drawAboveOverheads() {
-        //TODO("Not yet implemented")
+        val bufferProvider = client.bufferProvider as MainBufferProvider
+        val graphics2d: Graphics2D = getGraphics(bufferProvider)
+
+        try {
+            overlayRenderer.renderOverlayLayer(graphics2d, OverlayLayer.UNDER_WIDGETS)
+        } catch (ex: java.lang.Exception) {
+            ex.printStackTrace()
+        }
     }
 
     override fun draw(mainBufferProvider: MainBufferProvider, graphics: Graphics?, x: Int, y: Int) {

@@ -19,12 +19,12 @@ import net.runelite.api.*
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
 import net.runelite.api.widgets.WidgetItem
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.*
 import java.awt.Point
 import java.awt.event.KeyEvent
 import java.awt.event.MouseEvent
 import javax.swing.SwingUtilities
+import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 class OverlayRenderer : KeyListener, MouseAdapter() {
 
@@ -118,6 +118,121 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             currentManagedBounds = Rectangle(currentManagedOverlay!!.getBounds()!!)
         } else {
             return mouseEvent
+        }
+        mouseEvent.consume()
+        return mouseEvent
+    }
+
+    override fun mouseDragged(mouseEvent: MouseEvent): MouseEvent {
+        if (!inOverlayManagingMode) {
+            return mouseEvent
+        }
+        val p = mouseEvent.point
+        mousePosition.location = p
+        if (currentManagedOverlay == null) {
+            return mouseEvent
+        }
+        if (dragTargetOverlay != null && !currentManagedOverlay!!.getBounds()!!
+                .intersects(dragTargetOverlay!!.getBounds()!!)
+        ) {
+            // No longer over drag target
+            dragTargetOverlay = null
+        }
+        val canvasRect = Rectangle(client.realDimensions)
+        if (!canvasRect.contains(p)) {
+            return mouseEvent
+        }
+        if (inOverlayResizingMode) {
+            val left = p.x - currentManagedBounds!!.x // Distance (in pixels) from the left edge of the bounds
+            val top = p.y - currentManagedBounds!!.y // Distance (in pixels) from the top edge of the bounds
+            val originalX = currentManagedBounds!!.x
+            val originalY = currentManagedBounds!!.y
+            var x = originalX
+            var y = originalY
+            var width = currentManagedBounds!!.width
+            var height = currentManagedBounds!!.height
+/*            when (meteorUI.getCurrentCursor().getType()) {
+                Cursor.N_RESIZE_CURSOR -> {
+                    y += top
+                    height -= top
+                }
+                Cursor.NW_RESIZE_CURSOR -> {
+                    x += left
+                    y += top
+                    width -= left
+                    height -= top
+                }
+                Cursor.W_RESIZE_CURSOR -> {
+                    x += left
+                    width -= left
+                }
+                Cursor.SW_RESIZE_CURSOR -> {
+                    x += left
+                    width -= left
+                    height = top
+                }
+                Cursor.S_RESIZE_CURSOR -> height = top
+                Cursor.SE_RESIZE_CURSOR -> {
+                    width = left
+                    height = top
+                }
+                Cursor.E_RESIZE_CURSOR -> width = left
+                Cursor.NE_RESIZE_CURSOR -> {
+                    y += top
+                    width = left
+                    height -= top
+                }
+                else -> {}
+            }*/
+            val minOverlaySize: Int = currentManagedOverlay!!.minimumSize
+            val widthOverflow = Math.max(0, minOverlaySize - width)
+            val heightOverflow = Math.max(0, minOverlaySize - height)
+            val dx = x - originalX
+            val dy = y - originalY
+
+            // If this resize operation would cause the dimensions to go below the minimum width/height, reset the
+            // dimensions and adjust the x/y position accordingly as needed
+            if (widthOverflow > 0) {
+                width = minOverlaySize
+                if (dx > 0) {
+                    x -= widthOverflow
+                }
+            }
+            if (heightOverflow > 0) {
+                height = minOverlaySize
+                if (dy > 0) {
+                    y -= heightOverflow
+                }
+            }
+            currentManagedBounds!!.setRect(x.toDouble(), y.toDouble(), width.toDouble(), height.toDouble())
+            currentManagedOverlay!!.setPreferredSize(
+                Dimension(currentManagedBounds!!.width, currentManagedBounds!!.height)
+            )
+            if (currentManagedOverlay!!.getPreferredLocation() != null) {
+                currentManagedOverlay!!.setPreferredLocation(currentManagedBounds!!.location)
+            }
+        } else if (inOverlayDraggingMode) {
+            var overlayPosition = Point(p)
+            overlayPosition.translate(
+                -overlayOffset.x,
+                -overlayOffset.y
+            ) // adjust by mouse offset to get overlay position
+
+            // Clamp drag to parent component
+            val overlayBounds = currentManagedOverlay!!.getBounds()
+            overlayPosition = clampOverlayLocation(
+                overlayPosition.x, overlayPosition.y,
+                overlayBounds!!.width, overlayBounds.height, currentManagedOverlay!!
+            )
+            currentManagedOverlay!!.preferredPosition = null
+            currentManagedOverlay!!.setPreferredLocation(overlayPosition)
+        } else {
+            return mouseEvent
+        }
+        if (startedMovingOverlay) {
+            // Move currently moved overlay to correct layer
+            overlayManager.rebuildOverlayLayers()
+            startedMovingOverlay = false
         }
         mouseEvent.consume()
         return mouseEvent

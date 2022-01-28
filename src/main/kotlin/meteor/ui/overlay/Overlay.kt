@@ -47,7 +47,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
     var position = OverlayPosition.TOP_LEFT
     var priority: OverlayPriority = OverlayPriority.NONE
     var resizable = false
-    private val minimumSize = 32
+    val minimumSize = 32
     val resettable = true
 
     private var preferredLocationp: Point? = Point()
