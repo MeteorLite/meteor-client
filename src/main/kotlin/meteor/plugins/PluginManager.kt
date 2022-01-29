@@ -8,6 +8,7 @@ import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
+import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
@@ -31,6 +32,7 @@ object PluginManager {
         initPlugin(StretchedModePlugin())
         initPlugin(WorldMapPlugin())
         initPlugin(XpTrackerPlugin())
+        initPlugin(SpecBarPlugin())
     }
 
     fun initPlugin(plugin: Plugin) {
@@ -88,11 +90,11 @@ object PluginManager {
         plugin.enabled = false
     }
 
-     fun startPlugin(plugin: Plugin) {
-         plugin.onStart()
-         plugin.start()
-         plugin.subscribe()
-         plugin.enabled = true
+    fun startPlugin(plugin: Plugin) {
+        plugin.onStart()
+        plugin.start()
+        plugin.subscribe()
+        plugin.enabled = true
     }
 
     fun shutdown() {
