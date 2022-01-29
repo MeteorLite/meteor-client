@@ -11,7 +11,7 @@ import org.rationalityfrontline.kevent.Event
 @PluginDescriptor("Fishing", configGroup = "fishing")
 class FishingPlugin: Plugin() {
     override var config = configuration<FishingConfig>()
-    val spotsOverlay = overlay<FishingSpotOverlay>(FishingSpotOverlay(this, config))
+    val spotsOverlay = overlay(FishingSpotOverlay(this, config))
 
     val fishingSpots: ArrayList<NPC> = ArrayList()
     val minnowSpots: HashMap<Int, MinnowSpot> = HashMap()

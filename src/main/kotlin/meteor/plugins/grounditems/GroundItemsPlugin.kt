@@ -52,7 +52,6 @@ import meteor.plugins.grounditems.config.ItemHighlightMode
 import meteor.plugins.grounditems.config.MenuHighlightMode
 import meteor.plugins.grounditems.config.ValueCalculationMode
 import meteor.rs.ClientThread
-import meteor.ui.OverlayManager
 import meteor.util.ColorUtil.prependColorTag
 import meteor.util.ColorUtil.wrapWithColorTag
 import net.runelite.api.*
@@ -90,8 +89,7 @@ class GroundItemsPlugin : Plugin() {
     private val keyManager: KeyManager = KeyManager
     private val clientThread: ClientThread = ClientThread
     private val itemManager: ItemManager = ItemManager
-    private val overlayManager: OverlayManager = OverlayManager
-    private val overlay: GroundItemsOverlay = GroundItemsOverlay(this, config)
+    private val overlay = overlay(GroundItemsOverlay(this, config))
     private val executor: ScheduledExecutorService = Main.executor
     private var priceChecks: List<PriceHighlight> = ImmutableList.of()
     private var highlightedItems: LoadingCache<NamedQuantity, Boolean>? = null
@@ -101,7 +99,6 @@ class GroundItemsPlugin : Plugin() {
     private val lootbeams: MutableMap<WorldPoint, Lootbeam> = HashMap()
 
     override fun onStart() {
-        overlayManager.add(overlay)
         mouseManager.registerMouseListener(inputListener)
         keyManager.registerKeyListener(inputListener, javaClass)
         executor.execute { reset() }
@@ -109,7 +106,6 @@ class GroundItemsPlugin : Plugin() {
     }
 
     override fun onStop() {
-        overlayManager.remove(overlay)
         mouseManager.unregisterMouseListener(inputListener!!)
         keyManager.unregisterKeyListener(inputListener)
         highlightedItems!!.invalidateAll()

@@ -11,7 +11,7 @@ import net.runelite.api.TileObject
 import org.rationalityfrontline.kevent.Event
 import java.util.ArrayList
 
-@Suppress("UnstableApiUsage")
+@Suppress("UnstableApiUsage", "NAME_SHADOWING")
 @PluginDescriptor(
     name = "Agility",
     description = "Show helpful information about agility courses and obstacles",
@@ -19,13 +19,12 @@ import java.util.ArrayList
     configGroup = "agility"
 )
 class AgilityPlugin : Plugin() {
-    var overlay = overlay<AgilityOverlay>(AgilityOverlay(this))
+    var overlay = overlay(AgilityOverlay(this))
     val obstacles: MutableMap<TileObject, Obstacle> = HashMap()
     var marks: MutableList<Tile> = ArrayList()
 
     override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) =  {
-        val it = it.data
-        if (it.new == GameState.LOADING) {
+        if (it.data.new == GameState.LOADING) {
             marks.clear()
             obstacles.clear()
         }

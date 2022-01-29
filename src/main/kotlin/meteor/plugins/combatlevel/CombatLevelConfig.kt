@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Aria <aria@ar1as.space>
+ * Copyright (c) 2018, Brett Middle <https://github.com/bmiddle>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.mousetooltips
+package meteor.plugins.combatlevel
 
-import meteor.plugins.Plugin
-import meteor.ui.OverlayManager.add
-import meteor.ui.OverlayManager.remove
-import meteor.plugins.PluginDescriptor
-import meteor.plugins.mousetooltips.MouseTooltipConfig
-import meteor.ui.OverlayManager
-import meteor.plugins.mousetooltips.MouseTooltipOverlay
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
-@PluginDescriptor(
-    name = "Mouse Tooltips",
-    description = "Render default actions as a tooltip",
-    tags = ["actions", "overlay"]
-)
-class MouseTooltipPlugin : Plugin() {
-    override val config = configuration<MouseTooltipConfig>()
-    private val overlay = overlay(MouseTooltipOverlay(config))
+@ConfigGroup("combatlevel")
+interface CombatLevelConfig : Config {
+    @ConfigItem(
+        keyName = "showLevelsUntil",
+        name = "Calculate next level",
+        description = "Mouse over the combat level to calculate what skill levels will increase combat."
+    )
+    fun showLevelsUntil(): Boolean {
+        return true
+    }
+
+    @ConfigItem(
+        keyName = "showPreciseCombatLevel",
+        name = "Show precise combat level",
+        description = "Displays your combat level with accurate decimals."
+    )
+    fun showPreciseCombatLevel(): Boolean {
+        return true
+    }
+
+    @ConfigItem(
+        keyName = "wildernessAttackLevelRange",
+        name = "Show level range in wilderness",
+        description = "Displays a PVP-world-like attack level range in the wilderness"
+    )
+    fun wildernessAttackLevelRange(): Boolean {
+        return true
+    }
 }

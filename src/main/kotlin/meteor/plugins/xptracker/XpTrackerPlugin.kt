@@ -44,6 +44,7 @@ import org.rationalityfrontline.kevent.Event
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+@Suppress("NAME_SHADOWING")
 @PluginDescriptor(
     name = "XP Tracker",
     description = "Enable the XP Tracker panel",
@@ -54,7 +55,6 @@ class XpTrackerPlugin : Plugin() {
     private val skillIconManager = SkillIconManager
     override val config = configuration<XpTrackerConfig>()
     private val npcManager = NPCManager
-    private val overlayManager = OverlayManager
     private val xpClient: XpClient = Main.xpClient
     private val xpState = XpState(config)
 
@@ -76,24 +76,24 @@ class XpTrackerPlugin : Plugin() {
         // Initialize the tracker & last xp if already logged in
         fetchXp = true
         initializeTracker = true
-        if (!startedCooldowns) executorService!!.scheduleAtFixedRate({
+        if (!startedCooldowns) executorService.scheduleAtFixedRate({
             if (Refs.client.localPlayer != null) {
                 if (skillUpdates.size > 0) {
                     for (s in skillUpdates.keys) {
                         val elapsedMilli = System.currentTimeMillis() - skillUpdates[s]!!
-                        if (elapsedMilli / 1000 / 60 > config!!.infoboxCooldown()) if (hasOverlay(s)) removeOverlay(
+                        if (elapsedMilli / 1000 / 60 > config.infoboxCooldown()) if (hasOverlay(s)) removeOverlay(
                             s
                         )
                     }
                 }
             }
-        }, 0, config!!.infoboxCooldown().toLong(), TimeUnit.MINUTES)
+        }, 0, config.infoboxCooldown().toLong(), TimeUnit.MINUTES)
         startedCooldowns = true
     }
 
     override fun onStop() {
-        overlayManager!!.removeIf { e: Overlay? -> e is XpInfoBoxOverlay }
-        xpState!!.reset()
+        OverlayManager.removeIf { e: Overlay? -> e is XpInfoBoxOverlay }
+        xpState.reset()
     }
 
     override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) = {
@@ -102,7 +102,7 @@ class XpTrackerPlugin : Plugin() {
         if (state == GameState.LOGGED_IN) {
             // LOGGED_IN is triggered between region changes too.
             // Check that the username changed or the world type changed.
-            val type = worldSetToType(client!!.worldType)
+            val type = worldSetToType(client.worldType)
             if (client.username != lastUsername || lastWorldType !== type) {
                 // Reset
                 lastUsername = client.username
@@ -115,14 +115,14 @@ class XpTrackerPlugin : Plugin() {
         } else if (state == GameState.LOGGING_IN || state == GameState.HOPPING) {
             initializeTracker = true
         } else if (state == GameState.LOGIN_SCREEN) {
-            val local = client!!.localPlayer
+            val local = client.localPlayer
             if (local != null) {
                 val username = local.name
                 if (username != null) {
                     val totalXp = client.overallExperience
                     // Don't submit xptrack unless xp threshold is reached
                     if (Math.abs(totalXp - lastXp) > XP_THRESHOLD) {
-                        xpClient!!.update(username)
+                        xpClient.update(username)
                         lastXp = totalXp
                     }
                 }
@@ -148,9 +148,9 @@ class XpTrackerPlugin : Plugin() {
      */
     fun addOverlay(skill: Skill?) {
         removeOverlay(skill)
-        overlayManager!!.add(
+        OverlayManager.add(
             XpInfoBoxOverlay(
-                this, config!!, skill!!, skillIconManager!!.getSkillImage(
+                this, config, skill!!, skillIconManager.getSkillImage(
                     skill
                 )!!
             )
@@ -163,7 +163,7 @@ class XpTrackerPlugin : Plugin() {
      * @param skill the skill for which the overlay should be removed.
      */
     fun removeOverlay(skill: Skill?) {
-        overlayManager!!.removeIf { e: Overlay? -> e is XpInfoBoxOverlay && e.skill === skill }
+        OverlayManager.removeIf { e: Overlay? -> e is XpInfoBoxOverlay && e.skill === skill }
     }
 
     /**
@@ -173,7 +173,7 @@ class XpTrackerPlugin : Plugin() {
      * @return true if the skill has an overlay.
      */
     fun hasOverlay(skill: Skill?): Boolean {
-        return overlayManager!!.anyMatch { o: Overlay? -> o is XpInfoBoxOverlay && o.skill === skill }
+        return OverlayManager.anyMatch { o: Overlay? -> o is XpInfoBoxOverlay && o.skill === skill }
     }
 
     /**
@@ -186,11 +186,11 @@ class XpTrackerPlugin : Plugin() {
         for (skill in Skill.values()) {
             var currentXp: Long
             currentXp = if (skill == Skill.OVERALL) {
-                client!!.overallExperience
+                client.overallExperience
             } else {
-                client!!.getSkillExperience(skill).toLong()
+                client.getSkillExperience(skill).toLong()
             }
-            xpState!!.initializeSkill(skill, currentXp)
+            xpState.initializeSkill(skill, currentXp)
             removeOverlay(skill)
         }
     }
@@ -200,8 +200,8 @@ class XpTrackerPlugin : Plugin() {
      * This resets both the internal state and UI elements
      */
     private fun resetState() {
-        xpState!!.reset()
-        overlayManager!!.removeIf { e: Overlay? -> e is XpInfoBoxOverlay }
+        xpState.reset()
+        OverlayManager.removeIf { e: Overlay? -> e is XpInfoBoxOverlay }
     }
 
     /**
@@ -211,8 +211,8 @@ class XpTrackerPlugin : Plugin() {
      * @param skill Skill to reset
      */
     fun resetSkillState(skill: Skill?) {
-        val currentXp = client!!.getSkillExperience(skill)
-        xpState!!.resetSkill(skill!!, currentXp.toLong())
+        val currentXp = client.getSkillExperience(skill)
+        xpState.resetSkill(skill!!, currentXp.toLong())
         removeOverlay(skill)
     }
 
@@ -237,7 +237,7 @@ class XpTrackerPlugin : Plugin() {
      * @param skill Skill to reset per hour rate
      */
     fun resetSkillPerHourState(skill: Skill?) {
-        xpState!!.resetSkillPerHour(skill!!)
+        xpState.resetSkillPerHour(skill!!)
     }
 
     /**
@@ -258,18 +258,18 @@ class XpTrackerPlugin : Plugin() {
             val currentLevel = it.level
             val startGoal = startGoalVarpForSkill(skill)
             val endGoal = endGoalVarpForSkill(skill)
-            val startGoalXp = if (startGoal != null) client!!.getVar(startGoal) else -1
-            val endGoalXp = if (endGoal != null) client!!.getVar(endGoal) else -1
+            val startGoalXp = if (startGoal != null) client.getVar(startGoal) else -1
+            val endGoalXp = if (endGoal != null) client.getVar(endGoal) else -1
             if (!initializeTracker) {
                 // This is the XP sync on login, wait until after login to begin counting
-                if (!config!!.hideMaxed() && currentLevel < Experience.MAX_REAL_LEVEL) {
-                    val state = xpState!!.getSkill(skill)
+                if (!config.hideMaxed() && currentLevel < Experience.MAX_REAL_LEVEL) {
+                    val state = xpState.getSkill(skill)
                     state.actionType = XpActionType.EXPERIENCE
-                    val interacting = client!!.localPlayer!!.interacting
+                    val interacting = client.localPlayer!!.interacting
                     if (interacting is NPC && COMBAT.contains(skill)) {
                         val xpModifier = worldSetToType(client.worldType).modifier(client)
                         val npc = interacting
-                        xpState.updateNpcExperience(skill, npc, npcManager!!.getHealth(npc.id), xpModifier)
+                        xpState.updateNpcExperience(skill, npc, npcManager.getHealth(npc.id), xpModifier)
                     }
                     xpState.updateSkill(skill, currentXp.toLong(), startGoalXp, endGoalXp)
                     // Also update the total experience
@@ -305,11 +305,11 @@ class XpTrackerPlugin : Plugin() {
 
             // Check for xp gained while logged out
             for (skill in Skill.values()) {
-                if (skill == Skill.OVERALL || !xpState!!.isInitialized(skill)) {
+                if (skill == Skill.OVERALL || !xpState.isInitialized(skill)) {
                     continue
                 }
-                val skillState = xpState!!.getSkill(skill)
-                val currentXp = client!!.getSkillExperience(skill)
+                val skillState = xpState.getSkill(skill)
+                val currentXp = client.getSkillExperience(skill)
                 if (skillState.currentXp != currentXp.toLong()) {
                     if (currentXp < skillState.currentXp) {
                         resetState()
@@ -327,8 +327,8 @@ class XpTrackerPlugin : Plugin() {
                 if (skill == Skill.OVERALL) {
                     continue
                 }
-                if (!xpState!!.isInitialized(skill)) {
-                    val currentXp = client!!.getSkillExperience(skill)
+                if (!xpState.isInitialized(skill)) {
+                    val currentXp = client.getSkillExperience(skill)
                     // goal exps are not necessary for skill initialization
                     val xpUpdateResult = xpState.updateSkill(skill, currentXp.toLong(), -1, -1)
                     assert(xpUpdateResult === XpUpdateResult.INITIALIZED)
@@ -336,13 +336,13 @@ class XpTrackerPlugin : Plugin() {
             }
 
             // Initialize the overall xp
-            if (!xpState!!.isInitialized(Skill.OVERALL)) {
-                val overallXp = client!!.overallExperience
+            if (!xpState.isInitialized(Skill.OVERALL)) {
+                val overallXp = client.overallExperience
                 xpState.initializeSkill(Skill.OVERALL, overallXp)
             }
         }
         if (fetchXp) {
-            lastXp = client!!.overallExperience
+            lastXp = client.overallExperience
             fetchXp = false
         }
         rebuildSkills()
@@ -352,12 +352,12 @@ class XpTrackerPlugin : Plugin() {
         val it = it.data
         val widgetID = it.param1
         if (WidgetInfo.TO_GROUP(widgetID) == WidgetID.SKILLS_GROUP_ID && it.option.startsWith("View")
-            && config!!.skillTabOverlayMenuOptions()
+            && config.skillTabOverlayMenuOptions()
         ) {
             // Get skill from menu option, eg. "View <col=ff981f>Attack</col> guide"
             val skillText = it.option.split(" ").toTypedArray()[1]
             val skill = Skill.valueOf(Text.removeTags(skillText).uppercase(Locale.getDefault()))
-            var menuEntries = client!!.menuEntries
+            var menuEntries = client.menuEntries
             menuEntries = Arrays.copyOf(menuEntries, menuEntries.size + 1)
             menuEntries[menuEntries.size - 1] = MenuEntry()
             val menuEntry = menuEntries[menuEntries.size - 1]
@@ -386,11 +386,11 @@ class XpTrackerPlugin : Plugin() {
     }
 
     fun getSkillState(skill: Skill?): XpStateSingle {
-        return xpState!!.getSkill(skill!!)
+        return xpState.getSkill(skill!!)
     }
 
     fun getSkillSnapshot(skill: Skill?): XpSnapshotSingle {
-        return xpState!!.getSkillSnapshot(skill!!)
+        return xpState.getSkillSnapshot(skill!!)
     }
 
     init {
@@ -401,18 +401,18 @@ class XpTrackerPlugin : Plugin() {
         try {
             // Adjust unpause states
             for (skill in Skill.values()) {
-                var skillExperience: Long = if (skill == Skill.OVERALL) {
-                    client!!.overallExperience
+                val skillExperience: Long = if (skill == Skill.OVERALL) {
+                    client.overallExperience
                 } else {
-                    client!!.getSkillExperience(skill).toLong()
+                    client.getSkillExperience(skill).toLong()
                 }
-                xpPauseState.tickXp(skill, skillExperience, config!!.pauseSkillAfter())
+                xpPauseState.tickXp(skill, skillExperience, config.pauseSkillAfter())
             }
-            val loggedIn: Boolean = when (client!!.gameState) {
+            val loggedIn: Boolean = when (client.gameState) {
                 GameState.LOGIN_SCREEN, GameState.LOGGING_IN, GameState.LOGIN_SCREEN_AUTHENTICATOR -> false
                 else -> true
             }
-            xpPauseState.tickLogout(config!!.pauseOnLogout(), loggedIn)
+            xpPauseState.tickLogout(config.pauseOnLogout(), loggedIn)
             if (lastTickMillis == 0L) {
                 lastTickMillis = System.currentTimeMillis()
                 return
@@ -422,7 +422,7 @@ class XpTrackerPlugin : Plugin() {
             lastTickMillis = nowMillis
             for (skill in Skill.values()) {
                 if (!xpPauseState.isPaused(skill)) {
-                    xpState!!.tick(skill, tickDelta)
+                    xpState.tick(skill, tickDelta)
                 }
             }
         } catch (e: Exception) {

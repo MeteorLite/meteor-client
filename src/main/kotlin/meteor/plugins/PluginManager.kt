@@ -3,6 +3,7 @@ package meteor.plugins
 import meteor.Configuration
 import meteor.config.ConfigManager
 import meteor.plugins.agility.AgilityPlugin
+import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
@@ -19,6 +20,7 @@ import java.lang.RuntimeException
 object PluginManager {
     var plugins = ArrayList<Plugin>()
     init {
+        initPlugin(CombatLevelPlugin())
         initPlugin(DevToolsPlugin())
         initPlugin(ExamplePlugin())
         initPlugin(FishingPlugin())

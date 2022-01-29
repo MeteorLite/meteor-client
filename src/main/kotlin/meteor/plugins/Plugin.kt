@@ -18,8 +18,7 @@ open class Plugin : EventSubscriber() {
         return config
     }
 
-    inline fun <reified T : Overlay> overlay(overlay: Overlay): T {
-        overlay as T
+    inline fun <reified T : Overlay> overlay(overlay: T): T {
         overlays.add(overlay)
         return overlay
     }
