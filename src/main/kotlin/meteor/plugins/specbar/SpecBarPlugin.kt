@@ -12,16 +12,7 @@ import org.rationalityfrontline.kevent.Event
     enabledByDefault = false
 )
 class SpecBarPlugin : Plugin() {
-
-
-    override fun onClientTick(): ((Event<eventbus.events.ClientTick>) -> Unit)= {
-        val specbarWidget = client!!.getWidget(WidgetID.COMBAT_GROUP_ID, 35)
-        if (specbarWidget != null) {
-            specbarWidget.isHidden = false
-        }
-
+    override fun onClientTick(): ((Event<eventbus.events.ClientTick>) -> Unit) = {
+        client.getWidget(WidgetID.COMBAT_GROUP_ID, 35)?.let { it.isHidden = false }
     }
-
-
-
-        }
+}
