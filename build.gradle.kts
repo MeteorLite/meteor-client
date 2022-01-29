@@ -11,7 +11,7 @@ group = "meteor.client"
 version = "1.0.0"
 
 repositories {
-    mavenLocal()
+
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
     mavenCentral()
     maven { url = uri("https://maven.gegy1000.net/") }
