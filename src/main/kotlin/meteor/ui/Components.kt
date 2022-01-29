@@ -32,10 +32,8 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
-import meteor.ui.Components.Toolbar.Position.*
 import meteor.ui.UI.pluginConfigurationIsOpen
 import meteor.ui.UI.pluginsPanelIsOpen
-import meteor.ui.UI.toolbarPosition
 import net.runelite.api.events.ConfigButtonClicked
 import java.awt.BorderLayout
 import java.util.stream.Collectors
@@ -43,13 +41,9 @@ import javax.swing.JPanel
 
 object Components {
     var jpanel: JPanel? = null
-    var toolbarWidth: Float = 0.05f
+    var toolbarWidth: Float = 0.025f
     lateinit var lastPlugin: Plugin
-    @Composable
-    fun BrandBadge() {
-        val bitmap: ImageBitmap = useResource("brand/badge.png") { loadImageBitmap(it) }
-        Image(bitmap = bitmap, contentDescription = "Brand Badge", filterQuality = FilterQuality.High)
-    }
+
     @Composable
     fun PluginConfigPanelToggleButton() {
         MaterialTheme(colors = UI.darkThemeColors) {
@@ -74,7 +68,7 @@ object Components {
     @Composable
     fun PluginsPanel() {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(UI.darkThemeColors.background)) {
+            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(UI.darkThemeColors.background)) {
             MaterialTheme(colors = UI.darkThemeColors) {
                 PluginsPanelHeader()
                 Plugins()
@@ -85,7 +79,7 @@ object Components {
     @Composable
     fun ConfigPanel() {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(UI.darkThemeColors.background)) {
+            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(UI.darkThemeColors.background)) {
             MaterialTheme(colors = UI.darkThemeColors) {
                 ConfigPanelHeader()
                 Configs()
@@ -337,21 +331,11 @@ object Components {
 
     @Composable
     fun OSRSApplet(constraints: Constraints) {
-        val mod: Modifier
-        when (toolbarPosition.value) {
-            RIGHT, LEFT -> {
-                mod = if (pluginsPanelIsOpen.value)
-                    Modifier.width((((constraints.maxWidth / 5) * 4) - toolbarWidth).dp).fillMaxHeight()
-                else
-                    Modifier.width((constraints.maxWidth - toolbarWidth).dp).fillMaxHeight()
-            }
-            TOP, BOTTOM -> {
-                mod = if (pluginsPanelIsOpen.value)
-                    Modifier.fillMaxWidth(0.8f).fillMaxHeight()
-                else
-                    Modifier.fillMaxWidth().fillMaxHeight()
-            }
-        }
+        val mod: Modifier = if (pluginsPanelIsOpen.value)
+            Modifier.fillMaxWidth(((1f / 5) * 4) - toolbarWidth).fillMaxHeight()
+        else
+            Modifier.fillMaxWidth(1f - toolbarWidth).fillMaxHeight()
+
             SwingPanel(Color.Black,
                 modifier = mod,
                 factory = {
@@ -371,44 +355,20 @@ object Components {
 
     object Toolbar {
         @Composable
-        fun LeftRightToolbar(position: MutableState<Position>) {
-            return Column(verticalArrangement = Arrangement.Top, modifier = Modifier.background(UI.darkThemeColors.background)) {
+        fun Toolbar() {
+            return Column(verticalArrangement = Arrangement.Top, modifier = Modifier.background(Color(0xFF080808)).fillMaxWidth().fillMaxHeight()) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-                        modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight(.5f).background(UI.darkThemeColors.background)) {
+                        modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight(.5f).background(Color(0xFF080808)).fillMaxWidth()) {
                     MaterialTheme(colors = UI.darkThemeColors) {
                     }
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom,
-                        modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight().background(UI.darkThemeColors.background)) {
+                        modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight().background(Color(0xFF080808)).fillMaxWidth()) {
                     MaterialTheme(colors = UI.darkThemeColors) {
                         PluginConfigPanelToggleButton()
                     }
                 }
             }
-        }
-
-        @Composable
-        fun TopBottomToolbar(position: MutableState<Position>) {
-            return Row(horizontalArrangement = Arrangement.Center) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                        modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxWidth(.5f).background(UI.darkThemeColors.background)) {
-                    MaterialTheme(colors = UI.darkThemeColors) {
-                    }
-                }
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                        modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxWidth().background(UI.darkThemeColors.background)) {
-                    MaterialTheme(colors = UI.darkThemeColors) {
-                        PluginConfigPanelToggleButton()
-                    }
-                }
-            }
-        }
-
-        enum class Position(position: String) {
-            TOP("Top"),
-            RIGHT("Right"),
-            LEFT("Left"),
-            BOTTOM("Bottom")
         }
     }
 }
