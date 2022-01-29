@@ -85,7 +85,7 @@ class FishingSpotOverlay(val plugin: FishingPlugin, var config: FishingConfig): 
                 }
             }
             if (config.showSpotNames()) {
-                val text: String = spot.spotName
+                val text: String = spot.type
                 val textLocation = npc.getCanvasTextLocation(graphics, text, npc.logicalHeight + 40)
                 if (textLocation != null) {
                     renderTextLocation(graphics, textLocation, text, color!!.darker())
@@ -96,5 +96,4 @@ class FishingSpotOverlay(val plugin: FishingPlugin, var config: FishingConfig): 
         }
         return null
     }
-
 }

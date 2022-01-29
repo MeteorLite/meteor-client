@@ -44,6 +44,9 @@ class Hooks : Callbacks {
     private var stretchedGraphics: Graphics2D? = null
     private var clientThread = ClientThread
 
+    class PendingEvent(val type: Enum<Events>, val event: Any)
+    private var pendingEvents = ArrayList<PendingEvent>()
+
     init {
         EventBus.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) { event ->
             when (event.data.new ) {
@@ -55,13 +58,13 @@ class Hooks : Callbacks {
         }
     }
 
-    override fun post(type: Enum<Events>, obj: Any) {
-        EventBus.post(type, obj)
+    override fun post(type: Enum<Events>, event: Any) {
+        EventBus.post(type, event)
     }
 
 
-    override fun postDeferred(type: Enum<Events>, obj: Any) {
-        EventBus.post(type, obj)
+    override fun postDeferred(type: Enum<Events>, event: Any) {
+        pendingEvents.add(PendingEvent(type, event))
     }
 
     override fun tick() {
@@ -93,6 +96,9 @@ class Hooks : Callbacks {
         } else {
             shouldProcessGameTick = true
         }
+
+        pendingEvents.forEach{ post(it.type, it.event) }
+        pendingEvents.clear()
     }
 
     override fun drawScene() {

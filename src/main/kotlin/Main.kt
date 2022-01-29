@@ -62,8 +62,16 @@ object Main: KoinComponent, EventSubscriber() {
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(width = 1280.dp, height = 720.dp),
-            content = UI.Window()
+            content = UI.Window() //::finishStartup is called at the end of this function
         )
+    }
+
+    fun finishStartup() {
+        client = Applet.asClient(Applet.applet)
+        client.callbacks = callbacks
+        ConfigManager.loadSavedProperties()
+        PluginManager
+        initOverlays()
     }
 
     fun initOverlays() {
@@ -104,14 +112,6 @@ object Main: KoinComponent, EventSubscriber() {
     fun shutdown(a: ApplicationScope) {
         PluginManager.shutdown()
         a.exitApplication()
-    }
-
-    fun finishStartup() {
-        client = Applet.asClient(Applet.applet)
-        client.callbacks = callbacks
-        ConfigManager.loadSavedProperties()
-        PluginManager
-        initOverlays()
     }
 
     fun processArguments(args: Array<String>) {
