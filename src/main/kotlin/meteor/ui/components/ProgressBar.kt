@@ -24,8 +24,7 @@
  */
 package meteor.ui.components
 
-import meteor.FontManager
-import meteor.ui.DimmableJPanel
+import meteor.game.FontManager
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics

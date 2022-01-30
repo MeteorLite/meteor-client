@@ -26,7 +26,7 @@
  */
 package meteor.plugins.xptracker
 
-import meteor.FontManager
+import meteor.game.FontManager
 import meteor.game.SkillIconManager
 import meteor.ui.ColorScheme
 import meteor.ui.components.DynamicGridLayout

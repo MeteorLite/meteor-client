@@ -8,12 +8,14 @@ import eventbus.Events
 import eventbus.events.GameTick
 import meteor.*
 import meteor.config.ConfigManager
+import meteor.game.FontManager
+import meteor.game.ItemManager
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
-import meteor.ui.OverlayManager
-import meteor.ui.OverlayRenderer
+import meteor.ui.overlay.OverlayManager
+import meteor.ui.overlay.OverlayRenderer
 import meteor.ui.UI
 import meteor.ui.overlay.TooltipManager
 import meteor.ui.overlay.WidgetOverlay

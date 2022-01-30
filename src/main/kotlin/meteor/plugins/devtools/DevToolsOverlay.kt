@@ -25,8 +25,7 @@
  */
 package meteor.plugins.devtools
 
-import meteor.FontManager.runescapeFont
-import meteor.plugins.devtools.MovementFlag.*
+import meteor.game.FontManager.runescapeFont
 import meteor.plugins.devtools.MovementFlag.Companion.getSetFlags
 import meteor.ui.overlay.*
 import meteor.util.OverlayUtil

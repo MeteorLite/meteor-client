@@ -1,4 +1,4 @@
-package meteor.ui
+package meteor.ui.overlay
 
 import Main.client
 import Main.fontManager
@@ -13,7 +13,6 @@ import meteor.input.KeyManager
 import meteor.input.MouseAdapter
 import meteor.input.MouseManager
 import meteor.rs.ClientThread
-import meteor.ui.overlay.*
 import meteor.util.JagexColors
 import net.runelite.api.*
 import net.runelite.api.widgets.Widget
@@ -111,7 +110,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         }
         if (SwingUtilities.isRightMouseButton(mouseEvent)) {
             if (currentManagedOverlay!!.resettable) {
-                overlayManager.resetOverlay(currentManagedOverlay!!)
+                OverlayManager.resetOverlay(currentManagedOverlay!!)
             }
         } else if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
             val offset = Point(mousePoint.x, mousePoint.y)
@@ -236,7 +235,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         }
         if (startedMovingOverlay) {
             // Move currently moved overlay to correct layer
-            overlayManager.rebuildOverlayLayers()
+            OverlayManager.rebuildOverlayLayers()
             startedMovingOverlay = false
         }
         mouseEvent.consume()
@@ -433,16 +432,16 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
 
     fun renderOverlayLayer(graphics: Graphics2D, layer: OverlayLayer) {
-        val overlays: Collection<Overlay> = overlayManager.getLayer(layer)
+        val overlays: Collection<Overlay> = OverlayManager.getLayer(layer)
         renderOverlays(graphics, overlays, layer)
     }
 
     fun renderAfterLayer(graphics: Graphics2D, layer: Widget,
                          widgetItems: Collection<WidgetItem>) {
-        val overlays = overlayManager.getForLayer(layer.id)
-        overlayManager.widgetItems = widgetItems
+        val overlays = OverlayManager.getForLayer(layer.id)
+        OverlayManager.widgetItems = widgetItems
         renderOverlays(graphics, overlays, OverlayLayer.ABOVE_WIDGETS)
-        overlayManager.widgetItems = emptyList()
+        OverlayManager.widgetItems = emptyList()
     }
 
     fun setGraphicProperties(graphics: Graphics2D) {
@@ -530,7 +529,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             entry.option = overlayMenuEntry.option
             entry.target = meteor.util.ColorUtil.wrapWithColorTag(overlayMenuEntry.target, JagexColors.MENU_TARGET)
             entry.type = overlayMenuEntry.menuAction!!.id
-            entry.identifier = overlayManager.overlays.indexOf(overlay) // overlay id
+            entry.identifier = OverlayManager.overlays.indexOf(overlay) // overlay id
             entries.add(entry)
         }
         return entries.toArray(arrayOf(MenuEntry()))
@@ -538,10 +537,10 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
     fun renderAfterInterface(graphics: Graphics2D, interfaceId: Int,
                              widgetItems: Collection<WidgetItem>) {
-        val overlays = overlayManager.getForInterface(interfaceId)
-        overlayManager.widgetItems = widgetItems
+        val overlays = OverlayManager.getForInterface(interfaceId)
+        OverlayManager.widgetItems = widgetItems
         renderOverlays(graphics, overlays, OverlayLayer.ABOVE_WIDGETS)
-        overlayManager.widgetItems = emptyList()
+        OverlayManager.widgetItems = emptyList()
     }
 
     private fun renderOverlays(graphics: Graphics2D, overlays: Collection<Overlay>?,
@@ -709,7 +708,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
     private fun findMangedOverlay(mousePoint: Point): Overlay? {
         synchronized(overlayManager) {
-            for (overlay in overlayManager.overlays) {
+            for (overlay in OverlayManager.overlays) {
                 if (overlay.position == OverlayPosition.DYNAMIC
                     || overlay.position == OverlayPosition.TOOLTIP
                 ) {

@@ -27,14 +27,13 @@ package rs117.hd
 
 import com.google.common.base.Stopwatch
 import com.google.common.primitives.Ints
-import meteor.Refs
 import com.jogamp.opengl.math.VectorUtil
 import net.runelite.api.*
 import rs117.hd.config.WaterEffects
 import rs117.hd.materials.*
 
 internal class SceneUploader(private val hdPlugin: GpuHDPlugin, var proceduralGenerator: ProceduralGenerator) {
-    private val client = Refs.client
+    private val client = Main.client
     var sceneId = (System.currentTimeMillis() / 1000L).toInt()
     private var offset = 0
     private var uvoffset = 0

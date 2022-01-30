@@ -31,7 +31,7 @@ import com.google.common.collect.EvictingQueue
 import com.google.common.collect.HashBasedTable
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Table
-import meteor.ItemManager
+import meteor.game.ItemManager
 import eventbus.events.ClientTick
 import eventbus.events.ConfigChanged
 import eventbus.events.FocusChanged

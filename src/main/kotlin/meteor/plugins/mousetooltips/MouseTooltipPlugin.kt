@@ -25,12 +25,7 @@
 package meteor.plugins.mousetooltips
 
 import meteor.plugins.Plugin
-import meteor.ui.OverlayManager.add
-import meteor.ui.OverlayManager.remove
 import meteor.plugins.PluginDescriptor
-import meteor.plugins.mousetooltips.MouseTooltipConfig
-import meteor.ui.OverlayManager
-import meteor.plugins.mousetooltips.MouseTooltipOverlay
 
 @PluginDescriptor(
     name = "Mouse Tooltips",

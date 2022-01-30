@@ -25,7 +25,7 @@
  */
 package meteor.plugins.xptracker
 
-import meteor.FontManager.runescapeSmallFont
+import meteor.game.FontManager.runescapeSmallFont
 import meteor.ui.components.ImageComponent
 import meteor.ui.components.LineComponent
 import meteor.ui.components.ProgressBarComponent

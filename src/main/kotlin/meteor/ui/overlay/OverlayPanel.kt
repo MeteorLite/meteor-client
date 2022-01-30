@@ -24,7 +24,7 @@
  */
 package meteor.ui.overlay
 
-import meteor.FontManager
+import meteor.game.FontManager
 import meteor.ui.components.ComponentConstants
 import java.awt.Color
 import java.awt.Dimension

@@ -1,6 +1,6 @@
 package meteor.plugins.fishing
 
-import meteor.ItemManager
+import meteor.game.ItemManager
 import meteor.ui.components.ProgressPieComponent
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayPosition

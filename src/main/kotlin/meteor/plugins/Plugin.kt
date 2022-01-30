@@ -8,7 +8,6 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 open class Plugin : EventSubscriber() {
     val client = Main.client
     private val overlayManager = Main.overlayManager
-
     val overlays = ArrayList<Overlay>()
     var enabled = false
 
@@ -35,13 +34,8 @@ open class Plugin : EventSubscriber() {
         enabled = false
     }
 
-    open fun onStart() {
-
-    }
-
-    open fun onStop() {
-
-    }
+    open fun onStart() {}
+    open fun onStop() {}
 
     open val config: Config? = null
 

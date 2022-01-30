@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor
+package meteor.game
 
 import Main.client
 import Main.httpClient
@@ -33,8 +33,7 @@ import com.google.common.collect.ImmutableMap
 import eventbus.Events
 import eventbus.events.GameStateChanged
 import eventbus.events.PostItemComposition
-import meteor.game.ItemMapping
-import meteor.game.ItemReclaimCost
+import meteor.Logger
 import meteor.plugins.EventSubscriber
 import meteor.rs.ClientThread
 import meteor.util.AsyncBufferedImage

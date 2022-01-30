@@ -27,13 +27,12 @@ package meteor.plugins.xptracker
 
 import Main
 import com.google.common.collect.ImmutableList
-import meteor.Refs
 import eventbus.events.*
 import meteor.game.NPCManager
 import meteor.game.SkillIconManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.OverlayManager
+import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.Overlay
 import net.runelite.api.*
 import net.runelite.api.util.Text
@@ -77,7 +76,7 @@ class XpTrackerPlugin : Plugin() {
         fetchXp = true
         initializeTracker = true
         if (!startedCooldowns) executorService.scheduleAtFixedRate({
-            if (Refs.client.localPlayer != null) {
+            if (client.localPlayer != null) {
                 if (skillUpdates.size > 0) {
                     for (s in skillUpdates.keys) {
                         val elapsedMilli = System.currentTimeMillis() - skillUpdates[s]!!

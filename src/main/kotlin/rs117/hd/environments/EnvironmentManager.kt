@@ -28,7 +28,6 @@ import com.google.common.primitives.Floats
 import rs117.hd.HDUtils.lerpVectors
 import rs117.hd.HDUtils.lerp
 import rs117.hd.HDUtils.colorRGBToInt
-import meteor.Refs
 import net.runelite.api.Constants
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.coords.LocalPoint

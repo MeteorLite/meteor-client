@@ -23,9 +23,8 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui
+package meteor.input
 
-import meteor.input.MouseListener
 import java.awt.event.MouseEvent
 
 object TranslateMouseListener : MouseListener {
@@ -66,7 +65,8 @@ object TranslateMouseListener : MouseListener {
         val realDimensions = client.realDimensions
         val newX = (e.x / (stretchedDimensions.width / realDimensions.getWidth())).toInt()
         val newY = (e.y / (stretchedDimensions.height / realDimensions.getHeight())).toInt()
-        val mouseEvent = MouseEvent(client.canvas, e.id, e.getWhen(),
+        val mouseEvent = MouseEvent(
+            client.canvas, e.id, e.getWhen(),
                 e.modifiersEx,
                 newX, newY, e.clickCount, e.isPopupTrigger, e.button)
         if (e.isConsumed) {

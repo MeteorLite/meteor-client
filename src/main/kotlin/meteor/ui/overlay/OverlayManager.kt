@@ -1,8 +1,7 @@
-package meteor.ui
+package meteor.ui.overlay
 
 import com.google.common.base.MoreObjects
 import com.google.common.collect.ArrayListMultimap
-import meteor.ui.overlay.*
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetItem
 import java.awt.Dimension
@@ -178,7 +177,7 @@ object OverlayManager {
         for (key in overlayMap.keys()) {
             overlayMap[key].sortWith(OVERLAY_COMPARATOR)
         }
-        this.overlayMap = overlayMap
+        OverlayManager.overlayMap = overlayMap
     }
 
     @Synchronized

@@ -31,7 +31,6 @@ import eventbus.events.ItemDespawned
 import eventbus.events.ItemSpawned
 import eventbus.events.NpcChanged
 import eventbus.events.NpcDespawned
-import meteor.Refs
 import meteor.config.ConfigManager
 import meteor.plugins.PluginManager
 import meteor.plugins.grounditems.GroundItemsPlugin
@@ -49,7 +48,7 @@ import java.util.*
 import java.util.regex.Pattern
 
 class LightManager(private val config: HdPluginConfig, private val hdPlugin: GpuHDPlugin) {
-    private val client = Refs.client
+    private val client = Main.client
     private val configManager = ConfigManager
     var allLights = ArrayList<Light>()
     var sceneLights = ArrayList<Light>()

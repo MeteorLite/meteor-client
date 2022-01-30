@@ -26,7 +26,7 @@ package meteor.ui.worldmap
 
 import com.google.common.base.Splitter
 import com.google.common.base.Strings
-import meteor.FontManager
+import meteor.game.FontManager
 import meteor.plugins.worldmap.WorldMapPoint
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
