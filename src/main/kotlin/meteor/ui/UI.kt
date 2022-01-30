@@ -1,5 +1,6 @@
 package meteor.ui
 
+import Main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -169,6 +170,12 @@ object UI {
                             createEnumNode(descriptor, configItemDescriptor)
                             continue
                         }
+                        if (configItemDescriptor.type == String::class.java) {
+                            if (configItemDescriptor.item.textField) {
+                                createStringTextNode(descriptor, configItemDescriptor)
+                                continue
+                            }
+                        }
                     }
             }
         }
@@ -236,6 +243,44 @@ object UI {
         }
         Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
     }
+    @Composable
+    fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+        var text by remember { mutableStateOf ("" +
+                ConfigManager.getConfiguration(
+                descriptor.group.value,
+                configItemDescriptor.key()
+
+        )) }
+        Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
+                MaterialTheme(colors = UI.darkThemeColors) {
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
+                MaterialTheme(colors = UI.darkThemeColors) {
+                    BasicTextField(
+                        value = text,
+                        onValueChange = {
+                            try {
+                                ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(),
+                                    it
+                                )
+                                text = it
+                            } catch (_: Exception) { }
+                        },
+                        singleLine = true,
+                        modifier = Modifier.padding(all = 0.dp),
+                        textStyle = TextStyle(color = Color.Cyan, fontSize = 16.sp)
+                    )
+                }
+            }
+        }
+        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+    }
+
 
     @Composable
     fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {

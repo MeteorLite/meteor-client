@@ -3,13 +3,14 @@ package meteor.plugins
 import meteor.Configuration
 import meteor.config.ConfigManager
 import meteor.plugins.agility.AgilityPlugin
-import meteor.plugins.combatlevel.CombatLevelPlugin
+import meteor.plugins.autologin.AutoLoginPlugin
+import meteor.plugins.autorun.AutoRun
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
-import meteor.plugins.specbar.SpecBarPlugin
+import meteor.plugins.neverlog.NeverLogoutPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
@@ -20,21 +21,22 @@ import java.lang.RuntimeException
 object PluginManager {
     var plugins = ArrayList<Plugin>()
     init {
-        initPlugin(CombatLevelPlugin())
+        initPlugin(AgilityPlugin())
+        initPlugin(AutoLoginPlugin())
+        initPlugin(AutoRun())
         initPlugin(DevToolsPlugin())
         initPlugin(ExamplePlugin())
         initPlugin(FishingPlugin())
-        initPlugin(AgilityPlugin())
         initPlugin(GroundItemsPlugin())
         initPlugin(KeyboardBankPinPlugin())
         if (Configuration.allowGPU) {
             initPlugin(GpuHDPlugin())
         }
         initPlugin(MouseTooltipPlugin())
+        initPlugin(NeverLogoutPlugin())
         initPlugin(StretchedModePlugin())
         initPlugin(WorldMapPlugin())
         initPlugin(XpTrackerPlugin())
-        initPlugin(SpecBarPlugin())
     }
 
     fun initPlugin(plugin: Plugin) {
@@ -92,11 +94,11 @@ object PluginManager {
         plugin.enabled = false
     }
 
-    fun startPlugin(plugin: Plugin) {
-        plugin.onStart()
-        plugin.start()
-        plugin.subscribe()
-        plugin.enabled = true
+     fun startPlugin(plugin: Plugin) {
+         plugin.onStart()
+         plugin.start()
+         plugin.subscribe()
+         plugin.enabled = true
     }
 
     fun shutdown() {
