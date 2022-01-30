@@ -8,10 +8,12 @@ import meteor.plugins.autorun.AutoRun
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
+import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
+import meteor.plugins.woodcutting.WoodcuttingPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import org.rationalityfrontline.kevent.unsubscribeAll
@@ -28,6 +30,7 @@ object PluginManager {
         initPlugin(ExamplePlugin())
         initPlugin(FishingPlugin())
         initPlugin(GroundItemsPlugin())
+        initPlugin(ItemPricesPlugin())
         initPlugin(KeyboardBankPinPlugin())
         if (Configuration.allowGPU) {
             initPlugin(GpuHDPlugin())
@@ -35,6 +38,7 @@ object PluginManager {
         initPlugin(MouseTooltipPlugin())
         initPlugin(NeverLogoutPlugin())
         initPlugin(StretchedModePlugin())
+        initPlugin(WoodcuttingPlugin())
         initPlugin(WorldMapPlugin())
         initPlugin(XpTrackerPlugin())
     }
