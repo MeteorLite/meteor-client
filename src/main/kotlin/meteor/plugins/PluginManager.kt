@@ -5,6 +5,7 @@ import meteor.config.ConfigManager
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRun
+import meteor.plugins.bank.BankPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
@@ -26,6 +27,7 @@ object PluginManager {
         initPlugin(AgilityPlugin())
         initPlugin(AutoLoginPlugin())
         initPlugin(AutoRun())
+        initPlugin(BankPlugin())
         initPlugin(DevToolsPlugin())
         initPlugin(ExamplePlugin())
         initPlugin(FishingPlugin())

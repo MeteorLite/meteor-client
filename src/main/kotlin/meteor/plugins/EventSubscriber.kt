@@ -2,6 +2,7 @@ package meteor.plugins
 
 import eventbus.Events
 import eventbus.events.*
+import net.runelite.api.events.MenuShouldLeftClick
 import org.rationalityfrontline.kevent.*
 
 open class EventSubscriber : KEventSubscriber {
@@ -9,6 +10,7 @@ open class EventSubscriber : KEventSubscriber {
     val tag = generateTag()
 
     fun subscribe() {
+        onMenuShouldLeftClick()?.let { subscribe(Events.MENU_SHOULD_LEFT_CLICK,it)}
         onActorDeath()?.let { subscribe(Events.ACTOR_DEATH, it) }
         onAnimationChanged()?.let { subscribe(Events.ANIMATION_CHANGED, it) }
         onAreaSoundEffectPlayed()?.let { subscribe(Events.AREA_SOUND_EFFECT_PLAYED, it) }
@@ -82,7 +84,7 @@ open class EventSubscriber : KEventSubscriber {
         onNPCSpawned()?.let { subscribe(Events.NPC_SPAWNED, it) }
         onNPCDespawned()?.let { subscribe(Events.NPC_DESPAWNED, it) }
     }
-
+    open fun onMenuShouldLeftClick(): ((Event<MenuShouldLeftClick>) -> Unit)?{return null}
     open fun onWorldListLoad(): ((Event<WorldListLoad>) -> Unit)? { return null }
     open fun onWidgetPressed(): ((Event<WidgetPressed>) -> Unit)? { return null }
     open fun onWidgetPositioned(): ((Event<WidgetPositioned>) -> Unit)? { return null }
