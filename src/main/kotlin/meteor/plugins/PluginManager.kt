@@ -14,7 +14,6 @@ import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
-import meteor.plugins.woodcutting.WoodcuttingPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import org.rationalityfrontline.kevent.unsubscribeAll
@@ -40,7 +39,6 @@ object PluginManager {
         initPlugin(MouseTooltipPlugin())
         initPlugin(NeverLogoutPlugin())
         initPlugin(StretchedModePlugin())
-        initPlugin(WoodcuttingPlugin())
         initPlugin(WorldMapPlugin())
         initPlugin(XpTrackerPlugin())
     }
