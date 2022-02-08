@@ -40,31 +40,22 @@ object PluginManager {
 
     inline fun <reified T : Plugin> init() {
         val plugin = T::class.java.newInstance()
-        for (p in plugins)
-            if (p::class == plugin::class)
-                throw RuntimeException("Duplicate plugin ${p::class.simpleName} not allowed")
+        if (plugins.filterIsInstance<T>().isNotEmpty())
+                throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
             plugins.add(plugin)
             if (plugin.isEnabled())
                 start(plugin)
     }
 
-    inline fun <reified T : Plugin> get(): T? {
-        for (plugin in plugins) {
-            if (plugin is T)
-                return plugin
-        }
-        return null
+    inline fun <reified T : Plugin> get(): T {
+        return plugins.filterIsInstance<T>().first()
     }
 
-    inline fun <reified T : Plugin> restart(): T? {
-        for (plugin in plugins) {
-            if (plugin is T) {
-                stop(plugin)
-                start(plugin)
-            }
-        }
-        return null
+    inline fun <reified T : Plugin> restart() {
+        val it = plugins.filterIsInstance<T>().first()
+        stop(it)
+        start(it)
     }
 
     fun stop(plugin: Plugin) {
