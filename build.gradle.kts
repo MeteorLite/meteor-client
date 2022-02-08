@@ -5,14 +5,14 @@ plugins {
     java
 }
 
-val release by rootProject.extra { "1.0.1" }
+val release by rootProject.extra { "1.0.2" }
 
 group = "meteor.client"
 version = "1.0.0"
 
 repositories {
-
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
+    mavenLocal()
     mavenCentral()
     maven { url = uri("https://maven.gegy1000.net/") }
     maven { url = uri("https://repo.runelite.net/") }
