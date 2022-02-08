@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
@@ -263,6 +265,7 @@ object UI {
                 MaterialTheme(colors = UI.darkThemeColors) {
                     BasicTextField(
                         value = text,
+                        visualTransformation = if (!configItemDescriptor.secret()) VisualTransformation.None else PasswordVisualTransformation(),
                         onValueChange = {
                             try {
                                 ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(),

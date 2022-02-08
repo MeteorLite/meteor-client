@@ -456,7 +456,8 @@ object ConfigManager {
                             m.getDeclaredAnnotation(Range::class.java),
                             m.getDeclaredAnnotation(Alpha::class.java),
                             m.getDeclaredAnnotation(Units::class.java),
-                            m.getDeclaredAnnotation(Icon::class.java)
+                            m.getDeclaredAnnotation(Icon::class.java),
+                            m.getDeclaredAnnotation(Secret::class.java)
                     )
                 }
                 .sorted { a: ConfigItemDescriptor, b: ConfigItemDescriptor ->

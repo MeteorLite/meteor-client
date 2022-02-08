@@ -1,9 +1,6 @@
 package meteor.plugins.autologin
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
-import meteor.config.legacy.ConfigSection
+import meteor.config.legacy.*
 
 @ConfigGroup("autologin")
 interface AutoLoginConfig : Config {
@@ -21,11 +18,11 @@ interface AutoLoginConfig : Config {
         return "Username"
     }
 
+    @Secret
     @ConfigItem(
         keyName = "password",
         name = "Password",
         description = "Password",
-        secret = true,
         textField = true,
         position = 12,
         section = title

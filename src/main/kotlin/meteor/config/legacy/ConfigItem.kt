@@ -11,7 +11,6 @@ annotation class ConfigItem(
         val description: String,
         val hidden: Boolean = false,
         val warning: String = "",
-        val secret: Boolean = false,
         val section: String = "",
         val title: String = "",
         val parse: Boolean = false,
