@@ -405,8 +405,8 @@ object UI {
 
     private fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {
         when (plugin.enabled) {
-            false -> PluginManager.startPlugin(plugin)
-            true -> PluginManager.stopPlugin(plugin)
+            false -> PluginManager.start(plugin)
+            true -> PluginManager.stop(plugin)
         }
         ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", plugin.enabled)
         switchState.value = plugin.enabled

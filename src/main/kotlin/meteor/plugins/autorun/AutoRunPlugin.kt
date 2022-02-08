@@ -8,16 +8,10 @@ import net.runelite.api.MenuAction
 import net.runelite.api.widgets.WidgetInfo
 import org.rationalityfrontline.kevent.Event
 import java.util.*
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.ScheduledExecutorService
 
 @PluginDescriptor(name = "AutoRun", description = "Automatically enables run.", enabledByDefault = true)
 
-class AutoRun : Plugin() {
-
-
- val overlayManager = OverlayManager
-
+class AutoRunPlugin : Plugin() {
  override val config = configuration<AutoRunConfig>()
     private val clientThread: ClientThread = ClientThread
     private val rand = Random()

@@ -798,7 +798,7 @@ class LightManager(private val config: HdPluginConfig, private val hdPlugin: Gpu
                     insaneValueColor else if (topValue > highValuePrice) finalColor =
                     highValueColor else if (topValue > mediumValuePrice) finalColor =
                     mediumValueColor else if (topValue > lowValuePrice) finalColor = lowValueColor
-                else if (PluginManager.getPlugin<GroundItemsPlugin>()!!.highlightedItemsList!!.contains(itemSpawned.item.name)) {
+                else if (PluginManager.get<GroundItemsPlugin>()!!.highlightedItemsList!!.contains(itemSpawned.item.name)) {
                     finalColor = Color(150, 0, 200)
                 }
 

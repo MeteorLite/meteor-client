@@ -42,4 +42,26 @@ open class Plugin : EventSubscriber() {
     fun unsubscribe() {
         EventBus.removeSubscribersByTag(tag)
     }
+
+    fun isEnabled() : Boolean {
+        val enabledConfig: String? = ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled")
+        val descriptor: PluginDescriptor? = javaClass.getAnnotation(PluginDescriptor::class.java)
+        if (enabledConfig == null) {
+            if (descriptor != null) {
+                val enabledByDefault = descriptor.enabledByDefault || descriptor.cantDisable
+                ConfigManager.setConfiguration(javaClass.simpleName, "pluginEnabled", enabledByDefault)
+            }
+        }
+
+        if (enabledConfig != null && descriptor!!.disabledOnStartup) {
+            ConfigManager.setConfiguration(javaClass.simpleName, "pluginEnabled", false)
+        }
+
+        var isEnabled = false
+
+        if (ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled").toBoolean())
+            isEnabled = true else if (javaClass.getAnnotation(PluginDescriptor::class.java).cantDisable) isEnabled = true
+
+        return isEnabled
+    }
 }
