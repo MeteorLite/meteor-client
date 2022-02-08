@@ -44,7 +44,7 @@ class Hooks : Callbacks {
     private var stretchedGraphics: Graphics2D? = null
     private var clientThread = ClientThread
 
-    class PendingEvent(val type: Enum<Events>, val event: Any)
+    class PendingEvent(val type: Enum<*>, val event: Any)
     private var pendingEvents = ArrayList<PendingEvent>()
 
     init {
@@ -58,12 +58,12 @@ class Hooks : Callbacks {
         }
     }
 
-    override fun post(type: Enum<Events>, event: Any) {
+    override fun post(type: Enum<*>, event: Any) {
         EventBus.post(type, event)
     }
 
 
-    override fun postDeferred(type: Enum<Events>, event: Any) {
+    override fun postDeferred(type: Enum<*>, event: Any) {
         pendingEvents.add(PendingEvent(type, event))
     }
 
