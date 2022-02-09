@@ -5,10 +5,13 @@ import com.google.common.base.Strings
 import com.google.common.collect.ComparisonChain
 import eventbus.Events
 import meteor.Configuration.CONFIG_FILE
-import meteor.Configuration.MASTER_GROUP
 import meteor.config.legacy.*
 import eventbus.events.ConfigChanged
 import meteor.Configuration.METEOR_DIR
+import meteor.config.descriptor.ConfigDescriptor
+import meteor.config.descriptor.ConfigItemDescriptor
+import meteor.config.descriptor.ConfigSectionDescriptor
+import meteor.config.descriptor.ConfigTitleDescriptor
 import meteor.plugins.Plugin
 import net.runelite.api.coords.WorldPoint
 import org.rationalityfrontline.kevent.KEVENT as EventBus
@@ -22,14 +25,13 @@ import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.lang.reflect.Proxy
 import java.nio.charset.StandardCharsets
-import java.nio.file.Files
-import java.nio.file.StandardCopyOption
 import java.time.Duration
 import java.time.Instant
 import java.util.*
 import java.util.function.Consumer
 import java.util.function.Function
 import java.util.stream.Collectors
+import meteor.config.ConfigAnnotations.*
 
 object ConfigManager {
     private val properties = Properties()

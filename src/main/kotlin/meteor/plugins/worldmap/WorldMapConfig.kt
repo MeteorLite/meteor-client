@@ -25,9 +25,8 @@
  */
 package meteor.plugins.worldmap
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 
 @ConfigGroup("World Map")
 interface WorldMapConfig : Config {

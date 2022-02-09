@@ -27,8 +27,8 @@ import androidx.compose.ui.window.FrameWindowScope
 import eventbus.Events
 import meteor.Logger
 import meteor.config.ConfigManager
-import meteor.config.legacy.ConfigDescriptor
-import meteor.config.legacy.ConfigItemDescriptor
+import meteor.config.descriptor.ConfigDescriptor
+import meteor.config.descriptor.ConfigItemDescriptor
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.PluginManager

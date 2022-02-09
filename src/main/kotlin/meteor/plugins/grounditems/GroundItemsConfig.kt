@@ -24,8 +24,8 @@
  */
 package meteor.plugins.grounditems
 
-import meteor.config.legacy.*
-import meteor.plugins.grounditems.GroundItemsConfig
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 import meteor.plugins.grounditems.config.PriceDisplayMode
 import meteor.plugins.grounditems.config.ItemHighlightMode
 import meteor.plugins.grounditems.config.MenuHighlightMode

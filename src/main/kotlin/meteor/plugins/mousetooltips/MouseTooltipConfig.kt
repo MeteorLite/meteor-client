@@ -24,9 +24,8 @@
  */
 package meteor.plugins.mousetooltips
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 
 @ConfigGroup("mousehighlight")
 interface MouseTooltipConfig : Config {

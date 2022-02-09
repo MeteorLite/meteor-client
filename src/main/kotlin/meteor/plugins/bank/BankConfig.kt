@@ -25,9 +25,8 @@
  */
 package meteor.plugins.bank
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 import meteor.config.legacy.Keybind
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent

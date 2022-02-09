@@ -1,10 +1,7 @@
 package meteor.plugins.autorun
 
-import meteor.config.ConfigManager.getConfig
-import meteor.config.legacy.*
-import java.util.concurrent.ExecutorService
-import java.lang.Runnable
-import java.lang.InterruptedException
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 
 @ConfigGroup("autorun")
 interface AutoRunConfig : Config {

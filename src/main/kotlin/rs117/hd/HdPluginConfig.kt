@@ -25,7 +25,8 @@
  */
 package rs117.hd
 
-import meteor.config.legacy.*
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 import rs117.hd.config.*
 
 @ConfigGroup("hd")

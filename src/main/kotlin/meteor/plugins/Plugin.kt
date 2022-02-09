@@ -1,7 +1,7 @@
 package meteor.plugins
 
 import meteor.config.ConfigManager
-import meteor.config.legacy.Config
+import meteor.config.Config
 import meteor.ui.overlay.Overlay
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 

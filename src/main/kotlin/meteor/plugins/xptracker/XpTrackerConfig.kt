@@ -25,7 +25,8 @@
  */
 package meteor.plugins.xptracker
 
-import meteor.config.legacy.*
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 
 @ConfigGroup("xpTracker")
 interface XpTrackerConfig : Config {

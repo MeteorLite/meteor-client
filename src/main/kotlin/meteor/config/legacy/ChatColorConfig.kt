@@ -1,7 +1,8 @@
 package meteor.config.legacy
 
-
+import meteor.config.Config
 import java.awt.Color
+import meteor.config.ConfigAnnotations.*
 
 @ConfigGroup("textrecolor")
 interface ChatColorConfig : Config {

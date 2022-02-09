@@ -1,4 +1,4 @@
-package meteor.config.legacy
+package meteor.config.type
 
 
 enum class RequestFocusType {

@@ -1,6 +1,7 @@
 package meteor.plugins.fishing
 
-import meteor.config.legacy.*
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 import java.awt.Color
 
 @ConfigGroup("fishing")

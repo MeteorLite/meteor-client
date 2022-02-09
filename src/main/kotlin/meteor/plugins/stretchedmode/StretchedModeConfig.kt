@@ -25,7 +25,8 @@
  */
 package meteor.plugins.stretchedmode
 
-import meteor.config.legacy.*
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 
 @ConfigGroup("stretchedmode")
 interface StretchedModeConfig : Config {
