@@ -1,13 +1,12 @@
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.ApplicationScope
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
-import androidx.compose.ui.window.rememberWindowState
+import androidx.compose.ui.window.*
 import eventbus.Events
 import eventbus.events.GameTick
 import meteor.*
 import meteor.config.ConfigManager
+import meteor.config.MeteorConfig
 import meteor.game.FontManager
 import meteor.game.ItemManager
 import meteor.plugins.EventSubscriber
@@ -45,6 +44,7 @@ object Main: KoinComponent, EventSubscriber() {
     val itemManager = ItemManager
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
+    var meteorConfig: MeteorConfig? = null
 
     @JvmStatic
     fun main(args: Array<String>) = application {
@@ -63,7 +63,7 @@ object Main: KoinComponent, EventSubscriber() {
             onCloseRequest = {shutdown(this)},
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
-            state = rememberWindowState(width = 1280.dp, height = 720.dp),
+            state = rememberWindowState(position = WindowPosition(alignment = Alignment.Center), width = 1280.dp, height = 720.dp),
             content = UI.Window() //::finishStartup is called at the end of this function
         )
     }
@@ -72,8 +72,12 @@ object Main: KoinComponent, EventSubscriber() {
         client = Applet.asClient(Applet.applet)
         client.callbacks = callbacks
         ConfigManager.loadSavedProperties()
+        val meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java) as MeteorConfig
+        ConfigManager.setDefaultConfiguration(meteorConfig, false)
+        this.meteorConfig = meteorConfig
         PluginManager
         initOverlays()
+
     }
 
     fun initOverlays() {

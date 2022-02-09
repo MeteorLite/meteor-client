@@ -31,9 +31,9 @@ import java.io.IOException
 import javax.swing.text.StyleContext
 
 object FontManager {
-    var runescapeFont: Font? = null
-    var runescapeSmallFont: Font? = null
-    var runescapeBoldFont: Font? = null
+    var runescapeFont: Font
+    var runescapeSmallFont: Font
+    var runescapeBoldFont: Font
     var defaultFont: Font? = null
     var defaultBoldFont: Font? = null
 

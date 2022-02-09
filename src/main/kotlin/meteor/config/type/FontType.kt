@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, Tanner <https://github.com/Reasel>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.config.type
 
-import java.awt.Color
+import meteor.game.FontManager
+import java.awt.Font
 
-object ComponentConstants {
-    const val STANDARD_BORDER = 4
-    const val STANDARD_WIDTH = 129
-    var STANDARD_BACKGROUND_COLOR = Color(28, 28, 28, 156)
+enum class FontType(val type: String,val font: Font) {
+    REGULAR("Regular", FontManager.runescapeFont), BOLD("Bold", FontManager.runescapeBoldFont), SMALL(
+        "Small",
+        FontManager.runescapeSmallFont
+    );
+
+    override fun toString(): String {
+        return type
+    }
 }

@@ -1,8 +1,7 @@
 package meteor.plugins.rsnhider
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
+import meteor.config.ConfigAnnotations.*
+import meteor.config.Config
 
 @ConfigGroup("rsnhider")
 interface RsnHiderConfig : Config {

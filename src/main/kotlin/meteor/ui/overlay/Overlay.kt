@@ -40,7 +40,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
     : LayoutableRenderableEntity, EventSubscriber() {
     val client = Main.client
     val drawHooks: ArrayList<Int> = ArrayList()
-    val menuEntries: ArrayList<OverlayMenuEntry> = ArrayList()
+    open val menuEntries: ArrayList<OverlayMenuEntry> = ArrayList()
 
     var preferredPosition : OverlayPosition? = null
 
@@ -82,7 +82,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
      * Whether this overlay can be dragged onto other overlays &amp; have other overlays dragged onto
      * it.
      */
-    val dragTargetable = false
+    var dragTargetable = false
 
     /**
      * Overlay name, used for saving the overlay, needs to be unique
@@ -104,7 +104,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
     fun onMouseEnter() {}
     fun onMouseExit() {}
 
-    fun onDrag(other: Overlay?): Boolean {
+    open fun onDrag(other: Overlay?): Boolean {
         return false
     }
 

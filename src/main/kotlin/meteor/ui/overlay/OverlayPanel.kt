@@ -37,7 +37,7 @@ abstract class OverlayPanel : Overlay() {
      * Enables/disables automatic clearing of [OverlayPanel.getPanelComponent] children after
      * rendering (enabled by default)
      */
-    private val clearChildren = true
+    var clearChildren = true
 
     /**
      * Enables/disables automatic font size changes based on panel component size relative to default

@@ -5,6 +5,7 @@ import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
 import meteor.plugins.bank.BankPlugin
+import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.chatfilter.ChatFilterPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.devtools.DevToolsPlugin
@@ -33,6 +34,7 @@ object PluginManager {
         init<AutoLoginPlugin>()
         init<AutoRunPlugin>()
         init<BankPlugin>()
+        init<BoostsPlugin>()
         init<ChatFilterPlugin>()
         init<CombatLevelPlugin>()
         init<DevToolsPlugin>()

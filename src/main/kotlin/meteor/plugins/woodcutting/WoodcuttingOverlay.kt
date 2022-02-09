@@ -32,7 +32,6 @@ import meteor.ui.overlay.OverlayPanel
 import meteor.ui.overlay.OverlayPosition
 import net.runelite.api.MenuAction
 import net.runelite.api.Skill
-import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
 

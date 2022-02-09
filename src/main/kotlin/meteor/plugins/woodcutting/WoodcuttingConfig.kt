@@ -24,7 +24,8 @@
  */
 package meteor.plugins.woodcutting
 
-import meteor.config.legacy.*
+import meteor.config.ConfigAnnotations.*
+import meteor.config.Config
 
 @ConfigGroup("woodcutting")
 interface WoodcuttingConfig : Config {

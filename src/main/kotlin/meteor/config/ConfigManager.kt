@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package meteor.config
 
 import Main
@@ -261,7 +263,7 @@ object ConfigManager {
         return properties.getProperty(getWholeKey(groupName, key))
     }
 
-    fun <T> getConfiguration(groupName: String, key: String, clazz: Class<T>): T {
+    fun <T> getConfiguration(groupName: String, key: String, clazz: Class<T>): T? {
         val value = getConfiguration(groupName, key)
         if (!Strings.isNullOrEmpty(value)) {
             try {
@@ -271,7 +273,7 @@ object ConfigManager {
                 //log.warn("Unable to unmarshal {} ", getWholeKey(groupName, profile, key), e);
             }
         }
-        return null as T
+        return null
     }
 
     fun getWholeKey(groupName: String, key: String): String {

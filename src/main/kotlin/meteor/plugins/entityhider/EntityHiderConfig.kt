@@ -26,14 +26,8 @@
  */
 package meteor.plugins.entityhider
 
-import meteor.config.ConfigManager.getConfig
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
-import meteor.config.legacy.ConfigSection
-import meteor.util.WildcardMatcher.matches
-import java.util.HashSet
-import java.lang.NumberFormatException
+import meteor.config.ConfigAnnotations.*
+import meteor.config.Config
 
 @ConfigGroup("entityhiderextended")
 interface EntityHiderConfig : Config {

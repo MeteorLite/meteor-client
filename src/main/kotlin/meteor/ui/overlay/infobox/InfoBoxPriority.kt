@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, Seth <http://github.com/sethtroll>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.ui.overlay.infobox
 
-import java.awt.Color
-
-object ComponentConstants {
-    const val STANDARD_BORDER = 4
-    const val STANDARD_WIDTH = 129
-    var STANDARD_BACKGROUND_COLOR = Color(28, 28, 28, 156)
+enum class InfoBoxPriority {
+    HIGH, MED, NONE, LOW
 }

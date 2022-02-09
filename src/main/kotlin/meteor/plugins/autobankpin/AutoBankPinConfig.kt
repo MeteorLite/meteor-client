@@ -1,10 +1,8 @@
 package meteor.plugins.autobankpin
 
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
-import meteor.config.legacy.Secret
+import meteor.config.Config
+import meteor.config.ConfigAnnotations.*
 
 @ConfigGroup("autobankpin")
 interface AutoBankPinConfig : Config {

@@ -794,10 +794,10 @@ class LightManager(private val config: HdPluginConfig, private val hdPlugin: Gpu
                 val gePrice = groundItem.gePrice
                 val topValue = Math.max(haPrice, gePrice)
                 var finalColor: Color? = null
-                if (topValue > insaneValuePrice) finalColor =
-                    insaneValueColor else if (topValue > highValuePrice) finalColor =
-                    highValueColor else if (topValue > mediumValuePrice) finalColor =
-                    mediumValueColor else if (topValue > lowValuePrice) finalColor = lowValueColor
+                if (topValue > insaneValuePrice!!) finalColor =
+                    insaneValueColor else if (topValue > highValuePrice!!) finalColor =
+                    highValueColor else if (topValue > mediumValuePrice!!) finalColor =
+                    mediumValueColor else if (topValue > lowValuePrice!!) finalColor = lowValueColor
                 else if (PluginManager.get<GroundItemsPlugin>()!!.highlightedItemsList!!.contains(itemSpawned.item.name)) {
                     finalColor = Color(150, 0, 200)
                 }

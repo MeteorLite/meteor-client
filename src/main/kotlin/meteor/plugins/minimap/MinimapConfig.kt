@@ -24,7 +24,8 @@
  */
 package meteor.plugins.minimap
 
-import meteor.config.legacy.*
+import meteor.config.ConfigAnnotations.*
+import meteor.config.Config
 import java.awt.Color
 
 @ConfigGroup(MinimapConfig.GROUP)

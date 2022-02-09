@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,48 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.ui.overlay.infobox
 
+import meteor.plugins.Plugin
+import meteor.ui.overlay.OverlayMenuEntry
 import java.awt.Color
+import java.awt.image.BufferedImage
+import java.util.ArrayList
 
-object ComponentConstants {
-    const val STANDARD_BORDER = 4
-    const val STANDARD_WIDTH = 129
-    var STANDARD_BACKGROUND_COLOR = Color(28, 28, 28, 156)
+abstract class  InfoBox(
+    image: BufferedImage?,
+    val plugin: Plugin
+) {
+
+    var image: BufferedImage? = null
+
+    var scaledImage: BufferedImage? = null
+
+    var priority: InfoBoxPriority? = null
+
+    var tooltip: String? = null
+
+    var menuEntries = ArrayList<OverlayMenuEntry>()
+
+    init {
+        this.image = (image)
+        this.priority = (InfoBoxPriority.NONE)
+    }
+
+    abstract val text: String?
+    abstract val textColor: Color?
+    open fun render(): Boolean {
+        return true
+    }
+
+    fun cull(): Boolean {
+        return false
+    }
+
+    // Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
+    // as possible by default
+    open val name: String
+        get() =// Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
+            // as possible by default
+            plugin.javaClass.simpleName + "_" + javaClass.simpleName
 }

@@ -1,7 +1,8 @@
 package meteor.plugins
 
-import meteor.config.ConfigManager
+import Main
 import meteor.config.Config
+import meteor.config.ConfigManager
 import meteor.ui.overlay.Overlay
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
@@ -10,6 +11,14 @@ open class Plugin : EventSubscriber() {
     private val overlayManager = Main.overlayManager
     val overlays = ArrayList<Overlay>()
     var enabled = false
+
+    fun getDescriptor(): PluginDescriptor {
+        return javaClass.getAnnotation(PluginDescriptor::class.java)
+    }
+
+    open fun getName(): String? {
+        return getDescriptor().name
+    }
 
     inline fun <reified T : Config> configuration(): T {
         val config = ConfigManager.getConfig(T::class.java) as T

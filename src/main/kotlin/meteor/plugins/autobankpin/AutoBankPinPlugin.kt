@@ -5,7 +5,6 @@ import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.widgets.WidgetID
-import net.runelite.api.widgets.WidgetInfo
 import net.runelite.api.widgets.WidgetInfo.BANK_PIN_INSTRUCTION_TEXT
 import org.rationalityfrontline.kevent.Event
 import java.awt.event.KeyEvent
@@ -16,16 +15,15 @@ class AutoBankPinPlugin : Plugin() {
 
  override val config = configuration<AutoBankPinConfig>()
 
-    private val configManager: ConfigManager? = null
     private var first = false
     private var second = false
     private var third = false
     private var fourth = false
 
     override fun onStart() {
-        configManager?.setConfiguration("bank", "bankPinKeyboard", true)
+        ConfigManager.setConfiguration("bank", "bankPinKeyboard", true)
     }
-    private fun EnterBankPin(){
+    private fun EnterBankPin() {
         if (client.getWidget(WidgetID.BANK_PIN_GROUP_ID, BANK_PIN_INSTRUCTION_TEXT.childId) == null
             || (client.getWidget(BANK_PIN_INSTRUCTION_TEXT)!!.text != "First click the FIRST digit."
                     && client.getWidget(BANK_PIN_INSTRUCTION_TEXT)!!.text != "Now click the SECOND digit."
@@ -89,9 +87,9 @@ class AutoBankPinPlugin : Plugin() {
     }
 
 
-/*    override fun onGameTick(): ((Event<GameTick>) -> Unit)? = {
+    override fun onGameTick(): ((Event<GameTick>) -> Unit) = {
         EnterBankPin()
-    }*/
+    }
 
     private fun sendKey(char: Int) {
         val kvPressed = KeyEvent(client.canvas, KEY_PRESSED, System.currentTimeMillis(), 0, char, CHAR_UNDEFINED)

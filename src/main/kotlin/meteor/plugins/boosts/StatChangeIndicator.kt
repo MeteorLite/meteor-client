@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, Seth <http://github.com/sethtroll>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,35 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.plugins.boosts
 
+import meteor.ui.overlay.infobox.InfoBox
+import meteor.ui.overlay.infobox.InfoBoxPriority
 import java.awt.Color
+import java.awt.image.BufferedImage
 
-object ComponentConstants {
-    const val STANDARD_BORDER = 4
-    const val STANDARD_WIDTH = 129
-    var STANDARD_BACKGROUND_COLOR = Color(28, 28, 28, 156)
+class StatChangeIndicator internal constructor(
+    private val up: Boolean,
+    image: BufferedImage?,
+    private val boostPlugin: BoostsPlugin,
+    private val config: BoostsConfig?
+) : InfoBox(image, boostPlugin) {
+    init {
+        priority = (InfoBoxPriority.MED)
+        tooltip = (if (up) "Next debuff change" else "Next buff change")
+    }
+
+    override val text: String
+        get() = String.format(
+            "%02d",
+            boostPlugin.getChangeTime(if (up) boostPlugin.changeUpTicks else boostPlugin.changeDownTicks)
+        )
+    override val textColor: Color
+        get() = if ((if (up) boostPlugin.changeUpTicks else boostPlugin.changeDownTicks) < 10) Color.RED
+            .brighter() else Color.WHITE
+
+    override fun render(): Boolean {
+        val time = if (up) boostPlugin.changeUpTicks else boostPlugin.changeDownTicks
+        return config!!.displayInfoboxes() && time != -1
+    }
 }

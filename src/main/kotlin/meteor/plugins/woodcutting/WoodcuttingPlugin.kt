@@ -24,18 +24,15 @@
  */
 package meteor.plugins.woodcutting
 
-import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDependency
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.xptracker.XpTrackerPlugin
-import meteor.ui.overlay.OverlayManager
 import net.runelite.api.ChatMessageType
 import net.runelite.api.GameObject
 import net.runelite.api.GameState
 import net.runelite.api.coords.WorldPoint
 import org.rationalityfrontline.kevent.Event
-import java.time.Duration
 import java.time.Instant
 import java.util.regex.Pattern
 
@@ -50,8 +47,8 @@ import java.util.regex.Pattern
 )
 class WoodcuttingPlugin : Plugin() {
 
-    var overlay = overlay<WoodcuttingOverlay>(WoodcuttingOverlay(this))
-    var TREES = overlay<WoodcuttingTreesOverlay>(WoodcuttingTreesOverlay(this))
+    var overlay = overlay(WoodcuttingOverlay(this))
+    var TREES = overlay(WoodcuttingTreesOverlay(this))
     override val config = configuration<WoodcuttingConfig>()
     var session: WoodcuttingSession? = null
         private set
@@ -60,11 +57,6 @@ class WoodcuttingPlugin : Plugin() {
     val respawns = ArrayList<TreeRespawn>()
     private var recentlyLoggedIn = false
     private var currentPlane = 0
-
-    override fun onStart() {
-
-
-    }
 
     override fun onStop() {
 

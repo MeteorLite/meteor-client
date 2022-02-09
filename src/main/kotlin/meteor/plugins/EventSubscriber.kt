@@ -2,6 +2,8 @@ package meteor.plugins
 
 import eventbus.Events
 import eventbus.events.*
+import meteor.events.InfoBoxMenuClicked
+import meteor.events.PluginChanged
 import net.runelite.api.events.MenuShouldLeftClick
 import net.runelite.api.events.OverheadTextChanged
 import org.rationalityfrontline.kevent.*
@@ -86,6 +88,8 @@ open class EventSubscriber : KEventSubscriber {
         onWorldListLoad()?.let { subscribe(Events.WORLD_LIST_LOAD, it) }
         onNPCSpawned()?.let { subscribe(Events.NPC_SPAWNED, it) }
         onNPCDespawned()?.let { subscribe(Events.NPC_DESPAWNED, it) }
+        onPluginChanged()?.let { subscribe(meteor.events.Events.PLUGIN_CHANGED, it) }
+        onInfoBoxMenuClicked()?.let { subscribe(meteor.events.Events.INFO_BOX_MENU_CLICKED, it) }
     }
     open fun onMenuShouldLeftClick(): ((Event<MenuShouldLeftClick>) -> Unit)?{return null}
     open fun onWorldListLoad(): ((Event<WorldListLoad>) -> Unit)? { return null }
@@ -160,10 +164,9 @@ open class EventSubscriber : KEventSubscriber {
     open fun onProjectileMoved(): ((Event<ProjectileMoved>) -> Unit)? { return null }
     open fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit)? { return null }
     open fun onPostItemComposition(): ((Event<PostItemComposition>) -> Unit)? { return null }
-    open fun onBeforeRender(): ((Event<BeforeRender>) -> Unit)? {
-        return null
-    }
-
+    open fun onBeforeRender(): ((Event<BeforeRender>) -> Unit)? { return null }
+    open fun onPluginChanged(): ((Event<PluginChanged>) -> Unit)? { return null }
+    open fun onInfoBoxMenuClicked(): ((Event<InfoBoxMenuClicked>) -> Unit)? { return null }
     open fun onOverheadTextChanged(): ((Event<OverheadTextChanged>) -> Unit)?{return null}
 
     fun unregisterSubscribers() {
@@ -171,7 +174,7 @@ open class EventSubscriber : KEventSubscriber {
             throw RuntimeException("Failed to unregister Plugin")
     }
 
-    inline fun <reified T : Any> subscribe(type: Events, noinline unit: (Event<T>) -> Unit) {
+    inline fun <reified T : Any> subscribe(type: Enum<*>, noinline unit: (Event<T>) -> Unit) {
         KEVENT.subscribe<T>(eventType = type, tag = tag) {
             unit.invoke(it)
         }

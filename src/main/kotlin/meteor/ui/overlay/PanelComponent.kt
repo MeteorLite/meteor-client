@@ -63,11 +63,11 @@ class PanelComponent : LayoutableRenderableEntity {
     val children: ArrayList<LayoutableRenderableEntity> = ArrayList<LayoutableRenderableEntity>()
     val childDimensions = Dimension()
 
-    var backgroundColor = ComponentConstants.STANDARD_BACKGROUND_COLOR
+    var backgroundColor: Color = ComponentConstants.STANDARD_BACKGROUND_COLOR
 
-    val orientation: ComponentOrientation = ComponentOrientation.VERTICAL
+    var orientation: ComponentOrientation = ComponentOrientation.VERTICAL
 
-    val wrap = false
+    var wrap = false
 
     var border = Rectangle(
             ComponentConstants.STANDARD_BORDER,
@@ -90,7 +90,7 @@ class PanelComponent : LayoutableRenderableEntity {
         // Render background
         val backgroundComponent = BackgroundComponent()
         backgroundComponent.rectangle = Rectangle(getPreferredLocation(), dimension)
-        backgroundComponent.backgroundColor = backgroundColor
+        backgroundComponent.backgroundColor = backgroundColor!!
         backgroundComponent.render(graphics)
 
         // Offset children
