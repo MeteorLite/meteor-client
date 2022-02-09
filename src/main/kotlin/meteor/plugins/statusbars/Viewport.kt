@@ -22,31 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.statusbars;
+package meteor.plugins.statusbars
 
-import net.runelite.api.Point;
-import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.Point
+import net.runelite.api.widgets.WidgetInfo
 
-enum Viewport
-{
-	RESIZED_BOX(WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
-			new Point(20, -4), new Point(0, -4)),
-	RESIZED_BOTTOM(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
-			new Point(61, 8), new Point(35, -12)),
-	FIXED(WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
-			new Point(20, -4), new Point(0, -4)),
-	FIXED_BANK(WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
-			new Point(20, -4), new Point(0, -4));
-
-	Viewport(WidgetInfo container, WidgetInfo viewport, Point offsetLeft, Point offsetRight) {
-		this.container = container;
-		this.viewport = viewport;
-		this.offsetLeft = offsetLeft;
-		this.offsetRight = offsetRight;
-	}
-
-	public WidgetInfo container;
-	public WidgetInfo viewport;
-	public Point offsetLeft;
-	public Point offsetRight;
+internal enum class Viewport(
+    var container: WidgetInfo,
+    var viewport: WidgetInfo,
+    var offsetLeft: Point,
+    var offsetRight: Point
+) {
+    RESIZED_BOX(
+        WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
+        Point(20, -4), Point(0, -4)
+    ),
+    RESIZED_BOTTOM(
+        WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
+        Point(61, 8), Point(35, -12)
+    ),
+    FIXED(
+        WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
+        Point(20, -4), Point(0, -4)
+    ),
+    FIXED_BANK(
+        WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
+        Point(20, -4), Point(0, -4)
+    );
 }

@@ -47,11 +47,7 @@ import java.util.stream.Collectors
     tags = ["npcs"]
 )
 class EntityHiderPlugin : Plugin() {
-
-
      override val config = configuration<EntityHiderConfig>()
-
-
     private var hiddenIndices: java.util.ArrayList<Int>? = null
     private var animationHiddenIndices: java.util.ArrayList<Int>? = null
     private var hideNPCsOnDeathName: MutableSet<String>? = null
@@ -62,8 +58,8 @@ class EntityHiderPlugin : Plugin() {
     override fun onStart() {
         client.setIsHidingEntities(true)
         //client.setDeadNPCsHidden(true);
-        hiddenIndices = java.util.ArrayList()
-        animationHiddenIndices = java.util.ArrayList()
+        hiddenIndices = ArrayList()
+        animationHiddenIndices = ArrayList()
         updateConfig()
         Text.fromCSV(config.hideNPCsNames()).forEach { s: String? -> client.addHiddenNpcName(s) }
     }
@@ -225,7 +221,7 @@ class EntityHiderPlugin : Plugin() {
     }
 
     private fun clearHiddenNpcs() {
-        if (!hiddenIndices!!.isEmpty()) {
+        if (!hiddenIndices.isNullOrEmpty()) {
             val newHiddenNpcIndicesList = client.hiddenNpcIndices
             newHiddenNpcIndicesList.removeAll(hiddenIndices!!)
             client.hiddenNpcIndices = newHiddenNpcIndicesList
