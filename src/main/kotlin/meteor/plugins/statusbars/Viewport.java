@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Jos <Malevolentdev@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,29 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.game
+package meteor.plugins.statusbars;
 
-import meteor.util.ImageUtil.loadImageResource
-import net.runelite.api.Skill
-import java.awt.image.BufferedImage
-import java.util.*
+import net.runelite.api.Point;
+import net.runelite.api.widgets.WidgetInfo;
 
-object SkillIconManager {
-    // * 2 to account for the small version of each icon
-    private val imgCache = arrayOfNulls<BufferedImage>(Skill.values().size * 2)
-    fun getSkillImage(skill: Skill, small: Boolean): BufferedImage {
-        val skillIdx = skill.ordinal + if (small) Skill.values().size else 0
-        if (imgCache[skillIdx] != null) {
-            return imgCache[skillIdx]!!
-        }
-        val skillIconPath = ((if (small) "/skill_icons_small/" else "/skill_icons/")
-                + skill.getName().lowercase(Locale.getDefault()) + ".png")
-        val skillImage = loadImageResource(javaClass, skillIconPath)
-        imgCache[skillIdx] = skillImage
-        return skillImage
-    }
+enum Viewport
+{
+	RESIZED_BOX(WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
+			new Point(20, -4), new Point(0, -4)),
+	RESIZED_BOTTOM(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
+			new Point(61, 8), new Point(35, -12)),
+	FIXED(WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
+			new Point(20, -4), new Point(0, -4)),
+	FIXED_BANK(WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
+			new Point(20, -4), new Point(0, -4));
 
-    fun getSkillImage(skill: Skill): BufferedImage {
-        return getSkillImage(skill, false)
-    }
+	Viewport(WidgetInfo container, WidgetInfo viewport, Point offsetLeft, Point offsetRight) {
+		this.container = container;
+		this.viewport = viewport;
+		this.offsetLeft = offsetLeft;
+		this.offsetRight = offsetRight;
+	}
+
+	public WidgetInfo container;
+	public WidgetInfo viewport;
+	public Point offsetLeft;
+	public Point offsetRight;
 }

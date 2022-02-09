@@ -17,9 +17,9 @@ import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
-import meteor.plugins.rsnhider.RsnHiderConfig
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
+import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
@@ -50,6 +50,7 @@ object PluginManager {
         init<NeverLogoutPlugin>()
         init<RsnHiderPlugin>()
         init<SpecBarPlugin>()
+        init<StatusBarsPlugin>()
         init<StretchedModePlugin>()
         init<WorldMapPlugin>()
         init<XpTrackerPlugin>()

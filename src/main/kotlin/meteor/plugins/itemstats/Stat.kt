@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,29 +22,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.game
+package meteor.plugins.itemstats
 
-import meteor.util.ImageUtil.loadImageResource
-import net.runelite.api.Skill
-import java.awt.image.BufferedImage
-import java.util.*
+import net.runelite.api.Client
 
-object SkillIconManager {
-    // * 2 to account for the small version of each icon
-    private val imgCache = arrayOfNulls<BufferedImage>(Skill.values().size * 2)
-    fun getSkillImage(skill: Skill, small: Boolean): BufferedImage {
-        val skillIdx = skill.ordinal + if (small) Skill.values().size else 0
-        if (imgCache[skillIdx] != null) {
-            return imgCache[skillIdx]!!
-        }
-        val skillIconPath = ((if (small) "/skill_icons_small/" else "/skill_icons/")
-                + skill.getName().lowercase(Locale.getDefault()) + ".png")
-        val skillImage = loadImageResource(javaClass, skillIconPath)
-        imgCache[skillIdx] = skillImage
-        return skillImage
-    }
+/**
+ * Abstract stat of a player. This includes [Skill]s and other player variables, such as
+ * `RUN_ENERGY`.
+ *
+ * @see
+ */
+abstract class Stat internal constructor(val name: String) {
 
-    fun getSkillImage(skill: Skill): BufferedImage {
-        return getSkillImage(skill, false)
-    }
+    /**
+     * Get the current stat value including any boosts or damage.
+     */
+    abstract fun getValue(client: Client?): Int
+
+    /**
+     * Get the base stat maximum. (ie. the bottom half of the stat fraction)
+     */
+    abstract fun getMaximum(client: Client?): Int
 }

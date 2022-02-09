@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020 Jordan <nightfirecat@protonmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,27 +24,8 @@
  */
 package meteor.game
 
-import meteor.util.ImageUtil.loadImageResource
-import net.runelite.api.Skill
-import java.awt.image.BufferedImage
-import java.util.*
-
-object SkillIconManager {
-    // * 2 to account for the small version of each icon
-    private val imgCache = arrayOfNulls<BufferedImage>(Skill.values().size * 2)
-    fun getSkillImage(skill: Skill, small: Boolean): BufferedImage {
-        val skillIdx = skill.ordinal + if (small) Skill.values().size else 0
-        if (imgCache[skillIdx] != null) {
-            return imgCache[skillIdx]!!
-        }
-        val skillIconPath = ((if (small) "/skill_icons_small/" else "/skill_icons/")
-                + skill.getName().lowercase(Locale.getDefault()) + ".png")
-        val skillImage = loadImageResource(javaClass, skillIconPath)
-        imgCache[skillIdx] = skillImage
-        return skillImage
-    }
-
-    fun getSkillImage(skill: Skill): BufferedImage {
-        return getSkillImage(skill, false)
-    }
+object AlternateSprites {
+    const val DISEASE_HEART = "1067-DISEASE.png"
+    const val POISON_HEART = "1067-POISON.png"
+    const val VENOM_HEART = "1067-VENOM.png"
 }

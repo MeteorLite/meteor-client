@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,27 +24,16 @@
  */
 package meteor.game
 
-import meteor.util.ImageUtil.loadImageResource
-import net.runelite.api.Skill
-import java.awt.image.BufferedImage
-import java.util.*
+interface SpriteOverride {
+    /**
+     * An ID for a sprite. Negative numbers are used by RuneLite specific sprites
+     *
+     * @see SpriteID
+     */
+    val spriteId: Int
 
-object SkillIconManager {
-    // * 2 to account for the small version of each icon
-    private val imgCache = arrayOfNulls<BufferedImage>(Skill.values().size * 2)
-    fun getSkillImage(skill: Skill, small: Boolean): BufferedImage {
-        val skillIdx = skill.ordinal + if (small) Skill.values().size else 0
-        if (imgCache[skillIdx] != null) {
-            return imgCache[skillIdx]!!
-        }
-        val skillIconPath = ((if (small) "/skill_icons_small/" else "/skill_icons/")
-                + skill.getName().lowercase(Locale.getDefault()) + ".png")
-        val skillImage = loadImageResource(javaClass, skillIconPath)
-        imgCache[skillIdx] = skillImage
-        return skillImage
-    }
-
-    fun getSkillImage(skill: Skill): BufferedImage {
-        return getSkillImage(skill, false)
-    }
+    /**
+     * The file name for the resource to be loaded, relative to the implementing class
+     */
+    val fileName: String
 }
