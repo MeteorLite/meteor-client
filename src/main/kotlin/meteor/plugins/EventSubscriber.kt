@@ -3,6 +3,7 @@ package meteor.plugins
 import eventbus.Events
 import eventbus.events.*
 import net.runelite.api.events.MenuShouldLeftClick
+import net.runelite.api.events.OverheadTextChanged
 import org.rationalityfrontline.kevent.*
 
 open class EventSubscriber : KEventSubscriber {
@@ -14,6 +15,7 @@ open class EventSubscriber : KEventSubscriber {
         onActorDeath()?.let { subscribe(Events.ACTOR_DEATH, it) }
         onAnimationChanged()?.let { subscribe(Events.ANIMATION_CHANGED, it) }
         onAreaSoundEffectPlayed()?.let { subscribe(Events.AREA_SOUND_EFFECT_PLAYED, it) }
+        onBeforeRender()?.let { subscribe(Events.BEFORE_RENDER,it)}
         onBeforeMenuRender()?.let { subscribe(Events.BEFORE_MENU_RENDER, it) }
         onCanvasSizeChanged()?.let { subscribe(Events.CANVAS_SIZE_CHANGED, it) }
         onChatMessage()?.let { subscribe(Events.CHAT_MESSAGE, it) }
@@ -58,6 +60,7 @@ open class EventSubscriber : KEventSubscriber {
         onNpcDespawned()?.let { subscribe(Events.NPC_DESPAWNED, it) }
         onNpcSpawned()?.let { subscribe(Events.NPC_SPAWNED, it) }
         onPacketSent()?.let { subscribe(Events.PACKET_SENT, it) }
+        onOverheadTextChanged()?.let { subscribe(Events.OVERHEAD_TEXT_CHANGED, it) }
         onOverheadPrayerChanged()?.let { subscribe(Events.OVERHEAD_PRAYER_CHANGED, it) }
         onPlayerDespawned()?.let { subscribe(Events.PLAYER_DESPAWNED, it) }
         onPlayerMenuOptionsChanged()?.let { subscribe(Events.PLAYER_MENU_OPTIONS_CHANGED, it) }
@@ -157,6 +160,11 @@ open class EventSubscriber : KEventSubscriber {
     open fun onProjectileMoved(): ((Event<ProjectileMoved>) -> Unit)? { return null }
     open fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit)? { return null }
     open fun onPostItemComposition(): ((Event<PostItemComposition>) -> Unit)? { return null }
+    open fun onBeforeRender(): ((Event<BeforeRender>) -> Unit)? {
+        return null
+    }
+
+    open fun onOverheadTextChanged(): ((Event<OverheadTextChanged>) -> Unit)?{return null}
 
     fun unregisterSubscribers() {
         if (!unsubscribeAll())

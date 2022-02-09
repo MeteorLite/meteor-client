@@ -1,16 +1,24 @@
 package meteor.plugins
 
 import meteor.plugins.agility.AgilityPlugin
+import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
 import meteor.plugins.bank.BankPlugin
+import meteor.plugins.chatfilter.ChatFilterPlugin
+import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.devtools.DevToolsPlugin
+import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
+import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
+import meteor.plugins.rsnhider.RsnHiderConfig
+import meteor.plugins.rsnhider.RsnHiderPlugin
+import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
@@ -21,18 +29,25 @@ object PluginManager {
     var plugins = ArrayList<Plugin>()
     init {
         init<AgilityPlugin>()
+        init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
         init<AutoRunPlugin>()
         init<BankPlugin>()
+        init<ChatFilterPlugin>()
+        init<CombatLevelPlugin>()
         init<DevToolsPlugin>()
         init<ExamplePlugin>()
+        init<EntityHiderPlugin>()
         init<FishingPlugin>()
         init<GroundItemsPlugin>()
         init<ItemPricesPlugin>()
         init<KeyboardBankPinPlugin>()
         init<GpuHDPlugin>()
+        init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
         init<NeverLogoutPlugin>()
+        init<RsnHiderPlugin>()
+        init<SpecBarPlugin>()
         init<StretchedModePlugin>()
         init<WorldMapPlugin>()
         init<XpTrackerPlugin>()
