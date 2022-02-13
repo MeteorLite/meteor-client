@@ -15,7 +15,7 @@ object NumericFormat {
     }
 
     fun apply(value: Double): String {
-        return apply(value, THOUSANDS.toInt() or COMMAS.toInt() or precision(2))
+        return apply(value.toLong(), THOUSANDS.toInt() or COMMAS.toInt() or precision(2))
     }
 
     fun apply(value: Long, settings: Int): String {

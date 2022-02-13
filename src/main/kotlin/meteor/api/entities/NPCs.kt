@@ -37,27 +37,27 @@ class NPCs : Entities<NPC>() {
             return NPCS.all(filter)
         }
 
-        fun getAll(vararg ids: Int): List<NPC?>? {
+        fun getAll(vararg ids: Int): List<NPC>? {
             return NPCS.all(*ids)
         }
 
-        fun getAll(vararg names: String): List<NPC?> {
+        fun getAll(vararg names: String): List<NPC> {
             return NPCS.all(*names)
         }
 
-        fun getNearest(to: WorldPoint?, filter: Predicate<NPC?>): NPC? {
+        fun getNearest(to: WorldPoint?, filter: Predicate<NPC>): NPC? {
             return NPCS.nearest(to, filter)
         }
 
-        fun getNearest(to: WorldPoint?, vararg ids: Int): NPC? {
+        fun getNearest(to: WorldPoint, vararg ids: Int): NPC? {
             return NPCS.nearest(to, *ids)
         }
 
-        fun getNearest(to: WorldPoint?, vararg names: String): NPC? {
+        fun getNearest(to: WorldPoint, vararg names: String): NPC? {
             return NPCS.nearest(to, *names)
         }
 
-        fun getNearest(filter: Predicate<NPC?>): NPC? {
+        fun getNearest(filter: Predicate<NPC>): NPC? {
             return getNearest(Players.local.worldLocation, filter)
         }
 

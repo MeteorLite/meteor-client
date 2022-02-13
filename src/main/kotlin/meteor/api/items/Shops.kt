@@ -9,18 +9,18 @@ import java.util.function.Supplier
 import java.util.function.ToIntFunction
 
 object Shops {
-    private val SHOP = Supplier<Widget> { Widgets.get(300, 0) }
-    private val SHOP_ITEMS = Supplier<Widget> { Widgets.get(300, 16) }
-    private val INVENTORY = Supplier<Widget> { Widgets.get(301, 0) }
+    private val SHOP = Supplier<Widget?> { Widgets.get(300, 0) }
+    private val SHOP_ITEMS = Supplier<Widget?> { Widgets.get(300, 16) }
+    private val INVENTORY = Supplier<Widget?> { Widgets.get(301, 0) }
     val isOpen: Boolean
         get() {
             val widget = SHOP.get()
-            return widget != null && !GameThread.invokeLater { widget.isHidden }
+            return widget != null && widget.isHidden
         }
 
     fun getStock(itemId: Int): Int {
         val items = SHOP_ITEMS.get()
-        if (items == null || GameThread.invokeLater { items.isHidden }) {
+        if (items == null || items.isHidden) {
             return 0
         }
         val children = items.children ?: return 0

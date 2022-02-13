@@ -13,7 +13,7 @@ object Production {
     val isOpen: Boolean
         get() {
             val widget = Widgets[WidgetInfo.MULTI_SKILL_MENU]
-            return widget != null && !GameThread.invokeLater { widget.isHidden }
+            return widget != null && widget.isHidden
         }
 
     fun chooseOption(option: String) {
@@ -21,7 +21,7 @@ object Production {
             return
         }
         val optionsWidget = OPTIONS.get()
-        if (optionsWidget == null || GameThread.invokeLater { optionsWidget.isHidden }) {
+        if (optionsWidget == null || optionsWidget.isHidden) {
             return
         }
         val options = if (optionsWidget.children != null) optionsWidget.children!!.size else 1
@@ -41,7 +41,7 @@ object Production {
 
     fun selectOtherQuantity() {
         val otherQuantity = OTHER_QUANTITY.get()
-        if (otherQuantity != null && !GameThread.invokeLater { otherQuantity.isHidden }) {
+        if (otherQuantity != null && otherQuantity.isHidden) {
             otherQuantity.interact(0)
         }
     }

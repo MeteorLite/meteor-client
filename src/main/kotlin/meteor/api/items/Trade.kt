@@ -17,13 +17,13 @@ import java.util.function.Predicate
 import java.util.function.Supplier
 
 object Trade {
-    private val OUR_ITEMS = Supplier<Widget> { Widgets.get(WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 25) }
-    private val THEIR_ITEMS = Supplier<Widget> { Widgets.get(WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 28) }
-    private val INVENTORY = Supplier<Widget> { Widgets.get(WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID, 0) }
-    private val ACCEPT_1 = Supplier<Widget> { Widgets.get(WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 10) }
-    private val ACCEPT_2 = Supplier<Widget> { Widgets.get(WidgetInfo.SECOND_TRADING_WITH_ACCEPT_BUTTON) }
-    private val DECLINE_1 = Supplier<Widget> { Widgets.get(WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 13) }
-    private val DECLINE_2 = Supplier<Widget> {
+    private val OUR_ITEMS = Supplier<Widget?> { Widgets[WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 25] }
+    private val THEIR_ITEMS = Supplier<Widget?> { Widgets[WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 28] }
+    private val INVENTORY = Supplier<Widget?> { Widgets[WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID, 0] }
+    private val ACCEPT_1 = Supplier<Widget?> { Widgets[WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 10] }
+    private val ACCEPT_2 = Supplier<Widget?> { Widgets[WidgetInfo.SECOND_TRADING_WITH_ACCEPT_BUTTON] }
+    private val DECLINE_1 = Supplier<Widget?> { Widgets[WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID, 13] }
+    private val DECLINE_2 = Supplier<Widget?> {
         Widgets.get(
             WidgetID.PLAYER_TRADE_CONFIRM_GROUP_ID,
             WidgetID.TradeScreen.SECOND_DECLINE_FUNC
@@ -34,12 +34,12 @@ object Trade {
     val isSecondScreenOpen: Boolean
         get() {
             val accept = ACCEPT_2.get()
-            return accept != null && !GameThread.invokeLater { accept.isHidden }
+            return accept != null && accept.isHidden
         }
     val isFirstScreenOpen: Boolean
         get() {
             val accept = ACCEPT_1.get()
-            return accept != null && !GameThread.invokeLater { accept.isHidden }
+            return accept != null && accept.isHidden
         }
 
     fun accept() {
@@ -49,14 +49,14 @@ object Trade {
 
     fun acceptFirstScreen() {
         val button = ACCEPT_1.get()
-        if (button != null && !GameThread.invokeLater { button.isHidden }) {
+        if (button != null && button.isHidden) {
             button.interact("Accept")
         }
     }
 
     fun acceptSecondScreen() {
         val button = ACCEPT_2.get()
-        if (button != null && !GameThread.invokeLater { button.isHidden }) {
+        if (button != null && button.isHidden) {
             button.interact("Accept")
         }
     }
@@ -68,14 +68,14 @@ object Trade {
 
     fun declineFirstScreen() {
         val button = DECLINE_1.get()
-        if (button != null && !GameThread.invokeLater { button.isHidden }) {
+        if (button != null && button.isHidden) {
             button.interact("Decline")
         }
     }
 
     fun declineSecondScreen() {
         val button = DECLINE_2.get()
-        if (button != null && !GameThread.invokeLater { button.isHidden }) {
+        if (button != null && button.isHidden) {
             button.interact("Decline")
         }
     }

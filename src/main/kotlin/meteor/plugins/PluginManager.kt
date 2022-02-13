@@ -1,5 +1,6 @@
 package meteor.plugins
 
+import meteor.api.ApiTestPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
@@ -54,6 +55,8 @@ object PluginManager {
         init<StretchedModePlugin>()
         init<WorldMapPlugin>()
         init<XpTrackerPlugin>()
+
+        //init<ApiTestPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {

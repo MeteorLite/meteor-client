@@ -2,6 +2,7 @@ package meteor.api.items
 
 import Main.client
 import meteor.api.commons.Time
+import meteor.api.entities.Objects
 import meteor.api.game.GameThread
 import meteor.api.game.Vars
 import meteor.api.widgets.Dialog
@@ -41,7 +42,7 @@ object GrandExchange {
                 // Widgets broke
             }
             val geWindow: Widget? = Widgets[WidgetInfo.GRAND_EXCHANGE_WINDOW_CONTAINER]
-            return if (geWindow != null && !GameThread.invokeLater { geWindow.isHidden }) {
+            return if (geWindow != null && !geWindow.isHidden ) {
                 View.OFFERS
             } else View.CLOSED
         }
@@ -51,7 +52,7 @@ object GrandExchange {
         get() = view == View.BUYING || view == View.SELLING
 
     fun openBank() {
-        val bank: TileObject? = TileObjects.getNearest { x ->
+        val bank: TileObject? = Objects.getNearest { x ->
             x!!.getName() != null && x.getName().toLowerCase().contains("exchange booth") && x.hasAction("Bank")
         }
         if (bank != null) {
@@ -99,7 +100,7 @@ object GrandExchange {
         }
 
     fun open() {
-        TileObjects.getNearest { x -> x!!.hasAction("Exchange") }?.interact("Exchange")
+        Objects.getNearest { x -> x!!.hasAction("Exchange") }?.interact("Exchange")
     }
 
     fun sell(filter: Predicate<Item>) {
@@ -143,7 +144,7 @@ object GrandExchange {
         for (i in 7..14) {
             val box = geRoot[i] ?: continue
             val buyButton = box.getChild(3)
-            if (buyButton == null || GameThread.invokeLater { buyButton.isHidden }) {
+            if (buyButton == null || buyButton.isHidden) {
                 continue
             }
             buyButton.interact(0)
@@ -161,11 +162,11 @@ object GrandExchange {
         for (i in 7..14) {
             val box = geRoot[i] ?: continue
             val abortBox = box.getChild(2)
-            if (abortBox == null || !abortBox.hasAction("Abort offer") || GameThread.invokeLater { abortBox.isHidden }) {
+            if (abortBox == null || !abortBox.hasAction("Abort offer") ||abortBox.isHidden) {
                 continue
             }
             val itemIdBox = box.getChild(18)
-            if (itemIdBox == null || GameThread.invokeLater { itemIdBox.isHidden }) {
+            if (itemIdBox == null || itemIdBox.isHidden) {
                 continue
             }
             if (itemIdBox.itemId == itemId) {
@@ -195,7 +196,7 @@ object GrandExchange {
 
     fun canCollect(): Boolean {
         val collect = COLLECT_BUTTON.get()
-        return !GameThread.invokeLater { collect.isHidden }
+        return !collect.isHidden
     }
 
     @JvmOverloads

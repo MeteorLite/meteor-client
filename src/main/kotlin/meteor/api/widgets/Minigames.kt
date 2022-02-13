@@ -6,7 +6,6 @@ import meteor.api.entities.Players
 import meteor.api.game.GameThread
 import net.runelite.api.widgets.WidgetInfo
 import java.util.*
-import java.util.List
 import java.util.function.Supplier
 
 object Minigames {
@@ -14,7 +13,7 @@ object Minigames {
     private val MINIGAMES_DESTINATION = Supplier { Widgets.get(76, 8) }
     fun teleport(destination: Destination) {
         val minigamesTeleportButton = Widgets.get(WidgetInfo.MINIGAME_TELEPORT_BUTTON)
-        val teleportGraphics = List.of(800, 802, 803, 804)
+        val teleportGraphics = listOf(800, 802, 803, 804)
         if (isOpen && minigamesTeleportButton != null) {
             if (Destination.current != destination) {
                 GameThread.invoke { client.runScript(124, destination.index) }
@@ -36,7 +35,7 @@ object Minigames {
         }
         if (!isOpen) {
             val widget = MINIGAMES_TAB_BUTTON.get()
-            if (widget != null && !GameThread.invokeLater { widget.isHidden }) {
+            if (widget != null && widget.isHidden) {
                 widget.interact("Grouping")
                 return false
             }
@@ -47,7 +46,7 @@ object Minigames {
     val isOpen: Boolean
         get() {
             val minigamesButton = Widgets.get(WidgetInfo.MINIGAME_TELEPORT_BUTTON)
-            return minigamesButton != null && !GameThread.invokeLater { minigamesButton.isHidden }
+            return minigamesButton != null && minigamesButton.isHidden
         }
     val isTabOpen: Boolean
         get() = Tabs.isOpen(Tab.CLAN_CHAT)
@@ -83,7 +82,7 @@ object Minigames {
             val current: Destination
                 get() {
                     val selectedTeleport = MINIGAMES_DESTINATION.get()
-                    return if (selectedTeleport != null && !GameThread.invokeLater { selectedTeleport.isHidden }) {
+                    return if (selectedTeleport != null && selectedTeleport.isHidden ) {
                         byName(selectedTeleport.text)
                     } else NONE
                 }

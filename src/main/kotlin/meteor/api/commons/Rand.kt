@@ -1,20 +1,16 @@
 package meteor.api.commons
 
+import Main.client
 import kotlin.random.Random
 
 object Rand {
 
-    var random: Random
-
-    init {
-        val gameAccount = Game.gameAccount
-        random = if (gameAccount != null) {
-            val seed = gameAccount.username.hashCode()
-            println("Generated randomization seed: $seed")
-            Random(seed)
-        } else {
-            Random(System.nanoTime())
-        }
+    var random: Random = if (client.localPlayer != null) {
+        val seed = client.username.hashCode()
+        println("Generated randomization seed: $seed")
+        Random(seed)
+    } else {
+        Random(System.nanoTime())
     }
 
     @Synchronized

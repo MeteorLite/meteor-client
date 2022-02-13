@@ -37,7 +37,7 @@ class Players : Entities<Player>() {
             return PLAYERS.nearest(to, filter)
         }
 
-        fun getNearest(to: WorldPoint?, vararg names: String): Player? {
+        fun getNearest(to: WorldPoint, vararg names: String): Player? {
             return PLAYERS.nearest(to, *names)
         }
 

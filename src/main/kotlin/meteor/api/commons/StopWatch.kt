@@ -86,6 +86,6 @@ class StopWatch private constructor(supplier: Supplier<*>, duration: Duration?) 
      * Calculates the rate per hour.
      */
     fun getHourlyRate(value: Int): Double {
-        return getRate(value, Duration.ofHours(1L))
+        return getRate(value.toLong(), Duration.ofHours(1L))
     }
 }
