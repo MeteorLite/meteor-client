@@ -1,7 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.compose") version "1.1.0-alpha1-dev536"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev609"
     java
 }
 
@@ -12,6 +12,7 @@ version = "1.0.0"
 
 repositories {
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
+    google()
     mavenLocal()
     mavenCentral()
     maven { url = uri("https://maven.gegy1000.net/") }

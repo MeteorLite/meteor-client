@@ -5,7 +5,7 @@ import meteor.plugins.PluginDescriptor
 
 @PluginDescriptor(
     name = "Api Test",
-    enabledByDefault = true
+    enabledByDefault = false
 )
 class ApiTestPlugin : Plugin() {
     val overlay = overlay(ApiTestOverlay(this))
