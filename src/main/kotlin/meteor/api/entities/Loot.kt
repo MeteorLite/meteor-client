@@ -10,7 +10,7 @@ import java.util.ArrayList
 import java.util.function.Predicate
 import java.util.stream.Collectors
 
-class Loot : Entities<TileItem>() {
+class Loot : Entity<TileItem>() {
     override fun all(filter: Predicate<in TileItem>): List<TileItem> {
         return Tiles.tiles.stream()
             .flatMap { tile -> parseTile(tile, filter).stream() }

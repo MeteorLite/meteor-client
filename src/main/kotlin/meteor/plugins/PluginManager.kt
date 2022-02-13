@@ -56,7 +56,7 @@ object PluginManager {
         init<WorldMapPlugin>()
         init<XpTrackerPlugin>()
 
-        //init<ApiTestPlugin>()
+        init<ApiTestPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {

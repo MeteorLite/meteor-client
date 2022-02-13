@@ -10,7 +10,7 @@ import java.util.Comparator
 import java.util.function.Predicate
 import kotlin.collections.ArrayList
 
-abstract class Entities<T : SceneEntity?> {
+abstract class Entity<T : SceneEntity?> {
     protected abstract fun all(filter: Predicate<in T>): List<T>
     fun all(vararg names: String): List<T> {
         return all { x: T ->

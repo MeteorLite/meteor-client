@@ -8,7 +8,7 @@ import java.util.ArrayList
 import java.util.function.Predicate
 import java.util.stream.Collectors
 
-class NPCs : Entities<NPC>() {
+class NPCs : Entity<NPC>() {
     override fun all(filter: Predicate<in NPC>): List<NPC> {
         val out: MutableList<NPC> = ArrayList()
         val npcs: List<NPC> = client.npcs

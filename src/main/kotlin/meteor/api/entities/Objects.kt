@@ -10,7 +10,7 @@ import java.util.function.Predicate
 import java.util.stream.Collectors
 import kotlin.collections.ArrayList
 
-object Objects : Entities<TileObject>() {
+object Objects : Entity<TileObject>() {
     override fun all(filter: Predicate<in TileObject>): List<TileObject> {
         return getTileObjects(Tiles.tiles).stream()
             .filter(filter as Predicate<in TileObject?>)

@@ -7,7 +7,7 @@ import net.runelite.api.coords.WorldPoint
 import java.util.function.Predicate
 import java.util.stream.Collectors
 
-class Players : Entities<Player>() {
+class Players : Entity<Player>() {
     override fun all(filter: Predicate<in Player>): List<Player> {
         return client.getPlayers()
             .stream()
