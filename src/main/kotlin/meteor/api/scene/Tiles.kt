@@ -15,7 +15,7 @@ object Tiles {
         val out: MutableList<Tile> = ArrayList()
         for (x in 0 until Constants.SCENE_SIZE) {
             for (y in 0 until Constants.SCENE_SIZE) {
-                val tile: Tile = client.scene.tiles[client.plane][x][y]
+                val tile: Tile? = client.scene.tiles[client.plane][x][y]
                 if (tile != null && filter.test(tile)) {
                     out.add(tile)
                 }
