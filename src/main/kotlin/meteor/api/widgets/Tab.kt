@@ -1,0 +1,30 @@
+package meteor.api.widgets
+
+import net.runelite.api.widgets.WidgetInfo
+
+enum class Tab(val widgetInfo: WidgetInfo, val childId: Int) {
+    COMBAT(
+        WidgetInfo.FIXED_VIEWPORT_COMBAT_TAB,
+        WidgetInfo.FIXED_VIEWPORT_COMBAT_TAB.childId
+    ),
+    SKILLS(WidgetInfo.FIXED_VIEWPORT_STATS_TAB, WidgetInfo.FIXED_VIEWPORT_STATS_TAB.childId), QUESTS(
+        WidgetInfo.FIXED_VIEWPORT_QUESTS_TAB, WidgetInfo.FIXED_VIEWPORT_QUESTS_TAB.childId
+    ),
+    INVENTORY(WidgetInfo.FIXED_VIEWPORT_INVENTORY_TAB, WidgetInfo.FIXED_VIEWPORT_INVENTORY_TAB.childId), EQUIPMENT(
+        WidgetInfo.FIXED_VIEWPORT_EQUIPMENT_TAB, WidgetInfo.FIXED_VIEWPORT_EQUIPMENT_TAB.childId
+    ),
+    PRAYER(WidgetInfo.FIXED_VIEWPORT_PRAYER_TAB, WidgetInfo.FIXED_VIEWPORT_PRAYER_TAB.childId), MAGIC(
+        WidgetInfo.FIXED_VIEWPORT_MAGIC_TAB, WidgetInfo.FIXED_VIEWPORT_MAGIC_TAB.childId
+    ),
+    CLAN_CHAT(WidgetInfo.FIXED_VIEWPORT_FRIENDS_CHAT_TAB, WidgetInfo.FIXED_VIEWPORT_FRIENDS_CHAT_TAB.childId), ACCOUNT(
+        WidgetInfo.FIXED_VIEWPORT_IGNORES_TAB, WidgetInfo.FIXED_VIEWPORT_IGNORES_TAB.childId
+    ),
+    FRIENDS(WidgetInfo.FIXED_VIEWPORT_FRIENDS_TAB, WidgetInfo.FIXED_VIEWPORT_FRIENDS_TAB.childId), LOG_OUT(
+        WidgetInfo.FIXED_VIEWPORT_LOGOUT_TAB, WidgetInfo.FIXED_VIEWPORT_LOGOUT_TAB.childId
+    ),
+    OPTIONS(WidgetInfo.FIXED_VIEWPORT_OPTIONS_TAB, WidgetInfo.FIXED_VIEWPORT_OPTIONS_TAB.childId), EMOTES(
+        WidgetInfo.FIXED_VIEWPORT_EMOTES_TAB, WidgetInfo.FIXED_VIEWPORT_EMOTES_TAB.childId
+    ),
+    MUSIC(WidgetInfo.FIXED_VIEWPORT_MUSIC_TAB, WidgetInfo.FIXED_VIEWPORT_MUSIC_TAB.childId);
+
+}
