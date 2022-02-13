@@ -9,4 +9,5 @@ import meteor.plugins.PluginDescriptor
 )
 class ApiTestPlugin : Plugin() {
     val overlay = overlay(ApiTestOverlay(this))
+    val itemOverlay = overlay(ApiTestOverlay.ItemTestOverlay())
 }

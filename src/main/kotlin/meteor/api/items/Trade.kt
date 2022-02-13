@@ -111,7 +111,7 @@ object Trade {
         val container: ItemContainer = client
             .getItemContainer(if (theirs) InventoryID.TRADEOTHER else InventoryID.TRADE)
             ?: return items
-        Inventory.Companion.cacheItems(container)
+        Inventory.cacheItems(container)
         val containerItems = container.items
         var i = 0
         val containerItemsLength = containerItems.size
@@ -131,10 +131,10 @@ object Trade {
     }
 
     fun getInventory(filter: Predicate<Item>): List<Item?> {
-        val items: MutableList<Item?> = ArrayList()
+        val items: ArrayList<Item> = ArrayList()
         val container: ItemContainer = client.getItemContainer(InventoryID.INVENTORY)
             ?: return items
-        Inventory.Companion.cacheItems(container)
+        Inventory.cacheItems(container)
         val containerItems = container.items
         var i = 0
         val containerItemsLength = containerItems.size

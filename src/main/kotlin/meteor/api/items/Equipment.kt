@@ -14,7 +14,7 @@ class Equipment : Items() {
         val items: MutableList<Item?> = ArrayList()
         val container: ItemContainer = client.getItemContainer(InventoryID.EQUIPMENT)
             ?: return items
-        Inventory.Companion.cacheItems(container)
+        Inventory.cacheItems(container)
         val containerItems = container.items
         var i = 0
         val containerItemsLength = containerItems.size

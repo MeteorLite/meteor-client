@@ -195,7 +195,7 @@ class Hooks : Callbacks {
         return image
     }
 
-    override fun drawInterface(interfaceId: Int, widgetItems: MutableList<WidgetItem>) {
+    override fun drawInterface(interfaceId: Int, widgetItems: List<WidgetItem>) {
         val graphics2d: Graphics2D = getGraphics(client.bufferProvider as MainBufferProvider)
 
         try {

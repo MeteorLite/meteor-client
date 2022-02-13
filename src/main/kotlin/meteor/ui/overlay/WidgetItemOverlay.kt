@@ -33,10 +33,19 @@ import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Rectangle
 import java.util.*
+import meteor.ui.overlay.ItemOverlayMode.*
 
-abstract class WidgetItemOverlay protected constructor() : Overlay() {
+abstract class WidgetItemOverlay(vararg overlayModes: ItemOverlayMode) : Overlay() {
+    init {
+        for (mode in overlayModes)
+            when (mode) {
+                ItemOverlayMode.ITEMS -> showOnItems()
+                ItemOverlayMode.BANK -> showOnBank()
+                ItemOverlayMode.EQUIPMENT -> showOnEquipment()
+            }
+    }
 
-    abstract fun renderItemOverlay(graphics: Graphics2D?, itemId: Int, widgetItem: WidgetItem?)
+    abstract fun renderItemOverlay(graphics: Graphics2D, itemId: Int, widgetItem: WidgetItem)
 
     override fun render(graphics: Graphics2D): Dimension? {
         val widgetItems: Collection<WidgetItem> = overlayManager.widgetItems
@@ -81,7 +90,7 @@ abstract class WidgetItemOverlay protected constructor() : Overlay() {
         return null
     }
 
-    protected fun showOnInventory() {
+    protected fun showOnItems() {
         showOnInterfaces(
                 WidgetID.DEPOSIT_BOX_GROUP_ID,
                 WidgetID.BANK_INVENTORY_GROUP_ID,
