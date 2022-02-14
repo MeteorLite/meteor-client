@@ -179,7 +179,7 @@ class WorldMapOverlay : Overlay() {
         return null
     }
 
-    override fun onMenuOptionClicked():((Any)->Unit) ={ it as MenuOptionClicked
+    override fun onMenuOptionClicked(it: eventbus.events.MenuOptionClicked) {
         if (it.menuAction == MenuAction.RUNELITE && FOCUS_ON == it.menuOption) {
             val pxy = it.id
             val wp = WorldPoint(

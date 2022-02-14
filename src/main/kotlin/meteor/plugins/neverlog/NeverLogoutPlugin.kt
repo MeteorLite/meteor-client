@@ -17,18 +17,16 @@ class NeverLogoutPlugin : Plugin() {
 
     private var randomTick = 0
     private val random = Random()
-    override fun onGameTick(): ((Event<GameTick>) -> Unit) = {
+    override fun onGameTick(it: GameTick) {
         if (randomTick == -1) {
             if (client.keyboardIdleTicks > randomTick) {
                 generateRandomTick()
                 client.keyboardIdleTicks = 0
-                println("set keyboard ticks")
             }
         }
         if (client.mouseIdleTicks > randomTick) {
             generateRandomTick()
             client.mouseIdleTicks = 0
-            println("set mouse ticks")
         }
     }
 

@@ -111,8 +111,8 @@ class BoostsPlugin : Plugin() {
         }
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
-        if (it.data.group.equals("boosts")) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group.equals("boosts")) {
             updateShownSkills()
             if (config.displayNextBuffChange() == BoostsConfig.DisplayChangeMode.NEVER) {
                 lastChangeDown = -1
@@ -123,8 +123,7 @@ class BoostsPlugin : Plugin() {
         }
     }
 
-    override fun onStatChanged(): ((Event<eventbus.events.StatChanged>) -> Unit) = {
-        val it = it.data
+    override fun onStatChanged(it: eventbus.events.StatChanged) {
         val skill = it.skill
         if (BOOSTABLE_COMBAT_SKILLS.contains(skill) || BOOSTABLE_NON_COMBAT_SKILLS.contains(skill)) {
             val skillIdx = skill.ordinal
@@ -143,7 +142,7 @@ class BoostsPlugin : Plugin() {
         }
     }
 
-    override fun onGameTick(): ((Event<eventbus.events.GameTick>) -> Unit) = {
+    override fun onGameTick(it: eventbus.events.GameTick) {
         lastTickMillis = System.currentTimeMillis()
         if (changeUpTicks <= 0) {
             when (config.displayNextDebuffChange()) {

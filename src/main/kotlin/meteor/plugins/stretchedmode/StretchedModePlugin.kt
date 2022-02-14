@@ -56,12 +56,11 @@ class StretchedModePlugin : Plugin() {
         mouseManager.unregisterMouseWheelListener(mouseWheelListener)
     }
 
-    override fun onResizeableChanged():((Event<ResizeableChanged>)->Unit) = {
+    override fun onResizeableChanged(it: ResizeableChanged) {
         client.invalidateStretching(true)
     }
 
-    override fun onConfigChanged():((Event<ConfigChanged>)->Unit) = {
-        val it = it.data
+    override fun onConfigChanged(it: ConfigChanged) {
         if (it.group == "stretchedmode")
             updateConfig()
     }

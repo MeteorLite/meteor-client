@@ -7,7 +7,6 @@ object Rand {
 
     var random: Random = if (client.localPlayer != null) {
         val seed = client.username.hashCode()
-        println("Generated randomization seed: $seed")
         Random(seed)
     } else {
         Random(System.nanoTime())

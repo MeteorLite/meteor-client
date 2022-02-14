@@ -24,6 +24,8 @@
  */
 package meteor.plugins.rsnhider
 
+import eventbus.events.BeforeRender
+import eventbus.events.ChatMessage
 import eventbus.events.ConfigChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -54,8 +56,8 @@ class RsnHiderPlugin : Plugin() {
         clientThread.invokeLater { client.runScript(ScriptID.CHAT_PROMPT_INIT) }
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) ={
-        if (!it.data.group.equals("rsnhider")) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (!it.group.equals("rsnhider")) {
             setFakeRsn()
         }
     }
@@ -73,10 +75,8 @@ class RsnHiderPlugin : Plugin() {
             updateChatbox()
         }
     }
-    override fun onBeforeRender(): ((Event<eventbus.events.BeforeRender>) -> Unit)=  {
-
+    override fun onBeforeRender(it: BeforeRender) {
       beforeRender()
-
     }
 
 
@@ -119,29 +119,29 @@ class RsnHiderPlugin : Plugin() {
         chatboxTypedText.text = chatbox[0] + ":" + chatbox[1]
     }
 
-    override fun onChatMessage(): ((Event<eventbus.events.ChatMessage>) -> Unit) ={
+    override fun onChatMessage(it: ChatMessage) {
         if (client.localPlayer!!.name == null) {
 
-            val replaced = replaceRsn(it.data.message)
-            it.data.message = replaced
-            it.data.messageNode.value = replaced
+            val replaced = replaceRsn(it.message)
+            it.message = replaced
+            it.messageNode.value = replaced
 
 
-            val isLocalPlayer: Boolean = Text.standardize(it.data.name).equals(
+            val isLocalPlayer: Boolean = Text.standardize(it.name).equals(
                 Text.standardize(
                     client.localPlayer!!.name
                 ).toString().lowercase()
             )
             if (isLocalPlayer) {
-                it.data.name = fakeRsn!!
-                it.data.messageNode.name = fakeRsn
+                it.name = fakeRsn!!
+                it.messageNode.name = fakeRsn
             }
         }
 
     }
 
-    override fun onOverheadTextChanged(): ((Event<OverheadTextChanged>) -> Unit) = {
-        it.data.actor.overheadText = replaceRsn(it.data.overheadText)
+    override fun onOverheadTextChanged(it: OverheadTextChanged) {
+        it.actor.overheadText = replaceRsn(it.overheadText)
     }
     private fun replaceRsn(textIn: String): String {
         var textIn = textIn

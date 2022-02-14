@@ -29,8 +29,7 @@ class FishingPlugin: Plugin() {
         }
     }
 
-    override fun onInteractingChanged():((Event<InteractingChanged>)->Unit) = {
-        val it = it.data
+    override fun onInteractingChanged(it: InteractingChanged) {
         if (it.source == client.localPlayer) {
             if (it.target is NPC) {
                 val target: Actor = it.target as NPC
@@ -43,15 +42,13 @@ class FishingPlugin: Plugin() {
     }
 
 
-    override fun onNPCSpawned():((Event<NpcSpawned>)->Unit) = {
-        val it = it.data
+    override fun onNPCSpawned(it: NpcSpawned) {
         if (FishingSpot.findSpot(it.npc.id) != null) {
             fishingSpots.add(it.npc)
         }
     }
 
-    override fun onNPCDespawned():((Event<NpcDespawned>)->Unit) = {
-        val it = it.data
+    override fun onNPCDespawned(it: NpcDespawned) {
         if (FishingSpot.findSpot(it.npc.id) != null) {
             fishingSpots.remove(it.npc)
         }

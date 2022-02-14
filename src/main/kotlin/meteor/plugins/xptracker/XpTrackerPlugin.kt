@@ -248,8 +248,7 @@ class XpTrackerPlugin : Plugin() {
         }
     }
 
-    override fun onStatChanged():((Event<StatChanged>)->Unit) = {
-        val it = it.data
+    override fun onStatChanged(it: StatChanged) {
         try {
             val skill = it.skill
             val currentXp = it.xp
@@ -297,7 +296,7 @@ class XpTrackerPlugin : Plugin() {
 
     }
 
-    override fun onGameTick():((Event<GameTick>)->Unit) = {
+    override fun onGameTick(it: GameTick) {
         if (initializeTracker) {
             initializeTracker = false
 
@@ -346,8 +345,7 @@ class XpTrackerPlugin : Plugin() {
         rebuildSkills()
     }
 
-    override fun onMenuEntryAdded():((Event<MenuEntryAdded>)->Unit) = {
-        val it = it.data
+    override fun onMenuEntryAdded(it: MenuEntryAdded) {
         val widgetID = it.param1
         if (WidgetInfo.TO_GROUP(widgetID) == WidgetID.SKILLS_GROUP_ID && it.option.startsWith("View")
             && config.skillTabOverlayMenuOptions()
@@ -369,8 +367,7 @@ class XpTrackerPlugin : Plugin() {
         }
     }
 
-    override fun onMenuOptionClicked():((Event<MenuOptionClicked>)->Unit) = {
-        val it = it.data
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
         if (it.menuAction.id == MenuAction.RUNELITE.id
         ) {
             val skill = Skill.valueOf(Text.removeTags(it.menuTarget).uppercase(Locale.getDefault()))

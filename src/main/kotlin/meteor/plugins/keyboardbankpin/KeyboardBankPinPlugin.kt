@@ -12,8 +12,7 @@ import org.rationalityfrontline.kevent.Event
 
 @PluginDescriptor("KeyboardBankPin", configGroup = "keyboardBankPin")
 class KeyboardBankPinPlugin : Plugin() {
-    override fun onScriptCallbackEvent():((Event<ScriptCallbackEvent>)->Unit) = {
-        val it = it.data
+    override fun onScriptCallbackEvent(it: ScriptCallbackEvent) {
         val intStack = client.intStack
         val intStackSize = client.intStackSize
         when (it.eventName) {

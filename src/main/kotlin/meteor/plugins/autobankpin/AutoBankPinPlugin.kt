@@ -87,7 +87,7 @@ class AutoBankPinPlugin : Plugin() {
     }
 
 
-    override fun onGameTick(): ((Event<GameTick>) -> Unit) = {
+    override fun onGameTick(it: GameTick) {
         EnterBankPin()
     }
 

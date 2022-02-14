@@ -14,9 +14,6 @@ import java.util.concurrent.ScheduledExecutorService
 @PluginDescriptor(name = "AutoRun", description = "Automatically enables run.", enabledByDefault = true)
 
 class AutoRun : Plugin() {
-
-
-
  override val config = configuration<AutoRunConfig>()
     private val clientThread: ClientThread = ClientThread
     private val rand = Random()
@@ -37,14 +34,10 @@ class AutoRun : Plugin() {
         get() = client.getVarpValue(173) == 1
 
     private fun toggleRun() {
-
             val runOrb = client.getWidget(WidgetInfo.MINIMAP_TOGGLE_RUN_ORB)
             clientThread.invokeLater {
                 client.invokeMenuAction("", "", 1, MenuAction.CC_OP.id, -1, runOrb!!.id)
             }
-
-            println("toggling orb")
-
     }
 
     fun randInt(r: Random, min: Int, max: Int): Int {

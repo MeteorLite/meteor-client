@@ -27,6 +27,7 @@ package meteor.ui.overlay.infobox
 import com.google.common.base.Preconditions
 import com.google.common.base.Strings
 import com.google.common.collect.ComparisonChain
+import eventbus.Events
 import eventbus.events.ConfigChanged
 import meteor.Configuration
 import meteor.config.ConfigManager
@@ -51,8 +52,7 @@ object InfoBoxManager : EventSubscriber() {
     private val layers: MutableMap<String, InfoBoxOverlay> = ConcurrentHashMap()
     private val config = Main.meteorConfig!!
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
-        val it = it.data
+    override fun onConfigChanged(it: ConfigChanged) {
         if (it.group == Configuration.MASTER_GROUP && it.key == "infoBoxSize") {
             layers.values.forEach(Consumer { l: InfoBoxOverlay ->
                 l.infoBoxes.forEach(
@@ -61,8 +61,7 @@ object InfoBoxManager : EventSubscriber() {
         }
     }
 
-    override fun onInfoBoxMenuClicked(): ((Event<InfoBoxMenuClicked>) -> Unit) = {
-        val it = it.data
+    override fun onInfoBoxMenuClicked(it: InfoBoxMenuClicked) {
         if (DETACH == it.entry.option) {
             // The layer name doesn't matter as long as it is unique
             splitInfobox(

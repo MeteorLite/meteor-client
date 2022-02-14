@@ -28,8 +28,10 @@ package meteor.plugins.chatfilter
 import com.google.common.annotations.VisibleForTesting
 import com.google.common.base.Splitter
 import com.google.common.collect.ImmutableSet
+import eventbus.events.ChatMessage
 import eventbus.events.ConfigChanged
 import eventbus.events.GameStateChanged
+import eventbus.events.ScriptCallbackEvent
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.ChatMessageType
@@ -146,30 +148,29 @@ class ChatFilterPlugin : Plugin() {
         }
     }
 
-    override fun onScriptCallbackEvent(): ((Event<eventbus.events.ScriptCallbackEvent>) -> Unit) ={
-        if ("chatFilterCheck" != it.data.eventName) {
+    override fun onScriptCallbackEvent(it: ScriptCallbackEvent){
+        if ("chatFilterCheck" != it.eventName) {
             chatFilter()
         }
 
 
     }
 
+    override fun onOverheadTextChanged(it: OverheadTextChanged) {
+        if (it.actor !is Player || !shouldFilterPlayerMessage(it.actor.name)) {
 
-    override fun onOverheadTextChanged(): ((Event<OverheadTextChanged>) -> Unit) = {
-        if (it.data.actor !is Player || !shouldFilterPlayerMessage(it.data.actor.name)) {
-
-            var message = censorMessage(it.data.actor.name, it.data.overheadText)
+            var message = censorMessage(it.actor.name, it.overheadText)
             if (message == null) {
                 message = " "
             }
-            it.data.actor.overheadText = message
+            it.actor.overheadText = message
         }
     }
 
 
-    override fun onChatMessage(): ((Event<eventbus.events.ChatMessage>) -> Unit) = {
-        if (COLLAPSIBLE_MESSAGETYPES.contains(it.data.type)) {
-            val messageNode = it.data.messageNode
+    override fun onChatMessage(it: ChatMessage) {
+        if (COLLAPSIBLE_MESSAGETYPES.contains(it.type)) {
+            val messageNode = it.messageNode
             // remove and re-insert into map to move to end of list
             val key = messageNode.name + ":" + messageNode.value
             var duplicate = duplicateChatCache.remove(key)
@@ -251,8 +252,8 @@ class ChatFilterPlugin : Plugin() {
             .forEach { e: Pattern? -> filteredNamePatterns.add(e) }
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
-        if ("chatfilter" != it.data.group) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if ("chatfilter" != it.group) {
 
 
             updateFilteredPatterns()

@@ -3,6 +3,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import eventbus.Events
+import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
 import meteor.*
 import meteor.config.ConfigManager
@@ -23,6 +24,7 @@ import meteor.ui.themes.MeteorliteTheme
 import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
 import net.runelite.api.Client
+import net.runelite.api.GameState
 import net.runelite.api.hooks.Callbacks
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
@@ -53,7 +55,7 @@ object Main: KoinComponent, EventSubscriber() {
         callbacks = get()
         MeteorliteTheme.install()
         suppressEventWarnings()
-        EventBus.subscribe<GameTick>(Events.GAME_TICK) {
+        EventBus.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) {
             if (client.gameDrawingMode != 2)
                 client.gameDrawingMode = 2
         }

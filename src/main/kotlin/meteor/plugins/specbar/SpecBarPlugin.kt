@@ -1,5 +1,6 @@
 package meteor.plugins.specbar
 
+import eventbus.events.ClientTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.widgets.WidgetID
@@ -12,7 +13,7 @@ import org.rationalityfrontline.kevent.Event
     enabledByDefault = false
 )
 class SpecBarPlugin : Plugin() {
-    override fun onClientTick(): ((Event<eventbus.events.ClientTick>) -> Unit) = {
+    override fun onClientTick(it: ClientTick) {
         client.getWidget(WidgetID.COMBAT_GROUP_ID, 35)?.let { it.isHidden = false }
     }
 }
