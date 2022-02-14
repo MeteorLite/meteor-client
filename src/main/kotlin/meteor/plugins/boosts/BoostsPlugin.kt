@@ -31,11 +31,10 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ImageUtil
-import net.runelite.api.*
-import net.runelite.api.events.GameStateChanged
-import net.runelite.api.events.GameTick
-import net.runelite.api.events.StatChanged
-import org.rationalityfrontline.kevent.Event
+import net.runelite.api.Constants
+import net.runelite.api.GameState
+import net.runelite.api.Prayer
+import net.runelite.api.Skill
 import java.util.*
 
 @PluginDescriptor(

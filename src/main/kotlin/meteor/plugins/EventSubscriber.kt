@@ -4,8 +4,6 @@ import eventbus.Events
 import eventbus.events.*
 import meteor.events.InfoBoxMenuClicked
 import meteor.events.PluginChanged
-import net.runelite.api.events.OverheadPrayerChanged
-import net.runelite.api.events.OverheadTextChanged
 import org.rationalityfrontline.kevent.KEventSubscriber
 import org.rationalityfrontline.kevent.unsubscribeAll
 import org.rationalityfrontline.kevent.subscribe as kSubscribe

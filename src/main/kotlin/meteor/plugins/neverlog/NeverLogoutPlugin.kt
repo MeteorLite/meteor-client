@@ -17,6 +17,7 @@ class NeverLogoutPlugin : Plugin() {
 
     private var randomTick = 0
     private val random = Random()
+
     override fun onGameTick(it: GameTick) {
         if (randomTick == -1) {
             if (client.keyboardIdleTicks > randomTick) {

@@ -26,6 +26,7 @@ package meteor.ui.worldmap
 
 import com.google.common.base.Splitter
 import com.google.common.base.Strings
+import eventbus.events.MenuOptionClicked
 import meteor.game.FontManager
 import meteor.plugins.worldmap.WorldMapPoint
 import meteor.ui.overlay.Overlay
@@ -36,7 +37,6 @@ import meteor.util.ColorUtil
 import meteor.util.JagexColors
 import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
-import net.runelite.api.events.MenuOptionClicked
 import net.runelite.api.widgets.JavaScriptCallback
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetID
@@ -179,7 +179,7 @@ class WorldMapOverlay : Overlay() {
         return null
     }
 
-    override fun onMenuOptionClicked(it: eventbus.events.MenuOptionClicked) {
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
         if (it.menuAction == MenuAction.RUNELITE && FOCUS_ON == it.menuOption) {
             val pxy = it.id
             val wp = WorldPoint(

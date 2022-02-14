@@ -27,16 +27,15 @@ package meteor.plugins.rsnhider
 import eventbus.events.BeforeRender
 import eventbus.events.ChatMessage
 import eventbus.events.ConfigChanged
+import eventbus.events.OverheadTextChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import net.runelite.api.GameState
 import net.runelite.api.ScriptID
-import net.runelite.api.events.OverheadTextChanged
 import net.runelite.api.util.Text
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
-import org.rationalityfrontline.kevent.Event
 import java.util.*
 
 

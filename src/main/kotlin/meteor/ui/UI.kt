@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.FrameWindowScope
 import eventbus.Events
+import eventbus.events.ConfigButtonClicked
 import meteor.Logger
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
@@ -33,7 +34,6 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
-import net.runelite.api.events.ConfigButtonClicked
 import java.awt.BorderLayout
 import java.awt.Dimension
 import java.util.stream.Collectors
@@ -75,7 +75,7 @@ object UI {
 
     @Composable
     fun PluginConfigPanelToggleButton() {
-        MaterialTheme(colors = UI.darkThemeColors) {
+        MaterialTheme(colors = darkThemeColors) {
             IconButton(
                 onClick =
                 {
@@ -97,8 +97,8 @@ object UI {
     @Composable
     fun PluginsPanel() {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(darkThemeColors.background)) {
+            MaterialTheme(colors = darkThemeColors) {
                 PluginsPanelHeader()
                 Plugins()
             }
@@ -108,8 +108,8 @@ object UI {
     @Composable
     fun ConfigPanel() {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(darkThemeColors.background)) {
+            MaterialTheme(colors = darkThemeColors) {
                 ConfigPanelHeader()
                 Configs()
             }
@@ -119,8 +119,8 @@ object UI {
     @Composable
     fun ConfigPanelHeader() {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(darkThemeColors.background)) {
+            MaterialTheme(colors = darkThemeColors) {
                 Text(lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = Color.Cyan, fontSize = 24.sp))
             }
         }
@@ -129,8 +129,8 @@ object UI {
     @Composable
     fun PluginsPanelHeader() {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(darkThemeColors.background)) {
+            MaterialTheme(colors = darkThemeColors) {
                 Text("Plugins",style = TextStyle(color = Color.Cyan, fontSize = 24.sp))
             }
         }
@@ -141,9 +141,9 @@ object UI {
         val scrollState = rememberScrollState()
         Column(
             horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(UI.darkThemeColors.background).verticalScroll(scrollState)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background).verticalScroll(scrollState)
         ) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            MaterialTheme(colors = darkThemeColors) {
                 val descriptor = ConfigManager.getConfigDescriptor(lastPlugin.config!!)
                 if (descriptor != null)
                     for (configItemDescriptor in descriptor.items.stream().sorted(
@@ -192,14 +192,14 @@ object UI {
             ).toBoolean()) }
         Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF121212))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.8f).height(40.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                modifier = Modifier.fillMaxWidth(0.8f).height(40.dp).background(darkThemeColors.background)) {
+                MaterialTheme(colors = darkThemeColors) {
                     Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF121212))) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     Switch(toggled, onCheckedChange = {
                         ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
                         toggled = it
@@ -220,14 +220,14 @@ object UI {
         )) }
         Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                MaterialTheme(colors = darkThemeColors) {
                     Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     BasicTextField(
                         value = text,
                         onValueChange = {
@@ -255,14 +255,14 @@ object UI {
         )) }
         Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                MaterialTheme(colors = darkThemeColors) {
                     Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     BasicTextField(
                         value = text,
                         visualTransformation = if (!configItemDescriptor.secret()) VisualTransformation.None else PasswordVisualTransformation(),
@@ -305,14 +305,14 @@ object UI {
         var selectedIndex by remember { mutableStateOf(list.indexOf(currentToSet)) }
         Row(modifier = Modifier.fillMaxWidth().height(40.dp)){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                MaterialTheme(colors = darkThemeColors) {
                     Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(40.dp)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
                         Text(list[selectedIndex].name, color = Color.Cyan, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
                             Color(0xFF242424)))
@@ -348,14 +348,14 @@ object UI {
         )) }
         Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                MaterialTheme(colors = darkThemeColors) {
                     Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     OutlinedButton(onClick = {
                         //TODO fix enum
                         Main.client.callbacks.post(Events.CONFIG_CHANGED, ConfigButtonClicked(descriptor.group.value, configItemDescriptor.key()))}
@@ -372,21 +372,21 @@ object UI {
     fun Plugins() {
         val scrollState = rememberScrollState()
         Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(UI.darkThemeColors.background).verticalScroll(scrollState)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background).verticalScroll(scrollState)) {
+            MaterialTheme(colors = darkThemeColors) {
                 for (plugin in PluginManager.plugins) {
-                    Row(modifier = Modifier.fillMaxWidth().height(28.dp).background(UI.darkThemeColors.background)){
+                    Row(modifier = Modifier.fillMaxWidth().height(28.dp).background(darkThemeColors.background)){
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.75f).height(28.dp).background(UI.darkThemeColors.background)) {
-                            MaterialTheme(colors = UI.darkThemeColors) {
+                            modifier = Modifier.fillMaxWidth(0.75f).height(28.dp).background(darkThemeColors.background)) {
+                            MaterialTheme(colors = darkThemeColors) {
                                 val switchState = remember { mutableStateOf(plugin.enabled) }
                                 Switch(switchState.value, onPluginToggled(switchState, plugin), enabled = true)
                                 Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
                             }
                         }
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                            modifier = Modifier.fillMaxWidth().height(28.dp).background(UI.darkThemeColors.background)) {
-                            MaterialTheme(colors = UI.darkThemeColors) {
+                            modifier = Modifier.fillMaxWidth().height(28.dp).background(darkThemeColors.background)) {
+                            MaterialTheme(colors = darkThemeColors) {
                                 if (plugin.config != null) {
                                     IconButton(
                                         onClick = { onPluginConfigurationOpened(plugin) },
@@ -449,12 +449,12 @@ object UI {
         return Column(verticalArrangement = Arrangement.Top, modifier = Modifier.background(Color(0xFF080808)).fillMaxWidth().fillMaxHeight()) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
                 modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight(.5f).background(Color(0xFF080808)).fillMaxWidth()) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                 }
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom,
                 modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight().background(Color(0xFF080808)).fillMaxWidth()) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     PluginConfigPanelToggleButton()
                 }
             }
