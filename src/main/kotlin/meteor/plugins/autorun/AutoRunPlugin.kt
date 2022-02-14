@@ -1,5 +1,6 @@
 package meteor.plugins.autorun
 
+import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -22,7 +23,7 @@ class AutoRunPlugin : Plugin() {
     override fun onStop() {}
 
 
-    override fun onGameTick(): ((Event<eventbus.events.GameTick>) -> Unit) = {
+    override fun onGameTick(it: GameTick) {
         if (nextRunThreshhold <= 0) nextRunThreshhold = randInt(config.minRun(), config.maxRun()) else {
             if (!isRunning && client.energy > nextRunThreshhold) {
                 toggleRun()
@@ -40,9 +41,6 @@ class AutoRunPlugin : Plugin() {
             clientThread.invokeLater {
                 client.invokeMenuAction("", "", 1, MenuAction.CC_OP.id, -1, runOrb!!.id)
             }
-
-            println("toggling orb")
-
     }
 
     fun randInt(r: Random, min: Int, max: Int): Int {

@@ -1,5 +1,6 @@
 package meteor.plugins
 
+import eventbus.Events
 import meteor.api.ApiTestPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.agilitybot.AgilityBotPlugin

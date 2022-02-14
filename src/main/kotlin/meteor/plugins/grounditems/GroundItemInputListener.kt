@@ -76,7 +76,6 @@ class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundI
             if (SwingUtilities.isLeftMouseButton(e)) {
                 // Process both click boxes for hidden and highlighted items
                 if (plugin.hiddenBoxBounds != null && plugin.hiddenBoxBounds!!.key.contains(mousePos)) {
-                    println(plugin.hiddenBoxBounds!!.value.name!!)
                     plugin.updateList(plugin.hiddenBoxBounds!!.value.name!!, true)
                     e.consume()
                     return e

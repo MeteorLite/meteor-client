@@ -2,6 +2,7 @@ package meteor.plugins.autologin
 
 import Main
 import eventbus.events.GameStateChanged
+import eventbus.events.LoginStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.GameState
@@ -27,8 +28,8 @@ class AutoLoginPlugin : Plugin() {
         }
     }
 
-    override fun onLoginStateChanged(): ((Event<eventbus.events.LoginStateChanged>) -> Unit) = {
-        if (it.data.index == 2) {
+    override fun onLoginStateChanged(it: LoginStateChanged) {
+        if (it.index == 2) {
             login()
         }
     }

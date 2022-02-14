@@ -25,6 +25,7 @@
 package meteor.plugins.statusbars
 
 import eventbus.events.ConfigChanged
+import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -54,13 +55,12 @@ class StatusBarsPlugin : Plugin() {
         barsDisplayed = false
     }
 
-    override fun onGameTick(): ((Event<eventbus.events.GameTick>) -> Unit) = {
+    override fun onGameTick(it: GameTick) {
         checkStatusBars()
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
-        val it = it.data
-        if (StatusBarsConfig.Companion.GROUP == it.group && it.key.equals("hideAfterCombatDelay")) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (StatusBarsConfig.GROUP == it.group && it.key.equals("hideAfterCombatDelay")) {
             clientThread.invokeLater { checkStatusBars() }
         }
     }

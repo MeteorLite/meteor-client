@@ -26,6 +26,7 @@ package meteor.plugins.minimap
 
 import eventbus.events.ConfigChanged
 import eventbus.events.GameStateChanged
+import eventbus.events.ScriptPostFired
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.GameState
@@ -64,11 +65,11 @@ override val config = configuration<MinimapConfig>()
         }
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) ={
-        if (!it.data.group.equals(MinimapConfig.GROUP)) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (!it.group.equals(MinimapConfig.GROUP)) {
 
 
-            if (it.data.key.equals("hideMinimap")) {
+            if (it.key.equals("hideMinimap")) {
                 updateMinimapWidgetVisibility(config.hideMinimap())
                 replaceMapDots()
             }
@@ -76,8 +77,8 @@ override val config = configuration<MinimapConfig>()
 
     }
 
-    override fun onScriptPostFired(): ((Event<eventbus.events.ScriptPostFired>) -> Unit) = {
-        if (it.data.scriptId == ScriptID.TOPLEVEL_REDRAW) {
+    override fun onScriptPostFired(it: ScriptPostFired) {
+        if (it.scriptId == ScriptID.TOPLEVEL_REDRAW) {
             updateMinimapWidgetVisibility(config.hideMinimap())
         }
     }

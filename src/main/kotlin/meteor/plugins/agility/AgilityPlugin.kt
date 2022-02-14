@@ -30,75 +30,61 @@ class AgilityPlugin : Plugin() {
         }
     }
 
-    override fun onGameObjectSpawned():((Event<GameObjectSpawned>)->Unit) =  {
-        val it = it.data
+    override fun onGameObjectSpawned(it: GameObjectSpawned)  {
         onTileObject(it.tile, null, it.gameObject)
     }
 
-    override fun onGameObjectChanged():((Event<GameObjectChanged>)->Unit) =  {
-        val it = it.data
+    override fun onGameObjectChanged(it: GameObjectChanged) {
         onTileObject(it.tile, it.oldObject, it.newObject)
     }
 
-    override fun onGameObjectDespawned():((Event<GameObjectDespawned>)->Unit) =  {
-        val it = it.data
+    override fun onGameObjectDespawned(it: GameObjectDespawned) {
         onTileObject(it.tile, it.gameObject, null)
     }
 
-    override fun onGroundObjectSpawned():((Event<GroundObjectSpawned>)->Unit) =  {
-        val it = it.data
+    override fun onGroundObjectSpawned(it: GroundObjectSpawned) {
         onTileObject(it.tile, null, it.groundObject)
     }
 
-    override fun onGroundObjectChanged():((Event<GroundObjectChanged>)->Unit) =  {
-        val it = it.data
+    override fun onGroundObjectChanged(it: GroundObjectChanged) {
         onTileObject(it.tile, it.previous, it.groundObject)
     }
 
-    override fun onGroundObjectDespawned():((Event<GroundObjectDespawned>)->Unit) =  {
-        val it = it.data
+    override fun onGroundObjectDespawned(it: GroundObjectDespawned) {
         onTileObject(it.tile, it.groundObject, null)
     }
 
-    override fun onWallObjectSpawned():((Event<WallObjectSpawned>)->Unit) =  {
-        val it = it.data
+    override fun onWallObjectSpawned(it: WallObjectSpawned) {
         onTileObject(it.tile, null, it.wallObject)
     }
 
-    override fun onWallObjectChanged():((Event<WallObjectChanged>)->Unit) =  {
-        val it = it.data
+    override fun onWallObjectChanged(it: WallObjectChanged) {
         onTileObject(it.tile, it.previous, it.wallObject)
     }
 
-    override fun onWallObjectDespawned():((Event<WallObjectDespawned>)->Unit) =  {
-        val it = it.data
+    override fun onWallObjectDespawned(it: WallObjectDespawned) {
         onTileObject(it.tile, it.wallObject, null)
     }
 
-    override fun onDecorativeObjectSpawned():((Event<DecorativeObjectSpawned>)->Unit) =  {
-        val it = it.data
+    override fun onDecorativeObjectSpawned(it: DecorativeObjectSpawned) {
         onTileObject(it.tile, null, it.decorativeObject)
     }
 
-    override fun onDecorativeObjectChanged():((Event<DecorativeObjectChanged>)->Unit) =  {
-        val it = it.data
+    override fun onDecorativeObjectChanged(it: DecorativeObjectChanged) {
         onTileObject(it.tile, it.previous, it.decorativeObject)
     }
 
-    override fun onDecorativeObjectDespawned():((Event<DecorativeObjectDespawned>)->Unit) =  {
-        val it = it.data
+    override fun onDecorativeObjectDespawned(it: DecorativeObjectDespawned) {
         onTileObject(it.tile, it.decorativeObject, null)
     }
 
-    override fun onItemSpawned():((Event<ItemSpawned>)->Unit) =  {
-        val it = it.data
+    override fun onItemSpawned(it: ItemSpawned) {
         if (it.item.id == ItemID.MARK_OF_GRACE) {
             marks.add(it.tile)
         }
     }
 
-    override fun onItemDespawned():((Event<ItemDespawned>)->Unit) =  {
-        val it = it.data
+    override fun onItemDespawned(it: ItemDespawned) {
         if (it.item.id == ItemID.MARK_OF_GRACE) {
             marks.remove(it.tile)
         }

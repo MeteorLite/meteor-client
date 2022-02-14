@@ -27,8 +27,10 @@
  */
 package meteor.plugins.entityhider
 
+import eventbus.events.ClientTick
 import eventbus.events.ConfigChanged
 import eventbus.events.GameStateChanged
+import eventbus.events.NpcDespawned
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.util.WildcardMatcher
@@ -93,7 +95,7 @@ class EntityHiderPlugin : Plugin() {
         client.setProjectilesHidden(false)
     }
 
-    override fun onClientTick(): ((Event<eventbus.events.ClientTick>) -> Unit) =  {
+    override fun onClientTick(it: ClientTick) {
         for (npc in client.npcs) {
             if (npc == null) {
                 continue
@@ -123,23 +125,23 @@ class EntityHiderPlugin : Plugin() {
         }
     }
 
-    override fun onNpcDespawned(): ((Event<eventbus.events.NpcDespawned>) -> Unit) = {
-        if (hiddenIndices!!.contains(it.data.npc.index)) {
-            setHiddenNpc(it.data.npc, false)
+    override fun onNpcDespawned(it: NpcDespawned) {
+        if (hiddenIndices!!.contains(it.npc.index)) {
+            setHiddenNpc(it.npc, false)
         }
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit)= {
-        if (!it.data.group.equals("entityhiderextended")) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (!it.group.equals("entityhiderextended")) {
 
 
             client.setIsHidingEntities(true)
             updateConfig()
-            if (it.data.oldValue == null || it.data.newValue == null) {
+            if (it.oldValue == null || it.newValue == null) {
 
-            if (it.data.key.equals("hideNPCsNames")) {
-                val oldList: List<String> = Text.fromCSV(it.data.oldValue)
-                val newList: List<String> = Text.fromCSV(it.data.newValue)
+            if (it.key.equals("hideNPCsNames")) {
+                val oldList: List<String> = Text.fromCSV(it.oldValue)
+                val newList: List<String> = Text.fromCSV(it.newValue)
                 val removed: List<String> = oldList.stream().filter { s: String -> !newList.contains(s) }
                     .collect(
                         Collectors.toCollection(Supplier { ArrayList() })

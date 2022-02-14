@@ -26,7 +26,6 @@ package meteor.game
 
 import Main.client
 import Main.httpClient
-import Main.subscribeOnGameState
 import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import com.google.common.cache.LoadingCache
@@ -43,7 +42,6 @@ import net.runelite.http.api.item.ItemClient
 import net.runelite.http.api.item.ItemPrice
 import net.runelite.http.api.item.ItemStats
 import org.rationalityfrontline.kevent.Event
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.util.*
@@ -132,8 +130,8 @@ object ItemManager : EventSubscriber() {
         }
     }
 
-    override fun onPostItemComposition(): ((Event<PostItemComposition>) -> Unit) = {
-        itemCompositions.put(it.data.itemComposition.id, it.data.itemComposition)
+    override fun onPostItemComposition(it: PostItemComposition) {
+        itemCompositions.put(it.itemComposition.id, it.itemComposition)
     }
 
     /**
