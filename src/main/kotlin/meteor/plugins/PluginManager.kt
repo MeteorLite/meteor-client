@@ -2,6 +2,7 @@ package meteor.plugins
 
 import meteor.api.ApiTestPlugin
 import meteor.plugins.agility.AgilityPlugin
+import meteor.plugins.agilitybot.AgilityBotPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
@@ -31,6 +32,7 @@ object PluginManager {
     var plugins = ArrayList<Plugin>()
     init {
         init<AgilityPlugin>()
+        init<AgilityBotPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
         init<AutoRunPlugin>()
