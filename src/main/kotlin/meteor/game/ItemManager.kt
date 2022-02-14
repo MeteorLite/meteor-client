@@ -26,6 +26,7 @@ package meteor.game
 
 import Main.client
 import Main.httpClient
+import Main.subscribeOnGameState
 import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import com.google.common.cache.LoadingCache
@@ -92,7 +93,7 @@ object ItemManager : EventSubscriber() {
             println("No route for RuneLite item prices http-api... System.exit")
             exitProcess(1)
         }
-        EventBus.subscribe(Events.GAME_STATE_CHANGED, onGameStateChanged())
+        subscribeOnGameState()
         EventBus.subscribe(Events.POST_ITEM_COMPOSITION, onPostItemComposition())
     }
 
@@ -125,9 +126,9 @@ object ItemManager : EventSubscriber() {
         }
     }
 
-    override fun onGameStateChanged(): ((Event<GameStateChanged>) -> Unit) = {
-        if (it.data.new == GameState.HOPPING
-                || it.data.new == GameState.LOGIN_SCREEN) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.new == GameState.HOPPING
+                || it.new == GameState.LOGIN_SCREEN) {
             itemCompositions.invalidateAll()
         }
     }

@@ -5,7 +5,7 @@ plugins {
     java
 }
 
-val release by rootProject.extra { "1.0.6" }
+val release by rootProject.extra { "1.0.7" }
 
 group = "meteor.client"
 version = "1.0.0"

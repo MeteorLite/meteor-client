@@ -25,6 +25,7 @@
 package meteor.plugins.minimap
 
 import eventbus.events.ConfigChanged
+import eventbus.events.GameStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.GameState
@@ -56,8 +57,8 @@ override val config = configuration<MinimapConfig>()
         restoreOriginalDots()
     }
 
-    override fun onGameStateChanged(): ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
-        if (it.data.new == GameState.LOGIN_SCREEN && originalDotSprites == null) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.new == GameState.LOGIN_SCREEN && originalDotSprites == null) {
             storeOriginalDots()
             replaceMapDots()
         }

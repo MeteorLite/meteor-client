@@ -29,6 +29,7 @@ import com.google.common.annotations.VisibleForTesting
 import com.google.common.base.Splitter
 import com.google.common.collect.ImmutableSet
 import eventbus.events.ConfigChanged
+import eventbus.events.GameStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.ChatMessageType
@@ -77,10 +78,11 @@ class ChatFilterPlugin : Plugin() {
         client.refreshChat()
     }
 
-    override fun onGameStateChanged(): ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
-        when (it.data.new) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        when (it.new) {
             GameState.HOPPING, GameState.LOGGING_IN -> duplicateChatCache.values.forEach(
                 Consumer { d: Duplicate -> d.messageId = -1 } as (Duplicate?) -> Unit)
+            else -> {}
         }
     }
 

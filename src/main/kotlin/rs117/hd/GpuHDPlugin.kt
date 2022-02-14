@@ -2139,11 +2139,11 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
         textureManager.animate(texture!!, diff)
     }
 
-    override fun onGameStateChanged(): ((Event<GameStateChanged>) -> Unit) = {
-        if (it.data.new != GameState.LOGGED_IN) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.new != GameState.LOGGED_IN) {
             lightManager.reset()
         }
-        if (it.data.new == GameState.LOGGED_IN) {
+        if (it.new == GameState.LOGGED_IN) {
             invokeOnMainThread { uploadScene() }
         }
     }

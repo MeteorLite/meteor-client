@@ -24,6 +24,7 @@
  */
 package meteor.plugins.woodcutting
 
+import eventbus.events.GameStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDependency
 import meteor.plugins.PluginDescriptor
@@ -140,8 +141,8 @@ class WoodcuttingPlugin : Plugin() {
         treeObjects.remove(it.data.newObject)
     }
 
-    override fun onGameStateChanged() : ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
-        when (it.data.new) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        when (it.new) {
             GameState.HOPPING -> {
                 respawns.clear()
                 treeObjects.clear()
@@ -151,6 +152,7 @@ class WoodcuttingPlugin : Plugin() {
                 // wait for the next game tick before watching for
                 // trees to despawn
                 recentlyLoggedIn = true
+            else -> {}
         }
     }
 

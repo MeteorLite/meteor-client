@@ -125,8 +125,7 @@ class GroundItemsPlugin : Plugin() {
         }
     }
 
-    override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) = {
-        val it = it.data
+    override fun onGameStateChanged(it: GameStateChanged) {
         if (it.new == GameState.LOADING) {
             collectedGroundItems.clear()
             lootbeams.clear()
