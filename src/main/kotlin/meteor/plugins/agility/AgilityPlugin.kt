@@ -23,8 +23,8 @@ class AgilityPlugin : Plugin() {
     val obstacles: MutableMap<TileObject, Obstacle> = HashMap()
     var marks: MutableList<Tile> = ArrayList()
 
-    override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) =  {
-        if (it.data.new == GameState.LOADING) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.new == GameState.LOADING) {
             marks.clear()
             obstacles.clear()
         }

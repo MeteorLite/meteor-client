@@ -100,13 +100,14 @@ class BoostsPlugin : Plugin() {
         skillsToDisplay.clear()
     }
 
-    override fun onGameStateChanged(): ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
-        when (it.data.new) {
+    override fun onGameStateChanged(it: eventbus.events.GameStateChanged) {
+        when (it.new) {
             GameState.LOGIN_SCREEN, GameState.HOPPING -> {
                 // After world hop and log out timers are in undefined state so just reset
                 lastChangeDown = -1
                 lastChangeUp = -1
             }
+            else -> {}
         }
     }
 

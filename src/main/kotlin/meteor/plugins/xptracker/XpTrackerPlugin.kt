@@ -95,8 +95,7 @@ class XpTrackerPlugin : Plugin() {
         xpState.reset()
     }
 
-    override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) = {
-        val it = it.data
+    override fun onGameStateChanged(it: GameStateChanged) {
         val state = it.new
         if (state == GameState.LOGGED_IN) {
             // LOGGED_IN is triggered between region changes too.

@@ -7,21 +7,20 @@ import meteor.events.PluginChanged
 import net.runelite.api.events.MenuShouldLeftClick
 import net.runelite.api.events.OverheadTextChanged
 import org.rationalityfrontline.kevent.*
-
-open class EventSubscriber : KEventSubscriber {
+ open class EventSubscriber : KEventSubscriber {
     private val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
     val tag = generateTag()
 
     fun subscribe() {
-        onMenuShouldLeftClick()?.let { subscribe(Events.MENU_SHOULD_LEFT_CLICK,it)}
-        onActorDeath()?.let { subscribe(Events.ACTOR_DEATH, it) }
-        onAnimationChanged()?.let { subscribe(Events.ANIMATION_CHANGED, it) }
-        onAreaSoundEffectPlayed()?.let { subscribe(Events.AREA_SOUND_EFFECT_PLAYED, it) }
-        onBeforeRender()?.let { subscribe(Events.BEFORE_RENDER,it)}
-        onBeforeMenuRender()?.let { subscribe(Events.BEFORE_MENU_RENDER, it) }
-        onCanvasSizeChanged()?.let { subscribe(Events.CANVAS_SIZE_CHANGED, it) }
-        onChatMessage()?.let { subscribe(Events.CHAT_MESSAGE, it) }
-        onClanChannelChanged()?.let { subscribe(Events.CLAN_CHANNEL_CHANGED, it) }
+        if (!this::onMenuShouldLeftClick.isAbstract) { subscribeOnMenuShouldLeftClick() }
+        if (!this::onActorDeath.isAbstract) { subscribeOnActorDeath() }
+        if (!this::onAnimationChanged.isAbstract) { subscribeOnAnimationChanged() }
+        if (!this::onAreaSoundEffectPlayed.isAbstract) { subscribeonAreaSoundEffectPlayed() }
+        if (!this::onBeforeRender.isAbstract) { subscribeonBeforeRender() }
+        if (!this::onBeforeMenuRender.isAbstract) { subscribeonBeforeMenuRender() }
+        if (!this::onCanvasSizeChanged.isAbstract) { subscribeonCanvasSizeChanged() }
+        if (!this::onChatMessage.isAbstract) { subscribeonChatMessage() }
+        if (!this::onClanChannelChanged.isAbstract) { subscribeonClanChannelChanged() }
         onClanMemberJoined()?.let { subscribe(Events.CLAN_MEMBER_JOINED, it) }
         onClanMemberLeft()?.let { subscribe(Events.CLAN_MEMBER_LEFT, it) }
         onClientLoaded()?.let { subscribe(Events.CLIENT_LOADED, it) }
@@ -37,7 +36,7 @@ open class EventSubscriber : KEventSubscriber {
         onGameObjectChanged()?.let { subscribe(Events.GAME_OBJECT_CHANGED, it) }
         onGameObjectDespawned()?.let { subscribe(Events.GAME_OBJECT_DESPAWNED, it) }
         onGameObjectSpawned()?.let { subscribe(Events.GAME_OBJECT_SPAWNED, it) }
-        onGameStateChanged()?.let { subscribe(Events.GAME_STATE_CHANGED, it) }
+        if (!this::onGameStateChanged.isAbstract) { subscribeOnGameState() }
         onGameTick()?.let { subscribe(Events.GAME_TICK, it) }
         onGrandExchangeOfferChanged()?.let { subscribe(Events.GRAND_EXCHANGE_OFFER_CHANGED, it) }
         onGraphicsObjectCreated()?.let { subscribe(Events.GRAPHICS_OBJECT_CREATED, it) }
@@ -140,7 +139,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onAreaSoundEffectPlayed(): ((Event<AreaSoundEffectPlayed>) -> Unit)? { return null }
     open fun onAnimationChanged(): ((Event<AnimationChanged>) -> Unit)? { return null }
     open fun onActorDeath(): ((Event<ActorDeath>) -> Unit)? { return null }
-    open fun onGameStateChanged(): ((Event<GameStateChanged>) -> Unit)? { return null }
+    open fun onGameStateChanged(it: GameStateChanged) {}
     open fun onInteractingChanged(): ((Event<InteractingChanged>) -> Unit)? { return null }
     open fun onNPCSpawned(): ((Event<NpcSpawned>) -> Unit)? { return null }
     open fun onNPCDespawned(): ((Event<NpcDespawned>) -> Unit)? { return null }
@@ -177,6 +176,12 @@ open class EventSubscriber : KEventSubscriber {
     inline fun <reified T : Any> subscribe(type: Enum<*>, noinline unit: (Event<T>) -> Unit) {
         KEVENT.subscribe<T>(eventType = type, tag = tag) {
             unit.invoke(it)
+        }
+    }
+
+    fun subscribeOnGameState() {
+        KEVENT.subscribe<GameStateChanged>(eventType = Events.GAME_STATE_CHANGED, tag = tag) {
+            onGameStateChanged(it.data)
         }
     }
 

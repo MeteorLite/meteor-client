@@ -17,8 +17,7 @@ class FishingPlugin: Plugin() {
     val minnowSpots: HashMap<Int, MinnowSpot> = HashMap()
     var currentSpot: FishingSpot? = null
 
-    override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) = {
-        val it = it.data
+    override fun onGameStateChanged(it: GameStateChanged) {
         when (it.new) {
             GameState.CONNECTION_LOST,
             GameState.LOGIN_SCREEN,
@@ -26,6 +25,7 @@ class FishingPlugin: Plugin() {
                 fishingSpots.clear()
                 minnowSpots.clear()
             }
+            else -> {}
         }
     }
 

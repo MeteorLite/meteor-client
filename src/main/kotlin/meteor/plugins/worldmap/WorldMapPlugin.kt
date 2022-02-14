@@ -82,8 +82,7 @@ class WorldMapPlugin : Plugin() {
         }
     }
 
-    override fun onGameStateChanged(): ((Event<GameStateChanged>)->Unit) = {
-        val it = it.data
+    override fun onGameStateChanged(it: GameStateChanged) {
         if (it.new == GameState.LOGGED_IN)
             updateShownIcons()
     }

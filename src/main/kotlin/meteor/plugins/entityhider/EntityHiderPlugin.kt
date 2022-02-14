@@ -28,6 +28,7 @@
 package meteor.plugins.entityhider
 
 import eventbus.events.ConfigChanged
+import eventbus.events.GameStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.util.WildcardMatcher
@@ -64,8 +65,8 @@ class EntityHiderPlugin : Plugin() {
         Text.fromCSV(config.hideNPCsNames()).forEach { s: String? -> client.addHiddenNpcName(s) }
     }
 
-    override fun onGameStateChanged(): ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
-        if (it.data.new == GameState.LOGGED_IN) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.new == GameState.LOGGED_IN) {
             client.setIsHidingEntities(true)
             clearHiddenNpcs()
         }
