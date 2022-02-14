@@ -93,8 +93,7 @@ object ItemManager : EventSubscriber() {
             println("No route for RuneLite item prices http-api... System.exit")
             exitProcess(1)
         }
-        subscribeOnGameState()
-        EventBus.subscribe(Events.POST_ITEM_COMPOSITION, onPostItemComposition())
+        subscribe()
     }
 
     private fun loadPrices() {
