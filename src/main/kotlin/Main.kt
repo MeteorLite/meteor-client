@@ -65,7 +65,7 @@ object Main: KoinComponent, EventSubscriber() {
             onCloseRequest = {shutdown(this)},
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
-            state = rememberWindowState(position = WindowPosition(alignment = Alignment.Center), width = 1280.dp, height = 720.dp),
+            state = rememberWindowState(placement = WindowPlacement.Maximized),
             content = UI.Window() //::finishStartup is called at the end of this function
         )
     }
