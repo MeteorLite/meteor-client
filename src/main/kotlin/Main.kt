@@ -34,7 +34,7 @@ import java.util.function.Consumer
 import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
-object Main: KoinComponent, EventSubscriber() {
+object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     lateinit var client: Client
     lateinit var callbacks: Callbacks
     val httpClient = OkHttpClient()
@@ -65,14 +65,15 @@ object Main: KoinComponent, EventSubscriber() {
         AppletConfiguration.init()
         Applet().init()
         Window(
-            onCloseRequest = shutdown(this),
+            onCloseRequest = this::exitApplication,
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
             content = UI.Window() //::finishStartup is called at the end of this function
         )
-    }
 
+
+    }
     fun finishStartup() {
         client = Applet.asClient(Applet.applet)
         client.callbacks = callbacks
@@ -121,12 +122,6 @@ object Main: KoinComponent, EventSubscriber() {
         EventBus.subscribe<Unit>(Events.MENU_OPENED) {}
     }
 
-    fun shutdown(app: ApplicationScope): () -> Unit = {
-        PluginManager.shutdown()
-        app.exitApplication()
-        exitProcess(0)
-    }
-
     fun processArguments(args: Array<String>) {
         for(arg in args) {
             when (arg.lowercase()) {
@@ -135,5 +130,14 @@ object Main: KoinComponent, EventSubscriber() {
                 }
             }
         }
+    }
+
+    /**
+     * Save and exit
+     */
+    override fun exitApplication() {
+        PluginManager.shutdown()
+        ConfigManager.saveProperties()
+        exitProcess(0)
     }
 }

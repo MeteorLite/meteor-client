@@ -1284,7 +1284,7 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
     }
 
     override fun draw(overlayColor: Int) {
-        invokeOnMainThread { drawFrame(overlayColor) }
+            invokeOnMainThread { drawFrame(overlayColor) }
     }
 
     private fun resize(canvasWidth: Int, canvasHeight: Int, viewportWidth: Int, viewportHeight: Int) {
@@ -1756,6 +1756,8 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
             // JOGL seems to handle DPI scaling for us already
             gl!!.glViewport(x, y, width, height)
         } else {
+            if (canvas!!.graphics == null)
+                return
             val graphics = canvas!!.graphics as Graphics2D
             val t = graphics.transform
             gl!!.glViewport(
