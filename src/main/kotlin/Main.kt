@@ -31,6 +31,7 @@ import org.koin.core.context.startKoin
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
+import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 object Main: KoinComponent, EventSubscriber() {
@@ -64,7 +65,7 @@ object Main: KoinComponent, EventSubscriber() {
         AppletConfiguration.init()
         Applet().init()
         Window(
-            onCloseRequest = {shutdown(this)},
+            onCloseRequest = shutdown(this),
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
@@ -120,9 +121,10 @@ object Main: KoinComponent, EventSubscriber() {
         EventBus.subscribe<Unit>(Events.MENU_OPENED) {}
     }
 
-    fun shutdown(a: ApplicationScope) {
+    fun shutdown(app: ApplicationScope): () -> Unit = {
         PluginManager.shutdown()
-        a.exitApplication()
+        app.exitApplication()
+        exitProcess(0)
     }
 
     fun processArguments(args: Array<String>) {
