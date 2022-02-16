@@ -24,6 +24,7 @@
  */
 package meteor.plugins.woodcutting
 
+import eventbus.events.*
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDependency
 import meteor.plugins.PluginDescriptor
@@ -32,6 +33,7 @@ import net.runelite.api.ChatMessageType
 import net.runelite.api.GameObject
 import net.runelite.api.GameState
 import net.runelite.api.coords.WorldPoint
+import org.rationalityfrontline.kevent.Event
 import java.time.Instant
 import java.util.regex.Pattern
 
@@ -97,9 +99,9 @@ class WoodcuttingPlugin : Plugin() {
     }
 */
 
-    override fun onChatMessage(): ((Event<eventbus.events.ChatMessage>) -> Unit) = {
+    override fun onChatMessage(it: ChatMessage) {
         if (it.type == ChatMessageType.SPAM || it.type == ChatMessageType.GAMEMESSAGE) {
-            if (WOOD_CUT_PATTERN.matcher(it.data.message).matches()) {
+            if (WOOD_CUT_PATTERN.matcher(it.message).matches()) {
                 if (session == null) {
                     session = WoodcuttingSession()
                 }
@@ -108,16 +110,16 @@ class WoodcuttingPlugin : Plugin() {
         }
     }
 
-    override fun onGameObjectSpawned(): ((Event<eventbus.events.GameObjectSpawned>) -> Unit) = {
-        val gameObject = it.data.gameObject
+    override fun onGameObjectSpawned(it: GameObjectSpawned) {
+        val gameObject = it.gameObject
         val tree: Tree? = Tree.findTree(gameObject.id)
         if (tree === Tree.REDWOOD) {
             treeObjects.add(gameObject)
         }
     }
 
-    override fun onGameObjectDespawned(): ((Event<eventbus.events.GameObjectDespawned>) -> Unit) = {
-        val gameObject = it.data.gameObject
+    override fun onGameObjectDespawned(it: GameObjectDespawned) {
+        val gameObject = it.gameObject
         val tree: Tree? = Tree.Companion.findTree(gameObject.id)
         if (tree != null) {
             if (tree.respawnTime != null && !recentlyLoggedIn && currentPlane == gameObject.plane) {
@@ -130,17 +132,17 @@ class WoodcuttingPlugin : Plugin() {
                 respawns.add(treeRespawn)
             }
             if (tree === Tree.REDWOOD) {
-                treeObjects.remove(it.data.gameObject)
+                treeObjects.remove(it.gameObject)
             }
         }
     }
 
-    override fun onGameObjectChanged() : ((Event<eventbus.events.GameObjectChanged>) -> Unit) = {
-        treeObjects.remove(it.data.newObject)
+    override fun onGameObjectChanged(it: GameObjectChanged) {
+        treeObjects.remove(it.newObject)
     }
 
-    override fun onGameStateChanged() : ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
-        when (it.data.new) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        when (it.new) {
             GameState.HOPPING -> {
                 respawns.clear()
                 treeObjects.clear()
@@ -150,12 +152,13 @@ class WoodcuttingPlugin : Plugin() {
                 // wait for the next game tick before watching for
                 // trees to despawn
                 recentlyLoggedIn = true
+            else -> {}
         }
     }
 
-    override fun onAnimationChanged(): ((Event<eventbus.events.AnimationChanged>) -> Unit) = {
+    override fun onAnimationChanged(it: AnimationChanged) {
         val local = client.localPlayer
-        if (it.data.actor !== local) {
+        if (it.actor !== local) {
 
 
             val animId = local!!.animation

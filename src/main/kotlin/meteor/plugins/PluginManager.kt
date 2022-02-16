@@ -1,5 +1,7 @@
 package meteor.plugins
 
+import eventbus.Events
+import meteor.api.ApiTestPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
@@ -21,9 +23,7 @@ import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
-import meteor.plugins.tileindicators.TileIndicatorsPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
-import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import rs117.hd.GpuHDPlugin
 import java.lang.RuntimeException
@@ -54,10 +54,10 @@ object PluginManager {
         init<SpecBarPlugin>()
         init<StatusBarsPlugin>()
         init<StretchedModePlugin>()
-        init<TileIndicatorsPlugin>()
         init<WorldMapPlugin>()
-        init<WorldMapWalkerPlugin>()
         init<XpTrackerPlugin>()
+
+        init<ApiTestPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {

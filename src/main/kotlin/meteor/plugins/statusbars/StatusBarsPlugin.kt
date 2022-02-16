@@ -25,13 +25,16 @@
 package meteor.plugins.statusbars
 
 import eventbus.events.ConfigChanged
+import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
+import meteor.ui.overlay.OverlayManager
 import net.runelite.api.NPC
 import net.runelite.api.Player
 import net.runelite.api.Varbits
 import org.apache.commons.lang3.ArrayUtils
+import org.rationalityfrontline.kevent.Event
 
 @PluginDescriptor(
     name = "Status Bars",
@@ -52,13 +55,12 @@ class StatusBarsPlugin : Plugin() {
         barsDisplayed = false
     }
 
-    override fun onGameTick(): ((Event<eventbus.events.GameTick>) -> Unit) = {
+    override fun onGameTick(it: GameTick) {
         checkStatusBars()
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
-        val it = it.data
-        if (StatusBarsConfig.Companion.GROUP == it.group && it.key.equals("hideAfterCombatDelay")) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (StatusBarsConfig.GROUP == it.group && it.key.equals("hideAfterCombatDelay")) {
             clientThread.invokeLater { checkStatusBars() }
         }
     }

@@ -75,21 +75,18 @@ class WorldMapPlugin : Plugin() {
     }
 
 
-    override fun onConfigChanged():((Event<ConfigChanged>)->Unit) = {
-        val it = it.data
+    override fun onConfigChanged(it: ConfigChanged) {
         if (it.group != CONFIG_KEY) {
             updateShownIcons()
         }
     }
 
-    override fun onGameStateChanged(): ((Event<GameStateChanged>)->Unit) = {
-        val it = it.data
+    override fun onGameStateChanged(it: GameStateChanged) {
         if (it.new == GameState.LOGGED_IN)
             updateShownIcons()
     }
 
-    override fun onStatChanged():((Event<StatChanged>)->Unit) = {
-        val it = it.data
+    override fun onStatChanged(it: StatChanged) {
         when (it.skill) {
             Skill.AGILITY -> {
                 val newAgilityLevel = it.boostedLevel
@@ -105,12 +102,12 @@ class WorldMapPlugin : Plugin() {
                     updateRareTreeIcons()
                 }
             }
+            else -> {}
         }
     }
 
 
-    override fun onWidgetLoaded():((Event<WidgetLoaded>)->Unit) = {
-        val it = it.data
+    override fun onWidgetLoaded(it: WidgetLoaded) {
         if (it.groupId == WidgetID.WORLD_MAP_GROUP_ID) {
             updateQuestStartPointIcons()
         }

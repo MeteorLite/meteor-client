@@ -29,83 +29,77 @@ object Dialog {
     val isOpen: Boolean
         get() {
             val widget = DIALOG.get()
-            return widget == null || GameThread.invokeLater { widget.isHidden }
+            return widget == null || widget.isHidden
         }
 
     fun canContinue(): Boolean {
-        return GameThread.invokeLater {
-            (canContinueNPC() || canContinuePlayer() || canContinueDeath()
-                    || canWeirdContinue() || canWeirderContinue() || canWeirdestContinue() || canContinueTutIsland() || canContinueTutIsland2()
-                    || canContinueTutIsland3() || canLevelUpContinue())
-        }
+        return (canContinueNPC() || canContinuePlayer() || canContinueDeath()
+                || canWeirdContinue() || canWeirderContinue() || canWeirdestContinue() || canContinueTutIsland() || canContinueTutIsland2()
+                || canContinueTutIsland3() || canLevelUpContinue())
     }
 
     fun canLevelUpContinue(): Boolean {
         val widget = Widgets.get(WidgetInfo.LEVEL_UP_LEVEL)
-        return widget != null && GameThread.invokeLater { !widget.isHidden }
+        return widget != null && !widget.isHidden
     }
 
     fun canWeirdContinue(): Boolean {
         val widget = Widgets.get(WidgetInfo.DIALOG2_SPRITE_CONTINUE)
-        return widget != null && GameThread.invokeLater { !widget.isHidden }
+        return widget != null && !widget.isHidden
     }
 
     fun canWeirderContinue(): Boolean {
         val widget = WEIRD_CONT.get()
-        return widget != null && GameThread.invokeLater { !widget.isHidden }
+        return widget != null && !widget.isHidden
     }
 
     fun canWeirdestContinue(): Boolean {
         val widget = WEIRD_CONT_2.get()
-        return widget != null && GameThread.invokeLater { !widget.isHidden }
+        return widget != null && !widget.isHidden
     }
 
     fun canContinueNPC(): Boolean {
         val widget = NPC_CONT.get()
-        return widget != null && GameThread.invokeLater { !widget.isHidden }
+        return widget != null && !widget.isHidden
     }
 
     fun canContinuePlayer(): Boolean {
         val widget = PLAYER_CONT.get()
-        return widget != null && GameThread.invokeLater { !widget.isHidden }
+        return widget != null && !widget.isHidden
     }
 
     fun canContinueDeath(): Boolean {
         val widget = DEATH_CONT.get()
-        return widget != null && GameThread.invokeLater {
-            (!widget.isHidden
-                    && widget.getChild(2) != null && !widget.getChild(2).isHidden)
-        }
+        return widget != null && (!widget.isHidden
+                && widget.getChild(2) != null && !widget.getChild(2).isHidden)
     }
 
     fun canContinueTutIsland(): Boolean {
         val widget = TUT_CONT.get()
-        return widget != null && GameThread.invokeLater { !widget.isHidden }
+        return widget != null && !widget.isHidden
     }
 
     fun canContinueTutIsland2(): Boolean {
         val widget = Widgets.get(WidgetInfo.DIALOG_SPRITE)
         return (widget != null
-                && GameThread.invokeLater {
-            (!widget.isHidden
-                    && widget.getChild(2) != null && !widget.getChild(2).isHidden)
-        })
+                && (!widget.isHidden
+                && widget.getChild(2) != null && !widget.getChild(2).isHidden))
     }
 
     fun canContinueTutIsland3(): Boolean {
         val widget = Widgets.get(WidgetInfo.CHATBOX_FULL_INPUT)
-        return (widget != null && GameThread.invokeLater { !widget.isHidden }
+        return (widget != null && !widget.isHidden
                 && widget.text.lowercase(Locale.getDefault()).contains("continue"))
     }
 
     val isEnterInputOpen: Boolean
         get() {
             val widget = Widgets.get(WidgetInfo.CHATBOX_FULL_INPUT)
-            return widget != null && !GameThread.invokeLater { widget.isHidden } && !GrandExchange.isSearchingItem
+            return widget != null && widget.isHidden && !GrandExchange.isSearchingItem
         }
 
     fun enterInput(input: String) {
-        Time.sleepUntil({ obj: Dialog? -> isEnterInputOpen }, 2000)
+        Time.sleepUntil({ isEnterInputOpen }, 2000)
         if (isEnterInputOpen) {
             Keyboard.type(input, true)
         }
@@ -124,21 +118,15 @@ object Dialog {
         }
     }
 
-    fun chooseOption(index: Int?): Boolean {
+    fun chooseOption(index: Int): Boolean {
         if (isViewingOptions) {
-            Keyboard.type(index!!)
+            Keyboard.type(index)
             return true
         }
         return false
     }
-    fun chooseOption(index: String?): Boolean {
-        if (isViewingOptions) {
-            Keyboard.type(index!!)
-            return true
-        }
-        return false
-    }
-    fun chooseOption( options:  Array<out String>): Boolean {
+
+    fun chooseOption(vararg options: String?): Boolean {
         if (isViewingOptions) {
             for (i in Dialog.options.indices) {
                 val widget = Dialog.options[i]
@@ -156,7 +144,7 @@ object Dialog {
     val options: List<Widget>
         get() {
             val widget = OPTIONS.get()
-            if (widget == null || GameThread.invokeLater { widget.isHidden }) {
+            if (widget == null || widget.isHidden) {
                 return emptyList()
             }
             val out: MutableList<Widget> = ArrayList()
@@ -180,6 +168,4 @@ object Dialog {
             true
         }
     }
-
-
 }

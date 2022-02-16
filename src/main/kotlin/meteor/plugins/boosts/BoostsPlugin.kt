@@ -31,7 +31,10 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ImageUtil
-import net.runelite.api.*
+import net.runelite.api.Constants
+import net.runelite.api.GameState
+import net.runelite.api.Prayer
+import net.runelite.api.Skill
 import java.util.*
 
 @PluginDescriptor(
@@ -96,18 +99,19 @@ class BoostsPlugin : Plugin() {
         skillsToDisplay.clear()
     }
 
-    override fun onGameStateChanged(): ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
-        when (it.data.new) {
+    override fun onGameStateChanged(it: eventbus.events.GameStateChanged) {
+        when (it.new) {
             GameState.LOGIN_SCREEN, GameState.HOPPING -> {
                 // After world hop and log out timers are in undefined state so just reset
                 lastChangeDown = -1
                 lastChangeUp = -1
             }
+            else -> {}
         }
     }
 
-    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
-        if (it.data.group.equals("boosts")) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group.equals("boosts")) {
             updateShownSkills()
             if (config.displayNextBuffChange() == BoostsConfig.DisplayChangeMode.NEVER) {
                 lastChangeDown = -1
@@ -118,8 +122,7 @@ class BoostsPlugin : Plugin() {
         }
     }
 
-    override fun onStatChanged(): ((Event<eventbus.events.StatChanged>) -> Unit) = {
-        val it = it.data
+    override fun onStatChanged(it: eventbus.events.StatChanged) {
         val skill = it.skill
         if (BOOSTABLE_COMBAT_SKILLS.contains(skill) || BOOSTABLE_NON_COMBAT_SKILLS.contains(skill)) {
             val skillIdx = skill.ordinal
@@ -138,7 +141,7 @@ class BoostsPlugin : Plugin() {
         }
     }
 
-    override fun onGameTick(): ((Event<eventbus.events.GameTick>) -> Unit) = {
+    override fun onGameTick(it: eventbus.events.GameTick) {
         lastTickMillis = System.currentTimeMillis()
         if (changeUpTicks <= 0) {
             when (config.displayNextDebuffChange()) {

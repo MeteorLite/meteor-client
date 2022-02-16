@@ -58,6 +58,7 @@ import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.util.Text
+import org.rationalityfrontline.kevent.Event
 import java.awt.Color
 import java.awt.Rectangle
 import java.time.Instant
@@ -117,23 +118,20 @@ class GroundItemsPlugin : Plugin() {
         clientThread.invokeLater { removeAllLootbeams() }
     }
 
-    override fun onConfigChanged():((Event<ConfigChanged>)->Unit) = {
-        val it = it.data
+    override fun onConfigChanged(it: ConfigChanged) {
         if (it.group == "grounditems") {
             executor.execute { reset() }
         }
     }
 
-    override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) = {
-        val it = it.data
+    override fun onGameStateChanged(it: GameStateChanged) {
         if (it.new == GameState.LOADING) {
             collectedGroundItems.clear()
             lootbeams.clear()
         }
     }
 
-    override fun onItemSpawned():((Event<ItemSpawned>)->Unit) = {
-        val it = it.data
+    override fun onItemSpawned(it: ItemSpawned) {
         val item = it.item
         val tile = it.tile
         val groundItem = buildGroundItem(tile, item)
@@ -148,8 +146,7 @@ class GroundItemsPlugin : Plugin() {
             handleLootbeam(tile.worldLocation)
     }
 
-    override fun onItemDespawned():((Event<ItemDespawned>)->Unit) = {
-        val it = it.data
+    override fun onItemDespawned(it: ItemDespawned) {
         val item = it.item
         val tile = it.tile
         val groundItem = collectedGroundItems[tile.worldLocation, item.id]
@@ -167,8 +164,7 @@ class GroundItemsPlugin : Plugin() {
         }
     }
 
-    override fun onItemQuantityChanged():((Event<ItemQuantityChanged>)->Unit) = {
-        val it = it.data
+    override fun onItemQuantityChanged(it: ItemQuantityChanged) {
         val item = it.item
         val tile = it.tile
         val oldQuantity = it.oldQuantity
@@ -193,7 +189,7 @@ class GroundItemsPlugin : Plugin() {
         lootReceived(items, LootType.PVP)
     }*/
 
-    override fun onClientTick():((Event<ClientTick>)->Unit) = {
+    override fun onClientTick(it: ClientTick) {
         if (config.collapseEntries()) {
             val menuEntries = client.menuEntries
             val newEntries: MutableList<MenuEntryWithCount?> = ArrayList(menuEntries.size)
@@ -305,8 +301,7 @@ class GroundItemsPlugin : Plugin() {
         clientThread!!.invokeLater { handleLootbeams() }
     }
 
-    override fun onMenuEntryAdded(): ((Event<MenuEntryAdded>) -> Unit) = {
-        val it = it.data
+    override fun onMenuEntryAdded(it: MenuEntryAdded) {
         if (config.itemHighlightMode() == ItemHighlightMode.MENU || config.itemHighlightMode() == ItemHighlightMode.BOTH) {
             val telegrabEntry =
                 it.option == "Cast" && it.target.startsWith(TELEGRAB_TEXT) && it.type == CAST_ON_ITEM
@@ -404,8 +399,7 @@ class GroundItemsPlugin : Plugin() {
     }
 
 
-    override fun onFocusChanged(): ((Event<FocusChanged>) -> Unit) = {
-        val it = it.data
+    override fun onFocusChanged(it: FocusChanged) {
         if (!it.focused) {
             hotKeyPressed = (false)
         }
@@ -419,8 +413,7 @@ class GroundItemsPlugin : Plugin() {
         }
     }
 
-    override fun onMenuOptionClicked(): ((Event<MenuOptionClicked>) -> Unit) = {
-        val it = it.data
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
         if (it.menuAction == MenuAction.ITEM_FIFTH_OPTION) {
             val itemId = it.id
             // Keep a queue of recently dropped items to better detect
