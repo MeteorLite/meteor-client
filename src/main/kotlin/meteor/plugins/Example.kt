@@ -7,8 +7,6 @@ import net.runelite.api.GameState
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.Dimension
 import java.awt.Graphics2D
-import java.awt.Point
-import java.awt.Rectangle
 
 @PluginDescriptor("Example")
 class ExamplePlugin: Plugin() {

@@ -8,7 +8,6 @@ import net.runelite.api.GameState
 import net.runelite.api.ItemID
 import net.runelite.api.Tile
 import net.runelite.api.TileObject
-import org.rationalityfrontline.kevent.Event
 import java.util.ArrayList
 
 @Suppress("UnstableApiUsage", "NAME_SHADOWING")
@@ -23,68 +22,82 @@ class AgilityPlugin : Plugin() {
     val obstacles: MutableMap<TileObject, Obstacle> = HashMap()
     var marks: MutableList<Tile> = ArrayList()
 
-    override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new == GameState.LOADING) {
+    override fun onGameStateChanged():((Event<GameStateChanged>)->Unit) =  {
+        if (it.data.new == GameState.LOADING) {
             marks.clear()
             obstacles.clear()
         }
     }
 
-    override fun onGameObjectSpawned(it: GameObjectSpawned)  {
+    override fun onGameObjectSpawned():((Event<GameObjectSpawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, null, it.gameObject)
     }
 
-    override fun onGameObjectChanged(it: GameObjectChanged) {
+    override fun onGameObjectChanged():((Event<GameObjectChanged>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.oldObject, it.newObject)
     }
 
-    override fun onGameObjectDespawned(it: GameObjectDespawned) {
+    override fun onGameObjectDespawned():((Event<GameObjectDespawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.gameObject, null)
     }
 
-    override fun onGroundObjectSpawned(it: GroundObjectSpawned) {
+    override fun onGroundObjectSpawned():((Event<GroundObjectSpawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, null, it.groundObject)
     }
 
-    override fun onGroundObjectChanged(it: GroundObjectChanged) {
+    override fun onGroundObjectChanged():((Event<GroundObjectChanged>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.previous, it.groundObject)
     }
 
-    override fun onGroundObjectDespawned(it: GroundObjectDespawned) {
+    override fun onGroundObjectDespawned():((Event<GroundObjectDespawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.groundObject, null)
     }
 
-    override fun onWallObjectSpawned(it: WallObjectSpawned) {
+    override fun onWallObjectSpawned():((Event<WallObjectSpawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, null, it.wallObject)
     }
 
-    override fun onWallObjectChanged(it: WallObjectChanged) {
+    override fun onWallObjectChanged():((Event<WallObjectChanged>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.previous, it.wallObject)
     }
 
-    override fun onWallObjectDespawned(it: WallObjectDespawned) {
+    override fun onWallObjectDespawned():((Event<WallObjectDespawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.wallObject, null)
     }
 
-    override fun onDecorativeObjectSpawned(it: DecorativeObjectSpawned) {
+    override fun onDecorativeObjectSpawned():((Event<DecorativeObjectSpawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, null, it.decorativeObject)
     }
 
-    override fun onDecorativeObjectChanged(it: DecorativeObjectChanged) {
+    override fun onDecorativeObjectChanged():((Event<DecorativeObjectChanged>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.previous, it.decorativeObject)
     }
 
-    override fun onDecorativeObjectDespawned(it: DecorativeObjectDespawned) {
+    override fun onDecorativeObjectDespawned():((Event<DecorativeObjectDespawned>)->Unit) =  {
+        val it = it.data
         onTileObject(it.tile, it.decorativeObject, null)
     }
 
-    override fun onItemSpawned(it: ItemSpawned) {
+    override fun onItemSpawned():((Event<ItemSpawned>)->Unit) =  {
+        val it = it.data
         if (it.item.id == ItemID.MARK_OF_GRACE) {
             marks.add(it.tile)
         }
     }
 
-    override fun onItemDespawned(it: ItemDespawned) {
+    override fun onItemDespawned():((Event<ItemDespawned>)->Unit) =  {
+        val it = it.data
         if (it.item.id == ItemID.MARK_OF_GRACE) {
             marks.remove(it.tile)
         }

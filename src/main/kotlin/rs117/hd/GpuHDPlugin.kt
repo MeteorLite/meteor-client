@@ -2139,32 +2139,33 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
         textureManager.animate(texture!!, diff)
     }
 
-    override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new != GameState.LOGGED_IN) {
+    override fun onGameStateChanged(): ((Event<GameStateChanged>) -> Unit) = {
+        if (it.data.new != GameState.LOGGED_IN) {
             lightManager.reset()
         }
-        if (it.new == GameState.LOGGED_IN) {
+        if (it.data.new == GameState.LOGGED_IN) {
             invokeOnMainThread { uploadScene() }
         }
     }
 
-    override fun onProjectileMoved(it: ProjectileMoved) {
-        lightManager.addProjectileLight(it.projectile)
+    override fun onProjectileMoved(): ((Event<ProjectileMoved>) -> Unit) = {
+        lightManager.addProjectileLight(it.data.projectile)
     }
 
-    override fun onNPCSpawned(it: NpcSpawned) {
-        lightManager.addNpcLight(it.npc)
+    override fun onNPCSpawned(): ((Event<NpcSpawned>) -> Unit) = {
+        lightManager.addNpcLight(it.data.npc)
     }
 
-    override fun onNPCDespawned(it: NpcDespawned) {
-        lightManager.removeNpcLight(it)
+    override fun onNPCDespawned(): ((Event<NpcDespawned>) -> Unit) = {
+        lightManager.removeNpcLight(it.data)
     }
 
-    override fun onNpcChanged(it: NpcChanged) {
-        lightManager.updateNpcChanged(it)
+    override fun onNpcChanged(): ((Event<NpcChanged>) -> Unit) = {
+        lightManager.updateNpcChanged(it.data)
     }
 
-    override fun onGameObjectSpawned(it: GameObjectSpawned) {
+    override fun onGameObjectSpawned(): ((Event<GameObjectSpawned>) -> Unit) = {
+        val it = it.data
         val gameObject: GameObject = it.gameObject
         lightManager.addObjectLight(
             gameObject,
@@ -2175,7 +2176,8 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
         )
     }
 
-    override fun onGameObjectChanged(it: GameObjectChanged) {
+    override fun onGameObjectChanged(): ((Event<GameObjectChanged>) -> Unit) = {
+        val it = it.data
         val previous: GameObject = it.oldObject
         val gameObject: GameObject = it.newObject
         lightManager.removeObjectLight(previous)
@@ -2188,18 +2190,19 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
         )
     }
 
-    override fun onGameObjectDespawned(it: GameObjectDespawned) {
-        val gameObject: GameObject = it.gameObject
+    override fun onGameObjectDespawned(): ((Event<GameObjectDespawned>) -> Unit) = {
+        val gameObject: GameObject = it.data.gameObject
         lightManager.removeObjectLight(gameObject)
     }
 
-    override fun onWallObjectSpawned(it: WallObjectSpawned) {
-        val wallObject: WallObject = it.wallObject
-        lightManager.addObjectLight(wallObject, it.tile.renderLevel, 1, 1, wallObject.orientationA)
+    override fun onWallObjectSpawned(): ((Event<WallObjectSpawned>) -> Unit) = {
+        val wallObject: WallObject = it.data.wallObject
+        lightManager.addObjectLight(wallObject, it.data.tile.renderLevel, 1, 1, wallObject.orientationA)
 
     }
 
-    override fun onWallObjectChanged(it: WallObjectChanged) {
+    override fun onWallObjectChanged(): ((Event<WallObjectChanged>) -> Unit) = {
+        val it = it.data
         val previous: WallObject = it.previous
         val wallObject: WallObject = it.wallObject
         lightManager.removeObjectLight(previous)
@@ -2207,51 +2210,53 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
 
     }
 
-    override fun onWallObjectDespawned(it: WallObjectDespawned) {
-        val wallObject: WallObject = it.wallObject
+    override fun onWallObjectDespawned(): ((Event<WallObjectDespawned>) -> Unit) = {
+        val wallObject: WallObject = it.data.wallObject
         lightManager.removeObjectLight(wallObject)
     }
 
-    override fun onDecorativeObjectSpawned(it: DecorativeObjectSpawned) {
-        val decorativeObject: DecorativeObject = it.decorativeObject
-        lightManager.addObjectLight(decorativeObject, it.tile.renderLevel)
+    override fun onDecorativeObjectSpawned(): ((Event<DecorativeObjectSpawned>) -> Unit) = {
+        val decorativeObject: DecorativeObject = it.data.decorativeObject
+        lightManager.addObjectLight(decorativeObject, it.data.tile.renderLevel)
     }
 
-    override fun onDecorativeObjectChanged(it: DecorativeObjectChanged) {
+    override fun onDecorativeObjectChanged(): ((Event<DecorativeObjectChanged>) -> Unit) = {
+        val it = it.data
         val previous: DecorativeObject = it.previous
         val decorativeObject: DecorativeObject = it.decorativeObject
         lightManager.removeObjectLight(previous)
         lightManager.addObjectLight(decorativeObject, it.tile.getRenderLevel())
     }
 
-    override fun onDecorativeObjectDespawned(it: DecorativeObjectDespawned) {
-        val decorativeObject: DecorativeObject = it.decorativeObject
+    override fun onDecorativeObjectDespawned(): ((Event<DecorativeObjectDespawned>) -> Unit) = {
+        val decorativeObject: DecorativeObject = it.data.decorativeObject
         lightManager.removeObjectLight(decorativeObject)
     }
 
-    override fun onGroundObjectSpawned(it: GroundObjectSpawned) {
-        val groundObject: GroundObject = it.groundObject
-        lightManager.addObjectLight(groundObject, it.tile.renderLevel)
+    override fun onGroundObjectSpawned(): ((Event<GroundObjectSpawned>) -> Unit) = {
+        val groundObject: GroundObject = it.data.groundObject
+        lightManager.addObjectLight(groundObject, it.data.tile.renderLevel)
     }
 
-    override fun onGroundObjectChanged(it: GroundObjectChanged) {
+    override fun onGroundObjectChanged(): ((Event<GroundObjectChanged>) -> Unit) = {
+        val it = it.data
         val previous: GroundObject = it.previous
         val groundObject: GroundObject = it.groundObject
         lightManager.removeObjectLight(previous)
         lightManager.addObjectLight(groundObject, it.tile.renderLevel)
     }
 
-    override fun onGroundObjectDespawned(it: GroundObjectDespawned) {
-        val groundObject: GroundObject = it.groundObject
+    override fun onGroundObjectDespawned(): ((Event<GroundObjectDespawned>) -> Unit) = {
+        val groundObject: GroundObject = it.data.groundObject
         lightManager.removeObjectLight(groundObject)
     }
 
-    override fun onItemDespawned(it: ItemDespawned) {
-        lightManager.removeGroundItemLight(it)
+    override fun onItemDespawned(): ((Event<ItemDespawned>) -> Unit) = {
+        lightManager.removeGroundItemLight(it.data)
     }
 
-    override fun onItemSpawned(it: ItemSpawned) {
-        lightManager.addGroundItemLight(it)
+    override fun onItemSpawned(): ((Event<ItemSpawned>) -> Unit) = {
+        lightManager.addGroundItemLight(it.data)
     }
 
     private fun invokeOnMainThread(runnable: Runnable) {

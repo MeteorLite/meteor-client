@@ -10,24 +10,24 @@ import java.util.ArrayList
 import java.util.function.Predicate
 import java.util.stream.Collectors
 
-class Loot : Entity<TileItem>() {
-    override fun all(filter: Predicate<in TileItem>): List<TileItem> {
+class TileItems : Entities<TileItem>() {
+    override fun all(filter: Predicate<in TileItem>): List<TileItem?> {
         return Tiles.tiles.stream()
             .flatMap { tile -> parseTile(tile, filter).stream() }
-            .collect(Collectors.toList()) as List<TileItem>
+            .collect(Collectors.toList())
     }
 
     companion object {
-        private val TILE_ITEMS = Loot()
-        fun getAll(filter: Predicate<TileItem>): List<TileItem> {
+        private val TILE_ITEMS = TileItems()
+        fun getAll(filter: Predicate<TileItem>): List<TileItem?> {
             return TILE_ITEMS.all(filter)
         }
 
-        fun getAll(vararg ids: Int): List<TileItem> {
+        fun getAll(vararg ids: Int): List<TileItem?>? {
             return TILE_ITEMS.all(*ids)
         }
 
-        fun getAll(vararg names: String): List<TileItem> {
+        fun getAll(vararg names: String): List<TileItem?>? {
             return TILE_ITEMS.all(*names)
         }
 
@@ -47,21 +47,21 @@ class Loot : Entity<TileItem>() {
             return TILE_ITEMS.nearest(to, filter)
         }
 
-        fun getNearest(to: WorldPoint, vararg ids: Int): TileItem? {
+        fun getNearest(to: WorldPoint?, vararg ids: Int): TileItem? {
             return TILE_ITEMS.nearest(to, *ids)
         }
 
-        fun getNearest(to: WorldPoint, vararg names: String): TileItem? {
+        fun getNearest(to: WorldPoint?, vararg names: String): TileItem? {
             return TILE_ITEMS.nearest(to, *names)
         }
 
-        fun getAt(worldX: Int, worldY: Int, plane: Int, vararg ids: Int): List<TileItem?> {
-            return getAt(Tiles.getAt(worldX, worldY, plane), *ids)
+        fun getAt(worldX: Int, worldY: Int, plane: Int, vararg ids: Int?): List<TileItem?> {
+            return getAt(Tiles.getAt(worldX, worldY, plane), ids)
         }
 
 
         fun getAt(worldX: Int, worldY: Int, plane: Int, vararg names: String): List<TileItem?> {
-            return getAt(Tiles.getAt(worldX, worldY, plane), *names)
+            return getAt(Tiles.getAt(worldX, worldY, plane), names)
         }
 
 
@@ -76,33 +76,33 @@ class Loot : Entity<TileItem>() {
             return getAt(worldPoint.x, worldPoint.y, worldPoint.plane, filter)
         }
 
-        fun getAt(worldPoint: WorldPoint, vararg ids: Int): List<TileItem?> {
+        fun getAt(worldPoint: WorldPoint, vararg ids: Int?): List<TileItem?> {
             return getAt(worldPoint.x, worldPoint.y, worldPoint.plane, *ids)
         }
 
-        fun getAt(worldPoint: WorldPoint, vararg  names: String): List<TileItem?> {
+        fun getAt(worldPoint: WorldPoint, names:Array<out String>): List<TileItem?> {
             return getAt(worldPoint.x, worldPoint.y, worldPoint.plane, *names)
         }
 
-        fun getAt(tile: Tile?, vararg ids: Int): List<TileItem?> {
-            return getAt(tile) ret@{ x: TileItem ->
+        fun getAt(tile: Tile?,  ids: Array<out Int?>): List<TileItem?> {
+            return getAt(tile) { x: TileItem ->
                 for (id in ids) {
                     if (id == x.id) {
-                        return@ret true
+                        return@getAt true
                     }
                 }
                 false
             }
         }
 
-        fun getAt(tile: Tile?, vararg names: String): List<TileItem?> {
-            return getAt(tile) ret@{ x: TileItem ->
+        fun getAt(tile: Tile?, names: Array<out String>): List<TileItem?> {
+            return getAt(tile) { x: TileItem ->
                 if (x.name == null) {
-                    return@ret false
+                    return@getAt false
                 }
                 for (name in names) {
                     if (name == x.name) {
-                        return@ret true
+                        return@getAt true
                     }
                 }
                 false
@@ -115,7 +115,7 @@ class Loot : Entity<TileItem>() {
             } else parseTile(tile, filter)
         }
 
-        fun getFirstAt(worldX: Int, worldY: Int, plane: Int, vararg ids: Int): TileItem? {
+        fun getFirstAt(worldX: Int, worldY: Int, plane: Int, vararg ids: Int?): TileItem? {
             return getAt(worldX, worldY, plane, *ids).stream().findFirst().orElse(null)
         }
 
@@ -127,7 +127,7 @@ class Loot : Entity<TileItem>() {
             return getAt(worldX, worldY, plane, filter).stream().findFirst().orElse(null)
         }
 
-        fun getFirstAt(worldPoint: WorldPoint, vararg ids: Int): TileItem? {
+        fun getFirstAt(worldPoint: WorldPoint, vararg ids: Int?): TileItem? {
             return getAt(worldPoint, *ids).stream().findFirst().orElse(null)
         }
 
@@ -139,11 +139,11 @@ class Loot : Entity<TileItem>() {
             return getAt(worldPoint, filter).stream().findFirst().orElse(null)
         }
 
-        fun getFirstAt(tile: Tile, vararg ids: Int): TileItem? {
+        fun getFirstAt(tile: Tile, vararg ids: Int): TileItem {
             return getAt(tile, *ids).stream().findFirst().orElse(null)
         }
 
-        fun getFirstAt(tile: Tile, vararg names: String): TileItem? {
+        fun getFirstAt(tile: Tile, vararg names: String): TileItem {
             return getAt(tile, *names).stream().findFirst().orElse(null)
         }
 

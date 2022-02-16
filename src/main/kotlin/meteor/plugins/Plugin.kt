@@ -8,7 +8,7 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 open class Plugin : EventSubscriber() {
     val client = Main.client
-    val overlayManager = Main.overlayManager
+    private val overlayManager = Main.overlayManager
     val overlays = ArrayList<Overlay>()
     var enabled = false
 

@@ -32,10 +32,6 @@ import meteor.plugins.PluginDescriptor
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ImageUtil
 import net.runelite.api.*
-import net.runelite.api.events.GameStateChanged
-import net.runelite.api.events.GameTick
-import net.runelite.api.events.StatChanged
-import org.rationalityfrontline.kevent.Event
 import java.util.*
 
 @PluginDescriptor(
@@ -100,19 +96,18 @@ class BoostsPlugin : Plugin() {
         skillsToDisplay.clear()
     }
 
-    override fun onGameStateChanged(it: eventbus.events.GameStateChanged) {
-        when (it.new) {
+    override fun onGameStateChanged(): ((Event<eventbus.events.GameStateChanged>) -> Unit) = {
+        when (it.data.new) {
             GameState.LOGIN_SCREEN, GameState.HOPPING -> {
                 // After world hop and log out timers are in undefined state so just reset
                 lastChangeDown = -1
                 lastChangeUp = -1
             }
-            else -> {}
         }
     }
 
-    override fun onConfigChanged(it: ConfigChanged) {
-        if (it.group.equals("boosts")) {
+    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
+        if (it.data.group.equals("boosts")) {
             updateShownSkills()
             if (config.displayNextBuffChange() == BoostsConfig.DisplayChangeMode.NEVER) {
                 lastChangeDown = -1
@@ -123,7 +118,8 @@ class BoostsPlugin : Plugin() {
         }
     }
 
-    override fun onStatChanged(it: eventbus.events.StatChanged) {
+    override fun onStatChanged(): ((Event<eventbus.events.StatChanged>) -> Unit) = {
+        val it = it.data
         val skill = it.skill
         if (BOOSTABLE_COMBAT_SKILLS.contains(skill) || BOOSTABLE_NON_COMBAT_SKILLS.contains(skill)) {
             val skillIdx = skill.ordinal
@@ -142,7 +138,7 @@ class BoostsPlugin : Plugin() {
         }
     }
 
-    override fun onGameTick(it: eventbus.events.GameTick) {
+    override fun onGameTick(): ((Event<eventbus.events.GameTick>) -> Unit) = {
         lastTickMillis = System.currentTimeMillis()
         if (changeUpTicks <= 0) {
             when (config.displayNextDebuffChange()) {

@@ -26,13 +26,10 @@
 package meteor.plugins.combatlevel
 
 import eventbus.events.ConfigChanged
-import eventbus.events.GameTick
-import eventbus.events.ScriptPostFired
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.*
 import net.runelite.api.widgets.WidgetInfo
-import org.rationalityfrontline.kevent.Event
 import java.text.DecimalFormat
 import java.util.regex.Pattern
 
@@ -61,7 +58,7 @@ class CombatLevelPlugin : Plugin() {
         shutDownAttackLevelRange()
     }
 
-    override fun onGameTick(it: GameTick) {
+    override fun onGameTick(): ((Event<eventbus.events.GameTick>) -> Unit) = {
         if (client.gameState == GameState.LOGGED_IN) {
             val combatLevelWidget = client.getWidget(WidgetInfo.COMBAT_LEVEL)
             if (combatLevelWidget != null && config.showPreciseCombatLevel()) {
@@ -79,7 +76,8 @@ class CombatLevelPlugin : Plugin() {
         }
     }
 
-    override fun onConfigChanged(it: ConfigChanged) {
+    override fun onConfigChanged(): ((Event<ConfigChanged>) -> Unit) = {
+        val it = it.data
         if (CONFIG_GROUP == it.group && ATTACK_RANGE_CONFIG_KEY == it.key) {
             if (config.wildernessAttackLevelRange()) {
                 appendAttackLevelRangeText()
@@ -89,7 +87,8 @@ class CombatLevelPlugin : Plugin() {
         }
     }
 
-    override fun onScriptPostFired(it: ScriptPostFired) {
+    override fun onScriptPostFired(): ((Event<eventbus.events.ScriptPostFired>) -> Unit) = {
+        val it = it.data
         if (it.scriptId == ScriptID.PVP_WIDGET_BUILDER && config
                 .wildernessAttackLevelRange()
         ) {
