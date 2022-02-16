@@ -14,7 +14,7 @@ class Equipment : Items() {
         val items: MutableList<Item?> = ArrayList()
         val container: ItemContainer = client.getItemContainer(InventoryID.EQUIPMENT)
             ?: return items
-        Inventory.cacheItems(container)
+        Inventory.Companion.cacheItems(container)
         val containerItems = container.items
         var i = 0
         val containerItemsLength = containerItems.size
@@ -57,7 +57,7 @@ class Equipment : Items() {
             return EQUIPMENT.first(filter)
         }
 
-        fun getFirst(vararg ids: Int): Item? {
+        fun getFirst(vararg ids: IntArray): Item? {
             return EQUIPMENT.first(*ids)
         }
 
@@ -78,7 +78,7 @@ class Equipment : Items() {
             return EQUIPMENT.exists(filter)
         }
 
-        operator fun contains(id: Int): Boolean {
+        operator fun contains(id: IntArray): Boolean {
             return EQUIPMENT.exists(id)
         }
 

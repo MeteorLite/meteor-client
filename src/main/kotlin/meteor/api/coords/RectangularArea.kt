@@ -1,7 +1,6 @@
 package meteor.api.coords
 
 import meteor.api.commons.Rand
-import meteor.api.coords.Area
 import net.runelite.api.coords.WorldPoint
 
 data class RectangularArea(val x1: Int, val y1: Int, val x2: Int, val y2: Int, val plane: Int) : Area {
@@ -34,7 +33,7 @@ data class RectangularArea(val x1: Int, val y1: Int, val x2: Int, val y2: Int, v
     /**
      * Checks if rectangular area contains given point.
      */
-    override operator fun contains(point: WorldPoint): Boolean {
+    override fun contains(point: WorldPoint): Boolean {
         if (point.plane == -1 || point.plane != plane) {
             return false
         }
@@ -70,4 +69,5 @@ data class RectangularArea(val x1: Int, val y1: Int, val x2: Int, val y2: Int, v
     fun getCenter(): WorldPoint {
         return WorldPoint((minX + maxX) / 2, (minY + maxY) / 2, plane)
     }
+
 }

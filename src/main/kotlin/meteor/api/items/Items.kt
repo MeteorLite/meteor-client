@@ -35,10 +35,20 @@ abstract class Items {
         return all(filter).stream().findFirst().orElse(null)
     }
 
+    fun first(vararg ids: IntArray): Item? {
+        return first { x: Item ->
+            for (id in ids) {
+                if (id.equals(x.id)) {
+                    return@first true
+                }
+            }
+            false
+        }
+    }
     fun first(vararg ids: Int): Item? {
         return first { x: Item ->
             for (id in ids) {
-                if (id == x.id) {
+                if (id.equals(x.id)) {
                     return@first true
                 }
             }
@@ -68,6 +78,9 @@ abstract class Items {
         return first(name!!) != null
     }
 
+    fun exists(id: IntArray): Boolean {
+        return first(id) != null
+    }
     fun exists(id: Int): Boolean {
         return first(id) != null
     }

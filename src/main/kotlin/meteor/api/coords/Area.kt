@@ -3,6 +3,8 @@ package meteor.api.coords
 import meteor.api.entities.Players
 import net.runelite.api.Locatable
 import net.runelite.api.coords.WorldPoint
+import java.util.*
+import java.util.function.Predicate
 
 interface Area {
     fun contains(point: WorldPoint): Boolean
@@ -37,3 +39,4 @@ interface Area {
         }
     }
 }
+

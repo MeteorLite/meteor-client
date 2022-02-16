@@ -29,12 +29,6 @@ package meteor.plugins.bank
 import com.google.common.annotations.VisibleForTesting
 import com.google.common.collect.HashMultiset
 import com.google.common.collect.Multiset
-import eventbus.events.ItemContainerChanged
-import eventbus.events.MenuEntryAdded
-import eventbus.events.MenuShouldLeftClick
-import eventbus.events.ScriptCallbackEvent
-import eventbus.events.ScriptPostFired
-import eventbus.events.WidgetLoaded
 import meteor.Logger
 import meteor.config.legacy.Keybind
 import meteor.game.ItemManager
@@ -100,7 +94,7 @@ class BankPlugin : Plugin() {
         searchString = null
     }
 
-    override fun onMenuShouldLeftClick(it: MenuShouldLeftClick) {
+    override fun onMenuShouldLeftClick(): ((Event<MenuShouldLeftClick>) -> Unit) = {
         if (!forceRightClickFlag) {
 
             forceRightClickFlag = false
@@ -110,28 +104,28 @@ class BankPlugin : Plugin() {
                     || entry.getOption() == DEPOSIT_INVENTORY && config.rightClickBankInventory()
                     || entry.getOption() == DEPOSIT_LOOT && config.rightClickBankLoot()
                 ) {
-                    it.isForceRightClick = true
+                    it.data.isForceRightClick = true
 
                 }
             }
         }
     }
 
-    override fun onMenuEntryAdded(it: MenuEntryAdded) {
-        if (it.option == DEPOSIT_WORN && config.rightClickBankEquip()
-            || it.option == DEPOSIT_INVENTORY && config.rightClickBankInventory()
-            || it.option == DEPOSIT_LOOT && config.rightClickBankLoot()
+    override fun onMenuEntryAdded(): ((Event<eventbus.events.MenuEntryAdded>) -> Unit) = {
+        if (it.data.option == DEPOSIT_WORN && config.rightClickBankEquip()
+            || it.data.option == DEPOSIT_INVENTORY && config.rightClickBankInventory()
+            || it.data.option == DEPOSIT_LOOT && config.rightClickBankLoot()
         ) {
             forceRightClickFlag = true
         }
     }
 
-    override fun onScriptCallbackEvent(it: ScriptCallbackEvent) {
+    override fun onScriptCallbackEvent(): ((Event<eventbus.events.ScriptCallbackEvent>) -> Unit) = {
         val intStack = client.intStack
         val stringStack = client.stringStack
         val intStackSize = client.intStackSize
         val stringStackSize = client.stringStackSize
-        when (it.eventName) {
+        when (it.data.eventName) {
             "bankSearchFilter" -> {
                 val itemId = intStack[intStackSize - 1]
                 val search = stringStack[stringStackSize - 1]
@@ -169,14 +163,14 @@ class BankPlugin : Plugin() {
     }
 
 
-    override fun onWidgetLoaded(it: WidgetLoaded) {
-        if (it.groupId != WidgetID.SEED_VAULT_GROUP_ID || !config.seedVaultValue()) {
+    override fun onWidgetLoaded(): ((Event<eventbus.events.WidgetLoaded>) -> Unit)= {
+        if (it.data.groupId != WidgetID.SEED_VAULT_GROUP_ID || !config.seedVaultValue()) {
             updateSeedVaultTotal()
         }
     }
 
-    override fun onScriptPostFired(it: ScriptPostFired) {
-        if (it.scriptId == ScriptID.BANKMAIN_BUILD) {
+    override fun onScriptPostFired(): ((Event<eventbus.events.ScriptPostFired>) -> Unit)= {
+        if (it.data.scriptId == ScriptID.BANKMAIN_BUILD) {
             // Compute bank prices using only the shown items so that we can show bank value during searches
             val bankItemContainer = client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER)
             val bankContainer = client.getItemContainer(InventoryID.BANK)
@@ -198,7 +192,7 @@ class BankPlugin : Plugin() {
                 val bankTitle = client.getWidget(WidgetInfo.BANK_TITLE_BAR)
                 bankTitle!!.text = bankTitle.text + createValueText(geTotal, haTotal)
             }
-        } else if (it.scriptId == ScriptID.BANKMAIN_SEARCH_REFRESH) {
+        } else if (it.data.scriptId == ScriptID.BANKMAIN_SEARCH_REFRESH) {
             // vanilla only lays out the bank every 40 client ticks, so if the search input has changed,
             // and the bank wasn't laid out this tick, lay it out early
             val inputText = client.getVar(VarClientStr.INPUT_TEXT)
@@ -210,8 +204,8 @@ class BankPlugin : Plugin() {
     }
 
 
-    override fun onItemContainerChanged(it: ItemContainerChanged) {
-        val containerId = it.containerId
+    override fun onItemContainerChanged(): ((Event<eventbus.events.ItemContainerChanged>) -> Unit) = {
+        val containerId = it.data.containerId
         if (containerId == InventoryID.BANK.id) {
             itemQuantities = null
         } else if (containerId == InventoryID.SEED_VAULT.id && config.seedVaultValue()) {
