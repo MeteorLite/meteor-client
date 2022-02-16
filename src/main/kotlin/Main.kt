@@ -1,10 +1,7 @@
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import eventbus.Events
 import eventbus.events.GameStateChanged
-import eventbus.events.GameTick
 import meteor.*
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
@@ -24,18 +21,20 @@ import meteor.ui.themes.MeteorliteTheme
 import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
 import net.runelite.api.Client
-import net.runelite.api.GameState
 import net.runelite.api.hooks.Callbacks
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
+import org.apache.commons.lang3.time.StopWatch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
+import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
-object Main: KoinComponent, EventSubscriber() {
+object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     lateinit var client: Client
     lateinit var callbacks: Callbacks
     val httpClient = OkHttpClient()
@@ -47,9 +46,13 @@ object Main: KoinComponent, EventSubscriber() {
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     var meteorConfig: MeteorConfig? = null
+    var logger = Logger("Main")
+
+    private val timer = StopWatch()
 
     @JvmStatic
     fun main(args: Array<String>) = application {
+        timer.start()
         processArguments(args)
         startKoin { modules(Module.CLIENT_MODULE) }
         callbacks = get()
@@ -62,14 +65,15 @@ object Main: KoinComponent, EventSubscriber() {
         AppletConfiguration.init()
         Applet().init()
         Window(
-            onCloseRequest = {shutdown(this)},
+            onCloseRequest = this::exitApplication,
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
             content = UI.Window() //::finishStartup is called at the end of this function
         )
-    }
 
+
+    }
     fun finishStartup() {
         client = Applet.asClient(Applet.applet)
         client.callbacks = callbacks
@@ -79,7 +83,8 @@ object Main: KoinComponent, EventSubscriber() {
         this.meteorConfig = meteorConfig
         PluginManager
         initOverlays()
-
+        timer.stop()
+        logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 
     fun initOverlays() {
@@ -117,11 +122,6 @@ object Main: KoinComponent, EventSubscriber() {
         EventBus.subscribe<Unit>(Events.MENU_OPENED) {}
     }
 
-    fun shutdown(a: ApplicationScope) {
-        PluginManager.shutdown()
-        a.exitApplication()
-    }
-
     fun processArguments(args: Array<String>) {
         for(arg in args) {
             when (arg.lowercase()) {
@@ -130,5 +130,14 @@ object Main: KoinComponent, EventSubscriber() {
                 }
             }
         }
+    }
+
+    /**
+     * Save and exit
+     */
+    override fun exitApplication() {
+        PluginManager.shutdown()
+        ConfigManager.saveProperties()
+        exitProcess(0)
     }
 }

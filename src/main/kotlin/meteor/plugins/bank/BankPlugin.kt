@@ -39,11 +39,9 @@ import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.util.QuantityFormatter
 import net.runelite.api.*
-import net.runelite.api.events.*
 import net.runelite.api.widgets.JavaScriptCallback
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
-import org.rationalityfrontline.kevent.Event
 import java.awt.event.KeyEvent
 import java.text.ParseException
 import java.util.regex.Pattern

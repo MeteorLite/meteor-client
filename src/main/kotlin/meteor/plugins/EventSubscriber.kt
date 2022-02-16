@@ -6,7 +6,9 @@ import meteor.events.InfoBoxMenuClicked
 import meteor.events.PluginChanged
 import net.runelite.api.events.MenuShouldLeftClick
 import net.runelite.api.events.OverheadTextChanged
-import org.rationalityfrontline.kevent.*
+import org.rationalityfrontline.kevent.KEventSubscriber
+import org.rationalityfrontline.kevent.unsubscribeAll
+import org.rationalityfrontline.kevent.subscribe as kSubscribe
 
 open class EventSubscriber : KEventSubscriber {
     private val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')

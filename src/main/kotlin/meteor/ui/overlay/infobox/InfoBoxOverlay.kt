@@ -26,19 +26,18 @@
 package meteor.ui.overlay.infobox
 
 import com.google.common.base.Strings
+import eventbus.events.MenuOptionClicked
 import meteor.events.Events
 import meteor.events.InfoBoxMenuClicked
 import meteor.ui.components.ComponentConstants.STANDARD_BACKGROUND_COLOR
 import meteor.ui.overlay.*
 import meteor.ui.overlay.components.InfoBoxComponent
 import net.runelite.api.MenuAction
-import net.runelite.api.events.MenuOptionClicked
 import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Point
 import java.awt.Rectangle
 import java.util.concurrent.CopyOnWriteArrayList
-import java.util.function.Predicate
 
 class InfoBoxOverlay internal constructor(
     name: String,
@@ -135,15 +134,15 @@ class InfoBoxOverlay internal constructor(
         get() =// we dynamically build the menu options based on which infobox is hovered
             if (hoveredComponent == null) ArrayList() else hoveredComponent!!.infoBox!!.menuEntries
 
-    fun onMenuOptionClicked(menuOptionClicked: MenuOptionClicked) {
-        if (menuOptionClicked.menuAction != MenuAction.RUNELITE_INFOBOX
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if (it.menuAction != MenuAction.RUNELITE_INFOBOX
             || hoveredComponent == null
         ) {
             return
         }
         val infoBox: InfoBox = hoveredComponent!!.infoBox!!
         val overlayMenuEntry: OverlayMenuEntry? = infoBox.menuEntries.stream()
-            .filter(Predicate { me: OverlayMenuEntry -> me.option == menuOptionClicked.menuOption })
+            .filter { me: OverlayMenuEntry -> me.option == it.menuOption }
             .findAny()
             .orElse(null)
         if (overlayMenuEntry != null) {
@@ -151,11 +150,11 @@ class InfoBoxOverlay internal constructor(
         }
     }
 
-    override fun onDrag(source: Overlay?): Boolean {
-        if (source !is InfoBoxOverlay) {
+    override fun onDrag(other: Overlay?): Boolean {
+        if (other !is InfoBoxOverlay) {
             return false
         }
-        infoboxManager.mergeInfoBoxes(source as InfoBoxOverlay?, this)
+        infoboxManager.mergeInfoBoxes(other as InfoBoxOverlay?, this)
         return true
     }
 
