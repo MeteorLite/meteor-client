@@ -22,6 +22,7 @@ import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
 import net.runelite.api.Client
 import net.runelite.api.hooks.Callbacks
+import net.runelite.api.packets.ClientPacket
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
@@ -47,6 +48,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     var meteorConfig: MeteorConfig? = null
     var logger = Logger("Main")
+    lateinit var clientPacket: ClientPacket
 
     private val timer = StopWatch()
 
@@ -83,6 +85,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         this.meteorConfig = meteorConfig
         PluginManager
         initOverlays()
+        clientPacket = client.createClientPacket(-1, -1)
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
