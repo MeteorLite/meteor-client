@@ -1,9 +1,13 @@
 package meteor.util
 
 import net.runelite.api.Actor
+import net.runelite.api.Perspective
 import net.runelite.api.Point
 import net.runelite.api.TileObject
+import net.runelite.api.coords.LocalPoint
+import net.runelite.api.coords.WorldPoint
 import java.awt.*
+
 
 object OverlayUtil {
     fun renderPolygon(graphics: Graphics2D, poly: Shape, color: Color) {
@@ -51,5 +55,16 @@ object OverlayUtil {
         if (textLocation != null) {
             renderTextLocation(graphics, textLocation, text, color)
         }
+    }
+
+    fun fillTile(graphics: Graphics2D, point: WorldPoint, color: Color) {
+        val client = Main.client
+        if (point.plane != client.plane) {
+            return
+        }
+        val lp = LocalPoint.fromWorld(client, point) ?: return
+        val poly = Perspective.getCanvasTilePoly(client, lp) ?: return
+        graphics.color = color
+        graphics.fill(poly)
     }
 }

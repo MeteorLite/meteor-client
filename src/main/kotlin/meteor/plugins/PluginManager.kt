@@ -24,6 +24,7 @@ import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
+import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import rs117.hd.GpuHDPlugin
 import java.lang.RuntimeException
@@ -58,6 +59,7 @@ object PluginManager {
         init<XpTrackerPlugin>()
 
         init<ApiTestPlugin>()
+        init<WorldMapWalkerPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {

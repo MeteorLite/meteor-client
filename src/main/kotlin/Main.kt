@@ -7,6 +7,7 @@ import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
 import meteor.game.FontManager
 import meteor.game.ItemManager
+import meteor.game.WorldService
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
@@ -46,6 +47,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     val itemManager = ItemManager
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
+    val worldService = WorldService
     var meteorConfig: MeteorConfig? = null
     var logger = Logger("Main")
     lateinit var clientPacket: ClientPacket
