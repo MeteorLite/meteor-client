@@ -1,6 +1,5 @@
 package meteor.plugins
 
-import eventbus.Events
 import meteor.api.ApiTestPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
@@ -10,6 +9,7 @@ import meteor.plugins.bank.BankPlugin
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.chatfilter.ChatFilterPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
+import meteor.plugins.questrunner.QuestRunnerPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
@@ -60,6 +60,7 @@ object PluginManager {
 
         init<ApiTestPlugin>()
         init<WorldMapWalkerPlugin>()
+        init<QuestRunnerPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {

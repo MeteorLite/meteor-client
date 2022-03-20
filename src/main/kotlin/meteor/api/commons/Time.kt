@@ -21,10 +21,8 @@ object Time {
      * Sleep for ms.
      */
     fun sleep(ms: Long) {
-        if (!client.isClientThread()) {
+        if (!client.isClientThread) {
             Thread.sleep(ms)
-        } else {
-            println("Tried to sleep on client thread!!")
         }
     }
 

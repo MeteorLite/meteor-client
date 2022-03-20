@@ -162,7 +162,7 @@ class LightManager(private val config: HdPluginConfig, private val hdPlugin: Gpu
                 light.z = light.projectile!!.z.toInt()
                 light.visible = hdPlugin.configProjectileLights
             }
-            if (light.tileItem != null) {
+            if (light.tileItem?.worldLocation != null) {
                 val localPoint = LocalPoint.fromWorld(client, light.tileItem!!.worldLocation)
                 if (localPoint != null) {
                     light.x = localPoint.x

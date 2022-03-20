@@ -1,7 +1,8 @@
-package meteor.plugins.worldmapwalker
+package meteor.plugins.questrunner.overlay
 
 import meteor.api.entities.Players
 import meteor.api.movement.pathfinder.Walker
+import meteor.plugins.questrunner.QuestRunnerPlugin
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
@@ -19,8 +20,7 @@ import java.awt.geom.Path2D
 import java.util.ArrayList
 import java.util.concurrent.ExecutionException
 
-
-class WorldMapWalkerOverlay(var plugin: WorldMapWalkerPlugin) : Overlay() {
+class PathOverlay(val plugin: QuestRunnerPlugin) : Overlay() {
     init {
         position = OverlayPosition.DYNAMIC
         layer = OverlayLayer.ABOVE_SCENE
@@ -54,13 +54,13 @@ class WorldMapWalkerOverlay(var plugin: WorldMapWalkerPlugin) : Overlay() {
     }
 
     override fun render(graphics: Graphics2D): Dimension? {
-        if (plugin.mapPoint == null || !plugin.config.showPaths()) {
+        if (QuestRunnerPlugin.walkTarget == null) {
             return null
         }
         val path: List<WorldPoint?> = try {
-            Walker.PATH_CACHE.get(plugin.mapPoint!!)
+            Walker.PATH_CACHE.get(QuestRunnerPlugin.walkTarget!!)
         } catch (e: ExecutionException) {
-            Walker.buildPath(plugin.mapPoint!!, false)
+            Walker.buildPath(QuestRunnerPlugin.walkTarget!!, false)
         }
         if (path.isEmpty()) {
             return null
@@ -85,7 +85,7 @@ class WorldMapWalkerOverlay(var plugin: WorldMapWalkerPlugin) : Overlay() {
         }
 
         renderPath(graphics, path, index)
-        plugin.mapPoint!!.outline(client, graphics, Color.GREEN, "Destination")
+        QuestRunnerPlugin.walkTarget!!.outline(client, graphics, Color.GREEN, "Destination")
         return null
     }
 }

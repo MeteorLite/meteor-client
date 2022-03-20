@@ -29,7 +29,7 @@ data class RectangularArea(val x1: Int, val y1: Int, val x2: Int, val y2: Int, v
         }
     }
 
-    constructor(x1: Int, x2: Int, y1: Int, y2: Int) : this(x1, x2, y1, y2, 0)
+    constructor(x1: Int, y1: Int, x2: Int, y2: Int) : this(x1, y1, x2, y2, 0)
 
     /**
      * Checks if rectangular area contains given point.

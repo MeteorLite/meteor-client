@@ -61,9 +61,9 @@ class WorldMapWalkerPlugin : Plugin() {
         if (Movement.isWalking) {
             return
         }
-        if (mapPoint == Players.local.worldLocation) {
-
-            return
+        if (mapPoint?.distanceTo(Players.local.worldLocation)!! < 3) {
+            logger.debug("Destination reached")
+            mapPoint = null
         }
         logger.debug("Destination is {} {}", mapPoint!!.x, mapPoint!!.y)
         Movement.walkTo(mapPoint!!)

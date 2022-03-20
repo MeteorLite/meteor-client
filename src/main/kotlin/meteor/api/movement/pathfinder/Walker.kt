@@ -33,7 +33,6 @@ object Walker {
         .expireAfterWrite(5, TimeUnit.MINUTES)
         .build(object : CacheLoader<WorldPoint, List<WorldPoint>>() {
             override fun load(key: WorldPoint): List<WorldPoint> {
-                logger.debug("Loading path to {}", key)
                 return buildPath(key, false)
             }
         })
@@ -41,7 +40,6 @@ object Walker {
         .expireAfterWrite(5, TimeUnit.MINUTES)
         .build(object : CacheLoader<WorldPoint, List<WorldPoint>>() {
             override fun load(key: WorldPoint): List<WorldPoint> {
-                logger.debug("Loading local path to {}", key)
                 return buildPath(key, true)
             }
         })
@@ -87,7 +85,6 @@ object Walker {
 
         // Refresh path if our direction changed
         if (!local.isAnimating && !path.contains(local.worldLocation)) {
-            logger.debug("Direction changed, resetting cached path towards {}", destination)
             LOCAL_PATH_CACHE.refresh(destination)
             PATH_CACHE.refresh(destination)
             return false
@@ -104,7 +101,6 @@ object Walker {
         val endTile: WorldPoint? = path!![path.size - 1]
         if (endTile != null) {
             if (endTile != destination && endTile.distanceTo(destination) > 5) {
-                logger.debug("Destination {} was not in path, recalculating", destination)
                 PATH_CACHE.refresh(destination)
                 LOCAL_PATH_CACHE.refresh(destination)
             }
@@ -237,7 +233,6 @@ object Walker {
         local: Boolean
     ): List<WorldPoint> {
         val collisionMap: CollisionMap = (if (local) LocalCollisionMap() else Game.globalCollisionMap)
-        logger.debug("Calculating path towards {}", destination)
         return Pathfinder(
             collisionMap, transports, startPoints,
             destination
