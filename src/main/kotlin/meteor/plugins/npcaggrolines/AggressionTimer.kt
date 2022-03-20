@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Woox <https://github.com/wooxsolo>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,48 +22,35 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.overlay.infobox
+package meteor.plugins.npcaggrolines
 
 import meteor.plugins.Plugin
-import meteor.ui.overlay.OverlayMenuEntry
+import meteor.ui.overlay.infobox.Timer
 import java.awt.Color
 import java.awt.image.BufferedImage
-import java.util.ArrayList
+import java.time.Duration
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 
-abstract class  InfoBox(
-    image: BufferedImage?,
-    val plugin: Plugin
-) {
-
-    var image: BufferedImage? = null
-
-    var scaledImage: BufferedImage? = null
-
-    var priority: InfoBoxPriority? = null
-
-    var tooltip: String? = null
-
-    var menuEntries = ArrayList<OverlayMenuEntry>()
+internal class AggressionTimer(duration: Duration, image: BufferedImage, plugin: Plugin, visible: Boolean) :
+    Timer(duration.toMillis(), ChronoUnit.MILLIS, image, plugin) {
+    var visible: Boolean
 
     init {
-        this.image = (image)
-        this.priority = (InfoBoxPriority.NONE)
+        tooltip = "Time until NPCs become unaggressive"
+        this.visible = visible
     }
 
-    abstract val text: String?
-    abstract val textColor: Color?
-    open fun render(): Boolean {
-        return true
-    }
+    //check if timer has 10% of time left
+    override val textColor: Color
+        get() {
+            val timeLeft = Duration.between(Instant.now(), endTime)
+            return if (timeLeft.seconds < 60) {
+                Color.RED.brighter()
+            } else Color.WHITE
+        }
 
-    open fun cull(): Boolean {
-        return false
+    override fun render(): Boolean {
+        return visible && super.render()
     }
-
-    // Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-    // as possible by default
-    open val name: String
-        get() =// Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-            // as possible by default
-            plugin.javaClass.simpleName + "_" + javaClass.simpleName
 }

@@ -24,46 +24,47 @@
  */
 package meteor.ui.overlay.infobox
 
+import com.google.common.base.Preconditions
 import meteor.plugins.Plugin
-import meteor.ui.overlay.OverlayMenuEntry
 import java.awt.Color
 import java.awt.image.BufferedImage
-import java.util.ArrayList
+import java.time.Duration
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 
-abstract class  InfoBox(
-    image: BufferedImage?,
-    val plugin: Plugin
-) {
-
-    var image: BufferedImage? = null
-
-    var scaledImage: BufferedImage? = null
-
-    var priority: InfoBoxPriority? = null
-
-    var tooltip: String? = null
-
-    var menuEntries = ArrayList<OverlayMenuEntry>()
+open class Timer(period: Long, unit: ChronoUnit, image: BufferedImage, plugin: Plugin, override val textColor: Color? = null) : InfoBox(image, plugin) {
+    private val startTime: Instant
+    var endTime: Instant
+    private var duration: Duration
 
     init {
-        this.image = (image)
-        this.priority = (InfoBoxPriority.NONE)
+        Preconditions.checkArgument(period > 0, "negative period!")
+        startTime = Instant.now()
+        duration = Duration.of(period, unit)
+        endTime = startTime.plus(duration)
     }
 
-    abstract val text: String?
-    abstract val textColor: Color?
-    open fun render(): Boolean {
-        return true
+    override val text: String
+        get() {
+            val timeLeft = Duration.between(Instant.now(), endTime)
+            val seconds = (timeLeft.toMillis() / 1000L).toInt()
+            val minutes = seconds % 3600 / 60
+            val secs = seconds % 60
+            return String.format("%d:%02d", minutes, secs)
+        }
+
+    override fun render(): Boolean {
+        val timeLeft = Duration.between(Instant.now(), endTime)
+        return !timeLeft.isNegative
     }
 
-    open fun cull(): Boolean {
-        return false
+    override fun cull(): Boolean {
+        val timeLeft = Duration.between(Instant.now(), endTime)
+        return timeLeft.isZero || timeLeft.isNegative
     }
 
-    // Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-    // as possible by default
-    open val name: String
-        get() =// Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-            // as possible by default
-            plugin.javaClass.simpleName + "_" + javaClass.simpleName
+    fun setDuration(duration: Duration) {
+        this.duration = duration
+        endTime = startTime.plus(duration)
+    }
 }

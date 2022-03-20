@@ -19,6 +19,7 @@ import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
+import meteor.plugins.npcaggrolines.NpcAggroLinesPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
@@ -50,6 +51,7 @@ object PluginManager {
         init<GpuHDPlugin>()
         init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
+        init<NpcAggroLinesPlugin>()
         init<NeverLogoutPlugin>()
         init<RsnHiderPlugin>()
         init<SpecBarPlugin>()
