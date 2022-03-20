@@ -393,7 +393,7 @@ object ConfigManager {
 
         val wholeKey = getWholeKey(groupName, key)
         var oldValue: String?
-        synchronized(this) { oldValue = properties.setProperty(wholeKey, "$value") as String? }
+        synchronized(this) { oldValue = properties.setProperty(wholeKey, objectToString(value)) as String? }
 
         handler.invalidate()
 
@@ -401,7 +401,7 @@ object ConfigManager {
         configChanged.group = groupName
         configChanged.key = key
         configChanged.oldValue = oldValue
-        configChanged.newValue = "$value"
+        configChanged.newValue = objectToString(value)
         EventBus.post(Events.CONFIG_CHANGED, configChanged)
 
         saveProperties()
