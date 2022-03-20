@@ -5,10 +5,11 @@ import eventbus.events.*
 import meteor.events.InfoBoxMenuClicked
 import meteor.events.PluginChanged
 import org.rationalityfrontline.kevent.KEventSubscriber
-import org.rationalityfrontline.kevent.unsubscribeAll
 import org.rationalityfrontline.kevent.subscribe as kSubscribe
 
 open class EventSubscriber : KEventSubscriber {
+    var eventListening: Boolean = false
+
     open fun onMenuShouldLeftClick(it: MenuShouldLeftClick) {}
     open fun onWorldListLoad(it: WorldListLoad) {}
     open fun onWidgetPressed(it: WidgetPressed) {}
@@ -87,112 +88,93 @@ open class EventSubscriber : KEventSubscriber {
     open fun onInfoBoxMenuClicked(it: InfoBoxMenuClicked) {}
     open fun onOverheadTextChanged(it: OverheadTextChanged) {}
 
-    fun subscribe() {
-        subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) { onGameStateChanged(it) }
-        subscribe<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) { onMenuShouldLeftClick(it) }
-        subscribe<ActorDeath>(Events.ACTOR_DEATH) { onActorDeath(it) }
-        subscribe<AnimationChanged>(Events.ANIMATION_CHANGED) { onAnimationChanged(it) }
-        subscribe<AreaSoundEffectPlayed>(Events.AREA_SOUND_EFFECT_PLAYED) { onAreaSoundEffectPlayed(it) }
-        subscribe<BeforeRender>(Events.BEFORE_RENDER) { onBeforeRender(it) }
-        subscribe<BeforeMenuRender>(Events.BEFORE_MENU_RENDER) { onBeforeMenuRender(it) }
-        subscribe<CanvasSizeChanged>(Events.CANVAS_SIZE_CHANGED) { onCanvasSizeChanged(it) }
-        subscribe<ChatMessage>(Events.CHAT_MESSAGE) { onChatMessage(it) }
-        subscribe<ClanChannelChanged>(Events.CLAN_CHANNEL_CHANGED) { onClanChannelChanged(it) }
-        subscribe<ClanMemberJoined>(Events.CLAN_CHANNEL_CHANGED) { onClanMemberJoined(it) }
-        subscribe<ClanMemberLeft>(Events.CLAN_MEMBER_LEFT) { onClanMemberLeft(it) }
-        subscribe<ClientLoaded>(Events.CLIENT_LOADED) { onClientLoaded(it) }
-        subscribe<ClientTick>(Events.CLIENT_TICK) { onClientTick(it) }
-        subscribe<ConfigChanged>(Events.CONFIG_CHANGED) { onConfigChanged(it) }
-        subscribe<DecorativeObjectChanged>(Events.DECORATIVE_OBJECT_CHANGED) { onDecorativeObjectChanged(it) }
-        subscribe<DecorativeObjectDespawned>(Events.DECORATIVE_OBJECT_DESPAWNED) { onDecorativeObjectDespawned(it) }
-        subscribe<DecorativeObjectSpawned>(Events.DECORATIVE_OBJECT_SPAWNED) { onDecorativeObjectSpawned(it) }
-        subscribe<DialogProcessed>(Events.DIALOG_PROCESSED) { onDialogProcessed(it) }
-        subscribe<DynamicObjectAnimationChanged>(Events.DYNAMIC_OBJECT_ANIMATION_CHANGED) { onDynamicObjectAnimationChanged(it) }
-        subscribe<ExperienceGained>(Events.EXPERIENCE_GAINED) { onExperienceGained(it) }
-        subscribe<FocusChanged>(Events.FOCUS_CHANGED) { onFocusChanged(it) }
-        subscribe<GameObjectChanged>(Events.GAME_OBJECT_CHANGED) { onGameObjectChanged(it) }
-        subscribe<GameObjectDespawned>(Events.GAME_OBJECT_DESPAWNED) { onGameObjectDespawned(it) }
-        subscribe<GameObjectSpawned>(Events.GAME_OBJECT_SPAWNED) { onGameObjectSpawned(it) }
-        subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) { onGameStateChanged(it) }
-        subscribe<GameTick>(Events.GAME_TICK) { onGameTick(it) }
-        subscribe<GrandExchangeOfferChanged>(Events.GRAND_EXCHANGE_OFFER_CHANGED) { onGrandExchangeOfferChanged(it) }
-        subscribe<GraphicsObjectCreated>(Events.GRAPHICS_OBJECT_CREATED) { onGraphicsObjectCreated(it) }
-        subscribe<GroundObjectChanged>(Events.GROUND_OBJECT_CHANGED) { onGroundObjectChanged(it) }
-        subscribe<GroundObjectDespawned>(Events.GROUND_OBJECT_DESPAWNED) { onGroundObjectDespawned(it) }
-        subscribe<GroundObjectSpawned>(Events.GROUND_OBJECT_SPAWNED) { onGroundObjectSpawned(it) }
-        subscribe<HealthBarUpdated>(Events.HEALTH_BAR_UPDATED) { onHealthBarUpdated(it) }
-        subscribe<InteractingChanged>(Events.INTERACTING_CHANGED) { onInteractingChanged(it) }
-        subscribe<InventoryChanged>(Events.INVENTORY_CHANGED) { onInventoryChanged(it) }
-        subscribe<InvokeMenuAction>(Events.INVOKE_MENU_ACTION) { onInvokeMenuAction(it) }
-        subscribe<ItemContainerChanged>(Events.ITEM_CONTAINER_CHANGED) { onItemContainerChanged(it) }
-        subscribe<ItemDespawned>(Events.ITEM_DESPAWNED) { onItemDespawned(it) }
-        subscribe<ItemObtained>(Events.ITEM_OBAINED) { onItemObtained(it) }
-        subscribe<ItemQuantityChanged>(Events.ITEM_QUANTITY_CHANGED) { onItemQuantityChanged(it) }
-        subscribe<ItemSpawned>(Events.ITEM_SPAWNED) { onItemSpawned(it) }
-        subscribe<LoginStateChanged>(Events.LOGIN_STATE_CHANGED) { onLoginStateChanged(it) }
-        subscribe<MenuEntryAdded>(Events.MENU_ENTRY_ADDED) { onMenuEntryAdded(it) }
-        subscribe<MenuOpened>(Events.MENU_OPENED) { onMenuOpened(it) }
-        subscribe<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) { onMenuOptionClicked(it) }
-        subscribe<NpcActionChanged>(Events.NPC_ACTION_CHANGED) { onNpcActionChanged(it) }
-        subscribe<NpcChanged>(Events.NPC_CHANGED) { onNpcChanged(it) }
-        subscribe<NpcDespawned>(Events.NPC_DESPAWNED) { onNpcDespawned(it) }
-        subscribe<NpcSpawned>(Events.NPC_SPAWNED) { onNpcSpawned(it) }
-        subscribe<PacketSent>(Events.PACKET_SENT) { onPacketSent(it) }
-        subscribe<OverheadTextChanged>(Events.OVERHEAD_TEXT_CHANGED) { onOverheadTextChanged(it) }
-        subscribe<OverheadPrayerChanged>(Events.OVERHEAD_PRAYER_CHANGED) { onOverheadPrayerChanged(it) }
-        subscribe<PlayerDespawned>(Events.PLAYER_DESPAWNED) { onPlayerDespawned(it) }
-        subscribe<PlayerMenuOptionsChanged>(Events.PLAYER_MENU_OPTIONS_CHANGED) { onPlayerMenuOptionsChanged(it) }
-        subscribe<PlayerSkullChanged>(Events.PLAYER_SKULL_CHANGED) { onPlayerSkullChanged(it) }
-        subscribe<PlayerSpawned>(Events.PLAYER_SPAWNED) { onPlayerSpawned(it) }
-        subscribe<PostItemComposition>(Events.POST_ITEM_COMPOSITION) { onPostItemComposition(it) }
-        subscribe<ProjectileMoved>(Events.PROJECTILE_MOVED) { onProjectileMoved(it) }
-        subscribe<ProjectileSpawned>(Events.PROJECTILE_MOVED) { onProjetileSpawned(it) }
-        subscribe<ResizeableChanged>(Events.RESIZEABLE_CHANGED) { onResizeableChanged(it) }
-        subscribe<ScriptCallbackEvent>(Events.SCRIPT_CALLBACK) { onScriptCallbackEvent(it) }
-        subscribe<ScriptPostFired>(Events.SCRIPT_POST_FIRED) { onScriptPostFired(it) }
-        subscribe<ScriptPreFired>(Events.SCRIPT_PRE_FIRED) { onScriptPreFired(it) }
-        subscribe<SoundEffectPlayed>(Events.SOUND_EFFECT_PLAYED) { onSoundEffectPlayed(it) }
-        subscribe<StatChanged>(Events.STAT_CHANGED) { onStatChanged(it) }
-        subscribe<VarbitChanged>(Events.VARBIT_CHANGED) { onVarbitChanged(it) }
-        subscribe<WallObjectChanged>(Events.WALL_OBJECT_CHANGED) { onWallObjectChanged(it) }
-        subscribe<WallObjectDespawned>(Events.WALL_OBJECT_DESPAWNED) { onWallObjectDespawned(it) }
-        subscribe<WallObjectSpawned>(Events.WALL_OBJECT_SPAWNED) { onWallObjectSpawned(it) }
-        subscribe<WidgetHiddenChanged>(Events.WIDGET_HIDDEN_CHANGED) { onWidgetHiddenChanged(it) }
-        subscribe<WidgetLoaded>(Events.WIDGET_LOADED) { onWidgetLoaded(it) }
-        subscribe<WidgetPositioned>(Events.WIDGET_POSITIONED) { onWidgetPositioned(it) }
-        subscribe<WidgetPressed>(Events.WIDGET_PRESSED) { onWidgetPressed(it) }
-        subscribe<WorldListLoad>(Events.WORLD_LIST_LOAD) { onWorldListLoad(it) }
-        subscribe<NpcSpawned>(Events.NPC_SPAWNED) { onNPCSpawned(it) }
-        subscribe<NpcDespawned>(Events.NPC_DESPAWNED) { onNPCDespawned(it) }
-        subscribe<PluginChanged>(Events.PLANE_CHANGED) { onPluginChanged(it) }
-        subscribe<InfoBoxMenuClicked>(meteor.events.Events.INFO_BOX_MENU_CLICKED) { onInfoBoxMenuClicked(it) }
+    open fun executeIfListening(unit: () -> (Unit)) {
+        if (eventListening)
+            unit()
     }
 
-
-    private val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
-    val tag = generateTag()
-
-    fun unregisterSubscribers() {
-        if (!unsubscribeAll())
-            throw RuntimeException("Failed to unregister Plugin")
+    fun subscribeEvents() {
+        subscribeEvent<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) { executeIfListening { onMenuShouldLeftClick(it) }}
+        subscribeEvent<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) { executeIfListening { onMenuShouldLeftClick(it) }}
+        subscribeEvent<ActorDeath>(Events.ACTOR_DEATH) { executeIfListening { onActorDeath(it) }}
+        subscribeEvent<AnimationChanged>(Events.ANIMATION_CHANGED) { executeIfListening { onAnimationChanged(it) }}
+        subscribeEvent<AreaSoundEffectPlayed>(Events.AREA_SOUND_EFFECT_PLAYED) { executeIfListening { onAreaSoundEffectPlayed(it) }}
+        subscribeEvent<BeforeRender>(Events.BEFORE_RENDER) { executeIfListening { onBeforeRender(it) }}
+        subscribeEvent<BeforeMenuRender>(Events.BEFORE_MENU_RENDER) { executeIfListening { onBeforeMenuRender(it) }}
+        subscribeEvent<CanvasSizeChanged>(Events.CANVAS_SIZE_CHANGED) { executeIfListening { onCanvasSizeChanged(it) }}
+        subscribeEvent<ChatMessage>(Events.CHAT_MESSAGE) { executeIfListening { onChatMessage(it) }}
+        subscribeEvent<ClanChannelChanged>(Events.CLAN_CHANNEL_CHANGED) { executeIfListening { onClanChannelChanged(it) }}
+        subscribeEvent<ClanMemberJoined>(Events.CLAN_CHANNEL_CHANGED) { executeIfListening { onClanMemberJoined(it) }}
+        subscribeEvent<ClanMemberLeft>(Events.CLAN_MEMBER_LEFT) { executeIfListening { onClanMemberLeft(it) }}
+        subscribeEvent<ClientLoaded>(Events.CLIENT_LOADED) { executeIfListening { onClientLoaded(it) }}
+        subscribeEvent<ClientTick>(Events.CLIENT_TICK) { executeIfListening { onClientTick(it) }}
+        subscribeEvent<ConfigChanged>(Events.CONFIG_CHANGED) { executeIfListening { onConfigChanged(it) }}
+        subscribeEvent<DecorativeObjectChanged>(Events.DECORATIVE_OBJECT_CHANGED) { executeIfListening { onDecorativeObjectChanged(it) }}
+        subscribeEvent<DecorativeObjectDespawned>(Events.DECORATIVE_OBJECT_DESPAWNED) { executeIfListening { onDecorativeObjectDespawned(it) }}
+        subscribeEvent<DecorativeObjectSpawned>(Events.DECORATIVE_OBJECT_SPAWNED) { executeIfListening { onDecorativeObjectSpawned(it) }}
+        subscribeEvent<DialogProcessed>(Events.DIALOG_PROCESSED) { executeIfListening { onDialogProcessed(it) }}
+        subscribeEvent<DynamicObjectAnimationChanged>(Events.DYNAMIC_OBJECT_ANIMATION_CHANGED) { executeIfListening { onDynamicObjectAnimationChanged(it) }}
+        subscribeEvent<ExperienceGained>(Events.EXPERIENCE_GAINED) { executeIfListening { onExperienceGained(it) }}
+        subscribeEvent<FocusChanged>(Events.FOCUS_CHANGED) { executeIfListening { onFocusChanged(it) }}
+        subscribeEvent<GameObjectChanged>(Events.GAME_OBJECT_CHANGED) { executeIfListening { onGameObjectChanged(it) }}
+        subscribeEvent<GameObjectDespawned>(Events.GAME_OBJECT_DESPAWNED) { executeIfListening { onGameObjectDespawned(it) }}
+        subscribeEvent<GameObjectSpawned>(Events.GAME_OBJECT_SPAWNED) { executeIfListening { onGameObjectSpawned(it) }}
+        subscribeEvent<GameStateChanged>(Events.GAME_STATE_CHANGED) { executeIfListening{ onGameStateChanged(it) }}
+        subscribeEvent<GameTick>(Events.GAME_TICK) { executeIfListening { onGameTick(it) }}
+        subscribeEvent<GrandExchangeOfferChanged>(Events.GRAND_EXCHANGE_OFFER_CHANGED) { executeIfListening { onGrandExchangeOfferChanged(it) }}
+        subscribeEvent<GraphicsObjectCreated>(Events.GRAPHICS_OBJECT_CREATED) { executeIfListening { onGraphicsObjectCreated(it) }}
+        subscribeEvent<GroundObjectChanged>(Events.GROUND_OBJECT_CHANGED) { executeIfListening { onGroundObjectChanged(it) }}
+        subscribeEvent<GroundObjectDespawned>(Events.GROUND_OBJECT_DESPAWNED) { executeIfListening { onGroundObjectDespawned(it) }}
+        subscribeEvent<GroundObjectSpawned>(Events.GROUND_OBJECT_SPAWNED) { executeIfListening { onGroundObjectSpawned(it) }}
+        subscribeEvent<HealthBarUpdated>(Events.HEALTH_BAR_UPDATED) { executeIfListening { onHealthBarUpdated(it) }}
+        subscribeEvent<InteractingChanged>(Events.INTERACTING_CHANGED) { executeIfListening { onInteractingChanged(it) }}
+        subscribeEvent<InventoryChanged>(Events.INVENTORY_CHANGED) { executeIfListening { onInventoryChanged(it) }}
+        subscribeEvent<InvokeMenuAction>(Events.INVOKE_MENU_ACTION) { executeIfListening { onInvokeMenuAction(it) }}
+        subscribeEvent<ItemContainerChanged>(Events.ITEM_CONTAINER_CHANGED) { executeIfListening { onItemContainerChanged(it) }}
+        subscribeEvent<ItemDespawned>(Events.ITEM_DESPAWNED) { executeIfListening { onItemDespawned(it) }}
+        subscribeEvent<ItemObtained>(Events.ITEM_OBAINED) { executeIfListening { onItemObtained(it) }}
+        subscribeEvent<ItemQuantityChanged>(Events.ITEM_QUANTITY_CHANGED) { executeIfListening { onItemQuantityChanged(it) }}
+        subscribeEvent<ItemSpawned>(Events.ITEM_SPAWNED) { executeIfListening { onItemSpawned(it) }}
+        subscribeEvent<LoginStateChanged>(Events.LOGIN_STATE_CHANGED) { executeIfListening { onLoginStateChanged(it) }}
+        subscribeEvent<MenuEntryAdded>(Events.MENU_ENTRY_ADDED) { executeIfListening { onMenuEntryAdded(it) }}
+        subscribeEvent<MenuOpened>(Events.MENU_OPENED) { executeIfListening { onMenuOpened(it) }}
+        subscribeEvent<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) { executeIfListening { onMenuOptionClicked(it) }}
+        subscribeEvent<NpcActionChanged>(Events.NPC_ACTION_CHANGED) { executeIfListening { onNpcActionChanged(it) }}
+        subscribeEvent<NpcChanged>(Events.NPC_CHANGED) { executeIfListening { onNpcChanged(it) }}
+        subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNpcDespawned(it) }}
+        subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening { onNpcSpawned(it) }}
+        subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening { onPacketSent(it) }}
+        subscribeEvent<OverheadTextChanged>(Events.OVERHEAD_TEXT_CHANGED) { executeIfListening { onOverheadTextChanged(it) }}
+        subscribeEvent<OverheadPrayerChanged>(Events.OVERHEAD_PRAYER_CHANGED) { executeIfListening { onOverheadPrayerChanged(it) }}
+        subscribeEvent<PlayerDespawned>(Events.PLAYER_DESPAWNED) { executeIfListening { onPlayerDespawned(it) }}
+        subscribeEvent<PlayerMenuOptionsChanged>(Events.PLAYER_MENU_OPTIONS_CHANGED) { executeIfListening { onPlayerMenuOptionsChanged(it) }}
+        subscribeEvent<PlayerSkullChanged>(Events.PLAYER_SKULL_CHANGED) { executeIfListening { onPlayerSkullChanged(it) }}
+        subscribeEvent<PlayerSpawned>(Events.PLAYER_SPAWNED) { executeIfListening { onPlayerSpawned(it) }}
+        subscribeEvent<PostItemComposition>(Events.POST_ITEM_COMPOSITION) { executeIfListening { onPostItemComposition(it) }}
+        subscribeEvent<ProjectileMoved>(Events.PROJECTILE_MOVED) { executeIfListening { onProjectileMoved(it) }}
+        subscribeEvent<ProjectileSpawned>(Events.PROJECTILE_MOVED) { executeIfListening { onProjetileSpawned(it) }}
+        subscribeEvent<ResizeableChanged>(Events.RESIZEABLE_CHANGED) { executeIfListening { onResizeableChanged(it) }}
+        subscribeEvent<ScriptCallbackEvent>(Events.SCRIPT_CALLBACK) { executeIfListening { onScriptCallbackEvent(it) }}
+        subscribeEvent<ScriptPostFired>(Events.SCRIPT_POST_FIRED) { executeIfListening { onScriptPostFired(it) }}
+        subscribeEvent<ScriptPreFired>(Events.SCRIPT_PRE_FIRED) { executeIfListening { onScriptPreFired(it) }}
+        subscribeEvent<SoundEffectPlayed>(Events.SOUND_EFFECT_PLAYED) { executeIfListening { onSoundEffectPlayed(it) }}
+        subscribeEvent<StatChanged>(Events.STAT_CHANGED) { executeIfListening { onStatChanged(it) }}
+        subscribeEvent<VarbitChanged>(Events.VARBIT_CHANGED) { executeIfListening { onVarbitChanged(it) }}
+        subscribeEvent<WallObjectChanged>(Events.WALL_OBJECT_CHANGED) { executeIfListening { onWallObjectChanged(it) }}
+        subscribeEvent<WallObjectDespawned>(Events.WALL_OBJECT_DESPAWNED) { executeIfListening { onWallObjectDespawned(it) }}
+        subscribeEvent<WallObjectSpawned>(Events.WALL_OBJECT_SPAWNED) { executeIfListening { onWallObjectSpawned(it) }}
+        subscribeEvent<WidgetHiddenChanged>(Events.WIDGET_HIDDEN_CHANGED) { executeIfListening { onWidgetHiddenChanged(it) }}
+        subscribeEvent<WidgetLoaded>(Events.WIDGET_LOADED) { executeIfListening { onWidgetLoaded(it) }}
+        subscribeEvent<WidgetPositioned>(Events.WIDGET_POSITIONED) { executeIfListening { onWidgetPositioned(it) }}
+        subscribeEvent<WidgetPressed>(Events.WIDGET_PRESSED) { executeIfListening { onWidgetPressed(it) }}
+        subscribeEvent<WorldListLoad>(Events.WORLD_LIST_LOAD) { executeIfListening { onWorldListLoad(it) }}
+        subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening { onNPCSpawned(it) }}
+        subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNPCDespawned(it) }}
+        subscribeEvent<PluginChanged>(Events.PLANE_CHANGED) { executeIfListening { onPluginChanged(it) }}
+        subscribeEvent<InfoBoxMenuClicked>(meteor.events.Events.INFO_BOX_MENU_CLICKED) { executeIfListening { onInfoBoxMenuClicked(it) } }
     }
 
-    private inline fun <reified T : Any> subscribe(type: Enum<*>, noinline unit: (T) -> Unit) {
+    private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {
         kSubscribe<T>(type) { event -> unit.invoke(event.data) }
-    }
-
-    private fun generateTag(): String {
-        while (true) {
-            val r = (1..40)
-                .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
-                .map(charPool::get)
-                .joinToString("");
-            if (!tags.contains(r))
-                return r
-        }
-    }
-
-    companion object {
-        var tags = ArrayList<String>()
     }
 }

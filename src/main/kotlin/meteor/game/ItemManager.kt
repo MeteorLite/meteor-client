@@ -30,7 +30,6 @@ import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import com.google.common.cache.LoadingCache
 import com.google.common.collect.ImmutableMap
-import eventbus.Events
 import eventbus.events.GameStateChanged
 import eventbus.events.PostItemComposition
 import meteor.Logger
@@ -41,7 +40,6 @@ import net.runelite.api.*
 import net.runelite.http.api.item.ItemClient
 import net.runelite.http.api.item.ItemPrice
 import net.runelite.http.api.item.ItemStats
-import org.rationalityfrontline.kevent.Event
 import java.awt.Color
 import java.awt.image.BufferedImage
 import java.util.*
@@ -91,7 +89,7 @@ object ItemManager : EventSubscriber() {
             println("No route for RuneLite item prices http-api... System.exit")
             exitProcess(1)
         }
-        subscribe()
+        subscribeEvents()
     }
 
     private fun loadPrices() {

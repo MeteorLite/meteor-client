@@ -71,6 +71,7 @@ object PluginManager {
                 throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
             plugins.add(plugin)
+            plugin.subscribeEvents()
             if (plugin.isEnabled())
                 start(plugin)
     }

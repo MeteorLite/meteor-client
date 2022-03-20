@@ -27,7 +27,6 @@ package meteor.ui.overlay.infobox
 import com.google.common.base.Preconditions
 import com.google.common.base.Strings
 import com.google.common.collect.ComparisonChain
-import eventbus.Events
 import eventbus.events.ConfigChanged
 import meteor.Configuration
 import meteor.config.ConfigManager
@@ -40,7 +39,6 @@ import meteor.ui.overlay.OverlayMenuEntry
 import java.awt.image.BufferedImage
 import meteor.util.AsyncBufferedImage
 import net.runelite.api.MenuAction
-import org.rationalityfrontline.kevent.Event
 import java.awt.Graphics
 import java.util.Collections
 import java.util.Comparator
@@ -191,13 +189,13 @@ object InfoBoxManager : EventSubscriber() {
             orientation
         )
         OverlayManager.add(infoBoxOverlay)
-        infoBoxOverlay.subscribe()
+        infoBoxOverlay.subscribeEvents()
         return infoBoxOverlay
     }
 
     private fun removeOverlay(overlay: InfoBoxOverlay?) {
         unsetOrientation(overlay!!.name)
-        overlay.unregisterSubscribers()
+        overlay.eventListening = false
         OverlayManager.remove(overlay)
         layers.remove(overlay.name)
     }

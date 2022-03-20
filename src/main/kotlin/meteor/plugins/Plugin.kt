@@ -49,7 +49,11 @@ open class Plugin : EventSubscriber() {
     open val config: Config? = null
 
     fun unsubscribe() {
-        EventBus.removeSubscribersByTag(tag)
+        eventListening = false
+    }
+
+    fun subscribe() {
+        eventListening = true
     }
 
     fun isEnabled() : Boolean {
