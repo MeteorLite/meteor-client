@@ -72,6 +72,7 @@ class NpcAggroLinesPlugin : Plugin() {
     private var previousUnknownCenter: WorldPoint? = null
     private var loggingIn = false
     private var notifyOnce = false
+    private var playerName = ""
 
     override fun onStop() {
         removeTimer()
@@ -142,6 +143,10 @@ class NpcAggroLinesPlugin : Plugin() {
     }
 
     override fun onGameTick(it: GameTick) {
+        playerName = client.localPlayer!!.name!!
+        if (playerName == "")
+            return
+        loadConfig(skipTimer = true)
         val newLocation = client.localPlayer!!.worldLocation
         if (currentTimer != null && currentTimer!!.cull() && notifyOnce) {
             if (config.notifyExpire()) {
@@ -154,7 +159,6 @@ class NpcAggroLinesPlugin : Plugin() {
                 safeCenters[0] = null
                 safeCenters[1] = newLocation
                 resetTimer()
-                calculateLinesToDisplay()
 
                 // We don't know where the previous area was, so if the player e.g.
                 // entered a dungeon and then goes back out, he/she may enter the previous
@@ -167,7 +171,6 @@ class NpcAggroLinesPlugin : Plugin() {
             // center point was found, which means we don't know where it is again.
             safeCenters[1] = null
             removeTimer()
-            calculateLinesToDisplay()
         }
         if (safeCenters[1] != null) {
             if (Arrays.stream(safeCenters)
@@ -176,11 +179,12 @@ class NpcAggroLinesPlugin : Plugin() {
                 safeCenters[0] = safeCenters[1]
                 safeCenters[1] = newLocation
                 resetTimer()
-                calculateLinesToDisplay()
                 previousUnknownCenter = null
             }
         }
         lastPlayerLocation = newLocation
+        saveConfig()
+        calculateLinesToDisplay()
     }
 
     override fun onConfigChanged(it: ConfigChanged) {
@@ -193,83 +197,67 @@ class NpcAggroLinesPlugin : Plugin() {
         }
     }
 
-    private fun loadConfig() {
+    private fun loadConfig(skipTimer: Boolean = false) {
         safeCenters[0] = configManager.getConfiguration(
             NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_CENTER1,
+            playerName + NpcAggroLinesConfig.CONFIG_CENTER1,
             WorldPoint::class.java
         )
         safeCenters[1] = configManager.getConfiguration(
             NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_CENTER2,
+            playerName + NpcAggroLinesConfig.CONFIG_CENTER2,
             WorldPoint::class.java
         )
         lastPlayerLocation = configManager.getConfiguration(
             NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_LOCATION,
+            playerName + NpcAggroLinesConfig.CONFIG_LOCATION,
             WorldPoint::class.java
         )
-        val timeLeft = configManager.getConfiguration(
-            NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_DURATION,
-            Duration::class.java
-        )
-        if (timeLeft != null && !timeLeft.isNegative) {
-            createTimer(timeLeft)
+        if (!skipTimer) {
+            val timeLeft = configManager.getConfiguration(
+                NpcAggroLinesConfig.CONFIG_GROUP,
+                playerName + NpcAggroLinesConfig.CONFIG_DURATION,
+                Duration::class.java
+            )
+            if (timeLeft != null && !timeLeft.isNegative) {
+                createTimer(timeLeft)
+            }
         }
-    }
-
-    private fun resetConfig() {
-        configManager.unsetConfiguration(
-            NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_CENTER1
-        )
-        configManager.unsetConfiguration(
-            NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_CENTER2
-        )
-        configManager.unsetConfiguration(
-            NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_LOCATION
-        )
-        configManager.unsetConfiguration(
-            NpcAggroLinesConfig.CONFIG_GROUP,
-            NpcAggroLinesConfig.CONFIG_DURATION
-        )
     }
 
     private fun saveConfig() {
-        if (safeCenters[0] == null || safeCenters[1] == null || lastPlayerLocation == null || currentTimer == null) {
-            resetConfig()
-        } else {
+        safeCenters[0]?.let {
             configManager.setConfiguration(
                 NpcAggroLinesConfig.CONFIG_GROUP,
-                NpcAggroLinesConfig.CONFIG_CENTER1,
-                safeCenters[0]!!
-            )
-            configManager.setConfiguration(
-                NpcAggroLinesConfig.CONFIG_GROUP,
-                NpcAggroLinesConfig.CONFIG_CENTER2,
-                safeCenters[1]!!
-            )
-            configManager.setConfiguration(
-                NpcAggroLinesConfig.CONFIG_GROUP,
-                NpcAggroLinesConfig.CONFIG_LOCATION,
-                lastPlayerLocation!!
-            )
-            configManager.setConfiguration(
-                NpcAggroLinesConfig.CONFIG_GROUP,
-                NpcAggroLinesConfig.CONFIG_DURATION,
-                Duration.between(
-                    Instant.now(), currentTimer!!.endTime
-                )
+                playerName + NpcAggroLinesConfig.CONFIG_CENTER1,
+                it
             )
         }
+        safeCenters[1]?.let {
+            configManager.setConfiguration(
+                NpcAggroLinesConfig.CONFIG_GROUP,
+                playerName + NpcAggroLinesConfig.CONFIG_CENTER2,
+                it
+            )
+        }
+        lastPlayerLocation?.let {
+            configManager.setConfiguration(
+                NpcAggroLinesConfig.CONFIG_GROUP,
+                playerName + NpcAggroLinesConfig.CONFIG_LOCATION,
+                it
+            )
+        }
+        configManager.setConfiguration(
+            NpcAggroLinesConfig.CONFIG_GROUP,
+            playerName + NpcAggroLinesConfig.CONFIG_DURATION,
+            Duration.between(
+                Instant.now(), currentTimer!!.endTime
+            )
+        )
     }
 
     private fun onLogin() {
         loadConfig()
-        resetConfig()
         val newLocation = client.localPlayer!!.worldLocation!!
 
         // If the player isn't at the location he/she logged out at,
