@@ -87,17 +87,13 @@ object PluginManager {
     }
 
     fun stop(plugin: Plugin) {
-        plugin.unsubscribe()
         plugin.stop()
         plugin.onStop()
-        plugin.enabled = false
     }
 
      fun start(plugin: Plugin) {
          plugin.onStart()
          plugin.start()
-         plugin.subscribe()
-         plugin.enabled = true
     }
 
     fun shutdown() {

@@ -45,7 +45,7 @@ class QuestRunnerPlugin: Plugin() {
     }
 
     override fun onGameTick(it: GameTick) {
-        if (!enabled || currentQuest == null)
+        if (currentQuest == null)
             return
 
         if (waitTicks > 0)

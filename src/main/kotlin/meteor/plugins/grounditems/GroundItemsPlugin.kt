@@ -142,8 +142,7 @@ class GroundItemsPlugin : Plugin() {
         } else {
             collectedGroundItems.put(tile.worldLocation, item.id, groundItem)
         }
-        if (enabled)
-            handleLootbeam(tile.worldLocation)
+        handleLootbeam(tile.worldLocation)
     }
 
     override fun onItemDespawned(it: ItemDespawned) {
