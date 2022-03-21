@@ -38,6 +38,7 @@ import java.awt.BorderLayout
 import java.awt.Dimension
 import java.util.stream.Collectors
 import javax.swing.JPanel
+import javax.swing.WindowConstants.EXIT_ON_CLOSE
 
 object UI {
     var loaded = false
@@ -52,6 +53,7 @@ object UI {
 
     fun Window(): (@Composable FrameWindowScope.() -> Unit) {
         return {
+            this.window.defaultCloseOperation = EXIT_ON_CLOSE
             pluginsPanelIsOpen = remember { mutableStateOf(false) }
             pluginConfigurationIsOpen = remember { mutableStateOf(false) }
             log.info("Creating ${window.renderApi} Compose window")
