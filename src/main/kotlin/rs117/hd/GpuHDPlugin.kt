@@ -22,7 +22,6 @@ import meteor.ui.DrawManager
 import net.runelite.api.*
 import net.runelite.api.hooks.DrawCallbacks
 import org.jocl.CL
-import org.rationalityfrontline.kevent.Event
 import rs117.hd.GLUtil.glDeleteBuffer
 import rs117.hd.GLUtil.glDeleteFrameBuffer
 import rs117.hd.GLUtil.glDeleteRenderbuffers
@@ -53,6 +52,7 @@ import java.nio.Buffer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import kotlin.math.log10
+
 
 @PluginDescriptor(
     name = "GPU HD (beta)",
@@ -98,6 +98,7 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
     private var gl: GL4? = null
     private var glContext: GLContext? = null
     private var glDrawable: GLDrawable? = null
+    private var nextSceneReload: Long = 0L
     val LINUX_VERSION_HEADER: String = "#version 420\n" +
             "#extension GL_ARB_compute_shader : require\n" +
             "#extension GL_ARB_shader_storage_buffer_object : require\n" +
@@ -561,6 +562,84 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
         if (glGetProgram(gl!!, glProgram, GL2ES2.GL_VALIDATE_STATUS) == GL.GL_FALSE) {
             val err = glGetProgramInfoLog(gl!!, glProgram)
             throw ShaderException(err)
+        }
+    }
+
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group != "hd") {
+            return
+        }
+        val key = it.key
+        when (key) {
+            "groundTextures" -> {
+                configGroundTextures = config.groundTextures()
+                reloadScene()
+            }
+            "groundBlending" -> {
+                configGroundBlending = config.groundBlending()
+                reloadScene()
+            }
+            "waterEffects" -> {
+                configWaterEffects = config.waterEffects()!!
+                reloadScene()
+            }
+            "shadowsEnabled" -> {
+                configShadowsEnabled = config.shadowsEnabled()
+                clientThread.invoke {
+                    invokeOnMainThread {
+                        shutdownShadowMapFbo()
+                        initShadowMapFbo()
+                    }
+                }
+            }
+            "shadowResolution" -> clientThread.invoke {
+                invokeOnMainThread {
+                    shutdownShadowMapFbo()
+                    initShadowMapFbo()
+                }
+            }
+            "objectTextures" -> {
+                configObjectTextures = config.objectTextures()
+                reloadScene()
+            }
+            "tzhaarHD" -> {
+                configTzhaarHD = config.tzhaarHD()
+                reloadScene()
+            }
+            "projectileLights" -> configProjectileLights = config.projectileLights()
+            "npcLights" -> configNpcLights = config.npcLights()
+            "expandShadowDraw" -> configExpandShadowDraw = config.expandShadowDraw()
+            "macosIntelWorkaround" -> recompileProgram()
+            "unlockFps", "vsyncMode", "fpsTarget" -> {
+                log.debug("Rebuilding sync mode")
+                clientThread.invokeLater { invokeOnMainThread(this::setupSyncMode) }
+            }
+        }
+    }
+
+    private fun reloadScene() {
+        nextSceneReload = System.currentTimeMillis()
+    }
+
+    private fun setupSyncMode() {
+        val unlockFps = config.unlockFps()
+        client.isUnlockedFps = unlockFps
+
+        // Without unlocked fps, the client manages sync on its 20ms timer
+        val syncMode: HdPluginConfig.Companion.SyncMode = if (unlockFps) config.syncMode() else HdPluginConfig.Companion.SyncMode.OFF
+        when (syncMode) {
+            HdPluginConfig.Companion.SyncMode.ON -> {
+                gl!!.swapInterval = 1
+                client.setUnlockedFpsTarget(0)
+            }
+            HdPluginConfig.Companion.SyncMode.OFF -> {
+                gl!!.swapInterval = 0
+                client.setUnlockedFpsTarget(config.fpsTarget()) // has no effect with unlockFps=false
+            }
+            HdPluginConfig.Companion.SyncMode.ADAPTIVE -> {
+                gl!!.swapInterval = -1
+                client.setUnlockedFpsTarget(0)
+            }
         }
     }
 
@@ -1741,6 +1820,13 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
         smallModels = largeModels
         tempOffset = 0
         tempUvOffset = 0
+
+        // reload the scene if it was requested
+        if (nextSceneReload != 0L && nextSceneReload <= System.currentTimeMillis()) {
+            lightManager.reset();
+            uploadScene();
+            nextSceneReload = 0;
+        }
 
         // Texture on UI
         drawUi(overlayColor, canvasHeight, canvasWidth)

@@ -28,6 +28,8 @@ package rs117.hd
 import meteor.config.Config
 import meteor.config.ConfigAnnotations.*
 import rs117.hd.config.*
+import javax.sound.midi.Sequencer
+
 
 @ConfigGroup("hd")
 interface HdPluginConfig : Config {
@@ -354,6 +356,29 @@ interface HdPluginConfig : Config {
         return true
     }
 
+    @ConfigItem(
+        keyName = "vsyncMode",
+        name = "VSync Mode",
+        description = "Method to synchronize frame rate with refresh rate",
+        position = 6,
+        section = generalSettings
+    )
+    fun syncMode(): SyncMode {
+        return SyncMode.ADAPTIVE
+    }
+
+    @ConfigItem(
+        keyName = "fpsTarget",
+        name = "FPS Target",
+        description = "Target FPS when unlock FPS is enabled and Vsync mode is OFF",
+        position = 7,
+        section = generalSettings
+    )
+    @Range(min = 0, max = 999)
+    fun fpsTarget(): Int {
+        return 60
+    }
+
     companion object {
         /*====== General settings ======*/
         @ConfigSection(name = "General", description = "General settings", position = 0, closedByDefault = false)
@@ -380,5 +405,8 @@ interface HdPluginConfig : Config {
             closedByDefault = true
         )
         const val workaroundSettings = "workaroundSettings"
+        enum class SyncMode {
+            OFF, ON, ADAPTIVE
+        }
     }
 }
