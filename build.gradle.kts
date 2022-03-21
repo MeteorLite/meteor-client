@@ -1,7 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev609"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev620"
     java
 }
 
@@ -87,9 +87,19 @@ tasks {
                 }
             }
             jvmArgs(
+                "-XX:+UseZGC",
+                "-XX:ReservedCodeCacheSize=256m",
+                "-XX:InitialCodeCacheSize=256m",
+                "-XX:ConcGCThreads=4",
+                "-XX:ParallelGCThreads=8",
+                "-Xmx2048m",
+                "-Xlog:gc",
                 "-noverify",
                 "-ea",
-                "-Xmx2048m",
+                "-Dsun.java2d.opengl=true",
+                "-Dsun.java2d.accthreshold=0",
+                "-Dsun.java2d.uiScale=1.0",
+                "-Dsun.java2d.uiScale.enabled=false",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED"
@@ -121,7 +131,7 @@ tasks {
         targetCompatibility = JavaVersion.VERSION_17.toString()
 
         kotlinOptions {
-            jvmTarget = "17"
+            jvmTarget = "11"
             apiVersion = "1.6"
             languageVersion = "1.6"
         }
