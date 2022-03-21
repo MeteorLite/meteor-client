@@ -5,7 +5,7 @@ plugins {
     java
 }
 
-val release by rootProject.extra { "1.1.0" }
+val release by rootProject.extra { "1.1.1" }
 
 group = "meteor.client"
 version = "1.0.0"
@@ -93,11 +93,9 @@ tasks {
                 "-XX:+UseZGC",
                 "-XX:ReservedCodeCacheSize=256m",
                 "-XX:InitialCodeCacheSize=256m",
-                "-XX:ConcGCThreads=4",
-                "-XX:ParallelGCThreads=8",
-                "-Xmx2048m",
-                "-Xlog:gc",
-                "-noverify",
+                "-XX:ConcGCThreads=2",
+                "-XX:ParallelGCThreads=4",
+                "-Xmx1024m",
                 "-ea",
                 "-Dsun.java2d.opengl=true",
                 "-Dsun.java2d.accthreshold=0",

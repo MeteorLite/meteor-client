@@ -128,7 +128,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<InventoryChanged>(Events.INVENTORY_CHANGED) { executeIfListening { onInventoryChanged(it) }}
         subscribeEvent<ItemContainerChanged>(Events.ITEM_CONTAINER_CHANGED) { executeIfListening { onItemContainerChanged(it) }}
         subscribeEvent<ItemDespawned>(Events.ITEM_DESPAWNED) { executeIfListening { onItemDespawned(it) }}
-        subscribeEvent<ItemObtained>(Events.ITEM_OBAINED) { executeIfListening { onItemObtained(it) }}
+        subscribeEvent<ItemObtained>(Events.ITEM_OBTAINED) { executeIfListening { onItemObtained(it) }}
         subscribeEvent<ItemQuantityChanged>(Events.ITEM_QUANTITY_CHANGED) { executeIfListening { onItemQuantityChanged(it) }}
         subscribeEvent<ItemSpawned>(Events.ITEM_SPAWNED) { executeIfListening { onItemSpawned(it) }}
         subscribeEvent<LoginStateChanged>(Events.LOGIN_STATE_CHANGED) { executeIfListening { onLoginStateChanged(it) }}

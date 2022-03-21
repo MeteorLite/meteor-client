@@ -105,7 +105,6 @@ class XpTrackerPlugin : Plugin() {
                 fetchXp = true
                 lastWorldType = type
                 resetState()
-                assert(initializeTracker)
             }
         } else if (state == GameState.LOGGING_IN || state == GameState.HOPPING) {
             initializeTracker = true

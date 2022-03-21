@@ -9,6 +9,7 @@ import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.*
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.FrameWindowScope
+import androidx.compose.ui.window.WindowPlacement
 import eventbus.Events
 import eventbus.events.ConfigButtonClicked
 import meteor.Logger
@@ -50,9 +52,11 @@ object UI {
     var toolbarWidth: Float = 0.025f
     lateinit var lastPlugin: Plugin
 
-    fun Window(): (@Composable FrameWindowScope.() -> Unit) {
+
+    fun Window(placement: WindowPlacement): (@Composable FrameWindowScope.() -> Unit) {
         return {
             this.window.defaultCloseOperation = EXIT_ON_CLOSE
+            this.window.placement = Main.placement
             pluginsPanelIsOpen = remember { mutableStateOf(false) }
             pluginConfigurationIsOpen = remember { mutableStateOf(false) }
             log.info("Creating ${window.renderApi} Compose window")
@@ -454,7 +458,7 @@ object UI {
                 }
             }
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom,
-                modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight().background(Color(0xFF080808)).fillMaxWidth()) {
+                modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight(.5f).background(Color(0xFF080808)).fillMaxWidth()) {
                 MaterialTheme(colors = darkThemeColors) {
                     PluginConfigPanelToggleButton()
                 }

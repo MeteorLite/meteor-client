@@ -50,6 +50,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     var meteorConfig: MeteorConfig? = null
     var logger = Logger("meteor.Main")
     val eventBus = EventBus
+    var placement: WindowPlacement = WindowPlacement.Maximized
 
     private val timer = StopWatch()
 
@@ -68,10 +69,8 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
-            content = UI.Window() //::finishStartup is called at the end of this function
+            content = UI.Window(placement) //::finishStartup is called at the end of this function
         )
-
-
     }
     fun finishStartup() {
         client = Applet.asClient(Applet.applet)
