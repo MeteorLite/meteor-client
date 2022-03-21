@@ -478,7 +478,9 @@ class GpuHDPlugin : DrawCallbacks, Plugin() {
                         jawtWindow!!.lockSurface()
                     }
                     if (glContext != null) {
-                        glContext!!.destroy()
+                        try {
+                            glContext!!.destroy()
+                        } catch (_: Exception) {}
                     }
 
                     // this crashes on osx when the plugin is turned back on, don't know why
