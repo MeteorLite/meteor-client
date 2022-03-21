@@ -24,7 +24,7 @@
  */
 package meteor.input
 
-import Main.client
+import meteor.Main.client
 import net.runelite.api.GameState
 import meteor.Logger
 import java.awt.event.KeyEvent

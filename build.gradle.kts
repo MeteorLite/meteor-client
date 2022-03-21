@@ -5,7 +5,7 @@ plugins {
     java
 }
 
-val release by rootProject.extra { "1.0.13" }
+val release by rootProject.extra { "1.1.0" }
 
 group = "meteor.client"
 version = "1.0.0"
@@ -72,12 +72,15 @@ dependencies {
     implementation("io.insert-koin:koin-core:3.1.4")
     implementation("com.kitfox.svg:svg-salamander:1.0")
     implementation("com.formdev:flatlaf-extras:1.6.5")
+    compileOnly(group= "org.projectlombok", name= "lombok", version= "1.18.20")
+    annotationProcessor(group= "org.projectlombok", name= "lombok", version= "1.18.20")
+    implementation("org.slf4j:slf4j-api:1.7.12")
 }
 
 tasks {
     compose.desktop {
         application {
-            mainClass = "Main"
+            mainClass = "meteor.Main"
             nativeDistributions {
                 targetFormats(Dmg, Msi, Deb)
                 includeAllModules = true

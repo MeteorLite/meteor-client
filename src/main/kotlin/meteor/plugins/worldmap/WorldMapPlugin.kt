@@ -82,7 +82,7 @@ class WorldMapPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new == GameState.LOGGED_IN)
+        if (it.gamestate == GameState.LOGGED_IN)
             updateShownIcons()
     }
 

@@ -60,7 +60,7 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
             return null
         }
         val menuEntry = menuEntries[last]
-        val action = MenuAction.of(menuEntry.type)
+        val action = MenuAction.of(menuEntry.type.id)
         val widgetId = menuEntry.param1
         val groupId = WidgetInfo.TO_GROUP(widgetId)
         val isAlching = menuEntry.getOption() == "Cast" && menuEntry.getTarget()

@@ -24,7 +24,7 @@
  */
 package meteor.game
 
-import Main
+import meteor.Main
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import meteor.rs.ClientThread

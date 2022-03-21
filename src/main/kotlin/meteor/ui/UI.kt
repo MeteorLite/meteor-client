@@ -1,6 +1,6 @@
 package meteor.ui
 
-import Main
+import meteor.Main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,7 +20,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.FrameWindowScope
@@ -61,7 +60,7 @@ object UI {
                 BoxWithConstraints(modifier = Modifier.fillMaxSize().background(darkThemeColors.background)) {
                     contentSize = Dimension(this.constraints.maxWidth, this.constraints.maxHeight)
                     Row(modifier = Modifier.background(darkThemeColors.background)) {
-                        OSRSApplet(this@BoxWithConstraints.constraints)
+                        OSRSApplet()
                         if (pluginConfigurationIsOpen.value)
                             ConfigPanel()
                         else if (pluginsPanelIsOpen.value)
@@ -423,7 +422,7 @@ object UI {
     }
 
     @Composable
-    fun OSRSApplet(constraints: Constraints) {
+    fun OSRSApplet() {
         val mod: Modifier = if (pluginsPanelIsOpen.value)
             Modifier.fillMaxWidth(((1f / 5) * 4) - toolbarWidth).fillMaxHeight()
         else

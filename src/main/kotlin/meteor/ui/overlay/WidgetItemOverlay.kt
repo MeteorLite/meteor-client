@@ -24,7 +24,7 @@
  */
 package meteor.ui.overlay
 
-import Main.overlayManager
+import meteor.Main.overlayManager
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
@@ -33,7 +33,6 @@ import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Rectangle
 import java.util.*
-import meteor.ui.overlay.ItemOverlayMode.*
 
 abstract class WidgetItemOverlay(vararg overlayModes: ItemOverlayMode) : Overlay() {
     init {

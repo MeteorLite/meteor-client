@@ -18,7 +18,7 @@ class FishingPlugin: Plugin() {
     var currentSpot: FishingSpot? = null
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        when (it.new) {
+        when (it.gamestate) {
             GameState.CONNECTION_LOST,
             GameState.LOGIN_SCREEN,
             GameState.HOPPING -> {

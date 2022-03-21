@@ -59,7 +59,7 @@ override val config = configuration<MinimapConfig>()
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new == GameState.LOGIN_SCREEN && originalDotSprites == null) {
+        if (it.gamestate == GameState.LOGIN_SCREEN && originalDotSprites == null) {
             storeOriginalDots()
             replaceMapDots()
         }

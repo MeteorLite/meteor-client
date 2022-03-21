@@ -29,16 +29,13 @@ open class EventSubscriber : KEventSubscriber {
     open fun onPlayerMenuOptionsChanged(it: PlayerMenuOptionsChanged) {}
     open fun onPlayerDespawned(it: PlayerDespawned) {}
     open fun onOverheadPrayerChanged(it: OverheadPrayerChanged) {}
-    open fun onPacketSent(it: PacketSent) {}
     open fun onNpcActionChanged(it: NpcActionChanged) {}
     open fun onMenuOptionClicked(it: MenuOptionClicked) {}
-    open fun onMenuOpened(it: MenuOpened) {}
     open fun onMenuEntryAdded(it: MenuEntryAdded) {}
     open fun onLoginStateChanged(it: LoginStateChanged) {}
     open fun onItemQuantityChanged(it: ItemQuantityChanged) {}
     open fun onItemObtained(it: ItemObtained) {}
     open fun onItemContainerChanged(it: ItemContainerChanged) {}
-    open fun onInvokeMenuAction(it: InvokeMenuAction) {}
     open fun onInventoryChanged(it: InventoryChanged) {}
     open fun onHealthBarUpdated(it: HealthBarUpdated) {}
     open fun onGraphicsObjectCreated(it: GraphicsObjectCreated) {}
@@ -129,7 +126,6 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<HealthBarUpdated>(Events.HEALTH_BAR_UPDATED) { executeIfListening { onHealthBarUpdated(it) }}
         subscribeEvent<InteractingChanged>(Events.INTERACTING_CHANGED) { executeIfListening { onInteractingChanged(it) }}
         subscribeEvent<InventoryChanged>(Events.INVENTORY_CHANGED) { executeIfListening { onInventoryChanged(it) }}
-        subscribeEvent<InvokeMenuAction>(Events.INVOKE_MENU_ACTION) { executeIfListening { onInvokeMenuAction(it) }}
         subscribeEvent<ItemContainerChanged>(Events.ITEM_CONTAINER_CHANGED) { executeIfListening { onItemContainerChanged(it) }}
         subscribeEvent<ItemDespawned>(Events.ITEM_DESPAWNED) { executeIfListening { onItemDespawned(it) }}
         subscribeEvent<ItemObtained>(Events.ITEM_OBAINED) { executeIfListening { onItemObtained(it) }}
@@ -137,13 +133,11 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<ItemSpawned>(Events.ITEM_SPAWNED) { executeIfListening { onItemSpawned(it) }}
         subscribeEvent<LoginStateChanged>(Events.LOGIN_STATE_CHANGED) { executeIfListening { onLoginStateChanged(it) }}
         subscribeEvent<MenuEntryAdded>(Events.MENU_ENTRY_ADDED) { executeIfListening { onMenuEntryAdded(it) }}
-        subscribeEvent<MenuOpened>(Events.MENU_OPENED) { executeIfListening { onMenuOpened(it) }}
         subscribeEvent<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) { executeIfListening { onMenuOptionClicked(it) }}
         subscribeEvent<NpcActionChanged>(Events.NPC_ACTION_CHANGED) { executeIfListening { onNpcActionChanged(it) }}
         subscribeEvent<NpcChanged>(Events.NPC_CHANGED) { executeIfListening { onNpcChanged(it) }}
         subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNpcDespawned(it) }}
         subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening { onNpcSpawned(it) }}
-        subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening { onPacketSent(it) }}
         subscribeEvent<OverheadTextChanged>(Events.OVERHEAD_TEXT_CHANGED) { executeIfListening { onOverheadTextChanged(it) }}
         subscribeEvent<OverheadPrayerChanged>(Events.OVERHEAD_PRAYER_CHANGED) { executeIfListening { onOverheadPrayerChanged(it) }}
         subscribeEvent<PlayerDespawned>(Events.PLAYER_DESPAWNED) { executeIfListening { onPlayerDespawned(it) }}

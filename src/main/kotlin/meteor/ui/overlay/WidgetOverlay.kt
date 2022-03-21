@@ -113,10 +113,6 @@ open class WidgetOverlay private constructor( private val widgetInfo: WidgetInfo
                     WidgetOverlay(WidgetInfo.VOLCANIC_MINE_STABILITY_INFOBOX_GROUP,
                             OverlayPosition.BOTTOM_LEFT),
                     WidgetOverlay(WidgetInfo.MULTICOMBAT_FIXED, OverlayPosition.BOTTOM_RIGHT),
-                    WidgetOverlay(WidgetInfo.MULTICOMBAT_RESIZEABLE_MODERN,
-                            OverlayPosition.CANVAS_TOP_RIGHT),
-                    WidgetOverlay(WidgetInfo.MULTICOMBAT_RESIZEABLE_CLASSIC,
-                            OverlayPosition.CANVAS_TOP_RIGHT),
                     WidgetOverlay(WidgetInfo.TEMPOROSS_STATUS_INDICATOR, OverlayPosition.TOP_LEFT)
             )
         }

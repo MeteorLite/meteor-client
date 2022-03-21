@@ -26,6 +26,7 @@ package meteor.plugins.mousetooltips
 
 import com.google.common.base.Strings
 import com.google.common.collect.ImmutableSet
+import meteor.Main
 import meteor.ui.overlay.*
 import java.awt.Graphics2D
 import net.runelite.api.widgets.WidgetInfo
@@ -48,7 +49,7 @@ internal class MouseTooltipOverlay(var config: MouseTooltipConfig) : Overlay() {
         val menuEntry = menuEntries[last]
         val target = menuEntry.getTarget()
         val option = menuEntry.getOption()
-        val type = MenuAction.of(menuEntry.type)
+        val type = MenuAction.of(menuEntry.type.id)
         if (type == MenuAction.RUNELITE_OVERLAY || type == MenuAction.CC_OP_LOW_PRIORITY) {
             // These are always right click only
             return null

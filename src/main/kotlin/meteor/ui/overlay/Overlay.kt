@@ -24,7 +24,7 @@
  */
 package meteor.ui.overlay
 
-import Main
+import meteor.Main
 import com.google.common.base.Strings
 import meteor.plugins.EventSubscriber
 import meteor.ui.components.LayoutableRenderableEntity

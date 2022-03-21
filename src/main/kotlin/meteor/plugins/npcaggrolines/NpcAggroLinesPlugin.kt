@@ -24,8 +24,7 @@
  */
 package meteor.plugins.npcaggrolines
 
-import Main
-import com.google.common.base.Splitter
+import meteor.Main
 import eventbus.events.ConfigChanged
 import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
@@ -270,7 +269,7 @@ class NpcAggroLinesPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        when (it.new) {
+        when (it.gamestate) {
             GameState.LOGGED_IN -> {
                 if (loggingIn) {
                     loggingIn = false

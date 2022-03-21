@@ -27,6 +27,7 @@ package meteor.ui.overlay.infobox
 
 import com.google.common.base.Strings
 import eventbus.events.MenuOptionClicked
+import meteor.Main
 import meteor.events.Events
 import meteor.events.InfoBoxMenuClicked
 import meteor.ui.components.ComponentConstants.STANDARD_BACKGROUND_COLOR

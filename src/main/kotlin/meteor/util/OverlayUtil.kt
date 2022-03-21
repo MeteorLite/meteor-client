@@ -1,5 +1,6 @@
 package meteor.util
 
+import meteor.Main
 import net.runelite.api.Actor
 import net.runelite.api.Perspective
 import net.runelite.api.Point

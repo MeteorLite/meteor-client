@@ -25,6 +25,7 @@
  */
 package meteor.input
 
+import meteor.Main
 import java.awt.Component
 import java.awt.event.MouseWheelEvent
 

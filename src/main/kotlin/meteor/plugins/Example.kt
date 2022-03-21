@@ -16,7 +16,7 @@ class ExamplePlugin: Plugin() {
 
     override fun onStart() {
         EventBus.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) {
-            when (it.data.new) {
+            when (it.data.gamestate) {
                 GameState.LOGGING_IN, GameState.HOPPING -> {
                     //println("Shits pretty slick")
                 }

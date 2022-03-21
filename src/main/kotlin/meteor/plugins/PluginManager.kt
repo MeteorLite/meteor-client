@@ -1,6 +1,5 @@
 package meteor.plugins
 
-import meteor.api.ApiTestPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
@@ -9,7 +8,6 @@ import meteor.plugins.bank.BankPlugin
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.chatfilter.ChatFilterPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
-import meteor.plugins.questrunner.QuestRunnerPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
@@ -25,14 +23,14 @@ import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
-import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
-import rs117.hd.GpuHDPlugin
+import rs117.hd.HdPlugin
 import java.lang.RuntimeException
 
 object PluginManager {
     var plugins = ArrayList<Plugin>()
     init {
+        init<HdPlugin>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
@@ -48,7 +46,6 @@ object PluginManager {
         init<GroundItemsPlugin>()
         init<ItemPricesPlugin>()
         init<KeyboardBankPinPlugin>()
-        init<GpuHDPlugin>()
         init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
         init<NpcAggroLinesPlugin>()
@@ -59,10 +56,6 @@ object PluginManager {
         init<StretchedModePlugin>()
         init<WorldMapPlugin>()
         init<XpTrackerPlugin>()
-
-        init<ApiTestPlugin>()
-        init<WorldMapWalkerPlugin>()
-        init<QuestRunnerPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {

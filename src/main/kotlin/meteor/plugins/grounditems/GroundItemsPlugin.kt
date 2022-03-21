@@ -41,6 +41,7 @@ import eventbus.events.ItemQuantityChanged
 import eventbus.events.ItemSpawned
 import eventbus.events.MenuEntryAdded
 import eventbus.events.MenuOptionClicked
+import meteor.Main
 import meteor.game.ItemStack
 import meteor.input.KeyManager
 import meteor.input.MouseManager
@@ -58,7 +59,6 @@ import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.util.Text
-import org.rationalityfrontline.kevent.Event
 import java.awt.Color
 import java.awt.Rectangle
 import java.time.Instant
@@ -125,7 +125,7 @@ class GroundItemsPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new == GameState.LOADING) {
+        if (it.gamestate == GameState.LOADING) {
             collectedGroundItems.clear()
             lootbeams.clear()
         }
@@ -195,7 +195,7 @@ class GroundItemsPlugin : Plugin() {
             outer@ for (i in menuEntries.indices.reversed()) {
                 val menuEntry = menuEntries[i]
                 val menuType = menuEntry.type
-                if (menuType == FIRST_OPTION || menuType == SECOND_OPTION || menuType == THIRD_OPTION || menuType == FOURTH_OPTION || menuType == FIFTH_OPTION || menuType == EXAMINE_ITEM) {
+                if (menuType.id == FIRST_OPTION || menuType.id  == SECOND_OPTION || menuType.id  == THIRD_OPTION || menuType.id  == FOURTH_OPTION || menuType.id  == FIFTH_OPTION || menuType.id  == EXAMINE_ITEM) {
                     for (entryWCount in newEntries) {
                         if (entryWCount!!.entry == menuEntry) {
                             entryWCount.increment()
@@ -303,10 +303,10 @@ class GroundItemsPlugin : Plugin() {
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
         if (config.itemHighlightMode() == ItemHighlightMode.MENU || config.itemHighlightMode() == ItemHighlightMode.BOTH) {
             val telegrabEntry =
-                it.option == "Cast" && it.target.startsWith(TELEGRAB_TEXT) && it.type == CAST_ON_ITEM
-            if ((it.option == "Take" && it.type == THIRD_OPTION) || telegrabEntry) {
+                it.option == "Cast" && it.target!!.startsWith(TELEGRAB_TEXT) && it.opcode == CAST_ON_ITEM
+            if ((it.option == "Take" && it.opcode == THIRD_OPTION) || telegrabEntry) {
                 val itemId = it.identifier
-                val sceneX = it.actionParam0
+                val sceneX = it.param0
                 val sceneY = it.param1
                 val menuEntries = client.menuEntries
                 val lastEntry = menuEntries[menuEntries.size - 1]

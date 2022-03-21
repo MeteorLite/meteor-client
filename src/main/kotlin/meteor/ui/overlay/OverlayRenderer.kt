@@ -1,8 +1,8 @@
 package meteor.ui.overlay
 
-import Main.client
-import Main.fontManager
-import Main.overlayManager
+import meteor.Main.client
+import meteor.Main.fontManager
+import meteor.Main.overlayManager
 import com.google.common.base.MoreObjects
 import com.google.common.primitives.Ints
 import eventbus.Events
@@ -13,7 +13,6 @@ import meteor.input.KeyManager
 import meteor.input.MouseAdapter
 import meteor.input.MouseManager
 import meteor.rs.ClientThread
-import meteor.util.JagexColors
 import net.runelite.api.*
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
@@ -515,7 +514,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         )
     }
 
-    private fun createRightClickMenuEntries(overlay: Overlay): Array<MenuEntry>? {
+/*    private fun createRightClickMenuEntries(overlay: Overlay): Array<MenuEntry>? {
         val menuEntries: List<OverlayMenuEntry> = overlay.menuEntries
         if (menuEntries.isEmpty()) {
             return null
@@ -533,7 +532,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             entries.add(entry)
         }
         return entries.toArray(arrayOf(MenuEntry()))
-    }
+    }*/
 
     fun renderAfterInterface(graphics: Graphics2D, interfaceId: Int,
                              widgetItems: Collection<WidgetItem>) {
@@ -655,7 +654,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                     }
                     if (!client.isMenuOpen && !client.spellSelected && bounds.contains(mouse)) {
                         if (menuEntries == null) {
-                            menuEntries = createRightClickMenuEntries(overlay)
+                            //menuEntries = createRightClickMenuEntries(overlay)
                         }
                         if (focusedOverlay == null) {
                             focusedOverlay = overlay

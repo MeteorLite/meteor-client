@@ -1,12 +1,11 @@
 package meteor.plugins.autologin
 
-import Main
+import meteor.Main
 import eventbus.events.GameStateChanged
 import eventbus.events.LoginStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.GameState
-import org.rationalityfrontline.kevent.Event
 import java.awt.Canvas
 import java.awt.event.KeyEvent
 import java.util.concurrent.ScheduledExecutorService
@@ -22,7 +21,7 @@ class AutoLoginPlugin : Plugin() {
     private val executor: ScheduledExecutorService = Main.executor
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new == GameState.LOGIN_SCREEN && client.loginIndex == 0) {
+        if (it.gamestate == GameState.LOGIN_SCREEN && client.loginIndex == 0) {
             executor.schedule(Runnable { client.loginIndex = 2 }, 2000, TimeUnit.MILLISECONDS)
             executor.schedule(Runnable { login() }, 2000, TimeUnit.MILLISECONDS)
         }

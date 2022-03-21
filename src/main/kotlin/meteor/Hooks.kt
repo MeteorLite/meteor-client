@@ -1,7 +1,7 @@
 package meteor
 
-import Main.client
-import Main.overlayRenderer
+import meteor.Main.client
+import meteor.Main.overlayRenderer
 import eventbus.Events
 import eventbus.events.BeforeMenuRender
 import eventbus.events.BeforeRender
@@ -11,10 +11,8 @@ import meteor.input.KeyManager
 import meteor.input.MouseManager
 import meteor.rs.ClientThread
 import meteor.ui.overlay.OverlayLayer
-import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.ui.overlay.infobox.InfoBoxManager.cull
 import meteor.util.RSTimeUnit
-import net.runelite.api.BufferProvider
 import net.runelite.api.GameState
 import net.runelite.api.MainBufferProvider
 import net.runelite.api.Renderable
@@ -29,6 +27,7 @@ import java.awt.event.MouseWheelEvent
 import java.awt.image.BufferedImage
 import java.awt.image.VolatileImage
 import org.rationalityfrontline.kevent.KEVENT as EventBus
+
 
 @Suppress("UNCHECKED_CAST")
 class Hooks : Callbacks {
@@ -51,7 +50,7 @@ class Hooks : Callbacks {
 
     init {
         EventBus.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) { event ->
-            when (event.data.new ) {
+            when (event.data.gamestate ) {
                 GameState.LOGGING_IN, GameState.HOPPING -> {
                     ignoreNextNpcUpdate = true
                 }
@@ -147,16 +146,12 @@ class Hooks : Callbacks {
         }
 
         // Stretch the game image if the user has that enabled
-
-        // Stretch the game image if the user has that enabled
         val image = mainBufferProvider.image
         val finalImage: Image
         if (client.isStretchedEnabled) {
             val gc: GraphicsConfiguration = client.canvas.graphicsConfiguration
             val stretchedDimensions: Dimension = client.stretchedDimensions
-            if (lastStretchedDimensions == null || lastStretchedDimensions != stretchedDimensions
-                    || (stretchedImage != null
-                            && stretchedImage!!.validate(gc) == VolatileImage.IMAGE_INCOMPATIBLE)) {
+            if (lastStretchedDimensions == null || lastStretchedDimensions != stretchedDimensions) {
                 /*
 					Reuse the resulting image instance to avoid creating an extreme amount of objects
 				 */
@@ -188,7 +183,7 @@ class Hooks : Callbacks {
 
         // finalImage is backed by the client buffer which will change soon. make a copy
         // so that callbacks can safely use it later from threads.
-        drawManager.processDrawComplete { copy(finalImage) }
+        //drawManager.processDrawComplete { copy(finalImage) }
     }
 
     private fun copy(src: Image): Image {
@@ -278,7 +273,7 @@ class Hooks : Callbacks {
     companion object {
         @JvmStatic
         fun clearColorBuffer(x: Int, y: Int, width: Int, height: Int, color: Int) {
-            val bp: BufferProvider = client.bufferProvider
+            val bp = client.bufferProvider
             val canvasWidth = bp.width
             val pixels = bp.pixels
 
@@ -301,7 +296,7 @@ class Hooks : Callbacks {
                 drawCallbacks
                         .draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
             } else {
-                renderable.`draw$api`(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
+                renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
             }
         }
 

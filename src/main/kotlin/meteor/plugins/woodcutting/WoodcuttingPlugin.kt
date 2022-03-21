@@ -142,7 +142,7 @@ class WoodcuttingPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        when (it.new) {
+        when (it.gamestate) {
             GameState.HOPPING -> {
                 respawns.clear()
                 treeObjects.clear()

@@ -121,7 +121,7 @@ class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
             var composition = npc.composition
             var color = if (composition.combatLevel > 1) YELLOW else ORANGE
             if (composition.configs != null) {
-                val transformedComposition = composition.`transform$api`()
+                val transformedComposition = composition.transform()
                 if (transformedComposition == null) {
                     color = GRAY
                 } else {

@@ -76,7 +76,7 @@ class ChatFilterPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        when (it.new) {
+        when (it.gamestate) {
             GameState.HOPPING, GameState.LOGGING_IN -> duplicateChatCache.values.forEach(
                 Consumer { d: Duplicate -> d.messageId = -1 } as (Duplicate?) -> Unit)
             else -> {}
@@ -95,7 +95,7 @@ class ChatFilterPlugin : Plugin() {
         var message = stringStack[stringStackSize - 1]
 
         val chatMessageType = ChatMessageType.of(messageType)
-        val messageNode = client.messages.`get$api`(messageId.toLong())
+        val messageNode = client.messages.get(messageId.toLong())
         val name = messageNode.name
         var duplicateCount = 0
         var blockMessage = false

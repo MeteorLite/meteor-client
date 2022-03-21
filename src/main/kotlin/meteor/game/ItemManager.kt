@@ -24,8 +24,8 @@
  */
 package meteor.game
 
-import Main.client
-import Main.httpClient
+import meteor.Main.client
+import meteor.Main.httpClient
 import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import com.google.common.cache.LoadingCache
@@ -122,8 +122,8 @@ object ItemManager : EventSubscriber() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new == GameState.HOPPING
-                || it.new == GameState.LOGIN_SCREEN) {
+        if (it.gamestate == GameState.HOPPING
+                || it.gamestate == GameState.LOGIN_SCREEN) {
             itemCompositions.invalidateAll()
         }
     }

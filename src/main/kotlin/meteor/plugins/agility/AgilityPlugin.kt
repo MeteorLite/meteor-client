@@ -24,7 +24,7 @@ class AgilityPlugin : Plugin() {
     var marks: MutableList<Tile> = ArrayList()
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.new == GameState.LOADING) {
+        if (it.gamestate == GameState.LOADING) {
             marks.clear()
             obstacles.clear()
         }

@@ -161,12 +161,12 @@ class WorldMapOverlay : Overlay() {
                         if (target == null) {
                             target = worldPoint.worldPoint
                         }
-                        val entry = MenuEntry()
+/*                        val entry = MenuEntry()
                         entry.type = MenuAction.RUNELITE.id
                         entry.option = FOCUS_ON
                         entry.target = ColorUtil.wrapWithColorTag(worldPoint.name!!, JagexColors.MENU_TARGET)
                         entry.identifier = target!!.plane shl 28 or (target.x shl 14) or target.y
-                        mapMenuEntries.add(entry)
+                        mapMenuEntries.add(entry)*/
                     }
                 }
             }

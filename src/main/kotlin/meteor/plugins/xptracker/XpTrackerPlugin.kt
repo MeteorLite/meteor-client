@@ -25,7 +25,7 @@
  */
 package meteor.plugins.xptracker
 
-import Main
+import meteor.Main
 import com.google.common.collect.ImmutableList
 import eventbus.events.*
 import meteor.game.NPCManager
@@ -36,10 +36,7 @@ import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.Overlay
 import net.runelite.api.*
 import net.runelite.api.util.Text
-import net.runelite.api.widgets.WidgetID
-import net.runelite.api.widgets.WidgetInfo
 import net.runelite.http.api.xp.XpClient
-import org.rationalityfrontline.kevent.Event
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -96,7 +93,7 @@ class XpTrackerPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        val state = it.new
+        val state = it.gamestate
         if (state == GameState.LOGGED_IN) {
             // LOGGED_IN is triggered between region changes too.
             // Check that the username changed or the world type changed.
@@ -345,13 +342,13 @@ class XpTrackerPlugin : Plugin() {
         rebuildSkills()
     }
 
-    override fun onMenuEntryAdded(it: MenuEntryAdded) {
+/*    override fun onMenuEntryAdded(it: MenuEntryAdded) {
         val widgetID = it.param1
         if (WidgetInfo.TO_GROUP(widgetID) == WidgetID.SKILLS_GROUP_ID && it.option.startsWith("View")
             && config.skillTabOverlayMenuOptions()
         ) {
             // Get skill from menu option, eg. "View <col=ff981f>Attack</col> guide"
-            val skillText = it.option.split(" ").toTypedArray()[1]
+            val skillText = it.option!!.split(" ").toTypedArray()[1]
             val skill = Skill.valueOf(Text.removeTags(skillText).uppercase(Locale.getDefault()))
             var menuEntries = client.menuEntries
             menuEntries = Arrays.copyOf(menuEntries, menuEntries.size + 1)
@@ -365,10 +362,10 @@ class XpTrackerPlugin : Plugin() {
             menuEntry.type = MenuAction.RUNELITE.id
             client.menuEntries = menuEntries
         }
-    }
+    }*/
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        if (it.menuAction.id == MenuAction.RUNELITE.id
+        if (it.menuAction!!.id == MenuAction.RUNELITE.id
         ) {
             val skill = Skill.valueOf(Text.removeTags(it.menuTarget).uppercase(Locale.getDefault()))
             if (it.menuOption!! == "Add to canvas")

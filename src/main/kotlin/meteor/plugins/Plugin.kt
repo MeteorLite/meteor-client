@@ -1,10 +1,9 @@
 package meteor.plugins
 
-import Main
+import meteor.Main
 import meteor.config.Config
 import meteor.config.ConfigManager
 import meteor.ui.overlay.Overlay
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 open class Plugin : EventSubscriber() {
     val client = Main.client

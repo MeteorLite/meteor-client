@@ -29,6 +29,7 @@ import com.google.common.base.Strings
 import com.google.common.collect.ComparisonChain
 import eventbus.events.ConfigChanged
 import meteor.Configuration
+import meteor.Main
 import meteor.config.ConfigManager
 import meteor.events.InfoBoxMenuClicked
 import meteor.plugins.EventSubscriber

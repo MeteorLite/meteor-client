@@ -24,7 +24,7 @@
  */
 package meteor.ui.overlay.tooltips
 
-import Main
+import meteor.Main
 import meteor.ui.components.LayoutableRenderableEntity
 import meteor.ui.overlay.*
 import net.runelite.api.widgets.WidgetID

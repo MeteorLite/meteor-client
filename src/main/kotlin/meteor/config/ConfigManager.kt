@@ -2,7 +2,7 @@
 
 package meteor.config
 
-import Main
+import meteor.Main
 import com.google.common.base.Strings
 import com.google.common.collect.ComparisonChain
 import eventbus.Events

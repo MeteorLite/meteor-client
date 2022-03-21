@@ -26,6 +26,7 @@ package meteor.game;
 
 
 import meteor.Logger
+import meteor.Main
 import meteor.util.RunnableExceptionLogger
 import net.runelite.api.GameState
 import net.runelite.http.api.worlds.World
@@ -73,7 +74,7 @@ object WorldService {
                     ToIntFunction<World> { obj: World -> obj.id })
             )
             worlds = worldResult
-            //   Main.KEVENT_INSTANCE.post(worldResult)
+            //   meteor.Main.KEVENT_INSTANCE.post(worldResult)
         } catch (ex: IOException) {
             log.warn("Error looking up worlds", ex)
         }
