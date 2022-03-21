@@ -10,7 +10,7 @@ open class Plugin : EventSubscriber() {
     val client = Main.client
     val overlayManager = Main.overlayManager
     val overlays = ArrayList<Overlay>()
-    var enabled: Boolean = false
+    val enabled: Boolean
         get() = eventListening
 
     fun getDescriptor(): PluginDescriptor {
