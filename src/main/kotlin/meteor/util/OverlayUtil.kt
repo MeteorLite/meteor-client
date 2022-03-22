@@ -11,6 +11,8 @@ import java.awt.*
 
 
 object OverlayUtil {
+    private const val MINIMAP_DOT_RADIUS = 4
+
     fun renderPolygon(graphics: Graphics2D, poly: Shape, color: Color) {
         renderPolygon(graphics, poly, color, BasicStroke(2F))
     }
@@ -67,5 +69,22 @@ object OverlayUtil {
         val poly = Perspective.getCanvasTilePoly(client, lp) ?: return
         graphics.color = color
         graphics.fill(poly)
+    }
+
+    fun renderMinimapLocation(graphics: Graphics2D, mini: Point, color: Color?) {
+        graphics.color = Color.BLACK
+        graphics.fillOval(
+            mini.x - MINIMAP_DOT_RADIUS / 2,
+            mini.y - MINIMAP_DOT_RADIUS / 2 + 1,
+            MINIMAP_DOT_RADIUS,
+            MINIMAP_DOT_RADIUS
+        )
+        graphics.color = ColorUtil.colorWithAlpha(color!!, 0xFF)
+        graphics.fillOval(
+            mini.x - MINIMAP_DOT_RADIUS / 2,
+            mini.y - MINIMAP_DOT_RADIUS / 2,
+            MINIMAP_DOT_RADIUS,
+            MINIMAP_DOT_RADIUS
+        )
     }
 }

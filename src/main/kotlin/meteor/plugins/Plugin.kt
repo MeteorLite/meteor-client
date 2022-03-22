@@ -3,10 +3,12 @@ package meteor.plugins
 import meteor.Main
 import meteor.config.Config
 import meteor.config.ConfigManager
+import meteor.config.ConfigManager.getConfig
+import meteor.config.ConfigManager.setDefaultConfiguration
 import meteor.ui.overlay.Overlay
 
 open class Plugin : EventSubscriber() {
-    val client = Main.client
+    var client = Main.client
     val overlayManager = Main.overlayManager
     val overlays = ArrayList<Overlay>()
     val enabled: Boolean
@@ -18,6 +20,12 @@ open class Plugin : EventSubscriber() {
 
     open fun getName(): String? {
         return getDescriptor().name
+    }
+
+    fun javaConfiguration(clazz: Class<out Config>) : Config {
+        val c: Config = getConfig(clazz)!!
+        setDefaultConfiguration(c, false)
+        return c
     }
 
     inline fun <reified T : Config> configuration(): T {

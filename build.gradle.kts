@@ -5,10 +5,9 @@ plugins {
     java
 }
 
-val release by rootProject.extra { "1.1.1" }
-
+val apiRelease by rootProject.extra { "1.1.2" }
+val release by rootProject.extra { "1" }
 group = "meteor.client"
-version = "1.0.0"
 
 repositories {
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
@@ -23,13 +22,13 @@ repositories {
 
 dependencies {
     // meteor-api
-    implementation(group = "meteor", name = "api-rs", version = release)
-    implementation(group = "meteor", name = "api", version = release)
-    implementation(group = "meteor", name = "http", version = release)
-    implementation(group = "meteor", name = "annotations", version = release)
-    implementation(group = "meteor", name = "logger", version = release)
-    runtimeOnly(group = "meteor", name = "injected", version = release)
-    runtimeOnly(group = "meteor", name = "scripts", version = release)
+    implementation(group = "meteor", name = "api-rs", version = apiRelease)
+    implementation(group = "meteor", name = "api", version = apiRelease)
+    implementation(group = "meteor", name = "http", version = apiRelease)
+    implementation(group = "meteor", name = "annotations", version = apiRelease)
+    implementation(group = "meteor", name = "logger", version = apiRelease)
+    runtimeOnly(group = "meteor", name = "injected", version = apiRelease)
+    runtimeOnly(group = "meteor", name = "scripts", version = apiRelease)
 
     //Deob
     runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.52")
@@ -107,8 +106,9 @@ tasks {
             )
         }
     }
-
     jar {
+        archiveFileName.set("meteor-client-$apiRelease-r$release.jar")
+
         manifest {
             attributes(mutableMapOf("Main-class" to "meteor.Main"))
         }

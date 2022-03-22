@@ -25,6 +25,7 @@ import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import rs117.hd.HdPlugin
 import java.lang.RuntimeException
 
@@ -46,6 +47,7 @@ object PluginManager {
         init<EntityHiderPlugin>()
         init<FishingPlugin>()
         init<GroundItemsPlugin>()
+        init<HerbiboarPlugin>()
         init<ItemPricesPlugin>()
         init<KeyboardBankPinPlugin>()
         init<MinimapPlugin>()

@@ -145,7 +145,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 
 	private Client client = Main.client;
-	private static HdPluginConfig config;
+	private HdPluginConfig config = (HdPluginConfig) javaConfiguration(HdPluginConfig.class);
 	private OpenCLManager openCLManager = new OpenCLManager();
 	private ClientThread clientThread = ClientThread.INSTANCE;
 	private TextureManager textureManager = new TextureManager();
@@ -157,12 +157,6 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 	private ConfigManager configManager = ConfigManager.INSTANCE;
 	private ModelPusher modelPusher = new ModelPusher(this, proceduralGenerator);
 	private SceneUploader sceneUploader = new SceneUploader(this, proceduralGenerator, modelPusher);
-
-	static {
-		Config c = ConfigManager.INSTANCE.getConfig(HdPluginConfig.class);
-		ConfigManager.INSTANCE.setDefaultConfiguration(c, false);
-		config = (HdPluginConfig) c;
-	}
 
 	@Override
 	public Config getConfig() {

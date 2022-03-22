@@ -24,14 +24,15 @@
  */
 package meteor.ui.overlay
 
-import meteor.Main
 import com.google.common.base.Strings
+import meteor.Main
 import meteor.plugins.EventSubscriber
 import meteor.ui.components.LayoutableRenderableEntity
 import meteor.util.ColorUtil
 import net.runelite.api.Perspective
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.widgets.WidgetInfo
+import org.rationalityfrontline.kevent.KEvent
 import java.awt.*
 import java.awt.image.BufferedImage
 import kotlin.math.abs
