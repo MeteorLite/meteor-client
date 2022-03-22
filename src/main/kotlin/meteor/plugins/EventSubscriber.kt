@@ -86,6 +86,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onInfoBoxMenuClicked(it: InfoBoxMenuClicked) {}
     open fun onOverheadTextChanged(it: OverheadTextChanged) {}
     open fun onInvokeMenuAction(it: AutomatedMenu) {}
+    open fun onHitsplatApplied(it: HitsplatApplied) {}
 
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
@@ -168,6 +169,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNPCDespawned(it) }}
         subscribeEvent<PluginChanged>(Events.PLANE_CHANGED) { executeIfListening { onPluginChanged(it) }}
         subscribeEvent<InfoBoxMenuClicked>(meteor.events.Events.INFO_BOX_MENU_CLICKED) { executeIfListening { onInfoBoxMenuClicked(it) } }
+        subscribeEvent<HitsplatApplied>(Events.HITSPLAT_APPLIED) { executeIfListening { onHitsplatApplied(it) } }
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

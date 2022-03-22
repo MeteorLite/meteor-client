@@ -56,7 +56,7 @@ class RsnHiderPlugin : Plugin() {
     }
 
     override fun onConfigChanged(it: ConfigChanged) {
-        if (!it.group.equals("rsnhider")) {
+        if (it.group.equals("rsnhider")) {
             setFakeRsn()
         }
     }

@@ -6,7 +6,7 @@ plugins {
 }
 
 val apiRelease by rootProject.extra { "1.1.2" }
-val release by rootProject.extra { "1" }
+val release by rootProject.extra { "2" }
 group = "meteor.client"
 
 repositories {

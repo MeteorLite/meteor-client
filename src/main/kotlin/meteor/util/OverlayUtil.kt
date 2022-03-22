@@ -8,6 +8,7 @@ import net.runelite.api.TileObject
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import java.awt.*
+import java.awt.image.BufferedImage
 
 
 object OverlayUtil {
@@ -71,7 +72,7 @@ object OverlayUtil {
         graphics.fill(poly)
     }
 
-    fun renderMinimapLocation(graphics: Graphics2D, mini: Point, color: Color?) {
+    fun renderMinimapLocation(graphics: Graphics2D, mini: Point, color: Color) {
         graphics.color = Color.BLACK
         graphics.fillOval(
             mini.x - MINIMAP_DOT_RADIUS / 2,
@@ -79,12 +80,18 @@ object OverlayUtil {
             MINIMAP_DOT_RADIUS,
             MINIMAP_DOT_RADIUS
         )
-        graphics.color = ColorUtil.colorWithAlpha(color!!, 0xFF)
+        graphics.color = ColorUtil.colorWithAlpha(color, 0xFF)
         graphics.fillOval(
             mini.x - MINIMAP_DOT_RADIUS / 2,
             mini.y - MINIMAP_DOT_RADIUS / 2,
             MINIMAP_DOT_RADIUS,
             MINIMAP_DOT_RADIUS
         )
+    }
+
+    fun renderImageLocation(graphics: Graphics2D, imgLoc: Point, image: BufferedImage) {
+        val x = imgLoc.x
+        val y = imgLoc.y
+        graphics.drawImage(image, x, y, null)
     }
 }

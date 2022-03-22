@@ -31,11 +31,9 @@ import com.google.common.collect.Lists;
 import eventbus.events.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import meteor.Main;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
 import meteor.rs.ClientThread;
-import meteor.ui.overlay.OverlayManager;
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.util.Text;
@@ -54,6 +52,11 @@ import static net.runelite.api.ObjectID.*;
 @Getter
 public class HerbiboarPlugin extends Plugin
 {
+	private ClientThread clientThread = ClientThread.INSTANCE;
+	private HerbiboarConfig config = (HerbiboarConfig) javaConfiguration(HerbiboarConfig.class);
+	private HerbiboarOverlay overlay = new HerbiboarOverlay(this, config);
+	private HerbiboarMinimapOverlay minimapOverlay = new HerbiboarMinimapOverlay(this, config);
+
 	private static final List<WorldPoint> END_LOCATIONS = ImmutableList.of(
 		new WorldPoint(3693, 3798, 0),
 		new WorldPoint(3702, 3808, 0),
@@ -80,10 +83,6 @@ public class HerbiboarPlugin extends Plugin
 		14908,
 		14907
 	);
-	private ClientThread clientThread = ClientThread.INSTANCE;
-	private HerbiboarConfig config = (HerbiboarConfig) javaConfiguration(HerbiboarConfig.class);
-	private HerbiboarOverlay overlay = new HerbiboarOverlay(this, config);
-	private HerbiboarMinimapOverlay minimapOverlay = new HerbiboarMinimapOverlay(this, config);
 
 	/**
 	 * Objects which appear at the beginning of Herbiboar hunting trails
@@ -136,6 +135,7 @@ public class HerbiboarPlugin extends Plugin
 		}
 	}
 
+	@Override
 	public void onStop()
 	{
 		getOverlayManager().remove(overlay);

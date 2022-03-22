@@ -26,6 +26,7 @@ import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
+import net.runelite.client.plugins.slayer.SlayerPlugin
 import rs117.hd.HdPlugin
 import java.lang.RuntimeException
 
@@ -55,6 +56,7 @@ object PluginManager {
         init<NpcAggroLinesPlugin>()
         init<NeverLogoutPlugin>()
         init<RsnHiderPlugin>()
+        init<SlayerPlugin>()
         init<SpecBarPlugin>()
         init<StatusBarsPlugin>()
         init<StretchedModePlugin>()
