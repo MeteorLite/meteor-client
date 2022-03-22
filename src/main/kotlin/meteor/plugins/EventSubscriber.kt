@@ -1,5 +1,6 @@
 package meteor.plugins
 
+import dev.hoot.api.events.AutomatedMenu
 import eventbus.Events
 import eventbus.events.*
 import meteor.events.InfoBoxMenuClicked
@@ -84,6 +85,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onPluginChanged(it: PluginChanged) {}
     open fun onInfoBoxMenuClicked(it: InfoBoxMenuClicked) {}
     open fun onOverheadTextChanged(it: OverheadTextChanged) {}
+    open fun onInvokeMenuAction(it: AutomatedMenu) {}
 
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
@@ -91,7 +93,6 @@ open class EventSubscriber : KEventSubscriber {
     }
 
     fun subscribeEvents() {
-        subscribeEvent<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) { executeIfListening { onMenuShouldLeftClick(it) }}
         subscribeEvent<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) { executeIfListening { onMenuShouldLeftClick(it) }}
         subscribeEvent<ActorDeath>(Events.ACTOR_DEATH) { executeIfListening { onActorDeath(it) }}
         subscribeEvent<AnimationChanged>(Events.ANIMATION_CHANGED) { executeIfListening { onAnimationChanged(it) }}
@@ -138,6 +139,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<NpcChanged>(Events.NPC_CHANGED) { executeIfListening { onNpcChanged(it) }}
         subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNpcDespawned(it) }}
         subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening { onNpcSpawned(it) }}
+        subscribeEvent<AutomatedMenu>(Events.AUTOMATED_MENU) { executeIfListening { onInvokeMenuAction(it) }}
         subscribeEvent<OverheadTextChanged>(Events.OVERHEAD_TEXT_CHANGED) { executeIfListening { onOverheadTextChanged(it) }}
         subscribeEvent<OverheadPrayerChanged>(Events.OVERHEAD_PRAYER_CHANGED) { executeIfListening { onOverheadPrayerChanged(it) }}
         subscribeEvent<PlayerDespawned>(Events.PLAYER_DESPAWNED) { executeIfListening { onPlayerDespawned(it) }}
@@ -170,5 +172,14 @@ open class EventSubscriber : KEventSubscriber {
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {
         kSubscribe<T>(type) { event -> unit.invoke(event.data) }
+    }
+
+
+    fun unsubscribe() {
+        eventListening = false
+    }
+
+    fun subscribe() {
+        eventListening = true
     }
 }

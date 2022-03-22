@@ -47,7 +47,7 @@ public class NaturalMouse
 			new Flow(FlowTemplates.random())
 	);
 
-	private NaturalMouse()
+	public NaturalMouse()
 	{
 		nature = new DefaultMouseMotionNature();
 		nature.setSystemCalls(new SystemCallsImpl());

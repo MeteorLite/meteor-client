@@ -48,14 +48,6 @@ open class Plugin : EventSubscriber() {
 
     open val config: Config? = null
 
-    fun unsubscribe() {
-        eventListening = false
-    }
-
-    fun subscribe() {
-        eventListening = true
-    }
-
     fun isEnabled() : Boolean {
         val enabledConfig: String? = ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled")
         val descriptor: PluginDescriptor? = javaClass.getAnnotation(PluginDescriptor::class.java)

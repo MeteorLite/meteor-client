@@ -2,6 +2,7 @@ package meteor
 
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.*
+import dev.hoot.api.InteractionManager
 import eventbus.Events
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
@@ -51,6 +52,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     var logger = Logger("meteor.Main")
     val eventBus = EventBus
     var placement: WindowPlacement = WindowPlacement.Maximized
+    var interactionManager: InteractionManager? = null
 
     private val timer = StopWatch()
 
@@ -80,6 +82,9 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         ConfigManager.setDefaultConfiguration(meteorConfig, false)
         Main.meteorConfig = meteorConfig
         PluginManager
+        interactionManager = InteractionManager()
+        interactionManager!!.subscribeEvents()
+        interactionManager!!.subscribe()
         initOverlays()
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")

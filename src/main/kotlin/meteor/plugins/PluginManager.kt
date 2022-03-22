@@ -1,6 +1,7 @@
 package meteor.plugins
 
 import meteor.plugins.agility.AgilityPlugin
+import meteor.plugins.apitest.ApiTestPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
@@ -30,6 +31,7 @@ import java.lang.RuntimeException
 object PluginManager {
     var plugins = ArrayList<Plugin>()
     init {
+        init<ApiTestPlugin>()
         init<HdPlugin>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
