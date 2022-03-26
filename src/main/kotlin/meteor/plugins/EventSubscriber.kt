@@ -103,7 +103,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<CanvasSizeChanged>(Events.CANVAS_SIZE_CHANGED) { executeIfListening { onCanvasSizeChanged(it) }}
         subscribeEvent<ChatMessage>(Events.CHAT_MESSAGE) { executeIfListening { onChatMessage(it) }}
         subscribeEvent<ClanChannelChanged>(Events.CLAN_CHANNEL_CHANGED) { executeIfListening { onClanChannelChanged(it) }}
-        subscribeEvent<ClanMemberJoined>(Events.CLAN_CHANNEL_CHANGED) { executeIfListening { onClanMemberJoined(it) }}
+        subscribeEvent<ClanMemberJoined>(Events.CLAN_MEMBER_JOINED) { executeIfListening { onClanMemberJoined(it) }}
         subscribeEvent<ClanMemberLeft>(Events.CLAN_MEMBER_LEFT) { executeIfListening { onClanMemberLeft(it) }}
         subscribeEvent<ClientLoaded>(Events.CLIENT_LOADED) { executeIfListening { onClientLoaded(it) }}
         subscribeEvent<ClientTick>(Events.CLIENT_TICK) { executeIfListening { onClientTick(it) }}
@@ -167,7 +167,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<WorldListLoad>(Events.WORLD_LIST_LOAD) { executeIfListening { onWorldListLoad(it) }}
         subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening { onNPCSpawned(it) }}
         subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNPCDespawned(it) }}
-        subscribeEvent<PluginChanged>(Events.PLANE_CHANGED) { executeIfListening { onPluginChanged(it) }}
+        subscribeEvent<PluginChanged>(Events.PLUGIN_CHANGED) { executeIfListening { onPluginChanged(it) }}
         subscribeEvent<InfoBoxMenuClicked>(meteor.events.Events.INFO_BOX_MENU_CLICKED) { executeIfListening { onInfoBoxMenuClicked(it) } }
         subscribeEvent<HitsplatApplied>(Events.HITSPLAT_APPLIED) { executeIfListening { onHitsplatApplied(it) } }
     }

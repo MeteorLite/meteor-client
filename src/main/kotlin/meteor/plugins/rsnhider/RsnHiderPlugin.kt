@@ -124,17 +124,19 @@ class RsnHiderPlugin : Plugin() {
             val replaced = replaceRsn(it.message)
             it.message = replaced
             it.messageNode.value = replaced
-
-
-            val isLocalPlayer: Boolean = Text.standardize(it.name).equals(
-                Text.standardize(
-                    client.localPlayer!!.name
-                ).toString().lowercase()
-            )
-            if (isLocalPlayer) {
-                it.name = fakeRsn!!
-                it.messageNode.name = fakeRsn
+            val event = it
+            client.localPlayer!!.name?.let {
+                val isLocalPlayer: Boolean = Text.standardize(event.name).equals(
+                    Text.standardize(
+                        client.localPlayer!!.name
+                    ).toString().lowercase()
+                )
+                if (isLocalPlayer) {
+                    event.name = fakeRsn!!
+                    event.messageNode.name = fakeRsn
+                }
             }
+
         }
 
     }
@@ -143,17 +145,22 @@ class RsnHiderPlugin : Plugin() {
         it.actor.overheadText = replaceRsn(it.overheadText)
     }
     private fun replaceRsn(textIn: String): String {
-        var textIn = textIn
-        val playerRsn: String = Text.toJagexName(client.localPlayer!!.name)
-        val standardized: String = Text.standardize(playerRsn)
-        while (Text.standardize(textIn).contains(standardized)) {
-            val idx = textIn.replace("\u00A0", " ").lowercase(Locale.getDefault())
-                .indexOf(playerRsn.lowercase(Locale.getDefault()))
-            val length = playerRsn.length
-            val partOne = textIn.substring(0, idx)
-            val partTwo = textIn.substring(idx + length)
-            textIn = partOne + fakeRsn + partTwo
+        try {
+            var textIn = textIn
+            val playerRsn: String = Text.toJagexName(client.localPlayer!!.name)
+            val standardized: String = Text.standardize(playerRsn)
+            while (Text.standardize(textIn).contains(standardized)) {
+                val idx = textIn.replace("\u00A0", " ").lowercase(Locale.getDefault())
+                    .indexOf(playerRsn.lowercase(Locale.getDefault()))
+                val length = playerRsn.length
+                val partOne = textIn.substring(0, idx)
+                val partTwo = textIn.substring(idx + length)
+                textIn = partOne + fakeRsn + partTwo
+            }
+        } catch (e: Exception) {
+            return ""
         }
+
         return textIn
     }
 

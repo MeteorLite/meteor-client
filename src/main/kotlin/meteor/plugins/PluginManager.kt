@@ -41,7 +41,7 @@ object PluginManager {
         init<AutoRunPlugin>()
         init<BankPlugin>()
         init<BoostsPlugin>()
-        init<ChatFilterPlugin>()
+        //init<ChatFilterPlugin>()
         init<CombatLevelPlugin>()
         init<DevToolsPlugin>()
         init<ExamplePlugin>()

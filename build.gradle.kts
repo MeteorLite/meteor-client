@@ -5,7 +5,7 @@ plugins {
     java
 }
 
-val apiRelease by rootProject.extra { "1.1.3" }
+val apiRelease by rootProject.extra { "1.1.5" }
 val release by rootProject.extra { "1" }
 group = "meteor.client"
 
@@ -53,7 +53,7 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.rationalityfrontline:kevent:2.1.0")
+    implementation("org.rationalityfrontline:kevent:2.1.1")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
@@ -74,6 +74,7 @@ dependencies {
     compileOnly(group= "org.projectlombok", name= "lombok", version= "1.18.20")
     annotationProcessor(group= "org.projectlombok", name= "lombok", version= "1.18.20")
     implementation("org.slf4j:slf4j-api:1.7.12")
+    implementation("org.slf4j:slf4j-simple:1.7.12")
 }
 
 tasks {
