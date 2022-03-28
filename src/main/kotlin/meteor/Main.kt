@@ -6,6 +6,7 @@ import dev.hoot.api.InteractionManager
 import eventbus.Events
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
+import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.FontManager
 import meteor.game.ItemManager
 import meteor.game.WorldService
@@ -63,7 +64,6 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         startKoin { modules(Module.CLIENT_MODULE) }
         callbacks = get()
         MeteorliteTheme.install()
-        suppressEventWarnings()
         AppletConfiguration.init()
         Applet().init()
         Window(
@@ -86,6 +86,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         interactionManager!!.subscribeEvents()
         interactionManager!!.subscribe()
         initOverlays()
+        WidgetInspector
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
@@ -94,35 +95,6 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         WidgetOverlay.createOverlays().forEach(Consumer { overlay: WidgetOverlay -> overlayManager.add(overlay) })
         overlayManager.add(TooltipOverlay())
         overlayManager.add(WorldMapOverlay())
-    }
-
-    private fun suppressEventWarnings() {
-        // These temporarily prevent flooding warning logs until they are used
-        EventBus.subscribe<Unit>(Events.SCRIPT_PRE_FIRED) {}
-        EventBus.subscribe<Unit>(Events.SCRIPT_POST_FIRED) {}
-        EventBus.subscribe<Unit>(Events.ANIMATION_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.AREA_SOUND_EFFECT_PLAYED) {}
-        EventBus.subscribe<Unit>(Events.PACKET_SENT) {}
-        EventBus.subscribe<Unit>(Events.BEFORE_MENU_RENDER) {}
-        EventBus.subscribe<Unit>(Events.DYNAMIC_OBJECT_ANIMATION_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.NPC_ACTION_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.VARBIT_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.CONFIG_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.CANVAS_SIZE_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.APPLET_LOADED) {}
-        EventBus.subscribe<Unit>(Events.PLAYER_MENU_OPTIONS_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.CLAN_CHANNEL_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.GRAND_EXCHANGE_OFFER_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.PLAYER_SKULL_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.OVERHEAD_PRAYER_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.PLANE_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.CHAT_MESSAGE) {}
-        EventBus.subscribe<Unit>(Events.LOGIN_STATE_CHANGED) {}
-        EventBus.subscribe<Unit>(Events.GRAPHICS_OBJECT_CREATED) {}
-        EventBus.subscribe<Unit>(Events.PLAYER_DESPAWNED) {}
-        EventBus.subscribe<Unit>(Events.SOUND_EFFECT_PLAYED) {}
-        EventBus.subscribe<Unit>(Events.EXPERIENCE_GAINED) {}
-        EventBus.subscribe<Unit>(Events.MENU_OPENED) {}
     }
 
     fun processArguments(args: Array<String>) {

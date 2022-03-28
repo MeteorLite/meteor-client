@@ -1,11 +1,12 @@
 package meteor.config
 
-import com.jogamp.common.os.Platform
 import meteor.Configuration
 import meteor.config.ConfigAnnotations.*
 import meteor.config.legacy.Keybind
 import meteor.config.type.*
 import meteor.ui.components.ComponentConstants
+import meteor.util.OSType
+import meteor.util.OSType.getOSType
 import net.runelite.api.Constants
 import java.awt.BorderLayout
 import java.awt.Button
@@ -194,18 +195,6 @@ interface MeteorConfig : Config {
     )
     fun rememberScreenBounds(): Boolean {
         return true
-    }
-
-    @ConfigItem(
-        keyName = "uiEnableCustomChrome",
-        name = "Enable custom window chrome",
-        description = "Use RuneLite's custom window title and borders.",
-        warning = "Please restart your client after changing this setting",
-        position = 15,
-        section = windowSettings
-    )
-    fun enableCustomChrome(): Boolean {
-        return Platform.getOSType() == Platform.OSType.WINDOWS
     }
 
     @Range(min = 10, max = 100)

@@ -167,7 +167,11 @@ class Hooks : Callbacks {
                 graphics.fillRect(0, 0, client.canvas.width, client.canvas.height)
             }
             stretchedGraphics!!.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-                    if (client.isStretchedFast) RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR else RenderingHints.VALUE_INTERPOLATION_BILINEAR)
+                when {
+                    client.isStretchedFast -> RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR
+                    else -> RenderingHints.VALUE_INTERPOLATION_BILINEAR
+                }
+            )
             stretchedGraphics!!
                     .drawImage(image, 0, 0, stretchedDimensions.width, stretchedDimensions.height, null)
             finalImage = stretchedImage!!
@@ -218,7 +222,7 @@ class Hooks : Callbacks {
     }
 
     private fun getGraphics(mainBufferProvider: MainBufferProvider): Graphics2D {
-        if (lastGraphics == null || lastMainBufferProvider != mainBufferProvider) {
+        if (lastGraphics == null || lastMainBufferProvider !== mainBufferProvider) {
             lastGraphics?.dispose()
             lastMainBufferProvider = mainBufferProvider
             lastGraphics = mainBufferProvider.image.graphics as Graphics2D

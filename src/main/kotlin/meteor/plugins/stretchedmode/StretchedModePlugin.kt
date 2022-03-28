@@ -60,6 +60,7 @@ class StretchedModePlugin : Plugin() {
     }
 
     override fun onResizeableChanged(it: ResizeableChanged) {
+        println(it)
         client.invalidateStretching(true)
     }
 

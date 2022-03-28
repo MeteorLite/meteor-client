@@ -101,7 +101,7 @@ internal class XpInfoBoxOverlay(
     }
 
     init {
-        position = OverlayPosition.TOP_LEFT
+        position = OverlayPosition.BOTTOM_LEFT
         resizable = false
         panelComponent.border = Rectangle(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE)
         panelComponent.gap = Point(0, XP_AND_PROGRESS_BAR_GAP)

@@ -42,15 +42,15 @@ import javax.swing.JPanel
 import javax.swing.WindowConstants.EXIT_ON_CLOSE
 
 object UI {
+    lateinit var lastPlugin: Plugin
     var loaded = false
     lateinit var contentSize: Dimension
     var window: FrameWindowScope? = null
     var log = Logger(UI::class.java.name)
     lateinit var pluginsPanelIsOpen: MutableState<Boolean>
     lateinit var pluginConfigurationIsOpen: MutableState<Boolean>
-    var jpanel: JPanel? = null
-    var toolbarWidth: Float = 0.025f
-    lateinit var lastPlugin: Plugin
+    lateinit var jpanel: JPanel
+    var toolbarWidth: Float = 0.020f
 
 
     fun Window(placement: WindowPlacement): (@Composable FrameWindowScope.() -> Unit) {
@@ -102,7 +102,7 @@ object UI {
     @Composable
     fun PluginsPanel() {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(darkThemeColors.background)) {
+            modifier = Modifier.fillMaxWidth(.9f).fillMaxHeight().background(darkThemeColors.background)) {
             MaterialTheme(colors = darkThemeColors) {
                 PluginsPanelHeader()
                 Plugins()
@@ -113,7 +113,7 @@ object UI {
     @Composable
     fun ConfigPanel() {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.875f).fillMaxHeight().background(darkThemeColors.background)) {
+            modifier = Modifier.fillMaxWidth(.9f).fillMaxHeight().background(darkThemeColors.background)) {
             MaterialTheme(colors = darkThemeColors) {
                 ConfigPanelHeader()
                 Configs()
@@ -324,7 +324,7 @@ object UI {
                         DropdownMenu(
                             expanded = expanded,
                             onDismissRequest = { expanded = false },
-                            modifier = Modifier.fillMaxWidth(.2f)
+                            modifier = Modifier.fillMaxWidth(.19f)
                         ) {
                             list.forEachIndexed { index, s ->
                                 DropdownMenuItem(onClick = {
@@ -428,24 +428,23 @@ object UI {
     @Composable
     fun OSRSApplet() {
         val mod: Modifier = if (pluginsPanelIsOpen.value)
-            Modifier.fillMaxWidth(((1f / 5) * 4) - toolbarWidth).fillMaxHeight()
+            Modifier.fillMaxWidth(((.01f) * 80) - toolbarWidth).fillMaxHeight()
         else
             Modifier.fillMaxWidth(1f - toolbarWidth).fillMaxHeight()
 
         SwingPanel(Color.Black,
             modifier = mod,
             factory = {
-                JPanel().apply {
-                    jpanel = this
-                    layout = BorderLayout()
-                    add(Applet.applet)
-                    if (!loaded) {
-                        Applet.applet.init()
-                        Applet.applet.start()
-                        loaded = true
-                        Main.finishStartup()
-                    }
+                if (!this::jpanel.isInitialized) {
+                    jpanel = JPanel()
+                    jpanel.layout = BorderLayout()
+                    jpanel.add(Applet.applet)
+                    Applet.applet.init()
+                    Applet.applet.start()
+                    loaded = true
+                    Main.finishStartup()
                 }
+                jpanel
             })
     }
 

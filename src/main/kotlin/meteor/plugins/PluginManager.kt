@@ -7,7 +7,6 @@ import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
 import meteor.plugins.bank.BankPlugin
 import meteor.plugins.boosts.BoostsPlugin
-import meteor.plugins.chatfilter.ChatFilterPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
@@ -23,6 +22,7 @@ import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
+import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
@@ -34,7 +34,6 @@ object PluginManager {
     var plugins = ArrayList<Plugin>()
     init {
         init<ApiTestPlugin>()
-        init<HdPlugin>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
@@ -60,8 +59,10 @@ object PluginManager {
         init<SpecBarPlugin>()
         init<StatusBarsPlugin>()
         init<StretchedModePlugin>()
+        init<GuardiansOfTheRiftPlugin>()
         init<WorldMapPlugin>()
         init<XpTrackerPlugin>()
+        init<HdPlugin>()
     }
 
     inline fun <reified T : Plugin> init() {

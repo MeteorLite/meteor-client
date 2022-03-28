@@ -149,7 +149,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<PlayerSpawned>(Events.PLAYER_SPAWNED) { executeIfListening { onPlayerSpawned(it) }}
         subscribeEvent<PostItemComposition>(Events.POST_ITEM_COMPOSITION) { executeIfListening { onPostItemComposition(it) }}
         subscribeEvent<ProjectileMoved>(Events.PROJECTILE_MOVED) { executeIfListening { onProjectileMoved(it) }}
-        subscribeEvent<ProjectileSpawned>(Events.PROJECTILE_MOVED) { executeIfListening { onProjetileSpawned(it) }}
+        subscribeEvent<ProjectileSpawned>(Events.PROJECTILE_SPAWNED) { executeIfListening { onProjetileSpawned(it) }}
         subscribeEvent<ResizeableChanged>(Events.RESIZEABLE_CHANGED) { executeIfListening { onResizeableChanged(it) }}
         subscribeEvent<ScriptCallbackEvent>(Events.SCRIPT_CALLBACK) { executeIfListening { onScriptCallbackEvent(it) }}
         subscribeEvent<ScriptPostFired>(Events.SCRIPT_POST_FIRED) { executeIfListening { onScriptPostFired(it) }}

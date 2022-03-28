@@ -43,6 +43,25 @@ object ConfigManager {
     private const val KEY_SPLITTER_KEY = 1
     var loaded = false
 
+    fun setPlayerConfiguration(attribute: String, value: Any) {
+        Main.client.localPlayer?.let {
+            it.name?.let { name ->
+                if (name.isNotEmpty())
+                    setConfiguration("$name-attributes", attribute, value)
+            }
+        }
+    }
+
+    fun getPlayerConfiguration(attribute: String) : String? {
+        Main.client.localPlayer?.let {
+            it.name?.let { name ->
+                if (name.isNotEmpty())
+                    return getConfiguration("$name-attributes", attribute)
+            }
+        }
+        return null
+    }
+
     fun stringToObject(str: String, type: Class<*>): Any? {
         if (type == Boolean::class.javaPrimitiveType || type == Boolean::class.java) {
             return (str).toBoolean()
