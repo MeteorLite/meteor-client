@@ -486,7 +486,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         val result = Point()
         when (position) {
             OverlayPosition.DYNAMIC, OverlayPosition.TOOLTIP -> {}
-            OverlayPosition.BOTTOM_LEFT -> result.x += dimension.width + (if (dimension.width == 0) 0 else padding)
+            OverlayPosition.BOTTOM_LEFT -> result.y -= dimension.height + (if (dimension.height == 0) 0 else padding)
             OverlayPosition.BOTTOM_RIGHT -> result.x -= dimension.width + (if (dimension.width == 0) 0 else padding)
             OverlayPosition.TOP_LEFT, OverlayPosition.TOP_CENTER, OverlayPosition.CANVAS_TOP_RIGHT, OverlayPosition.TOP_RIGHT -> result.y += dimension.height + (if (dimension.height == 0) 0 else padding)
             OverlayPosition.ABOVE_CHATBOX_RIGHT -> result.y -= dimension.height + (if (dimension.height == 0) 0 else padding)

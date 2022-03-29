@@ -56,7 +56,7 @@ class InfoBoxOverlay internal constructor(
     init {
         this.name = name
         this.orientation = orientation
-        position = OverlayPosition.TOP_LEFT
+        position = OverlayPosition.ABOVE_CHATBOX_RIGHT
         clearChildren = (false)
         dragTargetable = (true)
         panelComponent.wrap = (true)

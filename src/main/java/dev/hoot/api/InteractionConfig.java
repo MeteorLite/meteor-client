@@ -23,7 +23,7 @@ public interface InteractionConfig extends Config
 	)
 	default InteractMethod interactMethod()
 	{
-		return InteractMethod.MOUSE_EVENTS;
+		return InteractMethod.PACKETS;
 	}
 
 	@ConfigItem(

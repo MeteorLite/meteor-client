@@ -104,6 +104,8 @@ public class Game
 			return Integer.MAX_VALUE;
 		}
 		String widgetText = wildyLevelWidget.getText();
+		if (widgetText.indexOf('<') == -1)
+			return 0;
 		return Integer.parseInt(widgetText.substring(0, widgetText.indexOf('<')).replace("Level: ", ""));
 	}
 

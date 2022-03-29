@@ -170,6 +170,11 @@ public class Bank extends Items
 		return Widgets.isVisible(Widgets.get(WidgetInfo.BANK_ITEM_CONTAINER));
 	}
 
+	public static boolean bankPinIsOpen()
+	{
+		return Widgets.isVisible(Widgets.get(213, 0));
+	}
+
 	public static boolean isEmpty()
 	{
 		return getAll().isEmpty();

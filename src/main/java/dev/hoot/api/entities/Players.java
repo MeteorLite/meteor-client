@@ -4,6 +4,7 @@ import dev.hoot.api.game.Game;
 import net.runelite.api.Player;
 import net.runelite.api.coords.WorldPoint;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -33,6 +34,15 @@ public class Players extends Entities<Player>
 	public static List<Player> getAll(Predicate<Player> filter)
 	{
 		return PLAYERS.all(filter);
+	}
+
+	public static List<Player> getAll(ArrayList<String> names) {
+		ArrayList<Player> players = new ArrayList<>();
+		for (Player p : getAll()) {
+			if (names.contains(p.getName()))
+				players.add(p);
+		}
+		return players;
 	}
 
 	public static List<Player> getAll(String... names)

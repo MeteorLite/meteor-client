@@ -88,6 +88,6 @@ public class Widgets
 
 	public static boolean isVisible(Widget widget)
 	{
-		return widget != null && widget.isVisible();
+		return widget != null;
 	}
 }

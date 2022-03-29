@@ -15,28 +15,17 @@ public class ItemPackets
 {
 	public static void itemAction(Item item, String action)
 	{
-		List<String> actions = item.getActions();
+
+		List<String> actions = List.of(Game.getClient().getItemDefinition(item.getId()).getInventoryActions());
 		int index = actions.indexOf(action);
-		switch (index)
-		{
-			case 0:
-				itemFirstOption(item);
-				break;
-			case 1:
-				itemSecondOption(item);
-				break;
-			case 2:
-				itemThirdOption(item);
-				break;
-			case 3:
-				itemFourthOption(item);
-				break;
-			case 4:
-				itemFifthOption(item);
-				break;
-			default:
-				WidgetPackets.widgetAction(Widgets.fromId(item.getWidgetId()), action);
-				break;
+		System.out.println(index);
+		switch (index) {
+			case 0 -> itemFirstOption(item);
+			case 1 -> itemSecondOption(item);
+			case 2 -> itemThirdOption(item);
+			case 3 -> itemFourthOption(item);
+			case 4 -> itemFifthOption(item);
+			default -> WidgetPackets.widgetAction(Widgets.fromId(item.getWidgetId()), action);
 		}
 	}
 
@@ -115,9 +104,9 @@ public class ItemPackets
 		Client client = Game.getClient();
 		ClientPacket clientPacket = Game.getClientPacket();
 		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD1(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortLE(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShortLE(itemId);
-		packetBufferNode.getPacketBuffer().writeInt(itemWidgetId);
+		packetBufferNode.getPacketBuffer().writeShort(itemId);
+		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
+		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
 		return packetBufferNode;
 	}
 
@@ -126,8 +115,8 @@ public class ItemPackets
 		Client client = Game.getClient();
 		ClientPacket clientPacket = Game.getClientPacket();
 		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD2(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
 		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
-		packetBufferNode.getPacketBuffer().writeIntME(itemWidgetId);
 		packetBufferNode.getPacketBuffer().writeShort(itemId);
 		return packetBufferNode;
 	}
@@ -137,9 +126,9 @@ public class ItemPackets
 		Client client = Game.getClient();
 		ClientPacket clientPacket = Game.getClientPacket();
 		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD3(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeIntIME(itemWidgetId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(itemId);
+		packetBufferNode.getPacketBuffer().writeShort(itemId);
+		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
+		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
 		return packetBufferNode;
 	}
 
@@ -148,9 +137,9 @@ public class ItemPackets
 		Client client = Game.getClient();
 		ClientPacket clientPacket = Game.getClientPacket();
 		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD4(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt(itemWidgetId);
 		packetBufferNode.getPacketBuffer().writeShortLE(itemId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemSlot);
+		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(itemSlot);
 		return packetBufferNode;
 	}
 
@@ -159,9 +148,9 @@ public class ItemPackets
 		Client client = Game.getClient();
 		ClientPacket clientPacket = Game.getClientPacket();
 		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD5(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShortLE(itemId);
-		packetBufferNode.getPacketBuffer().writeInt(itemWidgetId);
+		packetBufferNode.getPacketBuffer().writeIntIME(itemWidgetId);
+		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(itemId);
 		return packetBufferNode;
 	}
 

@@ -1,6 +1,8 @@
 package meteor.plugins
 
 import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.events.MenuActionProcessed
+import dev.hoot.api.events.PacketSent
 import eventbus.Events
 import eventbus.events.*
 import meteor.events.InfoBoxMenuClicked
@@ -33,6 +35,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onNpcActionChanged(it: NpcActionChanged) {}
     open fun onMenuOptionClicked(it: MenuOptionClicked) {}
     open fun onMenuEntryAdded(it: MenuEntryAdded) {}
+    open fun onMenuActionProcessed(it: MenuActionProcessed) {}
     open fun onLoginStateChanged(it: LoginStateChanged) {}
     open fun onItemQuantityChanged(it: ItemQuantityChanged) {}
     open fun onItemObtained(it: ItemObtained) {}
@@ -87,6 +90,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onOverheadTextChanged(it: OverheadTextChanged) {}
     open fun onInvokeMenuAction(it: AutomatedMenu) {}
     open fun onHitsplatApplied(it: HitsplatApplied) {}
+    open fun onPacketSent(it: PacketSent) {}
 
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
@@ -134,6 +138,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<ItemQuantityChanged>(Events.ITEM_QUANTITY_CHANGED) { executeIfListening { onItemQuantityChanged(it) }}
         subscribeEvent<ItemSpawned>(Events.ITEM_SPAWNED) { executeIfListening { onItemSpawned(it) }}
         subscribeEvent<LoginStateChanged>(Events.LOGIN_STATE_CHANGED) { executeIfListening { onLoginStateChanged(it) }}
+        subscribeEvent<MenuActionProcessed>(Events.MENU_ACTION_PROCESSED) { executeIfListening { onMenuActionProcessed(it) }}
         subscribeEvent<MenuEntryAdded>(Events.MENU_ENTRY_ADDED) { executeIfListening { onMenuEntryAdded(it) }}
         subscribeEvent<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) { executeIfListening { onMenuOptionClicked(it) }}
         subscribeEvent<NpcActionChanged>(Events.NPC_ACTION_CHANGED) { executeIfListening { onNpcActionChanged(it) }}
@@ -170,6 +175,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<PluginChanged>(Events.PLUGIN_CHANGED) { executeIfListening { onPluginChanged(it) }}
         subscribeEvent<InfoBoxMenuClicked>(meteor.events.Events.INFO_BOX_MENU_CLICKED) { executeIfListening { onInfoBoxMenuClicked(it) } }
         subscribeEvent<HitsplatApplied>(Events.HITSPLAT_APPLIED) { executeIfListening { onHitsplatApplied(it) } }
+        subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening { onPacketSent(it) } }
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

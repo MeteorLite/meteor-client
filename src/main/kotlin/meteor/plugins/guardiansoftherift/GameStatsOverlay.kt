@@ -62,6 +62,8 @@ class GameStatsOverlay(val plugin: GuardiansOfTheRiftPlugin ) : OverlayPanel() {
                     .right("${(120 - (plugin.collectionLength * 600) / 1000)}")
                     .build())
         }
+        val guardian = NPCs.getNearest(plugin.greatGuardianID)
+
         if (plugin.catalyticPoints > 0 || plugin.elementalPoints > 0) {
             val neededRunes = if (plugin.catalyticPoints > plugin.elementalPoints) "Elemental" else "Catalytic"
             panelComponent.children.add(
@@ -71,13 +73,15 @@ class GameStatsOverlay(val plugin: GuardiansOfTheRiftPlugin ) : OverlayPanel() {
                     .build())
         }
         else {
-            panelComponent.children.add(
-                LineComponent.Builder()
-                    .left("Target Runes")
-                    .right("Catalytic")
-                    .build())
+            guardian?.let {
+                panelComponent.children.add(
+                    LineComponent.Builder()
+                        .left("Target Runes")
+                        .right("Catalytic")
+                        .build())
+            }
         }
-        val guardian = NPCs.getNearest(plugin.greatGuardianID)
+
 
         guardian?.let {
             panelComponent.children.add(

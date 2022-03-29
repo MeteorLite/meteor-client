@@ -8,6 +8,7 @@ import meteor.config.ConfigManager.setDefaultConfiguration
 import meteor.ui.overlay.Overlay
 
 open class Plugin : EventSubscriber() {
+    open val config: Config? = null
     var client = Main.client
     val overlayManager = Main.overlayManager
     val overlays = ArrayList<Overlay>()
@@ -53,8 +54,6 @@ open class Plugin : EventSubscriber() {
 
     open fun onStart() {}
     open fun onStop() {}
-
-    open val config: Config? = null
 
     fun isEnabled() : Boolean {
         val enabledConfig: String? = ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled")
