@@ -2,12 +2,14 @@ package dev.hoot.api.packets;
 
 import dev.hoot.api.game.Game;
 import dev.hoot.api.widgets.Widgets;
+import meteor.api.packets.ClientPackets;
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.packets.ObfuscatedClientPacket;
 
 import java.util.List;
 
@@ -101,57 +103,32 @@ public class ItemPackets
 
 	public static PacketBufferNode createFirstAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD1(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShort(itemId);
-		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
-		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
-		return packetBufferNode;
+		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD1");
+		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createSecondAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD2(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
-		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShort(itemId);
-		return packetBufferNode;
+		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD2");
+		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createThirdAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD3(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShort(itemId);
-		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
-		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
-		return packetBufferNode;
+		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD3");
+		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createFourthAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD4(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortLE(itemId);
-		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(itemSlot);
-		return packetBufferNode;
+		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD4");
+		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createFifthAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELD5(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeIntIME(itemWidgetId);
-		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(itemId);
-		return packetBufferNode;
+		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD5");
+		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createItemOnItem(int sourceItemId, int sourceItemSlot, int itemId, int itemSlot)

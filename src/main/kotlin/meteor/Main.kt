@@ -4,6 +4,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.*
 import dev.hoot.api.InteractionManager
 import eventbus.Events
+import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
 import meteor.dev.widgetinspector.WidgetInspector
@@ -59,6 +60,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
 
     @JvmStatic
     fun main(args: Array<String>) = application {
+        ClientPackets
         timer.start()
         processArguments(args)
         startKoin { modules(Module.CLIENT_MODULE) }

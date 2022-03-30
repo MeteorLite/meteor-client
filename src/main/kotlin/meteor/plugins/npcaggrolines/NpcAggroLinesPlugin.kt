@@ -246,13 +246,15 @@ class NpcAggroLinesPlugin : Plugin() {
                 it
             )
         }
-        configManager.setConfiguration(
-            NpcAggroLinesConfig.CONFIG_GROUP,
-            playerName + NpcAggroLinesConfig.CONFIG_DURATION,
-            Duration.between(
-                Instant.now(), currentTimer!!.endTime
+        currentTimer?.let {
+            configManager.setConfiguration(
+                NpcAggroLinesConfig.CONFIG_GROUP,
+                playerName + NpcAggroLinesConfig.CONFIG_DURATION,
+                Duration.between(
+                    Instant.now(), it.endTime
+                )
             )
-        )
+        }
     }
 
     private fun onLogin() {

@@ -1,6 +1,7 @@
 package dev.hoot.api.items;
 
 import dev.hoot.api.game.Game;
+import meteor.Logger;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
@@ -87,7 +88,11 @@ public class Inventory extends Items
 
 	public static boolean contains(int... id)
 	{
-		return INVENTORY.exists(id);
+		for (int i : id) {
+			if (INVENTORY.exists(i))
+				return true;
+		}
+		return false;
 	}
 
 	public static boolean contains(String... name)
