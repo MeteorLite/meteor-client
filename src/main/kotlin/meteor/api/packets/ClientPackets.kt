@@ -261,19 +261,26 @@ object ClientPackets {
     }
 
     fun encodeToBuffer(packetBuffer: PacketBuffer, methodCall: ObfuscatedBufferStructure, value: Any) {
+        // transform boolean to number
+        var finalValue: Any
+        if (value is Boolean)
+            finalValue = if (value) 1 else 0
+        else
+            finalValue = value
+
         when (methodCall.method) {
-            "Byte" -> packetBuffer.writeByte(value as Int)
-            "ByteAdd" -> packetBuffer.writeByteAdd(value as Int)
-            "ByteNeg" -> packetBuffer.writeByteNeg(value as Int)
-            "ByteSub" -> packetBuffer.writeByteSub(value as Int)
-            "Int" -> packetBuffer.writeInt(value as Int)
-            "IntIME" -> packetBuffer.writeIntIME(value as Int)
-            "IntLE" -> packetBuffer.writeIntLE(value as Int)
-            "IntME" -> packetBuffer.writeIntME(value as Int)
-            "Short" -> packetBuffer.writeShort(value as Int)
-            "ShortLE" -> packetBuffer.writeShortLE(value as Int)
-            "ShortAdd" -> packetBuffer.writeShortAdd(value as Int)
-            "ShortAddLE" -> packetBuffer.writeShortAddLE(value as Int)
+            "Byte" -> packetBuffer.writeByte( finalValue as Int)
+            "ByteAdd" -> packetBuffer.writeByteAdd( finalValue as Int)
+            "ByteNeg" -> packetBuffer.writeByteNeg( finalValue as Int)
+            "ByteSub" -> packetBuffer.writeByteSub( finalValue as Int)
+            "Int" -> packetBuffer.writeInt( finalValue as Int)
+            "IntIME" -> packetBuffer.writeIntIME( finalValue as Int)
+            "IntLE" -> packetBuffer.writeIntLE( finalValue as Int)
+            "IntME" -> packetBuffer.writeIntME( finalValue as Int)
+            "Short" -> packetBuffer.writeShort( finalValue as Int)
+            "ShortLE" -> packetBuffer.writeShortLE( finalValue as Int)
+            "ShortAdd" -> packetBuffer.writeShortAdd( finalValue as Int)
+            "ShortAddLE" -> packetBuffer.writeShortAddLE( finalValue as Int)
             else -> throw RuntimeException("Unmapped ObfuscatedClientPacket methodCall ${methodCall.method}")
         }
     }
