@@ -784,7 +784,7 @@
       },
       {
         "method": "IntLE",
-        "paramater": "param1"
+        "paramater": "itemWidgetId"
       },
       {
         "method": "Short",
@@ -792,7 +792,7 @@
       },
       {
         "method": "Short",
-        "paramater": "param0"
+        "paramater": "itemSlot"
       },
       {
         "method": "ShortLE",
@@ -904,7 +904,7 @@
     "structure": [
       {
         "method": "IntIME",
-        "paramater": "param1"
+        "paramater": "itemWidgetId"
       },
       {
         "method": "Short",
@@ -912,7 +912,7 @@
       },
       {
         "method": "ShortAddLE",
-        "paramater": "param0"
+        "paramater": "itemSlot"
       }
     ]
   },
@@ -927,11 +927,11 @@
       },
       {
         "method": "IntLE",
-        "paramater": "param1"
+        "paramater": "itemWidgetId"
       },
       {
         "method": "ShortAddLE",
-        "paramater": "param0"
+        "paramater": "itemSlot"
       }
     ]
   },
@@ -946,11 +946,11 @@
       },
       {
         "method": "Short",
-        "paramater": "param0"
+        "paramater": "itemSlot"
       },
       {
         "method": "IntLE",
-        "paramater": "param1"
+        "paramater": "itemWidgetId"
       }
     ]
   },
@@ -961,11 +961,11 @@
     "structure": [
       {
         "method": "IntLE",
-        "paramater": "param1"
+        "paramater": "itemWidgetId"
       },
       {
         "method": "Short",
-        "paramater": "param0"
+        "paramater": "itemSlot"
       },
       {
         "method": "Short",
@@ -999,11 +999,11 @@
       },
       {
         "method": "Short",
-        "paramater": "param0"
+        "paramater": "itemSlot"
       },
       {
         "method": "IntLE",
-        "paramater": "param1"
+        "paramater": "itemWidgetId"
       }
     ]
   }

@@ -1,6 +1,7 @@
 package dev.hoot.api.packets;
 
 import dev.hoot.api.game.Game;
+import meteor.api.packets.ClientPackets;
 import net.runelite.api.Client;
 import net.runelite.api.NPC;
 import net.runelite.api.packets.ClientPacket;
@@ -102,77 +103,36 @@ public class NPCPackets
 	public static PacketBufferNode createItemOnNpcPacket(int npcIndex, int itemWidgetId, int itemId, int itemSlot,
 											  boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPCU(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAdd(npcIndex);
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemId);
-		packetBufferNode.getPacketBuffer().writeIntIME(itemWidgetId);
-		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createItemOnNPCPacket("OPNPCU", npcIndex, itemWidgetId, itemId, itemSlot, ctrlDown);
 	}
 
 	public static PacketBufferNode createSpellOnNpcPacket(int npcIndex, int spellWidgetId, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPCT(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortLE(-1);
-		packetBufferNode.getPacketBuffer().writeShortAdd(npcIndex);
-		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeIntIME(spellWidgetId);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(-1);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createSpellOnNPCPacket("OPNPCT", npcIndex, spellWidgetId, ctrlDown);
 	}
 
 	public static PacketBufferNode createNpcFirstActionPacket(int npcIndex, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC1(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortLE(npcIndex);
-		packetBufferNode.getPacketBuffer().writeByteAdd(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC1", npcIndex, ctrlDown);
 	}
 
 	public static PacketBufferNode createNpcSecondActionPacket(int npcIndex, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC2(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(npcIndex);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC2", npcIndex, ctrlDown);
 	}
 
 	public static PacketBufferNode createNpcThirdActionPacket(int npcIndex, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC3(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAddLE(npcIndex);
-		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC3", npcIndex, ctrlDown);
 	}
 
 	public static PacketBufferNode createNpcFourthActionPacket(int npcIndex, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC4(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAddLE(npcIndex);
-		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC4", npcIndex, ctrlDown);
 	}
 
 	public static PacketBufferNode createNpcFifthActionPacket(int npcIndex, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC5(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShort(npcIndex);
-		packetBufferNode.getPacketBuffer().writeByteAdd(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC5", npcIndex, ctrlDown);
 	}
 }

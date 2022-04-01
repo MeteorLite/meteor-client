@@ -1,6 +1,7 @@
 package dev.hoot.api.packets;
 
 import dev.hoot.api.game.Game;
+import meteor.api.packets.ClientPackets;
 import net.runelite.api.Client;
 import net.runelite.api.TileItem;
 import net.runelite.api.packets.ClientPacket;
@@ -97,97 +98,42 @@ public class GroundItemPackets
 	public static PacketBufferNode createItemOnGroundItem(int groundItemId, int worldPointX, int worldPointY,
 														 int itemSlot, int itemId, int itemWidgetId, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJU(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(groundItemId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
-		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
-		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createItemOnGroundItemPacket("OPOBJU", groundItemId, worldPointX, worldPointY, itemSlot, itemId, itemWidgetId, ctrlDown);
 	}
 
 	public static PacketBufferNode createSpellOnGroundItem(int groundItemId, int worldPointX, int worldPointY,
 												   int spellWidgetId, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJT(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt(spellWidgetId);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(worldPointY);
-		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(-1);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(groundItemId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortAdd(-1);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createSpellOnGroundItemPacket("OPOBJT", groundItemId, worldPointX, worldPointY, spellWidgetId, ctrlDown);
 	}
 
 	public static PacketBufferNode createFirstAction(int groundItemId, int worldPointX, int worldPointY,
 													boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJ1(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
-		packetBufferNode.getPacketBuffer().writeShortLE(groundItemId);
-		packetBufferNode.getPacketBuffer().writeShort(worldPointX);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createGroundItemActionPacket("OPOBJ1", groundItemId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createSecondAction(int groundItemId, int worldPointX, int worldPointY,
 													boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJ2(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointY);
-		packetBufferNode.getPacketBuffer().writeByteAdd(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortAdd(groundItemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createGroundItemActionPacket("OPOBJ2", groundItemId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createThirdAction(int groundItemId, int worldPointX, int worldPointY,
 													boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJ3(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
-		packetBufferNode.getPacketBuffer().writeShort(groundItemId);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createGroundItemActionPacket("OPOBJ3", groundItemId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createFourthAction(int groundItemId, int worldPointX, int worldPointY,
 													boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJ4(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAddLE(groundItemId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(worldPointY);
-		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createGroundItemActionPacket("OPOBJ4", groundItemId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createFifthAction(int groundItemId, int worldPointX, int worldPointY,
 													boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJ5(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
-		packetBufferNode.getPacketBuffer().writeShortLE(groundItemId);
-		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createGroundItemActionPacket("OPOBJ5", groundItemId, worldPointX, worldPointY, ctrlDown);
 	}
 }

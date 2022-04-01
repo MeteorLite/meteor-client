@@ -1,6 +1,7 @@
 package dev.hoot.api.packets;
 
 import dev.hoot.api.game.Game;
+import meteor.api.packets.ClientPackets;
 import net.runelite.api.Client;
 import net.runelite.api.Item;
 import net.runelite.api.Point;
@@ -89,96 +90,41 @@ public class ObjectPackets
 	public static PacketBufferNode createObjectFirstActionPacket(int objectId, int worldPointX, int worldPointY,
 															 boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOC1(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointY);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShort(objectId);
-		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createObjectActionPacket("OPLOC1", objectId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createObjectSecondActionPacket(int objectId, int worldPointX, int worldPointY,
 																 boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOC2(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
-		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShort(objectId);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createObjectActionPacket("OPLOC2", objectId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createObjectThirdActionPacket(int objectId, int worldPointX, int worldPointY, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOC3(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShort(objectId);
-		packetBufferNode.getPacketBuffer().writeByteAdd(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointY);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createObjectActionPacket("OPLOC3", objectId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createObjectFourthActionPacket(int objectId, int worldPointX, int worldPointY,
 															 boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOC4(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShort(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(worldPointY);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(objectId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createObjectActionPacket("OPLOC4", objectId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createObjectFifthActionPacket(int objectId, int worldPointX, int worldPointY,
 																  boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOC5(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeByteAdd(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointY);
-		packetBufferNode.getPacketBuffer().writeShort(objectId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createObjectActionPacket("OPLOC5", objectId, worldPointX, worldPointY, ctrlDown);
 	}
 
 	public static PacketBufferNode createItemOnObjectPacket(int objectId, int worldPointX, int worldPointY, int itemSlot, int itemId, int itemWidgetId, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOCU(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAdd(objectId);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortLE(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShort(itemId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointY);
-		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeIntME(itemWidgetId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createItemOnObjectPacket("OPLOCU", objectId, worldPointX, worldPointY, itemSlot, itemId, itemWidgetId,  ctrlDown);
 	}
 
 	public static PacketBufferNode createSpellOnObjectPacket(int objectId, int worldPointX, int worldPointY,
 															 int spellWidgetId, boolean ctrlDown)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOCT(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
-		packetBufferNode.getPacketBuffer().writeInt(spellWidgetId);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortLE(-1);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(-1);
-		packetBufferNode.getPacketBuffer().writeShort(objectId);
-		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createSpellOnObjectPacket("OPLOCT", objectId, worldPointX, worldPointY, spellWidgetId, ctrlDown);
 	}
 
 	public static void queueItemUseOnTileObjectPacket(int objectId, int worldPointX, int worldPointY, int itemSlot, int itemId, int itemWidgetId, boolean ctrlDown)

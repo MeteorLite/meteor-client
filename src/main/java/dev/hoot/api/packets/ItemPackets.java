@@ -9,7 +9,6 @@ import net.runelite.api.Item;
 import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.packets.ObfuscatedClientPacket;
 
 import java.util.List;
 
@@ -103,58 +102,36 @@ public class ItemPackets
 
 	public static PacketBufferNode createFirstAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD1");
-		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD1", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createSecondAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD2");
-		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD2", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createThirdAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD3");
-		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD3", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createFourthAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD4");
-		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD4", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createFifthAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		ObfuscatedClientPacket packet = ClientPackets.INSTANCE.get("OPHELD5");
-		return ClientPackets.INSTANCE.createItemPacket(packet, itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD5", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createItemOnItem(int sourceItemId, int sourceItemSlot, int itemId, int itemSlot)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELDU(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeIntLE(WidgetInfo.INVENTORY.getId());
-		packetBufferNode.getPacketBuffer().writeInt(WidgetInfo.INVENTORY.getId());
-		packetBufferNode.getPacketBuffer().writeShortLE(sourceItemSlot);
-		packetBufferNode.getPacketBuffer().writeShortLE(sourceItemId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemSlot);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createItemOnItemPacket("OPHELDU", sourceItemId, sourceItemSlot, itemId, itemSlot);
 	}
 
 	public static PacketBufferNode createSpellOnItem(int itemId, int itemSlot, int spellWidgetId)
 	{
-		Client client = Game.getClient();
-		ClientPacket clientPacket = Game.getClientPacket();
-		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPHELDT(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemId);
-		packetBufferNode.getPacketBuffer().writeShort(-1);
-		packetBufferNode.getPacketBuffer().writeInt(spellWidgetId);
-		packetBufferNode.getPacketBuffer().writeIntIME(WidgetInfo.INVENTORY.getId());
-		packetBufferNode.getPacketBuffer().writeShortLE(itemSlot);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createSpellOnItemPacket("OPHELDT", itemId, itemSlot, spellWidgetId);
 	}
 }
