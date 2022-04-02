@@ -144,4 +144,12 @@ public class Inventory extends Items
 	{
 		return 28 - getAll().size();
 	}
+
+	public static void wield(int itemId) {
+		getFirst(itemId).interact("Wield");
+	}
+
+	public static void eat(int itemId) {
+		getFirst(itemId).interact("Eat");
+	}
 }

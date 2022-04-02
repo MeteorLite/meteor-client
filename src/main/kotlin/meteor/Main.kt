@@ -11,6 +11,7 @@ import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.FontManager
 import meteor.game.ItemManager
 import meteor.game.WorldService
+import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
@@ -84,11 +85,12 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         ConfigManager.setDefaultConfiguration(meteorConfig, false)
         Main.meteorConfig = meteorConfig
         PluginManager
+        WidgetInspector
+        MenuManager
         interactionManager = InteractionManager()
         interactionManager!!.subscribeEvents()
         interactionManager!!.subscribe()
         initOverlays()
-        WidgetInspector
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
