@@ -3,11 +3,12 @@ plugins {
     kotlin("jvm") version "1.6.10"
     id("org.jetbrains.compose") version "1.2.0-alpha01-dev620"
     java
+    `maven-publish`
 }
 
 val apiRelease by rootProject.extra { "1.1.8" }
 val release by rootProject.extra { "1" }
-group = "meteor.client"
+group = "meteor"
 
 repositories {
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
@@ -78,6 +79,16 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("org.slf4j:slf4j-simple:1.7.36")
 
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenLocal") {
+            artifactId = "client"
+            version = "$apiRelease-$release"
+            from(components["kotlin"])
+        }
+    }
 }
 
 tasks {

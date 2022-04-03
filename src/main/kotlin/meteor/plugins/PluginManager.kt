@@ -95,6 +95,9 @@ object PluginManager {
 
     fun loadExternalPlugins() {
         val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
+        if (externalsDir.exists())
+            externalsDir.mkdirs()
+        
         val plugins = externalsDir.listFiles()
         plugins?.let {
             for (file in it) {
