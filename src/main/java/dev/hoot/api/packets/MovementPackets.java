@@ -29,9 +29,9 @@ public class MovementPackets
 		ClientPacket clientPacket = Game.getClientPacket();
 		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.MOVE_GAMECLICK(), client.getPacketWriter().getIsaacCipher());
 		packetBufferNode.getPacketBuffer().writeByte(5);
-		packetBufferNode.getPacketBuffer().writeByteAdd(ctrlDown ? 2 : 0);
 		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointY);
+		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
+		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 2 : 0);
 		client.setDestinationX(worldPointX - client.getBaseX());
 		client.setDestinationY(worldPointY - client.getBaseY());
 		client.getPacketWriter().queuePacket(packetBufferNode);
@@ -43,9 +43,9 @@ public class MovementPackets
 		ClientPacket clientPacket = Game.getClientPacket();
 		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.MOVE_GAMECLICK(), client.getPacketWriter().getIsaacCipher());
 		packetBufferNode.getPacketBuffer().writeByte(5);
-		packetBufferNode.getPacketBuffer().writeByteAdd(ctrlDown ? 2 : 0);
 		packetBufferNode.getPacketBuffer().writeShortLE(worldPointX);
-		packetBufferNode.getPacketBuffer().writeShortLE(worldPointY);
+		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
+		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 2 : 0);
 		client.setDestinationX(worldPointX - client.getBaseX());
 		client.setDestinationY(worldPointY - client.getBaseY());
 		return packetBufferNode;

@@ -39,8 +39,9 @@ public class Players extends Entities<Player>
 	public static List<Player> getAll(ArrayList<String> names) {
 		ArrayList<Player> players = new ArrayList<>();
 		for (Player p : getAll()) {
-			if (names.contains(p.getName()))
-				players.add(p);
+			if (p != null)
+				if (names.contains(p.getName()))
+					players.add(p);
 		}
 		return players;
 	}

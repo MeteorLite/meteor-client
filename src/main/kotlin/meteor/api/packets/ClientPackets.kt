@@ -256,7 +256,7 @@ object ClientPackets {
 
     fun preparePacket(packetName: String) : PacketBufferNode {
         val client = Game.getClient()
-        val packet = getPacket(packetName)!!
+        val packet = getPacket(packetName)
         return client.preparePacket(client.createClientPacket(packet.opcode, packet.size), client.packetWriter.isaacCipher)
     }
 
