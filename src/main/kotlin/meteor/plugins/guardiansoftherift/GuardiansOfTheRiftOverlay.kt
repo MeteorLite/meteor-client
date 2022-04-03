@@ -104,22 +104,26 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin): Overlay()
         if (plugin.elementalPriority) {
             when (runeID) {
                 plugin.currentElementalrune -> {
-                    if (canCraftRune(plugin.currentElementalrune))
+                    if (!canCraftRune(plugin.currentElementalrune))
                         color = Color.RED
                 }
                 plugin.currentCatalyticrune -> {
-                    if (canCraftRune(plugin.currentCatalyticrune))
-                        color = Color.YELLOW
+                    color = if (canCraftRune(plugin.currentCatalyticrune))
+                        Color.YELLOW
+                    else
+                        Color.RED
                 }
             }
         } else {
             when (runeID) {
+                plugin.currentCatalyticrune -> {
+                    if (!canCraftRune(plugin.currentCatalyticrune))
+                        color = Color.RED
+                }
                 plugin.currentElementalrune -> {
                     if (canCraftRune(plugin.currentCatalyticrune))
                         color = Color.YELLOW
-                }
-                plugin.currentCatalyticrune -> {
-                    if (!canCraftRune(plugin.currentCatalyticrune))
+                    if (!canCraftRune(plugin.currentElementalrune))
                         color = Color.RED
                 }
             }
