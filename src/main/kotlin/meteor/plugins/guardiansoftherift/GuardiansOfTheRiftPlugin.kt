@@ -4,6 +4,7 @@ import dev.hoot.api.entities.TileObjects
 import dev.hoot.api.items.Inventory
 import dev.hoot.api.movement.pathfinder.Walker
 import eventbus.events.*
+import meteor.Main
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -182,8 +183,8 @@ class GuardiansOfTheRiftPlugin : Plugin() {
         else
             pathToOrb?.clear()
 
-        val elemental = client.getWidget(746, 19)
-        val catalytic = client.getWidget(746, 22)
+        val elemental = client.getWidget(746, 20)
+        val catalytic = client.getWidget(746, 23)
         elemental?.let {
             if (!it.isHidden)
                 currentElementalRuneSpriteID = it.spriteId

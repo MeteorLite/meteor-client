@@ -102,27 +102,25 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin): Overlay()
     private fun renderAltar(graphics: Graphics2D, altar: TileObject, runeID: Int) {
         var color = Color.GREEN
         if (plugin.elementalPriority) {
-            if (runeID == plugin.currentElementalrune) {
-                if (!canCraftRune(plugin.currentElementalrune))
-                    color = Color.RED
-            } else {
-                color = if (!canCraftRune(plugin.currentCatalyticrune)) {
-                    Color.RED
-                } else {
-                    Color.YELLOW
+            when (runeID) {
+                plugin.currentElementalrune -> {
+                    if (canCraftRune(plugin.currentElementalrune))
+                        color = Color.RED
+                }
+                plugin.currentCatalyticrune -> {
+                    if (canCraftRune(plugin.currentCatalyticrune))
+                        color = Color.YELLOW
                 }
             }
         } else {
-            if (runeID == plugin.currentCatalyticrune) {
-                if (canCraftRune(plugin.currentCatalyticrune)) {
-                    color = Color.GREEN
-                } else
-                    color = Color.RED
-            } else {
-                color = if (!canCraftRune(plugin.currentElementalrune)) {
-                    Color.RED
-                } else {
-                    Color.YELLOW
+            when (runeID) {
+                plugin.currentElementalrune -> {
+                    if (canCraftRune(plugin.currentCatalyticrune))
+                        color = Color.YELLOW
+                }
+                plugin.currentCatalyticrune -> {
+                    if (!canCraftRune(plugin.currentCatalyticrune))
+                        color = Color.RED
                 }
             }
         }
