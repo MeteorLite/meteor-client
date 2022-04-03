@@ -35,6 +35,7 @@ import java.net.URLClassLoader
 import java.util.*
 import java.util.jar.JarInputStream
 import java.util.jar.Manifest
+import kotlin.system.exitProcess
 
 
 object PluginManager {
@@ -77,19 +78,29 @@ object PluginManager {
         val classLoader = URLClassLoader(arrayOf(file.toURI().toURL()))
         val pluginName = file.name.split(".jar")[0]
         if (!loadedExternals.contains(pluginName)) {
-            loadedExternals.add(pluginName)
-            Main.logger.debug("Added ${file.name} to classpath")
-            val jarStream = JarInputStream(file.inputStream())
-            val mf: Manifest = jarStream.manifest
-            val testPlugin = classLoader.loadClass(mf.mainAttributes.getValue("Main-Class")).newInstance()
-            val plugin = testPlugin as Plugin
-            if (plugins.any { p -> p.getName().equals(plugin.getName()) })
-                throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
+            try {
+                loadedExternals.add(pluginName)
+                Main.logger.debug("Added ${file.name} to classpath")
+                val jarStream = JarInputStream(file.inputStream())
+                val mf: Manifest = jarStream.manifest
+                val testPlugin = classLoader.loadClass(mf.mainAttributes.getValue("Main-Class")).newInstance()
+                val plugin = testPlugin as Plugin
+                if (plugins.any { p -> p.getName().equals(plugin.getName()) })
+                    throw RuntimeException("Duplicate plugin ($pluginName) not allowed")
 
-            plugins.add(plugin)
-            plugin.subscribeEvents()
-            if (plugin.isEnabled())
-                start(plugin)
+                plugins.add(plugin)
+                plugin.subscribeEvents()
+                if (plugin.isEnabled())
+                    start(plugin)
+            } catch (e: Exception) {
+                if (e is java.lang.RuntimeException) {
+                    e.printStackTrace()
+                    exitProcess(-1)
+                }
+
+                Main.logger.error(e.toString())
+                Main.logger.error("Failed to load external plugin: $pluginName")
+            }
         }
     }
 
@@ -97,7 +108,7 @@ object PluginManager {
         val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
         if (externalsDir.exists())
             externalsDir.mkdirs()
-        
+
         val plugins = externalsDir.listFiles()
         plugins?.let {
             for (file in it) {
