@@ -119,8 +119,8 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin): Overlay()
                 } else
                     color = Color.RED
             } else {
-                color = if (!canCraftRune(plugin.currentCatalyticrune)) {
-                    Color.GREEN
+                color = if (!canCraftRune(plugin.currentElementalrune)) {
+                    Color.RED
                 } else {
                     Color.YELLOW
                 }
