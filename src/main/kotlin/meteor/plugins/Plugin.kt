@@ -1,5 +1,6 @@
 package meteor.plugins
 
+import kext.ExtensionPoint
 import meteor.Main
 import meteor.config.Config
 import meteor.config.ConfigManager
@@ -7,6 +8,7 @@ import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
 import meteor.ui.overlay.Overlay
 
+@ExtensionPoint
 open class Plugin : EventSubscriber() {
     open val config: Config? = null
     var client = Main.client

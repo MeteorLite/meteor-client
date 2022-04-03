@@ -49,6 +49,9 @@ dependencies {
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
 
+    //External plugins
+    implementation("kext:kext:1.0.0")
+
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
@@ -74,6 +77,7 @@ dependencies {
     annotationProcessor(group= "org.projectlombok", name= "lombok", version= "1.18.20")
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("org.slf4j:slf4j-simple:1.7.36")
+
 }
 
 tasks {
@@ -101,6 +105,7 @@ tasks {
                 "-Dsun.java2d.uiScale=1.0",
                 "-Dsun.java2d.uiScale.enabled=false",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
+                "--add-opens", "java.base/java.net=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED"
             )
