@@ -360,7 +360,7 @@ public class LightManager
 					light.belowFloor = true;
 				}
 
-				Tile lightTile = client.getScene().getTiles()[tileZ][tileX][tileY];
+				Tile lightTile = client.getScene().getTiles()[Math.max(tileZ,0)][tileX][tileY];
 
 				if (lightTile != null && (lightTile.getSceneTilePaint() != null || lightTile.getSceneTileModel() != null))
 				{
