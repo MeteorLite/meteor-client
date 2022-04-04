@@ -57,7 +57,7 @@ object UI {
         return {
             this.window.defaultCloseOperation = EXIT_ON_CLOSE
             this.window.placement = Main.placement
-            this.window.minimumSize = Dimension(1440, 720)
+            this.window.minimumSize = Dimension(1080, 720)
             pluginsPanelIsOpen = remember { mutableStateOf(false) }
             pluginConfigurationIsOpen = remember { mutableStateOf(false) }
             log.info("Creating ${window.renderApi} Compose window")
@@ -65,6 +65,11 @@ object UI {
                 BoxWithConstraints(modifier = Modifier.fillMaxSize().background(darkThemeColors.background)) {
                     contentSize = Dimension(this.constraints.maxWidth, this.constraints.maxHeight)
                     Row(modifier = Modifier.background(darkThemeColors.background)) {
+                        if (pluginsPanelIsOpen.value || pluginConfigurationIsOpen.value)
+                            window.minimumSize = Dimension(1440, 720)
+                        else
+                            window.minimumSize = Dimension(1080, 720)
+
                         OSRSApplet()
                         if (pluginConfigurationIsOpen.value)
                             ConfigPanel()
