@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.FrameWindowScope
 import eventbus.Events
 import eventbus.events.ConfigButtonClicked
+import kext.Extension
 import meteor.Logger
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
@@ -396,7 +397,9 @@ object UI {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                                 modifier = Modifier.fillMaxWidth(0.75f).height(32.dp).background(darkThemeColors.background)) {
                                 Switch(switchState.value, onPluginToggled(switchState, plugin), enabled = true)
-                                Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+                                val external = plugin.javaClass.getDeclaredAnnotation(Extension::class.java) != null
+                                val color = if (external) Color.Magenta else Color.Cyan
+                                Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = color, fontSize = 14.sp))
                             }
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                                 modifier = Modifier.fillMaxWidth().height(32.dp).background(darkThemeColors.background)) {
