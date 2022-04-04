@@ -61,7 +61,7 @@ class LineComponent : LayoutableRenderableEntity {
     private var left: String? = null
     private var right: String? = null
 
-    private val leftColor = Color.WHITE
+    private var leftColor = Color.WHITE
     private var rightColor = Color.WHITE
     private val leftFont: Font? = null
     private val rightFont: Font? = null
@@ -147,6 +147,10 @@ class LineComponent : LayoutableRenderableEntity {
         val lineComponent = LineComponent()
         fun left(s: String) : Builder {
             lineComponent.left = s
+            return this
+        }
+        fun leftColor(c: Color) : Builder {
+            lineComponent.leftColor = c
             return this
         }
         fun right(s: String) : Builder {

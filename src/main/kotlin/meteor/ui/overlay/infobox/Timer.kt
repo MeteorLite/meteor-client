@@ -32,7 +32,7 @@ import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
-open class Timer(period: Long, unit: ChronoUnit, image: BufferedImage, plugin: Plugin, override val textColor: Color? = null) : InfoBox(image, plugin) {
+open class Timer(period: Long, unit: ChronoUnit, image: BufferedImage?, plugin: Plugin, override val textColor: Color? = null) : InfoBox(image, plugin) {
     private val startTime: Instant
     var endTime: Instant
     private var duration: Duration

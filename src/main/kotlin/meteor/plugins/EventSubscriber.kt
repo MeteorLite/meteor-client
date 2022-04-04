@@ -93,6 +93,8 @@ open class EventSubscriber : KEventSubscriber {
     open fun onHitsplatApplied(it: HitsplatApplied) {}
     open fun onPacketSent(it: PacketSent) {}
     open fun onMenuOpened(it: MenuOpened) {}
+    open fun onPostHealthBar(it: PostHealthBar) {}
+    open fun onGraphicChanged(it: GraphicChanged) {}
 
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
@@ -179,6 +181,8 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<HitsplatApplied>(Events.HITSPLAT_APPLIED) { executeIfListening { onHitsplatApplied(it) } }
         subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening { onPacketSent(it) } }
         subscribeEvent<MenuOpened>(Events.MENU_OPENED) { executeIfListening { onMenuOpened(it) } }
+        subscribeEvent<PostHealthBar>(Events.POST_HEALTHBAR) { executeIfListening { onPostHealthBar(it) } }
+        subscribeEvent<GraphicChanged>(Events.GRAPHIC_CHANGED) { executeIfListening { onGraphicChanged(it) } }
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

@@ -41,7 +41,7 @@ abstract class  InfoBox(
 
     var priority: InfoBoxPriority? = null
 
-    var tooltip: String? = null
+    open var tooltip: String? = null
 
     var menuEntries = ArrayList<OverlayMenuEntry>()
 

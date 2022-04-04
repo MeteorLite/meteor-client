@@ -63,6 +63,7 @@ class InfoBoxOverlay internal constructor(
         panelComponent.backgroundColor = STANDARD_BACKGROUND_COLOR
         panelComponent.border = Rectangle()
         panelComponent.gap = Point(GAP, GAP)
+        setPreferredSize(Dimension(300, 800))
     }
 
     override fun render(graphics: Graphics2D): Dimension? {
