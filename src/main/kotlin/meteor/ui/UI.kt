@@ -153,7 +153,7 @@ object UI {
         val scrollState = rememberScrollState()
         Column(
             horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background).verticalScroll(scrollState)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 var descriptor: ConfigDescriptor? = null
@@ -162,40 +162,34 @@ object UI {
                 else if (lastPlugin.javaConfig != null)
                     descriptor = ConfigManager.getConfigDescriptor(lastPlugin.javaConfig!!)
 
-                if (descriptor != null)
-                    for (configItemDescriptor in descriptor.items.stream().sorted(
-                        Comparator.comparingInt { obj: ConfigItemDescriptor -> obj.position() }).collect(Collectors.toList())) {
-                        if (configItemDescriptor.type == Int::class.javaPrimitiveType) {
-                            if (configItemDescriptor.range != null) {
-                                if (configItemDescriptor.range.textInput) {
-                                    createIntegerTextNode(descriptor, configItemDescriptor)
-                                } else {
-                                    createIntegerTextNode(descriptor, configItemDescriptor)
+                if (descriptor != null) {
+                    LazyColumn(modifier = Modifier.fillMaxHeight()) {
+                        items(items = descriptor.items.stream().sorted(
+                                Comparator.comparingInt { obj: ConfigItemDescriptor -> obj.position() }).collect(Collectors.toList()), itemContent = { configuration ->
+                            when (configuration.type) {
+                                Int::class.javaPrimitiveType -> {
+                                    if (configuration.range != null) {
+                                        if (configuration.range.textInput) {
+                                            createIntegerTextNode(descriptor, configuration)
+                                        } else {
+                                            createIntegerTextNode(descriptor, configuration)
+                                        }
+                                    } else {
+                                        createIntegerTextNode(descriptor, configuration)
+                                    }
                                 }
-                            } else {
-                                createIntegerTextNode(descriptor, configItemDescriptor)
+                                Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor, configuration)
+                                java.awt.Button::class.java -> createButtonNode(descriptor, configuration)
+                                String::class.java -> createStringTextNode(descriptor, configuration)
+                                else -> {
+                                    if (configuration.type?.isEnum == true) {
+                                        createEnumNode(descriptor, configuration)
+                                    }
+                                }
                             }
-                            continue
-                        }
-                        if (configItemDescriptor.type == Boolean::class.javaPrimitiveType) {
-                            createBooleanNode(descriptor, configItemDescriptor)
-                            continue
-                        }
-                        if (configItemDescriptor.type == java.awt.Button::class.java) {
-                            createBooleanNode(descriptor, configItemDescriptor)
-                            continue
-                        }
-                        if (configItemDescriptor.type?.isEnum == true) {
-                            createEnumNode(descriptor, configItemDescriptor)
-                            continue
-                        }
-                        if (configItemDescriptor.type == String::class.java) {
-                            if (configItemDescriptor.item.textField) {
-                                createStringTextNode(descriptor, configItemDescriptor)
-                                continue
-                            }
-                        }
+                        })
                     }
+                }
             }
         }
     }
@@ -207,15 +201,15 @@ object UI {
                 descriptor.group.value,
                 configItemDescriptor.key()
             ).toBoolean()) }
-        Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF121212))){
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF121212))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.8f).height(40.dp).background(darkThemeColors.background)) {
+                modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(darkThemeColors.background)) {
                 MaterialTheme(colors = darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF121212))) {
+                modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF121212))) {
                 MaterialTheme(colors = darkThemeColors) {
                     Switch(toggled, onCheckedChange = {
                         ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
@@ -235,15 +229,15 @@ object UI {
                 configItemDescriptor.key()
             )
         )) }
-        Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)) {
                 MaterialTheme(colors = darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
+                modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
                 MaterialTheme(colors = darkThemeColors) {
                     BasicTextField(
                         value = text,
@@ -255,7 +249,7 @@ object UI {
                         },
                         singleLine = true,
                         modifier = Modifier.padding(all = 0.dp),
-                        textStyle = TextStyle(color = Color.Cyan, fontSize = 16.sp)
+                        textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
                     )
                 }
             }
@@ -270,15 +264,15 @@ object UI {
                 configItemDescriptor.key()
 
         )) }
-        Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)) {
                 MaterialTheme(colors = darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
+                modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
                 MaterialTheme(colors = darkThemeColors) {
                     BasicTextField(
                         value = text,
@@ -293,7 +287,7 @@ object UI {
                         },
                         singleLine = true,
                         modifier = Modifier.padding(all = 0.dp),
-                        textStyle = TextStyle(color = Color.Cyan, fontSize = 16.sp)
+                        textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
                     )
                 }
             }
@@ -320,15 +314,15 @@ object UI {
             list.add(o)
         }
         var selectedIndex by remember { mutableStateOf(list.indexOf(currentToSet)) }
-        Row(modifier = Modifier.fillMaxWidth().height(40.dp)){
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp)){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)) {
                 MaterialTheme(colors = darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(40.dp)) {
+                modifier = Modifier.fillMaxWidth().height(32.dp)) {
                 MaterialTheme(colors = darkThemeColors) {
                     Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
                         Text(list[selectedIndex].name, color = Color.Cyan, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
@@ -344,7 +338,7 @@ object UI {
                                     expanded = false
                                     ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), list[selectedIndex].name)
                                 }, content = {
-                                    Text(text = s.name, color = Color.Cyan, fontSize = 16.sp)
+                                    Text(text = s.toString(), color = Color.Cyan, fontSize = 14.sp)
                                 })
                             }
                         }
@@ -363,15 +357,15 @@ object UI {
                 configItemDescriptor.key()
             )
         )) }
-        Row(modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))){
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(40.dp).background(darkThemeColors.background)) {
+                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)) {
                 MaterialTheme(colors = darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(40.dp).background(Color(0xFF242424))) {
+                modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
                 MaterialTheme(colors = darkThemeColors) {
                     OutlinedButton(onClick = {
                         //TODO fix enum
