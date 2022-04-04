@@ -49,6 +49,6 @@ interface StretchedModeConfig : Config {
     @ConfigItem(keyName = "scalingFactor", name = "Resizable Scaling", description = "In resizable mode, the game is reduced in size this much before it's stretched.")
     @Units(Units.PERCENT)
     fun scalingFactor(): Int {
-        return 200
+        return 75
     }
 }

@@ -10,7 +10,7 @@ import java.awt.Graphics2D
 import java.awt.Point
 import java.awt.Rectangle
 
-@PluginDescriptor("InternalKotlinExample")
+@PluginDescriptor("example-kotlin")
 class ExamplePlugin: Plugin() {
     var exampleOverlay = overlay<ExampleOverlay>(ExampleOverlay)
 

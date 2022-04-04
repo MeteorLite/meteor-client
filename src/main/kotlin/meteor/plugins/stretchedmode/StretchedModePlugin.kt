@@ -37,7 +37,7 @@ import org.rationalityfrontline.kevent.Event
 @PluginDescriptor(name = "Stretched Mode", configGroup = "stretchedmode",
     description = "Stretches the game in fixed and resizable modes.",
     tags = ["resize", "ui", "interface", "stretch", "scaling", "fixed"],
-    enabledByDefault = false)
+    enabledByDefault = true)
 class StretchedModePlugin : Plugin() {
     override val config = configuration<StretchedModeConfig>()
 

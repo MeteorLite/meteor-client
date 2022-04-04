@@ -4,12 +4,13 @@ import meteor.Main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.*
@@ -24,7 +25,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.FrameWindowScope
-import androidx.compose.ui.window.WindowPlacement
 import eventbus.Events
 import eventbus.events.ConfigButtonClicked
 import meteor.Logger
@@ -53,10 +53,11 @@ object UI {
     var toolbarWidth: Float = 0.020f
 
 
-    fun Window(placement: WindowPlacement): (@Composable FrameWindowScope.() -> Unit) {
+    fun Window(): (@Composable FrameWindowScope.() -> Unit) {
         return {
             this.window.defaultCloseOperation = EXIT_ON_CLOSE
             this.window.placement = Main.placement
+            this.window.minimumSize = Dimension(1440, 720)
             pluginsPanelIsOpen = remember { mutableStateOf(false) }
             pluginConfigurationIsOpen = remember { mutableStateOf(false) }
             log.info("Creating ${window.renderApi} Compose window")
@@ -102,7 +103,7 @@ object UI {
     @Composable
     fun PluginsPanel() {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.9f).fillMaxHeight().background(darkThemeColors.background)) {
+            modifier = Modifier.fillMaxWidth(.9f).background(darkThemeColors.background)) {
             MaterialTheme(colors = darkThemeColors) {
                 PluginsPanelHeader()
                 Plugins()
@@ -380,23 +381,20 @@ object UI {
 
     @Composable
     fun Plugins() {
-        val scrollState = rememberScrollState()
         Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background).verticalScroll(scrollState)) {
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background)) {
             MaterialTheme(colors = darkThemeColors) {
-                for (plugin in PluginManager.plugins) {
-                    Row(modifier = Modifier.fillMaxWidth().height(28.dp).background(darkThemeColors.background)){
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.75f).height(28.dp).background(darkThemeColors.background)) {
-                            MaterialTheme(colors = darkThemeColors) {
-                                val switchState = remember { mutableStateOf(plugin.enabled) }
+                LazyColumn(modifier = Modifier.fillMaxHeight()) {
+                    items(items = PluginManager.plugins, itemContent = { plugin ->
+                        val switchState = remember { mutableStateOf(plugin.enabled) }
+                        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(darkThemeColors.background)){
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                                modifier = Modifier.fillMaxWidth(0.75f).height(32.dp).background(darkThemeColors.background)) {
                                 Switch(switchState.value, onPluginToggled(switchState, plugin), enabled = true)
-                                Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = Color.Cyan, fontSize = 16.sp))
+                                Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                             }
-                        }
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                            modifier = Modifier.fillMaxWidth().height(28.dp).background(darkThemeColors.background)) {
-                            MaterialTheme(colors = darkThemeColors) {
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                                modifier = Modifier.fillMaxWidth().height(32.dp).background(darkThemeColors.background)) {
                                 if (plugin.config != null) {
                                     IconButton(
                                         onClick = { onPluginConfigurationOpened(plugin) },
@@ -420,7 +418,7 @@ object UI {
                                 }
                             }
                         }
-                    }
+                    })
                 }
             }
         }
@@ -442,11 +440,12 @@ object UI {
 
     @Composable
     fun OSRSApplet() {
-        val mod: Modifier = if (pluginsPanelIsOpen.value)
+        var mod: Modifier = if (pluginsPanelIsOpen.value)
             Modifier.fillMaxWidth(((.01f) * 80) - toolbarWidth).fillMaxHeight()
         else
             Modifier.fillMaxWidth(1f - toolbarWidth).fillMaxHeight()
 
+        mod = mod.defaultMinSize(800.dp, 600.dp)
         SwingPanel(Color.Black,
             modifier = mod,
             factory = {
