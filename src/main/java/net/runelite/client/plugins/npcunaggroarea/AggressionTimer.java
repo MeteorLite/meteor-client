@@ -22,35 +22,48 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.npcaggrolines
+package net.runelite.client.plugins.npcunaggroarea;
 
-import meteor.plugins.Plugin
-import meteor.ui.overlay.infobox.Timer
-import java.awt.Color
-import java.awt.image.BufferedImage
-import java.time.Duration
-import java.time.Instant
-import java.time.temporal.ChronoUnit
+import lombok.Getter;
+import lombok.Setter;
+import meteor.plugins.Plugin;
+import meteor.ui.overlay.infobox.Timer;
 
-internal class AggressionTimer(duration: Duration, image: BufferedImage, plugin: Plugin, visible: Boolean) :
-    Timer(duration.toMillis(), ChronoUnit.MILLIS, image, plugin) {
-    var visible: Boolean
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
-    init {
-        tooltip = "Time until NPCs become unaggressive"
-        this.visible = visible
-    }
+class AggressionTimer extends Timer
+{
+	@Getter
+	@Setter
+	private boolean visible;
 
-    //check if timer has 10% of time left
-    override val textColor: Color
-        get() {
-            val timeLeft = Duration.between(Instant.now(), endTime)
-            return if (timeLeft.seconds < 60) {
-                Color.RED.brighter()
-            } else Color.WHITE
-        }
+	AggressionTimer(Duration duration, BufferedImage image, Plugin plugin, boolean visible)
+	{
+		super(duration.toMillis(), ChronoUnit.MILLIS, image, plugin, null);
+		setTooltip("Time until NPCs become unaggressive");
+		this.visible = visible;
+	}
 
-    override fun render(): Boolean {
-        return visible && super.render()
-    }
+	@Override
+	public Color getTextColor()
+	{
+		Duration timeLeft = Duration.between(Instant.now(), getEndTime());
+
+		if (timeLeft.getSeconds() < 60)
+		{
+			return Color.RED.brighter();
+		}
+
+		return Color.WHITE;
+	}
+
+	@Override
+	public boolean render()
+	{
+		return visible && super.render();
+	}
 }

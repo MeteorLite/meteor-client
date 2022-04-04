@@ -3,7 +3,6 @@ package meteor.plugins
 import meteor.Configuration
 import meteor.Main
 import meteor.plugins.agility.AgilityPlugin
-import meteor.plugins.apitest.ApiTestPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
@@ -20,7 +19,6 @@ import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
-import meteor.plugins.npcaggrolines.NpcAggroLinesPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
@@ -30,6 +28,7 @@ import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
+import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
 import rs117.hd.HdPlugin
@@ -46,7 +45,6 @@ object PluginManager {
     var plugins = ArrayList<Plugin>()
     var loadedExternals = ArrayList<String>()
     init {
-        init<ApiTestPlugin>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
@@ -67,7 +65,7 @@ object PluginManager {
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
-        init<NpcAggroLinesPlugin>()
+        init<NpcAggroAreaPlugin>()
         init<NeverLogoutPlugin>()
         init<RsnHiderPlugin>()
         init<SlayerPlugin>()
