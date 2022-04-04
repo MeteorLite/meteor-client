@@ -32,9 +32,10 @@ import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import rs117.hd.HdPlugin
 import java.io.File
+import java.net.JarURLConnection
+import java.net.URL
 import java.net.URLClassLoader
 import java.util.*
-import java.util.jar.JarInputStream
 import java.util.jar.Manifest
 import kotlin.system.exitProcess
 
@@ -76,32 +77,14 @@ object PluginManager {
         init<HdPlugin>()
     }
 
-    private fun loadExternal(file: File) {
-        val classLoader = URLClassLoader(arrayOf(file.toURI().toURL()))
-        val pluginName = file.name.split(".jar")[0]
+    private fun loadExternal(jar: File) {
+        val pluginName = jar.name.split(".jar")[0]
         if (!loadedExternals.contains(pluginName)) {
-            try {
-                loadedExternals.add(pluginName)
-                Main.logger.debug("Added ${file.name} to classpath")
-                val jarStream = JarInputStream(file.inputStream())
-                val mf: Manifest = jarStream.manifest
-                val testPlugin = classLoader.loadClass(mf.mainAttributes.getValue("Main-Class")).newInstance()
-                val plugin = testPlugin as Plugin
-                if (plugins.any { p -> p.getName().equals(plugin.getName()) })
-                    throw RuntimeException("Duplicate plugin ($pluginName) not allowed")
-
-                plugins.add(plugin)
-                plugin.subscribeEvents()
-                if (plugin.isEnabled())
-                    start(plugin)
-            } catch (e: Exception) {
-                if (e is java.lang.RuntimeException) {
-                    e.printStackTrace()
-                    exitProcess(-1)
-                }
-
-                Main.logger.error(e.toString())
-                Main.logger.error("Failed to load external plugin: $pluginName")
+            loadedExternals.add(pluginName)
+            val manifest: Manifest? = getManifest(jar)
+            manifest?.let {
+                initExternalPlugin(jar, manifest)
+                Main.logger.debug("Added ${jar.name} to classpath")
             }
         }
     }
@@ -111,14 +94,19 @@ object PluginManager {
         if (externalsDir.exists())
             externalsDir.mkdirs()
 
-        val plugins = externalsDir.listFiles()
-        plugins?.let {
-            for (file in it) {
-                file?.let { f ->
-                    loadExternal(f)
+        val externalJars = externalsDir.listFiles()
+        externalJars?.let { jars ->
+            for (jar in jars) {
+                jar?.let { it ->
+                    loadExternal(it)
                 }
             }
         }
+    }
+
+    fun getManifest(jar: File) : Manifest? {
+        val jarConnection = URL("jar:file:${jar.absolutePath}!/").openConnection() as JarURLConnection
+        return jarConnection.manifest
     }
 
     inline fun <reified T : Plugin> init() {
@@ -130,6 +118,29 @@ object PluginManager {
             plugin.subscribeEvents()
             if (plugin.isEnabled())
                 start(plugin)
+    }
+
+    fun initExternalPlugin(jar: File, manifest: Manifest) {
+        try {
+            val classLoader = URLClassLoader(arrayOf(jar.toURI().toURL()))
+            val plugin = classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).newInstance() as Plugin
+            if (plugins.any { p -> p.getName().equals(plugin.getName()) })
+                throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
+
+            plugins.add(plugin)
+            plugin.subscribeEvents()
+            if (plugin.isEnabled())
+                start(plugin)
+        } catch (e: Exception) {
+            if (e is java.lang.RuntimeException) {
+                e.printStackTrace()
+                exitProcess(-1)
+            }
+
+            Main.logger.error(e.toString())
+            Main.logger.error("Failed to load external plugin: (${jar.absolutePath})")
+        }
+
     }
 
     inline fun <reified T : Plugin> get(): T {
