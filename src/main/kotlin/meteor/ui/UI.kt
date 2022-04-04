@@ -149,7 +149,12 @@ object UI {
             modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background).verticalScroll(scrollState)
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                val descriptor = ConfigManager.getConfigDescriptor(lastPlugin.config!!)
+                var descriptor: ConfigDescriptor? = null
+                if (lastPlugin.config != null)
+                    descriptor = ConfigManager.getConfigDescriptor(lastPlugin.config!!)
+                else if (lastPlugin.javaConfig != null)
+                    descriptor = ConfigManager.getConfigDescriptor(lastPlugin.javaConfig!!)
+
                 if (descriptor != null)
                     for (configItemDescriptor in descriptor.items.stream().sorted(
                         Comparator.comparingInt { obj: ConfigItemDescriptor -> obj.position() }).collect(Collectors.toList())) {
@@ -393,6 +398,16 @@ object UI {
                             modifier = Modifier.fillMaxWidth().height(28.dp).background(darkThemeColors.background)) {
                             MaterialTheme(colors = darkThemeColors) {
                                 if (plugin.config != null) {
+                                    IconButton(
+                                        onClick = { onPluginConfigurationOpened(plugin) },
+                                    ){
+                                        Icon(
+                                            Icons.Filled.Settings,
+                                            contentDescription = "Opens Plugin configuration panel",
+                                            tint = Color.Cyan
+                                        )
+                                    }
+                                } else if (plugin.javaConfig != null) {
                                     IconButton(
                                         onClick = { onPluginConfigurationOpened(plugin) },
                                     ){

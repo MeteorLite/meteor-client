@@ -28,6 +28,7 @@ import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
+import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import rs117.hd.HdPlugin
 import java.io.File
@@ -59,6 +60,7 @@ object PluginManager {
         init<HerbiboarPlugin>()
         init<ItemPricesPlugin>()
         init<KeyboardBankPinPlugin>()
+        init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
         init<NpcAggroLinesPlugin>()

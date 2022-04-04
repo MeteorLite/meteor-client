@@ -7,6 +7,7 @@ import eventbus.Events
 import eventbus.events.*
 import meteor.events.InfoBoxMenuClicked
 import meteor.events.PluginChanged
+import net.runelite.api.events.MenuOpened
 import org.rationalityfrontline.kevent.KEventSubscriber
 import org.rationalityfrontline.kevent.subscribe as kSubscribe
 
@@ -91,6 +92,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onInvokeMenuAction(it: AutomatedMenu) {}
     open fun onHitsplatApplied(it: HitsplatApplied) {}
     open fun onPacketSent(it: PacketSent) {}
+    open fun onMenuOpened(it: MenuOpened) {}
 
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
@@ -176,6 +178,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<InfoBoxMenuClicked>(meteor.events.Events.INFO_BOX_MENU_CLICKED) { executeIfListening { onInfoBoxMenuClicked(it) } }
         subscribeEvent<HitsplatApplied>(Events.HITSPLAT_APPLIED) { executeIfListening { onHitsplatApplied(it) } }
         subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening { onPacketSent(it) } }
+        subscribeEvent<MenuOpened>(Events.MENU_OPENED) { executeIfListening { onMenuOpened(it) } }
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {
