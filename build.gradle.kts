@@ -111,6 +111,7 @@ tasks {
                 "-XX:ParallelGCThreads=4",
                 "-Xmx1024m",
                 "-ea",
+                "-noverify",
                 "-Dsun.java2d.opengl=true",
                 "-Dsun.java2d.accthreshold=0",
                 "-Dsun.java2d.uiScale=1.0",
