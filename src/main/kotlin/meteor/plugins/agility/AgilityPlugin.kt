@@ -90,7 +90,7 @@ class AgilityPlugin : Plugin() {
         }
     }
 
-    private fun onTileObject(tile: Tile, oldObject: TileObject?, newObject: TileObject?) {
+    private fun onTileObject(tile: Tile?, oldObject: TileObject?, newObject: TileObject?) {
         obstacles.remove(oldObject)
         if (newObject == null) {
             return
@@ -103,7 +103,7 @@ class AgilityPlugin : Plugin() {
             Obstacles.SEPULCHRE_OBSTACLE_IDS.contains(newObject.id) ||
             Obstacles.SEPULCHRE_SKILL_OBSTACLE_IDS.contains(newObject.id)
         ) {
-            obstacles[newObject] = Obstacle(tile, null)
+            obstacles[newObject] = Obstacle(tile!!, null)
         }
         if (Obstacles.SHORTCUT_OBSTACLE_IDS!!.containsKey(newObject.id)) {
             var closestShortcut: AgilityShortcut? = null
@@ -126,7 +126,7 @@ class AgilityPlugin : Plugin() {
                 }
             }
             if (closestShortcut != null) {
-                obstacles[newObject] = Obstacle(tile, closestShortcut)
+                obstacles[newObject] = Obstacle(tile!!, closestShortcut)
             }
         }
     }

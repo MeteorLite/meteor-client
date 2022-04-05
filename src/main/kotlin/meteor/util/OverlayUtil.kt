@@ -94,4 +94,10 @@ object OverlayUtil {
         val y = imgLoc.y
         graphics.drawImage(image, x, y, null)
     }
+
+    fun renderImageLocation(graphics: Graphics2D, imgLoc: LocalPoint, image: BufferedImage) {
+        val x = imgLoc.x
+        val y = imgLoc.y
+        graphics.drawImage(image, x, y, null)
+    }
 }

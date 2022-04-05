@@ -25,6 +25,7 @@ import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
@@ -57,6 +58,7 @@ object PluginManager {
         init<ExamplePlugin>()
         init<EntityHiderPlugin>()
         init<FishingPlugin>()
+        init<GauntletExtendedPlugin>()
         init<GroundItemsPlugin>()
         init<HerbiboarPlugin>()
         init<InterfaceStylesPlugin>()

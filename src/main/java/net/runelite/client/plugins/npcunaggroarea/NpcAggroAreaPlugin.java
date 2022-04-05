@@ -54,7 +54,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @PluginDescriptor(
-	name = "NPC Aggression Timer",
+	name = "NPC Aggro Timer",
 	description = "Highlights the unaggressive area of NPCs nearby and timer until it becomes active",
 	tags = {"highlight", "lines", "unaggro", "aggro", "aggressive", "npcs", "area", "slayer"},
 	enabledByDefault = false

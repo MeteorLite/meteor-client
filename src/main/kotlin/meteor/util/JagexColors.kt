@@ -33,7 +33,7 @@ object JagexColors {
     /*
    * Colors of chat text when displayed on an opaque background.
    */
-    val CHAT_PUBLIC_TEXT_OPAQUE_BACKGROUND = Color.BLUE
+    var CHAT_PUBLIC_TEXT_OPAQUE_BACKGROUND = Color.BLUE
     val CHAT_PRIVATE_MESSAGE_TEXT_OPAQUE_BACKGROUND = Color.CYAN
     val CHAT_FC_TEXT_OPAQUE_BACKGROUND = Color(127, 0, 0)
     val CHAT_FC_NAME_OPAQUE_BACKGROUND = Color.BLUE
