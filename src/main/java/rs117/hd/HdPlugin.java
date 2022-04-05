@@ -507,12 +507,10 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 						GLContext versionContext = dummyDrawable.createContext(null);
 						versionContext.makeCurrent();
 						GL versionGL = versionContext.getGL();
-						log.info("Using device: {}", versionGL.glGetString(GL.GL_RENDERER));
-						log.info("Using driver: {}", versionGL.glGetString(GL.GL_VERSION));
-						log.info("Client is {}-bit", System.getProperty("sun.arch.data.model"));
 						versionContext.destroy();
 					} catch (Exception ex) {
-						log.error("failed to get device information", ex);
+						ex.printStackTrace();
+						log.error("failed to get GPU information");
 						stopPlugin();
 						return;
 					}

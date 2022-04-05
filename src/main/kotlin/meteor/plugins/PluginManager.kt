@@ -32,12 +32,14 @@ import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
+import org.apache.commons.lang3.time.StopWatch
 import rs117.hd.HdPlugin
 import java.io.File
 import java.net.JarURLConnection
 import java.net.URL
 import java.net.URLClassLoader
 import java.util.*
+import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
 import kotlin.system.exitProcess
 
@@ -86,25 +88,26 @@ object PluginManager {
         if (!loadedExternals.contains(pluginName)) {
             loadedExternals.add(pluginName)
             val manifest: Manifest? = getManifest(jar)
-            manifest?.let {
-                initExternalPlugin(jar, manifest)
-                Main.logger.debug("Added ${jar.name} to classpath")
-            }
+            manifest?.let { initExternalPlugin(jar, manifest) }
         }
     }
 
     fun loadExternalPlugins() {
+        val timer = StopWatch()
         val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
         if (externalsDir.exists())
             externalsDir.mkdirs()
 
         val externalJars = externalsDir.listFiles()
         externalJars?.let { jars ->
+            timer.start()
             for (jar in jars) {
                 jar?.let { it ->
                     loadExternal(it)
                 }
             }
+            timer.stop()
+            Main.logger.debug("Loaded ${externalJars.size} external plugins in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
         }
     }
 

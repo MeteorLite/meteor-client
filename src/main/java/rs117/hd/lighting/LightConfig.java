@@ -75,8 +75,6 @@ public class LightConfig
 				l.objectIds.forEach(id -> objectLights.put(id, l));
 				l.projectileIds.forEach(id -> projectileLights.put(id, l));
 			}
-
-			log.info("Loaded {} lights", lights.length);
 		}
 		catch (Exception ex)
 		{

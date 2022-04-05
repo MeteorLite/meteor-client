@@ -61,7 +61,6 @@ object UI {
             this.window.minimumSize = Dimension(1080, 720)
             pluginsPanelIsOpen = remember { mutableStateOf(false) }
             pluginConfigurationIsOpen = remember { mutableStateOf(false) }
-            log.info("Creating ${window.renderApi} Compose window")
             MaterialTheme(colors = darkThemeColors) {
                 BoxWithConstraints(modifier = Modifier.fillMaxSize().background(darkThemeColors.background)) {
                     contentSize = Dimension(this.constraints.maxWidth, this.constraints.maxHeight)
@@ -153,7 +152,7 @@ object UI {
         val scrollState = rememberScrollState()
         Column(
             horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(.95f).fillMaxHeight().background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 var descriptor: ConfigDescriptor? = null

@@ -6,9 +6,12 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.2.0" }
+val apiRelease by rootProject.extra { "1.2.1" }
+val verMajor by rootProject.extra { "1" }
+val verMinor by rootProject.extra { "0" }
 val release by rootProject.extra { "1" }
 group = "meteor"
+version = "$verMajor.$verMinor.$release"
 
 repositories {
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
@@ -104,18 +107,10 @@ tasks {
                 }
             }
             jvmArgs(
-                "-XX:+UseZGC",
-                "-XX:ReservedCodeCacheSize=256m",
-                "-XX:InitialCodeCacheSize=256m",
-                "-XX:ConcGCThreads=2",
-                "-XX:ParallelGCThreads=4",
                 "-Xmx1024m",
                 "-ea",
                 "-noverify",
-                "-Dsun.java2d.opengl=true",
-                "-Dsun.java2d.accthreshold=0",
                 "-Dsun.java2d.uiScale=1.0",
-                "-Dsun.java2d.uiScale.enabled=false",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-opens", "java.base/java.net=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
@@ -154,4 +149,17 @@ tasks {
             languageVersion = "1.6"
         }
     }
+}
+
+
+tasks.withType<org.gradle.jvm.tasks.Jar> {
+    exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")
+    exclude("META-INF/BC2048KE.RSA", "META-INF/BC2048KE.SF", "META-INF/BC2048KE.DSA")
+    exclude("META-INF/KITFOX.SF", "META-INF/KITFOX.DSA")
+}
+
+tasks.jar {
+    exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")
+    exclude("META-INF/BC2048KE.RSA", "META-INF/BC2048KE.SF", "META-INF/BC2048KE.DSA")
+    exclude("META-INF/KITFOX.SF", "META-INF/KITFOX.DSA")
 }
