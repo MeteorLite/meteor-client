@@ -96,6 +96,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onPostHealthBar(it: PostHealthBar) {}
     open fun onGraphicChanged(it: GraphicChanged) {}
     open fun onProjectileSpawned(it: ProjectileSpawned) {}
+    open fun onWorldChanged(it: WorldChanged) {}
 
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
@@ -185,6 +186,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<PostHealthBar>(Events.POST_HEALTHBAR) { executeIfListening { onPostHealthBar(it) } }
         subscribeEvent<GraphicChanged>(Events.GRAPHIC_CHANGED) { executeIfListening { onGraphicChanged(it) } }
         subscribeEvent<ProjectileSpawned>(Events.PROJECTILE_SPAWNED) { executeIfListening { onProjectileSpawned(it) } }
+        subscribeEvent<WorldChanged>(Events.WORLD_CHANGED) { executeIfListening { onWorldChanged(it) } }
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

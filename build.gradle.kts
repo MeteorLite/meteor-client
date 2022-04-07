@@ -99,7 +99,7 @@ tasks {
         application {
             mainClass = "meteor.Main"
             nativeDistributions {
-                targetFormats(Dmg, Msi, Deb)
+                targetFormats(Dmg, Exe, Deb)
                 includeAllModules = true
                 windows {
                     upgradeUuid = "9df19035-e962-4bb4-90c0-74330a07082b"

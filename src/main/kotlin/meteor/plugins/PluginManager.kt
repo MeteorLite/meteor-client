@@ -25,6 +25,7 @@ import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import net.runelite.client.plugins.defaultworld.DefaultWorldPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -56,6 +57,7 @@ object PluginManager {
         init<BoostsPlugin>()
         //init<ChatFilterPlugin>()
         init<CombatLevelPlugin>()
+        init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()
         init<ExamplePlugin>()
         init<EntityHiderPlugin>()
@@ -107,7 +109,7 @@ object PluginManager {
                 }
             }
             timer.stop()
-            Main.logger.debug("Loaded ${externalJars.size} external plugins in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
+            Main.logger.info("Loaded ${externalJars.size} external plugins in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
         }
     }
 

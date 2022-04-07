@@ -5,11 +5,11 @@ import net.runelite.api.coords.WorldPoint;
 
 public class RectangularArea implements Area
 {
-	private final int minX;
-	private final int maxX;
-	private final int minY;
-	private final int maxY;
-	private final int plane;
+	public int minX;
+	public int maxX;
+	public int minY;
+	public int maxY;
+	public int plane;
 
 	public RectangularArea(int x1, int y1, int x2, int y2, int plane)
 	{
