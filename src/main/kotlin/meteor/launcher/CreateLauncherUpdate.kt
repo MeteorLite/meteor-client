@@ -16,8 +16,8 @@ object CreateLauncherUpdate {
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "1.2.1-1"
-        update.updateInfo = "Say hello to the new Meteor"
+        update.version = "1.2.2-1"
+        update.updateInfo = "Nobody can even see this shit yet anyways..."
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()

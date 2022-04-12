@@ -1,12 +1,13 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
+
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev620"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev659"
     java
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.2.1" }
+val apiRelease by rootProject.extra { "1.2.2" }
 val verMajor by rootProject.extra { "1" }
 val verMinor by rootProject.extra { "0" }
 val release by rootProject.extra { "1" }
@@ -15,6 +16,7 @@ version = "$verMajor.$verMinor.$release"
 
 repositories {
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
+    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/")}
     google()
     mavenLocal()
     mavenCentral()
@@ -56,10 +58,9 @@ dependencies {
     //External plugins
     implementation("kext:kext:1.0.0")
 
-    implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.rationalityfrontline:kevent:2.1.2")
+    implementation("org.rationalityfrontline:kevent:2.1.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
@@ -72,8 +73,7 @@ dependencies {
     implementation("com.formdev:flatlaf:2.1")
     implementation("com.formdev:flatlaf-intellij-themes:2.1")
     implementation("com.miglayout:miglayout:3.7.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-javafx:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("io.insert-koin:koin-core:3.1.5")
     implementation("com.kitfox.svg:svg-salamander:1.0")
     implementation("com.formdev:flatlaf-extras:2.1")
@@ -82,6 +82,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("org.slf4j:slf4j-simple:1.7.36")
 
+    implementation(compose.desktop.currentOs)
 }
 
 publishing {
@@ -138,19 +139,23 @@ tasks {
         classpath(sourceSets["main"].runtimeClasspath)
         mainClass.set("meteor.util.bootstrap.Bootstrapper")
     }
-
-    compileKotlin {
-        sourceCompatibility = JavaVersion.VERSION_17.toString()
-        targetCompatibility = JavaVersion.VERSION_17.toString()
-
-        kotlinOptions {
-            jvmTarget = "11"
-            apiVersion = "1.6"
-            languageVersion = "1.6"
-        }
-    }
 }
 
+tasks.compileJava {
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
+}
+
+tasks.compileKotlin {
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
+
+    kotlinOptions {
+        jvmTarget = "17"
+        apiVersion = "1.6"
+        languageVersion = "1.6"
+    }
+}
 
 tasks.withType<org.gradle.jvm.tasks.Jar> {
     exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")
