@@ -27,6 +27,8 @@
 
 package net.runelite.client.plugins.gauntletextended;
 
+import dev.hoot.api.items.Inventory;
+import dev.hoot.api.widgets.Prayers;
 import eventbus.events.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -69,6 +71,7 @@ public class GauntletExtendedPlugin extends Plugin
 	public static final int ONEHAND_STAB_SWORD_ANIMATION = 386;
 	public static final int HIGH_LEVEL_MAGIC_ATTACK = 1167;
 	public static final int HUNLEFF_TORNADO = 8418;
+	public boolean isFirstPlayerPhase = true;
 
 	private static final Set<Integer> MELEE_ANIM_IDS = Set.of(
 		ONEHAND_STAB_SWORD_ANIMATION, ONEHAND_SLASH_SWORD_ANIMATION,
@@ -151,7 +154,7 @@ public class GauntletExtendedPlugin extends Plugin
 
 	private Client client = Main.INSTANCE.getClient();
 	private ClientThread clientThread = ClientThread.INSTANCE;
-	private GauntletExtendedConfig config = (GauntletExtendedConfig) javaConfiguration(GauntletExtendedConfig.class);
+	public GauntletExtendedConfig config = (GauntletExtendedConfig) javaConfiguration(GauntletExtendedConfig.class);
 	private ResourceManager resourceManager = new ResourceManager(this, config);
 	private SkillIconManager skillIconManager = SkillIconManager.INSTANCE;
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
@@ -401,7 +404,7 @@ public class GauntletExtendedPlugin extends Plugin
 
 		if (HUNLLEF_IDS.contains(id))
 		{
-			hunllef = new Hunllef(npc, skillIconManager, config.hunllefAttackStyleIconSize());
+			hunllef = new Hunllef(npc, skillIconManager, config.hunllefAttackStyleIconSize(), this);
 		}
 		else if (TORNADO_IDS.contains(id))
 		{
@@ -486,6 +489,15 @@ public class GauntletExtendedPlugin extends Plugin
 		{
 			resourceManager.parseChatMessage(event.getMessage());
 		}
+
+		if (event.getMessage().contains("prayers have been disabled")) {
+			if (hunllef.getAttackPhase() == Hunllef.AttackPhase.MAGIC)
+				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MAGIC))
+					Prayers.toggle(Prayer.PROTECT_FROM_MAGIC);
+			if (hunllef.getAttackPhase() == Hunllef.AttackPhase.RANGE)
+				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MISSILES))
+					Prayers.toggle(Prayer.PROTECT_FROM_MISSILES);
+		}
 	}
 
 	@Override
@@ -533,6 +545,9 @@ public class GauntletExtendedPlugin extends Plugin
 			else
 			{
 				wrongAttackStyle = true;
+
+				if (config.autoWeaponSwap())
+					Inventory.getFirst(ItemID.CRYSTAL_BOW_PERFECTED, ItemID.CRYSTAL_STAFF_PERFECTED).interact("Equip");
 			}
 		}
 		else if (actor instanceof NPC)
@@ -543,6 +558,7 @@ public class GauntletExtendedPlugin extends Plugin
 			}
 		}
 	}
+
 
 	private boolean isAttackAnimationValid(final int animationId)
 	{

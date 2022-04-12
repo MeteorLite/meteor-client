@@ -1,5 +1,6 @@
 package meteor.plugins
 
+import com.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
 import meteor.plugins.agility.AgilityPlugin
@@ -78,6 +79,7 @@ object PluginManager {
         init<SpecBarPlugin>()
         init<StatusBarsPlugin>()
         init<StretchedModePlugin>()
+        init<TilemanModePlugin>()
         init<TimersPlugin>()
         init<GuardiansOfTheRiftPlugin>()
         init<WorldMapPlugin>()

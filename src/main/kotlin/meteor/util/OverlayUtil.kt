@@ -1,10 +1,8 @@
 package meteor.util
 
 import meteor.Main
-import net.runelite.api.Actor
-import net.runelite.api.Perspective
+import net.runelite.api.*
 import net.runelite.api.Point
-import net.runelite.api.TileObject
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import java.awt.*
@@ -99,5 +97,13 @@ object OverlayUtil {
         val x = imgLoc.x
         val y = imgLoc.y
         graphics.drawImage(image, x, y, null)
+    }
+
+    fun renderMinimapRect(client: Client, graphics: Graphics2D, center: Point, width: Int, height: Int, color: Color?) {
+        val angle = client.mapAngle * Perspective.UNIT
+        graphics.color = color
+        graphics.rotate(angle, center.x.toDouble(), center.y.toDouble())
+        graphics.drawRect(center.x - width / 2, center.y - height / 2, width - 1, height - 1)
+        graphics.rotate(-angle, center.x.toDouble(), center.y.toDouble())
     }
 }

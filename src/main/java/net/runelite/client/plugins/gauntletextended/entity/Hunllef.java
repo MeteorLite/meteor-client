@@ -25,13 +25,17 @@
 
 package net.runelite.client.plugins.gauntletextended.entity;
 
+import dev.hoot.api.widgets.Prayers;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import meteor.game.SkillIconManager;
+import meteor.plugins.PluginManager;
 import meteor.util.ImageUtil;
 import net.runelite.api.NPC;
 import net.runelite.api.Prayer;
 import net.runelite.api.Skill;
+import net.runelite.client.plugins.gauntletextended.GauntletExtendedConfig;
+import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -64,7 +68,9 @@ public class Hunllef
 
 	private int iconSize;
 
-	public Hunllef(final NPC npc, final SkillIconManager skillIconManager, final int iconSize)
+	private GauntletExtendedPlugin plugin;
+
+	public Hunllef(final NPC npc, final SkillIconManager skillIconManager, final int iconSize, final GauntletExtendedPlugin plugin)
 	{
 		this.npc = npc;
 
@@ -77,6 +83,7 @@ public class Hunllef
 		this.ticksUntilNextAttack = 0;
 
 		this.attackPhase = AttackPhase.RANGE;
+		this.plugin = plugin;
 	}
 
 	public void decrementTicksUntilNextAttack()
@@ -103,6 +110,16 @@ public class Hunllef
 		{
 			attackPhase = attackPhase == AttackPhase.RANGE ? AttackPhase.MAGIC : AttackPhase.RANGE;
 			attackCount = MAX_ATTACK_COUNT;
+		}
+
+		if (plugin.config.autoPray()) {
+			if (attackPhase == AttackPhase.RANGE) {
+				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MISSILES))
+					Prayers.toggle(Prayer.PROTECT_FROM_MISSILES);
+			} else if (attackPhase == AttackPhase.MAGIC) {
+				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MAGIC))
+					Prayers.toggle(Prayer.PROTECT_FROM_MAGIC);
+			}
 		}
 	}
 

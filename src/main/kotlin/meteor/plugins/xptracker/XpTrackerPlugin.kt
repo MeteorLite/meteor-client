@@ -25,17 +25,19 @@
  */
 package meteor.plugins.xptracker
 
-import meteor.Main
 import com.google.common.collect.ImmutableList
 import eventbus.events.*
+import meteor.Main
 import meteor.game.NPCManager
 import meteor.game.SkillIconManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.Overlay
+import meteor.ui.overlay.OverlayManager
 import net.runelite.api.*
 import net.runelite.api.util.Text
+import net.runelite.api.widgets.WidgetID
+import net.runelite.api.widgets.WidgetInfo
 import net.runelite.http.api.xp.XpClient
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -363,17 +365,27 @@ class XpTrackerPlugin : Plugin() {
         }
     }*/
 
-    override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        if (it.menuAction!!.id == MenuAction.RUNELITE.id
+    override fun onMenuEntryAdded(event: MenuEntryAdded) {
+        val widgetID: Int = event.param1
+        if (WidgetInfo.TO_GROUP(widgetID) != WidgetID.SKILLS_GROUP_ID || !event.option!!.startsWith("View")
         ) {
-            val skill = Skill.valueOf(Text.removeTags(it.menuTarget).uppercase(Locale.getDefault()))
-            if (it.menuOption!! == "Add to canvas")
-                addOverlay(skill)
-            when (it.menuOption) {
-                MENUOP_ADD_CANVAS_TRACKER -> addOverlay(skill)
-                MENUOP_REMOVE_CANVAS_TRACKER -> removeOverlay(skill)
-            }
+            return
         }
+
+        // Get skill from menu option, eg. "View <col=ff981f>Attack</col> guide"
+        val skillText: String = event.option!!.split(" ").get(1)
+        val skill = Skill.valueOf(Text.removeTags(skillText).toUpperCase())
+        client.createMenuEntry(-1)
+            .setTarget(skillText)
+            .setOption(if (hasOverlay(skill)) MENUOP_REMOVE_CANVAS_TRACKER else MENUOP_ADD_CANVAS_TRACKER)
+            .setType(MenuAction.RUNELITE)
+            .onClick { e: MenuEntry? ->
+                if (hasOverlay(skill)) {
+                    removeOverlay(skill)
+                } else {
+                    addOverlay(skill)
+                }
+            }
     }
 
     fun getSkillState(skill: Skill?): XpStateSingle {

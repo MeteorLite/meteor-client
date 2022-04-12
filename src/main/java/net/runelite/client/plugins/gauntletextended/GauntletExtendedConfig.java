@@ -38,6 +38,32 @@ import meteor.config.ConfigAnnotations.*;
 @ConfigGroup("gauntlet")
 public interface GauntletExtendedConfig extends Config
 {
+
+
+	@ConfigItem(
+			name = "Auto Pray",
+			description = "Automatically pray during final encounter",
+			position = 0,
+			keyName = "autoPray"
+	)
+	@Units(Units.POINTS)
+	default boolean autoPray()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			name = "Auto Weapon Swap",
+			description = "Automatically swap weapons during final encounter",
+			position = 0,
+			keyName = "autoPray"
+	)
+	@Units(Units.POINTS)
+	default boolean autoWeaponSwap()
+	{
+		return false;
+	}
+
 	// Sections
 	@ConfigSection(
 		name = "Resources",
