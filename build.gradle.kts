@@ -7,12 +7,10 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.2.2" }
-val verMajor by rootProject.extra { "1" }
-val verMinor by rootProject.extra { "0" }
+val apiRelease by rootProject.extra { "1.2.3" }
 val release by rootProject.extra { "1" }
 group = "meteor"
-version = "$verMajor.$verMinor.$release"
+version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
 
 repositories {
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
@@ -55,13 +53,20 @@ dependencies {
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
 
-    //External plugins
-    implementation("kext:kext:1.0.0")
-
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
+    //Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.rationalityfrontline:kevent:2.1.3")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+
+    //RuneLite Plugins
+    implementation("org.slf4j:slf4j-api:1.7.36")
+    implementation("org.slf4j:slf4j-simple:1.7.36")
+    compileOnly(group= "org.projectlombok", name= "lombok", version= "1.18.20")
+    annotationProcessor(group= "org.projectlombok", name= "lombok", version= "1.18.20")
+
+    //Util
+    implementation("org.rationalityfrontline:kevent:2.1.4")
     implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
     implementation(group = "com.google.guava", name = "guava", version = "_")
@@ -73,14 +78,11 @@ dependencies {
     implementation("com.formdev:flatlaf:2.1")
     implementation("com.formdev:flatlaf-intellij-themes:2.1")
     implementation("com.miglayout:miglayout:3.7.4")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("io.insert-koin:koin-core:3.1.5")
     implementation("com.kitfox.svg:svg-salamander:1.0")
     implementation("com.formdev:flatlaf-extras:2.1")
-    compileOnly(group= "org.projectlombok", name= "lombok", version= "1.18.20")
-    annotationProcessor(group= "org.projectlombok", name= "lombok", version= "1.18.20")
-    implementation("org.slf4j:slf4j-api:1.7.36")
-    implementation("org.slf4j:slf4j-simple:1.7.36")
+
+
 
     implementation(compose.desktop.currentOs)
 }
