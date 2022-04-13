@@ -3,8 +3,6 @@ package meteor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.*
 import dev.hoot.api.InteractionManager
-import eventbus.Events
-import kext.ExtensionManager
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
@@ -58,7 +56,6 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     val eventBus = EventBus
     var placement: WindowPlacement = WindowPlacement.Maximized
     var interactionManager: InteractionManager? = null
-    val extensionManager = ExtensionManager()
     var chatMessageManager: ChatMessageManager? = null
 
     private val timer = StopWatch()

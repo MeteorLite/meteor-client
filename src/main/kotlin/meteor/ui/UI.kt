@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -18,16 +17,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.FrameWindowScope
 import eventbus.Events
 import eventbus.events.ConfigButtonClicked
-import kext.Extension
 import meteor.Logger
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
@@ -51,38 +51,38 @@ object UI {
     lateinit var pluginsPanelIsOpen: MutableState<Boolean>
     lateinit var pluginConfigurationIsOpen: MutableState<Boolean>
     lateinit var jpanel: JPanel
-    var toolbarWidth: Float = 0.020f
+    var toolbarWidth: Float = 0.025f
 
 
     fun Window(): (@Composable FrameWindowScope.() -> Unit) {
         return {
             this.window.defaultCloseOperation = EXIT_ON_CLOSE
             this.window.placement = Main.placement
-            this.window.minimumSize = Dimension(1080, 720)
             pluginsPanelIsOpen = remember { mutableStateOf(false) }
             pluginConfigurationIsOpen = remember { mutableStateOf(false) }
             MaterialTheme(colors = darkThemeColors) {
                 BoxWithConstraints(modifier = Modifier.fillMaxSize().background(darkThemeColors.background)) {
-                    contentSize = Dimension(this.constraints.maxWidth, this.constraints.maxHeight)
-                    Row(modifier = Modifier.background(darkThemeColors.background)) {
-                        if (pluginsPanelIsOpen.value || pluginConfigurationIsOpen.value)
-                            window.minimumSize = Dimension(1440, 720)
-                        else
-                            window.minimumSize = Dimension(1080, 720)
+                    CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+                        contentSize = Dimension(this.constraints.maxWidth, this.constraints.maxHeight)
+                        Row(modifier = Modifier.background(darkThemeColors.background), horizontalArrangement = Arrangement.End) {
+                            if (pluginsPanelIsOpen.value || pluginConfigurationIsOpen.value)
+                                window.minimumSize = Dimension(1166, 541)
+                            else
+                                window.minimumSize = Dimension(816, 541)
 
-                        OSRSApplet()
-                        if (pluginConfigurationIsOpen.value)
-                            ConfigPanel()
-                        else if (pluginsPanelIsOpen.value)
-                            PluginsPanel()
-                        Toolbar()
+                            Toolbar(this@BoxWithConstraints)
+                            if (pluginConfigurationIsOpen.value)
+                                ConfigPanel(this@BoxWithConstraints)
+                            else if (pluginsPanelIsOpen.value)
+                                PluginsPanel(this@BoxWithConstraints)
+                            OSRSApplet()
+                        }
                     }
                 }
             }
             this@UI.window = this
         }
     }
-
 
     @Composable
     fun PluginConfigPanelToggleButton() {
@@ -106,23 +106,37 @@ object UI {
     }
 
     @Composable
-    fun PluginsPanel() {
-        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.9f).background(darkThemeColors.background)) {
-            MaterialTheme(colors = darkThemeColors) {
-                PluginsPanelHeader()
-                Plugins()
+    fun PluginsPanel(box: BoxWithConstraintsScope) {
+        var mod = Modifier.background(Color(0xFF080808)).fillMaxHeight()
+        if (box.maxWidth > 1920.dp) {
+            mod = mod.fillMaxWidth(.2f)
+        } else
+            mod = mod.fillMaxWidth(.3f)
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
+                modifier = mod) {
+                MaterialTheme(colors = darkThemeColors) {
+                    PluginsPanelHeader()
+                    Plugins()
+                }
             }
         }
     }
 
     @Composable
-    fun ConfigPanel() {
-        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.9f).fillMaxHeight().background(darkThemeColors.background)) {
-            MaterialTheme(colors = darkThemeColors) {
-                ConfigPanelHeader()
-                Configs()
+    fun ConfigPanel(box: BoxWithConstraintsScope) {
+        var mod = Modifier.background(Color(0xFF080808)).fillMaxHeight()
+        if (box.maxWidth > 1920.dp) {
+            mod = mod.fillMaxWidth(.2f)
+        } else
+            mod = mod.fillMaxWidth(.3f)
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
+                modifier = mod) {
+                MaterialTheme(colors = darkThemeColors) {
+                    ConfigPanelHeader()
+                    Configs()
+                }
             }
         }
     }
@@ -149,10 +163,9 @@ object UI {
 
     @Composable
     fun Configs() {
-        val scrollState = rememberScrollState()
         Column(
             horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth(.95f).fillMaxHeight().background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 var descriptor: ConfigDescriptor? = null
@@ -390,8 +403,8 @@ object UI {
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                                 modifier = Modifier.fillMaxWidth(0.75f).height(32.dp).background(darkThemeColors.background)) {
                                 Switch(switchState.value, onPluginToggled(switchState, plugin), enabled = true)
-                                val external = plugin.javaClass.getDeclaredAnnotation(Extension::class.java) != null
-                                val color = if (external) Color.Magenta else Color.Cyan
+                                val external = plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java)
+                                val color = if (external?.external == true) Color.Magenta else Color.Cyan
                                 Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = color, fontSize = 14.sp))
                             }
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
@@ -441,12 +454,9 @@ object UI {
 
     @Composable
     fun OSRSApplet() {
-        var mod: Modifier = if (pluginsPanelIsOpen.value)
-            Modifier.fillMaxWidth(((.01f) * 80) - toolbarWidth).fillMaxHeight()
-        else
-            Modifier.fillMaxWidth(1f - toolbarWidth).fillMaxHeight()
+        var mod: Modifier = Modifier.fillMaxWidth().fillMaxHeight()
 
-        mod = mod.defaultMinSize(800.dp, 600.dp)
+        mod = mod.defaultMinSize(600.dp, 600.dp)
         SwingPanel(Color.Black,
             modifier = mod,
             factory = {
@@ -464,8 +474,13 @@ object UI {
     }
 
     @Composable
-    fun Toolbar() {
-        return Column(verticalArrangement = Arrangement.Top, modifier = Modifier.background(Color(0xFF080808)).fillMaxWidth().fillMaxHeight()) {
+    fun Toolbar(box: BoxWithConstraintsScope) {
+        var mod = Modifier.background(Color(0xFF080808)).fillMaxHeight()
+        if (box.maxWidth > 1920.dp) {
+            mod = mod.fillMaxWidth(toolbarWidth)
+        } else
+            mod = mod.fillMaxWidth(.05f)
+        return Column(verticalArrangement = Arrangement.Top, modifier = mod) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
                 modifier = Modifier.fillMaxHeight(toolbarWidth).fillMaxHeight(.5f).background(Color(0xFF080808)).fillMaxWidth()) {
                 MaterialTheme(colors = darkThemeColors) {

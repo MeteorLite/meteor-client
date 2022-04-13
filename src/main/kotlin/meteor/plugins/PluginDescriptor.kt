@@ -45,4 +45,5 @@ annotation class PluginDescriptor(val name: String,
                                    */
                                   val hidden: Boolean = false, val developerPlugin: Boolean = false,
                                   val loadWhenOutdated: Boolean = false, val loadInSafeMode: Boolean = true,
-                                  val cantDisable: Boolean = false, val disabledOnStartup: Boolean = false)
+                                  val cantDisable: Boolean = false, val disabledOnStartup: Boolean = false,
+                                  val external: Boolean = false)

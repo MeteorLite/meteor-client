@@ -155,10 +155,13 @@ public class TilemanModePlugin extends Plugin {
     @Override
     public void onConfigChanged(ConfigChanged event) {
         // Check if automark tiles is on, and if so attempt to step on current tile
-        final WorldPoint playerPos = client.getLocalPlayer().getWorldLocation();
-        final LocalPoint playerPosLocal = LocalPoint.fromWorld(client, playerPos);
-        if (playerPosLocal != null && config.automarkTiles() && !lastAutoTilesConfig) {
-            handleWalkedToTile(playerPosLocal);
+        final Player player = client.getLocalPlayer();
+        if (player != null) {
+            final WorldPoint playerPos = client.getLocalPlayer().getWorldLocation();
+            final LocalPoint playerPosLocal = LocalPoint.fromWorld(client, playerPos);
+            if (playerPosLocal != null && config.automarkTiles() && !lastAutoTilesConfig) {
+                handleWalkedToTile(playerPosLocal);
+            }
         }
         lastAutoTilesConfig = config.automarkTiles();
         updateTileCounter();
