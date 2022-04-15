@@ -73,6 +73,7 @@ public class TransportLoader
 			return STATIC_TRANSPORTS;
 		}
 
+		System.out.println(RegionManager.API_URL + "/transports");
 		try (InputStream txt = new URL(RegionManager.API_URL + "/transports").openStream())
 		{
 			TransportDto[] json = GSON.fromJson(new String(txt.readAllBytes()), TransportDto[].class);

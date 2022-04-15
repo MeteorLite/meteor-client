@@ -1,0 +1,85 @@
+/*
+ * Copyright (c) 2018, Lotto <https://github.com/devLotto>
+ * Copyright (c) 2019, Trevor <https://github.com/Trevor159>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.questhelper.overlays;
+
+import com.questhelper.QuestHelperPlugin;
+import com.questhelper.questhelpers.QuestHelper;
+import meteor.Main;
+import meteor.ui.overlay.OverlayLayer;
+import meteor.ui.overlay.OverlayPosition;
+import net.runelite.client.plugins.gauntletextended.overlay.Overlay;
+import org.jetbrains.annotations.NotNull;
+import org.rationalityfrontline.kevent.KEvent;
+
+import java.awt.*;
+
+public class QuestHelperWorldLineOverlay extends Overlay
+{
+	private final QuestHelperPlugin plugin;
+
+	public QuestHelperWorldLineOverlay(QuestHelperPlugin plugin)
+	{
+		super(plugin);
+		setPosition(OverlayPosition.DYNAMIC);
+		setLayer(OverlayLayer.ABOVE_SCENE);
+		this.plugin = plugin;
+	}
+
+	@Override
+	public Dimension render(Graphics2D graphics)
+	{
+		if (!plugin.getConfig().showWorldLines())
+		{
+			return null;
+		}
+
+		QuestHelper quest = plugin.getSelectedQuest();
+
+		if (quest != null && quest.getCurrentStep() != null)
+		{
+			quest.getCurrentStep().makeWorldLineOverlayHint(graphics, plugin);
+		}
+
+		return null;
+	}
+
+	@NotNull
+	@Override
+	public KEvent getKEVENT_INSTANCE() {
+		return Main.INSTANCE.getEventBus();
+	}
+
+	@NotNull
+	@Override
+	public String getSUBSCRIBER_TAG() {
+		return "qhworldlineoverlay";
+	}
+
+	@Override
+	public void determineLayer() {
+
+	}
+}

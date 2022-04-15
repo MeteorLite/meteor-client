@@ -179,7 +179,7 @@ class GuardiansOfTheRiftPlugin : Plugin() {
             setAltars()
 
         if (currentTeleportOrb != null)
-            pathToOrb = Walker.buildPath(currentTeleportOrb!!.worldLocation, true).toList() as ArrayList<WorldPoint>?
+            pathToOrb = Walker.buildPath(currentTeleportOrb!!.worldLocation, true)
         else
             pathToOrb?.clear()
 

@@ -98,6 +98,8 @@ open class EventSubscriber : KEventSubscriber {
     open fun onProjectileSpawned(it: ProjectileSpawned) {}
     open fun onWorldChanged(it: WorldChanged) {}
 
+    open fun onGrandExchangeSearched(it: GrandExchangeSearched) {}
+
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
             unit()
@@ -187,6 +189,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<GraphicChanged>(Events.GRAPHIC_CHANGED) { executeIfListening { onGraphicChanged(it) } }
         subscribeEvent<ProjectileSpawned>(Events.PROJECTILE_SPAWNED) { executeIfListening { onProjectileSpawned(it) } }
         subscribeEvent<WorldChanged>(Events.WORLD_CHANGED) { executeIfListening { onWorldChanged(it) } }
+        subscribeEvent<GrandExchangeSearched>(Events.GRAND_EXCHANGE_SEARCHED) { executeIfListening { onGrandExchangeSearched(it) } }
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

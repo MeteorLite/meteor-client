@@ -51,11 +51,41 @@ object OverlayUtil {
         if (poly != null) {
             renderPolygon(graphics, poly, color)
         }
-
-
+        val minimapLocation = tileObject.minimapLocation
+        if (minimapLocation != null) {
+            renderMinimapLocation(graphics, minimapLocation, color)
+        }
         val textLocation = tileObject.getCanvasTextLocation(graphics, text, 0)
         if (textLocation != null) {
             renderTextLocation(graphics, textLocation, text, color)
+        }
+    }
+
+    fun renderTileOverlay(
+        graphics: Graphics2D,
+        localLocation: LocalPoint,
+        image: BufferedImage,
+        color: Color
+    ) {
+        val poly = Perspective.getCanvasTilePoly(Main.client, localLocation!!)
+        if (poly != null) {
+            renderPolygon(graphics, poly, color)
+        }
+        renderImageLocation(graphics, localLocation, image, 0)
+    }
+
+    fun renderImageLocation(
+        graphics: Graphics2D,
+        localPoint: LocalPoint,
+        image: BufferedImage,
+        zOffset: Int
+    ) {
+        val imageLocation = Perspective.getCanvasImageLocation(
+            Main.client,
+            localPoint, image, zOffset
+        )
+        if (imageLocation != null) {
+            renderImageLocation(graphics, imageLocation, image)
         }
     }
 
@@ -105,5 +135,42 @@ object OverlayUtil {
         graphics.rotate(angle, center.x.toDouble(), center.y.toDouble())
         graphics.drawRect(center.x - width / 2, center.y - height / 2, width - 1, height - 1)
         graphics.rotate(-angle, center.x.toDouble(), center.y.toDouble())
+    }
+
+    fun renderHoverableArea(
+        graphics: Graphics2D,
+        area: Shape?,
+        mousePosition: Point,
+        fillColor: Color,
+        borderColor: Color,
+        borderHoverColor: Color
+    ) {
+        if (area != null) {
+            if (area.contains(mousePosition.x.toDouble(), mousePosition.y.toDouble())) {
+                graphics.color = borderHoverColor
+            } else {
+                graphics.color = borderColor
+            }
+            graphics.draw(area)
+            graphics.color = fillColor
+            graphics.fill(area)
+        }
+    }
+
+    fun renderActorOverlayImage(
+        graphics: Graphics2D,
+        actor: Actor,
+        image: BufferedImage,
+        color: Color,
+        zOffset: Int
+    ) {
+        val poly = actor.canvasTilePoly
+        if (poly != null) {
+            renderPolygon(graphics, poly, color)
+        }
+        val imageLocation = actor.getCanvasImageLocation(image, zOffset)
+        if (imageLocation != null) {
+            renderImageLocation(graphics, imageLocation, image)
+        }
     }
 }

@@ -399,7 +399,7 @@ public class Walker
 		return out;
 	}
 
-	public static List<WorldPoint> buildPath(WorldPoint destination, boolean localRegion)
+	public static ArrayList<WorldPoint> buildPath(WorldPoint destination, boolean localRegion)
 	{
 		Player local = Players.getLocal();
 		Map<WorldPoint, List<Transport>> transports = buildTransportLinks();
@@ -407,7 +407,7 @@ public class Walker
 		List<WorldPoint> startPoints = new ArrayList<>(teleports.keySet());
 		startPoints.add(local.getWorldLocation());
 
-		return calculatePath(startPoints, destination, transports, localRegion);
+		return new ArrayList<>(calculatePath(startPoints, destination, transports, localRegion));
 	}
 
 	public static LinkedHashMap<WorldPoint, Teleport> buildTeleportLinks(WorldPoint destination)

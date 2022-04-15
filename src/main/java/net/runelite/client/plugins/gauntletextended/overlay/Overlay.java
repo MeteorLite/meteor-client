@@ -32,7 +32,7 @@ import java.awt.*;
 
 public abstract class Overlay extends meteor.ui.overlay.Overlay
 {
-	Overlay(final Plugin plugin)
+	protected Overlay(final Plugin plugin)
 	{
 		super(OverlayLayer.ABOVE_SCENE);
 	}

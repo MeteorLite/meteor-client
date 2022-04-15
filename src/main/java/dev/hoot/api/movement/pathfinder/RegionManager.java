@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class RegionManager
 {
 	public static final MediaType JSON_MEDIATYPE = MediaType.parse("application/json");
-	public static final String API_URL = "http://174.138.15.181:8080";
+	public static final String API_URL = "https://unethicalite-backend-ewzhi.ondigitalocean.app";
 	public static final Gson GSON = new GsonBuilder().create();
 	private static final Logger logger = LoggerFactory.getLogger(RegionManager.class);
 	private static final int VERSION = 3;

@@ -46,9 +46,9 @@ object UI {
                     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
                         Row(modifier = Modifier.background(darkThemeColors.background), horizontalArrangement = Arrangement.End) {
                             if (pluginsPanelIsOpen.value || pluginConfigurationIsOpen.value)
-                                window.minimumSize = Dimension(1181, 541)
+                                window.minimumSize = Dimension(1200, 541)
                             else
-                                window.minimumSize = Dimension(831, 541)
+                                window.minimumSize = Dimension(845, 541)
 
                             ToolbarPanel(container)
                             if (pluginConfigurationIsOpen.value)

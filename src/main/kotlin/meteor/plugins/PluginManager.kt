@@ -1,5 +1,7 @@
 package meteor.plugins
 
+import com.questhelper.QuestHelperPlugin
+import com.questhelper.questhelpers.QuestHelper
 import com.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
@@ -74,6 +76,7 @@ object PluginManager {
         init<MouseTooltipPlugin>()
         init<NpcAggroAreaPlugin>()
         init<NeverLogoutPlugin>()
+        init<QuestHelperPlugin>()
         init<RsnHiderPlugin>()
         init<SlayerPlugin>()
         init<SpecBarPlugin>()

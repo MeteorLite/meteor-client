@@ -55,8 +55,8 @@ open class WorldMapPoint() {
      */
     var name: String? = null
     var tooltip: String? = null
-    fun onEdgeSnap() {}
-    fun onEdgeUnsnap() {}
+    open fun onEdgeSnap() {}
+    open fun onEdgeUnsnap() {}
 
 
     fun image(i: BufferedImage) : WorldMapPoint {
