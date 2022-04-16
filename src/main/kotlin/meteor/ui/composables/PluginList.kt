@@ -25,7 +25,7 @@ import meteor.ui.UI
 object PluginList {
     @Composable
     fun PluginsPanel(box: BoxWithConstraintsScope) {
-        var mod = Modifier.background(Color(0xFF080808)).fillMaxHeight()
+        var mod = Modifier.background(UI.darkThemeColors.background).fillMaxHeight()
         if (box.maxWidth > 1920.dp) {
             mod = mod.fillMaxWidth(.2f)
         } else

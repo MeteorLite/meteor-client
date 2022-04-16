@@ -18,7 +18,7 @@ import meteor.plugins.Plugin
 import meteor.ui.composables.Configuration.ConfigPanel
 import meteor.ui.composables.OSRS.OSRSPanel
 import meteor.ui.composables.PluginList.PluginsPanel
-import meteor.ui.composables.Toolbar.ToolbarPanel
+import meteor.ui.composables.toolbar.Toolbar.ToolbarPanel
 import java.awt.Dimension
 import javax.swing.WindowConstants.EXIT_ON_CLOSE
 
@@ -67,8 +67,8 @@ object UI {
             primary = Color.Cyan,
             primaryVariant = Color(0xFF3E2723),
             secondary = Color.Cyan,
-            background = Color(0xFF121212),
-            surface = Color.Black,
+            background = Color(0xFF191919),
+            surface = Color(0xFF212121),
             error = Color.Red,
             onPrimary = Color.White,
             onSecondary = Color.White,

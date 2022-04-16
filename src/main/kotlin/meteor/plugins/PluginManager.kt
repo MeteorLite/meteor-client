@@ -146,6 +146,7 @@ object PluginManager {
             if (plugin.isEnabled())
                 start(plugin)
         } catch (e: Exception) {
+            e.printStackTrace()
             if (e is java.lang.RuntimeException) {
                 e.printStackTrace()
                 exitProcess(-1)

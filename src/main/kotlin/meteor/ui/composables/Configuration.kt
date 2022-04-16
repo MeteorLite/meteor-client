@@ -34,7 +34,7 @@ object Configuration {
 
     @Composable
     fun ConfigPanel(box: BoxWithConstraintsScope) {
-        var mod = Modifier.background(Color(0xFF080808)).fillMaxHeight()
+        var mod = Modifier.background(UI.darkThemeColors.background).fillMaxHeight()
         if (box.maxWidth > 1920.dp) {
             mod = mod.fillMaxWidth(.2f)
         } else
@@ -42,9 +42,12 @@ object Configuration {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
                 modifier = mod) {
-                MaterialTheme(colors = UI.darkThemeColors) {
-                    ConfigPanelHeader()
-                    Configs()
+                Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
+                    modifier = Modifier.fillMaxHeight().fillMaxWidth(.95f)) {
+                    MaterialTheme(colors = UI.darkThemeColors) {
+                        ConfigPanelHeader()
+                        Configs()
+                    }
                 }
             }
         }
@@ -112,7 +115,7 @@ object Configuration {
                 descriptor.group.value,
                 configItemDescriptor.key()
             ).toBoolean()) }
-        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF121212))){
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                 modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(UI.darkThemeColors.background)) {
                 MaterialTheme(colors = UI.darkThemeColors) {
@@ -120,7 +123,7 @@ object Configuration {
                 }
             }
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF121212))) {
+                modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)) {
                 MaterialTheme(colors = UI.darkThemeColors) {
                     Switch(toggled, onCheckedChange = {
                         ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
@@ -129,7 +132,7 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
     }
 
     @Composable
@@ -165,7 +168,7 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
     }
     @Composable
     fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
@@ -203,7 +206,7 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
     }
 
     @Composable
@@ -257,7 +260,7 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
     }
 
     @Composable
@@ -287,7 +290,7 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(Color(0xFF121212)))
+        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
     }
 
 }
