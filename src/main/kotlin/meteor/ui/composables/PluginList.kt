@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -61,7 +62,7 @@ object PluginList {
                         val switchState = remember { mutableStateOf(plugin.enabled) }
                         Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)){
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                                modifier = Modifier.fillMaxWidth(0.75f).height(32.dp).background(UI.darkThemeColors.background)) {
+                                modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(UI.darkThemeColors.background)) {
                                 Switch(switchState.value, onPluginToggled(switchState, plugin), enabled = true)
                                 val external = plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java)
                                 val color = if (external?.external == true) Color.Magenta else Color.Cyan
@@ -69,6 +70,18 @@ object PluginList {
                             }
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                                 modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)) {
+                                if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
+                                    IconButton(
+                                        onClick = { PluginManager.reloadExternal(plugin) },
+                                    ){
+                                        Icon(
+                                            Icons.Filled.Refresh,
+                                            contentDescription = "Reload plugin",
+                                            tint = Color.Cyan
+                                        )
+                                    }
+                                }
+
                                 if (plugin.config != null) {
                                     IconButton(
                                         onClick = { onPluginConfigurationOpened(plugin) },

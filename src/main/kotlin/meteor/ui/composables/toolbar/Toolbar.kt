@@ -8,6 +8,8 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import meteor.ui.UI
 
 object Toolbar {
-    private val topToolbarButtons = ArrayList<ToolbarButton>()
-    private val bottomToolbarButtons = ArrayList<ToolbarButton>()
+    private val topToolbarButtons = mutableStateListOf<ToolbarButton>()
+    private val bottomToolbarButtons = mutableStateListOf<ToolbarButton>()
 
     init {
         addButton(ToolbarButton("Plugins", Icons.Filled.Menu, description = "Opens Plugins list", onClick = {
@@ -25,17 +27,16 @@ object Toolbar {
             else
                 UI.pluginsPanelIsOpen.value = !UI.pluginsPanelIsOpen.value
         }))
-        addButton(ToolbarButton("Fuckins", Icons.Filled.ThumbUp, iconColor = Color.Red,
-            backgroundColor = Color.Blue, description = "Opens Fuckins list") {
-        })
 
-        addButton(ToolbarButton("Settings", Icons.Filled.Settings, iconColor = Color.Magenta,
-            backgroundColor = Color.Yellow, description = "Settings", bottom = true) {
+        addButton(ToolbarButton("Settings", Icons.Filled.Settings, description = "Settings", bottom = true) {
         })
     }
 
     @Composable
-    fun ToolbarPanel(box: BoxWithConstraintsScope) {
+    fun ToolbarPanel(
+        box: BoxWithConstraintsScope,
+        topToolbarButtons: SnapshotStateList<ToolbarButton> = this.topToolbarButtons,
+        bottomToolbarButtons: SnapshotStateList<ToolbarButton> = this.bottomToolbarButtons) {
         var mod = Modifier.background(Color(0x212121)).fillMaxHeight()
         if (box.maxWidth > 1920.dp) {
             mod = mod.fillMaxWidth(UI.toolbarWidth)
@@ -61,9 +62,15 @@ object Toolbar {
 
     fun addButton(button: ToolbarButton) {
         if (!button.bottom)
-            topToolbarButtons.add(button)
+        {
+            if (!containsButton(topToolbarButtons, button))
+                topToolbarButtons.add(button)
+        }
         else
-            bottomToolbarButtons.add(button)
+        {
+            if (!containsButton(bottomToolbarButtons, button))
+                bottomToolbarButtons.add(button)
+        }
     }
 
     fun removeButton(button: ToolbarButton) {
@@ -71,5 +78,13 @@ object Toolbar {
             topToolbarButtons.remove(button)
         else
             bottomToolbarButtons.remove(button)
+    }
+
+    fun containsButton(list: SnapshotStateList<ToolbarButton>, button: ToolbarButton) : Boolean {
+        for (b in list) {
+            if (b.name == button.name)
+                return true;
+        }
+        return false
     }
 }

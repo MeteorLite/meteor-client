@@ -1,5 +1,6 @@
 package meteor.plugins
 
+import androidx.compose.runtime.mutableStateListOf
 import com.questhelper.QuestHelperPlugin
 import com.questhelper.questhelpers.QuestHelper
 import com.tileman.TilemanModePlugin
@@ -49,8 +50,9 @@ import kotlin.system.exitProcess
 
 
 object PluginManager {
-    var plugins = ArrayList<Plugin>()
-    var loadedExternals = ArrayList<String>()
+    var plugins = mutableStateListOf<Plugin>()
+    val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
+
     init {
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
@@ -91,17 +93,13 @@ object PluginManager {
     }
 
     private fun loadExternal(jar: File) {
-        val pluginName = jar.name.split(".jar")[0]
-        if (!loadedExternals.contains(pluginName)) {
-            loadedExternals.add(pluginName)
-            val manifest: Manifest? = getManifest(jar)
-            manifest?.let { initExternalPlugin(jar, manifest) }
-        }
+        val manifest: Manifest? = getManifest(jar)
+        manifest?.let { initExternalPlugin(jar, manifest) }
     }
 
     fun loadExternalPlugins() {
         val timer = StopWatch()
-        val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
+
         if (externalsDir.exists())
             externalsDir.mkdirs()
 
@@ -116,6 +114,29 @@ object PluginManager {
             timer.stop()
             Main.logger.info("Loaded ${externalJars.size} external plugins in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
         }
+    }
+
+    fun reloadExternal(plugin: Plugin) {
+        val externalJars = externalsDir.listFiles()
+        externalJars?.let { jars ->
+            for (jar in jars) {
+                jar?.let { it ->
+                    val manifest: Manifest? = getManifest(it)
+                    manifest?.let { manifest ->
+                        if (manifest.mainAttributes.getValue("Main-Class") == plugin.javaClass.name)
+                        {
+                            stop(plugin)
+                            plugins.remove(plugin)
+                            initExternalPlugin(it, manifest)
+                            return
+                        }
+                    }
+                    Main.logger.error("Could not find matching Plugin class, did you change the Main-Class?")
+                }
+            }
+        }
+
+
     }
 
     fun getManifest(jar: File) : Manifest? {

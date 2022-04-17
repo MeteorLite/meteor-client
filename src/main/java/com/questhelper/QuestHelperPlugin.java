@@ -25,6 +25,9 @@
  */
 package com.questhelper;
 
+import androidx.compose.ui.Alignment;
+import androidx.compose.ui.graphics.Color;
+import androidx.compose.ui.graphics.vector.ImageVector;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.Ints;
 import com.google.common.reflect.ClassPath;
@@ -51,6 +54,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import eventbus.events.*;
+import kotlin.Function;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +68,9 @@ import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
 import meteor.plugins.bank.BankSearch;
 import meteor.rs.ClientThread;
+import meteor.ui.UI;
+import meteor.ui.composables.toolbar.Toolbar;
+import meteor.ui.composables.toolbar.ToolbarButton;
 import meteor.ui.overlay.OverlayManager;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
@@ -187,6 +196,10 @@ public class QuestHelperPlugin extends Plugin
 
 	private int lastActiveVar = -1;
 
+	private ToolbarButton toolbarButton = new ToolbarButton("Quest Helper", "quest_helper.png",
+			"Shows information for current quest",
+			Alignment.Companion.getTopCenter(), false, onQuestToolbarButton());
+
 	@Override
 	public void onStart()
 	{
@@ -209,6 +222,8 @@ public class QuestHelperPlugin extends Plugin
 		{
 			loadQuestList = true;
 		}
+
+		Toolbar.INSTANCE.addButton(toolbarButton);
 	}
 
 	@Override
@@ -226,6 +241,8 @@ public class QuestHelperPlugin extends Plugin
 		bankTagService = null;
 		bankTagsMain = null;
 		quests = null;
+
+		Toolbar.INSTANCE.removeButton(toolbarButton);
 	}
 
 	@Override
@@ -262,6 +279,7 @@ public class QuestHelperPlugin extends Plugin
 			updateQuestList();
 		}
 
+		//Required because god knows why
 		if (selectedQuest != null) {
 			selectedQuest.shutDown();
 			selectedQuest.startUp(config);
@@ -548,7 +566,7 @@ public class QuestHelperPlugin extends Plugin
 		if (!questHelper.isCompleted())
 		{
 			selectedQuest = questHelper;
-			//eventBus.register(selectedQuest);
+			selectedQuest.subscribeEvents();
 			selectedQuest.startUp(config);
 			if (selectedQuest.getCurrentStep() == null)
 			{
@@ -563,13 +581,20 @@ public class QuestHelperPlugin extends Plugin
 		}
 	}
 
+	public Function0<Unit> onQuestToolbarButton() {
+		return () -> {
+			System.out.println("Should open panel now");
+			return null;
+		};
+	}
+
 	public void shutDownQuestFromSidebar()
 	{
 		if (selectedQuest != null)
 		{
 			selectedQuest.shutDown();
 			bankTagsMain.shutDown();
-			//eventBus.unregister(selectedQuest);
+			selectedQuest.unsubscribe();
 			selectedQuest = null;
 		}
 	}
@@ -587,7 +612,7 @@ public class QuestHelperPlugin extends Plugin
 			{
 				bankTagsMain.shutDown();
 			}
-			//eventBus.unregister(selectedQuest);
+			selectedQuest.unsubscribe();
 			selectedQuest = null;
 		}
 	}
