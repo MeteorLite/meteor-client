@@ -18,6 +18,7 @@ import meteor.plugins.Plugin
 import meteor.ui.composables.Configuration.ConfigPanel
 import meteor.ui.composables.OSRS.OSRSPanel
 import meteor.ui.composables.PluginList.PluginsPanel
+import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.toolbar.Toolbar.ToolbarPanel
 import java.awt.Dimension
 import javax.swing.WindowConstants.EXIT_ON_CLOSE
@@ -25,16 +26,20 @@ import javax.swing.WindowConstants.EXIT_ON_CLOSE
 object UI {
     lateinit var lastPlugin: Plugin
     var loaded = false
-    lateinit var pluginsPanelIsOpen: MutableState<Boolean>
+    lateinit var pluginListPanelIsOpen: MutableState<Boolean>
     lateinit var pluginConfigurationIsOpen: MutableState<Boolean>
+    lateinit var pluginPanelIsOpen: MutableState<Boolean>
+    lateinit var pluginPanel: MutableState<PluginPanel?>
     var toolbarWidth: Float = 0.025f
 
     fun Window(): (@Composable FrameWindowScope.() -> Unit) {
         return {
             this.window.defaultCloseOperation = EXIT_ON_CLOSE
             this.window.placement = Main.placement
-            pluginsPanelIsOpen = remember { mutableStateOf(false) }
+            pluginListPanelIsOpen = remember { mutableStateOf(false) }
             pluginConfigurationIsOpen = remember { mutableStateOf(false) }
+            pluginPanelIsOpen = remember { mutableStateOf(false) }
+            pluginPanel = remember { mutableStateOf(null) }
             MaterialTheme(colors = darkThemeColors) {
                 BoxWithConstraints(modifier = Modifier.fillMaxSize().background(darkThemeColors.background)) {
 
@@ -45,15 +50,17 @@ object UI {
                     // It's important to note that because of this, child composables need to specify left to right
                     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
                         Row(modifier = Modifier.background(darkThemeColors.background), horizontalArrangement = Arrangement.End) {
-                            if (pluginsPanelIsOpen.value || pluginConfigurationIsOpen.value)
+                            if (pluginListPanelIsOpen.value || pluginConfigurationIsOpen.value)
                                 window.minimumSize = Dimension(1200, 541)
                             else
                                 window.minimumSize = Dimension(845, 541)
 
                             ToolbarPanel(container)
-                            if (pluginConfigurationIsOpen.value)
+                            if (pluginPanelIsOpen.value)
+                                pluginPanel.value?.CreateComponent(container)
+                            else if (pluginConfigurationIsOpen.value)
                                 ConfigPanel(container)
-                            else if (pluginsPanelIsOpen.value)
+                            else if (pluginListPanelIsOpen.value)
                                 PluginsPanel(container)
                             OSRSPanel()
                         }

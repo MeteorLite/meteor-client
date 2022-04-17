@@ -51,7 +51,8 @@ public class QuestHelperOverlay extends OverlayPanel
 		this.plugin = plugin;
 		setLayer(OverlayLayer.ALWAYS_ON_TOP);
 		setPriority(OverlayPriority.HIGHEST);
-		setPosition(OverlayPosition.BOTTOM_RIGHT);
+		setPosition(OverlayPosition.TOP_CENTER);
+		setResizable(false);
 	}
 
 	@Override

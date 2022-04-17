@@ -270,14 +270,14 @@ public class ItemRequirement extends AbstractRequirement
 	@Override
 	public Color getColor(Client client, QuestHelperConfig config)
 	{
-		Color color = config.failColour();
+		Color color = Color.RED;
 		if (!this.isActualItem())
 		{
 			color = Color.GRAY;
 		}
 		else if (this.check(client))
 		{
-			color = config.passColour();
+			color = Color.GREEN;
 		}
 		return color;
 	}
@@ -309,17 +309,17 @@ public class ItemRequirement extends AbstractRequirement
 	public Color getColorConsideringBank(Client client, boolean checkConsideringSlotRestrictions,
 										 List<Item> bankItems, QuestHelperConfig config)
 	{
-		Color color = config.failColour();
+		Color color = Color.RED;
 		if (!this.isActualItem())
 		{
 			color = Color.GRAY;
 		}
 		else if (this.check(client, checkConsideringSlotRestrictions))
 		{
-			color = config.passColour();
+			color = Color.GREEN;
 		}
 
-		if (color == config.failColour() && bankItems != null)
+		if (color == Color.RED && bankItems != null)
 		{
 			if (check(client, false, bankItems))
 			{
@@ -333,7 +333,7 @@ public class ItemRequirement extends AbstractRequirement
 	protected ArrayList<LineComponent> getAdditionalText(Client client, boolean includeTooltip,
 														 QuestHelperConfig config)
 	{
-		Color equipColor = config.passColour();
+		Color equipColor = Color.GREEN;
 
 		ArrayList<LineComponent> lines = new ArrayList<>();
 
@@ -342,7 +342,7 @@ public class ItemRequirement extends AbstractRequirement
 			String equipText = "(equipped)";
 			if (!this.check(client, true))
 			{
-				equipColor = config.failColour();
+				equipColor = Color.RED;
 			}
 			lines.add(new LineComponent.Builder()
 				.left(equipText)

@@ -29,7 +29,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import dev.hoot.api.game.GameThread;
 import lombok.Getter;
+import meteor.rs.ClientThread;
 import net.runelite.api.Client;
 import net.runelite.api.QuestState;
 import net.runelite.api.ScriptID;
@@ -355,17 +358,26 @@ public enum QuestHelperQuest
 	@Getter
 	private final int id;
 
-	@Getter
-	private final String name;
+	public final String name;
+
+	public String getName() {
+		return name;
+	}
 
 	@Getter
 	private final List<String> keywords;
 
-	@Getter
 	private final Quest.Type questType;
 
-	@Getter
+	public Quest.Type getQuestType() {
+		return questType;
+	}
+
 	private final Quest.Difficulty difficulty;
+
+	public Quest.Difficulty getDifficulty() {
+		return difficulty;
+	}
 
 	private final QuestVarbits varbit;
 
@@ -472,16 +484,14 @@ public enum QuestHelperQuest
 			return QuestState.IN_PROGRESS;
 		}
 
-		client.runScript(ScriptID.QUEST_STATUS_GET, id);
-		switch (client.getIntStack()[0])
-		{
-			case 2:
-				return QuestState.FINISHED;
-			case 1:
-				return QuestState.NOT_STARTED;
-			default:
-				return QuestState.IN_PROGRESS;
-		}
+		return GameThread.invokeLater(() -> {
+			client.runScript(ScriptID.QUEST_STATUS_GET, id);
+			return switch (client.getIntStack()[0]) {
+				case 2 -> QuestState.FINISHED;
+				case 1 -> QuestState.NOT_STARTED;
+				default -> QuestState.IN_PROGRESS;
+			};
+		});
 	}
 
 	public int getVar(Client client)

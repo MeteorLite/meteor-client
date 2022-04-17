@@ -26,8 +26,6 @@
 package com.questhelper;
 
 import androidx.compose.ui.Alignment;
-import androidx.compose.ui.graphics.Color;
-import androidx.compose.ui.graphics.vector.ImageVector;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.Ints;
 import com.google.common.reflect.ClassPath;
@@ -40,8 +38,6 @@ import com.questhelper.overlays.QuestHelperWidgetOverlay;
 import com.questhelper.overlays.QuestHelperWorldArrowOverlay;
 import com.questhelper.overlays.QuestHelperWorldLineOverlay;
 import com.questhelper.overlays.QuestHelperWorldOverlay;
-import com.questhelper.questhelpers.BasicQuestHelper;
-import com.questhelper.questhelpers.ComplexStateQuestHelper;
 import com.questhelper.questhelpers.Quest;
 import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.steps.QuestStep;
@@ -54,7 +50,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import eventbus.events.*;
-import kotlin.Function;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import lombok.Getter;
@@ -73,7 +68,6 @@ import meteor.ui.composables.toolbar.Toolbar;
 import meteor.ui.composables.toolbar.ToolbarButton;
 import meteor.ui.overlay.OverlayManager;
 import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.InventoryID;
 import net.runelite.api.MenuAction;
@@ -198,7 +192,7 @@ public class QuestHelperPlugin extends Plugin
 
 	private ToolbarButton toolbarButton = new ToolbarButton("Quest Helper", "quest_helper.png",
 			"Shows information for current quest",
-			Alignment.Companion.getTopCenter(), false, onQuestToolbarButton());
+			Alignment.Companion.getTopCenter(), false, togglePanel());
 
 	@Override
 	public void onStart()
@@ -275,8 +269,8 @@ public class QuestHelperPlugin extends Plugin
 		}
 		if (loadQuestList)
 		{
-			loadQuestList = false;
 			updateQuestList();
+			loadQuestList = false;
 		}
 
 		//Required because god knows why
@@ -359,12 +353,8 @@ public class QuestHelperPlugin extends Plugin
 		if (getClient().getGameState() == GameState.LOGGED_IN)
 		{
 			List<QuestHelper> filteredQuests = quests.values()
-				.stream()
-				.filter(config.filterListBy())
-				.filter(config.difficulty())
-				.filter(Quest::showCompletedQuests)
-				.sorted(config.orderListBy())
-				.collect(Collectors.toList());
+					.stream()
+					.filter(Quest::showCompletedQuests).toList();
 			Map<QuestHelperQuest, QuestState> completedQuests = quests.values()
 				.stream()
 				.collect(Collectors.toMap(QuestHelper::getQuest, q -> q.getState(getClient())));
@@ -384,6 +374,8 @@ public class QuestHelperPlugin extends Plugin
 				event.consume();
 				String quest = Text.removeTags(event.getMenuTarget());
 				startUpQuest(quests.get(quest));
+				if (config.autoOpenSidebar())
+					openPluginPanel();
 			}
 			case MENUOP_STOPHELPER, MENUOP_STOPGENERICHELPER -> {
 				event.consume();
@@ -574,6 +566,7 @@ public class QuestHelperPlugin extends Plugin
 				return;
 			}
 			bankTagsMain.startUp();
+			UI.INSTANCE.getPluginPanel().setValue(new QuestHelperPluginPanel(selectedQuest));
 		}
 		else
 		{
@@ -581,11 +574,19 @@ public class QuestHelperPlugin extends Plugin
 		}
 	}
 
-	public Function0<Unit> onQuestToolbarButton() {
+	public Function0<Unit> togglePanel() {
 		return () -> {
-			System.out.println("Should open panel now");
+			togglePluginPanel();
 			return null;
 		};
+	}
+
+	public void openPluginPanel() {
+		UI.INSTANCE.getPluginPanelIsOpen().setValue(true);
+	}
+
+	public void closePluginPanel() {
+		UI.INSTANCE.getPluginPanelIsOpen().setValue(false);
 	}
 
 	public void shutDownQuestFromSidebar()
@@ -614,6 +615,7 @@ public class QuestHelperPlugin extends Plugin
 			}
 			selectedQuest.unsubscribe();
 			selectedQuest = null;
+			UI.INSTANCE.getPluginPanel().setValue(null);
 		}
 	}
 

@@ -11,7 +11,7 @@ import meteor.input.KeyManager
 import meteor.input.MouseManager
 import meteor.rs.ClientThread
 import meteor.ui.overlay.OverlayLayer
-import meteor.ui.overlay.infobox.InfoBoxManager.cull
+import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.RSTimeUnit
 import net.runelite.api.GameState
 import net.runelite.api.MainBufferProvider
@@ -88,7 +88,7 @@ class Hooks : Callbacks {
 
 
         // cull infoboxes
-        cull()
+        InfoBoxManager.cull()
     }
 
     override fun frame() {

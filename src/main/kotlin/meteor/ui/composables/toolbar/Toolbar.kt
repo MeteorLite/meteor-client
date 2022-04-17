@@ -6,7 +6,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -22,14 +21,21 @@ object Toolbar {
 
     init {
         addButton(ToolbarButton("Plugins", Icons.Filled.Menu, description = "Opens Plugins list", onClick = {
-            if (UI.pluginConfigurationIsOpen.value)
-                UI.pluginConfigurationIsOpen.value = !UI.pluginConfigurationIsOpen.value
+            if (UI.pluginPanelIsOpen.value)
+            {
+                UI.pluginPanelIsOpen.value = !UI.pluginPanelIsOpen.value
+                if (!UI.pluginListPanelIsOpen.value)
+                    UI.pluginListPanelIsOpen.value = true
+            }
+            else if (UI.pluginConfigurationIsOpen.value)
+            {
+                UI.pluginConfigurationIsOpen.value = false
+                if (!UI.pluginListPanelIsOpen.value)
+                    UI.pluginListPanelIsOpen.value = true
+            }
             else
-                UI.pluginsPanelIsOpen.value = !UI.pluginsPanelIsOpen.value
+                UI.pluginListPanelIsOpen.value = !UI.pluginListPanelIsOpen.value
         }))
-
-        addButton(ToolbarButton("Settings", Icons.Filled.Settings, description = "Settings", bottom = true) {
-        })
     }
 
     @Composable

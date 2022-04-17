@@ -111,24 +111,24 @@ public class ItemRequirements extends ItemRequirement
 	@Override
 	public Color getColor(Client client, QuestHelperConfig config)
 	{
-		return this.check(client, true) ? config.passColour() : config.failColour();
+		return this.check(client, true) ? Color.GREEN : Color.RED;
 	}
 
 	@Override
 	public Color getColorConsideringBank(Client client, boolean checkConsideringSlotRestrictions,
 										 List<Item> bankItems, QuestHelperConfig config)
 	{
-		Color color = config.failColour();
+		Color color = Color.RED;
 		if (!this.isActualItem() && !(this.getItemRequirements() instanceof ArrayList))
 		{
 			color = Color.GRAY;
 		}
 		else if (this.check(client, checkConsideringSlotRestrictions))
 		{
-			color = config.passColour();
+			color = Color.GREEN;
 		}
 
-		if (color == config.failColour() && bankItems != null)
+		if (color == Color.RED && bankItems != null)
 		{
 			if (check(client, false, bankItems))
 			{

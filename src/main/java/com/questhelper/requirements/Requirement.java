@@ -75,7 +75,7 @@ public interface Requirement
 	 */
 	default Color getColor(Client client, QuestHelperConfig config)
 	{
-		return check(client) ? config.passColour() : config.failColour();
+		return check(client) ? Color.GREEN : Color.RED;
 	}
 
 	/**

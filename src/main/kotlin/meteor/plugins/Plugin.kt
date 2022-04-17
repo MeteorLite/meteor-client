@@ -5,6 +5,7 @@ import meteor.config.Config
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
+import meteor.ui.UI.pluginPanelIsOpen
 import meteor.ui.overlay.Overlay
 
 open class Plugin : EventSubscriber() {
@@ -78,5 +79,17 @@ open class Plugin : EventSubscriber() {
             isEnabled = true else if (javaClass.getAnnotation(PluginDescriptor::class.java).cantDisable) isEnabled = true
 
         return isEnabled
+    }
+
+    open fun togglePluginPanel() {
+        if (pluginPanelIsOpen.value) closePluginPanel() else openPluginPanel()
+    }
+
+    open fun openPluginPanel() {
+        pluginPanelIsOpen.value = true
+    }
+
+    open fun closePluginPanel() {
+        pluginPanelIsOpen.value = false
     }
 }

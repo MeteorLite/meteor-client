@@ -69,7 +69,7 @@ public abstract class QuestHelper extends EventSubscriber
 
 	@Getter
 	@Setter
-	private QuestHelperQuest quest;
+	public QuestHelperQuest quest;
 
 	public abstract void startUp(QuestHelperConfig config);
 

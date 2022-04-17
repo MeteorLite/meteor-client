@@ -31,9 +31,9 @@ import java.util.function.Predicate;
 
 public interface Quest
 {
-	public static boolean showCompletedQuests(QuestHelper quest)
+	static boolean showCompletedQuests(QuestHelper quest)
 	{
-		return quest.getConfig().showCompletedQuests() && quest.isCompleted() || !quest.isCompleted();
+		return true;
 	}
 
 	/**
