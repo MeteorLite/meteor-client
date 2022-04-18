@@ -88,7 +88,6 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         WidgetInspector
         MenuManager
         interactionManager = InteractionManager()
-        interactionManager!!.subscribeEvents()
         interactionManager!!.subscribe()
         initOverlays()
         PluginManager.loadExternalPlugins()

@@ -89,7 +89,7 @@ object ItemManager : EventSubscriber() {
             println("No route for RuneLite item prices http-api... System.exit")
             exitProcess(1)
         }
-        subscribeEvents()
+        subscribe()
     }
 
     private fun loadPrices() {

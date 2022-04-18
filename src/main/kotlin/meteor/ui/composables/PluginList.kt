@@ -59,7 +59,7 @@ object PluginList {
             MaterialTheme(colors = UI.darkThemeColors) {
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     items(items = PluginManager.plugins, itemContent = { plugin ->
-                        val switchState = remember { mutableStateOf(plugin.enabled) }
+                        val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
                         Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)){
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                                 modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(UI.darkThemeColors.background)) {
@@ -112,12 +112,13 @@ object PluginList {
     }
 
     private fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {
-        when (plugin.enabled) {
+        when (PluginManager.runningMap[plugin]) {
             false -> PluginManager.start(plugin)
             true -> PluginManager.stop(plugin)
+            else -> {}
         }
-        ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", plugin.enabled)
-        switchState.value = plugin.enabled
+        ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", PluginManager.runningMap[plugin]!!)
+        switchState.value = PluginManager.runningMap[plugin]!!
     }
 
     private fun onPluginConfigurationOpened(plugin: Plugin) {

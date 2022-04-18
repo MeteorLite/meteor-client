@@ -88,7 +88,7 @@ public abstract class QuestHelper extends EventSubscriber
 		{
 			currentStep = step;
 			currentStep.startUp();
-			currentStep.subscribeEvents();
+			currentStep.subscribe();
 		}
 		else
 		{

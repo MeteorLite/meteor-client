@@ -263,7 +263,7 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 		if (currentStep == null)
 		{
 			currentStep = step;
-			currentStep.subscribeEvents();
+			currentStep.subscribe();
 			currentStep.startUp();
 			return;
 		}
@@ -271,7 +271,7 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 		if (!step.equals(currentStep))
 		{
 			shutDownStep();
-			step.subscribeEvents();
+			step.subscribe();
 			step.startUp();
 			currentStep = step;
 		}

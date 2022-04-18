@@ -87,6 +87,7 @@ import net.runelite.client.chat.ChatMessageManager;
 @Slf4j
 public class QuestHelperPlugin extends Plugin
 {
+	private QuestHelperPluginPanel pluginPanel;
 	private static final int[] QUESTLIST_WIDGET_IDS = new int[]
 		{
 			QuestWidgets.QUEST_CONTAINER.getId()
@@ -558,7 +559,7 @@ public class QuestHelperPlugin extends Plugin
 		if (!questHelper.isCompleted())
 		{
 			selectedQuest = questHelper;
-			selectedQuest.subscribeEvents();
+			selectedQuest.subscribe();
 			selectedQuest.startUp(config);
 			if (selectedQuest.getCurrentStep() == null)
 			{
@@ -566,7 +567,9 @@ public class QuestHelperPlugin extends Plugin
 				return;
 			}
 			bankTagsMain.startUp();
-			UI.INSTANCE.getPluginPanel().setValue(new QuestHelperPluginPanel(selectedQuest));
+			pluginPanel = new QuestHelperPluginPanel(selectedQuest);
+			pluginPanel.subscribe();
+			UI.INSTANCE.getPluginPanel().setValue(pluginPanel);
 		}
 		else
 		{
@@ -615,7 +618,9 @@ public class QuestHelperPlugin extends Plugin
 			}
 			selectedQuest.unsubscribe();
 			selectedQuest = null;
-			UI.INSTANCE.getPluginPanel().setValue(null);
+			pluginPanel.unsubscribe();
+			pluginPanel = null;
+			UI.INSTANCE.getPluginPanel().setValue(pluginPanel);
 		}
 	}
 

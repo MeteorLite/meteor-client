@@ -50,7 +50,7 @@ object MenuManager : EventSubscriber() {
     private const val IDX_UPPER = 8
 
     init {
-        subscribeEvents()
+        subscribe()
     }
 
     /**

@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,50 +19,52 @@ import androidx.compose.ui.unit.sp
 import com.questhelper.questhelpers.QuestHelper
 import com.questhelper.requirements.Requirement
 import eventbus.events.GameTick
-import eventbus.events.InventoryChanged
 import meteor.Main
 import meteor.ui.UI
 import meteor.ui.composables.PluginPanel
 
 class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     var quest = questHelper.quest
-    val generalRequirements = HashMap<Requirement, Boolean>()
-    val itemRequirements = HashMap<Requirement, Boolean>()
-    val itemRecommend = HashMap<Requirement, Boolean>()
+
+    //Dynamic data
+    val generalRequirements = questHelper.generalRequirements
+    val itemRequirements = questHelper.itemRequirements
+    val itemRecommends = questHelper.itemRecommended
+
+    //We use mutableStateOf so compose is aware of changes to it, and will redraw
+    //Checking requirements met must be done on ClientThread (so not in @Composable function)
+    //Which is why we use EventBus to update requirements met
+    var generalRequirementsMet = mutableStateOf(ArrayList<RequirementMet>())
+    var itemRequirementsMet = mutableStateOf(ArrayList<RequirementMet>())
+    var itemRecommendMet = mutableStateOf(ArrayList<RequirementMet>())
+
+    //Static data
     val enemiesToDefeat = questHelper.combatRequirements
     val rewards = questHelper.questRewards
 
     init {
-        updateGenRequirements()
-        updateItemRequirements()
+        updateRequirements()
     }
 
     override fun onGameTick(it: GameTick) {
-        updateGenRequirements()
+        updateRequirements()
     }
 
-    override fun onInventoryChanged(it: InventoryChanged) {
-        updateItemRequirements()
+    private fun updateRequirements() {
+        updateRequirements(generalRequirements)
+        updateRequirements(itemRequirements)
+        updateRequirements(itemRecommends)
     }
 
-    private fun updateGenRequirements() {
-        questHelper.generalRequirements?.let {
-            for (requirement in it) {
-                generalRequirements[requirement] = requirement.check(Main.client)
-            }
+    fun updateRequirements(requirements: List<Requirement>) {
+        val requirementsMet = ArrayList<RequirementMet>()
+        requirements.forEach {
+            requirementsMet.add(RequirementMet(it, it.check(Main.client)))
         }
-    }
-
-    private fun updateItemRequirements() {
-        questHelper.itemRequirements?.let {
-            for (requirement in it) {
-                itemRequirements[requirement] = requirement.check(Main.client)
-            }
-        }
-        questHelper.itemRecommended?.let {
-            for (requirement in it) {
-                itemRecommend[requirement] = requirement.check(Main.client)
-            }
+        when (requirements) {
+            generalRequirements -> generalRequirementsMet.value = requirementsMet
+            itemRequirements -> itemRequirementsMet.value = requirementsMet
+            itemRecommends -> itemRecommendMet.value = requirementsMet
         }
     }
 
@@ -79,9 +82,9 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
             item {
                 Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top, modifier = Modifier.fillMaxSize()) {
                     MaterialTheme(colors = UI.darkThemeColors) {
-                        Requirements(generalRequirements, "General requirements")
-                        Requirements(itemRequirements, "Item requirements")
-                        Requirements(itemRecommend, "Item recommendation")
+                        Requirements(generalRequirementsMet.value, "General requirements")
+                        Requirements(itemRequirementsMet.value, "Item requirements")
+                        Requirements(itemRecommendMet.value, "Item recommendation")
                         NonUpdatingTextList(enemiesToDefeat, "Enemies to defeat")
                         NonUpdatingTextList(rewards, "Quest rewards")
                     }
@@ -91,7 +94,7 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     }
 
-    @Composable fun Requirements(requirements: HashMap<Requirement, Boolean>, text: String) {
+    @Composable fun Requirements(requirements: ArrayList<RequirementMet>, text: String) {
         if (requirements.isNotEmpty()) {
             Row(modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 30.dp).background(UI.darkThemeColors.surface)){
                 Text(text, style = TextStyle(color = Color.Cyan, fontSize = 14.sp), modifier = Modifier.align(Alignment.Bottom))
@@ -100,13 +103,13 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
             LazyColumn(modifier = Modifier.fillMaxWidth().height((requirements.size * 32).dp).background(UI.darkThemeColors.surface).clip(
                 RoundedCornerShape(size = 30.dp)
             ), horizontalAlignment = Alignment.CenterHorizontally, ) {
-                items(items = requirements.keys.toList(), itemContent = { requirement ->
+                items(items = requirements, itemContent = { requirement ->
                     Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background)){
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                             modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background)) {
-                            val meetsRequirement = requirements[requirement]!!
+                            val meetsRequirement = requirement.met
                             val color = if (meetsRequirement) Color.Green else Color.Red
-                            Text(requirement.displayText,style = TextStyle(color = color, fontSize = 14.sp))
+                            Text(requirement.requirement.displayText,style = TextStyle(color = color, fontSize = 14.sp))
                         }
                     }
                 })

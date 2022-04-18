@@ -105,7 +105,7 @@ open class EventSubscriber : KEventSubscriber {
             unit()
     }
 
-    fun subscribeEvents() {
+    private fun subscribeEvents() {
         subscribeEvent<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) { executeIfListening { onMenuShouldLeftClick(it) }}
         subscribeEvent<ActorDeath>(Events.ACTOR_DEATH) { executeIfListening { onActorDeath(it) }}
         subscribeEvent<AnimationChanged>(Events.ANIMATION_CHANGED) { executeIfListening { onAnimationChanged(it) }}
@@ -202,6 +202,7 @@ open class EventSubscriber : KEventSubscriber {
     }
 
     fun subscribe() {
+        subscribeEvents()
         eventListening = true
     }
 }

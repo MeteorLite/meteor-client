@@ -115,7 +115,7 @@ class EntityHiderPlugin : Plugin() {
                     setHiddenNpc(npc, true)
                 }
             }
-            if (animationHiddenIndices!!.contains(npc.index) && !hideNPCsOnAnimationID
+            if (!animationHiddenIndices.isNullOrEmpty() && animationHiddenIndices!!.contains(npc.index) && !hideNPCsOnAnimationID
                     ?.contains(npc.animation)!!
             ) {
                 if (hiddenIndices!!.contains(npc.index)) {

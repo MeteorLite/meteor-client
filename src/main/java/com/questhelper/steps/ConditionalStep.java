@@ -263,7 +263,7 @@ public class ConditionalStep extends QuestStep implements OwnerStep
 	{
 		if (currentStep == null)
 		{
-			step.subscribeEvents();
+			step.subscribe();
 			step.startUp();
 			currentStep = step;
 			return;

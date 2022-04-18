@@ -66,7 +66,7 @@ public class ChatMessageManager extends EventSubscriber
 	public ChatMessageManager()
 	{
 		loadColors();
-		subscribeEvents();
+		subscribe();
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package meteor.plugins
 
 import androidx.compose.runtime.mutableStateListOf
 import com.questhelper.QuestHelperPlugin
-import com.questhelper.questhelpers.QuestHelper
 import com.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
@@ -43,15 +42,16 @@ import java.io.File
 import java.net.JarURLConnection
 import java.net.URL
 import java.net.URLClassLoader
-import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
+import kotlin.collections.HashMap
 import kotlin.system.exitProcess
 
 
 object PluginManager {
     var plugins = mutableStateListOf<Plugin>()
     val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
+    val runningMap = HashMap<Plugin, Boolean>()
 
     init {
         init<AgilityPlugin>()
@@ -149,10 +149,11 @@ object PluginManager {
         if (plugins.filterIsInstance<T>().isNotEmpty())
                 throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
-            plugins.add(plugin)
-            plugin.subscribeEvents()
-            if (plugin.isEnabled())
-                start(plugin)
+        runningMap[plugin] = plugin.shouldEnable()
+        plugins.add(plugin)
+
+        if (runningMap[plugin]!!)
+            start(plugin)
     }
 
     fun initExternalPlugin(jar: File, manifest: Manifest) {
@@ -163,8 +164,8 @@ object PluginManager {
                 throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
             plugins.add(plugin)
-            plugin.subscribeEvents()
-            if (plugin.isEnabled())
+            plugin.subscribe()
+            if (plugin.shouldEnable())
                 start(plugin)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -192,11 +193,13 @@ object PluginManager {
     fun stop(plugin: Plugin) {
         plugin.stop()
         plugin.onStop()
+        runningMap[plugin] = false
     }
 
      fun start(plugin: Plugin) {
          plugin.onStart()
          plugin.start()
+         runningMap[plugin] = true
     }
 
     fun shutdown() {

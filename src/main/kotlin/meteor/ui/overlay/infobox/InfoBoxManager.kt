@@ -190,7 +190,7 @@ object InfoBoxManager : EventSubscriber() {
             orientation
         )
         OverlayManager.add(infoBoxOverlay)
-        infoBoxOverlay.subscribeEvents()
+        infoBoxOverlay.subscribe()
         return infoBoxOverlay
     }
 

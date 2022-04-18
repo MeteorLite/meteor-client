@@ -15,8 +15,6 @@ open class Plugin : EventSubscriber() {
     var client = Main.client
     val overlayManager = Main.overlayManager
     val overlays = ArrayList<Overlay>()
-    val enabled: Boolean
-        get() = eventListening
 
     fun getDescriptor(): PluginDescriptor {
         return javaClass.getAnnotation(PluginDescriptor::class.java)
@@ -59,7 +57,7 @@ open class Plugin : EventSubscriber() {
     open fun onStart() {}
     open fun onStop() {}
 
-    fun isEnabled() : Boolean {
+    fun shouldEnable() : Boolean {
         val enabledConfig: String? = ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled")
         val descriptor: PluginDescriptor? = javaClass.getAnnotation(PluginDescriptor::class.java)
         if (enabledConfig == null) {
@@ -76,7 +74,7 @@ open class Plugin : EventSubscriber() {
         var isEnabled = false
 
         if (ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled").toBoolean())
-            isEnabled = true else if (javaClass.getAnnotation(PluginDescriptor::class.java).cantDisable) isEnabled = true
+            isEnabled = true
 
         return isEnabled
     }
