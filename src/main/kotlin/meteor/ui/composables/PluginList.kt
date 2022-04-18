@@ -112,11 +112,7 @@ object PluginList {
     }
 
     private fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {
-        if (PluginManager.runningMap[plugin]!!)
-            PluginManager.stop(plugin)
-        else
-            PluginManager.start(plugin)
-
+        PluginManager.toggle(plugin)
         ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", PluginManager.runningMap[plugin]!!)
         switchState.value = PluginManager.runningMap[plugin]!!
     }

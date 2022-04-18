@@ -164,8 +164,8 @@ object PluginManager {
                 throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
             plugins.add(plugin)
-            plugin.subscribe()
-            if (plugin.shouldEnable())
+            runningMap[plugin] = plugin.shouldEnable()
+            if (runningMap[plugin]!!)
                 start(plugin)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -188,6 +188,21 @@ object PluginManager {
         val it = plugins.filterIsInstance<T>().first()
         stop(it)
         start(it)
+    }
+
+    inline fun <reified T : Plugin> toggle() {
+        val it = plugins.filterIsInstance<T>().first()
+        if (runningMap[it]!!)
+            stop(it)
+        else
+            start(it)
+    }
+
+    fun toggle(it: Plugin) {
+        if (runningMap[it]!!)
+            stop(it)
+        else
+            start(it)
     }
 
     fun stop(plugin: Plugin) {
