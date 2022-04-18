@@ -50,12 +50,12 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     }
 
     override fun onGameTick(it: GameTick) {
-        updateRequirements(generalRequirements)
+        generalRequirements?.let { updateRequirements(generalRequirements) }
     }
 
     override fun onItemContainerChanged(it: ItemContainerChanged) {
-        updateRequirements(itemRequirements)
-        updateRequirements(itemRecommends)
+        itemRequirements?.let { updateRequirements(itemRequirements) }
+        itemRecommends?.let { updateRequirements(itemRecommends) }
     }
 
     fun updateRequirements(requirements: List<Requirement>) {
