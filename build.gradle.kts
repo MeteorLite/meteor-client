@@ -2,7 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev659"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev662"
     java
     `maven-publish`
 }
