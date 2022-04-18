@@ -13,8 +13,8 @@ import java.awt.BorderLayout
 import javax.swing.JPanel
 
 object OSRS {
-    lateinit var jpanel: JPanel
-
+    var loaded = false
+    var applet = java.applet.Applet()
     @Composable
     fun OSRSPanel() {
         val mod: Modifier = Modifier.fillMaxWidth().fillMaxHeight()
@@ -23,16 +23,19 @@ object OSRS {
             Color.Black,
             modifier = mod,
             factory = {
-                if (!this::jpanel.isInitialized) {
-                    jpanel = JPanel()
-                    jpanel.layout = BorderLayout()
-                    jpanel.add(Applet.applet)
-                    Applet.applet.init()
-                    Applet.applet.start()
-                    UI.loaded = true
-                    Main.finishStartup()
+                JPanel().apply {
+                    layout = BorderLayout()
+                    if (!loaded) {
+                        applet = Applet.applet
+
+                        add(Applet.applet)
+                        Applet.applet.init()
+                        Applet.applet.start()
+                        Main.finishStartup()
+                        loaded = true
+                    } else
+                        add(Applet.applet)
                 }
-                jpanel
             })
     }
 }
