@@ -201,6 +201,9 @@ open class EventSubscriber : KEventSubscriber {
 
     fun subscribe() {
         subscribeEvents()
-        eventListening = true
+
+        //Plugin eventListening is handled by PluginManager plugin start/stop
+        if (this !is Plugin)
+            eventListening = true
     }
 }

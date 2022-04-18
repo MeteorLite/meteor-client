@@ -44,12 +44,14 @@ open class Plugin : EventSubscriber() {
 
     fun start() {
         subscribe()
+        eventListening = true
         for (overlay in overlays)
             overlayManager.add(overlay)
     }
 
     fun stop() {
         unsubscribe()
+        eventListening = false
         for (overlay in overlays)
             overlayManager.remove(overlay)
     }
