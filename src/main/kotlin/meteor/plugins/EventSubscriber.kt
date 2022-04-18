@@ -41,7 +41,6 @@ open class EventSubscriber : KEventSubscriber {
     open fun onItemQuantityChanged(it: ItemQuantityChanged) {}
     open fun onItemObtained(it: ItemObtained) {}
     open fun onItemContainerChanged(it: ItemContainerChanged) {}
-    open fun onInventoryChanged(it: InventoryChanged) {}
     open fun onHealthBarUpdated(it: HealthBarUpdated) {}
     open fun onGraphicsObjectCreated(it: GraphicsObjectCreated) {}
     open fun onGrandExchangeOfferChanged(it: GrandExchangeOfferChanged) {}
@@ -139,7 +138,6 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<GroundObjectSpawned>(Events.GROUND_OBJECT_SPAWNED) { executeIfListening { onGroundObjectSpawned(it) }}
         subscribeEvent<HealthBarUpdated>(Events.HEALTH_BAR_UPDATED) { executeIfListening { onHealthBarUpdated(it) }}
         subscribeEvent<InteractingChanged>(Events.INTERACTING_CHANGED) { executeIfListening { onInteractingChanged(it) }}
-        subscribeEvent<InventoryChanged>(Events.INVENTORY_CHANGED) { executeIfListening { onInventoryChanged(it) }}
         subscribeEvent<ItemContainerChanged>(Events.ITEM_CONTAINER_CHANGED) { executeIfListening { onItemContainerChanged(it) }}
         subscribeEvent<ItemDespawned>(Events.ITEM_DESPAWNED) { executeIfListening { onItemDespawned(it) }}
         subscribeEvent<ItemObtained>(Events.ITEM_OBTAINED) { executeIfListening { onItemObtained(it) }}
