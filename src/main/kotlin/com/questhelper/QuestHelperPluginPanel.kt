@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import com.questhelper.questhelpers.QuestHelper
 import com.questhelper.requirements.Requirement
 import eventbus.events.GameTick
+import eventbus.events.ItemContainerChanged
 import meteor.Main
 import meteor.ui.UI
 import meteor.ui.composables.PluginPanel
@@ -43,15 +44,16 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     val rewards = questHelper.questRewards
 
     init {
-        updateRequirements()
+        generalRequirements?.let { updateRequirements(generalRequirements) }
+        itemRequirements?.let { updateRequirements(itemRequirements) }
+        itemRecommends?.let { updateRequirements(itemRecommends) }
     }
 
     override fun onGameTick(it: GameTick) {
-        updateRequirements()
+        updateRequirements(generalRequirements)
     }
 
-    private fun updateRequirements() {
-        updateRequirements(generalRequirements)
+    override fun onItemContainerChanged(it: ItemContainerChanged) {
         updateRequirements(itemRequirements)
         updateRequirements(itemRecommends)
     }
