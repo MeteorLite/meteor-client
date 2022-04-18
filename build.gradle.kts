@@ -110,6 +110,8 @@ tasks {
                 }
             }
             jvmArgs(
+                "-XX:+UseDynamicNumberOfGCThreads",
+                "-XX:+UseZGC",
                 "-Xmx1024m",
                 "-ea",
                 "-noverify",
