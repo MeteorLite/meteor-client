@@ -22,7 +22,7 @@ class GuardiansOfTheRiftPlugin : Plugin() {
     private var collectionPhaseEndMessage = "Creatures from the Abyss begin their attack!"
     private var gameEndMessage = "The Great Guardian successfully closed the rift!"
     private var defeatMessage = "The Great Guardian was defeated!"
-    private var currentPointsMessage = "Elemental attunement level"
+    private var currentPointsMessage = "Total elemental energy"
 
 
     private var GUARDIAN_AIR : GameObject? = null
@@ -253,9 +253,9 @@ class GuardiansOfTheRiftPlugin : Plugin() {
             battlePhase = false
             reset()
         } else if (it.message.contains(currentPointsMessage)) {
-            elementalPoints = it.message.split("level: ")[1].split(".")[0].split(">")[1].split("<")[0].toInt()
+            elementalPoints = it.message.split("energy: ")[1].split(".")[0].split(">")[1].split("<")[0].toInt()
             ConfigManager.setPlayerConfiguration("elementalPoints", elementalPoints)
-            catalyticPoints = it.message.split("level: ")[2].split(".")[0].split(">")[1].split("<")[0].toInt()
+            catalyticPoints = it.message.split("energy: ")[2].split(".")[0].split(">")[1].split("<")[0].toInt()
             ConfigManager.setPlayerConfiguration("catalyticPoints", catalyticPoints)
         }
     }
