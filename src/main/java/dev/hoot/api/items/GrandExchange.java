@@ -68,7 +68,7 @@ public class GrandExchange
 
 	public static boolean isOpen()
 	{
-		return getView() != View.CLOSED && getView() != View.UNKNOWN;
+		return getView() != null && getView() != View.CLOSED && getView() != View.UNKNOWN;
 	}
 
 	public static boolean isSetupOpen()

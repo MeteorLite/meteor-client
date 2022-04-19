@@ -9,6 +9,7 @@ import meteor.events.InfoBoxMenuClicked
 import meteor.events.PluginChanged
 import net.runelite.api.events.MenuOpened
 import org.rationalityfrontline.kevent.KEventSubscriber
+import org.rationalityfrontline.kevent.unsubscribeAll
 import org.rationalityfrontline.kevent.subscribe as kSubscribe
 
 open class EventSubscriber : KEventSubscriber {
@@ -196,6 +197,7 @@ open class EventSubscriber : KEventSubscriber {
 
 
     fun unsubscribe() {
+        unsubscribeAll()
         eventListening = false
     }
 

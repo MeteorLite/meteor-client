@@ -212,8 +212,8 @@ object PluginManager {
     }
 
      fun start(plugin: Plugin) {
-         plugin.onStart()
          plugin.start()
+         plugin.onStart()
          runningMap[plugin] = true
     }
 
