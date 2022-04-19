@@ -74,35 +74,18 @@ public class TransportLoader
 			return STATIC_TRANSPORTS;
 		}
 
-		System.out.println(RegionManager.API_URL + "/transports");
-		try (InputStream txt = new URL(RegionManager.API_URL + "/transports").openStream())
+		try (InputStream txt = ClassLoader.getSystemClassLoader().getResourceAsStream("./transports-041522.json"))
 		{
+			assert txt != null;
 			TransportDto[] json = GSON.fromJson(new String(txt.readAllBytes()), TransportDto[].class);
 
 			for (TransportDto transportDto : json)
 			{
 				STATIC_TRANSPORTS.add(transportDto.toModel());
 			}
-		}
-		catch (IOException e)
+		} catch (IOException ex)
 		{
-			Main.INSTANCE.getLogger().error("Failed to load unethical transports, loading from disk");
-			{
-				try (InputStream txt = ClassLoader.getSystemClassLoader().getResourceAsStream("./transports-041522.json"))
-				{
-					assert txt != null;
-					TransportDto[] json = GSON.fromJson(new String(txt.readAllBytes()), TransportDto[].class);
-
-					for (TransportDto transportDto : json)
-					{
-						STATIC_TRANSPORTS.add(transportDto.toModel());
-					}
-				} catch (IOException ex)
-				{
-					ex.printStackTrace();
-				}
-			}
-			e.printStackTrace();
+			ex.printStackTrace();
 		}
 
 		return STATIC_TRANSPORTS;

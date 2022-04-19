@@ -44,25 +44,16 @@ public class Game
 	public static GlobalCollisionMap getGlobalCollisionMap()
 	{
 		if (globalCollisionMap == null) {
-			try (InputStream is = new URL(RegionManager.API_URL + "/regions").openStream())
-			{
-				globalCollisionMap =  new GlobalCollisionMap(new GZIPInputStream(new ByteArrayInputStream(is.readAllBytes())).readAllBytes());
-			}
-			catch (IOException e)
-			{
-				// Fallback to old map
-				new Logger("collision").warn("Failed to load global collision map, falling back to old map", e);
-				try {
-					return new GlobalCollisionMap(
-							new GZIPInputStream(
-									new ByteArrayInputStream(
-											Walker.class.getResourceAsStream("/regions").readAllBytes()
-									)
-							).readAllBytes()
-					);
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
+			try {
+				return new GlobalCollisionMap(
+						new GZIPInputStream(
+								new ByteArrayInputStream(
+										ClassLoader.getSystemClassLoader().getResourceAsStream("/regions").readAllBytes()
+								)
+						).readAllBytes()
+				);
+			} catch (IOException ex) {
+				ex.printStackTrace();
 			}
 		}
 		return globalCollisionMap;

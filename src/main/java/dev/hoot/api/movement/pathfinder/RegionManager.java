@@ -32,7 +32,6 @@ import java.util.concurrent.TimeUnit;
 public class RegionManager
 {
 	public static final MediaType JSON_MEDIATYPE = MediaType.parse("application/json");
-	public static final String API_URL = "http://134.209.139.162:8080";
 	public static final Gson GSON = new GsonBuilder().create();
 	private static final Logger logger = LoggerFactory.getLogger(RegionManager.class);
 	private static final int VERSION = 3;
@@ -45,38 +44,6 @@ public class RegionManager
 	{
 		if (Game.getState() != GameState.LOGGED_IN)
 		{
-			return;
-		}
-
-		if (Game.getClient().isInInstancedRegion())
-		{
-			executorService.schedule(() ->
-			{
-				try
-				{
-					Request request = new Request.Builder()
-							.get()
-							.header("api-key", "f0bbb47b-839a-43f7-b907-eff4ab131231")
-							.url(API_URL + "/regions/instance/" + Players.getLocal().getWorldLocation().getRegionID())
-							.build();
-					Response response = okHttpClient.newCall(request)
-							.execute();
-					int code = response.code();
-					if (code != 200)
-					{
-						logger.error("Instance store request was unsuccessful: {}", code);
-						return;
-					}
-
-					logger.debug("Instanced region stored successfully");
-				}
-				catch (Exception e)
-				{
-					logger.error("Failed to POST: {}", e.getMessage());
-					e.printStackTrace();
-				}
-			}, 5_000, TimeUnit.MILLISECONDS);
-
 			return;
 		}
 
@@ -182,35 +149,6 @@ public class RegionManager
 				tileFlags.add(tileFlag);
 			}
 		}
-
-		executorService.schedule(() ->
-		{
-			try
-			{
-				String json = GSON.toJson(tileFlags);
-				RequestBody body = RequestBody.create(JSON_MEDIATYPE, json);
-				Request request = new Request.Builder()
-						.post(body)
-						.header("api-key", "f0bbb47b-839a-43f7-b907-eff4ab131231")
-						.url(API_URL + "/regions/" + VERSION)
-						.build();
-				Response response = okHttpClient.newCall(request)
-						.execute();
-				int code = response.code();
-				if (code != 200)
-				{
-					logger.error("Request was unsuccessful: {}", code);
-					return;
-				}
-
-				logger.debug("Region saved successfully");
-			}
-			catch (Exception e)
-			{
-				logger.error("Failed to POST: {}", e.getMessage());
-				e.printStackTrace();
-			}
-		}, 5, TimeUnit.SECONDS);
 	}
 
 	public boolean isTransport(List<Transport> transports, WorldPoint from, WorldPoint to)
