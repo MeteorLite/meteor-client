@@ -15,6 +15,7 @@ import dev.hoot.api.quests.Quest;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
 import lombok.Value;
+import meteor.Main;
 import net.runelite.api.Item;
 import net.runelite.api.NPC;
 import net.runelite.api.QuestState;
@@ -85,6 +86,22 @@ public class TransportLoader
 		}
 		catch (IOException e)
 		{
+			Main.INSTANCE.getLogger().error("Failed to load unethical transports, loading from disk");
+			{
+				try (InputStream txt = ClassLoader.getSystemClassLoader().getResourceAsStream("./transports-041522.json"))
+				{
+					assert txt != null;
+					TransportDto[] json = GSON.fromJson(new String(txt.readAllBytes()), TransportDto[].class);
+
+					for (TransportDto transportDto : json)
+					{
+						STATIC_TRANSPORTS.add(transportDto.toModel());
+					}
+				} catch (IOException ex)
+				{
+					ex.printStackTrace();
+				}
+			}
 			e.printStackTrace();
 		}
 
