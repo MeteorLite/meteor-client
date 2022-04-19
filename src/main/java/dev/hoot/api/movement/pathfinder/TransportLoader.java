@@ -74,7 +74,7 @@ public class TransportLoader
 			return STATIC_TRANSPORTS;
 		}
 
-		try (InputStream txt = ClassLoader.getSystemClassLoader().getResourceAsStream("./transports-041522.json"))
+		try (InputStream txt = ClassLoader.getSystemClassLoader().getResourceAsStream("transports-041522.json"))
 		{
 			assert txt != null;
 			TransportDto[] json = GSON.fromJson(new String(txt.readAllBytes()), TransportDto[].class);
