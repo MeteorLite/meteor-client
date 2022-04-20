@@ -40,6 +40,7 @@ import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 object Main: ApplicationScope, KoinComponent, EventSubscriber() {
+    val eventBus = EventBus
     lateinit var client: Client
     lateinit var callbacks: Callbacks
     val httpClient = OkHttpClient()
@@ -53,7 +54,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     val worldService = WorldService
     var meteorConfig: MeteorConfig? = null
     var logger = Logger("meteor.Main")
-    val eventBus = EventBus
+
     var placement: WindowPlacement = WindowPlacement.Maximized
     var interactionManager: InteractionManager? = null
     var chatMessageManager: ChatMessageManager? = null
