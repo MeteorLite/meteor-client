@@ -5,9 +5,11 @@ import dev.hoot.api.events.MenuActionProcessed
 import dev.hoot.api.events.PacketSent
 import eventbus.Events
 import eventbus.events.*
+import meteor.Main
 import meteor.events.InfoBoxMenuClicked
 import meteor.events.PluginChanged
 import net.runelite.api.events.MenuOpened
+import org.rationalityfrontline.kevent.KEvent
 import org.rationalityfrontline.kevent.KEventSubscriber
 import org.rationalityfrontline.kevent.unsubscribeAll
 import org.rationalityfrontline.kevent.subscribe as kSubscribe
@@ -208,4 +210,16 @@ open class EventSubscriber : KEventSubscriber {
         if (this !is Plugin)
             eventListening = true
     }
+    private val charPool : List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+
+    val randomString = (1..10)
+        .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+        .map(charPool::get)
+        .joinToString("");
+
+    override val SUBSCRIBER_TAG: String
+        get() = randomString
+
+    override val KEVENT_INSTANCE: KEvent
+        get() = Main.eventBus
 }
