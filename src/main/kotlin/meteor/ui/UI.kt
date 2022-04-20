@@ -21,6 +21,8 @@ import meteor.ui.composables.PluginList.PluginsPanel
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.toolbar.Toolbar.ToolbarPanel
 import java.awt.Dimension
+import java.awt.dnd.DropTarget
+import java.awt.dnd.DropTargetEvent
 import javax.swing.WindowConstants.EXIT_ON_CLOSE
 
 object UI {
