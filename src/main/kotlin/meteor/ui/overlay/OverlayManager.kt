@@ -47,6 +47,7 @@ object OverlayManager {
 
     @Synchronized
     fun add(overlay: Overlay): Boolean {
+        overlay.subscribe()
         if (overlays.contains(overlay)) {
             return false
         }
@@ -109,6 +110,7 @@ object OverlayManager {
 
     @Synchronized
     fun remove(overlay: Overlay?): Boolean {
+        overlay?.unsubscribe()
         val remove: Boolean = overlays.remove(overlay)
         if (remove) {
             rebuildOverlayLayers()
