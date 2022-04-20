@@ -129,16 +129,4 @@ class TileInfoOverlay extends OverlayPanel {
         }
         return output.reverse().toString();
     }
-
-    @NotNull
-    @Override
-    public KEvent getKEVENT_INSTANCE() {
-        return Main.INSTANCE.getEventBus();
-    }
-
-    @NotNull
-    @Override
-    public String getSUBSCRIBER_TAG() {
-        return "tileman";
-    }
 }

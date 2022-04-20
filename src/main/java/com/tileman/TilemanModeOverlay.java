@@ -111,16 +111,4 @@ public class TilemanModeOverlay extends Overlay
 		}
 		return config.markerColor();
 	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return null;
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return null;
-	}
 }

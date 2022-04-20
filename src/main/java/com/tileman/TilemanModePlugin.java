@@ -42,7 +42,6 @@ import meteor.ui.overlay.OverlayManager;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import org.rationalityfrontline.kevent.KEvent;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -645,15 +644,5 @@ public class TilemanModePlugin extends Plugin {
                     .filter(movementFlag -> (movementFlag.flag & collisionData) != 0)
                     .collect(Collectors.toSet());
         }
-    }
-
-    @Override
-    public String getSUBSCRIBER_TAG() {
-        return "tileman";
-    }
-
-    @Override
-    public KEvent getKEVENT_INSTANCE() {
-        return Main.INSTANCE.getEventBus();
     }
 }

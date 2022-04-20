@@ -39,7 +39,7 @@ annotation class PluginDescriptor(val name: String,
                                    * A list of plugin keywords, used (together with the name) when searching for plugins. Each tag
                                    * should not contain any spaces, and should be fully lowercase.
                                    */
-                                  val tags: Array<String> = [], val enabledByDefault: Boolean = true,
+                                  val tags: Array<String> = [], val enabledByDefault: Boolean = false,
                                   /**
                                    * Whether or not plugin is hidden from configuration panel
                                    */

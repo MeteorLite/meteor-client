@@ -118,16 +118,4 @@ class TilemanModeMinimapOverlay extends Overlay
 		}
 		return config.markerColor();
 	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "tileman2";
-	}
 }
