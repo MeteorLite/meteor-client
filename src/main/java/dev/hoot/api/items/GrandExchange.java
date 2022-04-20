@@ -37,24 +37,31 @@ public class GrandExchange
 		Widget setupWindow = Widgets.get(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER);
 		if (Widgets.isVisible(setupWindow))
 		{
-			String text = setupWindow.getChild(18).getText();
-			if (text == null || text.isEmpty())
-			{
+			try {
+				String text = null;
+				if (setupWindow.getChild(18) != null)
+					text = setupWindow.getChild(18).getText();
+
+				if (text == null || text.isEmpty())
+				{
+					return View.UNKNOWN;
+				}
+
+				if (text.equals("Sell offer"))
+				{
+					return View.SELLING;
+				}
+
+				if (text.equals("Buy offer"))
+				{
+					return View.BUYING;
+				}
+
+				// Widgets broke
 				return View.UNKNOWN;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-
-			if (text.equals("Sell offer"))
-			{
-				return View.SELLING;
-			}
-
-			if (text.equals("Buy offer"))
-			{
-				return View.BUYING;
-			}
-
-			// Widgets broke
-			return View.UNKNOWN;
 		}
 
 		Widget geWindow = Widgets.get(WidgetInfo.GRAND_EXCHANGE_WINDOW_CONTAINER);
