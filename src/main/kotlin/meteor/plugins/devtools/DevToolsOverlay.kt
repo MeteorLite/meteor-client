@@ -260,9 +260,11 @@ class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
         if (inventoryWidget == null || inventoryWidget.isHidden) {
             return
         }
-        for (item in inventoryWidget.widgetItems) {
-            val slotBounds = item.canvasBounds
-            val idText = "" + item.id
+        for (item in inventoryWidget.children!!) {
+            val slotBounds = item.bounds
+            var idText = "" + item.itemId
+            if (idText.toInt() == 6512)
+                idText = ""
             val fm = graphics.fontMetrics
             val textBounds = fm.getStringBounds(idText, graphics)
             val textX = (slotBounds.getX() + slotBounds.getWidth() / 2 - textBounds.width / 2).toInt()
