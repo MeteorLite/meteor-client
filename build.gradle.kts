@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.2.5" }
+val apiRelease by rootProject.extra { "1.2.6" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
