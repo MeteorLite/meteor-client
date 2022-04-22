@@ -101,7 +101,7 @@
     "structure": [
       {
         "method": "Short",
-        "paramater": "Client.field688"
+        "paramater": "Client.selectedSpellItemId"
       },
       {
         "method": "IntIME",
@@ -592,41 +592,6 @@
     ]
   },
   {
-    "name": "OPLOCT",
-    "opcode": 1,
-    "size": 15,
-    "structure": [
-      {
-        "method": "ShortAdd",
-        "paramater": "Client.field688"
-      },
-      {
-        "method": "Byte",
-        "paramater": "ctrlPressed"
-      },
-      {
-        "method": "ShortAddLE",
-        "paramater": "worldY"
-      },
-      {
-        "method": "ShortAdd",
-        "paramater": "selectedSpellChildIndex"
-      },
-      {
-        "method": "ShortAdd",
-        "paramater": "worldX"
-      },
-      {
-        "method": "IntME",
-        "paramater": "selectedSpellWidget"
-      },
-      {
-        "method": "ShortLE",
-        "paramater": "id"
-      }
-    ]
-  },
-  {
     "name": "OPNPCT",
     "opcode": 37,
     "size": 11,
@@ -649,7 +614,7 @@
       },
       {
         "method": "ShortAdd",
-        "paramater": "Client.field688"
+        "paramater": "Client.selectedSpellItemId"
       }
     ]
   },
@@ -676,42 +641,7 @@
       },
       {
         "method": "Short",
-        "paramater": "Client.field688"
-      }
-    ]
-  },
-  {
-    "name": "OPLOCU",
-    "opcode": 101,
-    "size": 15,
-    "structure": [
-      {
-        "method": "ShortLE",
-        "paramater": "selectedItemSlot"
-      },
-      {
-        "method": "ShortLE",
-        "paramater": "selectedItemId"
-      },
-      {
-        "method": "ByteAdd",
-        "paramater": "ctrlPressed"
-      },
-      {
-        "method": "Short",
-        "paramater": "worldX"
-      },
-      {
-        "method": "Short",
-        "paramater": "id"
-      },
-      {
-        "method": "IntME",
-        "paramater": "selectedItemWidget"
-      },
-      {
-        "method": "ShortAdd",
-        "paramater": "worldY"
+        "paramater": "Client.selectedSpellItemId"
       }
     ]
   },
@@ -730,7 +660,7 @@
       },
       {
         "method": "ShortAddLE",
-        "paramater": "selectedItemId"
+        "paramater": "Varcs.selectedItemId"
       },
       {
         "method": "ByteSub",
@@ -749,7 +679,7 @@
     "structure": [
       {
         "method": "ShortAddLE",
-        "paramater": "selectedItemId"
+        "paramater": "Varcs.selectedItemId"
       },
       {
         "method": "Short",
@@ -796,7 +726,7 @@
       },
       {
         "method": "ShortLE",
-        "paramater": "selectedItemId"
+        "paramater": "Varcs.selectedItemId"
       }
     ]
   },
@@ -815,7 +745,7 @@
       },
       {
         "method": "ShortAdd",
-        "paramater": "param0"
+        "paramater": "itemSlot"
       },
       {
         "method": "Short",
@@ -823,7 +753,7 @@
       },
       {
         "method": "Int",
-        "paramater": "param1"
+        "paramater": "itemWidgetId"
       }
     ]
   },
@@ -858,7 +788,7 @@
       },
       {
         "method": "Short",
-        "paramater": "selectedItemId"
+        "paramater": "Varcs.selectedItemId"
       }
     ]
   },
@@ -869,7 +799,7 @@
     "structure": [
       {
         "method": "Short",
-        "paramater": "Client.field688"
+        "paramater": "Client.selectedSpellItemId"
       },
       {
         "method": "Byte",

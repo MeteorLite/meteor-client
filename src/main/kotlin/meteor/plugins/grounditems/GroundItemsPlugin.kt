@@ -514,7 +514,7 @@ class GroundItemsPlugin : Plugin() {
         private val FOURTH_OPTION = MenuAction.GROUND_ITEM_FOURTH_OPTION.id
         private val FIFTH_OPTION = MenuAction.GROUND_ITEM_FIFTH_OPTION.id
         private val EXAMINE_ITEM = MenuAction.EXAMINE_ITEM_GROUND.id
-        private val CAST_ON_ITEM = MenuAction.SPELL_CAST_ON_GROUND_ITEM.id
+        private val CAST_ON_ITEM = MenuAction.WIDGET_TARGET_ON_GROUND_ITEM.id
         private val TELEGRAB_TEXT =
             wrapWithColorTag("Telekinetic Grab", Color.GREEN) + prependColorTag(" -> ", Color.WHITE)
 

@@ -1,13 +1,13 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
 plugins {
-    kotlin("jvm") version "1.6.10"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev662"
+    kotlin("jvm") version "1.6.20"
+    id("org.jetbrains.compose") version "0.0.0-on-rebase-12-apr-2022-dev668"
     java
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.2.4" }
+val apiRelease by rootProject.extra { "1.2.5" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
@@ -136,7 +136,7 @@ tasks {
     }
 
     compileKotlin {
-        kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
+        kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all", "-Xbackend-threads=0")
     }
 
     register<JavaExec>("bootstrap") {

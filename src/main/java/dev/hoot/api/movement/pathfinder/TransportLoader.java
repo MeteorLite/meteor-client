@@ -34,7 +34,7 @@ import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static net.runelite.api.MenuAction.WIDGET_TYPE_6;
+import static net.runelite.api.MenuAction.WIDGET_CONTINUE;
 
 public class TransportLoader
 {
@@ -591,7 +591,7 @@ public class TransportLoader
 						Arrays.stream(treeWidget.getDynamicChildren())
 								.filter(child -> child.getText().contains(location))
 								.findFirst()
-								.ifPresent(child -> child.interact(0, WIDGET_TYPE_6.getId(), child.getIndex(), child.getId()));
+								.ifPresent(child -> child.interact(0, WIDGET_CONTINUE.getId(), child.getIndex(), child.getId()));
 						return;
 					}
 
@@ -615,7 +615,7 @@ public class TransportLoader
 					Widget treeWidget = Widgets.get(widget);
 					if (Widgets.isVisible(treeWidget))
 					{
-						treeWidget.interact(0, WIDGET_TYPE_6.getId(), treeWidget.getIndex(), treeWidget.getId());
+						treeWidget.interact(0, WIDGET_CONTINUE.getId(), treeWidget.getIndex(), treeWidget.getId());
 						return;
 					}
 

@@ -339,8 +339,8 @@ object WidgetInspector : JFrame() {
                 val menuEntries = client.menuEntries
                 for (i in menuEntries.indices) {
                     val entry = menuEntries[i]
-                    if (entry.type != MenuAction.ITEM_USE_ON_WIDGET
-                        && entry.type != MenuAction.SPELL_CAST_ON_WIDGET
+                    if (entry.type != MenuAction.WIDGET_USE_ON_ITEM
+                        && entry.type != MenuAction.WIDGET_TARGET_ON_WIDGET
                     ) {
                         continue
                     }
@@ -382,13 +382,13 @@ object WidgetInspector : JFrame() {
     }
 
     fun getWidgetOrWidgetItemForMenuOption(type: MenuAction, param0: Int, param1: Int): Any? {
-        if (type == MenuAction.SPELL_CAST_ON_WIDGET) {
+        if (type == MenuAction.WIDGET_TARGET_ON_WIDGET) {
             var w = client.getWidget(param1)
             if (param0 != -1) {
                 w = w!!.getChild(param0)
             }
             return w
-        } else if (type == MenuAction.ITEM_USE_ON_WIDGET) {
+        } else if (type == MenuAction.WIDGET_USE_ON_ITEM) {
             val w = client.getWidget(param1)
             return w!!.getWidgetItem(param0)
         }

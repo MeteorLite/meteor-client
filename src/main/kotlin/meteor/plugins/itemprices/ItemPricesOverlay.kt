@@ -66,7 +66,7 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
         val isAlching = menuEntry.getOption() == "Cast" && menuEntry.getTarget()
             .contains("High Level Alchemy")
         when (action) {
-            MenuAction.ITEM_USE_ON_WIDGET -> {
+            MenuAction.WIDGET_USE_ON_ITEM -> {
                 if (!config.showWhileAlching() || !isAlching) {
                     return null
                 }

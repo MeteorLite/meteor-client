@@ -81,7 +81,7 @@ public class Packets
 						selectedItemWidget,
 						false
 				);
-			case SPELL_CAST_ON_GAME_OBJECT:
+			case WIDGET_TARGET_ON_GAME_OBJECT:
 				return ObjectPackets.createSpellOnObjectPacket(
 						id,
 						param0 + client.getBaseX(),
@@ -132,7 +132,7 @@ public class Packets
 						selectedItemSlot,
 						false
 				);
-			case SPELL_CAST_ON_NPC:
+			case WIDGET_TARGET_ON_NPC:
 				return NPCPackets.createSpellOnNpcPacket(
 						id,
 						selectedSpellWidget,
@@ -156,7 +156,7 @@ public class Packets
 						selectedItemWidget,
 						false
 				);
-			case SPELL_CAST_ON_PLAYER:
+			case WIDGET_TARGET_ON_PLAYER:
 				return PlayerPackets.createSpellOnPlayer(id, selectedSpellWidget, false);
 			case PLAYER_FIRST_OPTION:
 				return PlayerPackets.createFirstAction(id, false);
@@ -184,7 +184,7 @@ public class Packets
 						selectedItemWidget,
 						false
 				);
-			case SPELL_CAST_ON_GROUND_ITEM:
+			case WIDGET_TARGET_ON_GROUND_ITEM:
 				return GroundItemPackets.createSpellOnGroundItem(
 						id,
 						param0 + client.getBaseX(),
@@ -227,7 +227,7 @@ public class Packets
 						param1 + client.getBaseY(),
 						false
 				);
-			case ITEM_USE_ON_WIDGET_ITEM:
+			case ITEM_USE_ON_ITEM:
 				return ItemPackets.createItemOnItem(
 						id,
 						param0,
@@ -296,7 +296,7 @@ public class Packets
 				);
 			case WIDGET_TYPE_1:
 				return WidgetPackets.createType1Action(param1);
-			case WIDGET_TYPE_6:
+			case WIDGET_CONTINUE:
 				return WidgetPackets.createContinuePacket(param1, param0);
 			case WALK:
 				return MovementPackets.createMovement(
