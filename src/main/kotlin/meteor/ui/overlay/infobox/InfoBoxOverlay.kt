@@ -137,14 +137,14 @@ class InfoBoxOverlay internal constructor(
             if (hoveredComponent == null) ArrayList() else hoveredComponent!!.infoBox!!.menuEntries
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        if (it.menuAction != MenuAction.RUNELITE_INFOBOX
+        if (it.getMenuAction() != MenuAction.RUNELITE_INFOBOX
             || hoveredComponent == null
         ) {
             return
         }
         val infoBox: InfoBox = hoveredComponent!!.infoBox!!
         val overlayMenuEntry: OverlayMenuEntry? = infoBox.menuEntries.stream()
-            .filter { me: OverlayMenuEntry -> me.option == it.menuOption }
+            .filter { me: OverlayMenuEntry -> me.option == it.getMenuOption() }
             .findAny()
             .orElse(null)
         if (overlayMenuEntry != null) {

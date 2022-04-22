@@ -323,7 +323,7 @@ object WidgetInspector : JFrame() {
                 onPickerDeselect()
                 client.spellSelected = false
                 it.consume()
-                val target = getWidgetOrWidgetItemForMenuOption(it.menuAction!!, it.param0, it.param1)
+                val target = getWidgetOrWidgetItemForMenuOption(it.getMenuAction()!!, it.getParam0(), it.getParam1())
                 target?.let {
                     if (it is WidgetItem) {
                         val iw = it

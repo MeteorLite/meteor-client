@@ -180,8 +180,8 @@ class WorldMapOverlay : Overlay() {
     }
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        if (it.menuAction == MenuAction.RUNELITE && FOCUS_ON == it.menuOption) {
-            val pxy = it.id
+        if (it.getMenuAction() == MenuAction.RUNELITE && FOCUS_ON == it.getMenuOption()) {
+            val pxy = it.getId()
             val wp = WorldPoint(
                 pxy shr 14 and 0x3fff,
                 pxy and 0x3fff,

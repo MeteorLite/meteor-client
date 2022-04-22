@@ -103,18 +103,18 @@ object MenuManager : EventSubscriber() {
     }
 
     override fun onMenuOptionClicked(event: MenuOptionClicked) {
-        if (event.menuAction != MenuAction.RUNELITE) {
+        if (event.getMenuAction() != MenuAction.RUNELITE) {
             return
         }
 
-        val widgetId: Int = event.param1
+        val widgetId: Int = event.getParam1()
         val options: Collection<WidgetMenuOption> = managedMenuOptions.get(widgetId)
         for (curMenuOption in options) {
-            if (curMenuOption.getMenuTarget() == event.menuTarget && curMenuOption.menuOption == event.menuOption) {
+            if (curMenuOption.getMenuTarget() == event.getMenuTarget() && curMenuOption.menuOption == event.getMenuOption()) {
                 curMenuOption.widget?.let {
                     WidgetMenuOptionClicked(
-                        event.menuOption,
-                        event.menuTarget,
+                        event.getMenuOption()!!,
+                        event.getMenuTarget()!!,
                         it,
                         curMenuOption.widgetId
                     )

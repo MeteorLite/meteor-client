@@ -413,12 +413,12 @@ class GroundItemsPlugin : Plugin() {
     }
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        if (it.menuAction == MenuAction.ITEM_FIFTH_OPTION) {
-            val itemId = it.id
+        if (it.getMenuAction() == MenuAction.ITEM_FIFTH_OPTION) {
+            val itemId = it.getId()
             // Keep a queue of recently dropped items to better detect
             // item spawns that are drops
             droppedItemQueue.add(itemId)
-        } else if (it.menuAction == MenuAction.ITEM_USE_ON_GAME_OBJECT) {
+        } else if (it.getMenuAction() == MenuAction.ITEM_USE_ON_GAME_OBJECT) {
             val i = client.getItemContainer(InventoryID.INVENTORY)?.getItem(it.selectedItemIndex)
             if (i != null)
             lastUsedItem = i.id

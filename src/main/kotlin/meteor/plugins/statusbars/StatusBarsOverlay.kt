@@ -100,7 +100,7 @@ internal class StatusBarsOverlay(
                 if (client.getVar(VarPlayer.DISEASE_VALUE) > 0) {
                     return@label DISEASE_COLOR
                 }
-                if (client.getVar(Varbits.PARASITE) >= 1) {
+                if (client.getVarbitValue(Varbits.PARASITE.id) >= 1) {
                     return@label PARASITE_COLOR
                 }
                 HEALTH_COLOR
@@ -141,7 +141,7 @@ internal class StatusBarsOverlay(
             { MAX_RUN_ENERGY_VALUE }, { client.energy },
             { getRestoreValue("Run Energy") }, label@
             {
-                if (client.getVar(Varbits.RUN_SLOWED_DEPLETION_ACTIVE) != 0) {
+                if (client.getVarbitValue(Varbits.RUN_SLOWED_DEPLETION_ACTIVE.id) != 0) {
                     return@label RUN_STAMINA_COLOR
                 } else {
                     return@label ENERGY_COLOR

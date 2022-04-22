@@ -160,7 +160,7 @@ public class QuestBankTabInterface
 	{
 		if (event.getOp() == 2)
 		{
-			client.setVarbit(Varbits.CURRENT_BANK_TAB, 0);
+			client.setVarbit(Varbits.CURRENT_BANK_TAB.getId(), 0);
 
 			if (questTabActive)
 			{

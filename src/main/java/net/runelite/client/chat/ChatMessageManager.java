@@ -97,7 +97,7 @@ public class ChatMessageManager extends EventSubscriber
 		final String channel = stringStack[size - 4];
 		final ChatMessageType chatMessageType = messageNode.getType();
 
-		final boolean isChatboxTransparent = client.isResized() && client.getVar(Varbits.TRANSPARENT_CHATBOX) == 1;
+		final boolean isChatboxTransparent = client.isResized() && client.getVarbitValue(Varbits.TRANSPARENT_CHATBOX.getId()) == 1;
 		Color usernameColor = null;
 		Color channelColor = null;
 
@@ -208,7 +208,7 @@ public class ChatMessageManager extends EventSubscriber
 				return;
 		}
 
-		boolean isChatboxTransparent = client.isResized() && client.getVar(Varbits.TRANSPARENT_CHATBOX) == 1;
+		boolean isChatboxTransparent = client.isResized() && client.getVarbitValue(Varbits.TRANSPARENT_CHATBOX.getId()) == 1;
 		Color usernameColor = isChatboxTransparent ? chatColorConfig.transparentPrivateUsernames() : chatColorConfig.opaquePrivateUsernames();
 		if (usernameColor == null)
 		{
@@ -833,7 +833,7 @@ public class ChatMessageManager extends EventSubscriber
 	@VisibleForTesting
 	String formatRuneLiteMessage(String runeLiteFormatMessage, ChatMessageType type, boolean pmbox)
 	{
-		final boolean transparentChatbox = client.getVar(Varbits.TRANSPARENT_CHATBOX) != 0;
+		final boolean transparentChatbox = client.getVarbitValue(Varbits.TRANSPARENT_CHATBOX.getId()) != 0;
 		final boolean transparent = client.isResized() && transparentChatbox;
 		final Collection<ChatColor> chatColors = colorCache.get(type);
 		for (ChatColor chatColor : chatColors)

@@ -36,13 +36,13 @@ internal enum class XpWorldType {
     },
     LEAGUE {
         override fun modifier(client: Client): Int {
-            if (client.getVar(Varbits.LEAGUE_RELIC_6) != 0) {
+            if (client.getVarbitValue(Varbits.LEAGUE_RELIC_6.id) != 0) {
                 return 16
             }
-            if (client.getVar(Varbits.LEAGUE_RELIC_4) != 0) {
+            if (client.getVarbitValue(Varbits.LEAGUE_RELIC_4.id) != 0) {
                 return 12
             }
-            return if (client.getVar(Varbits.LEAGUE_RELIC_2) != 0) {
+            return if (client.getVarbitValue(Varbits.LEAGUE_RELIC_2.id) != 0) {
                 8
             } else 5
         }

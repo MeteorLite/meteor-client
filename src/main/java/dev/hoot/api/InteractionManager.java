@@ -13,6 +13,7 @@ import dev.hoot.api.widgets.Widgets;
 import eventbus.events.DialogProcessed;
 import eventbus.events.MenuOptionClicked;
 import lombok.extern.slf4j.Slf4j;
+import meteor.Logger;
 import meteor.Main;
 import meteor.plugins.EventSubscriber;
 import net.runelite.api.Client;
@@ -23,11 +24,12 @@ import net.runelite.api.widgets.WidgetInfo;
 
 import java.awt.*;
 
-@Slf4j
 public class InteractionManager extends EventSubscriber
 {
 	private static final int MINIMAP_WIDTH = 250;
 	private static final int MINIMAP_HEIGHT = 180;
+
+	private Logger log = new Logger("InteractionManager");
 
 	private NaturalMouse naturalMouse = new NaturalMouse();
 
@@ -149,9 +151,9 @@ public class InteractionManager extends EventSubscriber
 				&& config.interactMethod() == InteractMethod.MOUSE_EVENTS)
 		{
 			Movement.setDestination(e.getParam0(), e.getParam1());
-			e.setMenuAction(MenuAction.CANCEL);
-			e.setParam0(0);
-			e.setParam1(0);
+			e.getMenuEntry().setType(MenuAction.CANCEL);
+			e.getMenuEntry().setParam0(0);
+			e.getMenuEntry().setParam1(0);
 		}
 
 		String action = "O=" + e.getMenuOption()
@@ -182,7 +184,7 @@ public class InteractionManager extends EventSubscriber
 	private void processAction(AutomatedMenu entry, int x, int y)
 	{
 		GameThread.invoke(() -> client.invokeMenuAction(entry.getOption(), entry.getTarget(), entry.getIdentifier(),
-				entry.getOpcode().getId(), entry.getParam0(), entry.getParam1(), x, y));
+				entry.getOpcode().getId(), entry.getParam0(), entry.getParam1()));
 	}
 
 	private Point getClickPoint(AutomatedMenu e)
