@@ -16,8 +16,8 @@ object CreateLauncherUpdate {
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "1.2.8-1"
-        update.updateInfo = "now you can do more than just 1 thing"
+        update.version = "1.2.8-2"
+        update.updateInfo = "Nobody gives a shit about your legal notices Oracle"
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()
@@ -74,7 +74,11 @@ object CreateLauncherUpdate {
         for (file in dir.listFiles()!!) {
             if (file.isDirectory) {
                 if (file.listFiles()!!.isNotEmpty())
-                    crawlDirectory(file)
+                    if (!file.name.equals("legal"))
+                    {
+                        println(file.name)
+                        crawlDirectory(file)
+                    }
             } else {
                 val f = File()
                 f.name = "meteor-client\\" + file.absolutePath.split("app\\meteor-client\\")[1]
