@@ -7,6 +7,8 @@ import dev.hoot.api.widgets.Widgets;
 import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.packets.PacketWriter;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetType;
 
 public class Packets
 {
@@ -64,31 +66,26 @@ public class Packets
 		var id = menu.getIdentifier();
 		var param0 = menu.getParam0();
 		var param1 = menu.getParam1();
-		var selectedItemId = client.getSelectedItemID();
-		var selectedItemSlot = client.getSelectedItemSlot();
-		var selectedItemWidget = client.getSelectedItemWidget();
+		var selectedWidgetItemId = client.getSelectedSpellItemId();
+		var selectedWidgetSlot = client.getSelectedSpellChildIndex();
+		// Yes, keeping both in case of a future fix in naming
+		var selectedWidget = client.getSelectedSpellWidget();
 		var selectedSpellWidget = client.getSelectedSpellWidget();
 
 		switch (opcode)
 		{
 			case ITEM_USE_ON_GAME_OBJECT:
+			case WIDGET_TARGET_ON_GAME_OBJECT:
 				return ObjectPackets.createItemOnObjectPacket(
 						id,
 						param0 + client.getBaseX(),
 						param1 + client.getBaseY(),
-						selectedItemSlot,
-						selectedItemId,
-						selectedItemWidget,
+						selectedWidgetSlot,
+						selectedWidgetItemId,
+						selectedWidget,
 						false
 				);
-			case WIDGET_TARGET_ON_GAME_OBJECT:
-				return ObjectPackets.createSpellOnObjectPacket(
-						id,
-						param0 + client.getBaseX(),
-						param1 + client.getBaseY(),
-						selectedSpellWidget,
-						false
-				);
+
 			case GAME_OBJECT_FIRST_OPTION:
 				return ObjectPackets.createObjectFirstActionPacket(
 						id,
@@ -125,19 +122,15 @@ public class Packets
 						false
 				);
 			case ITEM_USE_ON_NPC:
+			case WIDGET_TARGET_ON_NPC:
 				return NPCPackets.createItemOnNpcPacket(
 						id,
-						selectedItemWidget,
-						selectedItemId,
-						selectedItemSlot,
+						selectedWidget,
+						selectedWidgetItemId,
+						selectedWidgetSlot,
 						false
 				);
-			case WIDGET_TARGET_ON_NPC:
-				return NPCPackets.createSpellOnNpcPacket(
-						id,
-						selectedSpellWidget,
-						false
-				);
+
 			case NPC_FIRST_OPTION:
 				return NPCPackets.createNpcFirstActionPacket(id, false);
 			case NPC_SECOND_OPTION:
@@ -149,15 +142,14 @@ public class Packets
 			case NPC_FIFTH_OPTION:
 				return NPCPackets.createNpcFifthActionPacket(id, false);
 			case ITEM_USE_ON_PLAYER:
+			case WIDGET_TARGET_ON_PLAYER:
 				return PlayerPackets.createItemOnPlayerPacket(
 						id,
-						selectedItemId,
-						selectedItemSlot,
-						selectedItemWidget,
+						selectedWidgetItemId,
+						selectedWidgetSlot,
+						selectedWidget,
 						false
 				);
-			case WIDGET_TARGET_ON_PLAYER:
-				return PlayerPackets.createSpellOnPlayer(id, selectedSpellWidget, false);
 			case PLAYER_FIRST_OPTION:
 				return PlayerPackets.createFirstAction(id, false);
 			case PLAYER_SECOND_OPTION:
@@ -175,21 +167,14 @@ public class Packets
 			case PLAYER_EIGTH_OPTION:
 				return PlayerPackets.createEighthAction(id, false);
 			case ITEM_USE_ON_GROUND_ITEM:
+			case WIDGET_TARGET_ON_GROUND_ITEM:
 				return GroundItemPackets.createItemOnGroundItem(
 						id,
 						param0 + client.getBaseX(),
 						param1 + client.getBaseY(),
-						selectedItemSlot,
-						selectedItemId,
-						selectedItemWidget,
-						false
-				);
-			case WIDGET_TARGET_ON_GROUND_ITEM:
-				return GroundItemPackets.createSpellOnGroundItem(
-						id,
-						param0 + client.getBaseX(),
-						param1 + client.getBaseY(),
-						selectedSpellWidget,
+						selectedWidgetSlot,
+						selectedWidgetItemId,
+						selectedWidget,
 						false
 				);
 			case GROUND_ITEM_FIRST_OPTION:
@@ -228,12 +213,34 @@ public class Packets
 						false
 				);
 			case ITEM_USE_ON_ITEM:
-				return ItemPackets.createItemOnItem(
-						id,
+			case WIDGET_TARGET_ON_WIDGET:
+				Widget targetParent = Widgets.fromId(param1);
+				assert targetParent != null;
+				Widget targetChild = targetParent.getChild(param0);
+				int childItemId = -1;
+				if (targetChild != null)
+				{
+					childItemId = targetChild.getItemId();
+				}
+
+				Widget source = client.getWidget(selectedWidget);
+				assert source != null;
+				if (source.getType() == WidgetType.GRAPHIC)
+				{
+					selectedWidgetSlot = -1;
+					selectedWidgetItemId = -1;
+				}
+
+				return WidgetPackets.createWidgetOnWidget(
+						selectedWidget,
+						selectedWidgetSlot,
+						selectedWidgetItemId,
+						param1,
 						param0,
-						selectedItemId,
-						selectedItemSlot
+						childItemId
 				);
+
+
 			case ITEM_FIRST_OPTION:
 				return ItemPackets.createFirstAction(
 						param1,
@@ -299,6 +306,8 @@ public class Packets
 			case WIDGET_CONTINUE:
 				return WidgetPackets.createContinuePacket(param1, param0);
 			case WALK:
+				client.setDestinationX(param0);
+				client.setDestinationY(param1);
 				return MovementPackets.createMovement(
 						param0 + client.getBaseX(),
 						param1 + client.getBaseY(),

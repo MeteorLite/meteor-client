@@ -102,27 +102,27 @@ public class ItemPackets
 
 	public static PacketBufferNode createFirstAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD1", itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK1", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createSecondAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD2", itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK2", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createThirdAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD3", itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK3", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createFourthAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD4", itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK4", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createFifthAction(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("OPHELD5", itemId, itemSlot, itemWidgetId);
+		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK5", itemId, itemSlot, itemWidgetId);
 	}
 
 	public static PacketBufferNode createItemOnItem(int sourceItemId, int sourceItemSlot, int itemId, int itemSlot)

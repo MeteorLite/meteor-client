@@ -828,69 +828,69 @@
     ]
   },
   {
-    "name": "OPHELD5",
-    "opcode": 105,
+    "name": "IF3_CLICK5",
+    "opcode": 13,
     "size": 8,
     "structure": [
       {
-        "method": "IntIME",
+        "method": "Int",
         "paramater": "itemWidgetId"
-      },
-      {
-        "method": "Short",
-        "paramater": "id"
-      },
-      {
-        "method": "ShortAddLE",
-        "paramater": "itemSlot"
-      }
-    ]
-  },
-  {
-    "name": "OPHELD4",
-    "opcode": 55,
-    "size": 8,
-    "structure": [
-      {
-        "method": "ShortLE",
-        "paramater": "id"
-      },
-      {
-        "method": "IntLE",
-        "paramater": "itemWidgetId"
-      },
-      {
-        "method": "ShortAddLE",
-        "paramater": "itemSlot"
-      }
-    ]
-  },
-  {
-    "name": "OPHELD3",
-    "opcode": 25,
-    "size": 8,
-    "structure": [
-      {
-        "method": "Short",
-        "paramater": "id"
       },
       {
         "method": "Short",
         "paramater": "itemSlot"
       },
       {
-        "method": "IntLE",
-        "paramater": "itemWidgetId"
+        "method": "Short",
+        "paramater": "id"
       }
     ]
   },
   {
-    "name": "OPHELD2",
-    "opcode": 76,
+    "name": "IF3_CLICK4",
+    "opcode": 73,
     "size": 8,
     "structure": [
       {
-        "method": "IntLE",
+        "method": "Int",
+        "paramater": "itemWidgetId"
+      },
+      {
+        "method": "Short",
+        "paramater": "itemSlot"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "IF3_CLICK3",
+    "opcode": 48,
+    "size": 8,
+    "structure": [
+      {
+        "method": "Int",
+        "paramater": "itemWidgetId"
+      },
+      {
+        "method": "Short",
+        "paramater": "itemSlot"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "IF3_CLICK2",
+    "opcode": 52,
+    "size": 8,
+    "structure": [
+      {
+        "method": "Int",
         "paramater": "itemWidgetId"
       },
       {
@@ -919,21 +919,21 @@
     ]
   },
   {
-    "name": "OPHELD1",
-    "opcode": 104,
+    "name": "IF3_CLICK1",
+    "opcode": 15,
     "size": 8,
     "structure": [
       {
-        "method": "Short",
-        "paramater": "id"
+        "method": "Int",
+        "paramater": "itemWidgetId"
       },
       {
         "method": "Short",
         "paramater": "itemSlot"
       },
       {
-        "method": "IntLE",
-        "paramater": "itemWidgetId"
+        "method": "Short",
+        "paramater": "id"
       }
     ]
   }

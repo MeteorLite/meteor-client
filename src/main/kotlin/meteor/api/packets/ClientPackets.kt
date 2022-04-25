@@ -32,6 +32,7 @@ object ClientPackets {
                 "itemSlot" -> value = itemSlot
                 "itemWidgetId" -> value = itemWidgetId
                 "id" -> value = itemId
+                else -> println(methodCall.paramater)
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }

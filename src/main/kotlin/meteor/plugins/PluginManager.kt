@@ -13,6 +13,7 @@ import meteor.plugins.bank.BankPlugin
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.devtools.DevToolsPlugin
+import meteor.plugins.dropbones.BoneBuryPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
@@ -90,6 +91,7 @@ object PluginManager {
         init<WorldMapPlugin>()
         init<XpTrackerPlugin>()
         init<HdPlugin>()
+        init<BoneBuryPlugin>()
     }
 
     private fun loadExternal(jar: File) {
