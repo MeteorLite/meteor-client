@@ -16,8 +16,8 @@ object CreateLauncherUpdate {
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "1.2.7-1"
-        update.updateInfo = "Fixes doing stuff without doing stuff in the inv"
+        update.version = "1.2.8-1"
+        update.updateInfo = "now you can do more than just 1 thing"
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()

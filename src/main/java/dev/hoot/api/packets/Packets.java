@@ -313,6 +313,7 @@ public class Packets
 						param1 + client.getBaseY(),
 						false
 				);
+			case CC_OP_LOW_PRIORITY:
 			case CC_OP:
 				var widget = Widgets.fromId(param1);
 				if (widget == null)
@@ -327,8 +328,6 @@ public class Packets
 				}
 
 				return WidgetPackets.createDefaultAction(id, param1, child.getItemId(), param0);
-			case CC_OP_LOW_PRIORITY:
-				break;
 		}
 		throw new RuntimeException("Couldn't parse packet from opcode: " + opcode);
 	}
