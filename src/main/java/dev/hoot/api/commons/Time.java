@@ -10,7 +10,7 @@ import java.util.function.BooleanSupplier;
 
 public class Time
 {
-	private static final Logger logger = LoggerFactory.getLogger(Time.class);
+	private static final meteor.Logger logger = new meteor.Logger("Time");
 	private static final int DEFAULT_POLLING_RATE = 10;
 
 	public static boolean sleep(long ms)
