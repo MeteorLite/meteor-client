@@ -97,7 +97,6 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         PluginManager.loadExternalPlugins()
         chatMessageManager = ChatMessageManager()
         timer.stop()
-        WidgetInspector.open()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 
