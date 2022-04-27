@@ -187,7 +187,7 @@ class Hooks : Callbacks {
 
         // finalImage is backed by the client buffer which will change soon. make a copy
         // so that callbacks can safely use it later from threads.
-        //drawManager.processDrawComplete { copy(finalImage) }
+        drawManager.processDrawComplete { copy(finalImage) }
     }
 
     private fun copy(src: Image): Image {
