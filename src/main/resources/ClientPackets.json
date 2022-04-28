@@ -101,7 +101,7 @@
     "structure": [
       {
         "method": "Short",
-        "paramater": "Client.selectedSpellItemId"
+        "paramater": "selectedSpellItemId"
       },
       {
         "method": "IntIME",
@@ -109,7 +109,7 @@
       },
       {
         "method": "ShortAdd",
-        "paramater": "var16.itemId"
+        "paramater": "itemId"
       },
       {
         "method": "ShortAddLE",
@@ -306,7 +306,7 @@
     "structure": [
       {
         "method": "ShortLE",
-        "paramater": "var17.id"
+        "paramater": "id"
       }
     ]
   },
@@ -614,7 +614,7 @@
       },
       {
         "method": "ShortAdd",
-        "paramater": "Client.selectedSpellItemId"
+        "paramater": "selectedSpellItemId"
       }
     ]
   },
@@ -641,7 +641,7 @@
       },
       {
         "method": "Short",
-        "paramater": "Client.selectedSpellItemId"
+        "paramater": "selectedSpellItemId"
       }
     ]
   },
@@ -660,7 +660,7 @@
       },
       {
         "method": "ShortAddLE",
-        "paramater": "Varcs.selectedItemId"
+        "paramater": "selectedItemId"
       },
       {
         "method": "ByteSub",
@@ -679,7 +679,7 @@
     "structure": [
       {
         "method": "ShortAddLE",
-        "paramater": "Varcs.selectedItemId"
+        "paramater": "selectedItemId"
       },
       {
         "method": "Short",
@@ -799,7 +799,7 @@
     "structure": [
       {
         "method": "Short",
-        "paramater": "Client.selectedSpellItemId"
+        "paramater": "selectedSpellItemId"
       },
       {
         "method": "Byte",
