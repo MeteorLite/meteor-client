@@ -118,13 +118,13 @@ public class ObjectPackets
 
 	public static PacketBufferNode createItemOnObjectPacket(int objectId, int worldPointX, int worldPointY, int itemSlot, int itemId, int itemWidgetId, boolean ctrlDown)
 	{
-		return ClientPackets.INSTANCE.createItemOnObjectPacket("OPLOCU", objectId, worldPointX, worldPointY, itemSlot, itemId, itemWidgetId,  ctrlDown);
+		return ClientPackets.INSTANCE.createItemOnObjectPacket("OPOBJU", objectId, worldPointX, worldPointY, itemSlot, itemId, itemWidgetId,  ctrlDown);
 	}
 
 	public static PacketBufferNode createSpellOnObjectPacket(int objectId, int worldPointX, int worldPointY,
 															 int spellWidgetId, boolean ctrlDown)
 	{
-		return ClientPackets.INSTANCE.createSpellOnObjectPacket("OPLOCT", objectId, worldPointX, worldPointY, spellWidgetId, ctrlDown);
+		return ClientPackets.INSTANCE.createSpellOnObjectPacket("OPOBJT", objectId, worldPointX, worldPointY, spellWidgetId, ctrlDown);
 	}
 
 	public static void queueItemUseOnTileObjectPacket(int objectId, int worldPointX, int worldPointY, int itemSlot, int itemId, int itemWidgetId, boolean ctrlDown)

@@ -726,7 +726,7 @@
       },
       {
         "method": "ShortLE",
-        "paramater": "Varcs.selectedItemId"
+        "paramater": "selectedItemId"
       }
     ]
   },
@@ -788,7 +788,7 @@
       },
       {
         "method": "Short",
-        "paramater": "Varcs.selectedItemId"
+        "paramater": "selectedItemId"
       }
     ]
   },
