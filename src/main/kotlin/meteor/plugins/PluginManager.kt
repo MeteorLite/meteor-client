@@ -26,7 +26,6 @@ import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
-import meteor.plugins.test.TestPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.defaultworld.DefaultWorldPlugin
@@ -56,7 +55,6 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<TestPlugin>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
