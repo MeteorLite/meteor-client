@@ -196,16 +196,18 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createSpellOnObjectPacket(packetName: String, objectId: Int, worldX: Int, worldY: Int, spellWidgetId: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createWidgetOnObjectPacket(packetName: String, objectID: Int, worldX: Int, worldY: Int, itemSlot: Int, itemId: Int, widgetID: Int, ctrlPressed: Boolean): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
             when (methodCall.paramater) {
                 "worldX" -> value = worldX
                 "worldY" -> value = worldY
-                "id" -> value = objectId
+                "id" -> value = objectID
                 "ctrlPressed" -> value = ctrlPressed
-                "spellWidgetId" -> value = spellWidgetId
+                "selectedItemWidget" -> value = widgetID
+                "selectedItemId" -> value = itemId
+                "selectedItemSlot" -> value = itemSlot
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }

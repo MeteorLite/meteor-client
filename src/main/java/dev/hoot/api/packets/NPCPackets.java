@@ -135,4 +135,17 @@ public class NPCPackets
 	{
 		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC5", npcIndex, ctrlDown);
 	}
+
+	public static PacketBufferNode createWidgetOnNpc(int npcIndex, int itemWidgetId, int itemId, int itemSlot, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPCT(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
+		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
+		packetBufferNode.getPacketBuffer().writeShortLE(npcIndex);
+		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
+		packetBufferNode.getPacketBuffer().writeShortAdd(itemId);
+		return packetBufferNode;
+	}
 }

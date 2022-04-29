@@ -1,5 +1,6 @@
 package dev.hoot.api.packets;
 
+import dev.hoot.api.InteractionException;
 import dev.hoot.api.events.AutomatedMenu;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.GameThread;
@@ -76,7 +77,7 @@ public class Packets
 		{
 			case ITEM_USE_ON_GAME_OBJECT:
 			case WIDGET_TARGET_ON_GAME_OBJECT:
-				return ObjectPackets.createItemOnObjectPacket(
+				return ObjectPackets.createWidgetOnObjectPacket(
 						id,
 						param0 + client.getBaseX(),
 						param1 + client.getBaseY(),
@@ -123,7 +124,7 @@ public class Packets
 				);
 			case ITEM_USE_ON_NPC:
 			case WIDGET_TARGET_ON_NPC:
-				return NPCPackets.createItemOnNpcPacket(
+				return NPCPackets.createWidgetOnNpc(
 						id,
 						selectedWidget,
 						selectedWidgetItemId,
@@ -143,7 +144,7 @@ public class Packets
 				return NPCPackets.createNpcFifthActionPacket(id, false);
 			case ITEM_USE_ON_PLAYER:
 			case WIDGET_TARGET_ON_PLAYER:
-				return PlayerPackets.createItemOnPlayerPacket(
+				return PlayerPackets.createWidgetOnPlayer(
 						id,
 						selectedWidgetItemId,
 						selectedWidgetSlot,
@@ -168,7 +169,7 @@ public class Packets
 				return PlayerPackets.createEighthAction(id, false);
 			case ITEM_USE_ON_GROUND_ITEM:
 			case WIDGET_TARGET_ON_GROUND_ITEM:
-				return GroundItemPackets.createItemOnGroundItem(
+				return GroundItemPackets.createWidgetOnGroundItem(
 						id,
 						param0 + client.getBaseX(),
 						param1 + client.getBaseY(),
@@ -313,7 +314,6 @@ public class Packets
 						param1 + client.getBaseY(),
 						false
 				);
-			case CC_OP_LOW_PRIORITY:
 			case CC_OP:
 				var widget = Widgets.fromId(param1);
 				if (widget == null)
@@ -328,7 +328,10 @@ public class Packets
 				}
 
 				return WidgetPackets.createDefaultAction(id, param1, child.getItemId(), param0);
+			case CC_OP_LOW_PRIORITY:
+				break;
 		}
-		throw new RuntimeException("Couldn't parse packet from opcode: " + opcode);
+
+		throw new InteractionException("Couldn't parse packet from opcode: " + opcode);
 	}
 }

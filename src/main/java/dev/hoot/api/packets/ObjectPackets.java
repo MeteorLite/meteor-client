@@ -2,15 +2,12 @@ package dev.hoot.api.packets;
 
 import dev.hoot.api.game.Game;
 import meteor.api.packets.ClientPackets;
-import net.runelite.api.Client;
 import net.runelite.api.Item;
 import net.runelite.api.Point;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.PacketBufferNode;
-import net.runelite.api.widgets.WidgetInfo;
 
 import java.util.List;
 
@@ -117,15 +114,24 @@ public class ObjectPackets
 		return ClientPackets.INSTANCE.createObjectActionPacket("OPLOC5", objectId, worldPointX, worldPointY, ctrlDown);
 	}
 
-	public static PacketBufferNode createItemOnObjectPacket(int objectId, int worldPointX, int worldPointY, int itemSlot, int itemId, int itemWidgetId, boolean ctrlDown)
+	public static PacketBufferNode createItemOnObjectPacket(int objectId, int worldPointX, int worldPointY, int slot, int itemID, int widgetID, boolean ctrlDown)
 	{
-		return ClientPackets.INSTANCE.createItemOnObjectPacket("OPOBJU", objectId, worldPointX, worldPointY, itemSlot, itemId, itemWidgetId,  ctrlDown);
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(client.createClientPacket(ClientPackets.INSTANCE.getPacket("OPOBJT").opcode, ClientPackets.INSTANCE.getPacket("OPOBJT").size), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeShortAdd(itemID);
+		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(worldPointY);
+		packetBufferNode.getPacketBuffer().writeShortAdd(slot);
+		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
+		packetBufferNode.getPacketBuffer().writeIntME(widgetID);
+		packetBufferNode.getPacketBuffer().writeShortLE(objectId);
+		return packetBufferNode;
 	}
 
-	public static PacketBufferNode createSpellOnObjectPacket(int objectId, int worldPointX, int worldPointY,
-															 int spellWidgetId, boolean ctrlDown)
+	public static PacketBufferNode createSpellOnObjectPacket(int objectId, int worldPointX, int worldPointY, int slot, int ID, int widgetID, boolean ctrlDown)
 	{
-		return ClientPackets.INSTANCE.createSpellOnObjectPacket("OPOBJT", objectId, worldPointX, worldPointY, spellWidgetId, ctrlDown);
+		return ClientPackets.INSTANCE.createWidgetOnObjectPacket("OPOBJT", objectId, worldPointX, worldPointY, slot, ID, widgetID, ctrlDown);
 	}
 
 	public static void queueItemUseOnTileObjectPacket(int objectId, int worldPointX, int worldPointY, int itemSlot, int itemId, int itemWidgetId, boolean ctrlDown)
@@ -133,9 +139,9 @@ public class ObjectPackets
 		createItemOnObjectPacket(objectId, worldPointX, worldPointY, itemSlot, itemId, itemWidgetId, ctrlDown).send();
 	}
 
-	public static void queueSpellOnTileObjectPacket(int objectId, int worldPointX, int worldPointY, int spellWidgetId, boolean ctrlDown)
+	public static void queueSpellOnTileObjectPacket(int objectId, int worldPointX, int worldPointY, int slot, int ID, int widgetID, boolean ctrlDown)
 	{
-		createSpellOnObjectPacket(objectId, worldPointX, worldPointY, spellWidgetId, ctrlDown).send();
+		createSpellOnObjectPacket(objectId, worldPointX, worldPointY, slot, ID, widgetID, ctrlDown).send();
 	}
 
 	public static void queueTileObjectAction1Packet(int objectId, int worldPointX, int worldPointY, boolean ctrlDown)
@@ -161,5 +167,20 @@ public class ObjectPackets
 	public static void queueTileObjectAction5Packet(int objectId, int worldPointX, int worldPointY, boolean ctrlDown)
 	{
 		createObjectFifthActionPacket(objectId, worldPointX, worldPointY, ctrlDown).send();
+	}
+
+	public static PacketBufferNode createWidgetOnObjectPacket(int objectId, int worldPointX, int worldPointY, int childIndex, int itemId, int widgetId, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPLOCT(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeShortAdd(itemId);
+		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(worldPointY);
+		packetBufferNode.getPacketBuffer().writeShortAdd(childIndex);
+		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
+		packetBufferNode.getPacketBuffer().writeIntME(widgetId);
+		packetBufferNode.getPacketBuffer().writeShortLE(objectId);
+		return packetBufferNode;
 	}
 }

@@ -136,4 +136,19 @@ public class GroundItemPackets
 	{
 		return ClientPackets.INSTANCE.createGroundItemActionPacket("OPOBJ5", groundItemId, worldPointX, worldPointY, ctrlDown);
 	}
+
+	public static PacketBufferNode createWidgetOnGroundItem(int groundItemId, int worldPointX, int worldPointY, int childIndex, int itemId, int widgetId, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		PacketBufferNode packetBufferNode = Game.getClient().preparePacket(clientPacket.OPOBJT(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeShort(itemId);
+		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
+		packetBufferNode.getPacketBuffer().writeShortLE(groundItemId);
+		packetBufferNode.getPacketBuffer().writeInt(widgetId);
+		packetBufferNode.getPacketBuffer().writeShort(worldPointY);
+		packetBufferNode.getPacketBuffer().writeShort(childIndex);
+		packetBufferNode.getPacketBuffer().writeShortAdd(worldPointX);
+		return packetBufferNode;
+	}
 }

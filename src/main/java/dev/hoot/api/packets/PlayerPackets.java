@@ -108,4 +108,17 @@ public class PlayerPackets
 	{
 		return ClientPackets.INSTANCE.createPlayerActionPacket("OPPLAYER8", playerIndex, ctrlDown);
 	}
+
+	public static PacketBufferNode createWidgetOnPlayer(int playerIndex, int widgetItemId, int widgetChildIndex, int WidgetId, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPPLAYERT(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeShortLE(widgetChildIndex);
+		packetBufferNode.getPacketBuffer().writeShortAdd(playerIndex);
+		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
+		packetBufferNode.getPacketBuffer().writeInt(WidgetId);
+		packetBufferNode.getPacketBuffer().writeShort(widgetItemId);
+		return packetBufferNode;
+	}
 }
