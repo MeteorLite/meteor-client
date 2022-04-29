@@ -8,11 +8,7 @@ import dev.hoot.api.game.GameThread;
 import dev.hoot.api.game.Vars;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
-import net.runelite.api.GrandExchangeOffer;
-import net.runelite.api.Item;
-import net.runelite.api.TileObject;
-import net.runelite.api.VarClientInt;
-import net.runelite.api.VarPlayer;
+import net.runelite.api.*;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
@@ -168,6 +164,7 @@ public class GrandExchange
 		Item item = Inventory.getFirst(filter);
 		if (item != null)
 		{
+			item.container = InventoryID.INVENTORY;
 			Game.getClient().interact(1, 57, item.getSlot(), 30605312);
 		}
 	}

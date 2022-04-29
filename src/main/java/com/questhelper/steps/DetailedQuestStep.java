@@ -59,13 +59,7 @@ import meteor.ui.components.LineComponent;
 import meteor.ui.overlay.PanelComponent;
 import meteor.ui.worldmap.WorldMapPointManager;
 import meteor.util.OverlayUtil;
-import net.runelite.api.GameState;
-import net.runelite.api.Perspective;
-import net.runelite.api.Player;
-import net.runelite.api.Point;
-import net.runelite.api.SpriteID;
-import net.runelite.api.Tile;
-import net.runelite.api.TileItem;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.widgets.Widget;
@@ -444,29 +438,34 @@ public class DetailedQuestStep extends QuestStep
 			return;
 		}
 
-		for (WidgetItem item : inventoryWidget.getWidgetItems())
-		{
-			for (Requirement requirement : requirements)
-			{
-				if (isValidRequirementForRenderInInventory(requirement, item))
+		ItemContainer inventory = client.getItemContainer(InventoryID.INVENTORY);
+		if (inventory != null) {
+			for (Item item : inventory.getItems()) {
+				for (Requirement requirement : requirements)
 				{
-					Rectangle slotBounds = item.getCanvasBounds();
-					int red = getQuestHelper().getConfig().targetOverlayColor().getRed();
-					int green = getQuestHelper().getConfig().targetOverlayColor().getGreen();
-					int blue = getQuestHelper().getConfig().targetOverlayColor().getBlue();
-					graphics.setColor(new Color(red, green, blue, 65));
-					graphics.fill(slotBounds);
+					if (isValidRequirementForRenderInInventory(requirement, item))
+					{
+						Widget itemWidget = client.getWidget(item.getWidgetId());
+						if (itemWidget != null) {
+							Rectangle slotBounds = itemWidget.getBounds();
+							int red = getQuestHelper().getConfig().targetOverlayColor().getRed();
+							int green = getQuestHelper().getConfig().targetOverlayColor().getGreen();
+							int blue = getQuestHelper().getConfig().targetOverlayColor().getBlue();
+							graphics.setColor(new Color(red, green, blue, 65));
+							graphics.fill(slotBounds);
+						}
+					}
 				}
 			}
 		}
 	}
 
-	private boolean isValidRequirementForRenderInInventory(Requirement requirement, WidgetItem item)
+	private boolean isValidRequirementForRenderInInventory(Requirement requirement, Item item)
 	{
 		return requirement instanceof ItemRequirement && isValidRenderRequirementInInventory((ItemRequirement) requirement, item);
 	}
 
-	private boolean isValidRenderRequirementInInventory(ItemRequirement requirement, WidgetItem item)
+	private boolean isValidRenderRequirementInInventory(ItemRequirement requirement, Item item)
 	{
 		return requirement.shouldHighlightInInventory(client) && requirement.getAllIds().contains(item.getId());
 	}

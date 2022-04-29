@@ -50,16 +50,12 @@ public class Bank extends Items
 		}
 
 		Item[] containerItems = container.getItems();
-		for (int i = 0, containerItemsLength = containerItems.length; i < containerItemsLength; i++)
-		{
-			Item item = containerItems[i];
-			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null"))
-			{
+		for (Item item : containerItems) {
+			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null")) {
 				item.setWidgetId(item.calculateWidgetId(WidgetInfo.BANK_ITEM_CONTAINER));
-				item.setSlot(i);
 
-				if (filter.test(item))
-				{
+
+				if (filter.test(item)) {
 					items.add(item);
 				}
 			}
@@ -279,6 +275,8 @@ public class Bank extends Items
 		{
 			return;
 		}
+
+		item.container = InventoryID.BANK;
 
 		WithdrawOption withdrawOption = WithdrawOption.ofAmount(item, amount);
 		if (withdrawMode == WithdrawMode.NOTED && !isNotedWithdrawMode())
@@ -500,16 +498,11 @@ public class Bank extends Items
 			}
 
 			Item[] containerItems = container.getItems();
-			for (int i = 0, containerItemsLength = containerItems.length; i < containerItemsLength; i++)
-			{
-				Item item = containerItems[i];
-				if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null"))
-				{
+			for (Item item : containerItems) {
+				if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null")) {
 					item.setWidgetId(item.calculateWidgetId(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER));
-					item.setSlot(i);
 
-					if (filter.test(item))
-					{
+					if (filter.test(item)) {
 						items.add(item);
 					}
 				}

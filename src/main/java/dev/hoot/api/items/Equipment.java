@@ -53,21 +53,16 @@ public class Equipment extends Items
 			});
 		}
 
-		for (int i = 0, containerItemsLength = containerItems.length; i < containerItemsLength; i++)
-		{
-			Item item = containerItems[i];
-			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null"))
-			{
+		for (Item item : containerItems) {
+			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null")) {
+				item.container = InventoryID.EQUIPMENT;
 				WidgetInfo widgetInfo = getEquipmentWidgetInfo(item.getSlot());
 				item.setActionParam(-1);
-				item.setSlot(i);
 
-				if (widgetInfo != null)
-				{
+				if (widgetInfo != null) {
 					item.setWidgetId(widgetInfo.getPackedId());
 
-					if (filter.test(item))
-					{
+					if (filter.test(item)) {
 						items.add(item);
 					}
 				}

@@ -2,14 +2,12 @@ package dev.hoot.api.input;
 
 import dev.hoot.api.game.Game;
 import dev.hoot.api.util.Randomizer;
-import net.runelite.api.Actor;
-import net.runelite.api.Item;
-import net.runelite.api.Perspective;
-import net.runelite.api.TileItem;
-import net.runelite.api.TileObject;
+import net.runelite.api.*;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
 
 import java.awt.*;
+import java.awt.Point;
 
 public class PointRandomizer
 {
@@ -65,6 +63,7 @@ public class PointRandomizer
             Widget slot = widget.getChild(item.getSlot());
             if (slot != null)
             {
+                item.container = InventoryID.INVENTORY;
                 return slot.getBounds() != null ? slot.getBounds() : new Rectangle(-1, -1, 0, 0);
             }
         }
@@ -72,6 +71,7 @@ public class PointRandomizer
         Rectangle bounds = widget.getBounds();
         if (bounds != null)
         {
+            item.container = InventoryID.EQUIPMENT;
             Rectangle itemBounds = widget.getWidgetItem(item.getSlot()).getCanvasBounds();
             return itemBounds != null ? itemBounds : new Rectangle(-1, -1, 0, 0);
         }

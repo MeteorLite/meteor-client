@@ -62,7 +62,7 @@ public class ItemPackets
 			return;
 		}
 
-		queueItemOnItemPacket(item.getId(), item.getSlot(), item2.getId(), item2.getSlot());
+		queueItemOnItemPacket(item.getId(), item.getSlot(), item2.getId(), item.getSlot());
 	}
 
 	public static void queueItemOnItemPacket(int sourceItemId, int sourceItemSlot, int itemId, int itemSlot)

@@ -5,6 +5,7 @@ import meteor.Logger;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
+import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 
 import java.util.ArrayList;
@@ -33,11 +34,13 @@ public class Inventory extends Items
 		{
 			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null"))
 			{
+				item.container = InventoryID.INVENTORY;
 				item.setActionParam(item.getSlot());
 				item.setWidgetId(WidgetInfo.INVENTORY.getPackedId());
 
 				if (filter.test(item))
 				{
+					item.container = InventoryID.INVENTORY;
 					items.add(item);
 				}
 			}
