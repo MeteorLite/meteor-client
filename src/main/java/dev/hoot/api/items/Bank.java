@@ -223,7 +223,7 @@ public class Bank extends Items
 		{
 			return;
 		}
-
+		item.container = InventoryID.INVENTORY;
 		WithdrawOption withdrawOption = WithdrawOption.ofAmount(item, amount);
 
 
