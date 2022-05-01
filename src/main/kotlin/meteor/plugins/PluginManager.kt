@@ -22,6 +22,7 @@ import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
+import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
@@ -80,6 +81,7 @@ object PluginManager {
         init<MouseTooltipPlugin>()
         init<NpcAggroAreaPlugin>()
         init<NeverLogoutPlugin>()
+        init<PrayerFlickerPlugin>()
         init<QuestHelperPlugin>()
         init<RsnHiderPlugin>()
         init<SlayerPlugin>()
