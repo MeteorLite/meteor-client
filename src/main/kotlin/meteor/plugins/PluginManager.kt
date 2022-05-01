@@ -18,6 +18,7 @@ import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
+import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
@@ -75,6 +76,7 @@ object PluginManager {
         init<HerbiboarPlugin>()
         init<InterfaceStylesPlugin>()
         init<ItemPricesPlugin>()
+        init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
