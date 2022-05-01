@@ -173,7 +173,7 @@ object ItemManager : EventSubscriber() {
         }
         itemID = WORN_ITEMS.getOrDefault(itemID, itemID)!!
         var price = 0
-        val mappedItems: Collection<ItemMapping>? = ItemMapping.map(itemID)
+        val mappedItems: Collection<ItemMapping>? = ItemMapping.getMapping(itemID)
         if (mappedItems == null) {
             val ip = itemPrices[itemID]
             if (ip != null) {

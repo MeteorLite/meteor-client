@@ -222,7 +222,7 @@ enum class ItemMapping(val tradeableItem: Int, val untradeable: Boolean, val qua
          * @param itemId the item id
          * @return the collection
          */
-        fun map(itemId: Int): Collection<ItemMapping>? {
+        fun getMapping(itemId: Int): Collection<ItemMapping>? {
             val mapping = MAPPINGS[itemId]
             return if (mapping.isEmpty()) {
                 null
