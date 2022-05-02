@@ -18,10 +18,12 @@ import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
+import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
+import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
@@ -74,12 +76,14 @@ object PluginManager {
         init<HerbiboarPlugin>()
         init<InterfaceStylesPlugin>()
         init<ItemPricesPlugin>()
+        init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
         init<NpcAggroAreaPlugin>()
         init<NeverLogoutPlugin>()
+        init<PrayerFlickerPlugin>()
         init<QuestHelperPlugin>()
         init<RsnHiderPlugin>()
         init<SlayerPlugin>()
