@@ -5,6 +5,7 @@ import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Vars;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
+import meteor.Main;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
@@ -99,29 +100,8 @@ public class Trade
 			return;
 		}
 
-		switch (quantity)
-		{
-			case 1:
-				item.interact("Offer");
-				break;
-			case 5:
-				item.interact("Offer-5");
-				break;
-			case 10:
-				item.interact("Offer-10");
-				break;
-			default:
-				if (quantity > item.getQuantity())
-				{
-					item.interact("Offer-All");
-				}
-				else
-				{
-					item.interact("Offer-X");
-					Dialog.enterInput(quantity);
-				}
-				break;
-		}
+		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+		i.offer(quantity);
 	}
 
 	public static void offer(int id, int quantity)
@@ -174,7 +154,6 @@ public class Trade
 		for (Item item : containerItems) {
 			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null")) {
 				item.setWidgetId(item.calculateWidgetId(INVENTORY.get()));
-				item.container = InventoryID.INVENTORY;
 				if (filter.test(item)) {
 					items.add(item);
 				}

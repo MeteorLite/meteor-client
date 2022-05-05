@@ -34,13 +34,11 @@ public class Inventory extends Items
 		{
 			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null"))
 			{
-				item.container = InventoryID.INVENTORY;
 				item.setActionParam(item.getSlot());
 				item.setWidgetId(WidgetInfo.INVENTORY.getPackedId());
 
 				if (filter.test(item))
 				{
-					item.container = InventoryID.INVENTORY;
 					items.add(item);
 				}
 			}
@@ -146,13 +144,5 @@ public class Inventory extends Items
 	public static int getFreeSlots()
 	{
 		return 28 - getAll().size();
-	}
-
-	public static void wield(int itemId) {
-		getFirst(itemId).interact("Wield");
-	}
-
-	public static void eat(int itemId) {
-		getFirst(itemId).interact("Eat");
 	}
 }

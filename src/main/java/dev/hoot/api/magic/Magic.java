@@ -3,6 +3,7 @@ package dev.hoot.api.magic;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Vars;
 import dev.hoot.api.widgets.Widgets;
+import meteor.Main;
 import net.runelite.api.Item;
 import net.runelite.api.MenuAction;
 import net.runelite.api.NPC;
@@ -37,7 +38,8 @@ public class Magic
 	public static void cast(Spell spell, Item target)
 	{
 		selectSpell(spell);
-		target.interact(0, MenuAction.WIDGET_USE_ON_ITEM.getId());
+		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), target.getId(), target.getQuantity());
+		i.spellUseOn();
 	}
 
 	public static void cast(Spell spell, NPC target)
