@@ -12,6 +12,7 @@ import meteor.plugins.autorun.AutoRunPlugin
 import meteor.plugins.bank.BankPlugin
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
+import meteor.plugins.continueclicker.ContinueClickerPlugin
 import meteor.plugins.commands.CommandsPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
@@ -24,6 +25,7 @@ import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
+import meteor.plugins.nightmareHelper.NightmareHelper
 import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
@@ -58,6 +60,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+        init<ContinueClickerPlugin>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
@@ -85,6 +88,7 @@ object PluginManager {
         init<MouseTooltipPlugin>()
         init<NpcAggroAreaPlugin>()
         init<NeverLogoutPlugin>()
+        init<NightmareHelper>()
         init<PrayerFlickerPlugin>()
         init<QuestHelperPlugin>()
         init<RsnHiderPlugin>()
