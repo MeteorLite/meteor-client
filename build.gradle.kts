@@ -139,9 +139,9 @@ tasks {
         kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all", "-Xbackend-threads=0")
     }
 
-    register<JavaExec>("bootstrap") {
+    register<JavaExec>("createLauncherUpdate") {
         classpath(sourceSets["main"].runtimeClasspath)
-        mainClass.set("meteor.util.bootstrap.Bootstrapper")
+        mainClass.set("meteor.launcher.CreateLauncherUpdate")
     }
 }
 
