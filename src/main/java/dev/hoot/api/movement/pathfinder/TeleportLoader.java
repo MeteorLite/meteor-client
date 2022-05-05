@@ -9,6 +9,7 @@ import dev.hoot.api.items.Inventory;
 import dev.hoot.api.magic.Magic;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
+import meteor.Main;
 import net.runelite.api.Item;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.widgets.Widget;
@@ -93,7 +94,9 @@ public class TeleportLoader
 							Item item = Inventory.getFirst(tele.getItemId());
 							if (item != null)
 							{
-								item.interact(tele.getAction());
+								meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+
+								i.interact(tele.getAction());
 							}
 						}));
 					}
@@ -186,20 +189,23 @@ public class TeleportLoader
 
 		if (inv != null)
 		{
+			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), inv.getId(), inv.getQuantity());
 			if (Dialog.isViewingOptions())
 			{
 				Dialog.chooseOption(target);
 				return;
 			}
 
-			inv.interact("Rub");
+			i.rub();
 			return;
 		}
 
 		Item equipped = Equipment.getFirst(ids);
 		if (equipped != null)
 		{
-			equipped.interact(target);
+			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), equipped.getId(), equipped.getQuantity());
+
+			i.interact(target);
 		}
 	}
 
@@ -209,6 +215,8 @@ public class TeleportLoader
 
 		if (inv != null)
 		{
+			meteor.api.items.Item it = new meteor.api.items.Item(Main.INSTANCE.getClient(), inv.getId(), inv.getQuantity());
+
 			Widget baseWidget = Widgets.get(187, 3);
 			if (Widgets.isVisible(baseWidget))
 			{
@@ -229,14 +237,16 @@ public class TeleportLoader
 				}
 			}
 
-			inv.interact("Rub");
+			it.rub();
 			return;
 		}
 
 		Item equipped = Equipment.getFirst(ids);
 		if (equipped != null)
 		{
-			equipped.interact(target);
+			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), equipped.getId(), equipped.getQuantity());
+
+			i.interact(target);
 		}
 	}
 

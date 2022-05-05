@@ -263,7 +263,7 @@ public class PuzzleStep extends QuestStep implements OwnerStep
 				inventoryItems.remove(match);
 				if (inventoryItems.get(match).getQuantity() > 1)
 				{
-					Item newItem = new Item(inventoryItems.get(match).getId(), inventoryItems.get(match).getQuantity() - 1);
+					Item newItem = new Item(client, inventoryItems.get(match).getId(), inventoryItems.get(match).getQuantity() - 1);
 					inventoryItems.set(match, newItem);
 				}
 				else
@@ -302,7 +302,7 @@ public class PuzzleStep extends QuestStep implements OwnerStep
 						currentMatches++;
 						if (tmpInventory3.get(match).getQuantity() > 1)
 						{
-							Item newItem = new Item(tmpInventory3.get(match).getId(), tmpInventory3.get(match).getQuantity() - 1);
+							Item newItem = new Item(client, tmpInventory3.get(match).getId(), tmpInventory3.get(match).getQuantity() - 1);
 							tmpInventory3.set(match, newItem);
 						}
 						else
@@ -369,7 +369,7 @@ public class PuzzleStep extends QuestStep implements OwnerStep
 						currentMatches++;
 						if (tmpInventory4.get(match).getQuantity() > 1)
 						{
-							Item newItem = new Item(tmpInventory4.get(match).getId(), tmpInventory4.get(match).getQuantity() - 1);
+							Item newItem = new Item(client, tmpInventory4.get(match).getId(), tmpInventory4.get(match).getQuantity() - 1);
 							tmpInventory4.set(match, newItem);
 						}
 						else

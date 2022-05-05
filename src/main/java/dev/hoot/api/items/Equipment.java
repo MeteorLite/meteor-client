@@ -55,7 +55,6 @@ public class Equipment extends Items
 
 		for (Item item : containerItems) {
 			if (item.getId() != -1 && item.getName() != null && !item.getName().equals("null")) {
-				item.container = InventoryID.EQUIPMENT;
 				WidgetInfo widgetInfo = getEquipmentWidgetInfo(item.getSlot());
 				item.setActionParam(-1);
 

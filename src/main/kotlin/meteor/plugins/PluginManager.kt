@@ -13,10 +13,10 @@ import meteor.plugins.bank.BankPlugin
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.continueclicker.ContinueClickerPlugin
+import meteor.plugins.commands.CommandsPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
-
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
@@ -69,6 +69,7 @@ object PluginManager {
         init<BoostsPlugin>()
         //init<ChatFilterPlugin>()
         init<CombatLevelPlugin>()
+        init<CommandsPlugin>()
         init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()
         init<ExamplePlugin>()

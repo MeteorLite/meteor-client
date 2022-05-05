@@ -25,7 +25,6 @@ import meteor.ui.themes.MeteorliteTheme
 import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
 import net.runelite.api.Client
-import net.runelite.api.Item
 import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatMessageManager
 import net.runelite.http.api.xp.XpClient
@@ -84,7 +83,6 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     fun finishStartup() {
         client = Applet.asClient(Applet.applet)
         client.callbacks = callbacks
-        Item.client = client
         ConfigManager.loadSavedProperties()
         val meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java) as MeteorConfig
         ConfigManager.setDefaultConfiguration(meteorConfig, false)

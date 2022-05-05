@@ -16,6 +16,7 @@ import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
 import lombok.Value;
 import meteor.Main;
+import meteor.api.objects.Object;
 import net.runelite.api.Item;
 import net.runelite.api.NPC;
 import net.runelite.api.QuestState;
@@ -421,11 +422,13 @@ public class TransportLoader
 			{
 				return;
 			}
+			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
 
 			TileObject transport = TileObjects.getFirstSurrounding(source, 5, objId);
 			if (transport != null)
 			{
-				item.useOn(transport);
+				Object object = new Object(transport);
+				i.useOn(object);
 			}
 		}, "");
 	}

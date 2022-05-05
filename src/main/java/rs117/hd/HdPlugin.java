@@ -714,7 +714,11 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 					if (glContext != null)
 					{
-						glContext.destroy();
+						try {
+							glContext.destroy();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 
 					// this crashes on osx when the plugin is turned back on, don't know why

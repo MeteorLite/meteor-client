@@ -1,58 +1,103 @@
 package dev.hoot.api.packets;
 
-import dev.hoot.api.game.Game;
-import dev.hoot.api.widgets.Widgets;
-import meteor.api.packets.ClientPackets;
-import net.runelite.api.Client;
+import java.util.List;
+
+import dev.hoot.api.packets.WidgetPackets;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.widgets.WidgetInfo;
-
-import java.util.List;
 
 public class ItemPackets
 {
 	public static void itemAction(Item item, String action)
 	{
-
-		List<String> actions = List.of(Game.getClient().getItemDefinition(item.getId()).getInventoryActions());
+		List<String> actions = item.getActions();
 		int index = actions.indexOf(action);
-		System.out.println(index);
-		switch (index) {
-			case 0 -> itemFirstOption(item);
-			case 1 -> itemSecondOption(item);
-			case 2 -> itemThirdOption(item);
-			case 3 -> itemFourthOption(item);
-			case 4 -> itemFifthOption(item);
-			default -> WidgetPackets.widgetAction(Widgets.fromId(item.getWidgetId()), action);
+		switch (index)
+		{
+			case 0:
+				ItemPackets.itemFirstOption(item);
+				break;
+			case 1:
+				ItemPackets.itemSecondOption(item);
+				break;
+			case 2:
+				ItemPackets.itemThirdOption(item);
+				break;
+			case 3:
+				ItemPackets.itemFourthOption(item);
+				break;
+			case 4:
+				ItemPackets.itemFifthOption(item);
+				break;
+			case 5:
+				ItemPackets.itemSixthOption(item);
+				break;
+			case 6:
+				ItemPackets.itemSeventhOption(item);
+				break;
+			case 7:
+				ItemPackets.itemEighthOption(item);
+				break;
+			case 8:
+				ItemPackets.itemNinthOption(item);
+				break;
+			case 9:
+				ItemPackets.itemTenthOption(item);
+				break;
 		}
 	}
 
 	public static void itemFirstOption(Item item)
 	{
-		queueItemAction1Packet(item.getWidgetId(), item.getId(), item.getSlot());
+		ItemPackets.queueItemAction1Packet(item.getWidgetId(), item.getId(), item.getSlot());
 	}
 
 	public static void itemSecondOption(Item item)
 	{
-		queueItemAction2Packet(item.getWidgetId(), item.getId(), item.getSlot());
+		ItemPackets.queueItemAction2Packet(item.getWidgetId(), item.getId(), item.getSlot());
 	}
 
 	public static void itemThirdOption(Item item)
 	{
-		queueItemAction3Packet(item.getWidgetId(), item.getId(), item.getSlot());
+		ItemPackets.queueItemAction3Packet(item.getWidgetId(), item.getId(), item.getSlot());
 	}
 
 	public static void itemFourthOption(Item item)
 	{
-		queueItemAction4Packet(item.getWidgetId(), item.getId(), item.getSlot());
+		ItemPackets.queueItemAction4Packet(item.getWidgetId(), item.getId(), item.getSlot());
 	}
 
 	public static void itemFifthOption(Item item)
 	{
-		queueItemAction5Packet(item.getWidgetId(), item.getId(), item.getSlot());
+		ItemPackets.queueItemAction5Packet(item.getWidgetId(), item.getId(), item.getSlot());
+	}
+
+
+	public static void itemSixthOption(Item item)
+	{
+		ItemPackets.queueItemAction6Packet(item.getWidgetId(), item.getId(), item.getSlot());
+	}
+
+	public static void itemSeventhOption(Item item)
+	{
+		ItemPackets.queueItemAction7Packet(item.getWidgetId(), item.getId(), item.getSlot());
+	}
+
+	public static void itemEighthOption(Item item)
+	{
+		ItemPackets.queueItemAction8Packet(item.getWidgetId(), item.getId(), item.getSlot());
+	}
+
+	public static void itemNinthOption(Item item)
+	{
+		ItemPackets.queueItemAction9Packet(item.getWidgetId(), item.getId(), item.getSlot());
+	}
+
+	public static void itemTenthOption(Item item)
+	{
+		ItemPackets.queueItemAction10Packet(item.getWidgetId(), item.getId(), item.getSlot());
 	}
 
 	public static void useItemOnItem(Item item, Item item2)
@@ -61,77 +106,127 @@ public class ItemPackets
 		{
 			return;
 		}
-
-		queueItemOnItemPacket(item.getId(), item.getSlot(), item2.getId(), item.getSlot());
+		ItemPackets.queueItemOnItemPacket(item.getId(), item.getSlot(), item2.getId(), item2.getSlot());
 	}
 
 	public static void queueItemOnItemPacket(int sourceItemId, int sourceItemSlot, int itemId, int itemSlot)
 	{
-		createItemOnItem(sourceItemId, sourceItemSlot, itemId, itemSlot).send();
+		ItemPackets.createItemOnItem(sourceItemId, sourceItemSlot, itemId, itemSlot).send();
 	}
 
 	public static void queueSpellOnItemPacket(int itemId, int itemSlot, int spellWidgetId)
 	{
-		createSpellOnItem(itemId, itemSlot, spellWidgetId).send();
+		ItemPackets.createSpellOnItem(itemId, itemSlot, spellWidgetId).send();
 	}
 
 	public static void queueItemAction1Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		createFirstAction(itemWidgetId, itemId, itemSlot).send();
+		ItemPackets.createFirstAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
 	public static void queueItemAction2Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		createSecondAction(itemWidgetId, itemId, itemSlot).send();;
+		ItemPackets.createSecondAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
 	public static void queueItemAction3Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		createThirdAction(itemWidgetId, itemId, itemSlot).send();;
+		ItemPackets.createThirdAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
 	public static void queueItemAction4Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		createFourthAction(itemWidgetId, itemId, itemSlot).send();;
+		ItemPackets.createFourthAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
 	public static void queueItemAction5Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		createFifthAction(itemWidgetId, itemId, itemSlot).send();;
+		ItemPackets.createFifthAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
-	public static PacketBufferNode createFirstAction(int itemWidgetId, int itemId, int itemSlot)
+	public static void queueItemAction6Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK1", itemId, itemSlot, itemWidgetId);
+		ItemPackets.createSixthAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
-	public static PacketBufferNode createSecondAction(int itemWidgetId, int itemId, int itemSlot)
+	public static void queueItemAction7Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK2", itemId, itemSlot, itemWidgetId);
+		ItemPackets.createSeventhAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
-	public static PacketBufferNode createThirdAction(int itemWidgetId, int itemId, int itemSlot)
+	public static void queueItemAction8Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK3", itemId, itemSlot, itemWidgetId);
+		ItemPackets.createEighthAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
-	public static PacketBufferNode createFourthAction(int itemWidgetId, int itemId, int itemSlot)
+	public static void queueItemAction9Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK4", itemId, itemSlot, itemWidgetId);
+		ItemPackets.createNinthAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
-	public static PacketBufferNode createFifthAction(int itemWidgetId, int itemId, int itemSlot)
+	public static void queueItemAction10Packet(int itemWidgetId, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemActionPacket("IF3_CLICK5", itemId, itemSlot, itemWidgetId);
+		ItemPackets.createTenthAction(itemWidgetId, itemId, itemSlot).send();
 	}
 
 	public static PacketBufferNode createItemOnItem(int sourceItemId, int sourceItemSlot, int itemId, int itemSlot)
 	{
-		return ClientPackets.INSTANCE.createItemOnItemPacket("OPHELDU", sourceItemId, sourceItemSlot, itemId, itemSlot);
+		return WidgetPackets.createWidgetOnWidget(WidgetInfo.INVENTORY.getId(), sourceItemSlot, sourceItemId, WidgetInfo.INVENTORY.getId(), itemSlot, itemId);
 	}
 
 	public static PacketBufferNode createSpellOnItem(int itemId, int itemSlot, int spellWidgetId)
 	{
-		return ClientPackets.INSTANCE.createSpellOnItemPacket("OPHELDT", itemId, itemSlot, spellWidgetId);
+		return WidgetPackets.createWidgetOnWidget(spellWidgetId, -1, -1, WidgetInfo.INVENTORY.getId(), itemSlot, itemId);
+	}
+
+	public static PacketBufferNode createFirstAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createFirstAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createSecondAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createSecondAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createThirdAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createThirdAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createFourthAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createFourthAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createFifthAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createFifthAction(itemWidgetId, itemId, itemSlot);
+	}
+
+
+	public static PacketBufferNode createSixthAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createSixthAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createSeventhAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createSeventhAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createEighthAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createEighthAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createNinthAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createNinthAction(itemWidgetId, itemId, itemSlot);
+	}
+
+	public static PacketBufferNode createTenthAction(int itemWidgetId, int itemId, int itemSlot)
+	{
+		return WidgetPackets.createTenthAction(itemWidgetId, itemId, itemSlot);
 	}
 }

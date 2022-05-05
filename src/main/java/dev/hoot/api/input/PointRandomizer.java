@@ -63,7 +63,6 @@ public class PointRandomizer
             Widget slot = widget.getChild(item.getSlot());
             if (slot != null)
             {
-                item.container = InventoryID.INVENTORY;
                 return slot.getBounds() != null ? slot.getBounds() : new Rectangle(-1, -1, 0, 0);
             }
         }
@@ -71,7 +70,6 @@ public class PointRandomizer
         Rectangle bounds = widget.getBounds();
         if (bounds != null)
         {
-            item.container = InventoryID.EQUIPMENT;
             Rectangle itemBounds = widget.getWidgetItem(item.getSlot()).getCanvasBounds();
             return itemBounds != null ? itemBounds : new Rectangle(-1, -1, 0, 0);
         }

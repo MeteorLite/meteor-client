@@ -6,6 +6,7 @@ import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Vars;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
+import meteor.Main;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
@@ -223,23 +224,8 @@ public class Bank extends Items
 		{
 			return;
 		}
-		item.container = InventoryID.INVENTORY;
-		WithdrawOption withdrawOption = WithdrawOption.ofAmount(item, amount);
-
-
-		if (withdrawOption == WithdrawOption.X && item.hasAction("Deposit-" + amount))
-		{
-			item.interact(WithdrawOption.LAST_QUANTITY.getMenuIndex() + 1);
-		}
-		else
-		{
-			item.interact(withdrawOption.menuIndex + 1);
-
-			if (withdrawOption == WithdrawOption.X)
-			{
-				Dialog.enterInput(amount);
-			}
-		}
+		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+		i.deposit(amount);
 	}
 
 	public static void withdrawAll(String name, WithdrawMode withdrawMode)
@@ -275,36 +261,8 @@ public class Bank extends Items
 		{
 			return;
 		}
-
-		item.container = InventoryID.BANK;
-
-		WithdrawOption withdrawOption = WithdrawOption.ofAmount(item, amount);
-		if (withdrawMode == WithdrawMode.NOTED && !isNotedWithdrawMode())
-		{
-			setWithdrawMode(true);
-			Time.sleepUntil(Bank::isNotedWithdrawMode, 1200);
-		}
-
-		if (withdrawMode == WithdrawMode.ITEM && isNotedWithdrawMode())
-		{
-			setWithdrawMode(false);
-			Time.sleepUntil(() -> !isNotedWithdrawMode(), 1200);
-		}
-
-		if (withdrawOption == WithdrawOption.X && item.hasAction("Withdraw-" + amount))
-		{
-			item.interact(WithdrawOption.LAST_QUANTITY.getMenuIndex());
-		}
-		else
-		{
-			item.interact(withdrawOption.getMenuIndex());
-			if (withdrawOption == WithdrawOption.X)
-			{
-				Time.sleepUntil(Dialog::isEnterInputOpen, 1200);
-				Dialog.enterInput(amount);
-			}
-		}
-
+		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+		i.withdraw(amount, withdrawMode);
 	}
 
 	public static void withdrawLastQuantity(String name, WithdrawMode withdrawMode)
@@ -326,18 +284,8 @@ public class Bank extends Items
 			return;
 		}
 
-		WithdrawOption withdrawOption = WithdrawOption.LAST_QUANTITY;
-		if (withdrawMode == WithdrawMode.NOTED && !isNotedWithdrawMode())
-		{
-			setWithdrawMode(true);
-		}
-
-		if (withdrawMode == WithdrawMode.ITEM && isNotedWithdrawMode())
-		{
-			setWithdrawMode(false);
-		}
-
-		item.interact(withdrawOption.getMenuIndex());
+		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+		i.withdrawLastQuantity(withdrawMode);
 	}
 
 	public static void setWithdrawMode(boolean noted)
@@ -610,7 +558,7 @@ public class Bank extends Items
 		NOTED, ITEM, DEFAULT
 	}
 
-	private enum WithdrawOption
+	public enum WithdrawOption
 	{
 		ONE(2), FIVE(3), TEN(4), LAST_QUANTITY(5), X(6),
 		ALL(7), ALL_BUT_1(8);

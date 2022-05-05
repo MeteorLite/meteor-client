@@ -164,7 +164,6 @@ public class GrandExchange
 		Item item = Inventory.getFirst(filter);
 		if (item != null)
 		{
-			item.container = InventoryID.INVENTORY;
 			Game.getClient().interact(1, 57, item.getSlot(), 30605312);
 		}
 	}

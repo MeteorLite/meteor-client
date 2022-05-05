@@ -33,6 +33,7 @@ import eventbus.events.*;
 import lombok.Getter;
 import lombok.Setter;
 import meteor.Main;
+import meteor.api.items.Items;
 import meteor.game.SkillIconManager;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
@@ -46,10 +47,7 @@ import net.runelite.client.plugins.gauntletextended.overlay.*;
 import net.runelite.client.plugins.gauntletextended.resource.ResourceManager;
 import ui.overlay.outline.ModelOutlineRenderer;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @PluginDescriptor(
 	name = "Gauntlet Extended",
@@ -545,9 +543,6 @@ public class GauntletExtendedPlugin extends Plugin
 			else
 			{
 				wrongAttackStyle = true;
-
-				if (config.autoWeaponSwap())
-					Inventory.getFirst(ItemID.CRYSTAL_BOW_PERFECTED, ItemID.CRYSTAL_STAFF_PERFECTED).interact("Equip");
 			}
 		}
 		else if (actor instanceof NPC)
