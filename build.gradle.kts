@@ -8,7 +8,7 @@ plugins {
 }
 
 val apiRelease by rootProject.extra { "1.3.0" }
-val release by rootProject.extra { "2" }
+val release by rootProject.extra { "3" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
 
