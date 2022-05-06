@@ -68,20 +68,48 @@ object Items {
 
     fun getAll(inventoryID: InventoryID = InventoryID.INVENTORY): ArrayList<Item>? {
         var items: ArrayList<Item>? = null
-            Main.client.getItemContainer(inventoryID)?.let {
+        Main.client.getItemContainer(inventoryID)?.let {
+            var slot = 0
             if (it.items.isNotEmpty())
                 for (item in it.items) {
                     val newItem = Item(Main.client, item.id, item.quantity)
                     newItem.widgetId = WidgetInfo.INVENTORY.packedId
-                    newItem.slot = item.slot
+                    newItem.slot = slot
                     if (items == null) {
                         items = ArrayList()
                         items!!.add(newItem)
                     }
                     else
                         items!!.add(newItem)
+                    slot++
                 }
         }
         return items
+    }
+
+    fun getAtSlot(index: Int, inventoryID: InventoryID = InventoryID.INVENTORY) : Item? {
+        Main.client.getItemContainer(inventoryID)?.let {
+            var slot = 0
+            if (it.items.isNotEmpty())
+                for (item in it.items) {
+                    if (slot == index)
+                        return Item(Main.client, item.id, item.quantity)
+                    slot++
+                }
+        }
+        return null
+    }
+
+    fun getSlot(id: Int, inventoryID: InventoryID = InventoryID.INVENTORY) : Int {
+        Main.client.getItemContainer(inventoryID)?.let {
+            var slot = 0
+            if (it.items.isNotEmpty())
+                for (item in it.items) {
+                    if (item.id == id)
+                        return slot
+                    slot++
+                }
+        }
+        return -1
     }
 }

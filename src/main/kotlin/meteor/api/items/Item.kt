@@ -75,6 +75,7 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
         widgetId = WidgetInfo.INVENTORY.packedId
         GameThread.invoke {
             log.info("[Spell Use-on]")
+            slot = Items.getSlot(id)
             createClientPacket(getMenu(0, MenuAction.WIDGET_USE_ON_ITEM.id))!!.send()
         }
     }

@@ -5,8 +5,10 @@ import com.google.gson.Gson
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.Game
+import dev.hoot.api.items.Inventory
 import dev.hoot.api.packets.*
 import dev.hoot.api.widgets.Widgets
+import meteor.api.items.Items
 import net.runelite.api.MenuAction
 import net.runelite.api.packets.PacketBuffer
 import net.runelite.api.packets.PacketBufferNode
@@ -416,7 +418,7 @@ object ClientPackets {
                 param1 + client.baseY,
                 false
             )
-            MenuAction.ITEM_USE_ON_ITEM, MenuAction.WIDGET_TARGET_ON_WIDGET -> {
+            MenuAction.WIDGET_USE_ON_ITEM, MenuAction.ITEM_USE_ON_ITEM, MenuAction.WIDGET_TARGET_ON_WIDGET -> {
                 val targetParent: Widget? = Widgets.fromId(param1)
                 val targetChild: Widget? = targetParent?.getChild(param0)
                 var childItemId = -1
