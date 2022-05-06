@@ -50,6 +50,22 @@ object Items {
         return getAll(*names, container = container)?.firstOrNull()
     }
 
+    fun getCount(vararg ids: Int, container: InventoryID? = InventoryID.INVENTORY) : Int {
+        var count = 0
+        getAll(*ids, container = container)?.forEach {
+            count += it.quantity
+        }
+        return count
+    }
+
+    fun getCount(vararg names: String, container: InventoryID? = InventoryID.INVENTORY) : Int {
+        var count = 0
+        getAll(*names, container = container)?.forEach {
+            count += it.quantity
+        }
+        return count
+    }
+
     fun getAll(inventoryID: InventoryID = InventoryID.INVENTORY): ArrayList<Item>? {
         var items: ArrayList<Item>? = null
             Main.client.getItemContainer(inventoryID)?.let {
