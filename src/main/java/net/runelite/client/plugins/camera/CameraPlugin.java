@@ -28,6 +28,7 @@ package net.runelite.client.plugins.camera;
 
 import com.google.common.primitives.Ints;
 import eventbus.events.*;
+import meteor.Main;
 import meteor.input.KeyListener;
 import meteor.input.KeyManager;
 import meteor.input.MouseListener;
@@ -50,8 +51,7 @@ import java.awt.event.MouseEvent;
 @PluginDescriptor(
 	name = "Camera",
 	description = "Expands zoom limit, provides vertical camera, and remaps mouse input keys",
-	tags = {"zoom", "limit", "vertical", "click", "mouse"},
-	enabledByDefault = false
+	tags = {"zoom", "limit", "vertical", "click", "mouse"}
 )
 public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 {
@@ -69,13 +69,13 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 	private boolean menuHasEntries;
 	private int savedCameraYaw;
 
-	private Client client;
-	private ClientThread clientThread;
-	private CameraConfig config;
-	private KeyManager keyManager;
-	private MouseManager mouseManager;
-	private TooltipManager tooltipManager;
-	private Tooltip sliderTooltip;
+	private Client client = Main.INSTANCE.getClient();
+	private ClientThread clientThread =ClientThread.INSTANCE;
+	private CameraConfig config = (CameraConfig) javaConfiguration(CameraConfig.class);
+	private KeyManager keyManager = KeyManager.INSTANCE;
+	private MouseManager mouseManager = MouseManager.INSTANCE;
+	private TooltipManager tooltipManager = TooltipManager.INSTANCE;
+	private Tooltip sliderTooltip = null;
 
 	@Override
 	public void onStart()

@@ -26,6 +26,7 @@ import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
 import net.runelite.api.Client
 import net.runelite.api.hooks.Callbacks
+import net.runelite.client.chat.ChatCommandManager
 import net.runelite.client.chat.ChatMessageManager
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
@@ -58,7 +59,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     var placement: WindowPlacement = WindowPlacement.Maximized
     var interactionManager: InteractionManager? = null
     var chatMessageManager: ChatMessageManager? = null
-
+    var chatCommandManager: ChatCommandManager? = null
     private val timer = StopWatch()
 
     @JvmStatic
@@ -92,8 +93,9 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         interactionManager = InteractionManager()
         interactionManager!!.subscribe()
         initOverlays()
-        PluginManager.loadExternalPlugins()
         chatMessageManager = ChatMessageManager()
+        chatCommandManager = ChatCommandManager()
+        PluginManager.loadExternalPlugins()
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }

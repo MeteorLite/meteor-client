@@ -33,6 +33,8 @@ import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import net.runelite.client.plugins.camera.CameraPlugin
+import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.defaultworld.DefaultWorldPlugin
 import net.runelite.client.plugins.fps.FpsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -60,16 +62,18 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<ContinueClickerPlugin>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
         init<AutoRunPlugin>()
         init<BankPlugin>()
         init<BoostsPlugin>()
+        init<CameraPlugin>()
+        init<ChatCommandsPlugin>()
         //init<ChatFilterPlugin>()
         init<CombatLevelPlugin>()
         init<CommandsPlugin>()
+        init<ContinueClickerPlugin>()
         init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()
         init<ExamplePlugin>()

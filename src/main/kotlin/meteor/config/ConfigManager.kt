@@ -52,6 +52,15 @@ object ConfigManager {
         }
     }
 
+    fun unsetPlayerConfiguration(attribute: String) {
+        Main.client.localPlayer?.let {
+            it.name?.let { name ->
+                if (name.isNotEmpty())
+                    unsetConfiguration("$name-attributes", attribute)
+            }
+        }
+    }
+
     fun getPlayerConfiguration(attribute: String) : String? {
         Main.client.localPlayer?.let {
             it.name?.let { name ->
