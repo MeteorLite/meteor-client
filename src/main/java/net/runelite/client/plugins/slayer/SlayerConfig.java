@@ -25,8 +25,7 @@
  */
 package net.runelite.client.plugins.slayer;
 
-import meteor.config.Config;
-import meteor.config.ConfigAnnotations.*;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 

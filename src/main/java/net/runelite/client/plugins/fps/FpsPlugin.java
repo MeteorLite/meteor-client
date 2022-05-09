@@ -54,7 +54,6 @@ public class FpsPlugin extends Plugin
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 	private FpsOverlay overlay = new FpsOverlay(this, config);
 	private FpsDrawListener drawListener = new FpsDrawListener(config);
-
 	private DrawManager drawManager = DrawManager.INSTANCE;
 
 	@Override

@@ -24,8 +24,7 @@
  */
 package meteor.plugins.woodcutting
 
-import meteor.config.ConfigAnnotations.*
-import meteor.config.Config
+import net.runelite.client.config.*
 
 @ConfigGroup("woodcutting")
 interface WoodcuttingConfig : Config {

@@ -24,8 +24,7 @@
  */
 package meteor.plugins.minimap
 
-import meteor.config.ConfigAnnotations.*
-import meteor.config.Config
+import net.runelite.client.config.*
 import java.awt.Color
 
 @ConfigGroup(MinimapConfig.GROUP)

@@ -31,9 +31,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.awt.*;
-
-import meteor.config.Config;
-import meteor.config.ConfigAnnotations.*;
+import net.runelite.client.config.*;
 
 @ConfigGroup("gauntlet")
 public interface GauntletExtendedConfig extends Config
@@ -270,8 +268,7 @@ public interface GauntletExtendedConfig extends Config
 		description = "Track resources in counter infoboxes.",
 		position = 8,
 		keyName = "resourceTracker",
-		section = resourcesSection,
-		enumClass = ResourceFilter.class
+		section = resourcesSection
 	)
 	default ResourceFilter resourceTracker()
 	{
@@ -622,8 +619,7 @@ public interface GauntletExtendedConfig extends Config
 		keyName = "hunllefAttackCounterFontStyle",
 		section = hunllefSection,
 		hidden = true,
-		unhide = "hunllefOverlayAttackCounter",
-		enumClass = FontStyle.class
+		unhide = "hunllefOverlayAttackCounter"
 	)
 	default FontStyle hunllefAttackCounterFontStyle()
 	{
@@ -850,8 +846,7 @@ public interface GauntletExtendedConfig extends Config
 		keyName = "tornadoFontStyle",
 		section = tornadoesSection,
 		hidden = true,
-		unhide = "tornadoTickCounter",
-		enumClass = FontStyle.class
+		unhide = "tornadoTickCounter"
 	)
 	default FontStyle tornadoFontStyle()
 	{
@@ -974,8 +969,7 @@ public interface GauntletExtendedConfig extends Config
 		description = "Overlay the correct prayer to use against the Hunllef's current attack style.",
 		position = 0,
 		keyName = "prayerOverlay",
-		section = playerSection,
-		enumClass = PrayerHighlightMode.class
+		section = playerSection
 	)
 	default PrayerHighlightMode prayerOverlay()
 	{
@@ -1105,8 +1099,7 @@ public interface GauntletExtendedConfig extends Config
 		description = "Set render distance of various overlays.",
 		position = 0,
 		keyName = "resourceRenderDistance",
-		section = otherSection,
-		enumClass = RenderDistance.class
+		section = otherSection
 	)
 	default RenderDistance resourceRenderDistance()
 	{

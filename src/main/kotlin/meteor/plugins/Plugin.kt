@@ -1,7 +1,7 @@
 package meteor.plugins
 
 import meteor.Main
-import meteor.config.Config
+import net.runelite.client.config.*
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration

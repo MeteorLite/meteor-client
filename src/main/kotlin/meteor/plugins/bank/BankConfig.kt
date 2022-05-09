@@ -25,8 +25,7 @@
  */
 package meteor.plugins.bank
 
-import meteor.config.Config
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.*
 import meteor.config.legacy.Keybind
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent

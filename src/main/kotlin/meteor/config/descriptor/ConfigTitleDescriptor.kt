@@ -1,10 +1,10 @@
 package meteor.config.descriptor
 
-import meteor.config.ConfigAnnotations
+import net.runelite.client.config.*
 import meteor.config.legacy.ConfigObject
 
 
-class ConfigTitleDescriptor(val key: String, val title: ConfigAnnotations.ConfigTitle) : ConfigObject {
+class ConfigTitleDescriptor(val key: String, val title: ConfigTitle) : ConfigObject {
     override fun key(): String {
         return key
     }

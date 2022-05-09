@@ -24,11 +24,9 @@
  */
 package net.runelite.client.plugins.fps;
 
-import meteor.config.Config;
-import meteor.config.ConfigAnnotations;
-import meteor.config.ConfigAnnotations.*;
+import net.runelite.client.config.*;
 
-@ConfigAnnotations.ConfigGroup(FpsPlugin.CONFIG_GROUP_KEY)
+@ConfigGroup(FpsPlugin.CONFIG_GROUP_KEY)
 public interface FpsConfig extends Config
 {
 	@ConfigItem(

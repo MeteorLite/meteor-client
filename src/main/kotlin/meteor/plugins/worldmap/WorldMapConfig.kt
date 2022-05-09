@@ -25,8 +25,7 @@
  */
 package meteor.plugins.worldmap
 
-import meteor.config.Config
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.*
 
 @ConfigGroup("World Map")
 interface WorldMapConfig : Config {

@@ -1,9 +1,7 @@
 package meteor.config.descriptor
 
-import meteor.config.ConfigAnnotations
-
-
+import net.runelite.client.config.ConfigGroup
 class ConfigDescriptor(
-        val group: ConfigAnnotations.ConfigGroup, val sections: Collection<ConfigSectionDescriptor>,
+        val group: ConfigGroup, val sections: Collection<ConfigSectionDescriptor>,
         val titles: Collection<ConfigTitleDescriptor>, val items: Collection<ConfigItemDescriptor>
 )

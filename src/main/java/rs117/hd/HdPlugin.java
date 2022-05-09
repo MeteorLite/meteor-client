@@ -75,7 +75,7 @@ import jogamp.nativewindow.macosx.OSXUtil;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import meteor.Main;
-import meteor.config.Config;
+import net.runelite.client.config.*;
 import meteor.config.ConfigManager;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;

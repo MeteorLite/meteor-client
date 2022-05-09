@@ -24,8 +24,7 @@
  */
 package meteor.plugins.grounditems
 
-import meteor.config.Config
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.*
 import meteor.plugins.grounditems.config.PriceDisplayMode
 import meteor.plugins.grounditems.config.ItemHighlightMode
 import meteor.plugins.grounditems.config.MenuHighlightMode

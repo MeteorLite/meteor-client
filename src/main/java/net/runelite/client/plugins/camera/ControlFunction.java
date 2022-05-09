@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Lotto <https://github.com/devLotto>
+ * Copyright (c) 2019, Jacob M <https://github.com/jacoblairm>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,31 +23,24 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.stretchedmode
+package net.runelite.client.plugins.camera;
 
-import net.runelite.client.config.*
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@ConfigGroup("stretchedmode")
-interface StretchedModeConfig : Config {
-    @ConfigItem(keyName = "keepAspectRatio", name = "Keep aspect ratio", description = "Keeps the aspect ratio when stretching.")
-    fun keepAspectRatio(): Boolean {
-        return true
-    }
+@Getter
+@AllArgsConstructor
+public enum ControlFunction
+{
+	NONE("None"),
+	CONTROL_TO_ZOOM("Hold to zoom"),
+	CONTROL_TO_RESET("Reset zoom");
 
-    @ConfigItem(keyName = "increasedPerformance", name = "Increased performance mode", description = "Uses a fast algorithm when stretching, lowering quality but increasing performance.")
-    fun increasedPerformance(): Boolean {
-        return false
-    }
+	private final String name;
 
-    @ConfigItem(keyName = "integerScaling", name = "Integer Scaling", description = "Forces use of a whole number scale factor when stretching.")
-    fun integerScaling(): Boolean {
-        return false
-    }
-
-    @Range(min = 25, max = 500)
-    @ConfigItem(keyName = "scalingFactor", name = "Resizable Scaling", description = "In resizable mode, the game is reduced in size this much before it's stretched.")
-    @Units(Units.PERCENT)
-    fun scalingFactor(): Int {
-        return 75
-    }
+	@Override
+	public String toString()
+	{
+		return getName();
+	}
 }

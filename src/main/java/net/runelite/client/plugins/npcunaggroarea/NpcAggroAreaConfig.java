@@ -24,8 +24,7 @@
  */
 package net.runelite.client.plugins.npcunaggroarea;
 
-import meteor.config.Config;
-import meteor.config.ConfigAnnotations.*;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 

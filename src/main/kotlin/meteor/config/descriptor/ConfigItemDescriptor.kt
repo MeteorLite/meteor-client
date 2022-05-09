@@ -1,6 +1,6 @@
 package meteor.config.descriptor
 
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.*
 import meteor.config.legacy.ConfigObject
 
 

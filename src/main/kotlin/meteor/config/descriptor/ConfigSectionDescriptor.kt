@@ -1,9 +1,9 @@
 package meteor.config.descriptor
 
-import meteor.config.ConfigAnnotations
+import net.runelite.client.config.*
 import meteor.config.legacy.ConfigObject
 
-class ConfigSectionDescriptor(val key: String, val section: ConfigAnnotations.ConfigSection) : ConfigObject {
+class ConfigSectionDescriptor(val key: String, val section: ConfigSection) : ConfigObject {
 
     override fun key(): String {
         return key

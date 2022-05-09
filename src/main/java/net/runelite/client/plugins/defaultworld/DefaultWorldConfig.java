@@ -24,8 +24,7 @@
  */
 package net.runelite.client.plugins.defaultworld;
 
-import meteor.config.Config;
-import meteor.config.ConfigAnnotations.*;
+import net.runelite.client.config.*;
 
 @ConfigGroup(DefaultWorldConfig.GROUP)
 public interface DefaultWorldConfig extends Config

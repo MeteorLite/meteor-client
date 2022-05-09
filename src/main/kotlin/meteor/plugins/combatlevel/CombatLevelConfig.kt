@@ -24,8 +24,7 @@
  */
 package meteor.plugins.combatlevel
 
-import meteor.config.Config
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.*
 
 @ConfigGroup("combatlevel")
 interface CombatLevelConfig : Config {

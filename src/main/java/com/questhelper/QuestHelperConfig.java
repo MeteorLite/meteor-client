@@ -24,20 +24,8 @@
  */
 package com.questhelper;
 
-import com.questhelper.panel.questorders.QuestOrders;
-import com.questhelper.questhelpers.Quest;
-import com.questhelper.questhelpers.QuestHelper;
 import java.awt.Color;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import lombok.Getter;
-import meteor.config.Config;
-import meteor.config.ConfigAnnotations.*;
-import net.runelite.api.util.Text;
+import net.runelite.client.config.*;
 
 @ConfigGroup("questhelper")
 public interface QuestHelperConfig extends Config

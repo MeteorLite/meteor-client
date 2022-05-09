@@ -1,7 +1,6 @@
 package meteor.plugins.devtools
 
-import meteor.config.Config
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.*
 
 @ConfigGroup("devtools")
 interface DevToolsConfig : Config {

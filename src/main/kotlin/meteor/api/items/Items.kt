@@ -112,4 +112,13 @@ object Items {
         }
         return -1
     }
+
+    fun isFull(inventoryID: InventoryID = InventoryID.INVENTORY) : Boolean {
+        when (inventoryID) {
+            InventoryID.INVENTORY -> return Main.client.getItemContainer(inventoryID)?.items?.filter {
+                (it != null && it.name != "null")
+            }?.size == 28
+            else -> {return false}
+        }
+    }
 }

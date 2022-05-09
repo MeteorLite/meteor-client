@@ -1,8 +1,10 @@
 package meteor.plugins.autobankpin
 
 
-import meteor.config.Config
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.Config
+import net.runelite.client.config.ConfigGroup
+import net.runelite.client.config.ConfigItem
+import net.runelite.client.config.Secret
 
 @ConfigGroup("autobankpin")
 interface AutoBankPinConfig : Config {

@@ -16,6 +16,7 @@ import meteor.config.descriptor.ConfigSectionDescriptor
 import meteor.config.descriptor.ConfigTitleDescriptor
 import meteor.plugins.Plugin
 import net.runelite.api.coords.WorldPoint
+import net.runelite.client.config.*
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.Color
 import java.awt.Dimension
@@ -33,7 +34,6 @@ import java.util.*
 import java.util.function.Consumer
 import java.util.function.Function
 import java.util.stream.Collectors
-import meteor.config.ConfigAnnotations.*
 
 object ConfigManager {
     private val properties = Properties()

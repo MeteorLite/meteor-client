@@ -30,8 +30,7 @@ import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
-import meteor.config.ConfigAnnotations.*
-
+import net.runelite.client.config.*
 
 internal class ConfigInvocationHandler(private val manager: ConfigManager) : InvocationHandler {
     private val cache = CacheBuilder.newBuilder()

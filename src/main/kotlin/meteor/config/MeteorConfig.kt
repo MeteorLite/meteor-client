@@ -1,12 +1,10 @@
 package meteor.config
 
 import meteor.Configuration
-import meteor.config.ConfigAnnotations.*
+import net.runelite.client.config.*
 import meteor.config.legacy.Keybind
 import meteor.config.type.*
 import meteor.ui.components.ComponentConstants
-import meteor.util.OSType
-import meteor.util.OSType.getOSType
 import net.runelite.api.Constants
 import java.awt.BorderLayout
 import java.awt.Button
@@ -15,7 +13,7 @@ import java.awt.Dimension
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
 
-@ConfigAnnotations.ConfigGroup(Configuration.MASTER_GROUP)
+@ConfigGroup(Configuration.MASTER_GROUP)
 interface MeteorConfig : Config {
     /*
       Client settings

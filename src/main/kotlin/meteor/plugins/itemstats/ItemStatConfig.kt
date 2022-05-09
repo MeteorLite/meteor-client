@@ -24,9 +24,7 @@
  */
 package meteor.plugins.itemstats
 
-import meteor.config.Config
-import meteor.config.ConfigAnnotations.ConfigGroup
-import meteor.config.ConfigAnnotations.ConfigItem
+import net.runelite.client.config.*
 import java.awt.Color
 
 @ConfigGroup("itemstat")

@@ -1,10 +1,8 @@
 package dev.hoot.api;
 
-import meteor.config.Config;
-import meteor.config.ConfigAnnotations;
-import meteor.config.ConfigAnnotations.*;
+import net.runelite.client.config.*;
 
-@ConfigAnnotations.ConfigGroup("interaction")
+@ConfigGroup("interaction")
 public interface InteractionConfig extends Config
 {
 	@ConfigSection(
