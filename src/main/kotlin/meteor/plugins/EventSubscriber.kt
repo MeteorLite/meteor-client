@@ -148,7 +148,10 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<LoginStateChanged>(Events.LOGIN_STATE_CHANGED) { executeIfListening { onLoginStateChanged(it) }}
         subscribeEvent<MenuActionProcessed>(Events.MENU_ACTION_PROCESSED) { executeIfListening { onMenuActionProcessed(it) }}
         subscribeEvent<MenuEntryAdded>(Events.MENU_ENTRY_ADDED) { executeIfListening { onMenuEntryAdded(it) }}
-        subscribeEvent<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) { executeIfListening { onMenuOptionClicked(it) }}
+        subscribeEvent<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) { executeIfListening {
+            if (it.menuEntry != null)
+                onMenuOptionClicked(it) }
+        }
         subscribeEvent<NpcActionChanged>(Events.NPC_ACTION_CHANGED) { executeIfListening { onNpcActionChanged(it) }}
         subscribeEvent<NpcChanged>(Events.NPC_CHANGED) { executeIfListening { onNpcChanged(it) }}
         subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNpcDespawned(it) }}

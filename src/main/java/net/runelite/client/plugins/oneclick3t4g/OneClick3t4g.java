@@ -5,15 +5,15 @@ import eventbus.events.ChatMessage;
 import eventbus.events.ClientTick;
 import eventbus.events.MenuOptionClicked;
 import meteor.Main;
+import meteor.api.items.Item;
+import meteor.api.items.Items;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
 import meteor.plugins.PluginManager;
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.queries.GameObjectQuery;
-import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.api.widgets.WidgetItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,6 @@ public class OneClick3t4g extends Plugin {
     private OneClick3t4gConfig config = (OneClick3t4gConfig) javaConfiguration(OneClick3t4gConfig.class);
 
     private Client client = Main.INSTANCE.getClient();
-    private ItemContainer inv;
     private int startingTickCount=-1;
     int stage = 0;
     private int currentRock=0;
@@ -62,10 +61,6 @@ public class OneClick3t4g extends Plugin {
         if (client.getGameState() != GameState.LOGGED_IN) {
             return;
         }
-        if(inv==null){
-            inv= client.getItemContainer(InventoryID.INVENTORY);
-            return;
-        }
         if(config.humidify()){
             if(Inventory.getFirst(1825,1827,1829,1823)==null){
                 if(Inventory.getFirst(1831)!=null){
@@ -78,7 +73,7 @@ public class OneClick3t4g extends Plugin {
                 }
             }
         }
-        if(!inv.contains(6333)||!inv.contains(946)){
+        if(!Items.INSTANCE.inventoryContains(6333)||!Items.INSTANCE.inventoryContains(946)){
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you need to bring a teak log and knife. disabling plugin", null);
             PluginManager.INSTANCE.toggle(this);
             return;
@@ -112,18 +107,18 @@ public class OneClick3t4g extends Plugin {
                     }
                 }
             }
-            WidgetItem knife = getItemFromInv(946);
-            WidgetItem teak = getItemFromInv(6333);
+            Item knife = getItem(946);
+            Item teak = getItem(6333);
             if(teak==null){
                 return;
             }
             if(knife!=null) {
-                event.setSelectedItemIndex(knife.getIndex());
-                client.setSelectedItemWidget(WidgetInfo.INVENTORY.getPackedId());
-                client.setSelectedItemSlot(knife.getIndex());
-                client.setSelectedItemID(knife.getId());
+                event.setSelectedItemIndex(knife.getSlot());
+                client.setSelectedSpellWidget(WidgetInfo.INVENTORY.getPackedId());
+                client.setSelectedSpellItemId(knife.getId());
+                client.setSelectedSpellChildIndex(knife.getSlot());
                 stage = 1;
-                event.setMenuEntry(client.createMenuEntry("Use", "<col=ff9040>Knife<col=ffffff> -> <col=ff9040>Teak logs", 6333, WIDGET_TARGET_ON_WIDGET.getId(), teak.getIndex(), 9764864, false));
+                event.setMenuEntry(client.createMenuEntry("Use", "<col=ff9040>Knife<col=ffffff> -> <col=ff9040>Teak logs", 6333, WIDGET_TARGET_ON_WIDGET.getId(), teak.getSlot(), 9764864, false));
                 startingTickCount = client.getTickCount();
                 return;
             }
@@ -139,32 +134,32 @@ public class OneClick3t4g extends Plugin {
             }
         }else if(client.getTickCount()==(startingTickCount+1)){
             if(stage==2){
-                if (getItemFromInv(6979) != null) {
-                    WidgetItem granite = getItemFromInv(6979);
+                if (getItem(6979) != null) {
+                    Item granite = getItem(6979);
                     if(granite==null){
                         return;
                     }
-                    event.setMenuEntry(client.createMenuEntry("Drop", "<col=ff9040>Granite (500g)", granite.getId(), ITEM_FIFTH_OPTION.getId(), granite.getIndex(), 9764864, false));
+                    event.setMenuEntry(client.createMenuEntry("Drop", "<col=ff9040>Granite (500g)", granite.getId(), ITEM_FIFTH_OPTION.getId(), granite.getSlot(), 9764864, false));
                     stage=3;
-                } else if (getItemFromInv(6981) != null) {
-                    WidgetItem granite = getItemFromInv(6981);
+                } else if (getItem(6981) != null) {
+                    Item granite = getItem(6981);
                     if(granite==null){
                         return;
                     }
-                    event.setMenuEntry(client.createMenuEntry("Drop", "<col=ff9040>Granite (2kg)", granite.getId(), ITEM_FIFTH_OPTION.getId(), granite.getIndex(), 9764864, false));
+                    event.setMenuEntry(client.createMenuEntry("Drop", "<col=ff9040>Granite (2kg)", granite.getId(), ITEM_FIFTH_OPTION.getId(), granite.getSlot(), 9764864, false));
                     stage=3;
-                } else if (getItemFromInv(6983) != null) {
-                    WidgetItem granite = getItemFromInv(6983);
+                } else if (getItem(6983) != null) {
+                    Item granite = getItem(6983);
                     if(granite==null){
                         return;
                     }
-                    event.setMenuEntry(client.createMenuEntry("Drop", "<col=ff9040>Granite (5kg)", granite.getId(), ITEM_FIFTH_OPTION.getId(), granite.getIndex(), 9764864, false));
+                    event.setMenuEntry(client.createMenuEntry("Drop", "<col=ff9040>Granite (5kg)", granite.getId(), ITEM_FIFTH_OPTION.getId(), granite.getSlot(), 9764864, false));
                     stage=3;
                 }
             }else if(stage!=3){
                 if(config.humidify()){
-                    if(!inv.contains(1825)&&!inv.contains(1827)||!inv.contains(1829)||!inv.contains(1823)){
-                        if(inv.contains(1831)){
+                    if(!Items.INSTANCE.inventoryContains(1825)&&!Items.INSTANCE.inventoryContains(1827)||!Items.INSTANCE.inventoryContains(1829)||!Items.INSTANCE.inventoryContains(1823)){
+                        if(Items.INSTANCE.inventoryContains(1831)){
                             event.setMenuEntry(client.createMenuEntry("Cast","<col=00ff00>Humidify</col>",1,CC_OP.getId(),-1,14286958,false));
                         }else{
                             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you need to bring waterskins for this disabling plugin", null);
@@ -173,18 +168,18 @@ public class OneClick3t4g extends Plugin {
                         }
                     }
                 }
-                WidgetItem knife = getItemFromInv(946);
-                WidgetItem teak = getItemFromInv(6333);
+                Item knife = getItem(946);
+                Item teak = getItem(6333);
                 if(teak==null){
                     return;
                 }
                 if(knife!=null) {
-                    event.setSelectedItemIndex(knife.getIndex());
-                    client.setSelectedItemWidget(WidgetInfo.INVENTORY.getPackedId());
-                    client.setSelectedItemSlot(knife.getIndex());
-                    client.setSelectedItemID(knife.getId());
+                    event.setSelectedItemIndex(knife.getSlot());
+                    client.setSelectedSpellWidget(WidgetInfo.INVENTORY.getPackedId());
+                    client.setSelectedSpellItemId(knife.getId());
+                    client.setSelectedSpellChildIndex(knife.getSlot());
                     stage = 1;
-                    event.setMenuEntry(client.createMenuEntry("Use", "<col=ff9040>Knife<col=ffffff> -> <col=ff9040>Teak logs", 6333, WIDGET_TARGET_ON_WIDGET.getId(), teak.getIndex(), 9764864, false));
+                    event.setMenuEntry(client.createMenuEntry("Use", "<col=ff9040>Knife<col=ffffff> -> <col=ff9040>Teak logs", 6333, WIDGET_TARGET_ON_WIDGET.getId(), teak.getSlot(), 9764864, false));
                     startingTickCount = client.getTickCount();
                 }
             }
@@ -211,17 +206,11 @@ public class OneClick3t4g extends Plugin {
             PluginManager.INSTANCE.toggle(this);
         }
     }
-    private WidgetItem getItemFromInv(int id) {
-        Widget playerInv = client.getWidget(WidgetInfo.INVENTORY);
-        if (playerInv != null) {
-            for (WidgetItem widgetItem : playerInv.getWidgetItems()) {
-                if (widgetItem.getId() == id) {
-                    return widgetItem;
-                }
-            }
-        }
-        return null;
+    private meteor.api.items.Item getItem(int id) {
+        meteor.api.items.Item item = Items.INSTANCE.getFirst(new int[]{id}, InventoryID.INVENTORY);
+        return item;
     }
+
     @Override
     public void onClientTick(ClientTick event)
     {
