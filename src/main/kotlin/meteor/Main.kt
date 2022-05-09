@@ -24,6 +24,7 @@ import meteor.ui.overlay.tooltips.TooltipOverlay
 import meteor.ui.themes.MeteorliteTheme
 import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
+import meteor.util.GameEventManager
 import net.runelite.api.Client
 import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatCommandManager
@@ -60,6 +61,8 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     var interactionManager: InteractionManager? = null
     var chatMessageManager: ChatMessageManager? = null
     var chatCommandManager: ChatCommandManager? = null
+    var gameEventManager: GameEventManager? = null
+
     private val timer = StopWatch()
 
     @JvmStatic
@@ -95,6 +98,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         initOverlays()
         chatMessageManager = ChatMessageManager()
         chatCommandManager = ChatCommandManager()
+        gameEventManager = GameEventManager
         PluginManager.loadExternalPlugins()
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
