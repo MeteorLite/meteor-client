@@ -16,7 +16,7 @@ object CreateLauncherUpdate {
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "0.0.0-5"
+        update.version = "1.4.0-5"
         update.updateInfo = "Items are okay I guess"
 
         if (releaseDir.exists())
