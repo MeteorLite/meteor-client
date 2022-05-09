@@ -42,6 +42,7 @@ import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
+import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.oneclickagility.OneClickAgilityPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
@@ -94,6 +95,7 @@ object PluginManager {
         init<NpcAggroAreaPlugin>()
         init<NeverLogoutPlugin>()
         init<NightmareHelper>()
+        init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
         init<PrayerFlickerPlugin>()
         init<QuestHelperPlugin>()
