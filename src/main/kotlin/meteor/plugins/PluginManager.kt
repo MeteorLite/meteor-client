@@ -40,6 +40,7 @@ import net.runelite.client.plugins.fps.FpsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
+import net.runelite.client.plugins.loginscreen.LoginScreenPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
@@ -89,6 +90,7 @@ object PluginManager {
         init<ItemPricesPlugin>()
         init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
+        init<LoginScreenPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
