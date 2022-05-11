@@ -144,7 +144,7 @@ public class TilemanModePlugin extends Plugin {
 
     @Override
     public void onGameStateChanged(GameStateChanged gameStateChanged) {
-        if (gameStateChanged.getGamestate() != GameState.LOGGED_IN) {
+        if (gameStateChanged.getGameState() != GameState.LOGGED_IN) {
             lastTile = null;
             return;
         }

@@ -349,7 +349,7 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 	@Override
 	public void onGameStateChanged(GameStateChanged gameStateChanged)
 	{
-		switch (gameStateChanged.getGamestate())
+		switch (gameStateChanged.getGameState())
 		{
 			case HOPPING:
 				savedCameraYaw = client.getMapAngle();

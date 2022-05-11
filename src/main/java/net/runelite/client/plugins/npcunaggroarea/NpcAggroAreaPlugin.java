@@ -421,7 +421,7 @@ public class NpcAggroAreaPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(GameStateChanged event)
 	{
-		switch (event.getGamestate())
+		switch (event.getGameState())
 		{
 			case LOGGED_IN:
 				if (loggingIn)

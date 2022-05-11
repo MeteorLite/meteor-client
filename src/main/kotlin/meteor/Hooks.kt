@@ -50,7 +50,7 @@ class Hooks : Callbacks {
 
     init {
         EventBus.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) { event ->
-            when (event.data.gamestate ) {
+            when (event.data.gameState ) {
                 GameState.LOGGING_IN, GameState.HOPPING -> {
                     ignoreNextNpcUpdate = true
                 }

@@ -104,9 +104,9 @@ object GameEventManager {
                 Optional.ofNullable(tile.itemLayer).ifPresent { itemLayer: ItemLayer ->
                     var current: Node = itemLayer.bottom
                     while (current is TileItem) {
-                        current = current.getNext()
-                        val itemSpawned = ItemSpawned(tile, current as TileItem)
+                        val itemSpawned = ItemSpawned(tile, current)
                         Main.eventBus.post(Events.ITEM_SPAWNED, itemSpawned)
+                        current = current.getNext()
                     }
                 }
             }

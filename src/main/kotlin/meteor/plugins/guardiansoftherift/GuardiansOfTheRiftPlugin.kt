@@ -132,7 +132,7 @@ class GuardiansOfTheRiftPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        when (it.gamestate) {
+        when (it.gameState) {
             GameState.LOADING -> reset()
             else -> {}
         }

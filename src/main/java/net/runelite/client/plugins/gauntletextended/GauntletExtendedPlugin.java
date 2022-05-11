@@ -336,7 +336,7 @@ public class GauntletExtendedPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(final GameStateChanged event)
 	{
-		switch (event.getGamestate())
+		switch (event.getGameState())
 		{
 			case LOADING:
 				resources.clear();

@@ -54,7 +54,7 @@ public class DefaultWorldPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(GameStateChanged it)
 	{
-			if (it.getGamestate() == GameState.LOGIN_SCREEN) {
+			if (it.getGameState() == GameState.LOGIN_SCREEN) {
 				applyWorld();
 				unsubscribe();
 			}

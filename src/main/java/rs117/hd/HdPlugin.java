@@ -2219,7 +2219,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 	@Override
 	public void onGameStateChanged(GameStateChanged gameStateChanged)
 	{
-		switch (gameStateChanged.getGamestate()) {
+		switch (gameStateChanged.getGameState()) {
 			case LOGGED_IN:
 				invokeOnMainThread(this::uploadScene);
 				break;

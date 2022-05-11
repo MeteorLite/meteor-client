@@ -245,7 +245,7 @@ public class HerbiboarPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(GameStateChanged event)
 	{
-		switch (event.getGamestate())
+		switch (event.getGameState())
 		{
 			case HOPPING:
 			case LOGGING_IN:

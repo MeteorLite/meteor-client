@@ -61,7 +61,7 @@ public class ItemRequirement extends AbstractRequirement
 
 	@Setter
 	@Getter
-	protected int quantity;
+	public int quantity;
 
 	@Getter
 	@Setter

@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.questhelper.questhelpers.QuestHelper
 import com.questhelper.requirements.Requirement
+import com.questhelper.requirements.item.ItemRequirement
 import eventbus.events.GameTick
 import eventbus.events.ItemContainerChanged
 import meteor.Main
@@ -103,15 +104,33 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
             }
 
             LazyColumn(modifier = Modifier.fillMaxWidth().height((requirements.size * 32).dp).background(UI.darkThemeColors.surface).clip(
-                RoundedCornerShape(size = 30.dp)
+                RoundedCornerShape(size = 35.dp)
             ), horizontalAlignment = Alignment.CenterHorizontally, ) {
                 items(items = requirements, itemContent = { requirement ->
                     Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background)){
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                             modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background)) {
-                            val meetsRequirement = requirement.met
-                            val color = if (meetsRequirement) Color.Green else Color.Red
-                            Text(requirement.requirement.displayText,style = TextStyle(color = color, fontSize = 14.sp))
+
+                            if (requirement.requirement is ItemRequirement && requirement.requirement.quantity != -1) {
+                                val meetsRequirement = requirement.met
+                                Text(
+                                    "${requirement.requirement.quantity}",
+                                    style = TextStyle(color = Color.White, fontSize = 14.sp)
+                                )
+                                Spacer(modifier = Modifier.width(5.dp))
+                                val color = if (meetsRequirement) Color.Green else Color.Red
+                                Text(
+                                    requirement.requirement.displayText,
+                                    style = TextStyle(color = color, fontSize = 14.sp)
+                                )
+                            } else {
+                                val meetsRequirement = requirement.met
+                                val color = if (meetsRequirement) Color.Green else Color.Red
+                                Text(
+                                    requirement.requirement.displayText,
+                                    style = TextStyle(color = color, fontSize = 14.sp)
+                                )
+                            }
                         }
                     }
                 })

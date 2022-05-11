@@ -719,7 +719,7 @@ public class ChatCommandsPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(GameStateChanged event)
 	{
-		switch (event.getGamestate())
+		switch (event.getGameState())
 		{
 			case LOADING:
 			case HOPPING:

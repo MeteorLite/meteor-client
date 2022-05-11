@@ -184,7 +184,7 @@ public class ObjectStep extends DetailedQuestStep
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		super.onGameStateChanged(event);
-		if (event.getGamestate() == GameState.LOADING)
+		if (event.getGameState() == GameState.LOADING)
 		{
 			closestObject = null;
 			objects.clear();

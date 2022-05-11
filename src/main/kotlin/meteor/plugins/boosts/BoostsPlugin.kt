@@ -100,7 +100,7 @@ class BoostsPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: eventbus.events.GameStateChanged) {
-        when (it.gamestate) {
+        when (it.gameState) {
             GameState.LOGIN_SCREEN, GameState.HOPPING -> {
                 // After world hop and log out timers are in undefined state so just reset
                 lastChangeDown = -1

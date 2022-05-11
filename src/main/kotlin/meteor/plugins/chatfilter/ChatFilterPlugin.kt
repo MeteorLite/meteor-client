@@ -76,7 +76,7 @@ class ChatFilterPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        when (it.gamestate) {
+        when (it.gameState) {
             GameState.HOPPING, GameState.LOGGING_IN -> duplicateChatCache.values.forEach(
                 Consumer { d: Duplicate -> d.messageId = -1 } as (Duplicate?) -> Unit)
             else -> {}

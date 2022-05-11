@@ -140,7 +140,7 @@ public class NpcStep extends DetailedQuestStep
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		super.onGameStateChanged(event);
-		if (event.getGamestate() == GameState.HOPPING)
+		if (event.getGameState() == GameState.HOPPING)
 		{
 			npcs.clear();
 		}

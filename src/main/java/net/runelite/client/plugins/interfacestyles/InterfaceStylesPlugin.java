@@ -121,7 +121,7 @@ public class InterfaceStylesPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(GameStateChanged gameStateChanged)
 	{
-		if (gameStateChanged.getGamestate() != GameState.LOGIN_SCREEN)
+		if (gameStateChanged.getGameState() != GameState.LOGIN_SCREEN)
 		{
 			return;
 		}

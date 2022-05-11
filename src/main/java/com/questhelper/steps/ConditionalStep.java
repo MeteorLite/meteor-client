@@ -185,7 +185,7 @@ public class ConditionalStep extends QuestStep implements OwnerStep
 	@Override
 	public void onGameStateChanged(final GameStateChanged event)
 	{
-		if (event.getGamestate() == GameState.LOADING || event.getGamestate() == GameState.HOPPING)
+		if (event.getGameState() == GameState.LOADING || event.getGameState() == GameState.HOPPING)
 		{
 			steps.keySet().stream()
 				.filter(Objects::nonNull)

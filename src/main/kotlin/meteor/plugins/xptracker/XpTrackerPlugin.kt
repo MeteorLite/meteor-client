@@ -95,7 +95,7 @@ class XpTrackerPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        val state = it.gamestate
+        val state = it.gameState
         if (state == GameState.LOGGED_IN) {
             // LOGGED_IN is triggered between region changes too.
             // Check that the username changed or the world type changed.

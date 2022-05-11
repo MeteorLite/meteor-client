@@ -122,8 +122,8 @@ object ItemManager : EventSubscriber() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.gamestate == GameState.HOPPING
-                || it.gamestate == GameState.LOGIN_SCREEN) {
+        if (it.gameState == GameState.HOPPING
+                || it.gameState == GameState.LOGIN_SCREEN) {
             itemCompositions.invalidateAll()
         }
     }

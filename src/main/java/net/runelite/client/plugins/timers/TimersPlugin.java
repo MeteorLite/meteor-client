@@ -872,7 +872,7 @@ public class TimersPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(GameStateChanged gameStateChanged)
 	{
-		switch (gameStateChanged.getGamestate())
+		switch (gameStateChanged.getGameState())
 		{
 			case LOADING:
 				if (!isInNightmareZone())

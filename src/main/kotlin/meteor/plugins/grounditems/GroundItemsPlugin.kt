@@ -125,7 +125,7 @@ class GroundItemsPlugin : Plugin() {
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
-        if (it.gamestate == GameState.LOADING) {
+        if (it.gameState == GameState.LOADING) {
             collectedGroundItems.clear()
             lootbeams.clear()
         }

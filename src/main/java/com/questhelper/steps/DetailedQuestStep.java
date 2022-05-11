@@ -174,7 +174,7 @@ public class DetailedQuestStep extends QuestStep
 	@Override
 	public void onGameStateChanged(final GameStateChanged event)
 	{
-		if (event.getGamestate() == GameState.LOADING)
+		if (event.getGameState() == GameState.LOADING)
 		{
 			tileHighlights.clear();
 		}

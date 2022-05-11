@@ -25,6 +25,8 @@ import meteor.Main
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
+import meteor.config.legacy.Keybind
+import meteor.config.legacy.ModifierlessKeybind
 import meteor.plugins.PluginDescriptor
 import meteor.ui.UI
 import java.awt.Button
@@ -143,6 +145,7 @@ object Configuration {
                 configItemDescriptor.key()
             )
         )) }
+
         Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))){
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                 modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(UI.darkThemeColors.background)) {

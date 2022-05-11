@@ -293,7 +293,7 @@ public class QuestHelperPlugin extends Plugin
 	@Override
 	public void onGameStateChanged(final GameStateChanged event)
 	{
-		final GameState state = event.getGamestate();
+		final GameState state = event.getGameState();
 
 		if (state == GameState.LOGIN_SCREEN)
 		{

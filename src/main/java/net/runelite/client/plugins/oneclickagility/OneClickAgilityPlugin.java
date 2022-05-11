@@ -63,7 +63,7 @@ public class OneClickAgilityPlugin extends Plugin
     @Override
     public void onStart()
     {
-        course = CourseFactory.build(config.courseSelection());
+        resetCourse();
     }
 
     @Override
@@ -71,9 +71,13 @@ public class OneClickAgilityPlugin extends Plugin
     {
         if(event.getGroup().equals("oneclickagility"))
         {
-            course = CourseFactory.build(config.courseSelection());
-            gameEventManager.simulateGameEvents(this);
+            resetCourse();
         }
+    }
+
+    public void resetCourse() {
+        course = CourseFactory.build(config.courseSelection());
+        gameEventManager.simulateGameEvents(this);
     }
 
 
