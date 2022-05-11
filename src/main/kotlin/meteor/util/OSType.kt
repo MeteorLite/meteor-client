@@ -22,46 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.util;
+package meteor.util
+
+import java.util.*
 
 /**
  * An enum and util function to determine the OS.
  */
-public enum OSType
-{
-	Windows,
-	MacOS,
-	Linux,
-	Other;
+enum class OSType {
+    Windows, MacOS, Linux, Other;
 
-	private final static OSType OS_TYPE;
-
-	static
-	{
-		final String OS = System
-			.getProperty("os.name", "generic")
-			.toLowerCase();
-
-		if ((OS.contains("mac")) || (OS.contains("darwin")))
-		{
-			OS_TYPE = OSType.MacOS;
-		}
-		else if (OS.contains("win"))
-		{
-			OS_TYPE = OSType.Windows;
-		}
-		else if (OS.contains("nux"))
-		{
-			OS_TYPE = OSType.Linux;
-		}
-		else
-		{
-			OS_TYPE = OSType.Other;
-		}
-	}
-
-	public static OSType getOSType()
-	{
-		return OS_TYPE;
-	}
+    companion object {
+        var oSType: OSType? = null
+        init {
+            val OS = System
+                .getProperty("os.name", "generic")
+                .lowercase(Locale.getDefault())
+            oSType = if (OS.contains("mac") || OS.contains("darwin")) {
+                MacOS
+            } else if (OS.contains("win")) {
+                Windows
+            } else if (OS.contains("nux")) {
+                Linux
+            } else {
+                Other
+            }
+        }
+    }
 }
