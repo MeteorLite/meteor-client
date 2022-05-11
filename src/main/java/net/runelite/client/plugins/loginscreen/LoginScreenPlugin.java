@@ -181,7 +181,7 @@ public class LoginScreenPlugin extends Plugin implements KeyListener
 		}
 
 		// enable pasting on macOS with the Command (meta) key
-		boolean isModifierDown = OSType.getOSType() == OSType.MacOS ? e.isMetaDown() : e.isControlDown();
+		boolean isModifierDown = OSType.Companion.getOSType() == OSType.MacOS ? e.isMetaDown() : e.isControlDown();
 
 		if (e.getKeyCode() == KeyEvent.VK_V && isModifierDown)
 		{
