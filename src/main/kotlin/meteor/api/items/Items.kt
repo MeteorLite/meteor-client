@@ -6,6 +6,26 @@ import net.runelite.api.widgets.WidgetInfo
 
 object Items {
 
+    fun inventoryContains(vararg ids: Int): Boolean {
+        ids.forEach { if (inventoryContains(it)) return true }
+        return false
+    }
+
+    fun inventoryContains(vararg names: String): Boolean {
+        names.forEach { if (inventoryContains(it)) return true }
+        return false
+    }
+
+    fun equipmentContains(vararg ids: Int): Boolean {
+        ids.forEach { if (equipmentContains(it)) return true }
+        return false
+    }
+
+    fun equipmentContains(vararg names: String): Boolean {
+        names.forEach { if (equipmentContains(it)) return true }
+        return false
+    }
+
     fun inventoryContains(id: Int): Boolean {
         return getAll(id)?.any { it.id == id || it.notedId == id} ?: false
     }
@@ -77,7 +97,6 @@ object Items {
                         continue
                     }
 
-                    println("$slot-${item.id}")
                     val newItem = Item(Main.client, item.id, item.quantity)
                     newItem.widgetId = WidgetInfo.INVENTORY.packedId
                     newItem.slot = slot
