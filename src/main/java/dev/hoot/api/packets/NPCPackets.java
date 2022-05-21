@@ -70,6 +70,11 @@ public class NPCPackets
 		createItemOnNpcPacket(npcIndex, itemWidgetId, itemId, itemSlot, ctrlDown).send();
 	}
 
+	public static PacketBufferNode createItemOnNpcPacket(int npcIndex, int itemWidgetId, int itemId, int itemSlot, boolean ctrlDown)
+	{
+		return createWidgetOnNpc(npcIndex, itemWidgetId, itemId, itemSlot, ctrlDown);
+	}
+
 	public static void queueSpellOnNpcPacket(int npcIndex, int spellWidgetId, boolean ctrlDown)
 	{
 		createSpellOnNpcPacket(npcIndex, spellWidgetId, ctrlDown).send();
@@ -99,53 +104,71 @@ public class NPCPackets
 	{
 		createNpcFifthActionPacket(npcIndex, ctrlDown).send();
 	}
-
-	public static PacketBufferNode createItemOnNpcPacket(int npcIndex, int itemWidgetId, int itemId, int itemSlot,
-											  boolean ctrlDown)
-	{
-		return ClientPackets.INSTANCE.createItemOnNPCPacket("OPNPCU", npcIndex, itemWidgetId, itemId, itemSlot, ctrlDown);
-	}
-
-	public static PacketBufferNode createSpellOnNpcPacket(int npcIndex, int spellWidgetId, boolean ctrlDown)
-	{
-		return ClientPackets.INSTANCE.createSpellOnNPCPacket("OPNPCT", npcIndex, spellWidgetId, ctrlDown);
-	}
-
-	public static PacketBufferNode createNpcFirstActionPacket(int npcIndex, boolean ctrlDown)
-	{
-		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC1", npcIndex, ctrlDown);
-	}
-
-	public static PacketBufferNode createNpcSecondActionPacket(int npcIndex, boolean ctrlDown)
-	{
-		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC2", npcIndex, ctrlDown);
-	}
-
-	public static PacketBufferNode createNpcThirdActionPacket(int npcIndex, boolean ctrlDown)
-	{
-		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC3", npcIndex, ctrlDown);
-	}
-
-	public static PacketBufferNode createNpcFourthActionPacket(int npcIndex, boolean ctrlDown)
-	{
-		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC4", npcIndex, ctrlDown);
-	}
-
-	public static PacketBufferNode createNpcFifthActionPacket(int npcIndex, boolean ctrlDown)
-	{
-		return ClientPackets.INSTANCE.createNPCActionPacket("OPNPC5", npcIndex, ctrlDown);
-	}
-
-	public static PacketBufferNode createWidgetOnNpc(int npcIndex, int itemWidgetId, int itemId, int itemSlot, boolean ctrlDown)
+	public static PacketBufferNode createWidgetOnNpc(int npcIndex, int sourceWidgetId, int sourceItemId, int sourceSlot, boolean ctrlDown)
 	{
 		var client = Game.getClient();
 		var clientPacket = Game.getClientPacket();
 		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPCT(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeShortAddLE(npcIndex);
+		packetBufferNode.getPacketBuffer().writeShort(sourceItemId);
 		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
-		packetBufferNode.getPacketBuffer().writeShort(itemSlot);
+		packetBufferNode.getPacketBuffer().writeShortAdd(sourceSlot);
+		packetBufferNode.getPacketBuffer().writeIntLE(sourceWidgetId);
+		return packetBufferNode;
+	}
+
+	public static PacketBufferNode createSpellOnNpcPacket(int npcIndex, int spellWidgetId, boolean ctrlDown)
+	{
+		return createWidgetOnNpc(npcIndex, spellWidgetId, -1, -1, ctrlDown);
+	}
+
+	public static PacketBufferNode createNpcFirstActionPacket(int npcIndex, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC1(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeShortAdd(npcIndex);
+		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 1 : 0);
+		return packetBufferNode;
+	}
+
+	public static PacketBufferNode createNpcSecondActionPacket(int npcIndex, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC2(), client.getPacketWriter().getIsaacCipher());
 		packetBufferNode.getPacketBuffer().writeShortLE(npcIndex);
-		packetBufferNode.getPacketBuffer().writeIntLE(itemWidgetId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(itemId);
+		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
+		return packetBufferNode;
+	}
+
+	public static PacketBufferNode createNpcThirdActionPacket(int npcIndex, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC3(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(npcIndex);
+		return packetBufferNode;
+	}
+
+	public static PacketBufferNode createNpcFourthActionPacket(int npcIndex, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC4(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 1 : 0);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(npcIndex);
+		return packetBufferNode;
+	}
+
+	public static PacketBufferNode createNpcFifthActionPacket(int npcIndex, boolean ctrlDown)
+	{
+		var client = Game.getClient();
+		var clientPacket = Game.getClientPacket();
+		var packetBufferNode = Game.getClient().preparePacket(clientPacket.OPNPC5(), client.getPacketWriter().getIsaacCipher());
+		packetBufferNode.getPacketBuffer().writeShortLE(npcIndex);
+		packetBufferNode.getPacketBuffer().writeByteNeg(ctrlDown ? 1 : 0);
 		return packetBufferNode;
 	}
 }
