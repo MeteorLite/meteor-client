@@ -3,6 +3,7 @@ package meteor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.*
 import dev.hoot.api.InteractionManager
+import joptsimple.OptionParser
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
@@ -15,9 +16,9 @@ import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
+import meteor.ui.UI
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
-import meteor.ui.UI
 import meteor.ui.overlay.TooltipManager
 import meteor.ui.overlay.WidgetOverlay
 import meteor.ui.overlay.tooltips.TooltipOverlay
@@ -35,6 +36,8 @@ import org.apache.commons.lang3.time.StopWatch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
+import java.net.Authenticator
+import java.net.PasswordAuthentication
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -67,6 +70,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
 
     @JvmStatic
     fun main(args: Array<String>) = application {
+        handleProxy(args)
         ClientPackets
         timer.start()
         processArguments(args)
@@ -84,6 +88,31 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         )
 
     }
+
+    private fun handleProxy(args: Array<String>) {
+        args.firstOrNull { it == "proxy" }?.let { proxyArg ->
+            val proxy: Array<String> =
+                proxyArg.split(":".toRegex()).dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
+            if (proxy.size >= 2) {
+                System.setProperty("socksProxyHost", proxy[0])
+                System.setProperty("socksProxyPort", proxy[1])
+            }
+            if (proxy.size >= 4) {
+                System.setProperty("java.net.socks.username", proxy[2])
+                System.setProperty("java.net.socks.password", proxy[3])
+                val user = proxy[2]
+                val pass = proxy[3].toCharArray()
+                Authenticator.setDefault(object : Authenticator() {
+                    private val auth = PasswordAuthentication(user, pass)
+                    override fun getPasswordAuthentication(): PasswordAuthentication {
+                        return auth
+                    }
+                })
+            }
+        }
+    }
+
     fun finishStartup() {
         client = Applet.asClient(Applet.applet)
         client.callbacks = callbacks
