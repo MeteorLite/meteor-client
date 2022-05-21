@@ -3,7 +3,6 @@ package meteor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.*
 import dev.hoot.api.InteractionManager
-import joptsimple.OptionParser
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
@@ -38,6 +37,7 @@ import org.koin.core.component.get
 import org.koin.core.context.startKoin
 import java.net.Authenticator
 import java.net.PasswordAuthentication
+import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -90,26 +90,60 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     }
 
     private fun handleProxy(args: Array<String>) {
-        args.firstOrNull { it == "proxy" }?.let { proxyArg ->
-            val proxy: Array<String> =
-                proxyArg.split(":".toRegex()).dropLastWhile { it.isEmpty() }
-                    .toTypedArray()
-            if (proxy.size >= 2) {
-                System.setProperty("socksProxyHost", proxy[0])
-                System.setProperty("socksProxyPort", proxy[1])
+        var idx = 0
+        args.forEach { currentArg ->
+            if (currentArg == "-socks5Proxy") {
+                val proxy: Array<String> =
+                    args[idx+1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
+                        .toTypedArray()
+                if (proxy.size >= 2) {
+                    println("using socks5 URL: ${proxy[0]}")
+                    System.setProperty("socksProxyHost", proxy[0])
+                    System.setProperty("socksProxyPort", proxy[1])
+                }
+                if (proxy.size >= 4) {
+                    println("using socks5 USER: ${proxy[2]}")
+                    System.setProperty("java.net.socks.username", proxy[2])
+                    System.setProperty("java.net.socks.password", proxy[3])
+                    Authenticator.setDefault(ProxyAuth(proxy[2], proxy[3]))
+                }
+            } else if (currentArg == "-httpProxy") {
+                val proxy: Array<String> =
+                    args[idx+1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
+                        .toTypedArray()
+                if (proxy.size >= 2) {
+                    System.setProperty("http.proxyHost", proxy[0])
+                    System.setProperty("http.proxyPort", proxy[1])
+                }
+                if (proxy.size >= 4) {
+                    Authenticator.setDefault(ProxyAuth(proxy[2], proxy[3]))
+                }
+            } else if (currentArg == "-httpsProxy") {
+                println("Using HTTPS Proxy")
+                val proxy: Array<String> =
+                    args[idx+1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
+                        .toTypedArray()
+                if (proxy.size >= 2) {
+                    System.setProperty("https.proxyHost", proxy[0])
+                    System.setProperty("https.proxyPort", proxy[1])
+                }
+                if (proxy.size >= 4) {
+                    Authenticator.setDefault(ProxyAuth(proxy[2], proxy[3]))
+                }
             }
-            if (proxy.size >= 4) {
-                System.setProperty("java.net.socks.username", proxy[2])
-                System.setProperty("java.net.socks.password", proxy[3])
-                val user = proxy[2]
-                val pass = proxy[3].toCharArray()
-                Authenticator.setDefault(object : Authenticator() {
-                    private val auth = PasswordAuthentication(user, pass)
-                    override fun getPasswordAuthentication(): PasswordAuthentication {
-                        return auth
-                    }
-                })
-            }
+            idx++
+        }
+    }
+
+    class ProxyAuth constructor(user: String, password: String?) : Authenticator() {
+        val auth: PasswordAuthentication
+
+        init {
+            auth = PasswordAuthentication(user, password?.toCharArray() ?: charArrayOf())
+        }
+
+        override fun getPasswordAuthentication(): PasswordAuthentication {
+            return auth
         }
     }
 
