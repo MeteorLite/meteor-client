@@ -72,6 +72,12 @@ object Items {
             var slot = 0
             if (it.items.isNotEmpty())
                 for (item in it.items) {
+                    if (item.id == -1) {
+                        slot++
+                        continue
+                    }
+
+                    println("$slot-${item.id}")
                     val newItem = Item(Main.client, item.id, item.quantity)
                     newItem.widgetId = WidgetInfo.INVENTORY.packedId
                     newItem.slot = slot
@@ -115,10 +121,15 @@ object Items {
 
     fun isFull(inventoryID: InventoryID = InventoryID.INVENTORY) : Boolean {
         when (inventoryID) {
-            InventoryID.INVENTORY -> return Main.client.getItemContainer(inventoryID)?.items?.filter {
-                (it != null && it.name != "null")
-            }?.size == 28
+            InventoryID.INVENTORY -> return getAll()?.size == 28
             else -> {return false}
+        }
+    }
+
+    fun getFreeSlots(inventoryID: InventoryID = InventoryID.INVENTORY) : Int {
+        when (inventoryID) {
+            InventoryID.INVENTORY -> return 28 - getAll()?.size!!
+            else -> {return -1}
         }
     }
 }
