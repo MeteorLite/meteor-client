@@ -66,14 +66,9 @@ override val config = configuration<MinimapConfig>()
     }
 
     override fun onConfigChanged(it: ConfigChanged) {
-        if (!it.group.equals(MinimapConfig.GROUP)) {
 
-
-            if (it.key.equals("hideMinimap")) {
                 updateMinimapWidgetVisibility(config.hideMinimap())
                 replaceMapDots()
-            }
-        }
 
     }
 

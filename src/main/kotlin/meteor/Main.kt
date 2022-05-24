@@ -78,6 +78,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         callbacks = get()
         MeteorliteTheme.install()
         AppletConfiguration.init()
+        initConfig()
         Applet().init()
         Window(
             onCloseRequest = this::exitApplication,
@@ -150,10 +151,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     fun finishStartup() {
         client = Applet.asClient(Applet.applet)
         client.callbacks = callbacks
-        ConfigManager.loadSavedProperties()
-        val meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java) as MeteorConfig
-        ConfigManager.setDefaultConfiguration(meteorConfig, false)
-        Main.meteorConfig = meteorConfig
+
         WidgetInspector
         MenuManager
         interactionManager = InteractionManager()
@@ -165,6 +163,14 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         PluginManager.loadExternalPlugins()
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
+    }
+
+    fun initConfig(){
+        ConfigManager.loadSavedProperties()
+        val meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java) as MeteorConfig
+        ConfigManager.setDefaultConfiguration(meteorConfig, false)
+        Main.meteorConfig = meteorConfig
+
     }
 
     fun initOverlays() {

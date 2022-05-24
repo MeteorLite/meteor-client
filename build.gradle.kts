@@ -2,7 +2,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
 plugins {
     kotlin("jvm") version "1.6.20"
-    id("org.jetbrains.compose") version "0.0.0-on-rebase-12-apr-2022-dev668"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev686"
     java
     `maven-publish`
 }
@@ -81,7 +81,7 @@ dependencies {
     implementation("io.insert-koin:koin-core:3.1.5")
     implementation("com.kitfox.svg:svg-salamander:1.0")
     implementation("com.formdev:flatlaf-extras:2.1")
-
+    implementation ("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")
 
 
     implementation(compose.desktop.currentOs)

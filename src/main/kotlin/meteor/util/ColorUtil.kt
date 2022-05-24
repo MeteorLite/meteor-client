@@ -61,7 +61,26 @@ object ColorUtil {
     fun prependColorTag(str: String, color: Color): String {
         return colorTag(color) + str
     }
+    fun hsvToRgb(hsv: FloatArray): IntArray {
+        val (hue, saturation, value) = hsv
+        val h: Int = (hue / 60).toInt()
+        val f = hue / 60 - h
+        val p = value * (1 - saturation)
+        val q = value * (1 - f * saturation)
+        val t = value * (1 - (1 - f) * saturation)
 
+        val rgb = when (h) {
+            0    -> floatArrayOf(value, t, p)
+            1    -> floatArrayOf(q, value, p)
+            2    -> floatArrayOf(p, value, t)
+            3    -> floatArrayOf(p, q, value)
+            4    -> floatArrayOf(t, p, value)
+            5, 6 -> floatArrayOf(value, p, q)
+            else -> throw Exception()
+        }.map { it * 255 }
+        val (r, g, b) = rgb
+        return intArrayOf(r.toInt(), g.toInt(), b.toInt())
+    }
     /**
      * Wraps the given str with a color tag of the given color.
      *
