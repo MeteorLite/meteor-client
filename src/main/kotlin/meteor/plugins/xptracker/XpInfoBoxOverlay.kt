@@ -76,6 +76,12 @@ internal class XpInfoBoxOverlay(
             .orientation(ComponentOrientation.HORIZONTAL)
             .gap(Point(XP_AND_ICON_GAP, 0))
             .build()
+
+        // Don't show skills that have no data
+        if (rightNum == "0" &&
+            bottomRightNum == "0")
+            return null
+
         iconXpSplitPanel.children.add(iconXpSplit)
         val progressBarComponent = ProgressBarComponent()
         progressBarComponent.backgroundColor = Color(61, 56, 49)
