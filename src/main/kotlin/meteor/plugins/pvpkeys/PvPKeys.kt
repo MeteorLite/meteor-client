@@ -29,20 +29,11 @@ class PvPKeys : Plugin() {
     val meleeGear: MutableList<String>
         get() = mutableListOf(*config.MeleeIDs()!!.split(",").toTypedArray())
 
-    val melee
-    get() = Inventory.getFirst{meleeGear.contains(it.name) }
     val mageGear: MutableList<String>
         get() = mutableListOf(*config.MageIDs()!!.split(",").toTypedArray())
 
-    val mage
-        get() = Inventory.getAll{mageGear.contains(it.name) }
     val rangeGear: MutableList<String>
         get() = mutableListOf(*config.RangeIDs()!!.split(",").toTypedArray())
-
-    val range
-        get() = Inventory.getFirst{rangeGear.contains(it.name) }
-
-
 
 
             override fun onStart() {
