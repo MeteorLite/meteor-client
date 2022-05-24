@@ -22,11 +22,14 @@ import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
+import meteor.plugins.meteor.Meteor
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
 import meteor.plugins.nightmareHelper.NightmareHelper
 import meteor.plugins.prayerflicker.PrayerFlickerPlugin
+import meteor.plugins.pvpkeys.PvPKeys
+import meteor.plugins.pvpkeys.PvPKeysConfig
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
@@ -65,6 +68,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+        init<Meteor>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoLoginPlugin>()
@@ -99,6 +103,7 @@ object PluginManager {
         init<NightmareHelper>()
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
+        init<PvPKeys>()
         init<PrayerFlickerPlugin>()
         init<QuestHelperPlugin>()
         init<RsnHiderPlugin>()

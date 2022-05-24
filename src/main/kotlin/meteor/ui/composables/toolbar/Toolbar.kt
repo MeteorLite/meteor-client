@@ -8,11 +8,14 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isFinite
+import meteor.Main
 import meteor.ui.UI
 
 object Toolbar {
@@ -43,11 +46,11 @@ object Toolbar {
         box: BoxWithConstraintsScope,
         topToolbarButtons: SnapshotStateList<ToolbarButton> = this.topToolbarButtons,
         bottomToolbarButtons: SnapshotStateList<ToolbarButton> = this.bottomToolbarButtons) {
-        var mod = Modifier.background(Color(0x212121)).fillMaxHeight()
-        if (box.maxWidth > 1920.dp) {
-            mod = mod.fillMaxWidth(UI.toolbarWidth)
-        } else
-            mod = mod.fillMaxWidth(.06f)
+        val width = mutableStateOf(Main.meteorConfig!!.toolbarWidth().dp)
+        val mod = Modifier.background(Color(0x212121)).width(width.value)
+        if (!box.maxWidth.isFinite) {
+            mod.width(width.value)
+        }
         return Column(modifier = mod) {
             Column(horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(UI.darkThemeColors.surface)) {
