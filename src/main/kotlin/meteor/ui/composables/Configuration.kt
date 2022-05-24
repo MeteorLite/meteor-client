@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -29,7 +28,6 @@ import meteor.Main
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
-import meteor.config.legacy.Keybind
 import meteor.config.legacy.ModifierlessKeybind
 import meteor.plugins.PluginDescriptor
 import meteor.ui.UI
@@ -169,8 +167,6 @@ object Configuration {
         }
 
         MaterialTheme(colors = UI.darkThemeColors) {
-
-
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(60.dp)
@@ -250,22 +246,13 @@ object Configuration {
     }
     @Composable
     fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+        val config = ConfigManager.getConfiguration(
+            descriptor.group.value,
+            configItemDescriptor.key()
+        )!!
 
-        var sliderValue by remember { mutableStateOf(0f) }
-        val getInt by remember {
-            mutableStateOf(
-                Integer.valueOf(
-                    ConfigManager.getConfiguration(
-                        descriptor.group.value,
-                        configItemDescriptor.key()
-                    )
-                )
-            )
-        }
+        val sliderValue = mutableStateOf(config.toFloat())
 
-        var setConfigValue by remember {
-            mutableStateOf(ConfigManager.stringToObject(getInt.toString(), Int::class.java) as Int)
-        }
         Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
@@ -275,7 +262,7 @@ object Configuration {
                     Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
                 Text(
-                    text = setConfigValue.toString(),
+                    text = sliderValue.value.toString(),
                     modifier = Modifier.padding(8.dp),
                     style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
                 )
@@ -287,18 +274,14 @@ object Configuration {
             ) {
                 MaterialTheme(colors = UI.darkThemeColors) {
                     Slider(
-                        value = sliderValue,
+                        value = sliderValue.value,
                         onValueChange = {
-
-
-                            sliderValue = setConfigValue.toFloat()
-                            setConfigValue = it.toInt()
+                            sliderValue.value = it
                             ConfigManager.setConfiguration(
                                 descriptor.group.value,
                                 configItemDescriptor.key(),
                                 it.toInt()
                             )
-                            println(setConfigValue)
                         },
                         valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
                         modifier = Modifier.padding(all = 0.dp),
