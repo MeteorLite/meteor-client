@@ -66,6 +66,7 @@ import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 @PluginDescriptor(
     name = "Ground Items",
@@ -191,31 +192,32 @@ class GroundItemsPlugin : Plugin() {
     override fun onClientTick(it: ClientTick) {
         if (config.collapseEntries()) {
             val menuEntries = client.menuEntries
-            val newEntries: MutableList<MenuEntryWithCount?> = ArrayList(menuEntries.size)
+            val sizeFilteredEntries: MutableList<MenuEntryWithCount?> = ArrayList(menuEntries.size)
             outer@ for (i in menuEntries.indices.reversed()) {
                 val menuEntry = menuEntries[i]
                 val menuType = menuEntry.type
                 if (menuType.id == FIRST_OPTION || menuType.id  == SECOND_OPTION || menuType.id  == THIRD_OPTION || menuType.id  == FOURTH_OPTION || menuType.id  == FIFTH_OPTION || menuType.id  == EXAMINE_ITEM) {
-                    for (entryWCount in newEntries) {
+                    for (entryWCount in sizeFilteredEntries) {
                         if (entryWCount!!.entry == menuEntry) {
                             entryWCount.increment()
                             continue@outer
                         }
                     }
                 }
-                newEntries.add(MenuEntryWithCount(menuEntry))
+                sizeFilteredEntries.add(MenuEntryWithCount(menuEntry))
             }
-            Collections.reverse(newEntries)
-            client.menuEntries = newEntries.stream().map { e: MenuEntryWithCount? ->
-                val entry = e!!.entry
-                val count = e.count
+            sizeFilteredEntries.reverse()
+            val newEntries = ArrayList<MenuEntry>()
+            sizeFilteredEntries.forEach {
+                val entry = it!!.entry
+                val count = it.count
                 if (count > 1) {
                     entry.target = entry.target + " x " + count
                 }
-                entry
-            }.toArray { emptyArray<MenuEntry>() }
+                newEntries.add(entry)
+            }
+            client.menuEntries = newEntries.toArray( emptyArray() )
         }
-
     }
 
     private fun lootReceived(items: Collection<ItemStack>, lootType: LootType) {
