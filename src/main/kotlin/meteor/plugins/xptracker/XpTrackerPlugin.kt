@@ -68,7 +68,6 @@ class XpTrackerPlugin : Plugin() {
     private var startedCooldowns = false
     private var ignoredfirstHPUpdate = false
     private val skillUpdates = HashMap<Skill, Long>()
-    private val lastSkillXPs = HashMap<Skill, Int>()
 
     override fun onStart() {
         // Initialize the tracker & last xp if already logged in
@@ -148,7 +147,7 @@ class XpTrackerPlugin : Plugin() {
             XpInfoBoxOverlay(
                 this, config, skill!!, skillIconManager.getSkillImage(
                     skill
-                )!!
+                )
             )
         )
     }
@@ -276,14 +275,8 @@ class XpTrackerPlugin : Plugin() {
                         if (config.addToCanvasOnUpdate()) {
                             skillUpdates[skill] = System.currentTimeMillis()
                             if (!hasOverlay(skill)) {
-                                if (lastSkillXPs.getOrDefault(skill, client.getSkillExperience(skill)) != client.getSkillExperience(
-                                        skill
-                                    )
-                                ) {
-                                    addOverlay(skill)
-                                }
+                                addOverlay(skill)
                             }
-                            lastSkillXPs[skill] = client.getSkillExperience(skill)
                         }
                 }
             }
@@ -379,13 +372,20 @@ class XpTrackerPlugin : Plugin() {
             .setTarget(skillText)
             .setOption(if (hasOverlay(skill)) MENUOP_REMOVE_CANVAS_TRACKER else MENUOP_ADD_CANVAS_TRACKER)
             .setType(MenuAction.RUNELITE)
-            .onClick { e: MenuEntry? ->
-                if (hasOverlay(skill)) {
-                    removeOverlay(skill)
-                } else {
-                    addOverlay(skill)
-                }
+    }
+
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        var skill: Skill? = null
+        try {
+            skill = Skill.valueOf(Text.removeTags(it.getMenuTarget()).toUpperCase())
+        } catch (_: java.lang.Exception) {}
+
+        skill?.let { skill ->
+            when (it.getMenuOption()) {
+                MENUOP_REMOVE_CANVAS_TRACKER -> if (hasOverlay(skill)) removeOverlay(skill)
+                MENUOP_ADD_CANVAS_TRACKER -> if (!hasOverlay(skill)) addOverlay(skill)
             }
+        }
     }
 
     fun getSkillState(skill: Skill?): XpStateSingle {
