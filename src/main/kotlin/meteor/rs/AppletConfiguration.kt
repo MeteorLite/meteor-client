@@ -35,7 +35,7 @@ object AppletConfiguration {
     private fun processConfiguration(reader: BufferedReader, properties: MutableMap<String, String>, parameters: MutableMap<String, String>) {
         var line: String?
         while (reader.readLine().also { line = it } != null) {
-            if (line != null) {
+
                 val split1 = line!!.split("=", limit = 2).toTypedArray()
                 when (split1[0]) {
                     "param" -> {
@@ -47,7 +47,6 @@ object AppletConfiguration {
                     else -> properties[split1[0]] = split1[1]
                 }
             }
-        }
         AppletConfiguration.properties = properties
         AppletConfiguration.parameters = parameters
     }

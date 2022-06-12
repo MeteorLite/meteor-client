@@ -8,7 +8,7 @@ import androidx.compose.ui.awt.SwingPanel
 import androidx.compose.ui.graphics.Color
 import meteor.Main
 import meteor.rs.Applet
-import meteor.ui.UI
+
 import java.awt.BorderLayout
 import javax.swing.JPanel
 

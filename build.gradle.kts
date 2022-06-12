@@ -82,7 +82,7 @@ dependencies {
     implementation("com.kitfox.svg:svg-salamander:1.0")
     implementation("com.formdev:flatlaf-extras:2.1")
     implementation ("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")
-
+    implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
 
     implementation(compose.desktop.currentOs)
 }

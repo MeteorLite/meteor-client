@@ -22,8 +22,9 @@ import com.questhelper.requirements.item.ItemRequirement
 import eventbus.events.GameTick
 import eventbus.events.ItemContainerChanged
 import meteor.Main
-import meteor.ui.UI
+
 import meteor.ui.composables.PluginPanel
+import meteor.ui.composables.darkThemeColors
 
 class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     var quest = questHelper.quest
@@ -73,18 +74,18 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     @Composable override fun Header() {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(darkThemeColors.background)) {
+            MaterialTheme(colors = darkThemeColors) {
                 Text(quest.getName(),style = TextStyle(color = Color.Cyan, fontSize = 20.sp))
             }
         }
     }
 
     @Composable override fun Content() {
-        LazyColumn(modifier = Modifier.fillMaxWidth().fillMaxHeight().background(UI.darkThemeColors.surface)) {
+        LazyColumn(modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.surface)) {
             item {
                 Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top, modifier = Modifier.fillMaxSize()) {
-                    MaterialTheme(colors = UI.darkThemeColors) {
+                    MaterialTheme(colors = darkThemeColors) {
                         Requirements(generalRequirementsMet.value, "General requirements")
                         Requirements(itemRequirementsMet.value, "Item requirements")
                         Requirements(itemRecommendMet.value, "Item recommendation")
@@ -99,17 +100,17 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     @Composable fun Requirements(requirements: ArrayList<RequirementMet>, text: String) {
         if (requirements.isNotEmpty()) {
-            Row(modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 30.dp).background(UI.darkThemeColors.surface)){
+            Row(modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 30.dp).background(darkThemeColors.surface)){
                 Text(text, style = TextStyle(color = Color.Cyan, fontSize = 14.sp), modifier = Modifier.align(Alignment.Bottom))
             }
 
-            LazyColumn(modifier = Modifier.fillMaxWidth().height((requirements.size * 32).dp).background(UI.darkThemeColors.surface).clip(
+            LazyColumn(modifier = Modifier.fillMaxWidth().height((requirements.size * 32).dp).background(darkThemeColors.surface).clip(
                 RoundedCornerShape(size = 35.dp)
             ), horizontalAlignment = Alignment.CenterHorizontally, ) {
                 items(items = requirements, itemContent = { requirement ->
-                    Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background)){
+                    Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background)){
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background)) {
+                            modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background)) {
 
                             if (requirement.requirement is ItemRequirement && requirement.requirement.quantity != -1) {
                                 val meetsRequirement = requirement.met
@@ -140,19 +141,19 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     @Composable fun NonUpdatingTextList(list: List<String>?, text: String) {
         if (!list.isNullOrEmpty()) {
-            Row(modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 30.dp).background(UI.darkThemeColors.surface)){
+            Row(modifier = Modifier.fillMaxWidth().defaultMinSize(minHeight = 30.dp).background(darkThemeColors.surface)){
                 Text(text, style = TextStyle(color = Color.Cyan, fontSize = 14.sp), modifier = Modifier.align(Alignment.Bottom))
             }
 
-            LazyColumn(modifier = Modifier.fillMaxWidth().height((list.size * 32).dp).background(UI.darkThemeColors.surface), horizontalAlignment = Alignment.CenterHorizontally, ) {
+            LazyColumn(modifier = Modifier.fillMaxWidth().height((list.size * 32).dp).background(darkThemeColors.surface), horizontalAlignment = Alignment.CenterHorizontally, ) {
                 items(items = list, itemContent = { line ->
                     if (line == "</br>") {
-                        Spacer(Modifier.height(10.dp).background(UI.darkThemeColors.background))
+                        Spacer(Modifier.height(10.dp).background(darkThemeColors.background))
                     }
                     else {
-                        Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background)){
+                        Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background)){
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                                modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(UI.darkThemeColors.background).clip(
+                                modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background).clip(
                                     RoundedCornerShape(size = 30.dp)
                                 )) {
                                 val color = Color.White

@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -22,6 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.godaddy.android.colorpicker.harmony.ColorHarmonyMode
 import com.godaddy.android.colorpicker.harmony.HarmonyColorPicker
+import compose.icons.Octicons
+import compose.icons.octicons.ChevronLeft24
 import eventbus.Events
 import eventbus.events.ConfigButtonClicked
 import meteor.Main
@@ -30,29 +33,32 @@ import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
 import meteor.config.legacy.ModifierlessKeybind
 import meteor.plugins.PluginDescriptor
-import meteor.ui.UI
+import meteor.ui.*
 import meteor.util.ColorUtil
 import java.awt.Button
 import java.awt.event.KeyEvent
 import java.util.stream.Collectors
 
-object Configuration {
+
 
     @Composable
-    fun ConfigPanel(box: BoxWithConstraintsScope) {
-        var mod = Modifier.background(UI.darkThemeColors.background).fillMaxHeight()
-        if (box.maxWidth > 1920.dp) {
-            mod = mod.fillMaxWidth(.2f)
-        } else
-            mod = mod.fillMaxWidth(.3f)
+    fun ConfigPanel() {
+
+        var mod = Modifier.background(darkThemeColors.background).fillMaxHeight().width(375.dp)
+
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-                modifier = mod) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-                    modifier = Modifier.fillMaxHeight().fillMaxWidth(.95f)) {
-                    MaterialTheme(colors = UI.darkThemeColors) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
+                modifier = mod
+            ) {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
+                    modifier = Modifier.fillMaxHeight()
+                ) {
+                    MaterialTheme(colors = darkThemeColors) {
                         ConfigPanelHeader()
                         Configs()
+
                     }
                 }
             }
@@ -61,26 +67,70 @@ object Configuration {
 
     @Composable
     fun ConfigPanelHeader() {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
-                Text(UI.lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = Color.Cyan, fontSize = 24.sp))
+
+        Row {
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.fillMaxWidth(0.85f).height(65.dp).background(darkThemeColors.background)
+            ) {
+               Row (verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start){
+                   IconButton(modifier = Modifier.padding(top = 10.dp), onClick = {
+
+                       if (configOpen.value) {
+
+                           configOpen.value = false
+
+                       }
+                       if (!pluginsOpen.value)
+                           pluginsOpen.value = true
+                   }) {
+                       Icon(
+                           imageVector = Octicons.ChevronLeft24,
+                           contentDescription = "Back to plugin page",
+                           tint = Color.Cyan
+                       )
+                   }
+               }
+                Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start) {
+                    Spacer(Modifier.width(20.dp))
+                    MaterialTheme(colors = darkThemeColors) {
+                        Text(
+                            lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
+                            style = TextStyle(color = Color.Cyan, fontSize = 24.sp),
+                            modifier = Modifier.padding(top = 10.dp)
+                        )
+                    }
+                }
+
+            }
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.End,modifier = Modifier.padding( top = 15.dp)) {
+                val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
+                Switch(
+                    switchState.value,
+                    onPluginToggled(switchState, lastPlugin),
+                    enabled = true,
+                    modifier = Modifier.scale(0.75f),
+                    colors = SwitchDefaults.colors(checkedThumbColor = Color(133,255,215))
+                )
+
             }
         }
+
     }
 
     @Composable
     fun Configs() {
         Column(
             horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(UI.darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background)
         ) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            MaterialTheme(colors = darkThemeColors) {
                 var descriptor: ConfigDescriptor? = null
-                if (UI.lastPlugin.config != null)
-                    descriptor = ConfigManager.getConfigDescriptor(UI.lastPlugin.config!!)
-                else if (UI.lastPlugin.javaConfig != null)
-                    descriptor = ConfigManager.getConfigDescriptor(UI.lastPlugin.javaConfig!!)
+                if (lastPlugin.config != null)
+                    descriptor = ConfigManager.getConfigDescriptor(lastPlugin.config!!)
+                else if (lastPlugin.javaConfig != null)
+                    descriptor = ConfigManager.getConfigDescriptor(lastPlugin.javaConfig!!)
 
                 if (descriptor != null) {
                     LazyColumn(modifier = Modifier.fillMaxHeight()) {
@@ -97,7 +147,7 @@ object Configuration {
                                         }
                                     } else if (configuration.item.textField) {
                                         createIntegerAreaTextNode(descriptor, configuration)
-                                    }else{
+                                    } else {
                                         createIntegerTextNode(descriptor, configuration)
                                     }
                                 }
@@ -106,11 +156,10 @@ object Configuration {
                                 Button::class.java -> createButtonNode(descriptor, configuration)
                                 java.awt.Color::class.java -> createColorPickerNode(descriptor, configuration)
                                 ModifierlessKeybind::class.java -> createHotKeyNode(descriptor, configuration)
-                                String::class.java ->{
+                                String::class.java -> {
                                     if (configuration.item.textField) {
                                         createStringAreaTextNode(descriptor, configuration)
-                                    }
-                                    else{
+                                    } else {
 
                                         createStringTextNode(descriptor, configuration)
                                     }
@@ -130,30 +179,38 @@ object Configuration {
 
     @Composable
     fun createBooleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var toggled by remember { mutableStateOf (
-            ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
-            ).toBoolean()) }
-        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)){
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+        var toggled by remember {
+            mutableStateOf(
+                ConfigManager.getConfiguration(
+                    descriptor.group.value,
+                    configItemDescriptor.key()
+                ).toBoolean()
+            )
+        }
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(darkThemeColors.background)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(darkThemeColors.background)
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
+                    Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth().height(32.dp).background(darkThemeColors.background)
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
                     Switch(toggled, onCheckedChange = {
                         ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
                         toggled = it
-                    }, enabled = true)
+                    }, enabled = true, modifier = Modifier.scale(0.85f))
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
+
     @Composable
     fun createHotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
         val configStr = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())!!
@@ -166,7 +223,9 @@ object Configuration {
             )
         }
 
-        MaterialTheme(colors = UI.darkThemeColors) {
+        MaterialTheme(colors = darkThemeColors) {
+
+
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(60.dp)
@@ -194,7 +253,7 @@ object Configuration {
                         }.background(Color(0xFF242424), RoundedCornerShape(4.dp)).width(150.dp)
                 )
             }
-            Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+            Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
         }
     }
 
@@ -216,9 +275,9 @@ object Configuration {
         }
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(UI.darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
         ) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+            MaterialTheme(colors = darkThemeColors) {
                 Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
             }
         }
@@ -244,25 +303,35 @@ object Configuration {
 
 
     }
+
     @Composable
     fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        val config = ConfigManager.getConfiguration(
-            descriptor.group.value,
-            configItemDescriptor.key()
-        )!!
 
-        val sliderValue = mutableStateOf(config.toFloat())
+        var sliderValue by remember { mutableStateOf(0f) }
+        val getInt by remember {
+            mutableStateOf(
+                Integer.valueOf(
+                    ConfigManager.getConfiguration(
+                        descriptor.group.value,
+                        configItemDescriptor.key()
+                    )
+                )
+            )
+        }
 
+        var setConfigValue by remember {
+            mutableStateOf(ConfigManager.stringToObject(getInt.toString(), Int::class.java) as Int)
+        }
         Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(UI.darkThemeColors.background)
+                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
             ) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
                 Text(
-                    text = sliderValue.value.toString(),
+                    text = setConfigValue.toString(),
                     modifier = Modifier.padding(8.dp),
                     style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
                 )
@@ -272,16 +341,20 @@ object Configuration {
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))
             ) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     Slider(
-                        value = sliderValue.value,
+                        value = sliderValue,
                         onValueChange = {
-                            sliderValue.value = it
+
+
+                            sliderValue = setConfigValue.toFloat()
+                            setConfigValue = it.toInt()
                             ConfigManager.setConfiguration(
                                 descriptor.group.value,
                                 configItemDescriptor.key(),
                                 it.toInt()
                             )
+                            println(setConfigValue)
                         },
                         valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
                         modifier = Modifier.padding(all = 0.dp),
@@ -290,23 +363,28 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
+
     @Composable
     fun createIntegerAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var text by remember { mutableStateOf ("" +
-                ConfigManager.getConfiguration(
-                    descriptor.group.value,
-                    configItemDescriptor.key()
+        var text by remember {
+            mutableStateOf(
+                "" +
+                        ConfigManager.getConfiguration(
+                            descriptor.group.value,
+                            configItemDescriptor.key()
 
-                )) }
+                        )
+            )
+        }
         Row(modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424))) {
 
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424))
             ) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
 
                     OutlinedTextField(
                         modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424)),
@@ -331,57 +409,77 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
+
     @Composable
     fun createIntegerTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var text by remember { mutableStateOf ("" + Integer.valueOf(
-            ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
+        var text by remember {
+            mutableStateOf(
+                "" + Integer.valueOf(
+                    ConfigManager.getConfiguration(
+                        descriptor.group.value,
+                        configItemDescriptor.key()
+                    )
+                )
             )
-        )) }
+        }
 
-        Row(modifier = Modifier.fillMaxWidth().height(60.dp)){
+        Row(modifier = Modifier.fillMaxWidth().height(60.dp)) {
 
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
                     OutlinedTextField(
                         modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424)),
                         value = text,
                         visualTransformation = if (!configItemDescriptor.secret()) VisualTransformation.None else PasswordVisualTransformation(),
                         onValueChange = {
                             try {
-                                ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(),
+                                ConfigManager.setConfiguration(
+                                    descriptor.group.value, configItemDescriptor.key(),
                                     it
                                 )
                                 text = it
-                            } catch (_: Exception) { }
+                            } catch (_: Exception) {
+                            }
                         },
                         maxLines = 30,
-                        label = {Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))},
-                        textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+                        label = {
+                            Text(
+                                configItemDescriptor.name(),
+                                style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                            )
+                        },
+                        textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                    )
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
+
     @Composable
     fun createStringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var text by remember { mutableStateOf ("" +
-                ConfigManager.getConfiguration(
-                    descriptor.group.value,
-                    configItemDescriptor.key()
+        var text by remember {
+            mutableStateOf(
+                "" +
+                        ConfigManager.getConfiguration(
+                            descriptor.group.value,
+                            configItemDescriptor.key()
 
-                )) }
+                        )
+            )
+        }
         Row(modifier = Modifier.fillMaxWidth().height(100.dp)) {
 
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424))
             ) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
 
                     OutlinedTextField(
                         modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424)),
@@ -406,33 +504,46 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
+
     @Composable
     fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var text by remember { mutableStateOf ("" +
-                ConfigManager.getConfiguration(
-                    descriptor.group.value,
-                    configItemDescriptor.key()
+        var text by remember {
+            mutableStateOf(
+                "" +
+                        ConfigManager.getConfiguration(
+                            descriptor.group.value,
+                            configItemDescriptor.key()
 
-                )) }
-        Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))){
+                        )
+            )
+        }
+        Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))) {
 
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
                     OutlinedTextField(
                         value = text,
                         visualTransformation = if (!configItemDescriptor.secret()) VisualTransformation.None else PasswordVisualTransformation(),
                         onValueChange = {
 
-                                ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(),
-                                    it
-                                )
-                                text = it
+                            ConfigManager.setConfiguration(
+                                descriptor.group.value, configItemDescriptor.key(),
+                                it
+                            )
+                            text = it
 
                         },
-                        label = {Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))},
+                        label = {
+                            Text(
+                                configItemDescriptor.name(),
+                                style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                            )
+                        },
                         singleLine = true,
                         modifier = Modifier.padding(all = 0.dp),
                         textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
@@ -440,7 +551,7 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
 
     @Composable
@@ -448,10 +559,12 @@ object Configuration {
         var expanded by remember { mutableStateOf(false) }
         val type = configItemDescriptor.type
         val currentConfigEnum =
-            java.lang.Enum.valueOf(type as Class<out Enum<*>>, ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
-            )!!)
+            java.lang.Enum.valueOf(
+                type as Class<out Enum<*>>, ConfigManager.getConfiguration(
+                    descriptor.group.value,
+                    configItemDescriptor.key()
+                )!!
+            )
         val list: MutableList<Enum<*>> = ArrayList()
         var currentToSet: Enum<*>? = null
         for (o in type.enumConstants) {
@@ -461,20 +574,30 @@ object Configuration {
             list.add(o)
         }
         var selectedIndex by remember { mutableStateOf(list.indexOf(currentToSet)) }
-        Row(modifier = Modifier.fillMaxWidth().height(32.dp)){
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
+                    Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(32.dp)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth().height(32.dp)
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
                     Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
-                        Text(list[selectedIndex].name, color = Color.Cyan, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
-                            Color(0xFF242424)
-                        ))
+                        Text(
+                            list[selectedIndex].name,
+                            color = Color.Cyan,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true })
+                                .background(
+                                    Color(0xFF242424)
+                                )
+                        )
                         DropdownMenu(
                             expanded = expanded,
                             onDismissRequest = { expanded = false },
@@ -484,7 +607,11 @@ object Configuration {
                                 DropdownMenuItem(onClick = {
                                     selectedIndex = index
                                     expanded = false
-                                    ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), list[selectedIndex].name)
+                                    ConfigManager.setConfiguration(
+                                        descriptor.group.value,
+                                        configItemDescriptor.key(),
+                                        list[selectedIndex].name
+                                    )
                                 }, content = {
                                     Text(text = s.toString(), color = Color.Cyan, fontSize = 14.sp)
                                 })
@@ -494,37 +621,48 @@ object Configuration {
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
 
     @Composable
     fun createButtonNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-        var text by remember { mutableStateOf ("" + Integer.valueOf(
-            ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
+        var text by remember {
+            mutableStateOf(
+                "" + Integer.valueOf(
+                    ConfigManager.getConfiguration(
+                        descriptor.group.value,
+                        configItemDescriptor.key()
+                    )
+                )
             )
-        )) }
-        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))){
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(UI.darkThemeColors.background)) {
-                MaterialTheme(colors = UI.darkThemeColors) {
-                    Text(configItemDescriptor.name(),style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+        }
+        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
+                    Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
                 }
             }
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
-                MaterialTheme(colors = UI.darkThemeColors) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))
+            ) {
+                MaterialTheme(colors = darkThemeColors) {
                     OutlinedButton(onClick = {
                         //TODO fix enum
-                        Main.client.callbacks.post(Events.CONFIG_CHANGED, ConfigButtonClicked(descriptor.group.value, configItemDescriptor.key()))}
+                        Main.client.callbacks.post(
+                            Events.CONFIG_CHANGED,
+                            ConfigButtonClicked(descriptor.group.value, configItemDescriptor.key())
+                        )
+                    }
                     ) {
                         Text(configItemDescriptor.name())
                     }
                 }
             }
         }
-        Spacer(Modifier.height(4.dp).background(UI.darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
     }
 
-}

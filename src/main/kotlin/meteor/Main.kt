@@ -15,7 +15,8 @@ import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
-import meteor.ui.UI
+import meteor.ui.composables.Window
+
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
 import meteor.ui.overlay.TooltipManager
@@ -85,7 +86,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
-            content = UI.Window() //::finishStartup is called at the end of this function
+            content = {this.Window()} //::finishStartup is called at the end of this function
         )
 
     }
