@@ -1,5 +1,6 @@
 package meteor.config
 
+import androidx.compose.ui.unit.LayoutDirection
 import meteor.Configuration
 import net.runelite.client.config.*
 import meteor.config.legacy.Keybind
@@ -25,6 +26,35 @@ interface MeteorConfig : Config {
     )
     fun toolbarWidth():Int{
         return 35
+    }
+    @ConfigItem(
+        name = "toolbar placement",
+        keyName = "toolbar placement",
+        description = "",
+        position = 2
+    )
+    fun toolbarPlacement(): LayoutDirection {
+        return LayoutDirection.Rtl
+    }
+    @Range(min = 8,max = 45,textInput = false)
+    @ConfigItem(
+        name = "Plugin list Text Size",
+        keyName = "Plugin list Text Size",
+        description = "Slide this to change the plugin list text size",
+        position = 0,
+    )
+    fun pluginListTextSize():Int{
+        return 15
+    }
+    @Range(min = 1,max = 19,textInput = false)
+    @ConfigItem(
+        name = "Plugin List Spacer",
+        keyName = "Plugin list Spacer",
+        description = "",
+        position = 0,
+    )
+    fun pluginSpaceBetween():Int{
+        return 7
     }
     @ConfigItem(
         keyName = "infoBoxVertical",

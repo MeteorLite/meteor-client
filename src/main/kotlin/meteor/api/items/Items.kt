@@ -1,10 +1,19 @@
 package meteor.api.items
 
+import dev.hoot.api.commons.Predicates
+import dev.hoot.api.game.Game
+import dev.hoot.api.game.GameThread
+import dev.hoot.api.items.Inventory
 import meteor.Main
 import net.runelite.api.InventoryID
+import net.runelite.api.ItemContainer
 import net.runelite.api.widgets.WidgetInfo
+import java.util.*
+import java.util.function.Predicate
+import java.util.stream.Collectors
 
 object Items {
+
 
     fun inventoryContains(vararg ids: Int): Boolean {
         ids.forEach { if (inventoryContains(it)) return true }
@@ -65,6 +74,9 @@ object Items {
     fun getFirst(vararg ids: Int, container: InventoryID? = InventoryID.INVENTORY): Item? {
         return getAll(*ids, container = container)?.firstOrNull()
     }
+    fun getFirstBank(vararg ids: Int, container: InventoryID? = InventoryID.BANK): Item? {
+        return getAll(*ids, container = container)?.firstOrNull()
+    }
 
     fun getFirst(vararg names: String, container: InventoryID? = InventoryID.INVENTORY): Item? {
         return getAll(*names, container = container)?.firstOrNull()
@@ -112,6 +124,59 @@ object Items {
         return items
     }
 
+    fun getAllGear(inventoryID: InventoryID = InventoryID.EQUIPMENT): ArrayList<Item>? {
+        var items: ArrayList<Item>? = null
+        Main.client.getItemContainer(inventoryID)?.let {
+            var slot = 0
+            if (it.items.isNotEmpty())
+                for (item in it.items) {
+                    if (item.id == -1) {
+                        slot++
+                        continue
+                    }
+
+                    val newItem = Item(Main.client, item.id, item.quantity)
+                    newItem.widgetId = WidgetInfo.EQUIPMENT.packedId
+                    newItem.slot = slot
+                    if (items == null) {
+                        items = ArrayList()
+                        items!!.add(newItem)
+                    }
+                    else
+                        items!!.add(newItem)
+                    slot++
+                }
+        }
+        return items
+    }
+
+    fun getItems(items: List<net.runelite.api.Item>): List<IntArray> {
+        val retItems: MutableList<IntArray> = ArrayList()
+        var currItemID = -1
+        var currQuantity = -1
+        items.forEach {
+            when {
+                it.id != currItemID -> {
+                    if (currItemID != -1) {
+                        retItems.add(intArrayOf(currItemID, currQuantity))
+                    }
+                    currItemID = it.id
+                    currQuantity = it.quantity
+                    if (items.size - 1 == items.indexOf(it)) {
+                        retItems.add(intArrayOf(currItemID, currQuantity))
+                    }
+                    return@forEach
+                }
+                else -> {
+                    currQuantity++
+                    if (items.size - 1 == items.indexOf(it)) {
+                        retItems.add(intArrayOf(currItemID, currQuantity))
+                    }
+                }
+            }
+        }
+        return retItems
+    }
     fun getAtSlot(index: Int, inventoryID: InventoryID = InventoryID.INVENTORY) : Item? {
         Main.client.getItemContainer(inventoryID)?.let {
             var slot = 0
@@ -144,11 +209,65 @@ object Items {
             else -> {return false}
         }
     }
-
-    fun getFreeSlots(inventoryID: InventoryID = InventoryID.INVENTORY) : Int {
-        when (inventoryID) {
-            InventoryID.INVENTORY -> return 28 - getAll()?.size!!
-            else -> {return -1}
+    fun cacheItems(container: ItemContainer) {
+        val uncached = Arrays.stream(container.items)
+            .filter { x: net.runelite.api.Item ->
+                !Game.getClient().isItemDefinitionCached(x.id)
+            }
+            .collect(Collectors.toList())
+        if (!uncached.isEmpty()) {
+            GameThread.invokeLater<Any?> {
+                for (item in uncached) {
+                    Game.getClient().getItemComposition(item.id)
+                }
+                null
+            }
         }
     }
+    fun getInventory(filter: Predicate<net.runelite.api.Item?>): List<net.runelite.api.Item>? {
+        val items: MutableList<net.runelite.api.Item> = java.util.ArrayList()
+        val container = Game.getClient().getItemContainer(InventoryID.INVENTORY) ?: return items
+        cacheItems(container)
+        val containerItems = container.items
+        var i = 0
+        val containerItemsLength = containerItems.size
+        while (i < containerItemsLength) {
+            val item = containerItems[i]
+            if (item.id != -1 && item.name != null && item.name != "null") {
+                item.widgetId = item.calculateWidgetId(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER)
+                item.slot = i
+                if (filter.test(item)) {
+                    items.add(item)
+                }
+            }
+            i++
+        }
+        return items
+    }
+    fun getFirstEmptySlot(): Int {
+        val items: List<net.runelite.api.Item> = getInventory { true }!!
+        var lastIndex = 0
+        if (items.isEmpty()) {
+            return lastIndex
+        }
+        items.forEach {
+            if (it.slot - 1 > lastIndex) {
+                return lastIndex + 1
+            }
+            lastIndex = it.slot
+        }
+        return if (lastIndex != 27) {
+            lastIndex + 1
+        } else -1
+    }
+
+    fun getFreeSlots(inventoryID: InventoryID = InventoryID.INVENTORY) : Int {
+        return when (inventoryID) {
+            InventoryID.INVENTORY -> 28 - getAll()?.size!!
+            else -> {
+                -1
+            }
+        }
+    }
+
 }

@@ -63,7 +63,6 @@ import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
 import meteor.plugins.bank.BankSearch;
 import meteor.rs.ClientThread;
-import meteor.ui.UI;
 import meteor.ui.composables.toolbar.Toolbar;
 import meteor.ui.composables.toolbar.ToolbarButton;
 import meteor.ui.overlay.OverlayManager;
@@ -78,6 +77,9 @@ import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.util.Text;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.chat.ChatMessageManager;
+
+import static meteor.ui.composables.UIKt.getPluginPanel;
+import static meteor.ui.composables.UIKt.getPluginsOpen;
 
 @PluginDescriptor(
 	name = "Quest Helper",
@@ -569,7 +571,7 @@ public class QuestHelperPlugin extends Plugin
 			bankTagsMain.startUp();
 			pluginPanel = new QuestHelperPluginPanel(selectedQuest);
 			pluginPanel.subscribe();
-			UI.INSTANCE.getPluginPanel().setValue(pluginPanel);
+			getPluginPanel().setValue(pluginPanel);
 		}
 		else
 		{
@@ -585,11 +587,11 @@ public class QuestHelperPlugin extends Plugin
 	}
 
 	public void openPluginPanel() {
-		UI.INSTANCE.getPluginPanelIsOpen().setValue(true);
+		getPluginsOpen().setValue(true);
 	}
 
 	public void closePluginPanel() {
-		UI.INSTANCE.getPluginPanelIsOpen().setValue(false);
+		getPluginsOpen().setValue(false);
 	}
 
 	public void shutDownQuestFromSidebar()
@@ -620,7 +622,7 @@ public class QuestHelperPlugin extends Plugin
 			selectedQuest = null;
 			pluginPanel.unsubscribe();
 			pluginPanel = null;
-			UI.INSTANCE.getPluginPanel().setValue(pluginPanel);
+			getPluginPanel().setValue(pluginPanel);
 		}
 	}
 

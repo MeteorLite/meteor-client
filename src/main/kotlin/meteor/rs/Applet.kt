@@ -2,6 +2,7 @@ package meteor.rs
 
 import eventbus.Events
 import eventbus.events.AppletLoaded
+import meteor.Main
 import net.runelite.api.Client
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.applet.Applet
@@ -18,6 +19,7 @@ import java.util.*
 class Applet : AppletStub, AppletContext {
 
     companion object {
+        var panelSize = 375
         lateinit var applet: Applet
         var mainThread: Thread? = null
         var clientThread: Thread? = null
@@ -26,7 +28,9 @@ class Applet : AppletStub, AppletContext {
             return applet as Client
         }
     }
-
+    val clientWidth by lazy {applet.minimumSize.size.width +
+            panelSize + Main.meteorConfig!!.toolbarWidth()}
+    val minimalWidth by lazy {applet.minimumSize.size.width + Main.meteorConfig!!.toolbarWidth()}
     private var properties: Map<String, String> = AppletConfiguration.properties
     private var parameters: Map<String, String> = AppletConfiguration.parameters
 
@@ -34,6 +38,7 @@ class Applet : AppletStub, AppletContext {
         applet = configureApplet()
         applet.size = applet.minimumSize
         EventBus.post(Events.APPLET_LOADED, AppletLoaded())
+
     }
 
     private fun configureApplet(): Applet {

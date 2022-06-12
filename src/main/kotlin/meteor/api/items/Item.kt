@@ -7,11 +7,14 @@ import dev.hoot.api.items.Bank.WithdrawMode
 import dev.hoot.api.items.Bank.WithdrawOption
 import dev.hoot.api.widgets.Dialog
 import meteor.Logger
+import meteor.Main
 import meteor.api.packets.ClientPackets.createClientPacket
 import net.runelite.api.Client
 import net.runelite.api.Item
 import net.runelite.api.MenuAction
 import net.runelite.api.Player
+import net.runelite.api.queries.BankItemQuery
+import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
 import java.util.*
 

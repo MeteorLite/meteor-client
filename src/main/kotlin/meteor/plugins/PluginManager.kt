@@ -7,9 +7,12 @@ import meteor.Configuration
 import meteor.Main
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
+import meteor.plugins.autoclicker.AutoClickerPlugin
+import meteor.plugins.autologhop.AutoLogHop
 import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
 import meteor.plugins.bank.BankPlugin
+import meteor.plugins.banksetups.BankSetups
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.continueclicker.ContinueClickerPlugin
@@ -19,6 +22,8 @@ import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
+import meteor.plugins.highalchemy.HighAlchPlugin
+import meteor.plugins.inventorytags.InventoryTagsPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
@@ -27,6 +32,8 @@ import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
 import meteor.plugins.neverlog.NeverLogoutPlugin
 import meteor.plugins.nightmareHelper.NightmareHelper
+import meteor.plugins.notes.NotesPlugin
+import meteor.plugins.objecthider.ObjectHiderPlugin
 import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.pvpkeys.PvPKeys
 import meteor.plugins.pvpkeys.PvPKeysConfig
@@ -34,7 +41,9 @@ import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
+import meteor.plugins.tileindicators.TileIndicatorsPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
+import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.camera.CameraPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
@@ -68,12 +77,16 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+
         init<Meteor>()
         init<AgilityPlugin>()
         init<AutoBankPinPlugin>()
+        init<AutoClickerPlugin>()
         init<AutoLoginPlugin>()
+        init<AutoLogHop>()
         init<AutoRunPlugin>()
         init<BankPlugin>()
+        init<BankSetups>()
         init<BoostsPlugin>()
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()
@@ -89,18 +102,22 @@ object PluginManager {
         init<FpsPlugin>()
         init<GauntletExtendedPlugin>()
         init<GroundItemsPlugin>()
+        init<GuardiansOfTheRiftPlugin>()
         init<HerbiboarPlugin>()
+        init<InventoryTagsPlugin>()
+        init<HighAlchPlugin>()
         init<InterfaceStylesPlugin>()
         init<ItemPricesPlugin>()
         init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
-        init<LoginScreenPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
         init<MouseTooltipPlugin>()
+        init<NotesPlugin>()
         init<NpcAggroAreaPlugin>()
         init<NeverLogoutPlugin>()
         init<NightmareHelper>()
+        init<ObjectHiderPlugin>()
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
         init<PvPKeys>()
@@ -111,10 +128,11 @@ object PluginManager {
         init<SpecBarPlugin>()
         init<StatusBarsPlugin>()
         init<StretchedModePlugin>()
+        init<TileIndicatorsPlugin>()
         init<TilemanModePlugin>()
         init<TimersPlugin>()
-        init<GuardiansOfTheRiftPlugin>()
         init<WorldMapPlugin>()
+        init<WorldMapWalkerPlugin>()
         init<XpTrackerPlugin>()
         init<HdPlugin>()
     }

@@ -5,7 +5,8 @@ import net.runelite.client.config.*
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
-import meteor.ui.UI.pluginPanelIsOpen
+
+import meteor.ui.composables.pluginsOpen
 import meteor.ui.overlay.Overlay
 
 open class Plugin : EventSubscriber() {
@@ -82,14 +83,14 @@ open class Plugin : EventSubscriber() {
     }
 
     open fun togglePluginPanel() {
-        if (pluginPanelIsOpen.value) closePluginPanel() else openPluginPanel()
+        if (pluginsOpen.value) closePluginPanel() else openPluginPanel()
     }
 
     open fun openPluginPanel() {
-        pluginPanelIsOpen.value = true
+        pluginsOpen.value = true
     }
 
     open fun closePluginPanel() {
-        pluginPanelIsOpen.value = false
+        pluginsOpen.value = false
     }
 }

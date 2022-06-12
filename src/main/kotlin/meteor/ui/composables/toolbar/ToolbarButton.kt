@@ -2,24 +2,25 @@ package meteor.ui.composables.toolbar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import meteor.ui.UI
+import meteor.ui.composables.darkThemeColors
 
 class ToolbarButton(var name: String, var icon: ImageVector?,var imageResource: String? = null, var iconColor: Color? = Color.Cyan,
-                    var backgroundColor: Color? = UI.darkThemeColors.background,
+                    var backgroundColor: Color? = darkThemeColors.background,
                     var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
                     var bottom: Boolean = false, var onClick: () -> Unit) {
 
@@ -30,7 +31,7 @@ class ToolbarButton(var name: String, var icon: ImageVector?,var imageResource: 
                             this(name,
                                 icon = null,
                                 imageResource = imageResource,
-                                backgroundColor = UI.darkThemeColors.background,
+                                backgroundColor = darkThemeColors.background,
                                 description = description,
                                 alignment = alignment,
                                 bottom = bottom,
@@ -52,5 +53,7 @@ class ToolbarButton(var name: String, var icon: ImageVector?,var imageResource: 
                         contentDescription = description)
             }
         }
+        Spacer( Modifier.height(10.dp)
+            .background(darkThemeColors.background))
     }
 }

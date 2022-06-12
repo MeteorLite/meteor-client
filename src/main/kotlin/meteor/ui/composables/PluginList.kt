@@ -1,75 +1,147 @@
 package meteor.ui.composables
 
+import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import compose.icons.Octicons
+import compose.icons.octicons.Gear24
+import compose.icons.octicons.Search16
+import meteor.Main
 import meteor.config.ConfigManager
+
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.PluginManager
-import meteor.ui.UI
 
-object PluginList {
+import meteor.util.FontUtil
+
+
+
+
+
     @Composable
-    fun PluginsPanel(box: BoxWithConstraintsScope) {
-        var mod = Modifier.background(UI.darkThemeColors.background).fillMaxHeight()
-        if (box.maxWidth > 1920.dp) {
-            mod = mod.fillMaxWidth(.2f)
-        } else
-            mod = mod.fillMaxWidth(.3f)
+    fun PluginsPanel() {
+
+
+        var mod = Modifier.background(darkThemeColors.background).fillMaxHeight().width(375.dp)
+
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
                 modifier = mod) {
-                MaterialTheme(colors = UI.darkThemeColors) {
-                    PluginsPanelHeader()
-                    Plugins()
+                MaterialTheme(colors = darkThemeColors) {
+                        Plugins()
                 }
             }
+
         }
+    }
+    @Preview
+    @Composable
+    fun SearchBar(
+        modifier: Modifier = Modifier,
+        state: MutableState<TextFieldValue>,
+        placeHolder: String
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth()) {
+
+            OutlinedTextField(
+                value = state.value,
+                onValueChange = { value ->
+                    state.value = value
+                },
+                textStyle = TextStyle(
+                    color = Color.Cyan,
+                    letterSpacing = 4.sp,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Medium,
+                    fontFamily = FontUtil.crimson
+                ),
+                modifier = Modifier.scale(scaleX = 0.95f, scaleY = 0.80f ).fillMaxWidth(),
+                shape = RoundedCornerShape(10.dp),
+                label = {
+                    Text("Search", color = Color.Cyan)
+                },
+                leadingIcon = {   Icon(
+                    Octicons.Search16,
+                    contentDescription = "Opens Plugin configuration panel",
+                    tint = Color.Cyan,
+
+                    )}
+            )
+        }
+        Spacer(Modifier.width(75.dp))
     }
 
-    @Composable
-    fun PluginsPanelHeader() {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
-                Text("Plugins",style = TextStyle(color = Color.Cyan, fontSize = 24.sp))
-            }
-        }
-    }
+
 
     @Composable
     fun Plugins() {
-        Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(UI.darkThemeColors.background)) {
-            MaterialTheme(colors = UI.darkThemeColors) {
+
+
+        val pluginListSize = remember {
+            mutableStateOf(Main.meteorConfig!!.pluginListTextSize())
+        }
+        val pluginSpacer = remember{
+            mutableStateOf(Main.meteorConfig!!.pluginSpaceBetween())
+        }
+        val textState = remember { mutableStateOf(TextFieldValue("")) }
+        Spacer( Modifier.height(pluginSpacer.value.dp)
+            .background(darkThemeColors.background))
+        Row(modifier =  Modifier.fillMaxWidth()
+                                .height(60.dp),
+            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start) {
+            SearchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
+        }
+        Column( horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top,
+                modifier =  Modifier.fillMaxWidth()
+                                .fillMaxHeight()
+                                .background(darkThemeColors.background)) {
+            MaterialTheme(colors = darkThemeColors) {
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                    items(items = PluginManager.plugins, itemContent = { plugin ->
-                        val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
-                        Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)){
+
+                    val searchedText = textState.value.text
+                    items(items = PluginManager.plugins.filter {
+                        it.getName()!!.contains(searchedText, ignoreCase = true)||
+                        it.getDescriptor().tags.contains(searchedText)
+                   }, itemContent = { plugin ->
+                        Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(darkThemeColors.background)){
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                                modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(UI.darkThemeColors.background)) {
-                                Switch(switchState.value, onPluginToggled(switchState, plugin), enabled = true)
+                                modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(darkThemeColors.background)) {
                                 val external = plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java)
                                 val color = if (external?.external == true) Color.Magenta else Color.Cyan
-                                Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,style = TextStyle(color = color, fontSize = 14.sp))
+                                Text(plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
+                                    style = TextStyle(  color = Color(28,255,199),
+                                                        letterSpacing = 2.sp,
+                                                        fontSize = pluginListSize.value.sp,
+                                                        fontWeight = FontWeight.Medium),
+                                                        modifier = Modifier.fillMaxWidth().padding(start = 20.dp))
+
                             }
-                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                                modifier = Modifier.fillMaxWidth().height(32.dp).background(UI.darkThemeColors.background)) {
+
+                            Row(verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.End,
+                                modifier =  Modifier.fillMaxWidth().padding(top = 15.dp)
+                                                    .height(pluginListSize.value.dp)
+                                                    .background(darkThemeColors.background)) {
                                 if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
                                     IconButton(
                                         onClick = { PluginManager.reloadExternal(plugin) },
@@ -82,43 +154,64 @@ object PluginList {
                                     }
                                 }
 
+
                                 if (plugin.config != null) {
+                                    Spacer(Modifier.height(20.dp))
                                     IconButton(
                                         onClick = { onPluginConfigurationOpened(plugin) },
+
                                     ){
                                         Icon(
-                                            Icons.Filled.Settings,
+                                            Octicons.Gear24,
                                             contentDescription = "Opens Plugin configuration panel",
-                                            tint = Color.Cyan
+                                            tint = Color(133,255,215),
+
                                         )
                                     }
+
                                 } else if (plugin.javaConfig != null) {
+                                    Spacer(Modifier.height(20.dp))
                                     IconButton(
                                         onClick = { onPluginConfigurationOpened(plugin) },
-                                    ){
+                                            ){
                                         Icon(
-                                            Icons.Filled.Settings,
+                                            Octicons.Gear24,
                                             contentDescription = "Opens Plugin configuration panel",
-                                            tint = Color.Cyan
+                                            tint = Color(133,255,215),
+
                                         )
                                     }
+
+                                }else{
+                                    Spacer(Modifier.width(50.dp)
+                                        .background(darkThemeColors.background))
                                 }
+                                    val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
+                                    Switch(switchState.value, onPluginToggled(switchState, plugin), enabled = true,modifier = Modifier.scale(0.75f).padding(bottom = 2.dp))
+
+
+
                             }
+
+
+
                         }
+                            Spacer(Modifier.width(pluginSpacer.value.dp)
+                                .background(darkThemeColors.background))
+
                     })
                 }
             }
         }
     }
 
-    private fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {
+    fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {
         PluginManager.toggle(plugin)
         ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", PluginManager.runningMap[plugin]!!)
         switchState.value = PluginManager.runningMap[plugin]!!
     }
 
     private fun onPluginConfigurationOpened(plugin: Plugin) {
-        UI.lastPlugin = plugin
-        UI.pluginConfigurationIsOpen.value = true
+        lastPlugin = plugin
+        configOpen.value = true
     }
-}
