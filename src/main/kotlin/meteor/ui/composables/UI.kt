@@ -11,7 +11,6 @@ import compose.icons.octicons.Plug24
 import meteor.plugins.Plugin
 import meteor.plugins.notes.NotesPlugin
 import meteor.rs.Applet
-import meteor.ui.composables.OSRS.OSRSPanel
 import meteor.ui.composables.dev.WindowFrame
 import meteor.ui.composables.toolbar.Toolbar
 import meteor.ui.composables.toolbar.ToolbarButton

@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.sp
 import compose.icons.Octicons
 import compose.icons.octicons.Note24
 import meteor.config.ConfigManager
+import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.darkThemeColors
@@ -29,7 +30,7 @@ import meteor.util.FontUtil
 
 
 @PluginDescriptor(name = "Notes")
-class NotesPlugin: PluginPanel() {
+class NotesPlugin: Plugin() {
 
 
     private var notesButton = ToolbarButton(

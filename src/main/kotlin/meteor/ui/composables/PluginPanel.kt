@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import meteor.plugins.EventSubscriber
 import meteor.plugins.Plugin
 
-open class PluginPanel : Plugin() {
+open class PluginPanel : EventSubscriber() {
     @Composable
     fun CreateComponent() {
         val mod = Modifier.background(darkThemeColors.background).fillMaxHeight()

@@ -44,7 +44,7 @@ import java.util.stream.Collectors
     @Composable
     fun ConfigPanel() {
 
-        var mod = Modifier.background(darkThemeColors.background).fillMaxHeight().width(375.dp)
+        var mod = Modifier.background(darkThemeColors.background).fillMaxHeight().width(375.dp).padding(8.dp)
 
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             Column(

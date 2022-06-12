@@ -12,7 +12,7 @@ import meteor.rs.Applet
 import java.awt.BorderLayout
 import javax.swing.JPanel
 
-object OSRS {
+
     var loaded = false
     var applet = java.applet.Applet()
     @Composable
@@ -38,4 +38,3 @@ object OSRS {
                 }
             })
     }
-}
