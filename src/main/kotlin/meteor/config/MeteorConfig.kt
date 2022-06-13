@@ -1,32 +1,36 @@
 package meteor.config
 
+
 import androidx.compose.ui.unit.LayoutDirection
 import meteor.Configuration
-import net.runelite.client.config.*
-import meteor.config.legacy.Keybind
-import meteor.config.type.*
 import meteor.ui.components.ComponentConstants
-import net.runelite.api.Constants
+import net.runelite.client.config.*
 import java.awt.BorderLayout
-import java.awt.Button
 import java.awt.Color
-import java.awt.Dimension
-import java.awt.event.InputEvent
-import java.awt.event.KeyEvent
 
 @ConfigGroup(Configuration.MASTER_GROUP)
 interface MeteorConfig : Config {
+    @ConfigItem(
+        name = "MeteorColor",
+        keyName = "MeteorColor",
+        description = "",
+        position = 0,
+    )
+    fun uiColor(): Color {
+        return Color.CYAN
+    }
 
-    @Range(min = 35,max = 100,textInput = false)
+    @Range(min = 35, max = 100, textInput = false)
     @ConfigItem(
         name = "toolbar width",
         keyName = "toolbar width",
         description = "",
         position = 0,
     )
-    fun toolbarWidth():Int{
+    fun toolbarWidth(): Int {
         return 35
     }
+
     @ConfigItem(
         name = "toolbar placement",
         keyName = "toolbar placement",
@@ -36,26 +40,29 @@ interface MeteorConfig : Config {
     fun toolbarPlacement(): LayoutDirection {
         return LayoutDirection.Rtl
     }
-    @Range(min = 8,max = 45,textInput = false)
+
+    @Range(min = 8, max = 45, textInput = false)
     @ConfigItem(
         name = "Plugin list Text Size",
         keyName = "Plugin list Text Size",
         description = "Slide this to change the plugin list text size",
         position = 0,
     )
-    fun pluginListTextSize():Int{
+    fun pluginListTextSize(): Int {
         return 15
     }
-    @Range(min = 1,max = 19,textInput = false)
+
+    @Range(min = 1, max = 19, textInput = false)
     @ConfigItem(
         name = "Plugin List Spacer",
         keyName = "Plugin list Spacer",
         description = "",
         position = 0,
     )
-    fun pluginSpaceBetween():Int{
+    fun pluginSpaceBetween(): Int {
         return 7
     }
+
     @ConfigItem(
         keyName = "infoBoxVertical",
         name = "Display infoboxes vertically",
@@ -117,7 +124,6 @@ interface MeteorConfig : Config {
             position = 3
         )
         const val interactionManager = "Interaction manager"
-
 
 
         @ConfigSection(

@@ -25,7 +25,7 @@
 package meteor.plugins.xptracker
 
 import net.runelite.api.Skill
-import java.util.EnumMap
+import java.util.*
 
 internal class XpPauseState {
     // Internal state

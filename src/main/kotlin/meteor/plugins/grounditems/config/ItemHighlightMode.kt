@@ -26,6 +26,7 @@ package meteor.plugins.grounditems.config
 
 enum class ItemHighlightMode(var type: String) {
     NONE("None"), OVERLAY("Overlay"), MENU("Right-click menu"), BOTH("Both");
+
     override fun toString(): String {
         return type
     }

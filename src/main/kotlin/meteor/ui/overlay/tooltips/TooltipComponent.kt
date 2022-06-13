@@ -177,6 +177,7 @@ class TooltipComponent : LayoutableRenderableEntity {
         private val BR = Pattern.compile("</br>")
         private const val OFFSET = 4
         private const val MOD_ICON_WIDTH = 13 // they are generally 13px wide
+
         @VisibleForTesting
         fun calculateTextWidth(metrics: FontMetrics, line: String): Int {
             val chars = line.toCharArray()

@@ -46,7 +46,7 @@ class AutoAlchPlugin : Plugin() {
                         Regular.HIGH_LEVEL_ALCHEMY.widget.id
                     else
                         Regular.LOW_LEVEL_ALCHEMY.widget.id
-                ItemPackets.queueSpellOnItemPacket (x.id, x.slot, spellToUse)
+                ItemPackets.queueSpellOnItemPacket(x.id, x.slot, spellToUse)
             }
         }
         timeout--

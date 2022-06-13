@@ -34,27 +34,21 @@ import meteor.Main
 import meteor.rs.ClientThread
 import meteor.ui.overlay.OverlayManager
 import meteor.util.ColorUtil
-import javax.swing.JFrame
-import javax.swing.JTree
-import javax.swing.JCheckBox
-import javax.swing.tree.DefaultMutableTreeNode
-import java.awt.BorderLayout
-import javax.swing.event.TreeSelectionEvent
-import javax.swing.JScrollPane
-import javax.swing.JTable
-import javax.swing.JPanel
-import javax.swing.JButton
-import java.awt.event.ActionEvent
-import java.awt.event.ItemEvent
-import javax.swing.JSplitPane
-import javax.swing.SwingUtilities
-import javax.swing.tree.DefaultTreeModel
-import net.runelite.api.*
+import net.runelite.api.ChatMessageType
+import net.runelite.api.MenuAction
+import net.runelite.api.SpriteID
 import net.runelite.api.widgets.*
+import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.Dimension
+import java.awt.event.ActionEvent
+import java.awt.event.ItemEvent
 import java.util.*
 import java.util.stream.Stream
+import javax.swing.*
+import javax.swing.event.TreeSelectionEvent
+import javax.swing.tree.DefaultMutableTreeNode
+import javax.swing.tree.DefaultTreeModel
 import javax.swing.tree.TreePath
 
 object WidgetInspector : JFrame() {
@@ -362,8 +356,7 @@ object WidgetInspector : JFrame() {
                     close()
                 else
                     open()
-            }
-            else if (it.cheat == "invalidate") {
+            } else if (it.cheat == "invalidate") {
                 client.invalidateStretching(true)
                 it.consumed = true
             }
@@ -394,9 +387,6 @@ object WidgetInspector : JFrame() {
         }
         return null
     }
-
-
-
 
 
     fun getWidgetInfo(packedId: Int): WidgetInfo? {

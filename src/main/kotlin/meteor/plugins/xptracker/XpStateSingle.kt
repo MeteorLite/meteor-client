@@ -37,10 +37,10 @@ class XpStateSingle(private val skill: Skill, var startXp: Long) {
     )
 
     var xpGainedSinceReset = 0
-    set(value)  {
-        field = value
-        lastChangeMillis = System.currentTimeMillis()
-    }
+        set(value) {
+            field = value
+            lastChangeMillis = System.currentTimeMillis()
+        }
     var xpGainedBeforeReset = 0
 
     var actionType = XpActionType.EXPERIENCE

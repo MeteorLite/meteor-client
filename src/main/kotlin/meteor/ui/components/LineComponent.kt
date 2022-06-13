@@ -70,8 +70,8 @@ class LineComponent : LayoutableRenderableEntity {
         // Prevent NPEs
         val left = MoreObjects.firstNonNull(left, "")
         val right = MoreObjects.firstNonNull(right, "")
-        val leftFont = MoreObjects.firstNonNull(leftFont, graphics.getFont())
-        val rightFont = MoreObjects.firstNonNull(rightFont, graphics.getFont())
+        val leftFont = MoreObjects.firstNonNull(leftFont, graphics.font)
+        val rightFont = MoreObjects.firstNonNull(rightFont, graphics.font)
         val lfm: FontMetrics = graphics.getFontMetrics(leftFont)
         val rfm: FontMetrics = graphics
             .getFontMetrics(rightFont)
@@ -145,23 +145,27 @@ class LineComponent : LayoutableRenderableEntity {
 
     class Builder {
         val lineComponent = LineComponent()
-        fun left(s: String) : Builder {
+        fun left(s: String): Builder {
             lineComponent.left = s
             return this
         }
-        fun leftColor(c: Color) : Builder {
+
+        fun leftColor(c: Color): Builder {
             lineComponent.leftColor = c
             return this
         }
-        fun right(s: String) : Builder {
+
+        fun right(s: String): Builder {
             lineComponent.right = s
             return this
         }
-        fun rightColor(c: Color) : Builder {
+
+        fun rightColor(c: Color): Builder {
             lineComponent.rightColor = c
             return this
         }
-        fun build() : LineComponent {
+
+        fun build(): LineComponent {
             return lineComponent
         }
     }

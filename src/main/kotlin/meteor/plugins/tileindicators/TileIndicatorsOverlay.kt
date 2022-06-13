@@ -25,19 +25,20 @@
 package meteor.plugins.tileindicators
 
 
-
 import meteor.ui.overlay.Overlay
-import meteor.ui.overlay.OverlayPanel
 import meteor.util.OverlayUtil
 import net.runelite.api.Perspective
 import net.runelite.api.coords.LocalPoint
-import java.awt.*
+import java.awt.Color
+import java.awt.Dimension
+import java.awt.Graphics2D
+import java.awt.Polygon
 
 class TileIndicatorsOverlay(
-plugin: TileIndicatorsPlugin
+    plugin: TileIndicatorsPlugin
 
 ) : Overlay() {
-var config = plugin.configuration<TileIndicatorsConfig>()
+    var config = plugin.configuration<TileIndicatorsConfig>()
 
     override fun render(graphics: Graphics2D): Dimension? {
         if (config.highlightHoveredTile()) {

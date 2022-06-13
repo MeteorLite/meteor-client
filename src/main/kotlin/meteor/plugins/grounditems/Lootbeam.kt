@@ -24,12 +24,12 @@
  */
 package meteor.plugins.grounditems
 
-import net.runelite.api.coords.WorldPoint
 import net.runelite.api.AnimationID
 import net.runelite.api.Client
 import net.runelite.api.JagexColor
 import net.runelite.api.RuneLiteObject
 import net.runelite.api.coords.LocalPoint
+import net.runelite.api.coords.WorldPoint
 import java.awt.Color
 
 internal class Lootbeam(private val client: Client, worldPoint: WorldPoint?, color: Color) {
@@ -40,10 +40,8 @@ internal class Lootbeam(private val client: Client, worldPoint: WorldPoint?, col
             return
         }
         this.color = color
-        runeLiteObject.setModel(
-            client.loadModel(
-                RAID_LIGHT_MODEL, shortArrayOf(RAID_LIGHT_FIND_COLOR), shortArrayOf(JagexColor.rgbToHSL(color.rgb, 1.0))
-            )
+        runeLiteObject.model = client.loadModel(
+            RAID_LIGHT_MODEL, shortArrayOf(RAID_LIGHT_FIND_COLOR), shortArrayOf(JagexColor.rgbToHSL(color.rgb, 1.0))
         )
     }
 

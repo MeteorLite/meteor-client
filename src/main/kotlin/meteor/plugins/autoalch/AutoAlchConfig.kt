@@ -12,6 +12,7 @@ interface AutoAlchConfig : Config {
     fun alchType(): AlchType {
         return AlchType.HIGH
     }
+
     @Range(textInput = true)
     @ConfigItem(keyName = "itemID", name = "itemID", description = "Item id of what you want to alch", position = 1)
     fun itemID(): Int {

@@ -25,7 +25,7 @@
 package meteor.plugins.xptracker
 
 import net.runelite.api.Skill
-import java.util.EnumSet
+import java.util.*
 
 internal class XpPauseStateSingle(val skill: Skill) {
 

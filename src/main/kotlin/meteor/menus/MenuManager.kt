@@ -161,7 +161,7 @@ object MenuManager : EventSubscriber() {
     private fun addPlayerMenuItem(playerOptionIndex: Int, menuText: String) {
         client.playerOptions[playerOptionIndex] = menuText
         client.playerOptionsPriorities[playerOptionIndex] = true
-        client.playerMenuTypes[playerOptionIndex] = MenuAction.RUNELITE_PLAYER.getId()
+        client.playerMenuTypes[playerOptionIndex] = MenuAction.RUNELITE_PLAYER.id
         playerMenuIndexMap[playerOptionIndex] = menuText
     }
 
@@ -184,8 +184,8 @@ object MenuManager : EventSubscriber() {
 
     private fun menuContainsCustomMenu(menuEntries: Array<MenuEntry>, customMenuOption: WidgetMenuOption): Boolean {
         for (menuEntry in menuEntries) {
-            val option: String = menuEntry.getOption()
-            val target: String = menuEntry.getTarget()
+            val option: String = menuEntry.option
+            val target: String = menuEntry.target
             if (option == customMenuOption.menuOption && target == customMenuOption.getMenuTarget()) {
                 return true
             }

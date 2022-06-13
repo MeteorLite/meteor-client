@@ -28,7 +28,6 @@ import com.google.gson.TypeAdapter
 import com.google.gson.stream.JsonReader
 import com.google.gson.stream.JsonWriter
 import java.io.IOException
-import java.lang.UnsupportedOperationException
 
 class NPCStats {
     var name: String? = null
@@ -60,160 +59,161 @@ class NPCStats {
     var dragon = false
     var demon = false
     var undead = false
-    fun builder() : NPCStats {
+    fun builder(): NPCStats {
         return Builder().start()
     }
+
     class Builder {
         private var npcStats = NPCStats()
-        fun start() : NPCStats {
+        fun start(): NPCStats {
             return npcStats
         }
 
-        fun build() : NPCStats {
+        fun build(): NPCStats {
             return npcStats
         }
 
-        fun name(s: String) : Builder {
+        fun name(s: String): Builder {
             npcStats.name = s
             return this
         }
 
-        fun hitpoints(i: Int) : Builder {
+        fun hitpoints(i: Int): Builder {
             npcStats.hitpoints = i
             return this
         }
 
-        fun combatLevel(i: Int) : Builder {
+        fun combatLevel(i: Int): Builder {
             npcStats.combatLevel = i
             return this
         }
 
-        fun slayerLevel(i: Int) : Builder {
+        fun slayerLevel(i: Int): Builder {
             npcStats.slayerLevel = i
             return this
         }
 
-        fun attackSpeed(i: Int) : Builder {
+        fun attackSpeed(i: Int): Builder {
             npcStats.attackSpeed = i
             return this
         }
 
-        fun attackLevel(i: Int) : Builder {
+        fun attackLevel(i: Int): Builder {
             npcStats.attackLevel = i
             return this
         }
 
-        fun strengthLevel(i: Int) : Builder {
+        fun strengthLevel(i: Int): Builder {
             npcStats.strengthLevel = i
             return this
         }
 
-        fun defenceLevel(i: Int) : Builder {
+        fun defenceLevel(i: Int): Builder {
             npcStats.defenceLevel = i
             return this
         }
 
-        fun rangeLevel(i: Int) : Builder {
+        fun rangeLevel(i: Int): Builder {
             npcStats.rangeLevel = i
             return this
         }
 
-        fun magicLevel(i: Int) : Builder {
+        fun magicLevel(i: Int): Builder {
             npcStats.magicLevel = i
             return this
         }
 
-        fun stab(i: Int) : Builder {
+        fun stab(i: Int): Builder {
             npcStats.stab = i
             return this
         }
 
-        fun slash(i: Int) : Builder {
+        fun slash(i: Int): Builder {
             npcStats.slash = i
             return this
         }
 
-        fun crush(i: Int) : Builder {
+        fun crush(i: Int): Builder {
             npcStats.crush = i
             return this
         }
 
-        fun range(i: Int) : Builder {
+        fun range(i: Int): Builder {
             npcStats.range = i
             return this
         }
 
-        fun magic(i: Int) : Builder {
+        fun magic(i: Int): Builder {
             npcStats.magic = i
             return this
         }
 
-        fun stabDef(i: Int) : Builder {
+        fun stabDef(i: Int): Builder {
             npcStats.stabDef = i
             return this
         }
 
-        fun slashDef(i: Int) : Builder {
+        fun slashDef(i: Int): Builder {
             npcStats.slashDef = i
             return this
         }
 
-        fun crushDef(i: Int) : Builder {
+        fun crushDef(i: Int): Builder {
             npcStats.crushDef = i
             return this
         }
 
-        fun rangeDef(i: Int) : Builder {
+        fun rangeDef(i: Int): Builder {
             npcStats.rangeDef = i
             return this
         }
 
-        fun magicDef(i: Int) : Builder {
+        fun magicDef(i: Int): Builder {
             npcStats.magicDef = i
             return this
         }
 
-        fun bonusAttack(i: Int) : Builder {
+        fun bonusAttack(i: Int): Builder {
             npcStats.bonusAttack = i
             return this
         }
 
-        fun bonusStrength(i: Int) : Builder {
+        fun bonusStrength(i: Int): Builder {
             npcStats.bonusStrength = i
             return this
         }
 
-        fun bonusRangeStrength(i: Int) : Builder {
+        fun bonusRangeStrength(i: Int): Builder {
             npcStats.bonusRangeStrength = i
             return this
         }
 
-        fun bonusMagicDamage(i: Int) : Builder {
+        fun bonusMagicDamage(i: Int): Builder {
             npcStats.bonusMagicDamage = i
             return this
         }
 
-        fun poisonImmune(b: Boolean) : Builder {
+        fun poisonImmune(b: Boolean): Builder {
             npcStats.poisonImmune = b
             return this
         }
 
-        fun venomImmune(b: Boolean) : Builder {
+        fun venomImmune(b: Boolean): Builder {
             npcStats.venomImmune = b
             return this
         }
 
-        fun dragon(b: Boolean) : Builder {
+        fun dragon(b: Boolean): Builder {
             npcStats.dragon = b
             return this
         }
 
-        fun demon(b: Boolean) : Builder {
+        fun demon(b: Boolean): Builder {
             npcStats.demon = b
             return this
         }
 
-        fun undead(b: Boolean) : Builder {
+        fun undead(b: Boolean): Builder {
             npcStats.undead = b
             return this
         }

@@ -1,6 +1,5 @@
 package meteor.plugins.autologhop
 
-import dev.hoot.api.commons.Time
 import dev.hoot.api.game.Game
 import dev.hoot.api.game.Worlds
 import dev.hoot.api.items.Inventory
@@ -58,7 +57,7 @@ class AutoLogHop : Plugin() {
             return
         }
         hopWorlds()
-  executor.submit(Runnable {
+        executor.submit(Runnable {
             sleep(600)
             pressKey(KeyEvent.VK_ENTER)
             client.username = config.user()
@@ -93,6 +92,7 @@ class AutoLogHop : Plugin() {
             }
         }
     }
+
     fun getWildernessLevelFrom(point: WorldPoint): Int {
         val x = point.x
         val y = point.y
@@ -100,6 +100,7 @@ class AutoLogHop : Plugin() {
         val upperLevel = (y - 3520) / 8 + 1
         return if (y > 6400) underLevel else upperLevel
     }
+
     fun isAttackable(client: Client, player: Player): Boolean {
         var wildernessLevel = 0
         if (!(client.getVar(Varbits.IN_WILDERNESS.id) == 1 || net.runelite.api.WorldType.isPvpWorld(client.worldType))) {
@@ -114,6 +115,7 @@ class AutoLogHop : Plugin() {
         return (Math.abs(client.localPlayer!!.combatLevel - player.combatLevel)
                 < getWildernessLevelFrom(client.localPlayer!!.worldLocation) + wildernessLevel)
     }
+
     private fun teleportAway() {
         //can't use ring of wealth above lv 30 wilderness.
         if (getWildernessLevelFrom(client.localPlayer!!.worldLocation) > 30) return

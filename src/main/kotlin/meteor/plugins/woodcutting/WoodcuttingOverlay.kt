@@ -35,7 +35,7 @@ import net.runelite.api.Skill
 import java.awt.Dimension
 import java.awt.Graphics2D
 
-class WoodcuttingOverlay(val plugin: WoodcuttingPlugin ) : OverlayPanel() {
+class WoodcuttingOverlay(val plugin: WoodcuttingPlugin) : OverlayPanel() {
     var config = plugin.configuration<WoodcuttingConfig>()
 
     lateinit var xpTrackerService: XpTrackerService

@@ -26,13 +26,12 @@ package meteor.ui.overlay.components
 
 import com.google.common.base.Strings
 import meteor.game.FontManager
-import meteor.ui.components.LayoutableRenderableEntity
-import meteor.ui.overlay.components.InfoBoxComponent
 import meteor.ui.components.ComponentConstants
+import meteor.ui.components.LayoutableRenderableEntity
 import meteor.ui.overlay.BackgroundComponent
-import java.awt.image.BufferedImage
 import meteor.ui.overlay.infobox.InfoBox
 import java.awt.*
+import java.awt.image.BufferedImage
 
 class InfoBoxComponent : LayoutableRenderableEntity {
     private var bounds: Rectangle? = Rectangle()
@@ -75,7 +74,7 @@ class InfoBoxComponent : LayoutableRenderableEntity {
         if (image == null) {
             return Dimension()
         }
-        graphics.setFont(if (size < DEFAULT_SIZE) FontManager.runescapeSmallFont else FontManager.runescapeFont)
+        graphics.font = if (size < DEFAULT_SIZE) FontManager.runescapeSmallFont else FontManager.runescapeFont
         val baseX = preferredLocation!!.x
         val baseY = preferredLocation!!.y
 
@@ -105,8 +104,8 @@ class InfoBoxComponent : LayoutableRenderableEntity {
             textComponent.outline = (outline)
             textComponent.text = (text)
             textComponent.position = (
-                Point(baseX + (size - metrics.stringWidth(text)) / 2, baseY + size - SEPARATOR)
-            )
+                    Point(baseX + (size - metrics.stringWidth(text)) / 2, baseY + size - SEPARATOR)
+                    )
             textComponent.render(graphics)
         }
         this.bounds!!.bounds = bounds

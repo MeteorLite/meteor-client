@@ -32,14 +32,14 @@ object CreateLauncherUpdate {
     fun handleModuleFiles() {
         val modulesChunks = divideModules()
         for ((count, chunk) in modulesChunks.withIndex()) {
-           val file = File()
-           file.name = "modules\\modules-$count"
-           var targetFile = java.io.File("./build/release/modules/modules-$count")
-           java.io.File("./build/release/modules/").mkdirs()
-           targetFile.writeBytes(chunk)
-           file.size = chunk.size.toLong()
-           file.hash = getCheckSumFromFile(MessageDigest.getInstance("SHA-256"), targetFile)
-           update.modulesParts.add(file)
+            val file = File()
+            file.name = "modules\\modules-$count"
+            var targetFile = java.io.File("./build/release/modules/modules-$count")
+            java.io.File("./build/release/modules/").mkdirs()
+            targetFile.writeBytes(chunk)
+            file.size = chunk.size.toLong()
+            file.hash = getCheckSumFromFile(MessageDigest.getInstance("SHA-256"), targetFile)
+            update.modulesParts.add(file)
         }
     }
 
@@ -49,15 +49,15 @@ object CreateLauncherUpdate {
         val chunksize = 45 * 1024 * 1024
 
         val chunksArray = ArrayList<ByteArray>()
-         for (i in 1..ceil(source.size / chunksize.toDouble()).toInt()) {
-             when (i) {
-                 1,2 -> chunksArray.add(ByteArray(chunksize))
-                 3 -> {
-                     val remainingBytes = (chunksize * 3) - source.size
-                     chunksArray.add(ByteArray(remainingBytes))
-                 }
-             }
-         }
+        for (i in 1..ceil(source.size / chunksize.toDouble()).toInt()) {
+            when (i) {
+                1, 2 -> chunksArray.add(ByteArray(chunksize))
+                3 -> {
+                    val remainingBytes = (chunksize * 3) - source.size
+                    chunksArray.add(ByteArray(remainingBytes))
+                }
+            }
+        }
 
         for (i in chunksArray.indices) {
             if (bytesRead + chunksize > source.size) {
@@ -74,15 +74,14 @@ object CreateLauncherUpdate {
         for (file in dir.listFiles()!!) {
             if (file.isDirectory) {
                 if (file.listFiles()!!.isNotEmpty())
-                    if (!file.name.equals("legal"))
-                    {
+                    if (!file.name.equals("legal")) {
                         println(file.name)
                         crawlDirectory(file)
                     }
             } else {
                 val f = File()
                 f.name = "meteor-client\\" + file.absolutePath.split("app\\meteor-client\\")[1]
-                f.size = Files.size(Path.of(file.toURI()));
+                f.size = Files.size(Path.of(file.toURI()))
                 f.hash = getCheckSumFromFile(MessageDigest.getInstance("SHA-256"), file)
 
                 if (!f.name.endsWith("\\modules"))
@@ -92,7 +91,8 @@ object CreateLauncherUpdate {
                 try {
                     targetDir.mkdirs()
                     Files.copy(file.toPath(), targetFile.toPath())
-                } catch (_: java.nio.file.FileAlreadyExistsException) { }
+                } catch (_: java.nio.file.FileAlreadyExistsException) {
+                }
             }
         }
     }

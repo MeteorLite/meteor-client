@@ -25,8 +25,8 @@
 package meteor.ui.components
 
 import java.awt.Graphics
-import javax.swing.plaf.basic.BasicLabelUI
 import javax.swing.JLabel
+import javax.swing.plaf.basic.BasicLabelUI
 
 internal class JShadowedLabelUI : BasicLabelUI() {
     override fun paintEnabledText(l: JLabel, g: Graphics, s: String, textX: Int, textY: Int) {

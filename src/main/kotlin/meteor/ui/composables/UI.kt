@@ -8,12 +8,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.window.FrameWindowScope
 import compose.icons.Octicons
 import compose.icons.octicons.Plug24
+import meteor.Main
 import meteor.plugins.Plugin
 import meteor.plugins.notes.NotesPlugin
 import meteor.rs.Applet
 import meteor.ui.composables.dev.WindowFrame
-import meteor.ui.composables.toolbar.Toolbar
 import meteor.ui.composables.toolbar.ToolbarButton
+import meteor.ui.composables.toolbar.addButton
 import java.awt.Dimension
 
 var pluginsOpen = mutableStateOf(false)
@@ -22,6 +23,8 @@ var pluginPanelIsOpen = mutableStateOf(false)
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var notePanel = mutableStateOf(false)
 lateinit var lastPlugin: Plugin
+val uiColor
+    get() = Color(Main.meteorConfig!!.uiColor().rgb)
 
 @Composable
 fun FrameWindowScope.Window() {
@@ -37,7 +40,8 @@ fun FrameWindowScope.Window() {
             }
 
             toolBar {
-                pluginListButton()
+
+                pluginListButton
             }
             content {
                 when {
@@ -67,35 +71,35 @@ val darkThemeColors = darkColors(
     onSurface = Color.White,
     onError = Color.Black
 )
-@Composable
-fun pluginListButton()  {
 
+val pluginListButton
+    get() = addButton(
+        ToolbarButton(
+            "Plugins",
+            Octicons.Plug24,
+            iconColor = uiColor,
+            description = "Opens Plugins list",
+            onClick = {
 
-   Toolbar.addButton(ToolbarButton(
-        "Plugins",
-       Octicons.Plug24,
-        iconColor = Color.Cyan,
-        description = "Opens Plugins list",
-        onClick = {
-
-            when {
-                notePanel.value ->{
-                    pluginsOpen.value = true
-                }
-                pluginPanelIsOpen.value -> {
-
-                    pluginPanelIsOpen.value = !pluginPanelIsOpen.value
-                    if (!pluginsOpen.value)
+                when {
+                    notePanel.value -> {
                         pluginsOpen.value = true
-                }
-                configOpen.value -> {
+                    }
+                    pluginPanelIsOpen.value -> {
 
-                    configOpen.value = false
-                    if (!pluginsOpen.value)
-                        pluginsOpen.value = true
-                }
-                else -> pluginsOpen.value = !pluginsOpen.value
-            }
-        }))
+                        pluginPanelIsOpen.value = !pluginPanelIsOpen.value
+                        if (!pluginsOpen.value)
+                            pluginsOpen.value = true
+                    }
+                    configOpen.value -> {
 
-}
+                        configOpen.value = false
+                        if (!pluginsOpen.value)
+                            pluginsOpen.value = true
+                    }
+                    else -> pluginsOpen.value = !pluginsOpen.value
+                }
+            })
+    )
+
+

@@ -6,14 +6,13 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo.BANK_PIN_INSTRUCTION_TEXT
-import org.rationalityfrontline.kevent.Event
 import java.awt.event.KeyEvent
 import java.awt.event.KeyEvent.*
 
 @PluginDescriptor(name = "Auto Bank Pin", description = "Automatically enters your bank pin", enabledByDefault = false)
 class AutoBankPinPlugin : Plugin() {
 
- override val config = configuration<AutoBankPinConfig>()
+    override val config = configuration<AutoBankPinConfig>()
 
     private var first = false
     private var second = false
@@ -23,12 +22,14 @@ class AutoBankPinPlugin : Plugin() {
     override fun onStart() {
         ConfigManager.setConfiguration("bank", "bankPinKeyboard", true)
     }
+
     private fun EnterBankPin() {
         if (client.getWidget(WidgetID.BANK_PIN_GROUP_ID, BANK_PIN_INSTRUCTION_TEXT.childId) == null
             || (client.getWidget(BANK_PIN_INSTRUCTION_TEXT)!!.text != "First click the FIRST digit."
                     && client.getWidget(BANK_PIN_INSTRUCTION_TEXT)!!.text != "Now click the SECOND digit."
                     && client.getWidget(BANK_PIN_INSTRUCTION_TEXT)!!.text != "Time for the THIRD digit."
-                    && client.getWidget(BANK_PIN_INSTRUCTION_TEXT)!!.text != "Finally, the FOURTH digit.")) {
+                    && client.getWidget(BANK_PIN_INSTRUCTION_TEXT)!!.text != "Finally, the FOURTH digit.")
+        ) {
             return
         }
 
@@ -46,38 +47,36 @@ class AutoBankPinPlugin : Plugin() {
                 if (first) {
                     return
                 }
-                charCode = getExtendedKeyCodeForChar(digits[0].toInt())
+                charCode = getExtendedKeyCodeForChar(digits[0].code)
                 first = true
             }
             "Now click the SECOND digit." -> {
                 if (second) {
                     return
                 }
-                charCode = getExtendedKeyCodeForChar(digits[1].toInt())
+                charCode = getExtendedKeyCodeForChar(digits[1].code)
                 second = true
             }
             "Time for the THIRD digit." -> {
                 if (third) {
                     return
                 }
-                charCode = getExtendedKeyCodeForChar(digits[2].toInt())
+                charCode = getExtendedKeyCodeForChar(digits[2].code)
                 third = true
             }
             "Finally, the FOURTH digit." -> {
                 if (!first && !fourth) {
                     return
                 }
-                charCode = getExtendedKeyCodeForChar(digits[3].toInt())
+                charCode = getExtendedKeyCodeForChar(digits[3].code)
                 fourth = true
             }
         }
 
-        if (charCode != -1)
-        {
+        if (charCode != -1) {
             sendKey(charCode)
 
-            if (fourth)
-            {
+            if (fourth) {
                 first = false
                 second = false
                 third = false
@@ -100,7 +99,6 @@ class AutoBankPinPlugin : Plugin() {
         client.canvas.dispatchEvent(kvTyped)
         client.canvas.dispatchEvent(kvReleased)
     }
-
 
 
 }

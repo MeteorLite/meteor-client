@@ -4,7 +4,7 @@ import meteor.Main
 
 object Players {
     fun getAll(): ArrayList<net.runelite.api.Player>? {
-        var npcs : ArrayList<net.runelite.api.Player>? = null
+        var npcs: ArrayList<net.runelite.api.Player>? = null
         for (player in Main.client.players) {
             player?.let {
                 if (npcs == null) {
@@ -21,7 +21,7 @@ object Players {
         return getAll()?.filter { names.contains(it.name) } as ArrayList?
     }
 
-    fun getFirst(name: String) : net.runelite.api.Player? {
+    fun getFirst(name: String): net.runelite.api.Player? {
         return getAll(name)?.firstOrNull()
     }
 }

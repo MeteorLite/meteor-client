@@ -5,8 +5,6 @@ import meteor.config.ConfigManager
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.plugins.PluginManager
-import meteor.plugins.devtools.DevToolsPlugin
 
 @PluginDescriptor(name = "Commands", enabledByDefault = true, description = "")
 class CommandsPlugin : Plugin() {

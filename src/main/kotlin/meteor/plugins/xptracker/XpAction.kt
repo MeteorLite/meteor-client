@@ -23,5 +23,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package meteor.plugins.xptracker
-class XpAction(var actions: Int = 0, var actionsSinceReset: Int = 0, var actionsHistoryInitialized: Boolean = false,
-               var actionExps: IntArray = IntArray(10), var actionExpIndex: Int = 0)
+
+class XpAction(
+    var actions: Int = 0, var actionsSinceReset: Int = 0, var actionsHistoryInitialized: Boolean = false,
+    var actionExps: IntArray = IntArray(10), var actionExpIndex: Int = 0
+)

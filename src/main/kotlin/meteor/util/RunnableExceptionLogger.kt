@@ -25,7 +25,6 @@
 package meteor.util
 
 import meteor.Logger.Companion.getLogger
-import java.lang.Runnable
 
 class RunnableExceptionLogger(var runnable: Runnable) : Runnable {
     var log = getLogger(RunnableExceptionLogger::class.java)

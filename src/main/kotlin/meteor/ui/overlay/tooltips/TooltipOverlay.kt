@@ -51,7 +51,7 @@ class TooltipOverlay : Overlay() {
         val mouseCanvasPosition = client.mouseCanvasPosition
         val prevBounds = getBounds()
         val tooltipX = Math.min(canvasWidth - prevBounds!!.width, mouseCanvasPosition.x)
-        val tooltipY = Math.min(canvasHeight - prevBounds!!.height, mouseCanvasPosition.y + UNDER_OFFSET)
+        val tooltipY = Math.min(canvasHeight - prevBounds.height, mouseCanvasPosition.y + UNDER_OFFSET)
         val newBounds = Rectangle(tooltipX, tooltipY, 0, 0)
         for (tooltip in tooltips) {
             val entity: LayoutableRenderableEntity

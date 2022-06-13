@@ -26,7 +26,6 @@ package meteor.plugins.tileindicators
 
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import net.runelite.client.config.Config
 
 @PluginDescriptor(
     name = "Tile Indicators",

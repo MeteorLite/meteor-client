@@ -30,11 +30,17 @@ import java.awt.Rectangle
 
 interface LayoutableRenderableEntity : RenderableEntity {
     fun setPreferredLocation(position: Point?)
-    fun getPreferredLocation() : Point? { return Point(0,0)}
+    fun getPreferredLocation(): Point? {
+        return Point(0, 0)
+    }
 
     fun setPreferredSize(position: Dimension?)
-    fun getPreferredSize() : Dimension? { return null}
+    fun getPreferredSize(): Dimension? {
+        return null
+    }
 
     fun setBounds(rectangle: Rectangle?)
-    fun getBounds() : Rectangle? { return null}
+    fun getBounds(): Rectangle? {
+        return null
+    }
 }

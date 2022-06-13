@@ -26,7 +26,6 @@ package meteor.rs
 
 import meteor.Main.client
 import java.util.concurrent.ConcurrentLinkedQueue
-import java.lang.Runnable
 import java.util.concurrent.Executor
 import java.util.function.BooleanSupplier
 

@@ -24,8 +24,8 @@
  */
 package meteor.plugins.statusbars
 
-import net.runelite.client.config.*
 import meteor.plugins.statusbars.config.BarMode
+import net.runelite.client.config.*
 
 @ConfigGroup(StatusBarsConfig.GROUP)
 interface StatusBarsConfig : Config {

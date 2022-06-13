@@ -24,7 +24,9 @@
  */
 package meteor.plugins.itemprices
 
-import net.runelite.client.config.*
+import net.runelite.client.config.Config
+import net.runelite.client.config.ConfigGroup
+import net.runelite.client.config.ConfigItem
 
 @ConfigGroup("itemprices")
 interface ItemPricesConfig : Config {

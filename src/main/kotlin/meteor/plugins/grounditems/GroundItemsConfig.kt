@@ -24,13 +24,8 @@
  */
 package meteor.plugins.grounditems
 
+import meteor.plugins.grounditems.config.*
 import net.runelite.client.config.*
-import meteor.plugins.grounditems.config.PriceDisplayMode
-import meteor.plugins.grounditems.config.ItemHighlightMode
-import meteor.plugins.grounditems.config.MenuHighlightMode
-import meteor.plugins.grounditems.config.ValueCalculationMode
-import meteor.plugins.grounditems.config.DespawnTimerMode
-import meteor.plugins.grounditems.config.HighlightTier
 import java.awt.Color
 
 @ConfigGroup("grounditems")
@@ -56,7 +51,7 @@ interface GroundItemsConfig : Config {
         position = 1,
         section = itemLists
     )
-    fun hiddenItems() : String {
+    fun hiddenItems(): String {
         return "Vial, Ashes, Coins, Bones, Bucket, Jug, Seaweed"
     }
 

@@ -15,8 +15,10 @@ import java.awt.image.BufferedImage
 import java.time.Duration
 import java.time.Instant
 
-class FishingSpotOverlay(val plugin: FishingPlugin, var config: FishingConfig): Overlay() {
-    init { position = OverlayPosition.DYNAMIC }
+class FishingSpotOverlay(val plugin: FishingPlugin, var config: FishingConfig) : Overlay() {
+    init {
+        position = OverlayPosition.DYNAMIC
+    }
 
     private val ONE_TICK_AERIAL_FISHING = 3
     private val MINNOW_MOVE = Duration.ofSeconds(15)
@@ -39,8 +41,9 @@ class FishingSpotOverlay(val plugin: FishingPlugin, var config: FishingConfig): 
             color = if (npc.graphic == GraphicID.FLYING_FISH) {
                 config.getMinnowsOverlayColor()
             } else if (spot == FishingSpot.COMMON_TENCH
-                    && npc.worldLocation.distanceTo2D(client.localPlayer!!.worldLocation)
-                    <= ONE_TICK_AERIAL_FISHING) {
+                && npc.worldLocation.distanceTo2D(client.localPlayer!!.worldLocation)
+                <= ONE_TICK_AERIAL_FISHING
+            ) {
                 config.getAerialOverlayColor()
             } else if (spot == FishingSpot.HARPOONFISH && npc.id == NpcID.FISHING_SPOT_10569) {
                 config.getHarpoonfishOverlayColor()
@@ -51,7 +54,7 @@ class FishingSpotOverlay(val plugin: FishingPlugin, var config: FishingConfig): 
                 val minnowSpot: MinnowSpot? = plugin.minnowSpots[npc.index]
                 if (minnowSpot != null) {
                     val millisLeft: Long = MINNOW_MOVE.toMillis() - Duration.between(minnowSpot.time, Instant.now())
-                            .toMillis()
+                        .toMillis()
                     if (millisLeft < MINNOW_WARN.toMillis()) {
                         color = Color.ORANGE
                     }
@@ -76,8 +79,9 @@ class FishingSpotOverlay(val plugin: FishingPlugin, var config: FishingConfig): 
             if (config.showSpotIcons()) {
                 var fishImage: BufferedImage? = ItemManager.getImage(spot.fishSpriteId)
                 if (spot == FishingSpot.COMMON_TENCH
-                        && npc.worldLocation.distanceTo2D(client.localPlayer!!.worldLocation)
-                        <= ONE_TICK_AERIAL_FISHING) {
+                    && npc.worldLocation.distanceTo2D(client.localPlayer!!.worldLocation)
+                    <= ONE_TICK_AERIAL_FISHING
+                ) {
                     fishImage = ItemManager.getImage(spot.fishSpriteId)?.let { outlineImage(it, color!!) }
                 }
                 if (fishImage != null) {

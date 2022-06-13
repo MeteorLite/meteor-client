@@ -25,16 +25,17 @@
 package meteor.ui.components
 
 import java.awt.Dimension
-import java.awt.image.BufferedImage
 import java.awt.Graphics2D
 import java.awt.Point
 import java.awt.Rectangle
+import java.awt.image.BufferedImage
 
 
 class ImageComponent(var image: BufferedImage?) : LayoutableRenderableEntity {
-    override fun getPreferredSize() : Dimension {
+    override fun getPreferredSize(): Dimension {
         return getBounds()!!.size
     }
+
     private var preferredLocationp: Point? = Point()
     private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
     private var bounds: Rectangle? = Rectangle()

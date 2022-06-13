@@ -24,8 +24,6 @@
  */
 package meteor.ui.overlay
 
-import java.util.ArrayList
-
 object TooltipManager {
     val tooltips: MutableList<Tooltip> = ArrayList()
     fun add(tooltip: Tooltip) {

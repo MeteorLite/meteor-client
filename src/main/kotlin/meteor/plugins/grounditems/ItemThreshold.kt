@@ -25,7 +25,6 @@
 package meteor.plugins.grounditems
 
 import com.google.common.base.Strings
-import java.lang.NumberFormatException
 
 internal class ItemThreshold(var itemName: String, var quantity: Int = 0, var operator: Inequality) {
     internal enum class Inequality {

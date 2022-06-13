@@ -1,4 +1,3 @@
 package meteor.plugins.accountmaker
 
-class AccountBuild {
-}
+class AccountBuild

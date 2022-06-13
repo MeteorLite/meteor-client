@@ -41,8 +41,10 @@ class ProgressPieComponent : RenderableEntity {
         val arc = Arc2D.Float(Arc2D.PIE)
         arc.angleStart = 90.0
         arc.angleExtent = progress * 360
-        arc.setFrame((position.x - diameter / 2).toDouble(), (position.y - diameter / 2).toDouble(), diameter.toDouble(),
-                diameter.toDouble())
+        arc.setFrame(
+            (position.x - diameter / 2).toDouble(), (position.y - diameter / 2).toDouble(), diameter.toDouble(),
+            diameter.toDouble()
+        )
 
         //Draw the inside of the arc
         graphics.color = fill
@@ -51,8 +53,10 @@ class ProgressPieComponent : RenderableEntity {
         //Draw the outlines of the arc
         graphics.stroke = stroke
         graphics.color = borderColor
-        graphics.drawOval(position.x - diameter / 2, position.y - diameter / 2, diameter,
-                diameter)
+        graphics.drawOval(
+            position.x - diameter / 2, position.y - diameter / 2, diameter,
+            diameter
+        )
         return Dimension(diameter, diameter)
     }
 

@@ -28,16 +28,17 @@ package meteor.plugins.stretchedmode
 import eventbus.events.ConfigChanged
 import eventbus.events.ResizeableChanged
 import meteor.input.MouseManager
-import meteor.plugins.Plugin
-import meteor.plugins.PluginDescriptor
 import meteor.input.TranslateMouseListener
 import meteor.input.TranslateMouseWheelListener
-import org.rationalityfrontline.kevent.Event
+import meteor.plugins.Plugin
+import meteor.plugins.PluginDescriptor
 
-@PluginDescriptor(name = "Stretched Mode", configGroup = "stretchedmode",
+@PluginDescriptor(
+    name = "Stretched Mode", configGroup = "stretchedmode",
     description = "Stretches the game in fixed and resizable modes.",
     tags = ["resize", "ui", "interface", "stretch", "scaling", "fixed"],
-    enabledByDefault = true)
+    enabledByDefault = true
+)
 class StretchedModePlugin : Plugin() {
     override val config = configuration<StretchedModeConfig>()
 

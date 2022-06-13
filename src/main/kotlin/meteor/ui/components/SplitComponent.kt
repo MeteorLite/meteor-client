@@ -58,6 +58,7 @@ class SplitComponent : LayoutableRenderableEntity {
     override fun setBounds(rectangle: Rectangle?) {
         bounds = rectangle
     }
+
     private var first: LayoutableRenderableEntity? = null
     private var second: LayoutableRenderableEntity? = null
 
@@ -102,23 +103,27 @@ class SplitComponent : LayoutableRenderableEntity {
 
     class Builder {
         val splitComponent = SplitComponent()
-        fun first(l: LayoutableRenderableEntity) : Builder {
+        fun first(l: LayoutableRenderableEntity): Builder {
             splitComponent.first = l
             return this
         }
-        fun second(l: LayoutableRenderableEntity) : Builder {
+
+        fun second(l: LayoutableRenderableEntity): Builder {
             splitComponent.second = l
             return this
         }
-        fun orientation(c: ComponentOrientation) : Builder {
+
+        fun orientation(c: ComponentOrientation): Builder {
             splitComponent.orientation = c
             return this
         }
-        fun gap(p: Point) : Builder {
+
+        fun gap(p: Point): Builder {
             splitComponent.gap = p
             return this
         }
-        fun build() : SplitComponent {
+
+        fun build(): SplitComponent {
             return splitComponent
         }
     }

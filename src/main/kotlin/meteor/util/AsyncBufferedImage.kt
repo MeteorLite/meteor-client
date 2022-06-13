@@ -25,12 +25,10 @@
 package meteor.util
 
 import java.awt.image.BufferedImage
-import java.lang.Runnable
-import java.util.ArrayList
-import javax.swing.JButton
-import javax.swing.JLabel
-import javax.swing.JComponent
 import javax.swing.ImageIcon
+import javax.swing.JButton
+import javax.swing.JComponent
+import javax.swing.JLabel
 
 class AsyncBufferedImage(width: Int, height: Int, imageType: Int) : BufferedImage(width, height, imageType) {
     private val listeners: MutableList<Runnable> = ArrayList()

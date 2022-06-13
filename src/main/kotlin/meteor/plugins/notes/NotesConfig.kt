@@ -5,12 +5,14 @@ import net.runelite.client.config.ConfigGroup
 import net.runelite.client.config.ConfigItem
 
 @ConfigGroup(value = "notes")
-interface NotesConfig: Config {
+interface NotesConfig : Config {
 
-    @ConfigItem(name = "notes",
-                keyName = "notes",
-                description = "")
-    fun getNotes():String{
+    @ConfigItem(
+        name = "notes",
+        keyName = "notes",
+        description = ""
+    )
+    fun getNotes(): String {
         return ""
     }
 }

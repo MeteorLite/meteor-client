@@ -2,11 +2,12 @@ package meteor.plugins.pvpkeys
 
 
 import com.google.common.base.Supplier
-import dev.hoot.api.items.Inventory
 import dev.hoot.api.magic.Ancient
 import dev.hoot.api.magic.Magic
 import dev.hoot.api.widgets.Prayers
+import eventbus.events.ClientTick
 import eventbus.events.InteractingChanged
+import eventbus.events.MenuOptionClicked
 import meteor.api.items.Items
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
@@ -14,16 +15,20 @@ import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.util.HotkeyListener
 import net.runelite.api.Actor
+import net.runelite.api.InventoryID
+import net.runelite.api.ItemContainer
 import net.runelite.api.Prayer
+import net.runelite.api.widgets.WidgetInfo
+import java.awt.Toolkit
+import java.awt.datatransfer.StringSelection
 import java.util.*
 import java.util.concurrent.ExecutorService
-import kotlin.math.roundToInt
 
 @PluginDescriptor(name = "pvpkeys", description = "hotkeys for pvp", enabledByDefault = false)
 class PvPKeys : Plugin() {
     var r = Random()
     var target: Actor? = null
-    private val keyManager= KeyManager
+    private val keyManager = KeyManager
     override val config = configuration<PvPKeysConfig>()
     var executor: ExecutorService? = null
     val meleeGear: MutableList<String>
@@ -36,7 +41,7 @@ class PvPKeys : Plugin() {
         get() = mutableListOf(*config.RangeIDs()!!.split(",").toTypedArray())
 
 
-            override fun onStart() {
+    override fun onStart() {
 
         keyManager.registerKeyListener(magepray, this.javaClass)
         keyManager.registerKeyListener(rangepray, this.javaClass)
@@ -54,7 +59,7 @@ class PvPKeys : Plugin() {
         keyManager.registerKeyListener(augury, this.javaClass)
         keyManager.registerKeyListener(rigour, this.javaClass)
         keyManager.registerKeyListener(piety, this.javaClass)
-        keyManager.registerKeyListener(lasttarget!!, this.javaClass)
+        keyManager.registerKeyListener(lasttarget, this.javaClass)
 
     }
 
@@ -76,7 +81,7 @@ class PvPKeys : Plugin() {
         keyManager.unregisterKeyListener(augury)
         keyManager.unregisterKeyListener(rigour)
         keyManager.unregisterKeyListener(piety)
-        keyManager.unregisterKeyListener(lasttarget!!)
+        keyManager.unregisterKeyListener(lasttarget)
 
     }
 
@@ -125,9 +130,9 @@ class PvPKeys : Plugin() {
                 mageGear.forEach {
                     Items.getFirst(it)?.interact(2)
                 }
-                }
             }
         }
+    }
 
     private val meleegear: HotkeyListener = object : HotkeyListener(Supplier { config.Meleegear() }) {
         override fun hotkeyPressed() {
@@ -138,13 +143,13 @@ class PvPKeys : Plugin() {
 
                 }
             }
-            }
         }
+    }
     private val rangegear: HotkeyListener = object : HotkeyListener(Supplier { config.Rangegear() }) {
         override fun hotkeyPressed() {
             ClientThread.invokeLater {
                 rangeGear.forEach {
-                        Items.getFirst(it)?.interact(2)
+                    Items.getFirst(it)?.interact(2)
                 }
             }
         }
@@ -188,14 +193,48 @@ class PvPKeys : Plugin() {
             Prayers.toggle(Prayer.PIETY)
         }
     }
-    private val lasttarget: HotkeyListener? = object : HotkeyListener(Supplier { config.Lasttarget() }) {
+    private val lasttarget: HotkeyListener = object : HotkeyListener(Supplier { config.Lasttarget() }) {
         override fun hotkeyPressed() {
-            target!!.interact(0)
+            target!!.interact("Attack")
         }
     }
+
+    override fun onClientTick(it: ClientTick) {
+        val gear = client.getWidget(WidgetInfo.EQUIPMENT.id)
+        val mousePoint = client.mouseCanvasPosition
+        if (gear != null) {
+            if (gear.bounds.contains(mousePoint.x, mousePoint.y))
+                client.insertMenuItem(
+                    "<col=00FFFF>Copy Gear</col>",
+                    "",
+                    10000000,
+                    100000,
+                    0,
+                    0,
+                    false
+                )
+        }
+
+    }
+
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if ("<col=00FFFF>Copy Gear</col>" in it.getMenuOption()!!) {
+            val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+            val sb = StringBuilder()
+            i?.items?.forEach {
+                if (it.id == -1 || it.id == 0) {
+                    return@forEach
+                }
+                sb.append(it.name)
+                sb.append(",")
+            }
+            Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(sb.toString()), null)
+        }
+    }
+
     override fun onInteractingChanged(it: InteractingChanged) {
         if (it.source === client.localPlayer) {
-            if (it.target != null ) {
+            if (it.target != null) {
                 target = it.target
             }
         }

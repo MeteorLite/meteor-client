@@ -60,9 +60,11 @@ abstract class WidgetItemOverlay(vararg overlayModes: ItemOverlayMode) : Overlay
             if (dragging) {
                 // If dragging, clip if the dragged item is outside of the parent bounds
                 shouldClip = itemCanvasBounds.x < parentBounds.x
-                shouldClip = shouldClip or (itemCanvasBounds.x + itemCanvasBounds.width >= parentBounds.x + parentBounds.width)
+                shouldClip =
+                    shouldClip or (itemCanvasBounds.x + itemCanvasBounds.width >= parentBounds.x + parentBounds.width)
                 shouldClip = shouldClip or (itemCanvasBounds.y < parentBounds.y)
-                shouldClip = shouldClip or (itemCanvasBounds.y + itemCanvasBounds.height >= parentBounds.y + parentBounds.height)
+                shouldClip =
+                    shouldClip or (itemCanvasBounds.y + itemCanvasBounds.height >= parentBounds.y + parentBounds.height)
             } else {
                 // Otherwise, we only need to clip the overlay if it intersects the parent bounds,
                 // since items completely outside of the parent bounds are not drawn
@@ -91,18 +93,19 @@ abstract class WidgetItemOverlay(vararg overlayModes: ItemOverlayMode) : Overlay
 
     protected fun showOnItems() {
         showOnInterfaces(
-                WidgetID.DEPOSIT_BOX_GROUP_ID,
-                WidgetID.BANK_INVENTORY_GROUP_ID,
-                WidgetID.SHOP_INVENTORY_GROUP_ID,
-                WidgetID.GRAND_EXCHANGE_INVENTORY_GROUP_ID,
-                WidgetID.GUIDE_PRICES_INVENTORY_GROUP_ID,
-                WidgetID.EQUIPMENT_INVENTORY_GROUP_ID,
-                WidgetID.INVENTORY_GROUP_ID,
-                WidgetID.SEED_VAULT_INVENTORY_GROUP_ID,
-                WidgetID.DUEL_INVENTORY_GROUP_ID,
-                WidgetID.DUEL_INVENTORY_OTHER_GROUP_ID,
-                WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID,
-                WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID)
+            WidgetID.DEPOSIT_BOX_GROUP_ID,
+            WidgetID.BANK_INVENTORY_GROUP_ID,
+            WidgetID.SHOP_INVENTORY_GROUP_ID,
+            WidgetID.GRAND_EXCHANGE_INVENTORY_GROUP_ID,
+            WidgetID.GUIDE_PRICES_INVENTORY_GROUP_ID,
+            WidgetID.EQUIPMENT_INVENTORY_GROUP_ID,
+            WidgetID.INVENTORY_GROUP_ID,
+            WidgetID.SEED_VAULT_INVENTORY_GROUP_ID,
+            WidgetID.DUEL_INVENTORY_GROUP_ID,
+            WidgetID.DUEL_INVENTORY_OTHER_GROUP_ID,
+            WidgetID.PLAYER_TRADE_SCREEN_GROUP_ID,
+            WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID
+        )
     }
 
     protected fun showOnBank() {

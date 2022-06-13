@@ -32,18 +32,21 @@ import meteor.util.ColorUtil
 import net.runelite.api.Perspective
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.widgets.WidgetInfo
-import org.rationalityfrontline.kevent.KEvent
 import java.awt.*
 import java.awt.image.BufferedImage
 import kotlin.math.abs
 
-abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
-    : LayoutableRenderableEntity, EventSubscriber() {
+abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : LayoutableRenderableEntity,
+    EventSubscriber() {
+    constructor(graphics: Graphics2D, polygon: Shape, color: Color, stroke: Stroke) : this()
+
+    constructor(start: Color, interactClickColor: Color, t: Float) : this()
+
     val client = Main.client
     val drawHooks: ArrayList<Int> = ArrayList()
     open val menuEntries: ArrayList<OverlayMenuEntry> = ArrayList()
 
-    var preferredPosition : OverlayPosition? = null
+    var preferredPosition: OverlayPosition? = null
 
     var position = OverlayPosition.DETACHED
     var priority: OverlayPriority = OverlayPriority.NONE
@@ -109,14 +112,16 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
         return false
     }
 
-    open var parentBounds = Rectangle(0,0,1920,1080)
+    open var parentBounds = Rectangle(0, 0, 1920, 1080)
 
     open fun renderPolygon(graphics: Graphics2D, poly: Shape, color: Color) {
         renderPolygon(graphics, poly, color, BasicStroke(2F))
     }
 
-    open fun renderPolygon(graphics: Graphics2D, poly: Shape, color: Color,
-                           borderStroke: Stroke) {
+    open fun renderPolygon(
+        graphics: Graphics2D, poly: Shape, color: Color,
+        borderStroke: Stroke
+    ) {
         graphics.color = color
         val originalStroke = graphics.stroke
         graphics.stroke = borderStroke
@@ -126,23 +131,29 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
         graphics.stroke = originalStroke
     }
 
-    open fun renderTextLocation(graphics: Graphics2D, txtString: String, fontSize: Int,
-                                fontStyle: Int, fontColor: Color, canvasPoint: net.runelite.api.Point, shadows: Boolean, yOffset: Int) {
+    open fun renderTextLocation(
+        graphics: Graphics2D, txtString: String, fontSize: Int,
+        fontStyle: Int, fontColor: Color, canvasPoint: net.runelite.api.Point, shadows: Boolean, yOffset: Int
+    ) {
         graphics.font = Font("Arial", fontStyle, fontSize)
         val canvasCenterPoint = net.runelite.api.Point(
-                canvasPoint.x,
-                canvasPoint.y + yOffset)
+            canvasPoint.x,
+            canvasPoint.y + yOffset
+        )
         val canvasCenterPointShadow = net.runelite.api.Point(
-                canvasPoint.x + 1,
-                canvasPoint.y + 1 + yOffset)
+            canvasPoint.x + 1,
+            canvasPoint.y + 1 + yOffset
+        )
         if (shadows) {
             renderTextLocation(graphics, canvasCenterPointShadow, txtString, Color.BLACK)
         }
         renderTextLocation(graphics, canvasCenterPoint, txtString, fontColor)
     }
 
-    open fun renderTextLocation(graphics: Graphics2D, txtLoc: net.runelite.api.Point, text: String,
-                                color: Color) {
+    open fun renderTextLocation(
+        graphics: Graphics2D, txtLoc: net.runelite.api.Point, text: String,
+        color: Color
+    ) {
         if (Strings.isNullOrEmpty(text)) {
             return
         }
@@ -159,8 +170,10 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
     }
 
     open fun fillImage(image: BufferedImage, color: Color): BufferedImage {
-        val filledImage = BufferedImage(image.width, image.height,
-                BufferedImage.TYPE_INT_ARGB)
+        val filledImage = BufferedImage(
+            image.width, image.height,
+            BufferedImage.TYPE_INT_ARGB
+        )
         for (x in 0 until filledImage.width) {
             for (y in 0 until filledImage.height) {
                 val pixel = image.getRGB(x, y)
@@ -180,25 +193,32 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE)
         graphics.drawImage(image, x, y, null)
     }
 
-    open fun renderImageLocation(graphics: Graphics2D, localPoint: LocalPoint,
-                                 image: BufferedImage, zOffset: Int) {
+    open fun renderImageLocation(
+        graphics: Graphics2D, localPoint: LocalPoint,
+        image: BufferedImage, zOffset: Int
+    ) {
         val imageLocation = Perspective
-                .getCanvasImageLocation(client, localPoint, image, zOffset)
+            .getCanvasImageLocation(client, localPoint, image, zOffset)
         if (imageLocation != null) {
             renderImageLocation(graphics, imageLocation, image)
         }
     }
 
-    open fun outlineImage(image: BufferedImage, color: Color,
-                          outlineCorners: Boolean): BufferedImage {
+    open fun outlineImage(
+        image: BufferedImage, color: Color,
+        outlineCorners: Boolean
+    ): BufferedImage {
         val filledImage: BufferedImage = fillImage(image, color)
-        val outlinedImage = BufferedImage(image.width, image.height,
-                BufferedImage.TYPE_INT_ARGB)
+        val outlinedImage = BufferedImage(
+            image.width, image.height,
+            BufferedImage.TYPE_INT_ARGB
+        )
         val g2d = outlinedImage.createGraphics()
         for (x in -1..1) {
             for (y in -1..1) {
                 if (x == 0 && y == 0
-                        || !outlineCorners && abs(x) + abs(y) != 1) {
+                    || !outlineCorners && abs(x) + abs(y) != 1
+                ) {
                     continue
                 }
                 g2d.drawImage(filledImage, x, y, null)

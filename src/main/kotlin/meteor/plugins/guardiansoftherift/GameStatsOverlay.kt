@@ -24,7 +24,6 @@
  */
 package meteor.plugins.guardiansoftherift
 
-import dev.hoot.api.entities.NPCs
 import meteor.plugins.xptracker.XpTrackerService
 import meteor.ui.components.LineComponent
 import meteor.ui.overlay.OverlayPanel
@@ -32,7 +31,7 @@ import meteor.ui.overlay.OverlayPosition
 import java.awt.Dimension
 import java.awt.Graphics2D
 
-class GameStatsOverlay(val plugin: GuardiansOfTheRiftPlugin ) : OverlayPanel() {
+class GameStatsOverlay(val plugin: GuardiansOfTheRiftPlugin) : OverlayPanel() {
     lateinit var xpTrackerService: XpTrackerService
 
     init {
@@ -46,21 +45,24 @@ class GameStatsOverlay(val plugin: GuardiansOfTheRiftPlugin ) : OverlayPanel() {
                 LineComponent.Builder()
                     .left("Game Time Elapsed")
                     .right("${(plugin.gameLength * 600) / 1000}")
-                    .build())
+                    .build()
+            )
         }
         if (plugin.countDownCount) {
             panelComponent.children.add(
                 LineComponent.Builder()
                     .left("Game Starts in")
                     .right("${(plugin.countDownLength * 600) / 1000}")
-                    .build())
+                    .build()
+            )
         }
         if (plugin.collectionCount) {
             panelComponent.children.add(
                 LineComponent.Builder()
                     .left("Collection Time Left")
                     .right("${(120 - (plugin.collectionLength * 600) / 1000)}")
-                    .build())
+                    .build()
+            )
         }
 
         if (plugin.catalyticPoints > 0 || plugin.elementalPoints > 0) {
@@ -69,24 +71,28 @@ class GameStatsOverlay(val plugin: GuardiansOfTheRiftPlugin ) : OverlayPanel() {
                     LineComponent.Builder()
                         .left("Target Runes")
                         .right("Elemental")
-                        .build())
+                        .build()
+                )
             } else {
                 panelComponent.children.add(
                     LineComponent.Builder()
                         .left("Target Runes")
                         .right("Catalytic")
-                        .build())
+                        .build()
+                )
             }
             panelComponent.children.add(
                 LineComponent.Builder()
                     .left("Elemental Points")
                     .right("${plugin.elementalPoints}")
-                    .build())
+                    .build()
+            )
             panelComponent.children.add(
                 LineComponent.Builder()
                     .left("Catalytic Points")
                     .right("${plugin.catalyticPoints}")
-                    .build())
+                    .build()
+            )
         }
 
         return super.render(graphics)

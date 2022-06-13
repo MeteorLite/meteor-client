@@ -35,7 +35,7 @@ import net.runelite.api.widgets.WidgetInfo
 import org.apache.commons.lang3.ArrayUtils
 
 
-object BankSearch{
+object BankSearch {
     private val client: Client? = null
     var clientThread = ClientThread
 
@@ -76,7 +76,7 @@ object BankSearch{
                 client!!.runScript(ScriptID.MESSAGE_LAYER_CLOSE, 1, 1, 0)
             } else {
                 client!!.setVar(VarClientInt.INPUT_TYPE, InputType.NONE.type)
-                client!!.setVar(VarClientStr.INPUT_TEXT, "")
+                client.setVar(VarClientStr.INPUT_TEXT, "")
             }
             layoutBank()
         }

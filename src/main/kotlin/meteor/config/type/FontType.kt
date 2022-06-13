@@ -27,7 +27,7 @@ package meteor.config.type
 import meteor.game.FontManager
 import java.awt.Font
 
-enum class FontType(val type: String,val font: Font) {
+enum class FontType(val type: String, val font: Font) {
     REGULAR("Regular", FontManager.runescapeFont), BOLD("Bold", FontManager.runescapeBoldFont), SMALL(
         "Small",
         FontManager.runescapeSmallFont

@@ -24,11 +24,6 @@
  */
 package meteor.plugins.xptracker
 
-import meteor.ui.components.LayoutableRenderableEntity
-import meteor.ui.components.SplitComponent
-import meteor.ui.overlay.ComponentOrientation
-import java.awt.Point
-
 class XpSnapshotSingle {
     var actionType: XpActionType? = null
     var startLevel = 0
@@ -48,73 +43,77 @@ class XpSnapshotSingle {
 
     class Builder {
         val snapshot = XpSnapshotSingle()
-        fun actionType(x: XpActionType) : Builder {
+        fun actionType(x: XpActionType): Builder {
             snapshot.actionType = x
             return this
         }
-        fun startLevel(i: Int) : Builder {
+
+        fun startLevel(i: Int): Builder {
             snapshot.startLevel = i
             return this
         }
-        fun endLevel(i: Int) : Builder {
+
+        fun endLevel(i: Int): Builder {
             snapshot.endLevel = i
             return this
         }
-        fun startGoalXp(i: Int) : Builder {
+
+        fun startGoalXp(i: Int): Builder {
             snapshot.startGoalXp = i
             return this
         }
-        fun endGoalXp(i: Int) : Builder {
+
+        fun endGoalXp(i: Int): Builder {
             snapshot.endGoalXp = i
             return this
         }
 
-        fun xpGainedInSession(i: Int) : Builder {
+        fun xpGainedInSession(i: Int): Builder {
             snapshot.xpGainedInSession = i
             return this
         }
 
-        fun xpRemainingToGoal(i: Int) : Builder {
+        fun xpRemainingToGoal(i: Int): Builder {
             snapshot.xpRemainingToGoal = i
             return this
         }
 
-        fun xpPerHour(i: Int) : Builder {
+        fun xpPerHour(i: Int): Builder {
             snapshot.xpPerHour = i
             return this
         }
 
-        fun skillProgressToGoal(d: Double) : Builder {
+        fun skillProgressToGoal(d: Double): Builder {
             snapshot.skillProgressToGoal = d
             return this
         }
 
-        fun actionsInSession(i: Int) : Builder {
+        fun actionsInSession(i: Int): Builder {
             snapshot.actionsInSession = i
             return this
         }
 
-        fun actionsRemainingToGoal(i: Int) : Builder {
+        fun actionsRemainingToGoal(i: Int): Builder {
             snapshot.actionsRemainingToGoal = i
             return this
         }
 
-        fun actionsPerHour(i: Int) : Builder {
+        fun actionsPerHour(i: Int): Builder {
             snapshot.actionsPerHour = i
             return this
         }
 
-        fun timeTillGoal(s: String) : Builder {
+        fun timeTillGoal(s: String): Builder {
             snapshot.timeTillGoal = s
             return this
         }
 
-        fun timeTillGoalHours(s: String) : Builder {
+        fun timeTillGoalHours(s: String): Builder {
             snapshot.timeTillGoalHours = s
             return this
         }
 
-        fun timeTillGoalShort(s: String) : Builder {
+        fun timeTillGoalShort(s: String): Builder {
             snapshot.timeTillGoalShort = s
             return this
         }

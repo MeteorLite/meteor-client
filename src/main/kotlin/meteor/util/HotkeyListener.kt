@@ -32,7 +32,7 @@ import meteor.input.KeyListener
 import meteor.rs.ClientThread
 import java.awt.event.KeyEvent
 
- open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener {
+open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener {
     private var isPressed = false
     private var isConsumingTyped = false
 
@@ -45,7 +45,7 @@ import java.awt.event.KeyEvent
 
     override fun keyPressed(e: KeyEvent) {
 
-        ClientThread.invoke() {
+        ClientThread.invoke {
             if (keybind.get().matches(e)) {
                 val wasPressed = isPressed
                 isPressed = true
@@ -63,7 +63,7 @@ import java.awt.event.KeyEvent
     }
 
     override fun keyReleased(e: KeyEvent) {
-        ClientThread.invoke() {
+        ClientThread.invoke {
             if (keybind.get().matches(e)) {
                 if (isPressed) {
                     hotkeyReleased()
@@ -79,5 +79,6 @@ import java.awt.event.KeyEvent
 
 
     }
+
     protected fun hotkeyReleased() {}
 }

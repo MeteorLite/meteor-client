@@ -24,7 +24,10 @@
  */
 package meteor.plugins.minimap
 
-import net.runelite.client.config.*
+import net.runelite.client.config.Alpha
+import net.runelite.client.config.Config
+import net.runelite.client.config.ConfigGroup
+import net.runelite.client.config.ConfigItem
 import java.awt.Color
 
 @ConfigGroup(MinimapConfig.GROUP)
@@ -39,6 +42,7 @@ interface MinimapConfig : Config {
     fun hideMinimap(): Boolean {
         return false
     }
+
     @Alpha
     @ConfigItem(
         keyName = "itemColor",
@@ -46,9 +50,10 @@ interface MinimapConfig : Config {
         description = "Set the minimap color items are drawn in",
         position = 2
     )
-    fun itemColor(): Color{
+    fun itemColor(): Color {
         return Color.CYAN
     }
+
     @Alpha
     @ConfigItem(
         keyName = "npcColor",
@@ -56,9 +61,10 @@ interface MinimapConfig : Config {
         description = "Set the minimap color NPCs are drawn in",
         position = 3
     )
-    fun npcColor(): Color{
+    fun npcColor(): Color {
         return Color.CYAN
     }
+
     @Alpha
     @ConfigItem(
         keyName = "playerColor",
@@ -66,9 +72,10 @@ interface MinimapConfig : Config {
         description = "Set the minimap Color players are drawn in",
         position = 4
     )
-    fun playerColor(): Color{
+    fun playerColor(): Color {
         return Color.CYAN
     }
+
     @Alpha
     @ConfigItem(
         keyName = "friendColor",
@@ -76,37 +83,40 @@ interface MinimapConfig : Config {
         description = "Set the minimap color your friends are drawn in",
         position = 5,
     )
-    fun friendColor(): Color{
+    fun friendColor(): Color {
         return Color.CYAN
     }
+
     @Alpha
     @ConfigItem(
         keyName = "team",
         name = "Team color",
         description = "Set the minimap color your team is drawn in",
 
-    )
-    fun teamColor(): Color{
+        )
+    fun teamColor(): Color {
         return Color.CYAN
     }
+
     @Alpha
     @ConfigItem(
         keyName = "clan",
         name = "Friends Chat color",
         description = "Set the minimap color your friends chat members are drawn in",
 
-    )
-    fun friendsChatColor(): Color{
+        )
+    fun friendsChatColor(): Color {
         return Color.CYAN
     }
+
     @Alpha
     @ConfigItem(
         keyName = "clanchat",
         name = "Clan Chat color",
         description = "Set the minimap color your clan chat members are drawn in",
 
-    )
-    fun clanChatColor(): Color{
+        )
+    fun clanChatColor(): Color {
         return Color.CYAN
     }
 

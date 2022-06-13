@@ -153,6 +153,6 @@ interface ChatFilterConfig : Config {
             position = 0,
             closedByDefault = true
         )
-       const  val filterLists = "Filter Lists"
+        const val filterLists = "Filter Lists"
     }
 }

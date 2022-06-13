@@ -1,4 +1,3 @@
 package meteor.plugins.accountmaker
 
-class QuestStep: BuildStep() {
-}
+class QuestStep : BuildStep()

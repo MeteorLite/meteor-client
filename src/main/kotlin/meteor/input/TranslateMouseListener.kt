@@ -68,8 +68,9 @@ object TranslateMouseListener : MouseListener {
         val newY = (e.y / (stretchedDimensions.height / realDimensions.getHeight())).toInt()
         val mouseEvent = MouseEvent(
             client.canvas, e.id, e.getWhen(),
-                e.modifiersEx,
-                newX, newY, e.clickCount, e.isPopupTrigger, e.button)
+            e.modifiersEx,
+            newX, newY, e.clickCount, e.isPopupTrigger, e.button
+        )
         if (e.isConsumed) {
             mouseEvent.consume()
         }

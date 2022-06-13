@@ -40,9 +40,11 @@ object TranslateMouseWheelListener : MouseWheelListener {
         val realDimensions = client.realDimensions
         val newX = (e.x / (stretchedDimensions.width / realDimensions.getWidth())).toInt()
         val newY = (e.y / (stretchedDimensions.height / realDimensions.getHeight())).toInt()
-        return MouseWheelEvent(e.source as Component, e.id, e.getWhen(), e.modifiers,
-                newX, newY,
-                e.clickCount, e.isPopupTrigger, e.scrollType, e.scrollAmount,
-                e.wheelRotation)
+        return MouseWheelEvent(
+            e.source as Component, e.id, e.getWhen(), e.modifiers,
+            newX, newY,
+            e.clickCount, e.isPopupTrigger, e.scrollType, e.scrollAmount,
+            e.wheelRotation
+        )
     }
 }

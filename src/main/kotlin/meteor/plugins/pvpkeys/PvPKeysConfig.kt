@@ -6,17 +6,18 @@ import net.runelite.client.config.Config
 import net.runelite.client.config.ConfigGroup
 import net.runelite.client.config.ConfigItem
 import net.runelite.client.config.Range
-import java.awt.Color
 import java.awt.event.KeyEvent
 
 @ConfigGroup("pvpkeys")
 interface PvPKeysConfig : Config {
 
 
-    @ConfigItem(keyName = "color",
-                name = "Color",
-                description= "color shit")
-    fun color(): HsvColor?{
+    @ConfigItem(
+        keyName = "color",
+        name = "Color",
+        description = "color shit"
+    )
+    fun color(): HsvColor? {
         return HsvColor.DEFAULT
     }
 
@@ -59,7 +60,8 @@ interface PvPKeysConfig : Config {
     fun Magegear(): ModifierlessKeybind? {
         return ModifierlessKeybind(KeyEvent.VK_Q, KeyEvent.KEY_PRESSED)
     }
-    @Range(textInput = true )
+
+    @Range(textInput = true)
     @ConfigItem(keyName = "MageIDs", name = "Mage gear id's", description = "", textField = true)
     fun MageIDs(): String? {
         return ""
@@ -69,7 +71,8 @@ interface PvPKeysConfig : Config {
     fun Rangegear(): ModifierlessKeybind? {
         return ModifierlessKeybind(KeyEvent.VK_W, KeyEvent.KEY_PRESSED)
     }
-    @Range(textInput = true )
+
+    @Range(textInput = true)
     @ConfigItem(keyName = "RangeIDs", name = "Range gear id's", description = "", textField = true)
     fun RangeIDs(): String? {
         return ""
@@ -79,7 +82,8 @@ interface PvPKeysConfig : Config {
     fun Meleegear(): ModifierlessKeybind? {
         return ModifierlessKeybind(KeyEvent.VK_E, KeyEvent.KEY_PRESSED)
     }
-    @Range(textInput = true )
+
+    @Range(textInput = true)
     @ConfigItem(keyName = "MeleeIDs", name = "Melee gear id's", description = "", textField = true)
     fun MeleeIDs(): String? {
         return ""

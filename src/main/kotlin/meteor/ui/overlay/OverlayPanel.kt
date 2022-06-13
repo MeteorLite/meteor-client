@@ -33,6 +33,7 @@ import java.awt.Graphics2D
 abstract class OverlayPanel : Overlay() {
 
     val panelComponent: PanelComponent = PanelComponent()
+
     /**
      * Enables/disables automatic clearing of [OverlayPanel.getPanelComponent] children after
      * rendering (enabled by default)
@@ -57,7 +58,7 @@ abstract class OverlayPanel : Overlay() {
     override fun render(graphics: Graphics2D): Dimension? {
         val oldSize: Dimension? = panelComponent.getPreferredSize()
         if (getPreferredSize() != null)
-        panelComponent.setPreferredSize(getPreferredSize())
+            panelComponent.setPreferredSize(getPreferredSize())
         if (dynamicFont) {
             if (getPreferredSize()!!.width >= (ComponentConstants.STANDARD_WIDTH * 1.3)) {
                 graphics.font = FontManager.runescapeBoldFont

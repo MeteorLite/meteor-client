@@ -8,12 +8,15 @@ interface AutoLoginConfig : Config {
         @ConfigSection(keyName = "title", name = "Soxs' AutoRun", description = "", position = 0)
         const val title = "Autologin"
     }
-    @ConfigItem(keyName = "username",
+
+    @ConfigItem(
+        keyName = "username",
         name = "Username",
         description = "Username",
         textField = true,
         position = 10,
-        section = title )
+        section = title
+    )
     fun username(): String {
         return "Username"
     }
@@ -26,7 +29,8 @@ interface AutoLoginConfig : Config {
         textField = true,
         position = 12,
         section = title
-    ) fun password(): String {
+    )
+    fun password(): String {
         return "Password"
     }
 }

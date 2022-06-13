@@ -28,9 +28,8 @@ import meteor.plugins.Plugin
 import meteor.ui.overlay.OverlayMenuEntry
 import java.awt.Color
 import java.awt.image.BufferedImage
-import java.util.ArrayList
 
-abstract class  InfoBox(
+abstract class InfoBox(
     image: BufferedImage?,
     val plugin: Plugin
 ) {

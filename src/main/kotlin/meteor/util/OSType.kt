@@ -34,6 +34,7 @@ enum class OSType {
 
     companion object {
         var oSType: OSType? = null
+
         init {
             val OS = System
                 .getProperty("os.name", "generic")

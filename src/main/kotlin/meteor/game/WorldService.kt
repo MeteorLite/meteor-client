@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.game;
+package meteor.game
 
 
 import meteor.Logger
@@ -33,8 +33,10 @@ import net.runelite.http.api.worlds.World
 import net.runelite.http.api.worlds.WorldClient
 import net.runelite.http.api.worlds.WorldResult
 import java.io.IOException
-import java.util.Comparator
-import java.util.concurrent.*
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.ExecutionException
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 import java.util.function.ToIntFunction
 
 
@@ -45,6 +47,7 @@ object WorldService {
     private var worlds: WorldResult? = null
     private val log: Logger = Logger("WorldService")
     private const val WORLD_FETCH_TIMER = 10 // minutes
+
     init {
 
 
@@ -58,7 +61,7 @@ object WorldService {
 
     private fun tick() {
         try {
-            if (worlds == null || Main.client!!.gameState == GameState.LOGGED_IN) {
+            if (worlds == null || Main.client.gameState == GameState.LOGGED_IN) {
                 fetch()
             }
         } finally {
@@ -69,7 +72,7 @@ object WorldService {
     private fun fetch() {
         try {
             val worldResult: WorldResult = worldClient.lookupWorlds()
-            worldResult.getWorlds().sortWith(
+            worldResult.worlds.sortWith(
                 Comparator.comparingInt<World>(
                     ToIntFunction<World> { obj: World -> obj.id })
             )
@@ -85,7 +88,7 @@ object WorldService {
     }
 
     fun getWorlds(): WorldResult? {
-        if (!firstRunFuture.isDone()) {
+        if (!firstRunFuture.isDone) {
             try {
                 return firstRunFuture.get(10, TimeUnit.SECONDS)
             } catch (e: InterruptedException) {

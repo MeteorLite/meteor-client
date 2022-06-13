@@ -95,7 +95,7 @@ class WidgetMenuOption {
         menuTarget = ColorUtil.wrapWithColorTag(target, color)
     }
 
-    fun getMenuTarget() : String? {
+    fun getMenuTarget(): String? {
         return menuTarget
     }
 }

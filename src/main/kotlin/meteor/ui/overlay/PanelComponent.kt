@@ -27,7 +27,6 @@ package meteor.ui.overlay
 import meteor.ui.components.ComponentConstants
 import meteor.ui.components.LayoutableRenderableEntity
 import java.awt.*
-import java.util.ArrayList
 
 class PanelComponent : LayoutableRenderableEntity {
 
@@ -70,10 +69,11 @@ class PanelComponent : LayoutableRenderableEntity {
     var wrap = false
 
     var border = Rectangle(
-            ComponentConstants.STANDARD_BORDER,
-            ComponentConstants.STANDARD_BORDER,
-            ComponentConstants.STANDARD_BORDER,
-            ComponentConstants.STANDARD_BORDER)
+        ComponentConstants.STANDARD_BORDER,
+        ComponentConstants.STANDARD_BORDER,
+        ComponentConstants.STANDARD_BORDER,
+        ComponentConstants.STANDARD_BORDER
+    )
 
     var gap = Point(0, 0)
 
@@ -84,13 +84,14 @@ class PanelComponent : LayoutableRenderableEntity {
 
         // Calculate panel dimension
         val dimension = Dimension(
-                border.x + childDimensions.width + border.width,
-                border.y + childDimensions.height + border.height)
+            border.x + childDimensions.width + border.width,
+            border.y + childDimensions.height + border.height
+        )
 
         // Render background
         val backgroundComponent = BackgroundComponent()
         backgroundComponent.rectangle = Rectangle(getPreferredLocation(), dimension)
-        backgroundComponent.backgroundColor = backgroundColor!!
+        backgroundComponent.backgroundColor = backgroundColor
         backgroundComponent.render(graphics)
 
         // Offset children
@@ -103,8 +104,9 @@ class PanelComponent : LayoutableRenderableEntity {
 
         // Create child preferred size
         val childPreferredSize = Dimension(
-                getPreferredSize()!!.width - border.x - border.width,
-                getPreferredSize()!!.height - border.y - border.height)
+            getPreferredSize()!!.width - border.x - border.width,
+            getPreferredSize()!!.height - border.y - border.height
+        )
 
         // Calculate max width/height for infoboxes
         var totalHeight = 0

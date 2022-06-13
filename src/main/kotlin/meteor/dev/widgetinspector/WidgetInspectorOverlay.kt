@@ -30,7 +30,6 @@ import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
 import meteor.ui.overlay.OverlayPriority
-import net.runelite.api.Client
 import net.runelite.api.MenuEntry
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetID
@@ -38,7 +37,8 @@ import net.runelite.api.widgets.WidgetItem
 import java.awt.*
 import java.awt.geom.Rectangle2D
 
-class WidgetInspectorOverlay(val inspector: WidgetInspector
+class WidgetInspectorOverlay(
+    val inspector: WidgetInspector
 ) : Overlay() {
     init {
         position = (OverlayPosition.DYNAMIC)
@@ -71,19 +71,19 @@ class WidgetInspectorOverlay(val inspector: WidgetInspector
     }
 
     private fun renderWiw(g: Graphics2D, wiw: Any, color: Color?) {
-        g.setColor(color)
+        g.color = color
         if (wiw is WidgetItem) {
-            val wi: WidgetItem = wiw as WidgetItem
-            val bounds: Rectangle = wi.getCanvasBounds()
+            val wi: WidgetItem = wiw
+            val bounds: Rectangle = wi.canvasBounds
             g.draw(bounds)
-            val text: String = wi.getId().toString() + ""
-            val fm: FontMetrics = g.getFontMetrics()
+            val text: String = wi.id.toString() + ""
+            val fm: FontMetrics = g.fontMetrics
             val textBounds: Rectangle2D = fm.getStringBounds(text, g)
-            val textX: Int = (bounds.getX() + bounds.getWidth() / 2 - textBounds.getWidth() / 2).toInt()
-            val textY: Int = (bounds.getY() + bounds.getHeight() / 2 + textBounds.getHeight() / 2).toInt()
-            g.setColor(Color.BLACK)
+            val textX: Int = (bounds.getX() + bounds.getWidth() / 2 - textBounds.width / 2).toInt()
+            val textY: Int = (bounds.getY() + bounds.getHeight() / 2 + textBounds.height / 2).toInt()
+            g.color = Color.BLACK
             g.drawString(text, textX + 1, textY + 1)
-            g.setColor(Color.ORANGE)
+            g.color = Color.ORANGE
             g.drawString(text, textX, textY)
         } else {
             val w = wiw as Widget

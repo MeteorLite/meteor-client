@@ -2,7 +2,9 @@ package meteor.plugins.agility
 
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayPosition
-import net.runelite.api.*
+import net.runelite.api.Perspective
+import net.runelite.api.Point
+import net.runelite.api.Skill
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D

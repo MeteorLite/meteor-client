@@ -1,7 +1,7 @@
 package meteor.config.descriptor
 
-import net.runelite.client.config.*
 import meteor.config.legacy.ConfigObject
+import net.runelite.client.config.ConfigTitle
 
 
 class ConfigTitleDescriptor(val key: String, val title: ConfigTitle) : ConfigObject {

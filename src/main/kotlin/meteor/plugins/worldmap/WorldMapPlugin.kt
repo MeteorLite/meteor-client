@@ -35,11 +35,13 @@ import meteor.plugins.agility.AgilityShortcut
 import meteor.rs.ClientThread
 import meteor.ui.worldmap.WorldMapPointManager
 import meteor.util.ImageUtil
-import net.runelite.api.*
+import net.runelite.api.GameState
+import net.runelite.api.Quest
+import net.runelite.api.QuestState
+import net.runelite.api.Skill
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.util.Text
 import net.runelite.api.widgets.WidgetID
-import org.rationalityfrontline.kevent.Event
 import java.awt.image.BufferedImage
 import java.util.*
 import java.util.function.Predicate
@@ -114,7 +116,7 @@ class WorldMapPlugin : Plugin() {
     }
 
     private fun updateAgilityIcons() {
-        worldMapPointManager!!.removeIf(isType(MapPoint.Type.AGILITY_SHORTCUT))
+        worldMapPointManager.removeIf(isType(MapPoint.Type.AGILITY_SHORTCUT))
         if (config.agilityShortcutLevelIcon() || config.agilityShortcutTooltips()) {
             Arrays.stream(AgilityShortcut.values())
                 .filter { value: AgilityShortcut -> value.worldMapLocation != null }
@@ -135,7 +137,7 @@ class WorldMapPlugin : Plugin() {
     }
 
     private fun updateAgilityCourseIcons() {
-        worldMapPointManager!!.removeIf(isType(MapPoint.Type.AGILITY_COURSE))
+        worldMapPointManager.removeIf(isType(MapPoint.Type.AGILITY_COURSE))
         if (config.agilityCourseTooltip() || config.agilityCourseRooftop()) {
             Arrays.stream(AgilityCourseLocation.values())
                 .filter { true }
@@ -152,7 +154,7 @@ class WorldMapPlugin : Plugin() {
     }
 
     private fun updateRareTreeIcons() {
-        worldMapPointManager!!.removeIf(isType(MapPoint.Type.RARE_TREE))
+        worldMapPointManager.removeIf(isType(MapPoint.Type.RARE_TREE))
         if (config.rareTreeLevelIcon() || config.rareTreeTooltips()) {
             Arrays.stream(RareTreeLocation.values()).forEach { rareTree: RareTreeLocation ->
                 Arrays.stream(rareTree.locations)
@@ -310,7 +312,7 @@ class WorldMapPlugin : Plugin() {
         if (config.fishingSpotTooltips()) {
             Arrays.stream(FishingSpotLocation.values()).forEach {
                 arrayOf(it)
-                    .map { point:FishingSpotLocation ->
+                    .map { point: FishingSpotLocation ->
                         WorldMapPoint.builder()
                             .type(MapPoint.Type.FISHING)
                             .fishingPoint(point)
@@ -494,7 +496,7 @@ class WorldMapPlugin : Plugin() {
         }
 
         private fun isType(type: MapPoint.Type): Predicate<WorldMapPoint> {
-            return Predicate { w: WorldMapPoint ->  w.type == type }
+            return Predicate { w: WorldMapPoint -> w.type == type }
         }
     }
 }

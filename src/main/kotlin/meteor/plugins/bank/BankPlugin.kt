@@ -29,12 +29,7 @@ package meteor.plugins.bank
 import com.google.common.annotations.VisibleForTesting
 import com.google.common.collect.HashMultiset
 import com.google.common.collect.Multiset
-import eventbus.events.ItemContainerChanged
-import eventbus.events.MenuEntryAdded
-import eventbus.events.MenuShouldLeftClick
-import eventbus.events.ScriptCallbackEvent
-import eventbus.events.ScriptPostFired
-import eventbus.events.WidgetLoaded
+import eventbus.events.*
 import meteor.Logger
 import meteor.config.legacy.Keybind
 import meteor.game.ItemManager
@@ -60,7 +55,7 @@ import java.util.regex.Pattern
 class BankPlugin : Plugin() {
 
     private val clientThread = ClientThread
-    private val itemManager= ItemManager
+    private val itemManager = ItemManager
     override var config = configuration<BankConfig>()
     private val bankSearch = BankSearch
     private val searchHotkeyListener: KeyListener = object : KeyListener {
@@ -94,7 +89,7 @@ class BankPlugin : Plugin() {
 
     fun shutdown() {
         keyManager!!.unregisterKeyListener(searchHotkeyListener)
-        clientThread.invokeLater { bankSearch!!.reset(false) }
+        clientThread.invokeLater { bankSearch.reset(false) }
         forceRightClickFlag = false
         itemQuantities = null
         searchString = null
@@ -106,9 +101,9 @@ class BankPlugin : Plugin() {
             forceRightClickFlag = false
             val menuEntries = client.menuEntries
             for (entry in menuEntries) {
-                if (entry.getOption() == DEPOSIT_WORN && config.rightClickBankEquip()
-                    || entry.getOption() == DEPOSIT_INVENTORY && config.rightClickBankInventory()
-                    || entry.getOption() == DEPOSIT_LOOT && config.rightClickBankLoot()
+                if (entry.option == DEPOSIT_WORN && config.rightClickBankEquip()
+                    || entry.option == DEPOSIT_INVENTORY && config.rightClickBankInventory()
+                    || entry.option == DEPOSIT_LOOT && config.rightClickBankLoot()
                 ) {
                     it.isForceRightClick = true
 
@@ -203,7 +198,7 @@ class BankPlugin : Plugin() {
             // and the bank wasn't laid out this tick, lay it out early
             val inputText = client.getVar(VarClientStr.INPUT_TEXT)
             if (searchString !== inputText && client.gameCycle % 40 != 0) {
-                clientThread.invokeLater { bankSearch!!.layoutBank() }
+                clientThread.invokeLater { bankSearch.layoutBank() }
                 searchString = inputText
             }
         }
@@ -253,7 +248,7 @@ class BankPlugin : Plugin() {
         val titleContainer = client.getWidget(WidgetInfo.SEED_VAULT_TITLE_CONTAINER) ?: return
         val title = titleContainer.getChild(1) ?: return
         var prices = calculate(seedVaultItems) ?: return
-        val titleText = createValueText(prices.gePrice,prices.highAlchPrice)
+        val titleText = createValueText(prices.gePrice, prices.highAlchPrice)
         title.text = SEED_VAULT_TITLE + titleText
     }
 

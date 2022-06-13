@@ -4,17 +4,16 @@ import meteor.Main
 
 object Loots {
     fun getAll(): ArrayList<Loot>? {
-        var loots : ArrayList<Loot>? = null
-        Main.client.scene.tiles.forEach {z ->
-            z?.forEach {x ->
-                x?.forEach {y ->
+        var loots: ArrayList<Loot>? = null
+        Main.client.scene.tiles.forEach { z ->
+            z?.forEach { x ->
+                x?.forEach { y ->
                     if (!y?.groundItems.isNullOrEmpty())
                         for (item in y.groundItems) {
                             if (loots == null) {
                                 loots = ArrayList()
                                 loots!!.add(Loot(item))
-                            }
-                            else
+                            } else
                                 loots!!.add(Loot(item))
                         }
                 }

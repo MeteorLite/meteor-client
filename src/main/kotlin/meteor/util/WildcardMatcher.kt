@@ -24,12 +24,12 @@
  */
 package meteor.util
 
-import java.lang.StringBuffer
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 object WildcardMatcher {
     private val WILDCARD_PATTERN = Pattern.compile("(?i)[^*]+|(\\*)")
+
     @JvmStatic
     fun matches(pattern: String, text: String): Boolean {
         val matcher = WILDCARD_PATTERN.matcher(pattern)

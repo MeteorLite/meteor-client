@@ -5,10 +5,8 @@ import com.google.gson.Gson
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.Game
-import dev.hoot.api.items.Inventory
 import dev.hoot.api.packets.*
 import dev.hoot.api.widgets.Widgets
-import meteor.api.items.Items
 import net.runelite.api.MenuAction
 import net.runelite.api.packets.PacketBuffer
 import net.runelite.api.packets.PacketBufferNode
@@ -21,16 +19,17 @@ import net.runelite.packets.ObfuscatedClientPacket
 
 object ClientPackets {
     private val clientPackets: ArrayList<ObfuscatedClientPacket>
+
     init {
         val packetsJson = readResourceAsString("ClientPackets.json")
-        clientPackets  = Gson().fromJson(
+        clientPackets = Gson().fromJson(
             packetsJson,
             object : TypeToken<ArrayList<ObfuscatedClientPacket?>?>() {}.type
         )
     }
 
-    fun getPacket(name: String) : ObfuscatedClientPacket {
-        return clientPackets.first { obfuscatedClientPacket ->  obfuscatedClientPacket.name == name}
+    fun getPacket(name: String): ObfuscatedClientPacket {
+        return clientPackets.first { obfuscatedClientPacket -> obfuscatedClientPacket.name == name }
     }
 
     fun createItemActionPacket(packetName: String, itemId: Int, itemSlot: Int, itemWidgetId: Int): PacketBufferNode {
@@ -48,7 +47,13 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createItemOnItemPacket(packetName: String, sourceItemId: Int, sourceItemSlot: Int, itemId: Int, itemSlot: Int): PacketBufferNode {
+    fun createItemOnItemPacket(
+        packetName: String,
+        sourceItemId: Int,
+        sourceItemSlot: Int,
+        itemId: Int,
+        itemSlot: Int
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value = -1
@@ -71,7 +76,7 @@ object ClientPackets {
             var value = -1
             when (methodCall.paramater) {
                 "itemSlot" -> value = itemSlot
-                "itemWidgetId" -> value =  WidgetInfo.INVENTORY.id //itemWidgetID
+                "itemWidgetId" -> value = WidgetInfo.INVENTORY.id //itemWidgetID
                 "id" -> value = itemId
                 "selectedSpellWidget" -> value = spellWidgetId
             }
@@ -80,7 +85,16 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createItemOnGroundItemPacket(packetName: String, groundItemID: Int, worldX: Int, worldY: Int, itemSlot: Int, itemID: Int, itemWidgetID: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createItemOnGroundItemPacket(
+        packetName: String,
+        groundItemID: Int,
+        worldX: Int,
+        worldY: Int,
+        itemSlot: Int,
+        itemID: Int,
+        itemWidgetID: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -98,7 +112,14 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createSpellOnGroundItemPacket(packetName: String, groundItemID: Int, worldX: Int, worldY: Int, spellWidgetId: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createSpellOnGroundItemPacket(
+        packetName: String,
+        groundItemID: Int,
+        worldX: Int,
+        worldY: Int,
+        spellWidgetId: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -114,7 +135,13 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createGroundItemActionPacket(packetName: String, groundItemId: Int, worldX: Int, worldY: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createGroundItemActionPacket(
+        packetName: String,
+        groundItemId: Int,
+        worldX: Int,
+        worldY: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -129,7 +156,14 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createItemOnNPCPacket(packetName: String, npcIndex: Int, itemWidgetID: Int, itemID: Int, itemSlot: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createItemOnNPCPacket(
+        packetName: String,
+        npcIndex: Int,
+        itemWidgetID: Int,
+        itemID: Int,
+        itemSlot: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -145,7 +179,12 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createSpellOnNPCPacket(packetName: String, npcIndex: Int, spellWidgetId: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createSpellOnNPCPacket(
+        packetName: String,
+        npcIndex: Int,
+        spellWidgetId: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -172,7 +211,13 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createObjectActionPacket(packetName: String, objectID: Int, worldX: Int, worldY: Int, ctrlPressed: Boolean) : PacketBufferNode {
+    fun createObjectActionPacket(
+        packetName: String,
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -187,7 +232,16 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createItemOnObjectPacket(packetName: String, objectID: Int, worldX: Int, worldY: Int, itemSlot: Int, itemId: Int, itemWidgetID: Int, ctrlPressed: Boolean) : PacketBufferNode {
+    fun createItemOnObjectPacket(
+        packetName: String,
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        itemSlot: Int,
+        itemId: Int,
+        itemWidgetID: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -205,7 +259,16 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createWidgetOnObjectPacket(packetName: String, objectID: Int, worldX: Int, worldY: Int, itemSlot: Int, itemId: Int, widgetID: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createWidgetOnObjectPacket(
+        packetName: String,
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        itemSlot: Int,
+        itemId: Int,
+        widgetID: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -223,7 +286,14 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createItemOnPlayerPacket(packetName: String, playerIndex: Int, itemId: Int, itemSlot: Int, itemWidgetID: Int, ctrlPressed: Boolean) : PacketBufferNode {
+    fun createItemOnPlayerPacket(
+        packetName: String,
+        playerIndex: Int,
+        itemId: Int,
+        itemSlot: Int,
+        itemWidgetID: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -239,7 +309,12 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createSpellOnPlayerPacket(packetName: String, objectId: Int, spellWidgetId: Int, ctrlPressed: Boolean): PacketBufferNode {
+    fun createSpellOnPlayerPacket(
+        packetName: String,
+        objectId: Int,
+        spellWidgetId: Int,
+        ctrlPressed: Boolean
+    ): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -253,7 +328,7 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun createPlayerActionPacket(packetName: String, playerIndex: Int, ctrlPressed: Boolean) : PacketBufferNode {
+    fun createPlayerActionPacket(packetName: String, playerIndex: Int, ctrlPressed: Boolean): PacketBufferNode {
         val packetBuffer = preparePacket(packetName)
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
@@ -266,10 +341,13 @@ object ClientPackets {
         return packetBuffer
     }
 
-    fun preparePacket(packetName: String) : PacketBufferNode {
+    fun preparePacket(packetName: String): PacketBufferNode {
         val client = Game.getClient()
         val packet = getPacket(packetName)
-        return client.preparePacket(client.createClientPacket(packet.opcode, packet.size), client.packetWriter.isaacCipher)
+        return client.preparePacket(
+            client.createClientPacket(packet.opcode, packet.size),
+            client.packetWriter.isaacCipher
+        )
     }
 
     fun encodeToBuffer(packetBuffer: PacketBuffer, methodCall: ObfuscatedBufferStructure, value: Any) {
@@ -280,18 +358,18 @@ object ClientPackets {
             value
 
         when (methodCall.method) {
-            "Byte" -> packetBuffer.writeByte( finalValue as Int)
-            "ByteAdd" -> packetBuffer.writeByteAdd( finalValue as Int)
-            "ByteNeg" -> packetBuffer.writeByteNeg( finalValue as Int)
-            "ByteSub" -> packetBuffer.writeByteSub( finalValue as Int)
-            "Int" -> packetBuffer.writeInt( finalValue as Int)
-            "IntIME" -> packetBuffer.writeIntIME( finalValue as Int)
-            "IntLE" -> packetBuffer.writeIntLE( finalValue as Int)
-            "IntME" -> packetBuffer.writeIntME( finalValue as Int)
-            "Short" -> packetBuffer.writeShort( finalValue as Int)
-            "ShortLE" -> packetBuffer.writeShortLE( finalValue as Int)
-            "ShortAdd" -> packetBuffer.writeShortAdd( finalValue as Int)
-            "ShortAddLE" -> packetBuffer.writeShortAddLE( finalValue as Int)
+            "Byte" -> packetBuffer.writeByte(finalValue as Int)
+            "ByteAdd" -> packetBuffer.writeByteAdd(finalValue as Int)
+            "ByteNeg" -> packetBuffer.writeByteNeg(finalValue as Int)
+            "ByteSub" -> packetBuffer.writeByteSub(finalValue as Int)
+            "Int" -> packetBuffer.writeInt(finalValue as Int)
+            "IntIME" -> packetBuffer.writeIntIME(finalValue as Int)
+            "IntLE" -> packetBuffer.writeIntLE(finalValue as Int)
+            "IntME" -> packetBuffer.writeIntME(finalValue as Int)
+            "Short" -> packetBuffer.writeShort(finalValue as Int)
+            "ShortLE" -> packetBuffer.writeShortLE(finalValue as Int)
+            "ShortAdd" -> packetBuffer.writeShortAdd(finalValue as Int)
+            "ShortAddLE" -> packetBuffer.writeShortAddLE(finalValue as Int)
             else -> throw RuntimeException("Unmapped ObfuscatedClientPacket methodCall ${methodCall.method}")
         }
     }

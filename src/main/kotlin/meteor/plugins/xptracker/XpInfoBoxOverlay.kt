@@ -79,7 +79,7 @@ internal class XpInfoBoxOverlay(
 
         // Don't show skills that have no xp gain
         if (snapshot.xpGainedInSession < 1)
-                return null
+            return null
 
         iconXpSplitPanel.children.add(iconXpSplit)
         val progressBarComponent = ProgressBarComponent()

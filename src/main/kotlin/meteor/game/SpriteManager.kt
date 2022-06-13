@@ -24,9 +24,9 @@
  */
 package meteor.game
 
-import meteor.Main
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
+import meteor.Main
 import meteor.rs.ClientThread
 import meteor.ui.overlay.infobox.InfoBox
 import meteor.ui.overlay.infobox.InfoBoxManager

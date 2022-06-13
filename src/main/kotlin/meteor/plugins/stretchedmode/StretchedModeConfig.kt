@@ -29,23 +29,39 @@ import net.runelite.client.config.*
 
 @ConfigGroup("stretchedmode")
 interface StretchedModeConfig : Config {
-    @ConfigItem(keyName = "keepAspectRatio", name = "Keep aspect ratio", description = "Keeps the aspect ratio when stretching.")
+    @ConfigItem(
+        keyName = "keepAspectRatio",
+        name = "Keep aspect ratio",
+        description = "Keeps the aspect ratio when stretching."
+    )
     fun keepAspectRatio(): Boolean {
         return true
     }
 
-    @ConfigItem(keyName = "increasedPerformance", name = "Increased performance mode", description = "Uses a fast algorithm when stretching, lowering quality but increasing performance.")
+    @ConfigItem(
+        keyName = "increasedPerformance",
+        name = "Increased performance mode",
+        description = "Uses a fast algorithm when stretching, lowering quality but increasing performance."
+    )
     fun increasedPerformance(): Boolean {
         return false
     }
 
-    @ConfigItem(keyName = "integerScaling", name = "Integer Scaling", description = "Forces use of a whole number scale factor when stretching.")
+    @ConfigItem(
+        keyName = "integerScaling",
+        name = "Integer Scaling",
+        description = "Forces use of a whole number scale factor when stretching."
+    )
     fun integerScaling(): Boolean {
         return false
     }
 
     @Range(min = 25, max = 500)
-    @ConfigItem(keyName = "scalingFactor", name = "Resizable Scaling", description = "In resizable mode, the game is reduced in size this much before it's stretched.")
+    @ConfigItem(
+        keyName = "scalingFactor",
+        name = "Resizable Scaling",
+        description = "In resizable mode, the game is reduced in size this much before it's stretched."
+    )
     @Units(Units.PERCENT)
     fun scalingFactor(): Int {
         return 75

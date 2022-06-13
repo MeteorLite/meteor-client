@@ -24,8 +24,8 @@
  */
 package meteor.ui.overlay.components
 
-import meteor.util.ColorUtil.colorWithAlpha
 import meteor.ui.components.RenderableEntity
+import meteor.util.ColorUtil.colorWithAlpha
 import net.runelite.api.util.Text
 import java.awt.*
 import java.util.regex.Pattern

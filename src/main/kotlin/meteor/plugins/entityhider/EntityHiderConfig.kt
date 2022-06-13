@@ -26,7 +26,10 @@
  */
 package meteor.plugins.entityhider
 
-import net.runelite.client.config.*
+import net.runelite.client.config.Config
+import net.runelite.client.config.ConfigGroup
+import net.runelite.client.config.ConfigItem
+import net.runelite.client.config.ConfigSection
 
 @ConfigGroup("entityhiderextended")
 interface EntityHiderConfig : Config {

@@ -28,6 +28,7 @@ enum class ValueCalculationMode(var type: String) {
     HA("High Alchemy"),     // calc highlight by HA value
     GE("Grand Exchange"),   // calc by GE
     HIGHEST("Highest");     // use whatever is highest.
+
     override fun toString(): String {
         return type
     }

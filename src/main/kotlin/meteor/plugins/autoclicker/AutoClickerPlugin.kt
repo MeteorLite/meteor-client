@@ -6,7 +6,6 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.util.HotkeyListener
-import net.runelite.api.Client
 import net.runelite.api.GameState
 import net.runelite.api.Point
 import java.awt.Component
@@ -27,9 +26,9 @@ import kotlin.math.*
 
 class AutoClickerPlugin : Plugin() {
 
-   override val config = configuration<AutoClickerConfig>()
+    override val config = configuration<AutoClickerConfig>()
 
-    private val overlay = overlay( AutoClickerOverlay(this))
+    private val overlay = overlay(AutoClickerOverlay(this))
 
     private var executorService: ExecutorService? = null
     private var clickService: ExecutorService? = null

@@ -23,15 +23,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package meteor.plugins.worldmap
+
 import net.runelite.api.Point
 import net.runelite.api.coords.WorldPoint
 import java.awt.image.BufferedImage
 
-open class WorldMapPoint() {
+open class WorldMapPoint {
     var worldPoint: WorldPoint? = null
-    var image: BufferedImage ?= null
+    var image: BufferedImage? = null
     var type: MapPoint.Type? = null
     private var fishingPoint: FishingSpotLocation? = null
+
     /**
      * The WorldPoint which the worldmap will jump to when clicked
      */
@@ -59,47 +61,47 @@ open class WorldMapPoint() {
     open fun onEdgeUnsnap() {}
 
 
-    fun image(i: BufferedImage) : WorldMapPoint {
+    fun image(i: BufferedImage): WorldMapPoint {
         image = i
         return this
     }
 
-    fun type(m: MapPoint.Type) : WorldMapPoint {
+    fun type(m: MapPoint.Type): WorldMapPoint {
         type = m
         return this
     }
 
-    fun worldPoint(w: WorldPoint) : WorldMapPoint {
+    fun worldPoint(w: WorldPoint): WorldMapPoint {
         worldPoint = w
         return this
     }
 
-    fun tooltip(s: String?) : WorldMapPoint {
+    fun tooltip(s: String?): WorldMapPoint {
         tooltip = s
         return this
     }
 
-    fun fishingPoint(f: FishingSpotLocation) : WorldMapPoint {
+    fun fishingPoint(f: FishingSpotLocation): WorldMapPoint {
         fishingPoint = f
         return this
     }
 
-    fun target(w: WorldPoint) : WorldMapPoint {
+    fun target(w: WorldPoint): WorldMapPoint {
         target = w
         return this
     }
 
-    fun jumpOnClick(b: Boolean) : WorldMapPoint {
+    fun jumpOnClick(b: Boolean): WorldMapPoint {
         jumpOnClick = b
         return this
     }
 
-    fun name(s: String) : WorldMapPoint {
+    fun name(s: String): WorldMapPoint {
         name = s
         return this
     }
 
-    fun build() : WorldMapPoint {
+    fun build(): WorldMapPoint {
         return this
     }
 

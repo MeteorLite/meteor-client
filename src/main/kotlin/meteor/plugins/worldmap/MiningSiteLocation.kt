@@ -427,7 +427,7 @@ internal enum class MiningSiteLocation(
 
     val tooltip: String
 
-    constructor(location: WorldPoint, vararg rocks: Rock) : this(location, false, *rocks) {}
+    constructor(location: WorldPoint, vararg rocks: Rock) : this(location, false, *rocks)
 
     init {
         tooltip = createTooltip(rocks as Array<Rock>)
@@ -453,7 +453,7 @@ internal enum class MiningSiteLocation(
         EFH_SALT("Efh salt"), URT_SALT("Urt salt"), RUNITE("Runite"), AMETHYST("Amethyst");
 
         override fun toString(): String {
-            return name!!
+            return name
         }
     }
 

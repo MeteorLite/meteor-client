@@ -23,6 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package meteor.plugins.fishing
+
 import net.runelite.api.coords.WorldPoint
 import java.time.Instant
 
