@@ -4,7 +4,7 @@ import meteor.Main
 
 object NPCs {
     fun getAll(): ArrayList<NPC>? {
-        var npcs : ArrayList<NPC>? = null
+        var npcs: ArrayList<NPC>? = null
         for (npc in Main.client.npcs) {
             npc?.let {
                 val npc = NPC(it)
@@ -26,11 +26,11 @@ object NPCs {
         return getAll()?.filter { names.contains(it.npc.name) } as ArrayList?
     }
 
-    fun getFirst(id: Int) : NPC? {
+    fun getFirst(id: Int): NPC? {
         return getAll(id)?.firstOrNull()
     }
 
-    fun getFirst(name: String) : NPC? {
+    fun getFirst(name: String): NPC? {
         return getAll(name)?.firstOrNull()
     }
 }

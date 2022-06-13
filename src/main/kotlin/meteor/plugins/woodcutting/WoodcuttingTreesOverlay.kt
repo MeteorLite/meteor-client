@@ -41,6 +41,7 @@ import java.time.Instant
 class WoodcuttingTreesOverlay(var plugin: WoodcuttingPlugin) : Overlay() {
     private val itemManager = ItemManager
     var config = plugin.configuration<WoodcuttingConfig>()
+
     init {
 
         layer = OverlayLayer.ABOVE_SCENE
@@ -97,8 +98,8 @@ class WoodcuttingTreesOverlay(var plugin: WoodcuttingPlugin) : Overlay() {
             val ppc = ProgressPieComponent()
             ppc.borderColor = (Color.ORANGE)
             ppc.fill = (Color.YELLOW)
-            ppc.position =(point)
-            ppc.progress =(percent.toDouble())
+            ppc.position = (point)
+            ppc.progress = (percent.toDouble())
             ppc.render(graphics)
         }
     }

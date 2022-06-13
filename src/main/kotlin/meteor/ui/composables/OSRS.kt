@@ -13,28 +13,29 @@ import java.awt.BorderLayout
 import javax.swing.JPanel
 
 
-    var loaded = false
-    var applet = java.applet.Applet()
-    @Composable
-    fun OSRSPanel() {
-        val mod: Modifier = Modifier.fillMaxWidth().fillMaxHeight()
+var loaded = false
+var applet = java.applet.Applet()
 
-        SwingPanel(
-            Color.Black,
-            modifier = mod,
-            factory = {
-                JPanel().apply {
-                    layout = BorderLayout()
-                    if (!loaded) {
-                        applet = Applet.applet
+@Composable
+fun OSRSPanel() {
+    val mod: Modifier = Modifier.fillMaxWidth().fillMaxHeight()
 
-                        add(Applet.applet)
-                        Applet.applet.init()
-                        Applet.applet.start()
-                        Main.finishStartup()
-                        loaded = true
-                    } else
-                        add(Applet.applet)
-                }
-            })
-    }
+    SwingPanel(
+        Color.Black,
+        modifier = mod,
+        factory = {
+            JPanel().apply {
+                layout = BorderLayout()
+                if (!loaded) {
+                    applet = Applet.applet
+
+                    add(Applet.applet)
+                    Applet.applet.init()
+                    Applet.applet.start()
+                    Main.finishStartup()
+                    loaded = true
+                } else
+                    add(Applet.applet)
+            }
+        })
+}

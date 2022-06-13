@@ -60,7 +60,6 @@ internal enum class MovementFlag(flag: Int) {
     }
 
 
-
     fun getFlag(): Int {
         return flag
     }

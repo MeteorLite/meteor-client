@@ -27,12 +27,9 @@ package meteor.dev.widgetinspector
 import lombok.Getter
 import lombok.extern.slf4j.Slf4j
 import meteor.Main
-import kotlin.jvm.JvmOverloads
-import java.util.function.BiConsumer
-import meteor.dev.widgetinspector.WidgetInspector
-import meteor.dev.widgetinspector.WidgetField
 import net.runelite.api.widgets.Widget
 import org.slf4j.helpers.MessageFormatter
+import java.util.function.BiConsumer
 import java.util.function.Function
 
 @Slf4j

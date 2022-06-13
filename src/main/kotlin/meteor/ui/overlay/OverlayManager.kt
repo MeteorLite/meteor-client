@@ -13,11 +13,11 @@ object OverlayManager {
     private const val OVERLAY_CONFIG_PREFERRED_LOCATION = "_preferredLocation"
     private const val OVERLAY_CONFIG_PREFERRED_POSITION = "_preferredPosition"
     private const val OVERLAY_CONFIG_PREFERRED_SIZE = "_preferredSize"
-    val OVERLAY_COMPARATOR: Comparator<Overlay> = Comparator label@ { a: Overlay, b: Overlay ->
+    val OVERLAY_COMPARATOR: Comparator<Overlay> = Comparator label@{ a: Overlay, b: Overlay ->
         val aPos: OverlayPosition = MoreObjects
-                .firstNonNull(a.preferredPosition, a.position)
+            .firstNonNull(a.preferredPosition, a.position)
         val bPos: OverlayPosition = MoreObjects
-                .firstNonNull(b.preferredPosition, b.position)
+            .firstNonNull(b.preferredPosition, b.position)
         if (aPos != bPos) {
             // This is so non-dynamic overlays render after dynamic
             // overlays, which are generally in the scene
@@ -163,12 +163,15 @@ object OverlayManager {
                 }
             }
             when (layer) {
-                OverlayLayer.ABOVE_SCENE, OverlayLayer.UNDER_WIDGETS, OverlayLayer.ALWAYS_ON_TOP -> overlayMap.put(layer, overlay)
+                OverlayLayer.ABOVE_SCENE, OverlayLayer.UNDER_WIDGETS, OverlayLayer.ALWAYS_ON_TOP -> overlayMap.put(
+                    layer,
+                    overlay
+                )
                 OverlayLayer.ABOVE_WIDGETS -> {
                     // draw after each of the top level interfaces
                     overlayMap.put(WidgetID.FIXED_VIEWPORT_GROUP_ID shl 16 or 0xffff, overlay)
                     overlayMap
-                            .put(WidgetID.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX_GROUP_ID shl 16 or 0xffff, overlay)
+                        .put(WidgetID.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX_GROUP_ID shl 16 or 0xffff, overlay)
                     overlayMap.put(WidgetID.RESIZABLE_VIEWPORT_BOTTOM_LINE_GROUP_ID shl 16 or 0xffff, overlay)
                 }
             }

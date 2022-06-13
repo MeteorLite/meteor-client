@@ -1,15 +1,17 @@
 package meteor.plugins.fishing
 
-import eventbus.events.*
+import eventbus.events.GameStateChanged
+import eventbus.events.InteractingChanged
+import eventbus.events.NpcDespawned
+import eventbus.events.NpcSpawned
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.Actor
 import net.runelite.api.GameState
 import net.runelite.api.NPC
-import org.rationalityfrontline.kevent.Event
 
 @PluginDescriptor("Fishing", configGroup = "fishing")
-class FishingPlugin: Plugin() {
+class FishingPlugin : Plugin() {
     override var config = configuration<FishingConfig>()
     val spotsOverlay = overlay(FishingSpotOverlay(this, config))
 

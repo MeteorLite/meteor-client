@@ -29,7 +29,6 @@ import com.google.common.cache.CacheBuilder
 import meteor.game.ItemManager
 import meteor.ui.overlay.WidgetItemOverlay
 import meteor.util.ColorUtil.colorWithAlpha
-import meteor.util.ImageUtil
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetItem
 import java.awt.Color
@@ -85,6 +84,7 @@ class InventoryTagsOverlay(
             }
         }
     }
+
     override fun fillImage(image: BufferedImage, color: Color): BufferedImage {
         val filledImage = BufferedImage(image.width, image.height, BufferedImage.TYPE_INT_ARGB)
         for (x in 0 until filledImage.width) {

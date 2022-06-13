@@ -33,8 +33,14 @@ import java.awt.Image
 import java.awt.Point
 import java.util.function.Supplier
 
-internal class BarRenderer(val maxValueSupplier: Supplier<Int>? = null, val currentValueSupplier: Supplier<Int>? = null, val healSupplier: Supplier<Int>? = null,
-                           val colorSupplier: Supplier<Color>? = null, val healColorSupplier: Supplier<Color>? = null, val iconSupplier: Supplier<Image>? = null) {
+internal class BarRenderer(
+    val maxValueSupplier: Supplier<Int>? = null,
+    val currentValueSupplier: Supplier<Int>? = null,
+    val healSupplier: Supplier<Int>? = null,
+    val colorSupplier: Supplier<Color>? = null,
+    val healColorSupplier: Supplier<Color>? = null,
+    val iconSupplier: Supplier<Image>? = null
+) {
     private var maxValue = 0
     private var currentValue = 0
     private fun refreshSkills() {
@@ -55,10 +61,10 @@ internal class BarRenderer(val maxValueSupplier: Supplier<Int>? = null, val curr
         val filledHeight = getBarHeight(maxValue, currentValue, height)
         val fill = colorSupplier!!.get()
         refreshSkills()
-        graphics.setColor(BACKGROUND)
+        graphics.color = BACKGROUND
         graphics.drawRect(x, y, WIDTH - PADDING, height - PADDING)
         graphics.fillRect(x, y, WIDTH, height)
-        graphics.setColor(fill)
+        graphics.color = fill
         graphics.fillRect(
             x + PADDING,
             y + PADDING + (height - filledHeight),
@@ -85,9 +91,9 @@ internal class BarRenderer(val maxValueSupplier: Supplier<Int>? = null, val curr
             )
         }
         if (config.enableCounter()) {
-            graphics.setFont(FontManager.runescapeSmallFont)
+            graphics.font = FontManager.runescapeSmallFont
             val counterText = Integer.toString(currentValue)
-            val widthOfCounter: Int = graphics.getFontMetrics().stringWidth(counterText)
+            val widthOfCounter: Int = graphics.fontMetrics.stringWidth(counterText)
             val centerText = (WIDTH - PADDING) / 2 - widthOfCounter / 2
             val yOffset = if (skillIconEnabled) SKILL_ICON_HEIGHT else COUNTER_ICON_HEIGHT
             val textComponent = TextComponent()
@@ -105,11 +111,11 @@ internal class BarRenderer(val maxValueSupplier: Supplier<Int>? = null, val curr
         }
         val filledCurrentHeight = getBarHeight(maxValue, currentValue, height)
         var filledHeight = getBarHeight(maxValue, heal, height)
-        graphics.setColor(color)
+        graphics.color = color
         if (filledHeight + filledCurrentHeight > height) {
             val overHeal = filledHeight + filledCurrentHeight - height
             filledHeight = filledHeight - overHeal + OVERHEAL_OFFSET
-            graphics.setColor(OVERHEAL_COLOR)
+            graphics.color = OVERHEAL_COLOR
             graphics.fillRect(
                 x + PADDING,
                 y - filledCurrentHeight + (height - filledHeight) + HEAL_OFFSET,

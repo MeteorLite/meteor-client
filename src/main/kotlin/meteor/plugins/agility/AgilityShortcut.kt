@@ -25,10 +25,10 @@
  */
 package meteor.plugins.agility
 
-import net.runelite.api.coords.WorldPoint
-import net.runelite.api.ObjectID
 import net.runelite.api.NullObjectID
+import net.runelite.api.ObjectID
 import net.runelite.api.TileObject
+import net.runelite.api.coords.WorldPoint
 
 enum class AgilityShortcut(
     /**
@@ -47,12 +47,12 @@ enum class AgilityShortcut(
      * An optional location in case the location of the shortcut icon is either null or isn't close
      * enough to the obstacle
      */
-     val worldLocation: WorldPoint?,
+    val worldLocation: WorldPoint?,
     /**
      * Array of obstacles, null objects, decorations etc. that this shortcut uses. Typically an
      * ObjectID/NullObjectID
      */
-     vararg val obstacleIds: Int
+    vararg val obstacleIds: Int
 ) {
     GENERIC_SHORTCUT(
         1,

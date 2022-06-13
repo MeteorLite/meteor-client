@@ -24,8 +24,6 @@
  */
 package meteor.util
 
-import java.lang.Runnable
-import java.lang.InterruptedException
 import java.util.concurrent.*
 
 /**

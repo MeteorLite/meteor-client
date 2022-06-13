@@ -272,15 +272,15 @@ class XpTrackerPlugin : Plugin() {
                         if (!ignoredfirstHPUpdate) {
                             ignoredfirstHPUpdate = true
                         }
-                        if (config.addToCanvasOnUpdate()) {
-                            skillUpdates[skill] = System.currentTimeMillis()
-                            if (!hasOverlay(skill)) {
-                                addOverlay(skill)
-                            }
+                    if (config.addToCanvasOnUpdate()) {
+                        skillUpdates[skill] = System.currentTimeMillis()
+                        if (!hasOverlay(skill)) {
+                            addOverlay(skill)
                         }
+                    }
                 }
             }
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
@@ -367,18 +367,19 @@ class XpTrackerPlugin : Plugin() {
 
         // Get skill from menu option, eg. "View <col=ff981f>Attack</col> guide"
         val skillText: String = event.option!!.split(" ").get(1)
-        val skill = Skill.valueOf(Text.removeTags(skillText).toUpperCase())
+        val skill = Skill.valueOf(Text.removeTags(skillText).uppercase(Locale.getDefault()))
         client.createMenuEntry(-1)
             .setTarget(skillText)
-            .setOption(if (hasOverlay(skill)) MENUOP_REMOVE_CANVAS_TRACKER else MENUOP_ADD_CANVAS_TRACKER)
-            .setType(MenuAction.RUNELITE)
+            .setOption(if (hasOverlay(skill)) MENUOP_REMOVE_CANVAS_TRACKER else MENUOP_ADD_CANVAS_TRACKER).type =
+            MenuAction.RUNELITE
     }
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
         var skill: Skill? = null
         try {
-            skill = Skill.valueOf(Text.removeTags(it.getMenuTarget()).toUpperCase())
-        } catch (_: java.lang.Exception) {}
+            skill = Skill.valueOf(Text.removeTags(it.getMenuTarget()).uppercase(Locale.getDefault()))
+        } catch (_: java.lang.Exception) {
+        }
 
         skill?.let { skill ->
             when (it.getMenuOption()) {

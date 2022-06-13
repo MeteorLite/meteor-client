@@ -32,7 +32,7 @@ class ContainerPrices(val gePrice: Long, val highAlchPrice: Long) {
         if (o !is ContainerPrices) return false
         val other = o
         if (gePrice != other.gePrice) return false
-        return if (highAlchPrice != other.highAlchPrice) false else true
+        return highAlchPrice == other.highAlchPrice
     }
 
     override fun hashCode(): Int {

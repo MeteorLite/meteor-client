@@ -39,8 +39,8 @@ import java.awt.Graphics2D
 import java.util.function.Consumer
 
 class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
-     var config = plugin.configuration<DevToolsConfig>()
-        var toolTipManager = TooltipManager
+    var config = plugin.configuration<DevToolsConfig>()
+    var toolTipManager = TooltipManager
 
 
     init {
@@ -49,7 +49,6 @@ class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
         priority = OverlayPriority.HIGHEST
 
     }
-
 
 
     override fun render(graphics: Graphics2D): Dimension? {
@@ -172,8 +171,8 @@ class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
         if (poly != null && poly.contains(client.mouseCanvasPosition.x, client.mouseCanvasPosition.y)) {
             val worldLocation = tile.worldLocation
             val tooltip = String.format(
-                        "World location: ${worldLocation.x}, ${worldLocation.y}, ${worldLocation.plane}</br>" +
-                        "Region ID: ${worldLocation.regionID}</br>"+
+                "World location: ${worldLocation.x}, ${worldLocation.y}, ${worldLocation.plane}</br>" +
+                        "Region ID: ${worldLocation.regionID}</br>" +
                         "location: ${worldLocation.regionX}, ${worldLocation.regionY}"
             )
             toolTipManager.add(Tooltip(tooltip))
@@ -312,7 +311,7 @@ class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
     }
 
     companion object {
-        private val FONT = runescapeFont!!.deriveFont(Font.BOLD, 16f)
+        private val FONT = runescapeFont.deriveFont(Font.BOLD, 16f)
         private val RED = Color(221, 44, 0)
         private val GREEN = Color(0, 200, 83)
         private val ORANGE = Color(255, 109, 0)

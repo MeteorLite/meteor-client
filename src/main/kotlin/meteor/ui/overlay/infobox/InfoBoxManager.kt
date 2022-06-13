@@ -35,14 +35,13 @@ import meteor.events.InfoBoxMenuClicked
 import meteor.plugins.EventSubscriber
 import meteor.ui.overlay.ComponentOrientation
 import meteor.ui.overlay.OverlayManager
-import java.util.concurrent.ConcurrentHashMap
 import meteor.ui.overlay.OverlayMenuEntry
-import java.awt.image.BufferedImage
 import meteor.util.AsyncBufferedImage
 import net.runelite.api.MenuAction
 import java.awt.Graphics
-import java.util.Collections
-import java.util.Comparator
+import java.awt.image.BufferedImage
+import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import java.util.function.Consumer
 import java.util.function.Predicate
 import java.util.stream.Collectors

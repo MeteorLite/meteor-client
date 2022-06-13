@@ -25,11 +25,9 @@
 package meteor.ui
 
 import java.awt.Image
-import java.lang.Exception
-import java.lang.Runnable
 import java.util.*
-import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.CopyOnWriteArrayList
 import java.util.function.Consumer
 
 object DrawManager {

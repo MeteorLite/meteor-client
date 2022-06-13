@@ -26,16 +26,17 @@ package meteor.config.legacy
 
 import com.google.common.cache.CacheBuilder
 import meteor.config.ConfigManager
+import net.runelite.client.config.ConfigGroup
+import net.runelite.client.config.ConfigItem
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
-import net.runelite.client.config.*
 
 internal class ConfigInvocationHandler(private val manager: ConfigManager) : InvocationHandler {
     private val cache = CacheBuilder.newBuilder()
-            .maximumSize(256)
-            .build<Method, Any>()
+        .maximumSize(256)
+        .build<Method, Any>()
 
     @Throws(Throwable::class)
     override fun invoke(proxy: Any, method: Method, args: Array<Any?>?): Any? {
@@ -126,7 +127,7 @@ internal class ConfigInvocationHandler(private val manager: ConfigManager) : Inv
             val lookup = MethodHandles.lookup()
             val handle: MethodHandle = lookup.unreflectSpecial(method, method.declaringClass)
             return handle
-                    .invoke(proxy)
+                .invoke(proxy)
         }
     }
 }

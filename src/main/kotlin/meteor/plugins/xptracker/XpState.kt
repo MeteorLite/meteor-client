@@ -154,7 +154,7 @@ internal class XpState(var xpTrackerConfig: XpTrackerConfig) {
     fun tick(skill: Skill, delta: Long) {
         val state = getSkill(skill)
         state.tick(delta)
-        val resetAfterMinutes = xpTrackerConfig!!.resetSkillRateAfter()
+        val resetAfterMinutes = xpTrackerConfig.resetSkillRateAfter()
         if (resetAfterMinutes > 0) {
             val now = System.currentTimeMillis()
             val resetAfterMillis = resetAfterMinutes * 60 * 1000

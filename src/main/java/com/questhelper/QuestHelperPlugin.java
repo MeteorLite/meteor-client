@@ -32,23 +32,10 @@ import com.google.common.reflect.ClassPath;
 import com.google.gson.Gson;
 import com.questhelper.banktab.QuestBankTab;
 import com.questhelper.banktab.QuestHelperBankTagService;
-import com.questhelper.overlays.QuestHelperDebugOverlay;
-import com.questhelper.overlays.QuestHelperOverlay;
-import com.questhelper.overlays.QuestHelperWidgetOverlay;
-import com.questhelper.overlays.QuestHelperWorldArrowOverlay;
-import com.questhelper.overlays.QuestHelperWorldLineOverlay;
-import com.questhelper.overlays.QuestHelperWorldOverlay;
+import com.questhelper.overlays.*;
 import com.questhelper.questhelpers.Quest;
 import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.steps.QuestStep;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import eventbus.events.*;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
@@ -63,23 +50,22 @@ import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
 import meteor.plugins.bank.BankSearch;
 import meteor.rs.ClientThread;
-import meteor.ui.composables.toolbar.Toolbar;
 import meteor.ui.composables.toolbar.ToolbarButton;
 import meteor.ui.overlay.OverlayManager;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.Player;
-import net.runelite.api.QuestState;
+import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.util.Text;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.chat.ChatMessageManager;
 
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
+
 import static meteor.ui.composables.UIKt.getPluginPanel;
 import static meteor.ui.composables.UIKt.getPluginsOpen;
+import static meteor.ui.composables.toolbar.ToolbarKt.addButton;
+import static meteor.ui.composables.toolbar.ToolbarKt.removeButton;
 
 @PluginDescriptor(
 	name = "Quest Helper",
@@ -220,7 +206,7 @@ public class QuestHelperPlugin extends Plugin
 			loadQuestList = true;
 		}
 
-		Toolbar.INSTANCE.addButton(toolbarButton);
+		addButton(toolbarButton);
 	}
 
 	@Override
@@ -239,7 +225,7 @@ public class QuestHelperPlugin extends Plugin
 		bankTagsMain = null;
 		quests = null;
 
-		Toolbar.INSTANCE.removeButton(toolbarButton);
+		removeButton(toolbarButton);
 	}
 
 	@Override

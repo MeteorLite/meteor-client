@@ -32,6 +32,7 @@ class ProgressBarComponent : LayoutableRenderableEntity {
     enum class LabelDisplayMode {
         PERCENTAGE, FULL, TEXT_ONLY, BOTH
     }
+
     private var preferredLocationp: Point? = Point()
     private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
     private var bounds: Rectangle? = Rectangle()

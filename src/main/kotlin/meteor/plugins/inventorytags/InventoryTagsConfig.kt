@@ -24,7 +24,6 @@
  */
 package meteor.plugins.inventorytags
 
-import meteor.plugins.inventorytags.InventoryTagsConfig
 import net.runelite.client.config.*
 import java.awt.Color
 
@@ -103,6 +102,6 @@ interface InventoryTagsConfig : Config {
         const val GROUP = "inventorytags"
 
         @ConfigSection(name = "Tag display mode", description = "How tags are displayed in the inventory", position = 0)
-      const  val tagStyleSection = "tagStyleSection"
+        const val tagStyleSection = "tagStyleSection"
     }
 }

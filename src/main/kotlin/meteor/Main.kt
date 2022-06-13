@@ -16,7 +16,6 @@ import meteor.plugins.PluginManager
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
 import meteor.ui.composables.Window
-
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
 import meteor.ui.overlay.TooltipManager
@@ -38,14 +37,13 @@ import org.koin.core.component.get
 import org.koin.core.context.startKoin
 import java.net.Authenticator
 import java.net.PasswordAuthentication
-import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
-object Main: ApplicationScope, KoinComponent, EventSubscriber() {
+object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val eventBus = EventBus
     lateinit var client: Client
     lateinit var callbacks: Callbacks
@@ -86,7 +84,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
-            content = {this.Window()} //::finishStartup is called at the end of this function
+            content = { this.Window() } //::finishStartup is called at the end of this function
         )
 
     }
@@ -96,7 +94,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         args.forEach { currentArg ->
             if (currentArg == "-socks5Proxy") {
                 val proxy: Array<String> =
-                    args[idx+1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
+                    args[idx + 1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
                         .toTypedArray()
                 if (proxy.size >= 2) {
                     println("using socks5 URL: ${proxy[0]}")
@@ -111,7 +109,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
                 }
             } else if (currentArg == "-httpProxy") {
                 val proxy: Array<String> =
-                    args[idx+1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
+                    args[idx + 1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
                         .toTypedArray()
                 if (proxy.size >= 2) {
                     System.setProperty("http.proxyHost", proxy[0])
@@ -123,7 +121,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
             } else if (currentArg == "-httpsProxy") {
                 println("Using HTTPS Proxy")
                 val proxy: Array<String> =
-                    args[idx+1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
+                    args[idx + 1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
                         .toTypedArray()
                 if (proxy.size >= 2) {
                     System.setProperty("https.proxyHost", proxy[0])
@@ -166,11 +164,12 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 
-    fun initConfig(){
+    fun initConfig() {
         ConfigManager.loadSavedProperties()
         val meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java) as MeteorConfig
         ConfigManager.setDefaultConfiguration(meteorConfig, false)
         Main.meteorConfig = meteorConfig
+
 
     }
 
@@ -181,7 +180,7 @@ object Main: ApplicationScope, KoinComponent, EventSubscriber() {
     }
 
     fun processArguments(args: Array<String>) {
-        for(arg in args) {
+        for (arg in args) {
             when (arg.lowercase()) {
                 "disableGPU".lowercase() -> {
                     Configuration.allowGPU = false

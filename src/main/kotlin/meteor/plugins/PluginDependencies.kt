@@ -25,7 +25,6 @@
 package meteor.plugins
 
 
-
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
 @MustBeDocumented

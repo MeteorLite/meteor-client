@@ -45,26 +45,26 @@ object FontManager {
                     FontManager::class.java.getResourceAsStream("runescape_bold.ttf").use { inRunescapeBold ->
                         // runescape
                         val font = Font.createFont(Font.TRUETYPE_FONT, inRunescape)
-                                .deriveFont(Font.PLAIN, 16f)
+                            .deriveFont(Font.PLAIN, 16f)
                         ge.registerFont(font)
                         runescapeFont = StyleContext.getDefaultStyleContext()
-                                .getFont(font.name, Font.PLAIN, 16)
+                            .getFont(font.name, Font.PLAIN, 16)
                         ge.registerFont(runescapeFont)
 
                         // small
                         val smallFont = Font.createFont(Font.TRUETYPE_FONT, inRunescapeSmall)
-                                .deriveFont(Font.PLAIN, 16f)
+                            .deriveFont(Font.PLAIN, 16f)
                         ge.registerFont(smallFont)
                         runescapeSmallFont = StyleContext.getDefaultStyleContext()
-                                .getFont(smallFont.name, Font.PLAIN, 16)
+                            .getFont(smallFont.name, Font.PLAIN, 16)
                         ge.registerFont(runescapeSmallFont)
 
                         // bold
                         val boldFont = Font.createFont(Font.TRUETYPE_FONT, inRunescapeBold)
-                                .deriveFont(Font.BOLD, 16f)
+                            .deriveFont(Font.BOLD, 16f)
                         ge.registerFont(boldFont)
                         runescapeBoldFont = StyleContext.getDefaultStyleContext()
-                                .getFont(boldFont.name, Font.BOLD, 16)
+                            .getFont(boldFont.name, Font.BOLD, 16)
                         ge.registerFont(runescapeBoldFont)
                     }
                 }

@@ -1,7 +1,10 @@
 package meteor.plugins.notes
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -20,28 +23,29 @@ import compose.icons.octicons.Note24
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.darkThemeColors
 import meteor.ui.composables.notePanel
-import meteor.ui.composables.toolbar.Toolbar.addButton
-import meteor.ui.composables.toolbar.Toolbar.removeButton
+import meteor.ui.composables.pluginsOpen
 import meteor.ui.composables.toolbar.ToolbarButton
+import meteor.ui.composables.toolbar.addButton
+import meteor.ui.composables.toolbar.removeButton
+import meteor.ui.composables.uiColor
 import meteor.util.FontUtil
 
 
 @PluginDescriptor(name = "Notes")
-class NotesPlugin: Plugin() {
+class NotesPlugin : Plugin() {
 
 
     private var notesButton = ToolbarButton(
         "Notes",
         Octicons.Note24,
-        iconColor = Color.Cyan,
+        iconColor = uiColor,
         description = "Notes",
         onClick = {
             // togglePluginPanel()
             if (!notePanel.value) notePanel.value = true else if (notePanel.value) notePanel.value = false
-
+            if (pluginsOpen.value) notePanel.value = true
         },
         bottom = false
     )
@@ -62,11 +66,11 @@ class NotesPlugin: Plugin() {
         val text = remember {
             mutableStateOf(
 
-                        ConfigManager.getConfiguration(
-                            "notes",
-                            "notes"
+                ConfigManager.getConfiguration(
+                    "notes",
+                    "notes"
 
-                        )
+                )
             )
         }
 
@@ -96,7 +100,12 @@ class NotesPlugin: Plugin() {
                             )
                         },
                         maxLines = 120,
-                        textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp, textDirection = TextDirection.Ltr, fontFamily = FontUtil.righteous)
+                        textStyle = TextStyle(
+                            color = Color.Cyan,
+                            fontSize = 14.sp,
+                            textDirection = TextDirection.Ltr,
+                            fontFamily = FontUtil.righteous
+                        )
                     )
                 }
             }

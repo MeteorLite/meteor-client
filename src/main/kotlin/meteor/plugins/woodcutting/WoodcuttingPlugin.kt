@@ -33,7 +33,6 @@ import net.runelite.api.ChatMessageType
 import net.runelite.api.GameObject
 import net.runelite.api.GameState
 import net.runelite.api.coords.WorldPoint
-import org.rationalityfrontline.kevent.Event
 import java.time.Instant
 import java.util.regex.Pattern
 

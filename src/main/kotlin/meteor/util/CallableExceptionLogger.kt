@@ -25,11 +25,11 @@
 package meteor.util
 
 import meteor.Logger.Companion.getLogger
-import java.lang.Exception
 import java.util.concurrent.Callable
 
 class CallableExceptionLogger<V>(var callable: Callable<V>?) : Callable<V> {
     var log = getLogger(CallableExceptionLogger::class.java)
+
     @Throws(Exception::class)
     override fun call(): V {
         return try {

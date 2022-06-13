@@ -24,7 +24,6 @@
  */
 package meteor.plugins.minimap
 
-import meteor.config.ConfigManager.getConfig
 import net.runelite.api.Client
 import net.runelite.api.SpritePixels
 import java.awt.Color

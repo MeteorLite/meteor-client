@@ -1,13 +1,12 @@
 package meteor.plugins
 
 import meteor.Main
-import net.runelite.client.config.*
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
-
 import meteor.ui.composables.pluginsOpen
 import meteor.ui.overlay.Overlay
+import net.runelite.client.config.Config
 
 open class Plugin : EventSubscriber() {
     open val config: Config? = null
@@ -25,7 +24,7 @@ open class Plugin : EventSubscriber() {
         return getDescriptor().name
     }
 
-    fun javaConfiguration(clazz: Class<out Config>) : Config {
+    fun javaConfiguration(clazz: Class<out Config>): Config {
         val c: Config = getConfig(clazz)!!
         setDefaultConfiguration(c, false)
         javaConfig = c
@@ -60,7 +59,7 @@ open class Plugin : EventSubscriber() {
     open fun onStart() {}
     open fun onStop() {}
 
-    fun shouldEnable() : Boolean {
+    fun shouldEnable(): Boolean {
         val enabledConfig: String? = ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled")
         val descriptor: PluginDescriptor? = javaClass.getAnnotation(PluginDescriptor::class.java)
         if (enabledConfig == null) {

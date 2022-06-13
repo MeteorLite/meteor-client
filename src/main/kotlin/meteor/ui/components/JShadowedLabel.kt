@@ -38,15 +38,15 @@ class JShadowedLabel : JLabel {
     }
 
     var shadow = Color.BLACK
-    set(shadow) {
-        field = shadow
-        repaint()
-    }
+        set(shadow) {
+            field = shadow
+            repaint()
+        }
 
     var shadowSize = Point(1, 1)
-    set(newSize) {
-        field = newSize
-        revalidate()
-        repaint()
-    }
+        set(newSize) {
+            field = newSize
+            revalidate()
+            repaint()
+        }
 }

@@ -28,6 +28,7 @@ object OverlayUtil {
         graphics.fill(poly)
         graphics.stroke = originalStroke
     }
+
     fun renderTextLocation(graphics: Graphics2D, txtLoc: Point, text: String, color: Color) {
         val x = txtLoc.x
         val y = txtLoc.y
@@ -36,6 +37,7 @@ object OverlayUtil {
         graphics.color = ColorUtil.colorWithAlpha(color, 0xFF)
         graphics.drawString(text, x, y)
     }
+
     fun renderActorOverlay(graphics: Graphics2D, actor: Actor, text: String, color: Color) {
         val poly = actor.canvasTilePoly
         if (poly != null) {
@@ -46,6 +48,7 @@ object OverlayUtil {
             renderTextLocation(graphics, textLocation, text, color)
         }
     }
+
     fun renderTileOverlay(graphics: Graphics2D, tileObject: TileObject, text: String, color: Color) {
         val poly = tileObject.canvasTilePoly
         if (poly != null) {
@@ -67,7 +70,7 @@ object OverlayUtil {
         image: BufferedImage,
         color: Color
     ) {
-        val poly = Perspective.getCanvasTilePoly(Main.client, localLocation!!)
+        val poly = Perspective.getCanvasTilePoly(Main.client, localLocation)
         if (poly != null) {
             renderPolygon(graphics, poly, color)
         }

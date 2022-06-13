@@ -1,6 +1,8 @@
 package meteor.plugins.rsnhider
 
-import net.runelite.client.config.*
+import net.runelite.client.config.Config
+import net.runelite.client.config.ConfigGroup
+import net.runelite.client.config.ConfigItem
 
 @ConfigGroup("rsnhider")
 interface RsnHiderConfig : Config {

@@ -31,17 +31,9 @@ import com.google.common.collect.EvictingQueue
 import com.google.common.collect.HashBasedTable
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Table
-import meteor.game.ItemManager
-import eventbus.events.ClientTick
-import eventbus.events.ConfigChanged
-import eventbus.events.FocusChanged
-import eventbus.events.GameStateChanged
-import eventbus.events.ItemDespawned
-import eventbus.events.ItemQuantityChanged
-import eventbus.events.ItemSpawned
-import eventbus.events.MenuEntryAdded
-import eventbus.events.MenuOptionClicked
+import eventbus.events.*
 import meteor.Main
+import meteor.game.ItemManager
 import meteor.game.ItemStack
 import meteor.input.KeyManager
 import meteor.input.MouseManager
@@ -66,7 +58,6 @@ import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
-import kotlin.collections.ArrayList
 
 @PluginDescriptor(
     name = "Ground Items",
@@ -76,6 +67,7 @@ import kotlin.collections.ArrayList
 )
 class GroundItemsPlugin : Plugin() {
     internal class PriceHighlight(val price: Int, val color: Color)
+
     override val config = configuration<GroundItemsConfig>()
     var textBoxBounds: Map.Entry<Rectangle, GroundItem>? = null
     var hiddenBoxBounds: Map.Entry<Rectangle, GroundItem>? = null
@@ -107,7 +99,7 @@ class GroundItemsPlugin : Plugin() {
     }
 
     override fun onStop() {
-        mouseManager.unregisterMouseListener(inputListener!!)
+        mouseManager.unregisterMouseListener(inputListener)
         keyManager.unregisterKeyListener(inputListener)
         highlightedItems!!.invalidateAll()
         highlightedItems = null
@@ -196,7 +188,7 @@ class GroundItemsPlugin : Plugin() {
             outer@ for (i in menuEntries.indices.reversed()) {
                 val menuEntry = menuEntries[i]
                 val menuType = menuEntry.type
-                if (menuType.id == FIRST_OPTION || menuType.id  == SECOND_OPTION || menuType.id  == THIRD_OPTION || menuType.id  == FOURTH_OPTION || menuType.id  == FIFTH_OPTION || menuType.id  == EXAMINE_ITEM) {
+                if (menuType.id == FIRST_OPTION || menuType.id == SECOND_OPTION || menuType.id == THIRD_OPTION || menuType.id == FOURTH_OPTION || menuType.id == FIFTH_OPTION || menuType.id == EXAMINE_ITEM) {
                     for (entryWCount in sizeFilteredEntries) {
                         if (entryWCount!!.entry == menuEntry) {
                             entryWCount.increment()
@@ -216,7 +208,7 @@ class GroundItemsPlugin : Plugin() {
                 }
                 newEntries.add(entry)
             }
-            client.menuEntries = newEntries.toArray( emptyArray() )
+            client.menuEntries = newEntries.toArray(emptyArray())
         }
     }
 
@@ -240,10 +232,10 @@ class GroundItemsPlugin : Plugin() {
     private fun buildGroundItem(tile: Tile, item: TileItem): GroundItem {
         // Collect the data for the item
         val itemId = item.id
-        val itemComposition = itemManager!!.getItemComposition(itemId)
+        val itemComposition = itemManager.getItemComposition(itemId)
         val realItemId = if (itemComposition!!.note != -1) itemComposition.linkedNoteId else itemId
         val alchPrice = itemComposition.haPrice
-        val dropped = tile.worldLocation == client!!.localPlayer!!.worldLocation && droppedItemQueue.remove(itemId)
+        val dropped = tile.worldLocation == client.localPlayer!!.worldLocation && droppedItemQueue.remove(itemId)
         val table = itemId == lastUsedItem && tile.itemLayer.height > 0
         val groundItem = GroundItemBuilder().builder()
             .id(itemId)
@@ -286,7 +278,7 @@ class GroundItemsPlugin : Plugin() {
 
         // Cache colors
         val priceCheckBuilder = ImmutableList.builder<PriceHighlight>()
-        if (config!!.insaneValuePrice() > 0) {
+        if (config.insaneValuePrice() > 0) {
             priceCheckBuilder.add(PriceHighlight(config.insaneValuePrice(), config.insaneValueColor()!!))
         }
         if (config.highValuePrice() > 0) {
@@ -299,7 +291,7 @@ class GroundItemsPlugin : Plugin() {
             priceCheckBuilder.add(PriceHighlight(config.lowValuePrice(), config.lowValueColor()!!))
         }
         priceChecks = priceCheckBuilder.build()
-        clientThread!!.invokeLater { handleLootbeams() }
+        clientThread.invokeLater { handleLootbeams() }
     }
 
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
@@ -368,7 +360,7 @@ class GroundItemsPlugin : Plugin() {
 
     fun getHighlighted(item: NamedQuantity, gePrice: Int, haPrice: Int): Color? {
         if (true == highlightedItems!!.getUnchecked(item)) {
-            return config!!.highlightedColor()
+            return config.highlightedColor()
         }
 
         // Explicit hide takes priority over implicit highlight
@@ -387,8 +379,8 @@ class GroundItemsPlugin : Plugin() {
     fun getHidden(item: NamedQuantity, gePrice: Int, haPrice: Int, isTradeable: Boolean): Color? {
         val isExplicitHidden = true == hiddenItems!!.getUnchecked(item)
         val isExplicitHighlight = true == highlightedItems!!.getUnchecked(item)
-        val canBeHidden = gePrice > 0 || isTradeable || !config!!.dontHideUntradeables()
-        val underGe = gePrice < config!!.hideUnderValue
+        val canBeHidden = gePrice > 0 || isTradeable || !config.dontHideUntradeables()
+        val underGe = gePrice < config.hideUnderValue
         val underHa = haPrice < config.hideUnderValue
 
         // Explicit highlight takes priority over implicit hide
@@ -396,7 +388,7 @@ class GroundItemsPlugin : Plugin() {
     }
 
     fun getItemColor(highlighted: Color?, hidden: Color?): Color? {
-        return highlighted ?: (hidden ?: config!!.defaultColor())
+        return highlighted ?: (hidden ?: config.defaultColor())
     }
 
 
@@ -407,7 +399,7 @@ class GroundItemsPlugin : Plugin() {
     }
 
     private fun getValueByMode(gePrice: Int, haPrice: Int): Int {
-        return when (config!!.valueCalculationMode()) {
+        return when (config.valueCalculationMode()) {
             ValueCalculationMode.GE -> gePrice
             ValueCalculationMode.HA -> haPrice
             else -> Math.max(gePrice, haPrice)
@@ -423,7 +415,7 @@ class GroundItemsPlugin : Plugin() {
         } else if (it.getMenuAction() == MenuAction.ITEM_USE_ON_GAME_OBJECT) {
             val i = client.getItemContainer(InventoryID.INVENTORY)?.getItem(it.selectedItemIndex)
             if (i != null)
-            lastUsedItem = i.id
+                lastUsedItem = i.id
         }
     }
 
@@ -432,7 +424,7 @@ class GroundItemsPlugin : Plugin() {
 		 * Return and remove the lootbeam from this location if lootbeam are disabled
 		 * Lootbeam can be at this location if the config was just changed
 		 */
-        if (!(config!!.showLootbeamForHighlighted() || config.showLootbeamTier() != HighlightTier.OFF)) {
+        if (!(config.showLootbeamForHighlighted() || config.showLootbeamTier() != HighlightTier.OFF)) {
             removeLootbeam(worldPoint)
             return
         }
@@ -489,7 +481,7 @@ class GroundItemsPlugin : Plugin() {
     private fun addLootbeam(worldPoint: WorldPoint, color: Color?) {
         var lootbeam = lootbeams[worldPoint]
         if (lootbeam == null) {
-            lootbeam = Lootbeam(client!!, worldPoint, color!!)
+            lootbeam = Lootbeam(client, worldPoint, color!!)
             lootbeams[worldPoint] = lootbeam
         } else {
             lootbeam.setColor(color!!)

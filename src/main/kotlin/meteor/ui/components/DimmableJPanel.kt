@@ -30,16 +30,16 @@ import javax.swing.JPanel
 open class DimmableJPanel : JPanel() {
     // Dimming state, allows for restoring original colors before dimming
     open var dimmed = false
-    set(dimmed) {
-        field = dimmed
-        if (dimmed) {
-            super.setBackground(dimmedBackground)
-            super.setForeground(dimmedForeground)
-        } else {
-            super.setBackground(undimmedBackground)
-            super.setForeground(undimmedForeground)
+        set(dimmed) {
+            field = dimmed
+            if (dimmed) {
+                super.setBackground(dimmedBackground)
+                super.setForeground(dimmedForeground)
+            } else {
+                super.setBackground(undimmedBackground)
+                super.setForeground(undimmedForeground)
+            }
         }
-    }
 
     private var dimmedForeground: Color? = null
     private var dimmedBackground: Color? = null

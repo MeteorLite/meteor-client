@@ -32,7 +32,6 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.*
 import net.runelite.api.widgets.WidgetInfo
-import org.rationalityfrontline.kevent.Event
 import java.text.DecimalFormat
 import java.util.regex.Pattern
 

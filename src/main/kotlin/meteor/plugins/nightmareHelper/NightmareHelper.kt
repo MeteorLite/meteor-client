@@ -31,13 +31,18 @@ import eventbus.events.ChatMessage
 import eventbus.events.GameStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import net.runelite.api.*
+import net.runelite.api.Actor
+import net.runelite.api.GameState
+import net.runelite.api.NPC
+import net.runelite.api.Prayer
 
 
-@PluginDescriptor(name = "Nightmare Auto Pray",
+@PluginDescriptor(
+    name = "Nightmare Auto Pray",
     description = "Auto prayer for nightmare and Phosani",
     tags = [],
-    enabledByDefault = false)
+    enabledByDefault = false
+)
 class NightmareHelper : Plugin() {
     var nm: NPC? = null
     var cursed = false

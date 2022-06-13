@@ -37,7 +37,6 @@ import meteor.util.WildcardMatcher
 import net.runelite.api.GameState
 import net.runelite.api.NPC
 import net.runelite.api.util.Text
-import org.rationalityfrontline.kevent.Event
 import java.util.*
 import java.util.function.Consumer
 import java.util.function.Supplier
@@ -50,9 +49,9 @@ import java.util.stream.Collectors
     tags = ["npcs"]
 )
 class EntityHiderPlugin : Plugin() {
-     override val config = configuration<EntityHiderConfig>()
-    private var hiddenIndices: java.util.ArrayList<Int>? = null
-    private var animationHiddenIndices: java.util.ArrayList<Int>? = null
+    override val config = configuration<EntityHiderConfig>()
+    private var hiddenIndices: ArrayList<Int>? = null
+    private var animationHiddenIndices: ArrayList<Int>? = null
     private var hideNPCsOnDeathName: MutableSet<String>? = null
     private var hideNPCsOnDeathID: MutableSet<Int>? = null
     private var hideNPCsOnAnimationID: MutableSet<Int>? = null
@@ -75,7 +74,7 @@ class EntityHiderPlugin : Plugin() {
     }
 
 
-   override fun onStop() {
+    override fun onStop() {
         client.setIsHidingEntities(false)
         //client.setDeadNPCsHidden(false);
         clearHiddenNpcs()
@@ -139,21 +138,21 @@ class EntityHiderPlugin : Plugin() {
             updateConfig()
             if (it.oldValue == null || it.newValue == null) {
 
-            if (it.key.equals("hideNPCsNames")) {
-                val oldList: List<String> = Text.fromCSV(it.oldValue)
-                val newList: List<String> = Text.fromCSV(it.newValue)
-                val removed: List<String> = oldList.stream().filter { s: String -> !newList.contains(s) }
-                    .collect(
-                        Collectors.toCollection(Supplier { ArrayList() })
-                    )
-                val added: List<String> = newList.stream().filter { s: String -> !oldList.contains(s) }
-                    .collect(
-                        Collectors.toCollection(Supplier { ArrayList() })
-                    )
-                removed.forEach(Consumer { s: String? -> client.removeHiddenNpcName(s) })
-                added.forEach(Consumer { s: String? -> client.addHiddenNpcName(s) })
+                if (it.key.equals("hideNPCsNames")) {
+                    val oldList: List<String> = Text.fromCSV(it.oldValue)
+                    val newList: List<String> = Text.fromCSV(it.newValue)
+                    val removed: List<String> = oldList.stream().filter { s: String -> !newList.contains(s) }
+                        .collect(
+                            Collectors.toCollection(Supplier { ArrayList() })
+                        )
+                    val added: List<String> = newList.stream().filter { s: String -> !oldList.contains(s) }
+                        .collect(
+                            Collectors.toCollection(Supplier { ArrayList() })
+                        )
+                    removed.forEach(Consumer { s: String? -> client.removeHiddenNpcName(s) })
+                    added.forEach(Consumer { s: String? -> client.addHiddenNpcName(s) })
+                }
             }
-        }
         }
     }
 

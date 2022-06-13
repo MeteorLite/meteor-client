@@ -31,16 +31,26 @@ import net.runelite.api.coords.WorldPoint
 
 internal enum class TransportationPointLocation(tooltip: String, worldPoint: WorldPoint, worldPoint1: WorldPoint) {
     //Ships
-    ARDOUGNE_TO_BRIMHAVEN("Ship to Brimhaven / Rimmington", WorldPoint(2675, 3275, 0), WorldPoint(2909, 3227, 0)), ARDOUGNE_TO_FISHINGPLAT(
+    ARDOUGNE_TO_BRIMHAVEN(
+        "Ship to Brimhaven / Rimmington",
+        WorldPoint(2675, 3275, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    ARDOUGNE_TO_FISHINGPLAT(
         "Ship to Fishing Platform", WorldPoint(2722, 3304, 0),
         WorldPoint(2779, 3271, 0)
     ),
     BRIMHAVEN_TO_ARDOUGNE(
         "Ship to Ardougne / Rimmington",
         WorldPoint(2772, 3234, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    RIMMINGTON_TO_ARDOUGNE("Ship to Ardougne / Brimhaven", WorldPoint(2915, 3224, 0), WorldPoint(2909, 3227, 0)), CATHERBY_TO_KEEP_LE_FAYE(
+    RIMMINGTON_TO_ARDOUGNE(
+        "Ship to Ardougne / Brimhaven",
+        WorldPoint(2915, 3224, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    CATHERBY_TO_KEEP_LE_FAYE(
         "Ship to Keep Le Faye", WorldPoint(2804, 3421, 0),
         WorldPoint(2769, 3402, 0)
     ),
@@ -95,7 +105,7 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     LANDSEND_TO_PORTSARIM_PORTPISCARILIUS(
         "Ship to Port Sarim/Port Piscarilius",
         WorldPoint(1503, 3398, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     LUNAR_ISLE_TO_PIRATES_COVE(
         "Ship to Pirates' Cove", WorldPoint(2137, 3899, 0),
@@ -132,7 +142,7 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     PORT_PISCARILIUS_TO_PORTSARIM_LANDSEND(
         "Ship to Port Sarim/Land's End",
         WorldPoint(1823, 3692, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     PORTSARIM_TO_GREAT_KOUREND(
         "Ship to Great Kourend", WorldPoint(3054, 3244, 0),
@@ -154,7 +164,12 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
         "Ship to Pest Control", WorldPoint(3039, 3201, 0),
         WorldPoint(2659, 2675, 0)
     ),
-    RELLEKKA_TO_JATIZSO_NEITIZNOT("Ship to Jatizso/Neitiznot", WorldPoint(2639, 3710, 0), WorldPoint(2909, 3227, 0)), RELLEKKA_TO_MISCELLANIA(
+    RELLEKKA_TO_JATIZSO_NEITIZNOT(
+        "Ship to Jatizso/Neitiznot",
+        WorldPoint(2639, 3710, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    RELLEKKA_TO_MISCELLANIA(
         "Ship to Miscellania", WorldPoint(2627, 3692, 0),
         WorldPoint(2579, 3846, 0)
     ),
@@ -166,7 +181,12 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
         "Ship to Waterbirth", WorldPoint(2618, 3685, 0),
         WorldPoint(2549, 3758, 0)
     ),
-    RELLEKKA_TO_WEISS_ICEBERG("Ship to Weiss/Iceberg", WorldPoint(2707, 3735, 0), WorldPoint(2909, 3227, 0)), RELLEKKA_TO_UNGAEL(
+    RELLEKKA_TO_WEISS_ICEBERG(
+        "Ship to Weiss/Iceberg",
+        WorldPoint(2707, 3735, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    RELLEKKA_TO_UNGAEL(
         "Ship to Ungael", WorldPoint(2638, 3698, 0),
         WorldPoint(2276, 4034, 0)
     ),
@@ -186,7 +206,12 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
         "Ship to Rellekka", WorldPoint(2276, 4034, 0),
         WorldPoint(2638, 3698, 0)
     ),  //Row Boats
-    ROW_BOAT_BATTLEFRONT("Rowboat to Molch/Molch Island/Shayzien", WorldPoint(1383, 3663, 0), WorldPoint(2909, 3227, 0)), ROW_BOAT_BRAIN_DEATH(
+    ROW_BOAT_BATTLEFRONT(
+        "Rowboat to Molch/Molch Island/Shayzien",
+        WorldPoint(1383, 3663, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    ROW_BOAT_BRAIN_DEATH(
         "Rowboat to Port Phasmatys", WorldPoint(2161, 5117, 0),
         WorldPoint(3680, 3538, 0)
     ),
@@ -202,7 +227,8 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
         "Rowboat to Barge/Camp/North of Island",
         WorldPoint(3764, 3901, 0),
         WorldPoint(2909, 3227, 0)
-    ), ROW_BOAT_FISHING_GUILD(
+    ),
+    ROW_BOAT_FISHING_GUILD(
         "Rowboat to Hemenster", WorldPoint(2598, 3426, 0),
         WorldPoint(2613, 3439, 0)
     ),
@@ -229,14 +255,19 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     ROW_BOAT_LUMBRIDGE(
         "Rowboat to Misthalin Mystery",
         WorldPoint(3238, 3141, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     ROW_BOAT_MOLCH(
         "Rowboat to Molch Island/Shayzien/Battlefront",
         WorldPoint(1343, 3646, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    ROW_BOAT_MOLCH_ISLAND("Rowboat to Molch/Shayzien/Battlefront", WorldPoint(1368, 3641, 0), WorldPoint(2909, 3227, 0)), ROW_BOAT_MORT(
+    ROW_BOAT_MOLCH_ISLAND(
+        "Rowboat to Molch/Shayzien/Battlefront",
+        WorldPoint(1368, 3641, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    ROW_BOAT_MORT(
         "Rowboat to Mort Myre", WorldPoint(3518, 3284, 0),
         WorldPoint(3498, 3380, 0)
     ),
@@ -247,13 +278,18 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     ROW_BOAT_MUSEUM_CAMP(
         "Rowboat to Barge/Digsite/North of Island",
         WorldPoint(3723, 3807, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     ROW_BOAT_MUSHROOM_FOREST_WEST(
         "Rowboat to Lithkren", WorldPoint(3659, 3849, 0),
         WorldPoint(3582, 3973, 0)
     ),
-    ROW_BOAT_MUSHROOM_FOREST_NE("Rowboat to Barge/Camp/Sea", WorldPoint(3733, 3894, 0), WorldPoint(2909, 3227, 0)), ROW_BOAT_PORT_PHASMATYS_NORTH(
+    ROW_BOAT_MUSHROOM_FOREST_NE(
+        "Rowboat to Barge/Camp/Sea",
+        WorldPoint(3733, 3894, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    ROW_BOAT_PORT_PHASMATYS_NORTH(
         "Rowboat to Slepe", WorldPoint(3670, 3545, 0),
         WorldPoint(3661, 3279, 0)
     ),
@@ -261,7 +297,12 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
         "Rowboat to Braindeath Island", WorldPoint(3680, 3538, 0),
         WorldPoint(2161, 5117, 0)
     ),
-    ROW_BOAT_SHAYZIEN("Rowboat to Molch/Molch Island/Battlefront", WorldPoint(1405, 3612, 0), WorldPoint(2909, 3227, 0)), ROW_BOAT_SLEPE(
+    ROW_BOAT_SHAYZIEN(
+        "Rowboat to Molch/Molch Island/Battlefront",
+        WorldPoint(1405, 3612, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    ROW_BOAT_SLEPE(
         "Rowboat to Port Phasmatys", WorldPoint(3661, 3279, 0),
         WorldPoint(3670, 3545, 0)
     ),
@@ -276,32 +317,42 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     CHARTER_BRIMHAVEN("Charter Ship", WorldPoint(2760, 3238, 0), WorldPoint(2909, 3227, 0)), CHARTER_CATHERBY(
         "Charter Ship",
         WorldPoint(2791, 3415, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     CHARTER_CORSAIR_("Charter Ship", WorldPoint(2589, 2851, 0), WorldPoint(2909, 3227, 0)), CHARTER_KARAMJA_NORTH(
         "Charter Ship",
         WorldPoint(2954, 3158, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     CHARTER_KARAMJA_EAST("Charter Ship", WorldPoint(2999, 3032, 0), WorldPoint(2909, 3227, 0)), CHARTER_KHAZARD(
         "Charter Ship",
         WorldPoint(2673, 3143, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    CHARTER_MOSLE_HARMLESS("Charter Ship", WorldPoint(3669, 2931, 0), WorldPoint(2909, 3227, 0)), CHARTER_PORT_PHASMATYS(
+    CHARTER_MOSLE_HARMLESS(
+        "Charter Ship",
+        WorldPoint(3669, 2931, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    CHARTER_PORT_PHASMATYS(
         "Charter Ship",
         WorldPoint(3702, 3503, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     CHARTER_PORTSARIM("Charter Ship", WorldPoint(3037, 3191, 0), WorldPoint(2909, 3227, 0)), CHARTER_TYRAS(
         "Charter Ship",
         WorldPoint(2141, 3123, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    CHARTER_PRIFDDINAS("Charter Ship", WorldPoint(2156, 3331, 0), WorldPoint(2909, 3227, 0)), CHARTER_PRIFDDINAS_INSTANCE(
+    CHARTER_PRIFDDINAS(
+        "Charter Ship",
+        WorldPoint(2156, 3331, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    CHARTER_PRIFDDINAS_INSTANCE(
         "Charter Ship",
         WorldPoint(3180, 6083, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),  //Ferries
     FERRY_AL_KHARID(
         "Ferry to Ruins of Unkah", WorldPoint(3269, 3142, 0),
@@ -314,49 +365,54 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     MINE_CART_ARCEUUS(
         "Lovakengj Minecart Network",
         WorldPoint(1673, 3832, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_GRANDEXCHANGE(
         "Minecart to Keldagrim",
         WorldPoint(3139, 3504, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_HOSIDIUS(
         "Lovakengj Minecart Network",
         WorldPoint(1656, 3542, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_ICE_MOUNTAIN(
         "Minecart to Keldagrim",
         WorldPoint(2995, 9836, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_KELDAGRIM(
         "Keldagrim Minecart System",
         WorldPoint(2908, 10170, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_LOVAKENGJ(
         "Lovakengj Minecart Network",
         WorldPoint(1524, 3721, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_PORT_PISCARILIUS(
         "Lovakengj Minecart Network",
         WorldPoint(1760, 3708, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_QUIDAMORTEM(
         "Lovakengj Minecart Network",
         WorldPoint(1253, 3550, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MINE_CART_SHAYZIEN(
         "Lovakengj Minecart Network",
         WorldPoint(1586, 3622, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    MINE_CART_WHITE_WOLF_MOUNTAIN("Minecart to Keldagrim", WorldPoint(2874, 9870, 0), WorldPoint(2909, 3227, 0)), CART_TO_BRIMHAVEN(
+    MINE_CART_WHITE_WOLF_MOUNTAIN(
+        "Minecart to Keldagrim",
+        WorldPoint(2874, 9870, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    CART_TO_BRIMHAVEN(
         "Cart to Brimhaven", WorldPoint(2833, 2958, 0),
         WorldPoint(2780, 3214, 0)
     ),
@@ -367,56 +423,76 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     CANOE_BARBVILLAGE("Canoe", WorldPoint(3111, 3409, 0), WorldPoint(2909, 3227, 0)), CANOE_CHAMPIONSGUILD(
         "Canoe",
         WorldPoint(3202, 3344, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     CANOE_EDGEVILLE("Canoe", WorldPoint(3130, 3509, 0), WorldPoint(2909, 3227, 0)), CANOE_LUMBRIDGE(
         "Canoe",
         WorldPoint(3241, 3238, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     CANOE_FEROXENCLAVE("Canoe", WorldPoint(3155, 3630, 0), WorldPoint(2909, 3227, 0)),  //Gnome Gliders
     GNOME_GLIDER_KHARID("Gnome Glider", WorldPoint(3278, 3213, 0), WorldPoint(2909, 3227, 0)), GNOME_GLIDER_APE_ATOLL(
         "Gnome Glider",
         WorldPoint(2712, 2804, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     GNOME_GLIDER_KARAMJA("Gnome Glider", WorldPoint(2971, 2974, 0), WorldPoint(2909, 3227, 0)), GNOME_GLIDER_FELDIP(
         "Gnome Glider",
         WorldPoint(2540, 2969, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    GNOME_GLIDER_GNOMESTRONGHOLD("Gnome Glider", WorldPoint(2460, 3502, 0), WorldPoint(2909, 3227, 0)), GNOME_GLIDER_WHITEWOLF(
+    GNOME_GLIDER_GNOMESTRONGHOLD(
+        "Gnome Glider",
+        WorldPoint(2460, 3502, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    GNOME_GLIDER_WHITEWOLF(
         "Gnome Glider",
         WorldPoint(2845, 3501, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),  //Balloons
     BALLOON_VARROCK("Hot Air Balloon", WorldPoint(3298, 3480, 0), WorldPoint(2909, 3227, 0)), BALLOON_YANILLE(
         "Hot Air Balloon",
         WorldPoint(2458, 3108, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     BALLOON_GNOMESTRONGHOLD("Hot Air Balloon", WorldPoint(2478, 3459, 0), WorldPoint(2909, 3227, 0)), BALLOON_TAVERLEY(
         "Hot Air Balloon",
         WorldPoint(2936, 3422, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     BALLOON_FALADOR("Hot Air Balloon", WorldPoint(2921, 3301, 0), WorldPoint(2909, 3227, 0)),  //Spirit Tree
     SPIRITTREE_ARDOUGNE("Spirit Tree", WorldPoint(2554, 3259, 0), WorldPoint(2909, 3227, 0)), SPIRITTREE_CORSAIR(
         "Spirit Tree",
         WorldPoint(2485, 2850, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    SPIRITTREE_GNOMESTRONGHOLD("Spirit Tree", WorldPoint(2459, 3446, 0), WorldPoint(2909, 3227, 0)), SPIRITTREE_GNOMEVILLAGE(
+    SPIRITTREE_GNOMESTRONGHOLD(
+        "Spirit Tree",
+        WorldPoint(2459, 3446, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    SPIRITTREE_GNOMEVILLAGE(
         "Spirit Tree",
         WorldPoint(2538, 3166, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    SPIRITTREE_GRANDEXCHANGE("Spirit Tree", WorldPoint(3184, 3510, 0), WorldPoint(2909, 3227, 0)), SPIRITTREE_PRIFDDINAS(
+    SPIRITTREE_GRANDEXCHANGE(
+        "Spirit Tree",
+        WorldPoint(3184, 3510, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    SPIRITTREE_PRIFDDINAS(
         "Spirit Tree",
         WorldPoint(3274, 6124, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),  //Carpets
-    CARPET_KHARID("Carpet to Bedabin/Pollnivneach/Uzer", WorldPoint(3311, 3107, 0), WorldPoint(2909, 3227, 0)), CARPET_BEDABIN(
+    CARPET_KHARID(
+        "Carpet to Bedabin/Pollnivneach/Uzer",
+        WorldPoint(3311, 3107, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    CARPET_BEDABIN(
         "Carpet to Shantay Pass", WorldPoint(3183, 3042, 0),
         WorldPoint(3311, 3107, 0)
     ),
@@ -428,7 +504,8 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
         "Carpet to Nardah/Sophanem/Menaphos",
         WorldPoint(3345, 2943, 0),
         WorldPoint(2909, 3227, 0)
-    ), CARPET_NARDAH(
+    ),
+    CARPET_NARDAH(
         "Carpet to Pollnivneach", WorldPoint(3399, 2916, 0),
         WorldPoint(3345, 2943, 0)
     ),
@@ -447,62 +524,77 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     TELEPORT_ARCHIVE_FROM_ARCEUUS(
         "Teleport to Library Archive",
         WorldPoint(1623, 3808, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     TELEPORT_HARMLESS_FROM_HARMONY(
         "Teleport to Mos Le'Harmless",
         WorldPoint(3784, 2828, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     TELEPORT_RUNE_ARDOUGNE(
         "Teleport to Rune Essence",
         WorldPoint(2681, 3325, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     TELEPORT_RUNE_YANILLE(
         "Teleport to Rune Essence",
         WorldPoint(2592, 3089, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    TELEPORT_SORCERESS_GARDEN("Teleport to Sorceress's Garden", WorldPoint(3320, 3141, 0), WorldPoint(2909, 3227, 0)), TELEPORT_PRIFDDINAS_LIBRARY(
+    TELEPORT_SORCERESS_GARDEN(
+        "Teleport to Sorceress's Garden",
+        WorldPoint(3320, 3141, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    TELEPORT_PRIFDDINAS_LIBRARY(
         "Teleport to Prifddinas Library",
         WorldPoint(3254, 6082, 2),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),  //Other
     ALTER_KOUREND_UNDERGROUND(
         "Altar to Skotizo",
         WorldPoint(1662, 10047, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     FAIRY_RING_ZANARIS_TO_KHARID(
         "Fairy Ring to Al Kharid",
         WorldPoint(2483, 4471, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     FAIRY_RING_ZANARIS_TO_SHACK(
         "Fairy Ring to Shack",
         WorldPoint(2451, 4471, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    MOUNTAIN_GUIDE_QUIDAMORTEM("Mountain Guide", WorldPoint(1275, 3559, 0), WorldPoint(2909, 3227, 0)), MOUNTAIN_GUIDE_WALL(
+    MOUNTAIN_GUIDE_QUIDAMORTEM(
+        "Mountain Guide",
+        WorldPoint(1275, 3559, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    MOUNTAIN_GUIDE_WALL(
         "Mountain Guide",
         WorldPoint(1400, 3538, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MUSHTREE_MUSHROOM_FOREST("Mushtree", WorldPoint(3674, 3871, 0), WorldPoint(2909, 3227, 0)), MUSHTREE_TAR_SWAMP(
         "Mushtree",
         WorldPoint(3676, 3755, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     MUSHTREE_VERDANT_VALLEY("Mushtree", WorldPoint(3757, 3756, 0), WorldPoint(2909, 3227, 0)), MYTHS_GUILD_PORTAL(
         "Portal to Guilds",
         WorldPoint(2456, 2856, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
-    SOUL_WARS_PORTAL("Portal to Edgeville/Ferox Enclave", WorldPoint(2204, 2858, 0), WorldPoint(2909, 3227, 0)), TRAIN_KELDAGRIM(
+    SOUL_WARS_PORTAL(
+        "Portal to Edgeville/Ferox Enclave",
+        WorldPoint(2204, 2858, 0),
+        WorldPoint(2909, 3227, 0)
+    ),
+    TRAIN_KELDAGRIM(
         "Railway Station",
         WorldPoint(2941, 10179, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     ),
     WILDERNESS_LEVER_ARDOUGNE(
         "Wilderness Lever to Deserted Keep", WorldPoint(2559, 3309, 0),
@@ -515,7 +607,7 @@ internal enum class TransportationPointLocation(tooltip: String, worldPoint: Wor
     WILDERNESS_LEVER_WILDERNESS(
         "Wilderness Lever to Ardougne/Edgeville",
         WorldPoint(3154, 3924, 0),
- WorldPoint(2909, 3227, 0)
+        WorldPoint(2909, 3227, 0)
     );
 
     internal var tooltip: String? = tooltip

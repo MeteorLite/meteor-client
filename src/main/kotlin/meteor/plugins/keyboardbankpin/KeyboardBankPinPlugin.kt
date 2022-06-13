@@ -8,7 +8,6 @@ import net.runelite.api.ScriptEvent
 import net.runelite.api.ScriptID
 import net.runelite.api.VarClientStr
 import net.runelite.api.widgets.JavaScriptCallback
-import org.rationalityfrontline.kevent.Event
 
 @PluginDescriptor("KeyboardBankPin", configGroup = "keyboardBankPin")
 class KeyboardBankPinPlugin : Plugin() {
@@ -22,7 +21,7 @@ class KeyboardBankPinPlugin : Plugin() {
                 val button = client.getWidget(compId)
                 val buttonRect = button!!.getChild(0)
                 val onOpListener = buttonRect.onOpListener
-                buttonRect.setOnKeyListener( JavaScriptCallback { e: ScriptEvent ->
+                buttonRect.setOnKeyListener(JavaScriptCallback { e: ScriptEvent ->
                     val typedChar = e.typedKeyChar - '0'.code
                     if (typedChar == buttonId) {
                         val chatboxTypedText = client.getVar(VarClientStr.CHATBOX_TYPED_TEXT)

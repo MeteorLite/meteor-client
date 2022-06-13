@@ -1,15 +1,12 @@
 package meteor.plugins.agility
 
 import eventbus.events.*
-
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.GameState
 import net.runelite.api.ItemID
 import net.runelite.api.Tile
 import net.runelite.api.TileObject
-import org.rationalityfrontline.kevent.Event
-import java.util.ArrayList
 
 @Suppress("UnstableApiUsage", "NAME_SHADOWING")
 @PluginDescriptor(
@@ -30,7 +27,7 @@ class AgilityPlugin : Plugin() {
         }
     }
 
-    override fun onGameObjectSpawned(it: GameObjectSpawned)  {
+    override fun onGameObjectSpawned(it: GameObjectSpawned) {
         onTileObject(it.tile, null, it.gameObject)
     }
 

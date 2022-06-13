@@ -4,15 +4,16 @@ import dev.hoot.api.entities.TileObjects
 import dev.hoot.api.items.Inventory
 import dev.hoot.api.movement.pathfinder.Walker
 import eventbus.events.*
-import meteor.Main
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
 
-@PluginDescriptor(name = "Guardians Of The Rift",
-    description = "Helpful overlays for the minigame")
+@PluginDescriptor(
+    name = "Guardians Of The Rift",
+    description = "Helpful overlays for the minigame"
+)
 class GuardiansOfTheRiftPlugin : Plugin() {
     var overlay = overlay(GuardiansOfTheRiftOverlay(this))
     var statsOverlay = overlay(GameStatsOverlay(this))
@@ -25,18 +26,18 @@ class GuardiansOfTheRiftPlugin : Plugin() {
     private var currentPointsMessage = "Total elemental energy"
 
 
-    private var GUARDIAN_AIR : GameObject? = null
-    private var GUARDIAN_MIND : GameObject? = null
-    private var GUARDIAN_BODY : GameObject? = null
-    private var GUARDIAN_CHAOS : GameObject? = null
-    private var GUARDIAN_DEATH : GameObject? = null
-    private var GUARDIAN_LAW : GameObject? = null
-    private var GUARDIAN_BLOOD : GameObject? = null
-    private var GUARDIAN_FIRE : GameObject? = null
-    private var GUARDIAN_NATURE : GameObject? = null
-    private var GUARDIAN_EARTH : GameObject? = null
-    private var GUARDIAN_WATER : GameObject? = null
-    private var GUARDIAN_COSMIC : GameObject? = null
+    private var GUARDIAN_AIR: GameObject? = null
+    private var GUARDIAN_MIND: GameObject? = null
+    private var GUARDIAN_BODY: GameObject? = null
+    private var GUARDIAN_CHAOS: GameObject? = null
+    private var GUARDIAN_DEATH: GameObject? = null
+    private var GUARDIAN_LAW: GameObject? = null
+    private var GUARDIAN_BLOOD: GameObject? = null
+    private var GUARDIAN_FIRE: GameObject? = null
+    private var GUARDIAN_NATURE: GameObject? = null
+    private var GUARDIAN_EARTH: GameObject? = null
+    private var GUARDIAN_WATER: GameObject? = null
+    private var GUARDIAN_COSMIC: GameObject? = null
 
     private var GUARDIAN_REMAINS_1 = 43717
     private var GUARDIAN_PARTS_1 = 43715
@@ -76,12 +77,13 @@ class GuardiansOfTheRiftPlugin : Plugin() {
     var catalyticPoints = 0
     var elementalPriority = false
 
-    fun hasGuardianStones() : Boolean {
+    fun hasGuardianStones(): Boolean {
         if (Inventory.contains(elementalStoneID, catalyticStoneID))
             return true
         return false
     }
-    fun setAltars() : Boolean {
+
+    fun setAltars(): Boolean {
         GUARDIAN_AIR = TileObjects.getNearest(43701) as GameObject?
         GUARDIAN_MIND = TileObjects.getNearest(43705) as GameObject?
         GUARDIAN_BODY = TileObjects.getNearest(43709) as GameObject?
@@ -107,7 +109,7 @@ class GuardiansOfTheRiftPlugin : Plugin() {
             altars.add(GUARDIAN_EARTH!!)
             altars.add(GUARDIAN_WATER!!)
             altars.add(GUARDIAN_COSMIC!!)
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             altars.clear()
             return false
         }
@@ -115,11 +117,12 @@ class GuardiansOfTheRiftPlugin : Plugin() {
     }
 
 
-    fun getRemains() : ArrayList<TileObject> {
+    fun getRemains(): ArrayList<TileObject> {
         val remains = TileObjects.getAll(GUARDIAN_REMAINS_1, GUARDIAN_PARTS_1, GUARDIAN_PARTS_2)
         return remains as ArrayList<TileObject>
     }
-    fun getActiveAltars() : ArrayList<TileObject> {
+
+    fun getActiveAltars(): ArrayList<TileObject> {
         val activeAltars = ArrayList<TileObject>()
         for (altar in altars) {
             val animation = (altar.renderable as DynamicObject).animation

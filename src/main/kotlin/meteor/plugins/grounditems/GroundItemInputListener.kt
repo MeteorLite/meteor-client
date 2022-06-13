@@ -33,7 +33,8 @@ import java.time.Duration
 import java.time.Instant
 import javax.swing.SwingUtilities
 
-class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundItemsConfig) : MouseAdapter(), KeyListener {
+class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundItemsConfig) : MouseAdapter(),
+    KeyListener {
     private var lastPress: Instant? = null
 
     override fun keyTyped(e: KeyEvent) {}
@@ -43,7 +44,7 @@ class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundI
                 plugin.hideAll = false
                 plugin.hotKeyPressed = true
                 lastPress = null
-            } else if (lastPress != null && !plugin.hotKeyPressed && config!!.doubleTapDelay() > 0 && Duration.between(
+            } else if (lastPress != null && !plugin.hotKeyPressed && config.doubleTapDelay() > 0 && Duration.between(
                     lastPress,
                     Instant.now()
                 ).compareTo(
@@ -63,7 +64,7 @@ class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundI
 
     override fun keyReleased(e: KeyEvent) {
         if (e.keyCode == HOTKEY) {
-            plugin!!.hotKeyPressed = false
+            plugin.hotKeyPressed = false
             plugin.textBoxBounds = null
             plugin.hiddenBoxBounds = null
             plugin.highlightBoxBounds = null
@@ -72,7 +73,7 @@ class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundI
 
     override fun mousePressed(e: MouseEvent): MouseEvent {
         val mousePos = Point(e.x - 5, e.y)
-        if (plugin!!.hotKeyPressed) {
+        if (plugin.hotKeyPressed) {
             if (SwingUtilities.isLeftMouseButton(e)) {
                 // Process both click boxes for hidden and highlighted items
                 if (plugin.hiddenBoxBounds != null && plugin.hiddenBoxBounds!!.key.contains(mousePos)) {

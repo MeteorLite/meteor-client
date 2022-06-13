@@ -65,32 +65,32 @@ class ProgressBar : DimmableJPanel() {
         set(dimmed) {
             super.dimmed = dimmed
             if (dimmed) {
-                leftLabel.setForeground(Color.GRAY)
-                rightLabel.setForeground(Color.GRAY)
-                centerLabel.setText(dimmedText)
+                leftLabel.foreground = Color.GRAY
+                rightLabel.foreground = Color.GRAY
+                centerLabel.text = dimmedText
             } else {
-                leftLabel.setForeground(Color.WHITE)
-                rightLabel.setForeground(Color.WHITE)
-                centerLabel.setText(centerLabelText)
+                leftLabel.foreground = Color.WHITE
+                rightLabel.foreground = Color.WHITE
+                centerLabel.text = centerLabelText
             }
         }
 
     fun setLeftLabel(txt: String?) {
-        leftLabel.setText(txt)
+        leftLabel.text = txt
     }
 
     fun setRightLabel(txt: String?) {
-        rightLabel.setText(txt)
+        rightLabel.text = txt
     }
 
     fun setCenterLabel(txt: String) {
         centerLabelText = txt
-        centerLabel.setText(if (super.dimmed) dimmedText else txt)
+        centerLabel.text = if (super.dimmed) dimmedText else txt
     }
 
     fun setDimmedText(txt: String) {
         dimmedText = txt
-        centerLabel.setText(if (super.dimmed) txt else centerLabelText)
+        centerLabel.text = if (super.dimmed) txt else centerLabelText
     }
 
     val percentage: Int
@@ -119,17 +119,17 @@ class ProgressBar : DimmableJPanel() {
         background = Color.GREEN.darker()
         foreground = Color.GREEN.brighter()
         preferredSize = Dimension(100, 16)
-        leftLabel.setFont(FontManager.runescapeSmallFont)
-        leftLabel.setForeground(Color.WHITE)
-        leftLabel.setBorder(EmptyBorder(2, 5, 0, 0))
-        rightLabel.setFont(FontManager.runescapeSmallFont)
-        rightLabel.setForeground(Color.WHITE)
-        rightLabel.setHorizontalAlignment(SwingConstants.RIGHT)
-        rightLabel.setBorder(EmptyBorder(2, 0, 0, 5))
-        centerLabel.setFont(FontManager.runescapeSmallFont)
-        centerLabel.setForeground(Color.WHITE)
-        centerLabel.setHorizontalAlignment(SwingConstants.CENTER)
-        centerLabel.setBorder(EmptyBorder(2, 0, 0, 0))
+        leftLabel.font = FontManager.runescapeSmallFont
+        leftLabel.foreground = Color.WHITE
+        leftLabel.border = EmptyBorder(2, 5, 0, 0)
+        rightLabel.font = FontManager.runescapeSmallFont
+        rightLabel.foreground = Color.WHITE
+        rightLabel.horizontalAlignment = SwingConstants.RIGHT
+        rightLabel.border = EmptyBorder(2, 0, 0, 5)
+        centerLabel.font = FontManager.runescapeSmallFont
+        centerLabel.foreground = Color.WHITE
+        centerLabel.horizontalAlignment = SwingConstants.CENTER
+        centerLabel.border = EmptyBorder(2, 0, 0, 0)
 
         // Adds components to be automatically redrawn when paintComponents is called
         add(leftLabel)

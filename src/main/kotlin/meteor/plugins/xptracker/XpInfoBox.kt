@@ -45,7 +45,6 @@ import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import java.util.ArrayList
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 import javax.swing.event.PopupMenuEvent
@@ -86,7 +85,7 @@ internal class XpInfoBox(
         }
 
         init {
-            TWO_DECIMAL_FORMAT.setRoundingMode(RoundingMode.DOWN)
+            TWO_DECIMAL_FORMAT.roundingMode = RoundingMode.DOWN
         }
     }
 
@@ -112,7 +111,7 @@ internal class XpInfoBox(
     private val canvasItem: JMenuItem = JMenuItem(ADD_STATE)
     private var paused = false
     fun reset() {
-        canvasItem.setText(ADD_STATE)
+        canvasItem.text = ADD_STATE
         panel.remove(this)
         panel.revalidate()
     }
@@ -123,7 +122,7 @@ internal class XpInfoBox(
 
     private fun rebuildAsync(updated: Boolean, skillPaused: Boolean, xpSnapshotSingle: XpSnapshotSingle) {
         if (updated) {
-            if (getParent() !== panel) {
+            if (parent !== panel) {
                 panel.add(this)
                 panel.revalidate()
             }
@@ -167,29 +166,29 @@ internal class XpInfoBox(
             // React to the skill state now being paused
             progressBar.dimmed = true
             paused = true
-            pauseSkill.setText("Unpause")
+            pauseSkill.text = "Unpause"
         } else if (paused && !skillPaused) {
             // React to the skill being unpaused (without update)
             progressBar.dimmed = false
             paused = false
-            pauseSkill.setText("Pause")
+            pauseSkill.text = "Pause"
         }
 
         // Update information labels
         // Update exp per hour separately, every time (not only when there's an update)
-        topLeftStat.setText(htmlLabel(xpTrackerConfig.xpPanelLabel1()!!, xpSnapshotSingle))
-        topRightStat.setText(htmlLabel(xpTrackerConfig.xpPanelLabel2()!!, xpSnapshotSingle))
-        bottomLeftStat.setText(htmlLabel(xpTrackerConfig.xpPanelLabel3()!!, xpSnapshotSingle))
-        bottomRightStat.setText(htmlLabel(xpTrackerConfig.xpPanelLabel4()!!, xpSnapshotSingle))
+        topLeftStat.text = htmlLabel(xpTrackerConfig.xpPanelLabel1()!!, xpSnapshotSingle)
+        topRightStat.text = htmlLabel(xpTrackerConfig.xpPanelLabel2()!!, xpSnapshotSingle)
+        bottomLeftStat.text = htmlLabel(xpTrackerConfig.xpPanelLabel3()!!, xpSnapshotSingle)
+        bottomRightStat.text = htmlLabel(xpTrackerConfig.xpPanelLabel4()!!, xpSnapshotSingle)
     }
 
     init {
         this.panel = panel
         this.skill = skill
-        setLayout(BorderLayout())
-        setBorder(EmptyBorder(5, 0, 0, 0))
-        container.setLayout(BorderLayout())
-        container.setBackground(ColorScheme.DARKER_GRAY_COLOR)
+        layout = BorderLayout()
+        border = EmptyBorder(5, 0, 0, 0)
+        container.layout = BorderLayout()
+        container.background = ColorScheme.DARKER_GRAY_COLOR
 
         // Create reset menu
         val reset = JMenuItem("Reset")
@@ -208,7 +207,7 @@ internal class XpInfoBox(
 
         // Create popup menu
         val popupMenu = JPopupMenu()
-        popupMenu.setBorder(EmptyBorder(5, 5, 5, 5))
+        popupMenu.border = EmptyBorder(5, 5, 5, 5)
         popupMenu.add(reset)
         popupMenu.add(resetOthers)
         popupMenu.add(resetPerHour)
@@ -216,32 +215,32 @@ internal class XpInfoBox(
         popupMenu.add(canvasItem)
         popupMenu.addPopupMenuListener(object : PopupMenuListener {
             override fun popupMenuWillBecomeVisible(popupMenuEvent: PopupMenuEvent) {
-                canvasItem.setText(if (xpTrackerPlugin.hasOverlay(skill)) REMOVE_STATE else ADD_STATE)
+                canvasItem.text = if (xpTrackerPlugin.hasOverlay(skill)) REMOVE_STATE else ADD_STATE
             }
 
             override fun popupMenuWillBecomeInvisible(popupMenuEvent: PopupMenuEvent) {}
             override fun popupMenuCanceled(popupMenuEvent: PopupMenuEvent) {}
         })
         canvasItem.addActionListener(ActionListener { e: ActionEvent? ->
-            if (canvasItem.getText() == REMOVE_STATE) {
+            if (canvasItem.text == REMOVE_STATE) {
                 xpTrackerPlugin.removeOverlay(skill)
             } else {
                 xpTrackerPlugin.addOverlay(skill)
             }
         })
         val skillIcon = JLabel(ImageIcon(iconManager.getSkillImage(skill)))
-        skillIcon.setHorizontalAlignment(SwingConstants.CENTER)
-        skillIcon.setVerticalAlignment(SwingConstants.CENTER)
-        skillIcon.setPreferredSize(Dimension(35, 35))
-        headerPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR)
-        headerPanel.setLayout(BorderLayout())
-        statsPanel.setLayout(DynamicGridLayout(2, 2))
-        statsPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR)
-        statsPanel.setBorder(EmptyBorder(9, 2, 9, 2))
-        topLeftStat.setFont(FontManager.runescapeSmallFont)
-        bottomLeftStat.setFont(FontManager.runescapeSmallFont)
-        topRightStat.setFont(FontManager.runescapeSmallFont)
-        bottomRightStat.setFont(FontManager.runescapeSmallFont)
+        skillIcon.horizontalAlignment = SwingConstants.CENTER
+        skillIcon.verticalAlignment = SwingConstants.CENTER
+        skillIcon.preferredSize = Dimension(35, 35)
+        headerPanel.background = ColorScheme.DARKER_GRAY_COLOR
+        headerPanel.layout = BorderLayout()
+        statsPanel.layout = DynamicGridLayout(2, 2)
+        statsPanel.background = ColorScheme.DARKER_GRAY_COLOR
+        statsPanel.border = EmptyBorder(9, 2, 9, 2)
+        topLeftStat.font = FontManager.runescapeSmallFont
+        bottomLeftStat.font = FontManager.runescapeSmallFont
+        topRightStat.font = FontManager.runescapeSmallFont
+        bottomRightStat.font = FontManager.runescapeSmallFont
         statsPanel.add(topLeftStat) // top left
         statsPanel.add(topRightStat) // top right
         statsPanel.add(bottomLeftStat) // bottom left
@@ -249,9 +248,9 @@ internal class XpInfoBox(
         headerPanel.add(skillIcon, BorderLayout.WEST)
         headerPanel.add(statsPanel, BorderLayout.CENTER)
         val progressWrapper = JPanel()
-        progressWrapper.setBackground(ColorScheme.DARKER_GRAY_COLOR)
-        progressWrapper.setLayout(BorderLayout())
-        progressWrapper.setBorder(EmptyBorder(0, 7, 7, 7))
+        progressWrapper.background = ColorScheme.DARKER_GRAY_COLOR
+        progressWrapper.layout = BorderLayout()
+        progressWrapper.border = EmptyBorder(0, 7, 7, 7)
         progressBar.setMaximumValue(100)
         progressBar.background = Color(61, 56, 49)
         progressBar.foreground = SkillColor.find(skill).color
@@ -259,7 +258,7 @@ internal class XpInfoBox(
         progressWrapper.add(progressBar, BorderLayout.NORTH)
         container.add(headerPanel, BorderLayout.NORTH)
         container.add(progressWrapper, BorderLayout.SOUTH)
-        container.setComponentPopupMenu(popupMenu)
+        container.componentPopupMenu = popupMenu
         progressBar.componentPopupMenu = popupMenu
 
         // forward mouse drag events to parent panel for drag and drop reordering

@@ -60,7 +60,8 @@ class RsnHiderPlugin : Plugin() {
             setFakeRsn()
         }
     }
-    private fun beforeRender(){
+
+    private fun beforeRender() {
         if (client.gameState != GameState.LOGGED_IN) {
             return
         }
@@ -74,8 +75,9 @@ class RsnHiderPlugin : Plugin() {
             updateChatbox()
         }
     }
+
     override fun onBeforeRender(it: BeforeRender) {
-      beforeRender()
+        beforeRender()
     }
 
 
@@ -144,6 +146,7 @@ class RsnHiderPlugin : Plugin() {
     override fun onOverheadTextChanged(it: OverheadTextChanged) {
         it.actor.overheadText = replaceRsn(it.overheadText)
     }
+
     private fun replaceRsn(textIn: String): String {
         try {
             var textIn = textIn

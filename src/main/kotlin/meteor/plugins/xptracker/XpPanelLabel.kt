@@ -51,7 +51,7 @@ enum class XpPanelLabel(var key: String, var valueFunc: Function<XpSnapshotSingl
     fun getActionKey(snapshot: XpSnapshotSingle): String {
         val actionKey = key
         return if (snapshot.actionType == XpActionType.ACTOR_HEALTH) {
-            actionKey!!.replace("Action", "Kill")
+            actionKey.replace("Action", "Kill")
         } else actionKey
     }
 

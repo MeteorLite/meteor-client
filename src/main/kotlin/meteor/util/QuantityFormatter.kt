@@ -24,9 +24,9 @@
  */
 package meteor.util
 
-import java.text.NumberFormat
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.text.ParseException
 import java.util.*
 import java.util.regex.Pattern

@@ -4,14 +4,12 @@ import eventbus.Events
 import eventbus.events.GameStateChanged
 import meteor.ui.overlay.Overlay
 import net.runelite.api.GameState
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.Dimension
 import java.awt.Graphics2D
-import java.awt.Point
-import java.awt.Rectangle
+import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 @PluginDescriptor("example-kotlin")
-class ExamplePlugin: Plugin() {
+class ExamplePlugin : Plugin() {
     var exampleOverlay = overlay<ExampleOverlay>(ExampleOverlay)
 
     override fun onStart() {
@@ -26,7 +24,7 @@ class ExamplePlugin: Plugin() {
     }
 }
 
-object ExampleOverlay: Overlay() {
+object ExampleOverlay : Overlay() {
     override fun render(graphics: Graphics2D): Dimension? {
         return null
     }

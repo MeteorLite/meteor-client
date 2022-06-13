@@ -63,7 +63,7 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
         val action = MenuAction.of(menuEntry.type.id)
         val widgetId = menuEntry.param1
         val groupId = WidgetInfo.TO_GROUP(widgetId)
-        val isAlching = menuEntry.getOption() == "Cast" && menuEntry.getTarget()
+        val isAlching = menuEntry.option == "Cast" && menuEntry.target
             .contains("High Level Alchemy")
         when (action) {
             MenuAction.WIDGET_USE_ON_ITEM -> {

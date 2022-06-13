@@ -37,15 +37,16 @@ class BackgroundComponent : RenderableEntity {
     var rectangle = Rectangle()
     private val fill = true
     override fun render(graphics: Graphics2D): Dimension {
-        val outsideStrokeColor = Color((backgroundColor.red * OUTER_COLOR_OFFSET).toInt(),
-                (backgroundColor.green * OUTER_COLOR_OFFSET).toInt(), (backgroundColor.blue * OUTER_COLOR_OFFSET).toInt(),
-                    255.coerceAtMost((backgroundColor.alpha * ALPHA_COLOR_OFFSET).toInt())
+        val outsideStrokeColor = Color(
+            (backgroundColor.red * OUTER_COLOR_OFFSET).toInt(),
+            (backgroundColor.green * OUTER_COLOR_OFFSET).toInt(), (backgroundColor.blue * OUTER_COLOR_OFFSET).toInt(),
+            255.coerceAtMost((backgroundColor.alpha * ALPHA_COLOR_OFFSET).toInt())
         )
         val insideStrokeColor = Color(
-                255.coerceAtMost((backgroundColor.red * INNER_COLOR_OFFSET).toInt()),
-                255.coerceAtMost((backgroundColor.green * INNER_COLOR_OFFSET).toInt()),
-                255.coerceAtMost((backgroundColor.blue * INNER_COLOR_OFFSET).toInt()),
-                255.coerceAtMost((backgroundColor.alpha * ALPHA_COLOR_OFFSET).toInt())
+            255.coerceAtMost((backgroundColor.red * INNER_COLOR_OFFSET).toInt()),
+            255.coerceAtMost((backgroundColor.green * INNER_COLOR_OFFSET).toInt()),
+            255.coerceAtMost((backgroundColor.blue * INNER_COLOR_OFFSET).toInt()),
+            255.coerceAtMost((backgroundColor.alpha * ALPHA_COLOR_OFFSET).toInt())
         )
 
         // Render background
@@ -58,15 +59,17 @@ class BackgroundComponent : RenderableEntity {
         val outsideStroke = Rectangle()
         outsideStroke.setLocation(rectangle.x, rectangle.y)
         outsideStroke
-                .setSize(rectangle.width - BORDER_OFFSET / 2, rectangle.height - BORDER_OFFSET / 2)
+            .setSize(rectangle.width - BORDER_OFFSET / 2, rectangle.height - BORDER_OFFSET / 2)
         graphics.color = outsideStrokeColor
         graphics.draw(outsideStroke)
 
         // Render inside stroke
         val insideStroke = Rectangle()
         insideStroke.setLocation(rectangle.x + BORDER_OFFSET / 2, rectangle.y + BORDER_OFFSET / 2)
-        insideStroke.setSize(rectangle.width - BORDER_OFFSET - BORDER_OFFSET / 2,
-                rectangle.height - BORDER_OFFSET - BORDER_OFFSET / 2)
+        insideStroke.setSize(
+            rectangle.width - BORDER_OFFSET - BORDER_OFFSET / 2,
+            rectangle.height - BORDER_OFFSET - BORDER_OFFSET / 2
+        )
         graphics.color = insideStrokeColor
         graphics.draw(insideStroke)
         return Dimension(rectangle.size)

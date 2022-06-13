@@ -25,12 +25,13 @@
 package meteor.ui.overlay
 
 import java.awt.Rectangle
-import java.util.*
 
-internal class OverlayBounds(private var topLeft: Rectangle? = null, private var topCenter: Rectangle? = null,
-                             private var topRight: Rectangle? = null, private var bottomLeft: Rectangle? = null,
-                             private var bottomRight: Rectangle? = null, private var aboveChatboxRight: Rectangle? = null,
-                             private var canvasTopRight: Rectangle? = null, other: OverlayBounds? = null) {
+internal class OverlayBounds(
+    private var topLeft: Rectangle? = null, private var topCenter: Rectangle? = null,
+    private var topRight: Rectangle? = null, private var bottomLeft: Rectangle? = null,
+    private var bottomRight: Rectangle? = null, private var aboveChatboxRight: Rectangle? = null,
+    private var canvasTopRight: Rectangle? = null, other: OverlayBounds? = null
+) {
 
 
 
@@ -92,6 +93,8 @@ internal class OverlayBounds(private var topLeft: Rectangle? = null, private var
         }
     }
 
-    val bounds = listOf(topLeft!!, topCenter, topRight, bottomLeft, bottomRight, aboveChatboxRight,
-        canvasTopRight)
+    val bounds = listOf(
+        topLeft!!, topCenter, topRight, bottomLeft, bottomRight, aboveChatboxRight,
+        canvasTopRight
+    )
 }

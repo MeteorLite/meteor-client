@@ -83,7 +83,7 @@ class ChatFilterPlugin : Plugin() {
         }
     }
 
-    private fun chatFilter(){
+    private fun chatFilter() {
 
         val intStack = client.intStack
         val intStackSize = client.intStackSize
@@ -143,7 +143,7 @@ class ChatFilterPlugin : Plugin() {
         }
     }
 
-    override fun onScriptCallbackEvent(it: ScriptCallbackEvent){
+    override fun onScriptCallbackEvent(it: ScriptCallbackEvent) {
         if ("chatFilterCheck" != it.eventName) {
             chatFilter()
         }
@@ -234,7 +234,7 @@ class ChatFilterPlugin : Plugin() {
     fun updateFilteredPatterns() {
         filteredPatterns.clear()
         filteredNamePatterns.clear()
-        Text.fromCSV(config!!.filteredWords()).stream()
+        Text.fromCSV(config.filteredWords()).stream()
             .map { s: String? -> Pattern.compile(Pattern.quote(s), Pattern.CASE_INSENSITIVE) }
             .forEach { e: Pattern? -> filteredPatterns.add(e) }
         NEWLINE_SPLITTER.splitToList(config.filteredRegex()).stream()

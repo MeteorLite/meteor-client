@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import meteor.plugins.EventSubscriber
-import meteor.plugins.Plugin
 
 open class PluginPanel : EventSubscriber() {
     @Composable
@@ -19,7 +18,7 @@ open class PluginPanel : EventSubscriber() {
 
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             Column(modifier = mod) {
-                MaterialTheme(colors =darkThemeColors) {
+                MaterialTheme(colors = darkThemeColors) {
                     Header()
                     Content()
                 }
@@ -27,6 +26,11 @@ open class PluginPanel : EventSubscriber() {
         }
     }
 
-    @Composable open fun Header() {}
-    @Composable open fun Content() {}
+    @Composable
+    open fun Header() {
+    }
+
+    @Composable
+    open fun Content() {
+    }
 }

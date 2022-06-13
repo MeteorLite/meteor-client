@@ -25,7 +25,7 @@
 package meteor.util
 
 import net.runelite.http.api.worlds.WorldType
-import java.util.EnumSet
+import java.util.*
 
 /**
  * Utility class for RuneScape worlds

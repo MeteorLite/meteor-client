@@ -26,24 +26,26 @@ package meteor.plugins
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)
-annotation class PluginDescriptor(val name: String,
-                                  /**
-                                   * Internal name used in the config.
-                                   */
-                                  val configGroup: String = "",
-                                  /**
-                                   * A short, one-line summary of the plugin.
-                                   */
-                                  val description: String = "",
-                                  /**
-                                   * A list of plugin keywords, used (together with the name) when searching for plugins. Each tag
-                                   * should not contain any spaces, and should be fully lowercase.
-                                   */
-                                  val tags: Array<String> = [], val enabledByDefault: Boolean = false,
-                                  /**
-                                   * Whether or not plugin is hidden from configuration panel
-                                   */
-                                  val hidden: Boolean = false, val developerPlugin: Boolean = false,
-                                  val loadWhenOutdated: Boolean = false, val loadInSafeMode: Boolean = true,
-                                  val cantDisable: Boolean = false, val disabledOnStartup: Boolean = false,
-                                  val external: Boolean = false)
+annotation class PluginDescriptor(
+    val name: String,
+    /**
+     * Internal name used in the config.
+     */
+    val configGroup: String = "",
+    /**
+     * A short, one-line summary of the plugin.
+     */
+    val description: String = "",
+    /**
+     * A list of plugin keywords, used (together with the name) when searching for plugins. Each tag
+     * should not contain any spaces, and should be fully lowercase.
+     */
+    val tags: Array<String> = [], val enabledByDefault: Boolean = false,
+    /**
+     * Whether or not plugin is hidden from configuration panel
+     */
+    val hidden: Boolean = false, val developerPlugin: Boolean = false,
+    val loadWhenOutdated: Boolean = false, val loadInSafeMode: Boolean = true,
+    val cantDisable: Boolean = false, val disabledOnStartup: Boolean = false,
+    val external: Boolean = false
+)

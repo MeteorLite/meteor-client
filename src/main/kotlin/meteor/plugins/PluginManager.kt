@@ -6,6 +6,7 @@ import com.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
 import meteor.plugins.agility.AgilityPlugin
+import meteor.plugins.autoalch.AutoAlchPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autoclicker.AutoClickerPlugin
 import meteor.plugins.autologhop.AutoLogHop
@@ -15,14 +16,14 @@ import meteor.plugins.bank.BankPlugin
 import meteor.plugins.banksetups.BankSetups
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
-import meteor.plugins.continueclicker.ContinueClickerPlugin
 import meteor.plugins.commands.CommandsPlugin
+import meteor.plugins.continueclicker.ContinueClickerPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
-import meteor.plugins.autoalch.AutoAlchPlugin
+import meteor.plugins.interacthighlight.InteractHighlightPlugin
 import meteor.plugins.inventorytags.InventoryTagsPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
@@ -42,6 +43,7 @@ import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.tileindicators.TileIndicatorsPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
+import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.camera.CameraPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
@@ -64,7 +66,6 @@ import java.net.URL
 import java.net.URLClassLoader
 import java.util.concurrent.TimeUnit
 import java.util.jar.Manifest
-import kotlin.collections.HashMap
 import kotlin.system.exitProcess
 
 
@@ -100,11 +101,11 @@ object PluginManager {
         init<GauntletExtendedPlugin>()
         init<GroundItemsPlugin>()
         init<GuardiansOfTheRiftPlugin>()
-        init<HdPlugin>()
         init<HerbiboarPlugin>()
-        init<InventoryTagsPlugin>()
         init<AutoAlchPlugin>()
         init<InterfaceStylesPlugin>()
+        init<InteractHighlightPlugin>()
+        init<InventoryTagsPlugin>()
         init<ItemPricesPlugin>()
         init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
@@ -130,7 +131,9 @@ object PluginManager {
         init<TilemanModePlugin>()
         init<TimersPlugin>()
         init<WorldMapPlugin>()
+        init<WorldMapWalkerPlugin>()
         init<XpTrackerPlugin>()
+        init<HdPlugin>()
     }
 
     private fun loadExternal(jar: File) {
@@ -164,8 +167,7 @@ object PluginManager {
                 jar?.let { it ->
                     val manifest: Manifest? = getManifest(it)
                     manifest?.let { manifest ->
-                        if (manifest.mainAttributes.getValue("Main-Class") == plugin.javaClass.name)
-                        {
+                        if (manifest.mainAttributes.getValue("Main-Class") == plugin.javaClass.name) {
                             stop(plugin)
                             plugins.remove(plugin)
                             initExternalPlugin(it, manifest)
@@ -180,7 +182,7 @@ object PluginManager {
 
     }
 
-    fun getManifest(jar: File) : Manifest? {
+    fun getManifest(jar: File): Manifest? {
         val jarConnection = URL("jar:file:${jar.absolutePath}!/").openConnection() as JarURLConnection
         return jarConnection.manifest
     }
@@ -188,7 +190,7 @@ object PluginManager {
     inline fun <reified T : Plugin> init() {
         val plugin = T::class.java.newInstance()
         if (plugins.filterIsInstance<T>().isNotEmpty())
-                throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
+            throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
         runningMap[plugin] = plugin.shouldEnable()
         plugins.add(plugin)
@@ -252,10 +254,10 @@ object PluginManager {
         runningMap[plugin] = false
     }
 
-     fun start(plugin: Plugin) {
-         plugin.start()
-         plugin.onStart()
-         runningMap[plugin] = true
+    fun start(plugin: Plugin) {
+        plugin.start()
+        plugin.onStart()
+        runningMap[plugin] = true
     }
 
     fun shutdown() {

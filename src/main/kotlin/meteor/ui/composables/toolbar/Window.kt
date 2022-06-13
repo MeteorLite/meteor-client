@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -13,27 +14,27 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import meteor.Main
 import meteor.ui.composables.darkThemeColors
-import meteor.ui.composables.toolbar.Toolbar
-
+import meteor.ui.composables.toolbar.ToolbarPanel
 
 
 @DslMarker
 annotation class ToolBar
+
 @DslMarker
 annotation class WindowPanel
 
 @DslMarker
 annotation class GamePanel
 
-class GameWindow{
+class GameWindow {
 
 
     @GamePanel
     @Composable
     fun gameFrame(
         backgroundColor: Color = darkThemeColors.background,
-        content:@Composable () -> Unit
-    ){
+        content: @Composable () -> Unit
+    ) {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
             BoxWithConstraints(
                 modifier = Modifier
@@ -41,7 +42,7 @@ class GameWindow{
                     .background(backgroundColor)
 
             ) {
-                Column{
+                Column {
                     content.invoke()
                 }
             }
@@ -50,18 +51,20 @@ class GameWindow{
 }
 
 
-class UI{
+class UI {
 
     @ToolBar
     @Composable
-    fun toolBar(content:@Composable ()->Unit){
+    fun toolBar(content: @Composable () -> Unit) {
 
-        Column (modifier= Modifier
-            .fillMaxHeight()
-            .width(35.dp)
-            .background(Color.Black)
-        ){
-            Toolbar.ToolbarPanel()
+        BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(Main.meteorConfig!!.toolbarWidth().dp)
+                .background(Color.Black)
+        ) {
+
+            mutableStateOf(ToolbarPanel())
             content.invoke()
         }
     }
@@ -69,12 +72,12 @@ class UI{
     @WindowPanel
     @Composable
     fun content(
-        content:@Composable GameWindow.()->Unit
+        content: @Composable GameWindow.() -> Unit
     ) {
         val gameContent = GameWindow()
 
         BoxWithConstraints(modifier = Modifier.background(darkThemeColors.background)) {
-            Row  (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
@@ -89,8 +92,8 @@ class UI{
 @Composable
 fun WindowFrame(
     modifier: Modifier = Modifier,
-    content: @Composable UI.()->Unit
-){
+    content: @Composable UI.() -> Unit
+) {
     val ui = UI()
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
         Row(

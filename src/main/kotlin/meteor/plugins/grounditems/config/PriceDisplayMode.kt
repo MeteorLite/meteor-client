@@ -26,6 +26,7 @@ package meteor.plugins.grounditems.config
 
 enum class PriceDisplayMode(var type: String) {
     HA("High Alchemy"), GE("Grand Exchange"), BOTH("Both"), OFF("Off");
+
     override fun toString(): String {
         return type
     }

@@ -1,13 +1,13 @@
 package meteor.ui.overlay
 
-import meteor.Main.client
-import meteor.Main.fontManager
-import meteor.Main.overlayManager
 import com.google.common.base.MoreObjects
 import com.google.common.primitives.Ints
 import eventbus.Events
 import eventbus.events.BeforeRender
 import eventbus.events.ClientTick
+import meteor.Main.client
+import meteor.Main.fontManager
+import meteor.Main.overlayManager
 import meteor.input.KeyListener
 import meteor.input.KeyManager
 import meteor.input.MouseAdapter
@@ -395,30 +395,37 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         val viewport = if (viewportWidget != null) viewportWidget.bounds else Rectangle()
         val topLeftPoint = Point(
             viewport!!.x + BORDER,
-            viewport!!.y + BORDER_TOP)
+            viewport.y + BORDER_TOP
+        )
         val topCenterPoint = Point(
-            viewport!!.x + viewport!!.width / 2,
-            viewport!!.y + BORDER
+            viewport.x + viewport.width / 2,
+            viewport.y + BORDER
         )
         val topRightPoint = Point(
-            viewport!!.x + viewport!!.width - BORDER,
-            topCenterPoint.y)
+            viewport.x + viewport.width - BORDER,
+            topCenterPoint.y
+        )
         val bottomLeftPoint = Point(
             topLeftPoint.x,
-            viewport!!.y + viewport!!.height - BORDER)
+            viewport.y + viewport.height - BORDER
+        )
         val bottomRightPoint = Point(
             topRightPoint.x,
-            bottomLeftPoint.y)
+            bottomLeftPoint.y
+        )
 
         // Check to see if chat box is minimized
         if (isResizeable && chatboxHidden) {
             bottomLeftPoint.y += chatboxBounds!!.height
         }
         val rightChatboxPoint = if (isResizeable) Point(
-            viewport!!.x + chatboxBounds!!.width - BORDER,
-            bottomLeftPoint.y) else bottomRightPoint
-        val canvasTopRightPoint = if (isResizeable) Point(client.realDimensions.getWidth().toInt(),
-            0) else topRightPoint
+            viewport.x + chatboxBounds!!.width - BORDER,
+            bottomLeftPoint.y
+        ) else bottomRightPoint
+        val canvasTopRightPoint = if (isResizeable) Point(
+            client.realDimensions.getWidth().toInt(),
+            0
+        ) else topRightPoint
         return OverlayBounds(
             Rectangle(topLeftPoint, SNAP_CORNER_SIZE),
             Rectangle(topCenterPoint, SNAP_CORNER_SIZE),
@@ -426,7 +433,8 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             Rectangle(bottomLeftPoint, SNAP_CORNER_SIZE),
             Rectangle(bottomRightPoint, SNAP_CORNER_SIZE),
             Rectangle(rightChatboxPoint, SNAP_CORNER_SIZE),
-            Rectangle(canvasTopRightPoint, SNAP_CORNER_SIZE))
+            Rectangle(canvasTopRightPoint, SNAP_CORNER_SIZE)
+        )
     }
 
 
@@ -435,8 +443,10 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         renderOverlays(graphics, overlays, layer)
     }
 
-    fun renderAfterLayer(graphics: Graphics2D, layer: Widget,
-                         widgetItems: Collection<WidgetItem>) {
+    fun renderAfterLayer(
+        graphics: Graphics2D, layer: Widget,
+        widgetItems: Collection<WidgetItem>
+    ) {
         val overlays = OverlayManager.getForLayer(layer.id)
         OverlayManager.widgetItems = widgetItems
         renderOverlays(graphics, overlays, OverlayLayer.ABOVE_WIDGETS)
@@ -481,8 +491,10 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         return result
     }
 
-    fun padPosition(position: OverlayPosition, dimension: Dimension,
-                    padding: Int): Point {
+    fun padPosition(
+        position: OverlayPosition, dimension: Dimension,
+        padding: Int
+    ): Point {
         val result = Point()
         when (position) {
             OverlayPosition.DYNAMIC, OverlayPosition.TOOLTIP -> {}
@@ -494,8 +506,10 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         return result
     }
 
-    private fun clampOverlayLocation(overlayX: Int, overlayY: Int, overlayWidth: Int,
-                                     overlayHeight: Int, overlay: Overlay): Point {
+    private fun clampOverlayLocation(
+        overlayX: Int, overlayY: Int, overlayWidth: Int,
+        overlayHeight: Int, overlay: Overlay
+    ): Point {
         var parentBounds: Rectangle? = overlay.parentBounds
         if (parentBounds == null || parentBounds.isEmpty) {
             // If no bounds are set, use the full client bounds
@@ -505,10 +519,12 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
         // Constrain overlay position to be within the parent bounds
         return Point(
-            Ints.constrainToRange(overlayX, parentBounds.x,
+            Ints.constrainToRange(
+                overlayX, parentBounds.x,
                 parentBounds.x.coerceAtLeast(parentBounds.width - overlayWidth)
             ),
-            Ints.constrainToRange(overlayY, parentBounds.y,
+            Ints.constrainToRange(
+                overlayY, parentBounds.y,
                 parentBounds.y.coerceAtLeast(parentBounds.height - overlayHeight)
             )
         )
@@ -534,18 +550,23 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         return entries.toArray(arrayOf(MenuEntry()))
     }*/
 
-    fun renderAfterInterface(graphics: Graphics2D, interfaceId: Int,
-                             widgetItems: Collection<WidgetItem>) {
+    fun renderAfterInterface(
+        graphics: Graphics2D, interfaceId: Int,
+        widgetItems: Collection<WidgetItem>
+    ) {
         val overlays = OverlayManager.getForInterface(interfaceId)
         OverlayManager.widgetItems = widgetItems
         renderOverlays(graphics, overlays, OverlayLayer.ABOVE_WIDGETS)
         OverlayManager.widgetItems = emptyList()
     }
 
-    private fun renderOverlays(graphics: Graphics2D, overlays: Collection<Overlay>?,
-                               layer: OverlayLayer) {
+    private fun renderOverlays(
+        graphics: Graphics2D, overlays: Collection<Overlay>?,
+        layer: OverlayLayer
+    ) {
         if ((overlays == null) || overlays.isEmpty()
-            || (client.gameState != GameState.LOGGED_IN)) {
+            || (client.gameState != GameState.LOGGED_IN)
+        ) {
             return
         }
         setGraphicProperties(graphics)
@@ -554,7 +575,8 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         if (inOverlayDraggingMode && layer == OverlayLayer.UNDER_WIDGETS && currentManagedOverlay != null && currentManagedOverlay!!.position != OverlayPosition.DETACHED) {
             val translatedSnapCorners: OverlayBounds = snapCorners!!.translated(
                 -SNAP_CORNER_SIZE.width,
-                -SNAP_CORNER_SIZE.height)
+                -SNAP_CORNER_SIZE.height
+            )
             val previous = graphics.color
             for (corner in translatedSnapCorners.bounds) {
                 corner?.also {
@@ -579,7 +601,8 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         for (overlay in overlays) {
             val overlayPosition: OverlayPosition? = getCorrectedOverlayPosition(overlay)
             if (overlayPosition == OverlayPosition.DYNAMIC
-                || overlayPosition == OverlayPosition.TOOLTIP) {
+                || overlayPosition == OverlayPosition.TOOLTIP
+            ) {
                 safeRender(client, overlay, layer, graphics, Point())
 
                 // Restore graphics2d properties
@@ -598,8 +621,10 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                 // If the final position is not modified, layout it
                 if (overlayPosition != OverlayPosition.DETACHED && snapCorners != null) {
                     val snapCorner: Rectangle = snapCorners!!.forPosition(overlayPosition)
-                    val translation: Point = transformPosition(overlayPosition,
-                        dimension) // offset from corner
+                    val translation: Point = transformPosition(
+                        overlayPosition,
+                        dimension
+                    ) // offset from corner
                     // Target x/y to draw the overlay
                     val destX = snapCorner.getX().toInt() + translation.x
                     val destY = snapCorner.getY().toInt() + translation.y
@@ -610,16 +635,20 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                     // addition to its normal dimensions.
                     val dX = location.x - destX
                     val dY = location.y - destY
-                    val padding: Point = padPosition(overlayPosition!!, dimension,
-                        PADDING) // overlay size + fixed padding
+                    val padding: Point = padPosition(
+                        overlayPosition!!, dimension,
+                        PADDING
+                    ) // overlay size + fixed padding
                     // translate corner for padding and any difference due to the position clamping
                     snapCorner.translate(padding.x + dX, padding.y + dY)
                 } else {
                     location = preferredLocation!!
 
                     // Clamp the overlay position to ensure it is on screen or within parent bounds
-                    location = clampOverlayLocation(location.x, location.y, dimension.width, dimension.height,
-                        overlay)
+                    location = clampOverlayLocation(
+                        location.x, location.y, dimension.width, dimension.height,
+                        overlay
+                    )
                 }
                 if (overlay.getPreferredSize() != null)
                     bounds.size = overlay.getPreferredSize()!!
@@ -641,7 +670,8 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                             boundsColor = MOVING_OVERLAY_ACTIVE_COLOR
                         } else if (inOverlayDraggingMode && overlay.dragTargetable
                             && currentManagedOverlay!!.dragTargetable
-                            && currentManagedOverlay!!.getBounds()!!.intersects(bounds)) {
+                            && currentManagedOverlay!!.getBounds()!!.intersects(bounds)
+                        ) {
                             boundsColor = MOVING_OVERLAY_TARGET_COLOR
                             assert(currentManagedOverlay != overlay)
                             dragTargetOverlay = overlay
@@ -669,14 +699,20 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             }
         }
     }
-    private fun safeRender(client: Client, overlay: Overlay, layer: OverlayLayer, graphics: Graphics2D,
-                           point: Point) {
+
+    private fun safeRender(
+        client: Client, overlay: Overlay, layer: OverlayLayer, graphics: Graphics2D,
+        point: Point
+    ) {
         if (!isResizeable && (layer == OverlayLayer.ABOVE_SCENE
-                    || layer == OverlayLayer.UNDER_WIDGETS)) {
-            graphics.setClip(client.viewportXOffset,
+                    || layer == OverlayLayer.UNDER_WIDGETS)
+        ) {
+            graphics.setClip(
+                client.viewportXOffset,
                 client.viewportYOffset,
                 client.viewportWidth,
-                client.viewportHeight)
+                client.viewportHeight
+            )
         } else {
             graphics.setClip(0, 0, client.canvasWidth, client.canvasHeight)
         }

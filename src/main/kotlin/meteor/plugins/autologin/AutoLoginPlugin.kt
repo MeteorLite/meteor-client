@@ -1,8 +1,8 @@
 package meteor.plugins.autologin
 
-import meteor.Main
 import eventbus.events.GameStateChanged
 import eventbus.events.LoginStateChanged
+import meteor.Main
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.GameState
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
     enabledByDefault = false
 )
 class AutoLoginPlugin : Plugin() {
-   override val config = configuration<AutoLoginConfig>()
+    override val config = configuration<AutoLoginConfig>()
     private val executor: ScheduledExecutorService = Main.executor
 
     override fun onGameStateChanged(it: GameStateChanged) {
@@ -36,11 +36,12 @@ class AutoLoginPlugin : Plugin() {
 
     private fun login() {
         client.username = config.username()
-        client.setPassword(config.password())
+        client.password = config.password()
         sendEnter()
         Thread.sleep(600L)
         sendEnter()
     }
+
     fun type(text: String, sendEnter: Boolean = false) {
         val chars = text.toCharArray()
         for (c in chars) {
@@ -50,6 +51,7 @@ class AutoLoginPlugin : Plugin() {
             sendEnter()
         }
     }
+
     fun type(c: Char) {
         val canvas: Canvas = client.canvas
         val time = System.currentTimeMillis()

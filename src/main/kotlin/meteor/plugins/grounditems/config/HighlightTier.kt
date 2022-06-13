@@ -25,7 +25,6 @@
 package meteor.plugins.grounditems.config
 
 import meteor.plugins.grounditems.GroundItemsConfig
-import java.lang.UnsupportedOperationException
 
 enum class HighlightTier {
     OFF, LOW, MEDIUM, HIGH, INSANE;

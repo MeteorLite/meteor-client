@@ -4,7 +4,6 @@ import eventbus.Events
 import eventbus.events.AppletLoaded
 import meteor.Main
 import net.runelite.api.Client
-import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.applet.Applet
 import java.applet.AppletContext
 import java.applet.AppletStub
@@ -15,6 +14,7 @@ import java.awt.Image
 import java.io.InputStream
 import java.net.URL
 import java.util.*
+import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 class Applet : AppletStub, AppletContext {
 
@@ -28,9 +28,12 @@ class Applet : AppletStub, AppletContext {
             return applet as Client
         }
     }
-    val clientWidth by lazy {applet.minimumSize.size.width +
-            panelSize + Main.meteorConfig!!.toolbarWidth()}
-    val minimalWidth by lazy {applet.minimumSize.size.width + Main.meteorConfig!!.toolbarWidth()}
+
+    val clientWidth by lazy {
+        applet.minimumSize.size.width +
+                panelSize + Main.meteorConfig!!.toolbarWidth()
+    }
+    val minimalWidth by lazy { applet.minimumSize.size.width + Main.meteorConfig!!.toolbarWidth() }
     private var properties: Map<String, String> = AppletConfiguration.properties
     private var parameters: Map<String, String> = AppletConfiguration.parameters
 

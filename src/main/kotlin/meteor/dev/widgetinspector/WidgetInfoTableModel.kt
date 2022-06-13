@@ -27,7 +27,6 @@ package meteor.dev.widgetinspector
 import com.google.common.collect.ImmutableMap
 import meteor.rs.ClientThread
 import net.runelite.api.widgets.Widget
-import java.util.ArrayList
 import java.util.function.Function
 import javax.swing.SwingUtilities
 import javax.swing.table.AbstractTableModel
@@ -113,7 +112,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ContentType",
                 { obj: Widget -> obj.contentType },
-                { obj: Widget, i: Int -> obj.setContentType(i) },
+                { obj: Widget, i: Int -> obj.contentType = i },
                 Int::class.java
             )
         )
@@ -138,8 +137,8 @@ object WidgetInfoTableModel : AbstractTableModel() {
         out.add(
             WidgetField(
                 "TextColor",
-                { w -> Integer.toString(w.getTextColor(), 16) },
-                { w, str -> w.setTextColor(str.toInt(16)) },
+                { w -> Integer.toString(w.textColor, 16) },
+                { w, str -> w.textColor = str.toInt(16) },
                 String::class.java
             )
         )
@@ -147,7 +146,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "Opacity",
                 { obj: Widget -> obj.opacity },
-                { obj: Widget, i: Int -> obj.setOpacity(i) },
+                { obj: Widget, i: Int -> obj.opacity = i },
                 Int::class.java
             )
         )
@@ -155,7 +154,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "FontId",
                 { obj: Widget -> obj.fontId },
-                { obj: Widget, i: Int -> obj.setFontId(i) },
+                { obj: Widget, i: Int -> obj.fontId = i },
                 Int::class.java
             )
         )
@@ -163,15 +162,15 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "TextShadowed",
                 { obj: Widget -> obj.textShadowed },
-                { obj: Widget, b: Boolean -> obj.setTextShadowed(b) },
+                { obj: Widget, b: Boolean -> obj.textShadowed = b },
                 Boolean::class.java
             )
         )
         out.add(
             WidgetField(
                 "Name",
-                { w -> w.getName().trim() },
-                { obj: Widget, s: String? -> obj.setName(s) },
+                { w -> w.name.trim() },
+                { obj: Widget, s: String? -> obj.name = s },
                 String::class.java
             )
         )
@@ -179,7 +178,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ItemId",
                 { obj: Widget -> obj.itemId },
-                { obj: Widget, i: Int -> obj.setItemId(i) },
+                { obj: Widget, i: Int -> obj.itemId = i },
                 Int::class.java
             )
         )
@@ -187,7 +186,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ItemQuantity",
                 { obj: Widget -> obj.itemQuantity },
-                { obj: Widget, i: Int -> obj.setItemQuantity(i) },
+                { obj: Widget, i: Int -> obj.itemQuantity = i },
                 Int::class.java
             )
         )
@@ -195,7 +194,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ItemQuantityMode",
                 { obj: Widget -> obj.itemQuantityMode },
-                { obj: Widget, i: Int -> obj.setItemQuantityMode(i) },
+                { obj: Widget, i: Int -> obj.itemQuantityMode = i },
                 Int::class.java
             )
         )
@@ -203,7 +202,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ModelId",
                 { obj: Widget -> obj.modelId },
-                { obj: Widget, i: Int -> obj.setModelId(i) },
+                { obj: Widget, i: Int -> obj.modelId = i },
                 Int::class.java
             )
         )
@@ -211,7 +210,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ModelType",
                 { obj: Widget -> obj.modelType },
-                { obj: Widget, i: Int -> obj.setModelType(i) },
+                { obj: Widget, i: Int -> obj.modelType = i },
                 Int::class.java
             )
         )
@@ -219,7 +218,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "AnimationId",
                 { obj: Widget -> obj.animationId },
-                { obj: Widget, i: Int -> obj.setAnimationId(i) },
+                { obj: Widget, i: Int -> obj.animationId = i },
                 Int::class.java
             )
         )
@@ -227,7 +226,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "RotationX",
                 { obj: Widget -> obj.rotationX },
-                { obj: Widget, i: Int -> obj.setRotationX(i) },
+                { obj: Widget, i: Int -> obj.rotationX = i },
                 Int::class.java
             )
         )
@@ -235,7 +234,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "RotationY",
                 { obj: Widget -> obj.rotationY },
-                { obj: Widget, i: Int -> obj.setRotationY(i) },
+                { obj: Widget, i: Int -> obj.rotationY = i },
                 Int::class.java
             )
         )
@@ -243,7 +242,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "RotationZ",
                 { obj: Widget -> obj.rotationZ },
-                { obj: Widget, i: Int -> obj.setRotationZ(i) },
+                { obj: Widget, i: Int -> obj.rotationZ = i },
                 Int::class.java
             )
         )
@@ -251,7 +250,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ModelZoom",
                 { obj: Widget -> obj.modelZoom },
-                { obj: Widget, i: Int -> obj.setModelZoom(i) },
+                { obj: Widget, i: Int -> obj.modelZoom = i },
                 Int::class.java
             )
         )
@@ -259,7 +258,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "SpriteId",
                 { obj: Widget -> obj.spriteId },
-                { obj: Widget, i: Int -> obj.setSpriteId(i) },
+                { obj: Widget, i: Int -> obj.spriteId = i },
                 Int::class.java
             )
         )
@@ -267,7 +266,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "SpriteTiling",
                 { obj: Widget -> obj.spriteTiling },
-                { obj: Widget, b: Boolean -> obj.setSpriteTiling(b) },
+                { obj: Widget, b: Boolean -> obj.spriteTiling = b },
                 Boolean::class.java
             )
         )
@@ -292,7 +291,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "Filled",
                 { obj: Widget -> obj.isFilled },
-                { obj: Widget, b: Boolean -> obj.setFilled(b) },
+                { obj: Widget, b: Boolean -> obj.isFilled = b },
                 Boolean::class.java
             )
         )
@@ -300,7 +299,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "OriginalX",
                 { obj: Widget -> obj.originalX },
-                { obj: Widget, i: Int -> obj.setOriginalX(i) },
+                { obj: Widget, i: Int -> obj.originalX = i },
                 Int::class.java
             )
         )
@@ -308,7 +307,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "OriginalY",
                 { obj: Widget -> obj.originalY },
-                { obj: Widget, i: Int -> obj.setOriginalY(i) },
+                { obj: Widget, i: Int -> obj.originalY = i },
                 Int::class.java
             )
         )
@@ -316,7 +315,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "OriginalWidth",
                 { obj: Widget -> obj.originalWidth },
-                { obj: Widget, i: Int -> obj.setOriginalWidth(i) },
+                { obj: Widget, i: Int -> obj.originalWidth = i },
                 Int::class.java
             )
         )
@@ -324,7 +323,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "OriginalHeight",
                 { obj: Widget -> obj.originalHeight },
-                { obj: Widget, i: Int -> obj.setOriginalHeight(i) },
+                { obj: Widget, i: Int -> obj.originalHeight = i },
                 Int::class.java
             )
         )
@@ -332,7 +331,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "XPositionMode",
                 { obj: Widget -> obj.xPositionMode },
-                { obj: Widget, i: Int -> obj.setXPositionMode(i) },
+                { obj: Widget, i: Int -> obj.xPositionMode = i },
                 Int::class.java
             )
         )
@@ -340,7 +339,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "YPositionMode",
                 { obj: Widget -> obj.yPositionMode },
-                { obj: Widget, i: Int -> obj.setYPositionMode(i) },
+                { obj: Widget, i: Int -> obj.yPositionMode = i },
                 Int::class.java
             )
         )
@@ -348,7 +347,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "WidthMode",
                 { obj: Widget -> obj.widthMode },
-                { obj: Widget, i: Int -> obj.setWidthMode(i) },
+                { obj: Widget, i: Int -> obj.widthMode = i },
                 Int::class.java
             )
         )
@@ -356,7 +355,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "HeightMode",
                 { obj: Widget -> obj.heightMode },
-                { obj: Widget, i: Int -> obj.setHeightMode(i) },
+                { obj: Widget, i: Int -> obj.heightMode = i },
                 Int::class.java
             )
         )
@@ -364,7 +363,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "LineHeight",
                 { obj: Widget -> obj.lineHeight },
-                { obj: Widget, i: Int -> obj.setLineHeight(i) },
+                { obj: Widget, i: Int -> obj.lineHeight = i },
                 Int::class.java
             )
         )
@@ -372,7 +371,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "XTextAlignment",
                 { obj: Widget -> obj.xTextAlignment },
-                { obj: Widget, i: Int -> obj.setXTextAlignment(i) },
+                { obj: Widget, i: Int -> obj.xTextAlignment = i },
                 Int::class.java
             )
         )
@@ -380,7 +379,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "YTextAlignment",
                 { obj: Widget -> obj.yTextAlignment },
-                { obj: Widget, i: Int -> obj.setYTextAlignment(i) },
+                { obj: Widget, i: Int -> obj.yTextAlignment = i },
                 Int::class.java
             )
         )
@@ -422,7 +421,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ScrollX",
                 { obj: Widget -> obj.scrollX },
-                { obj: Widget, i: Int -> obj.setScrollX(i) },
+                { obj: Widget, i: Int -> obj.scrollX = i },
                 Int::class.java
             )
         )
@@ -430,7 +429,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ScrollY",
                 { obj: Widget -> obj.scrollY },
-                { obj: Widget, i: Int -> obj.setScrollY(i) },
+                { obj: Widget, i: Int -> obj.scrollY = i },
                 Int::class.java
             )
         )
@@ -438,7 +437,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ScrollWidth",
                 { obj: Widget -> obj.scrollWidth },
-                { obj: Widget, i: Int -> obj.setScrollWidth(i) },
+                { obj: Widget, i: Int -> obj.scrollWidth = i },
                 Int::class.java
             )
         )
@@ -446,7 +445,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
             WidgetField(
                 "ScrollHeight",
                 { obj: Widget -> obj.scrollHeight },
-                { obj: Widget, i: Int -> obj.setScrollHeight(i) },
+                { obj: Widget, i: Int -> obj.scrollHeight = i },
                 Int::class.java
             )
         )

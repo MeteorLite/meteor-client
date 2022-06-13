@@ -1,4 +1,3 @@
 package meteor.plugins.accountmaker
 
-class LevelStep: BuildStep() {
-}
+class LevelStep : BuildStep()

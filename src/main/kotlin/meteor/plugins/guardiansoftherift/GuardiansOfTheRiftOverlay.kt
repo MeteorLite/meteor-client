@@ -17,7 +17,7 @@ import java.awt.geom.GeneralPath
 import java.awt.geom.Path2D
 
 
-class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin): Overlay() {
+class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin) : Overlay() {
     val itemManager = ItemManager
     override fun render(graphics: Graphics2D): Dimension? {
         val guardian = NPCs.getNearest(plugin.greatGuardianID)
@@ -25,7 +25,7 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin): Overlay()
         guardian?.let {
             graphics.color = Color.GREEN
             if (plugin.hasGuardianStones())
-                it.convexHull?.let {  hull ->
+                it.convexHull?.let { hull ->
                     graphics.draw(hull)
                 }
             plugin.currentTeleportOrb?.let { orb ->
@@ -68,10 +68,11 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin): Overlay()
                 graphics.color = Color(255, 0, 255)
                 graphics.draw(generalPath)
             }
-        } catch (_: Exception){}
+        } catch (_: Exception) {
+        }
     }
 
-    private fun canCraftRune(itemID: Int) : Boolean {
+    private fun canCraftRune(itemID: Int): Boolean {
         if (itemID == ItemID.AIR_RUNE)
             return client.getRealSkillLevel(Skill.RUNECRAFT) >= 1
         if (itemID == ItemID.MIND_RUNE)
@@ -134,7 +135,7 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin): Overlay()
 
         graphics.color = color
         renderRuneIcon(graphics, itemManager.getImage(runeID, 1, false), altar)
-        altar.clickbox?.let {clickbox -> graphics.draw(clickbox) }
+        altar.clickbox?.let { clickbox -> graphics.draw(clickbox) }
     }
 
     private fun renderAltars(graphics: Graphics2D) {

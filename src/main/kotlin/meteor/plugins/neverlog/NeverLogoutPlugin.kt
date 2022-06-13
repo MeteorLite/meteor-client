@@ -1,10 +1,8 @@
-
 package meteor.plugins.neverlog
 
 import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import org.rationalityfrontline.kevent.Event
 import java.util.*
 
 @PluginDescriptor(

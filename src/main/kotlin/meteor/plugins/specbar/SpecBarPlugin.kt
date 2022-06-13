@@ -4,7 +4,6 @@ import eventbus.events.ClientTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.widgets.WidgetID
-import org.rationalityfrontline.kevent.Event
 
 @PluginDescriptor(
     name = "Spec Bar",

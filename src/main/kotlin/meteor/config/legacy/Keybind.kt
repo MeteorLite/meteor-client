@@ -79,18 +79,20 @@ open class Keybind @JvmOverloads constructor(keyCode: Int, modifiers: Int, ignor
         val NOT_SET = Keybind(KeyEvent.VK_UNDEFINED, 0)
         val CTRL = Keybind(KeyEvent.VK_UNDEFINED, InputEvent.CTRL_DOWN_MASK)
         val ALT = Keybind(KeyEvent.VK_UNDEFINED, InputEvent.ALT_DOWN_MASK)
-        val SHIFT = Keybind(KeyEvent.VK_UNDEFINED,
-                InputEvent.SHIFT_DOWN_MASK)
+        val SHIFT = Keybind(
+            KeyEvent.VK_UNDEFINED,
+            InputEvent.SHIFT_DOWN_MASK
+        )
         private val MODIFIER_TO_KEY_CODE: BiMap<Int, Int>? = ImmutableBiMap.Builder<Int, Int>()
-                .put(InputEvent.CTRL_DOWN_MASK, KeyEvent.VK_CONTROL)
-                .put(InputEvent.ALT_DOWN_MASK, KeyEvent.VK_ALT)
-                .put(InputEvent.SHIFT_DOWN_MASK, KeyEvent.VK_SHIFT)
-                .put(InputEvent.META_DOWN_MASK, KeyEvent.VK_META)
-                .build()
+            .put(InputEvent.CTRL_DOWN_MASK, KeyEvent.VK_CONTROL)
+            .put(InputEvent.ALT_DOWN_MASK, KeyEvent.VK_ALT)
+            .put(InputEvent.SHIFT_DOWN_MASK, KeyEvent.VK_SHIFT)
+            .put(InputEvent.META_DOWN_MASK, KeyEvent.VK_META)
+            .build()
 
         // Bitmask of all supported modifiers
         private val KEYBOARD_MODIFIER_MASK = MODIFIER_TO_KEY_CODE!!.keys.stream()
-                .reduce { a: Int, b: Int -> a or b }.get()
+            .reduce { a: Int, b: Int -> a or b }.get()
 
         fun getModifierForKeyCode(keyCode: Int): Int? {
             return if (MODIFIER_TO_KEY_CODE != null) {

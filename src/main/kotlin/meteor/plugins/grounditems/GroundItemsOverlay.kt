@@ -36,12 +36,14 @@ import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
 import meteor.util.OverlayUtil
 import meteor.util.QuantityFormatter.quantityToStackSize
-import net.runelite.api.Client
 import net.runelite.api.Perspective
 import net.runelite.api.Point
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
-import java.awt.*
+import java.awt.Color
+import java.awt.Dimension
+import java.awt.Graphics2D
+import java.awt.Rectangle
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -433,7 +435,5 @@ class GroundItemsOverlay(var plugin: GroundItemsPlugin, var config: GroundItemsC
     init {
         position = OverlayPosition.DYNAMIC
         layer = OverlayLayer.ABOVE_SCENE
-        this.plugin = plugin
-        this.config = config
     }
 }

@@ -27,13 +27,16 @@ package meteor.plugins.mousetooltips
 import com.google.common.base.Strings
 import com.google.common.collect.ImmutableSet
 import meteor.Main
-import meteor.ui.overlay.*
-import java.awt.Graphics2D
-import net.runelite.api.widgets.WidgetInfo
-import net.runelite.api.widgets.WidgetID
-import net.runelite.api.VarClientInt
+import meteor.ui.overlay.Overlay
+import meteor.ui.overlay.OverlayLayer
+import meteor.ui.overlay.OverlayPosition
+import meteor.ui.overlay.Tooltip
 import net.runelite.api.MenuAction
+import net.runelite.api.VarClientInt
+import net.runelite.api.widgets.WidgetID
+import net.runelite.api.widgets.WidgetInfo
 import java.awt.Dimension
+import java.awt.Graphics2D
 
 internal class MouseTooltipOverlay(var config: MouseTooltipConfig) : Overlay() {
     private val tooltipManager = Main.tooltipManager
@@ -47,8 +50,8 @@ internal class MouseTooltipOverlay(var config: MouseTooltipConfig) : Overlay() {
             return null
         }
         val menuEntry = menuEntries[last]
-        val target = menuEntry.getTarget()
-        val option = menuEntry.getOption()
+        val target = menuEntry.target
+        val option = menuEntry.option
         val type = MenuAction.of(menuEntry.type.id)
         if (type == MenuAction.RUNELITE_OVERLAY || type == MenuAction.CC_OP_LOW_PRIORITY) {
             // These are always right click only
@@ -124,6 +127,5 @@ internal class MouseTooltipOverlay(var config: MouseTooltipConfig) : Overlay() {
         layer = OverlayLayer.ABOVE_WIDGETS
         // additionally allow tooltips above the full screen world map and welcome screen
         drawAfterInterface(WidgetID.FULLSCREEN_CONTAINER_TLI)
-        this.config = config
     }
 }

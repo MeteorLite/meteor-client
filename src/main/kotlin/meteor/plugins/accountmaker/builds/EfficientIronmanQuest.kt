@@ -1,4 +1,3 @@
 package meteor.plugins.accountmaker.builds
 
-class EfficientIronmanQuest {
-}
+class EfficientIronmanQuest

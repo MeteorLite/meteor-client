@@ -349,7 +349,7 @@ internal object Obstacles {
         val builder = ImmutableMultimap.builder<Int, AgilityShortcut>()
         for (item in AgilityShortcut.values()) {
             for (obstacle in item.obstacleIds) {
-               builder.put(obstacle,item)
+                builder.put(obstacle, item)
             }
         }
         SHORTCUT_OBSTACLE_IDS = builder.build()

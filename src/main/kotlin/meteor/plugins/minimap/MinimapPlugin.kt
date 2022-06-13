@@ -33,7 +33,6 @@ import net.runelite.api.GameState
 import net.runelite.api.ScriptID
 import net.runelite.api.SpritePixels
 import net.runelite.api.widgets.WidgetInfo
-import org.rationalityfrontline.kevent.Event
 import java.awt.Color
 import java.util.*
 
@@ -43,7 +42,7 @@ import java.util.*
     tags = ["items", "npcs", "players"]
 )
 class MinimapPlugin : Plugin() {
-override val config = configuration<MinimapConfig>()
+    override val config = configuration<MinimapConfig>()
     private var originalDotSprites: Array<SpritePixels>? = null
 
 
@@ -67,8 +66,8 @@ override val config = configuration<MinimapConfig>()
 
     override fun onConfigChanged(it: ConfigChanged) {
 
-                updateMinimapWidgetVisibility(config.hideMinimap())
-                replaceMapDots()
+        updateMinimapWidgetVisibility(config.hideMinimap())
+        replaceMapDots()
 
     }
 

@@ -32,9 +32,7 @@ import meteor.menus.MenuManager
 import meteor.menus.WidgetMenuOption
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.overlay.OverlayManager
 import meteor.util.ColorUtil.prependColorTag
-import net.runelite.api.Client
 import net.runelite.api.MenuAction
 import net.runelite.api.MenuEntry
 import net.runelite.api.events.MenuOpened
@@ -50,8 +48,8 @@ import java.util.*
 )
 class InventoryTagsPlugin : Plugin() {
 
-     override val config: InventoryTagsConfig = configuration()
-    private val overlay = overlay( InventoryTagsOverlay(this))
+    override val config: InventoryTagsConfig = configuration()
+    private val overlay = overlay(InventoryTagsOverlay(this))
 
     private var editorMode = false
     fun getTag(itemId: Int): String? {
@@ -91,13 +89,14 @@ class InventoryTagsPlugin : Plugin() {
         if (firstEntry == null || !editorMode) {
             return
         }
-        val itemId: Int = if (firstEntry.type == MenuAction.WIDGET_TARGET && firstEntry.widget!!.id == WidgetInfo.INVENTORY.id) {
-            firstEntry.widget!!.itemId
-        } else if (firstEntry.isItemOp) {
-            firstEntry.itemId
-        } else {
-            return
-        }
+        val itemId: Int =
+            if (firstEntry.type == MenuAction.WIDGET_TARGET && firstEntry.widget!!.id == WidgetInfo.INVENTORY.id) {
+                firstEntry.widget!!.itemId
+            } else if (firstEntry.isItemOp) {
+                firstEntry.itemId
+            } else {
+                return
+            }
 
         // Set menu to only be Cancel
         client.menuEntries = Arrays.copyOf(client.menuEntries, 1)

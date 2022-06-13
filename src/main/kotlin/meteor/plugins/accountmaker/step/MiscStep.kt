@@ -1,4 +1,3 @@
 package meteor.plugins.accountmaker
 
-class MiscStep: BuildStep() {
-}
+class MiscStep : BuildStep()

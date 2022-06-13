@@ -27,14 +27,15 @@ package meteor.game
 
 import com.google.common.collect.ImmutableMap
 import com.google.gson.stream.JsonReader
-import java.io.IOException
 import net.runelite.api.NpcID
+import java.io.IOException
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 import java.util.*
 
 object NPCManager {
     private var statsMap: ImmutableMap<Int, NPCStats>? = null
+
     @Throws(IOException::class)
     private fun loadStats() {
         JsonReader(

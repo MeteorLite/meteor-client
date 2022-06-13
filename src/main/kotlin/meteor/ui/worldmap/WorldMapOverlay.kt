@@ -33,9 +33,11 @@ import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
 import meteor.ui.overlay.OverlayPriority
-import meteor.util.ColorUtil
 import meteor.util.JagexColors
-import net.runelite.api.*
+import net.runelite.api.MenuAction
+import net.runelite.api.MenuEntry
+import net.runelite.api.Point
+import net.runelite.api.RenderOverview
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.JavaScriptCallback
 import net.runelite.api.widgets.Widget
@@ -72,7 +74,7 @@ class WorldMapOverlay : Overlay() {
         if (widget == null || bottomBar == null) {
             return null
         }
-        bottomBar.setOnTimerListener( JavaScriptCallback {
+        bottomBar.setOnTimerListener(JavaScriptCallback {
             if (client.isMenuOpen || mapMenuEntries.isEmpty()) {
                 return@JavaScriptCallback
             }

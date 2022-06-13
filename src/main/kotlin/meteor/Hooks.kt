@@ -1,12 +1,12 @@
 package meteor
 
-import meteor.Main.client
-import meteor.Main.overlayRenderer
 import eventbus.Events
 import eventbus.events.BeforeMenuRender
 import eventbus.events.BeforeRender
 import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
+import meteor.Main.client
+import meteor.Main.overlayRenderer
 import meteor.input.KeyManager
 import meteor.input.MouseManager
 import meteor.rs.ClientThread
@@ -33,7 +33,7 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 class Hooks : Callbacks {
     private var lastCheck: Long = 0
     private val CHECK: Long = RSTimeUnit.GAME_TICKS.duration
-            .toNanos()
+        .toNanos()
     private val GAME_TICK = GameTick()
     private var shouldProcessGameTick = false
     private var ignoreNextNpcUpdate = false
@@ -46,11 +46,12 @@ class Hooks : Callbacks {
     private var clientThread = ClientThread
 
     class PendingEvent(val type: Enum<*>, val event: Any)
+
     private var pendingEvents = ArrayList<PendingEvent>()
 
     init {
         EventBus.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) { event ->
-            when (event.data.gameState ) {
+            when (event.data.gameState) {
                 GameState.LOGGING_IN, GameState.HOPPING -> {
                     ignoreNextNpcUpdate = true
                 }
@@ -102,7 +103,7 @@ class Hooks : Callbacks {
             shouldProcessGameTick = true
         }
 
-        pendingEvents.forEach{ post(it.type, it.event) }
+        pendingEvents.forEach { post(it.type, it.event) }
         pendingEvents.clear()
     }
 
@@ -156,7 +157,7 @@ class Hooks : Callbacks {
 					Reuse the resulting image instance to avoid creating an extreme amount of objects
 				 */
                 stretchedImage = gc
-                        .createCompatibleVolatileImage(stretchedDimensions.width, stretchedDimensions.height)
+                    .createCompatibleVolatileImage(stretchedDimensions.width, stretchedDimensions.height)
                 stretchedGraphics?.dispose()
                 stretchedGraphics = stretchedImage!!.graphics as Graphics2D
                 lastStretchedDimensions = stretchedDimensions
@@ -166,14 +167,15 @@ class Hooks : Callbacks {
 				*/graphics.color = Color.BLACK
                 graphics.fillRect(0, 0, client.canvas.width, client.canvas.height)
             }
-            stretchedGraphics!!.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+            stretchedGraphics!!.setRenderingHint(
+                RenderingHints.KEY_INTERPOLATION,
                 when {
                     client.isStretchedFast -> RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR
                     else -> RenderingHints.VALUE_INTERPOLATION_BILINEAR
                 }
             )
             stretchedGraphics!!
-                    .drawImage(image, 0, 0, stretchedDimensions.width, stretchedDimensions.height, null)
+                .drawImage(image, 0, 0, stretchedDimensions.width, stretchedDimensions.height, null)
             finalImage = stretchedImage!!
         } else {
             finalImage = image
@@ -293,12 +295,14 @@ class Hooks : Callbacks {
         }
 
         @JvmStatic
-        fun renderDraw(renderable: Renderable, orientation: Int, pitchSin: Int, pitchCos: Int,
-                       yawSin: Int, yawCos: Int, x: Int, y: Int, z: Int, hash: Long) {
+        fun renderDraw(
+            renderable: Renderable, orientation: Int, pitchSin: Int, pitchCos: Int,
+            yawSin: Int, yawCos: Int, x: Int, y: Int, z: Int, hash: Long
+        ) {
             val drawCallbacks: DrawCallbacks? = client.drawCallbacks
             if (drawCallbacks != null) {
                 drawCallbacks
-                        .draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
+                    .draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
             } else {
                 renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
             }

@@ -41,11 +41,12 @@ object ItemVariationMapping {
 
     init {
         val gson = Gson()
-        val typeToken: TypeToken<Map<String?, Collection<Int?>?>> = object : TypeToken<Map<String?, Collection<Int?>?>>() {}
+        val typeToken: TypeToken<Map<String?, Collection<Int?>?>> =
+            object : TypeToken<Map<String?, Collection<Int?>?>>() {}
         val geLimitData = ItemVariationMapping::class.java
-                .getResourceAsStream("/item_variations.json")
+            .getResourceAsStream("/item_variations.json")
         val itemVariations: Map<String, Collection<Int>> = gson
-                .fromJson(InputStreamReader(geLimitData, StandardCharsets.UTF_8), typeToken.type)
+            .fromJson(InputStreamReader(geLimitData, StandardCharsets.UTF_8), typeToken.type)
         val builder = ImmutableMap.Builder<Int, Int>()
         val invertedBuilder = ImmutableMultimap.Builder<Int, Int>()
         for (value in itemVariations.values) {

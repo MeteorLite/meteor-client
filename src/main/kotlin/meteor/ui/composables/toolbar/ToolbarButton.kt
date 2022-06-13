@@ -19,41 +19,56 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import meteor.ui.composables.darkThemeColors
 
-class ToolbarButton(var name: String, var icon: ImageVector?,var imageResource: String? = null, var iconColor: Color? = Color.Cyan,
-                    var backgroundColor: Color? = darkThemeColors.background,
-                    var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
-                    var bottom: Boolean = false, var onClick: () -> Unit) {
+class ToolbarButton(
+    var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color? = Color.Cyan,
+    var backgroundColor: Color? = darkThemeColors.background,
+    var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
+    var bottom: Boolean = false, var onClick: () -> Unit
+) {
 
     //Required for java access
-    constructor(name: String, imageResource: String,
-                       description: String, alignment: Alignment,
-                       bottom: Boolean, onClick: () -> Unit) :
-                            this(name,
-                                icon = null,
-                                imageResource = imageResource,
-                                backgroundColor = darkThemeColors.background,
-                                description = description,
-                                alignment = alignment,
-                                bottom = bottom,
-                                onClick = onClick)
+    constructor(
+        name: String, imageResource: String,
+        description: String, alignment: Alignment,
+        bottom: Boolean, onClick: () -> Unit
+    ) :
+            this(
+                name,
+                icon = null,
+                imageResource = imageResource,
+                backgroundColor = darkThemeColors.background,
+                description = description,
+                alignment = alignment,
+                bottom = bottom,
+                onClick = onClick
+            )
 
     @Composable
     fun CreateComponent() {
-        Box(modifier = Modifier.clip(CircleShape).background(backgroundColor!!).width(45.dp).height(45.dp),
-            contentAlignment = alignment) {
+        Box(
+            modifier = Modifier.clip(CircleShape).background(backgroundColor!!).width(45.dp).height(45.dp),
+            contentAlignment = alignment
+        ) {
             IconButton(
                 onClick = onClick,
-                modifier = Modifier.align(Alignment.Center)){
+                modifier = Modifier.align(Alignment.Center)
+            ) {
                 if (icon != null)
-                    Icon(icon!!,
+                    Icon(
+                        icon!!,
                         contentDescription = description,
-                        tint = iconColor!!)
+                        tint = iconColor!!
+                    )
                 else if (imageResource != null)
-                    Image(painter = painterResource(imageResource!!),
-                        contentDescription = description)
+                    Image(
+                        painter = painterResource(imageResource!!),
+                        contentDescription = description
+                    )
             }
         }
-        Spacer( Modifier.height(10.dp)
-            .background(darkThemeColors.background))
+        Spacer(
+            Modifier.height(10.dp)
+                .background(darkThemeColors.background)
+        )
     }
 }

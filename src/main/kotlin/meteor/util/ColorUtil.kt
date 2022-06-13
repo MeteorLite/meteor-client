@@ -26,7 +26,6 @@ package meteor.util
 
 import com.google.common.primitives.Ints
 import java.awt.Color
-import java.lang.NumberFormatException
 import java.util.regex.Pattern
 import javax.annotation.Nonnull
 import kotlin.math.roundToInt
@@ -61,6 +60,7 @@ object ColorUtil {
     fun prependColorTag(str: String, color: Color): String {
         return colorTag(color) + str
     }
+
     fun hsvToRgb(hsv: FloatArray): IntArray {
         val (hue, saturation, value) = hsv
         val h: Int = (hue / 60).toInt()
@@ -70,17 +70,18 @@ object ColorUtil {
         val t = value * (1 - (1 - f) * saturation)
 
         val rgb = when (h) {
-            0    -> floatArrayOf(value, t, p)
-            1    -> floatArrayOf(q, value, p)
-            2    -> floatArrayOf(p, value, t)
-            3    -> floatArrayOf(p, q, value)
-            4    -> floatArrayOf(t, p, value)
+            0 -> floatArrayOf(value, t, p)
+            1 -> floatArrayOf(q, value, p)
+            2 -> floatArrayOf(p, value, t)
+            3 -> floatArrayOf(p, q, value)
+            4 -> floatArrayOf(t, p, value)
             5, 6 -> floatArrayOf(value, p, q)
             else -> throw Exception()
         }.map { it * 255 }
         val (r, g, b) = rgb
         return intArrayOf(r.toInt(), g.toInt(), b.toInt())
     }
+
     /**
      * Wraps the given str with a color tag of the given color.
      *
@@ -118,7 +119,8 @@ object ColorUtil {
         val g2 = b.green.toDouble()
         val b1 = a.blue.toDouble()
         val b2 = b.blue.toDouble()
-        return Color((r1 + t * (r2 - r1)).roundToInt(),
+        return Color(
+            (r1 + t * (r2 - r1)).roundToInt(),
             (g1 + t * (g2 - g1)).roundToInt(), (b1 + t * (b2 - b1)).roundToInt()
         )
     }
