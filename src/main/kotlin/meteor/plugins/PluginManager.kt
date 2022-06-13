@@ -22,7 +22,7 @@ import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
-import meteor.plugins.highalchemy.HighAlchPlugin
+import meteor.plugins.autoalch.AutoAlchPlugin
 import meteor.plugins.inventorytags.InventoryTagsPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
@@ -36,14 +36,12 @@ import meteor.plugins.notes.NotesPlugin
 import meteor.plugins.objecthider.ObjectHiderPlugin
 import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.pvpkeys.PvPKeys
-import meteor.plugins.pvpkeys.PvPKeysConfig
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.tileindicators.TileIndicatorsPlugin
 import meteor.plugins.worldmap.WorldMapPlugin
-import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import net.runelite.client.plugins.camera.CameraPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
@@ -52,7 +50,6 @@ import net.runelite.client.plugins.fps.FpsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
-import net.runelite.client.plugins.loginscreen.LoginScreenPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
@@ -103,9 +100,10 @@ object PluginManager {
         init<GauntletExtendedPlugin>()
         init<GroundItemsPlugin>()
         init<GuardiansOfTheRiftPlugin>()
+        init<HdPlugin>()
         init<HerbiboarPlugin>()
         init<InventoryTagsPlugin>()
-        init<HighAlchPlugin>()
+        init<AutoAlchPlugin>()
         init<InterfaceStylesPlugin>()
         init<ItemPricesPlugin>()
         init<JadAutoPrayerPlugin>()
@@ -132,9 +130,7 @@ object PluginManager {
         init<TilemanModePlugin>()
         init<TimersPlugin>()
         init<WorldMapPlugin>()
-        init<WorldMapWalkerPlugin>()
         init<XpTrackerPlugin>()
-        init<HdPlugin>()
     }
 
     private fun loadExternal(jar: File) {

@@ -1,4 +1,4 @@
-package meteor.plugins.highalchemy
+package meteor.plugins.autoalch
 
 import dev.hoot.api.magic.Regular
 import dev.hoot.api.packets.ItemPackets
@@ -13,16 +13,16 @@ import java.util.*
 import kotlin.math.roundToInt
 
 @PluginDescriptor(
-    name = "Auto High Alch",
-    description = "Cast High Alchemy for you",
+    name = "Auto Alch",
+    description = "Cast Alchemy for you",
     tags = [],
     enabledByDefault = false,
     disabledOnStartup = true
 )
-class HighAlchPlugin : Plugin() {
+class AutoAlchPlugin : Plugin() {
     var timeout = 0
     var rand = Random()
-    override val config: HighAlchConfig = configuration()
+    override val config: AutoAlchConfig = configuration()
 
     override fun onStatChanged(it: StatChanged) {
         if (it.skill === Skill.MAGIC) {
@@ -34,7 +34,6 @@ class HighAlchPlugin : Plugin() {
 
 
     override fun onGameTick(it: GameTick) {
-
         if (timeout <= -20) {
             timeout = 0
         }
@@ -42,7 +41,12 @@ class HighAlchPlugin : Plugin() {
             val x = Items.getFirst(config.itemID())
             if (x != null) {
                 MousePackets.queueClickPacket(0, 0)
-                ItemPackets.queueSpellOnItemPacket (x.id, x.slot, Regular.HIGH_LEVEL_ALCHEMY.widget.id)
+                val spellToUse =
+                    if (config.alchType() == AutoAlchConfig.AlchType.HIGH)
+                        Regular.HIGH_LEVEL_ALCHEMY.widget.id
+                    else
+                        Regular.LOW_LEVEL_ALCHEMY.widget.id
+                ItemPackets.queueSpellOnItemPacket (x.id, x.slot, spellToUse)
             }
         }
         timeout--
@@ -56,5 +60,4 @@ class HighAlchPlugin : Plugin() {
         } while (delay <= 1 || delay >= 9)
         return delay
     }
-
 }
