@@ -118,7 +118,7 @@ import rs117.hd.utils.Env;
 import rs117.hd.utils.FileWatcher;
 
 @PluginDescriptor(
-	name = "117 HD (beta)",
+	name = "GPU HD",
 	description = "GPU renderer with a suite of graphical enhancements",
 	tags = {"hd", "high", "detail", "graphics", "shaders", "textures"}
 )
@@ -1623,192 +1623,409 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 	private void drawFrame(int overlayColor)
 	{
-		assert jawtWindow.getAWTComponent() == client.getCanvas() : "canvas invalidated";
+		try {
 
-		// reset the plugin if the last frame took >1min to draw
-		// why? because the user's computer was probably suspended and the buffers are no longer valid
-		if (System.currentTimeMillis() - lastFrameTime > 60000) {
-			log.debug("resetting the plugin after probable OS suspend");
-			onStop();
-			onStart();
-			return;
-		}
+			assert jawtWindow.getAWTComponent() == client.getCanvas() : "canvas invalidated";
 
-		// shader variables for water, lava animations
-		animationCurrent += (System.currentTimeMillis() - lastFrameTime) / 1000f;
-		lastFrameTime = System.currentTimeMillis();
-
-		final int canvasHeight = client.getCanvasHeight();
-		final int canvasWidth = client.getCanvasWidth();
-
-		try
-		{
-			prepareInterfaceTexture(canvasWidth, canvasHeight);
-		}
-		catch (Exception ex)
-		{
-			// Fixes: https://github.com/runelite/runelite/issues/12930
-			// Gracefully Handle loss of opengl buffers and context
-			log.warn("prepareInterfaceTexture exception", ex);
-			onStop();
-			onStart();
-			return;
-		}
-
-		gl.glClearColor(0, 0, 0, 1f);
-		gl.glClear(gl.GL_COLOR_BUFFER_BIT);
-
-		// Draw 3d scene
-		final TextureProvider textureProvider = client.getTextureProvider();
-		if (textureProvider != null && client.getGameState().getState() >= GameState.LOADING.getState())
-		{
-			final Texture[] textures = textureProvider.getTextures();
-			if (textureArrayId == -1)
-			{
-				// lazy init textures as they may not be loaded at plugin start.
-				// this will return -1 and retry if not all textures are loaded yet, too.
-				textureArrayId = textureManager.initTextureArray(textureProvider, gl);
-			}
-			if (textureHDArrayId == -1)
-			{
-				textureHDArrayId = textureManager.initTextureHDArray(textureProvider, gl);
+			// reset the plugin if the last frame took >1min to draw
+			// why? because the user's computer was probably suspended and the buffers are no longer valid
+			if (System.currentTimeMillis() - lastFrameTime > 60000) {
+				log.debug("resetting the plugin after probable OS suspend");
+				onStop();
+				onStart();
+				return;
 			}
 
-			// Setup anisotropic filtering
-			final int anisotropicFilteringLevel = config.anisotropicFilteringLevel();
-			if (lastAnisotropicFilteringLevel != anisotropicFilteringLevel)
+			// shader variables for water, lava animations
+			animationCurrent += (System.currentTimeMillis() - lastFrameTime) / 1000f;
+			lastFrameTime = System.currentTimeMillis();
+
+			final int canvasHeight = client.getCanvasHeight();
+			final int canvasWidth = client.getCanvasWidth();
+
+			try
 			{
-				if (textureArrayId != -1)
+				prepareInterfaceTexture(canvasWidth, canvasHeight);
+			}
+			catch (Exception ex)
+			{
+				// Fixes: https://github.com/runelite/runelite/issues/12930
+				// Gracefully Handle loss of opengl buffers and context
+				log.warn("prepareInterfaceTexture exception", ex);
+				onStop();
+				onStart();
+				return;
+			}
+
+			gl.glClearColor(0, 0, 0, 1f);
+			gl.glClear(gl.GL_COLOR_BUFFER_BIT);
+
+			// Draw 3d scene
+			final TextureProvider textureProvider = client.getTextureProvider();
+			if (textureProvider != null && client.getGameState().getState() >= GameState.LOADING.getState())
+			{
+				final Texture[] textures = textureProvider.getTextures();
+				if (textureArrayId == -1)
 				{
-					textureManager.setAnisotropicFilteringLevel(textureArrayId, anisotropicFilteringLevel, gl, false);
+					// lazy init textures as they may not be loaded at plugin start.
+					// this will return -1 and retry if not all textures are loaded yet, too.
+					textureArrayId = textureManager.initTextureArray(textureProvider, gl);
 				}
-				if (textureHDArrayId != -1)
+				if (textureHDArrayId == -1)
 				{
-					textureManager.setAnisotropicFilteringLevel(textureHDArrayId, anisotropicFilteringLevel, gl, true);
+					textureHDArrayId = textureManager.initTextureHDArray(textureProvider, gl);
 				}
-				lastAnisotropicFilteringLevel = anisotropicFilteringLevel;
-			}
 
-			// reload the scene if the player is in a house and their plane changed
-			// this greatly improves the performance as it keeps the scene buffer up to date
-			if (isInHouse) {
-				int plane = client.getPlane();
-				if (previousPlane != plane) {
-					reloadScene();
-					previousPlane = plane;
-				}
-			}
-
-			final int viewportHeight = client.getViewportHeight();
-			final int viewportWidth = client.getViewportWidth();
-
-			int renderWidthOff = viewportOffsetX;
-			int renderHeightOff = viewportOffsetY;
-			int renderCanvasHeight = canvasHeight;
-			int renderViewportHeight = viewportHeight;
-			int renderViewportWidth = viewportWidth;
-
-			if (client.isStretchedEnabled())
-			{
-				Dimension dim = client.getStretchedDimensions();
-				renderCanvasHeight = dim.height;
-
-				double scaleFactorY = dim.getHeight() / canvasHeight;
-				double scaleFactorX = dim.getWidth()  / canvasWidth;
-
-				// Pad the viewport a little because having ints for our viewport dimensions can introduce off-by-one errors.
-				final int padding = 1;
-
-				// Ceil the sizes because even if the size is 599.1 we want to treat it as size 600 (i.e. render to the x=599 pixel).
-				renderViewportHeight = (int) Math.ceil(scaleFactorY * (renderViewportHeight)) + padding * 2;
-				renderViewportWidth  = (int) Math.ceil(scaleFactorX * (renderViewportWidth )) + padding * 2;
-
-				// Floor the offsets because even if the offset is 4.9, we want to render to the x=4 pixel anyway.
-				renderHeightOff      = (int) Math.floor(scaleFactorY * (renderHeightOff)) - padding;
-				renderWidthOff       = (int) Math.floor(scaleFactorX * (renderWidthOff )) - padding;
-			}
-
-			// Before reading the SSBOs written to from postDrawScene() we must insert a barrier
-			if (computeMode == ComputeMode.OPENCL)
-			{
-				openCLManager.finish();
-			}
-			else
-			{
-				gl.glMemoryBarrier(gl.GL_SHADER_STORAGE_BARRIER_BIT);
-			}
-
-			// Draw using the output buffer of the compute
-			int vertexBuffer = tmpOutBuffer.glBufferId;
-			int uvBuffer = tmpOutUvBuffer.glBufferId;
-			int normalBuffer = tmpOutNormalBuffer.glBufferId;
-
-			for (int id = 0; id < textures.length; ++id)
-			{
-				Texture texture = textures[id];
-				if (texture == null)
+				// Setup anisotropic filtering
+				final int anisotropicFilteringLevel = config.anisotropicFilteringLevel();
+				if (lastAnisotropicFilteringLevel != anisotropicFilteringLevel)
 				{
-					continue;
+					if (textureArrayId != -1)
+					{
+						textureManager.setAnisotropicFilteringLevel(textureArrayId, anisotropicFilteringLevel, gl, false);
+					}
+					if (textureHDArrayId != -1)
+					{
+						textureManager.setAnisotropicFilteringLevel(textureHDArrayId, anisotropicFilteringLevel, gl, true);
+					}
+					lastAnisotropicFilteringLevel = anisotropicFilteringLevel;
 				}
 
-				textureProvider.load(id); // trips the texture load flag which lets textures animate
+				// reload the scene if the player is in a house and their plane changed
+				// this greatly improves the performance as it keeps the scene buffer up to date
+				if (isInHouse) {
+					int plane = client.getPlane();
+					if (previousPlane != plane) {
+						reloadScene();
+						previousPlane = plane;
+					}
+				}
 
-				textureOffsets[id * 2] = texture.getU();
-				textureOffsets[id * 2 + 1] = texture.getV();
-			}
+				final int viewportHeight = client.getViewportHeight();
+				final int viewportWidth = client.getViewportWidth();
 
-			// Update the camera target only when not loading, to keep drawing correct shadows while loading
-			if (client.getGameState() != GameState.LOADING)
-			{
-				camTarget = getCameraFocalPoint();
-			}
+				int renderWidthOff = viewportOffsetX;
+				int renderHeightOff = viewportOffsetY;
+				int renderCanvasHeight = canvasHeight;
+				int renderViewportHeight = viewportHeight;
+				int renderViewportWidth = viewportWidth;
 
-			Matrix4 lightProjectionMatrix = new Matrix4();
-			float lightPitch = environmentManager.currentLightPitch;
-			float lightYaw = environmentManager.currentLightYaw;
+				if (client.isStretchedEnabled())
+				{
+					Dimension dim = client.getStretchedDimensions();
+					renderCanvasHeight = dim.height;
 
-			if (configShadowsEnabled && fboShadowMap != -1 && environmentManager.currentDirectionalStrength > 0.0f)
-			{
-				// render shadow depth map
-				gl.glViewport(0, 0, config.shadowResolution().getValue(), config.shadowResolution().getValue());
-				gl.glBindFramebuffer(gl.GL_FRAMEBUFFER, fboShadowMap);
-				gl.glClear(gl.GL_DEPTH_BUFFER_BIT);
+					double scaleFactorY = dim.getHeight() / canvasHeight;
+					double scaleFactorX = dim.getWidth()  / canvasWidth;
 
-				gl.glUseProgram(glShadowProgram);
+					// Pad the viewport a little because having ints for our viewport dimensions can introduce off-by-one errors.
+					final int padding = 1;
 
-				final int camX = camTarget[0];
-				final int camY = camTarget[1];
-				final int camZ = camTarget[2];
+					// Ceil the sizes because even if the size is 599.1 we want to treat it as size 600 (i.e. render to the x=599 pixel).
+					renderViewportHeight = (int) Math.ceil(scaleFactorY * (renderViewportHeight)) + padding * 2;
+					renderViewportWidth  = (int) Math.ceil(scaleFactorX * (renderViewportWidth )) + padding * 2;
 
-				final int drawDistanceSceneUnits = Math.min(config.shadowDistance().getValue(), getDrawDistance()) * Perspective.LOCAL_TILE_SIZE / 2;
-				final int east = Math.min(camX + drawDistanceSceneUnits, Perspective.LOCAL_TILE_SIZE * Perspective.SCENE_SIZE);
-				final int west = Math.max(camX - drawDistanceSceneUnits, 0);
-				final int north = Math.min(camY + drawDistanceSceneUnits, Perspective.LOCAL_TILE_SIZE * Perspective.SCENE_SIZE);
-				final int south = Math.max(camY - drawDistanceSceneUnits, 0);
-				final int width = east - west;
-				final int height = north - south;
-				final int near = -10000;
-				final int far = 10000;
+					// Floor the offsets because even if the offset is 4.9, we want to render to the x=4 pixel anyway.
+					renderHeightOff      = (int) Math.floor(scaleFactorY * (renderHeightOff)) - padding;
+					renderWidthOff       = (int) Math.floor(scaleFactorX * (renderWidthOff )) - padding;
+				}
 
-				final int maxDrawDistance = 90;
-				final float maxScale = 0.7f;
-				final float minScale = 0.4f;
-				final float scaleMultiplier = 1.0f - (getDrawDistance() / (maxDrawDistance * maxScale));
-				float scale = HDUtils.lerp(maxScale, minScale, scaleMultiplier);
-				lightProjectionMatrix.scale(scale, scale, scale);
-				lightProjectionMatrix.makeOrtho(-width / 2f, width / 2f, -height / 2f, height / 2f, near, far);
-				lightProjectionMatrix.rotate((float) (lightPitch * (Math.PI / 360f * 2)), 1, 0, 0);
-				lightProjectionMatrix.rotate((float) (lightYaw * (Math.PI / 360f * 2)), 0, -1, 0);
-				lightProjectionMatrix.translate(-(width / 2f + west), -camZ, -(height / 2f + south));
-				gl.glUniformMatrix4fv(uniShadowLightProjectionMatrix, 1, false, lightProjectionMatrix.getMatrix(), 0);
+				// Before reading the SSBOs written to from postDrawScene() we must insert a barrier
+				if (computeMode == ComputeMode.OPENCL)
+				{
+					openCLManager.finish();
+				}
+				else
+				{
+					gl.glMemoryBarrier(gl.GL_SHADER_STORAGE_BARRIER_BIT);
+				}
 
-				// bind uniforms
-				gl.glUniformBlockBinding(glShadowProgram, uniShadowBlockMaterials, 1);
-				gl.glUniform1i(uniShadowTexturesHD, 2); // HD texture sampler array is bound to texture2
-				gl.glUniform2fv(uniShadowTextureOffsets, textureOffsets.length, textureOffsets, 0);
+				// Draw using the output buffer of the compute
+				int vertexBuffer = tmpOutBuffer.glBufferId;
+				int uvBuffer = tmpOutUvBuffer.glBufferId;
+				int normalBuffer = tmpOutNormalBuffer.glBufferId;
 
+				for (int id = 0; id < textures.length; ++id)
+				{
+					Texture texture = textures[id];
+					if (texture == null)
+					{
+						continue;
+					}
+
+					textureProvider.load(id); // trips the texture load flag which lets textures animate
+
+					textureOffsets[id * 2] = texture.getU();
+					textureOffsets[id * 2 + 1] = texture.getV();
+				}
+
+				// Update the camera target only when not loading, to keep drawing correct shadows while loading
+				if (client.getGameState() != GameState.LOADING)
+				{
+					camTarget = getCameraFocalPoint();
+				}
+
+				Matrix4 lightProjectionMatrix = new Matrix4();
+				float lightPitch = environmentManager.currentLightPitch;
+				float lightYaw = environmentManager.currentLightYaw;
+
+				if (configShadowsEnabled && fboShadowMap != -1 && environmentManager.currentDirectionalStrength > 0.0f)
+				{
+					// render shadow depth map
+					gl.glViewport(0, 0, config.shadowResolution().getValue(), config.shadowResolution().getValue());
+					gl.glBindFramebuffer(gl.GL_FRAMEBUFFER, fboShadowMap);
+					gl.glClear(gl.GL_DEPTH_BUFFER_BIT);
+
+					gl.glUseProgram(glShadowProgram);
+
+					final int camX = camTarget[0];
+					final int camY = camTarget[1];
+					final int camZ = camTarget[2];
+
+					final int drawDistanceSceneUnits = Math.min(config.shadowDistance().getValue(), getDrawDistance()) * Perspective.LOCAL_TILE_SIZE / 2;
+					final int east = Math.min(camX + drawDistanceSceneUnits, Perspective.LOCAL_TILE_SIZE * Perspective.SCENE_SIZE);
+					final int west = Math.max(camX - drawDistanceSceneUnits, 0);
+					final int north = Math.min(camY + drawDistanceSceneUnits, Perspective.LOCAL_TILE_SIZE * Perspective.SCENE_SIZE);
+					final int south = Math.max(camY - drawDistanceSceneUnits, 0);
+					final int width = east - west;
+					final int height = north - south;
+					final int near = -10000;
+					final int far = 10000;
+
+					final int maxDrawDistance = 90;
+					final float maxScale = 0.7f;
+					final float minScale = 0.4f;
+					final float scaleMultiplier = 1.0f - (getDrawDistance() / (maxDrawDistance * maxScale));
+					float scale = HDUtils.lerp(maxScale, minScale, scaleMultiplier);
+					lightProjectionMatrix.scale(scale, scale, scale);
+					lightProjectionMatrix.makeOrtho(-width / 2f, width / 2f, -height / 2f, height / 2f, near, far);
+					lightProjectionMatrix.rotate((float) (lightPitch * (Math.PI / 360f * 2)), 1, 0, 0);
+					lightProjectionMatrix.rotate((float) (lightYaw * (Math.PI / 360f * 2)), 0, -1, 0);
+					lightProjectionMatrix.translate(-(width / 2f + west), -camZ, -(height / 2f + south));
+					gl.glUniformMatrix4fv(uniShadowLightProjectionMatrix, 1, false, lightProjectionMatrix.getMatrix(), 0);
+
+					// bind uniforms
+					gl.glUniformBlockBinding(glShadowProgram, uniShadowBlockMaterials, 1);
+					gl.glUniform1i(uniShadowTexturesHD, 2); // HD texture sampler array is bound to texture2
+					gl.glUniform2fv(uniShadowTextureOffsets, textureOffsets.length, textureOffsets, 0);
+
+					gl.glEnable(gl.GL_CULL_FACE);
+					gl.glEnable(gl.GL_DEPTH_TEST);
+
+					// Draw buffers
+					gl.glBindVertexArray(vaoHandle);
+
+					gl.glEnableVertexAttribArray(0);
+					gl.glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+					gl.glVertexAttribIPointer(0, 4, gl.GL_INT, 0, 0);
+
+					gl.glEnableVertexAttribArray(1);
+					gl.glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+					gl.glVertexAttribPointer(1, 4, gl.GL_FLOAT, false, 0, 0);
+
+					gl.glDrawArrays(gl.GL_TRIANGLES, 0, targetBufferOffset);
+
+					gl.glDisable(gl.GL_CULL_FACE);
+					gl.glDisable(GL_DEPTH_TEST);
+
+					gl.glBindFramebuffer(gl.GL_FRAMEBUFFER, 0);
+
+					gl.glUseProgram(0);
+				}
+
+				glDpiAwareViewport(renderWidthOff, renderCanvasHeight - renderViewportHeight - renderHeightOff, renderViewportWidth, renderViewportHeight);
+
+				gl.glUseProgram(glProgram);
+
+				// bind shadow map, or dummy 1x1 texture
+				gl.glActiveTexture(gl.GL_TEXTURE3);
+				gl.glBindTexture(GL_TEXTURE_2D, texShadowMap);
+				gl.glActiveTexture(gl.GL_TEXTURE0);
+
+				// Setup anti-aliasing
+				final AntiAliasingMode antiAliasingMode = config.antiAliasingMode();
+				final boolean aaEnabled = antiAliasingMode != AntiAliasingMode.DISABLED;
+				if (aaEnabled)
+				{
+					gl.glEnable(gl.GL_MULTISAMPLE);
+
+					final Dimension stretchedDimensions = client.getStretchedDimensions();
+
+					final int stretchedCanvasWidth = client.isStretchedEnabled() ? stretchedDimensions.width : canvasWidth;
+					final int stretchedCanvasHeight = client.isStretchedEnabled() ? stretchedDimensions.height : canvasHeight;
+
+					// Re-create fbo
+					if (lastStretchedCanvasWidth != stretchedCanvasWidth
+							|| lastStretchedCanvasHeight != stretchedCanvasHeight
+							|| lastAntiAliasingMode != antiAliasingMode)
+					{
+						shutdownAAFbo();
+
+						// Bind default FBO to check whether anti-aliasing is forced
+						gl.glBindFramebuffer(gl.GL_FRAMEBUFFER, 0);
+						final int forcedAASamples = glGetInteger(gl, gl.GL_SAMPLES);
+						final int maxSamples = glGetInteger(gl, gl.GL_MAX_SAMPLES);
+						final int samples = forcedAASamples != 0 ? forcedAASamples :
+								Math.min(antiAliasingMode.getSamples(), maxSamples);
+
+						log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
+
+						initAAFbo(stretchedCanvasWidth, stretchedCanvasHeight, samples);
+
+						lastStretchedCanvasWidth = stretchedCanvasWidth;
+						lastStretchedCanvasHeight = stretchedCanvasHeight;
+					}
+
+					gl.glBindFramebuffer(gl.GL_DRAW_FRAMEBUFFER, fboSceneHandle);
+				}
+				else
+				{
+					gl.glDisable(gl.GL_MULTISAMPLE);
+					shutdownAAFbo();
+				}
+
+				lastAntiAliasingMode = antiAliasingMode;
+
+				// Clear scene
+				int sky = hasLoggedIn ? environmentManager.getFogColor() : 0;
+				float[] fogColor = new float[]{(sky >> 16 & 0xFF) / 255f, (sky >> 8 & 0xFF) / 255f, (sky & 0xFF) / 255f};
+				for (int i = 0; i < fogColor.length; i++)
+				{
+					fogColor[i] = HDUtils.linearToGamma(fogColor[i]);
+				}
+				gl.glClearColor(fogColor[0], fogColor[1], fogColor[2], 1f);
+				gl.glClear(gl.GL_COLOR_BUFFER_BIT);
+
+				final int drawDistance = getDrawDistance();
+				int fogDepth = config.fogDepth();
+				fogDepth *= 10;
+
+				if (config.fogDepthMode() == FogDepthMode.DYNAMIC)
+				{
+					fogDepth = environmentManager.currentFogDepth;
+				}
+				else if (config.fogDepthMode() == FogDepthMode.NONE)
+				{
+					fogDepth = 0;
+				}
+				gl.glUniform1i(uniUseFog, fogDepth > 0 ? 1 : 0);
+				gl.glUniform1i(uniFogDepth, fogDepth);
+
+				gl.glUniform4f(uniFogColor, fogColor[0], fogColor[1], fogColor[2], 1f);
+
+				gl.glUniform1i(uniDrawDistance, drawDistance * Perspective.LOCAL_TILE_SIZE);
+				gl.glUniform1i(uniColorBlindMode, config.colorBlindMode().ordinal());
+
+				float[] waterColor = environmentManager.currentWaterColor;
+				float[] waterColorHSB = Color.RGBtoHSB((int) (waterColor[0] * 255f), (int) (waterColor[1] * 255f), (int) (waterColor[2] * 255f), null);
+				float lightBrightnessMultiplier = 0.8f;
+				float midBrightnessMultiplier = 0.45f;
+				float darkBrightnessMultiplier = 0.05f;
+				float[] waterColorLight = new Color(Color.HSBtoRGB(waterColorHSB[0], waterColorHSB[1], waterColorHSB[2] * lightBrightnessMultiplier)).getRGBColorComponents(null);
+				float[] waterColorMid = new Color(Color.HSBtoRGB(waterColorHSB[0], waterColorHSB[1], waterColorHSB[2] * midBrightnessMultiplier)).getRGBColorComponents(null);
+				float[] waterColorDark = new Color(Color.HSBtoRGB(waterColorHSB[0], waterColorHSB[1], waterColorHSB[2] * darkBrightnessMultiplier)).getRGBColorComponents(null);
+				for (int i = 0; i < waterColorLight.length; i++)
+				{
+					waterColorLight[i] = HDUtils.linearToGamma(waterColorLight[i]);
+				}
+				for (int i = 0; i < waterColorMid.length; i++)
+				{
+					waterColorMid[i] = HDUtils.linearToGamma(waterColorMid[i]);
+				}
+				for (int i = 0; i < waterColorDark.length; i++)
+				{
+					waterColorDark[i] = HDUtils.linearToGamma(waterColorDark[i]);
+				}
+				gl.glUniform3f(uniWaterColorLight, waterColorLight[0], waterColorLight[1], waterColorLight[2]);
+				gl.glUniform3f(uniWaterColorMid, waterColorMid[0], waterColorMid[1], waterColorMid[2]);
+				gl.glUniform3f(uniWaterColorDark, waterColorDark[0], waterColorDark[1], waterColorDark[2]);
+
+				// get ambient light strength from either the config or the current area
+				float ambientStrength = environmentManager.currentAmbientStrength;
+				ambientStrength *= (double)config.brightness() / 20;
+				gl.glUniform1f(uniAmbientStrength, ambientStrength);
+
+				// and ambient color
+				float[] ambientColor = environmentManager.currentAmbientColor;
+				gl.glUniform3f(uniAmbientColor, ambientColor[0], ambientColor[1], ambientColor[2]);
+
+				// get light strength from either the config or the current area
+				float lightStrength = environmentManager.currentDirectionalStrength;
+				lightStrength *= (double)config.brightness() / 20;
+				gl.glUniform1f(uniLightStrength, lightStrength);
+
+				// and light color
+				float[] lightColor = environmentManager.currentDirectionalColor;
+				gl.glUniform3f(uniLightColor, lightColor[0], lightColor[1], lightColor[2]);
+
+				// get underglow light strength from the current area
+				float underglowStrength = environmentManager.currentUnderglowStrength;
+				gl.glUniform1f(uniUnderglowStrength, underglowStrength);
+				// and underglow color
+				float[] underglowColor = environmentManager.currentUnderglowColor;
+				gl.glUniform3f(uniUnderglowColor, underglowColor[0], underglowColor[1], underglowColor[2]);
+
+				// get ground fog variables
+				float groundFogStart = environmentManager.currentGroundFogStart;
+				gl.glUniform1f(uniGroundFogStart, groundFogStart);
+				float groundFogEnd = environmentManager.currentGroundFogEnd;
+				gl.glUniform1f(uniGroundFogEnd, groundFogEnd);
+				float groundFogOpacity = environmentManager.currentGroundFogOpacity;
+				groundFogOpacity = config.groundFog() ? groundFogOpacity : 0;
+				gl.glUniform1f(uniGroundFogOpacity, groundFogOpacity);
+
+				// lightning
+				gl.glUniform1f(uniLightningBrightness, environmentManager.lightningBrightness);
+				gl.glUniform1i(uniPointLightsCount, config.maxDynamicLights().getValue() > 0 ? lightManager.visibleLightsCount : 0);
+
+				gl.glUniform1i(uniWaterEffects, configWaterEffects.getMode());
+				gl.glUniform1f(uniSaturation, config.saturation().getAmount());
+				gl.glUniform1f(uniContrast, config.contrast().getAmount());
+
+				double lightPitchRadians = Math.toRadians(lightPitch);
+				double lightYawRadians = Math.toRadians(lightYaw);
+				double lightX = Math.cos(lightPitchRadians) * Math.sin(lightYawRadians);
+				double lightY = Math.sin(lightPitchRadians);
+				double lightZ = Math.cos(lightPitchRadians) * Math.cos(lightYawRadians);
+				gl.glUniform1f(uniLightX, (float)lightX);
+				gl.glUniform1f(uniLightY, (float)lightY);
+				gl.glUniform1f(uniLightZ, (float)lightZ);
+
+				// use a curve to calculate max bias value based on the density of the shadow map
+				float shadowPixelsPerTile = (float)config.shadowResolution().getValue() / (float)config.shadowDistance().getValue();
+				float maxBias = 26f * (float)Math.pow(0.925f, (0.4f * shadowPixelsPerTile + -10f)) + 13f;
+				gl.glUniform1f(uniShadowMaxBias, maxBias / 10000f);
+
+				gl.glUniform1i(uniShadowsEnabled, configShadowsEnabled ? 1 : 0);
+
+				// Calculate projection matrix
+				Matrix4 projectionMatrix = new Matrix4();
+				projectionMatrix.scale(client.getScale(), client.getScale(), 1);
+				projectionMatrix.multMatrix(makeProjectionMatrix(viewportWidth, viewportHeight, 50));
+				projectionMatrix.rotate((float) (Math.PI - pitch * Perspective.UNIT), -1, 0, 0);
+				projectionMatrix.rotate((float) (yaw * Perspective.UNIT), 0, 1, 0);
+				projectionMatrix.translate(-client.getCameraX2(), -client.getCameraY2(), -client.getCameraZ2());
+				gl.glUniformMatrix4fv(uniProjectionMatrix, 1, false, projectionMatrix.getMatrix(), 0);
+
+				// Bind directional light projection matrix
+				gl.glUniformMatrix4fv(uniLightProjectionMatrix, 1, false, lightProjectionMatrix.getMatrix(), 0);
+
+
+				// Bind uniforms
+				gl.glUniformBlockBinding(glProgram, uniBlockMain, 0);
+				gl.glUniformBlockBinding(glProgram, uniBlockMaterials, 1);
+				gl.glUniformBlockBinding(glProgram, uniBlockPointLights, 2);
+				gl.glUniform2fv(uniTextureOffsets, 128, textureOffsets, 0);
+				gl.glUniform1f(uniAnimationCurrent, animationCurrent);
+
+				// We just allow the GL to do face culling. Note this requires the priority renderer
+				// to have logic to disregard culled faces in the priority depth testing.
 				gl.glEnable(gl.GL_CULL_FACE);
-				gl.glEnable(gl.GL_DEPTH_TEST);
+				gl.glCullFace(GL_BACK);
+
+				// Enable blending for alpha
+				gl.glEnable(gl.GL_BLEND);
+				gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA);
 
 				// Draw buffers
 				gl.glBindVertexArray(vaoHandle);
@@ -1821,273 +2038,63 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 				gl.glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
 				gl.glVertexAttribPointer(1, 4, gl.GL_FLOAT, false, 0, 0);
 
+				gl.glEnableVertexAttribArray(2);
+				gl.glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
+				gl.glVertexAttribPointer(2, 4, gl.GL_FLOAT, false, 0, 0);
+
 				gl.glDrawArrays(gl.GL_TRIANGLES, 0, targetBufferOffset);
 
+				gl.glDisable(gl.GL_BLEND);
 				gl.glDisable(gl.GL_CULL_FACE);
-				gl.glDisable(GL_DEPTH_TEST);
-
-				gl.glBindFramebuffer(gl.GL_FRAMEBUFFER, 0);
 
 				gl.glUseProgram(0);
-			}
 
-			glDpiAwareViewport(renderWidthOff, renderCanvasHeight - renderViewportHeight - renderHeightOff, renderViewportWidth, renderViewportHeight);
-
-			gl.glUseProgram(glProgram);
-
-			// bind shadow map, or dummy 1x1 texture
-			gl.glActiveTexture(gl.GL_TEXTURE3);
-			gl.glBindTexture(GL_TEXTURE_2D, texShadowMap);
-			gl.glActiveTexture(gl.GL_TEXTURE0);
-
-			// Setup anti-aliasing
-			final AntiAliasingMode antiAliasingMode = config.antiAliasingMode();
-			final boolean aaEnabled = antiAliasingMode != AntiAliasingMode.DISABLED;
-			if (aaEnabled)
-			{
-				gl.glEnable(gl.GL_MULTISAMPLE);
-
-				final Dimension stretchedDimensions = client.getStretchedDimensions();
-
-				final int stretchedCanvasWidth = client.isStretchedEnabled() ? stretchedDimensions.width : canvasWidth;
-				final int stretchedCanvasHeight = client.isStretchedEnabled() ? stretchedDimensions.height : canvasHeight;
-
-				// Re-create fbo
-				if (lastStretchedCanvasWidth != stretchedCanvasWidth
-					|| lastStretchedCanvasHeight != stretchedCanvasHeight
-					|| lastAntiAliasingMode != antiAliasingMode)
+				if (aaEnabled)
 				{
-					shutdownAAFbo();
+					gl.glBindFramebuffer(gl.GL_READ_FRAMEBUFFER, fboSceneHandle);
+					gl.glBindFramebuffer(gl.GL_DRAW_FRAMEBUFFER, 0);
+					gl.glBlitFramebuffer(0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
+							0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
+							gl.GL_COLOR_BUFFER_BIT, gl.GL_NEAREST);
 
-					// Bind default FBO to check whether anti-aliasing is forced
-					gl.glBindFramebuffer(gl.GL_FRAMEBUFFER, 0);
-					final int forcedAASamples = glGetInteger(gl, gl.GL_SAMPLES);
-					final int maxSamples = glGetInteger(gl, gl.GL_MAX_SAMPLES);
-					final int samples = forcedAASamples != 0 ? forcedAASamples :
-						Math.min(antiAliasingMode.getSamples(), maxSamples);
-
-					log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
-
-					initAAFbo(stretchedCanvasWidth, stretchedCanvasHeight, samples);
-
-					lastStretchedCanvasWidth = stretchedCanvasWidth;
-					lastStretchedCanvasHeight = stretchedCanvasHeight;
+					// Reset
+					gl.glBindFramebuffer(gl.GL_READ_FRAMEBUFFER, 0);
 				}
 
-				gl.glBindFramebuffer(gl.GL_DRAW_FRAMEBUFFER, fboSceneHandle);
-			}
-			else
-			{
-				gl.glDisable(gl.GL_MULTISAMPLE);
-				shutdownAAFbo();
-			}
+				this.vertexBuffer.clear();
+				this.uvBuffer.clear();
+				this.normalBuffer.clear();
+				modelBuffer.clear();
+				modelBufferSmall.clear();
+				modelBufferUnordered.clear();
 
-			lastAntiAliasingMode = antiAliasingMode;
+				smallModels = largeModels = unorderedModels = 0;
+				tempOffset = 0;
+				tempUvOffset = 0;
 
-			// Clear scene
-			int sky = hasLoggedIn ? environmentManager.getFogColor() : 0;
-			float[] fogColor = new float[]{(sky >> 16 & 0xFF) / 255f, (sky >> 8 & 0xFF) / 255f, (sky & 0xFF) / 255f};
-			for (int i = 0; i < fogColor.length; i++)
-			{
-				fogColor[i] = HDUtils.linearToGamma(fogColor[i]);
-			}
-			gl.glClearColor(fogColor[0], fogColor[1], fogColor[2], 1f);
-			gl.glClear(gl.GL_COLOR_BUFFER_BIT);
-
-			final int drawDistance = getDrawDistance();
-			int fogDepth = config.fogDepth();
-			fogDepth *= 10;
-
-			if (config.fogDepthMode() == FogDepthMode.DYNAMIC)
-			{
-				fogDepth = environmentManager.currentFogDepth;
-			}
-			else if (config.fogDepthMode() == FogDepthMode.NONE)
-			{
-				fogDepth = 0;
-			}
-			gl.glUniform1i(uniUseFog, fogDepth > 0 ? 1 : 0);
-			gl.glUniform1i(uniFogDepth, fogDepth);
-
-			gl.glUniform4f(uniFogColor, fogColor[0], fogColor[1], fogColor[2], 1f);
-
-			gl.glUniform1i(uniDrawDistance, drawDistance * Perspective.LOCAL_TILE_SIZE);
-			gl.glUniform1i(uniColorBlindMode, config.colorBlindMode().ordinal());
-
-			float[] waterColor = environmentManager.currentWaterColor;
-			float[] waterColorHSB = Color.RGBtoHSB((int) (waterColor[0] * 255f), (int) (waterColor[1] * 255f), (int) (waterColor[2] * 255f), null);
-			float lightBrightnessMultiplier = 0.8f;
-			float midBrightnessMultiplier = 0.45f;
-			float darkBrightnessMultiplier = 0.05f;
-			float[] waterColorLight = new Color(Color.HSBtoRGB(waterColorHSB[0], waterColorHSB[1], waterColorHSB[2] * lightBrightnessMultiplier)).getRGBColorComponents(null);
-			float[] waterColorMid = new Color(Color.HSBtoRGB(waterColorHSB[0], waterColorHSB[1], waterColorHSB[2] * midBrightnessMultiplier)).getRGBColorComponents(null);
-			float[] waterColorDark = new Color(Color.HSBtoRGB(waterColorHSB[0], waterColorHSB[1], waterColorHSB[2] * darkBrightnessMultiplier)).getRGBColorComponents(null);
-			for (int i = 0; i < waterColorLight.length; i++)
-			{
-				waterColorLight[i] = HDUtils.linearToGamma(waterColorLight[i]);
-			}
-			for (int i = 0; i < waterColorMid.length; i++)
-			{
-				waterColorMid[i] = HDUtils.linearToGamma(waterColorMid[i]);
-			}
-			for (int i = 0; i < waterColorDark.length; i++)
-			{
-				waterColorDark[i] = HDUtils.linearToGamma(waterColorDark[i]);
-			}
-			gl.glUniform3f(uniWaterColorLight, waterColorLight[0], waterColorLight[1], waterColorLight[2]);
-			gl.glUniform3f(uniWaterColorMid, waterColorMid[0], waterColorMid[1], waterColorMid[2]);
-			gl.glUniform3f(uniWaterColorDark, waterColorDark[0], waterColorDark[1], waterColorDark[2]);
-
-			// get ambient light strength from either the config or the current area
-			float ambientStrength = environmentManager.currentAmbientStrength;
-			ambientStrength *= (double)config.brightness() / 20;
-			gl.glUniform1f(uniAmbientStrength, ambientStrength);
-
-			// and ambient color
-			float[] ambientColor = environmentManager.currentAmbientColor;
-			gl.glUniform3f(uniAmbientColor, ambientColor[0], ambientColor[1], ambientColor[2]);
-
-			// get light strength from either the config or the current area
-			float lightStrength = environmentManager.currentDirectionalStrength;
-			lightStrength *= (double)config.brightness() / 20;
-			gl.glUniform1f(uniLightStrength, lightStrength);
-
-			// and light color
-			float[] lightColor = environmentManager.currentDirectionalColor;
-			gl.glUniform3f(uniLightColor, lightColor[0], lightColor[1], lightColor[2]);
-
-			// get underglow light strength from the current area
-			float underglowStrength = environmentManager.currentUnderglowStrength;
-			gl.glUniform1f(uniUnderglowStrength, underglowStrength);
-			// and underglow color
-			float[] underglowColor = environmentManager.currentUnderglowColor;
-			gl.glUniform3f(uniUnderglowColor, underglowColor[0], underglowColor[1], underglowColor[2]);
-
-			// get ground fog variables
-			float groundFogStart = environmentManager.currentGroundFogStart;
-			gl.glUniform1f(uniGroundFogStart, groundFogStart);
-			float groundFogEnd = environmentManager.currentGroundFogEnd;
-			gl.glUniform1f(uniGroundFogEnd, groundFogEnd);
-			float groundFogOpacity = environmentManager.currentGroundFogOpacity;
-			groundFogOpacity = config.groundFog() ? groundFogOpacity : 0;
-			gl.glUniform1f(uniGroundFogOpacity, groundFogOpacity);
-
-			// lightning
-			gl.glUniform1f(uniLightningBrightness, environmentManager.lightningBrightness);
-			gl.glUniform1i(uniPointLightsCount, config.maxDynamicLights().getValue() > 0 ? lightManager.visibleLightsCount : 0);
-
-			gl.glUniform1i(uniWaterEffects, configWaterEffects.getMode());
-			gl.glUniform1f(uniSaturation, config.saturation().getAmount());
-			gl.glUniform1f(uniContrast, config.contrast().getAmount());
-
-			double lightPitchRadians = Math.toRadians(lightPitch);
-			double lightYawRadians = Math.toRadians(lightYaw);
-			double lightX = Math.cos(lightPitchRadians) * Math.sin(lightYawRadians);
-			double lightY = Math.sin(lightPitchRadians);
-			double lightZ = Math.cos(lightPitchRadians) * Math.cos(lightYawRadians);
-			gl.glUniform1f(uniLightX, (float)lightX);
-			gl.glUniform1f(uniLightY, (float)lightY);
-			gl.glUniform1f(uniLightZ, (float)lightZ);
-
-			// use a curve to calculate max bias value based on the density of the shadow map
-			float shadowPixelsPerTile = (float)config.shadowResolution().getValue() / (float)config.shadowDistance().getValue();
-			float maxBias = 26f * (float)Math.pow(0.925f, (0.4f * shadowPixelsPerTile + -10f)) + 13f;
-			gl.glUniform1f(uniShadowMaxBias, maxBias / 10000f);
-
-			gl.glUniform1i(uniShadowsEnabled, configShadowsEnabled ? 1 : 0);
-
-			// Calculate projection matrix
-			Matrix4 projectionMatrix = new Matrix4();
-			projectionMatrix.scale(client.getScale(), client.getScale(), 1);
-			projectionMatrix.multMatrix(makeProjectionMatrix(viewportWidth, viewportHeight, 50));
-			projectionMatrix.rotate((float) (Math.PI - pitch * Perspective.UNIT), -1, 0, 0);
-			projectionMatrix.rotate((float) (yaw * Perspective.UNIT), 0, 1, 0);
-			projectionMatrix.translate(-client.getCameraX2(), -client.getCameraY2(), -client.getCameraZ2());
-			gl.glUniformMatrix4fv(uniProjectionMatrix, 1, false, projectionMatrix.getMatrix(), 0);
-
-			// Bind directional light projection matrix
-			gl.glUniformMatrix4fv(uniLightProjectionMatrix, 1, false, lightProjectionMatrix.getMatrix(), 0);
-
-
-			// Bind uniforms
-			gl.glUniformBlockBinding(glProgram, uniBlockMain, 0);
-			gl.glUniformBlockBinding(glProgram, uniBlockMaterials, 1);
-			gl.glUniformBlockBinding(glProgram, uniBlockPointLights, 2);
-			gl.glUniform2fv(uniTextureOffsets, 128, textureOffsets, 0);
-			gl.glUniform1f(uniAnimationCurrent, animationCurrent);
-
-			// We just allow the GL to do face culling. Note this requires the priority renderer
-			// to have logic to disregard culled faces in the priority depth testing.
-			gl.glEnable(gl.GL_CULL_FACE);
-			gl.glCullFace(GL_BACK);
-
-			// Enable blending for alpha
-			gl.glEnable(gl.GL_BLEND);
-			gl.glBlendFunc(gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA);
-
-			// Draw buffers
-			gl.glBindVertexArray(vaoHandle);
-
-			gl.glEnableVertexAttribArray(0);
-			gl.glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-			gl.glVertexAttribIPointer(0, 4, gl.GL_INT, 0, 0);
-
-			gl.glEnableVertexAttribArray(1);
-			gl.glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
-			gl.glVertexAttribPointer(1, 4, gl.GL_FLOAT, false, 0, 0);
-
-			gl.glEnableVertexAttribArray(2);
-			gl.glBindBuffer(GL_ARRAY_BUFFER, normalBuffer);
-			gl.glVertexAttribPointer(2, 4, gl.GL_FLOAT, false, 0, 0);
-
-			gl.glDrawArrays(gl.GL_TRIANGLES, 0, targetBufferOffset);
-
-			gl.glDisable(gl.GL_BLEND);
-			gl.glDisable(gl.GL_CULL_FACE);
-
-			gl.glUseProgram(0);
-
-			if (aaEnabled)
-			{
-				gl.glBindFramebuffer(gl.GL_READ_FRAMEBUFFER, fboSceneHandle);
-				gl.glBindFramebuffer(gl.GL_DRAW_FRAMEBUFFER, 0);
-				gl.glBlitFramebuffer(0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
-					0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
-					gl.GL_COLOR_BUFFER_BIT, gl.GL_NEAREST);
-
-				// Reset
-				gl.glBindFramebuffer(gl.GL_READ_FRAMEBUFFER, 0);
+				// reload the scene if it was requested
+				if (nextSceneReload != 0 && nextSceneReload <= System.currentTimeMillis()) {
+					lightManager.reset();
+					uploadScene();
+					nextSceneReload = 0;
+				}
 			}
 
-			this.vertexBuffer.clear();
-			this.uvBuffer.clear();
-			this.normalBuffer.clear();
-			modelBuffer.clear();
-			modelBufferSmall.clear();
-			modelBufferUnordered.clear();
+			// Texture on UI
+			drawUi(overlayColor, canvasHeight, canvasWidth);
 
-			smallModels = largeModels = unorderedModels = 0;
-			tempOffset = 0;
-			tempUvOffset = 0;
-
-			// reload the scene if it was requested
-			if (nextSceneReload != 0 && nextSceneReload <= System.currentTimeMillis()) {
-				lightManager.reset();
-				uploadScene();
-				nextSceneReload = 0;
+			try {
+				glDrawable.swapBuffers();
+			} catch (Exception e) {
+				onStop();
 			}
-		}
 
-		// Texture on UI
-		drawUi(overlayColor, canvasHeight, canvasWidth);
-
-		try {
-			glDrawable.swapBuffers();
+			drawManager.processDrawComplete(this::screenshot);
 		} catch (Exception e) {
+			e.printStackTrace();
+			unsubscribe();
 			onStop();
 		}
-
-		drawManager.processDrawComplete(this::screenshot);
 	}
 
 	private float[] makeProjectionMatrix(float w, float h, float n)
