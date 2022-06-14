@@ -12,8 +12,7 @@ import net.runelite.client.config.Config
 @PluginDescriptor(
     name = "Wintertodt Helper",
     description = "fletches when inv full",
-    enabledByDefault = false,
-    disabledOnStartup = true
+    enabledByDefault = false
 )
 class WintertodtHelper : Plugin() {
     override val config = configuration<WintertodtHelperConfig>()

@@ -9,8 +9,7 @@ import net.runelite.api.events.MenuOpened
 @PluginDescriptor(
     name = "Ctrl Player Options",
     description = "Hides trade / report unless you hold shift",
-    enabledByDefault = false,
-    disabledOnStartup = true
+    enabledByDefault = false
 )
 class CtrlPlayerOptions : Plugin() {
     override val config = configuration<CtrlPlayerOptionsConfig>()

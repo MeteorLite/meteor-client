@@ -72,10 +72,6 @@ open class Plugin : EventSubscriber() {
             }
         }
 
-        if (enabledConfig != null && descriptor!!.disabledOnStartup) {
-            ConfigManager.setConfiguration(javaClass.simpleName, "pluginEnabled", false)
-        }
-
         var isEnabled = false
 
         if (ConfigManager.getConfiguration(javaClass.simpleName, "pluginEnabled").toBoolean())

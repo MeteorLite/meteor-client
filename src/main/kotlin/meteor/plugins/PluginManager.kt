@@ -202,6 +202,10 @@ object PluginManager {
         plugin.config?.let {
             ConfigManager.setDefaultConfiguration(it, false)
         }
+
+        if (ConfigManager.getConfiguration(plugin.javaClass.simpleName, "pluginEnabled") != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup)
+            ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
+
         runningMap[plugin] = plugin.shouldEnable()
         plugins.add(plugin)
 
@@ -215,6 +219,9 @@ object PluginManager {
             val plugin = classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).newInstance() as Plugin
             if (plugins.any { p -> p.getName().equals(plugin.getName()) })
                 throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
+
+            if (ConfigManager.getConfiguration(plugin.javaClass.simpleName, "pluginEnabled") != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup)
+                ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
             plugins.add(plugin)
             runningMap[plugin] = plugin.shouldEnable()

@@ -16,7 +16,7 @@ interface CtrlPlayerOptionsConfig : Config {
     }
 
     @ConfigItem(
-        keyName = "hideFollow",
+        keyName = "hideTradeWith",
         name = "Hide Trade-with",
         description = ""
     )
@@ -25,7 +25,7 @@ interface CtrlPlayerOptionsConfig : Config {
     }
 
     @ConfigItem(
-        keyName = "hideFollow",
+        keyName = "hideReport",
         name = "Hide Report",
         description = ""
     )

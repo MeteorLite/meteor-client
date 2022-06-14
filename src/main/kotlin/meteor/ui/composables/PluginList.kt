@@ -205,7 +205,7 @@ fun Plugins() {
                                         .background(darkThemeColors.background)
                                 )
                             }
-                            val switchState = remember { mutableStateOf(plugin.running) }
+                            val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
                             Switch(
                                 switchState.value,
                                 onPluginToggled(switchState, plugin),
@@ -232,8 +232,9 @@ fun Plugins() {
 
 fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {
     PluginManager.toggle(plugin)
-    ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", PluginManager.runningMap[plugin]!!)
-    switchState.value = PluginManager.runningMap[plugin]!!
+    ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", it)
+    switchState.value = it
+    ConfigManager.saveProperties()
 }
 
 private fun onPluginConfigurationOpened(plugin: Plugin) {
