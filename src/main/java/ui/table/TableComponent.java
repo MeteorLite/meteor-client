@@ -462,4 +462,16 @@ public class TableComponent implements LayoutableRenderableEntity
 	public void setBounds(@org.jetbrains.annotations.Nullable Rectangle rectangle) {
 		bounds = rectangle;
 	}
+
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public Point getPreferredLocation() {
+		return preferredLocation;
+	}
+
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public Dimension getPreferredSize() {
+		return preferredSize;
+	}
 }

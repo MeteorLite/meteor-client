@@ -5,6 +5,7 @@ import net.runelite.api.*
 import net.runelite.api.Point
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
+import net.runelite.api.vars.InterfaceTab
 import java.awt.*
 import java.awt.image.BufferedImage
 
@@ -36,6 +37,32 @@ object OverlayUtil {
         graphics.drawString(text, x + 1, y + 1)
         graphics.color = ColorUtil.colorWithAlpha(color, 0xFF)
         graphics.drawString(text, x, y)
+    }
+
+    fun renderTextLocation(
+        graphics: Graphics2D, txtString: String, fontSize: Int,
+        fontStyle: Int, fontColor: Color, canvasPoint: Point?, shadows: Boolean, yOffset: Int
+    ) {
+        graphics.font = Font("Arial", fontStyle, fontSize)
+        if (canvasPoint != null) {
+            val canvasCenterPoint = Point(
+                canvasPoint.x,
+                canvasPoint.y + yOffset
+            )
+            val canvasCenterPoint_shadow = Point(
+                canvasPoint.x + 1,
+                canvasPoint.y + 1 + yOffset
+            )
+            if (shadows) {
+                renderTextLocation(
+                    graphics,
+                    canvasCenterPoint_shadow,
+                    txtString,
+                    Color.BLACK
+                )
+            }
+            renderTextLocation(graphics, canvasCenterPoint, txtString, fontColor)
+        }
     }
 
     fun renderActorOverlay(graphics: Graphics2D, actor: Actor, text: String, color: Color) {
@@ -175,5 +202,44 @@ object OverlayUtil {
         if (imageLocation != null) {
             renderImageLocation(graphics, imageLocation, image)
         }
+    }
+
+    fun drawTiles(
+        graphics: Graphics2D, point: WorldPoint,
+        playerPoint: WorldPoint?, color: Color, strokeWidth: Int, outlineAlpha: Int, fillAlpha: Int
+    ) {
+        if (point.distanceTo(playerPoint) >= 32) {
+            return
+        }
+        val lp = LocalPoint.fromWorld(Main.client, point) ?: return
+        val poly = Perspective.getCanvasTilePoly(Main.client, lp) ?: return
+        drawStrokeAndFillPoly(graphics, color, strokeWidth, outlineAlpha, fillAlpha, poly)
+    }
+
+    fun drawStrokeAndFillPoly(
+        graphics: Graphics2D, color: Color, strokeWidth: Int,
+        outlineAlpha: Int, fillAlpha: Int, poly: Polygon?
+    ) {
+        graphics.color = Color(color.red, color.green, color.blue, outlineAlpha)
+        graphics.stroke = BasicStroke(strokeWidth.toFloat())
+        graphics.draw(poly)
+        graphics.color = Color(color.red, color.green, color.blue, fillAlpha)
+        graphics.fill(poly)
+    }
+
+    fun renderPrayerOverlay(graphics: Graphics2D, prayer: Prayer, color: Color): Rectangle? {
+        val widget = Main.client.getWidget(prayer.widgetInfo)
+        if (widget == null || Main.client.getVar(VarClientInt.INVENTORY_TAB) != InterfaceTab.PRAYER.id) {
+            return null
+        }
+        val bounds = widget.bounds
+        renderPolygon(graphics, rectangleToPolygon(bounds), color)
+        return bounds
+    }
+
+    private fun rectangleToPolygon(rect: Rectangle): Polygon {
+        val xpoints = intArrayOf(rect.x, rect.x + rect.width, rect.x + rect.width, rect.x)
+        val ypoints = intArrayOf(rect.y, rect.y, rect.y + rect.height, rect.y + rect.height)
+        return Polygon(xpoints, ypoints, 4)
     }
 }

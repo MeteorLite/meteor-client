@@ -21,12 +21,12 @@ val bottomToolbar: SnapshotStateList<ToolbarButton> by lazy { bottomButtons }
 
 private val topButtons = mutableStateListOf<ToolbarButton>()
 private val bottomButtons = mutableStateListOf<ToolbarButton>()
-val width = mutableStateOf(Main.meteorConfig?.toolbarWidth())
+val width = mutableStateOf(Main.meteorConfig.toolbarWidth())
 
 
 @Composable
 fun ToolbarPanel() {
-    return Column(modifier = Modifier.width(width.value!!.dp)) {
+    return Column(modifier = Modifier.width(width.value.dp)) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(darkThemeColors.surface).scale(0.90F)
@@ -34,7 +34,6 @@ fun ToolbarPanel() {
             MaterialTheme(colors = darkThemeColors) {
                 for (button in topToolbar)
                     button.CreateComponent()
-
             }
         }
 
@@ -50,7 +49,7 @@ fun ToolbarPanel() {
     }
 }
 
-fun addButton(button: ToolbarButton) {
+fun addButton(button: ToolbarButton) : ToolbarButton {
     if (!button.bottom) {
         if (!containsButton(topButtons, button))
             topButtons.add(button)
@@ -58,6 +57,7 @@ fun addButton(button: ToolbarButton) {
         if (!containsButton(bottomButtons, button))
             bottomButtons.add(button)
     }
+    return button
 }
 
 fun removeButton(button: ToolbarButton) {

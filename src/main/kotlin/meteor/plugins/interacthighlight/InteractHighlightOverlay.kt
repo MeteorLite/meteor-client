@@ -98,6 +98,7 @@ internal class InteractHighlightOverlay(
                     modelOutlineRenderer.drawOutline(npc, config.borderWidth(), highlightColor, config.outlineFeather())
                 }
             }
+            else -> {}
         }
     }
 

@@ -30,6 +30,7 @@ import meteor.Main;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.ui.overlay.OverlayPriority;
+import meteor.util.OverlayUtil;
 import net.runelite.api.Client;
 import net.runelite.api.NPC;
 import net.runelite.api.Point;
@@ -93,7 +94,7 @@ public class OverlayPrayerWidget extends Overlay
 
 		final Color phaseColor = phase.getColor();
 
-		final Rectangle rectangle = OverlayUtil.renderPrayerOverlay(graphics2D, client, prayer, phaseColor);
+		final Rectangle rectangle = OverlayUtil.INSTANCE.renderPrayerOverlay(graphics2D, prayer, phaseColor);
 
 		if (rectangle == null)
 		{
@@ -117,7 +118,7 @@ public class OverlayPrayerWidget extends Overlay
 
 		final Point canvasPoint = new Point(point.getX() - 3, point.getY() + 6);
 
-		OverlayUtil.renderTextLocation(graphics2D, text, fontSize, fontStyle, fontColor, canvasPoint, true, 0);
+		OverlayUtil.INSTANCE.renderTextLocation(graphics2D, text, fontSize, fontStyle, fontColor, canvasPoint, true, 0);
 
 		return null;
 	}

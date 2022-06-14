@@ -5,6 +5,7 @@ import com.questhelper.QuestHelperPlugin
 import com.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
+import meteor.config.ConfigManager
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.autoalch.AutoAlchPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
@@ -42,9 +43,12 @@ import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.tileindicators.TileIndicatorsPlugin
+import meteor.plugins.ctrlplayeroptions.CtrlPlayerOptions
+import meteor.plugins.wintertodtfletcher.WintertodtHelper
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import net.runelite.client.plugins.camera.CameraPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.defaultworld.DefaultWorldPlugin
@@ -78,6 +82,7 @@ object PluginManager {
 
         init<Meteor>()
         init<AgilityPlugin>()
+        init<AoeWarningPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoClickerPlugin>()
         init<AutoLoginPlugin>()
@@ -92,6 +97,7 @@ object PluginManager {
         init<CombatLevelPlugin>()
         init<CommandsPlugin>()
         init<ContinueClickerPlugin>()
+        init<CtrlPlayerOptions>()
         init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()
         init<ExamplePlugin>()
@@ -132,6 +138,7 @@ object PluginManager {
         init<TimersPlugin>()
         init<WorldMapPlugin>()
         init<WorldMapWalkerPlugin>()
+        init<WintertodtHelper>()
         init<XpTrackerPlugin>()
         init<HdPlugin>()
     }
@@ -192,6 +199,9 @@ object PluginManager {
         if (plugins.filterIsInstance<T>().isNotEmpty())
             throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
+        plugin.config?.let {
+            ConfigManager.setDefaultConfiguration(it, false)
+        }
         runningMap[plugin] = plugin.shouldEnable()
         plugins.add(plugin)
 

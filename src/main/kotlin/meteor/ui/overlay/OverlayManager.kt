@@ -174,6 +174,7 @@ object OverlayManager {
                         .put(WidgetID.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX_GROUP_ID shl 16 or 0xffff, overlay)
                     overlayMap.put(WidgetID.RESIZABLE_VIEWPORT_BOTTOM_LINE_GROUP_ID shl 16 or 0xffff, overlay)
                 }
+                else -> {}
             }
             for (drawHook in overlay.drawHooks) {
                 overlayMap.put(drawHook, overlay)

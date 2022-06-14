@@ -113,6 +113,7 @@ class ChatFilterPlugin : Plugin() {
                 message = censorMessage(null, message)
                 blockMessage = message == null
             }
+            else -> {}
         }
 
         val shouldCollapse =
@@ -209,6 +210,7 @@ class ChatFilterPlugin : Plugin() {
                 ChatFilterType.CENSOR_WORDS -> return StringUtils.repeat('*', strippedMessage.length)
                 ChatFilterType.CENSOR_MESSAGE -> return CENSOR_MESSAGE
                 ChatFilterType.REMOVE_MESSAGE -> return null
+                else -> {}
             }
         }
         var filtered = false
@@ -223,6 +225,7 @@ class ChatFilterPlugin : Plugin() {
                     }
                     ChatFilterType.CENSOR_MESSAGE -> return CENSOR_MESSAGE
                     ChatFilterType.REMOVE_MESSAGE -> return null
+                    else -> {}
                 }
             }
             m.appendTail(sb)

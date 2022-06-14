@@ -4,7 +4,6 @@ import net.runelite.client.config.*
 import java.awt.Color
 
 @ConfigGroup("fishing")
-@JvmDefaultWithoutCompatibility
 interface FishingConfig : Config {
 
     @ConfigItem(

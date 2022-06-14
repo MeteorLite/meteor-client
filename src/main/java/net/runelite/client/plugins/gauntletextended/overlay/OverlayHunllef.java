@@ -31,6 +31,7 @@ import meteor.Main;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.ui.overlay.OverlayPriority;
+import meteor.util.OverlayUtil;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
@@ -181,7 +182,7 @@ public class OverlayHunllef extends Overlay
 					return;
 				}
 
-				OverlayUtil.renderTextLocation(graphics2D, ticksLeftStr, config.tornadoFontSize(),
+				OverlayUtil.INSTANCE.renderTextLocation(graphics2D, ticksLeftStr, config.tornadoFontSize(),
 					config.tornadoFontStyle().getFont(), config.tornadoFontColor(), point,
 					config.tornadoFontShadow(), 0);
 			}
@@ -272,7 +273,7 @@ public class OverlayHunllef extends Overlay
 		graphics2D.setFont(new Font(Font.SANS_SERIF,
 			config.hunllefAttackCounterFontStyle().getFont(), config.hunllefAttackCounterFontSize()));
 
-		OverlayUtil.renderTextLocation(graphics2D, point, text, hunllef.getAttackPhase().getColor());
+		OverlayUtil.INSTANCE.renderTextLocation(graphics2D, point, text, hunllef.getAttackPhase().getColor());
 
 		graphics2D.setFont(originalFont);
 	}

@@ -33,12 +33,12 @@ import meteor.Main;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.ui.overlay.OverlayPriority;
+import meteor.util.OverlayUtil;
 import net.runelite.api.Client;
 import net.runelite.api.Point;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.plugins.gauntletextended.overlay.Overlay;
-import net.runelite.client.plugins.gauntletextended.overlay.OverlayUtil;
 
 /**
  * The built in FPS overlay has a few problems that this one does not have, most of all: it is distracting.
@@ -111,7 +111,7 @@ public class FpsOverlay extends Overlay
 
 		final int width = (int) client.getRealDimensions().getWidth();
 		final Point point = new Point(width - textWidth - xOffset, textHeight + Y_OFFSET);
-		OverlayUtil.renderTextLocation(graphics, point, text, getFpsValueColor());
+		OverlayUtil.INSTANCE.renderTextLocation(graphics, point, text, getFpsValueColor());
 
 		return null;
 	}

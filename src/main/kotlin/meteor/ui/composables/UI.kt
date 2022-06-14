@@ -40,7 +40,6 @@ fun FrameWindowScope.Window() {
             }
 
             toolBar {
-
                 pluginListButton
             }
             content {
@@ -72,15 +71,13 @@ val darkThemeColors = darkColors(
     onError = Color.Black
 )
 
-val pluginListButton
-    get() = addButton(
+val pluginListButton = addButton(
         ToolbarButton(
             "Plugins",
             Octicons.Plug24,
             iconColor = uiColor,
             description = "Opens Plugins list",
             onClick = {
-
                 when {
                     notePanel.value -> {
                         pluginsOpen.value = true

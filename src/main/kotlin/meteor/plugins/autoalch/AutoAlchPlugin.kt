@@ -32,7 +32,6 @@ class AutoAlchPlugin : Plugin() {
         }
     }
 
-
     override fun onGameTick(it: GameTick) {
         if (timeout <= -20) {
             timeout = 0

@@ -179,7 +179,9 @@ class BoostsPlugin : Plugin() {
                 shownSkills.addAll(BOOSTABLE_COMBAT_SKILLS)
                 shownSkills.addAll(BOOSTABLE_NON_COMBAT_SKILLS)
             }
+            else -> {}
         }
+
         updateBoostedStats()
     }
 

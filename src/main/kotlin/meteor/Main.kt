@@ -44,6 +44,14 @@ import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 object Main : ApplicationScope, KoinComponent, EventSubscriber() {
+    var meteorConfig: MeteorConfig = ConfigManager.getConfig(MeteorConfig::class.java)!!
+
+    init {
+        ConfigManager.loadSavedProperties()
+        ConfigManager.setDefaultConfiguration(meteorConfig.javaClass, false)
+        ConfigManager.saveProperties()
+    }
+
     val eventBus = EventBus
     lateinit var client: Client
     lateinit var callbacks: Callbacks
@@ -56,7 +64,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
-    var meteorConfig: MeteorConfig? = null
+
     var logger = Logger("meteor.Main")
 
     var placement: WindowPlacement = WindowPlacement.Maximized
@@ -77,7 +85,6 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         callbacks = get()
         MeteorliteTheme.install()
         AppletConfiguration.init()
-        initConfig()
         Applet().init()
         Window(
             onCloseRequest = this::exitApplication,
@@ -162,15 +169,6 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         PluginManager.loadExternalPlugins()
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
-    }
-
-    fun initConfig() {
-        ConfigManager.loadSavedProperties()
-        val meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java) as MeteorConfig
-        ConfigManager.setDefaultConfiguration(meteorConfig, false)
-        Main.meteorConfig = meteorConfig
-
-
     }
 
     fun initOverlays() {

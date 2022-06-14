@@ -79,4 +79,16 @@ public class TitleComponent implements LayoutableRenderableEntity
 	public void setBounds(@Nullable Rectangle rectangle) {
 		bounds = rectangle;
 	}
+
+	@Nullable
+	@Override
+	public Point getPreferredLocation() {
+		return preferredLocation;
+	}
+
+	@Nullable
+	@Override
+	public Dimension getPreferredSize() {
+		return preferredSize;
+	}
 }

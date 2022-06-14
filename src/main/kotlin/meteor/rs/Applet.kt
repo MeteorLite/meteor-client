@@ -31,9 +31,9 @@ class Applet : AppletStub, AppletContext {
 
     val clientWidth by lazy {
         applet.minimumSize.size.width +
-                panelSize + Main.meteorConfig!!.toolbarWidth()
+                panelSize + Main.meteorConfig.toolbarWidth()
     }
-    val minimalWidth by lazy { applet.minimumSize.size.width + Main.meteorConfig!!.toolbarWidth() }
+    val minimalWidth by lazy { applet.minimumSize.size.width + Main.meteorConfig.toolbarWidth() }
     private var properties: Map<String, String> = AppletConfiguration.properties
     private var parameters: Map<String, String> = AppletConfiguration.parameters
 

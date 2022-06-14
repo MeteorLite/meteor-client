@@ -585,6 +585,7 @@ object ClientPackets {
                     ?: return WidgetPackets.createDefaultAction(id, param1, -1, param0)
                 return WidgetPackets.createDefaultAction(id, param1, child.itemId, param0)
             }
+            else -> {}
         }
         throw InteractionException("Couldn't parse packet from opcode: $opcode")
     }

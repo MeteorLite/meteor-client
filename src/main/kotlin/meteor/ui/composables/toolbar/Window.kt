@@ -60,7 +60,7 @@ class UI {
         BoxWithConstraints(
             modifier = Modifier
                 .fillMaxHeight()
-                .width(Main.meteorConfig!!.toolbarWidth().dp)
+                .width(Main.meteorConfig.toolbarWidth().dp)
                 .background(Color.Black)
         ) {
 

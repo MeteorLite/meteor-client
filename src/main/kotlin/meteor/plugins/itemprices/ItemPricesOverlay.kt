@@ -136,7 +136,7 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
                     }
                 }
             }
-
+            else -> {}
         }
         return null
     }

@@ -484,5 +484,10 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 	{
 		return mouseEvent;
 	}
+
+	@Override
+	public boolean isEnabledOnLoginScreen() {
+		return false;
+	}
 	// endregion
 }

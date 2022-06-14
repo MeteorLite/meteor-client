@@ -135,29 +135,7 @@ object ConfigManager {
         if (type == ByteArray::class.java) {
             return Base64.getUrlDecoder().decode(str)
         }
-        return if (type == EnumSet::class.java) {
-            try {
-                val substring = str.substring(str.indexOf("{") + 1, str.length - 1)
-                val splitStr = substring.split(", ").toTypedArray()
-                val enumClass: Class<out Enum<*>>
-                if (!str.contains("{")) {
-                    return null
-                }
-                enumClass = findEnumClass(str, Main::class.java.classLoader)
-                val enumSet = EnumSet.noneOf(enumClass)
-                for (s in splitStr) {
-                    try {
-                        enumSet.add(java.lang.Enum.valueOf(enumClass, s.replace("[", "").replace("]", "")))
-                    } catch (ignore: IllegalArgumentException) {
-                        return EnumSet.noneOf(enumClass)
-                    }
-                }
-                enumSet
-            } catch (e: Exception) {
-                e.printStackTrace()
-                null
-            }
-        } else str
+        return str
     }
 
     fun objectToString(`object`: Any?): String? {

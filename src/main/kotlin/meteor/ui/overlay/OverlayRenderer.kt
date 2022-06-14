@@ -471,6 +471,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             when (overlayPosition) {
                 OverlayPosition.CANVAS_TOP_RIGHT -> overlayPosition = OverlayPosition.TOP_RIGHT
                 OverlayPosition.ABOVE_CHATBOX_RIGHT -> overlayPosition = OverlayPosition.BOTTOM_RIGHT
+                else -> {}
             }
         }
         return overlayPosition
@@ -487,6 +488,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                 result.x = -dimension.width
             }
             OverlayPosition.CANVAS_TOP_RIGHT, OverlayPosition.TOP_RIGHT -> result.x = -dimension.width
+            else -> {}
         }
         return result
     }
@@ -502,6 +504,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             OverlayPosition.BOTTOM_RIGHT -> result.x -= dimension.width + (if (dimension.width == 0) 0 else padding)
             OverlayPosition.TOP_LEFT, OverlayPosition.TOP_CENTER, OverlayPosition.CANVAS_TOP_RIGHT, OverlayPosition.TOP_RIGHT -> result.y += dimension.height + (if (dimension.height == 0) 0 else padding)
             OverlayPosition.ABOVE_CHATBOX_RIGHT -> result.y -= dimension.height + (if (dimension.height == 0) 0 else padding)
+            else -> {}
         }
         return result
     }

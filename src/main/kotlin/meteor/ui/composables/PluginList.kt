@@ -205,7 +205,7 @@ fun Plugins() {
                                         .background(darkThemeColors.background)
                                 )
                             }
-                            val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
+                            val switchState = remember { mutableStateOf(plugin.running) }
                             Switch(
                                 switchState.value,
                                 onPluginToggled(switchState, plugin),
