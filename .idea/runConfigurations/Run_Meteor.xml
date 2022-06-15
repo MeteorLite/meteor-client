@@ -1,11 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run Meteor" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
-      <option name="env">
-        <map>
-          <entry key="SKIKO_RENDER_API" value="OPENGL" />
-        </map>
-      </option>
       <option name="executionName" />
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
       <option name="externalSystemIdString" value="GRADLE" />
