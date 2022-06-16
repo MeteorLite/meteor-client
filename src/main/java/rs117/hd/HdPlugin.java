@@ -2091,7 +2091,6 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 			drawManager.processDrawComplete(this::screenshot);
 		} catch (Exception e) {
-			e.printStackTrace();
 			unsubscribe();
 			onStop();
 		}
