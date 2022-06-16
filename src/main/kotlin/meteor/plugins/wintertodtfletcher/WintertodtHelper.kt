@@ -2,6 +2,7 @@ package meteor.plugins.wintertodtfletcher
 
 import dev.hoot.api.game.Skills
 import eventbus.events.GameTick
+import eventbus.events.HitsplatApplied
 import meteor.api.items.Item
 import meteor.api.items.Items
 import meteor.plugins.Plugin
@@ -17,21 +18,31 @@ import net.runelite.client.config.Config
 class WintertodtHelper : Plugin() {
     override val config = configuration<WintertodtHelperConfig>()
     var waitForFullInv = true
+    var allowance = 0
+    override fun onHitsplatApplied(it: HitsplatApplied) {
+        if (it.actor == client.localPlayer) {
+            if (!waitForFullInv)
+                fletch()
+        }
+    }
 
     override fun onGameTick(it: GameTick) {
         if (heal())
             return
 
-        if (Items.isFull())
+        if (Items.getFreeSlots() <= allowance) {
             waitForFullInv = false
+        }
 
         if (getRoot() == null && getKindling() == null) {
+            allowance = 0
             waitForFullInv = true
         }
 
-        if (!waitForFullInv)
-            if (fletch())
-                return
+        if (client.localPlayer!!.isIdle) {
+            if (!waitForFullInv)
+                fletch()
+        }
     }
 
     fun getRoot(): Item? { return Items.getFirst("Bruma root") }
@@ -53,6 +64,7 @@ class WintertodtHelper : Plugin() {
             Items.getAll()?.let { items ->
                 for (item in items) {
                     if (item.actions.contains("Eat")) {
+                        allowance++
                         item.interact("Eat")
                         return true
                     }

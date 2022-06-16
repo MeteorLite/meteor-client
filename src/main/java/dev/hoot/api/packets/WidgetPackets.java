@@ -362,12 +362,12 @@ public class WidgetPackets
 		var client = Game.getClient();
 		var clientPacket = Game.getClientPacket();
 		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTONT(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeIntME(sourceWidgetId);
-		packetBufferNode.getPacketBuffer().writeIntLE(destinationWidgetId);
-		packetBufferNode.getPacketBuffer().writeShort(destinationItemId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(sourceSlot);
-		packetBufferNode.getPacketBuffer().writeShortLE(destinationSlot);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(sourceItemId);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(sourceItemId);	// Old: packetBufferNode.getPacketBuffer().writeIntME(sourceWidgetId);
+		packetBufferNode.getPacketBuffer().writeShortAdd(sourceSlot);	// Old: packetBufferNode.getPacketBuffer().writeIntLE(destinationWidgetId);
+		packetBufferNode.getPacketBuffer().writeIntLE(sourceWidgetId);	// Old: packetBufferNode.getPacketBuffer().writeShort(destinationItemId);
+		packetBufferNode.getPacketBuffer().writeShortAddLE(destinationItemId);	// Old: packetBufferNode.getPacketBuffer().writeShortAdd(sourceSlot);
+		packetBufferNode.getPacketBuffer().writeShort(destinationSlot);	// Old: packetBufferNode.getPacketBuffer().writeShortLE(destinationSlot);
+		packetBufferNode.getPacketBuffer().writeIntIME(destinationWidgetId);	// Old: packetBufferNode.getPacketBuffer().writeShortAddLE(sourceItemId);
 		return packetBufferNode;
 	}
 
@@ -376,8 +376,8 @@ public class WidgetPackets
 		var client = Game.getClient();
 		var clientPacket = Game.getClientPacket();
 		var packetBufferNode = Game.getClient().preparePacket(clientPacket.RESUME_PAUSEBUTTON(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeIntIME(widgetId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(childId);
+		packetBufferNode.getPacketBuffer().writeShortLE(childId);	// Old: packetBufferNode.getPacketBuffer().writeIntIME(widgetId);
+		packetBufferNode.getPacketBuffer().writeIntIME(widgetId);	// Old: packetBufferNode.getPacketBuffer().writeShortAdd(childId);
 		return packetBufferNode;
 	}
 }

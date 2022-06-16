@@ -276,6 +276,25 @@ class Hooks : Callbacks {
         return KeyManager.processKeyTyped(keyEvent)
     }
 
+    fun interface RenderableDrawListener {
+        fun draw(renderable: Renderable?, ui: Boolean): Boolean
+    }
+
+    private val renderableDrawListeners: List<RenderableDrawListener> = java.util.ArrayList()
+
+    override fun draw(renderable: Renderable?, drawingUi: Boolean): Boolean {
+        try {
+            for (renderableDrawListener in renderableDrawListeners) {
+                if (!renderableDrawListener.draw(renderable, drawingUi)) {
+                    return false
+                }
+            }
+        } catch (ex: java.lang.Exception) {
+            Main.logger.error("exception from renderable draw listener", ex)
+        }
+        return true
+    }
+
     companion object {
         @JvmStatic
         fun clearColorBuffer(x: Int, y: Int, width: Int, height: Int, color: Int) {

@@ -83,6 +83,7 @@ object PluginManager {
         init<Meteor>()
         init<AgilityPlugin>()
         init<AoeWarningPlugin>()
+        init<AutoAlchPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoClickerPlugin>()
         init<AutoLoginPlugin>()
@@ -105,10 +106,10 @@ object PluginManager {
         init<FishingPlugin>()
         init<FpsPlugin>()
         init<GauntletExtendedPlugin>()
+        init<HdPlugin>()
         init<GroundItemsPlugin>()
         init<GuardiansOfTheRiftPlugin>()
         init<HerbiboarPlugin>()
-        init<AutoAlchPlugin>()
         init<InterfaceStylesPlugin>()
         init<InteractHighlightPlugin>()
         init<InventoryTagsPlugin>()
@@ -140,7 +141,6 @@ object PluginManager {
         init<WorldMapWalkerPlugin>()
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
-        init<HdPlugin>()
     }
 
     private fun loadExternal(jar: File) {
