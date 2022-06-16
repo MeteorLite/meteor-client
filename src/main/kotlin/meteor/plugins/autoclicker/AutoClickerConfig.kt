@@ -216,6 +216,16 @@ interface AutoClickerConfig : Config {
         return 0
     }
 
+    @ConfigItem(
+        keyName = "onlyWhenIdle",
+        name = "Only When Idle",
+        description = "",
+        position = 26
+    )
+    fun onlyWhenIdle(): Boolean {
+        return true
+    }
+
     companion object {
         @ConfigSection(keyName = "title", name = "AutoClicker", description = "", position = 0)
         const val title = "AutoClicker"

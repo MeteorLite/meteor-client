@@ -126,9 +126,16 @@ class AutoClickerPlugin : Plugin() {
                                 (!config.skipOnInteraction() || client.localPlayer!!.interacting == null) &&
                                 (!config.skipOnAnimating() || client.localPlayer!!.animation == -1)
                             ) {
-                                if (config.followMouse()) {
-                                    clickService?.submit(Runnable { click(client.mouseCanvasPosition) })
-                                } else clickService?.submit(Runnable { click(savedPoint) })
+                                if (config.onlyWhenIdle()) {
+                                    if (client.localPlayer!!.isIdle)
+                                        if (config.followMouse()) {
+                                            clickService?.submit { click(client.mouseCanvasPosition) }
+                                        } else clickService?.submit { click(savedPoint) }
+                                } else {
+                                    if (config.followMouse()) {
+                                        clickService?.submit { click(client.mouseCanvasPosition) }
+                                    } else clickService?.submit { click(savedPoint) }
+                                }
                             }
                         }
                     }
