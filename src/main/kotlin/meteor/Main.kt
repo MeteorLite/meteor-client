@@ -13,6 +13,8 @@ import meteor.game.WorldService
 import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
+import meteor.plugins.xptracker.XpTrackerPlugin
+import meteor.plugins.xptracker.XpTrackerService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
 import meteor.ui.composables.Window
@@ -64,6 +66,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
+    lateinit var xpTrackerService: XpTrackerService
 
     var logger = Logger("meteor.Main")
 
@@ -167,6 +170,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         chatCommandManager = ChatCommandManager()
         gameEventManager = GameEventManager
         PluginManager.loadExternalPlugins()
+        xpTrackerService = XpTrackerService(PluginManager.get())
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }

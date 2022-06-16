@@ -48,6 +48,7 @@ import meteor.plugins.wintertodtfletcher.WintertodtHelper
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import net.runelite.client.plugins.ammo.AmmoPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import net.runelite.client.plugins.camera.CameraPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
@@ -57,6 +58,8 @@ import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
+import net.runelite.client.plugins.mining.MiningPlugin
+import net.runelite.client.plugins.motherlode.MotherlodePlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.oneclickagility.OneClickAgilityPlugin
@@ -82,6 +85,7 @@ object PluginManager {
 
         init<Meteor>()
         init<AgilityPlugin>()
+        init<AmmoPlugin>()
         init<AoeWarningPlugin>()
         init<AutoAlchPlugin>()
         init<AutoBankPinPlugin>()
@@ -118,6 +122,8 @@ object PluginManager {
         init<KeyboardBankPinPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
+        init<MiningPlugin>()
+        init<MotherlodePlugin>()
         init<MouseTooltipPlugin>()
         init<NotesPlugin>()
         init<NpcAggroAreaPlugin>()

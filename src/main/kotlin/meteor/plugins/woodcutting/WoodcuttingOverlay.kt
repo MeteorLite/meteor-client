@@ -24,6 +24,7 @@
  */
 package meteor.plugins.woodcutting
 
+import meteor.Main
 import meteor.plugins.xptracker.XpInfoBoxOverlay.Companion.OPTION_CONFIGURE
 import meteor.plugins.xptracker.XpTrackerService
 import meteor.ui.components.LineComponent
@@ -49,6 +50,8 @@ class WoodcuttingOverlay(val plugin: WoodcuttingPlugin) : OverlayPanel() {
     }
 
     override fun render(graphics: Graphics2D): Dimension? {
+        if (!this::xpTrackerService.isInitialized)
+            xpTrackerService = Main.xpTrackerService
 
         plugin.session ?: return null
         val axe = plugin.axe
