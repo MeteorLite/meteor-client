@@ -138,10 +138,6 @@ tasks {
         options.encoding = "UTF-8"
     }
 
-    compileKotlin {
-        kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all", "-Xbackend-threads=0")
-    }
-
     register<JavaExec>("createLauncherUpdate") {
         classpath(sourceSets["main"].runtimeClasspath)
         mainClass.set("meteor.launcher.CreateLauncherUpdate")
@@ -164,7 +160,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         jvmTarget = "17"
         // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.
-        //freeCompilerArgs += "-Xuse-k2"
+        freeCompilerArgs = listOf( //"-Xuse-k2",
+            "-Xjvm-default=all",
+            "-Xbackend-threads=4")
     }
 }
 
