@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.5.7" }
+val apiRelease by rootProject.extra { "1.5.8" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
@@ -149,15 +149,10 @@ tasks.compileJava {
     targetCompatibility = JavaVersion.VERSION_17.toString()
 }
 
-tasks.compileKotlin {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         apiVersion = "1.7"
         languageVersion = "1.7"
-    }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-    kotlinOptions {
         jvmTarget = "17"
         // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.
         freeCompilerArgs = listOf( //"-Xuse-k2",
@@ -167,12 +162,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
 }
 
 tasks.withType<org.gradle.jvm.tasks.Jar> {
-    exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")
-    exclude("META-INF/BC2048KE.RSA", "META-INF/BC2048KE.SF", "META-INF/BC2048KE.DSA")
-    exclude("META-INF/KITFOX.SF", "META-INF/KITFOX.DSA")
-}
-
-tasks.jar {
     exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")
     exclude("META-INF/BC2048KE.RSA", "META-INF/BC2048KE.SF", "META-INF/BC2048KE.DSA")
     exclude("META-INF/KITFOX.SF", "META-INF/KITFOX.DSA")
