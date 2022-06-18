@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
 plugins {
-    kotlin("jvm") version "1.6.20"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev686"
+    kotlin("jvm") version "1.7.0"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev709"
     java
     `maven-publish`
 }
@@ -12,7 +12,16 @@ val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
 
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
+            using(module("androidx.compose.compiler:compiler:1.2.0-dev-k1.7.0-53370d83bb1"))
+        }
+    }
+}
+
 repositories {
+    maven {url = uri("https://androidx.dev/storage/compose-compiler/repository")}
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
     maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/")}
     google()
@@ -53,12 +62,6 @@ dependencies {
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
 
-    //Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
-
     //RuneLite Plugins
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("org.slf4j:slf4j-simple:1.7.36")
@@ -67,22 +70,22 @@ dependencies {
 
     //Util
     implementation("org.rationalityfrontline:kevent:2.1.4")
-    implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
-    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
-    implementation(group = "com.google.guava", name = "guava", version = "_")
-    implementation(group = "org.apache.commons", name = "commons-text", version = "_")
-    implementation(group = "commons-io", name = "commons-io", version = "_")
-    implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "_")
-    implementation(group = "com.google.code.gson", name = "gson", version = "_")
+    implementation(group = "org.apache.commons", name = "commons-lang3", version = "3.11")
+    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "3.7.0")
+    implementation(group = "com.google.guava", name = "guava", version = "30.1.1-jre")
+    implementation(group = "org.apache.commons", name = "commons-text", version = "1.9")
+    implementation(group = "commons-io", name = "commons-io", version = "2.11.0")
+    implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.4")
+    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.7")
     implementation(group = "net.runelite", name = "discord", version = "1.4")
-    implementation("com.formdev:flatlaf:2.1")
-    implementation("com.formdev:flatlaf-intellij-themes:2.1")
+    implementation("com.formdev:flatlaf:2.3")
+    implementation("com.formdev:flatlaf-intellij-themes:2.3")
     implementation("com.miglayout:miglayout:3.7.4")
-    implementation("io.insert-koin:koin-core:3.1.5")
+    implementation("io.insert-koin:koin-core:3.2.0")
     implementation("com.kitfox.svg:svg-salamander:1.0")
-    implementation("com.formdev:flatlaf-extras:2.1")
-    implementation ("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")
-    implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
+    implementation("com.formdev:flatlaf-extras:2.3")
+    implementation ("com.godaddy.android.colorpicker:compose-color-picker-jvm:0.4.2")
+    implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:1.0.0")
 
     implementation(compose.desktop.currentOs)
 }
@@ -151,13 +154,17 @@ tasks.compileJava {
 }
 
 tasks.compileKotlin {
-    sourceCompatibility = JavaVersion.VERSION_17.toString()
-    targetCompatibility = JavaVersion.VERSION_17.toString()
+    kotlinOptions {
+        apiVersion = "1.7"
+        languageVersion = "1.7"
+    }
+}
 
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
         jvmTarget = "17"
-        apiVersion = "1.6"
-        languageVersion = "1.6"
+        // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.
+        //freeCompilerArgs += "-Xuse-k2"
     }
 }
 
