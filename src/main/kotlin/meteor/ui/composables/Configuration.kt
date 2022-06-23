@@ -604,7 +604,7 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
                     DropdownMenu(
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
-                        modifier = Modifier.fillMaxWidth(.19f)
+                        modifier = Modifier.width(375.dp)
                     ) {
                         list.forEachIndexed { index, s ->
                             DropdownMenuItem(onClick = {
