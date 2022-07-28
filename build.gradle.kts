@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.5.9" }
+val apiRelease by rootProject.extra { "1.5.10" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
@@ -105,6 +105,7 @@ tasks {
         application {
             mainClass = "meteor.Main"
             nativeDistributions {
+                version = "1.5.10"
                 targetFormats(Exe, Deb)
                 includeAllModules = true
                 windows {
