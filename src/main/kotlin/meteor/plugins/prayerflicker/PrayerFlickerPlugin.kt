@@ -33,7 +33,6 @@ class PrayerFlickerPlugin : Plugin() {
 
     private fun togglePrayer() {
         MousePackets.queueClickPacket(0, 0)
-        client.invokeMenuAction("", "", 1, MenuAction.CC_OP.id, -1, quickPrayerWidgetID)
     }
 
     override fun onStart() {

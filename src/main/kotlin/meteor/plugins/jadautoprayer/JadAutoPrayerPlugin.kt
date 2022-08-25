@@ -52,14 +52,6 @@ class JadAutoPrayerPlugin : Plugin() {
             return
         }
         clientThread!!.invoke {
-            client.invokeMenuAction(
-                "Activate",
-                prayer_widget.name,
-                1,
-                MenuAction.CC_OP.id,
-                prayer_widget.itemId,
-                prayer_widget.id
-            )
         }
     }
 

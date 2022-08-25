@@ -211,14 +211,6 @@ class AutoLogHop : Plugin() {
         if (param1 == -1) {
             return
         }
-        client.invokeMenuAction(
-            "Logout",
-            "",
-            1,
-            MenuAction.CC_OP.id,
-            -1,
-            param1
-        )
     }
 
     fun inWilderness(): Boolean {
