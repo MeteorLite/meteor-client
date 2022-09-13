@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.6.2" }
+val apiRelease by rootProject.extra { "1.6.3" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
@@ -117,7 +117,6 @@ tasks {
                 "-XX:+UseZGC",
                 "-Xmx1024m",
                 "-ea",
-                "-noverify",
                 "-Dsun.java2d.uiScale=1.0",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-opens", "java.base/java.net=ALL-UNNAMED",
