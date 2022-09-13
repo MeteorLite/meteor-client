@@ -72,10 +72,7 @@ object WorldService {
     private fun fetch() {
         try {
             val worldResult: WorldResult = worldClient.lookupWorlds()
-            worldResult.worlds.sortWith(
-                Comparator.comparingInt<World>(
-                    ToIntFunction<World> { obj: World -> obj.id })
-            )
+            worldResult.worlds.sortedWith(compareBy { it.id });
             worlds = worldResult
             //   meteor.Main.KEVENT_INSTANCE.post(worldResult)
         } catch (ex: IOException) {

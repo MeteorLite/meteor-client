@@ -62,7 +62,7 @@ public class DrawUtils
 
 		for (Transport transport : transports)
 		{
-			OverlayUtil.INSTANCE.fillTile(graphics2D, transport.getSource(), TRANSPORT_COLOR);
+/*			OverlayUtil.INSTANCE.fillTile(graphics2D, transport.getSource(), TRANSPORT_COLOR);
 			Point center = Perspective.tileCenter(client, transport.getSource());
 			if (center == null)
 			{
@@ -75,7 +75,7 @@ public class DrawUtils
 				continue;
 			}
 
-			graphics2D.drawLine(center.getX(), center.getY(), linkCenter.getX(), linkCenter.getY());
+			graphics2D.drawLine(center.getX(), center.getY(), linkCenter.getX(), linkCenter.getY());*/
 		}
 	}
 

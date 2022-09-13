@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.6.1" }
+val apiRelease by rootProject.extra { "1.6.2" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
@@ -21,13 +21,12 @@ configurations.all {
 }
 
 repositories {
+    mavenLocal()
     maven {url = uri("https://androidx.dev/storage/compose-compiler/repository")}
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
     maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/")}
     google()
-    mavenLocal()
     mavenCentral()
-    maven { url = uri("https://maven.gegy1000.net/") }
     maven { url = uri("https://repo.runelite.net/") }
     maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
     maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/") }
