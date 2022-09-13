@@ -1,8 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
 plugins {
-    kotlin("jvm") version "1.7.0"
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev709"
+    kotlin("jvm") version "1.7.10"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev774"
     java
     `maven-publish`
 }
@@ -15,7 +15,7 @@ version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.s
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
-            using(module("androidx.compose.compiler:compiler:1.2.0-dev-k1.7.0-53370d83bb1"))
+            using(module("androidx.compose.compiler:compiler:1.3.1"))
         }
     }
 }
