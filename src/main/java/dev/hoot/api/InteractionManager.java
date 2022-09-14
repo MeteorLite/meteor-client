@@ -12,7 +12,6 @@ import dev.hoot.api.widgets.DialogOption;
 import dev.hoot.api.widgets.Widgets;
 import eventbus.events.DialogProcessed;
 import eventbus.events.MenuOptionClicked;
-import lombok.extern.slf4j.Slf4j;
 import meteor.Logger;
 import meteor.Main;
 import meteor.plugins.EventSubscriber;
