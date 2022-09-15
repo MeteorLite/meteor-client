@@ -27,7 +27,7 @@ open class Plugin : EventSubscriber() {
 
     fun javaConfiguration(clazz: Class<out Config>): Config {
         val c: Config = getConfig(clazz)!!
-        setDefaultConfiguration(c, false)
+        setDefaultConfiguration(c.javaClass, false)
         javaConfig = c
         return c
     }

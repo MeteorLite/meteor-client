@@ -25,6 +25,7 @@ import com.godaddy.android.colorpicker.harmony.ColorHarmonyMode
 import com.godaddy.android.colorpicker.harmony.HarmonyColorPicker
 import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft24
+import compose.icons.octicons.Sync24
 import eventbus.Events
 import eventbus.events.ConfigButtonClicked
 import meteor.Main
@@ -42,7 +43,7 @@ import java.util.stream.Collectors
 @Composable
 fun ConfigPanel() {
 
-    var mod = Modifier.background(darkThemeColors.background).fillMaxHeight().width(375.dp).padding(8.dp)
+    var mod = Modifier.background(darkThemeColors.surface).fillMaxHeight().width(375.dp)
 
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Column(
@@ -67,18 +68,15 @@ fun ConfigPanel() {
 fun ConfigPanelHeader() {
 
     Row {
-
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.85f).height(65.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(0.85f).height(35.dp)
         ) {
             Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start) {
                 IconButton(modifier = Modifier.padding(top = 10.dp), onClick = {
 
                     if (configOpen.value) {
-
                         configOpen.value = false
-
                     }
                     if (!pluginsOpen.value)
                         pluginsOpen.value = true
@@ -105,9 +103,21 @@ fun ConfigPanelHeader() {
         Row(
             verticalAlignment = Alignment.Top,
             horizontalArrangement = Arrangement.End,
-            modifier = Modifier.padding(top = 15.dp)
         ) {
             val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
+/*            IconButton(onClick = {
+                lastPlugin.config?.let {
+                    println("should reset")
+                    ConfigManager.setDefaultConfiguration(it.javaClass, true)
+                    configOpen.value = false
+                }
+            }) {
+                Icon(
+                    imageVector = Octicons.Sync24,
+                    contentDescription = "Reset Configuration",
+                    tint = Color.Cyan
+                )
+            }*/
             Switch(
                 switchState.value,
                 onPluginToggled(switchState, lastPlugin),
@@ -310,7 +320,7 @@ fun createColorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
 @Composable
 fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
 
-    var sliderValue by remember { mutableStateOf(0f) }
+    var sliderValue by remember { mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())!!.toFloat()) }
     val getInt by remember {
         mutableStateOf(
             Integer.valueOf(

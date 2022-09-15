@@ -59,8 +59,6 @@ fun SearchBar(
     placeHolder: String
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start,
         modifier = Modifier.fillMaxWidth()
     ) {
 
@@ -76,6 +74,7 @@ fun SearchBar(
                 fontWeight = FontWeight.Medium,
                 fontFamily = FontUtil.crimson
             ),
+
             modifier = Modifier.scale(scaleX = 0.95f, scaleY = 0.80f).fillMaxWidth(),
             shape = RoundedCornerShape(10.dp),
             label = {
@@ -106,10 +105,6 @@ fun Plugins() {
         mutableStateOf(Main.meteorConfig!!.pluginSpaceBetween())
     }
     val textState = remember { mutableStateOf(TextFieldValue("")) }
-    Spacer(
-        Modifier.height(pluginSpacer.value.dp)
-            .background(darkThemeColors.background)
-    )
     Row(
         modifier = Modifier.fillMaxWidth()
             .height(60.dp),
@@ -117,6 +112,10 @@ fun Plugins() {
     ) {
         SearchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
     }
+    Spacer(
+        Modifier.height(pluginSpacer.value.dp)
+            .background(darkThemeColors.background)
+    )
     Column(
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Top,
@@ -135,7 +134,7 @@ fun Plugins() {
                     Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(darkThemeColors.background)) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(darkThemeColors.background)
+                            modifier = Modifier.fillMaxWidth(0.60f).height(32.dp).background(darkThemeColors.background)
                         ) {
                             val external = plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java)
                             val color = if (external?.external == true) Color.Magenta else Color.Cyan

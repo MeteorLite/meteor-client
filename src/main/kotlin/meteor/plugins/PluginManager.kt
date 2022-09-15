@@ -206,7 +206,7 @@ object PluginManager {
             throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
         plugin.config?.let {
-            ConfigManager.setDefaultConfiguration(it, false)
+            ConfigManager.setDefaultConfiguration(it.javaClass, false)
         }
 
         if (ConfigManager.getConfiguration(plugin.javaClass.simpleName, "pluginEnabled") != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup)

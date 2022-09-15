@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.6.7" }
+val apiRelease by rootProject.extra { "1.6.8" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
@@ -87,6 +87,7 @@ dependencies {
     implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:1.0.0")
 
     implementation(compose.desktop.currentOs)
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
 }
 
 publishing {

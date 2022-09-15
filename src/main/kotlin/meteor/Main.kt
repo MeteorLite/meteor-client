@@ -50,7 +50,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
     init {
         ConfigManager.loadSavedProperties()
-        ConfigManager.setDefaultConfiguration(meteorConfig.javaClass, false)
+        ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
         ConfigManager.saveProperties()
     }
 

@@ -65,7 +65,7 @@ class GroundItemsOverlay(var plugin: GroundItemsPlugin, var config: GroundItemsC
         val player = client.localPlayer ?: return null
         offsetMap.clear()
         val localLocation = player.localLocation
-        val mousePos = Point(client.mouseCanvasPosition.x - 5, client.mouseCanvasPosition.y)
+        val mousePos = Point(client.mouseCanvasPosition.x, client.mouseCanvasPosition.y)
         var groundItemList = GroundItemsPlugin.collectedGroundItems.values()
         var topGroundItem: GroundItem? = null
         if (plugin.hotKeyPressed) {
