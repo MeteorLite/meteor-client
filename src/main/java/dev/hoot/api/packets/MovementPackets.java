@@ -30,13 +30,14 @@ public class MovementPackets
 
 	public static PacketBufferNode createMovement(int worldPointX, int worldPointY, boolean ctrlDown)
 	{
-		var client = Game.getClient();
+/*		var client = Game.getClient();
 		var clientPacket = Game.getClientPacket();
 		var packetBufferNode = Game.getClient().preparePacket(clientPacket.MOVE_GAMECLICK(), client.getPacketWriter().getIsaacCipher());
 		packetBufferNode.getPacketBuffer().writeByte(5);
 		packetBufferNode.getPacketBuffer().writeByte(ctrlDown ? 2 : 0);	// Old: packetBufferNode.getPacketBuffer().writeByteSub(ctrlDown ? 2 : 0);
 		packetBufferNode.getPacketBuffer().writeShort(worldPointX);	// Old: packetBufferNode.getPacketBuffer().writeShortAddLE(worldPointY);
 		packetBufferNode.getPacketBuffer().writeShortLE(worldPointY);	// Old: packetBufferNode.getPacketBuffer().writeShort(worldPointX);
-		return packetBufferNode;
+		return packetBufferNode;*/
+		return null;
 	}
 }

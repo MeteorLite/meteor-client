@@ -338,16 +338,11 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
     Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(0.5f).height(32.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
             }
-            Text(
-                text = setConfigValue.toString(),
-                modifier = Modifier.padding(8.dp),
-                style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
-            )
         }
 
         Row(
@@ -355,11 +350,15 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
             modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))
         ) {
             MaterialTheme(colors = darkThemeColors) {
+                Text(
+                    text = setConfigValue.toString(),
+                    modifier = Modifier.padding(8.dp).width(30.dp),
+                    style = TextStyle(color = Color.Cyan, fontSize = 14.sp, textAlign = TextAlign.Center)
+                )
+                Spacer(Modifier.width(5.dp).background(darkThemeColors.background))
                 Slider(
                     value = sliderValue,
                     onValueChange = {
-
-
                         sliderValue = setConfigValue.toFloat()
                         setConfigValue = it.toInt()
                         ConfigManager.setConfiguration(
@@ -370,9 +369,8 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
                         println(setConfigValue)
                     },
                     valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
-                    modifier = Modifier.padding(all = 0.dp),
-
-                    )
+                    modifier = Modifier.padding(all = 0.dp).background(darkThemeColors.background)
+                )
             }
         }
     }
@@ -395,12 +393,12 @@ fun createIntegerAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor
 
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424))
+            modifier = Modifier.fillMaxWidth().height(100.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
 
                 OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424)),
+                    modifier = Modifier.fillMaxWidth().height(100.dp).padding(all = 3.dp),
                     value = text,
                     onValueChange = {
                         text = it
@@ -442,11 +440,11 @@ fun createIntegerTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
 
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))
+            modifier = Modifier.fillMaxWidth().height(60.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424)),
+                    modifier = Modifier.fillMaxWidth().height(60.dp).padding(all = 3.dp),
                     value = text,
                     visualTransformation = if (!configItemDescriptor.secret()) VisualTransformation.None else PasswordVisualTransformation(),
                     onValueChange = {
@@ -490,12 +488,12 @@ fun createStringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor:
 
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424))
+            modifier = Modifier.fillMaxWidth().height(100.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
 
                 OutlinedTextField(
-                    modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424)),
+                    modifier = Modifier.fillMaxWidth().height(100.dp).padding(all = 3.dp),
                     value = text,
                     onValueChange = {
                         text = it
@@ -532,11 +530,11 @@ fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Con
                     )
         )
     }
-    Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))) {
+    Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(darkThemeColors.background)) {
 
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(60.dp).background(Color(0xFF242424))
+            modifier = Modifier.fillMaxWidth().height(60.dp)
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 OutlinedTextField(
@@ -558,7 +556,7 @@ fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Con
                         )
                     },
                     singleLine = true,
-                    modifier = Modifier.padding(all = 0.dp),
+                    modifier = Modifier.padding(all = 3.dp).fillMaxWidth(),
                     textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
                 )
             }
@@ -614,7 +612,7 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
                     DropdownMenu(
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
-                        modifier = Modifier.width(375.dp)
+                        modifier = Modifier.width(375.dp).padding(horizontal = 5.dp)
                     ) {
                         list.forEachIndexed { index, s ->
                             DropdownMenuItem(onClick = {

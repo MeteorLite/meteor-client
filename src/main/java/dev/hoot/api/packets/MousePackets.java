@@ -37,12 +37,13 @@ public class MousePackets
 
 	public static PacketBufferNode createClickPacket(int mouseInfo, int x, int y)
 	{
-		var client = Game.getClient();
+/*		var client = Game.getClient();
 		var clientPacket = Game.getClientPacket();
 		var packetBufferNode = Game.getClient().preparePacket(clientPacket.EVENT_MOUSE_CLICK(), client.getPacketWriter().getIsaacCipher());
 		packetBufferNode.getPacketBuffer().writeShort(mouseInfo);
 		packetBufferNode.getPacketBuffer().writeShort(x);
 		packetBufferNode.getPacketBuffer().writeShort(y);
-		return packetBufferNode;
+		return packetBufferNode;*/
+		return null;
 	}
 }

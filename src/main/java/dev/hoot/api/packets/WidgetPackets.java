@@ -375,9 +375,10 @@ public class WidgetPackets
 	{
 		var client = Game.getClient();
 		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.RESUME_PAUSEBUTTON(), client.getPacketWriter().getIsaacCipher());
+/*		var packetBufferNode = Game.getClient().preparePacket(clientPacket.RESUME_PAUSEBUTTON(), client.getPacketWriter().getIsaacCipher());
 		packetBufferNode.getPacketBuffer().writeShortLE(childId);	// Old: packetBufferNode.getPacketBuffer().writeIntIME(widgetId);
 		packetBufferNode.getPacketBuffer().writeIntIME(widgetId);	// Old: packetBufferNode.getPacketBuffer().writeShortAdd(childId);
-		return packetBufferNode;
+		return packetBufferNode;*/
+		return null;
 	}
 }

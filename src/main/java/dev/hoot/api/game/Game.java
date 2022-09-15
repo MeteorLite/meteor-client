@@ -48,7 +48,7 @@ public class Game
 				return new GlobalCollisionMap(
 						new GZIPInputStream(
 								new ByteArrayInputStream(
-										ClassLoader.getSystemClassLoader().getResourceAsStream("/regions").readAllBytes()
+										ClassLoader.getSystemClassLoader().getResourceAsStream("regions").readAllBytes()
 								)
 						).readAllBytes()
 				);
