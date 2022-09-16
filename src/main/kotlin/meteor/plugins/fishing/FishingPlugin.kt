@@ -36,22 +36,22 @@ class FishingPlugin : Plugin() {
             if (it.target is NPC) {
                 val target: Actor = it.target as NPC
                 target as NPC
-                val spot: FishingSpot? = FishingSpot.findSpot(target.id)
-
-                spot.also { currentSpot = spot }
+                FishingSpot.findSpot(target.id)?.let {
+                    currentSpot = it
+                }
             }
         }
     }
 
 
     override fun onNPCSpawned(it: NpcSpawned) {
-        if (FishingSpot.findSpot(it.npc.id) != null) {
+        FishingSpot.findSpot(it.npc.id)?.let { _ ->
             fishingSpots.add(it.npc)
         }
     }
 
     override fun onNPCDespawned(it: NpcDespawned) {
-        if (FishingSpot.findSpot(it.npc.id) != null) {
+        FishingSpot.findSpot(it.npc.id)?.let { _ ->
             fishingSpots.remove(it.npc)
         }
     }
