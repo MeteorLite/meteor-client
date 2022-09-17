@@ -25,47 +25,17 @@
  */
 package rs117.hd;
 
+import net.runelite.client.config.*;
+
 import static rs117.hd.HdPlugin.MAX_DISTANCE;
 import static rs117.hd.HdPlugin.MAX_FOG_DEPTH;
 
-import net.runelite.client.config.*;
-import rs117.hd.config.AntiAliasingMode;
-import rs117.hd.config.ColorBlindMode;
-import rs117.hd.config.Contrast;
-import rs117.hd.config.MaxDynamicLights;
-import rs117.hd.config.Saturation;
-import rs117.hd.config.DefaultSkyColor;
-import rs117.hd.config.FogDepthMode;
-import rs117.hd.config.ShadowDistance;
-import rs117.hd.config.ShadowResolution;
-import rs117.hd.config.UIScalingMode;
-import rs117.hd.config.WaterEffects;
+import rs117.hd.config.*;
 
 @ConfigGroup("hd")
 public interface HdPluginConfig extends Config
 {
-	/*====== Limited-time settings ======*/
-
-	@ConfigSection(
-		name = "Limited-time",
-		description = "Fun and/or experimental settings that are available for a limited time",
-		position = -10,
-		closedByDefault = false
-	)
-	String limitedTimeSettings = "limitedTimeSettings";
-
-	@ConfigItem(
-		keyName = "winterTheme",
-		name = "Winter theme",
-		description = "Covers the Gielinor overworld with a layer of snow!",
-		position = -9,
-		section = limitedTimeSettings
-	)
-	default boolean winterTheme()
-	{
-		return false;
-	}
-
+	String KEY_WINTER_THEME = "winterTheme0";
 
 	/*====== General settings ======*/
 
@@ -181,21 +151,35 @@ public interface HdPluginConfig extends Config
 
 	@ConfigItem(
 		keyName = "colorBlindMode",
-		name = "Colorblindness Correction",
-		description = "Adjusts colors to account for colorblindness",
+		name = "Color Blindness",
+		description = "Adjust colors to account for color blindness.",
 		position = 8,
 		section = generalSettings
 	)
-	default ColorBlindMode colorBlindMode()
+	default ColorBlindMode colorBlindness()
 	{
 		return ColorBlindMode.NONE;
+	}
+
+	@ConfigItem(
+		keyName = "colorBlindnessIntensity",
+		name = "Color Blindness Intensity",
+		description = "Specifies how intense the color blindness compensation should be.",
+		position = 9,
+		section = generalSettings
+	)
+	@Units(Units.PERCENT)
+	@Range(max = 100)
+	default int colorBlindnessIntensity()
+	{
+		return 100;
 	}
 
 	@ConfigItem(
 		keyName = "flashingEffects",
 		name = "Flashing Effects",
 		description = "Displays fast flashing effects, such as lightning, in certain areas.",
-		position = 9,
+		position = 10,
 		section = generalSettings
 	)
 	default boolean flashingEffects()
@@ -207,7 +191,7 @@ public interface HdPluginConfig extends Config
 		keyName = "saturation",
 		name = "Saturation",
 		description = "Controls the saturation of the final rendered image.",
-		position = 10,
+		position = 11,
 		section = generalSettings
 	)
 	default Saturation saturation()
@@ -219,7 +203,7 @@ public interface HdPluginConfig extends Config
 		keyName = "contrast",
 		name = "Contrast",
 		description = "Controls the contrast of the final rendered image.",
-		position = 11,
+		position = 12,
 		section = generalSettings
 	)
 	default Contrast contrast()
@@ -235,7 +219,7 @@ public interface HdPluginConfig extends Config
 		keyName = "brightness2",
 		name = "Brightness",
 		description = "Controls the brightness of scene lighting.",
-		position = 12,
+		position = 13,
 		section = generalSettings
 	)
 	default int brightness() { return 20; }
@@ -296,7 +280,7 @@ public interface HdPluginConfig extends Config
 	)
 	default boolean atmosphericLighting()
 	{
-		return false;
+		return true;
 	}
 
 	@ConfigItem(
@@ -347,6 +331,28 @@ public interface HdPluginConfig extends Config
 		return false;
 	}
 
+	@ConfigItem(
+		keyName = "hideBakedEffects",
+		name = "Hide Fake Lights and Shadows",
+		description = "Hides the fake light and shadow effects that Jagex often includes with models",
+		position = 109,
+		section = lightingSettings
+	)
+	default boolean hideBakedEffects() {
+		return true;
+	}
+
+	// TODO: Fix parallax mapping before uncommenting this. See TODOs in displacement.glsl
+//	@ConfigItem(
+//		keyName = "parallaxMappingMode",
+//		name = "Parallax mapping",
+//		description = "Enable parallax mapping to add more depth to materials that support it. Impacts performance considerably.",
+//		position = 110,
+//		section = lightingSettings
+//	)
+//	default ParallaxMappingMode parallaxMappingMode() {
+//		return ParallaxMappingMode.FULL;
+//	}
 
 
 	/*====== Environment settings ======*/
@@ -410,11 +416,11 @@ public interface HdPluginConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "overrideSky",
-			name = "Override Sky Color",
-			description = "Forces the selected sky color in all environments",
-			position = 205,
-			section = environmentSettings
+		keyName = "overrideSky",
+		name = "Override Sky Color",
+		description = "Forces the selected sky color in all environments",
+		position = 205,
+		section = environmentSettings
 	)
 	default boolean overrideSky() {
 		return false;
@@ -445,11 +451,23 @@ public interface HdPluginConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "groundBlending",
-			name = "Ground Blending",
-			description = "Affects the quality of blending between different ground/terrain textures.",
-			position = 208,
-			section = environmentSettings
+		keyName = "textureResolution",
+		name = "Texture Resolution",
+		description = "Controls the resolution used for all in-game textures.",
+		position = 208,
+		section = environmentSettings
+	)
+	default TextureResolution textureResolution()
+	{
+		return TextureResolution.RES_256;
+	}
+
+	@ConfigItem(
+		keyName = "groundBlending",
+		name = "Ground Blending",
+		description = "Affects the quality of blending between different ground/terrain textures.",
+		position = 209,
+		section = environmentSettings
 	)
 	default boolean groundBlending()
 	{
@@ -457,29 +475,28 @@ public interface HdPluginConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "waterEffects",
-		name = "Water Effects",
-		description = "Changes the appearance of the water.",
-		position = 209,
+		keyName = "underwaterCaustics",
+		name = "Underwater Caustics",
+		description = "Apply underwater lighting effects to imitate sunlight moving through waves on the surface.",
+		position = 210,
 		section = environmentSettings
 	)
-	default WaterEffects waterEffects()
+	default boolean underwaterCaustics()
 	{
-		return WaterEffects.ALL;
+		return true;
 	}
 
 	@ConfigItem(
 		keyName = "tzhaarHD",
 		name = "HD TzHaar Reskin",
 		description = "Recolors the TzHaar city of Mor Ul Rek to give it an appearance similar to that of its 2008 HD variant.",
-		position = 210,
+		position = 211,
 		section = environmentSettings
 	)
 	default boolean tzhaarHD()
 	{
 		return true;
 	}
-
 
 
 	/*====== Miscellaneous settings ======*/
@@ -518,11 +535,55 @@ public interface HdPluginConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "modelCaching",
-		name = "Disable model caching",
-		description = "Model caching improves performance with increased memory usage.",
+		keyName = KEY_WINTER_THEME,
+		name = "Winter theme",
+		description = "Covers the Gielinor overworld with a layer of snow!",
 		position = 303,
 		section = miscellaneousSettings
 	)
-	default boolean disableModelCaching() { return false; }
+	default boolean winterTheme()
+	{
+		return false;
+	}
+
+	@ConfigSection(
+			name = "Experimental",
+			description = "Experimental features - if you're experiencing issues you should consider disabling these",
+			position = 400,
+			closedByDefault = true
+	)
+	String experimentalSettings = "experimentalSettings";
+
+	@ConfigItem(
+			keyName = "enableModelCaching",
+			name = "Enable model caching",
+			description = "Model caching improves performance with increased memory usage. May cause instability or graphical bugs.",
+			position = 401,
+			section = experimentalSettings
+	)
+	default boolean enableModelCaching() { return false; }
+
+	@ConfigItem(
+			keyName = "enableModelBatching",
+			name = "Enable model batching",
+			description = "Model batching generally improves performance but may cause instability and graphical bugs.",
+			position = 402,
+			section = experimentalSettings
+	)
+	default boolean enableModelBatching() { return false; }
+
+	@Range(
+			min = 256,
+			max = 4096
+	)
+	@ConfigItem(
+			keyName = "modelCacheSizeMB",
+			name = "Model cache size (MB)",
+			description = "Size of the model cache in megabytes. Plugin must be restarted to apply changes.",
+			position = 403,
+			section = experimentalSettings
+	)
+	default int modelCacheSizeMB() {
+		return 2048;
+	}
 }

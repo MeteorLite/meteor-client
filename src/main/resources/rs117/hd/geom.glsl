@@ -32,17 +32,7 @@
 layout(triangles) in;
 layout(triangle_strip, max_vertices = 3) out;
 
-layout(std140) uniform uniforms {
-    int cameraYaw;
-    int cameraPitch;
-    int centerX;
-    int centerY;
-    int zoom;
-    int cameraX;
-    int cameraY;
-    int cameraZ;
-    ivec2 sinCosTable[2048];
-};
+#include uniforms/camera.glsl
 
 uniform mat4 projectionMatrix;
 uniform mat4 lightProjectionMatrix;
@@ -66,7 +56,6 @@ out vec3 texBlend;
 flat out ivec3 materialId;
 flat out ivec3 terrainData;
 flat out ivec3 isOverlay;
-
 out vec4 shadowOut;
 
 void main() {
@@ -91,9 +80,9 @@ void main() {
     vUv3 = vUv[2].yz;
 
     // fast normals
-    vec3 a = vPosition[0] - vPosition[1];
-    vec3 b = vPosition[0] - vPosition[2];
-    vec3 flatNormals = normalize(cross(a,b));
+    vec3 T = normalize(vec3(vPosition[0] - vPosition[1]));
+    vec3 B = normalize(vec3(vPosition[0] - vPosition[2]));
+    vec3 N = normalize(cross(T, B));
 
     texBlend = vec3(1, 0, 0);
     fogAmount = vFogAmount[0];
@@ -101,7 +90,7 @@ void main() {
     shadowOut = lightProjectionMatrix * vec4(vPosition[0], 1.f);
     if (abs(vNormal[0].x) < 0.01 && abs(vNormal[0].y) < 0.01 && abs(vNormal[0].z) < 0.01)
     {
-        normals = flatNormals;
+        normals = N;
     }
     else
     {
@@ -118,7 +107,7 @@ void main() {
     shadowOut = lightProjectionMatrix * vec4(vPosition[1], 1.f);
     if (abs(vNormal[1].x) < 0.01 && abs(vNormal[1].y) < 0.01 && abs(vNormal[1].z) < 0.01)
     {
-        normals = flatNormals;
+        normals = N;
     }
     else
     {
@@ -135,7 +124,7 @@ void main() {
     shadowOut = lightProjectionMatrix * vec4(vPosition[2], 1.f);
     if (abs(vNormal[2].x) < 0.01 && abs(vNormal[2].y) < 0.01 && abs(vNormal[2].z) < 0.01)
     {
-        normals = flatNormals;
+        normals = N;
     }
     else
     {

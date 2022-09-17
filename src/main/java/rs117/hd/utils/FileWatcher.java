@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Hooder <https://github.com/ahooder>
+ * Copyright (c) 2022, Hooder <ahooder@protonmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,189 +24,170 @@
  */
 package rs117.hd.utils;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.ClosedWatchServiceException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-public class FileWatcher implements AutoCloseable
-{
-	Thread watchThread;
-	WatchService watchService;
-	HashMap<WatchKey, Path> watchKeys = new HashMap<>();
-	HashMap<Integer, BiConsumer<Path, WatchEvent<Path>>> changeHandlers = new HashMap<>();
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
 
+import static java.nio.file.StandardWatchEventKinds.*;
+import static rs117.hd.utils.ResourcePath.path;
+
+@Slf4j
+public class FileWatcher
+{
 	private static final WatchEvent.Kind<?>[] eventKinds = { ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY };
 
-	@SuppressWarnings("unchecked")
-	public FileWatcher() throws IOException
-	{
+	private static Thread watcherThread;
+	private static WatchService watchService;
+	private static final HashMap<WatchKey, Path> watchKeys = new HashMap<>();
+	private static final ListMultimap<String, Consumer<ResourcePath>> changeHandlers = ArrayListMultimap.create();
+
+	private static void initialize() throws IOException {
 		watchService = FileSystems.getDefault().newWatchService();
-		watchThread = new Thread(() ->
-		{
-			try
-			{
-				WatchKey key;
-				while ((key = watchService.take()) != null)
-				{
-					Path watchPath = watchKeys.get(key);
-					if (watchPath == null)
-					{
+		watcherThread = new Thread(() -> {
+			try {
+				WatchKey watchKey;
+				while ((watchKey = watchService.take()) != null) {
+					Path dir = watchKeys.get(watchKey);
+					if (dir == null) {
+						log.error("Unknown WatchKey: " + watchKey);
 						continue;
 					}
+					for (WatchEvent<?> event : watchKey.pollEvents()) {
+						if (event.kind() == OVERFLOW)
+							continue;
 
-					if (!watchPath.toFile().exists())
-						continue;
-
-					boolean singleFile = watchPath.toFile().isFile();
-					Path dir = singleFile ? watchPath.getParent() : watchPath;
-					for (WatchEvent<?> event : key.pollEvents())
-					{
 						Path path = dir.resolve((Path) event.context());
-						if (!singleFile || path.compareTo(watchPath) == 0)
-						{
-							changeHandlers.values().forEach(cb -> cb.accept(path, (WatchEvent<Path>) event));
+						if (path.toString().endsWith("~")) // Ignore temp files
+							continue;
+
+						log.trace("WatchEvent of kind {} for path {}", event.kind(), path);
+
+						try {
+							// Manually register new sub folders if not watching a file tree
+							if (event.kind() == ENTRY_CREATE && path.toFile().isDirectory())
+								watchRecursively(path);
+
+							String key = path.toString();
+							ResourcePath resourcePath = path(key);
+							if (path.toFile().isDirectory())
+								key += File.separator;
+
+							for (Map.Entry<String, Consumer<ResourcePath>> entry : changeHandlers.entries()) {
+								if (key.startsWith(entry.getKey())) {
+									try {
+										entry.getValue().accept(resourcePath);
+									} catch (Throwable throwable) {
+										log.error("Error in change handler for path: {}", dir, throwable);
+									}
+								}
+							}
+						} catch (Exception ex) {
+							log.error("Error while handling file change event:", ex);
 						}
 					}
-					key.reset();
+					watchKey.reset();
 				}
 			}
-			catch (InterruptedException | ClosedWatchServiceException ignored) {}
-		});
-		watchThread.setDaemon(true);
-		watchThread.start();
-	}
-
-	public static Path getResourcePath(Class<?> clazz)
-	{
-		return Paths.get(
-			"src/main/resources",
-			clazz.getPackage().getName().replace(".", "/"));
-	}
-
-	public FileWatcher watchPath(Class<?> resourcePath) throws IOException
-	{
-		return watchPath(getResourcePath(resourcePath));
-	}
-
-	public FileWatcher watchPath(Class<?> resourcePath, @NonNull Path path) throws IOException
-	{
-		return watchPath(getResourcePath(resourcePath).resolve(path));
-	}
-
-	public FileWatcher watchFile(Class<?> resourcePath, @NonNull Path path) throws IOException
-	{
-		return watchFile(getResourcePath(resourcePath).resolve(path));
-	}
-
-	/**
-	 * Watch all files in the specified path. Not recursive
-	 * @param path to a file or directory to watch
-	 * @return the same FileWatcher instance
-	 * @throws IOException if the path is inaccessible
-	 */
-	public FileWatcher watchPath(@NonNull Path path) throws IOException
-	{
-		path = path.toAbsolutePath();
-		Path watchPath = path;
-		if (path.toFile().isFile())
-		{
-			watchPath = path.getParent();
-			if (watchPath == null)
-			{
-				throw new IOException("Invalid path: " + path);
+			catch (ClosedWatchServiceException ignored) {}
+			catch (InterruptedException ex) {
+				log.error("Watcher thread interrupted", ex);
 			}
-		}
-		if (!watchPath.toFile().exists())
-		{
-			throw new FileNotFoundException("Directory does not exist: " + watchPath);
-		}
-		WatchKey key = watchPath.register(watchService, eventKinds);
-		watchKeys.put(key, path);
-		return this;
+		},  FileWatcher.class.getSimpleName() + " Thread");
+		watcherThread.setDaemon(true);
+		watcherThread.start();
 	}
 
-	public FileWatcher watchFile(@NonNull Path path) throws IOException
-	{
-		path = path.toAbsolutePath();
-		if (!path.toFile().exists())
-		{
-			log.warn("Watched file does not currently exist: {}", path);
-		}
-		if (path.getParent() == null)
-		{
-			throw new IOException("Invalid path: " + path);
-		}
-		WatchKey key = path.getParent().register(watchService, eventKinds);
-		watchKeys.put(key, path);
-		return this;
-	}
+	public static void destroy() {
+		if (watchService == null)
+			return;
 
-	public FileWatcher unwatchPath(Path path)
-	{
-		path = path.toAbsolutePath();
-		for (Map.Entry<WatchKey, Path> entry : watchKeys.entrySet())
-		{
-			if (entry.getValue().toAbsolutePath().compareTo(path) == 0)
-			{
-				entry.getKey().cancel();
-				watchKeys.remove(entry.getKey());
-			}
-		}
-		return this;
-	}
-
-	public FileWatcher addChangeHandler(Consumer<Path> changeHandler)
-	{
-		return addChangeHandler((path, event) -> changeHandler.accept(path));
-	}
-
-	public FileWatcher addChangeHandler(BiConsumer<Path, WatchEvent<Path>> changeHandler)
-	{
-		changeHandlers.put(changeHandler.hashCode(), changeHandler);
-		return this;
-	}
-
-	public FileWatcher removeChangeHandler(Consumer<Path> changeHandler)
-	{
-		changeHandlers.remove(changeHandler.hashCode());
-		return this;
-	}
-
-	public FileWatcher removeChangeHandler(BiConsumer<Path, WatchEvent<Path>> changeHandler)
-	{
-		changeHandlers.remove(changeHandler.hashCode());
-		return this;
-	}
-
-	@Override
-	public void close()
-	{
-		watchKeys.clear();
-		try
-		{
+		try {
+			log.debug("Shutting down {}", FileWatcher.class.getSimpleName());
+			changeHandlers.clear();
+			watchKeys.clear();
 			watchService.close();
-			watchThread.join();
+			watchService = null;
+			if (watcherThread.isAlive())
+				watcherThread.join();
+		} catch (IOException | InterruptedException ex) {
+			throw new RuntimeException("Error while closing " + FileWatcher.class.getSimpleName(), ex);
 		}
-		catch (IOException | InterruptedException ex)
-		{
-			log.warn("Failed to cleanly shut down file watcher", ex);
+	}
+
+	@FunctionalInterface
+	public interface UnregisterCallback {
+		void unregister();
+	}
+
+	public static UnregisterCallback watchPath(@NonNull ResourcePath resourcePath, @NonNull Consumer<ResourcePath> changeHandler)
+	{
+		if (!resourcePath.isFileSystemResource())
+			throw new IllegalStateException("Only resources on the file system can be watched: " + resourcePath);
+
+		try {
+			if (watchService == null)
+				initialize();
+
+			Path path = resourcePath.toPath();
+
+			final String key;
+			final Consumer<ResourcePath> handler;
+			if (path.toFile().isDirectory()) {
+				watchRecursively(path);
+				key = path + File.separator;
+				handler = changeHandler;
+			} else {
+				watchFile(path);
+				key = path.toString();
+				handler = changed -> {
+					try {
+						if (Files.isSameFile(changed.toPath(), resourcePath.toPath()))
+							changeHandler.accept(changed);
+					} catch (IOException ex) {
+						throw new RuntimeException(ex);
+					}
+				};
+			}
+
+			changeHandlers.put(key, handler);
+			return () -> changeHandlers.remove(key, handler);
+		} catch (IOException ex) {
+			throw new RuntimeException("Failed to initialize " + FileWatcher.class.getSimpleName(), ex);
 		}
-		changeHandlers.clear();
+	}
+
+	private static void watchFile(Path path) {
+		Path dir = path.getParent();
+		try {
+			watchKeys.put(dir.register(watchService, eventKinds), dir);
+			log.debug("Watching {}", dir);
+		} catch (IOException ex) {
+			throw new RuntimeException("Failed to register file watcher for path: " + path, ex);
+		}
+	}
+
+	private static void watchRecursively(Path path) {
+		try {
+			Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+				@Override
+				public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+					WatchKey key = dir.register(watchService, eventKinds);
+					log.debug("Watching {}", dir);
+					watchKeys.put(key, dir);
+					return FileVisitResult.CONTINUE;
+				}
+			});
+		} catch (IOException ex) {
+			throw new RuntimeException("Failed to register recursive file watcher for path: " + path, ex);
+		}
 	}
 }

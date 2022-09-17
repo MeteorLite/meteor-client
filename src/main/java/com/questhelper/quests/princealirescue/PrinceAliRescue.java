@@ -184,7 +184,7 @@ public class PrinceAliRescue extends BasicQuestHelper
 
 	public void setupSteps()
 	{
-		talkToHassan = new NpcStep(this, NpcID.HASSAN, new WorldPoint(3298, 3163, 0), "Talk to Hassan in the Al Kharid Palace.");
+		talkToHassan = new NpcStep(this, NpcID.CHANCELLOR_HASSAN, new WorldPoint(3298, 3163, 0), "Talk to Hassan in the Al Kharid Palace.");
 		talkToHassan.addDialogStep("Can I help you? You must need some help here in the desert.");
 		talkToOsman = new NpcStep(this, NpcID.OSMAN_4286, new WorldPoint(3286, 3180, 0), "Talk to Osman north of the Al Kharid Palace.");
 		talkToOsman.addDialogStep("What is the first thing I must do?");
@@ -205,7 +205,7 @@ public class PrinceAliRescue extends BasicQuestHelper
 		talkToKeli.addDialogStep("Could I touch the key for a moment please?");
 		bringImprintToOsman = new NpcStep(this, NpcID.OSMAN_4286, new WorldPoint(3285, 3179, 0), "Bring the key print to Osman north of the Al Kharid Palace. If you already have, open the quest journal to re-sync.", keyMould, bronzeBar);
 		talkToLeela = new NpcStep(this, NpcID.LEELA, new WorldPoint(3113, 3262, 0), "Talk to Leela east of Draynor Village.", beers3, dyedWig, paste, rope, pinkSkirt);
-		talkToJoe = new NpcStep(this, NpcID.JOE_4275, new WorldPoint(3124, 3245, 0), "Bring everything to the jail and give Joe there three beers.", beers3, key, dyedWig, paste, rope, pinkSkirt);
+		talkToJoe = new NpcStep(this, NpcID.JOE_4019, new WorldPoint(3124, 3245, 0), "Bring everything to the jail and give Joe there three beers.", beers3, key, dyedWig, paste, rope, pinkSkirt);
 		talkToJoe.addDialogStep("I have some beer here, fancy one?");
 		useRopeOnKeli = new NpcStep(this, NpcID.LADY_KELI, new WorldPoint(3127, 3244, 0), "Use rope on Keli.", ropeHighlighted);
 		useRopeOnKeli.addIcon(ItemID.ROPE);
@@ -213,7 +213,7 @@ public class PrinceAliRescue extends BasicQuestHelper
 		useKeyOnDoor.addIcon(ItemID.BRONZE_KEY);
 		talkToAli = new NpcStep(this, NpcID.PRINCE_ALI, new WorldPoint(3123, 3240, 0), "Talk to Prince Ali and free him.", key, dyedWig, paste, pinkSkirt);
 
-		returnToHassan = new NpcStep(this, NpcID.HASSAN, new WorldPoint(3298, 3163, 0), "Return to Hassan in the Al Kharid Palace to complete the quest.");
+		returnToHassan = new NpcStep(this, NpcID.CHANCELLOR_HASSAN, new WorldPoint(3298, 3163, 0), "Return to Hassan in the Al Kharid Palace to complete the quest.");
 	}
 
 	@Override

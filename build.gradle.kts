@@ -46,10 +46,26 @@ dependencies {
     runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.70")
 
     //GPU
-    implementation(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318")
+    implementation(group = "net.runelite.jocl", name = "jocl", version = "1.0")
+    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
+    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
+    implementation(group = "net.runelite", name = "rlawt", version = "1.3")
+    implementation(group = "org.lwjgl", name = "lwjgl", version = "3.3.1")
+    implementation(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-linux")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-windows")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-windows-x86")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-macos")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-macos-arm64")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-linux")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-windows")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-windows-x86")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-macos")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-macos-arm64")
+    /*    implementation(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318")
     implementation(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318")
     implementation(group = "net.runelite.jogl", name = "jogl-gldesktop-dbg", version = "2.4.0-rc-20220318")
-    implementation(group = "net.runelite.jocl", name = "jocl", version = "1.0")
+
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318", classifier = "natives-linux-amd64")
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318", classifier = "natives-windows-amd64")
     runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318", classifier = "natives-windows-i586")
@@ -59,7 +75,7 @@ dependencies {
     runtimeOnly(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318", classifier = "natives-windows-i586")
     runtimeOnly(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318", classifier = "natives-macosx-universal")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
-    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
+    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")*/
 
     //RuneLite Plugins
     implementation("org.slf4j:slf4j-api:1.7.36")
