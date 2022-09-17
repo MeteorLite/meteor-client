@@ -26,7 +26,9 @@ package meteor.plugins.grounditems
 
 import meteor.plugins.grounditems.config.*
 import net.runelite.client.config.*
+import net.runelite.client.plugins.grounditems.Lootbeam
 import java.awt.Color
+
 
 @ConfigGroup("grounditems")
 interface GroundItemsConfig : Config {
@@ -349,8 +351,18 @@ interface GroundItemsConfig : Config {
         description = "Configures which price tiers will trigger a lootbeam",
         position = 31
     )
-    fun showLootbeamTier(): HighlightTier? {
+    fun showLootbeamTier(): HighlightTier {
         return HighlightTier.HIGH
+    }
+
+    @ConfigItem(
+        keyName = "lootbeamStyle",
+        name = "Lootbeam Style",
+        description = "Style of lootbeam to use",
+        position = 32
+    )
+    fun lootbeamStyle(): Lootbeam.Style {
+        return Lootbeam.Style.MODERN
     }
 
     companion object {

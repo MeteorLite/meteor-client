@@ -51,6 +51,7 @@ import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.util.Text
+import net.runelite.client.plugins.grounditems.Lootbeam
 import java.awt.Color
 import java.awt.Rectangle
 import java.time.Instant
@@ -58,6 +59,7 @@ import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
+
 
 @PluginDescriptor(
     name = "Ground Items",
@@ -443,7 +445,7 @@ class GroundItemsPlugin : Plugin() {
             if (config.showLootbeamForHighlighted()
                 && true == highlightedItems!!.getUnchecked(item)
             ) {
-                addLootbeam(worldPoint, config.highlightedColor())
+                addLootbeam(worldPoint, config.highlightedColor()!!)
                 return
             }
 
@@ -478,13 +480,14 @@ class GroundItemsPlugin : Plugin() {
         lootbeams.clear()
     }
 
-    private fun addLootbeam(worldPoint: WorldPoint, color: Color?) {
+    private fun addLootbeam(worldPoint: WorldPoint, color: Color) {
         var lootbeam = lootbeams[worldPoint]
         if (lootbeam == null) {
-            lootbeam = Lootbeam(client, worldPoint, color!!)
+            lootbeam = Lootbeam(client, clientThread, worldPoint, color, config.lootbeamStyle())
             lootbeams[worldPoint] = lootbeam
         } else {
-            lootbeam.setColor(color!!)
+            lootbeam.setColor(color)
+            lootbeam.setStyle(config.lootbeamStyle())
         }
     }
 

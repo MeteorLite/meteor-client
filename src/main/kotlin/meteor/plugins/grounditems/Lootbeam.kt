@@ -22,27 +22,91 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems
+package net.runelite.client.plugins.grounditems
 
-import net.runelite.api.AnimationID
-import net.runelite.api.Client
-import net.runelite.api.JagexColor
-import net.runelite.api.RuneLiteObject
+import lombok.RequiredArgsConstructor
+import meteor.rs.ClientThread
+import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import java.awt.Color
+import java.util.function.Function
 
-internal class Lootbeam(private val client: Client, worldPoint: WorldPoint?, color: Color) {
+class Lootbeam(
+    private val client: Client,
+    private val clientThread: ClientThread,
+    worldPoint: WorldPoint?,
+    color: Color?,
+    style: Style
+) {
     private val runeLiteObject: RuneLiteObject
-    private var color: Color? = null
+    private var color: Color?
+    private var style: Style
+
+    @RequiredArgsConstructor
+    enum class Style(val modelSupplier: Function<Lootbeam, Model?>?, val animationSupplier: Function<Lootbeam, Animation>?) {
+        LIGHT(Function { l: Lootbeam ->
+            l.client.loadModel(
+                5809, shortArrayOf(6371), shortArrayOf(JagexColor.rgbToHSL(l.color!!.rgb, 1.0))
+            )!!
+        }, anim(AnimationID.RAID_LIGHT_ANIMATION)),
+        MODERN(
+            Function { l: Lootbeam ->
+                val md = l.client.loadModelData(43330) ?: return@Function null
+                val hsl = JagexColor.rgbToHSL(l.color!!.rgb, 1.0)
+                val hue = JagexColor.unpackHue(hsl)
+                val sat = JagexColor.unpackSaturation(hsl)
+                val lum = JagexColor.unpackLuminance(hsl)
+                val satDelta = if (sat > 2) 1 else 0
+                md.cloneColors()
+                    .recolor(26432.toShort(), JagexColor.packHSL(hue, sat - satDelta, lum))
+                    .recolor(
+                        26584.toShort(),
+                        JagexColor.packHSL(hue, sat, Math.min(lum + 24, JagexColor.LUMINANCE_MAX))
+                    )
+                    .light(
+                        75 + ModelData.DEFAULT_AMBIENT, 1875 + ModelData.DEFAULT_CONTRAST,
+                        ModelData.DEFAULT_X, ModelData.DEFAULT_Y, ModelData.DEFAULT_Z
+                    )
+            }, anim(AnimationID.LOOTBEAM_ANIMATION)
+        );
+    }
+
+    init {
+        runeLiteObject = client.createRuneLiteObject()
+        this.color = color
+        this.style = style
+        update()
+        runeLiteObject.setShouldLoop(true)
+        val lp = LocalPoint.fromWorld(client, worldPoint)
+        runeLiteObject.setLocation(lp, client.plane)
+        runeLiteObject.isActive = true
+    }
+
     fun setColor(color: Color) {
-        if (this.color != null && this.color == color) {
+        if ((this.color != null) && this.color == color) {
             return
         }
         this.color = color
-        runeLiteObject.model = client.loadModel(
-            RAID_LIGHT_MODEL, shortArrayOf(RAID_LIGHT_FIND_COLOR), shortArrayOf(JagexColor.rgbToHSL(color.rgb, 1.0))
-        )
+        update()
+    }
+
+    fun setStyle(style: Style) {
+        if (this.style == style) {
+            return
+        }
+        this.style = style
+        update()
+    }
+
+    private fun update() {
+        clientThread.invoke {
+            val model = style.modelSupplier!!.apply(this)
+            val anim = style.animationSupplier!!.apply(this)
+            runeLiteObject.setAnimation(anim)
+            runeLiteObject.model = model
+            true
+        }
     }
 
     fun remove() {
@@ -50,17 +114,12 @@ internal class Lootbeam(private val client: Client, worldPoint: WorldPoint?, col
     }
 
     companion object {
-        private const val RAID_LIGHT_MODEL = 5809
-        private const val RAID_LIGHT_FIND_COLOR: Short = 6371
-    }
-
-    init {
-        runeLiteObject = client.createRuneLiteObject()
-        setColor(color)
-        runeLiteObject.setAnimation(client.loadAnimation(AnimationID.RAID_LIGHT_ANIMATION))
-        runeLiteObject.setShouldLoop(true)
-        val lp = LocalPoint.fromWorld(client, worldPoint)
-        runeLiteObject.setLocation(lp, client.plane)
-        runeLiteObject.isActive = true
+        private fun anim(id: Int): Function<Lootbeam, Animation> {
+            return Function { b: Lootbeam ->
+                b.client.loadAnimation(
+                    id
+                )
+            }
+        }
     }
 }
