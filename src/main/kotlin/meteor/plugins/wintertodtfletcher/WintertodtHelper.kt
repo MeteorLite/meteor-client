@@ -17,13 +17,13 @@ import net.runelite.client.config.Config
 )
 class WintertodtHelper : Plugin() {
     override val config = configuration<WintertodtHelperConfig>()
-    var waitForFullInv = true
+    var waitForFullInv = false
     var allowance = 0
     override fun onHitsplatApplied(it: HitsplatApplied) {
-/*        if (it.actor == client.localPlayer) {
+        if (it.actor == client.localPlayer) {
             if (!waitForFullInv)
                 fletch()
-        }*/
+        }
     }
 
     override fun onGameTick(it: GameTick) {
@@ -39,10 +39,10 @@ class WintertodtHelper : Plugin() {
             waitForFullInv = true
         }
 
-/*        if (client.localPlayer!!.isIdle) {
+        if (client.localPlayer!!.isIdle) {
             if (!waitForFullInv)
                 fletch()
-        }*/
+        }
     }
 
     fun getRoot(): Item? { return Items.getFirst("Bruma root") }
