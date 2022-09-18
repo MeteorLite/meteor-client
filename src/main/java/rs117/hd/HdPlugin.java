@@ -1949,7 +1949,12 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		// Texture on UI
 		drawUi(overlayColor, canvasHeight, canvasWidth);
 
-		awtContext.swapBuffers();
+		try {
+			awtContext.swapBuffers();
+		} catch (Exception e) {
+			onStop();
+			return;
+		}
 
 		drawManager.processDrawComplete(this::screenshot);
 

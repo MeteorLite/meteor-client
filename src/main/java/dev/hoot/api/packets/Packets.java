@@ -42,7 +42,7 @@ public class Packets
 			}
 			if (o instanceof String)
 			{
-				packet.getPacketBuffer().writeStringCp1252NullTerminated(((String) (o)));
+				packet.getPacketBuffer().writeString(((String) (o)));
 				continue;
 			}
 			// invalid data
