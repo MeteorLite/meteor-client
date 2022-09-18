@@ -90,13 +90,17 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         AppletConfiguration.init()
         Applet().init()
         Window(
-            onCloseRequest = this::exitApplication,
+            onCloseRequest = Main::shutdown,
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
             content = { this.Window() } //::finishStartup is called at the end of this function
         )
+    }
 
+    fun shutdown() {
+        PluginManager.shutdown()
+        exitApplication()
     }
 
     private fun handleProxy(args: Array<String>) {

@@ -219,7 +219,8 @@ public class GauntletExtendedPlugin extends Plugin
 	@Override
 	public void onStop()
 	{
-		overlays.forEach(o -> overlayManager.remove(o));
+		if (overlays != null)
+			overlays.forEach(o -> overlayManager.remove(o));
 
 		inGauntlet = false;
 		inHunllef = false;

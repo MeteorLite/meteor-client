@@ -103,9 +103,9 @@ class GroundItemsPlugin : Plugin() {
     override fun onStop() {
         mouseManager.unregisterMouseListener(inputListener)
         keyManager.unregisterKeyListener(inputListener)
-        highlightedItems!!.invalidateAll()
+        highlightedItems?.invalidateAll()
         highlightedItems = null
-        hiddenItems!!.invalidateAll()
+        hiddenItems?.invalidateAll()
         hiddenItems = null
         hiddenItemList = null
         highlightedItemsList = null

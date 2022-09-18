@@ -532,7 +532,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 	public void onStop()
 	{
 		FileWatcher.destroy();
-		developerTools.deactivate();
+		//developerTools.deactivate();
 		lightManager.shutDown();
 
 		clientThread.invoke(() ->
