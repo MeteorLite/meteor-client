@@ -14,7 +14,6 @@ import net.runelite.api.MenuAction
 import net.runelite.api.packets.PacketBuffer
 import net.runelite.api.packets.PacketBufferNode
 import net.runelite.api.widgets.Widget
-import net.runelite.api.widgets.WidgetInfo
 import net.runelite.api.widgets.WidgetType
 
 
@@ -51,48 +50,10 @@ object ClientPackets {
         for (methodCall in getPacket(packetName).structure) {
             var value = -1
             when (methodCall.argument) {
-                "itemSlot" -> value = itemSlot
-                "itemWidgetId" -> value = itemWidgetId
+                "param1" -> value = itemSlot
+                "param0" -> value = itemWidgetId
                 "id" -> value = itemId
                 else -> println(methodCall.argument)
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createItemOnItemPacket(
-        packetName: String,
-        sourceItemId: Int,
-        sourceItemSlot: Int,
-        itemId: Int,
-        itemSlot: Int
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value = -1
-            when (methodCall.argument) {
-                "itemSlot" -> value = itemSlot
-                "itemWidgetId" -> value = WidgetInfo.INVENTORY.id //itemWidgetID
-                "id" -> value = itemId
-                "selectedItemWidget" -> WidgetInfo.INVENTORY.id //selectedItemWidgetID
-                "selectedItemSlot" -> value = sourceItemSlot
-                "selectedItemId" -> value = sourceItemId
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createSpellOnItemPacket(packetName: String, itemId: Int, itemSlot: Int, spellWidgetId: Int): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value = -1
-            when (methodCall.argument) {
-                "itemSlot" -> value = itemSlot
-                "itemWidgetId" -> value = WidgetInfo.INVENTORY.id //itemWidgetID
-                "id" -> value = itemId
-                "selectedSpellWidget" -> value = spellWidgetId
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }
@@ -120,29 +81,6 @@ object ClientPackets {
                 "selectedSpellWidget" -> value = itemWidgetID
                 "selectedSpellItemId" -> value = itemID
                 "selectedSpellChildIndex" -> value = itemSlot
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createSpellOnGroundItemPacket(
-        packetName: String,
-        groundItemID: Int,
-        worldX: Int,
-        worldY: Int,
-        spellWidgetId: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "worldX" -> value = worldX
-                "worldY" -> value = worldY
-                "id" -> value = groundItemID
-                "ctrlPressed" -> value = ctrlPressed
-                "spellWidgetId" -> value = spellWidgetId
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }
@@ -187,25 +125,6 @@ object ClientPackets {
                 "selectedSpellWidget" -> value = itemWidgetID
                 "selectedSpellItemId" -> value = itemID
                 "selectedSpellChildIndex" -> value = itemSlot
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createSpellOnNPCPacket(
-        packetName: String,
-        npcIndex: Int,
-        spellWidgetId: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "ctrlPressed" -> value = ctrlPressed
-                "id" -> value = npcIndex
-                "selectedSpellWidget" -> value = spellWidgetId
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }
@@ -287,13 +206,13 @@ object ClientPackets {
         for (methodCall in getPacket(packetName).structure) {
             var value: Any = -1
             when (methodCall.argument) {
-                "worldX" -> value = worldX
-                "worldY" -> value = worldY
+                "param0" -> value = worldX
+                "param1" -> value = worldY
                 "id" -> value = objectID
-                "ctrlPressed" -> value = ctrlPressed
-                "selectedItemWidget" -> value = widgetID
-                "selectedItemId" -> value = itemId
-                "selectedItemSlot" -> value = itemSlot
+                "shiftPressed" -> value = ctrlPressed
+                "selectedSpellWidget" -> value = widgetID
+                "selectedSpellItemId" -> value = itemId
+                "selectedSpellChildIndex" -> value = itemSlot
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }
@@ -336,25 +255,6 @@ object ClientPackets {
                 "param1" -> value = childId
                 "param0" -> value = widgetId
                 "itemId" -> value = itemId
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createSpellOnPlayerPacket(
-        packetName: String,
-        objectId: Int,
-        spellWidgetId: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "id" -> value = objectId
-                "ctrlPressed" -> value = ctrlPressed
-                "spellWidgetId" -> value = spellWidgetId
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }
