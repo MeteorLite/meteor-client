@@ -21,10 +21,10 @@ var pluginsOpen = mutableStateOf(false)
 var configOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
-var notePanel = mutableStateOf(false)
+var lastButtonClicked : ToolbarButton? = null
 lateinit var lastPlugin: Plugin
 val uiColor
-    get() = Color(Main.meteorConfig!!.uiColor().rgb)
+    get() = Color(Main.meteorConfig.uiColor().rgb)
 
 @Composable
 fun FrameWindowScope.Window() {
@@ -34,7 +34,7 @@ fun FrameWindowScope.Window() {
             when {
                 pluginsOpen.value ||
                         configOpen.value ||
-                        notePanel.value -> window.minimumSize = Dimension(Applet().clientWidth, 542)
+                        pluginPanelIsOpen.value -> window.minimumSize = Dimension(Applet().clientWidth, 542)
                 else -> window.minimumSize =
                     Dimension(Applet().minimalWidth, 542)
             }
@@ -47,7 +47,6 @@ fun FrameWindowScope.Window() {
                     pluginPanelIsOpen.value -> pluginPanel.value?.CreateComponent()
                     configOpen.value -> ConfigPanel()
                     pluginsOpen.value -> PluginsPanel()
-                    notePanel.value -> NotesPlugin().notesTextNode()
                 }
                 gameFrame {
                     OSRSPanel()
@@ -79,11 +78,7 @@ val pluginListButton = addButton(
             description = "Opens Plugins list",
             onClick = {
                 when {
-                    notePanel.value -> {
-                        pluginsOpen.value = true
-                    }
                     pluginPanelIsOpen.value -> {
-
                         pluginPanelIsOpen.value = !pluginPanelIsOpen.value
                         if (!pluginsOpen.value)
                             pluginsOpen.value = true

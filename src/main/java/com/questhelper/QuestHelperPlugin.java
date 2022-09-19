@@ -62,8 +62,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static meteor.ui.composables.UIKt.getPluginPanel;
-import static meteor.ui.composables.UIKt.getPluginsOpen;
+import static meteor.ui.composables.UIKt.*;
 import static meteor.ui.composables.toolbar.ToolbarKt.addButton;
 import static meteor.ui.composables.toolbar.ToolbarKt.removeButton;
 
@@ -363,8 +362,10 @@ public class QuestHelperPlugin extends Plugin
 				event.consume();
 				String quest = Text.removeTags(event.getMenuTarget());
 				startUpQuest(quests.get(quest));
-				if (config.autoOpenSidebar())
+				if (config.autoOpenSidebar()) {
+					getPluginPanel().setValue(pluginPanel);
 					openPluginPanel();
+				}
 			}
 			case MENUOP_STOPHELPER, MENUOP_STOPGENERICHELPER -> {
 				event.consume();
@@ -556,8 +557,8 @@ public class QuestHelperPlugin extends Plugin
 			}
 			bankTagsMain.startUp();
 			pluginPanel = new QuestHelperPluginPanel(selectedQuest);
-			pluginPanel.subscribe();
 			getPluginPanel().setValue(pluginPanel);
+			pluginPanel.subscribe();
 		}
 		else
 		{
@@ -567,17 +568,18 @@ public class QuestHelperPlugin extends Plugin
 
 	public Function0<Unit> togglePanel() {
 		return () -> {
-			togglePluginPanel();
+			getPluginPanel().setValue(pluginPanel);
+			togglePluginPanel(toolbarButton);
 			return null;
 		};
 	}
 
 	public void openPluginPanel() {
-		getPluginsOpen().setValue(true);
+		getPluginPanelIsOpen().setValue(true);
 	}
 
 	public void closePluginPanel() {
-		getPluginsOpen().setValue(false);
+		getPluginPanelIsOpen().setValue(false);
 	}
 
 	public void shutDownQuestFromSidebar()

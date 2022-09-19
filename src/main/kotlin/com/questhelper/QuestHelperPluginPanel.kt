@@ -74,7 +74,7 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     @Composable override fun Header() {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.05f).background(darkThemeColors.background)) {
+            modifier = Modifier.width(375.dp).fillMaxHeight(0.05f).background(darkThemeColors.background)) {
             MaterialTheme(colors = darkThemeColors) {
                 Text(quest.getName(),style = TextStyle(color = Color.Cyan, fontSize = 20.sp))
             }
@@ -82,7 +82,7 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     }
 
     @Composable override fun Content() {
-        LazyColumn(modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.surface)) {
+        LazyColumn(modifier = Modifier.width(375.dp).fillMaxHeight().background(darkThemeColors.surface)) {
             item {
                 Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top, modifier = Modifier.fillMaxSize()) {
                     MaterialTheme(colors = darkThemeColors) {
