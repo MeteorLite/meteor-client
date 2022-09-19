@@ -43,7 +43,7 @@ class TrailToSpot
 	 * equal to that of {@link TrailToSpot#getValue()}. Once the next object along the trail has been searched, this
 	 * Varbit's value will be greater than that of {@link TrailToSpot#getValue()}.
 	 */
-	private final Varbits varbit;
+	private final int varbit;
 	/**
 	 * The cutoff reference value to compare against the value of {@link TrailToSpot#getVarbit()} to determine its state
 	 * along the current trail.

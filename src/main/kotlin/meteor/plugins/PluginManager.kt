@@ -52,6 +52,7 @@ import net.runelite.client.plugins.ammo.AmmoPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import net.runelite.client.plugins.camera.CameraPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
+import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.defaultworld.DefaultWorldPlugin
 import net.runelite.client.plugins.fps.FpsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -99,6 +100,7 @@ object PluginManager {
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()
         //init<ChatFilterPlugin>()
+        init<ClueScrollPlugin>()
         init<CombatLevelPlugin>()
         init<CommandsPlugin>()
         init<ContinueClickerPlugin>()

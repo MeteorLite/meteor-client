@@ -354,7 +354,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
 
     private fun getViewportLayer(): Widget? {
         return if (client.isResized) {
-            if (client.getVarbitValue(Varbits.SIDE_PANELS.id) == 1) {
+            if (client.getVarbitValue(Varbits.SIDE_PANELS) == 1) {
                 client.getWidget(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE)
             } else {
                 client.getWidget(WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX)

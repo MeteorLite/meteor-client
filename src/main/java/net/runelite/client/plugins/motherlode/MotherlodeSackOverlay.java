@@ -85,7 +85,7 @@ class MotherlodeSackOverlay extends OverlayPanel
 
 				getPanelComponent().getChildren().add(new LineComponent.Builder()
 						.left("Pay-dirt in sack:")
-					.right(String.valueOf(client.getVarbitValue(Varbits.SACK_NUMBER.getId())))
+					.right(String.valueOf(client.getVarbitValue(Varbits.SACK_NUMBER)))
 					.build());
 			}
 

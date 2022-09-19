@@ -13,7 +13,7 @@ public class Vars
 
 	public static int getBit(Varbits varbits)
 	{
-		return getBit(varbits.getId());
+		return getBit(varbits);
 	}
 
 	public static int getVarp(int id)

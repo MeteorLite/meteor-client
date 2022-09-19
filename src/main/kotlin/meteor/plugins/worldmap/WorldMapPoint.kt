@@ -28,8 +28,7 @@ import net.runelite.api.Point
 import net.runelite.api.coords.WorldPoint
 import java.awt.image.BufferedImage
 
-open class WorldMapPoint {
-    var worldPoint: WorldPoint? = null
+open class WorldMapPoint(var worldPoint: WorldPoint? = null) {
     var image: BufferedImage? = null
     var type: MapPoint.Type? = null
     private var fishingPoint: FishingSpotLocation? = null

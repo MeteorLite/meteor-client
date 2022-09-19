@@ -442,8 +442,8 @@ public class MotherlodePlugin extends Plugin
 
 	private void refreshSackValues()
 	{
-		curSackSize = getClient().getVarbitValue(Varbits.SACK_NUMBER.getId());
-		boolean sackUpgraded = getClient().getVarbitValue(Varbits.SACK_UPGRADED.getId()) == 1;
+		curSackSize = getClient().getVarbitValue(Varbits.SACK_NUMBER);
+		boolean sackUpgraded = getClient().getVarbitValue(Varbits.SACK_UPGRADED) == 1;
 		maxSackSize = sackUpgraded ? SACK_LARGE_SIZE : SACK_SIZE;
 	}
 

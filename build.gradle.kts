@@ -7,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.6.12" }
+val apiRelease by rootProject.extra { "1.6.13" }
 val release by rootProject.extra { "1" }
 group = "meteor"
 version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
@@ -62,24 +62,10 @@ dependencies {
     runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-windows-x86")
     runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-macos")
     runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-macos-arm64")
-    /*    implementation(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318")
-    implementation(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318")
-    implementation(group = "net.runelite.jogl", name = "jogl-gldesktop-dbg", version = "2.4.0-rc-20220318")
-
-    runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318", classifier = "natives-linux-amd64")
-    runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318", classifier = "natives-windows-amd64")
-    runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318", classifier = "natives-windows-i586")
-    runtimeOnly(group = "net.runelite.gluegen", name = "gluegen-rt", version = "2.4.0-rc-20220318", classifier = "natives-macosx-universal")
-    runtimeOnly(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318", classifier = "natives-linux-amd64")
-    runtimeOnly(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318", classifier = "natives-windows-amd64")
-    runtimeOnly(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318", classifier = "natives-windows-i586")
-    runtimeOnly(group = "net.runelite.jogl", name = "jogl-rl", version = "2.4.0-rc-20220318", classifier = "natives-macosx-universal")
-    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
-    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")*/
 
     //RuneLite Plugins
-    implementation("org.slf4j:slf4j-api:1.7.36")
-    implementation("org.slf4j:slf4j-simple:1.7.36")
+    implementation("org.slf4j:slf4j-api:2.0.0")
+    implementation("org.slf4j:slf4j-simple:2.0.0")
     compileOnly(group= "org.projectlombok", name= "lombok", version= "1.18.20")
     annotationProcessor(group= "org.projectlombok", name= "lombok", version= "1.18.20")
 
@@ -93,13 +79,13 @@ dependencies {
     implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.4")
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.7")
     implementation(group = "net.runelite", name = "discord", version = "1.4")
-    implementation("com.formdev:flatlaf:2.3")
-    implementation("com.formdev:flatlaf-intellij-themes:2.3")
+    implementation("com.formdev:flatlaf:2.4")
+    implementation("com.formdev:flatlaf-intellij-themes:2.4")
     implementation("com.miglayout:miglayout:3.7.4")
     implementation("io.insert-koin:koin-core:3.2.0")
     implementation("com.kitfox.svg:svg-salamander:1.0")
-    implementation("com.formdev:flatlaf-extras:2.3")
-    implementation ("com.godaddy.android.colorpicker:compose-color-picker-jvm:0.4.2")
+    implementation("com.formdev:flatlaf-extras:2.4")
+    implementation ("com.godaddy.android.colorpicker:compose-color-picker-jvm:0.5.0")
     implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:1.0.0")
 
     implementation(compose.desktop.currentOs)

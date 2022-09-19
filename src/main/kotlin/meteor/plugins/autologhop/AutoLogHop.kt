@@ -103,11 +103,11 @@ class AutoLogHop : Plugin() {
 
     fun isAttackable(client: Client, player: Player): Boolean {
         var wildernessLevel = 0
-        if (!(client.getVar(Varbits.IN_WILDERNESS.id) == 1 || net.runelite.api.WorldType.isPvpWorld(client.worldType))) {
+        if (!(client.getVar(Varbits.IN_WILDERNESS) == 1 || net.runelite.api.WorldType.isPvpWorld(client.worldType))) {
             return false
         }
         if (net.runelite.api.WorldType.isPvpWorld(client.worldType)) {
-            if (Main.client.getVar(Varbits.IN_WILDERNESS.id) != 1) {
+            if (Main.client.getVar(Varbits.IN_WILDERNESS) != 1) {
                 return abs(client.localPlayer!!.combatLevel - player.combatLevel) <= 15
             }
             wildernessLevel = 15
@@ -214,7 +214,7 @@ class AutoLogHop : Plugin() {
     }
 
     fun inWilderness(): Boolean {
-        return client.getVar(Varbits.IN_WILDERNESS.id) === 1
+        return client.getVar(Varbits.IN_WILDERNESS) === 1
     }
 
     fun isInWhitelist(username: String): Boolean {

@@ -64,7 +64,7 @@ class LineComponent : LayoutableRenderableEntity {
     private var leftColor = Color.WHITE
     private var rightColor = Color.WHITE
     private val leftFont: Font? = null
-    private val rightFont: Font? = null
+    private var rightFont: Font? = null
 
     override fun render(graphics: Graphics2D): Dimension? {
         // Prevent NPEs
@@ -162,6 +162,11 @@ class LineComponent : LayoutableRenderableEntity {
 
         fun rightColor(c: Color): Builder {
             lineComponent.rightColor = c
+            return this
+        }
+
+        fun rightFont(f: Font): Builder {
+            lineComponent.rightFont = f
             return this
         }
 

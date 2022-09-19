@@ -166,13 +166,13 @@ public class TimersPlugin extends Plugin
 	@Override
 	public void onVarbitChanged(VarbitChanged event)
 	{
-		int raidVarb = client.getVarbitValue(Varbits.IN_RAID.getId());
-		int vengCooldownVarb = client.getVarbitValue(Varbits.VENGEANCE_COOLDOWN.getId());
-		int isVengeancedVarb = client.getVarbitValue(Varbits.VENGEANCE_ACTIVE.getId());
+		int raidVarb = client.getVarbitValue(Varbits.IN_RAID);
+		int vengCooldownVarb = client.getVarbitValue(Varbits.VENGEANCE_COOLDOWN);
+		int isVengeancedVarb = client.getVarbitValue(Varbits.VENGEANCE_ACTIVE);
 		int poisonVarp = client.getVarbitValue(VarPlayer.POISON.getId());
-		int pvpVarb = client.getVarbitValue(Varbits.PVP_SPEC_ORB.getId());
-		int corruptionCooldownVarb = client.getVarbitValue(Varbits.CORRUPTION_COOLDOWN.getId());
-		int imbuedHeartCooldownVarb = client.getVarbitValue(Varbits.IMBUED_HEART_COOLDOWN.getId());
+		int pvpVarb = client.getVarbitValue(Varbits.PVP_SPEC_ORB);
+		int corruptionCooldownVarb = client.getVarbitValue(Varbits.CORRUPTION_COOLDOWN);
+		int imbuedHeartCooldownVarb = client.getVarbitValue(Varbits.IMBUED_HEART_COOLDOWN);
 
 		if (lastRaidVarb != raidVarb)
 		{
@@ -536,7 +536,7 @@ public class TimersPlugin extends Plugin
 
 		if (config.showOverload() && message.startsWith("You drink some of your") && message.contains("overload"))
 		{
-			if (client.getVarbitValue(Varbits.IN_RAID.getId()) == 1)
+			if (client.getVarbitValue(Varbits.IN_RAID) == 1)
 			{
 				createGameTimer(OVERLOAD_RAID);
 			}

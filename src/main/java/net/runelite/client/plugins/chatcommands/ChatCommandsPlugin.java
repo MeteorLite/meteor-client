@@ -1117,7 +1117,7 @@ public class ChatCommandsPlugin extends Plugin
 
 	private boolean gambleCountSubmit(ChatInput chatInput, String value)
 	{
-		final int gc = client.getVarbitValue(Varbits.BA_GC.getId());
+		final int gc = client.getVarbitValue(Varbits.BA_GC);
 		final String playerName = client.getLocalPlayer().getName();
 
 		executor.execute(() ->

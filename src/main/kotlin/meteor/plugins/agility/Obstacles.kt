@@ -131,7 +131,7 @@ internal object Obstacles {
         ObjectID.STEPPING_STONE_15412,
         ObjectID.TROPICAL_TREE_15414,
         ObjectID.MONKEYBARS_15417,
-        ObjectID.SKULL_SLOPE_15483,
+/*        ObjectID.SKULL_SLOPE_15483,*/
         ObjectID.ROPE_15487,
         ObjectID.TROPICAL_TREE_16062,  // Falador
         ObjectID.ROUGH_WALL_14898,

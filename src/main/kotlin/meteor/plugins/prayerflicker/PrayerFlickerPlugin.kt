@@ -52,7 +52,7 @@ class PrayerFlickerPlugin : Plugin() {
             return
         }
         if (toggle) {
-            val quickPrayer = client.getVar(Varbits.QUICK_PRAYER.id) === 1
+            val quickPrayer = client.getVar(Varbits.QUICK_PRAYER) === 1
             if (quickPrayer) {
                 togglePrayer()
             }

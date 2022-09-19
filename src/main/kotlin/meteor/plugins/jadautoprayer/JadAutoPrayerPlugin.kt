@@ -34,12 +34,12 @@ class JadAutoPrayerPlugin : Plugin() {
         val actor: Actor = event.actor
         when (actor.animation) {
             AnimationID.TZTOK_JAD_MAGIC_ATTACK, JALTOK_JAD_MAGE_ATTACK -> if (client.getVar(
-                    Varbits.PRAYER_PROTECT_FROM_MAGIC.id
-                ) === 0
+                    Varbits.PRAYER_PROTECT_FROM_MAGIC
+                ) == 0
             ) {
                 activatePrayer(WidgetInfo.PRAYER_PROTECT_FROM_MAGIC)
             }
-            AnimationID.TZTOK_JAD_RANGE_ATTACK, JALTOK_JAD_RANGE_ATTACK -> if (client.getVar(Varbits.PRAYER_PROTECT_FROM_MISSILES.id) === 0) {
+            AnimationID.TZTOK_JAD_RANGE_ATTACK, JALTOK_JAD_RANGE_ATTACK -> if (client.getVar(Varbits.PRAYER_PROTECT_FROM_MISSILES) == 0) {
                 activatePrayer(WidgetInfo.PRAYER_PROTECT_FROM_MISSILES)
             }
             else -> {}

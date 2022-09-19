@@ -101,7 +101,7 @@ class KeyRemappingPlugin : Plugin() {
         if (chatboxInput != null) {
             if (client.gameState == GameState.LOGGED_IN) {
                 val isChatboxTransparent =
-                    client.isResized && client.getVarbitValue(Varbits.TRANSPARENT_CHATBOX.id) == 1
+                    client.isResized && client.getVarbitValue(Varbits.TRANSPARENT_CHATBOX) == 1
                 val textColor: Color =
                     if (isChatboxTransparent) JagexColors.CHAT_TYPED_TEXT_TRANSPARENT_BACKGROUND else JagexColors.CHAT_TYPED_TEXT_OPAQUE_BACKGROUND
                 setChatboxWidgetInput(
