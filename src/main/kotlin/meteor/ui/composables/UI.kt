@@ -34,9 +34,9 @@ fun FrameWindowScope.Window() {
             when {
                 pluginsOpen.value ||
                         configOpen.value ||
-                        pluginPanelIsOpen.value -> window.minimumSize = Dimension(Applet().clientWidth, 542)
+                        pluginPanelIsOpen.value -> window.minimumSize = Dimension(Applet().clientWidth + Main.meteorConfig.toolbarWidth(), 542)
                 else -> window.minimumSize =
-                    Dimension(Applet().minimalWidth, 542)
+                    Dimension(Applet().minimalWidth + Main.meteorConfig.toolbarWidth(), 542)
             }
 
             toolBar {
