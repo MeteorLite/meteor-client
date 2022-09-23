@@ -34,8 +34,12 @@ class AutoRunPlugin : Plugin() {
         get() = client.getVarpValue(173) == 1
 
     private fun toggleRun() {
-
         val runOrb = client.getWidget(WidgetInfo.MINIMAP_TOGGLE_RUN_ORB)
+        runOrb?.let {
+            clientThread.invokeLater {
+                client.invokeMenuAction("", "", 1, MenuAction.CC_OP.id, -1, it.id)
+            }
+        }
     }
 
     fun randInt(r: Random, min: Int, max: Int): Int {
