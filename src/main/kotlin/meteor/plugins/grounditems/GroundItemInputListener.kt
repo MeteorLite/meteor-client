@@ -47,11 +47,9 @@ class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundI
             } else if (lastPress != null && !plugin.hotKeyPressed && config.doubleTapDelay() > 0 && Duration.between(
                     lastPress,
                     Instant.now()
-                ).compareTo(
-                    Duration.ofMillis(
-                        config.doubleTapDelay().toLong()
-                    )
-                ) < 0
+                ) < Duration.ofMillis(
+                    config.doubleTapDelay().toLong()
+                )
             ) {
                 plugin.hideAll = true
                 lastPress = null
@@ -72,7 +70,7 @@ class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundI
     }
 
     override fun mousePressed(e: MouseEvent): MouseEvent {
-        val mousePos = Point(e.x - 5, e.y)
+        val mousePos = Point(e.x, e.y)
         if (plugin.hotKeyPressed) {
             if (SwingUtilities.isLeftMouseButton(e)) {
                 // Process both click boxes for hidden and highlighted items
