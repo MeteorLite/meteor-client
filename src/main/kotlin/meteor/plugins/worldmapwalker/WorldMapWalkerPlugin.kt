@@ -14,6 +14,7 @@ import meteor.plugins.PluginDescriptor
 import meteor.ui.worldmap.WorldMapOverlay
 import net.runelite.api.MenuAction
 import net.runelite.api.coords.WorldPoint
+import net.runelite.api.events.MenuOpened
 import net.runelite.api.widgets.WidgetInfo
 
 
@@ -29,6 +30,7 @@ class WorldMapWalkerPlugin : Plugin() {
     private val overlay = overlay(WorldMapWalkerOverlay(this))
 
     var mapPoint: WorldPoint? = null
+    var lastMapMenuLocation: WorldPoint? = null
     override fun onStop() {
         mapPoint = null
 
@@ -47,6 +49,12 @@ class WorldMapWalkerPlugin : Plugin() {
             return
         }
         Movement.walkTo(mapPoint)
+    }
+
+    override fun onMenuOpened(it: MenuOpened) {
+        lastMapMenuLocation = worldMapToWorldPoint(
+            Game.getClient().mouseCanvasPosition
+        )
     }
 
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
@@ -73,9 +81,7 @@ class WorldMapWalkerPlugin : Plugin() {
             .setType(MenuAction.RUNELITE)
             .onClick {
                 setWorldMapPoint(
-                    worldMapToWorldPoint(
-                        Game.getClient().mouseCanvasPosition
-                    )
+                    lastMapMenuLocation
                 )
             }
     }
