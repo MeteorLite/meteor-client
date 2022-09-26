@@ -1399,10 +1399,27 @@
     "structure": []
   },
   "97": {
-    "name": "field3033",
+    "name": "MOVE_GAMECLICK",
     "size": -1,
     "deobname": "field3033",
-    "structure": []
+    "structure": [
+      {
+        "method": "writeByte",
+        "argument": "_five_"
+      },
+      {
+        "method": "method7962",
+        "argument": "worldX"
+      },
+      {
+        "method": "writeShort",
+        "argument": "worldY"
+      },
+      {
+        "method": "method7952",
+        "argument": "ctrlPressed"
+      }
+    ]
   },
   "98": {
     "name": "OPNPC3",

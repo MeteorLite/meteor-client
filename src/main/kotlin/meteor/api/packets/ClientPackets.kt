@@ -327,6 +327,22 @@ object ClientPackets {
         return packetBuffer
     }
 
+    fun createMovementPacket(worldX: Int, worldY: Int, ctrlPressed: Boolean): PacketBufferNode {
+        val packetName = "MOVE_GAMECLICK"
+        val packetBuffer = preparePacket(packetName)
+        for (methodCall in getPacket(packetName).structure) {
+            var value: Any = -1
+            when (methodCall.argument) {
+                "_five_" -> value = 5
+                "worldX" -> value = worldX
+                "worldY" -> value = worldY
+                "ctrlPressed" -> value = ctrlPressed
+            }
+            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
+        }
+        return packetBuffer
+    }
+
     fun preparePacket(packetName: String): PacketBufferNode {
         val client = Main.client
         val packet = getPacket(packetName)
@@ -571,7 +587,7 @@ object ClientPackets {
             MenuAction.WALK -> {
                 client.destinationX = param0
                 client.destinationY = param1
-                return MovementPackets.createMovement(
+                return createMovementPacket(
                     param0 + client.baseX,
                     param1 + client.baseY,
                     false

@@ -28,9 +28,11 @@ class WorldMapWalkerOverlay(var plugin: WorldMapWalkerPlugin) : Overlay() {
     }
 
     private fun renderPath(graphics: Graphics2D, path: List<WorldPoint>, startIndex: Int) {
-        val pathToDraw: ArrayList<LocalPoint?> = ArrayList<LocalPoint?>(path.size - startIndex)
+        val pathToDraw: ArrayList<LocalPoint?> = ArrayList(path.size - startIndex)
         for (i in startIndex until path.size) {
-            pathToDraw.add(LocalPoint.fromWorld(client, path[i])!!)
+            LocalPoint.fromWorld(client, path[i])?.let {
+                pathToDraw.add(it)
+            }
         }
         val generalPath = GeneralPath(Path2D.WIND_EVEN_ODD, pathToDraw.size)
         for (currentTile in pathToDraw) {

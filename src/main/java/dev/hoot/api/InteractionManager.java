@@ -18,6 +18,7 @@ import meteor.plugins.EventSubscriber;
 import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.MenuAction;
+import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 
@@ -119,7 +120,11 @@ public class InteractionManager extends EventSubscriber
 					{
 						try
 						{
-							Packets.fromAutomatedMenu(e).send();
+							PacketBufferNode packetBufferNode = ClientPackets.INSTANCE.createClientPacket(e);
+							if (packetBufferNode != null)
+								packetBufferNode.send();
+							else
+								System.out.println("No valid packet to write");
 						}
 						catch (InteractionException ex)
 						{
