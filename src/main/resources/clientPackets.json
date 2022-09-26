@@ -6,10 +6,19 @@
     "structure": []
   },
   "1": {
-    "name": "field3023",
+    "name": "EVENT_KEYBOARD",
     "size": -2,
-    "deobname": "",
-    "structure": []
+    "deobname": "field3023",
+    "structure": [
+      {
+        "method": "method7983",
+        "argument": "time"
+      },
+      {
+        "method": "method8136",
+        "argument": "keyPressed"
+      }
+    ]
   },
   "2": {
     "name": "field2938",
@@ -31,7 +40,7 @@
   "4": {
     "name": "field2952",
     "size": -1,
-    "deobname": "",
+    "deobname": "field2952",
     "structure": []
   },
   "5": {
@@ -62,10 +71,15 @@
     ]
   },
   "8": {
-    "name": "field2960",
+    "name": "REFLECTION_CHECK_REPLY",
     "size": -1,
-    "deobname": "",
-    "structure": []
+    "deobname": "field2960",
+    "structure": [
+      {
+        "method": "writeByte",
+        "argument": "response"
+      }
+    ]
   },
   "9": {
     "name": "OPOBJ2",
@@ -260,7 +274,7 @@
   "21": {
     "name": "field2957",
     "size": 0,
-    "deobname": "",
+    "deobname": "field2957",
     "structure": []
   },
   "22": {
@@ -735,7 +749,7 @@
   "50": {
     "name": "field2986",
     "size": 0,
-    "deobname": "",
+    "deobname": "field2986",
     "structure": []
   },
   "51": {
@@ -966,7 +980,7 @@
   "67": {
     "name": "field2940",
     "size": 4,
-    "deobname": "",
+    "deobname": "field2940",
     "structure": []
   },
   "68": {
@@ -987,7 +1001,7 @@
   "69": {
     "name": "field3005",
     "size": 1,
-    "deobname": "",
+    "deobname": "field3005",
     "structure": []
   },
   "70": {
@@ -1051,7 +1065,7 @@
   "72": {
     "name": "field3008",
     "size": 9,
-    "deobname": "",
+    "deobname": "field3008",
     "structure": []
   },
   "73": {
@@ -1215,7 +1229,7 @@
   "84": {
     "name": "field2947",
     "size": 9,
-    "deobname": "",
+    "deobname": "field2947",
     "structure": []
   },
   "85": {
@@ -1273,10 +1287,27 @@
     "structure": []
   },
   "89": {
-    "name": "field3021",
+    "name": "LOGIN_STATISTICS",
     "size": -1,
-    "deobname": "",
-    "structure": []
+    "deobname": "field3021",
+    "structure": [
+      {
+        "method": "writeShort",
+        "argument": "time1"
+      },
+      {
+        "method": "writeShort",
+        "argument": "time2"
+      },
+      {
+        "method": "writeShort",
+        "argument": "time3"
+      },
+      {
+        "method": "writeShort",
+        "argument": "time4"
+      }
+    ]
   },
   "90": {
     "name": "OPOBJ3",
@@ -1370,7 +1401,7 @@
   "97": {
     "name": "field3033",
     "size": -1,
-    "deobname": "",
+    "deobname": "field3033",
     "structure": []
   },
   "98": {
@@ -1439,10 +1470,23 @@
     ]
   },
   "103": {
-    "name": "field3039",
+    "name": "EVENT_MOUSE_CLICK",
     "size": 6,
-    "deobname": "",
-    "structure": []
+    "deobname": "field3039",
+    "structure": [
+      {
+        "method": "writeShort",
+        "argument": "mouseInfo"
+      },
+      {
+        "method": "writeShort",
+        "argument": "x"
+      },
+      {
+        "method": "writeShort",
+        "argument": "y"
+      }
+    ]
   },
   "104": {
     "name": "IF1_BUTTON3",

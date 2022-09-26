@@ -3,7 +3,6 @@ package meteor.plugins.autologhop
 import dev.hoot.api.game.Game
 import dev.hoot.api.game.Worlds
 import dev.hoot.api.items.Inventory
-import dev.hoot.api.packets.MousePackets
 import dev.hoot.api.packets.WidgetPackets
 import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
@@ -11,6 +10,7 @@ import eventbus.events.PlayerSpawned
 import meteor.Main
 import meteor.Main.executor
 import meteor.Main.worldService
+import meteor.api.packets.ClientPackets
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -132,7 +132,7 @@ class AutoLogHop : Plugin() {
         //client.invokeMenuAction("Grand Exchange", "<col=ff9040>Ring of wealth ( )</col>", 3, MenuAction.CC_OP.getId(), -1, equipment.getId());
         val ring: WidgetInfo = WidgetInfo.EQUIPMENT_RING
         val ringWidget: Widget = client.getWidget(ring)!!
-        MousePackets.queueClickPacket(0, 0)
+        ClientPackets.queueClickPacket(0, 0)
         WidgetPackets.widgetAction(ringWidget, "Grand Exchange")
     }
 

@@ -2,10 +2,10 @@ package meteor.plugins.autoalch
 
 import dev.hoot.api.magic.Regular
 import dev.hoot.api.packets.ItemPackets
-import dev.hoot.api.packets.MousePackets
 import eventbus.events.GameTick
 import eventbus.events.StatChanged
 import meteor.api.items.Items
+import meteor.api.packets.ClientPackets
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.Skill
@@ -39,7 +39,7 @@ class AutoAlchPlugin : Plugin() {
         if (timeout == 0) {
             val x = Items.getFirst(config.itemID())
             if (x != null) {
-                MousePackets.queueClickPacket(0, 0)
+                ClientPackets.queueClickPacket(0, 0)
                 val spellToUse =
                     if (config.alchType() == AutoAlchConfig.AlchType.HIGH)
                         Regular.HIGH_LEVEL_ALCHEMY.widget.id

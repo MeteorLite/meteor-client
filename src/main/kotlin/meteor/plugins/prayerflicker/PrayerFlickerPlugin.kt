@@ -1,10 +1,10 @@
 package meteor.plugins.prayerflicker
 
-import dev.hoot.api.packets.MousePackets
 import dev.hoot.api.widgets.Prayers
 import eventbus.events.ClientTick
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
+import meteor.api.packets.ClientPackets
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -32,7 +32,7 @@ class PrayerFlickerPlugin : Plugin() {
 
 
     private fun togglePrayer() {
-        MousePackets.queueClickPacket(0, 0)
+        ClientPackets.queueClickPacket(0, 0)
     }
 
     override fun onStart() {

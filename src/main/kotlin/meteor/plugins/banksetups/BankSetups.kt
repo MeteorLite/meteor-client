@@ -7,13 +7,13 @@ import dev.hoot.api.items.Bank
 import dev.hoot.api.items.Equipment
 import dev.hoot.api.packets.DialogPackets
 import dev.hoot.api.packets.ItemPackets
-import dev.hoot.api.packets.MousePackets
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Dialog
 import eventbus.events.ClientTick
 import eventbus.events.MenuOptionClicked
 import meteor.api.items.Bank.getBankItemWidget
 import meteor.api.items.Items
+import meteor.api.packets.ClientPackets
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -124,7 +124,7 @@ class BankSetups : Plugin() {
                         if (it[1] != 1) {
                             WidgetPackets.widgetAction(item, "Withdraw-X")
                             DialogPackets.sendNumberInput(it[1])
-                            MousePackets.queueClickPacket(0, 0)
+                            ClientPackets.queueClickPacket(0, 0)
                             ItemPackets.queueItemAction1Packet(
                                 WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
                                 item.itemId,
@@ -134,7 +134,7 @@ class BankSetups : Plugin() {
                         }
 
                         WidgetPackets.widgetAction(item, "Withdraw-1")
-                        MousePackets.queueClickPacket(0, 0)
+                        ClientPackets.queueClickPacket(0, 0)
                         ItemPackets.queueItemAction1Packet(
                             WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
                             item.itemId,
@@ -148,7 +148,7 @@ class BankSetups : Plugin() {
                 bankSetups[0].equipment!!.forEach {
                     val items = Items.getFirst(*it) ?: return@forEach
                     if (Bank.isOpen()) {
-                        MousePackets.queueClickPacket(0, 0)
+                        ClientPackets.queueClickPacket(0, 0)
                         ItemPackets.queueItemAction9Packet(
                             WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
                             items.id,
@@ -161,7 +161,7 @@ class BankSetups : Plugin() {
             4 -> {
                 bankSetups[0].inventory.forEach {
                     val item = getBankItemWidget(it[0]) ?: return@forEach
-                    MousePackets.queueClickPacket(0, 0)
+                    ClientPackets.queueClickPacket(0, 0)
                     if (it[1] != 1) {
                         WidgetPackets.widgetAction(item, "Withdraw-X")
                         DialogPackets.sendNumberInput(it[1])

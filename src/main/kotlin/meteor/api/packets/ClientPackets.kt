@@ -4,12 +4,14 @@ import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
-import dev.hoot.api.game.Game
-import dev.hoot.api.packets.*
+import dev.hoot.api.packets.MovementPackets
+import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
+import meteor.Main
 import meteor.model.BufferMethod
 import meteor.model.ObfuscatedBufferStructure
 import meteor.model.ObfuscatedClientPacket
+import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
 import net.runelite.api.packets.PacketBuffer
 import net.runelite.api.packets.PacketBufferNode
@@ -291,8 +293,42 @@ object ClientPackets {
         return packetBuffer
     }
 
+    fun queueClickPacket(mouseInfo: Int, x: Int, y: Int) {
+        invoke { createClickPacket(mouseInfo, x, y).send() }
+    }
+
+    fun queueClickPacket(x: Int, y: Int) {
+        Main.client.mouseLastPressedMillis = System.currentTimeMillis()
+        var mousePressedTime =
+            Main.client.mouseLastPressedMillis - Main.client.clientMouseLastPressedMillis
+        if (mousePressedTime < 0) {
+            mousePressedTime = 0
+        }
+        if (mousePressedTime > 32767) {
+            mousePressedTime = 32767
+        }
+        Main.client.clientMouseLastPressedMillis = Main.client.mouseLastPressedMillis
+        val mouseInfo = (mousePressedTime shl 1) + 1
+        queueClickPacket(mouseInfo.toInt(), x, y)
+    }
+
+    fun createClickPacket(mouseInfo: Int, x: Int, y: Int): PacketBufferNode {
+        val packetName = "EVENT_MOUSE_CLICK"
+        val packetBuffer = preparePacket(packetName)
+        for (methodCall in getPacket(packetName).structure) {
+            var value: Any = -1
+            when (methodCall.argument) {
+                "mouseInfo" -> value = mouseInfo
+                "x" -> value = x
+                "y" -> value = y
+            }
+            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
+        }
+        return packetBuffer
+    }
+
     fun preparePacket(packetName: String): PacketBufferNode {
-        val client = Game.getClient()
+        val client = Main.client
         val packet = getPacket(packetName)
         return client.preparePacket(
             client.createClientPacket(getOpcode(packet), packet.size),
@@ -339,7 +375,7 @@ object ClientPackets {
 
     fun createClientPacket(menu: AutomatedMenu): PacketBufferNode? {
         val opcode = menu.opcode
-        val client = Game.getClient()
+        val client = Main.client
         val id = menu.identifier
         val param0 = menu.param0
         val param1 = menu.param1

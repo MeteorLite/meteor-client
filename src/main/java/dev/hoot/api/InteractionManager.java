@@ -6,7 +6,6 @@ import dev.hoot.api.events.AutomatedMenu;
 import dev.hoot.api.game.GameThread;
 import dev.hoot.api.input.naturalmouse.NaturalMouse;
 import dev.hoot.api.movement.Movement;
-import dev.hoot.api.packets.MousePackets;
 import dev.hoot.api.packets.Packets;
 import dev.hoot.api.widgets.DialogOption;
 import dev.hoot.api.widgets.Widgets;
@@ -14,6 +13,7 @@ import eventbus.events.DialogProcessed;
 import eventbus.events.MenuOptionClicked;
 import meteor.Logger;
 import meteor.Main;
+import meteor.api.packets.ClientPackets;
 import meteor.plugins.EventSubscriber;
 import net.runelite.api.Client;
 import net.runelite.api.Constants;
@@ -112,7 +112,7 @@ public class InteractionManager extends EventSubscriber
 							mouseHandler.sendMovement(clickPoint.x, clickPoint.y);
 						}
 
-						MousePackets.queueClickPacket(clickPoint.x, clickPoint.y);
+						ClientPackets.INSTANCE.queueClickPacket(clickPoint.x, clickPoint.y);
 					}
 
 					GameThread.invoke(() ->
