@@ -29,7 +29,11 @@ package net.runelite.client.plugins.aoewarnings;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import net.runelite.client.config.*;
+import meteor.config.legacy.Config;
+import meteor.config.legacy.ConfigGroup;
+import meteor.config.legacy.ConfigItem;
+import meteor.config.legacy.ConfigSection;
+import meteor.config.legacy.Range;
 
 import java.awt.*;
 import java.util.EnumSet;

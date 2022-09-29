@@ -25,7 +25,11 @@
  */
 package net.runelite.client.plugins.slayer;
 
-import net.runelite.client.config.*;
+import meteor.config.legacy.Alpha;
+import meteor.config.legacy.Config;
+import meteor.config.legacy.ConfigGroup;
+import meteor.config.legacy.ConfigItem;
+import meteor.config.legacy.Units;
 
 import java.awt.*;
 

@@ -1,10 +1,10 @@
 package meteor.plugins.autoalch
 
 
-import net.runelite.client.config.Config
-import net.runelite.client.config.ConfigGroup
-import net.runelite.client.config.ConfigItem
-import net.runelite.client.config.Range
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
+import meteor.config.legacy.Range
 
 @ConfigGroup("autoalch")
 interface AutoAlchConfig : Config {

@@ -1,12 +1,11 @@
 package meteor.config.descriptor
 
-import meteor.config.legacy.ConfigObject
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 
 
 class ConfigItemDescriptor(
-    val item: ConfigItem, val type: Class<*>? = null, val range: Range? = null, val alpha: Alpha? = null,
-    val units: Units? = null, val icon: Icon? = null, val secret: Secret? = null
+        val item: ConfigItem, val type: Class<*>? = null, val range: Range? = null, val alpha: Alpha? = null,
+        val units: Units? = null, val icon: Icon? = null, val secret: Secret? = null
 ) :
     ConfigObject {
 

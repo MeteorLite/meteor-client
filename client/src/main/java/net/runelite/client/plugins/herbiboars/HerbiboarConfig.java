@@ -26,7 +26,10 @@ package net.runelite.client.plugins.herbiboars;
 
 import java.awt.*;
 
-import net.runelite.client.config.*;
+import meteor.config.legacy.Alpha;
+import meteor.config.legacy.Config;
+import meteor.config.legacy.ConfigGroup;
+import meteor.config.legacy.ConfigItem;
 
 @ConfigGroup("herbiboar")
 public interface HerbiboarConfig extends Config

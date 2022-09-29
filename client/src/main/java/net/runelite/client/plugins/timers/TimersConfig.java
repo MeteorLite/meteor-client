@@ -24,7 +24,9 @@
  */
 package net.runelite.client.plugins.timers;
 
-import net.runelite.client.config.*;
+import meteor.config.legacy.Config;
+import meteor.config.legacy.ConfigGroup;
+import meteor.config.legacy.ConfigItem;
 import java.time.Instant;
 
 @ConfigGroup(TimersConfig.GROUP)

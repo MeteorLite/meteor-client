@@ -1,4 +1,4 @@
-package net.runelite.client.config
+package meteor.config.legacy
 
 @Retention(AnnotationRetention.RUNTIME)
     @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.CLASS)

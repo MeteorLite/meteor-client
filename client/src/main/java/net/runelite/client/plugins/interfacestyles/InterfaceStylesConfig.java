@@ -26,7 +26,10 @@
  */
 package net.runelite.client.plugins.interfacestyles;
 
-import net.runelite.client.config.*;
+import meteor.config.legacy.Config;
+import meteor.config.legacy.ConfigGroup;
+import meteor.config.legacy.ConfigItem;
+import meteor.config.legacy.Range;
 
 @ConfigGroup("interfaceStyles")
 public interface InterfaceStylesConfig extends Config

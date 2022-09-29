@@ -24,7 +24,7 @@
  */
 package meteor.plugins.interacthighlight
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 import java.awt.Color
 
 @ConfigGroup("interacthighlight")

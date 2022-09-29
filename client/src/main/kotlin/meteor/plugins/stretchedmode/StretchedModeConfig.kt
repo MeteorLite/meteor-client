@@ -25,7 +25,7 @@
  */
 package meteor.plugins.stretchedmode
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 
 @ConfigGroup("stretchedmode")
 interface StretchedModeConfig : Config {

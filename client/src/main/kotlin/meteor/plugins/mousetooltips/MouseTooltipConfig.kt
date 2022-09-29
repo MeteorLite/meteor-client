@@ -24,9 +24,9 @@
  */
 package meteor.plugins.mousetooltips
 
-import net.runelite.client.config.Config
-import net.runelite.client.config.ConfigGroup
-import net.runelite.client.config.ConfigItem
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
 @ConfigGroup("mousehighlight")
 interface MouseTooltipConfig : Config {

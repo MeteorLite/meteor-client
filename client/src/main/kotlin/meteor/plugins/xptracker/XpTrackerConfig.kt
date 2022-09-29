@@ -25,7 +25,7 @@
  */
 package meteor.plugins.xptracker
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 
 @ConfigGroup("xpTracker")
 interface XpTrackerConfig : Config {

@@ -3,8 +3,8 @@ package meteor.config
 
 import androidx.compose.ui.unit.LayoutDirection
 import meteor.Configuration
+import meteor.config.legacy.*
 import meteor.ui.components.ComponentConstants
-import net.runelite.client.config.*
 import java.awt.BorderLayout
 import java.awt.Color
 

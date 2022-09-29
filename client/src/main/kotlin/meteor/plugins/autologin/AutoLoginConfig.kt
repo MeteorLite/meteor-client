@@ -1,6 +1,6 @@
 package meteor.plugins.autologin
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 
 @ConfigGroup("autologin")
 interface AutoLoginConfig : Config {

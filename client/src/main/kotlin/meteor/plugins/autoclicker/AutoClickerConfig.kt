@@ -1,7 +1,6 @@
 package meteor.plugins.autoclicker
 
-import meteor.config.legacy.ModifierlessKeybind
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
 

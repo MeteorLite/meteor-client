@@ -8,7 +8,7 @@ import meteor.ui.composables.lastButtonClicked
 import meteor.ui.composables.pluginPanelIsOpen
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.overlay.Overlay
-import net.runelite.client.config.Config
+import meteor.config.legacy.Config
 
 open class Plugin : EventSubscriber() {
     open val config: Config? = null

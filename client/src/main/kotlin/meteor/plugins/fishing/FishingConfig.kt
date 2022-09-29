@@ -1,6 +1,6 @@
 package meteor.plugins.fishing
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 import java.awt.Color
 
 @ConfigGroup("fishing")

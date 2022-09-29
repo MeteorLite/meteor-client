@@ -25,7 +25,7 @@
  */
 package meteor.plugins.chatfilter
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 
 @ConfigGroup("chatfilter")
 interface ChatFilterConfig : Config {

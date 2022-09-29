@@ -24,8 +24,8 @@
  */
 package meteor.plugins.grounditems
 
+import meteor.config.legacy.*
 import meteor.plugins.grounditems.config.*
-import net.runelite.client.config.*
 import net.runelite.client.plugins.grounditems.Lootbeam
 import java.awt.Color
 

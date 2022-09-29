@@ -1,7 +1,7 @@
 package meteor.config.descriptor
 
 import meteor.config.legacy.ConfigObject
-import net.runelite.client.config.ConfigSection
+import meteor.config.legacy.ConfigSection
 
 class ConfigSectionDescriptor(val type: Class<*>? , val section: ConfigSection) : ConfigObject {
 

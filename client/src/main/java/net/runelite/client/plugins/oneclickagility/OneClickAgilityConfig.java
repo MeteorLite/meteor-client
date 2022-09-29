@@ -1,6 +1,9 @@
 package net.runelite.client.plugins.oneclickagility;
 
-import net.runelite.client.config.*;
+import meteor.config.legacy.Config;
+import meteor.config.legacy.ConfigGroup;
+import meteor.config.legacy.ConfigItem;
+import meteor.config.legacy.Range;
 
 @ConfigGroup("oneclickagility")
 public interface OneClickAgilityConfig extends Config

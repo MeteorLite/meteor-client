@@ -24,7 +24,7 @@
  */
 package meteor.plugins.inventorytags
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 import java.awt.Color
 
 @ConfigGroup("inventorytags")

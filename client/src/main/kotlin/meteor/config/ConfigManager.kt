@@ -16,7 +16,6 @@ import meteor.config.descriptor.ConfigSectionDescriptor
 import meteor.config.descriptor.ConfigTitleDescriptor
 import meteor.plugins.Plugin
 import net.runelite.api.coords.WorldPoint
-import net.runelite.client.config.*
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 import java.awt.Color
 import java.awt.Dimension

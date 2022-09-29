@@ -26,8 +26,6 @@ package meteor.config.legacy
 
 import com.google.common.cache.CacheBuilder
 import meteor.config.ConfigManager
-import net.runelite.client.config.ConfigGroup
-import net.runelite.client.config.ConfigItem
 import java.lang.invoke.MethodHandle
 import java.lang.invoke.MethodHandles
 import java.lang.reflect.InvocationHandler

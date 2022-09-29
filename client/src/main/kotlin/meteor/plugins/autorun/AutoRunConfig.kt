@@ -1,6 +1,6 @@
 package meteor.plugins.autorun
 
-import net.runelite.client.config.*
+import meteor.config.legacy.*
 
 @ConfigGroup("autorun")
 interface AutoRunConfig : Config {

@@ -24,12 +24,9 @@
  */
 package net.runelite.client.plugins.chatcommands;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
+import meteor.config.legacy.Config;
+import meteor.config.legacy.ConfigGroup;
+import meteor.config.legacy.ConfigItem;
 
 @ConfigGroup("chatcommands")
 public interface ChatCommandsConfig extends Config
