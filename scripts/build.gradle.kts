@@ -11,14 +11,14 @@ repositories{
     mavenCentral()
 }
 dependencies {
-    annotationProcessor(group = "org.eclipse.sisu", name = "org.eclipse.sisu.inject", version = "0.3.4")
+    annotationProcessor(group = "org.eclipse.sisu", name = "org.eclipse.sisu.inject", version = "_")
 
-    compileOnly(group = "org.apache.maven.plugin-tools", name = "maven-plugin-annotations", version = "3.6.0")
+    compileOnly(group = "org.apache.maven.plugin-tools", name = "maven-plugin-annotations", version = "_")
     implementation("net.runelite:cache:1.8.33")
     implementation(project(":api"))
     implementation(project(":logger"))
-    runtimeOnly(group = "com.google.guava", name = "guava", version = "23.2-jre")
-    runtimeOnly(group = "org.apache.maven", name = "maven-plugin-api", version = "3.6.3")
+    runtimeOnly(group = "com.google.guava", name = "guava", version = "_")
+    runtimeOnly(group = "org.apache.maven", name = "maven-plugin-api", version = "_")
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 }

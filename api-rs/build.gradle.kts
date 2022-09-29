@@ -10,27 +10,12 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
+    google()
 }
 
 dependencies {
     implementation(project(":annotations"))
     implementation(project(":api"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:_")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    implementation(kotlin("stdlib-jdk8"))
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenLocal") {
-            version = rootProject.extra.get("release") as String
-            from(components["java"])
-        }
-    }
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 java {

@@ -13,7 +13,7 @@ dependencies{
     implementation(project(":annotations"))
     implementation(project(":logger"))
     implementation(group = "org.bouncycastle", name = "bcprov-jdk15on", version = "1.64")
-    implementation(group = "org.json", name = "json", version = "20220320")
+    implementation(group = "org.json", name = "json", version = "_")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-api:_")

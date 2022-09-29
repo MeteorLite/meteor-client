@@ -1,6 +1,6 @@
 {
-  "name": "Build API",
-  "description": "Verifies api functionality",
+  "name": "Build meteor",
+  "description": "Verifies injection targets and client compilation",
   "iconName": "gradle",
   "categories": ["Java", "Gradle"]
 }

@@ -14,7 +14,7 @@ interface AutoClickerConfig : Config {
         position = 1,
         section = title
     )
-    fun toggle(): ModifierlessKeybind? {
+    fun toggle(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK)
     }
 

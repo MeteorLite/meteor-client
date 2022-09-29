@@ -23,11 +23,11 @@ dependencies{
     implementation(project(":osrs"))
     implementation(project(":logger"))
 
-    implementation(group = "org.ow2.asm", name = "asm", version = "8.0.1")
-    implementation(group = "org.ow2.asm", name = "asm-util", version = "8.0.1")
-    implementation(group = "org.jetbrains", name = "annotations", version = "19.0.0")
-    implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
-    implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.1")
+    implementation(group = "org.ow2.asm", name = "asm", version = "_")
+    implementation(group = "org.ow2.asm", name = "asm-util", version = "_")
+    implementation(group = "org.jetbrains", name = "annotations", version = "_")
+    implementation(group = "com.google.guava", name = "guava", version = "_")
+    implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "_")
 
 }
 

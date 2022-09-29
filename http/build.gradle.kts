@@ -23,12 +23,12 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":logger"))
 
-    annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.20")
-    compileOnly(group = "org.projectlombok", name = "lombok", version = "1.18.20")
-    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
-    implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
+    annotationProcessor(group = "org.projectlombok", name = "lombok", version = "_")
+    compileOnly(group = "org.projectlombok", name = "lombok", version = "_")
+    implementation(group = "com.google.code.gson", name = "gson", version = "_")
+    implementation(group = "com.google.guava", name = "guava", version = "_")
     implementation("com.squareup.okhttp3:okhttp:_")
-    implementation(group = "org.apache.commons", name = "commons-csv", version = "1.4")
+    implementation(group = "org.apache.commons", name = "commons-csv", version = "_")
 }
 
 tasks.test {

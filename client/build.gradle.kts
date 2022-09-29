@@ -2,23 +2,15 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev774"
+    id("org.jetbrains.compose") version "1.2.0-beta01"
     java
     `maven-publish`
 }
 
-val apiRelease by rootProject.extra { "1.6.15" }
+val majorRelease by rootProject.extra { "1.7" }
 val release by rootProject.extra { "1" }
 group = "meteor"
-version = "${apiRelease.split(".")[0]}.${apiRelease.split(".")[1]}${apiRelease.split(".")[2]}.$release"
-
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
-            using(module("androidx.compose.compiler:compiler:1.3.1"))
-        }
-    }
-}
+version = "${majorRelease.split(".")[0]}.${majorRelease.split(".")[1]}.$release"
 
 repositories {
     mavenLocal()
@@ -46,60 +38,50 @@ dependencies {
     runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.70")
 
     //GPU
-    implementation(group = "net.runelite.jocl", name = "jocl", version = "1.0")
-    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-x64")
-    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "1.0", classifier = "macos-arm64")
-    implementation(group = "net.runelite", name = "rlawt", version = "1.3")
-    implementation(group = "org.lwjgl", name = "lwjgl", version = "3.3.1")
-    implementation(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-linux")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-windows")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-windows-x86")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-macos")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "3.3.1", classifier = "natives-macos-arm64")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-linux")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-windows")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-windows-x86")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-macos")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "3.3.1", classifier = "natives-macos-arm64")
+    implementation(group = "net.runelite.jocl", name = "jocl", version = "_")
+    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-x64")
+    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-arm64")
+    implementation(group = "net.runelite", name = "rlawt", version = "_")
+    implementation(group = "org.lwjgl", name = "lwjgl", version = "_")
+    implementation(group = "org.lwjgl", name = "lwjgl-opengl", version = "_")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-linux")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-windows")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-windows-x86")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-macos")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-macos-arm64")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-linux")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-windows")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-windows-x86")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-macos")
+    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-macos-arm64")
 
     //RuneLite Plugins
-    implementation("org.slf4j:slf4j-api:2.0.0")
-    implementation("org.slf4j:slf4j-simple:2.0.0")
-    compileOnly(group= "org.projectlombok", name= "lombok", version= "1.18.20")
-    annotationProcessor(group= "org.projectlombok", name= "lombok", version= "1.18.20")
+    implementation("org.slf4j:slf4j-api:_")
+    implementation("org.slf4j:slf4j-simple:_")
+    compileOnly(group= "org.projectlombok", name= "lombok", version= "_")
+    annotationProcessor(group= "org.projectlombok", name= "lombok", version= "_")
 
     //Util
     implementation("org.rationalityfrontline:kevent:2.1.4")
-    implementation(group = "org.apache.commons", name = "commons-lang3", version = "3.11")
-    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "3.7.0")
-    implementation(group = "com.google.guava", name = "guava", version = "30.1.1-jre")
-    implementation(group = "org.apache.commons", name = "commons-text", version = "1.9")
-    implementation(group = "commons-io", name = "commons-io", version = "2.11.0")
-    implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.4")
-    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.7")
+    implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
+    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
+    implementation(group = "com.google.guava", name = "guava", version = "_")
+    implementation(group = "org.apache.commons", name = "commons-text", version = "_")
+    implementation(group = "commons-io", name = "commons-io", version = "_")
+    implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "_")
+    implementation(group = "com.google.code.gson", name = "gson", version = "_")
     implementation(group = "net.runelite", name = "discord", version = "1.4")
-    implementation("com.formdev:flatlaf:2.4")
-    implementation("com.formdev:flatlaf-intellij-themes:2.4")
-    implementation("com.miglayout:miglayout:3.7.4")
-    implementation("io.insert-koin:koin-core:3.2.0")
-    implementation("com.kitfox.svg:svg-salamander:1.0")
-    implementation("com.formdev:flatlaf-extras:2.4")
-    implementation ("com.godaddy.android.colorpicker:compose-color-picker-jvm:0.5.0")
-    implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:1.0.0")
+    implementation("com.formdev:flatlaf:_")
+    implementation("com.formdev:flatlaf-intellij-themes:_")
+    implementation("com.miglayout:miglayout:_")
+    implementation("io.insert-koin:koin-core:_")
+    implementation("com.kitfox.svg:svg-salamander:_")
+    implementation("com.formdev:flatlaf-extras:_")
+    implementation("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")
+    implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
 
     implementation(compose.desktop.currentOs)
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenLocal") {
-            artifactId = "client"
-            version = "$apiRelease-$release"
-            from(components["kotlin"])
-        }
-    }
+    implementation("org.jetbrains.kotlin:kotlin-reflect:_")
 }
 
 tasks {
@@ -134,7 +116,7 @@ tasks {
         }
     }
     jar {
-        archiveFileName.set("meteor-client-$apiRelease-r$release.jar")
+        archiveFileName.set("meteor-client-$majorRelease-r$release.jar")
 
         manifest {
             attributes(mutableMapOf("Main-class" to "meteor.Main"))

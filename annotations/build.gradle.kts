@@ -7,21 +7,11 @@ plugins {
 group = "meteor"
 version = "1.0.0"
 
-publishing {
-    publications {
-        create<MavenPublication>("mavenLocal") {
-            artifactId = "annotations"
-            version = rootProject.extra.get("release") as String
-            from(components["java"])
-        }
-    }
-}
-
 repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.10")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:_")
 }
 
 tasks.compileJava {
