@@ -1,0 +1,1010 @@
+[
+  {
+    "name": "IF1_BUTTON4",
+    "opcode": 3,
+    "size": 8,
+    "structure": [
+      {
+        "method": "ShortAddLE",
+        "paramater": "param0"
+      },
+      {
+        "method": "Int",
+        "paramater": "param1"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "IF1_BUTTON3",
+    "opcode": 102,
+    "size": 8,
+    "structure": [
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      },
+      {
+        "method": "IntLE",
+        "paramater": "param1"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "param0"
+      }
+    ]
+  },
+  {
+    "name": "IF1_BUTTON2",
+    "opcode": 16,
+    "size": 8,
+    "structure": [
+      {
+        "method": "IntIME",
+        "paramater": "param1"
+      },
+      {
+        "method": "Short",
+        "paramater": "param0"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "IF1_BUTTON1",
+    "opcode": 0,
+    "size": 8,
+    "structure": [
+      {
+        "method": "Int",
+        "paramater": "param1"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "param0"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "IF1_BUTTON5",
+    "opcode": 45,
+    "size": 8,
+    "structure": [
+      {
+        "method": "ShortAddLE",
+        "paramater": "param0"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "id"
+      },
+      {
+        "method": "Int",
+        "paramater": "param1"
+      }
+    ]
+  },
+  {
+    "name": "IF_BUTTONT",
+    "opcode": 39,
+    "size": 16,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "Client.field688"
+      },
+      {
+        "method": "IntIME",
+        "paramater": "selectedSpellWidget"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "var16.itemId"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "selectedSpellChildIndex"
+      },
+      {
+        "method": "Int",
+        "paramater": "param1"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "param0"
+      }
+    ]
+  },
+  {
+    "name": "OPNPC2",
+    "opcode": 32,
+    "size": 3,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "Byte",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER6",
+    "opcode": 10,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ShortAddLE",
+        "paramater": "id"
+      },
+      {
+        "method": "Byte",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPNPC3",
+    "opcode": 9,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER7",
+    "opcode": 30,
+    "size": 3,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPLOC2",
+    "opcode": 8,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ByteSub",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Short",
+        "paramater": "worldY"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "id"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "worldX"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER8",
+    "opcode": 27,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ShortAddLE",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPLOC1",
+    "opcode": 21,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ShortAdd",
+        "paramater": "worldY"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "worldX"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPNPC1",
+    "opcode": 88,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPLOC4",
+    "opcode": 84,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "worldX"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldY"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER2",
+    "opcode": 64,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPNPC6",
+    "opcode": 100,
+    "size": 2,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "var17.id"
+      }
+    ]
+  },
+  {
+    "name": "OPLOC3",
+    "opcode": 34,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldX"
+      },
+      {
+        "method": "Short",
+        "paramater": "worldY"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER3",
+    "opcode": 71,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPNPC4",
+    "opcode": 47,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER4",
+    "opcode": 46,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPLOC6",
+    "opcode": 56,
+    "size": 2,
+    "structure": [
+      {
+        "method": "ShortAddLE",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPNPC5",
+    "opcode": 23,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER5",
+    "opcode": 79,
+    "size": 3,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPLOC5",
+    "opcode": 41,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldX"
+      },
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Short",
+        "paramater": "worldY"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYER1",
+    "opcode": 20,
+    "size": 3,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJ1",
+    "opcode": 40,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ByteSub",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "id"
+      },
+      {
+        "method": "Short",
+        "paramater": "worldY"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "worldX"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJ5",
+    "opcode": 29,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "worldX"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "worldY"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJ4",
+    "opcode": 49,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Short",
+        "paramater": "worldX"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "worldY"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJ3",
+    "opcode": 58,
+    "size": 7,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "worldX"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldY"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJ2",
+    "opcode": 22,
+    "size": 7,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "worldY"
+      },
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "worldX"
+      }
+    ]
+  },
+  {
+    "name": "BUTTON_CLICK",
+    "opcode": 44,
+    "size": 4,
+    "structure": [
+      {
+        "method": "Int",
+        "paramater": "param1"
+      },
+      {
+        "method": "Int",
+        "paramater": "param1"
+      },
+      {
+        "method": "Int",
+        "paramater": "param1"
+      }
+    ]
+  },
+  {
+    "name": "OPLOCT",
+    "opcode": 1,
+    "size": 15,
+    "structure": [
+      {
+        "method": "ShortAdd",
+        "paramater": "Client.field688"
+      },
+      {
+        "method": "Byte",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "worldY"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "selectedSpellChildIndex"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldX"
+      },
+      {
+        "method": "IntME",
+        "paramater": "selectedSpellWidget"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPNPCT",
+    "opcode": 37,
+    "size": 11,
+    "structure": [
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Short",
+        "paramater": "selectedSpellChildIndex"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "IntLE",
+        "paramater": "selectedSpellWidget"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "Client.field688"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYERT",
+    "opcode": 83,
+    "size": 11,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "selectedSpellChildIndex"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      },
+      {
+        "method": "ByteNeg",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Int",
+        "paramater": "selectedSpellWidget"
+      },
+      {
+        "method": "Short",
+        "paramater": "Client.field688"
+      }
+    ]
+  },
+  {
+    "name": "OPLOCU",
+    "opcode": 101,
+    "size": 15,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "selectedItemSlot"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "selectedItemId"
+      },
+      {
+        "method": "ByteAdd",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "Short",
+        "paramater": "worldX"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "IntME",
+        "paramater": "selectedItemWidget"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldY"
+      }
+    ]
+  },
+  {
+    "name": "OPNPCU",
+    "opcode": 54,
+    "size": 11,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "IntIME",
+        "paramater": "selectedItemWidget"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "selectedItemId"
+      },
+      {
+        "method": "ByteSub",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "selectedItemSlot"
+      }
+    ]
+  },
+  {
+    "name": "OPPLAYERU",
+    "opcode": 92,
+    "size": 11,
+    "structure": [
+      {
+        "method": "ShortAddLE",
+        "paramater": "selectedItemId"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "Byte",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "selectedItemSlot"
+      },
+      {
+        "method": "IntIME",
+        "paramater": "selectedItemWidget"
+      }
+    ]
+  },
+  {
+    "name": "OPHELDU",
+    "opcode": 78,
+    "size": 16,
+    "structure": [
+      {
+        "method": "IntIME",
+        "paramater": "selectedItemWidget"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "selectedItemSlot"
+      },
+      {
+        "method": "IntLE",
+        "paramater": "param1"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "Short",
+        "paramater": "param0"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "selectedItemId"
+      }
+    ]
+  },
+  {
+    "name": "OPHELDT",
+    "opcode": 66,
+    "size": 14,
+    "structure": [
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      },
+      {
+        "method": "IntIME",
+        "paramater": "selectedSpellWidget"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "param0"
+      },
+      {
+        "method": "Short",
+        "paramater": "selectedSpellChildIndex"
+      },
+      {
+        "method": "Int",
+        "paramater": "param1"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJU",
+    "opcode": 7,
+    "size": 15,
+    "structure": [
+      {
+        "method": "ByteSub",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "selectedItemSlot"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldX"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "worldY"
+      },
+      {
+        "method": "IntIME",
+        "paramater": "selectedItemWidget"
+      },
+      {
+        "method": "Short",
+        "paramater": "selectedItemId"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJT",
+    "opcode": 31,
+    "size": 15,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "Client.field688"
+      },
+      {
+        "method": "Byte",
+        "paramater": "ctrlPressed"
+      },
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "Int",
+        "paramater": "selectedSpellWidget"
+      },
+      {
+        "method": "Short",
+        "paramater": "worldY"
+      },
+      {
+        "method": "Short",
+        "paramater": "selectedSpellChildIndex"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "worldX"
+      }
+    ]
+  },
+  {
+    "name": "OPHELD5",
+    "opcode": 105,
+    "size": 8,
+    "structure": [
+      {
+        "method": "IntIME",
+        "paramater": "param1"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "param0"
+      }
+    ]
+  },
+  {
+    "name": "OPHELD4",
+    "opcode": 55,
+    "size": 8,
+    "structure": [
+      {
+        "method": "ShortLE",
+        "paramater": "id"
+      },
+      {
+        "method": "IntLE",
+        "paramater": "param1"
+      },
+      {
+        "method": "ShortAddLE",
+        "paramater": "param0"
+      }
+    ]
+  },
+  {
+    "name": "OPHELD3",
+    "opcode": 25,
+    "size": 8,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "Short",
+        "paramater": "param0"
+      },
+      {
+        "method": "IntLE",
+        "paramater": "param1"
+      }
+    ]
+  },
+  {
+    "name": "OPHELD2",
+    "opcode": 76,
+    "size": 8,
+    "structure": [
+      {
+        "method": "IntLE",
+        "paramater": "param1"
+      },
+      {
+        "method": "Short",
+        "paramater": "param0"
+      },
+      {
+        "method": "Short",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPOBJ6",
+    "opcode": 95,
+    "size": 2,
+    "structure": [
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      },
+      {
+        "method": "ShortAdd",
+        "paramater": "id"
+      }
+    ]
+  },
+  {
+    "name": "OPHELD1",
+    "opcode": 104,
+    "size": 8,
+    "structure": [
+      {
+        "method": "Short",
+        "paramater": "id"
+      },
+      {
+        "method": "Short",
+        "paramater": "param0"
+      },
+      {
+        "method": "IntLE",
+        "paramater": "param1"
+      }
+    ]
+  }
+]

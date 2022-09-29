@@ -1,18 +1,14 @@
 # meteor-client
 
  ![Kotlin](https://img.shields.io/badge/kotlin-%230095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white) ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)  
-![OSRS](https://img.shields.io/badge/osrs-204.6-blue.svg) ![api](https://img.shields.io/badge/api-1.3.0-blue.svg) ![rel](https://img.shields.io/badge/rel-1-blue.svg) ![Build Status](https://img.shields.io/github/workflow/status/meteorlite/meteor-client/Build%20MeteorLite)
+![OSRS](https://img.shields.io/badge/osrs-208-blue.svg) ![Build Status](https://img.shields.io/github/workflow/status/meteorlite/meteor-client/Build%20MeteorLite)
 
 
-A modern Old School Runescape client  
-Building depends on artifacts from https://github.com/MeteorLite/meteor-api
+A modern Old School Runescape client
 
-- Client separated from build artifacts (api). This cleans up the client project and improves building substantially.
 - The client core is 100% Kotlin (plugins may be java or kotlin)
 - Uses a Global design that drastically reduces boilerplate from RuneLite's dependency injection design (Koin can be used if need be)
 - The UI is built using https://github.com/JetBrains/compose-jb, offering a modern, cross platform solution (client overlays still use swing)
-- Uses Unethical apis: https://github.com/unethicalite/unethicalite
-- Uses OpenOSRS injector: https://github.com/open-osrs/runelite
 - Uses many ideas / functionality from https://github.com/runelite/runelite
 
 
