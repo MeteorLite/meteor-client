@@ -1,13 +1,11 @@
 package meteor.plugins.guardiansoftherift
 
 import dev.hoot.api.entities.NPCs
+import dev.hoot.api.quests.Quest
 import meteor.game.ItemManager
 import meteor.ui.overlay.Overlay
 import meteor.util.AsyncBufferedImage
-import net.runelite.api.ItemID
-import net.runelite.api.Perspective
-import net.runelite.api.Skill
-import net.runelite.api.TileObject
+import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import java.awt.Color
@@ -86,17 +84,17 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin) : Overlay(
         if (itemID == ItemID.BODY_RUNE)
             return client.getRealSkillLevel(Skill.RUNECRAFT) >= 20
         if (itemID == ItemID.COSMIC_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 27
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 27 && Quest.LOST_CITY.state == QuestState.FINISHED
         if (itemID == ItemID.CHAOS_RUNE)
             return client.getRealSkillLevel(Skill.RUNECRAFT) >= 35
         if (itemID == ItemID.NATURE_RUNE)
             return client.getRealSkillLevel(Skill.RUNECRAFT) >= 44
         if (itemID == ItemID.LAW_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 54
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 54 && Quest.TROLL_STRONGHOLD.state == QuestState.FINISHED
         if (itemID == ItemID.DEATH_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 65
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 65 && Quest.MOURNINGS_END_PART_II.state == QuestState.FINISHED
         if (itemID == ItemID.BLOOD_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 77
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 77 && Quest.SINS_OF_THE_FATHER.state == QuestState.FINISHED
         return false
     }
 
