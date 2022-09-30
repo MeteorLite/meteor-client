@@ -44,7 +44,10 @@ class Lootbeam(
     private var style: Style
 
     @RequiredArgsConstructor
-    enum class Style(val modelSupplier: Function<Lootbeam, Model?>?, val animationSupplier: Function<Lootbeam, Animation>?) {
+    enum class Style(
+        val modelSupplier: Function<Lootbeam, Model?>?,
+        val animationSupplier: Function<Lootbeam, Animation>?
+    ) {
         LIGHT(Function { l: Lootbeam ->
             l.client.loadModel(
                 5809, shortArrayOf(6371), shortArrayOf(JagexColor.rgbToHSL(l.color!!.rgb, 1.0))

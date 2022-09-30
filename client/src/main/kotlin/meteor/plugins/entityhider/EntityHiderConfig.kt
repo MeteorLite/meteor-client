@@ -38,7 +38,7 @@ interface EntityHiderConfig : Config {
         keyName = "hideNPCsNames",
         name = "Hide Specific NPCs",
         description = "Configures whether or not other players are hidden",
-        section = customhider
+        section = "Custom Hider"
     )
     fun hideNPCsNames(): String? {
         return ""
@@ -182,7 +182,7 @@ interface EntityHiderConfig : Config {
         keyName = "hideNPCsOnDeathName",
         name = "Hide NPCs On Death (Name)",
         description = "Configures which NPCs by Name to hide when they die",
-        section = customhider
+        section = "Custom Hider"
     )
     fun hideNPCsOnDeathName(): String {
         return ""
@@ -193,7 +193,7 @@ interface EntityHiderConfig : Config {
         keyName = "hideNPCsOnDeathID",
         name = "Hide NPCs On Death (ID)",
         description = "Configures which NPCs by ID to hide when they die",
-        section = customhider
+        section = "Custom Hider"
     )
     fun hideNPCsOnDeathID(): String? {
         return ""
@@ -204,7 +204,7 @@ interface EntityHiderConfig : Config {
         keyName = "hideNPCsOnAnimationID",
         name = "Hide NPCs On Animation (ID)",
         description = "Configures which NPCs by Animation ID to hide",
-        section = customhider
+        section = "Custom Hider"
     )
     fun hideNPCsOnAnimationID(): String? {
         return ""
@@ -215,7 +215,7 @@ interface EntityHiderConfig : Config {
         keyName = "blacklistDeadNpcsName",
         name = "Hide ALL Dead Blacklist (Name)",
         description = "Configures which NPCs by Name NOT to hide when they die",
-        section = customhider
+        section = "Custom Hider"
     )
     fun blacklistDeadNpcsName(): String {
         return ""
@@ -226,19 +226,18 @@ interface EntityHiderConfig : Config {
         keyName = "blacklistDeadNpcsID",
         name = "Hide ALL Dead Blacklist (ID)",
         description = "Configures which NPCs by ID NOT to hide when they die",
-        section = customhider
+        section = "Custom Hider"
     )
     fun blacklistDeadNpcsID(): String? {
         return ""
     }
 
-    companion object {
-        @ConfigSection(
-            position = 0,
-            name = "Custom Hider",
-            description = "Hide specfic NPCs base of name or death animation",
-            closedByDefault = true
-        )
-        const val customhider = "Custom Hider"
-    }
+    @ConfigSection(
+        position = 0,
+        name = "Custom Hider",
+        description = "Hide specfic NPCs base of name or death animation",
+        closedByDefault = true
+    )
+    val CustomHider: String
+
 }

@@ -8,7 +8,6 @@ import meteor.api.items.Items
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.Skill
-import net.runelite.client.config.Config
 
 @PluginDescriptor(
     name = "Wintertodt Helper",
@@ -45,11 +44,19 @@ class WintertodtHelper : Plugin() {
         }
     }
 
-    fun getRoot(): Item? { return Items.getFirst("Bruma root") }
-    fun getKindling(): Item? { return Items.getFirst("Bruma root") }
-    fun getKnife(): Item? { return Items.getFirst("Knife") }
+    fun getRoot(): Item? {
+        return Items.getFirst("Bruma root")
+    }
 
-    fun fletch() : Boolean {
+    fun getKindling(): Item? {
+        return Items.getFirst("Bruma root")
+    }
+
+    fun getKnife(): Item? {
+        return Items.getFirst("Knife")
+    }
+
+    fun fletch(): Boolean {
         if (client.localPlayer!!.isIdle)
             if (Items.isFull())
                 getRoot()?.let {
@@ -59,7 +66,7 @@ class WintertodtHelper : Plugin() {
         return false
     }
 
-    fun heal() : Boolean {
+    fun heal(): Boolean {
         if (Skills.getBoostedLevel(Skill.HITPOINTS) <= config.healAt())
             Items.getAll()?.let { items ->
                 for (item in items) {

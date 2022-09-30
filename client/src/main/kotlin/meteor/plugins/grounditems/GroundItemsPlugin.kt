@@ -458,7 +458,7 @@ class GroundItemsPlugin : Plugin() {
         }
         if (config.showLootbeamTier() != HighlightTier.OFF) {
             for (highlight in priceChecks) {
-                if (price > highlight.price && price > config.showLootbeamTier()!!.getValueFromTier(config)) {
+                if (price > highlight.price && price > config.showLootbeamTier().getValueFromTier(config)) {
                     addLootbeam(worldPoint, highlight.color)
                     return
                 }

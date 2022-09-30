@@ -4,10 +4,12 @@ import compose.icons.Octicons
 import compose.icons.octicons.Note24
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.composables.*
+import meteor.ui.composables.PluginPanel
+import meteor.ui.composables.pluginPanel
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
+import meteor.ui.composables.uiColor
 
 
 @PluginDescriptor(name = "Notes")

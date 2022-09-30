@@ -12,7 +12,7 @@ interface AutoLogHopConfig : Config {
         name = "Method",
         description = "Logout = log out (0 tick), hop = hop worlds (1 tick), log then hop = logout and hop worlds from client screen (0 tick)",
         position = 10,
-        section = title
+        section = "AutoLogHop"
     )
     fun method(): Method {
         return Method.LOGOUT_HOP
@@ -23,7 +23,7 @@ interface AutoLogHopConfig : Config {
         name = "Teleport Method",
         description = "Logout = log out (0 tick), hop = hop worlds (1 tick), log then hop = logout and hop worlds from client screen (0 tick)",
         position = 11,
-        section = title,
+        section = "AutoLogHop",
         hidden = true,
         unhide = "method",
         unhideValue = "TELEPORT"
@@ -37,7 +37,7 @@ interface AutoLogHopConfig : Config {
         name = "username",
         description = "Username for login",
         position = 12,
-        section = title,
+        section = "AutoLogHop",
         textField = true
     )
     fun user(): String {
@@ -49,7 +49,7 @@ interface AutoLogHopConfig : Config {
         name = "password",
         description = "Password for login",
         position = 13,
-        section = title,
+        section = "AutoLogHop",
         textField = true,
         secret = true
     )
@@ -62,7 +62,7 @@ interface AutoLogHopConfig : Config {
         name = "Disable Wilderness Checks",
         description = "Disable wilderness checks. Makes plugin work everywhere.",
         position = 14,
-        section = title
+        section = "AutoLogHop"
     )
     fun disableWildyChecks(): Boolean {
         return false
@@ -73,7 +73,7 @@ interface AutoLogHopConfig : Config {
         name = "Whitelist",
         description = "Players to ignore - separate with , and don't leave leading/trailing spaces",
         position = 15,
-        section = title
+        section = "AutoLogHop"
     )
     fun whitelist(): String {
         return ""
@@ -84,7 +84,7 @@ interface AutoLogHopConfig : Config {
         name = "Members Worlds",
         description = "Hop to members worlds.",
         position = 16,
-        section = title
+        section = "AutoLogHop"
     )
     fun membersWorlds(): Boolean {
         return true
@@ -95,7 +95,7 @@ interface AutoLogHopConfig : Config {
         name = "Within combat range",
         description = "Will only consider players within combat level bracket of wilderness level",
         position = 18,
-        section = title
+        section = "AutoLogHop"
     )
     fun combatRange(): Boolean {
         return true
@@ -106,14 +106,14 @@ interface AutoLogHopConfig : Config {
         name = "Skulled Players Only",
         description = "Only triggers on skulled players.",
         position = 20,
-        section = title
+        section = "AutoLogHop"
     )
     fun skulledOnly(): Boolean {
         return false
     }
 
-    companion object {
-        @ConfigSection(keyName = "title", name = "Soxs' AutoLogHop", description = "", position = 0)
-        const val title = "Soxs' AutoLogHop"
-    }
+
+    @ConfigSection(keyName = "title", name = "AutoLogHop", description = "", position = 0)
+    val AutoLogHop: String
+
 }

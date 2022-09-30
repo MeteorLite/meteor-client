@@ -137,7 +137,7 @@ fun Plugins() {
                             modifier = Modifier.fillMaxWidth(0.60f).height(32.dp).background(darkThemeColors.background)
                         ) {
                             val external = plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java)
-                            val color = if (external?.external == true) Color.Magenta else Color.Cyan
+                            val color = if (external?.external == true) Color.Magenta else uiColor
                             Text(
                                 plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
                                 style = TextStyle(
@@ -165,7 +165,7 @@ fun Plugins() {
                                     Icon(
                                         Icons.Filled.Refresh,
                                         contentDescription = "Reload plugin",
-                                        tint = Color.Cyan
+                                        tint = uiColor
                                     )
                                 }
                             }

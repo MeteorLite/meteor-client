@@ -50,6 +50,7 @@ internal class StatusBarsOverlay(
 ) : Overlay() {
     private val plugin: StatusBarsPlugin
     private val config: StatusBarsConfig
+
     //TODO
     private val itemStatService = object : ItemStatChangesService {
         override fun getItemStatChanges(id: Int): Effect? {
@@ -211,8 +212,8 @@ internal class StatusBarsOverlay(
         val menuSize = menu.size
         val entry: MenuEntry? = if (menuSize > 0) menu[menuSize - 1] else null
         var restoreValue = 0
-        if (entry != null && entry.getParam1() == WidgetInfo.INVENTORY.getPackedId()) {
-            val change: Effect? = itemStatService.getItemStatChanges(entry.getIdentifier())
+        if (entry != null && entry.param1 == WidgetInfo.INVENTORY.packedId) {
+            val change: Effect? = itemStatService.getItemStatChanges(entry.identifier)
             if (change != null) {
                 for (c in change.calculate(client)!!.statChanges) {
                     val value: Int = c!!.theoretical

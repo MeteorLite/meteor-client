@@ -90,7 +90,7 @@ interface XpTrackerConfig : Config {
         keyName = "skillTabOverlayMenuOptions",
         name = "Add skill tab canvas menu option",
         description = "Configures whether a menu option to show/hide canvas XP trackers will be added to skills on the skill tab",
-        section = overlaySection
+        section = "Overlay"
     )
     fun skillTabOverlayMenuOptions(): Boolean {
         return true
@@ -101,7 +101,7 @@ interface XpTrackerConfig : Config {
         keyName = "onScreenDisplayMode",
         name = "On-screen tracker display mode (top)",
         description = "Configures the information displayed in the first line of on-screen XP overlays",
-        section = overlaySection
+        section = "Overlay"
     )
     fun onScreenDisplayMode(): XpPanelLabel? {
         return XpPanelLabel.XP_GAINED
@@ -112,7 +112,7 @@ interface XpTrackerConfig : Config {
         keyName = "onScreenDisplayModeBottom",
         name = "On-screen tracker display mode (bottom)",
         description = "Configures the information displayed in the second line of on-screen XP overlays",
-        section = overlaySection
+        section = "Overlay"
     )
     fun onScreenDisplayModeBottom(): XpPanelLabel? {
         return XpPanelLabel.XP_HOUR
@@ -209,8 +209,8 @@ interface XpTrackerConfig : Config {
         return 3
     }
 
-    companion object {
-        @ConfigSection(name = "Overlay", description = "Canvas overlay options", position = 99)
-        const val overlaySection = "Overlay"
-    }
+
+    @ConfigSection(name = "Overlay", description = "Canvas overlay options", position = 99)
+    val overlaySection: String
+
 }

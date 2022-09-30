@@ -27,14 +27,14 @@ package meteor.plugins.inventorytags
 import net.runelite.client.config.*
 import java.awt.Color
 
-@ConfigGroup(InventoryTagsConfig.GROUP)
+@ConfigGroup("inventorytags")
 interface InventoryTagsConfig : Config {
     @ConfigItem(
         position = 0,
         keyName = "showTagOutline",
         name = "Outline",
         description = "Configures whether or not item tags show be outlined",
-        section = tagStyleSection
+        section = "How tags are displayed in the inventory"
     )
     fun showTagOutline(): Boolean {
         return true
@@ -45,7 +45,7 @@ interface InventoryTagsConfig : Config {
         keyName = "tagUnderline",
         name = "Underline",
         description = "Configures whether or not item tags should be underlined",
-        section = tagStyleSection
+        section = "How tags are displayed in the inventory"
     )
     fun showTagUnderline(): Boolean {
         return false
@@ -56,7 +56,7 @@ interface InventoryTagsConfig : Config {
         keyName = "tagFill",
         name = "Fill",
         description = "Configures whether or not item tags should be filled",
-        section = tagStyleSection
+        section = "How tags are displayed in the inventory"
     )
     fun showTagFill(): Boolean {
         return false
@@ -68,7 +68,7 @@ interface InventoryTagsConfig : Config {
         keyName = "fillOpacity",
         name = "Fill opacity",
         description = "Configures the opacity of the tag \"Fill\"",
-        section = tagStyleSection
+        section = "How tags are displayed in the inventory"
     )
     fun fillOpacity(): Int {
         return 50
@@ -98,10 +98,7 @@ interface InventoryTagsConfig : Config {
     val group6Color: Color?
         get() = Color(0, 255, 255)
 
-    companion object {
-        const val GROUP = "inventorytags"
 
-        @ConfigSection(name = "Tag display mode", description = "How tags are displayed in the inventory", position = 0)
-        const val tagStyleSection = "tagStyleSection"
-    }
+    @ConfigSection(name = "Tag display mode", description = "How tags are displayed in the inventory", position = 0)
+    val Howtagsaredisplayedintheinventory: String
 }

@@ -37,7 +37,7 @@ interface GroundItemsConfig : Config {
         name = "Highlighted Items",
         description = "Configures specifically highlighted ground items. Format: (item), (item)",
         position = 0,
-        section = itemLists
+        section = "Item Lists"
     )
     fun highlightedItems(): String {
         return ""
@@ -51,7 +51,7 @@ interface GroundItemsConfig : Config {
         name = "Hidden Items",
         description = "Configures hidden ground items. Format: (item), (item)",
         position = 1,
-        section = itemLists
+        section = "Item Lists"
     )
     fun hiddenItems(): String {
         return "Vial, Ashes, Coins, Bones, Bucket, Jug, Seaweed"
@@ -365,14 +365,14 @@ interface GroundItemsConfig : Config {
         return Lootbeam.Style.MODERN
     }
 
-    companion object {
-        @ConfigSection(
-            name = "Item Lists",
-            keyName = "itemLists",
-            description = "The highlighted and hidden item lists",
-            position = 0,
-            closedByDefault = true
-        )
-        const val itemLists = "Item Lists"
-    }
+
+    @ConfigSection(
+        name = "Item Lists",
+        keyName = "Item Lists",
+        description = "The highlighted and hidden item lists",
+        position = 0,
+        closedByDefault = true
+    )
+    val ItemLists: String
+
 }
