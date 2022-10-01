@@ -336,10 +336,10 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
     var setConfigValue by remember {
         mutableStateOf(ConfigManager.stringToObject(getInt.toString(), Int::class.java) as Int)
     }
-    Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
+    Row(modifier = Modifier.fillMaxWidth().height(46.dp).background(Color(0xFF242424))) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.5f).height(32.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(0.5f).height(46.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
@@ -348,12 +348,12 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
 
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))
+            modifier = Modifier.fillMaxWidth().height(46.dp).background(Color(0xFF242424))
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 Text(
                     text = setConfigValue.toString(),
-                    modifier = Modifier.padding(8.dp).width(30.dp),
+                    modifier = Modifier.padding(8.dp).width(46.dp),
                     style = TextStyle(color = uiColor, fontSize = 14.sp, textAlign = TextAlign.Center)
                 )
                 Spacer(Modifier.width(5.dp).background(darkThemeColors.background))
@@ -370,7 +370,7 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
                         println(setConfigValue)
                     },
                     valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
-                    modifier = Modifier.padding(all = 0.dp).background(darkThemeColors.background)
+                    modifier = Modifier.height(12.dp).background(darkThemeColors.background)
                 )
             }
         }
