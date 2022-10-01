@@ -12,7 +12,7 @@ interface AutoClickerConfig : Config {
         name = "Toggle",
         description = "Toggles the auto-clicker.",
         position = 1,
-        section = title
+        section = "AutoClicker"
     )
     fun toggle(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK)
@@ -24,7 +24,7 @@ interface AutoClickerConfig : Config {
         name = "Minimum Delay (ms)",
         description = "Minimum delay between mouse clicks.",
         position = 6,
-        section = clickerConfig
+        section = "Clicker Config"
     )
     fun minDelay(): Int {
         return 1000
@@ -36,14 +36,14 @@ interface AutoClickerConfig : Config {
         name = "Maximum Delay (ms)",
         description = "Maximum delay between mouse clicks.",
         position = 7,
-        section = clickerConfig
+        section = "Clicker Config"
     )
     fun maxDelay(): Int {
         return 2000
     }
 
     @Range(textInput = true)
-    @ConfigItem(keyName = "target", name = "Delay Target", description = "", position = 8, section = clickerConfig)
+    @ConfigItem(keyName = "target", name = "Delay Target", description = "", position = 8, section = "Clicker Config")
     fun target(): Int {
         return 1500
     }
@@ -54,7 +54,7 @@ interface AutoClickerConfig : Config {
         name = "Delay Deviation",
         description = "",
         position = 9,
-        section = clickerConfig
+        section = "Clicker Config"
     )
     fun deviation(): Int {
         return 100
@@ -66,7 +66,7 @@ interface AutoClickerConfig : Config {
         name = "AFK Frequency (%)",
         description = "% chance to go AFK.",
         position = 11,
-        section = afkDelayTitle
+        section = "Random AFK"
     )
     fun frequencyAFK(): Int {
         return 3
@@ -78,7 +78,7 @@ interface AutoClickerConfig : Config {
         name = "Min AFK Delay (ms)",
         description = "Minimum AFK delay.",
         position = 12,
-        section = afkDelayTitle
+        section = "Random AFK"
     )
     fun minDelayAFK(): Int {
         return 5000
@@ -90,7 +90,7 @@ interface AutoClickerConfig : Config {
         name = "Max AFK Delay (ms)",
         description = "Maximum AFK delay.",
         position = 13,
-        section = afkDelayTitle
+        section = "Random AFK"
     )
     fun maxDelayAFK(): Int {
         return 20000
@@ -102,7 +102,7 @@ interface AutoClickerConfig : Config {
         name = "AFK Skew (Tightness)",
         description = "The degree to which the AFK random weights cluster around the mode of the distribution; higher values mean tighter clustering.",
         position = 14,
-        section = afkDelayTitle
+        section = "Random AFK"
     )
     fun weightSkewAFK(): Int {
         return 8
@@ -114,7 +114,7 @@ interface AutoClickerConfig : Config {
         name = "AFK Bias (Offset)",
         description = "The tendency of the AFK mode to reach the min, max or midpoint value; positive values bias toward max, negative values toward min.",
         position = 15,
-        section = afkDelayTitle
+        section = "Random AFK"
     )
     fun weightBiasAFK(): Int {
         return 8
@@ -125,7 +125,7 @@ interface AutoClickerConfig : Config {
         name = "Weighted Distribution",
         description = "Shifts the random distribution towards the lower end at the target, otherwise it will be an even distribution",
         position = 16,
-        section = clickerConfig
+        section = "Clicker Config"
     )
     fun weightedDistribution(): Boolean {
         return false
@@ -136,7 +136,7 @@ interface AutoClickerConfig : Config {
         name = "Follow Mouse",
         description = "Click at the mouse location.",
         position = 17,
-        section = clickerConfig
+        section = "Clicker Config"
     )
     fun followMouse(): Boolean {
         return true
@@ -147,13 +147,13 @@ interface AutoClickerConfig : Config {
         name = "Disable Real Mouse",
         description = "Disable the real mouse after the clicker has started, to prevent interference after setting it up.",
         position = 18,
-        section = clickerConfig
+        section = "Clicker Config"
     )
     fun disableRealMouse(): Boolean {
         return true
     }
 
-    @ConfigItem(keyName = "disableUI", name = "Disable UI", description = "", position = 19, section = clickerConfig)
+    @ConfigItem(keyName = "disableUI", name = "Disable UI", description = "", position = 19, section = "Clicker Config")
     fun disableUI(): Boolean {
         return false
     }
@@ -163,7 +163,7 @@ interface AutoClickerConfig : Config {
         name = "Skip When Moving",
         description = "",
         position = 21,
-        section = clickerFilters
+        section = "Clicker Filters"
     )
     fun skipOnMoving(): Boolean {
         return false
@@ -174,7 +174,7 @@ interface AutoClickerConfig : Config {
         name = "Skip On Interaction",
         description = "",
         position = 22,
-        section = clickerFilters
+        section = "Clicker Filters"
     )
     fun skipOnInteraction(): Boolean {
         return false
@@ -185,7 +185,7 @@ interface AutoClickerConfig : Config {
         name = "Skip On Animating",
         description = "",
         position = 23,
-        section = clickerFilters
+        section = "Clicker Filters"
     )
     fun skipOnAnimating(): Boolean {
         return false
@@ -196,7 +196,7 @@ interface AutoClickerConfig : Config {
         name = "Mouse On NPC",
         description = "",
         position = 24,
-        section = clickerFilters
+        section = "Clicker Filters"
     )
     fun mouseOnNPC(): Boolean {
         return false
@@ -208,7 +208,7 @@ interface AutoClickerConfig : Config {
         name = "NPC ID",
         description = "",
         position = 25,
-        section = clickerFilters,
+        section = "Clicker Filters",
         hidden = true,
         unhide = "mouseOnNPC"
     )
@@ -226,17 +226,17 @@ interface AutoClickerConfig : Config {
         return true
     }
 
-    companion object {
-        @ConfigSection(keyName = "title", name = "AutoClicker", description = "", position = 0)
-        const val title = "AutoClicker"
 
-        @ConfigSection(keyName = "clickerConfig", name = "Clicker Config", description = "", position = 5)
-        const val clickerConfig = "Clicker Config"
+    @ConfigSection(keyName = "title", name = "AutoClicker", description = "", position = 0)
+    val title: String
 
-        @ConfigSection(keyName = "afkDelayTitle", name = "Random AFK", description = "", position = 10)
-        const val afkDelayTitle = "Random AFK"
+    @ConfigSection(keyName = "Clicker Config", name = "Clicker Config", description = "", position = 5)
+    val ClickerConfig: String
 
-        @ConfigSection(keyName = "clickerFilters", name = "Clicker Filters", description = "", position = 20)
-        const val clickerFilters = "Clicker Filters"
-    }
+    @ConfigSection(keyName = "afkDelayTitle", name = "Random AFK", description = "", position = 10)
+    val RandomAFK: String
+
+    @ConfigSection(keyName = "Clicker Filters", name = "Clicker Filters", description = "", position = 20)
+    val ClickerFilters: String
+
 }

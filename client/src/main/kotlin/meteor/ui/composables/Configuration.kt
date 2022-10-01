@@ -25,7 +25,6 @@ import com.godaddy.android.colorpicker.harmony.ColorHarmonyMode
 import com.godaddy.android.colorpicker.harmony.HarmonyColorPicker
 import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft24
-import compose.icons.octicons.Sync24
 import eventbus.Events
 import eventbus.events.ConfigButtonClicked
 import meteor.Main
@@ -34,10 +33,10 @@ import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
 import meteor.config.legacy.ModifierlessKeybind
 import meteor.plugins.PluginDescriptor
+import meteor.ui.composables.toolbar.sectionItem
 import meteor.util.ColorUtil
 import java.awt.Button
 import java.awt.event.KeyEvent
-import java.util.stream.Collectors
 
 
 @Composable
@@ -84,7 +83,7 @@ fun ConfigPanelHeader() {
                     Icon(
                         imageVector = Octicons.ChevronLeft24,
                         contentDescription = "Back to plugin page",
-                        tint = Color.Cyan
+                        tint = uiColor,
                     )
                 }
             }
@@ -93,7 +92,7 @@ fun ConfigPanelHeader() {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                         lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
-                        style = TextStyle(color = Color.Cyan, fontSize = 24.sp),
+                        style = TextStyle(color = uiColor, fontSize = 24.sp),
                         modifier = Modifier.padding(top = 10.dp)
                     )
                 }
@@ -105,25 +104,13 @@ fun ConfigPanelHeader() {
             horizontalArrangement = Arrangement.End,
         ) {
             val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
-/*            IconButton(onClick = {
-                lastPlugin.config?.let {
-                    println("should reset")
-                    ConfigManager.setDefaultConfiguration(it.javaClass, true)
-                    configOpen.value = false
-                }
-            }) {
-                Icon(
-                    imageVector = Octicons.Sync24,
-                    contentDescription = "Reset Configuration",
-                    tint = Color.Cyan
-                )
-            }*/
+
             Switch(
                 switchState.value,
                 onPluginToggled(switchState, lastPlugin),
                 enabled = true,
                 modifier = Modifier.scale(0.75f),
-                colors = SwitchDefaults.colors(checkedThumbColor = Color(133, 255, 215))
+                colors = SwitchDefaults.colors(checkedThumbColor = uiColor)
             )
 
         }
@@ -147,9 +134,73 @@ fun Configs() {
 
             if (descriptor != null) {
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
-                    items(items = descriptor.items.stream().sorted(
-                        Comparator.comparingInt { obj: ConfigItemDescriptor -> obj.position() })
-                        .collect(Collectors.toList()), itemContent = { configuration ->
+                    val sectList = descriptor.sections.sortedBy { it.section.name }.toMutableList()
+                    val title = descriptor.titles.sortedBy { it.title.position }.toMutableList()
+                    items(items = sectList) { sect ->
+                        sectionItem(title = sect.name()) {
+                            val sections = mutableListOf<ConfigItemDescriptor>()
+                            val kotlinSection = descriptor.items.filter{it.item.section == sect.name()}.toMutableList()
+                            val javaSection = descriptor.items.filter{ sect.type == String::class.java  } .toMutableList()
+                            val sectionList = sections.also{
+                                it.addAll(kotlinSection)
+                                it.addAll(javaSection)
+                            }
+                            sectionList.sortedBy { it.item.position }.toMutableList()
+                                .forEach { configuration ->
+                                    when (configuration.type) {
+                                        Int::class.javaPrimitiveType -> {
+                                            if (configuration.range != null) {
+                                                if (configuration.range.textInput) {
+                                                    createIntegerTextNode(descriptor, configuration)
+                                                } else {
+                                                    createSliderIntegerNode(descriptor, configuration)
+                                                }
+                                            } else if (configuration.item.textField) {
+                                                createIntegerAreaTextNode(descriptor, configuration)
+                                            } else {
+                                                createIntegerTextNode(descriptor, configuration)
+                                            }
+                                        }
+
+                                        Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor, configuration)
+                                        Button::class.java -> createButtonNode(descriptor, configuration)
+                                        java.awt.Color::class.java -> createColorPickerNode(descriptor, configuration)
+                                        ModifierlessKeybind::class.java -> createHotKeyNode(descriptor, configuration)
+                                        String::class.java -> {
+                                            if (configuration.item.textField) {
+                                                createStringAreaTextNode(descriptor, configuration)
+                                            } else {
+                                                createStringTextNode(descriptor, configuration)
+                                            }
+                                        }
+                                        else -> {
+                                            if (configuration.type?.isEnum == true) {
+                                                createEnumNode(descriptor, configuration)
+                                            }
+                                        }
+                                    }
+                                }
+                        }
+                    }
+
+                    items(items = title) {
+
+                        BoxWithConstraints( modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),contentAlignment = Alignment.TopCenter) {
+                            Text(
+                                modifier = Modifier.fillMaxWidth().padding(it.title.padding .dp),
+                                text = it.name(),
+                                style = TextStyle(
+                                    color = uiColor,
+                                    fontSize = it.title.size.sp,
+                                    textAlign = TextAlign.Center,
+                                )
+
+                            )
+                        }
+
+                    }
+                    items(items = descriptor.items.sortedBy { it.item.position }.filter { it.item.section.isEmpty()}.toMutableList())
+                    { configuration ->
                         when (configuration.type) {
                             Int::class.javaPrimitiveType -> {
                                 if (configuration.range != null) {
@@ -164,7 +215,6 @@ fun Configs() {
                                     createIntegerTextNode(descriptor, configuration)
                                 }
                             }
-
                             Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor, configuration)
                             Button::class.java -> createButtonNode(descriptor, configuration)
                             java.awt.Color::class.java -> createColorPickerNode(descriptor, configuration)
@@ -183,7 +233,7 @@ fun Configs() {
                                 }
                             }
                         }
-                    })
+                    }
                 }
             }
         }
@@ -206,7 +256,7 @@ fun createBooleanNode(descriptor: ConfigDescriptor, configItemDescriptor: Config
             modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
             }
         }
         Row(
@@ -248,7 +298,7 @@ fun createHotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigI
                 label = {
                     Text(
                         configItemDescriptor.name(),
-                        style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                        style = TextStyle(color = uiColor, fontSize = 14.sp)
                     )
                 },
                 value = keybind.toString(),
@@ -263,7 +313,7 @@ fun createHotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigI
 
                         }
                         true
-                    }.background(Color(0xFF242424), RoundedCornerShape(4.dp)).width(150.dp)
+                    }.background(darkThemeColors.background, RoundedCornerShape(4.dp)).width(150.dp)
             )
         }
         Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
@@ -291,7 +341,7 @@ fun createColorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
         modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
     ) {
         MaterialTheme(colors = darkThemeColors) {
-            Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+            Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
         }
     }
     Row(
@@ -341,7 +391,7 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
             modifier = Modifier.fillMaxWidth(0.5f).height(32.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
             }
         }
 
@@ -353,7 +403,7 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
                 Text(
                     text = setConfigValue.toString(),
                     modifier = Modifier.padding(8.dp).width(30.dp),
-                    style = TextStyle(color = Color.Cyan, fontSize = 14.sp, textAlign = TextAlign.Center)
+                    style = TextStyle(color = uiColor, fontSize = 14.sp, textAlign = TextAlign.Center)
                 )
                 Spacer(Modifier.width(5.dp).background(darkThemeColors.background))
                 Slider(
@@ -411,11 +461,11 @@ fun createIntegerAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor, fontSize = 14.sp)
                         )
                     },
                     maxLines = 30,
-                    textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
                 )
             }
         }
@@ -461,10 +511,10 @@ fun createIntegerTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor, fontSize = 14.sp)
                         )
                     },
-                    textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
                 )
             }
         }
@@ -506,11 +556,11 @@ fun createStringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor:
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor, fontSize = 14.sp)
                         )
                     },
                     maxLines = 30,
-                    textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
                 )
             }
         }
@@ -552,12 +602,12 @@ fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Con
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor, fontSize = 14.sp)
                         )
                     },
                     singleLine = true,
                     modifier = Modifier.padding(all = 3.dp).fillMaxWidth(),
-                    textStyle = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
                 )
             }
         }
@@ -591,7 +641,7 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
             modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
             }
         }
         Row(
@@ -602,7 +652,7 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
                 Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
                     Text(
                         list[selectedIndex].name,
-                        color = Color.Cyan,
+                        color = uiColor,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true })
                             .background(
@@ -624,7 +674,7 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
                                     list[selectedIndex].name
                                 )
                             }, content = {
-                                Text(text = s.toString(), color = Color.Cyan, fontSize = 14.sp)
+                                Text(text = s.toString(), color = uiColor, fontSize = 14.sp)
                             })
                         }
                     }
@@ -653,7 +703,7 @@ fun createButtonNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigI
             modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = Color.Cyan, fontSize = 14.sp))
+                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
             }
         }
         Row(

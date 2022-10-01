@@ -10,7 +10,7 @@ interface AutoRunConfig : Config {
         name = "Enable Run (Min.)",
         description = "The minimum run-energy to wait for before re-enabling run.",
         position = 10,
-        section = title
+        section = "AutoRun"
     )
     fun minRun(): Int {
         return 5
@@ -22,14 +22,14 @@ interface AutoRunConfig : Config {
         name = "Enable Run (Max.)",
         description = "The maximum run-energy to wait for before re-enabling run.",
         position = 12,
-        section = title
+        section = "AutoRun"
     )
     fun maxRun(): Int {
         return 35
     }
 
-    companion object {
-        @ConfigSection(keyName = "title", name = "Soxs' AutoRun", description = "", position = 0)
-        const val title = "Soxs' AutoRun"
-    }
+
+    @ConfigSection(keyName = "AutoRun", name = "AutoRun", description = "", position = 0)
+    val AutoRun: String
+
 }

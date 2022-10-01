@@ -16,6 +16,7 @@ class CtrlPlayerOptions : Plugin() {
     override fun onStart() {
         KeyManager.registerKeyListener(CtrlKeyListener, CtrlPlayerOptions::class.java)
     }
+
     override fun onStop() {
         KeyManager.unregisterKeyListener(CtrlKeyListener)
     }
@@ -25,9 +26,15 @@ class CtrlPlayerOptions : Plugin() {
         if (!CtrlKeyListener.ctrlPressed) {
             client.menuEntries.forEach {
                 when (it.option) {
-                    "Follow" -> {if (!config.hideFollow()) entryList.add(it)}
-                    "Trade with" -> {if (!config.hideTradeWith()) entryList.add(it)}
-                    "Report" -> {if (!config.hideReport()) entryList.add(it)}
+                    "Follow" -> {
+                        if (!config.hideFollow()) entryList.add(it)
+                    }
+                    "Trade with" -> {
+                        if (!config.hideTradeWith()) entryList.add(it)
+                    }
+                    "Report" -> {
+                        if (!config.hideReport()) entryList.add(it)
+                    }
                     else -> entryList.add(it)
                 }
             }

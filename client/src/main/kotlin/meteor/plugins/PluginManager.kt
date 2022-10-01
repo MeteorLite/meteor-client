@@ -19,6 +19,7 @@ import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.commands.CommandsPlugin
 import meteor.plugins.continueclicker.ContinueClickerPlugin
+import meteor.plugins.ctrlplayeroptions.CtrlPlayerOptions
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
@@ -43,7 +44,6 @@ import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
 import meteor.plugins.tileindicators.TileIndicatorsPlugin
-import meteor.plugins.ctrlplayeroptions.CtrlPlayerOptions
 import meteor.plugins.wintertodtfletcher.WintertodtHelper
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
@@ -215,7 +215,11 @@ object PluginManager {
             ConfigManager.setDefaultConfiguration(it, false)
         }
 
-        if (ConfigManager.getConfiguration(plugin.javaClass.simpleName, "pluginEnabled") != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup)
+        if (ConfigManager.getConfiguration(
+                plugin.javaClass.simpleName,
+                "pluginEnabled"
+            ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
+        )
             ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
         runningMap[plugin] = plugin.shouldEnable()
@@ -232,7 +236,11 @@ object PluginManager {
             if (plugins.any { p -> p.getName().equals(plugin.getName()) })
                 throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
-            if (ConfigManager.getConfiguration(plugin.javaClass.simpleName, "pluginEnabled") != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup)
+            if (ConfigManager.getConfiguration(
+                    plugin.javaClass.simpleName,
+                    "pluginEnabled"
+                ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
+            )
                 ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
             plugins.add(plugin)

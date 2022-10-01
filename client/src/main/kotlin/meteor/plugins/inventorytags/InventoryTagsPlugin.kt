@@ -53,18 +53,18 @@ class InventoryTagsPlugin : Plugin() {
 
     private var editorMode = false
     fun getTag(itemId: Int): String? {
-        val tag = ConfigManager.getConfiguration(InventoryTagsConfig.Companion.GROUP, ITEM_KEY_PREFIX + itemId)
+        val tag = ConfigManager.getConfiguration("inventorytags", ITEM_KEY_PREFIX + itemId)
         return if (tag == null || tag.isEmpty()) {
             null
         } else tag
     }
 
     private fun setTag(itemId: Int, tag: String) {
-        ConfigManager.setConfiguration(InventoryTagsConfig.Companion.GROUP, ITEM_KEY_PREFIX + itemId, tag)
+        ConfigManager.setConfiguration("inventorytags", ITEM_KEY_PREFIX + itemId, tag)
     }
 
     private fun unsetTag(itemId: Int) {
-        ConfigManager.unsetConfiguration(InventoryTagsConfig.Companion.GROUP, ITEM_KEY_PREFIX + itemId)
+        ConfigManager.unsetConfiguration("inventorytags", ITEM_KEY_PREFIX + itemId)
     }
 
     @Throws(Exception::class)
@@ -79,7 +79,7 @@ class InventoryTagsPlugin : Plugin() {
     }
 
     override fun onConfigChanged(it: ConfigChanged) {
-        if (it.group == InventoryTagsConfig.Companion.GROUP) {
+        if (it.group == "inventorytags") {
             overlay.invalidateCache()
         }
     }

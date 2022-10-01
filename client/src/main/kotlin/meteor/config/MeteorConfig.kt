@@ -68,7 +68,7 @@ interface MeteorConfig : Config {
         name = "Display infoboxes vertically",
         description = "Toggles the infoboxes to display vertically",
         position = 40,
-        section = overlaySettings,
+        section = "Overlay Settings",
         hidden = true
     )
     fun infoBoxVertical(): Boolean {
@@ -80,7 +80,7 @@ interface MeteorConfig : Config {
         name = "Infobox size",
         description = "Configures the size of each infobox in pixels",
         position = 42,
-        section = overlaySettings
+        section = "Overlay Settings"
     )
     @Units(Units.PIXELS)
     fun infoBoxSize(): Int {
@@ -92,7 +92,7 @@ interface MeteorConfig : Config {
         name = "Outline infobox text",
         description = "Draw a full outline instead of a simple shadow for infobox text",
         position = 43,
-        section = overlaySettings
+        section = "Overlay Settings"
     )
     fun infoBoxTextOutline(): Boolean {
         return false
@@ -104,7 +104,7 @@ interface MeteorConfig : Config {
         name = "Overlay Color",
         description = "Configures the background color of infoboxes and overlays",
         position = 44,
-        section = overlaySettings
+        section = "Overlay Settings"
     )
     fun overlayBackgroundColor(): Color {
         return ComponentConstants.STANDARD_BACKGROUND_COLOR
@@ -114,7 +114,6 @@ interface MeteorConfig : Config {
         NORTH(BorderLayout.NORTH), SOUTH(BorderLayout.SOUTH), EAST(BorderLayout.EAST), WEST(BorderLayout.WEST);
     }
 
-    companion object {
 
 
         @ConfigSection(
@@ -123,7 +122,7 @@ interface MeteorConfig : Config {
             closedByDefault = true,
             position = 3
         )
-        const val interactionManager = "Interaction manager"
+         val interactionManager:String
 
 
         @ConfigSection(
@@ -132,9 +131,6 @@ interface MeteorConfig : Config {
             position = 6,
             closedByDefault = true
         )
-        const val overlaySettings = "Overlay Settings"
+        val OverlaySettings:String
 
-        @ConfigSection(name = "Other", description = "Other settings", closedByDefault = true, position = 55)
-        const val other = "Other"
     }
-}

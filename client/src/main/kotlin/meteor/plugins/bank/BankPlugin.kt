@@ -40,7 +40,6 @@ import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.util.QuantityFormatter
 import net.runelite.api.*
-import net.runelite.api.widgets.JavaScriptCallback
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.event.KeyEvent

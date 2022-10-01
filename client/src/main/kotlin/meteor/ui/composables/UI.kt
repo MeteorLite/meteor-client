@@ -1,10 +1,14 @@
 package meteor.ui.composables
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.FrameWindowScope
 import compose.icons.Octicons
 import compose.icons.octicons.Plug24
@@ -15,11 +19,13 @@ import meteor.rs.Applet
 import meteor.ui.composables.dev.WindowFrame
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
+import meteor.ui.composables.toolbar.sectionItem
 import java.awt.Dimension
 
 var pluginsOpen = mutableStateOf(false)
 var configOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
+var toolBarOpen = mutableStateOf(false)
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var lastButtonClicked : ToolbarButton? = null
 lateinit var lastPlugin: Plugin
@@ -38,9 +44,27 @@ fun FrameWindowScope.Window() {
                 else -> window.minimumSize =
                     Dimension(Applet().minimalWidth + Main.meteorConfig.toolbarWidth(), 542)
             }
+            when {
+                toolBarOpen.value ->   toolBar {
+                    pluginListButton
+                }
+            }
+            Column(verticalArrangement = Arrangement.Center, modifier =  Modifier.fillMaxHeight(0.50f).width(15.dp)) {
+                Spacer(modifier = Modifier.fillMaxHeight(0.50f).width(15.dp))
 
-            toolBar {
-                pluginListButton
+
+                sectionItem(modifier = Modifier.background(Color.Transparent).size(25.dp)) {
+                    when {
+                        !toolBarOpen.value -> {
+
+                            toolBarOpen.value = true
+                        }
+                        toolBarOpen.value -> {
+
+                            toolBarOpen.value = false
+                        }
+                    }
+                }
             }
             content {
                 when {

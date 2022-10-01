@@ -6,7 +6,6 @@ import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
 import meteor.ui.composables.lastButtonClicked
 import meteor.ui.composables.pluginPanelIsOpen
-import meteor.ui.composables.pluginsOpen
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.overlay.Overlay
 import net.runelite.client.config.Config
@@ -88,8 +87,7 @@ open class Plugin : EventSubscriber() {
             lastButtonClicked = button
             pluginPanelIsOpen.value = false
             pluginPanelIsOpen.value = true
-        }
-        else if (pluginPanelIsOpen.value) closePluginPanel() else openPluginPanel()
+        } else if (pluginPanelIsOpen.value) closePluginPanel() else openPluginPanel()
     }
 
     open fun openPluginPanel() {

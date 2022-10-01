@@ -12,7 +12,7 @@ interface ObjectHiderConfig : Config {
         name = "Object IDs",
         description = "Configure hidden objects by id. Format: (id), (id)",
         position = 1,
-        section = hideObjectsID
+        section = "Hide Objects ID"
     )
     fun objectIds(): String {
         return ""
@@ -23,7 +23,7 @@ interface ObjectHiderConfig : Config {
         name = "Objects names",
         description = "Configure hidden objects by name. Format: (Tree), (Mom)",
         position = 3,
-        section = hideObjectsName
+        section = "Hide by name"
     )
     fun objectNames(): String {
         return ""
@@ -34,7 +34,7 @@ interface ObjectHiderConfig : Config {
         name = "Hide all game objects",
         description = "",
         position = 5,
-        section = hideAllObjects
+        section = "Hide All Object"
     )
     fun hideAllGameObjects(): Boolean {
         return false
@@ -45,7 +45,7 @@ interface ObjectHiderConfig : Config {
         name = "Hide all decorative objects",
         description = "",
         position = 6,
-        section = hideAllObjects
+        section = "Hide All Object"
     )
     fun hideAllDecorativeObjects(): Boolean {
         return false
@@ -56,7 +56,7 @@ interface ObjectHiderConfig : Config {
         name = "Hide all wall objects",
         description = "",
         position = 7,
-        section = hideAllObjects
+        section = "Hide All Object"
     )
     fun hideAllWallObjects(): Boolean {
         return false
@@ -67,20 +67,19 @@ interface ObjectHiderConfig : Config {
         name = "Hide all ground objects",
         description = "",
         position = 8,
-        section = hideAllObjects
+        section = "Hide All Object"
     )
     fun hideAllGroundObjects(): Boolean {
         return false
     }
 
-    companion object {
-        @ConfigSection(name = "Hide by ID", description = "Hide objects by ID", position = 0)
-        const val hideObjectsID = "Hide by ID"
+    @ConfigSection(name = "Hide by ID", description = "Hide objects by ID", position = 0)
+    val hideObjectsID: String
 
-        @ConfigSection(name = "Hide by name", description = "Hide objects by name", position = 2)
-        const val hideObjectsName = "Hide by name"
+    @ConfigSection(name = "Hide by name", description = "Hide objects by name", position = 2)
+    val hideObjectsName: String
 
-        @ConfigSection(name = "Hide all objects", description = "Hide all objects", position = 4)
-        const val hideAllObjects = "Hide all objects"
-    }
+    @ConfigSection(name = "Hide all objects", description = "Hide all objects", position = 4)
+    val hideAllObjects: String
+
 }

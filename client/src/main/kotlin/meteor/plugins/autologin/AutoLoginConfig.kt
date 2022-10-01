@@ -4,10 +4,10 @@ import net.runelite.client.config.*
 
 @ConfigGroup("autologin")
 interface AutoLoginConfig : Config {
-    companion object {
-        @ConfigSection(keyName = "title", name = "Soxs' AutoRun", description = "", position = 0)
-        const val title = "Autologin"
-    }
+
+    @ConfigSection(keyName = "title", name = "AutoLogin", description = "", position = 0)
+    val AutoRun: String
+
 
     @ConfigItem(
         keyName = "username",
@@ -15,7 +15,7 @@ interface AutoLoginConfig : Config {
         description = "Username",
         textField = true,
         position = 10,
-        section = title
+        section = "AutoLogin"
     )
     fun username(): String {
         return "Username"
@@ -28,7 +28,7 @@ interface AutoLoginConfig : Config {
         description = "Password",
         textField = true,
         position = 12,
-        section = title
+        section = "AutoLogin"
     )
     fun password(): String {
         return "Password"

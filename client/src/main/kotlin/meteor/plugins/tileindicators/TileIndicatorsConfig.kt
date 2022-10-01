@@ -34,7 +34,7 @@ interface TileIndicatorsConfig : Config {
         name = "Highlight destination tile",
         description = "Highlights tile player is walking to",
         position = 1,
-        section = destinationTile
+        section = "Destination Tile"
     )
     fun highlightDestinationTile(): Boolean {
         return true
@@ -46,7 +46,7 @@ interface TileIndicatorsConfig : Config {
         name = "Highlight color",
         description = "Configures the highlight color of current destination",
         position = 2,
-        section = destinationTile
+        section = "Destination Tile"
     )
     fun highlightDestinationColor(): Color? {
         return Color.GRAY
@@ -58,7 +58,7 @@ interface TileIndicatorsConfig : Config {
         name = "Fill color",
         description = "Configures the fill color of destination tile",
         position = 3,
-        section = destinationTile
+        section = "Destination Tile"
     )
     fun destinationTileFillColor(): Color? {
         return Color(0, 0, 0, 50)
@@ -69,7 +69,7 @@ interface TileIndicatorsConfig : Config {
         name = "Border width",
         description = "Width of the destination tile marker border",
         position = 4,
-        section = destinationTile
+        section = "Destination Tile"
     )
     fun destinationTileBorderWidth(): Double {
         return 2.0
@@ -80,7 +80,7 @@ interface TileIndicatorsConfig : Config {
         name = "Highlight hovered tile",
         description = "Highlights tile player is hovering with mouse",
         position = 1,
-        section = hoveredTile
+        section = "Hovered Tile"
     )
     fun highlightHoveredTile(): Boolean {
         return false
@@ -92,7 +92,7 @@ interface TileIndicatorsConfig : Config {
         name = "Highlight color",
         description = "Configures the highlight color of hovered tile",
         position = 2,
-        section = hoveredTile
+        section = "Hovered Tile"
     )
     fun highlightHoveredColor(): Color? {
         return Color(0, 0, 0, 0)
@@ -104,7 +104,7 @@ interface TileIndicatorsConfig : Config {
         name = "Fill color",
         description = "Configures the fill color of hovered tile",
         position = 3,
-        section = hoveredTile
+        section = "Hovered Tile"
     )
     fun hoveredTileFillColor(): Color? {
         return Color(0, 0, 0, 50)
@@ -115,7 +115,7 @@ interface TileIndicatorsConfig : Config {
         name = "Border width",
         description = "Width of the hovered tile marker border",
         position = 4,
-        section = hoveredTile
+        section = "Hovered Tile"
     )
     fun hoveredTileBorderWidth(): Double {
         return 2.0
@@ -126,7 +126,7 @@ interface TileIndicatorsConfig : Config {
         name = "Highlight true tile",
         description = "Highlights true tile player is on as seen by server",
         position = 1,
-        section = currentTile
+        section = "Current Tile"
     )
     fun highlightCurrentTile(): Boolean {
         return false
@@ -138,7 +138,7 @@ interface TileIndicatorsConfig : Config {
         name = "Highlight color",
         description = "Configures the highlight color of current true tile",
         position = 2,
-        section = currentTile
+        section = "Current Tile"
     )
     fun highlightCurrentColor(): Color? {
         return Color.CYAN
@@ -150,7 +150,7 @@ interface TileIndicatorsConfig : Config {
         name = "Fill color",
         description = "Configures the fill color of current true tile",
         position = 3,
-        section = currentTile
+        section = "Current Tile"
     )
     fun currentTileFillColor(): Color? {
         return Color(0, 0, 0, 50)
@@ -161,20 +161,20 @@ interface TileIndicatorsConfig : Config {
         name = "Border width",
         description = "Width of the true tile marker border",
         position = 4,
-        section = currentTile
+        section = "Current Tile"
     )
     fun currentTileBorderWidth(): Double {
         return 2.0
     }
 
-    companion object {
-        @ConfigSection(name = "Destination Tile", description = "Destination tile configuration", position = 0)
-        const val destinationTile = "destinationTile"
 
-        @ConfigSection(name = "Hovered Tile", description = "Hovered tile configuration", position = 1)
-        const val hoveredTile = "hoveredTile"
+    @ConfigSection(name = "Destination Tile", description = "Destination tile configuration", position = 0)
+    val destinationTile: String
 
-        @ConfigSection(name = "Current Tile", description = "Current tile configuration", position = 2)
-        const val currentTile = "currentTile"
-    }
+    @ConfigSection(name = "Hovered Tile", description = "Hovered tile configuration", position = 1)
+    val hoveredTile: String
+
+    @ConfigSection(name = "Current Tile", description = "Current tile configuration", position = 2)
+    val currentTile: String
+
 }

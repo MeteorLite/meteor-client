@@ -3,10 +3,11 @@ package meteor.config.descriptor
 import meteor.config.legacy.ConfigObject
 import net.runelite.client.config.ConfigSection
 
-class ConfigSectionDescriptor(val key: String, val section: ConfigSection) : ConfigObject {
+class ConfigSectionDescriptor(val type: Class<*>? , val section: ConfigSection) : ConfigObject {
 
-    override fun key(): String {
-        return key
+
+    override fun key(): String? {
+        return section.keyName
     }
 
     override fun name(): String {

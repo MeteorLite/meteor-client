@@ -138,42 +138,42 @@ object ConfigManager {
         return str
     }
 
-    fun objectToString(`object`: Any?): String? {
-        if (`object` is Color) {
-            return `object`.rgb.toString()
+    fun objectToString(type: Any?): String? {
+        if (type is Color) {
+            return type.rgb.toString()
         }
-        if (`object` is Enum<*>) {
-            return `object`.name
+        if (type is Enum<*>) {
+            return type.name
         }
-        if (`object` is Dimension) {
-            return `object`.width.toString() + "x" + `object`.height
+        if (type is Dimension) {
+            return type.width.toString() + "x" + type.height
         }
-        if (`object` is Point) {
-            return `object`.x.toString() + ":" + `object`.y
+        if (type is Point) {
+            return type.x.toString() + ":" + type.y
         }
-        if (`object` is Rectangle) {
-            return `object`.x.toString() + ":" + `object`.y + ":" + `object`.width + ":" + `object`.height
+        if (type is Rectangle) {
+            return type.x.toString() + ":" + type.y + ":" + type.width + ":" + type.height
         }
-        if (`object` is Instant) {
-            return `object`.toString()
+        if (type is Instant) {
+            return type.toString()
         }
-        if (`object` is Keybind) {
-            return `object`.keyCode.toString() + ":" + `object`.modifiers
+        if (type is Keybind) {
+            return type.keyCode.toString() + ":" + type.modifiers
         }
-        if (`object` is WorldPoint) {
-            return `object`.x.toString() + ":" + `object`.y + ":" + `object`.plane
+        if (type is WorldPoint) {
+            return type.x.toString() + ":" + type.y + ":" + type.plane
         }
-        if (`object` is Duration) {
-            return `object`.toMillis().toString()
+        if (type is Duration) {
+            return type.toMillis().toString()
         }
-        if (`object` is ByteArray) {
-            return Base64.getUrlEncoder().encodeToString(`object` as ByteArray?)
+        if (type is ByteArray) {
+            return Base64.getUrlEncoder().encodeToString(type as ByteArray?)
         }
-        return if (`object` is EnumSet<*>) {
-            if (`object`.size == 0) {
-                getElementType(`object` as EnumSet<*>?)!!.canonicalName + "{}"
-            } else `object`.toTypedArray()[0].javaClass.canonicalName + "{" + `object` + "}"
-        } else `object`?.toString()
+        return if (type is EnumSet<*>) {
+            if (type.size == 0) {
+                getElementType(type as EnumSet<*>?)!!.canonicalName + "{}"
+            } else type.toTypedArray()[0].javaClass.canonicalName + "{" + type + "}"
+        } else type?.toString()
     }
 
     fun getElementType(enumSet: EnumSet<*>?): Class<*>? {
@@ -308,9 +308,9 @@ object ConfigManager {
         val interfaces = Stack<Class<*>>()
         interfaces.push(clazz)
         while (!interfaces.isEmpty()) {
-            val `interface` = interfaces.pop()
-            Collections.addAll(methods, *`interface`.declaredFields)
-            Collections.addAll(interfaces, *`interface`.interfaces)
+            val inter = interfaces.pop()
+            Collections.addAll(methods, *inter.declaredFields)
+            Collections.addAll(interfaces, *inter.interfaces)
         }
         return methods
     }
@@ -320,9 +320,9 @@ object ConfigManager {
         val interfaces = Stack<Class<*>>()
         interfaces.push(clazz)
         while (!interfaces.isEmpty()) {
-            val `interface`: Class<*> = interfaces.pop()
-            Collections.addAll(methods, *`interface`.declaredMethods)
-            Collections.addAll(interfaces, *`interface`.interfaces)
+            val inter: Class<*> = interfaces.pop()
+            Collections.addAll(methods, *inter.declaredMethods)
+            Collections.addAll(interfaces, *inter.interfaces)
         }
         return methods
     }
@@ -414,69 +414,47 @@ object ConfigManager {
     }
 
     fun getConfigDescriptor(configurationProxy: Config): ConfigDescriptor? {
-        val inter: Class<*> = configurationProxy.javaClass.interfaces[0]
+        val inter: Class<*> = configurationProxy.javaClass.interfaces[0] ?: configurationProxy::class.java.interfaces[0]
         val group: ConfigGroup = inter.getAnnotation(ConfigGroup::class.java)
-                ?: throw IllegalArgumentException("Not a config group")
-        val sections: List<ConfigSectionDescriptor> = getAllDeclaredInterfaceFields(inter).stream()
-                .filter { m: Field -> m.isAnnotationPresent(ConfigSection::class.java) && m.type == String::class.java }
-                .map<ConfigSectionDescriptor>(Function { m: Field ->
-                    try {
-                        return@Function ConfigSectionDescriptor(m[inter].toString(),
-                                m.getDeclaredAnnotation(ConfigSection::class.java)
-                        )
-                    } catch (e: IllegalAccessException) {
-                        //log.warn("Unable to load section {}::{}", inter.getSimpleName(), m.getName());
-                        return@Function null
-                    }
-                })
-                .filter { obj: ConfigSectionDescriptor? -> Objects.nonNull(obj) }
-                .sorted { a: ConfigSectionDescriptor, b: ConfigSectionDescriptor ->
-                    ComparisonChain.start()
-                            .compare(a.section.position, b.section.position)
-                            .compare(a.section.name, b.section.name)
-                            .result()
-                }
-                .collect(Collectors.toList())
-        val titles: List<ConfigTitleDescriptor> = getAllDeclaredInterfaceFields(inter).stream()
-                .filter { m: Field -> m.isAnnotationPresent(ConfigTitle::class.java) && m.type == String::class.java }
-                .map<ConfigTitleDescriptor>(Function { m: Field ->
-                    try {
-                        return@Function ConfigTitleDescriptor(m[inter].toString(),
-                                m.getDeclaredAnnotation(ConfigTitle::class.java)
-                        )
-                    } catch (e: IllegalAccessException) {
-                        //log.warn("Unable to load title {}::{}", inter.getSimpleName(), m.getName());
-                        return@Function null
-                    }
-                })
-                .filter { obj: ConfigTitleDescriptor? -> Objects.nonNull(obj) }
-                .sorted { a: ConfigTitleDescriptor, b: ConfigTitleDescriptor ->
-                    ComparisonChain.start()
-                            .compare(a.title.position, b.title.position)
-                            .compare(a.title.name, b.title.name)
-                            .result()
-                }
-                .collect(Collectors.toList())
-        val items: List<ConfigItemDescriptor> = Arrays.stream(inter.methods)
-                .filter { m: Method -> m.parameterCount == 0 && m.isAnnotationPresent(ConfigItem::class.java) }
-                .map { m: Method ->
-                    ConfigItemDescriptor(
-                            m.getDeclaredAnnotation(ConfigItem::class.java),
-                            m.returnType,
-                            m.getDeclaredAnnotation(Range::class.java),
-                            m.getDeclaredAnnotation(Alpha::class.java),
-                            m.getDeclaredAnnotation(Units::class.java),
-                            m.getDeclaredAnnotation(Icon::class.java),
-                            m.getDeclaredAnnotation(Secret::class.java)
-                    )
-                }
-                .sorted { a: ConfigItemDescriptor, b: ConfigItemDescriptor ->
-                    ComparisonChain.start()
-                            .compare(a.item.position, b.item.position)
-                            .compare(a.item.name, b.item.name)
-                            .result()
-                }
-                .collect(Collectors.toList())
+            ?: throw IllegalArgumentException("Not a config group")
+        val sections: List<ConfigSectionDescriptor> = inter.methods
+            .filter { it.parameterCount == 0 && it.isAnnotationPresent(ConfigSection::class.java) }
+            .map {
+                ConfigSectionDescriptor(
+
+                    it.returnType,
+                    it.getDeclaredAnnotation(ConfigSection::class.java)
+                )
+            }
+            .sortedBy { it.position()
+            }.toMutableList()     + getAllDeclaredInterfaceFields(inter)
+            .asSequence()
+            .filter { it.isAnnotationPresent(ConfigSection::class.java) && it.type == String::class.java }
+            .map { ConfigSectionDescriptor(  it[inter].javaClass, it.getDeclaredAnnotation(ConfigSection::class.java)) }
+            .sortedBy {  it.position()
+            }.toList()
+        val titles: List<ConfigTitleDescriptor> = getAllDeclaredInterfaceFields(inter)
+            .asSequence()
+            .filter {  it.isAnnotationPresent(ConfigTitle::class.java) && it.type == String::class.java }
+            .map { ConfigTitleDescriptor(it[inter].toString(), it.getDeclaredAnnotation(ConfigTitle::class.java)) }
+            .filter { obj: ConfigTitleDescriptor? -> Objects.nonNull(obj) }
+            .sortedBy{ it.position()
+            }.toList()
+        val items: List<ConfigItemDescriptor> = inter.methods
+            .filter { it.parameterCount == 0 && it.isAnnotationPresent(ConfigItem::class.java) }
+            .map {
+                ConfigItemDescriptor(
+                    it.getDeclaredAnnotation(ConfigItem::class.java),
+                    it.returnType,
+                    it.getDeclaredAnnotation(Range::class.java),
+                    it.getDeclaredAnnotation(Alpha::class.java),
+                    it.getDeclaredAnnotation(Units::class.java),
+                    it.getDeclaredAnnotation(Icon::class.java),
+                    it.getDeclaredAnnotation(Secret::class.java)
+                )
+            }
+            .sortedBy { it.position()
+            }.toList()
         return ConfigDescriptor(group, sections, titles, items)
     }
 

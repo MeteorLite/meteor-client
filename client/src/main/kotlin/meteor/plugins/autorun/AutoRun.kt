@@ -3,7 +3,6 @@ package meteor.plugins.autorun
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import net.runelite.api.MenuAction
 import net.runelite.api.widgets.WidgetInfo
 import java.util.*
 

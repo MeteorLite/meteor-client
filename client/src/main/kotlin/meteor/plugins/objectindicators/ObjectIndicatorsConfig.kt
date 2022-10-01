@@ -34,7 +34,7 @@ interface ObjectIndicatorsConfig : Config {
         keyName = "highlightHull",
         name = "Highlight hull",
         description = "Configures whether or not object should be highlighted by hull",
-        section = renderStyleSection
+        section = "Render style"
     )
     fun highlightHull(): Boolean {
         return true
@@ -45,7 +45,7 @@ interface ObjectIndicatorsConfig : Config {
         keyName = "highlightOutline",
         name = "Highlight outline",
         description = "Configures whether or not the model of the object should be highlighted by outline",
-        section = renderStyleSection
+        section = "Render style"
     )
     fun highlightOutline(): Boolean {
         return false
@@ -57,7 +57,7 @@ interface ObjectIndicatorsConfig : Config {
         keyName = "markerColor",
         name = "Marker color",
         description = "Configures the color of object marker",
-        section = renderStyleSection
+        section = "Render style"
     )
     fun markerColor(): Color? {
         return Color.YELLOW
@@ -68,7 +68,7 @@ interface ObjectIndicatorsConfig : Config {
         keyName = "borderWidth",
         name = "Border Width",
         description = "Width of the marked object border",
-        section = renderStyleSection
+        section = "Render style"
     )
     fun borderWidth(): Double {
         return 2.0
@@ -79,7 +79,7 @@ interface ObjectIndicatorsConfig : Config {
         keyName = "outlineFeather",
         name = "Outline feather",
         description = "Specify between 0-4 how much of the model outline should be faded",
-        section = renderStyleSection
+        section = "Render style"
     )
     @Range(min = 0, max = 4)
     fun outlineFeather(): Int {
@@ -96,8 +96,8 @@ interface ObjectIndicatorsConfig : Config {
         return false
     }
 
-    companion object {
-        @ConfigSection(name = "Render style", description = "The render style of object highlighting", position = 0)
-        const val renderStyleSection = "renderStyleSection"
-    }
+
+    @ConfigSection(name = "Render style", description = "The render style of object highlighting", position = 0)
+    val renderStyleSection: String
+
 }

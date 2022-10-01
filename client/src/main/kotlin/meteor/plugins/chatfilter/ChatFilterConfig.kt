@@ -35,7 +35,7 @@ interface ChatFilterConfig : Config {
         description = "List of filtered words, separated by commas",
         textField = true,
         position = 1,
-        section = filterLists
+        section = "Filter Lists"
     )
     fun filteredWords(): String? {
         return ""
@@ -47,7 +47,7 @@ interface ChatFilterConfig : Config {
         description = "List of regular expressions to filter, one per line",
         textField = true,
         position = 2,
-        section = filterLists
+        section = "Filter Lists"
     )
     fun filteredRegex(): String? {
         return ""
@@ -59,7 +59,7 @@ interface ChatFilterConfig : Config {
         description = "List of filtered names, one per line. Accepts regular expressions",
         textField = true,
         position = 3,
-        section = filterLists
+        section = "Filter Lists"
     )
     fun filteredNames(): String? {
         return ""
@@ -146,13 +146,13 @@ interface ChatFilterConfig : Config {
         return 0
     }
 
-    companion object {
-        @ConfigSection(
-            name = "Filter Lists",
-            description = "Custom Word, Regex, and Username filter lists",
-            position = 0,
-            closedByDefault = true
-        )
-        const val filterLists = "Filter Lists"
-    }
+
+    @ConfigSection(
+        name = "Filter Lists",
+        description = "Custom Word, Regex, and Username filter lists",
+        position = 0,
+        closedByDefault = true
+    )
+    val FilterLists: String
+
 }

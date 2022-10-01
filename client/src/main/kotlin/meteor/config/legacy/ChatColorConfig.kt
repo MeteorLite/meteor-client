@@ -13,7 +13,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePublicChat",
         name = "Public chat",
         description = "Color of Public chat",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePublicChat(): Color?
 
@@ -22,7 +22,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePublicChatHighlight",
         name = "Public chat highlight",
         description = "Color of highlights in Public chat",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePublicChatHighlight(): Color? {
         return Color.decode("#000000")
@@ -33,7 +33,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePrivateMessageSent",
         name = "Sent private messages",
         description = "Color of Private messages you've sent",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePrivateMessageSent(): Color?
 
@@ -42,7 +42,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePrivateMessageSentHighlight",
         name = "Sent private messages highlight",
         description = "Color of highlights in Private messages you've sent",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePrivateMessageSentHighlight(): Color? {
         return Color.decode("#002783")
@@ -53,7 +53,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePrivateMessageReceived",
         name = "Received private messages",
         description = "Color of Private messages you've received",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePrivateMessageReceived(): Color?
 
@@ -62,7 +62,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePrivateMessageReceivedHighlight",
         name = "Received private messages highlight",
         description = "Color of highlights in Private messages you've received",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePrivateMessageReceivedHighlight(): Color? {
         return Color.decode("#002783")
@@ -74,7 +74,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueFriendsChatInfo",
         name = "Friends chat info",
         description = "Friends Chat Information (eg. when joining a channel)",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFriendsChatInfo(): Color?
 
@@ -83,7 +83,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatInfoHighlight",
         name = "Friends chat info highlight",
         description = "Friends Chat Information highlight (used for the Raids plugin)",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFriendsChatInfoHighlight(): Color? {
         return Color.RED
@@ -94,7 +94,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatMessage",
         name = "Friends chat message",
         description = "Color of Friends chat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFriendsChatMessage(): Color?
 
@@ -103,7 +103,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatMessageHighlight",
         name = "Friends chat message highlight",
         description = "Color of highlights in Friends Chat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFriendsChatMessageHighlight(): Color? {
         return Color.decode("#000000")
@@ -116,7 +116,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanInfo",
         name = "Clan chat info",
         description = "Clan Chat Information (eg. when joining a channel)",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatInfo(): Color?
 
@@ -125,7 +125,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanInfoHighlight",
         name = "Clan chat info highlight",
         description = "Clan Chat Information highlight",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatInfoHighlight(): Color? {
         return Color.RED
@@ -136,7 +136,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanMessage",
         name = "Clan chat message",
         description = "Color of Clan chat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatMessage(): Color?
 
@@ -145,7 +145,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanMessageHighlight",
         name = "Clan chat message highlight",
         description = "Color of highlights in Clan Chat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatMessageHighlight(): Color? {
         return Color.decode("#000000")
@@ -156,7 +156,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanGuestInfo",
         name = "Guest Clan chat info",
         description = "Guest Clan Chat Information (eg. when joining a channel)",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatGuestInfo(): Color?
 
@@ -165,7 +165,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanGuestInfoHighlight",
         name = "Guest Clan chat info highlight",
         description = "Guest Clan Chat Information highlight",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatGuestInfoHighlight(): Color? {
         return Color.RED
@@ -176,7 +176,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanGuestMessage",
         name = "Guest Clan chat message",
         description = "Color of Guest Clan chat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatGuestMessage(): Color?
 
@@ -185,7 +185,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatGuestMessageHighlight",
         name = "Guest Clan chat message highlight",
         description = "Color of highlights in Guest Clan Chat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatGuestMessageHighlight(): Color? {
         return Color.decode("#000000")
@@ -197,7 +197,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueAutochatMessage",
         name = "Autochat",
         description = "Color of Autochat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueAutochatMessage(): Color?
 
@@ -206,7 +206,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueAutochatMessageHighlight",
         name = "Autochat highlight",
         description = "Color of highlights in Autochat messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueAutochatMessageHighlight(): Color?
 
@@ -215,7 +215,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueTradeChatMessage",
         name = "Trade chat",
         description = "Color of Trade Chat Messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueTradeChatMessage(): Color?
 
@@ -224,7 +224,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueTradeChatMessageHighlight",
         name = "Trade chat highlight",
         description = "Color of highlights in Trade Chat Messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueTradeChatMessageHighlight(): Color?
 
@@ -233,7 +233,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueServerMessage",
         name = "Server message",
         description = "Color of Server Messages (eg. 'Welcome to RuneScape')",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueServerMessage(): Color?
 
@@ -242,7 +242,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueServerMessageHighlight",
         name = "Server message highlight",
         description = "Color of highlights in Server Messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueServerMessageHighlight(): Color?
 
@@ -251,7 +251,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueGameMessage",
         name = "Game message",
         description = "Color of Game Messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueGameMessage(): Color?
 
@@ -260,7 +260,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueGameMessageHighlight",
         name = "Game message highlight",
         description = "Color of highlights in Game Messages",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueGameMessageHighlight(): Color? {
         return Color.decode("#EF1020")
@@ -271,7 +271,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueExamine",
         name = "Examine",
         description = "Color of Examine Text",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueExamine(): Color?
 
@@ -280,7 +280,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueExamineHighlight",
         name = "Examine highlight",
         description = "Color of highlights in Examine Text",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueExamineHighlight(): Color? {
         return Color.decode("#0000FF")
@@ -291,7 +291,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueFiltered",
         name = "Filtered",
         description = "Color of Filtered Text (messages that aren't shown when Game messages are filtered)",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFiltered(): Color?
 
@@ -300,7 +300,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueFilteredHighlight",
         name = "Filtered highlight",
         description = "Color of highlights in Filtered Text",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFilteredHighlight(): Color?
 
@@ -309,7 +309,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueUsername",
         name = "Usernames",
         description = "Color of Usernames",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueUsername(): Color?
 
@@ -318,7 +318,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePrivateUsernames",
         name = "Private chat usernames",
         description = "Color of Usernames in Private Chat",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePrivateUsernames(): Color?
 
@@ -327,7 +327,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChannelName",
         name = "Friends Chat channel name",
         description = "Color of Friends chat channel name",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFriendsChatChannelName(): Color?
 
@@ -336,7 +336,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatChannelName",
         name = "Clan Chat channel name",
         description = "Color of Clan chat channel name",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChannelName(): Color?
 
@@ -345,7 +345,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatGuestChannelName",
         name = "Guest Clan Chat channel name",
         description = "Color of Guest clan chat channel name",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanGuestChatChannelName(): Color?
 
@@ -354,7 +354,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanUsernames",
         name = "Friends chat usernames",
         description = "Color of usernames in Friends chat",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueFriendsChatUsernames(): Color?
 
@@ -363,7 +363,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatUsernames",
         name = "Clan chat usernames",
         description = "Color of usernames in Clan chat",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatUsernames(): Color?
 
@@ -372,7 +372,7 @@ interface ChatColorConfig : Config {
         keyName = "opaqueClanChatGuestUsernames",
         name = "Guest Clan chat usernames",
         description = "Color of usernames in Guest Clan chat",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaqueClanChatGuestUsernames(): Color?
 
@@ -381,7 +381,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePublicFriendUsernames",
         name = "Public friend usernames",
         description = "Color of Friend Usernames in Public Chat",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePublicFriendUsernames(): Color?
 
@@ -390,7 +390,7 @@ interface ChatColorConfig : Config {
         keyName = "opaquePlayerUsername",
         name = "Your username",
         description = "Color of your username",
-        section = opaqueSection
+        section = "Opaque"
     )
     fun opaquePlayerUsername(): Color?
 
@@ -399,7 +399,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPublicChat",
         name = "Public chat (transparent)",
         description = "Color of Public chat (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPublicChat(): Color?
 
@@ -408,7 +408,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPublicChatHighlight",
         name = "Public chat highlight (transparent)",
         description = "Color of highlights in Public chat (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPublicChatHighlight(): Color? {
         return Color.decode("#FFFFFF")
@@ -419,7 +419,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPrivateMessageSent",
         name = "Sent private messages (transparent)",
         description = "Color of Private messages you've sent (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPrivateMessageSent(): Color?
 
@@ -428,7 +428,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPrivateMessageSentHighlight",
         name = "Sent private messages highlight (transparent)",
         description = "Color of highlights in Private messages you've sent (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPrivateMessageSentHighlight(): Color? {
         return Color.decode("#FFFFFF")
@@ -439,7 +439,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPrivateMessageReceived",
         name = "Received private messages (transparent)",
         description = "Color of Private messages you've received (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPrivateMessageReceived(): Color?
 
@@ -448,7 +448,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPrivateMessageReceivedHighlight",
         name = "Received private messages highlight (transparent)",
         description = "Color of highlights in Private messages you've received (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPrivateMessageReceivedHighlight(): Color? {
         return Color.decode("#FFFFFF")
@@ -460,7 +460,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentFriendsChatInfo",
         name = "Friends chat info (transparent)",
         description = "Friends chat information (eg. when joining a channel) (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFriendsChatInfo(): Color?
 
@@ -469,7 +469,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanChatInfoHighlight",
         name = "Friends chat info highlight (transparent)",
         description = "Friends chat information highlight (used for the Raids plugin) (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFriendsChatInfoHighlight(): Color? {
         return Color.RED
@@ -480,7 +480,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanChatMessage",
         name = "Friends chat message (transparent)",
         description = "Color of Friends chat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFriendsChatMessage(): Color?
 
@@ -489,7 +489,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanChatMessageHighlight",
         name = "Friends chat message highlight (transparent)",
         description = "Color of highlights in Friends chat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFriendsChatMessageHighlight(): Color? {
         return Color.decode("#FFFFFF")
@@ -502,7 +502,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanInfo",
         name = "Clan chat info (transparent)",
         description = "Clan Chat Information (eg. when joining a channel) (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatInfo(): Color?
 
@@ -511,7 +511,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanInfoHighlight",
         name = "Clan chat info highlight (transparent)",
         description = "Clan Chat Information highlight (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatInfoHighlight(): Color? {
         return Color.RED
@@ -522,7 +522,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanMessage",
         name = "Clan chat message (transparent)",
         description = "Color of Clan chat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatMessage(): Color?
 
@@ -531,7 +531,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanMessageHighlight",
         name = "Clan chat message highlight (transparent)",
         description = "Color of highlights in Clan Chat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatMessageHighlight(): Color? {
         return Color.decode("#FFFFFF")
@@ -542,7 +542,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanGuestInfo",
         name = "Guest Clan chat info (transparent)",
         description = "Guest Clan Chat Information (eg. when joining a channel) (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatGuestInfo(): Color?
 
@@ -551,7 +551,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanGuestInfoHighlight",
         name = "Guest Clan chat info highlight (transparent)",
         description = "Guest Clan Chat Information highlight (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatGuestInfoHighlight(): Color? {
         return Color.RED
@@ -562,7 +562,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanGuestMessage",
         name = "Guest Clan chat message (transparent)",
         description = "Color of Guest Clan chat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatGuestMessage(): Color?
 
@@ -571,7 +571,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanChatGuestMessageHighlight",
         name = "Guest Clan chat message highlight (transparent)",
         description = "Color of highlights in Guest Clan Chat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatGuestMessageHighlight(): Color? {
         return Color.decode("#FFFFFF")
@@ -583,7 +583,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentAutochatMessage",
         name = "Autochat (transparent)",
         description = "Color of Autochat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentAutochatMessage(): Color?
 
@@ -592,7 +592,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentAutochatMessageHighlight",
         name = "Autochat highlight (transparent)",
         description = "Color of highlights in Autochat messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentAutochatMessageHighlight(): Color?
 
@@ -601,7 +601,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentTradeChatMessage",
         name = "Trade chat (transparent)",
         description = "Color of Trade Chat Messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentTradeChatMessage(): Color?
 
@@ -610,7 +610,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentTradeChatMessageHighlight",
         name = "Trade chat highlight (transparent)",
         description = "Color of highlights in Trade Chat Messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentTradeChatMessageHighlight(): Color?
 
@@ -619,7 +619,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentServerMessage",
         name = "Server message (transparent)",
         description = "Color of Server Messages (eg. 'Welcome to RuneScape') (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentServerMessage(): Color?
 
@@ -628,7 +628,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentServerMessageHighlight",
         name = "Server message highlight (transparent)",
         description = "Color of highlights in Server Messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentServerMessageHighlight(): Color?
 
@@ -637,7 +637,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentGameMessage",
         name = "Game message (transparent)",
         description = "Color of Game Messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentGameMessage(): Color?
 
@@ -646,7 +646,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentGameMessageHighlight",
         name = "Game message highlight (transparent)",
         description = "Color of highlights in Game Messages (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentGameMessageHighlight(): Color? {
         return Color.decode("#EF1020")
@@ -657,7 +657,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentExamine",
         name = "Examine (transparent)",
         description = "Color of Examine Text (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentExamine(): Color?
 
@@ -666,7 +666,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentExamineHighlight",
         name = "Examine highlight (transparent)",
         description = "Color of highlights in Examine Text (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentExamineHighlight(): Color? {
         return Color.GREEN
@@ -677,7 +677,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentFiltered",
         name = "Filtered (transparent)",
         description = "Color of Filtered Text (messages that aren't shown when Game messages are filtered) (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFiltered(): Color?
 
@@ -686,7 +686,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentFilteredHighlight",
         name = "Filtered highlight (transparent)",
         description = "Color of highlights in Filtered Text (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFilteredHighlight(): Color?
 
@@ -695,7 +695,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentUsername",
         name = "Usernames (transparent)",
         description = "Color of Usernames (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentUsername(): Color?
 
@@ -704,7 +704,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPrivateUsernames",
         name = "Private chat usernames (transparent)",
         description = "Color of Usernames in Private Chat (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPrivateUsernames(): Color?
 
@@ -713,7 +713,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanChannelName",
         name = "Friends Chat channel name (transparent)",
         description = "Color of Friends chat channel name (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFriendsChatChannelName(): Color?
 
@@ -722,7 +722,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanChatChannelName",
         name = "Clan Chat channel name (transparent)",
         description = "Color of Clan chat channel name (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChannelName(): Color?
 
@@ -731,7 +731,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanChatGuestChannelName",
         name = "Guest Clan Chat channel name (transparent)",
         description = "Color of Guest clan chat channel name (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChannelGuestName(): Color?
 
@@ -740,7 +740,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanUsernames",
         name = "Friends chat usernames (transparent)",
         description = "Color of usernames in Friends chat (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentFriendsChatUsernames(): Color?
 
@@ -749,7 +749,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanClanUsernames",
         name = "Clan chat usernames (transparent)",
         description = "Color of usernames in Clan chat (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatUsernames(): Color?
 
@@ -758,7 +758,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentClanClanGuestUsernames",
         name = "Guest Clan chat usernames (transparent)",
         description = "Color of usernames in Guest Clan chat (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentClanChatGuestUsernames(): Color?
 
@@ -767,7 +767,7 @@ interface ChatColorConfig : Config {
         keyName = "transparentPublicFriendUsernames",
         name = "Public friend usernames (transparent)",
         description = "Color of Friend Usernames in Public Chat (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPublicFriendUsernames(): Color?
 
@@ -776,18 +776,18 @@ interface ChatColorConfig : Config {
         keyName = "transparentPlayerUsername",
         name = "Your username (transparent)",
         description = "Color of your username (transparent)",
-        section = transparentSection
+        section = "Transparent"
     )
     fun transparentPlayerUsername(): Color?
 
-    companion object {
+
         @ConfigSection(
             name = "Opaque",
             description = "The options that control the colours for the Opaque Chatbox",
             position = 0,
             closedByDefault = true
         )
-        const val opaqueSection = "opaqueSection"
+        val Opaque:String 
 
         @ConfigSection(
             name = "Transparent",
@@ -795,6 +795,6 @@ interface ChatColorConfig : Config {
             position = 50,
             closedByDefault = true
         )
-        const val transparentSection = "transparentSection"
-    }
+     val Transparent:String
+    
 }
