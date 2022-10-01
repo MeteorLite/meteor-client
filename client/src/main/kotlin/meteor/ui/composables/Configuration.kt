@@ -138,7 +138,6 @@ fun Configs() {
             if (descriptor != null) {
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
                     val sectList = descriptor.sections.sortedBy { it.section.name }.toMutableList()
-                    val title = descriptor.titles.sortedBy { it.title.position }.toMutableList()
                     items(items = sectList) { sect ->
                         sectionItem(title = sect.name()) {
                             val sections = mutableListOf<ConfigItemDescriptor>()
@@ -186,58 +185,6 @@ fun Configs() {
                                 }
                         }
                     }
-/*
-                    items(items = title) {
-
-                        BoxWithConstraints( modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),contentAlignment = Alignment.TopCenter) {
-                            Text(
-                                modifier = Modifier.fillMaxWidth().padding(it.title.padding .dp),
-                                text = it.name(),
-                                style = TextStyle(
-                                    color = uiColor,
-                                    fontSize = it.title.size.sp,
-                                    textAlign = TextAlign.Center,
-                                )
-
-                            )
-                        }
-
-                    }
-                    items(items = descriptor.items.sortedBy { it.item.position }.filter { it.item.section.isEmpty()}.toMutableList())
-                    { configuration ->
-                        when (configuration.type) {
-                            Int::class.javaPrimitiveType -> {
-                                if (configuration.range != null) {
-                                    if (configuration.range.textInput) {
-                                        createIntegerTextNode(descriptor, configuration)
-                                    } else {
-                                        createSliderIntegerNode(descriptor, configuration)
-                                    }
-                                } else if (configuration.item.textField) {
-                                    createIntegerAreaTextNode(descriptor, configuration)
-                                } else {
-                                    createIntegerTextNode(descriptor, configuration)
-                                }
-                            }
-                            Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor, configuration)
-                            Button::class.java -> createButtonNode(descriptor, configuration)
-                            java.awt.Color::class.java -> createColorPickerNode(descriptor, configuration)
-                            ModifierlessKeybind::class.java -> createHotKeyNode(descriptor, configuration)
-                            String::class.java -> {
-                                if (configuration.item.textField) {
-                                    createStringAreaTextNode(descriptor, configuration)
-                                } else {
-
-                                    createStringTextNode(descriptor, configuration)
-                                }
-                            }
-                            else -> {
-                                if (configuration.type?.isEnum == true) {
-                                    createEnumNode(descriptor, configuration)
-                                }
-                            }
-                        }
-                    }*/
                 }
             }
         }

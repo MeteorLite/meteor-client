@@ -237,7 +237,7 @@ fun unhide( content: @Composable () -> Unit) {
 fun sectionItem(title:String, content: @Composable () -> Unit) {
     val expanded = remember { mutableStateOf(false) }
     val size = remember {
-        mutableStateOf(Main.meteorConfig!!.pluginListTextSize())
+        mutableStateOf(Main.meteorConfig.pluginListTextSize())
     }
     Expandable(
         modifier = Modifier,
@@ -249,7 +249,7 @@ fun sectionItem(title:String, content: @Composable () -> Unit) {
         title = {
             Text(
                 modifier = Modifier
-                    .weight(8f),
+                    .weight(8f).padding(start = 20.dp),
                 text = title,
                 color = uiColor,
                 fontSize = size.value.sp,
