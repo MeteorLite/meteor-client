@@ -44,7 +44,7 @@ import java.lang.RuntimeException
  * it seems that this event still triggers with the "Cancel" action.
  */
 
-data class MenuOptionClicked(var menuEntry: MenuEntry? = null
+data class MenuOptionClicked(var menuEntry: MenuEntry
 ) {
     var consumed: Boolean = false
     var selectedItemIndex: Int = -1
@@ -60,52 +60,52 @@ data class MenuOptionClicked(var menuEntry: MenuEntry? = null
      * @see net.runelite.api.NullItemID
      */
     fun getItemId(): Int {
-        return menuEntry!!.itemId
+        return menuEntry.itemId
     }
 
     fun setItemId(itemId: Int) {
-        menuEntry!!.itemId = itemId
+        menuEntry.itemId = itemId
     }
     /**
      * Action parameter 0. Its value depends on the menuAction.
      */
     fun getParam0(): Int {
-        return menuEntry!!.param0
+        return menuEntry.param0
     }
 
     /**
      * Action parameter 1. Its value depends on the menuAction.
      */
     fun getParam1(): Int {
-        return menuEntry!!.param1
+        return menuEntry.param1
     }
 
     /**
      * The option text added to the menu.
      */
     fun getMenuOption(): String? {
-        return menuEntry!!.option
+        return menuEntry.option
     }
 
     /**
      * The target of the action.
      */
     fun getMenuTarget(): String? {
-        return menuEntry!!.target
+        return menuEntry.target
     }
 
     /**
      * The action performed.
      */
     fun getMenuAction(): MenuAction? {
-        return menuEntry!!.type
+        return menuEntry.type
     }
 
     /**
      * The ID of the object, actor, or item that the interaction targets.
      */
     fun getId(): Int {
-        return menuEntry!!.identifier
+        return menuEntry.identifier
     }
 
     /**
@@ -113,7 +113,7 @@ data class MenuOptionClicked(var menuEntry: MenuEntry? = null
      * @return
      */
     fun isItemOp(): Boolean {
-        return menuEntry!!.isItemOp
+        return menuEntry.isItemOp
     }
 
     /**
@@ -121,7 +121,7 @@ data class MenuOptionClicked(var menuEntry: MenuEntry? = null
      * @return 1-5
      */
     fun getItemOp(): Int {
-        return menuEntry!!.itemOp
+        return menuEntry.itemOp
     }
 
     /**
@@ -130,7 +130,7 @@ data class MenuOptionClicked(var menuEntry: MenuEntry? = null
      * @return
      */
     fun getWidget(): Widget? {
-        return menuEntry!!.widget
+        return menuEntry.widget
     }
 
     /**
@@ -147,11 +147,11 @@ data class MenuOptionClicked(var menuEntry: MenuEntry? = null
 
     @Deprecated("")
     fun getActionParam(): Int {
-        return menuEntry!!.param0
+        return menuEntry.param0
     }
 
     @Deprecated("")
     fun getWidgetId(): Int {
-        return menuEntry!!.param1
+        return menuEntry.param1
     }
 }
