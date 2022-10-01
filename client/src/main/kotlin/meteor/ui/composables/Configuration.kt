@@ -18,6 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,6 +38,8 @@ import meteor.ui.composables.toolbar.sectionItem
 import meteor.util.ColorUtil
 import java.awt.Button
 import java.awt.event.KeyEvent
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 @Composable
@@ -146,7 +149,8 @@ fun Configs() {
                                 it.addAll(javaSection)
                             }
                             sectionList.sortedBy { it.item.position }.toMutableList()
-                                .forEach { configuration ->
+                                .forEach { configuration: ConfigItemDescriptor ->
+                                    if (configuration.item.section.startsWith(sect.name(), ignoreCase = true))
                                     when (configuration.type) {
                                         Int::class.javaPrimitiveType -> {
                                             if (configuration.range != null) {
@@ -182,7 +186,7 @@ fun Configs() {
                                 }
                         }
                     }
-
+/*
                     items(items = title) {
 
                         BoxWithConstraints( modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),contentAlignment = Alignment.TopCenter) {
@@ -233,7 +237,7 @@ fun Configs() {
                                 }
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }
