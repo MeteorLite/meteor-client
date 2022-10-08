@@ -40,8 +40,6 @@ import rs117.hd.config.*;
 @ConfigGroup("hd")
 public interface HdPluginConfig extends Config
 {
-	String KEY_WINTER_THEME = "winterTheme0";
-
 	/*====== General settings ======*/
 
 	@ConfigSection(
@@ -277,7 +275,7 @@ public interface HdPluginConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "atmosphericLighting",
+		keyName = "environmentalLighting",
 		name = "Atmospheric Lighting",
 		description = "Changes the color and brightness of full-scene lighting in certain areas.",
 		position = 104,
@@ -433,8 +431,8 @@ public interface HdPluginConfig extends Config
 
 	@ConfigItem(
 		keyName = "objectTextures",
-		name = "Object Textures",
-		description = "Adds detail textures to certain world objects.",
+		name = "Model Textures",
+		description = "Adds detail textures to certain models.",
 		position = 206,
 		section = environmentSettings
 	)
@@ -516,8 +514,8 @@ public interface HdPluginConfig extends Config
 
 	@ConfigItem(
 		keyName = "macosIntelWorkaround",
-		name = "Fix shading on MacOS with Intel",
-		description = "Workaround for visual artifacts on some Intel GPU drivers on MacOS.",
+		name = "Fix shading on macOS with Intel",
+		description = "Workaround for visual artifacts on some Intel GPU drivers on macOS.",
 		warning = "This setting can cause RuneLite to crash, and can be difficult to revert. Only enable it if you\nare seeing black patches. Are you sure you want to enable the setting?",
 		position = 301,
 		section = miscellaneousSettings
@@ -539,6 +537,7 @@ public interface HdPluginConfig extends Config
 		return true;
 	}
 
+	String KEY_WINTER_THEME = "winterTheme0";
 	@ConfigItem(
 		keyName = KEY_WINTER_THEME,
 		name = "Winter theme",
@@ -550,6 +549,21 @@ public interface HdPluginConfig extends Config
 	{
 		return false;
 	}
+
+	String KEY_REDUCE_OVER_EXPOSURE = "reduceOverExposure";
+	@ConfigItem(
+		keyName = KEY_REDUCE_OVER_EXPOSURE,
+		name = "Reduce over-exposure",
+		description = "Previously, HD attempted to reduce over-exposure by lowering the maximum face color brightness.\n" +
+			"This turned most white-looking things into a dull grey. This option returns that old behaviour.",
+		position = 304,
+		section = miscellaneousSettings
+	)
+	default boolean reduceOverExposure() {
+		return false;
+	}
+
+	/*====== Experimental settings ======*/
 
 	@ConfigSection(
 			name = "Experimental",
@@ -579,16 +593,27 @@ public interface HdPluginConfig extends Config
 
 	@Range(
 			min = 256,
-			max = 4096
+			max = 16384
 	)
 	@ConfigItem(
-			keyName = "modelCacheSizeMB",
-			name = "Model cache size (MB)",
-			description = "Size of the model cache in megabytes. Plugin must be restarted to apply changes.",
+			keyName = "modelCacheSizeMiB",
+			name = "Model cache size (MiB)",
+			description = "Size of the model cache in mebibytes. Plugin must be restarted to apply changes. Min=256 Max=16384",
 			position = 403,
 			section = experimentalSettings
 	)
-	default int modelCacheSizeMB() {
+	default int modelCacheSizeMiB() {
 		return 2048;
+	}
+
+	@ConfigItem(
+			keyName = "loadingClearCache",
+			name = "Clear cache when loading",
+			description = "Clear the model cache whenever the game shows the \"loading please wait...\" message. This may improve performance when memory allocated to the cache is small.",
+			position = 404,
+			section = experimentalSettings
+	)
+	default boolean loadingClearCache() {
+		return false;
 	}
 }

@@ -1,7 +1,8 @@
 package rs117.hd.model;
 
+import lombok.NonNull;
 import net.runelite.api.Model;
-import rs117.hd.scene.objects.ObjectProperties;
+import rs117.hd.scene.model_overrides.ModelOverride;
 
 public class ModelHasher {
     private Model model;
@@ -67,11 +68,11 @@ public class ModelHasher {
         }, -1);
     }
 
-    public int calculateUvCacheHash(ObjectProperties objectProperties) {
+    public int calculateUvCacheHash(@NonNull ModelOverride modelOverride) {
         return fastIntHash(new int[]{
                 this.faceTexturesHash,
                 this.faceTexturesUvHash,
-                objectProperties == null ? 0 : objectProperties.hashCode()
+                modelOverride.hashCode()
         }, -1);
     }
 
@@ -91,20 +92,7 @@ public class ModelHasher {
     }
 
     public int calculateBatchHash() {
-        return fastIntHash(new int[]{
-                this.xVerticesHash,
-                this.yVerticesHash,
-                this.zVerticesHash,
-                this.faceColorsOneHash,
-                this.faceColorsTwoHash,
-                this.faceColorsThreeHash,
-                this.faceTexturesHash,
-                this.faceTexturesUvHash,
-                this.model.getOverrideAmount(),
-                this.model.getOverrideHue(),
-                this.model.getOverrideSaturation(),
-                this.model.getOverrideLuminance()
-        }, -1);
+        return calculateVertexCacheHash();
     }
 
     public static int fastIntHash(int[] a, int actualLength) {

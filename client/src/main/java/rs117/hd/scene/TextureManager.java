@@ -57,8 +57,8 @@ public class TextureManager
 	private static final String ENV_TEXTURE_PATH = "RLHD_TEXTURE_PATH";
 	private static final String[] SUPPORTED_IMAGE_EXTENSIONS = { "png", "jpg" };
 	private static final float HALF_PI = (float) (Math.PI / 2);
-	private static final ResourcePath texturePath = Env
-		.getPathOrDefault(ENV_TEXTURE_PATH, () -> path(TextureManager.class,"textures"));
+	private static final ResourcePath texturePath = Env.getPathOrDefault(ENV_TEXTURE_PATH,
+		() -> path(TextureManager.class,"textures"));
 
 	public TextureManager(HdPlugin plugin, HdPluginConfig config) {
 		this.plugin = plugin;

@@ -34,6 +34,7 @@ import rs117.hd.HdPluginConfig;
 import rs117.hd.data.WaterType;
 import rs117.hd.data.environments.Area;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -49,6 +50,7 @@ public enum Overlay {
 
     // Lumbridge
     LUM_BRIDGE(10, Area.LUM_BRIDGE, GroundMaterial.GRAVEL),
+    LUMBRIDGE_CASTLE_ENTRANCE_FIX(10, Area.LUMBRIDGE_CASTLE_ENTRANCE, GroundMaterial.WORN_TILES, p -> p.shiftLightness(12)),
     LUMBRIDGE_CASTLE_TILE(3, Area.LUMBRIDGE_CASTLE_BASEMENT, GroundMaterial.MARBLE_1_SEMIGLOSS),
     LUMBRIDGE_CASTLE_FLOORS(10, Area.LUMBRIDGE_CASTLE, GroundMaterial.VARROCK_PATHS_LIGHT, p -> p.shiftLightness(10)),
     LUMBRIDGE_TOWER_FLOOR_TEXTURE(10, Area.LUMBRIDGE_TOWER_FLOOR, GroundMaterial.VARROCK_PATHS_LIGHT, p -> p.shiftLightness(10)),
@@ -98,6 +100,8 @@ public enum Overlay {
     BARBARIAN_VILLAGE_EAST_PATH_FIX_2(2, Area.BARBARIAN_VILLAGE_EAST_PATH_FIX, GroundMaterial.GRAVEL, p -> p.shiftSaturation(-1).shiftLightness(4)),
 
     // Digsite
+    EXAMCENTRE_FLOOR_FIX_1(88, Area.DIGSITE_EXAM_CENTRE, GroundMaterial.WORN_TILES, p -> p.blended(false).shiftLightness(2)),
+    EXAMCENTRE_FLOOR_FIX_2(120, Area.DIGSITE_EXAM_CENTRE, GroundMaterial.WORN_TILES, p -> p.blended(false).shiftLightness(2)),
     DIGSITE_DOCK(93, Area.DIGSITE_DOCK, GroundMaterial.TILES_2x2_1_GLOSS, p -> p.blended(false)),
 
     // Al Kharid
@@ -232,6 +236,7 @@ public enum Overlay {
     CATHERBY_BANK_TILE_2(4, Area.CATHERBY_BANK, GroundMaterial.MARBLE_2_GLOSS, p -> p.blended(false)),
 
     // Ardougne
+    EAST_ARDOUGNE_NORTH_BANK_11(11, Area.EAST_ARDOUGNE_BANK_NORTH, GroundMaterial.CONCRETE, p -> p.blended(false).lightness(40)),
     EAST_ARDOUGNE_CASTLE_DIRT_FIX(14, Area.EAST_ARDOUGNE_CASTLE_DIRT_FIX, GroundMaterial.DIRT, p -> p
         .shiftLightness(7)
         .blended(false)),
@@ -253,13 +258,42 @@ public enum Overlay {
     GUTANOTH_CAVE(29, Area.GUTANOTH_CAVE, WaterType.SWAMP_WATER_FLAT),
 
     // Watchtower
+    YANILLE_WATCHTOWER_ARCHWAY_FIX_1(3, Area.YANNILLE_WATCHTOWER_BOTTOM_DOORWAY, GroundMaterial.WORN_TILES),
+    YANILLE_WATCHTOWER_ARCHWAY_FIX_2(4, Area.YANNILLE_WATCHTOWER_BOTTOM_DOORWAY, GroundMaterial.WORN_TILES),
+    YANILLE_WATCHTOWER_BOTTOM_FLOOR_FIX_3(3, Area.YANILLE_WATCHTOWER_BOTTOM, GroundMaterial.WORN_TILES, p -> p.blended(false)),
+    YANILLE_WATCHTOWER_BOTTOM_FLOOR_FIX_4(4, Area.YANILLE_WATCHTOWER_BOTTOM, GroundMaterial.WORN_TILES, p -> p.blended(false)),
+    YANILLE_WATCHTOWER_MIDDLE_FLOOR_FIX_3(3, Area.YANILLE_WATCHTOWER_MIDDLE, GroundMaterial.WORN_TILES, p -> p.blended(false)),
+    YANILLE_WATCHTOWER_MIDDLE_FLOOR_FIX_4(4, Area.YANILLE_WATCHTOWER_MIDDLE, GroundMaterial.WORN_TILES, p -> p.blended(false)),
+    YANILLE_WATCHTOWER_TOP_FLOOR_FIX_1(1, Area.YANILLE_WATCHTOWER_TOP, GroundMaterial.MARBLE_1_GLOSS, p -> p.blended(false)),
     YANILLE_WATCHTOWER_TOP_FLOOR_FIX_2(2, Area.YANILLE_WATCHTOWER_TOP, GroundMaterial.MARBLE_1_GLOSS, p -> p.blended(false)),
     YANILLE_WATCHTOWER_TOP_FLOOR_FIX_3(3, Area.YANILLE_WATCHTOWER_TOP, GroundMaterial.MARBLE_1_GLOSS, p -> p.blended(false)),
 
     // Draynor
     DRAYNOR_AGGIES_HOUSE(-93, Area.DRAYNOR_AGGIES_HOUSE, GroundMaterial.CARPET, p -> p.blended(false)),
     WISE_OLD_MANS_HOUSE_CARPET(86, Area.DRAYNOR, GroundMaterial.CARPET, p -> p.blended(false)),
+    DRAYNOR_WOM_FRONT_FIX_0(0, Area.DRAYNOR_WOM_HOUSE_FRONT, GroundMaterial.OVERWORLD_GRASS_1),
+    DRAYNOR_WOM_FRONT_FIX_10(10, Area.DRAYNOR_WOM_HOUSE_FRONT, GroundMaterial.OVERWORLD_GRASS_1, p -> p
+            .hue(8)
+            .saturation(4)
+            .lightness(15)
+    ),
     DRAYNOR_BANK_FLOOR(10, Area.DRAYNOR_BANK, GroundMaterial.WORN_TILES, p -> p.blended(false)),
+    DRAYNOR_BANK_FRONT_FIX(0, Area.DRAYNOR_BANK_FRONT_PATH, GroundMaterial.GRAVEL, p -> p
+            .hue(0)
+            .saturation(0)
+            .lightness(22)
+    ),
+    DRAYNOR_BANK_PATH_FIX_10_DARK(10, Area.DRAYNOR_BANK_PATH_FIX_DARK, GroundMaterial.OVERWORLD_GRASS_1, p -> p
+            .hue(9)
+            .saturation(4)
+            .lightness(8)
+    ),
+    DRAYNOR_BANK_PATH_FIX_10_LIGHT(10, Area.DRAYNOR_BANK_PATH_FIX_LIGHT, GroundMaterial.OVERWORLD_GRASS_1, p -> p
+            .hue(9)
+            .saturation(5)
+            .lightness(18)
+    ),
+    DRAYNOR_BANK_PATH_FIX_0(0, Area.DRAYNOR_MARKET_PATH_FIX, GroundMaterial.OVERWORLD_GRASS_1),
     DRAYNOR_MANS_HOUSE_FLOOR(14, Area.DRAYNOR_NORTHERN_HOUSE_FLOOR, GroundMaterial.WOOD_PLANKS_1, p -> p
         .blended(false)
         .lightness(74)
@@ -380,8 +414,28 @@ public enum Overlay {
     // Barbarian Assault
     BA_WAITING_ROOM_NUMBERS(89, Area.BARBARIAN_ASSAULT_WAITING_ROOMS, GroundMaterial.DIRT, p -> p.blended(false)),
 
-    // POHs
-    POH_DESERT_INDOORS(Area.PLAYER_OWNED_HOUSE, GroundMaterial.TILES_2x2_2, p -> p.blended(false).ids(26, 99)),
+	// Tombs of Amascut
+	TOA_DISABLE_BLENDING_4(4, Area.TOA_PATH_HUB, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_11(11, Area.TOA_PATH_HUB, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_86(86, Area.TOA_PATH_HUB, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_N23(-23, Area.TOA_PATH_HUB, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_50(50, Area.TOA_PATH_OF_SCABARAS_PUZZLE, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_66(66, Area.TOA_PATH_OF_SCABARAS_BOSS, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_N18(-18, Area.TOA_PATH_OF_APMEKEN_PUZZLE, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_30(30, Area.TOA_PATH_OF_APMEKEN_BOSS, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_N16(-16, Area.TOA_PATH_OF_HET_PUZZLE, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_DISABLE_BLENDING_N62(-62, Area.TOA_PATH_OF_CRONDIS_BOSS, GroundMaterial.NONE, p -> p.blended(false)),
+	TOA_CRONDIS_PUZZLE_WATER(-5, Area.TOA_PATH_OF_CRONDIS_PUZZLE, GroundMaterial.NONE, p -> p.blended(false)),
+    TOA_DISABLE_BLENDING_LOOT_ROOM(Area.TOA_LOOT_ROOM, GroundMaterial.NONE, p -> p.blended(false)),
+
+    // Tombs of Amascut
+    // TODO: fix tile blending color issues with bridge tiles
+//    TOA_CRONDIS_ROCK(Area.TOA_PATH_OF_CRONDIS_BOSS, GroundMaterial.NONE, p -> p.ids(-123, -122, -74).blended(false)),
+//    TOA_CRONDIS_ISLAND(Area.TOA_CRONDIS_ISLAND, p -> p.groundMaterial(GroundMaterial.SAND)),
+    TOA_CRONDIS_WATER(Area.TOA_CRONDIS_WATER, p -> p.waterType(WaterType.SWAMP_WATER).blended(false)),
+
+	// POHs
+	POH_DESERT_INDOORS(Area.PLAYER_OWNED_HOUSE, GroundMaterial.TILES_2x2_2, p -> p.blended(false).ids(26, 99)),
 
     // Random events
     PRISON_PETE_TILE_1(2, Area.RANDOM_EVENT_PRISON_PETE, GroundMaterial.MARBLE_1, p -> p.blended(false)),
@@ -391,7 +445,7 @@ public enum Overlay {
     TEMPLE_OF_THE_EYE_ENTRANCE(Area.TEMPLE_OF_THE_EYE_ENTRANCE_FIX, GroundMaterial.DIRT, p -> p
         .shiftLightness(-10)
         .blended(false)
-        .ids(-53, 0)),
+        .ids(-53)),
 
     // Elid Cave fix
     ELID_CAVE_WATER_FIX(-126, Area.ELID_CAVE, WaterType.WATER),
@@ -429,7 +483,7 @@ public enum Overlay {
     OVERLAY_29(29, GroundMaterial.GRASS_1),
     OVERLAY_32(32, GroundMaterial.CONCRETE),
 
-    DEFAULT(-1, GroundMaterial.DIRT);
+    NONE(GroundMaterial.DIRT, p -> {});
 
     public final Integer[] ids;
     public final Area area;
@@ -474,6 +528,10 @@ public enum Overlay {
         this(p -> p.waterType(waterType).blended(false).apply(consumer));
     }
 
+    Overlay(Area area, Consumer<TileOverrideBuilder<Overlay>> consumer) {
+        this(p -> p.area(area).apply(consumer));
+    }
+
     Overlay(Area area, GroundMaterial material, Consumer<TileOverrideBuilder<Overlay>> consumer) {
         this(p -> p.groundMaterial(material).area(area).apply(consumer));
     }
@@ -502,13 +560,17 @@ public enum Overlay {
     static {
         GROUND_MATERIAL_MAP = ArrayListMultimap.create();
         for (Overlay overlay : values()) {
-            for (Integer id : overlay.ids) {
-                GROUND_MATERIAL_MAP.put(id, overlay);
+            if (overlay.ids.length == 0) {
+                GROUND_MATERIAL_MAP.put(null, overlay);
+            } else {
+                for (Integer id : overlay.ids) {
+                    GROUND_MATERIAL_MAP.put(id, overlay);
+                }
             }
         }
     }
 
-    public static Overlay getOverlay(int overlayId, Tile tile, Client client, HdPluginConfig pluginConfig) {
+    public static Overlay getOverlay(@Nullable Integer overlayId, Tile tile, Client client, HdPluginConfig pluginConfig) {
         WorldPoint worldPoint = tile.getWorldLocation();
 
         if (client.isInInstancedRegion()) {
@@ -520,16 +582,18 @@ public enum Overlay {
         int worldY = worldPoint.getY();
         int worldZ = worldPoint.getPlane();
 
-        List<Overlay> overlays = GROUND_MATERIAL_MAP.get(overlayId);
-        for (Overlay overlay : overlays) {
-            if (overlay.area.containsPoint(worldX, worldY, worldZ)) {
-                if (overlay.replacementCondition != null && overlay.replacementCondition.apply(pluginConfig)) {
-                    return overlay.replacementOverlay;
-                }
-                return overlay;
-            }
-        }
+        List<Overlay> anyMatchOverlays = GROUND_MATERIAL_MAP.get(null);
+        Overlay anyOverlay = anyMatchOverlays.stream()
+            .filter(o -> o.area.containsPoint(worldX, worldY, worldZ))
+            .findFirst()
+            .orElse(Overlay.NONE);
 
-        return Overlay.DEFAULT;
+        List<Overlay> specificOverlays = GROUND_MATERIAL_MAP.get(overlayId);
+        Overlay overlay = specificOverlays.stream()
+            .filter(o -> o.ordinal() < anyOverlay.ordinal() && o.area.containsPoint(worldX, worldY, worldZ))
+            .findFirst()
+            .orElse(anyOverlay);
+
+        return overlay.replacementCondition.apply(pluginConfig) ? overlay.replacementOverlay : overlay;
     }
 }
