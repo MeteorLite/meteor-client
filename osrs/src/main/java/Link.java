@@ -2,25 +2,25 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pg")
-public class class423 {
+public class Link {
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "Lpg;"
 	)
-	public class423 field4626;
+	public Link previous;
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "Lpg;"
 	)
-	public class423 field4625;
+	public Link next;
 
 	@ObfuscatedName("a")
-	public void method7815() {
-		if (this.field4625 != null) {
-			this.field4625.field4626 = this.field4626;
-			this.field4626.field4625 = this.field4625;
-			this.field4626 = null;
-			this.field4625 = null;
+	public void remove() {
+		if (this.next != null) {
+			this.next.previous = this.previous;
+			this.previous.next = this.next;
+			this.previous = null;
+			this.next = null;
 		}
 	}
 }

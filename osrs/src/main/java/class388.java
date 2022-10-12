@@ -4,7 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ne")
-public class class388 extends class423 {
+public class class388 extends Link {
 	@ObfuscatedName("vu")
 	@ObfuscatedGetter(
 		intValue = -693221637
