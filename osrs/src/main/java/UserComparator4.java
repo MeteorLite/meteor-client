@@ -1,20 +1,19 @@
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("db")
+@ObfuscatedName("dt")
 @Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
-	@ObfuscatedName("vf")
-	@ObfuscatedGetter(
-		intValue = 1706361753
+	@ObfuscatedName("jg")
+	@ObfuscatedSignature(
+		descriptor = "[Lry;"
 	)
-	@Export("foundItemIdCount")
-	static int foundItemIdCount;
-	@ObfuscatedName("c")
+	@Export("modIconSprites")
+	static IndexedSprite[] modIconSprites;
+	@ObfuscatedName("a")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -22,10 +21,10 @@ public class UserComparator4 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lnr;Lnr;B)I",
-		garbageValue = "-116"
+		descriptor = "(Lof;Lof;I)I",
+		garbageValue = "941056838"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Buddy var1, Buddy var2) {
@@ -40,95 +39,70 @@ public class UserComparator4 implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lqt;",
-		garbageValue = "392614583"
-	)
-	@Export("FillMode_values")
-	public static FillMode[] FillMode_values() {
-		return new FillMode[]{FillMode.SOLID, FillMode.field4810, FillMode.field4814};
-	}
-
-	@ObfuscatedName("hp")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "564741140"
-	)
-	static boolean method2730() {
-		return (Client.drawPlayerNames & 4) != 0;
-	}
-
-	@ObfuscatedName("iq")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1545861626"
+		garbageValue = "1111285286"
 	)
-	static final void method2731() {
-		PacketBuffer var0 = Client.packetWriter.packetBuffer;
-		var0.importIndex();
-		int var1 = var0.readBits(8);
-		int var2;
-		if (var1 < Client.npcCount) {
-			for (var2 = var1; var2 < Client.npcCount; ++var2) {
-				Client.field775[++Client.field625 - 1] = Client.npcIndices[var2];
-			}
-		}
+	static final void method2732() {
+		class11.method101("Your friend list is full. Max of 200 for free users, and 400 for members");
+	}
 
-		if (var1 > Client.npcCount) {
-			throw new RuntimeException("");
-		} else {
-			Client.npcCount = 0;
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1902813783"
+	)
+	static final void method2739(String var0) {
+		class11.method101(var0 + " is already on your friend list");
+	}
 
-			for (var2 = 0; var2 < var1; ++var2) {
-				int var3 = Client.npcIndices[var2];
-				NPC var4 = Client.npcs[var3];
-				int var5 = var0.readBits(1);
-				if (var5 == 0) {
-					Client.npcIndices[++Client.npcCount - 1] = var3;
-					var4.npcCycle = Client.cycle;
-				} else {
-					int var6 = var0.readBits(2);
-					if (var6 == 0) {
-						Client.npcIndices[++Client.npcCount - 1] = var3;
-						var4.npcCycle = Client.cycle;
-						Client.field550[++Client.field549 - 1] = var3;
-					} else {
-						int var7;
-						int var8;
-						if (var6 == 1) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							var7 = var0.readBits(3);
-							var4.method2510(var7, class193.field2246);
-							var8 = var0.readBits(1);
-							if (var8 == 1) {
-								Client.field550[++Client.field549 - 1] = var3;
-							}
-						} else if (var6 == 2) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							if (var0.readBits(1) == 1) {
-								var7 = var0.readBits(3);
-								var4.method2510(var7, class193.field2247);
-								var8 = var0.readBits(3);
-								var4.method2510(var8, class193.field2247);
-							} else {
-								var7 = var0.readBits(3);
-								var4.method2510(var7, class193.field2244);
-							}
-
-							var7 = var0.readBits(1);
-							if (var7 == 1) {
-								Client.field550[++Client.field549 - 1] = var3;
-							}
-						} else if (var6 == 3) {
-							Client.field775[++Client.field625 - 1] = var3;
-						}
-					}
-				}
-			}
-
-		}
+	@ObfuscatedName("gj")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-60"
+	)
+	static final void method2738() {
+		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
+		class148.method3155();
+		InvDefinition.method3413();
+		class145.method3072();
+		class18.method268();
+		WorldMapIcon_1.method4715();
+		UrlRequest.method2726();
+		class97.method2522();
+		VarbitComposition.VarbitDefinition_cached.clear();
+		class156.method3225();
+		PcmPlayer.HitSplatDefinition_cachedSprites.method8210();
+		class203.HitSplatDefinition_cached.method8210();
+		HitSplatDefinition.HitSplatDefinition_cached.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear();
+		HealthBarDefinition.HealthBarDefinition_cached.clear();
+		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
+		StructComposition.StructDefinition_cached.clear();
+		ArchiveDiskActionHandler.method6291();
+		ObjectSound.method1854();
+		class456.DBTableType_cache.clear();
+		class458.DBRowType_cache.clear();
+		Client.Widget_cachedModels.clear();
+		Client.Widget_cachedFonts.clear();
+		HorizontalAlignment.method3543();
+		MusicPatchPcmStream.method5658();
+		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
+		Script.Script_cached.clear();
+		class150.archive5.clearFiles();
+		MouseHandler.field251.clearFiles();
+		PlayerType.archive7.clearFiles();
+		Canvas.archive4.clearFiles();
+		SecureRandomFuture.archive9.clearFiles();
+		ReflectionCheck.archive6.clearFiles();
+		WorldMapSectionType.archive11.clearFiles();
+		class142.archive8.clearFiles();
+		Client.field522.clearFiles();
+		WorldMapRegion.archive10.clearFiles();
+		class7.field32.clearFiles();
+		class188.archive12.clearFiles();
+		class250.field2930.clearFiles();
 	}
 }

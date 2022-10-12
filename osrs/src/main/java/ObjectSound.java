@@ -4,97 +4,92 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bp")
+@ObfuscatedName("br")
 @Implements("ObjectSound")
 public final class ObjectSound extends Node {
-	@ObfuscatedName("tu")
-	@ObfuscatedGetter(
-		intValue = -1208168089
-	)
-	static int field832;
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lme;"
 	)
 	@Export("objectSounds")
 	static NodeDeque objectSounds;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 516937797
+		intValue = 1676761033
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -870441583
+		intValue = -1169007201
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 378496640
+		intValue = -1167011712
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1232157189
+		intValue = -1242739273
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1611461431
+		intValue = 1754595341
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1585697121
+		intValue = -1838378409
 	)
-	int field819;
-	@ObfuscatedName("q")
+	int field824;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -272736565
-	)
-	int field823;
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		intValue = -1699420357
+		intValue = 523734751
 	)
 	@Export("soundEffectId")
 	int soundEffectId;
-	@ObfuscatedName("x")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lae;"
+		descriptor = "Lar;"
 	)
 	@Export("stream1")
 	RawPcmStream stream1;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1844338655
-	)
-	int field827;
-	@ObfuscatedName("v")
-	@Export("soundEffectIds")
-	int[] soundEffectIds;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = 1150988163
-	)
-	int field829;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lae;"
-	)
-	@Export("stream2")
-	RawPcmStream stream2;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "Lgz;"
+		descriptor = "Lgm;"
 	)
 	@Export("obj")
 	ObjectComposition obj;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -425406799
+	)
+	int field830;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -2061831479
+	)
+	int field831;
+	@ObfuscatedName("p")
+	@Export("soundEffectIds")
+	int[] soundEffectIds;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 1566603827
+	)
+	int field821;
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "Lar;"
+	)
+	@Export("stream2")
+	RawPcmStream stream2;
 
 	static {
 		objectSounds = new NodeDeque();
@@ -103,10 +98,10 @@ public final class ObjectSound extends Node {
 	ObjectSound() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "940400704"
+		garbageValue = "53792654"
 	)
 	@Export("set")
 	void set() {
@@ -114,20 +109,20 @@ public final class ObjectSound extends Node {
 		ObjectComposition var2 = this.obj.transform();
 		if (var2 != null) {
 			this.soundEffectId = var2.ambientSoundId;
-			this.field823 = var2.int7 * 128;
-			this.field819 = var2.int5;
-			this.field827 = var2.int6;
+			this.field824 = var2.int7 * 128;
+			this.field830 = var2.int5;
+			this.field831 = var2.int6;
 			this.soundEffectIds = var2.soundEffectIds;
 		} else {
 			this.soundEffectId = -1;
-			this.field823 = 0;
-			this.field819 = 0;
-			this.field827 = 0;
+			this.field824 = 0;
+			this.field830 = 0;
+			this.field831 = 0;
 			this.soundEffectIds = null;
 		}
 
 		if (var1 != this.soundEffectId && this.stream1 != null) {
-			class16.pcmStreamMixer.removeSubStream(this.stream1);
+			class453.pcmStreamMixer.removeSubStream(this.stream1);
 			this.stream1 = null;
 		}
 
@@ -135,57 +130,19 @@ public final class ObjectSound extends Node {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lcj;",
-		garbageValue = "1956276941"
+		descriptor = "(IB)I",
+		garbageValue = "-12"
 	)
-	static class83[] method1849() {
-		return new class83[]{class83.field1073, class83.field1074, class83.field1078, class83.field1076, class83.field1075, class83.field1077};
+	public static int method1855(int var0) {
+		return (var0 & class459.field4853) - 1;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "46"
+		descriptor = "(I)V",
+		garbageValue = "1175448064"
 	)
-	static void method1848(boolean var0) {
-		byte var1 = 0;
-		if (!class344.method6492()) {
-			var1 = 12;
-		} else if (IgnoreList.client.method1190() || IgnoreList.client.method1191()) {
-			var1 = 10;
-		}
-
-		class139.method3101(var1);
-		if (var0) {
-			Login.Login_username = "";
-			Login.Login_password = "";
-			class347.field4201 = 0;
-			class28.otp = "";
-		}
-
-		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
-			if (Player.clientPreferences.method2407() != null) {
-				Login.Login_username = Player.clientPreferences.method2407();
-				Client.Login_isUsernameRemembered = true;
-			} else {
-				Client.Login_isUsernameRemembered = false;
-			}
-		}
-
-		class65.method2029();
-	}
-
-	@ObfuscatedName("lu")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-500016340"
-	)
-	static void method1850(int var0) {
-		for (IntegerNode var1 = (IntegerNode)Client.widgetFlags.first(); var1 != null; var1 = (IntegerNode)Client.widgetFlags.next()) {
-			if ((var1.key >> 48 & 65535L) == (long)var0) {
-				var1.remove();
-			}
-		}
-
+	public static void method1854() {
+		WorldMapElement.WorldMapElement_cachedSprites.clear();
 	}
 }

@@ -4,45 +4,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ll")
+@ObfuscatedName("lj")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
-	@ObfuscatedName("tp")
-	@ObfuscatedGetter(
-		intValue = -609387083
-	)
-	static int field4010;
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lme;"
 	)
 	@Export("ArchiveDiskActionHandler_requestQueue")
 	static NodeDeque ArchiveDiskActionHandler_requestQueue;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lme;"
 	)
 	@Export("ArchiveDiskActionHandler_responseQueue")
 	static NodeDeque ArchiveDiskActionHandler_responseQueue;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 2097458275
+		intValue = 1199311371
 	)
-	static int field4018;
-	@ObfuscatedName("n")
+	static int field4122;
+	@ObfuscatedName("x")
 	@Export("ArchiveDiskActionHandler_lock")
 	static Object ArchiveDiskActionHandler_lock;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@Export("ArchiveDiskActionHandler_thread")
 	static Thread ArchiveDiskActionHandler_thread;
-	@ObfuscatedName("b")
-	@Export("ByteArrayPool_alternativeSizes")
-	static int[] ByteArrayPool_alternativeSizes;
 
 	static {
 		ArchiveDiskActionHandler_requestQueue = new NodeDeque();
 		ArchiveDiskActionHandler_responseQueue = new NodeDeque();
-		field4018 = 0;
+		field4122 = 0;
 		ArchiveDiskActionHandler_lock = new Object();
 	}
 
@@ -71,29 +63,75 @@ public class ArchiveDiskActionHandler implements Runnable {
 					}
 
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field4018 <= 1) {
-							field4018 = 0;
+						if (field4122 <= 1) {
+							field4122 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						field4018 = 600;
+						field4122 = 600;
 					}
 				} else {
-					class28.method412(100L);
+					class197.method3946(100L);
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field4018 <= 1) {
-							field4018 = 0;
+						if (field4122 <= 1) {
+							field4122 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						--field4018;
+						--field4122;
 					}
 				}
 			}
 		} catch (Exception var13) {
-			Clock.RunException_sendStackTrace((String)null, var13);
+			class421.RunException_sendStackTrace((String)null, var13);
+		}
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-2029749129"
+	)
+	public static int method6293(int var0) {
+		return var0 >>> 4 & class459.field4854;
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Les;",
+		garbageValue = "13"
+	)
+	static class130 method6280(int var0) {
+		class130[] var1 = new class130[]{class130.field1552, class130.field1551, class130.field1547, class130.field1545, class130.field1546, class130.field1549, class130.field1550, class130.field1548, class130.field1553};
+		class130 var2 = (class130)WallDecoration.findEnumerated(var1, var0);
+		if (var2 == null) {
+			var2 = class130.field1553;
+		}
+
+		return var2;
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-59706697"
+	)
+	public static void method6291() {
+		ParamComposition.ParamDefinition_cached.clear();
+	}
+
+	@ObfuscatedName("gc")
+	@ObfuscatedSignature(
+		descriptor = "(Lgg;IIII)V",
+		garbageValue = "-1574294658"
+	)
+	static void method6292(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && BufferedSink.clientPreferences.method2411() != 0) {
+			if (var0.soundEffects != null && var1 < var0.soundEffects.length) {
+				class101.method2567(var0.soundEffects[var1], var2, var3);
+			}
 		}
 	}
 }

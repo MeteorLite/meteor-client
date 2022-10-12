@@ -4,90 +4,96 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ft")
+@ObfuscatedName("gy")
 @Implements("SpotAnimationDefinition")
 public class SpotAnimationDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("SpotAnimationDefinition_archive")
-	static AbstractArchive SpotAnimationDefinition_archive;
+	public static AbstractArchive SpotAnimationDefinition_archive;
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Llg;"
+	)
+	@Export("SpotAnimationDefinition_modelArchive")
+	public static AbstractArchive SpotAnimationDefinition_modelArchive;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Ljx;"
 	)
 	@Export("SpotAnimationDefinition_cached")
 	static EvictingDualNodeHashTable SpotAnimationDefinition_cached;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Ljx;"
 	)
 	@Export("SpotAnimationDefinition_cachedModels")
 	static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
-	@ObfuscatedName("in")
+	@ObfuscatedName("ca")
 	@ObfuscatedSignature(
-		descriptor = "[Lqi;"
+		descriptor = "[Lry;"
 	)
-	@Export("crossSprites")
-	static SpritePixels[] crossSprites;
-	@ObfuscatedName("k")
+	@Export("worldSelectStars")
+	static IndexedSprite[] worldSelectStars;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1753731371
+		intValue = 112872075
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1094245679
+		intValue = -1921428249
 	)
 	@Export("archive")
 	int archive;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 123967633
+		intValue = -407882935
 	)
 	@Export("sequence")
 	public int sequence;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("v")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -2122918033
+		intValue = 1904272911
 	)
 	@Export("widthScale")
 	int widthScale;
-	@ObfuscatedName("h")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1500333515
+		intValue = -1359658687
 	)
 	@Export("heightScale")
 	int heightScale;
-	@ObfuscatedName("t")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1138258447
+		intValue = -535278233
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1615497413
+		intValue = -1137902335
 	)
 	@Export("ambient")
 	int ambient;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1594501559
+		intValue = -608370479
 	)
 	@Export("contrast")
 	int contrast;
@@ -108,8 +114,8 @@ public class SpotAnimationDefinition extends DualNode {
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;I)V",
-		garbageValue = "-1005863468"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "1953563970"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -123,10 +129,10 @@ public class SpotAnimationDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;IS)V",
-		garbageValue = "9298"
+		descriptor = "(Lqr;II)V",
+		garbageValue = "-1244957740"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -170,16 +176,16 @@ public class SpotAnimationDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "(II)Lha;",
-		garbageValue = "232626041"
+		garbageValue = "-572346987"
 	)
 	@Export("getModel")
 	public final Model getModel(int var1) {
 		Model var2 = (Model)SpotAnimationDefinition_cachedModels.get((long)this.id);
 		if (var2 == null) {
-			ModelData var3 = ModelData.ModelData_get(class11.SpotAnimationDefinition_modelArchive, this.archive, 0);
+			ModelData var3 = ModelData.ModelData_get(SpotAnimationDefinition_modelArchive, this.archive, 0);
 			if (var3 == null) {
 				return null;
 			}
@@ -203,7 +209,7 @@ public class SpotAnimationDefinition extends DualNode {
 
 		Model var5;
 		if (this.sequence != -1 && var1 != -1) {
-			var5 = class4.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
+			var5 = WorldMapElement.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
 		} else {
 			var5 = var2.toSharedSpotAnimationModel(true);
 		}
@@ -232,22 +238,44 @@ public class SpotAnimationDefinition extends DualNode {
 		return var5;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(IS)Lkw;",
-		garbageValue = "18609"
+		descriptor = "(IIII)J",
+		garbageValue = "-878617555"
 	)
-	@Export("getWidget")
-	public static Widget getWidget(int var0) {
-		int var1 = var0 >> 16;
-		int var2 = var0 & 65535;
-		if (Calendar.Widget_interfaceComponents[var1] == null || Calendar.Widget_interfaceComponents[var1][var2] == null) {
-			boolean var3 = FloorOverlayDefinition.loadInterface(var1);
-			if (!var3) {
-				return null;
-			}
+	static long method3591(int var0, int var1, int var2) {
+		return (long)(var2 << 16 | var0 << 8 | var1);
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(Lbt;Lbt;IZIZI)I",
+		garbageValue = "-977260089"
+	)
+	static int method3600(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
+		int var6 = class270.compareWorlds(var0, var1, var2, var3);
+		if (var6 != 0) {
+			return var3 ? -var6 : var6;
+		} else if (var4 == -1) {
+			return 0;
+		} else {
+			int var7 = class270.compareWorlds(var0, var1, var4, var5);
+			return var5 ? -var7 : var7;
+		}
+	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(IIIZII)J",
+		garbageValue = "2119003678"
+	)
+	@Export("calculateTag")
+	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
+		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17;
+		if (var3) {
+			var5 |= 65536L;
 		}
 
-		return Calendar.Widget_interfaceComponents[var1][var2];
+		return var5;
 	}
 }

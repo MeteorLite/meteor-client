@@ -4,24 +4,20 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fq")
+@ObfuscatedName("fu")
 @Implements("InvDefinition")
 public class InvDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
-	)
-	@Export("InvDefinition_archive")
-	static AbstractArchive InvDefinition_archive;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Ljx;"
 	)
 	@Export("InvDefinition_cached")
 	static EvictingDualNodeHashTable InvDefinition_cached;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
+	static int[] field1862;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1156383587
+		intValue = 481394021
 	)
 	@Export("size")
 	public int size;
@@ -34,10 +30,10 @@ public class InvDefinition extends DualNode {
 		this.size = 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;I)V",
-		garbageValue = "644471904"
+		descriptor = "(Lqr;S)V",
+		garbageValue = "128"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -51,10 +47,10 @@ public class InvDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;II)V",
-		garbageValue = "-2012738953"
+		descriptor = "(Lqr;IB)V",
+		garbageValue = "-1"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -64,30 +60,12 @@ public class InvDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lkl;",
-		garbageValue = "-58"
+		descriptor = "(I)V",
+		garbageValue = "-1272401355"
 	)
-	public static StudioGame[] method3523() {
-		return new StudioGame[]{StudioGame.game4, StudioGame.runescape, StudioGame.game5, StudioGame.game3, StudioGame.oldscape, StudioGame.stellardawn};
-	}
-
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "(Lay;I)V",
-		garbageValue = "-644598882"
-	)
-	@Export("PcmStream_disable")
-	static final void PcmStream_disable(PcmStream var0) {
-		var0.active = false;
-		if (var0.sound != null) {
-			var0.sound.position = 0;
-		}
-
-		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
-			PcmStream_disable(var1);
-		}
-
+	public static void method3413() {
+		KitDefinition.KitDefinition_cached.clear();
 	}
 }

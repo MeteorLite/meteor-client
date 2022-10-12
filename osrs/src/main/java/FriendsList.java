@@ -4,60 +4,60 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("na")
+@ObfuscatedName("ny")
 @Implements("FriendsList")
 public class FriendsList extends UserList {
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lpn;"
+		descriptor = "Lqu;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1686578925
+		intValue = -2045646185
 	)
-	int field4329;
-	@ObfuscatedName("k")
+	int field4457;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lmx;"
+		descriptor = "Lmf;"
 	)
-	public LinkDeque friendLoginUpdates;
+	public class351 field4461;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpn;)V"
+		descriptor = "(Lqu;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400);
-		this.field4329 = 1;
-		this.friendLoginUpdates = new LinkDeque();
+		this.field4457 = 1;
+		this.field4461 = new class351();
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lnc;",
-		garbageValue = "-25"
+		descriptor = "(B)Loj;",
+		garbageValue = "31"
 	)
 	@Export("newInstance")
 	User newInstance() {
 		return new Friend();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Lnc;",
-		garbageValue = "0"
+		descriptor = "(II)[Loj;",
+		garbageValue = "-41299588"
 	)
 	@Export("newTypedArray")
 	User[] newTypedArray(int var1) {
 		return new Friend[var1];
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqo;ZI)Z",
-		garbageValue = "15565735"
+		descriptor = "(Lrg;ZI)Z",
+		garbageValue = "903458766"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
@@ -69,10 +69,10 @@ public class FriendsList extends UserList {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;II)V",
-		garbageValue = "1793281005"
+		descriptor = "(Lqr;II)V",
+		garbageValue = "-1997017332"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -111,20 +111,20 @@ public class FriendsList extends UserList {
 						if (var6 != var11.world) {
 							boolean var14 = true;
 
-							for (class370 var13 = (class370)this.friendLoginUpdates.last(); var13 != null; var13 = (class370)this.friendLoginUpdates.previous()) {
-								if (var13.field4345.equals(var4)) {
-									if (var6 != 0 && var13.field4347 == 0) {
-										var13.remove();
+							for (class388 var13 = (class388)this.field4461.method6736(); var13 != null; var13 = (class388)this.field4461.method6733()) {
+								if (var13.field4475.equals(var4)) {
+									if (var6 != 0 && var13.field4476 == 0) {
+										var13.method7815();
 										var14 = false;
-									} else if (var6 == 0 && var13.field4347 != 0) {
-										var13.remove();
+									} else if (var6 == 0 && var13.field4476 != 0) {
+										var13.method7815();
 										var14 = false;
 									}
 								}
 							}
 
 							if (var14) {
-								this.friendLoginUpdates.addFirst(new class370(var4, var6));
+								this.field4461.method6734(new class388(var4, var6));
 							}
 						}
 					} else {
@@ -136,17 +136,17 @@ public class FriendsList extends UserList {
 					}
 
 					if (var6 != var11.world) {
-						var11.int2 = ++this.field4329 - 1;
+						var11.int2 = ++this.field4457 - 1;
 						if (var11.world == -1 && var6 == 0) {
-							var11.int2 = -(var11.int2 * -287223117) * 597666939;
+							var11.int2 = -(var11.int2 * 765902219) * 1732968995;
 						}
 
 						var11.world = var6;
 					}
 
 					var11.rank = var7;
-					var11.field4339 = var9;
-					var11.field4340 = var10;
+					var11.field4472 = var9;
+					var11.field4473 = var10;
 					continue;
 				}
 
@@ -158,12 +158,22 @@ public class FriendsList extends UserList {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "37576687"
+		descriptor = "(Llg;III)Lri;",
+		garbageValue = "720037522"
 	)
-	public static int method6799(int var0, int var1) {
-		return (int)Math.round(Math.atan2((double)var0, (double)var1) * 2607.5945876176133D) & 16383;
+	@Export("SpriteBuffer_getSprite")
+	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2);
+		boolean var3;
+		if (var4 == null) {
+			var3 = false;
+		} else {
+			class335.SpriteBuffer_decode(var4);
+			var3 = true;
+		}
+
+		return !var3 ? null : class31.method466();
 	}
 }

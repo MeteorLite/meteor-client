@@ -4,55 +4,49 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fe")
+@ObfuscatedName("gj")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("uz")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "Llg;"
 	)
-	@Export("grandExchangeEvents")
-	static GrandExchangeEvents grandExchangeEvents;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Llv;"
-	)
 	@Export("EnumDefinition_archive")
-	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("p")
+	public static AbstractArchive EnumDefinition_archive;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Ljx;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 268659087
+		intValue = 727291743
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -86792711
+		intValue = 1642297391
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -67,8 +61,8 @@ public class EnumComposition extends DualNode {
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;I)V",
-		garbageValue = "-1787405045"
+		descriptor = "(Lqr;B)V",
+		garbageValue = "-2"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -82,10 +76,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;II)V",
-		garbageValue = "2042214635"
+		descriptor = "(Lqr;II)V",
+		garbageValue = "-828068148"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -122,46 +116,51 @@ public class EnumComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "28"
+		garbageValue = "64"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("ia")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "21250774"
+		descriptor = "(Lcw;I)V",
+		garbageValue = "-1074689727"
 	)
-	public static int method3627(int var0) {
-		return class156.Entity_unpackID(ViewportMouse.ViewportMouse_entityTags[var0]);
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(LJSONObject;Ljava/lang/String;I)[F",
-		garbageValue = "1275839888"
-	)
-	static float[] method3622(JSONObject var0, String var1) throws JSONException {
-		float[] var2 = new float[4];
-
-		try {
-			JSONArray var3 = var0.getJSONArray(var1);
-			var2[0] = (float)var3.optDouble(0, 0.0D);
-			var2[1] = (float)var3.optDouble(1, 0.0D);
-			var2[2] = (float)var3.optDouble(2, 1.0D);
-			var2[3] = (float)var3.optDouble(3, 1.0D);
-		} catch (JSONException var4) {
-			var2[0] = 0.0F;
-			var2[1] = 0.0F;
-			var2[2] = 1.0F;
-			var2[3] = 1.0F;
+	static final void method3528(PendingSpawn var0) {
+		long var1 = 0L;
+		int var3 = -1;
+		int var4 = 0;
+		int var5 = 0;
+		if (var0.type == 0) {
+			var1 = class139.scene.getBoundaryObjectTag(var0.plane, var0.x, var0.y);
 		}
 
-		return var2;
+		if (var0.type == 1) {
+			var1 = class139.scene.getWallDecorationTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (var0.type == 2) {
+			var1 = class139.scene.getGameObjectTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (var0.type == 3) {
+			var1 = class139.scene.getFloorDecorationTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (0L != var1) {
+			int var6 = class139.scene.getObjectFlags(var0.plane, var0.x, var0.y, var1);
+			var3 = AttackOption.Entity_unpackID(var1);
+			var4 = var6 & 31;
+			var5 = var6 >> 6 & 3;
+		}
+
+		var0.objectId = var3;
+		var0.field1126 = var4;
+		var0.field1125 = var5;
 	}
 }

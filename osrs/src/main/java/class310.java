@@ -3,60 +3,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ky")
-public enum class310 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("kr")
+public enum class310 implements class342 {
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lkr;"
 	)
-	field3979(-1),
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lky;"
-	)
-	field3982(0),
+	field3667(0),
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lkr;"
 	)
-	field3981(1),
-	@ObfuscatedName("n")
+	field3662(1),
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lkr;"
 	)
-	field3980(2);
+	field3663(2),
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Lkr;"
+	)
+	field3664(3),
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "Lkr;"
+	)
+	field3665(4);
 
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = 73014485
+	@ObfuscatedName("fr")
+	@ObfuscatedSignature(
+		descriptor = "Llx;"
 	)
-	final int field3983;
+	@Export("archive19")
+	static Archive archive19;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -1504029357
+	)
+	final int field3666;
 
 	class310(int var3) {
-		this.field3983 = var3;
+		this.field3666 = var3;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "1"
+		garbageValue = "0"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field3983;
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ldc;",
-		garbageValue = "-450916759"
-	)
-	static class124 method5941(int var0) {
-		class124 var1 = (class124)Varps.findEnumerated(class97.method2586(), var0);
-		if (var1 == null) {
-			var1 = class124.field1524;
-		}
-
-		return var1;
+		return this.field3666;
 	}
 }

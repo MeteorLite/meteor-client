@@ -1,69 +1,62 @@
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("he")
+@ObfuscatedName("hg")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		descriptor = "Lqi;"
+	@ObfuscatedName("jm")
+	@ObfuscatedGetter(
+		intValue = -470749663
 	)
-	@Export("leftTitleSprite")
-	static SpritePixels leftTitleSprite;
-	@ObfuscatedName("x")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
-	@ObfuscatedName("u")
+	@Export("cameraX")
+	static int cameraX;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lkw;"
-	)
-	@Export("scriptDotWidget")
-	static Widget scriptDotWidget;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "[Lgy;"
+		descriptor = "[Lgd;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lme;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 2032521801
+		intValue = 631229177
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1066617989
+		intValue = 238825365
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 928913955
+		intValue = 1056685069
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;IDI)V"
+		descriptor = "(Llg;Llg;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque();
@@ -86,10 +79,10 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1687202729"
+		garbageValue = "-1484435972"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -105,7 +98,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					int var8 = var6[var7];
-					if (this.archive.method6011(var8)) {
+					if (this.archive.method6348(var8)) {
 						++var2;
 					}
 				}
@@ -119,17 +112,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1;
 		this.clear();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II)[I",
-		garbageValue = "-2101542497"
+		descriptor = "(IB)[I",
+		garbageValue = "-47"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -159,39 +152,39 @@ public class TextureProvider implements TextureLoader {
 		return null;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "-14"
+		descriptor = "(II)I",
+		garbageValue = "1674485627"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
 	}
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "8"
-	)
-	public boolean vmethod4653(int var1) {
-		return this.textures[var1].field2323;
-	}
-
-	@ObfuscatedName("w")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "75925311"
+		garbageValue = "1297302867"
+	)
+	public boolean vmethod4645(int var1) {
+		return this.textures[var1].field2365;
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "-1896318118"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-43207350"
+		garbageValue = "-1815187350"
 	)
 	@Export("clear")
 	public void clear() {
@@ -205,10 +198,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "2"
+		descriptor = "(II)V",
+		garbageValue = "729315189"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -222,12 +215,60 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "-642711715"
+		descriptor = "(I)Lbt;",
+		garbageValue = "531448753"
 	)
-	static boolean method4482(int var0, int var1) {
-		return var0 != 4 || var1 < 8;
+	@Export("getNextWorldListWorld")
+	static World getNextWorldListWorld() {
+		return World.World_listCount < World.World_count ? class412.World_worlds[++World.World_listCount - 1] : null;
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(Lfp;III)Lab;",
+		garbageValue = "-1220620328"
+	)
+	public static final PcmPlayer method4500(TaskHandler var0, int var1, int var2) {
+		if (SoundCache.field337 == 0) {
+			throw new IllegalStateException();
+		} else if (var1 >= 0 && var1 < 2) {
+			if (var2 < 256) {
+				var2 = 256;
+			}
+
+			try {
+				PcmPlayer var3 = class32.pcmPlayerProvider.player();
+				var3.samples = new int[256 * (class157.PcmPlayer_stereo ? 2 : 1)];
+				var3.field303 = var2;
+				var3.init();
+				var3.capacity = (var2 & -1024) + 1024;
+				if (var3.capacity > 16384) {
+					var3.capacity = 16384;
+				}
+
+				var3.open(var3.capacity);
+				if (class281.field3276 > 0 && PcmPlayer.soundSystem == null) {
+					PcmPlayer.soundSystem = new SoundSystem();
+					class354.soundSystemExecutor = Executors.newScheduledThreadPool(1);
+					class354.soundSystemExecutor.scheduleAtFixedRate(PcmPlayer.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
+				}
+
+				if (PcmPlayer.soundSystem != null) {
+					if (PcmPlayer.soundSystem.players[var1] != null) {
+						throw new IllegalArgumentException();
+					}
+
+					PcmPlayer.soundSystem.players[var1] = var3;
+				}
+
+				return var3;
+			} catch (Throwable var4) {
+				return new PcmPlayer();
+			}
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 }

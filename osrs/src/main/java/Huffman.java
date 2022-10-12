@@ -3,22 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jn")
+@ObfuscatedName("ky")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("ec")
-	@ObfuscatedSignature(
-		descriptor = "Llb;"
-	)
-	@Export("archive20")
-	static Archive archive20;
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@Export("keys")
 	int[] keys;
 
@@ -47,7 +41,7 @@ public class Huffman {
 
 					for (var10 = var6 - 1; var10 >= 1; --var10) {
 						var11 = var3[var10];
-						if (var8 != var11) {
+						if (var11 != var8) {
 							break;
 						}
 
@@ -105,10 +99,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "([BII[BII)I",
-		garbageValue = "-2111183075"
+		garbageValue = "1920319675"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -156,10 +150,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "([BI[BIIB)I",
-		garbageValue = "-41"
+		garbageValue = "21"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -300,20 +294,66 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("hf")
+	@ObfuscatedName("kx")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "18"
+		descriptor = "(Lkn;III)V",
+		garbageValue = "-957741986"
 	)
-	static int method5646(int var0, int var1) {
-		int var2 = var1 - 334;
-		if (var2 < 0) {
-			var2 = 0;
-		} else if (var2 > 100) {
-			var2 = 100;
-		}
+	@Export("clickWidget")
+	static final void clickWidget(Widget var0, int var1, int var2) {
+		if (Client.clickedWidget == null && !Client.isMenuOpen) {
+			if (var0 != null) {
+				Widget var4 = WorldMapSectionType.method5111(var0);
+				if (var4 == null) {
+					var4 = var0.parent;
+				}
 
-		int var3 = (Client.zoomWidth - Client.zoomHeight) * var2 / 100 + Client.zoomHeight;
-		return var0 * var3 / 256;
+				if (var4 != null) {
+					Client.clickedWidget = var0;
+					Widget var5 = var0;
+					int var7 = class197.getWidgetFlags(var0);
+					int var6 = var7 >> 17 & 7;
+					int var8 = var6;
+					if (var6 == 0) {
+						var4 = null;
+					} else {
+						int var9 = 0;
+
+						while (true) {
+							if (var9 >= var8) {
+								var4 = var5;
+								break;
+							}
+
+							var5 = class281.getWidget(var5.parentId);
+							if (var5 == null) {
+								var4 = null;
+								break;
+							}
+
+							++var9;
+						}
+					}
+
+					Widget var10 = var4;
+					if (var4 == null) {
+						var10 = var0.parent;
+					}
+
+					Client.clickedWidgetParent = var10;
+					Client.widgetClickX = var1;
+					Client.widgetClickY = var2;
+					Script.widgetDragDuration = 0;
+					Client.isDraggingWidget = false;
+					int var11 = class250.method5167();
+					if (var11 != -1) {
+						class10.method93(var11);
+					}
+
+					return;
+				}
+			}
+
+		}
 	}
 }

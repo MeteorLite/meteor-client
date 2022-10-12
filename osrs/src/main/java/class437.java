@@ -1,97 +1,56 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pt")
-public class class437 extends DualNode {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Llv;"
-	)
-	static AbstractArchive field4708;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lif;"
-	)
-	@Export("DBTableType_cache")
-	static EvictingDualNodeHashTable DBTableType_cache;
+@ObfuscatedName("pv")
+public class class437 {
+	@ObfuscatedName("a")
+	public final Object field4764;
 	@ObfuscatedName("f")
-	public int[][] field4706;
-	@ObfuscatedName("n")
-	public Object[][] field4707;
+	public final Object field4765;
 
-	static {
-		DBTableType_cache = new EvictingDualNodeHashTable(64);
+	public class437(Object var1, Object var2) {
+		this.field4764 = var1;
+		this.field4765 = var2;
 	}
 
-	class437() {
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lqq;B)V",
-		garbageValue = "18"
-	)
-	void method7808(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
-				return;
+	public boolean equals(Object var1) {
+		if (var1 != null && var1 instanceof class437) {
+			class437 var2 = (class437)var1;
+			if (this.field4764 == null) {
+				if (var2.field4764 != null) {
+					return false;
+				}
+			} else if (!this.field4764.equals(var2.field4764)) {
+				return false;
 			}
 
-			this.method7814(var1, var2);
+			if (this.field4765 == null) {
+				if (var2.field4765 != null) {
+					return false;
+				}
+			} else if (!this.field4765.equals(var2.field4765)) {
+				return false;
+			}
+
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(Lqq;IB)V",
-		garbageValue = "-37"
-	)
-	void method7814(Buffer var1, int var2) {
-		if (var2 == 1) {
-			int var3 = var1.readUnsignedByte();
-			if (this.field4706 == null) {
-				this.field4706 = new int[var3][];
-			}
+	public String toString() {
+		return this.field4764 + ", " + this.field4765;
+	}
 
-			for (int var4 = var1.readUnsignedByte(); var4 != 255; var4 = var1.readUnsignedByte()) {
-				int var5 = var4 & 127;
-				boolean var6 = (var4 & 128) != 0;
-				int[] var7 = new int[var1.readUnsignedByte()];
-
-				for (int var8 = 0; var8 < var7.length; ++var8) {
-					var7[var8] = var1.readUShortSmart();
-				}
-
-				this.field4706[var5] = var7;
-				if (var6) {
-					if (this.field4707 == null) {
-						this.field4707 = new Object[this.field4706.length][];
-					}
-
-					this.field4707[var5] = class358.method6730(var1, var7);
-				}
-			}
+	public int hashCode() {
+		int var1 = 0;
+		if (this.field4764 != null) {
+			var1 += this.field4764.hashCode();
 		}
 
-	}
+		if (this.field4765 != null) {
+			var1 += 31 * this.field4765.hashCode();
+		}
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "59"
-	)
-	void method7809() {
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)[Lkj;",
-		garbageValue = "2"
-	)
-	@Export("PlayerType_values")
-	public static PlayerType[] PlayerType_values() {
-		return new PlayerType[]{PlayerType.field3996, PlayerType.PlayerType_ultimateIronman, PlayerType.field3998, PlayerType.field3992, PlayerType.PlayerType_normal, PlayerType.field3999, PlayerType.PlayerType_ironman, PlayerType.field3993, PlayerType.field3988, PlayerType.field3990, PlayerType.PlayerType_playerModerator, PlayerType.field3994, PlayerType.field3986, PlayerType.PlayerType_jagexModerator, PlayerType.field3995, PlayerType.PlayerType_hardcoreIronman};
+		return var1;
 	}
 }

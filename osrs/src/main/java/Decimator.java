@@ -1,38 +1,37 @@
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bg")
+@ObfuscatedName("bl")
 @Implements("Decimator")
 public class Decimator {
-	@ObfuscatedName("vj")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lpi;"
+		descriptor = "Lik;"
 	)
-	@Export("worldMap")
-	static WorldMap worldMap;
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
+	@ObfuscatedName("jp")
+	@ObfuscatedSignature(
+		descriptor = "[Lri;"
+	)
+	@Export("mapDotSprites")
+	static SpritePixels[] mapDotSprites;
 	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "Laj;"
-	)
-	@Export("soundSystem")
-	static SoundSystem soundSystem;
-	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1829904369
+		intValue = -938376421
 	)
 	@Export("inputRate")
 	int inputRate;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1857281025
+		intValue = -319906537
 	)
 	@Export("outputRate")
 	int outputRate;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@Export("table")
 	int[][] table;
 
@@ -71,29 +70,29 @@ public class Decimator {
 				}
 
 				for (double var13 = (double)var2 / (double)var1; var11 < var12; ++var11) {
-					double var15 = ((double)var11 - var9) * 3.141592653589793D;
+					double var15 = 3.141592653589793D * ((double)var11 - var9);
 					double var17 = var13;
 					if (var15 < -1.0E-4D || var15 > 1.0E-4D) {
 						var17 = var13 * (Math.sin(var15) / var15);
 					}
 
-					var17 *= 0.54D + 0.46D * Math.cos(0.2243994752564138D * ((double)var11 - var9));
-					var8[var11] = (int)Math.floor(0.5D + var17 * 65536.0D);
+					var17 *= 0.54D + 0.46D * Math.cos(((double)var11 - var9) * 0.2243994752564138D);
+					var8[var11] = (int)Math.floor(0.5D + 65536.0D * var17);
 				}
 			}
 
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "([BI)[B",
-		garbageValue = "849766572"
+		garbageValue = "-653673417"
 	)
 	@Export("resample")
 	byte[] resample(byte[] var1) {
 		if (this.table != null) {
-			int var2 = (int)((long)this.outputRate * (long)var1.length / (long)this.inputRate) + 14;
+			int var2 = (int)((long)var1.length * (long)this.outputRate / (long)this.inputRate) + 14;
 			int[] var3 = new int[var2];
 			int var4 = 0;
 			int var5 = 0;
@@ -105,7 +104,7 @@ public class Decimator {
 
 				int var9;
 				for (var9 = 0; var9 < 14; ++var9) {
-					var3[var9 + var4] += var8[var9] * var7;
+					var3[var4 + var9] += var7 * var8[var9];
 				}
 
 				var5 += this.outputRate;
@@ -131,10 +130,10 @@ public class Decimator {
 		return var1;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IS)I",
-		garbageValue = "198"
+		descriptor = "(II)I",
+		garbageValue = "434643402"
 	)
 	@Export("scaleRate")
 	int scaleRate(int var1) {
@@ -145,10 +144,10 @@ public class Decimator {
 		return var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-709095343"
+		descriptor = "(IB)I",
+		garbageValue = "-61"
 	)
 	@Export("scalePosition")
 	int scalePosition(int var1) {
@@ -159,92 +158,33 @@ public class Decimator {
 		return var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lcz;",
-		garbageValue = "-26006"
+		descriptor = "(III)V",
+		garbageValue = "-1385011335"
 	)
-	static ClientPreferences method1102() {
-		AccessFile var0 = null;
-		ClientPreferences var1 = new ClientPreferences();
-
-		try {
-			var0 = SceneTilePaint.getPreferencesFile("", class153.field1729.name, false);
-			byte[] var2 = new byte[(int)var0.length()];
-
-			int var4;
-			for (int var3 = 0; var3 < var2.length; var3 += var4) {
-				var4 = var0.read(var2, var3, var2.length - var3);
-				if (var4 == -1) {
-					throw new IOException();
-				}
-			}
-
-			var1 = new ClientPreferences(new Buffer(var2));
-		} catch (Exception var6) {
+	static void method1108(int var0, int var1) {
+		long var2 = (long)((var0 << 16) + var1);
+		NetFileRequest var4 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var2);
+		if (var4 != null) {
+			NetCache.NetCache_pendingWritesQueue.addLast(var4);
 		}
-
-		try {
-			if (var0 != null) {
-				var0.close();
-			}
-		} catch (Exception var5) {
-		}
-
-		return var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("gm")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "67"
+		descriptor = "(I)V",
+		garbageValue = "46757317"
 	)
-	static final void method1104(int var0, int var1, int var2, int var3) {
-		for (int var4 = var1; var4 <= var3 + var1; ++var4) {
-			for (int var5 = var0; var5 <= var0 + var2; ++var5) {
-				if (var5 >= 0 && var5 < 104 && var4 >= 0 && var4 < 104) {
-					SoundCache.field328[0][var5][var4] = 127;
-					if (var0 == var5 && var5 > 0) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 - 1][var4];
-					}
-
-					if (var0 + var2 == var5 && var5 < 103) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 + 1][var4];
-					}
-
-					if (var4 == var1 && var4 > 0) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 - 1];
-					}
-
-					if (var3 + var1 == var4 && var4 < 103) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 + 1];
-					}
-				}
+	static final void method1109() {
+		if (UserComparator8.ClanChat_inClanChat) {
+			if (MenuAction.friendsChat != null) {
+				MenuAction.friendsChat.sort();
 			}
+
+			HealthBar.method2478();
+			UserComparator8.ClanChat_inClanChat = false;
 		}
 
-	}
-
-	@ObfuscatedName("mo")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "2002052932"
-	)
-	public static boolean method1091() {
-		return Client.staffModLevel >= 2;
-	}
-
-	@ObfuscatedName("mj")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lpb;",
-		garbageValue = "-3"
-	)
-	static class438 method1103(int var0) {
-		class438 var1 = (class438)Client.Widget_cachedFonts.get((long)var0);
-		if (var1 == null) {
-			var1 = new class438(PcmPlayer.field308, var0);
-		}
-
-		return var1;
 	}
 }

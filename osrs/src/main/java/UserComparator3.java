@@ -3,10 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dp")
+@ObfuscatedName("dj")
 @Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("hr")
+	@ObfuscatedSignature(
+		descriptor = "Lnl;"
+	)
+	@Export("fontBold12")
+	static Font fontBold12;
+	@ObfuscatedName("a")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +20,10 @@ public class UserComparator3 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lnr;Lnr;B)I",
-		garbageValue = "-3"
+		descriptor = "(Lof;Lof;I)I",
+		garbageValue = "-380202697"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,84 +38,51 @@ public class UserComparator3 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lgk;",
-		garbageValue = "1284626189"
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "-1356433235"
 	)
-	@Export("ItemDefinition_get")
-	public static ItemComposition ItemDefinition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	static int method2774(int var0, Script var1, boolean var2) {
+		int var3;
+		if (var0 == 5504) {
+			class379.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+			int var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+			if (!Client.isCameraLocked) {
+				Client.camAngleX = var3;
+				Client.camAngleY = var4;
+			}
+
+			return 1;
+		} else if (var0 == 5505) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.camAngleX;
+			return 1;
+		} else if (var0 == 5506) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.camAngleY;
+			return 1;
+		} else if (var0 == 5530) {
+			var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+			if (var3 < 0) {
+				var3 = 0;
+			}
+
+			Client.camFollowHeight = var3;
+			return 1;
+		} else if (var0 == 5531) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.camFollowHeight;
+			return 1;
 		} else {
-			byte[] var2 = ItemComposition.ItemDefinition_archive.takeFile(10, var0);
-			var1 = new ItemComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.post();
-			if (var1.noteTemplate != -1) {
-				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) {
-				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) {
-				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
-			}
-
-			if (!class17.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
-				var1.name = "Members object";
-				var1.isTradable = false;
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) {
-					var1.groundActions[var3] = null;
-				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) {
-					if (var3 != 4) {
-						var1.inventoryActions[var3] = null;
-					}
-				}
-
-				var1.shiftClickIndex = -2;
-				var1.team = 0;
-				if (var1.params != null) {
-					boolean var6 = false;
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-						ParamComposition var5 = Projectile.getParamDefinition((int)var4.key);
-						if (var5.autoDisable) {
-							var4.remove();
-						} else {
-							var6 = true;
-						}
-					}
-
-					if (!var6) {
-						var1.params = null;
-					}
-				}
-			}
-
-			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
-			return var1;
+			return 2;
 		}
 	}
 
-	@ObfuscatedName("lr")
+	@ObfuscatedName("mr")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "3181"
+		descriptor = "(I)Z",
+		garbageValue = "-2081933970"
 	)
-	static final void method2766() {
-		Client.field702 = Client.cycleCntr;
-		SecureRandomFuture.field964 = true;
+	public static boolean method2773() {
+		return Client.staffModLevel >= 2;
 	}
 }

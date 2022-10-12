@@ -1,51 +1,66 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("k")
+@ObfuscatedName("h")
 public final class class4 {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lgd;",
-		garbageValue = "5"
+	@ObfuscatedName("tb")
+	@ObfuscatedGetter(
+		intValue = 101626496
 	)
-	@Export("SequenceDefinition_get")
-	public static SequenceDefinition SequenceDefinition_get(int var0) {
-		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0);
-			var1 = new SequenceDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
+	static int field11;
 
-			var1.postDecode();
-			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0);
-			return var1;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "2019597533"
+	)
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0;
+		if (var0 < 0 || var0 >= 65536) {
+			var0 >>>= 16;
+			var1 += 16;
 		}
+
+		if (var0 >= 256) {
+			var0 >>>= 8;
+			var1 += 8;
+		}
+
+		if (var0 >= 16) {
+			var0 >>>= 4;
+			var1 += 4;
+		}
+
+		if (var0 >= 4) {
+			var0 >>>= 2;
+			var1 += 2;
+		}
+
+		if (var0 >= 1) {
+			var0 >>>= 1;
+			++var1;
+		}
+
+		return var0 + var1;
 	}
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfq;",
-		garbageValue = "0"
+		descriptor = "(III)I",
+		garbageValue = "1186884492"
 	)
-	@Export("getInvDefinition")
-	public static InvDefinition getInvDefinition(int var0) {
-		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0);
-			var1 = new InvDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			InvDefinition.InvDefinition_cached.put(var1, (long)var0);
-			return var1;
+	static final int method15(int var0, int var1) {
+		int var2 = class320.method6262(var0 + 45365, var1 + 91923, 4) - 128 + (class320.method6262(10294 + var0, 37821 + var1, 2) - 128 >> 1) + (class320.method6262(var0, var1, 1) - 128 >> 2);
+		var2 = (int)((double)var2 * 0.3D) + 35;
+		if (var2 < 10) {
+			var2 = 10;
+		} else if (var2 > 60) {
+			var2 = 60;
 		}
+
+		return var2;
 	}
 }

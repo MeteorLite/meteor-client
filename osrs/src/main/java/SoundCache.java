@@ -1,40 +1,46 @@
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ax")
+@ObfuscatedName("aw")
 @Implements("SoundCache")
 public class SoundCache {
-	@ObfuscatedName("q")
-	static byte[][][] field328;
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = -494220155
+	)
+	public static int field337;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("soundEffectIndex")
 	AbstractArchive soundEffectIndex;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("musicSampleIndex")
 	AbstractArchive musicSampleIndex;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lpm;"
+		descriptor = "Lpr;"
 	)
 	@Export("musicSamples")
 	NodeHashTable musicSamples;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lpm;"
+		descriptor = "Lpr;"
 	)
 	@Export("rawSounds")
 	NodeHashTable rawSounds;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;)V"
+		descriptor = "(Llg;Llg;)V"
 	)
 	public SoundCache(AbstractArchive var1, AbstractArchive var2) {
 		this.musicSamples = new NodeHashTable(256);
@@ -43,10 +49,10 @@ public class SoundCache {
 		this.musicSampleIndex = var2;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(II[II)Lab;",
-		garbageValue = "840965522"
+		descriptor = "(II[II)Lam;",
+		garbageValue = "1144008549"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -74,10 +80,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(II[IB)Lab;",
-		garbageValue = "-57"
+		descriptor = "(II[IB)Lam;",
+		garbageValue = "8"
 	)
 	@Export("getMusicSample0")
 	RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -111,10 +117,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I[II)Lab;",
-		garbageValue = "768901473"
+		descriptor = "(I[II)Lam;",
+		garbageValue = "1063762449"
 	)
 	@Export("getSoundEffect")
 	public RawSound getSoundEffect(int var1, int[] var2) {
@@ -127,10 +133,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(I[IB)Lab;",
-		garbageValue = "32"
+		descriptor = "(I[II)Lam;",
+		garbageValue = "1305792027"
 	)
 	@Export("getMusicSample")
 	public RawSound getMusicSample(int var1, int[] var2) {
@@ -143,32 +149,41 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lfy;",
-		garbageValue = "13"
+		descriptor = "(I)V",
+		garbageValue = "-141317251"
 	)
-	static HorizontalAlignment[] method834() {
-		return new HorizontalAlignment[]{HorizontalAlignment.field1927, HorizontalAlignment.field1921, HorizontalAlignment.HorizontalAlignment_centered};
+	static void method878() {
+		Iterator var0 = Messages.Messages_hashTable.iterator();
+
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next();
+			var1.clearIsFromIgnored();
+		}
+
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("gu")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2084376384"
+		descriptor = "(ZI)V",
+		garbageValue = "1956654550"
 	)
-	@Export("Widget_unpackTargetMask")
-	public static int Widget_unpackTargetMask(int var0) {
-		return var0 >> 11 & 63;
-	}
+	static final void method874(boolean var0) {
+		if (var0) {
+			Client.field528 = Login.field900 ? class131.field1564 : class131.field1561;
+		} else {
+			LinkedHashMap var1 = BufferedSink.clientPreferences.parameters;
+			String var3 = Login.Login_username;
+			int var4 = var3.length();
+			int var5 = 0;
 
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Ljava/lang/String;",
-		garbageValue = "-1"
-	)
-	@Export("colorStartTag")
-	static String colorStartTag(int var0) {
-		return "<col=" + Integer.toHexString(var0) + ">";
+			for (int var6 = 0; var6 < var4; ++var6) {
+				var5 = (var5 << 5) - var5 + var3.charAt(var6);
+			}
+
+			Client.field528 = var1.containsKey(var5) ? class131.field1560 : class131.field1559;
+		}
+
 	}
 }

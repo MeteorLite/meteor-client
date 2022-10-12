@@ -4,40 +4,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fy")
+@ObfuscatedName("gl")
 @Implements("HorizontalAlignment")
-public enum HorizontalAlignment implements MouseWheel {
-	@ObfuscatedName("c")
+public enum HorizontalAlignment implements class342 {
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lgl;"
 	)
-	field1921(1, 0),
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lfy;"
-	)
-	@Export("HorizontalAlignment_centered")
-	HorizontalAlignment_centered(2, 1),
+	field1951(1, 0),
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lgl;"
 	)
-	field1927(0, 2);
-
-	@ObfuscatedName("ek")
+	@Export("HorizontalAlignment_centered")
+	HorizontalAlignment_centered(0, 1),
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Llb;"
+		descriptor = "Lgl;"
 	)
-	static Archive field1926;
-	@ObfuscatedName("n")
+	field1950(2, 2);
+
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1423068571
+		intValue = 1605598307
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 2111839571
+		intValue = 2043429175
 	)
 	@Export("id")
 	final int id;
@@ -47,13 +42,22 @@ public enum HorizontalAlignment implements MouseWheel {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "1"
+		garbageValue = "0"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
+	}
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1955451774"
+	)
+	public static void method3543() {
+		PlayerComposition.PlayerAppearance_cachedModels.clear();
 	}
 }

@@ -4,35 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nv")
+@ObfuscatedName("om")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lnv;"
+		descriptor = "Lom;"
 	)
-	static final DefaultsGroup field4406;
-	@ObfuscatedName("p")
+	static final DefaultsGroup field4533;
+	@ObfuscatedName("s")
+	@Export("Tiles_lightness")
+	static int[] Tiles_lightness;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1327422695
+		intValue = -2076033797
 	)
 	@Export("group")
 	final int group;
 
 	static {
-		field4406 = new DefaultsGroup(3);
+		field4533 = new DefaultsGroup(3);
 	}
 
 	DefaultsGroup(int var1) {
 		this.group = var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "126"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1557286602"
 	)
-	public static int method7084(int var0) {
-		return class403.field4486[var0 & 16383];
+	static final void method7565(String var0) {
+		class11.method101(var0 + " is already on your ignore list");
 	}
 }

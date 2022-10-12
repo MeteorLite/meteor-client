@@ -4,95 +4,103 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hd")
+@ObfuscatedName("hs")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("ix")
-	@ObfuscatedGetter(
-		intValue = 216493687
+	@ObfuscatedName("vg")
+	@ObfuscatedSignature(
+		descriptor = "Lob;"
 	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
-	@ObfuscatedName("c")
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
+	@ObfuscatedName("cj")
+	@ObfuscatedSignature(
+		descriptor = "Lry;"
+	)
+	@Export("worldSelectLeftSprite")
+	static IndexedSprite worldSelectLeftSprite;
+	@ObfuscatedName("dv")
+	static boolean field2733;
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -524659345
+		intValue = -1345253947
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -2019849325
+		intValue = -1315903907
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1901568163
+		intValue = -1038617169
 	)
 	@Export("centerX")
 	int centerX;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 512475551
+		intValue = -2072639915
 	)
 	@Export("centerY")
 	int centerY;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lgg;"
+		descriptor = "Lhd;"
 	)
 	@Export("renderable")
 	public Renderable renderable;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1736260079
+		intValue = -40540361
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 155227051
+		intValue = 2020879011
 	)
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 2081819735
+		intValue = 446674919
 	)
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -377885443
+		intValue = 1537502895
 	)
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1283564619
+		intValue = 73378603
 	)
 	@Export("endY")
 	int endY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 942214617
+		intValue = 901536547
 	)
-	int field2679;
-	@ObfuscatedName("v")
+	int field2737;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1995571253
+		intValue = 529946671
 	)
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("h")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		longValue = 7185604237786058919L
+		longValue = -7922081182251728711L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("t")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1855881837
+		intValue = -1855102213
 	)
 	@Export("flags")
 	int flags;
@@ -102,12 +110,78 @@ public final class GameObject {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "0"
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "2067332128"
 	)
-	public static boolean method4666(int var0) {
-		return var0 >= 0 && var0 < 112 ? KeyHandler.field134[var0] : false;
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(Lkn;I[B[BI)V",
+		garbageValue = "1711616226"
+	)
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field3562 == null) {
+			if (var2 == null) {
+				return;
+			}
+
+			var0.field3562 = new byte[11][];
+			var0.field3563 = new byte[11][];
+			var0.field3611 = new int[11];
+			var0.field3565 = new int[11];
+		}
+
+		var0.field3562[var1] = var2;
+		if (var2 != null) {
+			var0.field3561 = true;
+		} else {
+			var0.field3561 = false;
+
+			for (int var4 = 0; var4 < var0.field3562.length; ++var4) {
+				if (var0.field3562[var4] != null) {
+					var0.field3561 = true;
+					break;
+				}
+			}
+		}
+
+		var0.field3563[var1] = var3;
+	}
+
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "-2089814826"
+	)
+	static int method4663(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? class140.scriptDotWidget : class136.scriptActiveWidget;
+		if (var0 == 1500) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.x;
+			return 1;
+		} else if (var0 == 1501) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.y;
+			return 1;
+		} else if (var0 == 1502) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.width;
+			return 1;
+		} else if (var0 == 1503) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.height;
+			return 1;
+		} else if (var0 == 1504) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
+			return 1;
+		} else if (var0 == 1505) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.parentId;
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 }

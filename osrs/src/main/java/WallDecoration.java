@@ -1,75 +1,85 @@
+import java.lang.management.GarbageCollectorMXBean;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hu")
+@ObfuscatedName("hi")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("c")
+	@ObfuscatedName("uy")
+	@ObfuscatedSignature(
+		descriptor = "Lba;"
+	)
+	@Export("friendSystem")
+	public static FriendSystem friendSystem;
+	@ObfuscatedName("at")
+	@Export("garbageCollector")
+	static GarbageCollectorMXBean garbageCollector;
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -761774767
+		intValue = 1764616911
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1194289069
+		intValue = -1833070631
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1468692981
+		intValue = -1705508063
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 499769625
+		intValue = -309068729
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1419958941
+		intValue = 183254539
 	)
 	@Export("orientation2")
 	int orientation2;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -775811187
+		intValue = -2009332571
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1199006067
+		intValue = -417052637
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lgg;"
+		descriptor = "Lhd;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lgg;"
+		descriptor = "Lhd;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		longValue = 1729966302207164969L
+		longValue = 2290048433807273417L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1872180037
+		intValue = 1818479357
 	)
 	@Export("flags")
 	int flags;
@@ -79,168 +89,34 @@ public final class WallDecoration {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Llj;II)Ljm;",
-		garbageValue = "-2133636009"
+		descriptor = "([Lmv;II)Lmv;",
+		garbageValue = "1378360626"
 	)
-	public static PacketBufferNode method4664(int var0, String var1, Language var2, int var3) {
-		PacketBufferNode var4 = class120.getPacketBufferNode(ClientPacket.field2944, Client.packetWriter.isaacCipher);
-		var4.packetBuffer.writeByte(0);
-		int var5 = var4.packetBuffer.offset;
-		var4.packetBuffer.writeByte(var0);
-		String var6 = var1.toLowerCase();
-		byte var7 = 0;
-		if (var6.startsWith("yellow:")) {
-			var7 = 0;
-			var1 = var1.substring("yellow:".length());
-		} else if (var6.startsWith("red:")) {
-			var7 = 1;
-			var1 = var1.substring("red:".length());
-		} else if (var6.startsWith("green:")) {
-			var7 = 2;
-			var1 = var1.substring("green:".length());
-		} else if (var6.startsWith("cyan:")) {
-			var7 = 3;
-			var1 = var1.substring("cyan:".length());
-		} else if (var6.startsWith("purple:")) {
-			var7 = 4;
-			var1 = var1.substring("purple:".length());
-		} else if (var6.startsWith("white:")) {
-			var7 = 5;
-			var1 = var1.substring("white:".length());
-		} else if (var6.startsWith("flash1:")) {
-			var7 = 6;
-			var1 = var1.substring("flash1:".length());
-		} else if (var6.startsWith("flash2:")) {
-			var7 = 7;
-			var1 = var1.substring("flash2:".length());
-		} else if (var6.startsWith("flash3:")) {
-			var7 = 8;
-			var1 = var1.substring("flash3:".length());
-		} else if (var6.startsWith("glow1:")) {
-			var7 = 9;
-			var1 = var1.substring("glow1:".length());
-		} else if (var6.startsWith("glow2:")) {
-			var7 = 10;
-			var1 = var1.substring("glow2:".length());
-		} else if (var6.startsWith("glow3:")) {
-			var7 = 11;
-			var1 = var1.substring("glow3:".length());
-		} else if (var2 != Language.Language_EN) {
-			if (var6.startsWith("yellow:")) {
-				var7 = 0;
-				var1 = var1.substring("yellow:".length());
-			} else if (var6.startsWith("red:")) {
-				var7 = 1;
-				var1 = var1.substring("red:".length());
-			} else if (var6.startsWith("green:")) {
-				var7 = 2;
-				var1 = var1.substring("green:".length());
-			} else if (var6.startsWith("cyan:")) {
-				var7 = 3;
-				var1 = var1.substring("cyan:".length());
-			} else if (var6.startsWith("purple:")) {
-				var7 = 4;
-				var1 = var1.substring("purple:".length());
-			} else if (var6.startsWith("white:")) {
-				var7 = 5;
-				var1 = var1.substring("white:".length());
-			} else if (var6.startsWith("flash1:")) {
-				var7 = 6;
-				var1 = var1.substring("flash1:".length());
-			} else if (var6.startsWith("flash2:")) {
-				var7 = 7;
-				var1 = var1.substring("flash2:".length());
-			} else if (var6.startsWith("flash3:")) {
-				var7 = 8;
-				var1 = var1.substring("flash3:".length());
-			} else if (var6.startsWith("glow1:")) {
-				var7 = 9;
-				var1 = var1.substring("glow1:".length());
-			} else if (var6.startsWith("glow2:")) {
-				var7 = 10;
-				var1 = var1.substring("glow2:".length());
-			} else if (var6.startsWith("glow3:")) {
-				var7 = 11;
-				var1 = var1.substring("glow3:".length());
+	@Export("findEnumerated")
+	public static class342 findEnumerated(class342[] var0, int var1) {
+		class342[] var2 = var0;
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			class342 var4 = var2[var3];
+			if (var1 == var4.rsOrdinal()) {
+				return var4;
 			}
 		}
 
-		var6 = var1.toLowerCase();
-		byte var8 = 0;
-		if (var6.startsWith("wave:")) {
-			var8 = 1;
-			var1 = var1.substring("wave:".length());
-		} else if (var6.startsWith("wave2:")) {
-			var8 = 2;
-			var1 = var1.substring("wave2:".length());
-		} else if (var6.startsWith("shake:")) {
-			var8 = 3;
-			var1 = var1.substring("shake:".length());
-		} else if (var6.startsWith("scroll:")) {
-			var8 = 4;
-			var1 = var1.substring("scroll:".length());
-		} else if (var6.startsWith("slide:")) {
-			var8 = 5;
-			var1 = var1.substring("slide:".length());
-		} else if (var2 != Language.Language_EN) {
-			if (var6.startsWith("wave:")) {
-				var8 = 1;
-				var1 = var1.substring("wave:".length());
-			} else if (var6.startsWith("wave2:")) {
-				var8 = 2;
-				var1 = var1.substring("wave2:".length());
-			} else if (var6.startsWith("shake:")) {
-				var8 = 3;
-				var1 = var1.substring("shake:".length());
-			} else if (var6.startsWith("scroll:")) {
-				var8 = 4;
-				var1 = var1.substring("scroll:".length());
-			} else if (var6.startsWith("slide:")) {
-				var8 = 5;
-				var1 = var1.substring("slide:".length());
-			}
-		}
-
-		var4.packetBuffer.writeByte(var7);
-		var4.packetBuffer.writeByte(var8);
-		MouseRecorder.method2253(var4.packetBuffer, var1);
-		if (var0 == class297.field3556.rsOrdinal()) {
-			var4.packetBuffer.writeByte(var3);
-		}
-
-		var4.packetBuffer.method7920(var4.packetBuffer.offset - var5);
-		return var4;
+		return null;
 	}
 
-	@ObfuscatedName("gp")
+	@ObfuscatedName("ke")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "2056032574"
+		descriptor = "(III)V",
+		garbageValue = "1518285879"
 	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field678 = 0L;
-		if (var0 >= 2) {
-			Client.isResizable = true;
-		} else {
-			Client.isResizable = false;
+	@Export("runIntfCloseListeners")
+	static final void runIntfCloseListeners(int var0, int var1) {
+		if (WorldMapManager.loadInterface(var0)) {
+			ClientPreferences.runComponentCloseListeners(Widget.Widget_interfaceComponents[var0], var1);
 		}
-
-		if (SceneTilePaint.getWindowedMode() == 1) {
-			IgnoreList.client.setMaxCanvasSize(765, 503);
-		} else {
-			IgnoreList.client.setMaxCanvasSize(7680, 2160);
-		}
-
-		if (Client.gameState >= 25) {
-			PacketBufferNode var1 = class120.getPacketBufferNode(ClientPacket.field2956, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(SceneTilePaint.getWindowedMode());
-			var1.packetBuffer.writeShort(class123.canvasWidth);
-			var1.packetBuffer.writeShort(class166.canvasHeight);
-			Client.packetWriter.addNode(var1);
-		}
-
 	}
 }

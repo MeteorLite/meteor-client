@@ -1,71 +1,52 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("en")
-public class class144 extends class129 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		longValue = 415707554004215271L
-	)
-	long field1675;
-	@ObfuscatedName("p")
-	String field1671;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = -569552251
-	)
-	int field1672;
+@ObfuscatedName("ev")
+public class class144 extends class135 {
+	@ObfuscatedName("a")
+	String field1653;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leo;"
+		descriptor = "Lel;"
 	)
-	final class132 this$0;
+	final class138 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leo;)V"
+		descriptor = "(Lel;)V"
 	)
-	class144(class132 var1) {
+	class144(class138 var1) {
 		this.this$0 = var1;
-		this.field1675 = -1L;
-		this.field1671 = null;
-		this.field1672 = 0;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;B)V",
-		garbageValue = "-41"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-1428026624"
 	)
-	void vmethod3320(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) {
-			--var1.offset;
-			this.field1675 = var1.readLong();
-		}
-
-		this.field1671 = var1.readStringCp1252NullTerminatedOrNull();
-		this.field1672 = var1.readUnsignedShort();
+	void vmethod3254(Buffer var1) {
+		this.field1653 = var1.readStringCp1252NullTerminated();
+		var1.readInt();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Led;I)V",
-		garbageValue = "-538131930"
+		descriptor = "(Ler;B)V",
+		garbageValue = "-110"
 	)
-	void vmethod3313(ClanSettings var1) {
-		var1.method3117(this.field1675, this.field1671, this.field1672);
+	void vmethod3248(ClanSettings var1) {
+		var1.name = this.field1653;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("lb")
 	@ObfuscatedSignature(
-		descriptor = "(IZIZI)V",
-		garbageValue = "897607215"
+		descriptor = "(II)V",
+		garbageValue = "1551414846"
 	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (World.World_worlds != null) {
-			ClanChannel.doWorldSorting(0, World.World_worlds.length - 1, var0, var1, var2, var3);
+	static void method3062(int var0) {
+		for (IntegerNode var1 = (IntegerNode)Client.widgetFlags.first(); var1 != null; var1 = (IntegerNode)Client.widgetFlags.next()) {
+			if ((var1.key >> 48 & 65535L) == (long)var0) {
+				var1.remove();
+			}
 		}
 
 	}

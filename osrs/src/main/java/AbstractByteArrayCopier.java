@@ -3,70 +3,36 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("kh")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
 	AbstractByteArrayCopier() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(B)[B",
-		garbageValue = "56"
+		garbageValue = "2"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "([BB)V",
-		garbageValue = "1"
+		descriptor = "([BI)V",
+		garbageValue = "-622381156"
 	)
 	@Export("set")
-	public abstract void set(byte[] var1);
+	abstract void set(byte[] var1);
 
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		descriptor = "(Lkw;IIB)V",
-		garbageValue = "20"
-	)
-	@Export("clickWidget")
-	static final void clickWidget(Widget var0, int var1, int var2) {
-		if (Client.clickedWidget == null && !Client.isMenuOpen) {
-			if (var0 != null) {
-				Widget var4 = HitSplatDefinition.method3782(var0);
-				if (var4 == null) {
-					var4 = var0.parent;
-				}
-
-				if (var4 != null) {
-					Client.clickedWidget = var0;
-					var4 = HitSplatDefinition.method3782(var0);
-					if (var4 == null) {
-						var4 = var0.parent;
-					}
-
-					Client.clickedWidgetParent = var4;
-					Client.widgetClickX = var1;
-					Client.widgetClickY = var2;
-					class259.widgetDragDuration = 0;
-					Client.isDraggingWidget = false;
-					int var5 = class156.method3411();
-					if (var5 != -1) {
-						class146.tempMenuAction = new MenuAction();
-						class146.tempMenuAction.param0 = Client.menuArguments1[var5];
-						class146.tempMenuAction.param1 = Client.menuArguments2[var5];
-						class146.tempMenuAction.opcode = Client.menuOpcodes[var5];
-						class146.tempMenuAction.identifier = Client.menuIdentifiers[var5];
-						class146.tempMenuAction.itemId = Client.menuItemIds[var5];
-						class146.tempMenuAction.action = Client.menuActions[var5];
-						class146.tempMenuAction.target = Client.menuTargets[var5];
-					}
-
-					return;
-				}
-			}
-
+	@ObfuscatedName("c")
+	public static boolean method6222(long var0) {
+		boolean var2 = var0 != 0L;
+		if (var2) {
+			boolean var3 = (int)(var0 >>> 16 & 1L) == 1;
+			var2 = !var3;
 		}
+
+		return var2;
 	}
 }

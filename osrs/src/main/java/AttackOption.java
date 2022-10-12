@@ -1,46 +1,49 @@
+import java.awt.Image;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("cb")
 @Implements("AttackOption")
-public enum AttackOption implements MouseWheel {
-	@ObfuscatedName("c")
+public enum AttackOption implements class342 {
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lcq;"
+		descriptor = "Lcb;"
 	)
 	@Export("AttackOption_dependsOnCombatLevels")
 	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lcq;"
+		descriptor = "Lcb;"
 	)
 	@Export("AttackOption_alwaysRightClick")
 	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lcq;"
+		descriptor = "Lcb;"
 	)
-	field1282(2),
-	@ObfuscatedName("n")
+	field1285(2),
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lcq;"
+		descriptor = "Lcb;"
 	)
 	@Export("AttackOption_hidden")
 	AttackOption_hidden(3),
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lcq;"
+		descriptor = "Lcb;"
 	)
-	field1275(4);
+	field1289(4);
 
-	@ObfuscatedName("bp")
-	static String field1279;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ak")
+	static Image field1295;
+	@ObfuscatedName("al")
+	protected static String field1294;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -706271717
+		intValue = 827039641
 	)
 	@Export("id")
 	final int id;
@@ -49,52 +52,41 @@ public enum AttackOption implements MouseWheel {
 		this.id = var3;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "1"
+		garbageValue = "0"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1076800384"
+		descriptor = "(IIIIIII)I",
+		garbageValue = "1633135416"
 	)
-	public static void method2557() {
-		StructComposition.StructDefinition_cached.clear();
-	}
-
-	@ObfuscatedName("hw")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "-867433724"
-	)
-	@Export("addNpcsToScene")
-	static final void addNpcsToScene(boolean var0) {
-		for (int var1 = 0; var1 < Client.npcCount; ++var1) {
-			NPC var2 = Client.npcs[Client.npcIndices[var1]];
-			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {
-				int var3 = var2.x >> 7;
-				int var4 = var2.y >> 7;
-				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
-					if (var2.field1131 * 799674368 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
-						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
-							continue;
-						}
-
-						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount;
-					}
-
-					long var5 = class259.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
-					var2.playerCycle = Client.cycle;
-					MusicPatchNode.scene.drawEntity(Tiles.Client_plane, var2.x, var2.y, class120.getTileHeight(var2.field1131 * -360448000 - 64 + var2.x, var2.field1131 * -360448000 - 64 + var2.y, Tiles.Client_plane), var2.field1131 * -360448000 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
-				}
-			}
+	public static int method2540(int var0, int var1, int var2, int var3, int var4, int var5) {
+		if ((var5 & 1) == 1) {
+			int var6 = var3;
+			var3 = var4;
+			var4 = var6;
 		}
 
+		var2 &= 3;
+		if (var2 == 0) {
+			return var0;
+		} else if (var2 == 1) {
+			return var1;
+		} else {
+			return var2 == 2 ? 7 - var0 - (var3 - 1) : 7 - var1 - (var4 - 1);
+		}
+	}
+
+	@ObfuscatedName("y")
+	@Export("Entity_unpackID")
+	public static int Entity_unpackID(long var0) {
+		return (int)(var0 >>> 17 & 4294967295L);
 	}
 }

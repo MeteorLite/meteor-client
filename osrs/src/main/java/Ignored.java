@@ -4,12 +4,12 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ng")
+@ObfuscatedName("oh")
 @Implements("Ignored")
 public class Ignored extends User {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1587700263
+		intValue = -806382173
 	)
 	@Export("id")
 	int id;
@@ -17,20 +17,20 @@ public class Ignored extends User {
 	Ignored() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lng;I)I",
-		garbageValue = "-1633511303"
+		descriptor = "(Loh;B)I",
+		garbageValue = "-79"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
 		return this.id - var1.id;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnc;I)I",
-		garbageValue = "-1401768476"
+		descriptor = "(Loj;I)I",
+		garbageValue = "-1675254672"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(User var1) {
@@ -39,14 +39,5 @@ public class Ignored extends User {
 
 	public int compareTo(Object var1) {
 		return this.compareTo_ignored((Ignored)var1);
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "31135"
-	)
-	public static void method6968() {
-		class437.DBTableType_cache.clear();
 	}
 }
