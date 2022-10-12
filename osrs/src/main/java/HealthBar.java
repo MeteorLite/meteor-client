@@ -3,40 +3,52 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cr")
+@ObfuscatedName("cm")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("ew")
+	@ObfuscatedName("so")
 	@ObfuscatedSignature(
-		descriptor = "Llb;"
+		descriptor = "Lab;"
 	)
-	@Export("archive17")
-	static Archive archive17;
-	@ObfuscatedName("f")
+	@Export("pcmPlayer0")
+	static PcmPlayer pcmPlayer0;
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lfd;"
+		descriptor = "Lri;"
+	)
+	@Export("rightTitleSprite")
+	static SpritePixels rightTitleSprite;
+	@ObfuscatedName("in")
+	@ObfuscatedSignature(
+		descriptor = "[Lry;"
+	)
+	@Export("mapSceneSprites")
+	static IndexedSprite[] mapSceneSprites;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Lfb;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lml;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfd;)V"
+		descriptor = "(Lfb;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque();
 		this.definition = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "-1917483306"
+		garbageValue = "721207742"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -69,10 +81,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lcg;",
-		garbageValue = "-160380440"
+		descriptor = "(II)Lcu;",
+		garbageValue = "1855238939"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -94,22 +106,26 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "705872557"
+		garbageValue = "-608099850"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method6309();
+		return this.updates.method6721();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("lf")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/String;[IS)V",
-		garbageValue = "255"
+		descriptor = "(I)V",
+		garbageValue = "1576682931"
 	)
-	public static void method2495(String[] var0, int[] var1) {
-		class353.method6683(var0, var1, 0, var0.length - 1);
+	static final void method2478() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.clearIsInFriendsChat();
+		}
+
 	}
 }

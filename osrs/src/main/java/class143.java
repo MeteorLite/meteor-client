@@ -1,43 +1,92 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
-public class class143 extends class129 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1346810261
+@ObfuscatedName("ef")
+public class class143 extends class151 {
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lry;"
 	)
-	int field1668;
+	@Export("titlebuttonSprite")
+	static IndexedSprite titlebuttonSprite;
+	@ObfuscatedName("ee")
+	@ObfuscatedSignature(
+		descriptor = "Llx;"
+	)
+	@Export("archive13")
+	static Archive archive13;
+	@ObfuscatedName("im")
+	@Export("regionMapArchiveIds")
+	static int[] regionMapArchiveIds;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = 632047953
+	)
+	int field1649;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leo;"
+		descriptor = "Lem;"
 	)
-	final class132 this$0;
+	final class152 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leo;)V"
+		descriptor = "(Lem;)V"
 	)
-	class143(class132 var1) {
+	class143(class152 var1) {
 		this.this$0 = var1;
-		this.field1668 = -1;
+		this.field1649 = -1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;B)V",
-		garbageValue = "-41"
+		descriptor = "(Lqr;B)V",
+		garbageValue = "85"
 	)
-	void vmethod3320(Buffer var1) {
-		this.field1668 = var1.readUnsignedShort();
+	void vmethod3238(Buffer var1) {
+		this.field1649 = var1.readUnsignedShort();
+		var1.readUnsignedByte();
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			var1.readLong();
+		}
+
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Led;I)V",
-		garbageValue = "-538131930"
+		descriptor = "(Leq;I)V",
+		garbageValue = "-1303116736"
 	)
-	void vmethod3313(ClanSettings var1) {
-		var1.method3121(this.field1668);
+	void vmethod3239(ClanChannel var1) {
+		var1.removeMember(this.field1649);
+	}
+
+	@ObfuscatedName("kq")
+	@ObfuscatedSignature(
+		descriptor = "(Lkn;B)V",
+		garbageValue = "104"
+	)
+	@Export("invalidateWidget")
+	public static void invalidateWidget(Widget var0) {
+		if (var0 != null && var0.cycle == Client.field739) {
+			Client.field717[var0.rootIndex] = true;
+		}
+
+	}
+
+	@ObfuscatedName("mh")
+	@ObfuscatedSignature(
+		descriptor = "(IIIZB)V",
+		garbageValue = "26"
+	)
+	public static void method3054(int var0, int var1, int var2, boolean var3) {
+		PacketBufferNode var4 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field2997, Client.packetWriter.isaacCipher);
+		var4.packetBuffer.method8434(var2);
+		var4.packetBuffer.method8437(var3 ? Client.field586 : 0);
+		var4.packetBuffer.method8443(var0);
+		var4.packetBuffer.writeIntME(var1);
+		Client.packetWriter.addNode(var4);
 	}
 }

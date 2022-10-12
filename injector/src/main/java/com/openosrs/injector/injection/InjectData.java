@@ -124,7 +124,7 @@ public abstract class InjectData
 		Field f = obC.findField(name, type);
 
 		if (f == null)
-			throw new RuntimeException("couldn't find static field");
+			throw new RuntimeException("couldn't find static field " + deobField.getClassFile() + "/" + deobField.getName());
 		return f;
 	}
 

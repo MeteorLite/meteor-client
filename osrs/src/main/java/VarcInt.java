@@ -1,40 +1,24 @@
-import java.lang.management.GarbageCollectorMXBean;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fb")
+@ObfuscatedName("fq")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("VarcInt_archive")
 	public static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Ljx;"
 	)
 	@Export("VarcInt_cached")
 	public static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = -992002495
-	)
-	@Export("pcmSampleLength")
-	public static int pcmSampleLength;
-	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = -883842709
-	)
-	static int field1875;
-	@ObfuscatedName("ag")
-	@Export("garbageCollector")
-	static GarbageCollectorMXBean garbageCollector;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@Export("persist")
 	public boolean persist;
 
@@ -46,79 +30,41 @@ public class VarcInt extends DualNode {
 		this.persist = false;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;B)V",
-		garbageValue = "-78"
+		descriptor = "(Lqr;B)V",
+		garbageValue = "-1"
 	)
-	public void method3558(Buffer var1) {
+	public void method3459(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
 				return;
 			}
 
-			this.method3559(var1, var2);
+			this.method3463(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;IB)V",
-		garbageValue = "-40"
+		descriptor = "(Lqr;IB)V",
+		garbageValue = "1"
 	)
-	void method3559(Buffer var1, int var2) {
+	void method3463(Buffer var1, int var2) {
 		if (var2 == 2) {
 			this.persist = true;
 		}
 
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(ILbt;ZS)I",
-		garbageValue = "3125"
+		descriptor = "(S)[Ljw;",
+		garbageValue = "20279"
 	)
-	static int method3560(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 == 2700) {
-			var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemId;
-			return 1;
-		} else if (var0 == 2701) {
-			var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			if (var3.itemId != -1) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemQuantity;
-			} else {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-			}
-
-			return 1;
-		} else if (var0 == 2702) {
-			int var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var5);
-			if (var4 != null) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
-			} else {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-			}
-
-			return 1;
-		} else if (var0 == 2706) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.rootInterface;
-			return 1;
-		} else if (var0 == 2707) {
-			var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.method5790() ? 1 : 0;
-			return 1;
-		} else if (var0 == 2708) {
-			var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			return class118.method2875(var3);
-		} else if (var0 == 2709) {
-			var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			return class347.method6510(var3);
-		} else {
-			return 2;
-		}
+	@Export("ServerPacket_values")
+	public static ServerPacket[] ServerPacket_values() {
+		return new ServerPacket[]{ServerPacket.field3194, ServerPacket.field3131, ServerPacket.field3230, ServerPacket.field3153, ServerPacket.field3134, ServerPacket.field3135, ServerPacket.field3136, ServerPacket.field3179, ServerPacket.field3160, ServerPacket.field3139, ServerPacket.field3140, ServerPacket.field3141, ServerPacket.field3142, ServerPacket.field3168, ServerPacket.field3144, ServerPacket.field3151, ServerPacket.field3221, ServerPacket.field3147, ServerPacket.field3227, ServerPacket.field3149, ServerPacket.field3242, ServerPacket.field3197, ServerPacket.field3138, ServerPacket.field3150, ServerPacket.field3154, ServerPacket.field3155, ServerPacket.field3156, ServerPacket.field3132, ServerPacket.field3158, ServerPacket.field3159, ServerPacket.field3174, ServerPacket.field3146, ServerPacket.field3162, ServerPacket.field3201, ServerPacket.field3191, ServerPacket.field3165, ServerPacket.field3166, ServerPacket.field3167, ServerPacket.field3163, ServerPacket.field3169, ServerPacket.field3170, ServerPacket.field3171, ServerPacket.field3172, ServerPacket.field3243, ServerPacket.field3173, ServerPacket.field3175, ServerPacket.field3176, ServerPacket.field3210, ServerPacket.field3178, ServerPacket.field3199, ServerPacket.field3180, ServerPacket.field3181, ServerPacket.field3182, ServerPacket.field3183, ServerPacket.field3184, ServerPacket.field3137, ServerPacket.field3186, ServerPacket.field3187, ServerPacket.field3143, ServerPacket.field3189, ServerPacket.field3152, ServerPacket.field3217, ServerPacket.field3192, ServerPacket.field3193, ServerPacket.field3177, ServerPacket.field3195, ServerPacket.field3196, ServerPacket.field3130, ServerPacket.field3198, ServerPacket.field3188, ServerPacket.field3200, ServerPacket.field3229, ServerPacket.field3211, ServerPacket.field3203, ServerPacket.field3204, ServerPacket.field3205, ServerPacket.field3206, ServerPacket.field3207, ServerPacket.field3208, ServerPacket.field3209, ServerPacket.field3148, ServerPacket.field3164, ServerPacket.field3212, ServerPacket.field3213, ServerPacket.field3214, ServerPacket.field3215, ServerPacket.field3216, ServerPacket.field3185, ServerPacket.field3218, ServerPacket.field3219, ServerPacket.field3220, ServerPacket.field3202, ServerPacket.field3222, ServerPacket.field3223, ServerPacket.field3224, ServerPacket.field3225, ServerPacket.field3226, ServerPacket.field3239, ServerPacket.field3228, ServerPacket.field3190, ServerPacket.field3145, ServerPacket.field3231, ServerPacket.field3232, ServerPacket.field3233, ServerPacket.field3234, ServerPacket.field3235, ServerPacket.field3236, ServerPacket.field3237, ServerPacket.field3238, ServerPacket.field3161, ServerPacket.field3240};
 	}
 }

@@ -1,58 +1,55 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("z")
+@ObfuscatedName("g")
 @Implements("DevicePcmPlayerProvider")
-public class DevicePcmPlayerProvider implements class47 {
-	@ObfuscatedName("n")
+public class DevicePcmPlayerProvider implements class51 {
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "Llg;"
 	)
-	@Export("runesSprite")
-	static IndexedSprite[] runesSprite;
-	@ObfuscatedName("ei")
+	@Export("musicTrackArchive")
+	public static AbstractArchive musicTrackArchive;
+	@ObfuscatedName("cy")
 	@ObfuscatedSignature(
-		descriptor = "Llb;"
+		descriptor = "Lry;"
 	)
-	@Export("archive5")
-	static Archive archive5;
-	@ObfuscatedName("ks")
-	@ObfuscatedSignature(
-		descriptor = "Lkw;"
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("iv")
+	@ObfuscatedGetter(
+		intValue = -1833710583
 	)
-	static Widget field153;
+	static int field122;
 
 	DevicePcmPlayerProvider() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lad;",
-		garbageValue = "1345592536"
+		descriptor = "(I)Lab;",
+		garbageValue = "469257339"
 	)
 	@Export("player")
 	public PcmPlayer player() {
 		return new DevicePcmPlayer();
 	}
 
-	@ObfuscatedName("fe")
+	@ObfuscatedName("lx")
 	@ObfuscatedSignature(
-		descriptor = "(IS)V",
-		garbageValue = "14639"
+		descriptor = "(Ljava/lang/String;S)V",
+		garbageValue = "146"
 	)
-	@Export("forceDisconnect")
-	static final void forceDisconnect(int var0) {
-		ApproximateRouteStrategy.logOut();
-		switch(var0) {
-		case 1:
-			class7.method68();
-			break;
-		case 2:
-			class139.method3101(24);
-			SecureRandomCallable.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
+	@Export("clanKickUser")
+	static final void clanKickUser(String var0) {
+		if (MenuAction.friendsChat != null) {
+			PacketBufferNode var1 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3030, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(Actor.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
 		}
-
 	}
 }

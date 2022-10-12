@@ -1,14 +1,15 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kr")
+@ObfuscatedName("li")
 @Implements("Skills")
 public class Skills {
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("Skills_enabled")
 	public static final boolean[] Skills_enabled;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@Export("Skills_experienceTable")
 	public static int[] Skills_experienceTable;
 
@@ -24,5 +25,18 @@ public class Skills {
 			Skills_experienceTable[var1] = var0 / 4;
 		}
 
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "74"
+	)
+	public static void method6245() {
+		ByteArrayPool.field4393.clear();
+		ByteArrayPool.field4393.add(100);
+		ByteArrayPool.field4393.add(5000);
+		ByteArrayPool.field4393.add(10000);
+		ByteArrayPool.field4393.add(30000);
 	}
 }

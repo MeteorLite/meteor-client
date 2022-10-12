@@ -4,68 +4,68 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cf")
+@ObfuscatedName("ca")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("isMouseInputEvent")
 	boolean isMouseInputEvent;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lkw;"
+		descriptor = "Lkn;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 528560571
+		intValue = 1375689077
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1754398345
+		intValue = 656689319
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1478226629
+		intValue = -1101809299
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lkw;"
+		descriptor = "Lkn;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1661440689
+		intValue = 1215320091
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -804601977
+		intValue = 1642276207
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1353152335
+		intValue = 1260467967
 	)
-	int field1041;
-	@ObfuscatedName("v")
+	int field1053;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 426469011
+		intValue = -346706651
 	)
 	@Export("type")
 	int type;
@@ -74,23 +74,32 @@ public class ScriptEvent extends Node {
 		this.type = 76;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/Object;I)V",
-		garbageValue = "-1717365250"
+		descriptor = "([Ljava/lang/Object;B)V",
+		garbageValue = "-126"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
 		this.args = var1;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1147230036"
+		garbageValue = "853607495"
 	)
 	@Export("setType")
 	public void setType(int var1) {
 		this.type = var1;
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Lkn;I)V",
+		garbageValue = "1405908190"
+	)
+	public void method2233(Widget var1) {
+		this.widget = var1;
 	}
 }

@@ -3,24 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qo")
+@ObfuscatedName("rg")
 @Implements("Username")
 public class Username implements Comparable {
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Llv;"
-	)
-	@Export("HitSplatDefinition_fontsArchive")
-	public static AbstractArchive HitSplatDefinition_fontsArchive;
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("name")
 	String name;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("cleanName")
 	String cleanName;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lpn;)V"
+		descriptor = "(Ljava/lang/String;Lqu;)V"
 	)
 	public Username(String var1, LoginType var2) {
 		this.name = var1;
@@ -28,7 +22,7 @@ public class Username implements Comparable {
 		if (var1 == null) {
 			var4 = null;
 		} else {
-			label138: {
+			label137: {
 				int var5 = 0;
 
 				int var6;
@@ -58,8 +52,8 @@ public class Username implements Comparable {
 					if (var2 == null) {
 						var9 = 12;
 					} else {
-						switch(var2.field4642) {
-						case 7:
+						switch(var2.field4782) {
+						case 3:
 							var9 = 20;
 							break;
 						default:
@@ -75,23 +69,23 @@ public class Username implements Comparable {
 							boolean var11;
 							if (Character.isISOControl(var10)) {
 								var11 = false;
-							} else if (class168.isAlphaNumeric(var10)) {
+							} else if (ClanSettings.isAlphaNumeric(var10)) {
 								var11 = true;
 							} else {
-								char[] var12 = class425.field4655;
+								char[] var12 = class444.field4794;
 								int var13 = 0;
 
-								label91:
+								label90:
 								while (true) {
 									char var14;
 									if (var13 >= var12.length) {
-										var12 = class425.field4659;
+										var12 = class444.field4795;
 
 										for (var13 = 0; var13 < var12.length; ++var13) {
 											var14 = var12[var13];
-											if (var10 == var14) {
+											if (var14 == var10) {
 												var11 = true;
-												break label91;
+												break label90;
 											}
 										}
 
@@ -110,7 +104,7 @@ public class Username implements Comparable {
 							}
 
 							if (var11) {
-								char var16 = GrandExchangeOfferAgeComparator.method6156(var10);
+								char var16 = KeyHandler.method369(var10);
 								if (var16 != 0) {
 									var15.append(var16);
 								}
@@ -122,7 +116,7 @@ public class Username implements Comparable {
 						} else {
 							var4 = var15.toString();
 						}
-						break label138;
+						break label137;
 					}
 				}
 
@@ -170,8 +164,8 @@ public class Username implements Comparable {
 					if (var4 == null) {
 						var9 = 12;
 					} else {
-						switch(var4.field4642) {
-						case 7:
+						switch(var4.field4782) {
+						case 3:
 							var9 = 20;
 							break;
 						default:
@@ -187,17 +181,17 @@ public class Username implements Comparable {
 							boolean var11;
 							if (Character.isISOControl(var10)) {
 								var11 = false;
-							} else if (class168.isAlphaNumeric(var10)) {
+							} else if (ClanSettings.isAlphaNumeric(var10)) {
 								var11 = true;
 							} else {
-								char[] var12 = class425.field4655;
+								char[] var12 = class444.field4794;
 								int var13 = 0;
 
 								label89:
 								while (true) {
 									char var14;
 									if (var13 >= var12.length) {
-										var12 = class425.field4659;
+										var12 = class444.field4795;
 
 										for (var13 = 0; var13 < var12.length; ++var13) {
 											var14 = var12[var13];
@@ -222,7 +216,7 @@ public class Username implements Comparable {
 							}
 
 							if (var11) {
-								char var16 = GrandExchangeOfferAgeComparator.method6156(var10);
+								char var16 = KeyHandler.method369(var10);
 								if (var16 != 0) {
 									var15.append(var16);
 								}
@@ -245,39 +239,39 @@ public class Username implements Comparable {
 		this.cleanName = var3;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "2060656858"
+		garbageValue = "251857935"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.name;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-1292087899"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "80"
 	)
-	public String method8530() {
+	public String method8997() {
 		return this.cleanName;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-2041641419"
+		garbageValue = "557141029"
 	)
 	@Export("hasCleanName")
 	public boolean hasCleanName() {
 		return this.cleanName != null;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(Lqo;I)I",
-		garbageValue = "-502687717"
+		descriptor = "(Lrg;I)I",
+		garbageValue = "986972745"
 	)
 	@Export("compareToTyped")
 	public int compareToTyped(Username var1) {

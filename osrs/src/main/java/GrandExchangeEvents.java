@@ -4,32 +4,28 @@ import java.util.Comparator;
 import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
+@ObfuscatedName("ly")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("GrandExchangeEvents_ageComparator")
 	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@Export("GrandExchangeEvents_priceComparator")
 	public static Comparator GrandExchangeEvents_priceComparator;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("GrandExchangeEvents_nameComparator")
 	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@Export("GrandExchangeEvents_quantityComparator")
 	public static Comparator GrandExchangeEvents_quantityComparator;
-	@ObfuscatedName("mu")
-	@ObfuscatedGetter(
-		intValue = -2026299759
-	)
-	@Export("menuHeight")
-	static int menuHeight;
-	@ObfuscatedName("c")
+	@ObfuscatedName("l")
+	@Export("musicTrackBoolean")
+	public static boolean musicTrackBoolean;
+	@ObfuscatedName("a")
 	@Export("events")
 	public final List events;
 
@@ -42,7 +38,7 @@ public class GrandExchangeEvents {
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;Z)V",
+		descriptor = "(Lqr;Z)V",
 		garbageValue = "1"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
@@ -64,10 +60,10 @@ public class GrandExchangeEvents {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/util/Comparator;ZI)V",
-		garbageValue = "-1963025801"
+		garbageValue = "-1882491116"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {
@@ -79,19 +75,40 @@ public class GrandExchangeEvents {
 
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(CS)Z",
-		garbageValue = "128"
+		descriptor = "(III)Lbk;",
+		garbageValue = "866437887"
 	)
-	@Export("isCharPrintable")
-	public static boolean isCharPrintable(char var0) {
-		if (var0 >= ' ' && var0 <= '~') {
-			return true;
-		} else if (var0 >= 160 && var0 <= 255) {
-			return true;
-		} else {
-			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376;
+	@Export("Messages_getByChannelAndID")
+	static Message Messages_getByChannelAndID(int var0, int var1) {
+		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
+		return var2.getMessage(var1);
+	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "-1985609196"
+	)
+	static void method6463(boolean var0) {
+		byte var1 = 0;
+		boolean var2 = BufferedSink.clientPreferences.method2472() >= Client.field494;
+		if (!var2) {
+			var1 = 12;
+		} else if (ClanChannelMember.client.method1184() || ClanChannelMember.client.method1366()) {
+			var1 = 10;
 		}
+
+		GrandExchangeOfferOwnWorldComparator.method1171(var1);
+		if (var0) {
+			Login.Login_username = "";
+			Login.Login_password = "";
+			class360.field4308 = 0;
+			class355.otp = "";
+		}
+
+		PcmPlayer.method830();
+		class283.method5450();
 	}
 }

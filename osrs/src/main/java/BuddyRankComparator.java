@@ -4,21 +4,21 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dl")
+@ObfuscatedName("dr")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("x")
+	@ObfuscatedName("ti")
 	@ObfuscatedGetter(
-		intValue = 1111006345
+		intValue = 1161612672
 	)
-	static int field1396;
-	@ObfuscatedName("fk")
-	@ObfuscatedGetter(
-		intValue = -54248331
+	static int field1431;
+	@ObfuscatedName("iq")
+	@ObfuscatedSignature(
+		descriptor = "Lri;"
 	)
-	@Export("currentPort")
-	static int currentPort;
-	@ObfuscatedName("c")
+	@Export("compass")
+	static SpritePixels compass;
+	@ObfuscatedName("a")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -26,10 +26,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lnr;Lnr;I)I",
-		garbageValue = "1824850774"
+		descriptor = "(Lof;Lof;I)I",
+		garbageValue = "-1386108744"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -44,24 +44,13 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "([BI)[B",
-		garbageValue = "-168568172"
+		descriptor = "(CB)Z",
+		garbageValue = "-93"
 	)
-	public static byte[] method2790(byte[] var0) {
-		int var1 = var0.length;
-		byte[] var2 = new byte[var1];
-		System.arraycopy(var0, 0, var2, 0, var1);
-		return var2;
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "0"
-	)
-	public static boolean method2791(int var0) {
-		return var0 >= WorldMapDecorationType.field3579.id && var0 <= WorldMapDecorationType.field3560.id;
+	@Export("isCharAlphabetic")
+	public static boolean isCharAlphabetic(char var0) {
+		return var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
 	}
 }

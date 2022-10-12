@@ -9,55 +9,55 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("as")
+@ObfuscatedName("v")
 @Implements("DevicePcmPlayer")
 public class DevicePcmPlayer extends PcmPlayer {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("format")
 	AudioFormat format;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("line")
 	SourceDataLine line;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1608587745
+		intValue = -224805165
 	)
 	@Export("capacity2")
 	int capacity2;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("byteSamples")
 	byte[] byteSamples;
 
 	DevicePcmPlayer() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1258996867"
+		garbageValue = "1886684155"
 	)
 	@Export("init")
 	protected void init() {
-		this.format = new AudioFormat((float)PcmPlayer.field307, 16, PcmPlayer.PcmPlayer_stereo ? 2 : 1, true, false);
-		this.byteSamples = new byte[256 << (PcmPlayer.PcmPlayer_stereo ? 2 : 1)];
+		this.format = new AudioFormat((float)SoundCache.field337, 16, class157.PcmPlayer_stereo ? 2 : 1, true, false);
+		this.byteSamples = new byte[256 << (class157.PcmPlayer_stereo ? 2 : 1)];
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IS)V",
-		garbageValue = "-18767"
+		descriptor = "(IB)V",
+		garbageValue = "-13"
 	)
 	@Export("open")
 	protected void open(int var1) throws LineUnavailableException {
 		try {
-			Info var2 = new Info(SourceDataLine.class, this.format, var1 << (PcmPlayer.PcmPlayer_stereo ? 2 : 1));
+			Info var2 = new Info(SourceDataLine.class, this.format, var1 << (class157.PcmPlayer_stereo ? 2 : 1));
 			this.line = (SourceDataLine)AudioSystem.getLine(var2);
 			this.line.open();
 			this.line.start();
 			this.capacity2 = var1;
 		} catch (LineUnavailableException var3) {
-			if (RouteStrategy.method4026(var1) != 1) {
-				this.open(ClanChannel.method3285(var1));
+			if (Renderable.method4454(var1) != 1) {
+				this.open(class37.method712(var1));
 			} else {
 				this.line = null;
 				throw var3;
@@ -65,21 +65,21 @@ public class DevicePcmPlayer extends PcmPlayer {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1605756455"
+		garbageValue = "-1692273069"
 	)
 	@Export("position")
 	protected int position() {
-		return this.capacity2 - (this.line.available() >> (PcmPlayer.PcmPlayer_stereo ? 2 : 1));
+		return this.capacity2 - (this.line.available() >> (class157.PcmPlayer_stereo ? 2 : 1));
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("write")
 	protected void write() {
 		int var1 = 256;
-		if (PcmPlayer.PcmPlayer_stereo) {
+		if (class157.PcmPlayer_stereo) {
 			var1 <<= 1;
 		}
 
@@ -96,10 +96,10 @@ public class DevicePcmPlayer extends PcmPlayer {
 		this.line.write(this.byteSamples, 0, var1 << 1);
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1217659327"
+		garbageValue = "1178676683"
 	)
 	@Export("close")
 	protected void close() {
@@ -110,10 +110,10 @@ public class DevicePcmPlayer extends PcmPlayer {
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1686238954"
+		descriptor = "(B)V",
+		garbageValue = "117"
 	)
 	@Export("discard")
 	protected void discard() {

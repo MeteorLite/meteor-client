@@ -4,42 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hs")
+@ObfuscatedName("io")
 @Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1652592151
+		intValue = -2131241977
 	)
 	@Export("element")
 	final int element;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lik;"
+		descriptor = "Liz;"
 	)
 	@Export("label")
 	final WorldMapLabel label;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1364821143
+		intValue = -785582045
 	)
 	@Export("subWidth")
 	final int subWidth;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 138577909
+		intValue = -1528838907
 	)
 	@Export("subHeight")
 	final int subHeight;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkz;Lkz;ILik;)V"
+		descriptor = "(Lki;Lki;ILiz;)V"
 	)
 	WorldMapIcon_0(Coord var1, Coord var2, int var3, WorldMapLabel var4) {
 		super(var1, var2);
 		this.element = var3;
 		this.label = var4;
-		WorldMapElement var5 = class139.WorldMapElement_get(this.getElement());
+		WorldMapElement var5 = Actor.WorldMapElement_get(this.getElement());
 		SpritePixels var6 = var5.getSpriteBool(false);
 		if (var6 != null) {
 			this.subWidth = var6.subWidth;
@@ -51,66 +51,67 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "922846736"
+		garbageValue = "-410730858"
 	)
+	@Export("getElement")
 	public int getElement() {
 		return this.element;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lik;",
-		garbageValue = "-114"
+		descriptor = "(I)Liz;",
+		garbageValue = "-1352130309"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1340019060"
+		garbageValue = "1449491180"
 	)
+	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "2085066872"
+		garbageValue = "-2053294830"
 	)
+	@Export("getSubHeight")
 	int getSubHeight() {
 		return this.subHeight;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1045851115"
+		descriptor = "(Llg;I)V",
+		garbageValue = "-1679452977"
 	)
-	@Export("hashString")
-	public static int hashString(CharSequence var0) {
-		int var1 = var0.length();
-		int var2 = 0;
-
-		for (int var3 = 0; var3 < var1; ++var3) {
-			var2 = (var2 << 5) - var2 + PlayerComposition.charToByteCp1252(var0.charAt(var3));
-		}
-
-		return var2;
+	public static void method5070(AbstractArchive var0) {
+		FloorOverlayDefinition.FloorOverlayDefinition_archive = var0;
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("mv")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-18"
+		descriptor = "(Lqr;IB)V",
+		garbageValue = "-81"
 	)
-	static int method5034() {
-		return Login.loginIndex;
+	static void method5075(Buffer var0, int var1) {
+		byte[] var2 = var0.array;
+		if (Client.randomDatData == null) {
+			Client.randomDatData = new byte[24];
+		}
+
+		class370.writeRandomDat(var2, var1, Client.randomDatData, 0, 24);
+		FloorOverlayDefinition.method3864(var0, var1);
 	}
 }

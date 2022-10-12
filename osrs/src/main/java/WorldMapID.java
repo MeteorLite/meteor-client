@@ -3,90 +3,97 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
-@ObfuscatedName("ii")
+@ObfuscatedName("iv")
 @Implements("WorldMapID")
 public class WorldMapID {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Liv;"
 	)
-	static final WorldMapID field2873;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
-	)
-	static final WorldMapID field2868;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -362664165
-	)
-	static int field2870;
-	@ObfuscatedName("ba")
-	@ObfuscatedGetter(
-		intValue = 943758061
-	)
-	static int field2874;
+	static final WorldMapID field2926;
 	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Liv;"
+	)
+	static final WorldMapID field2924;
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Loq;"
+	)
+	static Bounds field2925;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -414282509
+		intValue = 445101105
 	)
 	@Export("value")
 	final int value;
 
 	static {
-		field2873 = new WorldMapID(0);
-		field2868 = new WorldMapID(1);
+		field2926 = new WorldMapID(0);
+		field2924 = new WorldMapID(1);
 	}
 
 	WorldMapID(int var1) {
 		this.value = var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("fa")
 	@ObfuscatedSignature(
-		descriptor = "(Llb;II)V",
-		garbageValue = "-1011889815"
+		descriptor = "(Llx;Ljava/lang/String;B)V",
+		garbageValue = "100"
 	)
-	public static void method5123(Archive var0, int var1) {
-		MilliClock.field1810.offset = var1 * 8 + 5;
-		if (MilliClock.field1810.offset >= MilliClock.field1810.array.length) {
-			if (var0.field4028) {
-				var0.method5983();
-			} else {
-				throw new RuntimeException("");
-			}
-		} else {
-			int var2 = MilliClock.field1810.readInt();
-			int var3 = MilliClock.field1810.readInt();
-			var0.loadIndex(var2, var3);
-		}
+	static void method5166(Archive var0, String var1) {
+		ArchiveLoader var2 = new ArchiveLoader(var0, var1);
+		Client.archiveLoaders.add(var2);
+		Client.field588 += var2.groupCount;
 	}
 
-	@ObfuscatedName("mx")
+	@ObfuscatedName("jf")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-501668566"
+		descriptor = "([Lkn;IIIZB)V",
+		garbageValue = "-26"
 	)
-	static void method5124(String var0) {
-		AttackOption.field1279 = var0;
+	@Export("resizeInterface")
+	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
+		for (int var5 = 0; var5 < var0.length; ++var5) {
+			Widget var6 = var0[var5];
+			if (var6 != null && var6.parentId == var1) {
+				WorldMapRectangle.alignWidgetSize(var6, var2, var3, var4);
+				GrandExchangeOfferAgeComparator.alignWidgetPosition(var6, var2, var3);
+				if (var6.scrollX > var6.scrollWidth - var6.width) {
+					var6.scrollX = var6.scrollWidth - var6.width;
+				}
 
-		try {
-			String var1 = IgnoreList.client.getParameter(Integer.toString(18));
-			String var2 = IgnoreList.client.getParameter(Integer.toString(13));
-			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
-			if (var0.length() == 0) {
-				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
-			} else {
-				var3 = var3 + "; Expires=" + IgnoreList.method6781(Language.method6232() + 94608000000L) + "; Max-Age=" + 94608000L;
+				if (var6.scrollX < 0) {
+					var6.scrollX = 0;
+				}
+
+				if (var6.scrollY > var6.scrollHeight - var6.height) {
+					var6.scrollY = var6.scrollHeight - var6.height;
+				}
+
+				if (var6.scrollY < 0) {
+					var6.scrollY = 0;
+				}
+
+				if (var6.type == 0) {
+					class16.revalidateWidgetScroll(var0, var6, var4);
+				}
 			}
-
-			Client var4 = IgnoreList.client;
-			String var5 = "document.cookie=\"" + var3 + "\"";
-			//JSObject.getWindow(var4).eval(var5);
-		} catch (Throwable var6) {
 		}
 
+	}
+
+	@ObfuscatedName("ki")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIIB)V",
+		garbageValue = "-115"
+	)
+	@Export("updateRootInterface")
+	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (WorldMapManager.loadInterface(var0)) {
+			UserComparator7.updateInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
+		}
 	}
 }

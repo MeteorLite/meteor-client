@@ -1,26 +1,31 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("hj")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "Lcm;"
+	@ObfuscatedName("eh")
+	@ObfuscatedGetter(
+		longValue = -3395560641786882595L
 	)
-	@Export("World_request")
-	static UrlRequest World_request;
-	@ObfuscatedName("c")
+	static long field2530;
+	@ObfuscatedName("hy")
 	@ObfuscatedSignature(
-		descriptor = "[Lgs;"
+		descriptor = "Lok;"
+	)
+	static AbstractSocket field2528;
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "[Lho;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;IZ)V",
+		descriptor = "(Llg;Llg;IZ)V",
 		garbageValue = "0"
 	)
 	public Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
@@ -52,71 +57,155 @@ public class Frames extends DualNode {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "2011995874"
+		garbageValue = "1883161689"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(ILbt;ZI)I",
-		garbageValue = "1190393229"
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "1139752609"
 	)
-	static int method4473(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 >= 2000) {
-			var0 -= 1000;
-			var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-		} else {
-			var3 = var2 ? TextureProvider.scriptDotWidget : MenuAction.scriptActiveWidget;
-		}
-
-		class403.invalidateWidget(var3);
-		if (var0 != 1200 && var0 != 1205 && var0 != 1212) {
-			if (var0 == 1201) {
-				var3.modelType = 2;
-				var3.modelId = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				return 1;
-			} else if (var0 == 1202) {
-				var3.modelType = 3;
-				var3.modelId = class67.localPlayer.appearance.getChatHeadId();
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			Interpreter.Interpreter_intStackSize -= 2;
-			int var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-			int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-			var3.itemId = var4;
-			var3.itemQuantity = var5;
-			ItemComposition var6 = UserComparator3.ItemDefinition_get(var4);
-			var3.modelAngleX = var6.xan2d;
-			var3.modelAngleY = var6.yan2d;
-			var3.modelAngleZ = var6.zan2d;
-			var3.modelOffsetX = var6.offsetX2d;
-			var3.modelOffsetY = var6.offsetY2d;
-			var3.modelZoom = var6.zoom2d;
-			if (var0 == 1205) {
-				var3.itemQuantityMode = 0;
-			} else if (var0 == 1212 | 1 == var6.isStackable) {
-				var3.itemQuantityMode = 1;
-			} else {
-				var3.itemQuantityMode = 2;
-			}
-
-			if (var3.field3446 > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.field3446;
-			} else if (var3.rawWidth > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.rawWidth;
-			}
-
+	static int method4469(int var0, Script var1, boolean var2) {
+		if (var0 == 3300) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.cycle;
 			return 1;
+		} else {
+			int var3;
+			int var4;
+			if (var0 == 3301) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class457.method8304(var3, var4);
+				return 1;
+			} else if (var0 == 3302) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class139.ItemContainer_getCount(var3, var4);
+				return 1;
+			} else if (var0 == 3303) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = WorldMapAreaData.method5266(var3, var4);
+				return 1;
+			} else if (var0 == 3304) {
+				var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = ApproximateRouteStrategy.getInvDefinition(var3).size;
+				return 1;
+			} else if (var0 == 3305) {
+				var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.currentLevels[var3];
+				return 1;
+			} else if (var0 == 3306) {
+				var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.levels[var3];
+				return 1;
+			} else if (var0 == 3307) {
+				var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.experience[var3];
+				return 1;
+			} else {
+				int var5;
+				if (var0 == 3308) {
+					var3 = ApproximateRouteStrategy.Client_plane;
+					var4 = KeyHandler.baseX * 64 + (class296.localPlayer.x >> 7);
+					var5 = class158.baseY * 64 + (class296.localPlayer.y >> 7);
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (var4 << 14) + var5 + (var3 << 28);
+					return 1;
+				} else if (var0 == 3309) {
+					var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 >> 14 & 16383;
+					return 1;
+				} else if (var0 == 3310) {
+					var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 >> 28;
+					return 1;
+				} else if (var0 == 3311) {
+					var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 & 16383;
+					return 1;
+				} else if (var0 == 3312) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.isMembersWorld ? 1 : 0;
+					return 1;
+				} else if (var0 == 3313) {
+					class379.Interpreter_intStackSize -= 2;
+					var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize] + 32768;
+					var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class457.method8304(var3, var4);
+					return 1;
+				} else if (var0 == 3314) {
+					class379.Interpreter_intStackSize -= 2;
+					var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize] + 32768;
+					var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class139.ItemContainer_getCount(var3, var4);
+					return 1;
+				} else if (var0 == 3315) {
+					class379.Interpreter_intStackSize -= 2;
+					var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize] + 32768;
+					var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = WorldMapAreaData.method5266(var3, var4);
+					return 1;
+				} else if (var0 == 3316) {
+					if (Client.staffModLevel >= 2) {
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.staffModLevel;
+					} else {
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = 0;
+					}
+
+					return 1;
+				} else if (var0 == 3317) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.rebootTimer;
+					return 1;
+				} else if (var0 == 3318) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.worldId;
+					return 1;
+				} else if (var0 == 3321) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.runEnergy;
+					return 1;
+				} else if (var0 == 3322) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.weight;
+					return 1;
+				} else if (var0 == 3323) {
+					if (Client.playerMod) {
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = 1;
+					} else {
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = 0;
+					}
+
+					return 1;
+				} else if (var0 == 3324) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.worldProperties;
+					return 1;
+				} else if (var0 == 3325) {
+					class379.Interpreter_intStackSize -= 4;
+					var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+					var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+					var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+					int var6 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 3];
+					var3 += var4 << 14;
+					var3 += var5 << 28;
+					var3 += var6;
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3;
+					return 1;
+				} else if (var0 == 3326) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.field504;
+					return 1;
+				} else if (var0 == 3327) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.field630;
+					return 1;
+				} else {
+					return 2;
+				}
+			}
 		}
 	}
 }

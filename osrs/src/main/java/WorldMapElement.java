@@ -4,116 +4,116 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fh")
+@ObfuscatedName("fd")
 @Implements("WorldMapElement")
 public class WorldMapElement extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("WorldMapElement_archive")
 	public static AbstractArchive WorldMapElement_archive;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "[Lfh;"
+		descriptor = "[Lfd;"
 	)
 	@Export("WorldMapElement_cached")
 	public static WorldMapElement[] WorldMapElement_cached;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 517354743
+		intValue = 1161109167
 	)
 	@Export("WorldMapElement_count")
 	public static int WorldMapElement_count;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Ljx;"
 	)
 	@Export("WorldMapElement_cachedSprites")
 	static EvictingDualNodeHashTable WorldMapElement_cachedSprites;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 666751609
+		intValue = 2052373877
 	)
 	@Export("objectId")
 	public final int objectId;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -46725577
+		intValue = -1983314433
 	)
 	@Export("sprite1")
 	public int sprite1;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1619334869
+		intValue = 748178793
 	)
 	@Export("sprite2")
 	int sprite2;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@Export("name")
 	public String name;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 2069218199
+		intValue = -1680634377
 	)
-	public int field1845;
-	@ObfuscatedName("x")
+	public int field1883;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 527391355
+		intValue = 1651551537
 	)
 	@Export("textSize")
 	public int textSize;
-	@ObfuscatedName("v")
-	public boolean field1855;
-	@ObfuscatedName("h")
-	public boolean field1856;
-	@ObfuscatedName("t")
+	@ObfuscatedName("s")
+	public boolean field1879;
+	@ObfuscatedName("p")
+	public boolean field1871;
+	@ObfuscatedName("b")
 	@Export("menuActions")
 	public String[] menuActions;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@Export("menuTargetName")
 	public String menuTargetName;
-	@ObfuscatedName("d")
-	int[] field1859;
-	@ObfuscatedName("b")
+	@ObfuscatedName("u")
+	int[] field1882;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1422588785
+		intValue = 1739407459
 	)
-	int field1861;
-	@ObfuscatedName("a")
+	int field1887;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -864218917
+		intValue = 778653995
 	)
-	int field1851;
-	@ObfuscatedName("l")
+	int field1888;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 2028882753
+		intValue = -1785500701
 	)
-	int field1857;
-	@ObfuscatedName("e")
+	int field1873;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1627228615
+		intValue = -1428519697
 	)
-	int field1863;
-	@ObfuscatedName("g")
+	int field1890;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lgl;"
 	)
 	@Export("horizontalAlignment")
 	public HorizontalAlignment horizontalAlignment;
-	@ObfuscatedName("y")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lfw;"
+		descriptor = "Lga;"
 	)
 	@Export("verticalAlignment")
 	public VerticalAlignment verticalAlignment;
-	@ObfuscatedName("i")
-	int[] field1866;
-	@ObfuscatedName("r")
-	byte[] field1867;
-	@ObfuscatedName("z")
+	@ObfuscatedName("e")
+	int[] field1893;
+	@ObfuscatedName("g")
+	byte[] field1894;
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 270915399
+		intValue = -797897937
 	)
 	@Export("category")
 	public int category;
@@ -126,23 +126,23 @@ public class WorldMapElement extends DualNode {
 		this.sprite1 = -1;
 		this.sprite2 = -1;
 		this.textSize = 0;
-		this.field1855 = true;
-		this.field1856 = false;
+		this.field1879 = true;
+		this.field1871 = false;
 		this.menuActions = new String[5];
-		this.field1861 = Integer.MAX_VALUE;
-		this.field1851 = Integer.MAX_VALUE;
-		this.field1857 = Integer.MIN_VALUE;
-		this.field1863 = Integer.MIN_VALUE;
+		this.field1887 = Integer.MAX_VALUE;
+		this.field1888 = Integer.MAX_VALUE;
+		this.field1873 = Integer.MIN_VALUE;
+		this.field1890 = Integer.MIN_VALUE;
 		this.horizontalAlignment = HorizontalAlignment.HorizontalAlignment_centered;
 		this.verticalAlignment = VerticalAlignment.VerticalAlignment_centered;
 		this.category = -1;
 		this.objectId = var1;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;B)V",
-		garbageValue = "38"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-1372723798"
 	)
 	@Export("decode")
 	public void decode(Buffer var1) {
@@ -156,21 +156,21 @@ public class WorldMapElement extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;IB)V",
-		garbageValue = "33"
+		descriptor = "(Lqr;II)V",
+		garbageValue = "1480478308"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
 		if (var2 == 1) {
-			this.sprite1 = var1.method8028();
+			this.sprite1 = var1.method8422();
 		} else if (var2 == 2) {
-			this.sprite2 = var1.method8028();
+			this.sprite2 = var1.method8422();
 		} else if (var2 == 3) {
 			this.name = var1.readStringCp1252NullTerminated();
 		} else if (var2 == 4) {
-			this.field1845 = var1.readMedium();
+			this.field1883 = var1.readMedium();
 		} else if (var2 == 5) {
 			var1.readMedium();
 		} else if (var2 == 6) {
@@ -180,11 +180,11 @@ public class WorldMapElement extends DualNode {
 			if (var2 == 7) {
 				var3 = var1.readUnsignedByte();
 				if ((var3 & 1) == 0) {
-					this.field1855 = false;
+					this.field1879 = false;
 				}
 
 				if ((var3 & 2) == 2) {
-					this.field1856 = true;
+					this.field1871 = true;
 				}
 			} else if (var2 == 8) {
 				var1.readUnsignedByte();
@@ -192,32 +192,32 @@ public class WorldMapElement extends DualNode {
 				this.menuActions[var2 - 10] = var1.readStringCp1252NullTerminated();
 			} else if (var2 == 15) {
 				var3 = var1.readUnsignedByte();
-				this.field1859 = new int[var3 * 2];
+				this.field1882 = new int[var3 * 2];
 
 				int var4;
 				for (var4 = 0; var4 < var3 * 2; ++var4) {
-					this.field1859[var4] = var1.readShort();
+					this.field1882[var4] = var1.readShort();
 				}
 
 				var1.readInt();
 				var4 = var1.readUnsignedByte();
-				this.field1866 = new int[var4];
+				this.field1893 = new int[var4];
 
 				int var5;
-				for (var5 = 0; var5 < this.field1866.length; ++var5) {
-					this.field1866[var5] = var1.readInt();
+				for (var5 = 0; var5 < this.field1893.length; ++var5) {
+					this.field1893[var5] = var1.readInt();
 				}
 
-				this.field1867 = new byte[var3];
+				this.field1894 = new byte[var3];
 
 				for (var5 = 0; var5 < var3; ++var5) {
-					this.field1867[var5] = var1.readByte();
+					this.field1894[var5] = var1.readByte();
 				}
 			} else if (var2 != 16) {
 				if (var2 == 17) {
 					this.menuTargetName = var1.readStringCp1252NullTerminated();
 				} else if (var2 == 18) {
-					var1.method8028();
+					var1.method8422();
 				} else if (var2 == 19) {
 					this.category = var1.readUnsignedShort();
 				} else if (var2 == 21) {
@@ -232,47 +232,47 @@ public class WorldMapElement extends DualNode {
 					var1.readShort();
 					var1.readShort();
 				} else if (var2 == 25) {
-					var1.method8028();
+					var1.method8422();
 				} else if (var2 == 28) {
 					var1.readUnsignedByte();
 				} else if (var2 == 29) {
-					this.horizontalAlignment = (HorizontalAlignment)Varps.findEnumerated(SoundCache.method834(), var1.readUnsignedByte());
+					this.horizontalAlignment = (HorizontalAlignment)WallDecoration.findEnumerated(class101.method2565(), var1.readUnsignedByte());
 				} else if (var2 == 30) {
-					this.verticalAlignment = (VerticalAlignment)Varps.findEnumerated(Message.method1144(), var1.readUnsignedByte());
+					this.verticalAlignment = (VerticalAlignment)WallDecoration.findEnumerated(class120.method2813(), var1.readUnsignedByte());
 				}
 			}
 		}
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "2"
+		descriptor = "(I)V",
+		garbageValue = "623854316"
 	)
-	public void method3538() {
-		if (this.field1859 != null) {
-			for (int var1 = 0; var1 < this.field1859.length; var1 += 2) {
-				if (this.field1859[var1] < this.field1861) {
-					this.field1861 = this.field1859[var1];
-				} else if (this.field1859[var1] > this.field1857) {
-					this.field1857 = this.field1859[var1];
+	public void method3436() {
+		if (this.field1882 != null) {
+			for (int var1 = 0; var1 < this.field1882.length; var1 += 2) {
+				if (this.field1882[var1] < this.field1887) {
+					this.field1887 = this.field1882[var1];
+				} else if (this.field1882[var1] > this.field1873) {
+					this.field1873 = this.field1882[var1];
 				}
 
-				if (this.field1859[var1 + 1] < this.field1851) {
-					this.field1851 = this.field1859[var1 + 1];
-				} else if (this.field1859[var1 + 1] > this.field1863) {
-					this.field1863 = this.field1859[var1 + 1];
+				if (this.field1882[var1 + 1] < this.field1888) {
+					this.field1888 = this.field1882[var1 + 1];
+				} else if (this.field1882[var1 + 1] > this.field1890) {
+					this.field1890 = this.field1882[var1 + 1];
 				}
 			}
 		}
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(ZB)Lqi;",
-		garbageValue = "62"
+		descriptor = "(ZI)Lri;",
+		garbageValue = "458010968"
 	)
 	@Export("getSpriteBool")
 	public SpritePixels getSpriteBool(boolean var1) {
@@ -280,10 +280,10 @@ public class WorldMapElement extends DualNode {
 		return this.getSprite(var2);
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lqi;",
-		garbageValue = "936206529"
+		descriptor = "(II)Lri;",
+		garbageValue = "-1031771281"
 	)
 	@Export("getSprite")
 	SpritePixels getSprite(int var1) {
@@ -294,7 +294,7 @@ public class WorldMapElement extends DualNode {
 			if (var2 != null) {
 				return var2;
 			} else {
-				var2 = class114.SpriteBuffer_getSprite(WorldMapElement_archive, var1, 0);
+				var2 = FriendsList.SpriteBuffer_getSprite(WorldMapElement_archive, var1, 0);
 				if (var2 != null) {
 					WorldMapElement_cachedSprites.put(var2, (long)var1);
 				}
@@ -304,32 +304,36 @@ public class WorldMapElement extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(S)I",
-		garbageValue = "21708"
+		descriptor = "(I)I",
+		garbageValue = "-1600914494"
 	)
 	@Export("getObjectId")
 	public int getObjectId() {
 		return this.objectId;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(IIIB)I",
-		garbageValue = "74"
+		descriptor = "(II)Lgg;",
+		garbageValue = "-45896361"
 	)
-	static final int method3556(int var0, int var1, int var2) {
-		int var3 = var0 / var2;
-		int var4 = var0 & var2 - 1;
-		int var5 = var1 / var2;
-		int var6 = var1 & var2 - 1;
-		int var7 = Script.method2129(var3, var5);
-		int var8 = Script.method2129(var3 + 1, var5);
-		int var9 = Script.method2129(var3, var5 + 1);
-		int var10 = Script.method2129(var3 + 1, var5 + 1);
-		int var11 = Bounds.method7094(var7, var8, var4, var2);
-		int var12 = Bounds.method7094(var9, var10, var4, var2);
-		return Bounds.method7094(var11, var12, var6, var2);
+	@Export("SequenceDefinition_get")
+	public static SequenceDefinition SequenceDefinition_get(int var0) {
+		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0);
+			var1 = new SequenceDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
 	}
 }

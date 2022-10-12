@@ -1,392 +1,391 @@
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cl")
 @Implements("Actor")
 public abstract class Actor extends Renderable {
-	@ObfuscatedName("gq")
-	static String field1164;
-	@ObfuscatedName("aq")
-	@ObfuscatedGetter(
-		intValue = -1041677133
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("ai")
-	@ObfuscatedGetter(
-		intValue = 1623549859
-	)
-	@Export("y")
-	int y;
 	@ObfuscatedName("an")
 	@Export("isWalking")
 	boolean isWalking;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -853907471
+		intValue = 2082301251
+	)
+	@Export("x")
+	int x;
+	@ObfuscatedName("ad")
+	@ObfuscatedGetter(
+		intValue = 201162729
+	)
+	@Export("y")
+	int y;
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = -843576201
 	)
 	@Export("rotation")
 	int rotation;
 	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = -1129314889
+		intValue = -44581457
 	)
-	int field1131;
-	@ObfuscatedName("am")
+	int field1201;
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = 1957403439
+		intValue = 187862823
 	)
 	@Export("playerCycle")
 	int playerCycle;
 	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -595475907
+		intValue = 2069657441
 	)
 	@Export("idleSequence")
 	int idleSequence;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 1619429821
+		intValue = -344103579
 	)
 	@Export("turnLeftSequence")
 	int turnLeftSequence;
-	@ObfuscatedName("az")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1278311795
+		intValue = 1645061365
 	)
 	@Export("turnRightSequence")
 	int turnRightSequence;
-	@ObfuscatedName("ad")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 2064937793
+		intValue = -2128083475
 	)
 	@Export("walkSequence")
 	int walkSequence;
-	@ObfuscatedName("af")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -1460692157
+		intValue = -1087764383
 	)
 	@Export("walkBackSequence")
 	int walkBackSequence;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 558080795
+		intValue = -1509034049
 	)
 	@Export("walkLeftSequence")
 	int walkLeftSequence;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -680657199
+		intValue = -938435851
 	)
 	@Export("walkRightSequence")
 	int walkRightSequence;
-	@ObfuscatedName("av")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 136397527
+		intValue = 684246447
 	)
 	@Export("runSequence")
 	int runSequence;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = -1551823215
+		intValue = -749362017
 	)
-	int field1189;
-	@ObfuscatedName("ay")
+	int field1181;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1469200361
+		intValue = 433711015
 	)
-	int field1193;
-	@ObfuscatedName("ag")
-	@ObfuscatedGetter(
-		intValue = 27746573
-	)
-	int field1143;
+	int field1151;
 	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1804058957
+		intValue = 1396311481
 	)
-	int field1144;
-	@ObfuscatedName("ah")
-	@ObfuscatedGetter(
-		intValue = 1345091061
-	)
-	int field1179;
+	int field1152;
 	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -807066259
+		intValue = -1631079087
 	)
-	int field1182;
-	@ObfuscatedName("al")
+	int field1153;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1619265253
+		intValue = 1713723467
 	)
-	int field1171;
-	@ObfuscatedName("au")
+	int field1209;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = -308852591
+	)
+	int field1184;
+	@ObfuscatedName("ax")
+	@ObfuscatedGetter(
+		intValue = 916016745
+	)
+	int field1156;
+	@ObfuscatedName("aa")
 	@Export("overheadText")
 	String overheadText;
-	@ObfuscatedName("bg")
+	@ObfuscatedName("bx")
 	@Export("isAutoChatting")
 	boolean isAutoChatting;
-	@ObfuscatedName("bw")
-	boolean field1150;
-	@ObfuscatedName("bc")
+	@ObfuscatedName("bh")
+	boolean field1155;
+	@ObfuscatedName("bm")
 	@ObfuscatedGetter(
-		intValue = 1333604775
+		intValue = 2132728057
 	)
 	@Export("overheadTextCyclesRemaining")
 	int overheadTextCyclesRemaining;
-	@ObfuscatedName("bv")
+	@ObfuscatedName("bp")
 	@ObfuscatedGetter(
-		intValue = -664621931
+		intValue = 128260117
 	)
 	@Export("overheadTextColor")
 	int overheadTextColor;
-	@ObfuscatedName("bi")
+	@ObfuscatedName("bl")
 	@ObfuscatedGetter(
-		intValue = 1743206661
+		intValue = -513565809
 	)
 	@Export("overheadTextEffect")
 	int overheadTextEffect;
-	@ObfuscatedName("by")
+	@ObfuscatedName("bg")
 	@Export("hitSplatCount")
 	byte hitSplatCount;
-	@ObfuscatedName("bz")
+	@ObfuscatedName("bd")
 	@Export("hitSplatTypes")
 	int[] hitSplatTypes;
-	@ObfuscatedName("bo")
+	@ObfuscatedName("bq")
 	@Export("hitSplatValues")
 	int[] hitSplatValues;
-	@ObfuscatedName("br")
+	@ObfuscatedName("bk")
 	@Export("hitSplatCycles")
 	int[] hitSplatCycles;
-	@ObfuscatedName("bp")
+	@ObfuscatedName("bc")
 	@Export("hitSplatTypes2")
 	int[] hitSplatTypes2;
-	@ObfuscatedName("bd")
+	@ObfuscatedName("bv")
 	@Export("hitSplatValues2")
 	int[] hitSplatValues2;
-	@ObfuscatedName("bl")
+	@ObfuscatedName("bt")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lml;"
 	)
 	@Export("healthBars")
 	IterableNodeDeque healthBars;
-	@ObfuscatedName("bk")
+	@ObfuscatedName("ba")
 	@ObfuscatedGetter(
-		intValue = 1336513003
+		intValue = -177989563
 	)
 	@Export("targetIndex")
 	int targetIndex;
-	@ObfuscatedName("bh")
+	@ObfuscatedName("br")
 	@Export("false0")
 	boolean false0;
-	@ObfuscatedName("bx")
-	@ObfuscatedGetter(
-		intValue = -871785757
-	)
-	int field1163;
 	@ObfuscatedName("be")
-	boolean field1141;
-	@ObfuscatedName("bf")
 	@ObfuscatedGetter(
-		intValue = 276791825
+		intValue = 1147619093
+	)
+	int field1203;
+	@ObfuscatedName("by")
+	boolean field1173;
+	@ObfuscatedName("bb")
+	@ObfuscatedGetter(
+		intValue = 1935010867
 	)
 	@Export("movementSequence")
 	int movementSequence;
-	@ObfuscatedName("ba")
+	@ObfuscatedName("bu")
 	@ObfuscatedGetter(
-		intValue = -1288086573
+		intValue = -454451479
 	)
 	@Export("movementFrame")
 	int movementFrame;
-	@ObfuscatedName("bt")
+	@ObfuscatedName("bj")
 	@ObfuscatedGetter(
-		intValue = 238768931
+		intValue = -974665831
 	)
 	@Export("movementFrameCycle")
 	int movementFrameCycle;
-	@ObfuscatedName("bb")
+	@ObfuscatedName("bw")
 	@ObfuscatedGetter(
-		intValue = 1617908651
+		intValue = -188171203
 	)
-	int field1168;
+	int field1160;
 	@ObfuscatedName("bn")
 	@ObfuscatedGetter(
-		intValue = 1069042073
+		intValue = -1963515013
 	)
 	@Export("sequence")
 	int sequence;
-	@ObfuscatedName("bm")
+	@ObfuscatedName("bf")
 	@ObfuscatedGetter(
-		intValue = -579241143
+		intValue = 1749938985
 	)
 	@Export("sequenceFrame")
 	int sequenceFrame;
-	@ObfuscatedName("bq")
+	@ObfuscatedName("bz")
 	@ObfuscatedGetter(
-		intValue = -1190504043
+		intValue = -986209861
 	)
 	@Export("sequenceFrameCycle")
 	int sequenceFrameCycle;
-	@ObfuscatedName("bu")
+	@ObfuscatedName("bi")
 	@ObfuscatedGetter(
-		intValue = -162328707
+		intValue = -1799281131
 	)
 	@Export("sequenceDelay")
 	int sequenceDelay;
 	@ObfuscatedName("bs")
 	@ObfuscatedGetter(
-		intValue = -1720247151
+		intValue = 94715391
 	)
-	int field1173;
-	@ObfuscatedName("cy")
+	int field1210;
+	@ObfuscatedName("cd")
 	@ObfuscatedGetter(
-		intValue = 330017977
+		intValue = 358038643
 	)
 	@Export("spotAnimation")
 	int spotAnimation;
-	@ObfuscatedName("cv")
+	@ObfuscatedName("cg")
 	@ObfuscatedGetter(
-		intValue = -1153122297
+		intValue = -1833683875
 	)
 	@Export("spotAnimationFrame")
 	int spotAnimationFrame;
+	@ObfuscatedName("cs")
+	@ObfuscatedGetter(
+		intValue = 1617465677
+	)
+	int field1142;
+	@ObfuscatedName("ci")
+	@ObfuscatedGetter(
+		intValue = 801618611
+	)
+	int field1186;
+	@ObfuscatedName("cq")
+	@ObfuscatedGetter(
+		intValue = -1449841861
+	)
+	int field1159;
+	@ObfuscatedName("ck")
+	@ObfuscatedGetter(
+		intValue = 201933441
+	)
+	int field1150;
+	@ObfuscatedName("ca")
+	@ObfuscatedGetter(
+		intValue = 1846469473
+	)
+	int field1189;
 	@ObfuscatedName("cf")
 	@ObfuscatedGetter(
-		intValue = 1830362223
+		intValue = 661045753
 	)
-	int field1176;
-	@ObfuscatedName("cn")
-	@ObfuscatedGetter(
-		intValue = -1632557087
-	)
-	int field1147;
-	@ObfuscatedName("ct")
-	@ObfuscatedGetter(
-		intValue = 287498913
-	)
-	int field1145;
+	int field1190;
 	@ObfuscatedName("cj")
 	@ObfuscatedGetter(
-		intValue = -774122863
+		intValue = 2028156093
+	)
+	int field1188;
+	@ObfuscatedName("cy")
+	@ObfuscatedGetter(
+		intValue = -2024536551
 	)
 	int field1192;
-	@ObfuscatedName("cl")
+	@ObfuscatedName("co")
 	@ObfuscatedGetter(
-		intValue = 1362945189
+		intValue = -473772391
 	)
-	int field1180;
+	int field1193;
 	@ObfuscatedName("cw")
 	@ObfuscatedGetter(
-		intValue = -1883558077
+		intValue = 1018346863
 	)
-	int field1181;
-	@ObfuscatedName("ce")
+	int field1194;
+	@ObfuscatedName("cl")
 	@ObfuscatedGetter(
-		intValue = 1326253047
-	)
-	int field1140;
-	@ObfuscatedName("cg")
-	@ObfuscatedGetter(
-		intValue = 127615547
-	)
-	int field1183;
-	@ObfuscatedName("cu")
-	@ObfuscatedGetter(
-		intValue = -785397471
-	)
-	int field1136;
-	@ObfuscatedName("cz")
-	@ObfuscatedGetter(
-		intValue = -1761409573
-	)
-	int field1185;
-	@ObfuscatedName("cr")
-	@ObfuscatedGetter(
-		intValue = -497664845
+		intValue = -1150467361
 	)
 	@Export("npcCycle")
 	int npcCycle;
-	@ObfuscatedName("co")
+	@ObfuscatedName("cu")
 	@ObfuscatedGetter(
-		intValue = 1921853011
+		intValue = -500790387
 	)
 	@Export("defaultHeight")
 	int defaultHeight;
-	@ObfuscatedName("ca")
+	@ObfuscatedName("ch")
 	@ObfuscatedGetter(
-		intValue = 981930685
+		intValue = 763616681
 	)
-	int field1188;
-	@ObfuscatedName("cx")
+	int field1197;
+	@ObfuscatedName("ce")
 	@ObfuscatedGetter(
-		intValue = 2012041551
+		intValue = -866481861
 	)
-	int field1158;
-	@ObfuscatedName("cq")
-	byte field1190;
-	@ObfuscatedName("cp")
-	byte field1191;
-	@ObfuscatedName("ck")
-	byte field1169;
-	@ObfuscatedName("ci")
-	byte field1194;
+	int field1198;
+	@ObfuscatedName("cm")
+	byte field1199;
+	@ObfuscatedName("cc")
+	byte field1200;
+	@ObfuscatedName("cr")
+	byte field1185;
+	@ObfuscatedName("ct")
+	byte field1202;
 	@ObfuscatedName("cb")
 	@ObfuscatedGetter(
-		intValue = 572152345
+		intValue = 36455077
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("cd")
+	@ObfuscatedName("cz")
 	@ObfuscatedGetter(
-		intValue = 743919699
+		intValue = 1135644645
 	)
-	int field1195;
-	@ObfuscatedName("cs")
+	int field1204;
+	@ObfuscatedName("cn")
 	@ObfuscatedGetter(
-		intValue = 1509004959
+		intValue = 1831269937
 	)
-	int field1196;
-	@ObfuscatedName("ch")
+	int field1205;
+	@ObfuscatedName("cv")
 	@ObfuscatedGetter(
-		intValue = -157413117
+		intValue = 1973809325
 	)
 	@Export("pathLength")
 	int pathLength;
-	@ObfuscatedName("cc")
+	@ObfuscatedName("cx")
 	@Export("pathX")
 	int[] pathX;
-	@ObfuscatedName("cm")
+	@ObfuscatedName("cp")
 	@Export("pathY")
 	int[] pathY;
-	@ObfuscatedName("db")
+	@ObfuscatedName("ds")
 	@ObfuscatedSignature(
-		descriptor = "[Lga;"
+		descriptor = "[Lgo;"
 	)
 	@Export("pathTraversed")
-	class193[] pathTraversed;
+	class202[] pathTraversed;
 	@ObfuscatedName("df")
 	@ObfuscatedGetter(
-		intValue = -1377547959
+		intValue = 1183618047
 	)
-	int field1201;
-	@ObfuscatedName("du")
+	int field1172;
+	@ObfuscatedName("dc")
 	@ObfuscatedGetter(
-		intValue = -614769655
+		intValue = -220662997
 	)
-	int field1202;
-	@ObfuscatedName("da")
+	int field1211;
+	@ObfuscatedName("dk")
 	@ObfuscatedGetter(
-		intValue = 1423849969
+		intValue = 1419553213
 	)
-	int field1203;
+	int field1212;
 
 	Actor() {
 		this.isWalking = false;
-		this.field1131 = 1;
+		this.field1201 = 1;
 		this.idleSequence = -1;
 		this.turnLeftSequence = -1;
 		this.turnRightSequence = -1;
@@ -395,15 +394,15 @@ public abstract class Actor extends Renderable {
 		this.walkLeftSequence = -1;
 		this.walkRightSequence = -1;
 		this.runSequence = -1;
-		this.field1189 = -1;
-		this.field1193 = -1;
-		this.field1143 = -1;
-		this.field1144 = -1;
-		this.field1179 = -1;
-		this.field1182 = -1;
-		this.field1171 = -1;
+		this.field1181 = -1;
+		this.field1151 = -1;
+		this.field1152 = -1;
+		this.field1153 = -1;
+		this.field1209 = -1;
+		this.field1184 = -1;
+		this.field1156 = -1;
 		this.overheadText = null;
-		this.field1150 = false;
+		this.field1155 = false;
 		this.overheadTextCyclesRemaining = 100;
 		this.overheadTextColor = 0;
 		this.overheadTextEffect = 0;
@@ -416,58 +415,58 @@ public abstract class Actor extends Renderable {
 		this.healthBars = new IterableNodeDeque();
 		this.targetIndex = -1;
 		this.false0 = false;
-		this.field1163 = -1;
+		this.field1203 = -1;
 		this.movementSequence = -1;
 		this.movementFrame = 0;
 		this.movementFrameCycle = 0;
-		this.field1168 = 0;
+		this.field1160 = 0;
 		this.sequence = -1;
 		this.sequenceFrame = 0;
 		this.sequenceFrameCycle = 0;
 		this.sequenceDelay = 0;
-		this.field1173 = 0;
+		this.field1210 = 0;
 		this.spotAnimation = -1;
 		this.spotAnimationFrame = 0;
-		this.field1176 = 0;
+		this.field1142 = 0;
 		this.npcCycle = 0;
 		this.defaultHeight = 200;
-		this.field1188 = -1;
-		this.field1158 = -1;
-		this.field1195 = 0;
-		this.field1196 = 32;
+		this.field1197 = -1;
+		this.field1198 = -1;
+		this.field1204 = 0;
+		this.field1205 = 32;
 		this.pathLength = 0;
 		this.pathX = new int[10];
 		this.pathY = new int[10];
-		this.pathTraversed = new class193[10];
-		this.field1201 = 0;
-		this.field1202 = 0;
-		this.field1203 = -1;
+		this.pathTraversed = new class202[10];
+		this.field1172 = 0;
+		this.field1211 = 0;
+		this.field1212 = -1;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-77"
+		descriptor = "(I)Z",
+		garbageValue = "246357037"
 	)
 	@Export("isVisible")
 	boolean isVisible() {
 		return false;
 	}
 
-	@ObfuscatedName("br")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-613135881"
+		garbageValue = "-1312167120"
 	)
-	final void method2331() {
+	final void method2316() {
 		this.pathLength = 0;
-		this.field1202 = 0;
+		this.field1211 = 0;
 	}
 
-	@ObfuscatedName("bp")
+	@ObfuscatedName("bx")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIIII)V",
-		garbageValue = "90761703"
+		garbageValue = "-1854118366"
 	)
 	@Export("addHitSplat")
 	final void addHitSplat(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -487,9 +486,9 @@ public abstract class Actor extends Renderable {
 		int var10 = -1;
 		int var11 = 0;
 		if (var1 >= 0) {
-			HitSplatDefinition var12 = class126.method2973(var1);
-			var10 = var12.field2060;
-			var11 = var12.field2051;
+			HitSplatDefinition var12 = class158.method3241(var1);
+			var10 = var12.field2067;
+			var11 = var12.field2056;
 		}
 
 		int var14;
@@ -545,125 +544,501 @@ public abstract class Actor extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("bd")
+	@ObfuscatedName("bh")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIB)V",
-		garbageValue = "4"
+		descriptor = "(IIIIIII)V",
+		garbageValue = "-1902970487"
 	)
 	@Export("addHealthBar")
 	final void addHealthBar(int var1, int var2, int var3, int var4, int var5, int var6) {
-		HealthBarDefinition var8 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var1);
-		HealthBarDefinition var7;
-		if (var8 != null) {
-			var7 = var8;
-		} else {
-			byte[] var9 = HealthBarDefinition.HealthBarDefinition_archive.takeFile(33, var1);
-			var8 = new HealthBarDefinition();
-			if (var9 != null) {
-				var8.decode(new Buffer(var9));
-			}
+		HealthBarDefinition var7 = ModeWhere.method6594(var1);
+		HealthBar var8 = null;
+		HealthBar var9 = null;
+		int var10 = var7.int2;
+		int var11 = 0;
 
-			HealthBarDefinition.HealthBarDefinition_cached.put(var8, (long)var1);
-			var7 = var8;
-		}
-
-		var8 = var7;
-		HealthBar var14 = null;
-		HealthBar var10 = null;
-		int var11 = var7.int2;
-		int var12 = 0;
-
-		HealthBar var13;
-		for (var13 = (HealthBar)this.healthBars.last(); var13 != null; var13 = (HealthBar)this.healthBars.previous()) {
-			++var12;
-			if (var13.definition.field1889 == var8.field1889) {
-				var13.put(var2 + var4, var5, var6, var3);
+		HealthBar var12;
+		for (var12 = (HealthBar)this.healthBars.last(); var12 != null; var12 = (HealthBar)this.healthBars.previous()) {
+			++var11;
+			if (var12.definition.field1929 == var7.field1929) {
+				var12.put(var2 + var4, var5, var6, var3);
 				return;
 			}
 
-			if (var13.definition.int1 <= var8.int1) {
-				var14 = var13;
+			if (var12.definition.int1 <= var7.int1) {
+				var8 = var12;
 			}
 
-			if (var13.definition.int2 > var11) {
-				var10 = var13;
-				var11 = var13.definition.int2;
+			if (var12.definition.int2 > var10) {
+				var9 = var12;
+				var10 = var12.definition.int2;
 			}
 		}
 
-		if (var10 != null || var12 < 4) {
-			var13 = new HealthBar(var8);
-			if (var14 == null) {
-				this.healthBars.addLast(var13);
+		if (var9 != null || var11 < 4) {
+			var12 = new HealthBar(var7);
+			if (var8 == null) {
+				this.healthBars.addLast(var12);
 			} else {
-				IterableNodeDeque.IterableNodeDeque_addBefore(var13, var14);
+				IterableNodeDeque.IterableNodeDeque_addBefore(var12, var8);
 			}
 
-			var13.put(var2 + var4, var5, var6, var3);
-			if (var12 >= 4) {
-				var10.remove();
+			var12.put(var2 + var4, var5, var6, var3);
+			if (var11 >= 4) {
+				var9.remove();
 			}
 
 		}
 	}
 
-	@ObfuscatedName("bl")
+	@ObfuscatedName("bm")
 	@ObfuscatedSignature(
-		descriptor = "(IS)V",
-		garbageValue = "27011"
+		descriptor = "(II)V",
+		garbageValue = "-1211388115"
 	)
 	@Export("removeHealthBar")
 	final void removeHealthBar(int var1) {
-		HealthBarDefinition var3 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var1);
-		HealthBarDefinition var2;
-		if (var3 != null) {
-			var2 = var3;
-		} else {
-			byte[] var4 = HealthBarDefinition.HealthBarDefinition_archive.takeFile(33, var1);
-			var3 = new HealthBarDefinition();
-			if (var4 != null) {
-				var3.decode(new Buffer(var4));
-			}
+		HealthBarDefinition var2 = ModeWhere.method6594(var1);
 
-			HealthBarDefinition.HealthBarDefinition_cached.put(var3, (long)var1);
-			var2 = var3;
-		}
-
-		var3 = var2;
-
-		for (HealthBar var5 = (HealthBar)this.healthBars.last(); var5 != null; var5 = (HealthBar)this.healthBars.previous()) {
-			if (var3 == var5.definition) {
-				var5.remove();
+		for (HealthBar var3 = (HealthBar)this.healthBars.last(); var3 != null; var3 = (HealthBar)this.healthBars.previous()) {
+			if (var2 == var3.definition) {
+				var3.remove();
 				return;
 			}
 		}
 
 	}
 
-	@ObfuscatedName("gr")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lgd;IIII)V",
-		garbageValue = "478596180"
+		descriptor = "(II)Lfd;",
+		garbageValue = "-1492294528"
 	)
-	static void method2348(SequenceDefinition var0, int var1, int var2, int var3) {
-		if (Client.soundEffectCount < 50 && Player.clientPreferences.method2474() != 0) {
-			if (var0.field2201 != null && var0.field2201.containsKey(var1)) {
-				int var4 = (Integer)var0.field2201.get(var1);
-				if (var4 != 0) {
-					int var7 = var4 >> 8;
-					int var8 = var4 >> 4 & 7;
-					int var9 = var4 & 15;
-					Client.soundEffectIds[Client.soundEffectCount] = var7;
-					Client.queuedSoundEffectLoops[Client.soundEffectCount] = var8;
-					Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
-					Client.soundEffects[Client.soundEffectCount] = null;
-					int var10 = (var2 - 64) / 128;
-					int var11 = (var3 - 64) / 128;
-					Client.soundLocations[Client.soundEffectCount] = var9 + (var11 << 8) + (var10 << 16);
-					++Client.soundEffectCount;
+	@Export("WorldMapElement_get")
+	public static WorldMapElement WorldMapElement_get(int var0) {
+		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
+	}
+
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "(ILbz;ZB)I",
+		garbageValue = "93"
+	)
+	static int method2332(int var0, Script var1, boolean var2) {
+		int var3;
+		int var4;
+		if (var0 == 4000) {
+			class379.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 + var4;
+			return 1;
+		} else if (var0 == 4001) {
+			class379.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 - var4;
+			return 1;
+		} else if (var0 == 4002) {
+			class379.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var4 * var3;
+			return 1;
+		} else if (var0 == 4003) {
+			class379.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 / var4;
+			return 1;
+		} else if (var0 == 4004) {
+			var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)(Math.random() * (double)var3);
+			return 1;
+		} else if (var0 == 4005) {
+			var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)(Math.random() * (double)(var3 + 1));
+			return 1;
+		} else {
+			int var5;
+			int var6;
+			int var7;
+			if (var0 == 4006) {
+				class379.Interpreter_intStackSize -= 5;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+				var6 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 3];
+				var7 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 4];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 + (var4 - var3) * (var7 - var5) / (var6 - var5);
+				return 1;
+			} else if (var0 == 4007) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 + var3 * var4 / 100;
+				return 1;
+			} else if (var0 == 4008) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 | 1 << var4;
+				return 1;
+			} else if (var0 == 4009) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 & -1 - (1 << var4);
+				return 1;
+			} else if (var0 == 4010) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (var3 & 1 << var4) != 0 ? 1 : 0;
+				return 1;
+			} else if (var0 == 4011) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 % var4;
+				return 1;
+			} else if (var0 == 4012) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				if (var3 == 0) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = 0;
+				} else {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)Math.pow((double)var3, (double)var4);
 				}
 
+				return 1;
+			} else if (var0 == 4013) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				if (var3 == 0) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = 0;
+					return 1;
+				} else {
+					switch(var4) {
+					case 0:
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Integer.MAX_VALUE;
+						break;
+					case 1:
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3;
+						break;
+					case 2:
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)Math.sqrt((double)var3);
+						break;
+					case 3:
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)Math.cbrt((double)var3);
+						break;
+					case 4:
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)Math.sqrt(Math.sqrt((double)var3));
+						break;
+					default:
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)Math.pow((double)var3, 1.0D / (double)var4);
+					}
+
+					return 1;
+				}
+			} else if (var0 == 4014) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 & var4;
+				return 1;
+			} else if (var0 == 4015) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 | var4;
+				return 1;
+			} else if (var0 == 4018) {
+				class379.Interpreter_intStackSize -= 3;
+				long var9 = (long)Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				long var11 = (long)Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				long var13 = (long)Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (int)(var13 * var9 / var11);
+				return 1;
+			} else if (var0 == 4025) {
+				var3 = Renderable.method4454(Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize]);
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3;
+				return 1;
+			} else if (var0 == 4026) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 ^ 1 << var4;
+				return 1;
+			} else if (var0 == 4027) {
+				class379.Interpreter_intStackSize -= 3;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = WorldMapDecoration.method5148(var3, var4, var5);
+				return 1;
+			} else if (var0 == 4028) {
+				class379.Interpreter_intStackSize -= 3;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class28.method442(var3, var4, var5);
+				return 1;
+			} else if (var0 == 4029) {
+				class379.Interpreter_intStackSize -= 3;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+				var6 = 31 - var5;
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 << var6 >>> var4 + var6;
+				return 1;
+			} else if (var0 == 4030) {
+				class379.Interpreter_intStackSize -= 4;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+				var6 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 3];
+				var3 = class28.method442(var3, var5, var6);
+				var7 = Archive.method6338(var6 - var5 + 1);
+				if (var4 > var7) {
+					var4 = var7;
+				}
+
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3 | var4 << var5;
+				return 1;
+			} else if (var0 == 4032) {
+				Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize - 1] = class315.method6250(Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize - 1]);
+				return 1;
+			} else if (var0 == 4033) {
+				Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize - 1] = VarpDefinition.method3429(Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize - 1]);
+				return 1;
+			} else if (var0 == 4034) {
+				class379.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+				var5 = AbstractWorldMapData.method5137(var3, var4);
+				Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var5;
+				return 1;
+			} else if (var0 == 4035) {
+				Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize - 1] = Math.abs(Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize - 1]);
+				return 1;
+			} else {
+				return 2;
 			}
 		}
+	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "391113383"
+	)
+	static int method2334(int var0, Script var1, boolean var2) {
+		String var3;
+		int var10;
+		if (var0 == 4100) {
+			var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+			var10 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+			Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3 + var10;
+			return 1;
+		} else {
+			String var4;
+			if (var0 == 4101) {
+				class125.Interpreter_stringStackSize -= 2;
+				var3 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize];
+				var4 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize + 1];
+				Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3 + var4;
+				return 1;
+			} else if (var0 == 4102) {
+				var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+				var10 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+				Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3 + Canvas.intToString(var10, true);
+				return 1;
+			} else if (var0 == 4103) {
+				var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+				Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3.toLowerCase();
+				return 1;
+			} else {
+				int var6;
+				int var11;
+				if (var0 == 4104) {
+					var11 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+					long var14 = ((long)var11 + 11745L) * 86400000L;
+					Interpreter.Interpreter_calendar.setTime(new Date(var14));
+					var6 = Interpreter.Interpreter_calendar.get(5);
+					int var17 = Interpreter.Interpreter_calendar.get(2);
+					int var8 = Interpreter.Interpreter_calendar.get(1);
+					Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var6 + "-" + Interpreter.Interpreter_MONTHS[var17] + "-" + var8;
+					return 1;
+				} else if (var0 != 4105) {
+					if (var0 == 4106) {
+						var11 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+						Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = Integer.toString(var11);
+						return 1;
+					} else if (var0 == 4107) {
+						class125.Interpreter_stringStackSize -= 2;
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class297.method5726(Interpreter.compareStrings(Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize + 1], class103.clientLanguage));
+						return 1;
+					} else {
+						int var9;
+						byte[] var12;
+						Font var13;
+						if (var0 == 4108) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							class379.Interpreter_intStackSize -= 2;
+							var10 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+							var9 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+							var12 = class143.archive13.takeFile(var9, 0);
+							var13 = new Font(var12);
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var13.lineCount(var3, var10);
+							return 1;
+						} else if (var0 == 4109) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							class379.Interpreter_intStackSize -= 2;
+							var10 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+							var9 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+							var12 = class143.archive13.takeFile(var9, 0);
+							var13 = new Font(var12);
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var13.lineWidth(var3, var10);
+							return 1;
+						} else if (var0 == 4110) {
+							class125.Interpreter_stringStackSize -= 2;
+							var3 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize];
+							var4 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize + 1];
+							if (Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize] == 1) {
+								Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3;
+							} else {
+								Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var4;
+							}
+
+							return 1;
+						} else if (var0 == 4111) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = AbstractFont.escapeBrackets(var3);
+							return 1;
+						} else if (var0 == 4112) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							var10 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+							Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3 + (char)var10;
+							return 1;
+						} else if (var0 == 4113) {
+							var11 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class340.isCharPrintable((char)var11) ? 1 : 0;
+							return 1;
+						} else if (var0 == 4114) {
+							var11 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = ClanSettings.isAlphaNumeric((char)var11) ? 1 : 0;
+							return 1;
+						} else if (var0 == 4115) {
+							var11 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = BuddyRankComparator.isCharAlphabetic((char)var11) ? 1 : 0;
+							return 1;
+						} else if (var0 == 4116) {
+							var11 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = GrandExchangeOffer.isDigit((char)var11) ? 1 : 0;
+							return 1;
+						} else if (var0 == 4117) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							if (var3 != null) {
+								Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.length();
+							} else {
+								Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = 0;
+							}
+
+							return 1;
+						} else if (var0 == 4118) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							class379.Interpreter_intStackSize -= 2;
+							var10 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+							var9 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+							Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3.substring(var10, var9);
+							return 1;
+						} else if (var0 == 4119) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							StringBuilder var16 = new StringBuilder(var3.length());
+							boolean var18 = false;
+
+							for (var6 = 0; var6 < var3.length(); ++var6) {
+								char var7 = var3.charAt(var6);
+								if (var7 == '<') {
+									var18 = true;
+								} else if (var7 == '>') {
+									var18 = false;
+								} else if (!var18) {
+									var16.append(var7);
+								}
+							}
+
+							Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var16.toString();
+							return 1;
+						} else if (var0 == 4120) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							var10 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.indexOf(var10);
+							return 1;
+						} else if (var0 == 4121) {
+							class125.Interpreter_stringStackSize -= 2;
+							var3 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize];
+							var4 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize + 1];
+							var9 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var3.indexOf(var4, var9);
+							return 1;
+						} else if (var0 == 4122) {
+							var3 = Interpreter.Interpreter_stringStack[--class125.Interpreter_stringStackSize];
+							Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3.toUpperCase();
+							return 1;
+						} else if (var0 == 4123) {
+							class125.Interpreter_stringStackSize -= 3;
+							var3 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize];
+							var4 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize + 1];
+							String var5 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize + 2];
+							if (class296.localPlayer.appearance == null) {
+								Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var5;
+								return 1;
+							} else {
+								switch(class296.localPlayer.appearance.field3425) {
+								case 0:
+									Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3;
+									break;
+								case 1:
+									Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var4;
+									break;
+								case 2:
+								default:
+									Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var5;
+								}
+
+								return 1;
+							}
+						} else {
+							return 2;
+						}
+					}
+				} else {
+					class125.Interpreter_stringStackSize -= 2;
+					var3 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize];
+					var4 = Interpreter.Interpreter_stringStack[class125.Interpreter_stringStackSize + 1];
+					if (class296.localPlayer.appearance != null && class296.localPlayer.appearance.field3423 != 0) {
+						Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var4;
+					} else {
+						Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3;
+					}
+
+					return 1;
+				}
+			}
+		}
+	}
+
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)I",
+		garbageValue = "279996688"
+	)
+	@Export("stringCp1252NullTerminatedByteSize")
+	public static int stringCp1252NullTerminatedByteSize(String var0) {
+		return var0.length() + 1;
 	}
 }

@@ -1,180 +1,261 @@
+import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("x")
-public class class9 implements MouseWheel {
-	@ObfuscatedName("ul")
+@ObfuscatedName("r")
+public class class9 implements class342 {
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Los;"
+		descriptor = "Lr;"
 	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lx;"
-	)
-	public static final class9 field34;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lx;"
-	)
-	public static final class9 field32;
+	public static final class9 field42;
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lx;"
+		descriptor = "Lr;"
 	)
-	static final class9 field33;
+	public static final class9 field39;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Lr;"
+	)
+	static final class9 field43;
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Lr;"
+	)
+	static final class9 field41;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "Lr;"
+	)
+	static final class9 field46;
+	@ObfuscatedName("ie")
+	@Export("regionMapArchives")
+	static byte[][] regionMapArchives;
+	@ObfuscatedName("qw")
+	@ObfuscatedSignature(
+		descriptor = "Lfk;"
+	)
+	@Export("mouseWheel")
+	static class165 mouseWheel;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 347878083
+	)
+	int field48;
+	@ObfuscatedName("y")
+	String field44;
+	@ObfuscatedName("d")
+	boolean field45;
 	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "Lx;"
-	)
-	static final class9 field37;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "Lx;"
-	)
-	static final class9 field35;
-	@ObfuscatedName("ff")
-	@ObfuscatedGetter(
-		intValue = -516341067
-	)
-	static int field31;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -355301615
-	)
-	int field38;
-	@ObfuscatedName("s")
-	String field40;
-	@ObfuscatedName("q")
-	boolean field36;
-	@ObfuscatedName("m")
-	boolean field39;
+	boolean field38;
 
 	static {
-		field34 = new class9(0, "POST", true, true);
-		field32 = new class9(1, "GET", true, false);
-		field33 = new class9(2, "PUT", false, true);
-		field37 = new class9(3, "PATCH", false, true);
-		field35 = new class9(4, "DELETE", false, true);
+		field42 = new class9(0, "POST", true, true);
+		field39 = new class9(1, "GET", true, false);
+		field43 = new class9(2, "PUT", false, true);
+		field41 = new class9(3, "PATCH", false, true);
+		field46 = new class9(4, "DELETE", false, true);
 	}
 
 	class9(int var1, String var2, boolean var3, boolean var4) {
-		this.field38 = var1;
-		this.field40 = var2;
-		this.field36 = var3;
-		this.field39 = var4;
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-2133594239"
-	)
-	boolean method87() {
-		return this.field36;
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "1"
-	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field38;
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-338873662"
-	)
-	public String method75() {
-		return this.field40;
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1305116386"
-	)
-	boolean method76() {
-		return this.field39;
+		this.field48 = var1;
+		this.field44 = var2;
+		this.field45 = var3;
+		this.field38 = var4;
 	}
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "1"
+		descriptor = "(B)I",
+		garbageValue = "0"
 	)
-	static final int method83(int var0, int var1) {
-		if (var0 == -1) {
-			return 12345678;
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field48;
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-2103039666"
+	)
+	boolean method73() {
+		return this.field45;
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-1133174080"
+	)
+	public String method70() {
+		return this.field44;
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1967949034"
+	)
+	boolean method62() {
+		return this.field38;
+	}
+
+	@ObfuscatedName("a")
+	public static final int method72(double var0, double var2, double var4) {
+		double var6 = var4;
+		double var8 = var4;
+		double var10 = var4;
+		if (0.0D != var2) {
+			double var12;
+			if (var4 < 0.5D) {
+				var12 = (var2 + 1.0D) * var4;
+			} else {
+				var12 = var4 + var2 - var2 * var4;
+			}
+
+			double var14 = 2.0D * var4 - var12;
+			double var16 = var0 + 0.3333333333333333D;
+			if (var16 > 1.0D) {
+				--var16;
+			}
+
+			double var20 = var0 - 0.3333333333333333D;
+			if (var20 < 0.0D) {
+				++var20;
+			}
+
+			if (6.0D * var16 < 1.0D) {
+				var6 = var14 + var16 * (var12 - var14) * 6.0D;
+			} else if (2.0D * var16 < 1.0D) {
+				var6 = var12;
+			} else if (3.0D * var16 < 2.0D) {
+				var6 = 6.0D * (var12 - var14) * (0.6666666666666666D - var16) + var14;
+			} else {
+				var6 = var14;
+			}
+
+			if (var0 * 6.0D < 1.0D) {
+				var8 = var0 * 6.0D * (var12 - var14) + var14;
+			} else if (var0 * 2.0D < 1.0D) {
+				var8 = var12;
+			} else if (var0 * 3.0D < 2.0D) {
+				var8 = var14 + 6.0D * (0.6666666666666666D - var0) * (var12 - var14);
+			} else {
+				var8 = var14;
+			}
+
+			if (6.0D * var20 < 1.0D) {
+				var10 = var20 * 6.0D * (var12 - var14) + var14;
+			} else if (2.0D * var20 < 1.0D) {
+				var10 = var12;
+			} else if (var20 * 3.0D < 2.0D) {
+				var10 = (0.6666666666666666D - var20) * (var12 - var14) * 6.0D + var14;
+			} else {
+				var10 = var14;
+			}
+		}
+
+		int var22 = (int)(256.0D * var6);
+		int var13 = (int)(256.0D * var8);
+		int var23 = (int)(var10 * 256.0D);
+		int var15 = var23 + (var13 << 8) + (var22 << 16);
+		return var15;
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/security/SecureRandom;",
+		garbageValue = "900581302"
+	)
+	static SecureRandom method74() {
+		SecureRandom var0 = new SecureRandom();
+		var0.nextInt();
+		return var0;
+	}
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIIB)Z",
+		garbageValue = "-94"
+	)
+	static final boolean method75(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		int var7 = ViewportMouse.ViewportMouse_y + var6;
+		if (var7 < var0 && var7 < var1 && var7 < var2) {
+			return false;
 		} else {
-			var1 = (var0 & 127) * var1 / 128;
-			if (var1 < 2) {
-				var1 = 2;
-			} else if (var1 > 126) {
-				var1 = 126;
-			}
-
-			return (var0 & 65408) + var1;
-		}
-	}
-
-	@ObfuscatedName("gx")
-	@ObfuscatedSignature(
-		descriptor = "(IS)V",
-		garbageValue = "17950"
-	)
-	@Export("playSong")
-	static void playSong(int var0) {
-		if (var0 == -1 && !Client.playingJingle) {
-			class17.method267();
-		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && Player.clientPreferences.method2402() != 0 && !Client.playingJingle) {
-			Archive var1 = class14.archive6;
-			int var2 = Player.clientPreferences.method2402();
-			class274.musicPlayerStatus = 1;
-			class274.musicTrackArchive = var1;
-			class274.musicTrackGroupId = var0;
-			StructComposition.musicTrackFileId = 0;
-			class269.musicTrackVolume = var2;
-			TriBool.musicTrackBoolean = false;
-			VarcInt.pcmSampleLength = 2;
-		}
-
-		Client.currentTrackGroupId = var0;
-	}
-
-	@ObfuscatedName("ih")
-	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "-1657093407"
-	)
-	static final void method89(int var0, int var1, int var2, int var3) {
-		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
-			if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetYs[var4] + Client.rootWidgetHeights[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
-				Client.field714[var4] = true;
+			var7 = ViewportMouse.ViewportMouse_y - var6;
+			if (var7 > var0 && var7 > var1 && var7 > var2) {
+				return false;
+			} else {
+				var7 = ViewportMouse.ViewportMouse_x + var6;
+				if (var7 < var3 && var7 < var4 && var7 < var5) {
+					return false;
+				} else {
+					var7 = ViewportMouse.ViewportMouse_x - var6;
+					return var7 <= var3 || var7 <= var4 || var7 <= var5;
+				}
 			}
 		}
-
 	}
 
-	@ObfuscatedName("lt")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "37"
+		descriptor = "(ILbz;ZB)I",
+		garbageValue = "23"
 	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (class145.friendsChat != null) {
-			PacketBufferNode var1 = class120.getPacketBufferNode(ClientPacket.field3002, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(class357.stringCp1252NullTerminatedByteSize(var0));
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-			Client.packetWriter.addNode(var1);
+	static int method76(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? class140.scriptDotWidget : class136.scriptActiveWidget;
+		if (var0 == 1800) {
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class167.Widget_unpackTargetMask(class197.getWidgetFlags(var3));
+			return 1;
+		} else if (var0 != 1801) {
+			if (var0 == 1802) {
+				if (var3.dataText == null) {
+					Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = "";
+				} else {
+					Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3.dataText;
+				}
+
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			int var4 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+			--var4;
+			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+				Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = var3.actions[var4];
+			} else {
+				Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = "";
+			}
+
+			return 1;
 		}
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(ILbz;ZB)I",
+		garbageValue = "17"
+	)
+	static int method66(int var0, Script var1, boolean var2) {
+		return 2;
+	}
+
+	@ObfuscatedName("gn")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1744196611"
+	)
+	static void method61() {
+		PacketBufferNode var0 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3058, Client.packetWriter.isaacCipher);
+		var0.packetBuffer.writeByte(class13.getWindowedMode());
+		var0.packetBuffer.writeShort(GameEngine.canvasWidth);
+		var0.packetBuffer.writeShort(class10.canvasHeight);
+		Client.packetWriter.addNode(var0);
 	}
 }

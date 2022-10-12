@@ -2,58 +2,82 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
-public class class141 extends class145 {
-	@ObfuscatedName("c")
-	String field1654;
-	@ObfuscatedName("p")
+@ObfuscatedName("et")
+public class class141 extends class151 {
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 1572942225
+		intValue = -1972983481
 	)
-	int field1657;
+	int field1631;
 	@ObfuscatedName("f")
-	byte field1656;
+	byte field1630;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 1076916533
+	)
+	int field1634;
+	@ObfuscatedName("x")
+	String field1633;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
 		descriptor = "Lem;"
 	)
-	final class146 this$0;
+	final class152 this$0;
 
 	@ObfuscatedSignature(
 		descriptor = "(Lem;)V"
 	)
-	class141(class146 var1) {
+	class141(class152 var1) {
 		this.this$0 = var1;
-		this.field1654 = null;
+		this.field1631 = -1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;I)V",
-		garbageValue = "-64301329"
+		descriptor = "(Lqr;B)V",
+		garbageValue = "85"
 	)
-	void vmethod3300(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) {
-			--var1.offset;
-			var1.readLong();
-		}
-
-		this.field1654 = var1.readStringCp1252NullTerminatedOrNull();
-		this.field1657 = var1.readUnsignedShort();
-		this.field1656 = var1.readByte();
+	void vmethod3238(Buffer var1) {
+		this.field1631 = var1.readUnsignedShort();
+		this.field1630 = var1.readByte();
+		this.field1634 = var1.readUnsignedShort();
 		var1.readLong();
+		this.field1633 = var1.readStringCp1252NullTerminated();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ler;B)V",
-		garbageValue = "97"
+		descriptor = "(Leq;I)V",
+		garbageValue = "-1303116736"
 	)
-	void vmethod3302(ClanChannel var1) {
-		ClanChannelMember var2 = new ClanChannelMember();
-		var2.username = new Username(this.field1654);
-		var2.world = this.field1657;
-		var2.rank = this.field1656;
-		var1.addMember(var2);
+	void vmethod3239(ClanChannel var1) {
+		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1631);
+		var2.rank = this.field1630;
+		var2.world = this.field1634;
+		var2.username = new Username(this.field1633);
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(Llg;Llg;Llg;I)V",
+		garbageValue = "717052064"
+	)
+	public static void method3036(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
+		HitSplatDefinition.HitSplatDefinition_archive = var0;
+		HitSplatDefinition.field2057 = var1;
+		HitSplatDefinition.HitSplatDefinition_fontsArchive = var2;
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(IB)J",
+		garbageValue = "-41"
+	)
+	public static long method3037(int var0) {
+		if (var0 > 63) {
+			throw new class360("Cannot generate max unsigned value for more than 63 bits as this is greater than the boundaries of a java long. Value provided: %d", new Object[]{var0});
+		} else {
+			return (long)Math.pow(2.0D, (double)var0) - 1L;
+		}
 	}
 }

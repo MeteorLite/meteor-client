@@ -127,15 +127,17 @@ public interface Scene
 
 	/**
 	 * Get the underlay ids for the scene. The value stored is id + 1, with 0 for no underlay.
+	 *
 	 * @return
 	 */
-	byte[][][] getUnderlayIds();
+	short[][][] getUnderlayIds();
 
 	/**
-	 * Get the overlay ids for the scene. The value stored is id + 1, with 0 for no overlay.
-	 * @return
-	 */
-	byte[][][] getOverlayIds();
+   * Get the overlay ids for the scene. The value stored is id + 1, with 0 for no overlay.
+   *
+   * @return
+   */
+	short[][][] getOverlayIds();
 
 	/**
 	 * Get the shapes of the tiles for the scene.

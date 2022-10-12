@@ -1,51 +1,53 @@
+import java.text.ParseException;
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fz")
+@ObfuscatedName("gc")
 @Implements("FloorUnderlayDefinition")
 public class FloorUnderlayDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("FloorUnderlayDefinition_archive")
 	public static AbstractArchive FloorUnderlayDefinition_archive;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Ljx;"
 	)
 	@Export("FloorUnderlayDefinition_cached")
 	public static EvictingDualNodeHashTable FloorUnderlayDefinition_cached;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1143219499
+		intValue = 753437595
 	)
 	@Export("rgb")
 	int rgb;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 455972215
+		intValue = 295922173
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1424080511
+		intValue = -77220349
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 992744973
+		intValue = 397399225
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1909005187
+		intValue = 363693575
 	)
 	@Export("hueMultiplier")
 	public int hueMultiplier;
@@ -54,27 +56,27 @@ public class FloorUnderlayDefinition extends DualNode {
 		FloorUnderlayDefinition_cached = new EvictingDualNodeHashTable(64);
 	}
 
-	FloorUnderlayDefinition() {
+	public FloorUnderlayDefinition() {
 		this.rgb = 0;
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "383118719"
-	)
-	@Export("postDecode")
-	void postDecode() {
-		this.setHsl(this.rgb);
 	}
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;IB)V",
-		garbageValue = "108"
+		descriptor = "(I)V",
+		garbageValue = "1829034287"
+	)
+	@Export("postDecode")
+	public void postDecode() {
+		this.setHsl(this.rgb);
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Lqr;II)V",
+		garbageValue = "-300836628"
 	)
 	@Export("decode")
-	void decode(Buffer var1, int var2) {
+	public void decode(Buffer var1, int var2) {
 		while (true) {
 			int var3 = var1.readUnsignedByte();
 			if (var3 == 0) {
@@ -85,10 +87,10 @@ public class FloorUnderlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;IIB)V",
-		garbageValue = "57"
+		descriptor = "(Lqr;III)V",
+		garbageValue = "1456987597"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -98,10 +100,10 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(IB)V",
-		garbageValue = "-33"
+		garbageValue = "16"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -141,15 +143,15 @@ public class FloorUnderlayDefinition extends DualNode {
 			if (var2 == var10) {
 				var12 = (var4 - var6) / (var10 - var8);
 			} else if (var4 == var10) {
-				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
+				var12 = 2.0D + (var6 - var2) / (var10 - var8);
 			} else if (var6 == var10) {
-				var12 = 4.0D + (var2 - var4) / (var10 - var8);
+				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
 			}
 		}
 
 		var12 /= 6.0D;
-		this.saturation = (int)(256.0D * var14);
-		this.lightness = (int)(256.0D * var16);
+		this.saturation = (int)(var14 * 256.0D);
+		this.lightness = (int)(var16 * 256.0D);
 		if (this.saturation < 0) {
 			this.saturation = 0;
 		} else if (this.saturation > 255) {
@@ -163,7 +165,7 @@ public class FloorUnderlayDefinition extends DualNode {
 		}
 
 		if (var16 > 0.5D) {
-			this.hueMultiplier = (int)(512.0D * (1.0D - var16) * var14);
+			this.hueMultiplier = (int)((1.0D - var16) * var14 * 512.0D);
 		} else {
 			this.hueMultiplier = (int)(var14 * var16 * 512.0D);
 		}
@@ -175,34 +177,93 @@ public class FloorUnderlayDefinition extends DualNode {
 		this.hue = (int)((double)this.hueMultiplier * var12);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;ZLmv;I)V",
-		garbageValue = "2014001805"
+		descriptor = "(Ljn;Lro;I)Ljc;",
+		garbageValue = "-1310025636"
 	)
-	public static void method3700(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
-		ItemComposition.ItemDefinition_archive = var0;
-		ItemComposition.ItemDefinition_modelArchive = var1;
-		class17.ItemDefinition_inMembersWorld = var2;
-		ItemComposition.ItemDefinition_fileCount = ItemComposition.ItemDefinition_archive.getGroupFileCount(10);
-		class296.ItemDefinition_fontPlain11 = var3;
-	}
-
-	@ObfuscatedName("gu")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "689180237"
-	)
-	static final void method3692() {
-		int var0 = Players.Players_count;
-		int[] var1 = Players.Players_indices;
-
-		for (int var2 = 0; var2 < var0; ++var2) {
-			Player var3 = Client.players[var1[var2]];
-			if (var3 != null) {
-				ClientPreferences.updateActorSequence(var3, 1);
-			}
+	@Export("getPacketBufferNode")
+	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
+		PacketBufferNode var2 = WorldMapLabelSize.method4683();
+		var2.clientPacket = var0;
+		var2.clientPacketLength = var0.length;
+		if (var2.clientPacketLength == -1) {
+			var2.packetBuffer = new PacketBuffer(260);
+		} else if (var2.clientPacketLength == -2) {
+			var2.packetBuffer = new PacketBuffer(10000);
+		} else if (var2.clientPacketLength <= 18) {
+			var2.packetBuffer = new PacketBuffer(20);
+		} else if (var2.clientPacketLength <= 98) {
+			var2.packetBuffer = new PacketBuffer(100);
+		} else {
+			var2.packetBuffer = new PacketBuffer(260);
 		}
 
+		var2.packetBuffer.setIsaacCipher(var1);
+		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id);
+		var2.index = 0;
+		return var2;
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "(ILlg;Ljava/lang/String;Ljava/lang/String;IZI)V",
+		garbageValue = "-1976408626"
+	)
+	public static void method3623(int var0, AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
+		int var6 = var1.getGroupId(var2);
+		int var7 = var1.getFileId(var6, var3);
+		class283.musicPlayerStatus = 1;
+		DevicePcmPlayerProvider.musicTrackArchive = var1;
+		class283.musicTrackGroupId = var6;
+		class283.musicTrackFileId = var7;
+		Messages.musicTrackVolume = var4;
+		GrandExchangeEvents.musicTrackBoolean = var5;
+		class19.pcmSampleLength = var0;
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "949354995"
+	)
+	static boolean method3622() {
+		Date var0;
+		try {
+			var0 = CollisionMap.method4028();
+		} catch (ParseException var9) {
+			GrandExchangeOfferOwnWorldComparator.method1171(7);
+			MusicPatchNode2.setLoginResponseString("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900");
+			return false;
+		}
+
+		if (var0 == null) {
+			return false;
+		} else {
+			java.util.Calendar var2 = java.util.Calendar.getInstance();
+			var2.set(1, var2.get(1) - 13);
+			var2.set(5, var2.get(5) + 1);
+			var2.set(11, 0);
+			var2.set(12, 0);
+			var2.set(13, 0);
+			var2.set(14, 0);
+			Date var3 = var2.getTime();
+			boolean var5 = var0.before(var3);
+			Date var4 = class132.method2964();
+			boolean var7 = var0.after(var4);
+			if (!var7) {
+				GrandExchangeOfferOwnWorldComparator.method1171(7);
+				MusicPatchNode2.setLoginResponseString("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900");
+				return false;
+			} else {
+				if (!var5) {
+					HealthBarDefinition.field1923 = 8388607;
+				} else {
+					HealthBarDefinition.field1923 = (int)(var0.getTime() / 86400000L - 11745L);
+				}
+
+				return true;
+			}
+		}
 	}
 }

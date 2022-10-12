@@ -6,36 +6,41 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cd")
+@ObfuscatedName("df")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lpq;"
+		descriptor = "Lpe;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lmt;"
+		descriptor = "Lmq;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -513745227
+		intValue = 824043359
 	)
 	@Export("Messages_count")
 	static int Messages_count;
-	@ObfuscatedName("ha")
-	@ObfuscatedSignature(
-		descriptor = "Lch;"
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 1135032351
 	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
+	@Export("musicTrackVolume")
+	public static int musicTrackVolume;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Lqr;"
+	)
+	public static Buffer field1361;
 
 	static {
 		Messages_channels = new HashMap();
@@ -44,31 +49,32 @@ public class Messages {
 		Messages_count = 0;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)Ljava/lang/String;",
-		garbageValue = "28"
+		descriptor = "(B)V",
+		garbageValue = "26"
 	)
-	static String method2651(byte[] var0, int var1, int var2) {
-		StringBuilder var3 = new StringBuilder();
+	static void method2645() {
+		InvDefinition.field1862 = new int[2000];
+		int var0 = 0;
+		int var1 = 240;
 
-		for (int var4 = var1; var4 < var2 + var1; var4 += 3) {
-			int var5 = var0[var4] & 255;
-			var3.append(class343.field4188[var5 >>> 2]);
-			if (var4 < var2 - 1) {
-				int var6 = var0[var4 + 1] & 255;
-				var3.append(class343.field4188[(var5 & 3) << 4 | var6 >>> 4]);
-				if (var4 < var2 - 2) {
-					int var7 = var0[var4 + 2] & 255;
-					var3.append(class343.field4188[(var6 & 15) << 2 | var7 >>> 6]).append(class343.field4188[var7 & 63]);
-				} else {
-					var3.append(class343.field4188[(var6 & 15) << 2]).append("=");
-				}
-			} else {
-				var3.append(class343.field4188[(var5 & 3) << 4]).append("==");
+		int var3;
+		for (byte var2 = 12; var0 < 16; var1 -= var2) {
+			var3 = class9.method72((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)((float)var0 * 0.425F / 16.0F + 0.075F));
+			InvDefinition.field1862[var0] = var3;
+			++var0;
+		}
+
+		var1 = 48;
+
+		for (int var5 = var1 / 6; var0 < InvDefinition.field1862.length; var1 -= var5) {
+			var3 = var0 * 2;
+
+			for (int var4 = class9.method72((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < InvDefinition.field1862.length; ++var0) {
+				InvDefinition.field1862[var0] = var4;
 			}
 		}
 
-		return var3.toString();
 	}
 }

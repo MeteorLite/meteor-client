@@ -1,288 +1,534 @@
+import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("r")
+@ObfuscatedName("aj")
 @Implements("KeyHandler")
-public final class KeyHandler implements KeyListener, FocusListener {
+public class KeyHandler implements KeyListener, FocusListener {
+	@ObfuscatedName("hi")
+	@ObfuscatedGetter(
+		intValue = -221852981
+	)
+	@Export("baseX")
+	static int baseX;
+	@ObfuscatedName("ib")
+	@Export("xteaKeys")
+	static int[][] xteaKeys;
+	@ObfuscatedName("f")
+	Collection field143;
 	@ObfuscatedName("c")
+	Collection field136;
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lr;"
+		descriptor = "[Lac;"
 	)
-	@Export("KeyHandler_instance")
-	public static KeyHandler KeyHandler_instance;
-	@ObfuscatedName("cg")
-	@Export("KeyHandler_pressedKeys")
-	public static boolean[] KeyHandler_pressedKeys;
-	@ObfuscatedName("cu")
-	public static boolean[] field133;
-	@ObfuscatedName("cz")
-	public static boolean[] field134;
-	@ObfuscatedName("ca")
-	public static int[] field135;
-	@ObfuscatedName("cx")
+	class30[] field134;
+	@ObfuscatedName("h")
+	boolean[] KeyHandler_pressedKeys;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1294200911
+		intValue = 453646007
 	)
-	public static int field136;
-	@ObfuscatedName("cq")
-	@ObfuscatedGetter(
-		intValue = -143432951
-	)
-	public static int field131;
-	@ObfuscatedName("cp")
-	static char[] field124;
-	@ObfuscatedName("ck")
-	static int[] field137;
-	@ObfuscatedName("ci")
-	public static int[] field140;
-	@ObfuscatedName("cb")
-	@ObfuscatedGetter(
-		intValue = -1837132559
-	)
-	public static int field141;
-	@ObfuscatedName("cd")
-	public static int[] field143;
-	@ObfuscatedName("cs")
-	@ObfuscatedGetter(
-		intValue = 1138643709
-	)
-	public static int field123;
-	@ObfuscatedName("ch")
-	@ObfuscatedGetter(
-		intValue = 862961603
-	)
-	public static int field144;
-	@ObfuscatedName("cc")
-	@ObfuscatedGetter(
-		intValue = -533642347
-	)
-	public static int field145;
-	@ObfuscatedName("cm")
-	@ObfuscatedGetter(
-		intValue = -1580956713
-	)
-	public static int field146;
-	@ObfuscatedName("db")
-	@ObfuscatedGetter(
-		intValue = 889131961
-	)
-	@Export("KeyHandler_idleCycles")
-	public static volatile int KeyHandler_idleCycles;
-	@ObfuscatedName("df")
-	@Export("KeyHandler_keyCodes")
-	static int[] KeyHandler_keyCodes;
-
-	static {
-		KeyHandler_instance = new KeyHandler();
-		KeyHandler_pressedKeys = new boolean[112];
-		field133 = new boolean[112];
-		field134 = new boolean[112];
-		field135 = new int[128];
-		field136 = 0;
-		field131 = 0;
-		field124 = new char[128];
-		field137 = new int[128];
-		field140 = new int[128];
-		field141 = 0;
-		field143 = new int[128];
-		field123 = 0;
-		field144 = 0;
-		field145 = 0;
-		field146 = 0;
-		KeyHandler_idleCycles = 0;
-		KeyHandler_keyCodes = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, 85, 80, 84, -1, 91, -1, -1, -1, 81, 82, 86, -1, -1, -1, -1, -1, -1, -1, -1, 13, -1, -1, -1, -1, 83, 104, 105, 103, 102, 96, 98, 97, 99, -1, -1, -1, -1, -1, -1, -1, 25, 16, 17, 18, 19, 20, 21, 22, 23, 24, -1, -1, -1, -1, -1, -1, -1, 48, 68, 66, 50, 34, 51, 52, 53, 39, 54, 55, 56, 70, 69, 40, 41, 32, 35, 49, 36, 38, 67, 33, 65, 37, 64, -1, -1, -1, -1, -1, 228, 231, 227, 233, 224, 219, 225, 230, 226, 232, 89, 87, -1, 88, 229, 90, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, -1, -1, -1, 101, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 100, -1, 87, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-	}
+	volatile int KeyHandler_idleCycles;
 
 	KeyHandler() {
+		this.field134 = new class30[3];
+		this.KeyHandler_pressedKeys = new boolean[112];
+		this.KeyHandler_idleCycles = 0;
+		this.field143 = new ArrayList(100);
+		this.field136 = new ArrayList(100);
 	}
 
-	public final synchronized void keyReleased(KeyEvent var1) {
-		if (KeyHandler_instance != null) {
-			int var2 = var1.getKeyCode();
-			if (var2 >= 0 && var2 < KeyHandler_keyCodes.length) {
-				var2 = KeyHandler_keyCodes[var2] & -129;
-			} else {
-				var2 = -1;
-			}
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(Lac;II)V",
+		garbageValue = "1024395417"
+	)
+	void method384(class30 var1, int var2) {
+		this.field134[var2] = var1;
+	}
 
-			if (field131 >= 0 && var2 >= 0) {
-				field135[field131] = ~var2;
-				field131 = field131 + 1 & 127;
-				if (field136 == field131) {
-					field131 = -1;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-1886743487"
+	)
+	public int getIdleCycles() {
+		return this.KeyHandler_idleCycles;
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/awt/Component;I)V",
+		garbageValue = "100151864"
+	)
+	void method354(Component var1) {
+		var1.setFocusTraversalKeysEnabled(false);
+		var1.addKeyListener(this);
+		var1.addFocusListener(this);
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/awt/Component;I)V",
+		garbageValue = "-2141322071"
+	)
+	synchronized void method355(Component var1) {
+		var1.removeKeyListener(this);
+		var1.removeFocusListener(this);
+		synchronized(this) {
+			this.field143.add(new class34(4, 0));
+		}
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "753276149"
+	)
+	void method356() {
+		++this.KeyHandler_idleCycles;
+		this.method358();
+		Iterator var1 = this.field136.iterator();
+
+		while (var1.hasNext()) {
+			class34 var2 = (class34)var1.next();
+
+			for (int var3 = 0; var3 < this.field134.length && !var2.method501(this.field134[var3]); ++var3) {
+			}
+		}
+
+		this.field136.clear();
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "2113194361"
+	)
+	synchronized void method358() {
+		Collection var1 = this.field136;
+		this.field136 = this.field143;
+		this.field143 = var1;
+	}
+
+	public final synchronized void keyPressed(KeyEvent var1) {
+		int var2;
+		label24: {
+			var2 = var1.getKeyCode();
+			if (var2 >= 0) {
+				int var4 = class999.KeyHandler_keyCodes.length;
+				if (var2 < var4) {
+					int var5 = class999.KeyHandler_keyCodes[var2];
+					var2 = var5;
+					boolean var6 = (var5 & 128) != 0;
+					if (var6) {
+						var2 = -1;
+					}
+					break label24;
 				}
 			}
+
+			var2 = -1;
+		}
+
+		if (var2 >= 0) {
+			this.KeyHandler_pressedKeys[var2] = true;
+			this.field143.add(new class34(1, var2));
+			this.KeyHandler_idleCycles = 0;
 		}
 
 		var1.consume();
 	}
 
-	public final void keyTyped(KeyEvent var1) {
-		if (KeyHandler_instance != null) {
-			char var2 = var1.getKeyChar();
-			if (var2 != 0 && var2 != '\uffff' && class307.method5928(var2)) {
-				int var3 = field145 + 1 & 127;
-				if (var3 != field144) {
-					field137[field145] = -1;
-					field124[field145] = var2;
-					field145 = var3;
+	public final synchronized void keyReleased(KeyEvent var1) {
+		int var2;
+		label17: {
+			var2 = var1.getKeyCode();
+			if (var2 >= 0) {
+				int var4 = class999.KeyHandler_keyCodes.length;
+				if (var2 < var4) {
+					int var5 = class999.KeyHandler_keyCodes[var2];
+					var2 = var5 & -129;
+					break label17;
 				}
 			}
+
+			var2 = -1;
+		}
+
+		if (var2 >= 0) {
+			this.KeyHandler_pressedKeys[var2] = false;
+			this.field143.add(new class34(2, var2));
 		}
 
 		var1.consume();
 	}
 
 	public final synchronized void focusLost(FocusEvent var1) {
-		if (KeyHandler_instance != null) {
-			field131 = -1;
+		for (int var2 = 0; var2 < 112; ++var2) {
+			if (this.KeyHandler_pressedKeys[var2]) {
+				this.KeyHandler_pressedKeys[var2] = false;
+				this.field143.add(new class34(2, var2));
+			}
 		}
 
+		this.field143.add(new class34(4, 0));
 	}
 
-	public final synchronized void keyPressed(KeyEvent var1) {
-		if (KeyHandler_instance != null) {
-			int var2 = var1.getKeyCode();
-			if (var2 >= 0 && var2 < KeyHandler_keyCodes.length) {
-				var2 = KeyHandler_keyCodes[var2];
-				if ((var2 & 128) != 0) {
-					var2 = -1;
+	public final synchronized void keyTyped(KeyEvent var1) {
+		char var2 = var1.getKeyChar();
+		if (var2 != 0 && var2 != '\uffff') {
+			boolean var3;
+			if ((var2 <= 0 || var2 >= 128) && (var2 < 160 || var2 > 255)) {
+				label49: {
+					if (var2 != 0) {
+						char[] var4 = class355.cp1252AsciiExtension;
+
+						for (int var5 = 0; var5 < var4.length; ++var5) {
+							char var6 = var4[var5];
+							if (var2 == var6) {
+								var3 = true;
+								break label49;
+							}
+						}
+					}
+
+					var3 = false;
 				}
 			} else {
-				var2 = -1;
+				var3 = true;
 			}
 
-			if (field131 >= 0 && var2 >= 0) {
-				field135[field131] = var2;
-				field131 = field131 + 1 & 127;
-				if (field136 == field131) {
-					field131 = -1;
-				}
-			}
-
-			int var3;
-			if (var2 >= 0) {
-				var3 = field145 + 1 & 127;
-				if (var3 != field144) {
-					field137[field145] = var2;
-					field124[field145] = 0;
-					field145 = var3;
-				}
-			}
-
-			var3 = var1.getModifiers();
-			if ((var3 & 10) != 0 || var2 == 85 || var2 == 10) {
-				var1.consume();
+			if (var3) {
+				this.field143.add(new class34(3, var2));
 			}
 		}
 
+		var1.consume();
 	}
 
-	public final void focusGained(FocusEvent var1) {
+	public final synchronized void focusGained(FocusEvent var1) {
+		this.field143.add(new class34(4, 1));
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(ILbt;ZI)I",
-		garbageValue = "335714859"
+		descriptor = "([BB)Lri;",
+		garbageValue = "25"
 	)
-	static int method368(int var0, Script var1, boolean var2) {
-		int var4;
-		int var9;
-		if (var0 == 100) {
-			Interpreter.Interpreter_intStackSize -= 3;
-			var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-			int var11 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-			if (var4 == 0) {
-				throw new RuntimeException();
-			} else {
-				Widget var6 = SpotAnimationDefinition.getWidget(var9);
-				if (var6.children == null) {
-					var6.children = new Widget[var11 + 1];
-				}
+	public static final SpritePixels method394(byte[] var0) {
+		BufferedImage var1 = null;
 
-				if (var6.children.length <= var11) {
-					Widget[] var7 = new Widget[var11 + 1];
+		try {
+			Class var2 = ImageIO.class;
+			synchronized(ImageIO.class) {
+				var1 = ImageIO.read(new ByteArrayInputStream(var0));
+			}
 
-					for (int var8 = 0; var8 < var6.children.length; ++var8) {
-						var7[var8] = var6.children[var8];
+			int var6 = var1.getWidth();
+			int var7 = var1.getHeight();
+			int[] var4 = new int[var7 * var6];
+			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var6, var7, var4, 0, var6);
+			var5.grabPixels();
+			return new SpritePixels(var4, var6, var7);
+		} catch (IOException var9) {
+		} catch (InterruptedException var10) {
+		}
+
+		return new SpritePixels(0, 0);
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(CI)C",
+		garbageValue = "1852147912"
+	)
+	public static char method369(char var0) {
+		switch(var0) {
+		case ' ':
+		case '-':
+		case '_':
+		case ' ':
+			return '_';
+		case '#':
+		case '[':
+		case ']':
+			return var0;
+		case 'À':
+		case 'Á':
+		case 'Â':
+		case 'Ã':
+		case 'Ä':
+		case 'à':
+		case 'á':
+		case 'â':
+		case 'ã':
+		case 'ä':
+			return 'a';
+		case 'Ç':
+		case 'ç':
+			return 'c';
+		case 'È':
+		case 'É':
+		case 'Ê':
+		case 'Ë':
+		case 'è':
+		case 'é':
+		case 'ê':
+		case 'ë':
+			return 'e';
+		case 'Í':
+		case 'Î':
+		case 'Ï':
+		case 'í':
+		case 'î':
+		case 'ï':
+			return 'i';
+		case 'Ñ':
+		case 'ñ':
+			return 'n';
+		case 'Ò':
+		case 'Ó':
+		case 'Ô':
+		case 'Õ':
+		case 'Ö':
+		case 'ò':
+		case 'ó':
+		case 'ô':
+		case 'õ':
+		case 'ö':
+			return 'o';
+		case 'Ù':
+		case 'Ú':
+		case 'Û':
+		case 'Ü':
+		case 'ù':
+		case 'ú':
+		case 'û':
+		case 'ü':
+			return 'u';
+		case 'ß':
+			return 'b';
+		case 'ÿ':
+		case 'Ÿ':
+			return 'y';
+		default:
+			return Character.toLowerCase(var0);
+		}
+	}
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(ILbz;ZB)I",
+		garbageValue = "2"
+	)
+	static int method393(int var0, Script var1, boolean var2) {
+		int var3;
+		Object var4;
+		int var5;
+		class457 var6;
+		int var7;
+		if (var0 != 7500 && var0 != 7508) {
+			if (var0 != 7501) {
+				int var19;
+				int var20;
+				if (var0 == 7502) {
+					class379.Interpreter_intStackSize -= 3;
+					var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+					var19 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+					var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 2];
+					var20 = class413.method7766(var19);
+					var7 = ArchiveDiskActionHandler.method6293(var19);
+					int var21 = ObjectSound.method1855(var19);
+					class458 var26 = class153.method3196(var3);
+					class456 var27 = PcmPlayer.method842(var20);
+					int[] var28 = var27.field4840[var7];
+					int var12 = 0;
+					int var13 = var28.length;
+					if (var21 >= 0) {
+						if (var21 >= var13) {
+							throw new RuntimeException("Tuple index out-of-bounds. Requested: " + var21 + ", Max: " + var13);
+						}
+
+						var12 = var21;
+						var13 = var21 + 1;
 					}
 
-					var6.children = var7;
-				}
+					Object[] var14 = var26.method8307(var7);
+					if (var14 == null && var27.field4842 != null) {
+						var14 = var27.field4842[var7];
+					}
 
-				if (var11 > 0 && var6.children[var11 - 1] == null) {
-					throw new RuntimeException("" + (var11 - 1));
-				} else {
-					Widget var12 = new Widget();
-					var12.type = var4;
-					var12.parentId = var12.id = var6.id;
-					var12.childIndex = var11;
-					var12.isIf3 = true;
-					var6.children[var11] = var12;
-					if (var2) {
-						TextureProvider.scriptDotWidget = var12;
+					int var15;
+					int var16;
+					if (var14 == null) {
+						for (var15 = var12; var15 < var13; ++var15) {
+							var16 = var28[var15];
+							class453 var22 = class230.method4679(var16);
+							if (var22 == class453.field4836) {
+								Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = "";
+							} else {
+								Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = class341.method6557(var16);
+							}
+						}
+
+						return 1;
 					} else {
-						MenuAction.scriptActiveWidget = var12;
+						var15 = var14.length / var28.length;
+						if (var5 >= 0 && var5 < var15) {
+							for (var16 = var12; var16 < var13; ++var16) {
+								int var17 = var16 + var28.length * var5;
+								class453 var18 = class230.method4679(var28[var16]);
+								if (var18 == class453.field4836) {
+									Interpreter.Interpreter_stringStack[++class125.Interpreter_stringStackSize - 1] = (String)var14[var17];
+								} else {
+									Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (Integer)var14[var17];
+								}
+							}
+
+							return 1;
+						} else {
+							throw new RuntimeException();
+						}
+					}
+				} else if (var0 == 7503) {
+					class379.Interpreter_intStackSize -= 2;
+					var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+					var19 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1];
+					var5 = 0;
+					var20 = class413.method7766(var19);
+					var7 = ArchiveDiskActionHandler.method6293(var19);
+					class458 var25 = class153.method3196(var3);
+					class456 var9 = PcmPlayer.method842(var20);
+					int[] var10 = var9.field4840[var7];
+					Object[] var11 = var25.method8307(var7);
+					if (var11 == null && var9.field4842 != null) {
+						var11 = var9.field4842[var7];
 					}
 
-					class403.invalidateWidget(var6);
+					if (var11 != null) {
+						var5 = var11.length / var10.length;
+					}
+
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var5;
 					return 1;
+				} else if (var0 != 7504 && var0 != 7510) {
+					if (var0 == 7505) {
+						var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+						class458 var24 = class153.method3196(var3);
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var24.field4850;
+						return 1;
+					} else if (var0 == 7506) {
+						var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+						var19 = -1;
+						if (MenuAction.field890 != null && var3 >= 0 && var3 < MenuAction.field890.size()) {
+							var19 = (Integer)MenuAction.field890.get(var3);
+						}
+
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var19;
+						return 1;
+					} else if (var0 != 7507 && var0 != 7509) {
+						return 2;
+					} else {
+						var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+						var4 = SecureRandomFuture.method2108(var3);
+						var5 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+						var6 = class230.method4680(var5);
+						if (var6 == null) {
+							throw new RuntimeException();
+						} else if (class413.method7766(var5) != Client.field785) {
+							throw new RuntimeException();
+						} else if (MenuAction.field890 == null && MenuAction.field890.isEmpty()) {
+							throw new RuntimeException();
+						} else {
+							var7 = ObjectSound.method1855(var5);
+							List var8 = var6.method8301(var4, var7);
+							MenuAction.field890 = new LinkedList(MenuAction.field890);
+							if (var8 != null) {
+								MenuAction.field890.retainAll(var8);
+							} else {
+								MenuAction.field890.clear();
+							}
+
+							class100.field1305 = MenuAction.field890.iterator();
+							if (var0 == 7507) {
+								Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = MenuAction.field890.size();
+							}
+
+							return 1;
+						}
+					}
+				} else {
+					--class379.Interpreter_intStackSize;
+					var3 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize];
+					class457 var23 = Clock.method3395(var3);
+					if (var23 == null) {
+						throw new RuntimeException();
+					} else {
+						MenuAction.field890 = var23.method8301(0, 0);
+						var5 = 0;
+						if (MenuAction.field890 != null) {
+							Client.field785 = var3;
+							class100.field1305 = MenuAction.field890.iterator();
+							var5 = MenuAction.field890.size();
+						}
+
+						if (var0 == 7504) {
+							Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = var5;
+						}
+
+						return 1;
+					}
 				}
+			} else {
+				if (class100.field1305 != null && class100.field1305.hasNext()) {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (Integer)class100.field1305.next();
+				} else {
+					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = -1;
+				}
+
+				return 1;
 			}
 		} else {
-			Widget var3;
-			if (var0 == 101) {
-				var3 = var2 ? TextureProvider.scriptDotWidget : MenuAction.scriptActiveWidget;
-				Widget var10 = SpotAnimationDefinition.getWidget(var3.id);
-				var10.children[var3.childIndex] = null;
-				class403.invalidateWidget(var10);
-				return 1;
-			} else if (var0 == 102) {
-				var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-				var3.children = null;
-				class403.invalidateWidget(var3);
-				return 1;
-			} else if (var0 != 200) {
-				if (var0 == 201) {
-					var3 = SpotAnimationDefinition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-					if (var3 != null) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
-						if (var2) {
-							TextureProvider.scriptDotWidget = var3;
-						} else {
-							MenuAction.scriptActiveWidget = var3;
-						}
-					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-					}
-
-					return 1;
-				} else {
-					return 2;
-				}
+			var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+			var4 = SecureRandomFuture.method2108(var3);
+			var5 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
+			var6 = class230.method4680(var5);
+			if (var6 == null) {
+				throw new RuntimeException();
 			} else {
-				Interpreter.Interpreter_intStackSize -= 2;
-				var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				Widget var5 = JagexCache.getWidgetChild(var9, var4);
-				if (var5 != null && var4 != -1) {
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
-					if (var2) {
-						TextureProvider.scriptDotWidget = var5;
-					} else {
-						MenuAction.scriptActiveWidget = var5;
+				var7 = ObjectSound.method1855(var5);
+				MenuAction.field890 = var6.method8301(var4, var7);
+				if (MenuAction.field890 != null) {
+					Client.field785 = class413.method7766(var5);
+					class100.field1305 = MenuAction.field890.iterator();
+					if (var0 == 7500) {
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = MenuAction.field890.size();
 					}
 				} else {
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+					Client.field785 = -1;
+					class100.field1305 = null;
+					if (var0 == 7500) {
+						Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = 0;
+					}
 				}
 
 				return 1;

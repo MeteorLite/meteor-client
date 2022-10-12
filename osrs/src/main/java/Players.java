@@ -1,78 +1,73 @@
-import java.awt.Component;
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ck")
+@ObfuscatedName("cx")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("f")
-	static byte[] field1290;
-	@ObfuscatedName("n")
+	@ObfuscatedName("va")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
+	@ObfuscatedName("c")
+	static byte[] field1323;
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "[Lga;"
+		descriptor = "[Lgo;"
 	)
-	static class193[] field1291;
-	@ObfuscatedName("k")
+	static class202[] field1314;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "[Lqq;"
+		descriptor = "[Lqr;"
 	)
-	static Buffer[] field1292;
-	@ObfuscatedName("w")
+	static Buffer[] field1315;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1742411547
+		intValue = -1172132713
 	)
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 842704609
+		intValue = 1930478845
 	)
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("v")
+	@ObfuscatedName("s")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("h")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1336760617
+		intValue = 761611403
 	)
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("t")
+	@ObfuscatedName("b")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lqq;"
+		descriptor = "Lqr;"
 	)
-	static Buffer field1302;
-	@ObfuscatedName("bj")
-	@ObfuscatedSignature(
-		descriptor = "Lpn;"
-	)
-	@Export("loginType")
-	static LoginType loginType;
+	static Buffer field1325;
 
 	static {
-		field1290 = new byte[2048];
-		field1291 = new class193[2048];
-		field1292 = new Buffer[2048];
+		field1323 = new byte[2048];
+		field1314 = new class202[2048];
+		field1315 = new Buffer[2048];
 		Players_count = 0;
 		Players_indices = new int[2048];
 		Players_emptyIdxCount = 0;
@@ -82,41 +77,15 @@ public class Players {
 		Players_targetIndices = new int[2048];
 		Players_pendingUpdateCount = 0;
 		Players_pendingUpdateIndices = new int[2048];
-		field1302 = new Buffer(new byte[5000]);
+		field1325 = new Buffer(new byte[5000]);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Component;I)V",
-		garbageValue = "1351614638"
+		descriptor = "(Llg;B)V",
+		garbageValue = "-70"
 	)
-	static void method2569(Component var0) {
-		var0.removeKeyListener(KeyHandler.KeyHandler_instance);
-		var0.removeFocusListener(KeyHandler.KeyHandler_instance);
-		KeyHandler.field131 = -1;
-	}
-
-	@ObfuscatedName("hg")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "1280446"
-	)
-	static final void method2581(boolean var0) {
-		class14.playPcmPlayers();
-		++Client.packetWriter.pendingWrites;
-		if (Client.packetWriter.pendingWrites >= 50 || var0) {
-			Client.packetWriter.pendingWrites = 0;
-			if (!Client.hadNetworkError && Client.packetWriter.getSocket() != null) {
-				PacketBufferNode var1 = class120.getPacketBufferNode(ClientPacket.field2986, Client.packetWriter.isaacCipher);
-				Client.packetWriter.addNode(var1);
-
-				try {
-					Client.packetWriter.flush();
-				} catch (IOException var3) {
-					Client.hadNetworkError = true;
-				}
-			}
-
-		}
+	public static void method2587(AbstractArchive var0) {
+		GrandExchangeOfferTotalQuantityComparator.VarbitDefinition_archive = var0;
 	}
 }

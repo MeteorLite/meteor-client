@@ -2,72 +2,69 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
-public class class153 extends class129 {
-	@ObfuscatedName("bi")
-	@ObfuscatedSignature(
-		descriptor = "Lkl;"
-	)
-	static StudioGame field1729;
-	@ObfuscatedName("c")
+@ObfuscatedName("ex")
+public class class153 extends class135 {
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -876261227
+		intValue = 1481780439
 	)
-	int field1728;
-	@ObfuscatedName("p")
+	int field1720;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		longValue = 830089251142411387L
+		intValue = -1421693743
 	)
-	long field1731;
+	int field1719;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leo;"
+		descriptor = "Lel;"
 	)
-	final class132 this$0;
+	final class138 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leo;)V"
+		descriptor = "(Lel;)V"
 	)
-	class153(class132 var1) {
+	class153(class138 var1) {
 		this.this$0 = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;B)V",
-		garbageValue = "-41"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-1428026624"
 	)
-	void vmethod3320(Buffer var1) {
-		this.field1728 = var1.readInt();
-		this.field1731 = var1.readLong();
+	void vmethod3254(Buffer var1) {
+		this.field1720 = var1.readInt();
+		this.field1719 = var1.readInt();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Led;I)V",
-		garbageValue = "-538131930"
+		descriptor = "(Ler;B)V",
+		garbageValue = "-110"
 	)
-	void vmethod3313(ClanSettings var1) {
-		var1.method3128(this.field1728, this.field1731);
+	void vmethod3248(ClanSettings var1) {
+		var1.method3116(this.field1720, this.field1719);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Llv;II)Ljx;",
-		garbageValue = "1881963859"
+		descriptor = "(II)Lqj;",
+		garbageValue = "35817219"
 	)
-	static MusicPatch method3312(AbstractArchive var0, int var1) {
-		byte[] var2 = var0.takeFileFlat(var1);
-		return var2 == null ? null : new MusicPatch(var2);
-	}
+	public static class458 method3196(int var0) {
+		class458 var1 = (class458)class458.DBRowType_cache.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = class458.field4848.takeFile(38, var0);
+			var1 = new class458();
+			if (var2 != null) {
+				var1.method8306(new Buffer(var2));
+			}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "562512628"
-	)
-	public static boolean method3318() {
-		ReflectionCheck var0 = (ReflectionCheck)class33.reflectionChecks.last();
-		return var0 != null;
+			var1.method8309();
+			class458.DBRowType_cache.put(var1, (long)var0);
+			return var1;
+		}
 	}
 }

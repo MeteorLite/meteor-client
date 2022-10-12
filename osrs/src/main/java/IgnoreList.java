@@ -1,57 +1,50 @@
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nu")
+@ObfuscatedName("nq")
 @Implements("IgnoreList")
 public class IgnoreList extends UserList {
-	@ObfuscatedName("al")
-	@Export("client")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lclient;"
-	)
-	static Client client;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lpn;"
+		descriptor = "Lqu;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpn;)V"
+		descriptor = "(Lqu;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400);
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lnc;",
-		garbageValue = "-25"
+		descriptor = "(B)Loj;",
+		garbageValue = "31"
 	)
 	@Export("newInstance")
 	User newInstance() {
 		return new Ignored();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Lnc;",
-		garbageValue = "0"
+		descriptor = "(II)[Loj;",
+		garbageValue = "-41299588"
 	)
 	@Export("newTypedArray")
 	User[] newTypedArray(int var1) {
 		return new Ignored[var1];
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;IB)V",
-		garbageValue = "67"
+		descriptor = "(Lqr;IS)V",
+		garbageValue = "-10069"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -66,7 +59,7 @@ public class IgnoreList extends UserList {
 					Ignored var7 = (Ignored)this.getByCurrentUsername(var5);
 					if (var4) {
 						Ignored var8 = (Ignored)this.getByCurrentUsername(var6);
-						if (var8 != null && var8 != var7) {
+						if (var8 != null && var7 != var8) {
 							if (var7 != null) {
 								this.remove(var8);
 							} else {
@@ -93,18 +86,5 @@ public class IgnoreList extends UserList {
 
 			return;
 		}
-	}
-
-	@ObfuscatedName("c")
-	public static String method6781(long var0) {
-		Calendar.Calendar_calendar.setTime(new Date(var0));
-		int var2 = Calendar.Calendar_calendar.get(7);
-		int var3 = Calendar.Calendar_calendar.get(5);
-		int var4 = Calendar.Calendar_calendar.get(2);
-		int var5 = Calendar.Calendar_calendar.get(1);
-		int var6 = Calendar.Calendar_calendar.get(11);
-		int var7 = Calendar.Calendar_calendar.get(12);
-		int var8 = Calendar.Calendar_calendar.get(13);
-		return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT";
 	}
 }

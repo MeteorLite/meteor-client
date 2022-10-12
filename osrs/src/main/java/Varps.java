@@ -3,22 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kb")
+@ObfuscatedName("kg")
 @Implements("Varps")
 public class Varps {
-	@ObfuscatedName("ub")
-	@ObfuscatedSignature(
-		descriptor = "Lbr;"
-	)
-	@Export("friendSystem")
-	public static FriendSystem friendSystem;
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("Varps_masks")
 	static int[] Varps_masks;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@Export("Varps_temp")
 	public static int[] Varps_temp;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@Export("Varps_main")
 	public static int[] Varps_main;
 
@@ -35,36 +29,38 @@ public class Varps {
 		Varps_main = new int[4000];
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "([Llq;II)Llq;",
-		garbageValue = "-1925758966"
+		descriptor = "(III)I",
+		garbageValue = "-782669259"
 	)
-	@Export("findEnumerated")
-	public static MouseWheel findEnumerated(MouseWheel[] var0, int var1) {
-		MouseWheel[] var2 = var0;
-
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			MouseWheel var4 = var2[var3];
-			if (var1 == var4.rsOrdinal()) {
-				return var4;
+	static final int method5679(int var0, int var1) {
+		if (var0 == -1) {
+			return 12345678;
+		} else {
+			var1 = (var0 & 127) * var1 / 128;
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
 			}
-		}
 
-		return null;
+			return (var0 & 65408) + var1;
+		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("fu")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-1558722409"
+		descriptor = "(IZZZZI)Llx;",
+		garbageValue = "1492192827"
 	)
-	static int method5699(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
-		} else {
-			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
+	@Export("newArchive")
+	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
+		ArchiveDisk var5 = null;
+		if (JagexCache.JagexCache_dat2File != null) {
+			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idxFiles[var0], 1000000);
 		}
+
+		return new Archive(var5, GameObject.masterDisk, var0, var1, var2, var3, var4);
 	}
 }

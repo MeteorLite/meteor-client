@@ -4,29 +4,34 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
+@ObfuscatedName("fv")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Llg;"
 	)
 	@Export("VarpDefinition_archive")
 	public static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = 1908361649
-	)
-	public static int field1841;
 	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -1477143825
+	)
+	public static int field1866;
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lif;"
+		descriptor = "Ljx;"
 	)
 	@Export("VarpDefinition_cached")
-	public static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("n")
+	static EvictingDualNodeHashTable VarpDefinition_cached;
+	@ObfuscatedName("jq")
 	@ObfuscatedGetter(
-		intValue = -220539481
+		intValue = -1108590841
+	)
+	static int field1869;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = -741594441
 	)
 	@Export("type")
 	public int type;
@@ -39,10 +44,10 @@ public class VarpDefinition extends DualNode {
 		this.type = 0;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;S)V",
-		garbageValue = "8196"
+		descriptor = "(Lqr;B)V",
+		garbageValue = "67"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -56,10 +61,10 @@ public class VarpDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;II)V",
-		garbageValue = "1285334577"
+		descriptor = "(Lqr;II)V",
+		garbageValue = "-1006408276"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -69,35 +74,65 @@ public class VarpDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "55"
+		descriptor = "([Ljava/lang/String;[SIII)V",
+		garbageValue = "369606324"
 	)
-	@Export("clearItemContainer")
-	static void clearItemContainer(int var0) {
-		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var1 != null) {
-			for (int var2 = 0; var2 < var1.ids.length; ++var2) {
-				var1.ids[var2] = -1;
-				var1.quantities[var2] = 0;
+	@Export("sortItemsByName")
+	static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
+		if (var2 < var3) {
+			int var4 = (var3 + var2) / 2;
+			int var5 = var2;
+			String var6 = var0[var4];
+			var0[var4] = var0[var3];
+			var0[var3] = var6;
+			short var7 = var1[var4];
+			var1[var4] = var1[var3];
+			var1[var3] = var7;
+
+			for (int var8 = var2; var8 < var3; ++var8) {
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
+					String var9 = var0[var8];
+					var0[var8] = var0[var5];
+					var0[var5] = var9;
+					short var10 = var1[var8];
+					var1[var8] = var1[var5];
+					var1[var5++] = var10;
+				}
 			}
 
+			var0[var3] = var0[var5];
+			var0[var5] = var6;
+			var1[var3] = var1[var5];
+			var1[var5] = var7;
+			sortItemsByName(var0, var1, var2, var5 - 1);
+			sortItemsByName(var0, var1, var5 + 1, var3);
 		}
+
 	}
 
-	@ObfuscatedName("mm")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lpb;",
-		garbageValue = "1112569904"
+		descriptor = "(IB)I",
+		garbageValue = "0"
 	)
-	static class438 method3527(int var0) {
-		class438 var1 = (class438)Client.Widget_cachedModels.get((long)var0);
-		if (var1 == null) {
-			var1 = new class438(PcmPlayer.field308, class425.method7664(var0), TaskHandler.method3414(var0));
-			Client.Widget_cachedModels.put(var1, (long)var0);
+	public static int method3429(int var0) {
+		return class421.field4611[var0 & 16383];
+	}
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-25376561"
+	)
+	static boolean method3415(char var0) {
+		for (int var1 = 0; var1 < "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"ï¿½$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".length(); ++var1) {
+			if (var0 == "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"ï¿½$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".charAt(var1)) {
+				return true;
+			}
 		}
 
-		return var1;
+		return false;
 	}
 }

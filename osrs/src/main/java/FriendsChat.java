@@ -4,109 +4,155 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nf")
+@ObfuscatedName("nc")
 @Implements("FriendsChat")
 public class FriendsChat extends UserList {
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lpn;"
+		descriptor = "Lqu;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lnp;"
+		descriptor = "Lnk;"
 	)
 	@Export("localUser")
 	final Usernamed localUser;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("name")
 	public String name;
-	@ObfuscatedName("k")
+	@ObfuscatedName("h")
 	@Export("owner")
 	public String owner;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@Export("minKick")
 	public byte minKick;
-	@ObfuscatedName("s")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1428903561
+		intValue = 940863549
 	)
 	@Export("rank")
 	public int rank;
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1564077435
+		intValue = -493682305
 	)
-	int field4331;
+	int field4470;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpn;Lnp;)V"
+		descriptor = "(Lqu;Lnk;)V"
 	)
 	public FriendsChat(LoginType var1, Usernamed var2) {
 		super(500);
 		this.name = null;
 		this.owner = null;
-		this.field4331 = 1;
+		this.field4470 = 1;
 		this.loginType = var1;
 		this.localUser = var2;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lnc;",
-		garbageValue = "-25"
+		descriptor = "(B)Loj;",
+		garbageValue = "31"
 	)
 	@Export("newInstance")
 	User newInstance() {
 		return new ClanMate();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Lnc;",
-		garbageValue = "0"
+		descriptor = "(II)[Loj;",
+		garbageValue = "-41299588"
 	)
 	@Export("newTypedArray")
 	User[] newTypedArray(int var1) {
 		return new ClanMate[var1];
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1384357634"
+		garbageValue = "634256390"
 	)
-	final void method6803(String var1) {
-		String var3 = class241.base37DecodeLong(class241.method5128(var1));
-		if (var3 == null) {
-			var3 = "";
+	final void method7274(String var1) {
+		long var5 = 0L;
+		int var7 = var1.length();
+
+		for (int var8 = 0; var8 < var7; ++var8) {
+			var5 *= 37L;
+			char var9 = var1.charAt(var8);
+			if (var9 >= 'A' && var9 <= 'Z') {
+				var5 += (long)(var9 + 1 - 65);
+			} else if (var9 >= 'a' && var9 <= 'z') {
+				var5 += (long)(var9 + 1 - 97);
+			} else if (var9 >= '0' && var9 <= '9') {
+				var5 += (long)(var9 + 27 - 48);
+			}
+
+			if (var5 >= 177917621779460413L) {
+				break;
+			}
 		}
 
-		this.name = var3;
+		while (var5 % 37L == 0L && var5 != 0L) {
+			var5 /= 37L;
+		}
+
+		String var10 = WorldMapEvent.base37DecodeLong(var5);
+		if (var10 == null) {
+			var10 = "";
+		}
+
+		this.name = var10;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "0"
+		garbageValue = "-64"
 	)
-	final void method6826(String var1) {
-		String var3 = class241.base37DecodeLong(class241.method5128(var1));
-		if (var3 == null) {
-			var3 = "";
+	final void method7266(String var1) {
+		long var5 = 0L;
+		int var7 = var1.length();
+
+		for (int var8 = 0; var8 < var7; ++var8) {
+			var5 *= 37L;
+			char var9 = var1.charAt(var8);
+			if (var9 >= 'A' && var9 <= 'Z') {
+				var5 += (long)(var9 + 1 - 65);
+			} else if (var9 >= 'a' && var9 <= 'z') {
+				var5 += (long)(var9 + 1 - 97);
+			} else if (var9 >= '0' && var9 <= '9') {
+				var5 += (long)(var9 + 27 - 48);
+			}
+
+			if (var5 >= 177917621779460413L) {
+				break;
+			}
 		}
 
-		this.owner = var3;
+		while (0L == var5 % 37L && 0L != var5) {
+			var5 /= 37L;
+		}
+
+		String var10 = WorldMapEvent.base37DecodeLong(var5);
+		if (var10 == null) {
+			var10 = "";
+		}
+
+		this.owner = var10;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;II)V",
-		garbageValue = "-232368300"
+		descriptor = "(Lqr;IB)V",
+		garbageValue = "15"
 	)
-	public final void method6823(Buffer var1, int var2) {
-		this.method6826(var1.readStringCp1252NullTerminated());
+	public final void method7267(Buffer var1, int var2) {
+		this.method7266(var1.readStringCp1252NullTerminated());
 		long var3 = var1.readLong();
 		long var6 = var3;
 		String var5;
@@ -123,10 +169,10 @@ public class FriendsChat extends UserList {
 
 				StringBuilder var11 = new StringBuilder(var8);
 
-				while (var6 != 0L) {
+				while (0L != var6) {
 					long var12 = var6;
 					var6 /= 37L;
-					var11.append(class346.base37Table[(int)(var12 - 37L * var6)]);
+					var11.append(class359.base37Table[(int)(var12 - 37L * var6)]);
 				}
 
 				var5 = var11.reverse().toString();
@@ -135,7 +181,7 @@ public class FriendsChat extends UserList {
 			var5 = null;
 		}
 
-		this.method6803(var5);
+		this.method7274(var5);
 		this.minKick = var1.readByte();
 		short var14;
 		if (var2 == 1) {
@@ -146,7 +192,7 @@ public class FriendsChat extends UserList {
 				throw new IllegalArgumentException("Invalid friend chat full update version: " + var2);
 			}
 
-			var8 = var1.method7939();
+			var8 = var1.method8641();
 			var14 = -1;
 		}
 
@@ -157,7 +203,7 @@ public class FriendsChat extends UserList {
 			for (int var15 = 0; var15 < var10; ++var15) {
 				ClanMate var16 = (ClanMate)this.addLastNoPreviousUsername(new Username(var1.readStringCp1252NullTerminated(), this.loginType));
 				int var13 = var1.readUnsignedShort();
-				var16.set(var13, ++this.field4331 - 1);
+				var16.set(var13, ++this.field4470 - 1);
 				var16.rank = var1.readByte();
 				var1.readStringCp1252NullTerminated();
 				this.isLocalPlayer(var16);
@@ -166,12 +212,12 @@ public class FriendsChat extends UserList {
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lqq;I)V",
-		garbageValue = "-2147044263"
+		descriptor = "(Lqr;B)V",
+		garbageValue = "54"
 	)
-	public final void method6806(Buffer var1) {
+	public final void method7268(Buffer var1) {
 		Username var2 = new Username(var1.readStringCp1252NullTerminated(), this.loginType);
 		int var3 = var1.readUnsignedShort();
 		byte var4 = var1.readByte();
@@ -201,17 +247,17 @@ public class FriendsChat extends UserList {
 				var6 = (ClanMate)this.addLastNoPreviousUsername(var2);
 			}
 
-			var6.set(var3, ++this.field4331 - 1);
+			var6.set(var3, ++this.field4470 - 1);
 			var6.rank = var4;
 			this.isLocalPlayer(var6);
 		}
 
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1607775912"
+		descriptor = "(S)V",
+		garbageValue = "13645"
 	)
 	@Export("clearFriends")
 	public final void clearFriends() {
@@ -221,10 +267,10 @@ public class FriendsChat extends UserList {
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1859270101"
+		descriptor = "(B)V",
+		garbageValue = "19"
 	)
 	@Export("invalidateIgnoreds")
 	public final void invalidateIgnoreds() {
@@ -234,10 +280,10 @@ public class FriendsChat extends UserList {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Lnh;I)V",
-		garbageValue = "1061559077"
+		descriptor = "(Lni;I)V",
+		garbageValue = "-1978967700"
 	)
 	@Export("isLocalPlayer")
 	final void isLocalPlayer(ClanMate var1) {
@@ -245,5 +291,28 @@ public class FriendsChat extends UserList {
 			this.rank = var1.rank;
 		}
 
+	}
+
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "1930723667"
+	)
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
+		if (!ClanChannelMember.client.method1184() && !ClanChannelMember.client.method1366()) {
+			Login.Login_response1 = "";
+			Login.Login_response2 = "Enter your username/email & password.";
+			Login.Login_response3 = "";
+			GrandExchangeOfferOwnWorldComparator.method1171(2);
+			if (var0) {
+				Login.Login_password = "";
+			}
+
+			PcmPlayer.method830();
+			class283.method5450();
+		} else {
+			GrandExchangeOfferOwnWorldComparator.method1171(10);
+		}
 	}
 }

@@ -1,109 +1,80 @@
-import net.runelite.mapping.Export;
+import java.util.Iterator;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qs")
-public class class448 implements MouseWheel {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lqs;"
-	)
-	public static final class448 field4784;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lqs;"
-	)
-	public static final class448 field4785;
+@ObfuscatedName("qf")
+public class class448 extends class412 implements class261 {
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lqs;"
+		descriptor = "Llg;"
 	)
-	static final class448 field4786;
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "Lqs;"
-	)
-	static final class448 field4787;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "Lqs;"
-	)
-	static final class448 field4788;
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "Lqs;"
-	)
-	static final class448 field4789;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -1359940479
-	)
-	final int field4790;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 316956481
-	)
-	final int field4791;
-
-	static {
-		field4784 = new class448(0, 0);
-		field4785 = new class448(5, 2);
-		field4786 = new class448(2, 5);
-		field4787 = new class448(1, 6);
-		field4788 = new class448(3, 7);
-		field4789 = new class448(4, 8);
-	}
-
-	class448(int var1, int var2) {
-		this.field4790 = var1;
-		this.field4791 = var2;
-	}
-
+	final AbstractArchive field4819;
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "2034877574"
+		descriptor = "Lje;"
 	)
-	public boolean method8184() {
-		return this == field4785;
+	final DemotingHashTable field4818;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = 45732989
+	)
+	final int field4817;
+
+	@ObfuscatedSignature(
+		descriptor = "(Llq;ILmo;Llg;)V"
+	)
+	public class448(StudioGame var1, int var2, Language var3, AbstractArchive var4) {
+		super(var1, var3, var4 != null ? var4.getGroupFileCount(var2) : 0);
+		this.field4818 = new DemotingHashTable(64);
+		this.field4819 = var4;
+		this.field4817 = var2;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "1"
+		descriptor = "(II)Loz;",
+		garbageValue = "-481589875"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field4791;
-	}
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;III)Lmv;",
-		garbageValue = "-1727217771"
-	)
-	public static Font method8182(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
-		if (!Occluder.method4475(var0, var2, var3)) {
-			return null;
-		} else {
-			byte[] var5 = var1.takeFile(var2, var3);
-			Font var4;
-			if (var5 == null) {
-				var4 = null;
-			} else {
-				Font var6 = new Font(var5, class458.SpriteBuffer_xOffsets, class458.SpriteBuffer_yOffsets, ApproximateRouteStrategy.SpriteBuffer_spriteWidths, UserComparator9.SpriteBuffer_spriteHeights, class458.SpriteBuffer_spritePalette, FileSystem.SpriteBuffer_pixels);
-				class458.SpriteBuffer_xOffsets = null;
-				class458.SpriteBuffer_yOffsets = null;
-				ApproximateRouteStrategy.SpriteBuffer_spriteWidths = null;
-				UserComparator9.SpriteBuffer_spriteHeights = null;
-				class458.SpriteBuffer_spritePalette = null;
-				FileSystem.SpriteBuffer_pixels = null;
-				var4 = var6;
+	protected class414 vmethod8207(int var1) {
+		synchronized(this.field4818) {
+			class413 var2 = (class413)this.field4818.get((long)var1);
+			if (var2 == null) {
+				var2 = this.method8211(var1);
+				this.field4818.method5318(var2, (long)var1);
 			}
 
-			return var4;
+			return var2;
 		}
+	}
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "(IS)Loa;",
+		garbageValue = "-26927"
+	)
+	class413 method8211(int var1) {
+		byte[] var2 = this.field4819.takeFile(this.field4817, var1);
+		class413 var3 = new class413(var1);
+		if (var2 != null) {
+			var3.method7768(new Buffer(var2));
+		}
+
+		return var3;
+	}
+
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1409186712"
+	)
+	public void method8210() {
+		synchronized(this.field4818) {
+			this.field4818.clear();
+		}
+	}
+
+	public Iterator iterator() {
+		return new class447(this);
 	}
 }

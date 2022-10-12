@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kz")
+@ObfuscatedName("ki")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -971404419
+		intValue = -1160775587
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1909585313
+		intValue = -1700089243
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1205071133
+		intValue = -680325577
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkz;)V"
+		descriptor = "(Lki;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -52,10 +52,10 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-49"
+		descriptor = "(I)I",
+		garbageValue = "-282255296"
 	)
 	@Export("packed")
 	public int packed() {
@@ -66,10 +66,10 @@ public class Coord {
 		return var1;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lkz;I)Z",
-		garbageValue = "1896039463"
+		descriptor = "(Lki;I)Z",
+		garbageValue = "1951856036"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -82,22 +82,14 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1344824322"
+		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "127"
 	)
 	@Export("toString")
 	String toString(String var1) {
 		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
-	}
-
-	public String toString() {
-		return this.toString(",");
-	}
-
-	public int hashCode() {
-		return this.packed();
 	}
 
 	public boolean equals(Object var1) {
@@ -108,60 +100,230 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("fl")
+	public String toString() {
+		return this.toString(",");
+	}
+
+	public int hashCode() {
+		return this.packed();
+	}
+
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1396639971"
+		descriptor = "(I)Lov;",
+		garbageValue = "-1033948030"
 	)
-	@Export("updateGameState")
-	static void updateGameState(int var0) {
-		if (var0 != Client.gameState) {
-			if (Client.gameState == 0) {
-				IgnoreList.client.method493();
-			}
-
-			if (var0 == 20 || var0 == 40 || var0 == 45 || var0 == 50) {
-				class142.method3196(0);
-				Client.field525 = 0;
-				Client.field526 = 0;
-				Client.timer.method6704(var0);
-				if (var0 != 20) {
-					PacketWriter.method2673(false);
-				}
-			}
-
-			if (var0 != 20 && var0 != 40 && RouteStrategy.field2237 != null) {
-				RouteStrategy.field2237.close();
-				RouteStrategy.field2237 = null;
-			}
-
-			if (Client.gameState == 25) {
-				Client.field774 = 0;
-				Client.field523 = 0;
-				Client.field585 = 1;
-				Client.field558 = 0;
-				Client.field559 = 1;
-			}
-
-			int var1;
-			if (var0 != 5 && var0 != 10) {
-				if (var0 == 20) {
-					var1 = Client.gameState == 11 ? 4 : 0;
-					LoginScreenAnimation.method2375(class163.archive10, ChatChannel.archive8, false, var1);
-				} else if (var0 == 11) {
-					LoginScreenAnimation.method2375(class163.archive10, ChatChannel.archive8, false, 4);
-				} else if (var0 == 50) {
-					SecureRandomCallable.setLoginResponseString("", "Updating date of birth...", "");
-					LoginScreenAnimation.method2375(class163.archive10, ChatChannel.archive8, false, 7);
-				} else {
-					FriendSystem.method1836();
-				}
+	public static class407 method5706() {
+		synchronized(class407.field4563) {
+			if (class407.field4565 == 0) {
+				return new class407();
 			} else {
-				var1 = class344.method6492() ? 0 : 12;
-				LoginScreenAnimation.method2375(class163.archive10, ChatChannel.archive8, true, var1);
+				class407.field4563[--class407.field4565].method7646();
+				return class407.field4563[class407.field4565];
+			}
+		}
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "([Ljava/lang/CharSequence;IIB)Ljava/lang/String;",
+		garbageValue = "-9"
+	)
+	public static String method5704(CharSequence[] var0, int var1, int var2) {
+		if (var2 == 0) {
+			return "";
+		} else if (var2 == 1) {
+			CharSequence var10 = var0[var1];
+			return var10 == null ? "null" : var10.toString();
+		} else {
+			int var3 = var2 + var1;
+			int var4 = 0;
+
+			for (int var5 = var1; var5 < var3; ++var5) {
+				CharSequence var9 = var0[var5];
+				if (var9 == null) {
+					var4 += 4;
+				} else {
+					var4 += var9.length();
+				}
 			}
 
-			Client.gameState = var0;
+			StringBuilder var8 = new StringBuilder(var4);
+
+			for (int var6 = var1; var6 < var3; ++var6) {
+				CharSequence var7 = var0[var6];
+				if (var7 == null) {
+					var8.append("null");
+				} else {
+					var8.append(var7);
+				}
+			}
+
+			return var8.toString();
+		}
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(ILob;Llx;B)V",
+		garbageValue = "-34"
+	)
+	static void method5688(int var0, ArchiveDisk var1, Archive var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction();
+		var3.type = 1;
+		var3.key = (long)var0;
+		var3.archiveDisk = var1;
+		var3.archive = var2;
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3);
+		}
+
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
+			if (ArchiveDiskActionHandler.field4122 == 0) {
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler());
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true);
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start();
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5);
+			}
+
+			ArchiveDiskActionHandler.field4122 = 600;
+		}
+	}
+
+	@ObfuscatedName("jj")
+	@ObfuscatedSignature(
+		descriptor = "(Lcc;IIII)V",
+		garbageValue = "-1785567817"
+	)
+	@Export("addNpcToMenu")
+	static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
+		NPCComposition var4 = var0.definition;
+		if (Client.menuOptionsCount < 400) {
+			if (var4.transforms != null) {
+				var4 = var4.transform();
+			}
+
+			if (var4 != null) {
+				if (var4.isInteractable) {
+					if (!var4.isFollower || Client.followerIndex == var1) {
+						String var5 = var0.method2492();
+						int var6;
+						int var9;
+						if (var4.combatLevel != 0 && var0.field1212 != 0) {
+							var6 = var0.field1212 != -1 ? var0.field1212 : var4.combatLevel;
+							var9 = class296.localPlayer.combatLevel;
+							int var10 = var9 - var6;
+							String var8;
+							if (var10 < -9) {
+								var8 = GameObject.colorStartTag(16711680);
+							} else if (var10 < -6) {
+								var8 = GameObject.colorStartTag(16723968);
+							} else if (var10 < -3) {
+								var8 = GameObject.colorStartTag(16740352);
+							} else if (var10 < 0) {
+								var8 = GameObject.colorStartTag(16756736);
+							} else if (var10 > 9) {
+								var8 = GameObject.colorStartTag(65280);
+							} else if (var10 > 6) {
+								var8 = GameObject.colorStartTag(4259584);
+							} else if (var10 > 3) {
+								var8 = GameObject.colorStartTag(8453888);
+							} else if (var10 > 0) {
+								var8 = GameObject.colorStartTag(12648192);
+							} else {
+								var8 = GameObject.colorStartTag(16776960);
+							}
+
+							var5 = var5 + var8 + " " + " (" + "level-" + var6 + ")";
+						}
+
+						if (var4.isFollower && Client.followerOpsLowPriority) {
+							class16.insertMenuItemNoShift("Examine", GameObject.colorStartTag(16776960) + var5, 1003, var1, var2, var3);
+						}
+
+						if (Client.isItemSelected == 1) {
+							class16.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + GameObject.colorStartTag(16776960) + var5, 7, var1, var2, var3);
+						} else if (Client.isSpellSelected) {
+							if ((UserComparator5.selectedSpellFlags & 2) == 2) {
+								class16.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + GameObject.colorStartTag(16776960) + var5, 8, var1, var2, var3);
+							}
+						} else {
+							var6 = var4.isFollower && Client.followerOpsLowPriority ? 2000 : 0;
+							String[] var7 = var4.actions;
+							int var11;
+							if (var7 != null) {
+								for (var11 = 4; var11 >= 0; --var11) {
+									if (var0.method2511(var11) && var7[var11] != null && !var7[var11].equalsIgnoreCase("Attack")) {
+										var9 = 0;
+										if (var11 == 0) {
+											var9 = var6 + 9;
+										}
+
+										if (var11 == 1) {
+											var9 = var6 + 10;
+										}
+
+										if (var11 == 2) {
+											var9 = var6 + 11;
+										}
+
+										if (var11 == 3) {
+											var9 = var6 + 12;
+										}
+
+										if (var11 == 4) {
+											var9 = var6 + 13;
+										}
+
+										class16.insertMenuItemNoShift(var7[var11], GameObject.colorStartTag(16776960) + var5, var9, var1, var2, var3);
+									}
+								}
+							}
+
+							if (var7 != null) {
+								for (var11 = 4; var11 >= 0; --var11) {
+									if (var0.method2511(var11) && var7[var11] != null && var7[var11].equalsIgnoreCase("Attack")) {
+										short var12 = 0;
+										if (Client.npcAttackOption != AttackOption.AttackOption_hidden) {
+											if (Client.npcAttackOption == AttackOption.AttackOption_alwaysRightClick || Client.npcAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var4.combatLevel > class296.localPlayer.combatLevel) {
+												var12 = 2000;
+											}
+
+											var9 = 0;
+											if (var11 == 0) {
+												var9 = var12 + 9;
+											}
+
+											if (var11 == 1) {
+												var9 = var12 + 10;
+											}
+
+											if (var11 == 2) {
+												var9 = var12 + 11;
+											}
+
+											if (var11 == 3) {
+												var9 = var12 + 12;
+											}
+
+											if (var11 == 4) {
+												var9 = var12 + 13;
+											}
+
+											class16.insertMenuItemNoShift(var7[var11], GameObject.colorStartTag(16776960) + var5, var9, var1, var2, var3);
+										}
+									}
+								}
+							}
+
+							if (!var4.isFollower || !Client.followerOpsLowPriority) {
+								class16.insertMenuItemNoShift("Examine", GameObject.colorStartTag(16776960) + var5, 1003, var1, var2, var3);
+							}
+						}
+
+					}
+				}
+			}
 		}
 	}
 }

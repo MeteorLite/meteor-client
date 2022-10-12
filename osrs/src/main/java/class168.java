@@ -1,49 +1,49 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fi")
 public class class168 {
-	@ObfuscatedName("f")
-	public short[] field1835;
-	@ObfuscatedName("n")
-	public short[] field1833;
-
-	public class168(int var1) {
-		ItemComposition var2 = UserComparator3.ItemDefinition_get(var1);
-		if (var2.method3848()) {
-			this.field1835 = new short[var2.recolorTo.length];
-			System.arraycopy(var2.recolorTo, 0, this.field1835, 0, this.field1835.length);
-		}
-
-		if (var2.method3840()) {
-			this.field1833 = new short[var2.retextureTo.length];
-			System.arraycopy(var2.retextureTo, 0, this.field1833, 0, this.field1833.length);
-		}
-
-	}
-
-	@ObfuscatedName("p")
+	@ObfuscatedName("lm")
 	@ObfuscatedSignature(
-		descriptor = "(Lpq;IIB)I",
-		garbageValue = "-53"
+		descriptor = "Lkn;"
 	)
-	static int method3508(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
-		}
-	}
-
+	@Export("hoveredItemContainer")
+	static Widget hoveredItemContainer;
+	@ObfuscatedName("x")
+	public String field1818;
 	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "1633050435"
+	public float[] field1816;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -2089790825
 	)
-	@Export("isAlphaNumeric")
-	public static boolean isAlphaNumeric(char var0) {
-		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
+	public int field1820;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = -1039343049
+	)
+	public int field1821;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = -964308241
+	)
+	public int field1822;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lft;"
+	)
+	final class162 this$0;
+
+	@ObfuscatedSignature(
+		descriptor = "(Lft;)V"
+	)
+	class168(class162 var1) {
+		this.this$0 = var1;
+		this.field1816 = new float[4];
+		this.field1820 = 1;
+		this.field1821 = 1;
+		this.field1822 = 0;
 	}
 }
