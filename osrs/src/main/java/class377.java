@@ -15,7 +15,7 @@ public class class377 {
 
 			for (int var0 = 0; var0 < Client.players.length; ++var0) {
 				if (Client.players[var0] != null) {
-					NetFileRequest.field4144.method6537(class26.baseX * 64 + (Client.players[var0].x >> 7), class158.baseY * 64 + (Client.players[var0].y >> 7));
+					NetFileRequest.field4144.method6537(KeyHandler.baseX * 64 + (Client.players[var0].x >> 7), class158.baseY * 64 + (Client.players[var0].y >> 7));
 				}
 			}
 		}

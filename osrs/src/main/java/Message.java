@@ -355,7 +355,7 @@ public class Message extends DualNode {
 				for (var4 = 4; var4 >= 0; --var4) {
 					String var18 = class380.method7205(var0, var4);
 					if (var18 != null) {
-						UserComparator8.method2744(var18, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.itemId, var0.prioritizeMenuEntry);
+						UserComparator8.insertMenuItem(var18, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.itemId, var0.prioritizeMenuEntry);
 					}
 				}
 

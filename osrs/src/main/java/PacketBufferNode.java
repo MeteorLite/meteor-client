@@ -69,7 +69,7 @@ public class PacketBufferNode extends Node {
 		descriptor = "(IIIIILjava/lang/String;Ljava/lang/String;III)V",
 		garbageValue = "317226197"
 	)
-	static final void method5389(int var0, int var1, int var2, int var3, int var4, String var5, String var6, int var7, int var8) {
+	static final void menuAction(int var0, int var1, int var2, int var3, int var4, String var5, String var6, int var7, int var8) {
 		if (var2 >= 2000) {
 			var2 -= 2000;
 		}
@@ -86,7 +86,7 @@ public class PacketBufferNode extends Node {
 			var9.packetBuffer.method8619(class1.selectedItemSlot);
 			var9.packetBuffer.method8619(class69.selectedItemId);
 			var9.packetBuffer.writeShort(class158.baseY * 64 + var1);
-			var9.packetBuffer.method8443(class26.baseX * 64 + var0);
+			var9.packetBuffer.method8443(KeyHandler.baseX * 64 + var0);
 			var9.packetBuffer.method8437(class230.selectedItemWidget);
 			var9.packetBuffer.writeByte(Client.field733.method3956(82) ? 1 : 0);
 			var9.packetBuffer.method8619(var3);
@@ -104,7 +104,7 @@ public class PacketBufferNode extends Node {
 			var9.packetBuffer.writeIntME(class158.baseY * 64 + var1);
 			var9.packetBuffer.method8619(Client.selectedSpellItemId);
 			var9.packetBuffer.method8443(Client.selectedSpellChildIndex);
-			var9.packetBuffer.method8443(class26.baseX * 64 + var0);
+			var9.packetBuffer.method8443(KeyHandler.baseX * 64 + var0);
 			var9.packetBuffer.method8434(Client.field733.method3956(82) ? 1 : 0);
 			Client.packetWriter.addNode(var9);
 		} else if (var2 == 3) {
@@ -116,7 +116,7 @@ public class PacketBufferNode extends Node {
 			Client.destinationY = var1;
 			var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3078, Client.packetWriter.isaacCipher);
 			var9.packetBuffer.method8546(Client.field733.method3956(82) ? 1 : 0);
-			var9.packetBuffer.method8619(class26.baseX * 64 + var0);
+			var9.packetBuffer.method8619(KeyHandler.baseX * 64 + var0);
 			var9.packetBuffer.method8443(class158.baseY * 64 + var1);
 			var9.packetBuffer.writeShort(var3);
 			Client.packetWriter.addNode(var9);
@@ -129,7 +129,7 @@ public class PacketBufferNode extends Node {
 			Client.destinationY = var1;
 			var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3089, Client.packetWriter.isaacCipher);
 			var9.packetBuffer.method8546(Client.field733.method3956(82) ? 1 : 0);
-			var9.packetBuffer.writeShort(class26.baseX * 64 + var0);
+			var9.packetBuffer.writeShort(KeyHandler.baseX * 64 + var0);
 			var9.packetBuffer.method8619(var3);
 			var9.packetBuffer.writeIntME(class158.baseY * 64 + var1);
 			Client.packetWriter.addNode(var9);
@@ -142,7 +142,7 @@ public class PacketBufferNode extends Node {
 			Client.destinationY = var1;
 			var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3007, Client.packetWriter.isaacCipher);
 			var9.packetBuffer.method8619(class158.baseY * 64 + var1);
-			var9.packetBuffer.method8619(class26.baseX * 64 + var0);
+			var9.packetBuffer.method8619(KeyHandler.baseX * 64 + var0);
 			var9.packetBuffer.writeByte(Client.field733.method3956(82) ? 1 : 0);
 			var9.packetBuffer.writeIntME(var3);
 			Client.packetWriter.addNode(var9);
@@ -154,7 +154,7 @@ public class PacketBufferNode extends Node {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3010, Client.packetWriter.isaacCipher);
-			var9.packetBuffer.method8443(class26.baseX * 64 + var0);
+			var9.packetBuffer.method8443(KeyHandler.baseX * 64 + var0);
 			var9.packetBuffer.method8630(Client.field733.method3956(82) ? 1 : 0);
 			var9.packetBuffer.method8619(var3);
 			var9.packetBuffer.method8443(class158.baseY * 64 + var1);
@@ -316,7 +316,7 @@ public class PacketBufferNode extends Node {
 					var9.packetBuffer.method8443(var3);
 					var9.packetBuffer.method8453(class230.selectedItemWidget);
 					var9.packetBuffer.writeIntME(class1.selectedItemSlot);
-					var9.packetBuffer.writeShort(class26.baseX * 64 + var0);
+					var9.packetBuffer.writeShort(KeyHandler.baseX * 64 + var0);
 					Client.packetWriter.addNode(var9);
 				} else if (var2 == 17) {
 					Client.mouseCrossX = var7;
@@ -330,7 +330,7 @@ public class PacketBufferNode extends Node {
 					var9.packetBuffer.writeIntME(class158.baseY * 64 + var1);
 					var9.packetBuffer.method8453(class124.selectedSpellWidget);
 					var9.packetBuffer.method8630(Client.field733.method3956(82) ? 1 : 0);
-					var9.packetBuffer.writeIntME(class26.baseX * 64 + var0);
+					var9.packetBuffer.writeIntME(KeyHandler.baseX * 64 + var0);
 					var9.packetBuffer.writeIntME(var3);
 					var9.packetBuffer.method8619(Client.selectedSpellItemId);
 					Client.packetWriter.addNode(var9);
@@ -343,7 +343,7 @@ public class PacketBufferNode extends Node {
 					Client.destinationY = var1;
 					var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3037, Client.packetWriter.isaacCipher);
 					var9.packetBuffer.writeShort(var3);
-					var9.packetBuffer.method8443(class26.baseX * 64 + var0);
+					var9.packetBuffer.method8443(KeyHandler.baseX * 64 + var0);
 					var9.packetBuffer.method8630(Client.field733.method3956(82) ? 1 : 0);
 					var9.packetBuffer.writeIntME(class158.baseY * 64 + var1);
 					Client.packetWriter.addNode(var9);
@@ -358,7 +358,7 @@ public class PacketBufferNode extends Node {
 					var9.packetBuffer.method8443(class158.baseY * 64 + var1);
 					var9.packetBuffer.writeIntME(var3);
 					var9.packetBuffer.method8630(Client.field733.method3956(82) ? 1 : 0);
-					var9.packetBuffer.writeShort(class26.baseX * 64 + var0);
+					var9.packetBuffer.writeShort(KeyHandler.baseX * 64 + var0);
 					Client.packetWriter.addNode(var9);
 				} else if (var2 == 20) {
 					Client.mouseCrossX = var7;
@@ -368,7 +368,7 @@ public class PacketBufferNode extends Node {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3049, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.writeShort(class26.baseX * 64 + var0);
+					var9.packetBuffer.writeShort(KeyHandler.baseX * 64 + var0);
 					var9.packetBuffer.method8443(class158.baseY * 64 + var1);
 					var9.packetBuffer.writeIntME(var3);
 					var9.packetBuffer.writeByte(Client.field733.method3956(82) ? 1 : 0);
@@ -383,7 +383,7 @@ public class PacketBufferNode extends Node {
 					var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3011, Client.packetWriter.isaacCipher);
 					var9.packetBuffer.method8434(Client.field733.method3956(82) ? 1 : 0);
 					var9.packetBuffer.writeIntME(class158.baseY * 64 + var1);
-					var9.packetBuffer.writeIntME(class26.baseX * 64 + var0);
+					var9.packetBuffer.writeIntME(KeyHandler.baseX * 64 + var0);
 					var9.packetBuffer.method8443(var3);
 					Client.packetWriter.addNode(var9);
 				} else if (var2 == 22) {
@@ -394,7 +394,7 @@ public class PacketBufferNode extends Node {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3041, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.method8443(class26.baseX * 64 + var0);
+					var9.packetBuffer.method8443(KeyHandler.baseX * 64 + var0);
 					var9.packetBuffer.method8434(Client.field733.method3956(82) ? 1 : 0);
 					var9.packetBuffer.method8443(var3);
 					var9.packetBuffer.method8443(class158.baseY * 64 + var1);
@@ -755,7 +755,7 @@ public class PacketBufferNode extends Node {
 												Client.destinationY = var1;
 												var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3021, Client.packetWriter.isaacCipher);
 												var9.packetBuffer.method8443(class158.baseY * 64 + var1);
-												var9.packetBuffer.writeShort(class26.baseX * 64 + var0);
+												var9.packetBuffer.writeShort(KeyHandler.baseX * 64 + var0);
 												var9.packetBuffer.method8443(var3);
 												var9.packetBuffer.method8546(Client.field733.method3956(82) ? 1 : 0);
 												Client.packetWriter.addNode(var9);
@@ -800,7 +800,7 @@ public class PacketBufferNode extends Node {
 												Client.mouseCrossColor = 2;
 												Client.mouseCrossState = 0;
 												var9 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3095, Client.packetWriter.isaacCipher);
-												var9.packetBuffer.writeShort(class26.baseX * 64 + var0);
+												var9.packetBuffer.writeShort(KeyHandler.baseX * 64 + var0);
 												var9.packetBuffer.method8619(var3);
 												var9.packetBuffer.writeShort(class158.baseY * 64 + var1);
 												Client.packetWriter.addNode(var9);

@@ -388,7 +388,7 @@ public class FontName {
 
 									MusicPatchNode2.setLoginResponseString("", "Connecting to server...", "");
 									SoundCache.method874(false);
-									class21.method305(20);
+									class21.updateGameState(20);
 									return;
 								}
 
@@ -482,7 +482,7 @@ public class FontName {
 
 													MusicPatchNode2.setLoginResponseString("", "Connecting to server...", "");
 													SoundCache.method874(false);
-													class21.method305(20);
+													class21.updateGameState(20);
 													return;
 												}
 											}
@@ -546,7 +546,7 @@ public class FontName {
 										class355.otp = "";
 										SoundCache.method874(true);
 										MusicPatchNode2.setLoginResponseString("", "Connecting to server...", "");
-										class21.method305(20);
+										class21.updateGameState(20);
 										return;
 									}
 
@@ -599,7 +599,7 @@ public class FontName {
 												class355.otp = "";
 												SoundCache.method874(true);
 												MusicPatchNode2.setLoginResponseString("", "Connecting to server...", "");
-												class21.method305(20);
+												class21.updateGameState(20);
 												return;
 											}
 
@@ -675,7 +675,7 @@ public class FontName {
 												if (var5 == 1 && var34 >= var25 - 75 && var34 <= var25 + 75 && var35 >= var15 - 20 && var35 <= var15 + 20) {
 													var26 = FloorUnderlayDefinition.method3622();
 													if (var26) {
-														class21.method305(50);
+														class21.updateGameState(50);
 														return;
 													}
 												}
@@ -709,7 +709,7 @@ public class FontName {
 													if (var9.field2252 == 84) {
 														var26 = FloorUnderlayDefinition.method3622();
 														if (var26) {
-															class21.method305(50);
+															class21.updateGameState(50);
 														}
 
 														return;
@@ -757,7 +757,7 @@ public class FontName {
 												MusicPatchNode2.setLoginResponseString("", "Connecting to server...", "");
 												Client.field615 = class467.field4919;
 												SoundCache.method874(false);
-												class21.method305(20);
+												class21.updateGameState(20);
 											}
 										} else if (Login.loginIndex == 12) {
 											var10 = Canvas.loginBoxCenter;

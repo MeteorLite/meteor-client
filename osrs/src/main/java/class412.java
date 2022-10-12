@@ -120,7 +120,7 @@ public abstract class class412 extends class259 implements class470 {
 				var10 = var7 & 255;
 				var11.pathTraversed[0] = Players.field1314[var1];
 				var11.plane = (byte)var8;
-				var11.resetPath((var9 << 13) + var3 - class26.baseX * 64, (var10 << 13) + var4 - class158.baseY * 64);
+				var11.resetPath((var9 << 13) + var3 - KeyHandler.baseX * 64, (var10 << 13) + var4 - class158.baseY * 64);
 				var11.field1116 = false;
 				return true;
 			}

@@ -96,7 +96,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 	@ObfuscatedSignature(
 		descriptor = "Laj;"
 	)
-	protected static class26 field227;
+	protected static KeyHandler keyHandler;
 	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
 		longValue = -5318768701372018855L
@@ -203,7 +203,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		clientTickTimes = new long[32];
 		field212 = 500;
 		volatileFocus = true;
-		field227 = new class26();
+		keyHandler = new KeyHandler();
 		garbageCollectorLastCollectionTime = -1L;
 		garbageCollectorLastCheckTimeMs = -1L;
 	}
@@ -312,34 +312,34 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 	@Export("setUpKeyboard")
 	protected final void setUpKeyboard() {
 		if (TaskHandler.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
-			KeyHandler.KeyHandler_keyCodes[186] = 57;
-			KeyHandler.KeyHandler_keyCodes[187] = 27;
-			KeyHandler.KeyHandler_keyCodes[188] = 71;
-			KeyHandler.KeyHandler_keyCodes[189] = 26;
-			KeyHandler.KeyHandler_keyCodes[190] = 72;
-			KeyHandler.KeyHandler_keyCodes[191] = 73;
-			KeyHandler.KeyHandler_keyCodes[192] = 58;
-			KeyHandler.KeyHandler_keyCodes[219] = 42;
-			KeyHandler.KeyHandler_keyCodes[220] = 74;
-			KeyHandler.KeyHandler_keyCodes[221] = 43;
-			KeyHandler.KeyHandler_keyCodes[222] = 59;
-			KeyHandler.KeyHandler_keyCodes[223] = 28;
+			class999.KeyHandler_keyCodes[186] = 57;
+			class999.KeyHandler_keyCodes[187] = 27;
+			class999.KeyHandler_keyCodes[188] = 71;
+			class999.KeyHandler_keyCodes[189] = 26;
+			class999.KeyHandler_keyCodes[190] = 72;
+			class999.KeyHandler_keyCodes[191] = 73;
+			class999.KeyHandler_keyCodes[192] = 58;
+			class999.KeyHandler_keyCodes[219] = 42;
+			class999.KeyHandler_keyCodes[220] = 74;
+			class999.KeyHandler_keyCodes[221] = 43;
+			class999.KeyHandler_keyCodes[222] = 59;
+			class999.KeyHandler_keyCodes[223] = 28;
 		} else {
-			KeyHandler.KeyHandler_keyCodes[44] = 71;
-			KeyHandler.KeyHandler_keyCodes[45] = 26;
-			KeyHandler.KeyHandler_keyCodes[46] = 72;
-			KeyHandler.KeyHandler_keyCodes[47] = 73;
-			KeyHandler.KeyHandler_keyCodes[59] = 57;
-			KeyHandler.KeyHandler_keyCodes[61] = 27;
-			KeyHandler.KeyHandler_keyCodes[91] = 42;
-			KeyHandler.KeyHandler_keyCodes[92] = 74;
-			KeyHandler.KeyHandler_keyCodes[93] = 43;
-			KeyHandler.KeyHandler_keyCodes[192] = 28;
-			KeyHandler.KeyHandler_keyCodes[222] = 58;
-			KeyHandler.KeyHandler_keyCodes[520] = 59;
+			class999.KeyHandler_keyCodes[44] = 71;
+			class999.KeyHandler_keyCodes[45] = 26;
+			class999.KeyHandler_keyCodes[46] = 72;
+			class999.KeyHandler_keyCodes[47] = 73;
+			class999.KeyHandler_keyCodes[59] = 57;
+			class999.KeyHandler_keyCodes[61] = 27;
+			class999.KeyHandler_keyCodes[91] = 42;
+			class999.KeyHandler_keyCodes[92] = 74;
+			class999.KeyHandler_keyCodes[93] = 43;
+			class999.KeyHandler_keyCodes[192] = 28;
+			class999.KeyHandler_keyCodes[222] = 58;
+			class999.KeyHandler_keyCodes[520] = 59;
 		}
 
-		field227.method354(this.canvas);
+		keyHandler.method354(this.canvas);
 	}
 
 	@ObfuscatedName("u")
@@ -348,7 +348,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		garbageValue = "869354353"
 	)
 	protected final void method603() {
-		field227.method356();
+		keyHandler.method356();
 	}
 
 	@ObfuscatedName("z")
@@ -357,7 +357,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		garbageValue = "12"
 	)
 	protected void method513(class30 var1, int var2) {
-		field227.method384(var1, var2);
+		keyHandler.method384(var1, var2);
 	}
 
 	@ObfuscatedName("t")
@@ -470,7 +470,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 	)
 	@Export("replaceCanvas")
 	final void replaceCanvas() {
-		field227.method355(this.canvas);
+		keyHandler.method355(this.canvas);
 		java.awt.Canvas var1 = this.canvas;
 		var1.removeMouseListener(MouseHandler.MouseHandler_instance);
 		var1.removeMouseMotionListener(MouseHandler.MouseHandler_instance);
@@ -481,7 +481,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		}
 
 		this.addCanvas();
-		field227.method354(this.canvas);
+		keyHandler.method354(this.canvas);
 		java.awt.Canvas var2 = this.canvas;
 		var2.addMouseListener(MouseHandler.MouseHandler_instance);
 		var2.addMouseMotionListener(MouseHandler.MouseHandler_instance);
@@ -1164,7 +1164,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 	)
 	static final void method662() {
 		Client.field687 = 0;
-		int var0 = class26.baseX * 64 + (class296.localPlayer.x >> 7);
+		int var0 = KeyHandler.baseX * 64 + (class296.localPlayer.x >> 7);
 		int var1 = class158.baseY * 64 + (class296.localPlayer.y >> 7);
 		if (var0 >= 3053 && var0 <= 3156 && var1 >= 3056 && var1 <= 3136) {
 			Client.field687 = 1;

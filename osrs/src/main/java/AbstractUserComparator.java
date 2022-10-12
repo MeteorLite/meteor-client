@@ -144,7 +144,7 @@ public abstract class AbstractUserComparator implements Comparator {
 		} else if (var0 < 7500) {
 			return class131.method2956(var0, var1, var2);
 		} else if (var0 < 7600) {
-			return class26.method393(var0, var1, var2);
+			return KeyHandler.method393(var0, var1, var2);
 		} else {
 			return var0 < 7700 ? WorldMapSprite.method5155(var0, var1, var2) : 2;
 		}

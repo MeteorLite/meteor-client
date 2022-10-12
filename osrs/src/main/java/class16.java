@@ -55,7 +55,7 @@ public class class16 implements ThreadFactory {
 	)
 	@Export("insertMenuItemNoShift")
 	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-		UserComparator8.method2744(var0, var1, var2, var3, var4, var5, -1, false);
+		UserComparator8.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
 	}
 
 	@ObfuscatedName("jl")

@@ -4,7 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rb")
-public enum class474 implements class342 {
+public enum FillMode implements class342 {
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		descriptor = "Lrb;"
@@ -33,7 +33,7 @@ public enum class474 implements class342 {
 	)
 	final int field4948;
 
-	class474(int var3, int var4) {
+	FillMode(int var3, int var4) {
 		this.field4947 = var3;
 		this.field4948 = var4;
 	}

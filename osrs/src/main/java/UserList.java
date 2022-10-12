@@ -359,7 +359,7 @@ public abstract class UserList {
 
 			Rasterizer2D.Rasterizer2D_clear();
 			byte[] var4 = var0.takeFileByNames("title.jpg", "");
-			class313.leftTitleSprite = class26.method394(var4);
+			class313.leftTitleSprite = KeyHandler.method394(var4);
 			HealthBar.rightTitleSprite = class313.leftTitleSprite.mirrorHorizontally();
 			int var5 = Client.worldProperties;
 			if ((var5 & 536870912) != 0) {

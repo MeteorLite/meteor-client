@@ -422,11 +422,11 @@ public class UserComparator7 extends AbstractUserComparator {
 								ScriptEvent var25;
 								int var37;
 								int var39;
-								if (var9.onVarTransmit != null && Client.field547 > var9.field3627) {
-									if (var9.varTransmitTriggers != null && Client.field547 - var9.field3627 <= 32) {
+								if (var9.onVarTransmit != null && Client.changedVarpCount > var9.field3627) {
+									if (var9.varTransmitTriggers != null && Client.changedVarpCount - var9.field3627 <= 32) {
 										label843:
-										for (var39 = var9.field3627; var39 < Client.field547; ++var39) {
-											var23 = Client.field788[var39 & 31];
+										for (var39 = var9.field3627; var39 < Client.changedVarpCount; ++var39) {
+											var23 = Client.changedVarps[var39 & 31];
 
 											for (var37 = 0; var37 < var9.varTransmitTriggers.length; ++var37) {
 												if (var23 == var9.varTransmitTriggers[var37]) {
@@ -445,14 +445,14 @@ public class UserComparator7 extends AbstractUserComparator {
 										Client.scriptEvents.addFirst(var22);
 									}
 
-									var9.field3627 = Client.field547;
+									var9.field3627 = Client.changedVarpCount;
 								}
 
-								if (var9.onInvTransmit != null && Client.field695 > var9.field3628) {
-									if (var9.invTransmitTriggers != null && Client.field695 - var9.field3628 <= 32) {
+								if (var9.onInvTransmit != null && Client.changedItemContainersCount > var9.field3628) {
+									if (var9.invTransmitTriggers != null && Client.changedItemContainersCount - var9.field3628 <= 32) {
 										label819:
-										for (var39 = var9.field3628; var39 < Client.field695; ++var39) {
-											var23 = Client.field694[var39 & 31];
+										for (var39 = var9.field3628; var39 < Client.changedItemContainersCount; ++var39) {
+											var23 = Client.changedItemContainers[var39 & 31];
 
 											for (var37 = 0; var37 < var9.invTransmitTriggers.length; ++var37) {
 												if (var23 == var9.invTransmitTriggers[var37]) {
@@ -471,14 +471,14 @@ public class UserComparator7 extends AbstractUserComparator {
 										Client.scriptEvents.addFirst(var22);
 									}
 
-									var9.field3628 = Client.field695;
+									var9.field3628 = Client.changedItemContainersCount;
 								}
 
-								if (var9.onStatTransmit != null && Client.field599 > var9.field3618) {
-									if (var9.statTransmitTriggers != null && Client.field599 - var9.field3618 <= 32) {
+								if (var9.onStatTransmit != null && Client.changedSkillsCount > var9.field3618) {
+									if (var9.statTransmitTriggers != null && Client.changedSkillsCount - var9.field3618 <= 32) {
 										label795:
-										for (var39 = var9.field3618; var39 < Client.field599; ++var39) {
-											var23 = Client.field696[var39 & 31];
+										for (var39 = var9.field3618; var39 < Client.changedSkillsCount; ++var39) {
+											var23 = Client.changedSkills[var39 & 31];
 
 											for (var37 = 0; var37 < var9.statTransmitTriggers.length; ++var37) {
 												if (var23 == var9.statTransmitTriggers[var37]) {
@@ -497,7 +497,7 @@ public class UserComparator7 extends AbstractUserComparator {
 										Client.scriptEvents.addFirst(var22);
 									}
 
-									var9.field3618 = Client.field599;
+									var9.field3618 = Client.changedSkillsCount;
 								}
 
 								if (Client.chatCycle > var9.field3626 && var9.onChatTransmit != null) {

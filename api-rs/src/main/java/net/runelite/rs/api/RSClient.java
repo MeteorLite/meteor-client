@@ -1484,10 +1484,10 @@ public interface RSClient extends RSGameEngine, Client
 	int getRndHue();
 
 	@Import("Tiles_underlays")
-	byte[][][] getTileUnderlays();
+	short[][][] getTileUnderlays();
 
 	@Import("Tiles_overlays")
-	byte[][][] getTileOverlays();
+	short[][][] getTileOverlays();
 
 	@Import("Tiles_shapes")
 	byte[][][] getTileShapes();

@@ -117,7 +117,7 @@ public class Frames extends DualNode {
 				int var5;
 				if (var0 == 3308) {
 					var3 = ApproximateRouteStrategy.Client_plane;
-					var4 = class26.baseX * 64 + (class296.localPlayer.x >> 7);
+					var4 = KeyHandler.baseX * 64 + (class296.localPlayer.x >> 7);
 					var5 = class158.baseY * 64 + (class296.localPlayer.y >> 7);
 					Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = (var4 << 14) + var5 + (var3 << 28);
 					return 1;

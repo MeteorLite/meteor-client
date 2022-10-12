@@ -693,7 +693,7 @@ public class class28 {
 				} else {
 					Login.Login_loadingText = "Loaded title screen";
 					Login.Login_loadingPercent = 50;
-					class21.method305(5);
+					class21.updateGameState(5);
 					Client.titleLoadingStage = 70;
 				}
 			} else if (Client.titleLoadingStage != 70) {
@@ -846,7 +846,7 @@ public class class28 {
 						Client.titleLoadingStage = 150;
 					}
 				} else if (Client.titleLoadingStage == 150) {
-					class21.method305(10);
+					class21.updateGameState(10);
 				}
 			} else if (!class157.archive2.isFullyLoaded()) {
 				Login.Login_loadingText = "Loading config - " + class157.archive2.loadPercent() + "%";

@@ -98,7 +98,7 @@ public class FriendSystem {
 	)
 	@Export("processFriendUpdates")
 	final void processFriendUpdates() {
-		for (class388 var1 = (class388)this.friendsList.field4461.last(); var1 != null; var1 = (class388)this.friendsList.field4461.previous()) {
+		for (class388 var1 = (class388)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (class388)this.friendsList.friendLoginUpdates.previous()) {
 			if ((long)var1.field4477 < UserComparator8.method2748() / 1000L - 5L) {
 				if (var1.field4476 > 0) {
 					MouseHandler.addGameMessage(5, "", var1.field4475 + " has logged in.");

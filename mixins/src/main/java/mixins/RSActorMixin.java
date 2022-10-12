@@ -82,6 +82,8 @@ public abstract class RSActorMixin implements RSActor
 		}
 
 		index -= 32768;
+		if (index > 2048)
+			return null;
 		Player[] players = client.getCachedPlayers();
 		return players[index];
 	}

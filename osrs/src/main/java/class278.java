@@ -267,7 +267,7 @@ public final class class278 {
 
 							InterfaceParent var30 = (InterfaceParent)Client.interfaceParents.get((long)var10.id);
 							if (var30 != null) {
-								KeyHandler.drawWidgets(var30.group, var15, var16, var17, var18, var12, var13, var11);
+								class999.drawWidgets(var30.group, var15, var16, var17, var18, var12, var13, var11);
 							}
 
 							Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5);

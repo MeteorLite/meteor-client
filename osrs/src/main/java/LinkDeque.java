@@ -24,7 +24,7 @@ public class LinkDeque {
 	@ObfuscatedSignature(
 		descriptor = "(Lpg;)V"
 	)
-	public void method6734(Link var1) {
+	public void addFirst(Link var1) {
 		if (var1.next != null) {
 			var1.remove();
 		}

@@ -853,7 +853,7 @@ instanceKlass java/awt/im/InputContext
 instanceKlass javax/swing/plaf/basic/BasicSplitPaneUI$Handler
 instanceKlass javax/swing/plaf/basic/BasicSplitPaneUI$BasicHorizontalLayoutManager
 instanceKlass javax/swing/plaf/basic/BasicSplitPaneDivider$DividerLayout
-instanceKlass javax/swing/plaf/basic/BasicButtonUI$KeyHandler
+instanceKlass javax/swing/plaf/basic/BasicButtonUI$class999
 instanceKlass javax/swing/plaf/basic/BasicTableUI$Handler
 instanceKlass javax/swing/plaf/basic/BasicTableUI$FocusHandler
 instanceKlass com/formdev/flatlaf/ui/FlatViewportUI$ViewportPainter

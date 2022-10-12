@@ -55,7 +55,7 @@ public class PlayerComposition {
 	)
 	class174[] field3427;
 	@ObfuscatedName("n")
-	boolean field3428;
+	boolean isFemale;
 
 	static {
 		equipmentIndices = new int[]{8, 11, 4, 6, 9, 7, 10};
@@ -65,7 +65,7 @@ public class PlayerComposition {
 	public PlayerComposition() {
 		this.field3425 = -1;
 		this.field3423 = 0;
-		this.field3428 = false;
+		this.isFemale = false;
 	}
 
 	@ObfuscatedName("a")
@@ -75,7 +75,7 @@ public class PlayerComposition {
 	)
 	public void method5730(int[] var1, class174[] var2, boolean var3, int[] var4, int var5, int var6, int var7) {
 		this.field3427 = var2;
-		this.field3428 = var3;
+		this.isFemale = var3;
 		this.field3425 = var7;
 		this.method5731(var1, var4, var5, var6);
 	}
@@ -244,7 +244,7 @@ public class PlayerComposition {
 		this.hash += (long)(this.field3423 * 568602533) * 1040392237L;
 		this.equipment[5] = var3;
 		this.equipment[9] = var4;
-		if (0L != var1 && var1 != this.hash || this.field3428) {
+		if (0L != var1 && var1 != this.hash || this.isFemale) {
 			PlayerAppearance_cachedModels.remove(var1);
 		}
 

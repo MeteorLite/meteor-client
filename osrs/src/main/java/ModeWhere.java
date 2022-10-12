@@ -168,7 +168,7 @@ public enum ModeWhere implements class342 {
 		int var3;
 		if (var0 == 6600) {
 			var3 = ApproximateRouteStrategy.Client_plane;
-			int var15 = class26.baseX * 64 + (class296.localPlayer.x >> 7);
+			int var15 = KeyHandler.baseX * 64 + (class296.localPlayer.x >> 7);
 			int var8 = class158.baseY * 64 + (class296.localPlayer.y >> 7);
 			GrandExchangeOfferUnitPriceComparator.getWorldMap().method7888(var3, var15, var8, true);
 			return 1;

@@ -160,8 +160,8 @@ public class Language implements class342 {
 		garbageValue = "-837252108"
 	)
 	@Export("FillMode_values")
-	public static class474[] FillMode_values() {
-		return new class474[]{class474.SOLID, class474.field4945, class474.field4944};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.SOLID, FillMode.field4945, FillMode.field4944};
 	}
 
 	@ObfuscatedName("h")

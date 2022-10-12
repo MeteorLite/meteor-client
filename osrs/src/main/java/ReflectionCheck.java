@@ -102,7 +102,7 @@ public class ReflectionCheck extends Node {
 			}
 
 			if (class13.regionLandArchiveIds[var1] != -1 && class9.regionMapArchives[var1] == null) {
-				class9.regionMapArchives[var1] = SecureRandomFuture.archive9.takeFileEncrypted(class13.regionLandArchiveIds[var1], 0, class26.xteaKeys[var1]);
+				class9.regionMapArchives[var1] = SecureRandomFuture.archive9.takeFileEncrypted(class13.regionLandArchiveIds[var1], 0, KeyHandler.xteaKeys[var1]);
 				if (class9.regionMapArchives[var1] == null) {
 					var0 = false;
 					++Client.field557;
@@ -121,7 +121,7 @@ public class ReflectionCheck extends Node {
 			for (var1 = 0; var1 < GrandExchangeOfferOwnWorldComparator.regionLandArchives.length; ++var1) {
 				byte[] var15 = class9.regionMapArchives[var1];
 				if (var15 != null) {
-					var3 = (RouteStrategy.regions[var1] >> 8) * 64 - class26.baseX * 64;
+					var3 = (RouteStrategy.regions[var1] >> 8) * 64 - KeyHandler.baseX * 64;
 					var4 = (RouteStrategy.regions[var1] & 255) * 64 - class158.baseY * 64;
 					if (Client.isInInstance) {
 						var3 = 10;
@@ -164,7 +164,7 @@ public class ReflectionCheck extends Node {
 				if (!Client.isInInstance) {
 					byte[] var14;
 					for (var2 = 0; var2 < var1; ++var2) {
-						var3 = (RouteStrategy.regions[var2] >> 8) * 64 - class26.baseX * 64;
+						var3 = (RouteStrategy.regions[var2] >> 8) * 64 - KeyHandler.baseX * 64;
 						var4 = (RouteStrategy.regions[var2] & 255) * 64 - class158.baseY * 64;
 						var14 = GrandExchangeOfferOwnWorldComparator.regionLandArchives[var2];
 						if (var14 != null) {
@@ -174,7 +174,7 @@ public class ReflectionCheck extends Node {
 					}
 
 					for (var2 = 0; var2 < var1; ++var2) {
-						var3 = (RouteStrategy.regions[var2] >> 8) * 64 - class26.baseX * 64;
+						var3 = (RouteStrategy.regions[var2] >> 8) * 64 - KeyHandler.baseX * 64;
 						var4 = (RouteStrategy.regions[var2] & 255) * 64 - class158.baseY * 64;
 						var14 = GrandExchangeOfferOwnWorldComparator.regionLandArchives[var2];
 						if (var14 == null && ServerPacket.field3133 < 800) {
@@ -188,7 +188,7 @@ public class ReflectionCheck extends Node {
 					for (var2 = 0; var2 < var1; ++var2) {
 						byte[] var13 = class9.regionMapArchives[var2];
 						if (var13 != null) {
-							var4 = (RouteStrategy.regions[var2] >> 8) * 64 - class26.baseX * 64;
+							var4 = (RouteStrategy.regions[var2] >> 8) * 64 - KeyHandler.baseX * 64;
 							var5 = (RouteStrategy.regions[var2] & 255) * 64 - class158.baseY * 64;
 							class355.playPcmPlayers();
 							class361.method6839(var13, var4, var5, class139.scene, Client.collisionMaps);
@@ -320,7 +320,7 @@ public class ReflectionCheck extends Node {
 					}
 				}
 
-				class21.method305(30);
+				class21.updateGameState(30);
 				class355.playPcmPlayers();
 				Interpreter.method2003();
 				var17 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3093, Client.packetWriter.isaacCipher);

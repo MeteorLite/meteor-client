@@ -68,7 +68,7 @@ public class WorldMapCacheName {
 		byte var4 = (byte)(var3 >> 28);
 		int var5 = var3 >> 14 & 16383;
 		int var6 = var3 & 16383;
-		var2.pathX[0] = var5 - class26.baseX * 64;
+		var2.pathX[0] = var5 - KeyHandler.baseX * 64;
 		var2.x = (var2.pathX[0] << 7) + (var2.transformedSize() << 6);
 		var2.pathY[0] = var6 - class158.baseY * 64;
 		var2.y = (var2.pathY[0] << 7) + (var2.transformedSize() << 6);

@@ -114,9 +114,9 @@ public class Script extends DualNode {
 	)
 	static void method2120() {
 		Tiles.Tiles_minPlane = 99;
-		Tiles.field994 = new short[4][104][104];
-		Tiles.field1001 = new short[4][104][104];
-		Tiles.field996 = new byte[4][104][104];
+		Tiles.Tiles_underlays = new short[4][104][104];
+		Tiles.Tiles_overlays = new short[4][104][104];
+		Tiles.Tiles_shapes = new byte[4][104][104];
 		class174.field1852 = new byte[4][104][104];
 		UserComparator7.field1410 = new int[4][105][105];
 		class32.field179 = new byte[4][105][105];

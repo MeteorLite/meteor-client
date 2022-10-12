@@ -279,7 +279,7 @@ public class class268 {
 					}
 
 					if (var6 == 18) {
-						var7 = class26.baseX * 64 + (class296.localPlayer.x >> 7);
+						var7 = KeyHandler.baseX * 64 + (class296.localPlayer.x >> 7);
 					}
 
 					if (var6 == 19) {

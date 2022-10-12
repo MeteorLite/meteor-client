@@ -342,7 +342,7 @@ public class class21 {
 		descriptor = "(II)V",
 		garbageValue = "2028812630"
 	)
-	static void method305(int var0) {
+	static void updateGameState(int var0) {
 		if (var0 != Client.gameState) {
 			if (Client.gameState == 30) {
 				Client.field734.method3933();
@@ -524,7 +524,8 @@ public class class21 {
 		class139.scene.clearTempGameObjects();
 		Varcs.method2612(var0, var1, var2, var3);
 		if (Client.hintArrowType == 2) {
-			Skeleton.worldToScreen(Client.field723 * 64 + (Client.hintArrowX - class26.baseX * 64 << 7), Client.field541 * 64 + (Client.hintArrowY - class158.baseY * 64 << 7), Client.field770 * 4);
+			Skeleton.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - KeyHandler.baseX * 64 << 7), Client.hintArrowSubY
+					* 64 + (Client.hintArrowY - class158.baseY * 64 << 7), Client.field770 * 4);
 			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
 				class162.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
 			}

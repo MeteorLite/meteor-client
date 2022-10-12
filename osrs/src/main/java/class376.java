@@ -146,7 +146,7 @@ public class class376 {
 		Client.currentTrackGroupId = -1;
 		Client.playingJingle = false;
 		class87.method2257();
-		class21.method305(10);
+		class21.updateGameState(10);
 	}
 
 	@ObfuscatedName("fb")

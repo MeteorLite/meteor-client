@@ -49,12 +49,12 @@ public class MenuAction {
 	@ObfuscatedGetter(
 		intValue = -1862516219
 	)
-	int field883;
+	int itemId;
 	@ObfuscatedName("j")
 	@Export("action")
 	String action;
 	@ObfuscatedName("y")
-	String field889;
+	String target;
 
 	MenuAction() {
 	}
@@ -235,14 +235,14 @@ public class MenuAction {
 						if (var19 != null) {
 							var11 = var19.x / 32 - class296.localPlayer.x / 32;
 							var12 = var19.y / 32 - class296.localPlayer.y / 32;
-							KeyHandler.worldToMinimap(var1, var2, var11, var12, WorldMapLabelSize.mapMarkerSprites[1], var4);
+							class999.worldToMinimap(var1, var2, var11, var12, WorldMapLabelSize.mapMarkerSprites[1], var4);
 						}
 					}
 
 					if (Client.hintArrowType == 2) {
-						var10 = Client.hintArrowX * 4 - class26.baseX * 256 + 2 - class296.localPlayer.x / 32;
+						var10 = Client.hintArrowX * 4 - KeyHandler.baseX * 256 + 2 - class296.localPlayer.x / 32;
 						var11 = Client.hintArrowY * 4 - class158.baseY * 256 + 2 - class296.localPlayer.y / 32;
-						KeyHandler.worldToMinimap(var1, var2, var10, var11, WorldMapLabelSize.mapMarkerSprites[1], var4);
+						class999.worldToMinimap(var1, var2, var10, var11, WorldMapLabelSize.mapMarkerSprites[1], var4);
 					}
 
 					if (Client.hintArrowType == 10 && Client.hintArrowPlayerIndex >= 0 && Client.hintArrowPlayerIndex < Client.players.length) {
@@ -250,7 +250,7 @@ public class MenuAction {
 						if (var20 != null) {
 							var11 = var20.x / 32 - class296.localPlayer.x / 32;
 							var12 = var20.y / 32 - class296.localPlayer.y / 32;
-							KeyHandler.worldToMinimap(var1, var2, var11, var12, WorldMapLabelSize.mapMarkerSprites[1], var4);
+							class999.worldToMinimap(var1, var2, var11, var12, WorldMapLabelSize.mapMarkerSprites[1], var4);
 						}
 					}
 				}

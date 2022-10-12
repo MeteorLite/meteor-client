@@ -162,7 +162,7 @@ public class class136 extends class135 {
 		}
 
 		if (var6 != -1 && var7 != null) {
-			UserComparator8.method2744(var7, GameObject.colorStartTag(16748608) + var1.name, var6, 0, var2, var0.id, var1.id, var4);
+			UserComparator8.insertMenuItem(var7, GameObject.colorStartTag(16748608) + var1.name, var6, 0, var2, var0.id, var1.id, var4);
 		}
 
 	}

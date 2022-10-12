@@ -112,7 +112,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 		}
 
 		class133.method2975();
-		class21.method305(30);
+		class21.updateGameState(30);
 
 		for (var0 = 0; var0 < 100; ++var0) {
 			Client.field717[var0] = true;

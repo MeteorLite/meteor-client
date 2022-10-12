@@ -91,7 +91,7 @@ public class WorldMapLabel {
 	)
 	static void method5157() {
 		if (class7.worldMap != null) {
-			class7.worldMap.method7888(ApproximateRouteStrategy.Client_plane, class26.baseX * 64 + (class296.localPlayer.x >> 7), class158.baseY * 64 + (class296.localPlayer.y >> 7), false);
+			class7.worldMap.method7888(ApproximateRouteStrategy.Client_plane, KeyHandler.baseX * 64 + (class296.localPlayer.x >> 7), class158.baseY * 64 + (class296.localPlayer.y >> 7), false);
 			class7.worldMap.loadCache();
 		}
 

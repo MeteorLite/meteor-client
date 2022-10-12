@@ -354,11 +354,11 @@ public enum class6 implements class342 {
 			int var2 = var1.method8484();
 			var3 = var1.method8444();
 			var4 = var1.readUnsignedShort();
-			class26.xteaKeys = new int[var4][4];
+			KeyHandler.xteaKeys = new int[var4][4];
 
 			for (var5 = 0; var5 < var4; ++var5) {
 				for (var6 = 0; var6 < 4; ++var6) {
-					class26.xteaKeys[var5][var6] = var1.readInt();
+					KeyHandler.xteaKeys[var5][var6] = var1.readInt();
 				}
 			}
 
@@ -403,11 +403,11 @@ public enum class6 implements class342 {
 			}
 
 			var1.exportIndex();
-			class26.xteaKeys = new int[var5][4];
+			KeyHandler.xteaKeys = new int[var5][4];
 
 			for (var6 = 0; var6 < var5; ++var6) {
 				for (var7 = 0; var7 < 4; ++var7) {
-					class26.xteaKeys[var6][var7] = var1.readInt();
+					KeyHandler.xteaKeys[var6][var7] = var1.readInt();
 				}
 			}
 

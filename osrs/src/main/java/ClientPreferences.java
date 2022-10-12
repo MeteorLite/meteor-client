@@ -638,7 +638,7 @@ public class ClientPreferences {
 
 		if (Client.oculusOrbState == 1 && Client.staffModLevel >= 2 && Client.cycle % 50 == 0 && (class31.oculusOrbFocalPointX >> 7 != class296.localPlayer.x >> 7 || PendingSpawn.oculusOrbFocalPointY >> 7 != class296.localPlayer.y >> 7)) {
 			var13 = class296.localPlayer.plane;
-			var14 = class26.baseX * 64 + (class31.oculusOrbFocalPointX >> 7);
+			var14 = KeyHandler.baseX * 64 + (class31.oculusOrbFocalPointX >> 7);
 			var15 = class158.baseY * 64 + (PendingSpawn.oculusOrbFocalPointY >> 7);
 			class143.method3054(var14, var15, var13, true);
 		}
@@ -662,14 +662,14 @@ public class ClientPreferences {
 
 		int var6 = (var3 - 32 - var5) * var2 / (var4 - var3);
 		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field568);
-		Rasterizer2D.method8721(var0, var6 + var1 + 16, var5, Client.field570);
-		Rasterizer2D.method8721(var0 + 1, var6 + var1 + 16, var5, Client.field570);
-		Rasterizer2D.method8720(var0, var6 + var1 + 16, 16, Client.field570);
-		Rasterizer2D.method8720(var0, var6 + var1 + 17, 16, Client.field570);
-		Rasterizer2D.method8721(var0 + 15, var6 + var1 + 16, var5, Client.field569);
-		Rasterizer2D.method8721(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field569);
-		Rasterizer2D.method8720(var0, var5 + var6 + var1 + 15, 16, Client.field569);
-		Rasterizer2D.method8720(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field569);
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0, var6 + var1 + 16, var5, Client.field570);
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field570);
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 16, 16, Client.field570);
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 17, 16, Client.field570);
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field569);
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field569);
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var5 + var6 + var1 + 15, 16, Client.field569);
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field569);
 	}
 
 	@ObfuscatedName("kz")

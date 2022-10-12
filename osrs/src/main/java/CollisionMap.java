@@ -589,15 +589,15 @@ public class CollisionMap {
 		if (!var2 || var0 != class343.field4234 || ServerPacket.field3133 != var1) {
 			class343.field4234 = var0;
 			ServerPacket.field3133 = var1;
-			class21.method305(25);
+			class21.updateGameState(25);
 			class145.drawLoadingMessage("Loading - please wait.", true);
-			int var3 = class26.baseX * 64;
+			int var3 = KeyHandler.baseX * 64;
 			int var4 = class158.baseY * 64;
-			class26.baseX = (var0 - 6) * 8;
+			KeyHandler.baseX = (var0 - 6) * 8;
 			class158.baseY = (var1 - 6) * 8;
-			int var5 = class26.baseX * 64 - var3;
+			int var5 = KeyHandler.baseX * 64 - var3;
 			int var6 = class158.baseY * 64 - var4;
-			var3 = class26.baseX * 64;
+			var3 = KeyHandler.baseX * 64;
 			var4 = class158.baseY * 64;
 
 			int var7;

@@ -67,7 +67,7 @@ public class Buffer extends Node {
 	}
 
 	public Buffer(int var1) {
-		this.array = KeyHandler.ByteArrayPool_getArray(var1);
+		this.array = class999.ByteArrayPool_getArray(var1);
 		this.offset = 0;
 	}
 

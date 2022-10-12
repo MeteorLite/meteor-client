@@ -2506,8 +2506,8 @@ public abstract class RSClientMixin implements RSClient
 		{
 			RSScene scene = client.getScene();
 
-			byte[][][] underlays = client.getTileUnderlays();
-			byte[][][] overlays = client.getTileOverlays();
+			short[][][] underlays = client.getTileUnderlays();
+			short[][][] overlays = client.getTileOverlays();
 			byte[][][] tileShapes = client.getTileShapes();
 
 			scene.setUnderlayIds(Arrays.copyOf(underlays, underlays.length));
@@ -3351,5 +3351,23 @@ public abstract class RSClientMixin implements RSClient
 	public Instant getLastInteractionTime()
 	{
 		return lastInteractionTime;
+	}
+
+	@Inject
+	@Override
+	public void setKeyboardIdleTicks(int i) {
+		getKeyHandler().setIdleCycles(i);
+	}
+
+	@Inject
+	@Override
+	public int getKeyboardIdleTicks() {
+		return getKeyHandler().getIdleCycles();
+	}
+
+	@Inject
+	@Override
+	public boolean[] getPressedKeys() {
+		return getKeyHandler().getPressedKeys();
 	}
 }

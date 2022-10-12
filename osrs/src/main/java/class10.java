@@ -338,8 +338,8 @@ public class class10 {
 		PendingSpawn.tempMenuAction.param1 = Client.menuArguments2[var0];
 		PendingSpawn.tempMenuAction.opcode = Client.menuOpcodes[var0];
 		PendingSpawn.tempMenuAction.identifier = Client.menuIdentifiers[var0];
-		PendingSpawn.tempMenuAction.field883 = Client.field647[var0];
+		PendingSpawn.tempMenuAction.itemId = Client.menuItemIds[var0];
 		PendingSpawn.tempMenuAction.action = Client.menuActions[var0];
-		PendingSpawn.tempMenuAction.field889 = Client.menuTargets[var0];
+		PendingSpawn.tempMenuAction.target = Client.menuTargets[var0];
 	}
 }

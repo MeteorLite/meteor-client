@@ -80,7 +80,7 @@ public abstract class UrlRequester implements Runnable {
 				var3.readFully(var4);
 			} else {
 				var4 = new byte[0];
-				byte[] var6 = KeyHandler.ByteArrayPool_getArray(5000);
+				byte[] var6 = class999.ByteArrayPool_getArray(5000);
 
 				byte[] var8;
 				for (int var7 = var3.read(var6, 0, var6.length); var7 > -1; var4 = var8) {

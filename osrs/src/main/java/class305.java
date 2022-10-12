@@ -242,7 +242,7 @@ public class class305 {
 					int var10002;
 					if (var13 >= 0 && var13 < 104) {
 						var14 = Client.field789 < 209 ? (int)class141.method3037(8) : (int)class141.method3037(15);
-						var15 = Tiles.field994[var2][var13][var12] & var14;
+						var15 = Tiles.Tiles_underlays[var2][var13][var12] & var14;
 						if (var15 > 0) {
 							var17 = var15 - 1;
 							FloorUnderlayDefinition var50 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var17);
@@ -276,7 +276,7 @@ public class class305 {
 					var14 = var11 - 5;
 					if (var14 >= 0 && var14 < 104) {
 						var15 = Client.field789 < 209 ? (int)class141.method3037(8) : (int)class141.method3037(15);
-						var16 = Tiles.field994[var2][var14][var12] & var15;
+						var16 = Tiles.Tiles_underlays[var2][var14][var12] & var15;
 						if (var16 > 0) {
 							var18 = var16 - 1;
 							FloorUnderlayDefinition var63 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var18);
@@ -340,8 +340,8 @@ public class class305 {
 							}
 
 							var20 = Client.field789 < 209 ? (int)class141.method3037(8) : (int)class141.method3037(15);
-							int var21 = Tiles.field994[var2][var11][var17] & var20;
-							int var22 = Tiles.field1001[var2][var11][var17] & var20;
+							int var21 = Tiles.Tiles_underlays[var2][var11][var17] & var20;
+							int var22 = Tiles.Tiles_overlays[var2][var11][var17] & var20;
 							if (var21 > 0 || var22 > 0) {
 								int var23 = Tiles.Tiles_heights[var2][var11][var17];
 								int var24 = Tiles.Tiles_heights[var2][var11 + 1][var17];
@@ -375,7 +375,7 @@ public class class305 {
 								FloorOverlayDefinition var36;
 								if (var2 > 0) {
 									boolean var61 = true;
-									if (var21 == 0 && Tiles.field996[var2][var11][var17] != 0) {
+									if (var21 == 0 && Tiles.Tiles_shapes[var2][var11][var17] != 0) {
 										var61 = false;
 									}
 
@@ -416,7 +416,7 @@ public class class305 {
 								if (var22 == 0) {
 									var0.addTile(var2, var11, var17, 0, 0, -1, var23, var24, var25, var26, Varps.method5679(var31, var27), Varps.method5679(var31, var28), Varps.method5679(var31, var29), Varps.method5679(var31, var30), 0, 0, 0, 0, var33, 0);
 								} else {
-									var34 = Tiles.field996[var2][var11][var17] + 1;
+									var34 = Tiles.Tiles_shapes[var2][var11][var17] + 1;
 									byte var62 = class174.field1852[var2][var11][var17];
 									int var48 = var22 - 1;
 									FloorOverlayDefinition var38 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var48);
@@ -499,9 +499,9 @@ public class class305 {
 				}
 			}
 
-			Tiles.field994[var2] = null;
-			Tiles.field1001[var2] = null;
-			Tiles.field996[var2] = null;
+			Tiles.Tiles_underlays[var2] = null;
+			Tiles.Tiles_overlays[var2] = null;
+			Tiles.Tiles_shapes[var2] = null;
 			class174.field1852[var2] = null;
 			class32.field179[var2] = null;
 		}

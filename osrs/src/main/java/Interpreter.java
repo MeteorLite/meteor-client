@@ -235,9 +235,9 @@ public class Interpreter {
 		garbageValue = "-534066588"
 	)
 	static void method2003() {
-		Tiles.field994 = null;
-		Tiles.field1001 = null;
-		Tiles.field996 = null;
+		Tiles.Tiles_underlays = null;
+		Tiles.Tiles_overlays = null;
+		Tiles.Tiles_shapes = null;
 		class174.field1852 = null;
 		UserComparator7.field1410 = null;
 		class32.field179 = null;

@@ -237,7 +237,7 @@ public class WorldMapSection0 implements WorldMapSection {
 			class376.logOut();
 		} else {
 			Client.timer.method7168();
-			class21.method305(40);
+			class21.updateGameState(40);
 			Frames.field2528 = Client.packetWriter.getSocket();
 			Client.packetWriter.removeSocket();
 		}
@@ -308,7 +308,7 @@ public class WorldMapSection0 implements WorldMapSection {
 					}
 				}
 
-				var12 = Client.field631[var1.readBits(3)];
+				var12 = Client.defaultRotations[var1.readBits(3)];
 				if (var5) {
 					var15.orientation = var15.rotation = var12;
 				}
@@ -351,7 +351,7 @@ public class WorldMapSection0 implements WorldMapSection {
 				}
 
 				var7 = var1.readBits(1);
-				var10 = Client.field631[var1.readBits(3)];
+				var10 = Client.defaultRotations[var1.readBits(3)];
 				if (var5) {
 					var15.orientation = var15.rotation = var10;
 				}
@@ -472,7 +472,7 @@ public class WorldMapSection0 implements WorldMapSection {
 				var6 = var1.method8444();
 				var7 = var1.method8446();
 				var14.field1173 = var1.method8435() == 1;
-				var8 = var14.x - (var6 - class26.baseX * 64 - class26.baseX * 64) * 64;
+				var8 = var14.x - (var6 - KeyHandler.baseX * 64 - KeyHandler.baseX * 64) * 64;
 				var9 = var14.y - (var7 - class158.baseY * 64 - class158.baseY * 64) * 64;
 				if (var8 != 0 || var9 != 0) {
 					var14.field1203 = (int)(Math.atan2((double)var8, (double)var9) * 325.949D) & 2047;

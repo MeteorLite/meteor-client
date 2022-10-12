@@ -271,7 +271,7 @@ public class class467 implements class342 {
 				return 1;
 			} else if (var0 == 1125) {
 				var13 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
-				class474 var11 = (class474)WallDecoration.findEnumerated(Language.FillMode_values(), var13);
+				FillMode var11 = (FillMode)WallDecoration.findEnumerated(Language.FillMode_values(), var13);
 				if (var11 != null) {
 					var3.fillMode = var11;
 					class143.invalidateWidget(var3);

@@ -33,7 +33,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 	static void method6533(int var0, Coord var1, boolean var2) {
 		WorldMapArea var3 = getWorldMap().getMapArea(var0);
 		int var4 = class296.localPlayer.plane;
-		int var5 = class26.baseX * 64 + (class296.localPlayer.x >> 7);
+		int var5 = KeyHandler.baseX * 64 + (class296.localPlayer.x >> 7);
 		int var6 = class158.baseY * 64 + (class296.localPlayer.y >> 7);
 		Coord var7 = new Coord(var4, var5, var6);
 		getWorldMap().method7882(var3, var7, var1, var2);

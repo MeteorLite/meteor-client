@@ -104,7 +104,7 @@ public class Username implements Comparable {
 							}
 
 							if (var11) {
-								char var16 = class26.method369(var10);
+								char var16 = KeyHandler.method369(var10);
 								if (var16 != 0) {
 									var15.append(var16);
 								}
@@ -216,7 +216,7 @@ public class Username implements Comparable {
 							}
 
 							if (var11) {
-								char var16 = class26.method369(var10);
+								char var16 = KeyHandler.method369(var10);
 								if (var16 != 0) {
 									var15.append(var16);
 								}

@@ -35,7 +35,8 @@ public class class71 {
 			} else if (Client.localPlayerIndex == var1) {
 				throw new RuntimeException();
 			} else {
-				Players.Players_regions[var1] = (var4.plane << 28) + (class158.baseY * 64 + var4.pathY[0] >> 13) + (class26.baseX * 64 + var4.pathX[0] >> 13 << 14);
+				Players.Players_regions[var1] = (var4.plane << 28) + (class158.baseY * 64 + var4.pathY[0] >> 13) + (
+            KeyHandler.baseX * 64 + var4.pathX[0] >> 13 << 14);
 				if (var4.field1203 != -1) {
 					Players.Players_orientations[var1] = var4.field1203;
 				} else {
@@ -196,7 +197,7 @@ public class class71 {
 					var7 = var6 >> 28;
 					var8 = var6 >> 14 & 16383;
 					var9 = var6 & 16383;
-					var10 = (class26.baseX * 64 + var8 + var4.pathX[0] & 16383) - class26.baseX * 64;
+					var10 = (KeyHandler.baseX * 64 + var8 + var4.pathX[0] & 16383) - KeyHandler.baseX * 64;
 					var11 = (class158.baseY * 64 + var9 + var4.pathY[0] & 16383) - class158.baseY * 64;
 					if (Client.localPlayerIndex == var1 && (var4.x < 1536 || var4.y < 1536 || var4.x >= 11776 || var4.y >= 11776)) {
 						var4.resetPath(var10, var11);

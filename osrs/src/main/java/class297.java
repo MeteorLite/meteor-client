@@ -50,7 +50,7 @@ public class class297 {
 	SpritePixels method5722() {
 		if (this.field3406 == null && this.field3407 != null && this.field3407.isDone()) {
 			if (this.field3407.getResponse() != null) {
-				this.field3406 = class26.method394(this.field3407.getResponse());
+				this.field3406 = KeyHandler.method394(this.field3407.getResponse());
 			}
 
 			this.field3407 = null;
