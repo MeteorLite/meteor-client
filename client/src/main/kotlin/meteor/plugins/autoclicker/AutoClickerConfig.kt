@@ -195,7 +195,8 @@ interface AutoClickerConfig : Config {
         name = "Mouse On NPC",
         description = "",
         position = 24,
-        section = "Clicker Filters"
+        section = "Clicker Filters",
+        unhideKey = "mouseOnNPC"
     )
     fun mouseOnNPC(): Boolean {
         return false

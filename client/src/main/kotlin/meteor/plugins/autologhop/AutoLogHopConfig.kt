@@ -25,8 +25,7 @@ interface AutoLogHopConfig : Config {
         position = 11,
         section = "AutoLogHop",
         hidden = true,
-        unhide = "method",
-        unhideValue = "TELEPORT"
+
     )
     fun teleMethod(): TeleportType? {
         return TeleportType.ROYAL_SEED_POD

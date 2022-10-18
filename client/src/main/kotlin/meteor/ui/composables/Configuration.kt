@@ -18,7 +18,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,9 +25,6 @@ import com.godaddy.android.colorpicker.harmony.ColorHarmonyMode
 import com.godaddy.android.colorpicker.harmony.HarmonyColorPicker
 import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft24
-import eventbus.Events
-import eventbus.events.ConfigButtonClicked
-import meteor.Main
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
@@ -36,11 +32,7 @@ import meteor.config.legacy.ModifierlessKeybind
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.toolbar.sectionItem
 import meteor.util.ColorUtil
-import java.awt.Button
 import java.awt.event.KeyEvent
-import java.util.*
-import kotlin.collections.ArrayList
-
 
 @Composable
 fun ConfigPanel() {
@@ -58,7 +50,7 @@ fun ConfigPanel() {
             ) {
                 MaterialTheme(colors = darkThemeColors) {
                     ConfigPanelHeader()
-                    Configs()
+                    configs()
 
                 }
             }
@@ -76,12 +68,10 @@ fun ConfigPanelHeader() {
         ) {
             Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start) {
                 IconButton(modifier = Modifier.padding(top = 10.dp), onClick = {
-
-                    if (configOpen.value) {
-                        configOpen.value = false
+                    when {
+                        configOpen.value -> configOpen.value = false
+                        !pluginsOpen.value -> pluginsOpen.value = true
                     }
-                    if (!pluginsOpen.value)
-                        pluginsOpen.value = true
                 }) {
                     Icon(
                         imageVector = Octicons.ChevronLeft24,
@@ -123,17 +113,18 @@ fun ConfigPanelHeader() {
 
 
 @Composable
-fun Configs() {
+fun configs() {
     Column(
         horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.background)
     ) {
         MaterialTheme(colors = darkThemeColors) {
             var descriptor: ConfigDescriptor? = null
-            if (lastPlugin.config != null)
-                descriptor = ConfigManager.getConfigDescriptor(lastPlugin.config!!)
-            else if (lastPlugin.javaConfig != null)
-                descriptor = ConfigManager.getConfigDescriptor(lastPlugin.javaConfig!!)
+            var toggledEnum = mutableStateOf(false)
+            when {
+                lastPlugin.config != null -> descriptor = ConfigManager.getConfigDescriptor(lastPlugin.config!!)
+                lastPlugin.javaConfig != null -> descriptor = ConfigManager.getConfigDescriptor(lastPlugin.javaConfig!!)
+            }
 
             if (descriptor != null) {
                 LazyColumn(modifier = Modifier.fillMaxHeight()) {
@@ -141,57 +132,113 @@ fun Configs() {
                     val title = descriptor.titles.sortedBy { it.title.position }.toMutableList()
                     items(items = sectList) { sect ->
                         sectionItem(title = sect.name()) {
-                            val sections = mutableListOf<ConfigItemDescriptor>()
-                            val kotlinSection = descriptor.items.filter{it.item.section == sect.name()}.toMutableList()
-                            val javaSection = descriptor.items.filter{ sect.type == String::class.java  } .toMutableList()
-                            val sectionList = sections.also{
-                                it.addAll(kotlinSection)
-                                it.addAll(javaSection)
-                            }
-                            sectionList.sortedBy { it.item.position }.toMutableList()
-                                .forEach { configuration: ConfigItemDescriptor ->
-                                    if (configuration.item.section.startsWith(sect.name(), ignoreCase = true))
-                                    when (configuration.type) {
-                                        Int::class.javaPrimitiveType -> {
-                                            if (configuration.range != null) {
-                                                if (configuration.range.textInput) {
-                                                    createIntegerTextNode(descriptor, configuration)
-                                                } else {
-                                                    createSliderIntegerNode(descriptor, configuration)
-                                                }
-                                            } else if (configuration.item.textField) {
-                                                createIntegerAreaTextNode(descriptor, configuration)
-                                            } else {
-                                                createIntegerTextNode(descriptor, configuration)
+                            val sections =
+                                descriptor.items.filter { it.item.section == sect.name() || sect.type == it.item.section }
+                            sections.forEach { config ->
+                                if (config.item.unhide.isBlank()) {
+                                    when (config.type) {
+                                        Int::class.javaPrimitiveType, Int::class.java -> {
+                                            when {
+                                                config.range != null -> sliderIntNode(descriptor, config)
+                                                config.item.textArea -> intAreaTextNode(
+                                                    descriptor,
+                                                    config
+                                                )
+                                                else -> intTextNode(descriptor, config)
                                             }
+                                        }
+                                        Boolean::class.java -> {
+                                            if (config.item.unhideKey == "")
+                                                createBooleanNode(descriptor, config)
+                                            else
+                                                descriptor.items.filter { config.item.keyName == it.item.keyName }
+                                                    .forEach { hidden ->
+                                                        val toggled = remember { mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, hidden.key())!!.toBoolean()) }
+
+                                                        Row(
+                                                            modifier = Modifier.fillMaxWidth().height(32.dp)
+                                                                .background(darkThemeColors.background)
+                                                        ) {
+                                                            Row(
+                                                                verticalAlignment = Alignment.CenterVertically,
+                                                                horizontalArrangement = Arrangement.Start,
+                                                                modifier = Modifier.fillMaxWidth(0.8f).height(32.dp)
+                                                                    .background(darkThemeColors.background)
+                                                            ) {
+                                                                Text(hidden.name(), style = TextStyle(uiColor, 14.sp))
+                                                            }
+                                                            Row(
+                                                                verticalAlignment = Alignment.CenterVertically,
+                                                                horizontalArrangement = Arrangement.End,
+                                                                modifier = Modifier.fillMaxWidth().height(32.dp)
+                                                                    .background(darkThemeColors.background)
+                                                            ) {
+                                                                Switch(toggled.value, onCheckedChange = {
+                                                                    ConfigManager.setConfiguration(descriptor.group.value, hidden.key(), it)
+                                                                    toggled.value = it
+                                                                }, enabled = true, modifier = Modifier.scale(0.85f))
+                                                            }
+                                                        }
+
+                                                        when {
+                                                            toggled.value ->
+                                                                descriptor.items.filter { it.item.unhide == hidden.item.unhideKey }
+                                                                    .forEach { hiddenItem ->
+                                                                        when (hiddenItem.type) {
+                                                                            Int::class.javaPrimitiveType, Int::class.java -> {
+                                                                                when {
+                                                                                    hiddenItem.range != null -> sliderIntNode(descriptor, hiddenItem)
+                                                                                    hiddenItem.item.textArea -> intAreaTextNode(descriptor, hiddenItem)
+                                                                                    else -> intTextNode(descriptor, hiddenItem
+                                                                                    )
+                                                                                }
+                                                                            }
+                                                                            Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor,hiddenItem)
+                                                                            java.awt.Color::class.java -> colorPickerNode(descriptor, hiddenItem)
+                                                                            ModifierlessKeybind::class.java -> hotKeyNode(descriptor, hiddenItem)
+                                                                            String::class.java -> {
+                                                                                when {
+                                                                                    hiddenItem.item.textArea -> stringAreaTextNode(descriptor, hiddenItem)
+                                                                                    else -> stringTextNode(descriptor, hiddenItem)
+                                                                                }
+                                                                            }
+
+                                                                            else -> if (hiddenItem.type?.isEnum == true) createEnumNode(descriptor, hiddenItem)
+
+                                                                        }
+                                                                    }
+                                                        }
+                                                    }
                                         }
 
-                                        Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor, configuration)
-                                        Button::class.java -> createButtonNode(descriptor, configuration)
-                                        java.awt.Color::class.java -> createColorPickerNode(descriptor, configuration)
-                                        ModifierlessKeybind::class.java -> createHotKeyNode(descriptor, configuration)
+                                        java.awt.Color::class.java -> colorPickerNode(descriptor, config)
+                                        ModifierlessKeybind::class.java -> hotKeyNode(descriptor, config)
                                         String::class.java -> {
-                                            if (configuration.item.textField) {
-                                                createStringAreaTextNode(descriptor, configuration)
-                                            } else {
-                                                createStringTextNode(descriptor, configuration)
+                                            when {
+                                                config.item.textArea -> stringAreaTextNode(descriptor, config)
+                                                else -> stringTextNode(descriptor, config)
                                             }
                                         }
-                                        else -> {
-                                            if (configuration.type?.isEnum == true) {
-                                                createEnumNode(descriptor, configuration)
-                                            }
+                                        else -> if (config.type?.isEnum == true) {
+                                            createEnumNode(descriptor, config)
                                         }
                                     }
+
                                 }
+
+                            }
                         }
+
                     }
 
                     items(items = title) {
 
-                        BoxWithConstraints( modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),contentAlignment = Alignment.TopCenter) {
+                        BoxWithConstraints(
+                            modifier = Modifier.fillMaxWidth().align(Alignment.CenterHorizontally),
+                            contentAlignment = Alignment.TopCenter
+                        ) {
                             Text(
-                                modifier = Modifier.fillMaxWidth().padding(it.title.padding .dp),
+                                modifier = Modifier.fillMaxWidth().padding(it.title.padding.dp),
                                 text = it.name(),
                                 style = TextStyle(
                                     color = uiColor,
@@ -203,42 +250,100 @@ fun Configs() {
                         }
 
                     }
-                    items(items = descriptor.items.sortedBy { it.item.position }.filter { it.item.section.isEmpty()}.toMutableList())
-                    { configuration ->
-                        if (configuration.item.section == "")
-                        when (configuration.type) {
-                            Int::class.javaPrimitiveType -> {
-                                if (configuration.range != null) {
-                                    if (configuration.range.textInput) {
-                                        createIntegerTextNode(descriptor, configuration)
-                                    } else {
-                                        createSliderIntegerNode(descriptor, configuration)
-                                    }
-                                } else if (configuration.item.textField) {
-                                    createIntegerAreaTextNode(descriptor, configuration)
-                                } else {
-                                    createIntegerTextNode(descriptor, configuration)
-                                }
-                            }
-                            Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor, configuration)
-                            Button::class.java -> createButtonNode(descriptor, configuration)
-                            java.awt.Color::class.java -> createColorPickerNode(descriptor, configuration)
-                            ModifierlessKeybind::class.java -> createHotKeyNode(descriptor, configuration)
-                            String::class.java -> {
-                                if (configuration.item.textField) {
-                                    createStringAreaTextNode(descriptor, configuration)
-                                } else {
 
-                                    createStringTextNode(descriptor, configuration)
+                    items(items = descriptor.items.filter { it.item.section.isEmpty() })
+                    { config ->
+
+                            when (config.type) {
+                                Int::class.javaPrimitiveType, Int::class.java -> {
+                                    when {
+                                        config.range != null -> sliderIntNode(descriptor, config)
+                                        config.item.textArea -> intAreaTextNode(
+                                            descriptor,
+                                            config
+                                        )
+                                        else -> intTextNode(descriptor, config)
+                                    }
+                                }
+                                Boolean::class.java -> {
+                                    if (config.item.unhideKey == "")
+                                        createBooleanNode(descriptor, config)
+                                    else
+                                        descriptor.items.filter { config.item.keyName == it.item.keyName }
+                                            .forEach { hidden ->
+                                                val toggled = remember { mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, hidden.key())!!.toBoolean()) }
+
+                                                Row(
+                                                    modifier = Modifier.fillMaxWidth().height(32.dp)
+                                                        .background(darkThemeColors.background)
+                                                ) {
+                                                    Row(
+                                                        verticalAlignment = Alignment.CenterVertically,
+                                                        horizontalArrangement = Arrangement.Start,
+                                                        modifier = Modifier.fillMaxWidth(0.8f).height(32.dp)
+                                                            .background(darkThemeColors.background)
+                                                    ) {
+                                                        Text(hidden.name(), style = TextStyle(uiColor, 14.sp))
+                                                    }
+                                                    Row(
+                                                        verticalAlignment = Alignment.CenterVertically,
+                                                        horizontalArrangement = Arrangement.End,
+                                                        modifier = Modifier.fillMaxWidth().height(32.dp)
+                                                            .background(darkThemeColors.background)
+                                                    ) {
+                                                        Switch(toggled.value, onCheckedChange = {
+                                                            ConfigManager.setConfiguration(descriptor.group.value, hidden.key(), it)
+                                                            toggled.value = it
+                                                        }, enabled = true, modifier = Modifier.scale(0.85f))
+                                                    }
+                                                }
+
+                                                when {
+                                                    toggled.value ->
+                                                        descriptor.items.filter { it.item.unhide == hidden.item.unhideKey }
+                                                            .forEach { hiddenItem ->
+                                                                when (hiddenItem.type) {
+                                                                    Int::class.javaPrimitiveType, Int::class.java -> {
+                                                                        when {
+                                                                            hiddenItem.range != null -> sliderIntNode(descriptor, hiddenItem)
+                                                                            hiddenItem.item.textArea -> intAreaTextNode(descriptor, hiddenItem)
+                                                                            else -> intTextNode(descriptor, hiddenItem
+                                                                            )
+                                                                        }
+                                                                    }
+                                                                    Boolean::class.javaPrimitiveType -> createBooleanNode(descriptor,hiddenItem)
+                                                                    java.awt.Color::class.java -> colorPickerNode(descriptor, hiddenItem)
+                                                                    ModifierlessKeybind::class.java -> hotKeyNode(descriptor, hiddenItem)
+                                                                    String::class.java -> {
+                                                                        when {
+                                                                            hiddenItem.item.textArea -> stringAreaTextNode(descriptor, hiddenItem)
+                                                                            else -> stringTextNode(descriptor, hiddenItem)
+                                                                        }
+                                                                    }
+                                                                    else -> if (hiddenItem.type?.isEnum == true) createEnumNode(descriptor, hiddenItem)
+                                                                }
+                                                            }
+                                                }
+                                            }
+                                }
+
+                                java.awt.Color::class.java -> colorPickerNode(descriptor, config)
+                                ModifierlessKeybind::class.java -> hotKeyNode(descriptor, config)
+                                String::class.java -> {
+                                    when {
+                                        config.item.textArea -> stringAreaTextNode(descriptor, config)
+                                        else -> stringTextNode(descriptor, config)
+                                    }
+                                }
+                                else -> if (config.type?.isEnum == true) {
+                                    createEnumNode(descriptor, config)
                                 }
                             }
-                            else -> {
-                                if (configuration.type?.isEnum == true) {
-                                    createEnumNode(descriptor, configuration)
-                                }
-                            }
-                        }
+
+
+
                     }
+
                 }
             }
         }
@@ -280,9 +385,9 @@ fun createBooleanNode(descriptor: ConfigDescriptor, configItemDescriptor: Config
 }
 
 @Composable
-fun createHotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+fun hotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     val configStr = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())!!
-    var keybind by remember {
+    var keyBind by remember {
         mutableStateOf(
             ConfigManager.stringToObject(
                 configStr,
@@ -290,10 +395,7 @@ fun createHotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigI
             ) as ModifierlessKeybind
         )
     }
-
     MaterialTheme(colors = darkThemeColors) {
-
-
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth().height(60.dp)
@@ -306,15 +408,15 @@ fun createHotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigI
                         style = TextStyle(color = uiColor, fontSize = 14.sp)
                     )
                 },
-                value = keybind.toString(),
+                value = keyBind.toString(),
                 onValueChange = {
-                    keybind.toString()
-                    ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), keybind)
+                    keyBind.toString()
+                    ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), keyBind)
                 },
                 modifier = Modifier
                     .onKeyEvent {
                         if (it.type == KeyEventType.KeyDown) {
-                            keybind = ModifierlessKeybind(it.key.nativeKeyCode, KeyEvent.KEY_PRESSED)
+                            keyBind = ModifierlessKeybind(it.key.nativeKeyCode, KeyEvent.KEY_PRESSED)
 
                         }
                         true
@@ -326,21 +428,17 @@ fun createHotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigI
 }
 
 @Composable
-fun createColorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-
+fun colorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     val getConfigColor by remember {
         mutableStateOf(
-            Integer.valueOf(
-                ConfigManager.getConfiguration(
-                    descriptor.group.value,
-                    configItemDescriptor.key()
-                )
-            )
+            ConfigManager.getConfiguration(
+                descriptor.group.value,
+                configItemDescriptor.key()
+            )?.toInt()
         )
     }
-    val setConfigColor = remember {
-        mutableStateOf(ConfigManager.stringToObject(getConfigColor.toString(), Color::class.java))
-    }
+    val setConfigColor =
+        remember { mutableStateOf(ConfigManager.stringToObject(getConfigColor.toString(), Color::class.java)) }
     Row(
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
         modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
@@ -355,7 +453,7 @@ fun createColorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
     ) {
         HarmonyColorPicker(
             modifier = Modifier.height(275.dp).width(275.dp),
-            color = Color(getConfigColor),
+            color = Color(getConfigColor!!),
             onColorChanged = {
                 val thisCol = ColorUtil.hsvToRgb(floatArrayOf(it.hue, it.saturation, it.value))
                 val setCol = java.awt.Color(thisCol.component1(), thisCol.component2(), thisCol.component3())
@@ -368,27 +466,26 @@ fun createColorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
             }, harmonyMode = ColorHarmonyMode.SHADES
         )
     }
-
-
 }
 
 @Composable
-fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
 
-    var sliderValue by remember { mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())!!.toFloat()) }
-    val getInt by remember {
+    var sliderValue by remember {
         mutableStateOf(
-            Integer.valueOf(
-                ConfigManager.getConfiguration(
-                    descriptor.group.value,
-                    configItemDescriptor.key()
-                )
+            ConfigManager.getConfiguration(
+                descriptor.group.value,
+                configItemDescriptor.key()
             )
         )
     }
-
     var setConfigValue by remember {
-        mutableStateOf(ConfigManager.stringToObject(getInt.toString(), Int::class.java) as Int)
+        mutableStateOf(
+            ConfigManager.stringToObject(
+                sliderValue.toString(),
+                Int::class.java
+            ) as Int
+        )
     }
     Row(modifier = Modifier.fillMaxWidth().height(46.dp).background(Color(0xFF242424))) {
         Row(
@@ -412,16 +509,15 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
                 )
                 Spacer(Modifier.width(5.dp).background(darkThemeColors.background))
                 Slider(
-                    value = sliderValue,
+                    value = sliderValue!!.toFloat(),
                     onValueChange = {
-                        sliderValue = setConfigValue.toFloat()
+                        sliderValue = setConfigValue.toString()
                         setConfigValue = it.toInt()
                         ConfigManager.setConfiguration(
                             descriptor.group.value,
                             configItemDescriptor.key(),
                             it.toInt()
                         )
-                        println(setConfigValue)
                     },
                     valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
                     modifier = Modifier.height(12.dp).background(darkThemeColors.background)
@@ -433,15 +529,13 @@ fun createSliderIntegerNode(descriptor: ConfigDescriptor, configItemDescriptor: 
 }
 
 @Composable
-fun createIntegerAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     var text by remember {
         mutableStateOf(
-            "" +
-                    ConfigManager.getConfiguration(
-                        descriptor.group.value,
-                        configItemDescriptor.key()
-
-                    )
+            ConfigManager.getConfiguration(
+                descriptor.group.value,
+                configItemDescriptor.key()
+            ).toString()
         )
     }
     Row(modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424))) {
@@ -479,20 +573,16 @@ fun createIntegerAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor
 }
 
 @Composable
-fun createIntegerTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     var text by remember {
         mutableStateOf(
-            "" + Integer.valueOf(
-                ConfigManager.getConfiguration(
-                    descriptor.group.value,
-                    configItemDescriptor.key()
-                )
-            )
+            ConfigManager.getConfiguration(
+                descriptor.group.value,
+                configItemDescriptor.key()
+            ).toString()
         )
     }
-
     Row(modifier = Modifier.fillMaxWidth().height(60.dp)) {
-
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth().height(60.dp).background(darkThemeColors.background)
@@ -501,16 +591,14 @@ fun createIntegerTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth().height(60.dp).padding(all = 3.dp),
                     value = text,
-                    visualTransformation = if (!configItemDescriptor.secret()) VisualTransformation.None else PasswordVisualTransformation(),
+                    visualTransformation = if (configItemDescriptor.secret()) PasswordVisualTransformation() else VisualTransformation.None,
                     onValueChange = {
-                        try {
-                            ConfigManager.setConfiguration(
-                                descriptor.group.value, configItemDescriptor.key(),
-                                it
-                            )
-                            text = it
-                        } catch (_: Exception) {
-                        }
+                        text = it
+                        ConfigManager.setConfiguration(
+                            descriptor.group.value, configItemDescriptor.key(),
+                            it
+                        )
+
                     },
                     maxLines = 30,
                     label = {
@@ -528,25 +616,21 @@ fun createIntegerTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Co
 }
 
 @Composable
-fun createStringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+fun stringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     var text by remember {
         mutableStateOf(
-            "" +
-                    ConfigManager.getConfiguration(
-                        descriptor.group.value,
-                        configItemDescriptor.key()
-
-                    )
+            ConfigManager.getConfiguration(
+                descriptor.group.value,
+                configItemDescriptor.key()
+            ).toString()
         )
     }
     Row(modifier = Modifier.fillMaxWidth().height(100.dp)) {
-
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth().height(100.dp).background(darkThemeColors.background)
         ) {
             MaterialTheme(colors = darkThemeColors) {
-
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth().height(100.dp).padding(all = 3.dp),
                     value = text,
@@ -574,19 +658,17 @@ fun createStringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor:
 }
 
 @Composable
-fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     var text by remember {
         mutableStateOf(
-            "" +
-                    ConfigManager.getConfiguration(
-                        descriptor.group.value,
-                        configItemDescriptor.key()
-
-                    )
+            ConfigManager.getConfiguration(
+                descriptor.group.value,
+                configItemDescriptor.key()
+            ).toString()
         )
     }
-    Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(darkThemeColors.background)) {
 
+    Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(darkThemeColors.background)) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth().height(60.dp)
@@ -623,23 +705,7 @@ fun createStringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Con
 @Composable
 fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     var expanded by remember { mutableStateOf(false) }
-    val type = configItemDescriptor.type
-    val currentConfigEnum =
-        java.lang.Enum.valueOf(
-            type as Class<out Enum<*>>, ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
-            )!!
-        )
-    val list: MutableList<Enum<*>> = ArrayList()
-    var currentToSet: Enum<*>? = null
-    for (o in type.enumConstants) {
-        if (o == currentConfigEnum) {
-            currentToSet = o
-        }
-        list.add(o)
-    }
-    var selectedIndex by remember { mutableStateOf(list.indexOf(currentToSet)) }
+    var configStr = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())!!
     Row(modifier = Modifier.fillMaxWidth().height(32.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
@@ -653,10 +719,12 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth().height(32.dp)
         ) {
+
             MaterialTheme(colors = darkThemeColors) {
                 Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
+
                     Text(
-                        list[selectedIndex].name,
+                        configStr,
                         color = uiColor,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true })
@@ -664,25 +732,28 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
                                 Color(0xFF242424)
                             )
                     )
+
                     DropdownMenu(
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
                         modifier = Modifier.width(375.dp).padding(horizontal = 5.dp)
                     ) {
-                        list.forEachIndexed { index, s ->
+                        configItemDescriptor.type?.enumConstants?.forEach {
                             DropdownMenuItem(onClick = {
-                                selectedIndex = index
                                 expanded = false
+                                configStr = it.toString()
                                 ConfigManager.setConfiguration(
                                     descriptor.group.value,
                                     configItemDescriptor.key(),
-                                    list[selectedIndex].name
+                                    it
                                 )
+                                //println(it.toString())
                             }, content = {
-                                Text(text = s.toString(), color = uiColor, fontSize = 14.sp)
+                                Text(text = it.toString(), color = uiColor, fontSize = 14.sp)
                             })
                         }
                     }
+
                 }
             }
         }
@@ -690,45 +761,4 @@ fun createEnumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
     Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
 }
 
-@Composable
-fun createButtonNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-    var text by remember {
-        mutableStateOf(
-            "" + Integer.valueOf(
-                ConfigManager.getConfiguration(
-                    descriptor.group.value,
-                    configItemDescriptor.key()
-                )
-            )
-        )
-    }
-    Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
-        ) {
-            MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
-            }
-        }
-        Row(
-            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(32.dp).background(Color(0xFF242424))
-        ) {
-            MaterialTheme(colors = darkThemeColors) {
-                OutlinedButton(onClick = {
-                    //TODO fix enum
-                    Main.client.callbacks.post(
-                        Events.CONFIG_CHANGED,
-                        ConfigButtonClicked(descriptor.group.value, configItemDescriptor.key())
-                    )
-                }
-                ) {
-                    Text(configItemDescriptor.name())
-                }
-            }
-        }
-    }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
-}
 

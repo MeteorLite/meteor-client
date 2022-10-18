@@ -21,12 +21,11 @@ public interface OneClickAgilityConfig extends Config
 
     @ConfigItem(
             position = 1,
-            keyName = "seersTele",
+            keyName = "seersTP",
             name = "Seers Teleport",
             description = "Uses the Seer's village teleport at the end of the Seer's course",
-            hidden = true,
-            unhide = "courseSelection",
-            unhideValue = "SEERS_VILLAGE"
+            hidden = true
+
     )
     default boolean seersTele()
     {
@@ -37,7 +36,8 @@ public interface OneClickAgilityConfig extends Config
             position = 2,
             keyName = "skillBoost",
             name = "Boost Agility",
-            description = "Eat summer pies to boost your agility level"
+            description = "Eat summer pies to boost your agility level",
+            unhideKey = "skillBoost"
     )
     default boolean skillBoost()
     {
