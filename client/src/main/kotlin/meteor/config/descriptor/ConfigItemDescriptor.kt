@@ -24,4 +24,5 @@ class ConfigItemDescriptor(
     fun secret(): Boolean {
         return secret != null
     }
+
 }

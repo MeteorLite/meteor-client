@@ -4,16 +4,12 @@ package meteor.config
 
 import meteor.Main
 import com.google.common.base.Strings
-import com.google.common.collect.ComparisonChain
 import eventbus.Events
 import meteor.Configuration.CONFIG_FILE
 import meteor.config.legacy.*
 import eventbus.events.ConfigChanged
 import meteor.Configuration.METEOR_DIR
-import meteor.config.descriptor.ConfigDescriptor
-import meteor.config.descriptor.ConfigItemDescriptor
-import meteor.config.descriptor.ConfigSectionDescriptor
-import meteor.config.descriptor.ConfigTitleDescriptor
+import meteor.config.descriptor.*
 import meteor.plugins.Plugin
 import net.runelite.api.coords.WorldPoint
 import org.rationalityfrontline.kevent.KEVENT as EventBus
@@ -31,7 +27,6 @@ import java.time.Duration
 import java.time.Instant
 import java.util.*
 import java.util.function.Consumer
-import java.util.function.Function
 import java.util.stream.Collectors
 
 object ConfigManager {
@@ -302,7 +297,7 @@ object ConfigManager {
         EventBus.post(Events.CONFIG_CHANGED, configChanged)
     }
 
-    private fun getAllDeclaredInterfaceFields(clazz: Class<*>): Collection<Field> {
+    public fun getAllDeclaredInterfaceFields(clazz: Class<*>): Collection<Field> {
         val methods: MutableCollection<Field> = HashSet()
         val interfaces = Stack<Class<*>>()
         interfaces.push(clazz)
@@ -416,22 +411,25 @@ object ConfigManager {
         val inter: Class<*> = configurationProxy.javaClass.interfaces[0] ?: configurationProxy::class.java.interfaces[0]
         val group: ConfigGroup = inter.getAnnotation(ConfigGroup::class.java)
             ?: throw IllegalArgumentException("Not a config group")
-        val sections: List<ConfigSectionDescriptor> = inter.methods
+        val sections: List<ConfigSectionDescriptor> =  getAllDeclaredInterfaceFields(inter)
+            .asSequence()
+            .filter { it.isAnnotationPresent(ConfigSection::class.java) && it.type == String::class.java }
+            .map { ConfigSectionDescriptor(
+                it[inter].toString(),
+                it.getDeclaredAnnotation(ConfigSection::class.java)
+            ) }
+            .sortedBy {  it.position()
+            }.toMutableList() + inter.methods
             .filter { it.parameterCount == 0 && it.isAnnotationPresent(ConfigSection::class.java) }
             .map {
                 ConfigSectionDescriptor(
-
-                    it.returnType,
+                    it.returnType.declaredFields.toString(),
                     it.getDeclaredAnnotation(ConfigSection::class.java)
                 )
             }
             .sortedBy { it.position()
-            }.toMutableList()     + getAllDeclaredInterfaceFields(inter)
-            .asSequence()
-            .filter { it.isAnnotationPresent(ConfigSection::class.java) && it.type == String::class.java }
-            .map { ConfigSectionDescriptor(  it[inter].javaClass, it.getDeclaredAnnotation(ConfigSection::class.java)) }
-            .sortedBy {  it.position()
-            }.toList()
+            }.toMutableList()
+
         val titles: List<ConfigTitleDescriptor> = getAllDeclaredInterfaceFields(inter)
             .asSequence()
             .filter {  it.isAnnotationPresent(ConfigTitle::class.java) && it.type == String::class.java }

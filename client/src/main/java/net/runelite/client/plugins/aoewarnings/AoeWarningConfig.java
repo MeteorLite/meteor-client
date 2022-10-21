@@ -150,7 +150,8 @@ public interface AoeWarningConfig extends Config
       name = "Tick Timers",
       description = "Configures whether or not AoE Projectile Warnings has tick timers overlaid as well.",
       section = textTitle,
-      position = 6
+      position = 6,
+      unhideKey = "tickTimers"
   )
   default boolean tickTimers()
   {

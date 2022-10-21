@@ -3,7 +3,7 @@ package meteor.config.descriptor
 import meteor.config.legacy.ConfigObject
 import meteor.config.legacy.ConfigSection
 
-class ConfigSectionDescriptor(val type: Class<*>? , val section: ConfigSection) : ConfigObject {
+class ConfigSectionDescriptor(val type: String?, val section: ConfigSection) : ConfigObject {
 
 
     override fun key(): String? {
