@@ -47,9 +47,17 @@ public enum WorldType
 	 */
 	BOUNTY(1 << 5),
 	/**
+	 * PVP arena world type.
+	 */
+	PVP_ARENA(1 << 6),
+	/**
 	 * Skill total world type.
 	 */
 	SKILL_TOTAL(1 << 7),
+	/**
+	 * Quest speedrunning
+	 */
+	QUEST_SPEEDRUNNING(1 << 8),
 	/**
 	 * High risk world type.
 	 */
@@ -67,16 +75,17 @@ public enum WorldType
 	 */
 	TOURNAMENT_WORLD(1 << 26),
 	/**
+	 * Fresh start world type
+	 */
+	FRESH_START_WORLD(1 << 27),
+	/**
 	 * Deadman world type.
 	 */
 	DEADMAN(1 << 29),
 	/**
 	 * Seasonal world type for leagues and seasonal deadman.
 	 */
-	SEASONAL(1 << 30),
-	PVP_ARENA(1 << 6),
-
-	QUEST_SPEEDRUNNING(1 << 8);
+	SEASONAL(1 << 30);
 
 	private final int mask;
 
