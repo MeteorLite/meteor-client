@@ -14,7 +14,6 @@ import compose.icons.Octicons
 import compose.icons.octicons.Plug24
 import meteor.Main
 import meteor.plugins.Plugin
-import meteor.plugins.notes.NotesPlugin
 import meteor.rs.Applet
 import meteor.ui.composables.dev.WindowFrame
 import meteor.ui.composables.toolbar.ToolbarButton
@@ -33,7 +32,7 @@ val uiColor
     get() = Color(Main.meteorConfig.uiColor().rgb)
 
 @Composable
-fun FrameWindowScope.Window() {
+fun FrameWindowScope.window() {
 
     MaterialTheme {
         WindowFrame {

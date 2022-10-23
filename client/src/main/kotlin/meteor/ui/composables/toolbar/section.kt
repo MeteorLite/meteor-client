@@ -12,10 +12,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -92,7 +90,25 @@ fun Expandable(
     }
 }
 
+@Composable
+fun hider(
+    modifier: Modifier = Modifier,
+    expanded: MutableState<Boolean>,
+    onExpandChanged: (Boolean)-> Unit,
+    content: @Composable () -> Unit,
 
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+
+    ) {
+        onExpandChanged(expanded.value)
+    }
+    if (expanded.value) {
+        content()
+    }
+}
 @Composable
 fun ExpandableToolbar(
     modifier: Modifier = Modifier,
@@ -201,6 +217,24 @@ fun Expandable2(
 }
 @Composable
 @Preview
+fun hideItem(modifier: Modifier = Modifier, bool: Boolean ,content: @Composable () -> Unit) {
+    var expanded = remember { mutableStateOf(bool) }
+
+    hider(
+        modifier = Modifier.width(35.dp).height(35.dp),
+        expanded = expanded,
+        onExpandChanged = {
+            expanded.value = it
+        },
+        content = {
+            Column {
+                content.invoke()
+            }
+        },
+    )
+}
+@Composable
+@Preview
 fun sectionItem(modifier: Modifier = Modifier, content: ()->Unit) {
     val expanded = remember { mutableStateOf(false) }
 
@@ -215,9 +249,9 @@ fun sectionItem(modifier: Modifier = Modifier, content: ()->Unit) {
 }
 @Composable
 @Preview
-fun unhide( content: @Composable () -> Unit) {
+fun unhide(bool : Boolean, content: @Composable () -> Unit) {
 
-    var unhide = mutableStateOf(false)
+    val unhide = mutableStateOf(!bool)
     Expandable(
         modifier = Modifier,
         expanded = unhide.value,
