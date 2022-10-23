@@ -112,7 +112,8 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
         return false
     }
 
-    open var parentBounds = Rectangle(0, 0, 1920, 1080)
+    //Fuck it
+    open var parentBounds = Rectangle(0, 0, 10000, 10000)
 
     open fun renderPolygon(graphics: Graphics2D, poly: Shape, color: Color) {
         renderPolygon(graphics, poly, color, BasicStroke(2F))
