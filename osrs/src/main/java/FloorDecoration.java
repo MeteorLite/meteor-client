@@ -20,6 +20,9 @@ public final class FloorDecoration {
 	@Export("z")
 	int z;
 	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+			intValue = -2034286499
+	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("c")
