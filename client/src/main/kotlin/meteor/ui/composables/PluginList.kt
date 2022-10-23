@@ -171,7 +171,7 @@ fun Plugins() {
                             }
 
 
-                            if (plugin.config != null) {
+                            if (plugin.configuration != null) {
                                 Spacer(Modifier.height(20.dp))
                                 IconButton(
                                     onClick = { onPluginConfigurationOpened(plugin) },
@@ -184,20 +184,6 @@ fun Plugins() {
 
                                         )
                                 }
-
-                            } else if (plugin.javaConfig != null) {
-                                Spacer(Modifier.height(20.dp))
-                                IconButton(
-                                    onClick = { onPluginConfigurationOpened(plugin) },
-                                ) {
-                                    Icon(
-                                        Octicons.Gear24,
-                                        contentDescription = "Opens Plugin configuration panel",
-                                        tint = uiColor,
-
-                                        )
-                                }
-
                             } else {
                                 Spacer(
                                     Modifier.width(50.dp)

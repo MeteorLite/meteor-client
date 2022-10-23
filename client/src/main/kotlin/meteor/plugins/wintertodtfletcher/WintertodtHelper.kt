@@ -15,7 +15,7 @@ import net.runelite.api.Skill
     enabledByDefault = false
 )
 class WintertodtHelper : Plugin() {
-    override val config = configuration<WintertodtHelperConfig>()
+    val config = configuration<WintertodtHelperConfig>()
     var waitForFullInv = false
     var allowance = 0
     override fun onHitsplatApplied(it: HitsplatApplied) {

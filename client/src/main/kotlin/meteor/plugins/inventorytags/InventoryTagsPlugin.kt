@@ -48,7 +48,7 @@ import java.util.*
 )
 class InventoryTagsPlugin : Plugin() {
 
-    override val config: InventoryTagsConfig = configuration()
+    val config: InventoryTagsConfig = configuration()
     private val overlay = overlay(InventoryTagsOverlay(this))
 
     private var editorMode = false

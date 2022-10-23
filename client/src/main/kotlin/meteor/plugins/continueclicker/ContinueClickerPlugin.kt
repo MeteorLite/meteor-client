@@ -18,7 +18,7 @@ class ContinueClickerPlugin : Plugin() {
     var clientThread: ClientThread? = null
 
 
-    override val config = configuration<ContinueClickerConfig>()
+    val config = configuration<ContinueClickerConfig>()
 
     override fun onStart() {}
 

@@ -40,7 +40,7 @@ import meteor.plugins.PluginDescriptor
     enabledByDefault = true
 )
 class StretchedModePlugin : Plugin() {
-    override val config = configuration<StretchedModeConfig>()
+    val config = configuration<StretchedModeConfig>()
 
     private val mouseManager = MouseManager
     private val mouseListener = TranslateMouseListener

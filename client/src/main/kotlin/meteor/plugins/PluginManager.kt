@@ -207,11 +207,7 @@ object PluginManager {
         if (plugins.filterIsInstance<T>().isNotEmpty())
             throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
-        plugin.config?.let {
-            ConfigManager.setDefaultConfiguration(it, false)
-        }
-
-        plugin.javaConfig?.let {
+        plugin.configuration?.let {
             ConfigManager.setDefaultConfiguration(it, false)
         }
 

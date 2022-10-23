@@ -14,7 +14,7 @@ import java.util.stream.Collectors
 @PluginDescriptor(name = "Object Hider", description = "Hides various objects", enabledByDefault = false)
 class ObjectHiderPlugin : Plugin() {
 
-    override var config = configuration<ObjectHiderConfig>()
+    var config = configuration<ObjectHiderConfig>()
     private var objectIds = listOf<Int>()
     private var objectNames = listOf<String>()
 

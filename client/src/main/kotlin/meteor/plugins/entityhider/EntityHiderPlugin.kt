@@ -49,7 +49,7 @@ import java.util.stream.Collectors
     tags = ["npcs"]
 )
 class EntityHiderPlugin : Plugin() {
-    override val config = configuration<EntityHiderConfig>()
+    val config = configuration<EntityHiderConfig>()
     private var hiddenIndices: ArrayList<Int>? = null
     private var animationHiddenIndices: ArrayList<Int>? = null
     private var hideNPCsOnDeathName: MutableSet<String>? = null

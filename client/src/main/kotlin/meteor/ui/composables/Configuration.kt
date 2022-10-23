@@ -30,8 +30,7 @@ lateinit var descriptor: ConfigDescriptor
 @Composable
 fun ConfigPanel() {
     when {
-        lastPlugin.config != null -> descriptor = ConfigManager.getConfigDescriptor(lastPlugin.config!!)!!
-        lastPlugin.javaConfig != null -> descriptor = ConfigManager.getConfigDescriptor(lastPlugin.javaConfig!!)!!
+        lastPlugin.configuration != null -> descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)!!
     }
     var mod = Modifier.background(darkThemeColors.surface).fillMaxHeight().width(375.dp)
     Column {

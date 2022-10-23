@@ -11,8 +11,7 @@ import meteor.ui.overlay.Overlay
 import meteor.config.legacy.Config
 
 open class Plugin : EventSubscriber() {
-    open val config: Config? = null
-    var javaConfig: Config? = null
+    var configuration: Config? = null
 
     var client = Main.client
     val overlayManager = Main.overlayManager
@@ -29,14 +28,15 @@ open class Plugin : EventSubscriber() {
 
     fun javaConfiguration(clazz: Class<out Config>): Config {
         val c: Config = getConfig(clazz)!!
-        setDefaultConfiguration(c.javaClass, false)
-        javaConfig = c
+        setDefaultConfiguration(c, false)
+        configuration = c
         return c
     }
 
     inline fun <reified T : Config> configuration(): T {
         val config = getConfig(T::class.java) as T
         setDefaultConfiguration(config, false)
+        configuration = config
         return config
     }
 

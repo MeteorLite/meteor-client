@@ -49,7 +49,7 @@ class WoodcuttingPlugin : Plugin() {
 
     var overlay = overlay(WoodcuttingOverlay(this))
     var TREES = overlay(WoodcuttingTreesOverlay(this))
-    override val config = configuration<WoodcuttingConfig>()
+    val config = configuration<WoodcuttingConfig>()
     var session: WoodcuttingSession? = null
         private set
     lateinit var axe: Axe

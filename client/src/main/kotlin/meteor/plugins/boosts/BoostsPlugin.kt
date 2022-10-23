@@ -43,7 +43,7 @@ import java.util.*
     tags = ["combat", "skilling", "overlay"]
 )
 class BoostsPlugin : Plugin() {
-    override var config = configuration<BoostsConfig>()
+    var config = configuration<BoostsConfig>()
     private val boostsOverlay = overlay(BoostsOverlay(config, this))
 
     val skillsToDisplay: MutableSet<Skill> = EnumSet.noneOf(

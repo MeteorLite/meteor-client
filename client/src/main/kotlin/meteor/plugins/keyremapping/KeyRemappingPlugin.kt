@@ -22,7 +22,7 @@ import java.awt.Color
     enabledByDefault = false
 )
 class KeyRemappingPlugin : Plugin() {
-    override val config = configuration<KeyRemappingConfig>()
+    val config = configuration<KeyRemappingConfig>()
 
     private val inputListener = KeyRemappingListener
 

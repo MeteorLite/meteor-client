@@ -42,7 +42,7 @@ import java.util.*
     tags = ["items", "npcs", "players"]
 )
 class MinimapPlugin : Plugin() {
-    override val config = configuration<MinimapConfig>()
+    val config = configuration<MinimapConfig>()
     private var originalDotSprites: Array<SpritePixels>? = null
 
 

@@ -34,7 +34,7 @@ import kotlin.math.abs
 )
 
 class AutoLogHop : Plugin() {
-    override var config = configuration<AutoLogHopConfig>()
+    var config = configuration<AutoLogHopConfig>()
 
     private var login = false
     fun startup() {

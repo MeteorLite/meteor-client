@@ -63,7 +63,7 @@ class ChatFilterPlugin : Plugin() {
             return size > MAX_ENTRIES
         }
     }
-    override val config = configuration<ChatFilterConfig>()
+    val config = configuration<ChatFilterConfig>()
     override fun onStart() {
         updateFilteredPatterns()
         client.refreshChat()

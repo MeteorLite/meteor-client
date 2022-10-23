@@ -25,7 +25,7 @@ import net.runelite.api.widgets.WidgetInfo
 )
 class WorldMapWalkerPlugin : Plugin() {
     private val worldMapOverlay = overlay(WorldMapOverlay())
-    override var config: WorldMapWalkerConfig = configuration()
+    var config: WorldMapWalkerConfig = configuration()
     var log = Logger("World Map Walker")
     private val overlay = overlay(WorldMapWalkerOverlay(this))
 

@@ -41,7 +41,7 @@ import java.util.regex.Pattern
     tags = ["wilderness", "attack", "range"]
 )
 class CombatLevelPlugin : Plugin() {
-    override var config = configuration<CombatLevelConfig>()
+    var config = configuration<CombatLevelConfig>()
     private val overlay = overlay(CombatLevelOverlay(config))
     override fun onStart() {
         if (config.wildernessAttackLevelRange()) {

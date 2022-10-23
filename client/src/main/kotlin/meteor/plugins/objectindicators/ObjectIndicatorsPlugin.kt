@@ -50,7 +50,7 @@ class ObjectIndicatorsPlugin : Plugin() {
 
     private val overlay = overlay(ObjectIndicatorsOverlay(this))
 
-    override val config = configuration<ObjectIndicatorsConfig>()
+    val config = configuration<ObjectIndicatorsConfig>()
 
     private val gson = Gson()
     override fun onStop() {

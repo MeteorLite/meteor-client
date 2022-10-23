@@ -22,7 +22,7 @@ import kotlin.math.roundToInt
 class AutoAlchPlugin : Plugin() {
     var timeout = 0
     var rand = Random()
-    override val config: AutoAlchConfig = configuration()
+    val config: AutoAlchConfig = configuration()
 
     override fun onStatChanged(it: StatChanged) {
         if (it.skill === Skill.MAGIC) {

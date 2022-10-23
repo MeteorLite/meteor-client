@@ -12,7 +12,7 @@ import java.awt.event.KeyEvent.*
 @PluginDescriptor(name = "Auto Bank Pin", description = "Automatically enters your bank pin", enabledByDefault = false)
 class AutoBankPinPlugin : Plugin() {
 
-    override val config = configuration<AutoBankPinConfig>()
+    val config = configuration<AutoBankPinConfig>()
 
     private var first = false
     private var second = false

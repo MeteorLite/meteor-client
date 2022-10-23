@@ -34,7 +34,7 @@ import meteor.plugins.PluginDescriptor
 )
 class ItemPricesPlugin : Plugin() {
 
-    override var config = configuration<ItemPricesConfig>()
+    var config = configuration<ItemPricesConfig>()
     val overlay = overlay(ItemPricesOverlay(this))
 
 }

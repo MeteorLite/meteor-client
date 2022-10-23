@@ -51,7 +51,7 @@ import java.util.concurrent.TimeUnit
 )
 class XpTrackerPlugin : Plugin() {
     private val skillIconManager = SkillIconManager
-    override val config = configuration<XpTrackerConfig>()
+    val config = configuration<XpTrackerConfig>()
     private val npcManager = NPCManager
     private val xpClient: XpClient = Main.xpClient
     private val xpState = XpState(config)
