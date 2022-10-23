@@ -266,7 +266,13 @@ object Items {
 
     fun getFreeSlots(inventoryID: InventoryID = InventoryID.INVENTORY): Int {
         return when (inventoryID) {
-            InventoryID.INVENTORY -> 28 - getAll()?.size!!
+
+            InventoryID.INVENTORY -> {
+                getAll()?.let {
+                    return 28 - it.size
+                }
+                return -1
+            }
             else -> {
                 -1
             }
