@@ -13,11 +13,10 @@ import meteor.game.WorldService
 import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
-import meteor.plugins.xptracker.XpTrackerPlugin
 import meteor.plugins.xptracker.XpTrackerService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
-import meteor.ui.composables.Window
+import meteor.ui.composables.window
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
 import meteor.ui.overlay.TooltipManager
@@ -94,7 +93,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             state = rememberWindowState(placement = WindowPlacement.Maximized),
-            content = { this.Window() } //::finishStartup is called at the end of this function
+            content = { this.window() } //::finishStartup is called at the end of this function
         )
     }
 
