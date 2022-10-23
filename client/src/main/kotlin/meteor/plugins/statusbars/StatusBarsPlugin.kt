@@ -39,7 +39,7 @@ import org.apache.commons.lang3.ArrayUtils
     description = "Draws status bars next to players inventory showing current HP & Prayer and healing amounts"
 )
 class StatusBarsPlugin : Plugin() {
-    override val config = configuration<StatusBarsConfig>()
+    val config = configuration<StatusBarsConfig>()
     private val overlay = overlay(StatusBarsOverlay(this, config))
     private val clientThread = ClientThread
 

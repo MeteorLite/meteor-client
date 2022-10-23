@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
     enabledByDefault = false
 )
 class AutoLoginPlugin : Plugin() {
-    override val config = configuration<AutoLoginConfig>()
+    val config = configuration<AutoLoginConfig>()
     private val executor: ScheduledExecutorService = Main.executor
 
     override fun onGameStateChanged(it: GameStateChanged) {

@@ -55,7 +55,7 @@ class BankPlugin : Plugin() {
 
     private val clientThread = ClientThread
     private val itemManager = ItemManager
-    override var config = configuration<BankConfig>()
+    var config = configuration<BankConfig>()
     private val bankSearch = BankSearch
     private val searchHotkeyListener: KeyListener = object : KeyListener {
         override fun keyTyped(e: KeyEvent) {}

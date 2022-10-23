@@ -29,7 +29,7 @@ class PvPKeys : Plugin() {
     var r = Random()
     var target: Actor? = null
     private val keyManager = KeyManager
-    override val config = configuration<PvPKeysConfig>()
+    val config = configuration<PvPKeysConfig>()
     var executor: ExecutorService? = null
     val meleeGear: MutableList<String>
         get() = mutableListOf(*config.MeleeIDs()!!.split(",").toTypedArray())

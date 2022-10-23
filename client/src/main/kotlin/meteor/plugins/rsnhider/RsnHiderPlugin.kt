@@ -44,7 +44,7 @@ class RsnHiderPlugin : Plugin() {
 
 
     private val clientThread = ClientThread
-    override val config = configuration<RsnHiderConfig>()
+    val config = configuration<RsnHiderConfig>()
 
 
     override fun onStart() {

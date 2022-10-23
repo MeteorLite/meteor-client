@@ -10,7 +10,7 @@ import java.util.*
 @PluginDescriptor(name = "AutoRun", description = "Automatically enables run.", enabledByDefault = true)
 
 class AutoRunPlugin : Plugin() {
-    override val config = configuration<AutoRunConfig>()
+    val config = configuration<AutoRunConfig>()
     private val clientThread: ClientThread = ClientThread
     private val rand = Random()
     private var nextRunThreshhold = -1

@@ -39,7 +39,7 @@ import net.runelite.api.widgets.WidgetInfo
     enabledByDefault = false
 )
 class InteractHighlightPlugin : Plugin() {
-    override val config: InteractHighlightConfig = configuration()
+    val config: InteractHighlightConfig = configuration()
     private val interactHighlightOverlay = overlay(InteractHighlightOverlay(this))
 
     @Getter(AccessLevel.PACKAGE)

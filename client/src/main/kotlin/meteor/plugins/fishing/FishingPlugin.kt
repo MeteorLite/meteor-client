@@ -12,7 +12,7 @@ import net.runelite.api.NPC
 
 @PluginDescriptor("Fishing", configGroup = "fishing")
 class FishingPlugin : Plugin() {
-    override var config = configuration<FishingConfig>()
+    var config = configuration<FishingConfig>()
     val spotsOverlay = overlay(FishingSpotOverlay(this, config))
 
     val fishingSpots: ArrayList<NPC> = ArrayList()

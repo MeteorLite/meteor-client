@@ -12,7 +12,7 @@ import net.runelite.api.events.MenuOpened
     enabledByDefault = false
 )
 class CtrlPlayerOptions : Plugin() {
-    override val config = configuration<CtrlPlayerOptionsConfig>()
+    val config = configuration<CtrlPlayerOptionsConfig>()
     override fun onStart() {
         KeyManager.registerKeyListener(CtrlKeyListener, CtrlPlayerOptions::class.java)
     }

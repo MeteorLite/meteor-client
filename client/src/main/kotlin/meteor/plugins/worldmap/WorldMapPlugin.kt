@@ -54,7 +54,7 @@ import java.util.function.Predicate
     configGroup = "World Map"
 )
 class WorldMapPlugin : Plugin() {
-    override val config = configuration<WorldMapConfig>()
+    val config = configuration<WorldMapConfig>()
 
     var clientThread = ClientThread
     private val worldMapPointManager = WorldMapPointManager

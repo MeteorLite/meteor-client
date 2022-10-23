@@ -33,6 +33,6 @@ import meteor.plugins.PluginDescriptor
     tags = ["actions", "overlay"]
 )
 class MouseTooltipPlugin : Plugin() {
-    override val config = configuration<MouseTooltipConfig>()
+    val config = configuration<MouseTooltipConfig>()
     private val overlay = overlay(MouseTooltipOverlay(config))
 }

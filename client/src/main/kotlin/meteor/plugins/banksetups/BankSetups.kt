@@ -29,7 +29,7 @@ import java.awt.Point
 )
 
 class BankSetups : Plugin() {
-    override var config = configuration<BankSetupConfig>()
+    var config = configuration<BankSetupConfig>()
     var overlay = overlay(BankSetupsOverlay())
     var state: Int = -1
     var itemManager: ItemManager? = null

@@ -26,7 +26,7 @@ import kotlin.math.*
 
 class AutoClickerPlugin : Plugin() {
 
-    override val config = configuration<AutoClickerConfig>()
+    val config = configuration<AutoClickerConfig>()
 
     private val overlay = overlay(AutoClickerOverlay(this))
 

@@ -6,5 +6,5 @@ import meteor.plugins.PluginDescriptor
 
 @PluginDescriptor(name = "Meteor", enabledByDefault = true)
 class Meteor : Plugin() {
-    override var config = configuration<MeteorConfig>()
+    var config = configuration<MeteorConfig>()
 }

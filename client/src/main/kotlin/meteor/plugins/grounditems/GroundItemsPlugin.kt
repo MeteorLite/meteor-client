@@ -70,7 +70,7 @@ import java.util.concurrent.TimeUnit
 class GroundItemsPlugin : Plugin() {
     internal class PriceHighlight(val price: Int, val color: Color)
 
-    override val config = configuration<GroundItemsConfig>()
+    val config = configuration<GroundItemsConfig>()
     var textBoxBounds: Map.Entry<Rectangle, GroundItem>? = null
     var hiddenBoxBounds: Map.Entry<Rectangle, GroundItem>? = null
     var highlightBoxBounds: Map.Entry<Rectangle, GroundItem>? = null
