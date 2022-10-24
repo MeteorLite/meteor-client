@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 import lombok.Value;
 
 @Value
-public class Swap
+class Swap
 {
 	private Predicate<String> optionPredicate;
 	private Predicate<String> targetPredicate;

@@ -14,6 +14,7 @@ public class RuneLiteMenuEntry implements MenuEntry
 
 	public Consumer consumer;
 	public int idx;
+	public MenuEntry parent;
 
 	public RuneLiteMenuEntry()
 	{
@@ -177,6 +178,11 @@ public class RuneLiteMenuEntry implements MenuEntry
 	{
 		Client.menuArguments2[this.idx] = param1;
 		return this;
+	}
+
+	@Override
+	public void setParent(MenuEntry parent) {
+		this.parent = parent;
 	}
 
 	@Override
