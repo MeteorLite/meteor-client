@@ -73,6 +73,8 @@ public interface MenuEntry
 	int getParam1();
 	MenuEntry setParam1(int param1);
 
+	void setParent(MenuEntry parent);
+
 	/**
 	 * If this is true and you have single mouse button on and this entry is
 	 * the top entry the right click menu will not be opened when you left click
