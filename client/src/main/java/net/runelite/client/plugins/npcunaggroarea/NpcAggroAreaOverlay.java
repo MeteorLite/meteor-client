@@ -44,7 +44,7 @@ import java.time.Instant;
 
 class NpcAggroAreaOverlay extends Overlay
 {
-	private static final int MAX_LOCAL_DRAW_LENGTH = 20 * Perspective.LOCAL_TILE_SIZE;
+	private static final int MAX_LOCAL_DRAW_LENGTH = 100 * Perspective.LOCAL_TILE_SIZE;
 
 	private final Client client = Main.INSTANCE.getClient();
 	private final NpcAggroAreaConfig config;
