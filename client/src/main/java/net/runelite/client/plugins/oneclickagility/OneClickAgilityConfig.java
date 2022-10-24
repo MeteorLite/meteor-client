@@ -12,7 +12,8 @@ public interface OneClickAgilityConfig extends Config
 		    position = 0,
 		    keyName = "courseSelection",
 		    name = "Select course",
-		    description = ""
+		    description = "",
+            unhideKey = "courseSelection"
     )
     default AgilityCourse courseSelection()
     {
@@ -24,7 +25,9 @@ public interface OneClickAgilityConfig extends Config
             keyName = "seersTP",
             name = "Seers Teleport",
             description = "Uses the Seer's village teleport at the end of the Seer's course",
-            hidden = true
+            hidden = true,
+            unhide = "courseSelection",
+            unhideValue = "SEERS_VILLAGE"
 
     )
     default boolean seersTele()

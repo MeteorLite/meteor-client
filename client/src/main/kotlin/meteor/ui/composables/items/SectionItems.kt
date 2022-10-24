@@ -42,7 +42,9 @@ fun LazyListScope.sectionItems() {
                                     else -> if (config.type?.isEnum == true) {
 
                                         unhideEnum(config)
-                                        enumNode(descriptor, config)
+                                            if(config.item.unhideKey.isEmpty())
+                                            enumNode(descriptor, config)
+
                                     }
                                 }
 

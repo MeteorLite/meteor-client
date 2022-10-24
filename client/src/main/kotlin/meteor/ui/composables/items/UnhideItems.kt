@@ -1,21 +1,16 @@
 package meteor.ui.composables.items
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material.Switch
-import androidx.compose.material.SwitchDefaults
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
@@ -29,20 +24,72 @@ import meteor.ui.composables.uiColor
 
 @Composable
 fun unhideEnum(config : ConfigItemDescriptor){
-    descriptor?.items?.filter { config.item.keyName == it.item.keyName }
-        ?.forEach { hiddenEnum ->
             var toggledEnum = remember { mutableStateOf(false) }
-            var cfg = ConfigManager.getConfiguration(
-                descriptor.group.value,
-                hiddenEnum.key()
-            )
-            descriptor.items.filter { it.item.unhideValue.isNotEmpty() }.forEach { uv ->
-                hiddenEnum.type?.enumConstants?.forEach {
-                    if (it.toString() == cfg && it.toString() == uv.item.unhideValue) toggledEnum.value =
-                        true
-                }
+    descriptor.items?.filter { config.item.keyName == it.item.keyName }
+        ?.forEach { hiddenEnum ->
 
+            var expanded by remember { mutableStateOf(false) }
+            var configStr = ConfigManager.getConfiguration(descriptor.group.value, hiddenEnum.key())!!
+            Row(modifier = Modifier.fillMaxWidth().height(32.dp)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
+                    modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
+                ) {
+                    MaterialTheme(colors = darkThemeColors) {
+                        Text(hiddenEnum.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
+                    }
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
+                    modifier = Modifier.fillMaxWidth().height(32.dp)
+                ) {
+
+                    MaterialTheme(colors = darkThemeColors) {
+                        Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
+
+                            Text(
+                                configStr,
+                                color = uiColor,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true })
+                                    .background(
+                                        Color(0xFF242424)
+                                    )
+                            )
+
+                            DropdownMenu(
+                                expanded = expanded,
+                                onDismissRequest = { expanded = false },
+                                modifier = Modifier.width(375.dp).padding(horizontal = 5.dp)
+                            ) {
+                                hiddenEnum.type?.enumConstants?.forEach { ec->
+                                    DropdownMenuItem(onClick = {
+                                        expanded = false
+                                        configStr = ec.toString()
+                                        ConfigManager.setConfiguration(
+                                            descriptor.group.value,
+                                            hiddenEnum.key(),
+                                            ec.toString()
+
+                                        )
+                                        for (it in descriptor.items.filter {ec.toString() != it.item.unhideValue}) {
+                                            toggledEnum.value = false
+                                        }
+                                        for (it in descriptor.items.filter {ec.toString() == it.item.unhideValue}) {
+                                            toggledEnum.value = true
+                                        }
+
+                                    }, content = {
+                                        Text(text = ec.toString(), color = uiColor, fontSize = 14.sp)
+                                    })
+                                }
+                            }
+
+                        }
+                    }
+                }
             }
+            Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
             when {
                 toggledEnum.value ->
                     descriptor.items.filter { it.item.unhide == hiddenEnum.key() }
@@ -102,7 +149,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
 }
 @Composable
 fun hiddenItems(config : ConfigItemDescriptor){
-    descriptor?.items?.filter { config.item.keyName == it.item.keyName }?.forEach { hidden ->
+    descriptor.items?.filter { config.item.keyName == it.item.keyName }?.forEach { hidden ->
         val toggled = remember {
             mutableStateOf(
                 ConfigManager.getConfiguration(
