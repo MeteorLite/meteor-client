@@ -39,9 +39,10 @@ fun LazyListScope.configItems() {
                             }
                         }
                         else -> if (config.type?.isEnum == true) {
+                            if (config.item.unhideKey == "") {
+                                enumNode(descriptor, config)
+                            }else
                             unhideEnum(config)
-                            if (config.item.unhideKey.isEmpty())
-                            enumNode(descriptor, config)
                         }
                     } }
                 }
