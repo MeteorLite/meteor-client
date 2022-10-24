@@ -274,7 +274,8 @@ public interface GauntletExtendedConfig extends Config
 		description = "Track resources in counter infoboxes.",
 		position = 8,
 		keyName = "resourceTracker",
-		section = resourcesSection
+		section = resourcesSection,
+			unhideKey = "resourceTracker"
 	)
 	default ResourceFilter resourceTracker()
 	{

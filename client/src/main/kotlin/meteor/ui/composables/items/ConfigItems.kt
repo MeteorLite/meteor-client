@@ -11,6 +11,7 @@ import java.awt.Color
 fun LazyListScope.configItems() {
                 items(items = descriptor.items.filter { it.item.section.isEmpty() })
                 { config ->
+                    if (config.item.unhide.isBlank()) {
                     when (config.type) {
                         Int::class.javaPrimitiveType, Int::class.java -> {
                             when {
@@ -39,8 +40,9 @@ fun LazyListScope.configItems() {
                         }
                         else -> if (config.type?.isEnum == true) {
                             unhideEnum(config)
+                            if (config.item.unhideKey.isEmpty())
                             enumNode(descriptor, config)
                         }
-                    }
+                    } }
                 }
             }
