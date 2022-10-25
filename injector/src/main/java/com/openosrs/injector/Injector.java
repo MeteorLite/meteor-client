@@ -85,7 +85,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 		injector.mixins = load(
 			new File("../mixins/build/libs/mixins-" + oprsVer + ".jar"));
 
-		File injected = new File("../client/src/resources/injected-client.jar");
+		File injected = new File("../client/src/main/resources/injected-client.jar");
 		if (injected.exists())
 		{
 			injected.delete();
@@ -216,18 +216,6 @@ public class Injector extends InjectData implements InjectTaskHandler
 				output.getParentFile().mkdirs();
 				JarUtil.save(group, output);
 				break;
-		}
-
-		try
-		{
-			String hash = com.google.common.io.Files.asByteSource(vanillaFile).hash(Hashing.sha256()).toString();
-			//log.lifecycle("Writing vanilla hash: {}", hash);
-			Files.write(output.getParentFile().toPath().resolve("client.hash"), hash.getBytes(StandardCharsets.UTF_8));
-		}
-		catch (IOException ex)
-		{
-			//log.lifecycle("Failed to write vanilla hash file");
-			throw new RuntimeException(ex);
 		}
 	}
 

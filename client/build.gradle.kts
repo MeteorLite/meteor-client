@@ -32,7 +32,7 @@ dependencies {
     implementation(project(":annotations"))
     implementation(project(":logger"))
     runtimeOnly(project(":scripts"))
-    runtimeOnly(files("./src/resources/injected-client.jar"))
+    runtimeOnly(files("./src/main/resources/injected-client.jar"))
 
     //Deob
     runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.70")
