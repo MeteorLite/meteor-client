@@ -22,52 +22,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.defaultworld;
+package meteor.plugins.defaultworld
 
-import meteor.config.legacy.Config;
-import meteor.config.legacy.ConfigGroup;
-import meteor.config.legacy.ConfigItem;
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
-@ConfigGroup(DefaultWorldConfig.GROUP)
-public interface DefaultWorldConfig extends Config
-{
-	String GROUP = "defaultworld";
+@ConfigGroup("defaultworld")
+interface DefaultWorldConfig : Config {
+    @ConfigItem(keyName = "defaultWorld", name = "Default world", description = "World to use as default one")
+    val world: Int
+        get() = 0
 
-	@ConfigItem(
-		keyName = "defaultWorld",
-		name = "Default world",
-		description = "World to use as default one"
-	)
-	default int getWorld()
-	{
-		return 0;
-	}
+    @ConfigItem(
+        keyName = "useLastWorld",
+        name = "Use Last World",
+        description = "Use the last world you used as the default"
+    )
+    fun useLastWorld(): Boolean {
+        return false
+    }
 
-	@ConfigItem(
-		keyName = "useLastWorld",
-		name = "Use Last World",
-		description = "Use the last world you used as the default"
-	)
-	default boolean useLastWorld()
-	{
-		return false;
-	}
+    @ConfigItem(keyName = "lastWorld", name = "", description = "", hidden = true)
+    fun lastWorld(): Int {
+        return 0
+    }
 
-	@ConfigItem(
-		keyName = "lastWorld",
-		name = "",
-		description = "",
-		hidden = true
-	)
-	default int lastWorld()
-	{
-		return 0;
-	}
+    @ConfigItem(keyName = "lastWorld", name = "", description = "")
+    fun lastWorld(lastWorld: Int)
 
-	@ConfigItem(
-		keyName = "lastWorld",
-		name = "",
-		description = ""
-	)
-	void lastWorld(int lastWorld);
 }

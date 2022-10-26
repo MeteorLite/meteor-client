@@ -12,7 +12,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
-import meteor.ui.composables.darkThemeColors
+import meteor.ui.composables.preferences.background
+
+import meteor.ui.composables.preferences.darkThemeColors
 import javax.swing.WindowConstants
 
 object ScriptViewer {
@@ -32,7 +34,7 @@ object ScriptViewer {
         return {
             window.defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
             MaterialTheme(colors = darkThemeColors) {
-                BoxWithConstraints(modifier = Modifier.fillMaxSize().background(darkThemeColors.background)) {
+                BoxWithConstraints(modifier = Modifier.fillMaxSize().background(background ) ) {
                     Row {
                         Column(modifier = Modifier.fillMaxWidth(.8f)) {
                             Row {

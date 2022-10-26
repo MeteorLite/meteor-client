@@ -1,4 +1,4 @@
-package meteor.ui.composables
+package meteor.ui.composables.ui
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth

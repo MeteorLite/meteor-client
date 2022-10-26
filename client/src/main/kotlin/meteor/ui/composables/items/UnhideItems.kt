@@ -16,10 +16,8 @@ import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigItemDescriptor
 import meteor.config.legacy.ModifierlessKeybind
-import meteor.ui.composables.darkThemeColors
-import meteor.ui.composables.descriptor
 import meteor.ui.composables.nodes.*
-import meteor.ui.composables.uiColor
+import meteor.ui.composables.preferences.*
 
 
 @Composable
@@ -33,7 +31,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
             Row(modifier = Modifier.fillMaxWidth().height(32.dp)) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                    modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
+                    modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background )
                 ) {
                     MaterialTheme(colors = darkThemeColors) {
                         Text(hiddenEnum.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
@@ -89,7 +87,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
                     }
                 }
             }
-            Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+            Spacer(Modifier.height(4.dp).background(background ) )
             when {
                 toggledEnum.value ->
                     descriptor.items.filter { it.item.unhide == hiddenEnum.key() }
@@ -161,13 +159,13 @@ fun hiddenItems(config : ConfigItemDescriptor){
 
         Row(
             modifier = Modifier.fillMaxWidth().height(32.dp)
-                .background(darkThemeColors.background)
+                .background(background )
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
                 modifier = Modifier.fillMaxWidth(0.8f).height(32.dp)
-                    .background(darkThemeColors.background)
+                    .background(background )
             ) {
                 Text(hidden.name(), style = TextStyle(uiColor, 14.sp))
             }
@@ -175,7 +173,7 @@ fun hiddenItems(config : ConfigItemDescriptor){
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier.fillMaxWidth().height(32.dp)
-                    .background(darkThemeColors.background)
+                    .background(background )
             ) {
                 Switch(toggled.value, onCheckedChange = {
                     ConfigManager.setConfiguration(
@@ -184,7 +182,7 @@ fun hiddenItems(config : ConfigItemDescriptor){
                         it
                     )
                     toggled.value = it
-                }, enabled = true, modifier = Modifier.scale(0.85f), colors =SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = Color.Gray))
+                }, enabled = true, modifier = Modifier.scale(0.85f), colors =SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface))
             }
         }
 

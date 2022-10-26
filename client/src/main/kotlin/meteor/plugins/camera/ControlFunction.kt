@@ -23,24 +23,14 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.camera;
+package meteor.plugins.camera
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.AllArgsConstructor
+import lombok.Getter
 
 @Getter
 @AllArgsConstructor
-public enum ControlFunction
-{
-	NONE("None"),
-	CONTROL_TO_ZOOM("Hold to zoom"),
-	CONTROL_TO_RESET("Reset zoom");
+enum class ControlFunction(val type: String) {
+    NONE("None"), CONTROL_TO_ZOOM("Hold to zoom"), CONTROL_TO_RESET("Reset zoom");
 
-	private final String name;
-
-	@Override
-	public String toString()
-	{
-		return getName();
-	}
 }

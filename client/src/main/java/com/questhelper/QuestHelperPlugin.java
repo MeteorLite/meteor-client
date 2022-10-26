@@ -62,7 +62,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static meteor.ui.composables.UIKt.*;
+import static meteor.ui.composables.preferences.UiPrefrencesKt.getPluginPanel;
+import static meteor.ui.composables.preferences.UiPrefrencesKt.getPluginPanelIsOpen;
 import static meteor.ui.composables.toolbar.ToolbarKt.addButton;
 import static meteor.ui.composables.toolbar.ToolbarKt.removeButton;
 

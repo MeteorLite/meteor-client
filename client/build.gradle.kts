@@ -1,8 +1,10 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 
 plugins {
     kotlin("jvm")
     id("org.jetbrains.compose") version "1.2.0-beta01"
+    kotlin("plugin.serialization") version "1.7.10"
     java
     `maven-publish`
 }
@@ -25,7 +27,9 @@ repositories {
 }
 
 dependencies {
+    @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
     // meteor-api
+    implementation("com.google.inject:guice:4.0")
     implementation(project(":api-rs"))
     implementation(project(":api"))
     implementation(project(":http"))
@@ -38,6 +42,7 @@ dependencies {
     runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.70")
 
     //GPU
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
     implementation(group = "net.runelite.jocl", name = "jocl", version = "_")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-x64")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-arm64")

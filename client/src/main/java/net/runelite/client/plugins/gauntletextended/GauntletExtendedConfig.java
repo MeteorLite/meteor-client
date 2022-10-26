@@ -275,7 +275,7 @@ public interface GauntletExtendedConfig extends Config
 		position = 8,
 		keyName = "resourceTracker",
 		section = resourcesSection,
-			unhideKey = "resourceTracker"
+		unhideKey = "resourceTracker"
 	)
 	default ResourceFilter resourceTracker()
 	{

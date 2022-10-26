@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.LayoutDirection
@@ -20,19 +20,20 @@ import androidx.compose.ui.unit.sp
 import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft24
 import meteor.config.ConfigManager
-import meteor.config.descriptor.ConfigDescriptor
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.items.configItems
 import meteor.ui.composables.items.sectionItems
 import meteor.ui.composables.items.titleItems
+import meteor.ui.composables.preferences.*
+import meteor.ui.composables.ui.onPluginToggled
 
-lateinit var descriptor: ConfigDescriptor
+
 @Composable
-fun ConfigPanel() {
+fun configPanel() {
     when {
         lastPlugin.configuration != null -> descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)!!
     }
-    var mod = Modifier.background(darkThemeColors.surface).fillMaxHeight().width(375.dp)
+    var mod = Modifier.background(if (darkLightMode.value) darkThemeColors.surface else lightThemeColors.surface).fillMaxHeight().width(375.dp)
     Column {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             Column(
@@ -56,7 +57,7 @@ fun ConfigPanel() {
 fun configs(){
     LazyColumn(
         horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-        modifier = Modifier.width(375.dp).fillMaxHeight().background(darkThemeColors.background)
+        modifier = Modifier.width(375.dp).fillMaxHeight().background(background )
     ) {
         titleItems()
         sectionItems()
@@ -109,7 +110,7 @@ fun configPanelHeader() {
                 onPluginToggled(switchState, lastPlugin),
                 enabled = true,
                 modifier = Modifier.scale(0.75f),
-                colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = Gray)
+                colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)
             )
 
         }

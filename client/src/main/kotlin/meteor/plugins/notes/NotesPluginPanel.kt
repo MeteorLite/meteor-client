@@ -20,7 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
 import meteor.ui.composables.PluginPanel
-import meteor.ui.composables.darkThemeColors
+import meteor.ui.composables.preferences.darkThemeColors
+
 import meteor.util.FontUtil
 
 class NotesPluginPanel : PluginPanel() {

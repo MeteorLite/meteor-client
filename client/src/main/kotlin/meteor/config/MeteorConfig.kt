@@ -19,6 +19,17 @@ interface MeteorConfig : Config {
     fun uiColor(): Color {
         return Color.CYAN
     }
+    @ConfigItem(
+        name = "Light theme/Dark theme",
+        keyName = "Light theme/Dark theme",
+        description = "",
+        position = 0,
+    )
+    fun theme(): Boolean {
+        return false
+    }
+
+
 
     @Range(min = 35, max = 100, textInput = false)
     @ConfigItem(

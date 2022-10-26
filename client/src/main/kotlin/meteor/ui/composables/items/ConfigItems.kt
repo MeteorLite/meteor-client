@@ -3,8 +3,8 @@ package meteor.ui.composables.items
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import meteor.config.legacy.ModifierlessKeybind
-import meteor.ui.composables.descriptor
 import meteor.ui.composables.nodes.*
+import meteor.ui.composables.preferences.descriptor
 import java.awt.Color
 
 

@@ -22,36 +22,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.ammo;
+package meteor.plugins.ammo
 
-import java.awt.image.BufferedImage;
-import lombok.Getter;
-import meteor.plugins.Plugin;
-import meteor.util.QuantityFormatter;
-import net.runelite.client.Counter;
+import lombok.Getter
+import meteor.plugins.Plugin
+import meteor.util.QuantityFormatter.quantityToRSDecimalStack
+import net.runelite.client.Counter
+import java.awt.image.BufferedImage
 
-class AmmoCounter extends Counter
-{
-	@Getter
-	private final int itemID;
-	private final String name;
-
-	AmmoCounter(Plugin plugin, int itemID, int count, String name, BufferedImage image)
-	{
-		super(image, plugin, count);
-		this.itemID = itemID;
-		this.name = name;
-	}
-
-	@Override
-	public String getText()
-	{
-		return QuantityFormatter.INSTANCE.quantityToRSDecimalStack(getCount());
-	}
-
-	@Override
-	public String getTooltip()
-	{
-		return name;
-	}
+internal class AmmoCounter(
+    plugin: Plugin?,
+    val itemID: Int,
+    count: Int,
+    override var tooltip: String?,
+    image: BufferedImage?
+) : Counter(image, plugin, count) {
+    override val text: String
+        get() = quantityToRSDecimalStack(count)
 }

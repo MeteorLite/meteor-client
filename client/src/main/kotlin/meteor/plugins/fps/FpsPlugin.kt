@@ -22,70 +22,63 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.fps;
+package meteor.plugins.fps
 
-import eventbus.events.ConfigChanged;
-import eventbus.events.FocusChanged;
-import meteor.plugins.Plugin;
-import meteor.plugins.PluginDescriptor;
-import meteor.ui.DrawManager;
-import meteor.ui.overlay.OverlayManager;
+import eventbus.events.ConfigChanged
+import eventbus.events.FocusChanged
+import meteor.plugins.Plugin
+import meteor.plugins.PluginDescriptor
+import meteor.ui.DrawManager
 
 /**
  * FPS Control has two primary areas, this plugin class just keeps those areas up to date and handles setup / teardown.
  *
- * <p>Overlay paints the current FPS, the color depends on whether or not FPS is being enforced.
+ *
+ * Overlay paints the current FPS, the color depends on whether or not FPS is being enforced.
  * The overlay is lightweight and is merely and indicator.
  *
- * <p>Draw Listener, sleeps a calculated amount after each canvas paint operation.
+ *
+ * Draw Listener, sleeps a calculated amount after each canvas paint operation.
  * This is the heart of the plugin, the amount of sleep taken is regularly adjusted to account varying
  * game and system load, it usually finds the sweet spot in about two seconds.
  */
 @PluginDescriptor(
-	name = "FPS Control",
-	description = "Show current FPS and/or set an FPS limit",
-	tags = {"frames", "framerate", "limit", "overlay"},
-	enabledByDefault = false
+    name = "FPS Control",
+    description = "Show current FPS and/or set an FPS limit",
+    tags = ["frames", "framerate", "limit", "overlay"],
+    enabledByDefault = false
 )
-public class FpsPlugin extends Plugin
-{
-	static final String CONFIG_GROUP_KEY = "fpscontrol";
-	private FpsConfig config = (FpsConfig) javaConfiguration(FpsConfig.class);
-	private OverlayManager overlayManager = OverlayManager.INSTANCE;
-	private FpsOverlay overlay = new FpsOverlay(this, config);
-	private FpsDrawListener drawListener = new FpsDrawListener(config);
-	private DrawManager drawManager = DrawManager.INSTANCE;
+class FpsPlugin : Plugin() {
+    private val config = configuration<FpsConfig>()
 
-	@Override
-	public void onConfigChanged(ConfigChanged event)
-	{
-		if (event.getGroup().equals(CONFIG_GROUP_KEY))
-		{
-			drawListener.reloadConfig();
-		}
-	}
+    private val overlay = FpsOverlay(this, config)
+    private val drawListener = FpsDrawListener(config)
+    private val drawManager = DrawManager
+    override fun onConfigChanged(event: ConfigChanged) {
+        if (event.group == CONFIG_GROUP_KEY) {
+            drawListener.reloadConfig()
+        }
+    }
 
-	@Override
-	public void onFocusChanged(FocusChanged event)
-	{
-		drawListener.onFocusChanged(event);
-		overlay.onFocusChanged(event);
-	}
+    override fun onFocusChanged(event: FocusChanged) {
+        drawListener.onFocusChanged(event)
+        overlay.onFocusChanged(event)
+    }
 
-	@Override
-	public void onStart()
-	{
-		drawListener.subscribe();
-		overlayManager.add(overlay);
-		drawManager.registerEveryFrameListener(drawListener);
-		drawListener.reloadConfig();
-	}
+    override fun onStart() {
+        drawListener.subscribe()
+        overlayManager.add(overlay)
+        drawManager.registerEveryFrameListener(drawListener)
+        drawListener.reloadConfig()
+    }
 
-	@Override
-	public void onStop()
-	{
-		drawListener.unsubscribe();
-		overlayManager.remove(overlay);
-		drawManager.unregisterEveryFrameListener(drawListener);
-	}
+    override fun onStop() {
+        drawListener.unsubscribe()
+        overlayManager.remove(overlay)
+        drawManager.unregisterEveryFrameListener(drawListener)
+    }
+
+    companion object {
+        const val CONFIG_GROUP_KEY = "fpscontrol"
+    }
 }
