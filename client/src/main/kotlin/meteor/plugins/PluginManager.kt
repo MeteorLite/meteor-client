@@ -99,7 +99,6 @@ object PluginManager {
         init<BoostsPlugin>()
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()
-        //init<ChatFilterPlugin>()
         init<ClueScrollPlugin>()
         init<CombatLevelPlugin>()
         init<CommandsPlugin>()
