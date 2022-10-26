@@ -10,15 +10,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import meteor.plugins.EventSubscriber
+import meteor.ui.composables.preferences.background
+import meteor.ui.composables.preferences.darkLightMode
+import meteor.ui.composables.preferences.darkThemeColors
+import meteor.ui.composables.preferences.lightThemeColors
 
 open class PluginPanel : EventSubscriber() {
     @Composable
     fun CreateComponent() {
-        val mod = Modifier.background(darkThemeColors.background).fillMaxHeight()
+        val mod = Modifier.background(background  ).fillMaxHeight()
 
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
             Column(modifier = mod) {
-                MaterialTheme(colors = darkThemeColors) {
+                MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors ) {
                     Header()
                     Content()
                 }

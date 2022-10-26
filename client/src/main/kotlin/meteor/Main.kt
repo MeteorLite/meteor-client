@@ -16,7 +16,7 @@ import meteor.plugins.PluginManager
 import meteor.plugins.xptracker.XpTrackerService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
-import meteor.ui.composables.window
+import meteor.ui.composables.ui.window
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
 import meteor.ui.overlay.TooltipManager
@@ -54,6 +54,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     }
 
     val eventBus = EventBus
+
     lateinit var client: Client
     lateinit var callbacks: Callbacks
     val httpClient = OkHttpClient()
@@ -79,22 +80,28 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
     @JvmStatic
     fun main(args: Array<String>) = application {
+
         handleProxy(args)
         ClientPackets
+        MeteorliteTheme.install()
         timer.start()
         processArguments(args)
         startKoin { modules(Module.CLIENT_MODULE) }
         callbacks = get()
-        MeteorliteTheme.install()
         AppletConfiguration.init()
         Applet().init()
-        Window(
-            onCloseRequest = Main::shutdown,
-            title = "Meteor",
-            icon = painterResource("Meteor_icon.png"),
-            state = rememberWindowState(placement = WindowPlacement.Maximized),
-            content = { this.window() } //::finishStartup is called at the end of this function
-        )
+
+            Window(
+                onCloseRequest = Main::shutdown,
+                title = "Meteor",
+                icon = painterResource("Meteor_icon.png"),
+                state = rememberWindowState(placement = WindowPlacement.Maximized),
+                content = {
+
+                    this.window()
+                } //::finishStartup is called at the end of this function
+            )
+
     }
 
     fun shutdown() {

@@ -7,6 +7,7 @@ import meteor.Configuration
 import meteor.Main
 import meteor.config.ConfigManager
 import meteor.plugins.agility.AgilityPlugin
+import meteor.plugins.ammo.AmmoPlugin
 import meteor.plugins.autoalch.AutoAlchPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
 import meteor.plugins.autoclicker.AutoClickerPlugin
@@ -16,13 +17,16 @@ import meteor.plugins.autorun.AutoRunPlugin
 import meteor.plugins.bank.BankPlugin
 import meteor.plugins.banksetups.BankSetups
 import meteor.plugins.boosts.BoostsPlugin
+import meteor.plugins.camera.CameraPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.commands.CommandsPlugin
 import meteor.plugins.continueclicker.ContinueClickerPlugin
 import meteor.plugins.ctrlplayeroptions.CtrlPlayerOptions
+import meteor.plugins.defaultworld.DefaultWorldPlugin
 import meteor.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
+import meteor.plugins.fps.FpsPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
 import meteor.plugins.interacthighlight.InteractHighlightPlugin
@@ -37,6 +41,7 @@ import meteor.plugins.neverlog.NeverLogoutPlugin
 import meteor.plugins.nightmareHelper.NightmareHelper
 import meteor.plugins.notes.NotesPlugin
 import meteor.plugins.objecthider.ObjectHiderPlugin
+import meteor.plugins.oneclickagility.OneClickAgilityPlugin
 import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.pvpkeys.PvPKeys
 import meteor.plugins.rsnhider.RsnHiderPlugin
@@ -48,13 +53,9 @@ import meteor.plugins.wintertodtfletcher.WintertodtHelper
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
-import net.runelite.client.plugins.ammo.AmmoPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
-import net.runelite.client.plugins.camera.CameraPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
-import net.runelite.client.plugins.defaultworld.DefaultWorldPlugin
-import net.runelite.client.plugins.fps.FpsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -63,7 +64,6 @@ import net.runelite.client.plugins.mining.MiningPlugin
 import net.runelite.client.plugins.motherlode.MotherlodePlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
-import net.runelite.client.plugins.oneclickagility.OneClickAgilityPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
 import org.apache.commons.lang3.time.StopWatch

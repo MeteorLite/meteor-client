@@ -22,9 +22,8 @@ import com.questhelper.requirements.item.ItemRequirement
 import eventbus.events.GameTick
 import eventbus.events.ItemContainerChanged
 import meteor.Main
-
 import meteor.ui.composables.PluginPanel
-import meteor.ui.composables.darkThemeColors
+import meteor.ui.composables.preferences.*
 
 class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     var quest = questHelper.quest
@@ -74,18 +73,18 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     @Composable override fun Header() {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.width(375.dp).fillMaxHeight(0.05f).background(darkThemeColors.background)) {
-            MaterialTheme(colors = darkThemeColors) {
+            modifier = Modifier.width(375.dp).fillMaxHeight(0.05f).background(background  )) {
+            MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors ) {
                 Text(quest.getName(),style = TextStyle(color = Color.Cyan, fontSize = 20.sp))
             }
         }
     }
 
     @Composable override fun Content() {
-        LazyColumn(modifier = Modifier.width(375.dp).fillMaxHeight().background(darkThemeColors.surface)) {
+        LazyColumn(modifier = Modifier.width(375.dp).fillMaxHeight().background(surface )) {
             item {
                 Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top, modifier = Modifier.fillMaxSize()) {
-                    MaterialTheme(colors = darkThemeColors) {
+                    MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors ) {
                         Requirements(generalRequirementsMet.value, "General requirements")
                         Requirements(itemRequirementsMet.value, "Item requirements")
                         Requirements(itemRecommendMet.value, "Item recommendation")
@@ -108,9 +107,9 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
                 RoundedCornerShape(size = 35.dp)
             ), horizontalAlignment = Alignment.CenterHorizontally, ) {
                 items(items = requirements, itemContent = { requirement ->
-                    Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background)){
+                    Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background  )){
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background)) {
+                            modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background  )) {
 
                             if (requirement.requirement is ItemRequirement && requirement.requirement.quantity != -1) {
                                 val meetsRequirement = requirement.met
@@ -148,12 +147,12 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
             LazyColumn(modifier = Modifier.fillMaxWidth().height((list.size * 32).dp).background(darkThemeColors.surface), horizontalAlignment = Alignment.CenterHorizontally, ) {
                 items(items = list, itemContent = { line ->
                     if (line == "</br>") {
-                        Spacer(Modifier.height(10.dp).background(darkThemeColors.background))
+                        Spacer(Modifier.height(10.dp).background(background ) )
                     }
                     else {
-                        Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background)){
+                        Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background ) ){
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                                modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(darkThemeColors.background).clip(
+                                modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background ) .clip(
                                     RoundedCornerShape(size = 30.dp)
                                 )) {
                                 val color = Color.White

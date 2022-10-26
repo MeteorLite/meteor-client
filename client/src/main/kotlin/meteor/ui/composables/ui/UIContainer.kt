@@ -1,4 +1,4 @@
-package meteor.ui.composables.dev
+package meteor.ui.composables.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -13,7 +13,8 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import meteor.Main
-import meteor.ui.composables.darkThemeColors
+import meteor.ui.composables.preferences.background
+import meteor.ui.composables.preferences.darkThemeColors
 import meteor.ui.composables.toolbar.ToolbarPanel
 
 
@@ -60,8 +61,9 @@ class UI {
         BoxWithConstraints(
             modifier = Modifier
                 .fillMaxHeight()
+                .background(background )
                 .width(Main.meteorConfig.toolbarWidth().dp)
-                .background(Color.Black)
+
         ) {
 
             mutableStateOf(ToolbarPanel())
@@ -76,7 +78,7 @@ class UI {
     ) {
         val gameContent = GameWindow()
 
-        BoxWithConstraints(modifier = Modifier.background(darkThemeColors.background)) {
+        BoxWithConstraints(modifier = Modifier.background(background ) ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -90,7 +92,7 @@ class UI {
 }
 
 @Composable
-fun WindowFrame(
+fun windowFrame(
     modifier: Modifier = Modifier,
     content: @Composable UI.() -> Unit
 ) {
@@ -99,7 +101,7 @@ fun WindowFrame(
         Row(
             modifier = modifier
                 .fillMaxSize()
-                .background(darkThemeColors.background)
+                .background(background )
         ) {
             content.invoke(ui)
         }

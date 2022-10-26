@@ -1,4 +1,4 @@
-package meteor.ui.composables
+package meteor.ui.composables.ui
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
@@ -13,7 +13,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,31 +28,25 @@ import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.PluginManager
+import meteor.ui.composables.preferences.*
 import meteor.util.FontUtil
 
 
 @Composable
-fun PluginsPanel() {
-
-
-    val mod = Modifier.background(darkThemeColors.background).fillMaxHeight().width(375.dp)
-
+fun pluginsPanel() {
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = mod
+            modifier = Modifier.fillMaxHeight().width(375.dp)
         ) {
-            MaterialTheme(colors = darkThemeColors) {
-                Plugins()
-            }
+                plugins()
         }
-
     }
 }
 
 @Preview
 @Composable
-fun SearchBar(
+fun searchBar(
     modifier: Modifier = Modifier,
     state: MutableState<TextFieldValue>,
     placeHolder: String
@@ -95,8 +88,7 @@ fun SearchBar(
 
 
 @Composable
-fun Plugins() {
-
+fun plugins() {
 
     val pluginListSize = remember {
         mutableStateOf(Main.meteorConfig!!.pluginListTextSize())
@@ -106,24 +98,20 @@ fun Plugins() {
     }
     val textState = remember { mutableStateOf(TextFieldValue("")) }
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().background(surface)
             .height(60.dp),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start
     ) {
-        SearchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
+        searchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
     }
-    Spacer(
-        Modifier.height(pluginSpacer.value.dp)
-            .background(darkThemeColors.background)
-    )
+
     Column(
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Top,
         modifier = Modifier.fillMaxWidth()
             .fillMaxHeight()
-            .background(darkThemeColors.background)
     ) {
-        MaterialTheme(colors = darkThemeColors) {
+
             LazyColumn(modifier = Modifier.fillMaxHeight()) {
 
                 val searchedText = textState.value.text
@@ -131,13 +119,12 @@ fun Plugins() {
                     it.getName()!!.contains(searchedText, ignoreCase = true) ||
                             it.getDescriptor().tags.contains(searchedText)
                 }, itemContent = { plugin ->
-                    Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(darkThemeColors.background)) {
+                    Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(background ) ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.60f).height(32.dp).background(darkThemeColors.background)
+                            modifier = Modifier.fillMaxWidth(0.60f).height(32.dp).background(background )
                         ) {
-                            val external = plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java)
-                            val color = if (external?.external == true) Color.Magenta else uiColor
+
                             Text(
                                 plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
                                 style = TextStyle(
@@ -156,7 +143,7 @@ fun Plugins() {
                             horizontalArrangement = Arrangement.End,
                             modifier = Modifier.fillMaxWidth().padding(top = 15.dp)
                                 .height(pluginListSize.value.dp)
-                                .background(darkThemeColors.background)
+                                .background(background )
                         ) {
                             if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
                                 IconButton(
@@ -187,7 +174,7 @@ fun Plugins() {
                             } else {
                                 Spacer(
                                     Modifier.width(50.dp)
-                                        .background(darkThemeColors.background)
+                                        .background(background  )
                                 )
                             }
                             val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
@@ -196,7 +183,7 @@ fun Plugins() {
                                 onPluginToggled(switchState, plugin),
                                 enabled = true,
                                 modifier = Modifier.scale(0.75f).padding(bottom = 2.dp),
-                                colors = SwitchDefaults.colors(checkedThumbColor = uiColor)
+                                colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface)
                             )
 
 
@@ -206,14 +193,14 @@ fun Plugins() {
                     }
                     Spacer(
                         Modifier.width(pluginSpacer.value.dp)
-                            .background(darkThemeColors.background)
+                            .background(background )
                     )
 
                 })
             }
         }
     }
-}
+
 
 fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {
     PluginManager.toggle(plugin)

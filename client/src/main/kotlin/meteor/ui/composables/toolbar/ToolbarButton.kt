@@ -17,11 +17,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import meteor.ui.composables.darkThemeColors
+import meteor.ui.composables.preferences.background
 
 class ToolbarButton(
     var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color? = Color.Cyan,
-    var backgroundColor: Color? = darkThemeColors.background,
+    var backgroundColor: Color? = background ,
     var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
     var bottom: Boolean = false, var onClick: () -> Unit
 ) {
@@ -36,7 +36,7 @@ class ToolbarButton(
                 name,
                 icon = null,
                 imageResource = imageResource,
-                backgroundColor = darkThemeColors.background,
+                backgroundColor = background ,
                 description = description,
                 alignment = alignment,
                 bottom = bottom,
@@ -68,7 +68,7 @@ class ToolbarButton(
         }
         Spacer(
             Modifier.height(10.dp)
-                .background(darkThemeColors.background)
+                .background(background )
         )
     }
 }

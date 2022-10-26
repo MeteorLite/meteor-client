@@ -11,9 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
-
 import meteor.Main
-import meteor.ui.composables.darkThemeColors
+import meteor.ui.composables.preferences.*
 
 
 val topToolbar: SnapshotStateList<ToolbarButton> by lazy { topButtons }
@@ -26,12 +25,12 @@ val width = mutableStateOf(Main.meteorConfig.toolbarWidth())
 
 @Composable
 fun ToolbarPanel() {
-    return Column(modifier = Modifier.width(width.value.dp)) {
+    return Column(modifier = Modifier.width(width.value.dp).background(background )) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(darkThemeColors.surface).scale(0.90F)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(surface).scale(0.90F)
         ) {
-            MaterialTheme(colors = darkThemeColors) {
+            MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
                 for (button in topToolbar)
                     button.CreateComponent()
             }
@@ -39,9 +38,9 @@ fun ToolbarPanel() {
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(darkThemeColors.surface).scale(0.75F)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(surface).scale(0.75F)
         ) {
-            MaterialTheme(colors = darkThemeColors) {
+            MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
                 for (button in bottomToolbar)
                     button.CreateComponent()
             }

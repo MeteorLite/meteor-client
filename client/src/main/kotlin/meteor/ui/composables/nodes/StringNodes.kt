@@ -16,8 +16,9 @@ import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
-import meteor.ui.composables.darkThemeColors
-import meteor.ui.composables.uiColor
+import meteor.ui.composables.preferences.background
+import meteor.ui.composables.preferences.darkThemeColors
+import meteor.ui.composables.preferences.uiColor
 
 
 @Composable
@@ -33,7 +34,7 @@ fun stringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Confi
     Row(modifier = Modifier.fillMaxWidth().height(100.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(100.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth().height(100.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 OutlinedTextField(
@@ -59,7 +60,7 @@ fun stringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Confi
             }
         }
     }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+    Spacer(Modifier.height(4.dp).background(background ) )
 }
 
 @Composable
@@ -73,7 +74,7 @@ fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
         )
     }
 
-    Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(darkThemeColors.background)) {
+    Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(background ) ) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth().height(60.dp)
@@ -104,5 +105,5 @@ fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
             }
         }
     }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+    Spacer(Modifier.height(4.dp).background(background ) )
 }

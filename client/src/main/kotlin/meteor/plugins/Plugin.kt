@@ -4,11 +4,12 @@ import meteor.Main
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
-import meteor.ui.composables.lastButtonClicked
-import meteor.ui.composables.pluginPanelIsOpen
+import meteor.config.legacy.Config
+import meteor.ui.composables.preferences.lastButtonClicked
+import meteor.ui.composables.preferences.pluginPanelIsOpen
+
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.overlay.Overlay
-import meteor.config.legacy.Config
 
 open class Plugin : EventSubscriber() {
     var configuration: Config? = null
@@ -34,7 +35,9 @@ open class Plugin : EventSubscriber() {
     }
 
     inline fun <reified T : Config> configuration(): T {
+
         val config = getConfig(T::class.java) as T
+
         setDefaultConfiguration(config, false)
         configuration = config
         return config

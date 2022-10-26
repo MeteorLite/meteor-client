@@ -21,8 +21,10 @@ import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
 import meteor.config.legacy.ModifierlessKeybind
-import meteor.ui.composables.darkThemeColors
-import meteor.ui.composables.uiColor
+import meteor.ui.composables.preferences.background
+import meteor.ui.composables.preferences.darkThemeColors
+import meteor.ui.composables.preferences.surface
+import meteor.ui.composables.preferences.uiColor
 import meteor.util.ColorUtil
 import java.awt.event.KeyEvent
 
@@ -36,10 +38,10 @@ fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
             ).toBoolean()
         )
     }
-    Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(darkThemeColors.background)) {
+    Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(background ) ) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
@@ -47,17 +49,17 @@ fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
         }
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(32.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth().height(32.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 Switch(toggled, onCheckedChange = {
                     ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
                     toggled = it
-                }, enabled = true, modifier = Modifier.scale(0.85f), colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = Color.Gray))
+                }, enabled = true, modifier = Modifier.scale(0.85f), colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface))
             }
         }
     }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+    Spacer(Modifier.height(4.dp).background(background ) )
 }
 
 @Composable
@@ -99,7 +101,7 @@ fun hotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDes
                     }.background(darkThemeColors.background, RoundedCornerShape(4.dp)).width(150.dp)
             )
         }
-        Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+        Spacer(Modifier.height(4.dp).background(background ) )
     }
 }
 
@@ -117,7 +119,7 @@ fun colorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
         remember { mutableStateOf(ConfigManager.stringToObject(getConfigColor.toString(), Color::class.java)) }
     Row(
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-        modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
+        modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background )
     ) {
         MaterialTheme(colors = darkThemeColors) {
             Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
@@ -153,7 +155,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
     Row(modifier = Modifier.fillMaxWidth().height(32.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
@@ -173,7 +175,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true })
                             .background(
-                                Color(0xFF242424)
+                                surface
                             )
                     )
 
@@ -202,5 +204,5 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
             }
         }
     }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+    Spacer(Modifier.height(4.dp).background(background ) )
 }

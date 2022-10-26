@@ -1,4 +1,4 @@
-package meteor.ui.composables.toolbar
+package meteor.ui.composables.nodes
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.FiniteAnimationSpec
@@ -6,6 +6,7 @@ import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -27,7 +28,11 @@ import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft16
 import compose.icons.octicons.ChevronRight16
 import meteor.Main
-import meteor.ui.composables.uiColor
+
+import meteor.ui.composables.preferences.darkLightMode
+import meteor.ui.composables.preferences.darkThemeColors
+import meteor.ui.composables.preferences.lightThemeColors
+import meteor.ui.composables.preferences.uiColor
 
 
 @Composable
@@ -97,7 +102,7 @@ fun expandToolbar(
     onExpandChanged: (Boolean) -> Unit,
 ) {
         Column(
-            modifier = Modifier.clickable { onExpandChanged(!expanded) },
+            modifier = Modifier.background(if (darkLightMode.value) darkThemeColors.background else lightThemeColors.background).clickable { onExpandChanged(!expanded) },
 
         ) {
 
@@ -111,7 +116,7 @@ fun expandToolbar(
 
                     Icon(
                         modifier = Modifier.height(35.dp),
-                        imageVector = if (expanded) Octicons.ChevronLeft16 else Octicons.ChevronRight16,
+                        imageVector = if (expanded) Octicons.ChevronRight16 else Octicons.ChevronLeft16,
                         contentDescription = "Drop-Down Arrow",
                         tint = uiColor
                     )

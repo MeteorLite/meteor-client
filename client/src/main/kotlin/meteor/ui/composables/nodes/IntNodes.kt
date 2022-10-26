@@ -16,8 +16,7 @@ import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
-import meteor.ui.composables.darkThemeColors
-import meteor.ui.composables.uiColor
+import meteor.ui.composables.preferences.*
 
 
 @Composable
@@ -42,7 +41,7 @@ fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItem
     Row(modifier = Modifier.fillMaxWidth().height(46.dp).background(Color(0xFF242424))) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.5f).height(46.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth(0.5f).height(46.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
@@ -51,15 +50,15 @@ fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItem
 
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(46.dp).background(Color(0xFF242424))
+            modifier = Modifier.fillMaxWidth().height(46.dp).background(surface)
         ) {
-            MaterialTheme(colors = darkThemeColors) {
+            MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
                 Text(
                     text = setConfigValue.toString(),
-                    modifier = Modifier.padding(8.dp).width(46.dp),
+                    modifier = Modifier.padding(8.dp).width(46.dp).background(surface),
                     style = TextStyle(color = uiColor, fontSize = 14.sp, textAlign = TextAlign.Center)
                 )
-                Spacer(Modifier.width(5.dp).background(darkThemeColors.background))
+                Spacer(Modifier.width(5.dp).background(background ) )
                 Slider(
                     value = sliderValue!!.toFloat(),
                     onValueChange = {
@@ -72,13 +71,13 @@ fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItem
                         )
                     },
                     valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
-                    modifier = Modifier.height(12.dp).background(darkThemeColors.background),
+                    modifier = Modifier.height(12.dp).background(background ) ,
                     colors = SliderDefaults.colors(thumbColor = uiColor, activeTrackColor = uiColor, inactiveTrackColor = Color.Gray)
                 )
             }
         }
     }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+    Spacer(Modifier.height(4.dp).background(background ) )
 }
 
 @Composable
@@ -95,7 +94,7 @@ fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
 
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(100.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth().height(100.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
 
@@ -122,7 +121,7 @@ fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
             }
         }
     }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+    Spacer(Modifier.height(4.dp).background(background ) )
 }
 
 @Composable
@@ -138,7 +137,7 @@ fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
     Row(modifier = Modifier.fillMaxWidth().height(60.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth().height(60.dp).background(darkThemeColors.background)
+            modifier = Modifier.fillMaxWidth().height(60.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 OutlinedTextField(
@@ -165,5 +164,5 @@ fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
             }
         }
     }
-    Spacer(Modifier.height(4.dp).background(darkThemeColors.background))
+    Spacer(Modifier.height(4.dp).background(background ) )
 }
