@@ -83,7 +83,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
         handleProxy(args)
         ClientPackets
-        MeteorliteTheme.install()
+        MeteorliteTheme.installDark()
         timer.start()
         processArguments(args)
         startKoin { modules(Module.CLIENT_MODULE) }
@@ -101,6 +101,8 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
                     this.window()
                 } //::finishStartup is called at the end of this function
             )
+
+
 
     }
 

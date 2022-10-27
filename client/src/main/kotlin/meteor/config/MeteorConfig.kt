@@ -26,7 +26,7 @@ interface MeteorConfig : Config {
         position = 0,
     )
     fun theme(): Boolean {
-        return false
+        return true
     }
 
 
