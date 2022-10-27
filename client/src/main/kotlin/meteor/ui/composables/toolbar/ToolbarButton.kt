@@ -10,6 +10,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,10 +19,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import meteor.ui.composables.preferences.background
+import meteor.ui.composables.preferences.uiColor
 
 class ToolbarButton(
-    var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color? = Color.Cyan,
-    var backgroundColor: Color? = background ,
+    var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color? = null ,
+    var backgroundColor: Color? = null,
     var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
     var bottom: Boolean = false, var onClick: () -> Unit
 ) {
@@ -36,17 +38,18 @@ class ToolbarButton(
                 name,
                 icon = null,
                 imageResource = imageResource,
-                backgroundColor = background ,
+                backgroundColor = mutableStateOf(background).value ,
                 description = description,
                 alignment = alignment,
                 bottom = bottom,
-                onClick = onClick
+                onClick = onClick,
+                iconColor = mutableStateOf(uiColor).value
             )
 
     @Composable
     fun CreateComponent() {
         Box(
-            modifier = Modifier.clip(CircleShape).background(backgroundColor!!).width(45.dp).height(45.dp),
+            modifier = Modifier.clip(CircleShape).background(mutableStateOf(background).value).width(45.dp).height(45.dp),
             contentAlignment = alignment
         ) {
             IconButton(
@@ -57,7 +60,7 @@ class ToolbarButton(
                     Icon(
                         icon!!,
                         contentDescription = description,
-                        tint = iconColor!!
+                        tint = mutableStateOf(uiColor).value,
                     )
                 else if (imageResource != null)
                     Image(

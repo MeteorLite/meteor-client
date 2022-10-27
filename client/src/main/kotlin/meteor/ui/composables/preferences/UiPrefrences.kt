@@ -33,6 +33,7 @@ val background: Color
     get() = if (darkLightMode.value) darkThemeColors.background
     else lightThemeColors.background
 
+
 val darkThemeColors = darkColors(
     primary = Color.Cyan,
     primaryVariant = Color(0xFF3E2723),

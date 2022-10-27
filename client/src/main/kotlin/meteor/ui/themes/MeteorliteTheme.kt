@@ -10,10 +10,16 @@ class MeteorliteTheme private constructor(theme: IntelliJTheme) : IntelliJTheme.
 
     companion object {
 
-        fun install() {
+        fun installDark() {
             val theme =
                 MeteorliteTheme(IntelliJTheme(MeteorliteTheme::class.java.getResourceAsStream("/themes/meteorlite.theme.json")))
             setup(theme)
         }
+        fun installLight() {
+            val theme =
+                MeteorliteTheme(IntelliJTheme(MeteorliteTheme::class.java.getResourceAsStream("/themes/Gray.theme.json")))
+            setup(theme)
+        }
+
     }
 }
