@@ -222,7 +222,9 @@ class OneClickAgilityPlugin : Plugin() {
             event.consume()
             return
         }
-        event.menuEntry = obstacleArea.createMenuEntry()!!
+        obstacleArea.createMenuEntry()?.let {
+            event.menuEntry = it
+        }
     }
 
     private fun checkTileForMark(tile: Tile): Boolean {
