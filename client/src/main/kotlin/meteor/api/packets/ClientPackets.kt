@@ -345,6 +345,7 @@ object ClientPackets {
 
     fun preparePacket(packetName: String): PacketBufferNode {
         val client = Main.client
+        Main.logger.debug("Preparing packet: $packetName")
         val packet = getPacket(packetName)
         return client.preparePacket(
             client.createClientPacket(getOpcode(packet), packet.size),
