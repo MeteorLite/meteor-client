@@ -25,6 +25,10 @@ RSClientPacket OPPLAYER3();
 @Override
 RSClientPacket IF_BUTTON10();
 
+@Import("field3004")
+@Override
+RSClientPacket EVENT_KEYBOARD();
+
 @Import("field3005")
 @Override
 RSClientPacket OPNPC5();
@@ -145,6 +149,10 @@ RSClientPacket IF_BUTTON6();
 @Override
 RSClientPacket OPLOCT();
 
+@Import("field3051")
+@Override
+RSClientPacket EVENT_MOUSE_CLICK();
+
 @Import("field3052")
 @Override
 RSClientPacket OPPLAYER8();
@@ -236,6 +244,10 @@ RSClientPacket OPPLAYER4();
 @Import("field3089")
 @Override
 RSClientPacket OPLOC2();
+
+@Import("field3091")
+@Override
+RSClientPacket MOVE_GAMECLICK();
 
 @Import("field3098")
 @Override

@@ -57,90 +57,90 @@
   },
   {
     "method": "writeByteAdd",
-    "deobName": "method7952"
+    "deobName": "method8630"
   },
   {
     "method": "writeByteNeg",
-    "deobName": "method8136"
+    "deobName": "method8546"
   },
   {
     "method": "writeByteSub",
-    "deobName": "method8004"
+    "deobName": "method8434"
   },
   {
     "method": "readUByteAdd",
-    "deobName": "method7955"
+    "deobName": "method8435"
   },
   {
     "method": "readUByteNeg",
-    "deobName": "method7954"
+    "deobName": "method8436"
   },
   {
     "method": "readUByteSub",
-    "deobName": "method8023"
+    "deobName": "method8623"
   },
   {
     "method": "readByteAdd",
-    "deobName": "method7975"
+    "deobName": "method8617"
   },
   {
     "method": "readByteNeg",
-    "deobName": "method7970"
+    "deobName": "method8469"
   },
   {
     "method": "readByteSub",
-    "deobName": "method7960"
+    "deobName": "method8440"
   },
   {
     "method": "writeShortLE",
-    "deobName": "method7961"
-  },
-  {
-    "method": "writeShortAdd",
-    "deobName": "method7962"
-  },
-  {
-    "method": "writeShortAddLE",
     "deobName": "writeIntME"
   },
   {
+    "method": "writeShortAdd",
+    "deobName": "method8619"
+  },
+  {
+    "method": "writeShortAddLE",
+    "deobName": "method8443"
+  },
+  {
     "method": "readUShortLE",
-    "deobName": "method7964"
+    "deobName": "method8444"
   },
   {
     "method": "readUShortAdd",
-    "deobName": "method7965"
+    "deobName": "method8484"
   },
   {
     "method": "readShortAddLE",
-    "deobName": "method8143"
+    "deobName": "method8446"
   },
   {
     "method": "readShortLE",
-    "deobName": "method7967"
+    "deobName": "method8448"
   },
   {
     "method": "writeIntLE",
-    "deobName": "method7916"
+    "deobName": "method8453"
   },
   {
     "method": "writeIntIME",
-    "deobName": "method7971"
+    "deobName": "method8635"
   },
   {
     "method": "writeIntME",
-    "deobName": "method7972"
+    "deobName": "method8437"
   },
   {
     "method": "readIntLE",
-    "deobName": "method7973"
+    "deobName": "method8456"
   },
   {
     "method": "readIntIME",
-    "deobName": "method7974"
+    "deobName": "method8457"
   },
   {
     "method": "readIntME",
-    "deobName": "method8135"
+    "deobName": "method8458"
   }
 ]
