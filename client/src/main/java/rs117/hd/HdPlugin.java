@@ -421,11 +421,6 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 				synchronized (canvas.getTreeLock())
 				{
-					if (!canvas.isValid())
-					{
-						return;
-					}
-
 					awtContext = new AWTContext(canvas);
 					awtContext.configurePixelFormat(0, 0, 0);
 				}
