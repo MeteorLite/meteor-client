@@ -2,10 +2,7 @@ package meteor.ui.composables
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
@@ -24,7 +21,7 @@ import meteor.ui.composables.preferences.lightThemeColors
 open class PluginPanel : EventSubscriber() {
     @Composable
     fun CreateComponent() {
-        val mod = Modifier.width(375.dp).fillMaxHeight().background(background).padding(5.dp)
+        val mod = Modifier.width(375.dp).height(2048.dp).background(background).padding(5.dp)
 
 
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
