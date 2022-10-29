@@ -17,7 +17,7 @@ interface AutoClickerConfig : Config {
         return ModifierlessKeybind(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK)
     }
 
-    @Range(textInput = true)
+    @Range(max = 10000, textInput = true)
     @ConfigItem(
         keyName = "minDelay",
         name = "Minimum Delay (ms)",
@@ -29,7 +29,7 @@ interface AutoClickerConfig : Config {
         return 1000
     }
 
-    @Range(textInput = true)
+    @Range(max = 20000, textInput = true)
     @ConfigItem(
         keyName = "maxDelay",
         name = "Maximum Delay (ms)",
@@ -41,7 +41,7 @@ interface AutoClickerConfig : Config {
         return 2000
     }
 
-    @Range(textInput = true)
+    @Range(max = 20000, textInput = true)
     @ConfigItem(keyName = "target", name = "Delay Target", description = "", position = 8, section = "Clicker Config")
     fun target(): Int {
         return 1500
