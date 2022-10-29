@@ -16,6 +16,7 @@ import meteor.plugins.PluginManager
 import meteor.plugins.xptracker.XpTrackerService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
+
 import meteor.ui.composables.ui.window
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
@@ -185,6 +186,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         xpTrackerService = XpTrackerService(PluginManager.get())
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
+
     }
 
     fun initOverlays() {
