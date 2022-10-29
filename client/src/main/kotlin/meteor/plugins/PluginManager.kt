@@ -29,6 +29,7 @@ import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.fps.FpsPlugin
 import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
+import meteor.plugins.hiscore.HiScorePlugin
 import meteor.plugins.interacthighlight.InteractHighlightPlugin
 import meteor.plugins.inventorytags.InventoryTagsPlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
@@ -83,7 +84,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-
+        init<HiScorePlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
