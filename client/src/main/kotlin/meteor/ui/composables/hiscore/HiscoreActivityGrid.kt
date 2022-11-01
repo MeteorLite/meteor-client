@@ -7,13 +7,11 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.ui.composables.preferences.surface
@@ -24,48 +22,49 @@ import kotlin.math.max
 
 @OptIn(ExperimentalFoundationApi::class)
 
-fun LazyGridScope.hiscoreActivityGrid(){
+fun LazyGridScope.hiscoreActivityGrid() {
     items(HiscoreSkill.values().filter { it.type == HiscoreSkillType.ACTIVITY }) { item ->
 
         Card(backgroundColor = surface, modifier = Modifier.padding(5.dp)) {
 
             TooltipArea(
-                modifier = Modifier.background(
-                    shape = RoundedCornerShape(3.dp), color = surface
-                ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
-                    Column(modifier = Modifier.background(surface)) {
-                        Text(
+                    modifier = Modifier.background(
+                            shape = RoundedCornerShape(3.dp), color = surface
+                    ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
+                Column(modifier = Modifier.background(surface)) {
+                    Text(
                             text = "Rank:" + max(0, result.getSkill(item).rank).toString(),
                             style = TextStyle(fontSize = 10.sp, color = uiColor)
-                        )
-                        Text(
-                            text = "Activity:" +item.name.lowercase().replace('_',' '),
-                            style = TextStyle(fontSize = 10.sp, color = uiColor)
-                        )
-                    }
-
-                }, delayMillis = 500
-            ) {Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                Spacer(Modifier.width(15.dp))
-                Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-                    Image(
-                        painter = painterResource("skill_icons_small/activities/${item.name}.png".lowercase()),
-                        contentDescription = item.name
                     )
-                    Row(horizontalArrangement = Arrangement.Center) {
-                        Text(
-                            text = max(0, result.getSkill(item).level).toString(),
-                            style = TextStyle(
-                                fontSize = 10.sp,
-                                textAlign = TextAlign.Center,
-                                color = uiColor
-                            )
-                        )
-                    }
-
-
+                    Text(
+                            text = "Activity:" + item.name.lowercase().replace('_', ' '),
+                            style = TextStyle(fontSize = 10.sp, color = uiColor)
+                    )
                 }
-            }
+
+            }, delayMillis = 500
+            ) {
+                Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
+                    Spacer(Modifier.width(15.dp))
+                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+                        Image(
+                                painter = painterResource("skill_icons_small/activities/${item.name}.png".lowercase()),
+                                contentDescription = item.name
+                        )
+                        Row(horizontalArrangement = Arrangement.Center) {
+                            Text(
+                                    text = max(0, result.getSkill(item).level).toString(),
+                                    style = TextStyle(
+                                            fontSize = 10.sp,
+                                            textAlign = TextAlign.Center,
+                                            color = uiColor
+                                    )
+                            )
+                        }
+
+
+                    }
+                }
             }
         }
 

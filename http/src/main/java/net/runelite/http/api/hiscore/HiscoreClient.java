@@ -129,7 +129,7 @@ public class HiscoreClient
 			.addQueryParameter("player", username)
 			.build();
 
-		log.debug("Built URL " + url);
+		log.debug("Built URI:" + url);
 
 		return new Request.Builder()
 			.url(url)

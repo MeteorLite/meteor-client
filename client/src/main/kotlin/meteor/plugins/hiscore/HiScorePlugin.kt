@@ -24,7 +24,7 @@ import okhttp3.OkHttpClient
 @PluginDescriptor(name = "Hiscore", enabledByDefault = true, disabledOnStartup = false)
 class HiScorePlugin : Plugin() {
     private val hiscoreClient = HiscoreClient(OkHttpClient())
-    var panel: PluginPanel? = null
+    var panel: HiscorePanel? = null
     var config = configuration<HiscoreConfig>()
      var lookupResult:HiscoreResult = hiscoreClient.lookup(config.username())
     var icon:HiscoreEndpoint = HiscoreEndpoint.NORMAL
@@ -91,6 +91,10 @@ class HiScorePlugin : Plugin() {
         }
     }
     fun onClick() {
+        if (panel!!.username != config.username()) {
+            panel!!.username = config.username()
+            HiscorePanel.result = hiscoreClient.lookup(config.username())
+        }
         pluginPanel.value = panel
         togglePluginPanel(notesButton)
     }

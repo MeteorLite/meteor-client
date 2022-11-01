@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -23,43 +22,43 @@ import kotlin.math.max
 
 @OptIn(ExperimentalFoundationApi::class)
 
-fun LazyGridScope.hiscoreBossGrid(){
+fun LazyGridScope.hiscoreBossGrid() {
     items(HiscoreSkill.values().filter { it.type == HiscoreSkillType.BOSS }) { item ->
 
         Card(backgroundColor = surface, modifier = Modifier.padding(5.dp)) {
             TooltipArea(
-                modifier = Modifier.background(
-                    shape = RoundedCornerShape(3.dp), color = surface
-                ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
-                    Column(modifier = Modifier.background(surface)) {
-                        Text(
+                    modifier = Modifier.background(
+                            shape = RoundedCornerShape(3.dp), color = surface
+                    ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
+                Column(modifier = Modifier.background(surface)) {
+                    Text(
                             text = "Rank:" + max(0, result.getSkill(item).rank).toString(),
                             style = TextStyle(fontSize = 10.sp, color = uiColor)
-                        )
-                        Text(
-                            text = "Boss:" + item.name.lowercase().replace('_',' '),
+                    )
+                    Text(
+                            text = "Boss:" + item.name.lowercase().replace('_', ' '),
                             style = TextStyle(fontSize = 10.sp, color = uiColor)
-                        )
+                    )
 
-                    }
+                }
 
-                }, delayMillis = 500
+            }, delayMillis = 500
             ) {
                 Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
                     Spacer(Modifier.width(15.dp))
                     Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
                         Image(
-                            painter = painterResource("skill_icons_small/bosses/${item.name}.png".lowercase()),
-                            contentDescription = item.name
+                                painter = painterResource("skill_icons_small/bosses/${item.name}.png".lowercase()),
+                                contentDescription = item.name
                         )
                         Row(horizontalArrangement = Arrangement.Center) {
                             Text(
-                                text = max(0, result.getSkill(item).level).toString(),
-                                style = TextStyle(
-                                    fontSize = 10.sp,
-                                    textAlign = TextAlign.Center,
-                                    color = uiColor
-                                )
+                                    text = max(0, result.getSkill(item).level).toString(),
+                                    style = TextStyle(
+                                            fontSize = 10.sp,
+                                            textAlign = TextAlign.Center,
+                                            color = uiColor
+                                    )
                             )
                         }
 
@@ -69,7 +68,7 @@ fun LazyGridScope.hiscoreBossGrid(){
 
 
             }
-            }
         }
-
     }
+
+}
