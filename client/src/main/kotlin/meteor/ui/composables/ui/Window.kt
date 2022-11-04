@@ -46,7 +46,6 @@ fun FrameWindowScope.windowContent() {
                                 toolBarOpen.value = true
                             }
                             toolBarOpen.value -> {
-
                                 toolBarOpen.value = false
                             }
                         }
