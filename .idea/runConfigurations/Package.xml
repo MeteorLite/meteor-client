@@ -16,7 +16,7 @@
           <option value="client:createDistributable" />
         </list>
       </option>
-      <option name="vmOptions" value="" />
+      <option name="vmOptions" value="-Xmx2048m" />
     </ExternalSystemSettings>
     <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
