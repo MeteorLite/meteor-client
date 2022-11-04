@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Jos <Malevolentdev@gmail.com>
+ * Copyright (c) 2016-2022, emerald000
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,31 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.statusbars
+package net.runelite.client.plugins.itemstats.special;
 
-import net.runelite.api.Point
-import net.runelite.api.widgets.WidgetInfo
+import net.runelite.api.Client;
+import net.runelite.client.plugins.itemstats.StatBoost;
+import static net.runelite.client.plugins.itemstats.stats.Stats.HITPOINTS;
 
-internal enum class Viewport(
-    var container: WidgetInfo,
-    var viewport: WidgetInfo,
-    var offsetLeft: Point,
-    var offsetRight: Point
-) {
-    RESIZED_BOX(
-        WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    RESIZED_BOTTOM(
-        WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
-        Point(61, -12), Point(35, -12)
-    ),
-    FIXED(
-        WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    FIXED_BANK(
-        WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    );
+public class CaveNightshade extends StatBoost
+{
+	public CaveNightshade()
+	{
+		super(HITPOINTS, false);
+	}
+
+	@Override
+	public int heals(Client client)
+	{
+		int currentHP = this.getStat().getValue(client);
+
+		if (currentHP < 20)
+		{
+			return -currentHP / 2;
+		}
+		else
+		{
+			return -15;
+		}
+	}
 }

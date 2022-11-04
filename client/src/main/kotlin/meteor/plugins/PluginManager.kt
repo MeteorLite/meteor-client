@@ -68,6 +68,7 @@ import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
+import net.runelite.client.plugins.itemstats.ItemStatPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.mining.MiningPlugin
 import net.runelite.client.plugins.motherlode.MotherlodePlugin
@@ -136,6 +137,7 @@ object PluginManager {
         init<InteractHighlightPlugin>()
         init<InventoryTagsPlugin>()
         init<ItemPricesPlugin>()
+        init<ItemStatPlugin>()
         init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
         init<MenuEntrySwapperPlugin>()

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018, Jos <Malevolentdev@gmail.com>
+ * Copyright (c) 2016-2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2021, Tanlines <tanlines@outlook.com.au>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,31 +23,36 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.statusbars
+package net.runelite.client.plugins.itemstats.potions;
 
-import net.runelite.api.Point
-import net.runelite.api.widgets.WidgetInfo
+import net.runelite.api.Client;
+import net.runelite.api.EquipmentInventorySlot;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.ItemID;
+import net.runelite.client.plugins.itemstats.StatBoost;
+import static net.runelite.client.plugins.itemstats.stats.Stats.RUN_ENERGY;
 
-internal enum class Viewport(
-    var container: WidgetInfo,
-    var viewport: WidgetInfo,
-    var offsetLeft: Point,
-    var offsetRight: Point
-) {
-    RESIZED_BOX(
-        WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    RESIZED_BOTTOM(
-        WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
-        Point(61, -12), Point(35, -12)
-    ),
-    FIXED(
-        WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    FIXED_BANK(
-        WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    );
+public class StaminaPotion extends StatBoost
+{
+	public StaminaPotion()
+	{
+		super(RUN_ENERGY, false);
+	}
+
+	@Override
+	public int heals(Client client)
+	{
+		ItemContainer equipContainer = client.getItemContainer(InventoryID.EQUIPMENT);
+		if (equipContainer != null)
+		{
+			Item ring = equipContainer.getItem(EquipmentInventorySlot.RING.getSlotIdx());
+			if (ring != null && ring.getId() == ItemID.RING_OF_ENDURANCE)
+			{
+				return 40;
+			}
+		}
+		return 20;
+	}
 }

@@ -22,59 +22,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.itemstats
+package net.runelite.client.plugins.itemstats.delta;
 
-
-/**
- * A single stat change
- */
-class StatChange {
-    /**
-     * The stat which will be boosted (or damaged).
-     */
-    val stat: Stat? = null
-
-    /**
-     * Relative change that will occur if the stat boost is applied now.
-     */
-    private val relative = 0
-
-    /**
-     * Theoretical change that can occur before boost cap is enforced.
-     */
-    val theoretical = 0
-
-    /**
-     * Absolute total of the stat after applying the boost.
-     */
-    private val absolute = 0
-
-    /**
-     * How beneficial this stat boost will be to the player.
-     */
-    private val positivity: Positivity? = null
-
-    /**
-     * Returns a human-readable formatted relative boost. Should be the boost amount prefixed by "+"
-     * or "-".
-     *
-     * @return The formatted relative boost amount
-     */
-    val formattedRelative: String
-        get() = formatBoost(relative)
-
-    /**
-     * Returns a human-readable formatted theoretical boost. Should be the boost amount prefixed by
-     * "+" or "-".
-     *
-     * @return The formatted theoretical boost amount
-     */
-    val formattedTheoretical: String
-        get() = formatBoost(theoretical)
-
-    companion object {
-        fun formatBoost(boost: Int): String {
-            return String.format("%+d", boost)
-        }
-    }
+@FunctionalInterface
+public interface DeltaCalculator
+{
+	int calculateDelta(int max);
 }

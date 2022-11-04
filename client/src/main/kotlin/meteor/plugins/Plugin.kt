@@ -11,7 +11,7 @@ import meteor.ui.composables.preferences.pluginPanelIsOpen
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.overlay.Overlay
 
-open class Plugin : EventSubscriber() {
+open class Plugin() : EventSubscriber() {
     var configuration: Config? = null
 
     var client = Main.client

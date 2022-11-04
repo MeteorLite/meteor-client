@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2016-2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,53 +22,60 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.itemstats
+package net.runelite.client.plugins.itemstats
 
-import java.awt.Color
+import net.runelite.client.plugins.itemstats.stats.Stat
 
 /**
- * Positivity represents how positive or negative a stat change is. This is turned into the color
- * shown to the user in the toolip.
+ * A single stat change
  */
-enum class Positivity {
+open class StatChange {
     /**
-     * The stat is lower than it was before.
+     * The stat which will be boosted (or damaged).
      */
-    WORSE,
+    var stat: Stat? = null
 
     /**
-     * There is no change, ie: The stat is already capped.
+     * Relative change that will occur if the stat boost is applied now.
      */
-    NO_CHANGE,
+    var relative = 0
 
     /**
-     * The stat change goes over the cap, but does not net 0
+     * Theoretical change that can occur before boost cap is enforced.
      */
-    BETTER_CAPPED,
+    var theoretical = 0
 
     /**
-     * Some stat changes were fully consumed, some were not. This should NOT be returned by a single
-     * stat change. This should only be used by a
-     * `StatChangeCalculator`
+     * Absolute total of the stat after applying the boost.
      */
-    BETTER_SOMECAPPED,
+    var absolute = 0
 
     /**
-     * The stat change is fully consumed. NB: a boost that hits the cap, but does not go over it is
-     * still considered `BETTER_UNCAPPED`
+     * How beneficial this stat boost will be to the player.
      */
-    BETTER_UNCAPPED;
+    var positivity: Positivity? = null
+
+    /**
+     * Returns a human-readable formatted relative boost.
+     * Should be the boost amount prefixed by "+" or "-".
+     *
+     * @return The formatted relative boost amount
+     */
+    open val formattedRelative: String?
+        get() = formatBoost(relative)
+
+    /**
+     * Returns a human-readable formatted theoretical boost.
+     * Should be the boost amount prefixed by "+" or "-".
+     *
+     * @return The formatted theoretical boost amount
+     */
+    open val formattedTheoretical: String?
+        get() = formatBoost(theoretical)
 
     companion object {
-        fun getColor(config: ItemStatConfig, positivity: Positivity?): Color {
-            return when (positivity) {
-                BETTER_UNCAPPED -> config.colorBetterUncapped()
-                BETTER_SOMECAPPED -> config.colorBetterSomeCapped()
-                BETTER_CAPPED -> config.colorBetterCapped()
-                NO_CHANGE -> config.colorNoChange()
-                WORSE -> config.colorWorse()
-                else -> Color.WHITE
-            }
+        fun formatBoost(boost: Int): String {
+            return String.format("%+d", boost)
         }
     }
 }

@@ -28,25 +28,28 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Value;
 
 @Value
-public class ItemStats {
-
-  private boolean quest;
-  private boolean equipable;
-  private double weight;
+public class ItemStats
+{
+  boolean equipable;
+  double weight;
   @SerializedName("ge_limit")
-  private int geLimit;
+  int geLimit;
 
-  private ItemEquipmentStats equipment;
+  ItemEquipmentStats equipment;
 
-  public ItemStats subtract(ItemStats other) {
-    if (other == null) {
+  public ItemStats subtract(ItemStats other)
+  {
+    if (other == null)
+    {
       return this;
     }
 
     final double newWeight = weight - other.weight;
     final ItemEquipmentStats newEquipment;
 
-    if (other.equipment != null) {
+
+    if (other.equipment != null)
+    {
       final ItemEquipmentStats equipment = this.equipment != null
           ? this.equipment
           : new ItemEquipmentStats.ItemEquipmentStatsBuilder().build();
@@ -69,11 +72,12 @@ public class ItemStats {
           .prayer(equipment.getPrayer() - other.equipment.getPrayer())
           .aspeed(equipment.getAspeed() - other.equipment.getAspeed())
           .build();
-    } else {
+    }
+    else
+    {
       newEquipment = equipment;
     }
 
-    return new ItemStats(quest, equipable, newWeight, 0, newEquipment);
+    return new ItemStats(equipable, newWeight, 0, newEquipment);
   }
 }
-

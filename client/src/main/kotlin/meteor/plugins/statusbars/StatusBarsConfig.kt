@@ -77,6 +77,16 @@ interface StatusBarsConfig : Config {
         return 0
     }
 
+    @Range(min = 0, max = 12)
+    @ConfigItem(
+            keyName = "barWidth",
+            name = "Bar Width",
+            description = ""
+    )
+    fun barWidth(): Int {
+        return 20
+    }
+
     companion object {
         const val GROUP = "statusbars"
     }

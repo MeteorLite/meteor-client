@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Jos <Malevolentdev@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.itemstats
+package net.runelite.client.plugins.itemstats;
 
-class StatsChanges(len: Int) {
-    /**
-     * How positive the entire set of stat changes is
-     *
-     * @see Positivity
-     */
-    private val positivity: Positivity
-    val statChanges: Array<StatChange?>
-
-    init {
-        statChanges = arrayOfNulls(len)
-        positivity = Positivity.NO_CHANGE
-    }
+public interface ItemStatChangesService
+{
+	/**
+	 * Get the item stat value
+	 *
+	 * @return ItemStatChanges
+	 */
+	Effect getItemStatChanges(int id);
 }
