@@ -22,31 +22,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.statusbars
+package net.runelite.client.plugins.itemstats;
 
-import net.runelite.api.Point
-import net.runelite.api.widgets.WidgetInfo
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-internal enum class Viewport(
-    var container: WidgetInfo,
-    var viewport: WidgetInfo,
-    var offsetLeft: Point,
-    var offsetRight: Point
-) {
-    RESIZED_BOX(
-        WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    RESIZED_BOTTOM(
-        WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
-        Point(61, -12), Point(35, -12)
-    ),
-    FIXED(
-        WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    FIXED_BANK(
-        WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    );
+@Singleton
+class ItemStatChangesServiceImpl implements ItemStatChangesService
+{
+	private final ItemStatChanges itemstatchanges;
+
+	@Inject
+	ItemStatChangesServiceImpl(ItemStatChanges itemstatchanges)
+	{
+		this.itemstatchanges = itemstatchanges;
+	}
+
+	@Override
+	public Effect getItemStatChanges(int id)
+	{
+		return itemstatchanges.get(id);
+	}
 }

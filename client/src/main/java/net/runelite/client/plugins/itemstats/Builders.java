@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Jos <Malevolentdev@gmail.com>
+ * Copyright (c) 2016-2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,31 +22,61 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.statusbars
+package net.runelite.client.plugins.itemstats;
 
-import net.runelite.api.Point
-import net.runelite.api.widgets.WidgetInfo
+import net.runelite.client.plugins.itemstats.delta.DeltaCalculator;
+import net.runelite.client.plugins.itemstats.delta.DeltaPercentage;
+import net.runelite.client.plugins.itemstats.stats.Stat;
 
-internal enum class Viewport(
-    var container: WidgetInfo,
-    var viewport: WidgetInfo,
-    var offsetLeft: Point,
-    var offsetRight: Point
-) {
-    RESIZED_BOX(
-        WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    RESIZED_BOTTOM(
-        WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
-        Point(61, -12), Point(35, -12)
-    ),
-    FIXED(
-        WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    FIXED_BANK(
-        WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    );
+public class Builders
+{
+	public static Food food(int diff)
+	{
+		return food((max) -> diff);
+	}
+
+	public static Food food(DeltaCalculator p)
+	{
+		return new Food(p);
+	}
+
+	public static Effect combo(SingleEffect... effect)
+	{
+		return new Combo(effect);
+	}
+
+	public static SimpleStatBoost boost(Stat stat, int boost)
+	{
+		return boost(stat, (max) -> boost);
+	}
+
+	public static SimpleStatBoost boost(Stat stat, DeltaCalculator p)
+	{
+		return new SimpleStatBoost(stat, true, p);
+	}
+
+	public static SimpleStatBoost heal(Stat stat, int boost)
+	{
+		return heal(stat, (max) -> boost);
+	}
+
+	public static SimpleStatBoost heal(Stat stat, DeltaCalculator p)
+	{
+		return new SimpleStatBoost(stat, false, p);
+	}
+
+	public static SimpleStatBoost dec(Stat stat, int boost)
+	{
+		return heal(stat, -boost);
+	}
+
+	public static DeltaPercentage perc(double perc, int delta)
+	{
+		return new DeltaPercentage(perc, delta);
+	}
+
+	public static RangeStatBoost range(StatBoost a, StatBoost b)
+	{
+		return new RangeStatBoost(a, b);
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Jos <Malevolentdev@gmail.com>
+ * Copyright (c) 2022 Hydrox6 <ikada@protonmail.ch>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,31 +22,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.statusbars
+package net.runelite.client.plugins.itemstats;
 
-import net.runelite.api.Point
-import net.runelite.api.widgets.WidgetInfo
+import net.runelite.api.Client;
+import net.runelite.client.plugins.itemstats.delta.DeltaCalculator;
+import net.runelite.client.plugins.itemstats.stats.Stat;
 
-internal enum class Viewport(
-    var container: WidgetInfo,
-    var viewport: WidgetInfo,
-    var offsetLeft: Point,
-    var offsetRight: Point
-) {
-    RESIZED_BOX(
-        WidgetInfo.RESIZABLE_VIEWPORT_OLD_SCHOOL_BOX, WidgetInfo.RESIZABLE_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    RESIZED_BOTTOM(
-        WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INTERFACE_CONTAINER,
-        Point(61, -12), Point(35, -12)
-    ),
-    FIXED(
-        WidgetInfo.FIXED_VIEWPORT, WidgetInfo.FIXED_VIEWPORT_INTERFACE_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    ),
-    FIXED_BANK(
-        WidgetInfo.BANK_CONTAINER, WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER,
-        Point(20, -4), Point(0, -4)
-    );
+/**
+ * A stat boost using the real stat level, that can only boost a certain amount above the stat level.
+ */
+public class CappedStatBoost extends StatBoost
+{
+	private final DeltaCalculator deltaCalculator;
+	private final DeltaCalculator capCalculator;
+
+	public CappedStatBoost(Stat stat, DeltaCalculator deltaCalculator, DeltaCalculator capCalculator)
+	{
+		super(stat, true);
+		this.deltaCalculator = deltaCalculator;
+		this.capCalculator = capCalculator;
+	}
+
+	@Override
+	public int heals(Client client)
+	{
+		final int current = getStat().getValue(client);
+		final int max = getStat().getMaximum(client);
+		final int delta = deltaCalculator.calculateDelta(max);
+		final int cap = capCalculator.calculateDelta(max);
+
+		if (delta + current <= max + cap)
+		{
+			return delta;
+		}
+
+		return max + cap - current;
+	}
+
 }

@@ -22,25 +22,37 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.itemstats
+package net.runelite.client.plugins.itemstats.stats;
 
-import net.runelite.api.Client
+import net.runelite.api.Client;
+import net.runelite.api.Skill;
 
 /**
- * Abstract stat of a player. This includes [Skill]s and other player variables, such as
- * `RUN_ENERGY`.
- *
- * @see
+ * Abstract stat of a player.
+ * This includes {@link Skill}s and other player variables, such as <code>RUN_ENERGY</code>.
+ * @see Stats
  */
-abstract class Stat internal constructor(val name: String) {
+public abstract class Stat
+{
+	private final String name;
 
-    /**
-     * Get the current stat value including any boosts or damage.
-     */
-    abstract fun getValue(client: Client?): Int
+	Stat(String name)
+	{
+		this.name = name;
+	}
 
-    /**
-     * Get the base stat maximum. (ie. the bottom half of the stat fraction)
-     */
-    abstract fun getMaximum(client: Client?): Int
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * Get the current stat value including any boosts or damage.
+	 */
+	public abstract int getValue(Client client);
+
+	/**
+	 * Get the base stat maximum. (ie. the bottom half of the stat fraction)
+	 */
+	public abstract int getMaximum(Client client);
 }

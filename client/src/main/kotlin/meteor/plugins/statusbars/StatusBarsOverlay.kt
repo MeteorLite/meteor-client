@@ -28,8 +28,6 @@ package meteor.plugins.statusbars
 import meteor.game.AlternateSprites
 import meteor.game.SkillIconManager
 import meteor.game.SpriteManager
-import meteor.plugins.itemstats.Effect
-import meteor.plugins.itemstats.ItemStatChangesService
 import meteor.plugins.statusbars.config.BarMode
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
@@ -38,126 +36,115 @@ import meteor.util.ImageUtil
 import net.runelite.api.*
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
+import net.runelite.client.plugins.itemstats.ItemStatChangesService
+import net.runelite.client.plugins.itemstats.ItemStatPlugin
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Image
+import java.awt.image.BufferedImage
 import java.util.*
+import java.util.function.Supplier
 
-internal class StatusBarsOverlay(
-    plugin: StatusBarsPlugin,
-    config: StatusBarsConfig
-) : Overlay() {
-    private val plugin: StatusBarsPlugin
-    private val config: StatusBarsConfig
+internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: StatusBarsConfig) : Overlay() {
 
-    //TODO
-    private val itemStatService = object : ItemStatChangesService {
-        override fun getItemStatChanges(id: Int): Effect? {
-            return null
-        }
-    }
-    private val spriteManager = SpriteManager
+    private val itemStatService: ItemStatChangesService = ItemStatPlugin.itemStatChangesService
+    private val spriteManager: SpriteManager = SpriteManager
     private val prayerIcon: Image
+    private val heartDisease: Image
+    private val heartPoison: Image
+    private val heartVenom: Image
     private var heartIcon: Image? = null
-    private var heartDisease: Image? = null
-    private var heartPoison: Image? = null
-    private var heartVenom: Image? = null
     private var specialIcon: Image? = null
     private var energyIcon: Image? = null
     private val barRenderers: EnumMap<BarMode, BarRenderer> = EnumMap<BarMode, BarRenderer>(
-        BarMode::class.java
+            BarMode::class.java
     )
 
     init {
-        position = OverlayPosition.DYNAMIC
-        layer = OverlayLayer.ABOVE_WIDGETS
-        this.plugin = plugin
-        this.config = config
-        prayerIcon = ImageUtil.resizeCanvas(
-            ImageUtil.resizeImage(
-                SkillIconManager.getSkillImage(Skill.PRAYER, true),
-                IMAGE_SIZE,
-                IMAGE_SIZE
-            ), ICON_DIMENSIONS, ICON_DIMENSIONS
-        )
+        position = (OverlayPosition.DYNAMIC)
+        layer = (OverlayLayer.ABOVE_WIDGETS)
+        prayerIcon = ImageUtil.resizeCanvas(ImageUtil.resizeImage(SkillIconManager.getSkillImage(Skill.PRAYER, true), IMAGE_SIZE, IMAGE_SIZE), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        heartDisease = ImageUtil.resizeCanvas(ImageUtil.loadImageResource(AlternateSprites::class.java, AlternateSprites.DISEASE_HEART), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        heartPoison = ImageUtil.resizeCanvas(ImageUtil.loadImageResource(AlternateSprites::class.java, AlternateSprites.POISON_HEART), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+        heartVenom = ImageUtil.resizeCanvas(ImageUtil.loadImageResource(AlternateSprites::class.java, AlternateSprites.VENOM_HEART), ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
         initRenderers()
     }
 
     private fun initRenderers() {
         barRenderers[BarMode.DISABLED] = null
         barRenderers[BarMode.HITPOINTS] = BarRenderer(
-            { client.getRealSkillLevel(Skill.HITPOINTS) },
-            { client.getBoostedSkillLevel(Skill.HITPOINTS) },
-            { getRestoreValue(Skill.HITPOINTS.getName()) }, label@
-            {
-                val poisonState: Int = client.getVar(VarPlayer.IS_POISONED)
-                if (poisonState >= 1000000) {
-                    return@label VENOMED_COLOR
+                { if (inLms()) Experience.MAX_REAL_LEVEL else client.getRealSkillLevel(Skill.HITPOINTS) },
+                { client.getBoostedSkillLevel(Skill.HITPOINTS) },
+                { getRestoreValue(Skill.HITPOINTS.getName()) },
+                Supplier {
+                    val poisonState = client.getVarpValue(VarPlayer.IS_POISONED.id)
+                    if (poisonState >= 1000000) {
+                        return@Supplier VENOMED_COLOR
+                    }
+                    if (poisonState > 0) {
+                        return@Supplier POISONED_COLOR
+                    }
+                    if (client.getVarpValue(VarPlayer.DISEASE_VALUE.id) > 0) {
+                        return@Supplier DISEASE_COLOR
+                    }
+                    if (client.getVarbitValue(Varbits.PARASITE) >= 1) {
+                        return@Supplier PARASITE_COLOR
+                    }
+                    HEALTH_COLOR
+                },
+                { HEAL_COLOR },
+                Supplier {
+                    val poisonState = client.getVarpValue(VarPlayer.IS_POISONED.id)
+                    if (poisonState > 0 && poisonState < 50) {
+                        return@Supplier heartPoison
+                    }
+                    if (poisonState >= 1000000) {
+                        return@Supplier heartVenom
+                    }
+                    if (client.getVarpValue(VarPlayer.DISEASE_VALUE.id) > 0) {
+                        return@Supplier heartDisease
+                    }
+                    heartIcon!!
                 }
-                if (poisonState > 0) {
-                    return@label POISONED_COLOR
-                }
-                if (client.getVar(VarPlayer.DISEASE_VALUE) > 0) {
-                    return@label DISEASE_COLOR
-                }
-                if (client.getVarbitValue(Varbits.PARASITE) >= 1) {
-                    return@label PARASITE_COLOR
-                }
-                HEALTH_COLOR
-            },
-            { HEAL_COLOR }, label@
-            {
-                val poisonState: Int = client.getVar(VarPlayer.IS_POISONED)
-                if (poisonState > 0 && poisonState < 50) {
-                    return@label heartPoison!!
-                }
-                if (poisonState >= 1000000) {
-                    return@label heartVenom!!
-                }
-                if (client.getVar(VarPlayer.DISEASE_VALUE) > 0) {
-                    return@label heartDisease!!
-                }
-                heartIcon!!
-            }
         )
         barRenderers[BarMode.PRAYER] = BarRenderer(
-            { client.getRealSkillLevel(Skill.PRAYER) },
-            { client.getBoostedSkillLevel(Skill.PRAYER) },
-            { getRestoreValue(Skill.PRAYER.getName()) },
-            {
-                var prayerColor = PRAYER_COLOR
-                for (pray in Prayer.values()) {
-                    if (client.isPrayerActive(pray)) {
-                        prayerColor = ACTIVE_PRAYER_COLOR
-                        break
+                { if (inLms()) Experience.MAX_REAL_LEVEL else client.getRealSkillLevel(Skill.PRAYER) },
+                { client.getBoostedSkillLevel(Skill.PRAYER) },
+                { getRestoreValue(Skill.PRAYER.getName()) },
+                {
+                    var prayerColor = PRAYER_COLOR
+                    for (pray in Prayer.values()) {
+                        if (client.isPrayerActive(pray)) {
+                            prayerColor = ACTIVE_PRAYER_COLOR
+                            break
+                        }
                     }
-                }
-                prayerColor
-            },
-            { PRAYER_HEAL_COLOR },
-            { prayerIcon }
+                    prayerColor
+                },
+                { PRAYER_HEAL_COLOR },
+                { prayerIcon }
         )
         barRenderers[BarMode.RUN_ENERGY] = BarRenderer(
-            { MAX_RUN_ENERGY_VALUE }, { client.energy },
-            { getRestoreValue("Run Energy") }, label@
-            {
-                if (client.getVarbitValue(Varbits.RUN_SLOWED_DEPLETION_ACTIVE) != 0) {
-                    return@label RUN_STAMINA_COLOR
-                } else {
-                    return@label ENERGY_COLOR
-                }
-            },
-            { ENERGY_HEAL_COLOR },
-            { energyIcon!! }
+                { MAX_RUN_ENERGY_VALUE }, { client.energy },
+                { getRestoreValue("Run Energy") },
+                Supplier {
+                    if (client.getVarbitValue(Varbits.RUN_SLOWED_DEPLETION_ACTIVE) != 0) {
+                        return@Supplier RUN_STAMINA_COLOR
+                    } else {
+                        return@Supplier ENERGY_COLOR
+                    }
+                },
+                { ENERGY_HEAL_COLOR },
+                { energyIcon!! }
         )
         barRenderers[BarMode.SPECIAL_ATTACK] = BarRenderer(
-            { MAX_SPECIAL_ATTACK_VALUE },
-            { client.getVar(VarPlayer.SPECIAL_ATTACK_PERCENT) / 10 },
-            { 0 },
-            { SPECIAL_ATTACK_COLOR },
-            { SPECIAL_ATTACK_COLOR },
-            { specialIcon!! }
+                { MAX_SPECIAL_ATTACK_VALUE },
+                { client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT.id) / 10 },
+                { 0 },
+                { SPECIAL_ATTACK_COLOR },
+                { SPECIAL_ATTACK_COLOR },
+                { specialIcon!! }
         )
     }
 
@@ -181,18 +168,22 @@ internal class StatusBarsOverlay(
         val offsetLeft: Point = curViewport.offsetLeft
         val offsetRight: Point = curViewport.offsetRight
         val location = curWidget!!.canvasLocation
+        val width: Int
         val height: Int
         val offsetLeftBarX: Int
         val offsetLeftBarY: Int
         val offsetRightBarX: Int
         val offsetRightBarY: Int
         if (curViewport == Viewport.RESIZED_BOTTOM) {
+            width = config.barWidth()
             height = RESIZED_BOTTOM_HEIGHT
-            offsetLeftBarX = location.x + RESIZED_BOTTOM_OFFSET_X - offsetLeft.x
-            offsetLeftBarY = location.y - RESIZED_BOTTOM_OFFSET_Y - offsetRight.y
-            offsetRightBarX = location.x + RESIZED_BOTTOM_OFFSET_X - offsetRight.x
+            val barWidthOffset = width - BarRenderer.DEFAULT_WIDTH
+            offsetLeftBarX = location.x + RESIZED_BOTTOM_OFFSET_X - offsetLeft.x - 2 * barWidthOffset
+            offsetLeftBarY = location.y - RESIZED_BOTTOM_OFFSET_Y - offsetLeft.y
+            offsetRightBarX = location.x + RESIZED_BOTTOM_OFFSET_X - offsetRight.x - barWidthOffset
             offsetRightBarY = location.y - RESIZED_BOTTOM_OFFSET_Y - offsetRight.y
         } else {
+            width = BarRenderer.DEFAULT_WIDTH
             height = HEIGHT
             offsetLeftBarX = location.x - offsetLeft.x
             offsetLeftBarY = location.y - offsetLeft.y
@@ -202,22 +193,26 @@ internal class StatusBarsOverlay(
         buildIcons()
         val left = barRenderers[config.leftBarMode()]
         val right = barRenderers[config.rightBarMode()]
-        left?.renderBar(config, g, offsetLeftBarX, offsetLeftBarY, height)
-        right?.renderBar(config, g, offsetRightBarX, offsetRightBarY, height)
+        left?.renderBar(config, g, offsetLeftBarX, offsetLeftBarY, width, height)
+        right?.renderBar(config, g, offsetRightBarX, offsetRightBarY, width, height)
         return null
     }
 
     private fun getRestoreValue(skill: String): Int {
-        val menu: Array<MenuEntry> = client.menuEntries
+        val menu = client.menuEntries
         val menuSize = menu.size
-        val entry: MenuEntry? = if (menuSize > 0) menu[menuSize - 1] else null
+        if (menuSize == 0) {
+            return 0
+        }
+        val entry = menu[menuSize - 1]
+        val widget = entry.widget
         var restoreValue = 0
-        if (entry != null && entry.param1 == WidgetInfo.INVENTORY.packedId) {
-            val change: Effect? = itemStatService.getItemStatChanges(entry.identifier)
+        if (widget != null && widget.id == WidgetInfo.INVENTORY.id) {
+            val change = itemStatService.getItemStatChanges(widget.itemId)
             if (change != null) {
-                for (c in change.calculate(client)!!.statChanges) {
-                    val value: Int = c!!.theoretical
-                    if (value != 0 && c.stat!!.name.equals(skill)) {
+                for (c in change.calculate(client).statChanges) {
+                    val value = c!!.theoretical
+                    if (value != 0 && c.stat!!.name == skill) {
                         restoreValue = value
                     }
                 }
@@ -227,44 +222,24 @@ internal class StatusBarsOverlay(
     }
 
     private fun buildIcons() {
-        if (heartIcon != null && heartDisease != null && heartPoison != null && heartVenom != null && energyIcon != null && specialIcon != null) {
-            return
+        if (heartIcon == null) {
+            heartIcon = loadAndResize(SpriteID.MINIMAP_ORB_HITPOINTS_ICON)
         }
-        heartIcon = ImageUtil.resizeCanvas(
-            spriteManager.getSprite(
-                SpriteID.MINIMAP_ORB_HITPOINTS_ICON,
-                0
-            )!!, ICON_DIMENSIONS, ICON_DIMENSIONS
-        )
-        heartDisease = ImageUtil.resizeCanvas(
-            ImageUtil.loadImageResource(
-                AlternateSprites::class.java,
-                AlternateSprites.DISEASE_HEART
-            ), ICON_DIMENSIONS, ICON_DIMENSIONS
-        )
-        heartPoison = ImageUtil.resizeCanvas(
-            ImageUtil.loadImageResource(
-                AlternateSprites::class.java,
-                AlternateSprites.POISON_HEART
-            ), ICON_DIMENSIONS, ICON_DIMENSIONS
-        )
-        heartVenom = ImageUtil.resizeCanvas(
-            ImageUtil.loadImageResource(
-                AlternateSprites::class.java,
-                AlternateSprites.VENOM_HEART
-            ), ICON_DIMENSIONS, ICON_DIMENSIONS
-        )
-        energyIcon = ImageUtil.resizeCanvas(
-            spriteManager.getSprite(SpriteID.MINIMAP_ORB_WALK_ICON, 0)!!,
-            ICON_DIMENSIONS,
-            ICON_DIMENSIONS
-        )
-        specialIcon = ImageUtil.resizeCanvas(
-            spriteManager.getSprite(
-                SpriteID.MINIMAP_ORB_SPECIAL_ICON,
-                0
-            )!!, ICON_DIMENSIONS, ICON_DIMENSIONS
-        )
+        if (energyIcon == null) {
+            energyIcon = loadAndResize(SpriteID.MINIMAP_ORB_WALK_ICON)
+        }
+        if (specialIcon == null) {
+            specialIcon = loadAndResize(SpriteID.MINIMAP_ORB_SPECIAL_ICON)
+        }
+    }
+
+    private fun loadAndResize(spriteId: Int): BufferedImage? {
+        val image: BufferedImage = spriteManager.getSprite(spriteId, 0) ?: return null
+        return ImageUtil.resizeCanvas(image, ICON_DIMENSIONS.width, ICON_DIMENSIONS.height)
+    }
+
+    private fun inLms(): Boolean {
+        return client.getWidget(WidgetInfo.LMS_KDA) != null
     }
 
     companion object {
@@ -284,7 +259,7 @@ internal class StatusBarsOverlay(
         private const val HEIGHT = 252
         private const val RESIZED_BOTTOM_HEIGHT = 272
         private const val IMAGE_SIZE = 17
-        private const val ICON_DIMENSIONS = 26
+        private val ICON_DIMENSIONS = Dimension(26, 25)
         private const val RESIZED_BOTTOM_OFFSET_Y = 12
         private const val RESIZED_BOTTOM_OFFSET_X = 10
         private const val MAX_SPECIAL_ATTACK_VALUE = 100
