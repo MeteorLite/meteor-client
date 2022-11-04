@@ -20,7 +20,7 @@ import kotlin.math.max
 var pluginsOpen = mutableStateOf(false)
 var configOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
-var toolBarOpen = mutableStateOf(false)
+var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var tracker = mutableStateOf(false)
 var xp = mutableStateOf(0)

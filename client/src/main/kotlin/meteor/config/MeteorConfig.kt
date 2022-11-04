@@ -131,6 +131,16 @@ interface MeteorConfig : Config {
         return false
     }
 
+    @ConfigItem(
+            keyName = "toolbarExpanded",
+            name = "Open Toolbar Automatically",
+            description = "",
+            position = 46
+    )
+    fun toolbarExpanded(): Boolean {
+        return true
+    }
+
     enum class ToolbarPosition(val position: String) {
         NORTH(BorderLayout.NORTH), SOUTH(BorderLayout.SOUTH), EAST(BorderLayout.EAST), WEST(BorderLayout.WEST);
     }

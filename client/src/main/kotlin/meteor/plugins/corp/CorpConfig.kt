@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,53 +22,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package eventbus.events
+package meteor.plugins.corp
 
-import lombok.Getter
-import lombok.Setter
-import net.runelite.api.MenuAction
-import net.runelite.api.MenuEntry
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
-/**
- * An event when a new entry is added to a right-click menu.
- */
-class MenuEntryAdded(
-    val option: String?,
-    val target: String?,
-    val identifier: Int,
-    var opcode: Int,
-    var param0: Int,
-    var param1: Int,
-    val forceLeftClick: Boolean
-) {
-    // Here for RuneLite compatibility (different parameter order)
-    constructor(
-        option: String?,
-        target: String?,
-        type: Int,
-        identifier: Int,
-        actionParam0: Int,
-        actionParam1: Int
-    ) : this(option, target, identifier, type, actionParam0, actionParam1, false) {
+@ConfigGroup(CorpConfig.GROUP)
+interface CorpConfig : Config {
+    @ConfigItem(keyName = "leftClickCore", name = "Left click walk on core", description = "Prioritizes Walk here over Attack on the Dark energy core", position = 1)
+    fun leftClickCore(): Boolean {
+        return true
     }
 
-    /**
-     * If this is set to true client mixin will update
-     * the menu entry with the modified values.
-     *
-     * Checks if count is the same, but doesn't check if there's
-     * been multiple changes
-     */
-    @Getter
-    @Setter
-    var modified = false
-    fun setModified() {
-        modified = true
+    @ConfigItem(keyName = "showDamage", name = "Show damage overlay", description = "Show total damage overlay", position = 0)
+    fun showDamage(): Boolean {
+        return true
     }
 
-    var menuEntry: MenuEntry? = null
+    @ConfigItem(keyName = "markDarkCore", name = "Mark dark core", description = "Marks the dark energy core.", position = 1)
+    fun markDarkCore(): Boolean {
+        return true
+    }
 
-    @get:Deprecated("")
-    val menuAction: MenuAction
-        get() = MenuAction.of(opcode)
+    companion object {
+        const val GROUP = "corp"
+    }
 }
