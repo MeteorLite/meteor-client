@@ -31,8 +31,8 @@ import meteor.plugins.EventSubscriber
 import net.runelite.api.AnimationID
 import net.runelite.api.NPC
 import net.runelite.api.NpcID
-import meteor.RuntimeConfig
-import meteor.RuntimeConfigLoader.configFuture
+import meteor.util.RuntimeConfig
+import meteor.util.RuntimeConfigLoader.configFuture
 import org.apache.commons.lang3.ArrayUtils
 
 object NpcUtil : EventSubscriber() {

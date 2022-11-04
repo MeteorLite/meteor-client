@@ -1,6 +1,7 @@
 package meteor
 
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.window.*
 import dev.hoot.api.InteractionManager
 import meteor.api.packets.ClientPackets
@@ -17,7 +18,7 @@ import meteor.plugins.xptracker.XpTrackerService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
 
-import meteor.ui.composables.ui.window
+import meteor.ui.composables.ui.windowContent
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
 import meteor.ui.overlay.TooltipManager
@@ -27,6 +28,8 @@ import meteor.ui.themes.MeteorliteTheme
 import meteor.ui.worldmap.WorldMapOverlay
 import meteor.util.ExecutorServiceExceptionLogger
 import meteor.util.GameEventManager
+import meteor.util.Proxy
+import meteor.util.RuntimeConfigLoader
 import net.runelite.api.Client
 import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatCommandManager
@@ -37,8 +40,6 @@ import org.apache.commons.lang3.time.StopWatch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
-import java.net.Authenticator
-import java.net.PasswordAuthentication
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -46,18 +47,24 @@ import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 object Main : ApplicationScope, KoinComponent, EventSubscriber() {
-    var meteorConfig: MeteorConfig = ConfigManager.getConfig(MeteorConfig::class.java)!!
-
     init {
         ConfigManager.loadSavedProperties()
         ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
         ConfigManager.saveProperties()
     }
+    var meteorConfig: MeteorConfig = ConfigManager.getConfig(MeteorConfig::class.java)!!
 
+    var window: FrameWindowScope? = null
     val eventBus = EventBus
+    var logger = Logger("Main")
+    private val timer = StopWatch()
 
     lateinit var client: Client
     lateinit var callbacks: Callbacks
+    lateinit var xpTrackerService: XpTrackerService
+    lateinit var interactionManager: InteractionManager
+    lateinit var chatMessageManager: ChatMessageManager
+    lateinit var chatCommandManager: ChatCommandManager
     val httpClient = OkHttpClient()
     val xpClient = XpClient(httpClient)
     val overlayManager = OverlayManager
@@ -67,107 +74,29 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
-    lateinit var xpTrackerService: XpTrackerService
-
-    var logger = Logger("meteor.Main")
-
-    var placement: WindowPlacement = WindowPlacement.Maximized
-    var interactionManager: InteractionManager? = null
-    var chatMessageManager: ChatMessageManager? = null
-    var chatCommandManager: ChatCommandManager? = null
-    var gameEventManager: GameEventManager? = null
-
-    private val timer = StopWatch()
 
     @JvmStatic
     fun main(args: Array<String>) = application {
-
-        handleProxy(args)
+        Proxy.handle(args)
         ClientPackets
         MeteorliteTheme.installDark()
         timer.start()
-        processArguments(args)
         startKoin { modules(Module.CLIENT_MODULE) }
         callbacks = get()
         AppletConfiguration.init()
         Applet().init()
 
-            Window(
+        Window(
                 onCloseRequest = Main::shutdown,
                 title = "Meteor",
                 icon = painterResource("Meteor_icon.png"),
-                state = rememberWindowState(placement = WindowPlacement.Maximized),
+                undecorated = meteorConfig.fullscreen(),
+                state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
                 content = {
-
-                    this.window()
-                } //::finishStartup is called at the end of this function
-            )
-
-
-
-    }
-
-    fun shutdown() {
-        PluginManager.shutdown()
-        exitApplication()
-    }
-
-    private fun handleProxy(args: Array<String>) {
-        var idx = 0
-        args.forEach { currentArg ->
-            if (currentArg == "-socks5Proxy") {
-                val proxy: Array<String> =
-                    args[idx + 1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
-                        .toTypedArray()
-                if (proxy.size >= 2) {
-                    println("using socks5 URL: ${proxy[0]}")
-                    System.setProperty("socksProxyHost", proxy[0])
-                    System.setProperty("socksProxyPort", proxy[1])
+                    windowContent()
+                    // finishStartup is ran here
                 }
-                if (proxy.size >= 4) {
-                    println("using socks5 USER: ${proxy[2]}")
-                    System.setProperty("java.net.socks.username", proxy[2])
-                    System.setProperty("java.net.socks.password", proxy[3])
-                    Authenticator.setDefault(ProxyAuth(proxy[2], proxy[3]))
-                }
-            } else if (currentArg == "-httpProxy") {
-                val proxy: Array<String> =
-                    args[idx + 1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
-                        .toTypedArray()
-                if (proxy.size >= 2) {
-                    System.setProperty("http.proxyHost", proxy[0])
-                    System.setProperty("http.proxyPort", proxy[1])
-                }
-                if (proxy.size >= 4) {
-                    Authenticator.setDefault(ProxyAuth(proxy[2], proxy[3]))
-                }
-            } else if (currentArg == "-httpsProxy") {
-                println("Using HTTPS Proxy")
-                val proxy: Array<String> =
-                    args[idx + 1].split(":".toRegex()).dropLastWhile { it.isEmpty() }
-                        .toTypedArray()
-                if (proxy.size >= 2) {
-                    System.setProperty("https.proxyHost", proxy[0])
-                    System.setProperty("https.proxyPort", proxy[1])
-                }
-                if (proxy.size >= 4) {
-                    Authenticator.setDefault(ProxyAuth(proxy[2], proxy[3]))
-                }
-            }
-            idx++
-        }
-    }
-
-    class ProxyAuth constructor(user: String, password: String?) : Authenticator() {
-        val auth: PasswordAuthentication
-
-        init {
-            auth = PasswordAuthentication(user, password?.toCharArray() ?: charArrayOf())
-        }
-
-        override fun getPasswordAuthentication(): PasswordAuthentication {
-            return auth
-        }
+        )
     }
 
     fun finishStartup() {
@@ -175,13 +104,9 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         client.callbacks = callbacks
 
         WidgetInspector
-        MenuManager
-        interactionManager = InteractionManager()
-        interactionManager!!.subscribe()
+
         initOverlays()
-        chatMessageManager = ChatMessageManager()
-        chatCommandManager = ChatCommandManager()
-        gameEventManager = GameEventManager
+        initManagers()
         RuntimeConfigLoader.get()
         PluginManager.loadExternalPlugins()
         xpTrackerService = XpTrackerService(PluginManager.get())
@@ -196,19 +121,19 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         overlayManager.add(WorldMapOverlay())
     }
 
-    fun processArguments(args: Array<String>) {
-        for (arg in args) {
-            when (arg.lowercase()) {
-                "disableGPU".lowercase() -> {
-                    Configuration.allowGPU = false
-                }
-            }
-        }
+    fun initManagers() {
+        MenuManager
+        interactionManager = InteractionManager()
+        chatMessageManager = ChatMessageManager()
+        chatCommandManager = ChatCommandManager()
+        GameEventManager
     }
 
-    /**
-     * Save and exit
-     */
+    fun shutdown() {
+        PluginManager.shutdown()
+        exitApplication()
+    }
+
     override fun exitApplication() {
         PluginManager.shutdown()
         ConfigManager.saveProperties()

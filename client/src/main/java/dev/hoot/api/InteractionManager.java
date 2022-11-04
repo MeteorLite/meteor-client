@@ -26,6 +26,9 @@ import java.awt.*;
 
 public class InteractionManager extends EventSubscriber
 {
+	public InteractionManager() {
+		subscribe();
+	}
 	private static final int MINIMAP_WIDTH = 250;
 	private static final int MINIMAP_HEIGHT = 180;
 
