@@ -39,7 +39,7 @@ import java.awt.Dimension
 import java.awt.Graphics2D
 
 class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
-    val config = plugin.configuration<ItemPricesConfig>()
+    val config = plugin.config
     private val tooltipManager = TooltipManager
     private val itemStringBuilder = StringBuilder()
 

@@ -2633,4 +2633,6 @@ public interface Client extends GameEngine
 	 * @return the id of the newly-added script
 	 */
 	int addClientScript(byte[] script);
+
+	void setVarcStrValue(int index, String text);
 }

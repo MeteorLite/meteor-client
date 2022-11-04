@@ -39,7 +39,7 @@ import java.awt.Graphics2D
 import java.util.function.Consumer
 
 class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
-    var config = plugin.configuration<DevToolsConfig>()
+    var config = plugin.config
     var toolTipManager = TooltipManager
 
 

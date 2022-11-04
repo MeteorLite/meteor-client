@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, TheStonedTurtle <https://github.com/TheStonedTurtle>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,21 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.tileindicators
+package meteor.plugins.chathistory
 
-import meteor.plugins.Plugin
-import meteor.plugins.PluginDescriptor
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
-@PluginDescriptor(
-    name = "Tile Indicators",
-    description = "Highlight the tile you are currently moving to",
-    tags = ["highlight", "overlay"],
-    enabledByDefault = false
-)
-class TileIndicatorsPlugin : Plugin() {
+@ConfigGroup("chathistory")
+interface ChatHistoryConfig : Config {
+    @ConfigItem(keyName = "retainChatHistory", name = "Retain Chat History", description = "Retains chat history when logging in/out or world hopping", position = 0)
+    fun retainChatHistory(): Boolean {
+        return true
+    }
 
-    private val overlay = overlay(TileIndicatorsOverlay(this))
-    val config  = configuration<TileIndicatorsConfig>()
+    @ConfigItem(keyName = "pmTargetCycling", name = "PM Target Cycling", description = "Pressing Tab while sending a PM will cycle the target username based on PM history", position = 1)
+    fun pmTargetCycling(): Boolean {
+        return true
+    }
 
+    @ConfigItem(keyName = "copyToClipboard", name = "Copy to clipboard", description = "Add option on chat messages to copy them to clipboard", position = 2)
+    fun copyToClipboard(): Boolean {
+        return true
+    }
 
+    @ConfigItem(keyName = "clearHistory", name = "Clear history option for all tabs", description = "Add 'Clear history' option chatbox tab buttons", position = 3)
+    fun clearHistory(): Boolean {
+        return true
+    }
 }

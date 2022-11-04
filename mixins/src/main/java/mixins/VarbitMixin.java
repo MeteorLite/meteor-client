@@ -138,6 +138,13 @@ public abstract class VarbitMixin implements RSClient
 
 	@Inject
 	@Override
+	public void setVarcStrValue(int varcStrId, String text)
+	{
+		getVarcMap().put(varcStrId, text);
+	}
+
+	@Inject
+	@Override
 	public void setVar(VarClientStr varClientStr, String value)
 	{
 		Map<Integer, Object> varcmap = getVarcMap();

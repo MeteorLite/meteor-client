@@ -61,6 +61,7 @@ import meteor.plugins.barrows.BarrowsPlugin
 import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import meteor.plugins.blastmine.BlastMinePlugin
 import meteor.plugins.bosstimer.BossTimersPlugin
+import meteor.plugins.chathistory.ChatHistoryPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -111,6 +112,7 @@ object PluginManager {
         init<BossTimersPlugin>()
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()
+        init<ChatHistoryPlugin>()
         init<ClueScrollPlugin>()
         init<CombatLevelPlugin>()
         init<CommandsPlugin>()
