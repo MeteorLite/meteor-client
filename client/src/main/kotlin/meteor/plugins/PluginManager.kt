@@ -55,7 +55,9 @@ import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import meteor.plugins.animsmoothing.AnimationSmoothingPlugin
+import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
+import net.runelite.client.plugins.barrows.BarrowsPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -90,6 +92,7 @@ object PluginManager {
         init<AmmoPlugin>()
         init<AnimationSmoothingPlugin>()
         init<AoeWarningPlugin>()
+        init<AttackStylesPlugin>()
         init<AutoAlchPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoClickerPlugin>()
@@ -98,6 +101,7 @@ object PluginManager {
         init<AutoRunPlugin>()
         init<BankPlugin>()
         init<BankSetups>()
+        init<BarrowsPlugin>()
         init<BoostsPlugin>()
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()

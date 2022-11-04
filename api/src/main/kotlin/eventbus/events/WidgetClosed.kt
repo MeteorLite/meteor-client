@@ -24,27 +24,7 @@
  */
 package eventbus.events
 
-import lombok.Value
-import net.runelite.api.widgets.WidgetModalMode
-import org.intellij.lang.annotations.MagicConstant
-
 /**
  * Posted when an interface is about to be closed
  */
-class WidgetClosed(groupId: Int, modalMode: Int, unload: Boolean) {
-    /**
-     * The ID of the interface that is closed
-     */
-    private val groupId = 0
-
-    /**
-     * @see net.runelite.api.widgets.WidgetModalMode
-     */
-    @MagicConstant(valuesFromClass = WidgetModalMode::class)
-    private val modalMode = 0
-
-    /**
-     * If the interface will be unloaded or if it will be immediately reloaded
-     */
-    private val unload = false
-}
+class WidgetClosed(var groupId: Int = 0, var modalMode: Int = 0, var unload: Boolean = false)

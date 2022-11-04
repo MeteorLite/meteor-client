@@ -1,16 +1,15 @@
 /*
- * Copyright (c) 2017. l2-
- *
+ * Copyright (c) 2018, Seth <Sethtroll3@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
  * 1. Redistributions of source code must retain the above copyright notice, this
- *     list of conditions and the following disclaimer.
+ *    list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -23,24 +22,27 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package eventbus.events
+package net.runelite.client.plugins.barrows;
 
-import meteor.Event
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import net.runelite.api.Varbits;
+import net.runelite.api.annotations.Varbit;
+import net.runelite.api.coords.WorldPoint;
 
-/**
- * An event when a varbit or varplayer has changed.
- *
- *
- * If the client preemptively changes a varp and the server agrees the next tick, VarbitChanged will
- * only be posted when the client changes the value, not the server. This can cause unintended
- * effects if the VarPlayer has special engine behavior assigned to it.
- */
-class VarbitChanged(var index: Int) : Event() {
-    fun getVarpId() : Int {
-        return index
-    }
+@RequiredArgsConstructor
+@Getter
+enum BarrowsBrothers
+{
+	AHRIM("Ahrim", new WorldPoint(3566, 3289, 0), Varbits.BARROWS_KILLED_AHRIM),
+	DHAROK("Dharok", new WorldPoint(3575, 3298, 0), Varbits.BARROWS_KILLED_DHAROK),
+	GUTHAN("Guthan", new WorldPoint(3577, 3283, 0), Varbits.BARROWS_KILLED_GUTHAN),
+	KARIL("Karil", new WorldPoint(3566, 3275, 0), Varbits.BARROWS_KILLED_KARIL),
+	TORAG("Torag", new WorldPoint(3553, 3283, 0), Varbits.BARROWS_KILLED_TORAG),
+	VERAC("Verac", new WorldPoint(3557, 3298, 0), Varbits.BARROWS_KILLED_VERAC);
 
-    fun getVarbitId() : Int {
-        return index
-    }
+	private final String name;
+	private final WorldPoint location;
+	@Getter(onMethod_ = {@Varbit})
+	private final int killedVarbit;
 }
