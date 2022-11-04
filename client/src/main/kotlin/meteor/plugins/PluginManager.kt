@@ -67,6 +67,7 @@ import meteor.plugins.corp.CorpPlugin
 import meteor.plugins.exptracker.ExpTrackerPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
+import meteor.plugins.driftnet.DriftNetPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -126,6 +127,7 @@ object PluginManager {
         init<CtrlPlayerOptions>()
         init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()
+        init<DriftNetPlugin>()
         init<ExamplePlugin>()
         init<EntityHiderPlugin>()
         init<ExpTrackerPlugin>()
