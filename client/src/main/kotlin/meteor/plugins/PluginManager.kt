@@ -63,6 +63,7 @@ import meteor.plugins.blastmine.BlastMinePlugin
 import meteor.plugins.bosstimer.BossTimersPlugin
 import meteor.plugins.chathistory.ChatHistoryPlugin
 import meteor.plugins.cooking.CookingPlugin
+import meteor.plugins.exptracker.ExpTrackerPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -125,6 +126,7 @@ object PluginManager {
         init<DevToolsPlugin>()
         init<ExamplePlugin>()
         init<EntityHiderPlugin>()
+        init<ExpTrackerPlugin>()
         init<FishingPlugin>()
         init<FpsPlugin>()
         init<GauntletExtendedPlugin>()
