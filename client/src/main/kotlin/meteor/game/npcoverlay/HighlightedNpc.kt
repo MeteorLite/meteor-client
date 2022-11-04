@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2021, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,53 +22,53 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package eventbus.events
+package meteor.game.npcoverlay
 
-import lombok.Getter
-import lombok.Setter
-import net.runelite.api.MenuAction
-import net.runelite.api.MenuEntry
+import net.runelite.api.NPC
+import java.awt.Color
+import java.util.function.Predicate
 
-/**
- * An event when a new entry is added to a right-click menu.
- */
-class MenuEntryAdded(
-    val option: String?,
-    val target: String?,
-    val identifier: Int,
-    var opcode: Int,
-    var param0: Int,
-    var param1: Int,
-    val forceLeftClick: Boolean
-) {
-    // Here for RuneLite compatibility (different parameter order)
-    constructor(
-        option: String?,
-        target: String?,
-        type: Int,
-        identifier: Int,
-        actionParam0: Int,
-        actionParam1: Int
-    ) : this(option, target, identifier, type, actionParam0, actionParam1, false) {
+class HighlightedNpc {
+    var npc: NPC? = null
+    var highlightColor: Color? = null
+
+    var fillColor = Color(0, 0, 0, 50)
+    var hull = false
+    var tile = false
+    var trueTile = false
+    var swTile = false
+    var swTrueTile = false
+    var outline = false
+    var name = false
+    var nameOnMinimap = false
+
+    var borderWidth = 2.0f
+    var outlineFeather = 0
+    var render: Predicate<NPC>? = null
+
+    fun npc(n: NPC) : HighlightedNpc {
+        npc = n
+        return this
     }
 
-    /**
-     * If this is set to true client mixin will update
-     * the menu entry with the modified values.
-     *
-     * Checks if count is the same, but doesn't check if there's
-     * been multiple changes
-     */
-    @Getter
-    @Setter
-    var modified = false
-    fun setModified() {
-        modified = true
+    fun tile(b: Boolean) : HighlightedNpc {
+        tile = b
+        return this
     }
 
-    var menuEntry: MenuEntry? = null
+    fun highlightColor(c: Color) : HighlightedNpc {
+        highlightColor = c
+        return this
+    }
 
-    @get:Deprecated("")
-    val menuAction: MenuAction
-        get() = MenuAction.of(opcode)
+    fun render(r: Predicate<NPC>?) : HighlightedNpc {
+        render = r
+        return this
+    }
+
+    companion object {
+        fun builder() : HighlightedNpc {
+            return HighlightedNpc()
+        }
+    }
 }

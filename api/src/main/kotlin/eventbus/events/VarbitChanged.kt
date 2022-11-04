@@ -43,4 +43,8 @@ class VarbitChanged(var index: Int) : Event() {
     fun getVarbitId() : Int {
         return index
     }
+
+    fun getValue() : Int {
+        return -1
+    }
 }

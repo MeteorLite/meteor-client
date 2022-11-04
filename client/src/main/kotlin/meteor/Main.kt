@@ -34,6 +34,7 @@ import net.runelite.api.Client
 import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatCommandManager
 import net.runelite.client.chat.ChatMessageManager
+import meteor.game.npcoverlay.NpcOverlayService
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
@@ -61,6 +62,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
     lateinit var client: Client
     lateinit var callbacks: Callbacks
+    lateinit var npcOverlayService: NpcOverlayService
     lateinit var xpTrackerService: XpTrackerService
     lateinit var interactionManager: InteractionManager
     lateinit var chatMessageManager: ChatMessageManager
@@ -108,6 +110,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         initOverlays()
         initManagers()
         RuntimeConfigLoader.get()
+        npcOverlayService = NpcOverlayService()
         PluginManager.loadExternalPlugins()
         xpTrackerService = XpTrackerService(PluginManager.get())
         timer.stop()
