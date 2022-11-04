@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Seth <Sethtroll3@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,11 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.chat;
+package meteor.plugins.barrows
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
-import net.runelite.api.ChatMessageType;
+import net.runelite.api.Varbits
+import net.runelite.api.coords.WorldPoint
 
-@Data
-@Builder
-public class QueuedMessage
-{
-	@NonNull
-	private final ChatMessageType type;
-	private final String value;
-	private String name;
-	private String sender;
-	private String runeLiteFormattedMessage;
-	private int timestamp;
+internal enum class BarrowsBrothers(var brotherName: String, var worldLocation: WorldPoint, var varbit: Int) {
+    AHRIM("Ahrim", WorldPoint(3566, 3289, 0), Varbits.BARROWS_KILLED_AHRIM), DHAROK("Dharok", WorldPoint(3575, 3298, 0), Varbits.BARROWS_KILLED_DHAROK), GUTHAN("Guthan", WorldPoint(3577, 3283, 0), Varbits.BARROWS_KILLED_GUTHAN), KARIL("Karil", WorldPoint(3566, 3275, 0), Varbits.BARROWS_KILLED_KARIL), TORAG("Torag", WorldPoint(3553, 3283, 0), Varbits.BARROWS_KILLED_TORAG), VERAC("Verac", WorldPoint(3557, 3298, 0), Varbits.BARROWS_KILLED_VERAC);
 }

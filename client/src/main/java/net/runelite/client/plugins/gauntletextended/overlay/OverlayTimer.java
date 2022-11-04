@@ -40,7 +40,7 @@ import net.runelite.api.ChatMessageType;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
-import net.runelite.client.chat.QueuedMessage;
+import meteor.chat.QueuedMessage;
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedConfig;
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -184,10 +184,9 @@ public class OverlayTimer extends Overlay
 			.append(ChatColorType.HIGHLIGHT)
 			.append(elapsedTotalTime + ".");
 
-		chatMessageManager.queue(QueuedMessage.builder()
+		chatMessageManager.queue(QueuedMessage.Companion.builder()
 			.type(ChatMessageType.CONSOLE)
-			.runeLiteFormattedMessage(chatMessageBuilder.build())
-			.build());
+			.runeLiteFormattedMessage(chatMessageBuilder.build()));
 	}
 
 	private static String calculateElapsedTime(final long end, final long start)

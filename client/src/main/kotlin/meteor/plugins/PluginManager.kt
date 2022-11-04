@@ -57,7 +57,7 @@ import meteor.plugins.xptracker.XpTrackerPlugin
 import meteor.plugins.animsmoothing.AnimationSmoothingPlugin
 import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
-import net.runelite.client.plugins.barrows.BarrowsPlugin
+import meteor.plugins.barrows.BarrowsPlugin
 import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin

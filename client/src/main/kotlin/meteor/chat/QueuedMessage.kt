@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Seth <Sethtroll3@gmail.com>
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,27 +22,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.barrows;
+package meteor.chat
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import net.runelite.api.Varbits;
-import net.runelite.api.annotations.Varbit;
-import net.runelite.api.coords.WorldPoint;
+import net.runelite.api.ChatMessageType
 
-@RequiredArgsConstructor
-@Getter
-enum BarrowsBrothers
-{
-	AHRIM("Ahrim", new WorldPoint(3566, 3289, 0), Varbits.BARROWS_KILLED_AHRIM),
-	DHAROK("Dharok", new WorldPoint(3575, 3298, 0), Varbits.BARROWS_KILLED_DHAROK),
-	GUTHAN("Guthan", new WorldPoint(3577, 3283, 0), Varbits.BARROWS_KILLED_GUTHAN),
-	KARIL("Karil", new WorldPoint(3566, 3275, 0), Varbits.BARROWS_KILLED_KARIL),
-	TORAG("Torag", new WorldPoint(3553, 3283, 0), Varbits.BARROWS_KILLED_TORAG),
-	VERAC("Verac", new WorldPoint(3557, 3298, 0), Varbits.BARROWS_KILLED_VERAC);
 
-	private final String name;
-	private final WorldPoint location;
-	@Getter(onMethod_ = {@Varbit})
-	private final int killedVarbit;
+class QueuedMessage {
+    var type: ChatMessageType? = null
+    val value: String? = null
+    val name: String? = null
+    val sender: String? = null
+    var runeLiteFormattedMessage: String? = null
+    val timestamp = 0
+
+    fun type(t: ChatMessageType) : QueuedMessage {
+        type = t
+        return this
+    }
+
+    fun runeLiteFormattedMessage(s: String) : QueuedMessage {
+        runeLiteFormattedMessage = s
+        return this
+    }
+
+    companion object {
+        fun builder(): QueuedMessage {
+            return QueuedMessage()
+        }
+    }
 }
