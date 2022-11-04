@@ -25,6 +25,7 @@ public final class NPC extends Actor {
 
 	NPC() {
 		this.field1265 = "";
+		this.field1265 = "";
 		this.field1268 = 31;
 	}
 

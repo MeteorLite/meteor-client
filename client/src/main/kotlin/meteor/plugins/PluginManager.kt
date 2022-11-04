@@ -60,6 +60,7 @@ import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import meteor.plugins.barrows.BarrowsPlugin
 import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import meteor.plugins.blastmine.BlastMinePlugin
+import meteor.plugins.bosstimer.BossTimersPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -107,6 +108,7 @@ object PluginManager {
         init<BlastFurnacePlugin>()
         init<BlastMinePlugin>()
         init<BoostsPlugin>()
+        init<BossTimersPlugin>()
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()
         init<ClueScrollPlugin>()
