@@ -114,8 +114,8 @@ class InfoBoxOverlay internal constructor(
             val component: InfoBoxComponent = child as InfoBoxComponent
 
             // Create intersection rectangle
-            val intersectionRectangle: Rectangle = Rectangle(component.getBounds())
-            intersectionRectangle.translate(getBounds()!!.x, getBounds()!!.y)
+            val intersectionRectangle: Rectangle = Rectangle(component.bounds)
+            intersectionRectangle.translate(bounds!!.x, bounds!!.y)
             if (intersectionRectangle.contains(mouse)) {
                 val tooltip: String = component.tooltip!!
                 if (!Strings.isNullOrEmpty(tooltip)) {

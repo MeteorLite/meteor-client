@@ -35,4 +35,12 @@ import meteor.Event
  * only be posted when the client changes the value, not the server. This can cause unintended
  * effects if the VarPlayer has special engine behavior assigned to it.
  */
-class VarbitChanged(var index: Int) : Event()
+class VarbitChanged(var index: Int) : Event() {
+    fun getVarpId() : Int {
+        return index
+    }
+
+    fun getVarbitId() : Int {
+        return index
+    }
+}

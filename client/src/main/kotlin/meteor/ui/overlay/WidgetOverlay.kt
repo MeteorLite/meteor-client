@@ -45,10 +45,9 @@ open class WidgetOverlay private constructor(
         if (parent.isEmpty) {
             return null
         }
-        val bounds = getBounds()
         // The widget relative pos is relative to the parent
         widget!!.relativeX = bounds!!.x - parent.x
-        widget.relativeY = bounds.y - parent.y
+        widget.relativeY = bounds!!.y - parent.y
         return Dimension(widget.width, widget.height)
     }
 

@@ -33,16 +33,12 @@ import java.awt.image.BufferedImage
 
 class ImageComponent(var image: BufferedImage?) : LayoutableRenderableEntity {
     override fun getPreferredSize(): Dimension {
-        return getBounds()!!.size
+        return bounds!!.size
     }
 
     private var preferredLocationp: Point? = Point()
     private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
-    private var bounds: Rectangle? = Rectangle()
-
-    override fun getBounds(): Rectangle? {
-        return bounds
-    }
+    var bounds: Rectangle? = Rectangle()
 
     override fun getPreferredLocation(): Point? {
         return preferredLocationp
@@ -56,18 +52,14 @@ class ImageComponent(var image: BufferedImage?) : LayoutableRenderableEntity {
         this.preferredSizep = position
     }
 
-    override fun setBounds(rectangle: Rectangle?) {
-        bounds = rectangle
-    }
-
     override fun render(graphics: Graphics2D): Dimension? {
         if (image == null) {
             return null
         }
         graphics.drawImage(image, getPreferredLocation()!!.x, getPreferredLocation()!!.y, null)
         val dimension = Dimension(image!!.width, image!!.height)
-        getBounds()!!.location = getPreferredLocation()!!
-        getBounds()!!.size = dimension
+        bounds!!.location = getPreferredLocation()!!
+        bounds!!.size = dimension
         return dimension
     }
 

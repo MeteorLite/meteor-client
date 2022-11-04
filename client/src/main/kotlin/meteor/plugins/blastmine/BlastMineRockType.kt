@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Unmoon <https://github.com/Unmoon>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,29 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.chat;
+package meteor.plugins.blastmine
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NonNull;
-import net.runelite.api.ChatMessageType;
+import com.google.common.collect.ImmutableMap
+import net.runelite.api.*
 
-@Data
-@Builder
-public class QueuedMessage
-{
-	@NonNull
-	private final ChatMessageType type;
-	private final String value;
-	private String name;
-	private String sender;
-	private String runeLiteFormattedMessage;
-	private int timestamp;
+enum class BlastMineRockType(vararg val objectIds: Int) {
+    NORMAL(ObjectID.HARD_ROCK, ObjectID.HARD_ROCK_28580), CHISELED(ObjectID.CAVITY, ObjectID.CAVITY_28582), LOADED(ObjectID.POT_OF_DYNAMITE, ObjectID.POT_OF_DYNAMITE_28584), LIT(ObjectID.POT_OF_DYNAMITE_28585, ObjectID.POT_OF_DYNAMITE_28586), EXPLODED(ObjectID.SHATTERED_ROCKFACE, ObjectID.SHATTERED_ROCKFACE_28588);
+
+    companion object {
+        private var rockTypes: Map<Int, BlastMineRockType>? = null
+
+        init {
+            val builder = ImmutableMap.Builder<Int, BlastMineRockType>()
+            for (type in values()) {
+                for (spotId in type.objectIds) {
+                    builder.put(spotId, type)
+                }
+            }
+            rockTypes = builder.build()
+        }
+
+        fun getRockType(objectId: Int): BlastMineRockType? {
+            return rockTypes!![objectId]
+        }
+    }
 }

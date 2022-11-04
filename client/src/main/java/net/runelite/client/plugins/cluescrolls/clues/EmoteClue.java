@@ -61,7 +61,7 @@ import static net.runelite.client.plugins.cluescrolls.clues.emote.STASHUnit.SHAN
 import net.runelite.client.plugins.cluescrolls.clues.item.AnyRequirementCollection;
 import net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirement;
 import static net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirements.*;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class EmoteClue extends ClueScroll implements TextClueScroll, LocationClueScroll
@@ -265,7 +265,7 @@ public class EmoteClue extends ClueScroll implements TextClueScroll, LocationClu
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Emote Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Emote Clue"));
 		panelComponent.getChildren().add(new LineComponent.Builder().left("Emotes:").build());
 		panelComponent.getChildren().add(new LineComponent.Builder()
 			.left(getFirstEmote().getName())

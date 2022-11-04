@@ -39,6 +39,7 @@ import com.google.common.collect.Multimap;
 import eventbus.events.ConfigChanged;
 import eventbus.events.ScriptCallbackEvent;
 import meteor.Main;
+import meteor.chat.QueuedMessage;
 import meteor.config.ConfigManager;
 import meteor.config.legacy.ChatColorConfig;
 import meteor.plugins.EventSubscriber;

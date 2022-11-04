@@ -35,6 +35,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javax.xml.parsers.DocumentBuilder;
@@ -70,9 +71,11 @@ public class RuneLiteAPI {
     parseMavenVersion();
     version = upstreamVersion;
     userAgent = "RuneLite/" + version + "-";
-      OkHttpClient.Builder builder = new OkHttpClient.Builder();
-      List<ConnectionSpec> specs = new ArrayList<>();
-      specs.add(ConnectionSpec.CLEARTEXT);
+    OkHttpClient.Builder builder = new OkHttpClient.Builder();
+    List<ConnectionSpec> specs = new ArrayList<>();
+    specs.add(ConnectionSpec.CLEARTEXT);
+    specs.add(ConnectionSpec.MODERN_TLS);
+    specs.add(ConnectionSpec.COMPATIBLE_TLS);
     builder.connectionSpecs(specs);
 
     CLIENT = builder
@@ -83,6 +86,7 @@ public class RuneLiteAPI {
           public Response intercept(Chain chain) throws IOException {
             Request userAgentRequest = chain.request()
                 .newBuilder()
+
                 .header("User-Agent", userAgent)
                 .build();
             return chain.proceed(userAgentRequest);

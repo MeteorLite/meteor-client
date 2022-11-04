@@ -36,7 +36,7 @@ import meteor.plugins.PluginDescriptor
 class TileIndicatorsPlugin : Plugin() {
 
     private val overlay = overlay(TileIndicatorsOverlay(this))
-    val config: TileIndicatorsConfig = configuration()
+    val config  = configuration<TileIndicatorsConfig>()
 
 
 }

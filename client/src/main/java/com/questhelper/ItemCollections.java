@@ -827,7 +827,7 @@ public class ItemCollections
 
 	@Getter
 	private static final List<Integer> pharoahSceptre = ImmutableList.of(
-
+	ItemID.PHARAOHS_SCEPTRE
 	);
 
 	// Logs

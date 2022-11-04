@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, TheStonedTurtle <https://github.com/TheStonedTurtle>
+ * Copyright (c) 2018, TheStonedTurtle <https://github.com/TheStonedTurtle>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,21 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package ui.table;
+package meteor.plugins.chathistory
 
-import lombok.Builder;
-import lombok.Data;
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
-import java.awt.*;
-import java.util.Collections;
-import java.util.List;
+@ConfigGroup("chathistory")
+interface ChatHistoryConfig : Config {
+    @ConfigItem(keyName = "retainChatHistory", name = "Retain Chat History", description = "Retains chat history when logging in/out or world hopping", position = 0)
+    fun retainChatHistory(): Boolean {
+        return true
+    }
 
-@Data
-@Builder
-public class TableRow
-{
-	Color rowColor;
-	TableAlignment rowAlignment;
-	@Builder.Default
-	List<TableElement> elements = Collections.emptyList();
+    @ConfigItem(keyName = "pmTargetCycling", name = "PM Target Cycling", description = "Pressing Tab while sending a PM will cycle the target username based on PM history", position = 1)
+    fun pmTargetCycling(): Boolean {
+        return true
+    }
+
+    @ConfigItem(keyName = "copyToClipboard", name = "Copy to clipboard", description = "Add option on chat messages to copy them to clipboard", position = 2)
+    fun copyToClipboard(): Boolean {
+        return true
+    }
+
+    @ConfigItem(keyName = "clearHistory", name = "Clear history option for all tabs", description = "Add 'Clear history' option chatbox tab buttons", position = 3)
+    fun clearHistory(): Boolean {
+        return true
+    }
 }

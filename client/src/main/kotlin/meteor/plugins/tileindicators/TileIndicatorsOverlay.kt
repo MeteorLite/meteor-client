@@ -38,7 +38,7 @@ class TileIndicatorsOverlay(
     plugin: TileIndicatorsPlugin
 
 ) : Overlay() {
-    var config = plugin.configuration<TileIndicatorsConfig>()
+    var config = plugin.config
 
     override fun render(graphics: Graphics2D): Dimension? {
         if (config.highlightHoveredTile()) {

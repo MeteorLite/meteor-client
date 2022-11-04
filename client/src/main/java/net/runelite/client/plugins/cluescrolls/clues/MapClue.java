@@ -48,7 +48,7 @@ import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLI
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLICKBOX_FILL_COLOR;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLICKBOX_HOVER_BORDER_COLOR;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.IMAGE_Z_OFFSET;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class MapClue extends ClueScroll implements ObjectClueScroll
@@ -127,7 +127,7 @@ public class MapClue extends ClueScroll implements ObjectClueScroll
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Map Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Map Clue"));
 
 		panelComponent.getChildren().add(new LineComponent.Builder()
 			.left("Click the clue scroll along the edge of your world map to see your destination.")

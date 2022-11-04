@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, TheStonedTurtle <https://github.com/TheStonedTurtle>
+ * Copyright (c) 2018, Joris K <kjorisje@gmail.com>
+ * Copyright (c) 2018, Lasse <cronick@zytex.dk>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,11 +23,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package ui.table;
+package meteor.plugins.cooking
 
-public enum TableAlignment
-{
-	LEFT,
-	CENTER,
-	RIGHT
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
+import meteor.config.legacy.Units
+
+@ConfigGroup("cooking")
+interface CookingConfig : Config {
+    @ConfigItem(position = 1, keyName = "statTimeout", name = "Reset stats", description = "Configures the time until the session resets and the overlay is hidden (0 = Disable feature)")
+    @Units(Units.MINUTES)
+    fun statTimeout(): Int {
+        return 5
+    }
+
+    @ConfigItem(position = 2, keyName = "fermentTimer", name = "Show wine ferment timer", description = "Configures if the timer before wines are fermented is shown")
+    fun fermentTimer(): Boolean {
+        return true
+    }
 }

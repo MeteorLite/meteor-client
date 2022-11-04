@@ -46,7 +46,7 @@ import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLI
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLICKBOX_FILL_COLOR;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLICKBOX_HOVER_BORDER_COLOR;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.IMAGE_Z_OFFSET;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueScroll, ObjectClueScroll
@@ -390,7 +390,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Cryptic Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Cryptic Clue"));
 
 		if (getNpc() != null)
 		{

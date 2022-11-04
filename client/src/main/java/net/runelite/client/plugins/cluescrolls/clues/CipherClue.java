@@ -38,7 +38,7 @@ import net.runelite.api.coords.WorldPoint;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollOverlay.TITLED_CONTENT_COLOR;
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.IMAGE_Z_OFFSET;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class CipherClue extends ClueScroll implements TextClueScroll, NpcClueScroll, LocationClueScroll
@@ -100,7 +100,7 @@ public class CipherClue extends ClueScroll implements TextClueScroll, NpcClueScr
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Cipher Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Cipher Clue"));
 
 		final String clueNpc = getNpc();
 		if (clueNpc != null)

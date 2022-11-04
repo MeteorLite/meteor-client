@@ -39,7 +39,7 @@ import meteor.ui.overlay.OverlayMenuEntry;
 import meteor.ui.overlay.OverlayPanel;
 import meteor.ui.overlay.OverlayPosition;
 import net.runelite.api.Client;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
 
@@ -97,17 +97,15 @@ class MotherlodeOverlay extends OverlayPanel
 		{
 			if (MINING_ANIMATION_IDS.contains(client.getLocalPlayer().getAnimation()))
 			{
-				getPanelComponent().getChildren().add(TitleComponent.builder()
+				getPanelComponent().getChildren().add(TitleComponent.Companion.builder()
 					.text("Mining")
-					.color(Color.GREEN)
-					.build());
+					.color(Color.GREEN));
 			}
 			else
 			{
-				getPanelComponent().getChildren().add(TitleComponent.builder()
+				getPanelComponent().getChildren().add(TitleComponent.Companion.builder()
 					.text("NOT mining")
-					.color(Color.RED)
-					.build());
+					.color(Color.RED));
 			}
 		}
 

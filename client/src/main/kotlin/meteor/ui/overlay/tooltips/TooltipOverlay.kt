@@ -49,7 +49,7 @@ class TooltipOverlay : Overlay() {
         val canvasWidth = client.canvasWidth
         val canvasHeight = client.canvasHeight
         val mouseCanvasPosition = client.mouseCanvasPosition
-        val prevBounds = getBounds()
+        val prevBounds = bounds
         val tooltipX = Math.min(canvasWidth - prevBounds!!.width, mouseCanvasPosition.x)
         val tooltipY = Math.min(canvasHeight - prevBounds.height, mouseCanvasPosition.y + UNDER_OFFSET)
         val newBounds = Rectangle(tooltipX, tooltipY, 0, 0)

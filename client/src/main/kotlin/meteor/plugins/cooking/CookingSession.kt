@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, TheStonedTurtle <https://github.com/TheStonedTurtle>
+ * Copyright (c) 2018, Joris K <kjorisje@gmail.com>
+ * Copyright (c) 2018, Lasse <cronick@zytex.dk>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,18 +23,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package ui.table;
+package meteor.plugins.cooking
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.AccessLevel
+import lombok.Getter
+import java.time.Instant
 
-import java.awt.*;
+internal class CookingSession {
+    var lastCookingAction: Instant? = null
 
-@Data
-@Builder
-public class TableElement
-{
-	TableAlignment alignment;
-	Color color;
-	String content;
+    var cookAmount = 0
+
+    var burnAmount = 0
+    fun updateLastCookingAction() {
+        lastCookingAction = Instant.now()
+    }
+
+    fun increaseCookAmount() {
+        cookAmount++
+    }
+
+    fun increaseBurnAmount() {
+        burnAmount++
+    }
+
+    val burntPercentage: Double
+        get() = burnAmount.toDouble() / (cookAmount + burnAmount) * 100
 }

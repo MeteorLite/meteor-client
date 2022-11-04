@@ -73,7 +73,7 @@ import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
-import net.runelite.client.chat.QueuedMessage;
+import meteor.chat.QueuedMessage;
 import org.jetbrains.annotations.NotNull;
 import static net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperConfig.ArdougneCloakMode;
 import static net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperConfig.DesertAmuletMode;
@@ -540,10 +540,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 								.append("have been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.builder()
+							chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
-								.runeLiteFormattedMessage(message)
-								.build());
+								.runeLiteFormattedMessage(message));
 
 							log.debug("Unset object swap for {}", composition.getId());
 							unsetObjectSwapConfig(true, composition.getId());
@@ -564,10 +563,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 				.append("has been set to '").append(actions[menuIdx]).append("'.")
 				.build();
 
-			chatMessageManager.queue(QueuedMessage.builder()
+			chatMessageManager.queue(QueuedMessage.Companion.builder()
 				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message)
-				.build());
+				.runeLiteFormattedMessage(message));
 
 			log.debug("Set object swap for {} to {}", composition.getId(), menuAction);
 
@@ -584,10 +582,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 				.append("has been set to Walk here.")
 				.build();
 
-			chatMessageManager.queue(QueuedMessage.builder()
+			chatMessageManager.queue(QueuedMessage.Companion.builder()
 				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message)
-				.build());
+				.runeLiteFormattedMessage(message));
 
 			log.debug("Set npc {} click swap for {} to Walk here", shift ? "shift" : "left", composition.getId());
 
@@ -699,10 +696,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 								.append("have been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.builder()
+							chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
-								.runeLiteFormattedMessage(message)
-								.build());
+								.runeLiteFormattedMessage(message));
 
 							log.debug("Unset npc swap for {}", composition.getId());
 							unsetNpcSwapConfig(true, composition.getId());
@@ -723,10 +719,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 				.append("has been set to '").append(actions[menuIdx]).append("'.")
 				.build();
 
-			chatMessageManager.queue(QueuedMessage.builder()
+			chatMessageManager.queue(QueuedMessage.Companion.builder()
 				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message)
-				.build());
+				.runeLiteFormattedMessage(message));
 
 			log.debug("Set npc {} swap for {} to {}", shift ? "shift" : "left", composition.getId(), menuAction);
 
@@ -794,10 +789,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 									.append("has been reset.")
 									.build();
 
-								chatMessageManager.queue(QueuedMessage.builder()
+								chatMessageManager.queue(QueuedMessage.Companion.builder()
 									.type(ChatMessageType.CONSOLE)
-									.runeLiteFormattedMessage(message)
-									.build());
+									.runeLiteFormattedMessage(message));
 
 								log.debug("Unset worn item left swap for {}", itemComposition.getName());
 								unsetWornItemSwapConfig(false, itemComposition.getId());
@@ -815,10 +809,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 									.append("has been reset.")
 									.build();
 
-								chatMessageManager.queue(QueuedMessage.builder()
+								chatMessageManager.queue(QueuedMessage.Companion.builder()
 									.type(ChatMessageType.CONSOLE)
-									.runeLiteFormattedMessage(message)
-									.build());
+									.runeLiteFormattedMessage(message));
 
 								log.debug("Unset worn item shift swap for {}", itemComposition.getName());
 								unsetWornItemSwapConfig(true, itemComposition.getId());
@@ -857,10 +850,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 				.append("has been set to '").append(opName).append("'.")
 				.build();
 
-			chatMessageManager.queue(QueuedMessage.builder()
+			chatMessageManager.queue(QueuedMessage.Companion.builder()
 				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message)
-				.build());
+				.runeLiteFormattedMessage(message));
 
 			log.debug("Set worn item {} swap for {} to {}", shift ? "shift" : "left", itemComposition.getName(), opIdx);
 			setWornItemSwapConfig(shift, itemComposition.getId(), opIdx);
@@ -952,10 +944,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 								.append("has been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.builder()
+							chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
-								.runeLiteFormattedMessage(message)
-								.build());
+								.runeLiteFormattedMessage(message));
 
 							log.debug("Unset held item left swap for {}", itemComposition.getName());
 							unsetItemSwapConfig(false, itemComposition.getId());
@@ -973,10 +964,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 								.append("has been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.builder()
+							chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
-								.runeLiteFormattedMessage(message)
-								.build());
+								.runeLiteFormattedMessage(message));
 
 							log.debug("Unset held item shift swap for {}", itemComposition.getName());
 							unsetItemSwapConfig(true, itemComposition.getId());
@@ -1014,10 +1004,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 				.append("has been set to '").append(opName).append("'.")
 				.build();
 
-			chatMessageManager.queue(QueuedMessage.builder()
+			chatMessageManager.queue(QueuedMessage.Companion.builder()
 				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message)
-				.build());
+				.runeLiteFormattedMessage(message));
 
 			log.debug("Set held item {} swap for {} to {}", shift ? "shift" : "left", itemComposition.getName(), opIdx);
 			setItemSwapConfig(shift, itemComposition.getId(), opIdx);
@@ -1110,10 +1099,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 									.append("have been reset.")
 									.build();
 
-								chatMessageManager.queue(QueuedMessage.builder()
+								chatMessageManager.queue(QueuedMessage.Companion.builder()
 									.type(ChatMessageType.CONSOLE)
-									.runeLiteFormattedMessage(message)
-									.build());
+									.runeLiteFormattedMessage(message));
 
 								log.debug("Unset ui swap for {}/{}", componentId, menuEntry.getTarget());
 
@@ -1135,10 +1123,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 				.append("has been set to '").append(option).append("'.")
 				.build();
 
-			chatMessageManager.queue(QueuedMessage.builder()
+			chatMessageManager.queue(QueuedMessage.Companion.builder()
 				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message)
-				.build());
+				.runeLiteFormattedMessage(message));
 
 			log.debug("Set ui {} swap for {}/{} to {}", shift ? "shift" : "left", componentId, itemId, opId);
 			setUiSwapConfig(shift, componentId, itemId, opId);

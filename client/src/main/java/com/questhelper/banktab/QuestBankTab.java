@@ -64,7 +64,7 @@ import net.runelite.api.widgets.WidgetType;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
-import net.runelite.client.chat.QueuedMessage;
+import meteor.chat.QueuedMessage;
 
 public class QuestBankTab extends EventSubscriber
 {
@@ -679,10 +679,9 @@ public class QuestBankTab extends EventSubscriber
 					.append(" " + widget.getText() + ".");
 			}
 
-			chatMessageManager.queue(QueuedMessage.builder()
+			chatMessageManager.queue(QueuedMessage.Companion.builder()
 				.type(ChatMessageType.ITEM_EXAMINE)
-				.runeLiteFormattedMessage(message.build())
-				.build());
+				.runeLiteFormattedMessage(message.build()));
 		}
 	}
 

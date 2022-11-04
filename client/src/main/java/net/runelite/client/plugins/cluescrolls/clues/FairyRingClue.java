@@ -36,7 +36,7 @@ import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollOverlay.TITLED_CONTENT_COLOR;
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class FairyRingClue extends ClueScroll implements TextClueScroll, LocationClueScroll
@@ -67,7 +67,7 @@ public class FairyRingClue extends ClueScroll implements TextClueScroll, Locatio
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Fairy Ring Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Fairy Ring Clue"));
 		panelComponent.getChildren().add(new LineComponent.Builder().left("Code:").build());
 		panelComponent.getChildren().add(new LineComponent.Builder()
 			.left(getText().substring(0, 5))

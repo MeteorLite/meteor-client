@@ -182,6 +182,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         chatMessageManager = ChatMessageManager()
         chatCommandManager = ChatCommandManager()
         gameEventManager = GameEventManager
+        RuntimeConfigLoader.get()
         PluginManager.loadExternalPlugins()
         xpTrackerService = XpTrackerService(PluginManager.get())
         timer.stop()

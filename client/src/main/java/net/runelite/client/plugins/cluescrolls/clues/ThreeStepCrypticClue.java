@@ -45,7 +45,7 @@ import static net.runelite.client.plugins.cluescrolls.ClueScrollOverlay.TITLED_C
 
 import net.runelite.api.util.Text;
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 @RequiredArgsConstructor
@@ -97,7 +97,7 @@ public class ThreeStepCrypticClue extends ClueScroll implements TextClueScroll, 
 			{
 				CrypticClue c = e.getKey();
 
-				panelComponent.getChildren().add(TitleComponent.builder().text("Cryptic Clue #" + (i + 1)).build());
+				panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Cryptic Clue #" + (i + 1)));
 				panelComponent.getChildren().add(new LineComponent.Builder().left("Solution:").build());
 				panelComponent.getChildren().add(new LineComponent.Builder()
 					.left(c.getSolution())

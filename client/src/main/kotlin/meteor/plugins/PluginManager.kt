@@ -54,7 +54,15 @@ import meteor.plugins.wintertodtfletcher.WintertodtHelper
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import meteor.plugins.animsmoothing.AnimationSmoothingPlugin
+import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
+import meteor.plugins.barrows.BarrowsPlugin
+import meteor.plugins.blastfurnace.BlastFurnacePlugin
+import meteor.plugins.blastmine.BlastMinePlugin
+import meteor.plugins.bosstimer.BossTimersPlugin
+import meteor.plugins.chathistory.ChatHistoryPlugin
+import meteor.plugins.cooking.CookingPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -84,11 +92,12 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<HiScorePlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
+        init<AnimationSmoothingPlugin>()
         init<AoeWarningPlugin>()
+        init<AttackStylesPlugin>()
         init<AutoAlchPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoClickerPlugin>()
@@ -97,13 +106,19 @@ object PluginManager {
         init<AutoRunPlugin>()
         init<BankPlugin>()
         init<BankSetups>()
+        init<BarrowsPlugin>()
+        init<BlastFurnacePlugin>()
+        init<BlastMinePlugin>()
         init<BoostsPlugin>()
+        init<BossTimersPlugin>()
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()
+        init<ChatHistoryPlugin>()
         init<ClueScrollPlugin>()
         init<CombatLevelPlugin>()
         init<CommandsPlugin>()
         init<ContinueClickerPlugin>()
+        init<CookingPlugin>()
         init<CtrlPlayerOptions>()
         init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()
@@ -116,6 +131,7 @@ object PluginManager {
         init<GroundItemsPlugin>()
         init<GuardiansOfTheRiftPlugin>()
         init<HerbiboarPlugin>()
+        init<HiScorePlugin>()
         init<InterfaceStylesPlugin>()
         init<InteractHighlightPlugin>()
         init<InventoryTagsPlugin>()

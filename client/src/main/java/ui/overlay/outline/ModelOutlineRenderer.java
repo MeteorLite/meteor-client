@@ -31,10 +31,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import meteor.Main;
+import meteor.ui.overlay.outline.PixelDistanceDelta;
+import meteor.ui.overlay.outline.PixelDistanceGroupIndex;
 import net.runelite.api.Client;
 import net.runelite.api.DecorativeObject;
 import net.runelite.api.GameObject;
@@ -54,22 +53,6 @@ import net.runelite.api.coords.LocalPoint;
 
 public class ModelOutlineRenderer
 {
-	@AllArgsConstructor
-	private static class PixelDistanceDelta
-	{
-		private final int dx;
-		private final int dy;
-	}
-
-	@AllArgsConstructor
-	private static class PixelDistanceGroupIndex
-	{
-		@Getter(AccessLevel.PRIVATE)
-		private final double distance;
-		private final int distanceGroupIndex;
-		private final double alphaMultiply;
-	}
-
 	private static final int MAX_OUTLINE_WIDTH = 50;
 	private static final int MAX_FEATHER = 4;
 	private static final int DIRECT_WRITE_OUTLINE_WIDTH_THRESHOLD = 10;
@@ -238,7 +221,7 @@ public class ModelOutlineRenderer
 			for (int i = 0; i < distances.size(); i++)
 			{
 				PixelDistanceDelta pdd = distances.get(i);
-				distances.set(i, new PixelDistanceDelta(pdd.dy, -pdd.dx));
+				distances.set(i, new PixelDistanceDelta(pdd.getDy(), -pdd.getDx()));
 			}
 		}
 	}
@@ -603,8 +586,8 @@ public class ModelOutlineRenderer
 	{
 		for (PixelDistanceDelta delta : distanceDeltas)
 		{
-			int cx = x + delta.dx;
-			int cy = y + delta.dy;
+			int cx = x + delta.getDx();
+			int cy = y + delta.getDy();
 			int visitedPixelPos = (cy - croppedY1) * croppedWidth + (cx - croppedX1);
 			if (cx >= clipX1 && cx < clipX2 && cy >= clipY1 && cy < clipY2 &&
 				(visited[visitedPixelPos >> 5] & (1 << (visitedPixelPos & 31))) == 0)
@@ -817,7 +800,7 @@ public class ModelOutlineRenderer
 			final int colorARGB;
 			final int inverseAlpha;
 			{
-				int alpha = (int) Math.round(color.getAlpha() * p.alphaMultiply);
+				int alpha = (int) Math.round(color.getAlpha() * p.getAlphaMultiply());
 				inverseAlpha = 256 - alpha;
 				colorARGB = (alpha << 24)
 					| ((color.getRed() * alpha) / 255) << 16
@@ -825,7 +808,7 @@ public class ModelOutlineRenderer
 					| ((color.getBlue() * alpha) / 255);
 			}
 
-			final int groupIndex = p.distanceGroupIndex;
+			final int groupIndex = p.getDistanceGroupIndex();
 			final int nextGroupIndexY = groupIndex + outlineArrayWidth;
 			final int nextGroupIndexX = groupIndex + 1;
 

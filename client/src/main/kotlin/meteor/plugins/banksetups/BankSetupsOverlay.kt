@@ -32,7 +32,7 @@ class BankSetupsOverlay : OverlayPanel() {
                 val x = p.x
                 val y = p.y
                 panelComponent.setPreferredLocation(Point(x, y - (incinerator.height + 10)))
-                setBounds(panelComponent.getBounds())
+                bounds = (panelComponent.bounds)
                 return panelComponent.render(graphics)
             }
         }

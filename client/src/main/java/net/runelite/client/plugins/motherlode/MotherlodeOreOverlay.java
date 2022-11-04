@@ -34,7 +34,7 @@ import meteor.ui.overlay.ComponentOrientation;
 import meteor.ui.overlay.OverlayPanel;
 import meteor.ui.overlay.OverlayPosition;
 import net.runelite.api.ItemID;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 public class MotherlodeOreOverlay extends OverlayPanel
 {
@@ -107,7 +107,7 @@ public class MotherlodeOreOverlay extends OverlayPanel
 		else
 		{
 			getPanelComponent().setOrientation(ComponentOrientation.VERTICAL);
-			getPanelComponent().getChildren().add(TitleComponent.builder().text("Ores found").build());
+			getPanelComponent().getChildren().add(TitleComponent.Companion.builder().text("Ores found"));
 			if (nuggetsFound > 0)
 			{
 				getPanelComponent().getChildren().add(new LineComponent.Builder()
