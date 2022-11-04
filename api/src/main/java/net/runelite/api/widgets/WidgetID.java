@@ -199,7 +199,7 @@ public final class WidgetID
 	public static final int DIALOG_NOTIFICATION_GROUP_ID = 229;
 	public static final int DIALOG_SPRITE2_ID = 11;
 	public static final int MULTISKILL_MENU_GROUP_ID = 270;
-
+	public static final int ACHIEVEMENT_DIARY_SCROLL_GROUP_ID = 741;
 
 	static class WorldMap
 	{
@@ -816,6 +816,12 @@ public final class WidgetID
 		static final int DIARY_TEXT = 3;
 	}
 
+	static class AchievementDiaryScroll
+	{
+		static final int TITLE = 2;
+		static final int TEXT = 3;
+	}
+
 	static class DestroyItem
 	{
 		static final int DESTROY_ITEM_NAME = 6;
@@ -1033,6 +1039,7 @@ public final class WidgetID
 		static final int HEADER = 31;
 	}
 
+	
 	static class Equipment
 	{
 		static final int HELMET = 15;
