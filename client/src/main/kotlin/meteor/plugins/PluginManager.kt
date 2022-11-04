@@ -54,6 +54,7 @@ import meteor.plugins.wintertodtfletcher.WintertodtHelper
 import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
+import meteor.plugins.animsmoothing.AnimationSmoothingPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
@@ -84,10 +85,10 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<HiScorePlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
+        init<AnimationSmoothingPlugin>()
         init<AoeWarningPlugin>()
         init<AutoAlchPlugin>()
         init<AutoBankPinPlugin>()
@@ -116,6 +117,7 @@ object PluginManager {
         init<GroundItemsPlugin>()
         init<GuardiansOfTheRiftPlugin>()
         init<HerbiboarPlugin>()
+        init<HiScorePlugin>()
         init<InterfaceStylesPlugin>()
         init<InteractHighlightPlugin>()
         init<InventoryTagsPlugin>()
