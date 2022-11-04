@@ -62,6 +62,7 @@ import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import meteor.plugins.blastmine.BlastMinePlugin
 import meteor.plugins.bosstimer.BossTimersPlugin
 import meteor.plugins.chathistory.ChatHistoryPlugin
+import meteor.plugins.cooking.CookingPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -117,6 +118,7 @@ object PluginManager {
         init<CombatLevelPlugin>()
         init<CommandsPlugin>()
         init<ContinueClickerPlugin>()
+        init<CookingPlugin>()
         init<CtrlPlayerOptions>()
         init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()

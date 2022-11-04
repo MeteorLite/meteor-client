@@ -64,9 +64,9 @@ class ChatHistoryPlugin : Plugin(), KeyListener {
     }
 
     override fun onStop() {
-        messageQueue!!.clear()
+        messageQueue?.clear()
         messageQueue = null
-        friends!!.clear()
+        friends?.clear()
         friends = null
         keyManager.unregisterKeyListener(this)
     }
