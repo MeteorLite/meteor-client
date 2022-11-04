@@ -121,6 +121,16 @@ interface MeteorConfig : Config {
         return ComponentConstants.STANDARD_BACKGROUND_COLOR
     }
 
+    @ConfigItem(
+            keyName = "fullscreen",
+            name = "Borderless Fullscreen",
+            description = "",
+            position = 45
+    )
+    fun fullscreen(): Boolean {
+        return false
+    }
+
     enum class ToolbarPosition(val position: String) {
         NORTH(BorderLayout.NORTH), SOUTH(BorderLayout.SOUTH), EAST(BorderLayout.EAST), WEST(BorderLayout.WEST);
     }

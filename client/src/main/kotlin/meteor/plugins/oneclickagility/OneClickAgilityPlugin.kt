@@ -5,6 +5,7 @@ import meteor.Main
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.util.GameEventManager
 import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.WidgetInfo
@@ -14,7 +15,7 @@ import java.util.Set
 @PluginDescriptor(name = "One Click Agility", description = "Reclined gaming", enabledByDefault = false)
 class OneClickAgilityPlugin : Plugin() {
 
-    var gameEventManager = Main.gameEventManager
+    var gameEventManager = GameEventManager
     var itemManager = ItemManager
     private val config = configuration<OneClickAgilityConfig>()
 
@@ -35,7 +36,7 @@ class OneClickAgilityPlugin : Plugin() {
 
     fun resetCourse() {
         course = CourseFactory.build(config.courseSelection())
-        gameEventManager!!.simulateGameEvents(this)
+        gameEventManager.simulateGameEvents(this)
     }
 
     override fun onMenuOptionClicked(event: MenuOptionClicked) {

@@ -22,8 +22,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor
+package meteor.util
 
+import meteor.Logger
 import net.runelite.http.api.RuneLiteAPI
 import okhttp3.*
 import java.io.IOException

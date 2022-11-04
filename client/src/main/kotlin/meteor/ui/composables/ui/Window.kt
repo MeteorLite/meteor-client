@@ -15,9 +15,10 @@ import java.awt.Dimension
 
 
 @Composable
-fun FrameWindowScope.window() {
+fun FrameWindowScope.windowContent() {
 
             windowFrame {
+                Main.window = this@windowContent
                 when {
                     pluginsOpen.value ||
                             configOpen.value ||
