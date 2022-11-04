@@ -58,6 +58,7 @@ import meteor.plugins.animsmoothing.AnimationSmoothingPlugin
 import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import net.runelite.client.plugins.barrows.BarrowsPlugin
+import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -102,6 +103,7 @@ object PluginManager {
         init<BankPlugin>()
         init<BankSetups>()
         init<BarrowsPlugin>()
+        init<BlastFurnacePlugin>()
         init<BoostsPlugin>()
         init<CameraPlugin>()
         init<ChatCommandsPlugin>()
