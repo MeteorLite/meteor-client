@@ -31,6 +31,11 @@ import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.ui.overlay.OverlayPriority;
 import meteor.ui.overlay.PanelComponent;
+import meteor.ui.table.TableAlignment;
+import meteor.ui.table.TableComponent;
+import meteor.ui.table.TableElement;
+import meteor.ui.table.TableRow;
+import meteor.ui.table.TitleComponent;
 import net.runelite.api.ChatMessageType;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
@@ -40,7 +45,6 @@ import net.runelite.client.plugins.gauntletextended.GauntletExtendedConfig;
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.rationalityfrontline.kevent.KEvent;
-import ui.table.*;
 
 import java.awt.*;
 import java.time.Instant;
@@ -69,30 +73,24 @@ public class OverlayTimer extends Overlay
 		this.panelComponent = new PanelComponent();
 		this.tableComponent = new TableComponent();
 
-		panelComponent.getChildren().add(TitleComponent.builder().text("Gauntlet Timer").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Gauntlet Timer"));
 		panelComponent.getChildren().add(tableComponent);
 
 		tableComponent.setColumnAlignments(TableAlignment.LEFT, TableAlignment.RIGHT);
 
-		this.rowPrepTime = TableRow.builder()
+		this.rowPrepTime = TableRow.Companion.builder()
 			.elements(Arrays.asList(
-				TableElement.builder()
-					.content("Prep Time:")
-					.build(),
-				TableElement.builder()
-					.content("")
-					.build()))
-			.build();
+				TableElement.Companion.builder()
+					.content("Prep Time:"),
+					TableElement.Companion.builder()
+					.content("")));
 
-		this.rowTotalTime = TableRow.builder()
+		this.rowTotalTime = TableRow.Companion.builder()
 			.elements(Arrays.asList(
-				TableElement.builder()
-					.content("Total Time:")
-					.build(),
-				TableElement.builder()
-					.content("")
-					.build()))
-			.build();
+					TableElement.Companion.builder()
+					.content("Total Time:"),
+					TableElement.Companion.builder()
+					.content("")));
 
 		this.timeGauntletStart = -1;
 		this.timeHunllefStart = -1;

@@ -8,8 +8,8 @@ import meteor.ui.overlay.OverlayPosition.BOTTOM_LEFT
 import meteor.ui.overlay.PanelComponent
 import meteor.util.ColorUtil
 import net.runelite.api.MenuAction
-import ui.table.TableAlignment
-import ui.table.TableComponent
+import meteor.ui.table.TableAlignment
+import meteor.ui.table.TableComponent
 import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Rectangle

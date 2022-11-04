@@ -38,9 +38,4 @@ interface LayoutableRenderableEntity : RenderableEntity {
     fun getPreferredSize(): Dimension? {
         return null
     }
-
-    fun setBounds(rectangle: Rectangle?)
-    fun getBounds(): Rectangle? {
-        return null
-    }
 }

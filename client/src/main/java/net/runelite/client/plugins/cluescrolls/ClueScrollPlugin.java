@@ -100,7 +100,7 @@ import net.runelite.client.plugins.cluescrolls.clues.TextClueScroll;
 import net.runelite.client.plugins.cluescrolls.clues.ThreeStepCrypticClue;
 import net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirement;
 import org.apache.commons.lang3.ArrayUtils;
-import ui.table.TextComponent;
+import meteor.ui.table.TextComponent;
 
 @PluginDescriptor(
 	name = "Clue Scroll",

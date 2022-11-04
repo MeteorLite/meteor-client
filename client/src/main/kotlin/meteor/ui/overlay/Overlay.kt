@@ -56,11 +56,7 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
 
     private var preferredLocationp: Point? = Point()
     private var preferredSizep: Dimension? = null
-    private var bounds: Rectangle? = Rectangle()
-
-    override fun getBounds(): Rectangle? {
-        return bounds
-    }
+    var bounds: Rectangle? = Rectangle()
 
     override fun getPreferredLocation(): Point? {
         return preferredLocationp
@@ -76,10 +72,6 @@ abstract class Overlay(var layer: OverlayLayer = OverlayLayer.ABOVE_SCENE) : Lay
 
     override fun setPreferredSize(position: Dimension?) {
         this.preferredSizep = position
-    }
-
-    override fun setBounds(rectangle: Rectangle?) {
-        bounds = rectangle
     }
 
     /**

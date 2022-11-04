@@ -187,7 +187,7 @@ class BankSetups : Plugin() {
             }
         }
         val mousePoint = client.mouseCanvasPosition
-        if (overlay.getBounds()!!.contains(mousePoint.x, mousePoint.y)) {
+        if (overlay.bounds!!.contains(mousePoint.x, mousePoint.y)) {
             client.insertMenuItem("save-current", "", 10000000, 10000, 0, 0, false)
 
             bankSetups.indices.forEach {

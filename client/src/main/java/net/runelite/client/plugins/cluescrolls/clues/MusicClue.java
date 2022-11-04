@@ -39,7 +39,7 @@ import net.runelite.api.coords.WorldPoint;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollOverlay.TITLED_CONTENT_COLOR;
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.IMAGE_Z_OFFSET;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
@@ -54,7 +54,7 @@ public class MusicClue extends ClueScroll implements NpcClueScroll
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Music Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Music Clue"));
 		panelComponent.getChildren().add(new LineComponent.Builder().left("NPC:").build());
 		panelComponent.getChildren().add(new LineComponent.Builder()
 			.left(CECILIA)

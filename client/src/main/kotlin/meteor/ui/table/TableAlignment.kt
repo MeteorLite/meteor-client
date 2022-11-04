@@ -22,11 +22,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package ui.table;
+package meteor.ui.table
 
-public enum TableAlignment
-{
-	LEFT,
-	CENTER,
-	RIGHT
+enum class TableAlignment {
+    LEFT, CENTER, RIGHT
 }

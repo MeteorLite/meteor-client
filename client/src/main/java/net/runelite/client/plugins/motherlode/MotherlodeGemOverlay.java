@@ -37,7 +37,7 @@ import meteor.ui.overlay.OverlayMenuEntry;
 import meteor.ui.overlay.OverlayPanel;
 import meteor.ui.overlay.OverlayPosition;
 import net.runelite.api.ItemID;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 import static meteor.plugins.xptracker.XpInfoBoxOverlay.OPTION_CONFIGURE;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
@@ -105,7 +105,7 @@ public class MotherlodeGemOverlay extends OverlayPanel
 		else
 		{
 			getPanelComponent().setOrientation(ComponentOrientation.VERTICAL);
-			getPanelComponent().getChildren().add(TitleComponent.builder().text("Gems found").build());
+			getPanelComponent().getChildren().add(TitleComponent.Companion.builder().text("Gems found"));
 			if (diamondsFound > 0)
 			{
 				getPanelComponent().getChildren().add(new LineComponent.Builder()

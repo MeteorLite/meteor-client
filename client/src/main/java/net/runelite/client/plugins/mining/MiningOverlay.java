@@ -38,7 +38,7 @@ import net.runelite.api.AnimationID;
 import net.runelite.api.Client;
 import net.runelite.api.MenuAction;
 import net.runelite.api.Skill;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 import static meteor.plugins.xptracker.XpInfoBoxOverlay.OPTION_CONFIGURE;
 
@@ -74,17 +74,15 @@ class MiningOverlay extends OverlayPanel
 		Pickaxe pickaxe = plugin.getPickaxe();
 		if (pickaxe != null && (pickaxe.matchesMiningAnimation(client.getLocalPlayer()) || client.getLocalPlayer().getAnimation() == AnimationID.DENSE_ESSENCE_CHIPPING))
 		{
-			getPanelComponent().getChildren().add(TitleComponent.builder()
+			getPanelComponent().getChildren().add(TitleComponent.Companion.builder()
 				.text("Mining")
-				.color(Color.GREEN)
-				.build());
+				.color(Color.GREEN));
 		}
 		else
 		{
-			getPanelComponent().getChildren().add(TitleComponent.builder()
+			getPanelComponent().getChildren().add(TitleComponent.Companion.builder()
 				.text("NOT mining")
-				.color(Color.RED)
-				.build());
+				.color(Color.RED));
 		}
 
 		int actions = xpTrackerService.getActions(Skill.MINING);

@@ -46,7 +46,7 @@ import static net.runelite.client.plugins.cluescrolls.clues.Enemy.BANDOSIAN_GUAR
 import static net.runelite.client.plugins.cluescrolls.clues.Enemy.BRASSICAN_MAGE;
 import static net.runelite.client.plugins.cluescrolls.clues.Enemy.SARADOMIN_WIZARD;
 import static net.runelite.client.plugins.cluescrolls.clues.Enemy.ZAMORAK_WIZARD;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class CoordinateClue extends ClueScroll implements TextClueScroll, LocationClueScroll
@@ -289,7 +289,7 @@ public class CoordinateClue extends ClueScroll implements TextClueScroll, Locati
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Coordinate Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Coordinate Clue"));
 
 		final CoordinateClueInfo solution = CLUES.get(location);
 

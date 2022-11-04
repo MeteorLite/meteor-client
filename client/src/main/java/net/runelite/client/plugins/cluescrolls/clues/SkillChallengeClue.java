@@ -54,7 +54,7 @@ import net.runelite.client.plugins.cluescrolls.clues.item.AnyRequirementCollecti
 import net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirement;
 import static net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirements.*;
 import net.runelite.client.plugins.cluescrolls.clues.item.SingleItemRequirement;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, NamedObjectClueScroll
@@ -328,7 +328,7 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Skill Challenge Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Skill Challenge Clue"));
 
 		if (!challengeCompleted)
 		{

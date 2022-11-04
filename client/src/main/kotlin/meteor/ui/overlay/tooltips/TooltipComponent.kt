@@ -42,10 +42,6 @@ class TooltipComponent : LayoutableRenderableEntity {
     private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
     private var bounds: Rectangle? = Rectangle()
 
-    override fun getBounds(): Rectangle? {
-        return bounds
-    }
-
     override fun getPreferredLocation(): Point? {
         return preferredLocationp
     }
@@ -61,11 +57,7 @@ class TooltipComponent : LayoutableRenderableEntity {
     override fun setPreferredSize(position: Dimension?) {
         this.preferredSizep = position
     }
-
-    override fun setBounds(rectangle: Rectangle?) {
-        bounds = rectangle
-    }
-
+    
     override fun render(graphics: Graphics2D): Dimension? {
         // Tooltip size
         val metrics = graphics.fontMetrics

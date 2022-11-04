@@ -29,6 +29,7 @@ import meteor.ui.components.ComponentConstants
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
+import java.awt.Rectangle
 
 abstract class OverlayPanel : Overlay() {
 

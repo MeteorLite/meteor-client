@@ -51,7 +51,7 @@ import net.runelite.client.plugins.cluescrolls.clues.hotcold.HotColdLocation;
 import net.runelite.client.plugins.cluescrolls.clues.hotcold.HotColdSolver;
 import net.runelite.client.plugins.cluescrolls.clues.hotcold.HotColdTemperature;
 import net.runelite.client.plugins.cluescrolls.clues.hotcold.HotColdTemperatureChange;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @EqualsAndHashCode(callSuper = false, exclude = { "hotColdSolver", "location" })
 @Getter
@@ -127,9 +127,8 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 			return;
 		}
 
-		panelComponent.getChildren().add(TitleComponent.builder()
-			.text("Hot/Cold Clue")
-			.build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder()
+			.text("Hot/Cold Clue"));
 
 		// strange device has not been tested yet, show how to get it
 		if (hotColdSolver.getLastWorldPoint() == null && location == null)

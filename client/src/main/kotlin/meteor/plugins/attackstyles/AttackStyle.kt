@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2017, honeyhoney <https://github.com/honeyhoney>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,45 +22,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.components
+package meteor.plugins.attackstyles
 
-import java.awt.Dimension
-import java.awt.Graphics2D
-import java.awt.Point
-import java.awt.Rectangle
-import java.awt.image.BufferedImage
+import lombok.Getter
+import net.runelite.api.Skill
 
+enum class AttackStyle(@field:Getter  val styleName: String, vararg skills: Skill) {
+    ACCURATE("Accurate", Skill.ATTACK), AGGRESSIVE("Aggressive", Skill.STRENGTH), DEFENSIVE("Defensive", Skill.DEFENCE), CONTROLLED("Controlled", Skill.ATTACK, Skill.STRENGTH, Skill.DEFENCE), RANGING("Ranging", Skill.RANGED), LONGRANGE("Longrange", Skill.RANGED, Skill.DEFENCE), CASTING("Casting", Skill.MAGIC), DEFENSIVE_CASTING("Defensive Casting", Skill.MAGIC, Skill.DEFENCE), OTHER("Other");
 
-class ImageComponent(var image: BufferedImage?) : LayoutableRenderableEntity {
-    override fun getPreferredSize(): Dimension {
-        return bounds!!.size
+    @Getter
+    val skills: Array<Skill>
+
+    init {
+        this.skills = skills as Array<Skill>
     }
-
-    private var preferredLocationp: Point? = Point()
-    private var preferredSizep: Dimension? = Dimension(ComponentConstants.STANDARD_WIDTH, 16)
-    var bounds: Rectangle? = Rectangle()
-
-    override fun getPreferredLocation(): Point? {
-        return preferredLocationp
-    }
-
-    override fun setPreferredLocation(position: Point?) {
-        preferredLocationp = position
-    }
-
-    override fun setPreferredSize(position: Dimension?) {
-        this.preferredSizep = position
-    }
-
-    override fun render(graphics: Graphics2D): Dimension? {
-        if (image == null) {
-            return null
-        }
-        graphics.drawImage(image, getPreferredLocation()!!.x, getPreferredLocation()!!.y, null)
-        val dimension = Dimension(image!!.width, image!!.height)
-        bounds!!.location = getPreferredLocation()!!
-        bounds!!.size = dimension
-        return dimension
-    }
-
 }

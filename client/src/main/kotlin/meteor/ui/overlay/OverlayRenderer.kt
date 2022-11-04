@@ -113,12 +113,12 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             }
         } else if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
             val offset = Point(mousePoint.x, mousePoint.y)
-            offset.translate(-currentManagedOverlay!!.getBounds()!!.x, -currentManagedOverlay!!.getBounds()!!.y)
+            offset.translate(-currentManagedOverlay!!.bounds!!.x, -currentManagedOverlay!!.bounds!!.y)
             overlayOffset.location = offset
             inOverlayResizingMode = (currentManagedOverlay != null && currentManagedOverlay!!.resizable)
             inOverlayDraggingMode = !inOverlayResizingMode
             startedMovingOverlay = true
-            currentManagedBounds = Rectangle(currentManagedOverlay!!.getBounds()!!)
+            currentManagedBounds = Rectangle(currentManagedOverlay!!.bounds!!)
         } else {
             return mouseEvent
         }
@@ -135,8 +135,8 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         if (currentManagedOverlay == null) {
             return mouseEvent
         }
-        if (dragTargetOverlay != null && !currentManagedOverlay!!.getBounds()!!
-                .intersects(dragTargetOverlay!!.getBounds()!!)
+        if (dragTargetOverlay != null && !currentManagedOverlay!!.bounds!!
+                .intersects(dragTargetOverlay!!.bounds!!)
         ) {
             // No longer over drag target
             dragTargetOverlay = null
@@ -222,7 +222,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             ) // adjust by mouse offset to get overlay position
 
             // Clamp drag to parent component
-            val overlayBounds = currentManagedOverlay!!.getBounds()
+            val overlayBounds = currentManagedOverlay!!.bounds
             overlayPosition = clampOverlayLocation(
                 overlayPosition.x, overlayPosition.y,
                 overlayBounds!!.width, overlayBounds.height, currentManagedOverlay!!
@@ -253,7 +253,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         if (currentManagedOverlay == null || !currentManagedOverlay!!.resizable) {
             return mouseEvent
         }
-        val toleranceRect: Rectangle = Rectangle(currentManagedOverlay!!.getBounds())
+        val toleranceRect: Rectangle = Rectangle(currentManagedOverlay!!.bounds)
         toleranceRect.grow(
             -OVERLAY_RESIZE_TOLERANCE,
             -OVERLAY_RESIZE_TOLERANCE
@@ -616,7 +616,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                 graphics.setRenderingHints(renderingHints)
                 graphics.background = background
             } else {
-                val bounds: Rectangle = overlay.getBounds()!!
+                val bounds: Rectangle = overlay.bounds!!
                 val dimension = bounds.size
                 val preferredLocation: Point? = overlay.getPreferredLocation()
                 var location: Point
@@ -673,7 +673,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                             boundsColor = MOVING_OVERLAY_ACTIVE_COLOR
                         } else if (inOverlayDraggingMode && overlay.dragTargetable
                             && currentManagedOverlay!!.dragTargetable
-                            && currentManagedOverlay!!.getBounds()!!.intersects(bounds)
+                            && currentManagedOverlay!!.bounds!!.intersects(bounds)
                         ) {
                             boundsColor = MOVING_OVERLAY_TARGET_COLOR
                             assert(currentManagedOverlay != overlay)
@@ -725,7 +725,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         // Set font based on configuration
         graphics.font = fontManager.runescapeSmallFont
         graphics.translate(point.x, point.y)
-        overlay.getBounds()!!.location = point
+        overlay.bounds!!.location = point
         val overlayDimension: Dimension? = try {
             overlay.render(graphics)
         } catch (ex: Exception) {
@@ -733,7 +733,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             return
         }
         val dimension = MoreObjects.firstNonNull(overlayDimension, Dimension())
-        overlay.getBounds()!!.size = dimension
+        overlay.bounds!!.size = dimension
     }
 
     private fun resetOverlayManagementMode() {
@@ -753,7 +753,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                     // never allow moving dynamic or tooltip overlays
                     continue
                 }
-                val bounds: Rectangle = overlay.getBounds()!!
+                val bounds: Rectangle = overlay.bounds!!
                 if (bounds.contains(mousePoint)) {
                     return overlay
                 }

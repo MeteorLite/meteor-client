@@ -22,18 +22,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package ui.table;
+package meteor.ui.table
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Builder
+import java.awt.Color
 
-import java.awt.*;
 
-@Data
-@Builder
-public class TableElement
-{
-	TableAlignment alignment;
-	Color color;
-	String content;
+class TableRow {
+    var rowColor: Color? = null
+    var rowAlignment: TableAlignment? = null
+
+    @Builder.Default
+    var elements = emptyList<TableElement>()
+
+    fun rowColor(c: Color) : TableRow {
+        rowColor = c
+        return this
+    }
+
+    fun elements(e: List<TableElement>) : TableRow {
+        elements = e
+        return this
+    }
+
+    companion object {
+        fun builder() : TableRow {
+            return TableRow()
+        }
+    }
 }

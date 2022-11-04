@@ -34,7 +34,7 @@ import java.awt.*
 import java.awt.image.BufferedImage
 
 class InfoBoxComponent : LayoutableRenderableEntity {
-    private var bounds: Rectangle? = Rectangle()
+    var bounds: Rectangle? = Rectangle()
     var tooltip: String? = null
     private var preferredLocation: Point? = Point()
     private var preferredSize: Dimension? = Dimension(DEFAULT_SIZE, DEFAULT_SIZE)
@@ -48,14 +48,6 @@ class InfoBoxComponent : LayoutableRenderableEntity {
 
     override fun getPreferredSize(): Dimension? {
         return preferredSize
-    }
-
-    override fun setBounds(rectangle: Rectangle?) {
-        bounds = rectangle
-    }
-
-    override fun getBounds(): Rectangle? {
-        return bounds
     }
 
     override fun getPreferredLocation(): Point? {

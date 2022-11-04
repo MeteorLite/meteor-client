@@ -46,7 +46,7 @@ import net.runelite.client.plugins.cluescrolls.clues.item.AnyRequirementCollecti
 import net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirement;
 import net.runelite.client.plugins.cluescrolls.clues.item.RangeItemRequirement;
 import net.runelite.client.plugins.cluescrolls.clues.item.SingleItemRequirement;
-import ui.table.TitleComponent;
+import meteor.ui.table.TitleComponent;
 
 @Getter
 public class FaloTheBardClue extends ClueScroll implements TextClueScroll, NpcClueScroll
@@ -109,7 +109,7 @@ public class FaloTheBardClue extends ClueScroll implements TextClueScroll, NpcCl
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, ClueScrollPlugin plugin)
 	{
-		panelComponent.getChildren().add(TitleComponent.builder().text("Falo the Bard Clue").build());
+		panelComponent.getChildren().add(TitleComponent.Companion.builder().text("Falo the Bard Clue"));
 
 		panelComponent.getChildren().add(new LineComponent.Builder().left("NPC:").build());
 		panelComponent.getChildren().add(new LineComponent.Builder()
