@@ -24,9 +24,11 @@
  */
 package meteor.plugins.defaultworld
 
+import eventbus.events.ClientTick
 import eventbus.events.GameStateChanged
 import lombok.extern.slf4j.Slf4j
 import meteor.Logger
+import meteor.config.ConfigManager
 import meteor.game.WorldService
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -38,43 +40,51 @@ import net.runelite.api.GameState
     description = "Enable a default world to be selected when launching the client",
     tags = ["home"]
 )
-@Slf4j
 class DefaultWorldPlugin : Plugin() {
     val log = Logger("Default World Plugin")
 
     private val config = configuration<DefaultWorldConfig>()
     private val worldService = WorldService
+
     override fun onGameStateChanged(it: GameStateChanged) {
         if (it.gameState == GameState.LOGIN_SCREEN) {
-            applyWorld()
-            unsubscribe()
+             if (applyWorld())
+                 unsubscribe()
+        }
+        if (it.gameState == GameState.LOGGED_IN) {
+            ConfigManager.setConfiguration("defaultworld", "lastWorld", client.world)
+            log.warn("Set default world ${client.world}")
         }
     }
 
-    private fun applyWorld() {
+    private fun applyWorld() : Boolean {
         if (client.gameState != GameState.LOGIN_SCREEN) {
-            return
+            return false
         }
         if (System.getProperty("cli.world") != null) {
-            return
+            return false
         }
         val newWorld = if (config.useLastWorld()) config.lastWorld() else config.world
+
+        if (newWorld == 0)
+            return false
+
         val correctedWorld = if (newWorld < 300) newWorld + 300 else newWorld
 
         // Old School RuneScape worlds start on 301 so don't even bother trying to find lower id ones
         // and also do not try to set world if we are already on it
         if (correctedWorld <= 300 || client.world == correctedWorld) {
-            return
+            return false
         }
         val worldResult = worldService.getWorlds()
         if (worldResult == null) {
             log.warn("Failed to lookup worlds.")
-            return
+            return false
         }
         val world = worldResult.findWorld(correctedWorld)
         if (world == null) {
             log.warn("World {} not found.", correctedWorld)
-            return
+            return false
         }
         val rsWorld = client.createWorld()
         rsWorld.activity = world.activity
@@ -85,5 +95,6 @@ class DefaultWorldPlugin : Plugin() {
         rsWorld.types = toWorldTypes(world.types)
         client.changeWorld(rsWorld)
         log.debug("Applied new world {}", correctedWorld)
+        return true
     }
 }

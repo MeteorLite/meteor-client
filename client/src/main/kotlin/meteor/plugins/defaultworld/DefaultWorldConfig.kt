@@ -40,15 +40,11 @@ interface DefaultWorldConfig : Config {
         description = "Use the last world you used as the default"
     )
     fun useLastWorld(): Boolean {
-        return false
+        return true
     }
 
     @ConfigItem(keyName = "lastWorld", name = "", description = "", hidden = true)
     fun lastWorld(): Int {
         return 0
     }
-
-    @ConfigItem(keyName = "lastWorld", name = "", description = "")
-    fun lastWorld(lastWorld: Int)
-
 }

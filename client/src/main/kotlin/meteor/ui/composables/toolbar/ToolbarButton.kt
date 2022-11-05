@@ -60,7 +60,7 @@ class ToolbarButton(
                     Icon(
                         icon!!,
                         contentDescription = description,
-                        tint = mutableStateOf(uiColor).value,
+                        tint = if (iconColor == null) mutableStateOf(uiColor).value else mutableStateOf(iconColor!!).value,
                     )
                 else if (imageResource != null)
                     Image(

@@ -68,6 +68,7 @@ import meteor.plugins.exptracker.ExpTrackerPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
+import meteor.plugins.fullscreen.FullscreenPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -133,6 +134,7 @@ object PluginManager {
         init<ExpTrackerPlugin>()
         init<FishingPlugin>()
         init<FpsPlugin>()
+        init<FullscreenPlugin>()
         init<GauntletExtendedPlugin>()
         init<HdPlugin>()
         init<GroundItemsPlugin>()
