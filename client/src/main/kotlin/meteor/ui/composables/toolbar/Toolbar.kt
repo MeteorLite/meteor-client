@@ -28,7 +28,7 @@ fun ToolbarPanel() {
     return Column(modifier = Modifier.width(width.value.dp).background(background )) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(surface).scale(0.90F)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(surface)
         ) {
             MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
                 for (button in topToolbar)
@@ -38,7 +38,7 @@ fun ToolbarPanel() {
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(surface).scale(0.75F)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight().background(surface)
         ) {
             MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
                 for (button in bottomToolbar)

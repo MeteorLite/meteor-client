@@ -337,7 +337,7 @@ open class EventSubscriber : KEventSubscriber {
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {
-        kSubscribe<T>(type) { event -> unit.invoke(event.data) }
+        kSubscribe(type) { event -> unit.invoke(event.data) }
     }
 
 
