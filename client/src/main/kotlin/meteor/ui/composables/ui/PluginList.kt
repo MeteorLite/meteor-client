@@ -55,7 +55,7 @@ fun searchBar(
         modifier = Modifier.fillMaxWidth()
     ) {
 
-        OutlinedTextField(
+        TextField(
             value = state.value,
             onValueChange = { value ->
                 state.value = value
@@ -68,10 +68,10 @@ fun searchBar(
                 fontFamily = FontUtil.crimson
             ),
 
-            modifier = Modifier.scale(scaleX = 0.95f, scaleY = 0.80f).fillMaxWidth(),
-            shape = RoundedCornerShape(10.dp),
+            modifier = Modifier.fillMaxWidth().height(50.dp),
+            shape = RoundedCornerShape(20.dp),
             label = {
-                Text("Search", color = uiColor)
+                if (state.value.text.isEmpty())Text("Search", color = uiColor)
             },
             leadingIcon = {
                 Icon(
@@ -98,9 +98,8 @@ fun plugins() {
     }
     val textState = remember { mutableStateOf(TextFieldValue("")) }
     Row(
-        modifier = Modifier.fillMaxWidth().background(surface)
-            .height(60.dp),
-        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start
+        modifier = Modifier.height(50.dp).fillMaxWidth().background(surface, RoundedCornerShape(29.dp)),
+        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         searchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
     }
