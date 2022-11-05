@@ -49,7 +49,6 @@ class MiningOverlay extends OverlayPanel
 	private final Client client;
 	private final MiningPlugin plugin;
 	private final MiningConfig config;
-	private final XpTrackerService xpTrackerService;
 
 	MiningOverlay(final MiningPlugin plugin, final MiningConfig config)
 	{
@@ -57,7 +56,6 @@ class MiningOverlay extends OverlayPanel
 		this.client = Main.client;
 		this.plugin = plugin;
 		this.config = config;
-		this.xpTrackerService = Main.xpTrackerService;
 		getMenuEntries().add(new OverlayMenuEntry(MenuAction.RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Mining overlay"));
 		getMenuEntries().add(new OverlayMenuEntry(MenuAction.RUNELITE_OVERLAY, MINING_RESET, "Mining overlay"));
 	}
@@ -85,7 +83,7 @@ class MiningOverlay extends OverlayPanel
 				.color(Color.RED));
 		}
 
-		int actions = xpTrackerService.getActions(Skill.MINING);
+		int actions = Main.xpTrackerService.getActions(Skill.MINING);
 		if (actions > 0)
 		{
 			getPanelComponent().getChildren().add(new LineComponent.Builder()
@@ -97,7 +95,7 @@ class MiningOverlay extends OverlayPanel
 			{
 				getPanelComponent().getChildren().add(new LineComponent.Builder()
 					.left("Mined/hr:")
-					.right(Integer.toString(xpTrackerService.getActionsHr(Skill.MINING)))
+					.right(Integer.toString(Main.xpTrackerService.getActionsHr(Skill.MINING)))
 					.build());
 			}
 		}

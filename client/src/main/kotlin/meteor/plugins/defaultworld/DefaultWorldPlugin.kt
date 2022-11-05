@@ -24,16 +24,19 @@
  */
 package meteor.plugins.defaultworld
 
+import eventbus.Events
 import eventbus.events.ClientTick
 import eventbus.events.GameStateChanged
 import lombok.extern.slf4j.Slf4j
 import meteor.Logger
+import meteor.Main
 import meteor.config.ConfigManager
 import meteor.game.WorldService
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.util.WorldUtil.toWorldTypes
 import net.runelite.api.GameState
+import org.rationalityfrontline.kevent.KEVENT
 
 @PluginDescriptor(
     name = "Default World",
@@ -43,6 +46,16 @@ import net.runelite.api.GameState
 class DefaultWorldPlugin : Plugin() {
     val log = Logger("Default World Plugin")
 
+    //We always set last world, even if unsubscribed
+    init {
+        KEVENT.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) {
+            if (it.data.gameState == GameState.LOGGED_IN) {
+                ConfigManager.setConfiguration("defaultworld", "lastWorld", client.world)
+                log.warn("Set default world ${client.world}")
+            }
+        }
+    }
+
     private val config = configuration<DefaultWorldConfig>()
     private val worldService = WorldService
 
@@ -50,10 +63,6 @@ class DefaultWorldPlugin : Plugin() {
         if (it.gameState == GameState.LOGIN_SCREEN) {
              if (applyWorld())
                  unsubscribe()
-        }
-        if (it.gameState == GameState.LOGGED_IN) {
-            ConfigManager.setConfiguration("defaultworld", "lastWorld", client.world)
-            log.warn("Set default world ${client.world}")
         }
     }
 
