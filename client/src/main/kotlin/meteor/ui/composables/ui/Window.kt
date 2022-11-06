@@ -37,17 +37,10 @@ fun FrameWindowScope.windowContent() {
                     modifier = Modifier.fillMaxHeight().width(15.dp).background(background )
                 ) {
                     Spacer(modifier = Modifier.width(15.dp))
-
-
                     sectionItem(modifier = Modifier.background(background ).size(25.dp)) {
                         when {
-                            !toolBarOpen.value -> {
-
-                                toolBarOpen.value = true
-                            }
-                            toolBarOpen.value -> {
-                                toolBarOpen.value = false
-                            }
+                            !toolBarOpen.value -> toolBarOpen.value = true
+                            toolBarOpen.value -> toolBarOpen.value = false
                         }
                     }
                 }
@@ -62,9 +55,6 @@ fun FrameWindowScope.windowContent() {
                     }
                 }
             }
-
-
-
 }
 
 

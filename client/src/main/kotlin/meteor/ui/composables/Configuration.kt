@@ -3,6 +3,7 @@ package meteor.ui.composables
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -31,7 +32,8 @@ import meteor.ui.composables.ui.onPluginToggled
 @Composable
 fun configPanel() {
     if (lastPlugin.configuration != null) descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)!!
-    var mod = Modifier.background(if (darkLightMode.value) darkThemeColors.surface else lightThemeColors.surface).fillMaxHeight().width(375.dp)
+    var mod = Modifier.background(if (darkLightMode.value) darkThemeColors.background else lightThemeColors.background
+    ).fillMaxHeight().width(375.dp)
     Column {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
 
@@ -67,13 +69,14 @@ fun configs(){
 @Composable
 fun configPanelHeader() {
 
-    Row {
+
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.85f).height(35.dp)
+            modifier = Modifier.fillMaxWidth().height(42.dp).background(surface,
+                RoundedCornerShape(10.dp))
         ) {
-            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start) {
-                IconButton(modifier = Modifier.padding(top = 10.dp), onClick = {
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(75.dp)) {
+                IconButton( onClick = {
                     when {
                         configOpen.value -> configOpen.value = false
                         !pluginsOpen.value -> pluginsOpen.value = true
@@ -86,8 +89,7 @@ fun configPanelHeader() {
                     )
                 }
             }
-            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start) {
-                Spacer(Modifier.width(20.dp))
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(250.dp)) {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                         lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
@@ -96,23 +98,25 @@ fun configPanelHeader() {
                     )
                 }
             }
+            Row(
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier.width(50.dp)
+            ) {
+                val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
 
-        }
-        Row(
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.End,
-        ) {
-            val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
+                Switch(
+                    switchState.value,
+                    onPluginToggled(switchState, lastPlugin),
+                    enabled = true,
+                    modifier = Modifier.scale(0.75f),
+                    colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)
+                )
 
-            Switch(
-                switchState.value,
-                onPluginToggled(switchState, lastPlugin),
-                enabled = true,
-                modifier = Modifier.scale(0.75f),
-                colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)
-            )
+            }
 
-        }
+
+
     }
 
 }

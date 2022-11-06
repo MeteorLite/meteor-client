@@ -26,8 +26,7 @@ class HiScorePlugin : Plugin() {
     private val hiscoreClient = HiscoreClient(OkHttpClient())
     var panel: HiscorePanel? = null
     var config = configuration<HiscoreConfig>()
-     var lookupResult:HiscoreResult = hiscoreClient.lookup(config.username())
-    var icon:HiscoreEndpoint = HiscoreEndpoint.NORMAL
+
 
     private var notesButton = ToolbarButton(
         "HiScore",
@@ -52,44 +51,9 @@ class HiScorePlugin : Plugin() {
                 "username",
                 player!!
             )
-            lookupResult = hiscoreClient.lookup(config.username())
-            icon = findHiscoreEndpointFromPlayerName(event.menuEntry.player.toString())
-            println(icon)
-            println(event.getMenuTarget())
         }
     }
-    private fun findHiscoreEndpointFromPlayerName(name: String): HiscoreEndpoint {
-        return when {
-            IconID.IRONMAN.toString() in name -> {
-                HiscoreEndpoint.IRONMAN
-            }
-            IconID.ULTIMATE_IRONMAN.toString() in name -> {
-                HiscoreEndpoint.ULTIMATE_IRONMAN
-            }
-            IconID.HARDCORE_IRONMAN.toString() in name -> {
-                HiscoreEndpoint.HARDCORE_IRONMAN
-            }
-            else -> if (IconID.LEAGUE.toString() in name) {
-                HiscoreEndpoint.LEAGUE
-            } else HiscoreEndpoint.NORMAL
-        }
-    }
-    private fun iconFromPlayerName(name: String): IconID? {
-        return when {
-            IconID.IRONMAN.toString() in name -> {
-                IconID.IRONMAN
-            }
-            IconID.ULTIMATE_IRONMAN.toString() in name -> {
-                IconID.ULTIMATE_IRONMAN
-            }
-            IconID.HARDCORE_IRONMAN.toString() in name -> {
-                IconID.HARDCORE_IRONMAN
-            }
-            else -> if (IconID.LEAGUE.toString() in name) {
-                IconID.LEAGUE
-            } else IconID.IRONMAN
-        }
-    }
+
     fun onClick() {
         if (panel!!.username != config.username()) {
             panel!!.username = config.username()
