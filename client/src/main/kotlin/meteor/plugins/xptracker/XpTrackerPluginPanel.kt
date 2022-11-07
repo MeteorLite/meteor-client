@@ -1,4 +1,4 @@
-package meteor.plugins.exptracker
+package meteor.plugins.xptracker
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.progressSemantics
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -21,24 +21,22 @@ import androidx.compose.ui.unit.sp
 import meteor.Main.client
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.*
-import net.runelite.api.Experience
 import net.runelite.api.Experience.*
-import net.runelite.api.Skill
 import kotlin.math.roundToInt
 
-class ExpTrackerPluginPanel : PluginPanel() {
+class XpTrackerPluginPanel : PluginPanel() {
 
     @Composable
     override fun Header() {
     }
 
 
-
     @Composable
     override fun Content() {
+
         LazyColumn {
-            items(items = skillList.distinct()) { skill ->
-                val skillName = skill.lowercase().replaceFirstChar { it.uppercase() }
+            items(items = expMap.keys.toList()) { skill ->
+
                 Spacer(Modifier.height(10.dp))
                 Row(
                     Modifier.background(color = surface, shape = RoundedCornerShape(3.dp)),
@@ -46,7 +44,7 @@ class ExpTrackerPluginPanel : PluginPanel() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = skillName,
+                        text = skill.name.lowercase().replaceFirstChar { it.uppercase() },
                         style = TextStyle(
                             fontSize = 20.sp,
                             textAlign = TextAlign.Center,
@@ -58,7 +56,7 @@ class ExpTrackerPluginPanel : PluginPanel() {
                 }
                 Spacer(Modifier.height(8.dp))
                 Row(
-                    Modifier.background(surface, RoundedCornerShape(8.dp)).height(100.dp).width(350.dp),
+                    Modifier.background(surface, RoundedCornerShape(8.dp)).height(125.dp).width(350.dp),
                     horizontalArrangement = Arrangement.SpaceAround,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -70,13 +68,11 @@ class ExpTrackerPluginPanel : PluginPanel() {
 
                         Image(
                             painter = painterResource("skill_icons/${skill}.png".lowercase()),
-                            contentDescription = skill,
+                            contentDescription = skill.name,
                             modifier = Modifier.scale(1.5f),
                         )
-
-
                         Text(
-                            text = client.getRealSkillLevel(Skill.valueOf(skill)).toString(),
+                            text = client.getRealSkillLevel(skill).toString(),
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Left,
@@ -86,7 +82,8 @@ class ExpTrackerPluginPanel : PluginPanel() {
                             textAlign = TextAlign.Left,
                         )
                     }
-                    Column(Modifier.width(125.dp)) {
+                    Column(Modifier.width(130.dp)) {
+
                         Text(
                             text = "Start XP:",
                             style = TextStyle(
@@ -130,7 +127,7 @@ class ExpTrackerPluginPanel : PluginPanel() {
                                 textAlign = TextAlign.Left,
                             )
                             Text(
-                                text = ("${(client.getRealSkillLevel(Skill.valueOf(skill)) + 1)}:").toString(),
+                                text = ("${(client.getRealSkillLevel(skill) + 1)}:").toString(),
                                 style = TextStyle(
                                     fontSize = 17.sp,
                                     textAlign = TextAlign.Center,
@@ -139,14 +136,22 @@ class ExpTrackerPluginPanel : PluginPanel() {
                                 ),
                                 textAlign = TextAlign.Right,
                             )
-
-
                         }
+                        Text(
+                            text = "XP per hour:",
+                            style = TextStyle(
+                                fontSize = 17.sp,
+                                textAlign = TextAlign.Center,
+                                color = uiColor,
+                                letterSpacing = 2.sp
+                            ),
+                            textAlign = TextAlign.Left,
+                        )
                     }
-
                     Column{
+
                         startExp.forEach {
-                            if (it.first.name == skill)
+                            if (it.first == skill)
                                 Text(
                                     text = it.second.toString(),
                                     style = TextStyle(
@@ -159,10 +164,10 @@ class ExpTrackerPluginPanel : PluginPanel() {
                                 )
                         }
 
-                        xpList.distinct().filter { it == client.getSkillExperience(Skill.valueOf(skill)).toString() }
-                            .forEach { xpl ->
+                        expMap.forEach {
+                           if(it.value == client.getSkillExperience(skill))
                                 Text(
-                                    text = xpl,
+                                    text = it.value.toString(),
                                     style = TextStyle(
                                         fontSize = 17.sp,
                                         textAlign = TextAlign.Center,
@@ -173,9 +178,9 @@ class ExpTrackerPluginPanel : PluginPanel() {
                                 )
                             }
                         startExp.forEach {
-                            if (it.first.name == skill)
+                            if (it.first == skill)
                                 Text(
-                                    text = (client.getSkillExperience(Skill.valueOf(skill)) - it.second).toString(),
+                                    text = (client.getSkillExperience(skill) - it.second).toString(),
                                     style = TextStyle(
                                         fontSize = 17.sp,
                                         textAlign = TextAlign.Center,
@@ -186,8 +191,8 @@ class ExpTrackerPluginPanel : PluginPanel() {
                                 )
                         }
                         Text(
-                            text = (getXpForLevel((client.getRealSkillLevel(Skill.valueOf(skill)) + 1)) - client.getSkillExperience(
-                                Skill.valueOf(skill)
+                            text = (getXpForLevel((client.getRealSkillLevel(skill) + 1)) - client.getSkillExperience(
+                                skill
                             )).toString(),
                             style = TextStyle(
                                 fontSize = 17.sp,
@@ -197,21 +202,30 @@ class ExpTrackerPluginPanel : PluginPanel() {
                             ),
                             textAlign = TextAlign.Center,
                         )
+                        Text(
+                            text = if(xpHr.value > 0)xpHr.value.toString()else "-/-",
+                            style = TextStyle(
+                                fontSize = 17.sp,
+                                textAlign = TextAlign.Center,
+                                letterSpacing = 2.sp,
+                                color = intColor
+                            ),
+                            textAlign = TextAlign.Center,
+                        )
                     }
-
                 }
-
 
                 Row(horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(2.dp)) {
 
-                    val start = getXpForLevel(client.getRealSkillLevel(Skill.valueOf(skill)))
-                    val curr = client.getSkillExperience(Skill.valueOf(skill))
-                    val end = getXpForLevel(client.getRealSkillLevel(Skill.valueOf(skill)) + 1)
-                    val startFloat = (start / end).toDouble().toFloat()
-                    val endFloat = (end/start).toDouble().toFloat()
+                    val start = getXpForLevel(client.getRealSkillLevel(skill))
+                    val curr = client.getSkillExperience(skill)
                     val xpGained = (curr - start).toDouble()
+                    val end = getXpForLevel(client.getRealSkillLevel(skill) + 1)
+                    val startFloat = (start / end).toDouble().toFloat()
+                    val endFloat = (end / start).toDouble().toFloat()
+
                     val xpGoal = (end - start).toDouble()
-                    val skillProgress =  (xpGained / xpGoal).toFloat()
+                    val skillProgress = (xpGained / xpGoal).toFloat()
                     val progress = ((xpGained / xpGoal) * 100).roundToInt()
                     BoxWithConstraints(contentAlignment = Alignment.Center) {
                         Box {
@@ -219,9 +233,10 @@ class ExpTrackerPluginPanel : PluginPanel() {
                                 modifier = Modifier.width(345.dp).height(20.dp).progressSemantics(
                                     value = skillProgress,
                                     valueRange = startFloat..endFloat
-
-
-                                ).background(shape = RoundedCornerShape(3.dp), color = surface), color = uiColor, backgroundColor = surface, progress = skillProgress
+                                ).background(shape = RoundedCornerShape(3.dp), color = surface),
+                                color = uiColor,
+                                backgroundColor = surface,
+                                progress = skillProgress
                             )
                         }
                         Box {
@@ -230,7 +245,7 @@ class ExpTrackerPluginPanel : PluginPanel() {
                                 style = TextStyle(
                                     fontSize = 17.sp,
                                     textAlign = TextAlign.Center,
-                                    color = if (progress >= 50)Color.Black else intColor ,
+                                    color = if (progress >= 50) Color.Black else intColor,
                                     letterSpacing = 2.sp
                                 ),
                                 textAlign = TextAlign.Center,
@@ -238,6 +253,7 @@ class ExpTrackerPluginPanel : PluginPanel() {
                         }
                     }
                 }
+
             }
         }
     }

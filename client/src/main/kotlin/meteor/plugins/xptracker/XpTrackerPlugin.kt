@@ -26,12 +26,19 @@
 package meteor.plugins.xptracker
 
 import com.google.common.collect.ImmutableList
+import compose.icons.Octicons
+import compose.icons.octicons.Meter16
 import eventbus.events.*
 import meteor.Main
 import meteor.game.NPCManager
 import meteor.game.SkillIconManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.ui.composables.PluginPanel
+import meteor.ui.composables.preferences.*
+import meteor.ui.composables.toolbar.ToolbarButton
+import meteor.ui.composables.toolbar.addButton
+import meteor.ui.composables.toolbar.removeButton
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayManager
 import net.runelite.api.*
@@ -69,6 +76,27 @@ class XpTrackerPlugin : Plugin() {
     private var ignoredfirstHPUpdate = false
     private val skillUpdates = HashMap<Skill, Long>()
 
+    var panel: PluginPanel? = null
+    private var xpButton = ToolbarButton(
+        "xp",
+        Octicons.Meter16,
+        iconColor = uiColor,
+        description = "Notes",
+        onClick = {
+            onClick()
+        },
+        bottom = false
+    )
+    fun onClick() {
+        pluginPanel.value = panel
+        togglePluginPanel(xpButton)
+    }
+
+    override fun onClientTick(it: ClientTick) {
+        expMap.keys.forEach {
+            xpHr.value = Main.xpTrackerService.getXpHr(it)
+        }
+    }
     override fun onStart() {
         // Initialize the tracker & last xp if already logged in
         fetchXp = true
@@ -86,11 +114,17 @@ class XpTrackerPlugin : Plugin() {
             }
         }, 0, config.infoboxCooldown().toLong(), TimeUnit.MINUTES)
         startedCooldowns = true
+        startExp = Skill.values().associateWith { Main.client.getSkillExperience(it) }.toList()
+        panel = XpTrackerPluginPanel()
+        addButton(xpButton)
     }
 
     override fun onStop() {
         OverlayManager.removeIf { e: Overlay? -> e is XpInfoBoxOverlay }
         xpState.reset()
+        removeButton(xpButton)
+        expMap.clear()
+        panel = null
     }
 
     override fun onGameStateChanged(it: GameStateChanged) {
@@ -283,6 +317,8 @@ class XpTrackerPlugin : Plugin() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        if(client.gameState == GameState.LOGGED_IN)
+            expMap[it.skill] = it.xp
 
 
     }
