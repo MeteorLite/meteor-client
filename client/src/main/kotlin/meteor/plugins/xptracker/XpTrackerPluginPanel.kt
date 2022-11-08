@@ -18,6 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import meteor.Main
 import meteor.Main.client
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.*
@@ -56,7 +57,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                 }
                 Spacer(Modifier.height(8.dp))
                 Row(
-                    Modifier.background(surface, RoundedCornerShape(8.dp)).height(125.dp).width(350.dp),
+                    Modifier.background(surface, RoundedCornerShape(8.dp)).height(150.dp).width(375.dp),
                     horizontalArrangement = Arrangement.SpaceAround,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -138,7 +139,17 @@ class XpTrackerPluginPanel : PluginPanel() {
                             )
                         }
                         Text(
-                            text = "XP per hour:",
+                            text = "XP/hr:",
+                            style = TextStyle(
+                                fontSize = 17.sp,
+                                textAlign = TextAlign.Center,
+                                color = uiColor,
+                                letterSpacing = 2.sp
+                            ),
+                            textAlign = TextAlign.Left,
+                        )
+                        Text(
+                            text = "${Main.xpTrackerService.getActionType(skill)?.type}/hr:",
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Center,
@@ -202,8 +213,10 @@ class XpTrackerPluginPanel : PluginPanel() {
                             ),
                             textAlign = TextAlign.Center,
                         )
+                        expHrMap.forEach{
+                            if(it.key == skill)
                         Text(
-                            text = if(xpHr.value > 0)xpHr.value.toString()else "-/-",
+                            text = if(it.value > 0)it.value.toString()else "-/-",
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Center,
@@ -212,6 +225,20 @@ class XpTrackerPluginPanel : PluginPanel() {
                             ),
                             textAlign = TextAlign.Center,
                         )
+                        }
+                        actionsHrMap.forEach {
+                            if (it.key == skill)
+                            Text(
+                                text = it.value.toString(),
+                                style = TextStyle(
+                                    fontSize = 17.sp,
+                                    textAlign = TextAlign.Center,
+                                    letterSpacing = 2.sp,
+                                    color = intColor
+                                ),
+                                textAlign = TextAlign.Center,
+                            )
+                        }
                     }
                 }
 
@@ -230,7 +257,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                     BoxWithConstraints(contentAlignment = Alignment.Center) {
                         Box {
                             LinearProgressIndicator(
-                                modifier = Modifier.width(345.dp).height(20.dp).progressSemantics(
+                                modifier = Modifier.width(370.dp).height(20.dp).progressSemantics(
                                     value = skillProgress,
                                     valueRange = startFloat..endFloat
                                 ).background(shape = RoundedCornerShape(3.dp), color = surface),

@@ -90,11 +90,16 @@ class XpTrackerPlugin : Plugin() {
     fun onClick() {
         pluginPanel.value = panel
         togglePluginPanel(xpButton)
+        println(expMap.values.toString())
+        println(expMap.firstStateRecord .toString())
     }
 
     override fun onClientTick(it: ClientTick) {
         expMap.keys.forEach {
-            xpHr.value = Main.xpTrackerService.getXpHr(it)
+            expHrMap[it]= Main.xpTrackerService.getXpHr(it)
+        }
+        expMap.keys.forEach {
+            actionsHrMap[it]= Main.xpTrackerService.getActions(it)
         }
     }
     override fun onStart() {
@@ -318,7 +323,7 @@ class XpTrackerPlugin : Plugin() {
             e.printStackTrace()
         }
         if(client.gameState == GameState.LOGGED_IN)
-            expMap[it.skill] = it.xp
+            expMap[it.skill] =   it.xp
 
 
     }

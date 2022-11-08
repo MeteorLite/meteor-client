@@ -20,19 +20,17 @@ var configOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
-var tracker = mutableStateOf(false)
 var expMap = mutableStateMapOf<Skill, Int>()
+var expHrMap = mutableStateMapOf<Skill, Int>()
+var actionsHrMap = mutableStateMapOf<Skill,Int>()
 var startExp = emptyList<Pair<Skill,Int>>()
-val xpHr= mutableStateOf(0)
 var intColor = Color(156, 217, 209)
 var lastButtonClicked : ToolbarButton? = null
-
-
 lateinit var descriptor: ConfigDescriptor
+lateinit var lastPlugin: Plugin
+
 val darkLightMode
     get() = mutableStateOf(Main.meteorConfig.theme())
-
-lateinit var lastPlugin: Plugin
 val uiColor
     get() = Color(Main.meteorConfig.uiColor().rgb)
 val surface: Color
