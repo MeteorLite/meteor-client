@@ -90,8 +90,6 @@ class XpTrackerPlugin : Plugin() {
     fun onClick() {
         pluginPanel.value = panel
         togglePluginPanel(xpButton)
-        println(expMap.values.toString())
-        println(expMap.firstStateRecord .toString())
     }
 
     override fun onClientTick(it: ClientTick) {

@@ -214,20 +214,20 @@ class XpTrackerPluginPanel : PluginPanel() {
                             textAlign = TextAlign.Center,
                         )
                         expHrMap.forEach{
-                            if(it.key == skill)
-                        Text(
-                            text = if(it.value > 0)it.value.toString()else "-/-",
-                            style = TextStyle(
-                                fontSize = 17.sp,
+                        if(it.key == skill)
+                            Text(
+                                text = if(it.value > 0)it.value.toString()else "-/-",
+                                style = TextStyle(
+                                    fontSize = 17.sp,
+                                    textAlign = TextAlign.Center,
+                                    letterSpacing = 2.sp,
+                                    color = intColor
+                                ),
                                 textAlign = TextAlign.Center,
-                                letterSpacing = 2.sp,
-                                color = intColor
-                            ),
-                            textAlign = TextAlign.Center,
-                        )
+                            )
                         }
                         actionsHrMap.forEach {
-                            if (it.key == skill)
+                        if (it.key == skill)
                             Text(
                                 text = it.value.toString(),
                                 style = TextStyle(
