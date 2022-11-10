@@ -2,7 +2,7 @@ package meteor.ui.composables.preferences
 
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
-import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import compose.icons.Octicons
@@ -14,27 +14,24 @@ import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import net.runelite.api.Skill
-import java.time.Instant
-import kotlin.math.max
 
 var pluginsOpen = mutableStateOf(false)
 var configOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
-var tracker = mutableStateOf(false)
-var xp = mutableStateOf(0)
-var skill = mutableStateOf("")
+var expMap = mutableStateMapOf<Skill, Int>()
+var expHrMap = mutableStateMapOf<Skill, Int>()
+var actionsHrMap = mutableStateMapOf<Skill,Int>()
 var startExp = emptyList<Pair<Skill,Int>>()
-var skillList = mutableStateListOf<String>()
 var intColor = Color(156, 217, 209)
-var xpList = mutableStateListOf<String>()
 var lastButtonClicked : ToolbarButton? = null
 lateinit var descriptor: ConfigDescriptor
+lateinit var lastPlugin: Plugin
+
+
 val darkLightMode
     get() = mutableStateOf(Main.meteorConfig.theme())
-
-lateinit var lastPlugin: Plugin
 val uiColor
     get() = Color(Main.meteorConfig.uiColor().rgb)
 val surface: Color
@@ -68,7 +65,6 @@ val lightThemeColors = lightColors(
     onError = Color(0xFFFFFFFF),
     background = Color(0xFFFFFFFF),
     surface = Color(0xFFf3f5f7),
-
     )
 
 val pluginListButton = addButton(
