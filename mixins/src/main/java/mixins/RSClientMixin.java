@@ -1073,8 +1073,9 @@ public abstract class RSClientMixin implements RSClient
 					menuArgument1,
 					menuArgument2
 			);
+			MenuEntry menuEntry = client.createMenuEntry(menuOption, menuTarget, menuIdentifier, menuOpcode, menuArgument1, menuArgument2, false);
+			menuEntryAdded.setMenuEntry(menuEntry);
 			client.getCallbacks().post(Events.MENU_ENTRY_ADDED, menuEntryAdded);
-
 			if (menuEntryAdded.getModified() && client.getMenuOptionCount() == optionCount)
 			{
 				client.getMenuOptions()[tmpOptionsCount] = menuEntryAdded.getOption();

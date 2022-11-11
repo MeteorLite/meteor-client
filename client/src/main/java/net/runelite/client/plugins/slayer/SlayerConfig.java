@@ -25,13 +25,9 @@
  */
 package net.runelite.client.plugins.slayer;
 
-import meteor.config.legacy.Alpha;
-import meteor.config.legacy.Config;
-import meteor.config.legacy.ConfigGroup;
-import meteor.config.legacy.ConfigItem;
-import meteor.config.legacy.Units;
+import meteor.config.legacy.*;
 
-import java.awt.*;
+import java.awt.Color;
 
 @ConfigGroup(SlayerConfig.GROUP_NAME)
 public interface SlayerConfig extends Config

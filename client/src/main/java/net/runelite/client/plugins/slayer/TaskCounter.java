@@ -24,7 +24,6 @@
  */
 package net.runelite.client.plugins.slayer;
 
-
 import meteor.plugins.Plugin;
 import net.runelite.client.Counter;
 

@@ -56,6 +56,56 @@ class HighlightedNpc {
         return this
     }
 
+    fun fillColor(c: Color) : HighlightedNpc {
+        fillColor = c
+        return this
+    }
+
+    fun hull(b: Boolean) : HighlightedNpc {
+        hull = b
+        return this
+    }
+
+    fun trueTile(b: Boolean) : HighlightedNpc {
+        hull = b
+        return this
+    }
+
+    fun swTile(b: Boolean) : HighlightedNpc {
+        hull = b
+        return this
+    }
+
+    fun name(b: Boolean) : HighlightedNpc {
+        name = b
+        return this
+    }
+
+    fun nameOnMinimap(b: Boolean) : HighlightedNpc {
+        nameOnMinimap = b
+        return this
+    }
+
+    fun outlineFeather(i: Int) : HighlightedNpc {
+        outlineFeather = i
+        return this
+    }
+
+    fun borderWidth(f: Float) : HighlightedNpc {
+        borderWidth = f
+        return this
+    }
+
+    fun swTrueTile(b: Boolean) : HighlightedNpc {
+        hull = b
+        return this
+    }
+
+    fun outline(b: Boolean) : HighlightedNpc {
+        hull = b
+        return this
+    }
+
     fun highlightColor(c: Color) : HighlightedNpc {
         highlightColor = c
         return this

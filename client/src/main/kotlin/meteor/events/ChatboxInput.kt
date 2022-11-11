@@ -22,16 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.events;
+package meteor.events
+import net.runelite.client.events.ChatInput
 
-import eventbus.events.ChatInput;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-@Data
-@EqualsAndHashCode(callSuper = true)
-public abstract class ChatboxInput extends ChatInput
-{
-	private final String value;
-	private final int chatType;
-}
+abstract class ChatboxInput(val value: String? = null, val chatType: Int = 0) : ChatInput()

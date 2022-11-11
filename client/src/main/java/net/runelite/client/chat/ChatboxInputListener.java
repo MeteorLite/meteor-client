@@ -24,7 +24,7 @@
  */
 package net.runelite.client.chat;
 
-import net.runelite.client.events.ChatboxInput;
+import meteor.events.ChatboxInput;
 import net.runelite.client.events.PrivateMessageInput;
 
 public interface ChatboxInputListener

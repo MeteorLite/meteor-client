@@ -35,6 +35,7 @@ import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatCommandManager
 import net.runelite.client.chat.ChatMessageManager
 import meteor.game.npcoverlay.NpcOverlayService
+import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
@@ -69,6 +70,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     lateinit var chatCommandManager: ChatCommandManager
     val httpClient = OkHttpClient()
     val xpClient = XpClient(httpClient)
+    val chatClient = ChatClient(httpClient);
     val overlayManager = OverlayManager
     val overlayRenderer = OverlayRenderer()
     val fontManager = FontManager

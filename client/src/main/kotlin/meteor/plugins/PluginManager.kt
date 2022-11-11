@@ -69,6 +69,7 @@ import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.hunter.HunterPlugin
+import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -76,6 +77,7 @@ import net.runelite.client.plugins.itemstats.ItemStatPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.mining.MiningPlugin
 import net.runelite.client.plugins.motherlode.MotherlodePlugin
+import net.runelite.client.plugins.npchighlight.NpcIndicatorsPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.slayer.SlayerPlugin
@@ -155,9 +157,11 @@ object PluginManager {
         init<MouseTooltipPlugin>()
         init<NotesPlugin>()
         init<NpcAggroAreaPlugin>()
+        init<NpcIndicatorsPlugin>()
         init<NeverLogoutPlugin>()
         init<NightmareHelper>()
         init<ObjectHiderPlugin>()
+        init<ObjectIndicatorsPlugin>()
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
         init<PvPKeys>()

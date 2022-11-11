@@ -28,13 +28,14 @@ package net.runelite.client.chat;
 import eventbus.Events;
 import eventbus.events.ScriptCallbackEvent;
 import lombok.extern.slf4j.Slf4j;
+import meteor.Logger;
 import meteor.Main;
+import meteor.events.ChatboxInput;
 import meteor.plugins.EventSubscriber;
 import meteor.rs.ClientThread;
 import net.runelite.api.Client;
 import net.runelite.api.ScriptID;
 import net.runelite.api.VarClientStr;
-import net.runelite.client.events.ChatboxInput;
 import net.runelite.client.events.CommandExecuted;
 import net.runelite.client.events.PrivateMessageInput;
 
@@ -42,9 +43,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-@Slf4j
 public class CommandManager extends EventSubscriber
 {
+	private Logger log = new Logger("Slayer");
+
 	public static final CommandManager INSTANCE = new CommandManager();
 	private static final String RUNELITE_COMMAND = "runeliteCommand";
 	private static final String CHATBOX_INPUT = "chatboxInput";

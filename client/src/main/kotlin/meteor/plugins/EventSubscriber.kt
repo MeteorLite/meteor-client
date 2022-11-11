@@ -106,7 +106,7 @@ open class EventSubscriber : KEventSubscriber {
             unit()
     }
 
-    private fun subscribeEvents() {
+    fun subscribeEvents() {
         subscribeEvent<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) {
             executeIfListening {
                 onMenuShouldLeftClick(

@@ -24,7 +24,6 @@
  */
 package net.runelite.client.events;
 
-import eventbus.events.ChatInput;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
