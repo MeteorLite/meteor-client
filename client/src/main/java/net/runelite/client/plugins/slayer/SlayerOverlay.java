@@ -25,86 +25,41 @@
 package net.runelite.client.plugins.slayer;
 
 import com.google.common.collect.ImmutableSet;
-import meteor.Main;
+
+import java.awt.*;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.inject.Inject;
+
 import meteor.game.FontManager;
+import meteor.game.ItemVariationMapping;
 import meteor.ui.components.TextComponent;
 import meteor.ui.overlay.WidgetItemOverlay;
 import net.runelite.api.ItemID;
 import net.runelite.api.widgets.WidgetItem;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
-
-import java.awt.*;
-import java.util.Set;
 
 class SlayerOverlay extends WidgetItemOverlay
 {
-	private final static Set<Integer> SLAYER_JEWELRY = ImmutableSet.of(
-		ItemID.SLAYER_RING_1,
-		ItemID.SLAYER_RING_2,
-		ItemID.SLAYER_RING_3,
-		ItemID.SLAYER_RING_4,
-		ItemID.SLAYER_RING_5,
-		ItemID.SLAYER_RING_6,
-		ItemID.SLAYER_RING_7,
-		ItemID.SLAYER_RING_8
-	);
+	private final static Set<Integer> SLAYER_JEWELRY = ImmutableSet.copyOf(ItemVariationMapping.INSTANCE.getVariations(ItemID.SLAYER_RING_8));
 
-	private final static Set<Integer> ALL_SLAYER_ITEMS = ImmutableSet.of(
-		ItemID.SLAYER_HELMET,
-		ItemID.SLAYER_HELMET_I,
-		ItemID.SLAYER_HELMET_I_25177,
-		ItemID.BLACK_SLAYER_HELMET,
-		ItemID.BLACK_SLAYER_HELMET_I,
-		ItemID.BLACK_SLAYER_HELMET_I_25179,
-		ItemID.GREEN_SLAYER_HELMET,
-		ItemID.GREEN_SLAYER_HELMET_I,
-		ItemID.GREEN_SLAYER_HELMET_I_25181,
-		ItemID.PURPLE_SLAYER_HELMET,
-		ItemID.PURPLE_SLAYER_HELMET_I,
-		ItemID.PURPLE_SLAYER_HELMET_I_25185,
-		ItemID.RED_SLAYER_HELMET,
-		ItemID.RED_SLAYER_HELMET_I,
-		ItemID.RED_SLAYER_HELMET_I_25183,
-		ItemID.TURQUOISE_SLAYER_HELMET,
-		ItemID.TURQUOISE_SLAYER_HELMET_I,
-		ItemID.TURQUOISE_SLAYER_HELMET_I_25187,
-		ItemID.TWISTED_SLAYER_HELMET,
-		ItemID.TWISTED_SLAYER_HELMET_I,
-		ItemID.TWISTED_SLAYER_HELMET_I_25191,
-		ItemID.HYDRA_SLAYER_HELMET,
-		ItemID.HYDRA_SLAYER_HELMET_I,
-		ItemID.HYDRA_SLAYER_HELMET_I_25189,
-		ItemID.TZTOK_SLAYER_HELMET,
-		ItemID.TZTOK_SLAYER_HELMET_I,
-		ItemID.TZTOK_SLAYER_HELMET_I_25902,
-		ItemID.VAMPYRIC_SLAYER_HELMET,
-		ItemID.VAMPYRIC_SLAYER_HELMET_I,
-		ItemID.VAMPYRIC_SLAYER_HELMET_I_25908,
-		ItemID.TZKAL_SLAYER_HELMET,
-		ItemID.TZKAL_SLAYER_HELMET_I,
-		ItemID.TZKAL_SLAYER_HELMET_I_25914,
-		ItemID.SLAYER_RING_ETERNAL,
-		ItemID.ENCHANTED_GEM,
-		ItemID.ETERNAL_GEM,
-		ItemID.SLAYER_RING_1,
-		ItemID.SLAYER_RING_2,
-		ItemID.SLAYER_RING_3,
-		ItemID.SLAYER_RING_4,
-		ItemID.SLAYER_RING_5,
-		ItemID.SLAYER_RING_6,
-		ItemID.SLAYER_RING_7,
-		ItemID.SLAYER_RING_8
-	);
+	private final static Set<Integer> ALL_SLAYER_ITEMS = Stream.of(
+		ItemVariationMapping.INSTANCE.getVariations(ItemID.SLAYER_HELMET).stream(),
+		ItemVariationMapping.INSTANCE.getVariations(ItemID.SLAYER_RING_8).stream(),
+		Stream.of(ItemID.ENCHANTED_GEM, ItemID.ETERNAL_GEM))
+		.reduce(Stream::concat)
+		.orElseGet(Stream::empty)
+		.collect(Collectors.toSet());
 
 	private final SlayerConfig config;
 	private final SlayerPlugin plugin;
 
+	@Inject
 	SlayerOverlay(SlayerPlugin plugin, SlayerConfig config)
 	{
 		this.plugin = plugin;
 		this.config = config;
-		showOnItems();
+		//showOnInventory();
 		showOnEquipment();
 	}
 
@@ -138,17 +93,5 @@ class SlayerOverlay extends WidgetItemOverlay
 			? bounds.height
 			: graphics.getFontMetrics().getHeight())));
 		textComponent.render(graphics);
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "slayer";
 	}
 }

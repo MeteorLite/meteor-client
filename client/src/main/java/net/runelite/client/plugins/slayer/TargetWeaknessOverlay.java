@@ -24,10 +24,15 @@
  */
 package net.runelite.client.plugins.slayer;
 
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.util.List;
+import javax.inject.Inject;
+
 import meteor.Main;
 import meteor.game.ItemManager;
 import meteor.game.NPCManager;
-import meteor.ui.overlay.Overlay;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.util.OverlayUtil;
@@ -36,12 +41,7 @@ import net.runelite.api.NPC;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.coords.LocalPoint;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.List;
+import net.runelite.client.plugins.gauntletextended.overlay.Overlay;
 
 class TargetWeaknessOverlay extends Overlay
 {
@@ -53,7 +53,8 @@ class TargetWeaknessOverlay extends Overlay
 
 	TargetWeaknessOverlay(SlayerPlugin plugin, SlayerConfig config)
 	{
-		this.client = Main.INSTANCE.getClient();
+		super(plugin);
+		this.client = Main.client;
 		this.config = config;
 		this.plugin = plugin;
 		this.itemManager = ItemManager.INSTANCE;
@@ -137,15 +138,8 @@ class TargetWeaknessOverlay extends Overlay
 		}
 	}
 
-	@NotNull
 	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
+	public void determineLayer() {
 
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "slayer";
 	}
 }

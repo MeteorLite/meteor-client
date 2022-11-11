@@ -26,6 +26,26 @@
 package net.runelite.client.plugins.slayer;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.inject.Binder;
+import com.google.inject.Provides;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import static java.lang.Integer.max;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import eventbus.events.*;
 import joptsimple.internal.Strings;
 import lombok.AccessLevel;
@@ -35,33 +55,28 @@ import lombok.extern.slf4j.Slf4j;
 import meteor.Main;
 import meteor.config.ConfigManager;
 import meteor.game.ItemManager;
+import meteor.game.npcoverlay.HighlightedNpc;
+import meteor.game.npcoverlay.NpcOverlayService;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
 import meteor.rs.ClientThread;
+import meteor.ui.overlay.OverlayManager;
 import meteor.ui.overlay.infobox.InfoBoxManager;
 import meteor.util.ColorUtil;
 import net.runelite.api.*;
+
+import static net.runelite.api.Skill.SLAYER;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.util.Text;
-import net.runelite.api.vars.SlayerUnlock;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.client.chat.ChatColorType;
+import net.runelite.client.chat.ChatCommandManager;
+import net.runelite.client.chat.ChatMessageBuilder;
+import net.runelite.client.events.ChatInput;
+import net.runelite.client.events.CommandExecuted;
 import net.runelite.http.api.chat.ChatClient;
 import org.apache.commons.lang3.ArrayUtils;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.List;
-import java.util.*;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static java.lang.Integer.max;
-import static net.runelite.api.Skill.SLAYER;
 
 @PluginDescriptor(
 	name = "Slayer",
@@ -99,15 +114,21 @@ public class SlayerPlugin extends Plugin
 	private static final Pattern TASK_STRING_VALIDATION = Pattern.compile("[^a-zA-Z0-9' -]");
 	private static final int TASK_STRING_MAX_LENGTH = 50;
 
+	private Client client = Main.client;
 	private SlayerConfig config = (SlayerConfig) javaConfiguration(SlayerConfig.class);
 	private ConfigManager configManager = ConfigManager.INSTANCE;
+	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 	private SlayerOverlay overlay = new SlayerOverlay(this, config);
 	private InfoBoxManager infoBoxManager = InfoBoxManager.INSTANCE;
 	private ItemManager itemManager = ItemManager.INSTANCE;
 	private ClientThread clientThread = ClientThread.INSTANCE;
 	private TargetWeaknessOverlay targetWeaknessOverlay = new TargetWeaknessOverlay(this, config);
+	private ChatCommandManager chatCommandManager = Main.chatCommandManager;
 	private ScheduledExecutorService executor = Main.INSTANCE.getExecutor();
+	private NpcOverlayService npcOverlayService = Main.npcOverlayService;
+	private ChatClient chatClient = Main.INSTANCE.getChatClient();
 
+	public static SlayerPluginServiceImpl service;
 
 	@Getter(AccessLevel.PACKAGE)
 	private final List<NPC> targets = new ArrayList<>();
@@ -138,15 +159,36 @@ public class SlayerPlugin extends Plugin
 	private boolean loginFlag;
 	private final List<Pattern> targetNames = new ArrayList<>();
 
+	public final Function<NPC, HighlightedNpc> isTarget = (n) ->
+	{
+		if ((config.highlightHull() || config.highlightTile() || config.highlightOutline()) && targets.contains(n))
+		{
+			Color color = config.getTargetColor();
+			return new HighlightedNpc()
+				.npc(n)
+				.highlightColor(color)
+				.fillColor(ColorUtil.colorWithAlpha(color, color.getAlpha() / 12))
+				.hull(config.highlightHull())
+				.tile(config.highlightTile())
+				.outline(config.highlightOutline());
+
+		}
+		return null;
+	};
+
 	@Override
 	public void onStart()
 	{
-		getOverlayManager().add(overlay);
-		getOverlayManager().add(targetWeaknessOverlay);
+		service = new SlayerPluginServiceImpl(this);
+		chatCommandManager.registerCommandAsync(TASK_COMMAND_STRING, this::taskLookup, this::taskSubmit);
+		npcOverlayService.registerHighlighter(isTarget);
 
-		if (getClient().getGameState() == GameState.LOGGED_IN)
+		overlayManager.add(overlay);
+		overlayManager.add(targetWeaknessOverlay);
+
+		if (client.getGameState() == GameState.LOGGED_IN)
 		{
-			cachedXp = getClient().getSkillExperience(SLAYER);
+			cachedXp = client.getSkillExperience(SLAYER);
 
 			migrateConfig();
 
@@ -164,8 +206,11 @@ public class SlayerPlugin extends Plugin
 	@Override
 	public void onStop()
 	{
-		getOverlayManager().remove(overlay);
-		getOverlayManager().remove(targetWeaknessOverlay);
+		chatCommandManager.unregisterCommand(TASK_COMMAND_STRING);
+		npcOverlayService.unregisterHighlighter(isTarget);
+
+		overlayManager.remove(overlay);
+		overlayManager.remove(targetWeaknessOverlay);
 		removeCounter();
 		targets.clear();
 		taggedNpcs.clear();
@@ -201,6 +246,16 @@ public class SlayerPlugin extends Plugin
 				break;
 		}
 	}
+
+/*	@Override
+	public void onCommandExecuted(CommandExecuted commandExecuted)
+	{
+		if (developerMode && commandExecuted.getCommand().equals("task"))
+		{
+			setTask(commandExecuted.getArguments()[0], 42, 42);
+			log.debug("Set task to {}", commandExecuted.getArguments()[0]);
+		}
+	}*/
 
 	@VisibleForTesting
 	int getIntProfileConfig(String key)
@@ -257,7 +312,7 @@ public class SlayerPlugin extends Plugin
 	@Override
 	public void onGameTick(GameTick tick)
 	{
-		Widget npcDialog = getClient().getWidget(WidgetInfo.DIALOG_NPC_TEXT);
+		Widget npcDialog = client.getWidget(WidgetInfo.DIALOG_NPC_TEXT);
 		if (npcDialog != null)
 		{
 			String npcText = Text.sanitizeMultilineText(npcDialog.getText()); //remove color and linebreaks
@@ -294,7 +349,7 @@ public class SlayerPlugin extends Plugin
 			}
 		}
 
-		Widget rewardsBarWidget = getClient().getWidget(WidgetInfo.SLAYER_REWARDS_TOPBAR);
+		Widget rewardsBarWidget = client.getWidget(WidgetInfo.SLAYER_REWARDS_TOPBAR);
 		if (rewardsBarWidget != null)
 		{
 			for (Widget w : rewardsBarWidget.getDynamicChildren())
@@ -367,12 +422,14 @@ public class SlayerPlugin extends Plugin
 				if (mTasks != null)
 				{
 					int streak = Integer.parseInt(mTasks.replace(",", ""));
-					setProfileConfig(SlayerConfig.STREAK_KEY, streak);
+					if (streak != -1)
+						setProfileConfig(SlayerConfig.STREAK_KEY, streak);
 				}
 				if (mPoints != null)
 				{
 					int points = Integer.parseInt(mPoints.replace(",", ""));
-					setProfileConfig(SlayerConfig.POINTS_KEY, points);
+					if (points != -1)
+						setProfileConfig(SlayerConfig.POINTS_KEY, points);
 				}
 			}
 
@@ -388,6 +445,7 @@ public class SlayerPlugin extends Plugin
 
 		if (config.showSuperiorNotification() && chatMsg.equals(CHAT_SUPERIOR_MESSAGE))
 		{
+			//notifier.notify(CHAT_SUPERIOR_MESSAGE);
 			return;
 		}
 
@@ -442,8 +500,7 @@ public class SlayerPlugin extends Plugin
 		xpChanged(delta);
 	}
 
-/*
-	@Override
+/*	@Override
 	public void onFakeXpDrop(FakeXpDrop fakeXpDrop)
 	{
 		if (fakeXpDrop.getSkill() == SLAYER)
@@ -451,8 +508,7 @@ public class SlayerPlugin extends Plugin
 			int delta = fakeXpDrop.getXp();
 			xpChanged(delta);
 		}
-	}
-*/
+	}*/
 
 	private void xpChanged(int delta)
 	{
@@ -480,7 +536,7 @@ public class SlayerPlugin extends Plugin
 	{
 		Actor actor = hitsplatApplied.getActor();
 		Hitsplat hitsplat = hitsplatApplied.getHitsplat();
-		if (hitsplat.getHitsplatType() == Hitsplat.HitsplatType.DAMAGE_ME && targets.contains(actor))
+		if (hitsplat.getHitsplatType() == HitsplatID.DAMAGE_ME && targets.contains(actor))
 		{
 			// If the actor is in highlightedTargets it must be an NPC and also a task assignment
 			taggedNpcs.add((NPC) actor);
@@ -517,6 +573,10 @@ public class SlayerPlugin extends Plugin
 				removeCounter();
 			}
 		}
+		else
+		{
+			npcOverlayService.rebuild();
+		}
 	}
 
 	@VisibleForTesting
@@ -550,8 +610,8 @@ public class SlayerPlugin extends Plugin
 
 	private boolean doubleTroubleExtraKill()
 	{
-		return WorldPoint.fromLocalInstance(getClient(), getClient().getLocalPlayer().getLocalLocation()).getRegionID() == GROTESQUE_GUARDIANS_REGION &&
-			SlayerUnlock.GROTESQUE_GUARDIAN_DOUBLE_COUNT.isEnabled(getClient());
+		return WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation()).getRegionID() == GROTESQUE_GUARDIANS_REGION &&
+			SlayerUnlock.GROTESQUE_GUARDIAN_DOUBLE_COUNT.isEnabled(client);
 	}
 
 	@VisibleForTesting
@@ -609,7 +669,7 @@ public class SlayerPlugin extends Plugin
 	{
 		targets.clear();
 
-		for (NPC npc : getClient().getNpcs())
+		for (NPC npc : client.getNpcs())
 		{
 			if (isTarget(npc))
 			{
@@ -647,6 +707,7 @@ public class SlayerPlugin extends Plugin
 		Task task = Task.getTask(name);
 		rebuildTargetNames(task);
 		rebuildTargetList();
+		npcOverlayService.rebuild();
 	}
 
 	private void addCounter()
@@ -700,6 +761,103 @@ public class SlayerPlugin extends Plugin
 		counter = null;
 	}
 
+	void taskLookup(ChatMessage chatMessage, String message)
+	{
+		if (!config.taskCommand())
+		{
+			return;
+		}
+
+		ChatMessageType type = chatMessage.getType();
+
+		final String player;
+		if (type.equals(ChatMessageType.PRIVATECHATOUT))
+		{
+			player = client.getLocalPlayer().getName();
+		}
+		else
+		{
+			player = Text.removeTags(chatMessage.getName())
+				.replace('\u00A0', ' ');
+		}
+
+		net.runelite.http.api.chat.Task task;
+		try
+		{
+			task = chatClient.getTask(player);
+		}
+		catch (IOException ex)
+		{
+			log.debug("unable to lookup slayer task", ex);
+			return;
+		}
+
+		if (TASK_STRING_VALIDATION.matcher(task.getTask()).find() || task.getTask().length() > TASK_STRING_MAX_LENGTH ||
+			TASK_STRING_VALIDATION.matcher(task.getLocation()).find() || task.getLocation().length() > TASK_STRING_MAX_LENGTH ||
+			Task.getTask(task.getTask()) == null || !Task.LOCATIONS.contains(task.getLocation()))
+		{
+			log.debug("Validation failed for task name or location: {}", task);
+			return;
+		}
+
+		int killed = task.getInitialAmount() - task.getAmount();
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(task.getTask());
+		if (!Strings.isNullOrEmpty(task.getLocation()))
+		{
+			sb.append(" (").append(task.getLocation()).append(')');
+		}
+		sb.append(": ");
+		if (killed < 0)
+		{
+			sb.append(task.getAmount()).append(" left");
+		}
+		else
+		{
+			sb.append(killed).append('/').append(task.getInitialAmount()).append(" killed");
+		}
+
+		String response = new ChatMessageBuilder()
+			.append(ChatColorType.NORMAL)
+			.append("Slayer Task: ")
+			.append(ChatColorType.HIGHLIGHT)
+			.append(sb.toString())
+			.build();
+
+		final MessageNode messageNode = chatMessage.getMessageNode();
+		messageNode.setRuneLiteFormatMessage(response);
+		client.refreshChat();
+	}
+
+	private boolean taskSubmit(ChatInput chatInput, String value)
+	{
+		if (Strings.isNullOrEmpty(taskName))
+		{
+			return false;
+		}
+
+		final String playerName = client.getLocalPlayer().getName();
+
+		executor.execute(() ->
+		{
+			try
+			{
+				chatClient.submitTask(playerName, capsString(taskName), amount, initialAmount, taskLocation);
+			}
+			catch (Exception ex)
+			{
+				log.warn("unable to submit slayer task", ex);
+			}
+			finally
+			{
+				chatInput.resume();
+			}
+		});
+
+		return true;
+	}
+
 	//Utils
 	private String capsString(String str)
 	{
@@ -724,7 +882,6 @@ public class SlayerPlugin extends Plugin
 		if (value != null)
 		{
 			configManager.unsetConfiguration(SlayerConfig.GROUP_NAME, key);
-			configManager.setConfiguration(SlayerConfig.GROUP_NAME, key, value);
 		}
 	}
 }

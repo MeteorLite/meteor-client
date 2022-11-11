@@ -30,13 +30,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 
-import eventbus.events.ChatInput;
 import eventbus.events.ChatMessage;
 import meteor.Main;
+import meteor.events.ChatboxInput;
 import meteor.plugins.EventSubscriber;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.client.events.ChatboxInput;
+import net.runelite.client.events.ChatInput;
 import net.runelite.client.events.PrivateMessageInput;
 
 public class ChatCommandManager extends EventSubscriber implements ChatboxInputListener

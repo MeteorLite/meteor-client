@@ -107,6 +107,7 @@ fun hotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDes
 
 @Composable
 fun colorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
+    println(descriptor.group.value + ":" + configItemDescriptor.key())
     val getConfigColor by remember {
         mutableStateOf(
             ConfigManager.getConfiguration(

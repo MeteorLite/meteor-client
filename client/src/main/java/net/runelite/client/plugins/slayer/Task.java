@@ -28,13 +28,12 @@ package net.runelite.client.plugins.slayer;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import lombok.Getter;
-import net.runelite.api.ItemID;
-
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 import java.util.function.IntPredicate;
+import javax.annotation.Nullable;
+import lombok.Getter;
+import net.runelite.api.ItemID;
 
 @Getter
 enum Task
@@ -143,7 +142,7 @@ enum Task
 	MOSS_GIANTS("Moss giants", ItemID.MOSSY_KEY),
 	MUTATED_ZYGOMITES("Mutated zygomites", ItemID.MUTATED_ZYGOMITE, 7, ItemID.FUNGICIDE_SPRAY_0, "Zygomite", "Fungi"),
 	NECHRYAEL("Nechryael", ItemID.NECHRYAEL, "Nechryarch"),
-	OGRES("Ogres", ItemID.ENSOULED_OGRE_HEAD),
+	OGRES("Ogres", ItemID.ENSOULED_OGRE_HEAD, "Mogre", "Ogress", "Skogre", "Zogre"),
 	OTHERWORLDLY_BEING("Otherworldly beings", ItemID.GHOSTLY_HOOD),
 	PIRATES("Pirates", ItemID.PIRATE_HAT, "Pirate"),
 	PYREFIENDS("Pyrefiends", ItemID.PYREFIEND, "Flaming pyrelord"),

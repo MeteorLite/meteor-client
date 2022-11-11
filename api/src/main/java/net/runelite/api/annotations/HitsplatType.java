@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Adam <Adam@sigterm.info>
+ * Copyright (c) 2022, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.chat;
+package net.runelite.api.annotations;
 
-import eventbus.events.ChatMessage;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import net.runelite.client.events.ChatInput;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import net.runelite.api.HitsplatID;
+import org.intellij.lang.annotations.MagicConstant;
 
-import java.util.function.BiConsumer;
-import java.util.function.BiPredicate;
-
-@AllArgsConstructor
-@Getter
-class ChatCommand
+@MagicConstant(valuesFromClass = HitsplatID.class)
+@Documented
+@Retention(RetentionPolicy.SOURCE)
+public @interface HitsplatType
 {
-	private final String name;
-	private boolean async;
-	private final BiConsumer<ChatMessage, String> execute;
-	private final BiPredicate<ChatInput, String> input;
 }

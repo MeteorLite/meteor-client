@@ -25,7 +25,7 @@ class FullscreenPlugin : Plugin() {
     )
 
     fun onClick() {
-        exitProcess(0)
+        Main.exitApplication()
     }
 
     override fun onStart() {

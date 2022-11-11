@@ -47,18 +47,20 @@ class NpcOverlayService : EventSubscriber() {
     init {
         add(NpcOverlay(ModelOutlineRenderer(), highlightedNpcs))
         add(NpcMinimapOverlay(highlightedNpcs))
-        subscribe()
+        subscribeEvents()
+        eventListening = true
     }
 
-    override fun onGameStateChanged(event: GameStateChanged) {
-        if (event.gameState == GameState.LOGIN_SCREEN ||
-                event.gameState == GameState.HOPPING) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.gameState == GameState.LOGIN_SCREEN ||
+                it.gameState == GameState.HOPPING) {
             highlightedNpcs.clear()
         }
     }
 
-    override fun onNpcSpawned(npcSpawned: NpcSpawned) {
-        val npc = npcSpawned.npc
+    override fun onNpcSpawned(it: NpcSpawned) {
+        rebuild()
+        val npc = it.npc
         for (f in highlightFunctions) {
             val highlightedNpc = f.apply(npc)
             if (highlightedNpc != null) {
@@ -68,13 +70,13 @@ class NpcOverlayService : EventSubscriber() {
         }
     }
 
-    override fun onNpcDespawned(npcDespawned: NpcDespawned) {
-        val npc = npcDespawned.npc
+    override fun onNpcDespawned(it: NpcDespawned) {
+        val npc = it.npc
         highlightedNpcs.remove(npc)
     }
 
-    override fun onNpcChanged(event: NpcChanged) {
-        val npc = event.npc
+    override fun onNpcChanged(it: NpcChanged) {
+        val npc = it.npc
         highlightedNpcs.remove(npc)
         for (f in highlightFunctions) {
             val highlightedNpc = f.apply(npc)
