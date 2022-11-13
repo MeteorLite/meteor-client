@@ -35,6 +35,7 @@ import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatCommandManager
 import net.runelite.client.chat.ChatMessageManager
 import meteor.game.npcoverlay.NpcOverlayService
+import meteor.session.SessionManager
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
@@ -115,6 +116,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         npcOverlayService = NpcOverlayService()
         PluginManager.loadExternalPlugins()
         xpTrackerService = XpTrackerService(PluginManager.get())
+        SessionManager.start()
         timer.stop()
         logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
 
