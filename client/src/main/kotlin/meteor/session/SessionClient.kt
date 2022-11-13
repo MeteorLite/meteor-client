@@ -28,17 +28,21 @@ import com.google.gson.JsonParseException
 import meteor.Logger
 import meteor.Main.httpClient
 import net.runelite.http.api.RuneLiteAPI
+import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 import okhttp3.Request
 import okhttp3.RequestBody
 import java.io.IOException
 import java.io.InputStreamReader
+import java.net.SocketTimeoutException
 import java.nio.charset.StandardCharsets
 import java.util.*
 
 internal class SessionClient {
     private val client = httpClient
-    private val sessionUrl = RuneLiteAPI.getSessionBase()
+    private var sessionUrl = RuneLiteAPI.getSessionBase()
     private val log = Logger("Session")
     @Throws(IOException::class)
     fun open(): UUID {
@@ -50,7 +54,7 @@ internal class SessionClient {
                 .url(url)
                 .build()
         try {
-            log.debug("Built URI: $url")
+            log.warn("Built URI: $url")
             client.newCall(request).execute().use { response ->
                 val body = response.body
                 val `in` = body.byteStream()
@@ -61,6 +65,27 @@ internal class SessionClient {
             throw IOException(ex)
         } catch (ex: IllegalArgumentException) {
             throw IOException(ex)
+        } catch (ste: SocketTimeoutException) {
+            //This is for Null - Meteor services are ran in my local network
+            sessionUrl = "http://10.0.0.205:8080/session/".toHttpUrl()
+            val url = sessionUrl.newBuilder()
+                    .addPathSegment("new")
+                    .build()
+            val request: Request = Request.Builder()
+                    .post(RequestBody.create(null, ByteArray(0)))
+                    .url(url)
+                    .build()
+            try {
+                log.warn("Built URI: $url")
+                client.newCall(request).execute().use { response ->
+                    val body = response.body
+                    val `in` = body.byteStream()
+                    return RuneLiteAPI.GSON.fromJson(InputStreamReader(`in`, StandardCharsets.UTF_8), UUID::class.java)
+                }
+            } catch (_: Exception) {
+                //We throw the original exception, which was failure to connect to service-session
+                throw throw IOException(ste)
+            }
         }
     }
 

@@ -51,7 +51,6 @@ class DefaultWorldPlugin : Plugin() {
         KEVENT.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) {
             if (it.data.gameState == GameState.LOGGED_IN) {
                 ConfigManager.setConfiguration("defaultworld", "lastWorld", client.world)
-                log.warn("Set default world ${client.world}")
             }
         }
     }
@@ -103,7 +102,6 @@ class DefaultWorldPlugin : Plugin() {
         rsWorld.location = world.location
         rsWorld.types = toWorldTypes(world.types)
         client.changeWorld(rsWorld)
-        log.debug("Applied new world {}", correctedWorld)
         return true
     }
 }

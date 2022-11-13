@@ -48,7 +48,7 @@ object SessionManager {
         executorService.execute {
             try {
                 sessionId = sessionClient.open()
-                log.debug("Opened session {}", sessionId!!)
+                log.debug("UUID: {}", sessionId!!)
             } catch (ex: IOException) {
                 log.warn("error opening session", ex)
             }
@@ -60,7 +60,7 @@ object SessionManager {
         try {
             if (sessionId == null) {
                 sessionId = sessionClient.open()
-                log.debug("Opened session {}", sessionId!!)
+                log.debug("UUID: {}", sessionId!!)
                 return
             }
         } catch (ex: IOException) {

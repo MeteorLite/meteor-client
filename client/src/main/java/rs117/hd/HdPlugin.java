@@ -437,9 +437,9 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 				GL.createCapabilities();
 
-				log.info("Using device: {}", glGetString(GL_RENDERER));
-				log.info("Using driver: {}", glGetString(GL_VERSION));
-				log.info("Client is {}-bit", System.getProperty("sun.arch.data.model"));
+				log.debug("Using device: {}", glGetString(GL_RENDERER));
+				log.debug("Using driver: {}", glGetString(GL_VERSION));
+				log.debug("Client is {}-bit", System.getProperty("sun.arch.data.model"));
 
 				GLCapabilities caps = GL.getCapabilities();
 				if (computeMode == ComputeMode.OPENGL)

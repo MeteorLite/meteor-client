@@ -118,7 +118,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         xpTrackerService = XpTrackerService(PluginManager.get())
         SessionManager.start()
         timer.stop()
-        logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
+        logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
 
     }
 
