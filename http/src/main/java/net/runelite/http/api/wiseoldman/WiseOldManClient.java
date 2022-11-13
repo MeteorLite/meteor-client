@@ -67,7 +67,7 @@ public class WiseOldManClient
 				.post(trackRequest)
 				.build();
 
-		log.error("Built URI: " + url.url());
+		log.warn("Built URI: " + url.url());
 
 		try (Response response = client.newCall(request).execute())
 		{
@@ -89,7 +89,7 @@ public class WiseOldManClient
 				.url(url)
 				.build();
 
-		log.error("Built URI: " + url.url());
+		log.warn("Built URI: " + url.url());
 
 		try (Response response = client.newCall(request).execute())
 		{
@@ -120,7 +120,7 @@ public class WiseOldManClient
 				.url(url)
 				.build();
 
-		log.error("Built URI: " + url.url());
+		log.warn("Built URI: " + url.url());
 
 		try (Response response = client.newCall(request).execute())
 		{

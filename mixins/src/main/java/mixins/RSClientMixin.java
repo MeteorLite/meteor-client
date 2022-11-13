@@ -762,7 +762,6 @@ public abstract class RSClientMixin implements RSClient
 
 		if (skill == Skill.OVERALL)
 		{
-			rl$logger.debug("getSkillExperience called for {}!", skill);
 			return (int) getOverallExperience();
 		}
 
