@@ -80,6 +80,7 @@ import net.runelite.client.plugins.motherlode.MotherlodePlugin
 import net.runelite.client.plugins.npchighlight.NpcIndicatorsPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
+import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
 import org.apache.commons.lang3.time.StopWatch
@@ -164,6 +165,7 @@ object PluginManager {
         init<ObjectIndicatorsPlugin>()
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
+        init<PuzzleSolverPlugin>()
         init<PvPKeys>()
         init<PrayerFlickerPlugin>()
         init<QuestHelperPlugin>()
