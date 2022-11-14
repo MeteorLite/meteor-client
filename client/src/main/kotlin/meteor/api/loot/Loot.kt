@@ -18,20 +18,15 @@ class Loot(var loot: TileItem) {
             log.warn("Action idx not found for $action")
             return
         }
-        invoke(index)
+        invoke()
     }
 
     fun take() {
-        log.info("[Take] ${loot.id} ${loot.name} ${loot.worldLocation.x} ${loot.worldLocation.y}")
-        GameThread.invoke { ClientPackets.createGroundItemActionPacket("OPOBJ3",
-                loot.id,
-                loot.worldLocation.x,
-                loot.worldLocation.y,
-                false
-        ).send() }
+        log.info("[Take]")
+        interact("Take")
     }
 
-    fun invoke(index: Int) {
+    fun invoke() {
         GameThread.invoke { ClientPackets.createClientPacket(loot.getMenu(index))!!.send() }
     }
 }
