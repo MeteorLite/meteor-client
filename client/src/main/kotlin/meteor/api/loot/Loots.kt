@@ -3,7 +3,7 @@ package meteor.api.loot
 import meteor.Main
 
 object Loots {
-    fun getAll(): ArrayList<Loot>? {
+    fun getAll(sortByDistance: Boolean = false): ArrayList<Loot>? {
         var loots: ArrayList<Loot>? = null
         Main.client.scene.tiles.forEach { z ->
             z?.forEach { x ->
@@ -19,15 +19,20 @@ object Loots {
                 }
             }
         }
+        loots?.let {
+            if (sortByDistance) {
+                return ArrayList(it.sortedBy { loot -> loot.loot.distanceTo(Main.client.localPlayer) })
+            }
+        }
         return loots
     }
 
-    fun getFirst(name: String): Loot? {
-        return getAll()?.firstOrNull { it.loot.name == name }
+    fun getFirst(vararg names: String, sortByDistance: Boolean = true): Loot? {
+        return getAll(sortByDistance)?.firstOrNull { names.contains(it.loot.name)}
     }
 
-    fun getFirst(id: Int): Loot? {
-        return getAll()?.firstOrNull { it.loot.id == id }
+    fun getFirst(vararg ids: Int, sortByDistance: Boolean = true): Loot? {
+        return getAll(sortByDistance)?.firstOrNull { ids.contains(it.loot.id)}
     }
 
     fun exists(name: String): Boolean {

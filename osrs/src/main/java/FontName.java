@@ -91,7 +91,7 @@ public class FontName {
 		int var34;
 		int var35;
 		if (Login.worldSelectOpen) {
-			class199 var32 = Client.field733;
+			class199 var32 = Client.keyHandlerInstance;
 			class199 var3 = var32;
 
 			while (true) {
@@ -264,7 +264,7 @@ public class FontName {
 						var5 = 1;
 					}
 
-					class199 var8 = Client.field733;
+					class199 var8 = Client.keyHandlerInstance;
 					class199 var9 = var8;
 					int var38;
 					short var39;
@@ -487,7 +487,7 @@ public class FontName {
 												}
 											}
 
-											if ((var9.method3956(82) || var9.method3956(87)) && var9.field2252 == 67) {
+											if ((var9.getKeyPressed(82) || var9.getKeyPressed(87)) && var9.field2252 == 67) {
 												Clipboard var40 = Toolkit.getDefaultToolkit().getSystemClipboard();
 												var41 = var40.getContents(ClanChannelMember.client);
 												var42 = 20 - Login.Login_password.length();
