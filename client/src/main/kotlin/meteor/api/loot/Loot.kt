@@ -7,17 +7,18 @@ import net.runelite.api.TileItem
 
 class Loot(var loot: TileItem) {
     val log = Logger("[${loot.name}]")
+    var index = -1
 
     fun interact(action: String) {
         if (loot.actions == null) {
             return
         }
-        val index = arrayListOf<String>(*loot.rawActions).indexOf(action)
+        index = arrayListOf<String>(*loot.rawActions).indexOf(action)
         if (index == -1) {
             log.warn("Action idx not found for $action")
             return
         }
-        invoke(index)
+        invoke()
     }
 
     fun take() {
@@ -25,7 +26,7 @@ class Loot(var loot: TileItem) {
         interact("Take")
     }
 
-    fun invoke(index: Int) {
+    fun invoke() {
         GameThread.invoke { ClientPackets.createClientPacket(loot.getMenu(index))!!.send() }
     }
 }

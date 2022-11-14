@@ -1331,7 +1331,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	@ObfuscatedSignature(
 		descriptor = "Lgw;"
 	)
-	public static class199 field733;
+	public static class199 keyHandlerInstance;
 	@ObfuscatedName("rx")
 	@ObfuscatedSignature(
 		descriptor = "Lgh;"
@@ -1646,7 +1646,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		field730 = "";
 		crossWorldMessageIds = new long[100];
 		crossWorldMessageIdsIndex = 0;
-		field733 = new class199();
+		keyHandlerInstance = new class199();
 		field734 = new class197();
 		field679 = 0;
 		field613 = new int[128];
@@ -1767,7 +1767,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		this.method514();
 		class9.mouseWheel = this.mouseWheel();
 		this.method513(field734, 0);
-		this.method513(field733, 1);
+		this.method513(keyHandlerInstance, 1);
 		GameObject.masterDisk = new ArchiveDisk(255, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idx255File, 500000);
 		AccessFile var4 = null;
 		ClientPreferences var5 = new ClientPreferences();
@@ -1815,7 +1815,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		WorldMapManager.method4967();
 		KitDefinition.method3476();
 		class355.playPcmPlayers();
-		field733.method3954();
+		keyHandlerInstance.method3954();
 		this.method603();
 		WorldMapSection0.method5106();
 		if (class9.mouseWheel != null) {
@@ -3473,13 +3473,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 							packetWriter.addNode(var18);
 						}
 
-						if (field733.field2247 > 0) {
+						if (keyHandlerInstance.field2247 > 0) {
 							var14 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3004, packetWriter.isaacCipher);
 							var14.packetBuffer.writeShort(0);
 							var15 = var14.packetBuffer.offset;
 							long var19 = UserComparator8.method2748();
 
-							for (var5 = 0; var5 < field733.field2247; ++var5) {
+							for (var5 = 0; var5 < keyHandlerInstance.field2247; ++var5) {
 								long var21 = var19 - field738;
 								if (var21 > 16777215L) {
 									var21 = 16777215L;
@@ -3487,7 +3487,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
 								field738 = var19;
 								var14.packetBuffer.method8449((int)var21);
-								var14.packetBuffer.method8434(field733.field2246[var5]);
+								var14.packetBuffer.method8434(keyHandlerInstance.field2246[var5]);
 							}
 
 							var14.packetBuffer.writeLengthShort(var14.packetBuffer.offset - var15);
@@ -3498,7 +3498,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 							--field779;
 						}
 
-						if (field733.method3956(96) || field733.method3956(97) || field733.method3956(98) || field733.method3956(99)) {
+						if (keyHandlerInstance.getKeyPressed(96) || keyHandlerInstance.getKeyPressed(97) || keyHandlerInstance.getKeyPressed(98) || keyHandlerInstance.getKeyPressed(99)) {
 							field589 = true;
 						}
 
@@ -3730,8 +3730,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 						field684 = false;
 						field679 = 0;
 
-						while (field733.method3981() && field679 < 128) {
-							if (staffModLevel >= 2 && field733.method3956(82) && field733.field2252 == 66) {
+						while (keyHandlerInstance.method3981() && field679 < 128) {
+							if (staffModLevel >= 2 && keyHandlerInstance.getKeyPressed(82) && keyHandlerInstance.field2252 == 66) {
 								StringBuilder var44 = new StringBuilder();
 
 								Message var41;
@@ -3744,14 +3744,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
 								String var49 = var44.toString();
 								ClanChannelMember.client.method527(var49);
-							} else if (oculusOrbState != 1 || field733.field2256 <= 0) {
-								field737[field679] = field733.field2252;
-								field613[field679] = field733.field2256;
+							} else if (oculusOrbState != 1 || keyHandlerInstance.field2256 <= 0) {
+								field737[field679] = keyHandlerInstance.field2252;
+								field613[field679] = keyHandlerInstance.field2256;
 								++field679;
 							}
 						}
 
-						if (UserComparator3.method2773() && field733.method3956(82) && field733.method3956(81) && mouseWheelRotation != 0) {
+						if (UserComparator3.method2773() && keyHandlerInstance.getKeyPressed(82) && keyHandlerInstance.getKeyPressed(81) && mouseWheelRotation != 0) {
 							var3 = class296.localPlayer.plane - mouseWheelRotation;
 							if (var3 < 0) {
 								var3 = 0;
@@ -3877,7 +3877,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 																		PacketBufferNode var52 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3091, packetWriter.isaacCipher);
 																		var52.packetBuffer.writeByte(5);
 																		var52.packetBuffer.method8443(class158.baseY * 64 + var4);
-																		var52.packetBuffer.method8546(field733.method3956(82) ? (field733.method3956(81) ? 2 : 1) : 0);
+																		var52.packetBuffer.method8546(keyHandlerInstance.getKeyPressed(82) ? (keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
 																		var52.packetBuffer.method8619(KeyHandler.baseX * 64 + var3);
 																		packetWriter.addNode(var52);
 																		Scene.method4311();
@@ -3975,13 +3975,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 																	} else if (oculusOrbState == 1) {
 																		class126.method2911();
 																		short var37 = -1;
-																		if (field733.method3956(33)) {
+																		if (keyHandlerInstance.getKeyPressed(33)) {
 																			var37 = 0;
-																		} else if (field733.method3956(49)) {
+																		} else if (keyHandlerInstance.getKeyPressed(49)) {
 																			var37 = 1024;
 																		}
 
-																		if (field733.method3956(48)) {
+																		if (keyHandlerInstance.getKeyPressed(48)) {
 																			if (var37 == 0) {
 																				var37 = 1792;
 																			} else if (var37 == 1024) {
@@ -3989,7 +3989,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 																			} else {
 																				var37 = 1536;
 																			}
-																		} else if (field733.method3956(50)) {
+																		} else if (keyHandlerInstance.getKeyPressed(50)) {
 																			if (var37 == 0) {
 																				var37 = 256;
 																			} else if (var37 == 1024) {
@@ -4000,15 +4000,15 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 																		}
 
 																		byte var36 = 0;
-																		if (field733.method3956(35)) {
+																		if (keyHandlerInstance.getKeyPressed(35)) {
 																			var36 = -1;
-																		} else if (field733.method3956(51)) {
+																		} else if (keyHandlerInstance.getKeyPressed(51)) {
 																			var36 = 1;
 																		}
 
 																		var5 = 0;
 																		if (var37 >= 0 || var36 != 0) {
-																			var5 = field733.method3956(81) ? oculusOrbSlowedSpeed : oculusOrbNormalSpeed;
+																			var5 = keyHandlerInstance.getKeyPressed(81) ? oculusOrbSlowedSpeed : oculusOrbNormalSpeed;
 																			var5 *= 16;
 																			field533 = var37;
 																			field583 = var36;
@@ -4044,7 +4044,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 																			field583 = -1;
 																		}
 
-																		if (field733.method3956(13)) {
+																		if (keyHandlerInstance.getKeyPressed(13)) {
 																			class20.method292();
 																		}
 																	}
@@ -4057,17 +4057,17 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 																		camAngleDY = var4 * 2;
 																		mouseCamClickedX = var4 != -1 && var4 != 1 ? (mouseCamClickedX + MouseHandler.MouseHandler_x) / 2 : MouseHandler.MouseHandler_x;
 																	} else {
-																		if (field733.method3956(96)) {
+																		if (keyHandlerInstance.getKeyPressed(96)) {
 																			camAngleDY += (-24 - camAngleDY) / 2;
-																		} else if (field733.method3956(97)) {
+																		} else if (keyHandlerInstance.getKeyPressed(97)) {
 																			camAngleDY += (24 - camAngleDY) / 2;
 																		} else {
 																			camAngleDY /= 2;
 																		}
 
-																		if (field733.method3956(98)) {
+																		if (keyHandlerInstance.getKeyPressed(98)) {
 																			camAngleDX += (12 - camAngleDX) / 2;
-																		} else if (field733.method3956(99)) {
+																		} else if (keyHandlerInstance.getKeyPressed(99)) {
 																			camAngleDX += (-12 - camAngleDX) / 2;
 																		} else {
 																			camAngleDX /= 2;

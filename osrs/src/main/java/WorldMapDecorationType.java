@@ -157,15 +157,15 @@ public enum WorldMapDecorationType implements class342 {
 		int var3;
 		if (var0 == 3500) {
 			var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.field733.method3956(var3) ? 1 : 0;
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.keyHandlerInstance.getKeyPressed(var3) ? 1 : 0;
 			return 1;
 		} else if (var0 == 3501) {
 			var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.field733.method3990(var3) ? 1 : 0;
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.keyHandlerInstance.method3990(var3) ? 1 : 0;
 			return 1;
 		} else if (var0 == 3502) {
 			var3 = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.field733.method3966(var3) ? 1 : 0;
+			Interpreter.Interpreter_intStack[++class379.Interpreter_intStackSize - 1] = Client.keyHandlerInstance.method3966(var3) ? 1 : 0;
 			return 1;
 		} else {
 			return 2;

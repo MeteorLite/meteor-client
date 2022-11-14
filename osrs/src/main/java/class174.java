@@ -267,6 +267,6 @@ public class class174 {
 		garbageValue = "1855673975"
 	)
 	static boolean method3399() {
-		return Client.tapToDrop || Client.field733.method3956(81);
+		return Client.tapToDrop || Client.keyHandlerInstance.getKeyPressed(81);
 	}
 }

@@ -61,7 +61,7 @@
       },
       {
         "method": "writeByte",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -116,7 +116,7 @@
       },
       {
         "method": "method8546",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -127,7 +127,7 @@
     "structure": []
   },
   "11": {
-    "name": "OPLOC3",
+    "name": "OPOBJ3",
     "size": 7,
     "deobname": "field3007",
     "structure": [
@@ -141,7 +141,7 @@
       },
       {
         "method": "writeByte",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeIntME",
@@ -175,7 +175,7 @@
     "structure": []
   },
   "14": {
-    "name": "OPLOC4",
+    "name": "OPOBJ4",
     "size": 7,
     "deobname": "field3010",
     "structure": [
@@ -185,7 +185,7 @@
       },
       {
         "method": "method8630",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8619",
@@ -198,13 +198,13 @@
     ]
   },
   "15": {
-    "name": "OPOBJ4",
+    "name": "OPLOC4",
     "size": 7,
     "deobname": "field3011",
     "structure": [
       {
         "method": "method8434",
-        "argument": "worldY"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeIntME",
@@ -250,18 +250,18 @@
       },
       {
         "method": "method8546",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
   "18": {
-    "name": "OPOBJU",
+    "name": "OPLOCU",
     "size": 15,
     "deobname": "field3014",
     "structure": [
       {
         "method": "method8434",
-        "argument": "selectedSpellChildIndex"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8619",
@@ -385,7 +385,7 @@
     ]
   },
   "24": {
-    "name": "OPOBJ3",
+    "name": "OPLOC3",
     "size": 7,
     "deobname": "field3049",
     "structure": [
@@ -403,7 +403,7 @@
       },
       {
         "method": "writeByte",
-        "argument": "worldY"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -426,7 +426,7 @@
       },
       {
         "method": "method8546",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -485,7 +485,7 @@
     ]
   },
   "30": {
-    "name": "OPOBJ5",
+    "name": "OPLOC5",
     "size": 7,
     "deobname": "field3041",
     "structure": [
@@ -495,7 +495,7 @@
       },
       {
         "method": "method8434",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8443",
@@ -514,7 +514,7 @@
     "structure": []
   },
   "32": {
-    "name": "OPOBJ2",
+    "name": "OPLOC2",
     "size": 7,
     "deobname": "field3063",
     "structure": [
@@ -528,7 +528,7 @@
       },
       {
         "method": "method8630",
-        "argument": "worldY"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeShort",
@@ -614,7 +614,7 @@
       },
       {
         "method": "method8434",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -659,7 +659,7 @@
       },
       {
         "method": "method8546",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -689,7 +689,7 @@
     ]
   },
   "48": {
-    "name": "OPOBJT",
+    "name": "OPLOCT",
     "size": 15,
     "deobname": "field3044",
     "structure": [
@@ -707,7 +707,7 @@
       },
       {
         "method": "method8630",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeIntME",
@@ -740,7 +740,7 @@
       },
       {
         "method": "writeByte",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -776,7 +776,7 @@
     "structure": []
   },
   "54": {
-    "name": "OPLOCT",
+    "name": "OPOBJT",
     "size": 15,
     "deobname": "field3050",
     "structure": [
@@ -806,7 +806,7 @@
       },
       {
         "method": "method8434",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -840,7 +840,7 @@
       },
       {
         "method": "method8546",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -938,7 +938,7 @@
     "structure": [
       {
         "method": "method8546",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeShort",
@@ -1013,7 +1013,7 @@
       },
       {
         "method": "method8434",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -1055,7 +1055,7 @@
     "structure": [
       {
         "method": "method8434",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8443",
@@ -1082,7 +1082,7 @@
       },
       {
         "method": "method8546",
-        "argument": "selectedItemId"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeInt",
@@ -1173,7 +1173,7 @@
       },
       {
         "method": "method8546",
-        "argument": "selectedSpellChildIndex"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8619",
@@ -1205,13 +1205,13 @@
     ]
   },
   "82": {
-    "name": "OPLOC1",
+    "name": "OPOBJ1",
     "size": 7,
     "deobname": "field3078",
     "structure": [
       {
         "method": "method8546",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8619",
@@ -1238,12 +1238,12 @@
       },
       {
         "method": "writeByte",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       }
     ]
   },
   "84": {
-    "name": "OPLOCU",
+    "name": "OPOBJU",
     "size": 15,
     "deobname": "field3080",
     "structure": [
@@ -1269,7 +1269,7 @@
       },
       {
         "method": "writeByte",
-        "argument": "selectedItemWidget"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8619",
@@ -1296,7 +1296,7 @@
     "structure": [
       {
         "method": "method8443",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       }
     ]
   },
@@ -1349,7 +1349,7 @@
     "structure": [
       {
         "method": "method8434",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeIntME",
@@ -1358,13 +1358,13 @@
     ]
   },
   "93": {
-    "name": "OPLOC2",
+    "name": "OPOBJ2",
     "size": 7,
     "deobname": "field3089",
     "structure": [
       {
         "method": "method8546",
-        "argument": "worldY"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeShort",
@@ -1457,7 +1457,7 @@
     "structure": [
       {
         "method": "method8546",
-        "argument": "selectedSpellWidget"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeShort",
@@ -1494,12 +1494,12 @@
       },
       {
         "method": "writeByte",
-        "argument": "selectedItemId"
+        "argument": "shiftPressed"
       }
     ]
   },
   "105": {
-    "name": "OPOBJ1",
+    "name": "OPLOC1",
     "size": 7,
     "deobname": "field3037",
     "structure": [
@@ -1513,7 +1513,7 @@
       },
       {
         "method": "method8630",
-        "argument": "worldX"
+        "argument": "shiftPressed"
       },
       {
         "method": "writeIntME",
@@ -1536,7 +1536,7 @@
       },
       {
         "method": "writeByte",
-        "argument": "selectedSpellItemId"
+        "argument": "shiftPressed"
       },
       {
         "method": "method8619",

@@ -171,7 +171,7 @@ public class class152 {
 					PacketBufferNode var13 = FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3009, Client.packetWriter.isaacCipher);
 					var13.packetBuffer.writeByte(18);
 					var13.packetBuffer.method8443(class158.baseY * 64 + var12);
-					var13.packetBuffer.method8546(Client.field733.method3956(82) ? (Client.field733.method3956(81) ? 2 : 1) : 0);
+					var13.packetBuffer.method8546(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
 					var13.packetBuffer.method8619(KeyHandler.baseX * 64 + var11);
 					var13.packetBuffer.writeByte(var4);
 					var13.packetBuffer.writeByte(var5);
