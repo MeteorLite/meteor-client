@@ -1,6 +1,9 @@
 package meteor.ui.composables.ui
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.TooltipArea
+import androidx.compose.foundation.TooltipPlacement
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -39,7 +42,7 @@ fun pluginsPanel() {
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
             modifier = Modifier.fillMaxHeight().width(375.dp)
         ) {
-                plugins()
+            plugins()
         }
     }
 }
@@ -87,6 +90,7 @@ fun searchBar(
 }
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun plugins() {
 
@@ -111,14 +115,34 @@ fun plugins() {
             .fillMaxHeight()
     ) {
 
-            LazyColumn(modifier = Modifier.fillMaxHeight()) {
+        LazyColumn(modifier = Modifier.fillMaxHeight()) {
 
-                val searchedText = textState.value.text
-                items(items = PluginManager.plugins.filter {
-                    it.getName()!!.contains(searchedText, ignoreCase = true) ||
-                            it.getDescriptor().tags.contains(searchedText)
-                }, itemContent = { plugin ->
-                    Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(background ) ) {
+            val searchedText = textState.value.text
+
+            items(items = PluginManager.plugins.filter {
+                it.getName()!!.contains(searchedText, ignoreCase = true) ||
+                        it.getDescriptor().tags.contains(searchedText)
+            }, itemContent = { plugin ->
+
+                Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(background ) ) {
+                    TooltipArea(
+                        modifier = Modifier.background(
+                            shape = RoundedCornerShape(3.dp), color = surface
+                        ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
+                            Column(modifier = Modifier.width(200.dp).background(surface, RoundedCornerShape(4.dp))) {
+                                Text(
+                                    plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).description,
+                                    style = TextStyle(
+                                        color = uiColor,
+                                        letterSpacing = 2.sp,
+                                        fontSize = pluginListSize.value.sp,
+                                        fontWeight = FontWeight.Medium
+                                    ),
+
+                                    )
+                            }
+
+                        }) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
                             modifier = Modifier.fillMaxWidth(0.60f).height(32.dp).background(background )
@@ -134,71 +158,72 @@ fun plugins() {
                                 ),
                                 modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
                             )
-
                         }
 
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.End,
-                            modifier = Modifier.fillMaxWidth().padding(top = 15.dp)
-                                .height(pluginListSize.value.dp)
-                                .background(background )
-                        ) {
-                            if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
-                                IconButton(
-                                    onClick = { PluginManager.reloadExternal(plugin) },
-                                ) {
-                                    Icon(
-                                        Icons.Filled.Refresh,
-                                        contentDescription = "Reload plugin",
-                                        tint = uiColor
-                                    )
-                                }
-                            }
+                    }
 
-
-                            if (plugin.configuration != null) {
-                                Spacer(Modifier.height(20.dp))
-                                IconButton(
-                                    onClick = { onPluginConfigurationOpened(plugin) },
-
-                                    ) {
-                                    Icon(
-                                        Octicons.Gear24,
-                                        contentDescription = "Opens Plugin configuration panel",
-                                        tint = uiColor,
-
-                                        )
-                                }
-                            } else {
-                                Spacer(
-                                    Modifier.width(50.dp)
-                                        .background(background  )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.End,
+                        modifier = Modifier.fillMaxWidth().padding(top = 15.dp)
+                            .height(pluginListSize.value.dp)
+                            .background(background )
+                    ) {
+                        if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
+                            IconButton(
+                                onClick = { PluginManager.reloadExternal(plugin) },
+                            ) {
+                                Icon(
+                                    Icons.Filled.Refresh,
+                                    contentDescription = "Reload plugin",
+                                    tint = uiColor
                                 )
                             }
-                            val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
-                            Switch(
-                                switchState.value,
-                                onPluginToggled(switchState, plugin),
-                                enabled = true,
-                                modifier = Modifier.scale(0.75f).padding(bottom = 2.dp),
-                                colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface)
-                            )
-
-
                         }
+
+
+                        if (plugin.configuration != null) {
+                            Spacer(Modifier.height(20.dp))
+                            IconButton(
+                                onClick = { onPluginConfigurationOpened(plugin) },
+
+                                ) {
+                                Icon(
+                                    Octicons.Gear24,
+                                    contentDescription = "Opens Plugin configuration panel",
+                                    tint = uiColor,
+
+                                    )
+                            }
+                        } else {
+                            Spacer(
+                                Modifier.width(50.dp)
+                                    .background(background  )
+                            )
+                        }
+                        val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
+                        Switch(
+                            switchState.value,
+                            onPluginToggled(switchState, plugin),
+                            enabled = true,
+                            modifier = Modifier.scale(0.75f).padding(bottom = 2.dp),
+                            colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface)
+                        )
 
 
                     }
-                    Spacer(
-                        Modifier.width(pluginSpacer.value.dp)
-                            .background(background )
-                    )
 
-                })
-            }
+
+                }
+                Spacer(
+                    Modifier.width(pluginSpacer.value.dp)
+                        .background(background )
+                )
+
+            })
         }
     }
+}
 
 
 fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boolean) -> Unit) = {

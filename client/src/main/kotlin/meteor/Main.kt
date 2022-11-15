@@ -10,6 +10,7 @@ import meteor.config.MeteorConfig
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.FontManager
 import meteor.game.ItemManager
+import meteor.game.LootManager
 import meteor.game.WorldService
 import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
@@ -130,6 +131,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
     fun initManagers() {
         MenuManager
+        LootManager
         interactionManager = InteractionManager()
         chatMessageManager = ChatMessageManager()
         chatCommandManager = ChatCommandManager()

@@ -2,25 +2,38 @@ package meteor.ui.composables.preferences
 
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+import com.google.common.collect.Multimap
 import compose.icons.Octicons
 import compose.icons.octicons.Plug24
 import meteor.Main
 import meteor.config.descriptor.ConfigDescriptor
+import meteor.game.ItemStack
 import meteor.plugins.Plugin
+import meteor.plugins.loottracker.LootTrackerItem
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
+import meteor.util.AsyncBufferedImage
+import meteor.util.MultiMap
 import net.runelite.api.Skill
+import org.apache.commons.lang3.tuple.MutablePair
+
 
 var pluginsOpen = mutableStateOf(false)
 var configOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
+var lootObject: MutableList<LootTrackerItem> = mutableListOf()
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var expMap = mutableStateMapOf<Skill, Int>()
+var priceMap = MultiMap<String, Int>()
+var multiMap = mutableStateOf(MultiMap<String, LootTrackerItem?>())
+var tp = mutableStateOf(0)
+var tpl = mutableStateListOf<Int>()
 var expHrMap = mutableStateMapOf<Skill, Int>()
 var actionsHrMap = mutableStateMapOf<Skill,Int>()
 var startExp = emptyList<Pair<Skill,Int>>()
@@ -65,7 +78,7 @@ val lightThemeColors = lightColors(
     onError = Color(0xFFFFFFFF),
     background = Color(0xFFFFFFFF),
     surface = Color(0xFFf3f5f7),
-    )
+)
 
 val pluginListButton = addButton(
     ToolbarButton(
