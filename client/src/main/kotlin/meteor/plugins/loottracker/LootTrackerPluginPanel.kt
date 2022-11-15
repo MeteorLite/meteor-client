@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.toComposeImageBitmap
@@ -46,11 +47,11 @@ class LootTrackerPluginPanel:PluginPanel() {
 
                 items(items = multiMap.value.entrySet().distinct().toMutableStateList()) { map ->
                     Spacer(Modifier.height(10.dp))
-                    Row(modifier = Modifier.width(350.dp).background(surface,RoundedCornerShape(4.dp))) {
+                    Row(modifier = Modifier.width(350.dp).background(surface,RoundedCornerShape(4.dp)), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly) {
                         Text(
                             map.key,
                             style = TextStyle(color = uiColor, fontSize = 24.sp),
-                            modifier = Modifier.padding(top = 10.dp)
+
                         )
                         Spacer(Modifier.width(30.dp))
                         priceMap.entrySet().forEach {
@@ -58,21 +59,21 @@ class LootTrackerPluginPanel:PluginPanel() {
                                 Text(
                                     it.value!!.sum().toString() + " gp",
                                     style = TextStyle(color = intColor, fontSize = 20.sp),
-                                    modifier = Modifier.padding(top = 10.dp)
+
                                 )
                             }
                         }
                     }
                     Spacer(Modifier.height(5.dp))
                     LazyVerticalGrid(
-                        columns = GridCells.Adaptive(minSize = 40.dp),
+                        columns = GridCells.Adaptive(minSize = 50.dp),
                         modifier = Modifier.width(350.dp).height(125.dp).background(surface, RoundedCornerShape(10.dp)).padding(5.dp),
-                        contentPadding = PaddingValues(15.dp),
+                        contentPadding = PaddingValues(5.dp),
                         userScrollEnabled = false,
                     ) {
                             items(items = map.value!!.toList()) {
 
-                                Card(backgroundColor = androidx.compose.ui.graphics.Color.DarkGray, shape = RoundedCornerShape(5.dp)) {
+                                Card(backgroundColor = androidx.compose.ui.graphics.Color.DarkGray, shape = RoundedCornerShape(5.dp), modifier = Modifier.padding(5.dp)) {
                                         Image(it?.asyncBufferedImage?.value!! .toComposeImageBitmap(), "")
                                 }
                             }

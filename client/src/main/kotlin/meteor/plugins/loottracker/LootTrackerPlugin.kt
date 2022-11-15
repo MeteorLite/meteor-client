@@ -72,6 +72,8 @@ class LootTrackerPlugin: Plugin() {
                  }
             }
         }
+
+
     }
 
     override fun onClientTick(it: ClientTick) {
@@ -82,6 +84,7 @@ class LootTrackerPlugin: Plugin() {
             multiMap.value.putIfAbsent(it.name, LootTrackerItem(id = it.id, quantity = mutableStateOf(it.quantity)))
         }
        if(Game.getState() == GameState.LOGGED_IN && client.localPlayer?.name != null){
+
             when {
                 !FileUtil.exists(this, "${Main.client.localPlayer!!.name}-lootTracker.json") -> {
                     FileUtil.writeJson(this, "${Main.client.localPlayer!!.name}-lootTracker.json", lootObject)
