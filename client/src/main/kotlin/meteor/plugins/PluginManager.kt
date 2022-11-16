@@ -69,6 +69,7 @@ import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.hunter.HunterPlugin
+import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
@@ -151,6 +152,7 @@ object PluginManager {
         init<ItemStatPlugin>()
         init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
+        init<LootTrackerPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
         init<MiningPlugin>()

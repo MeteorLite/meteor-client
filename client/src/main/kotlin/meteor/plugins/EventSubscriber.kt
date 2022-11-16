@@ -7,6 +7,8 @@ import eventbus.Events
 import eventbus.events.*
 import meteor.Main
 import meteor.events.InfoBoxMenuClicked
+import meteor.events.NpcLootReceived
+import meteor.events.PlayerLootReceived
 import meteor.events.PluginChanged
 import net.runelite.api.events.MenuOpened
 import org.rationalityfrontline.kevent.KEvent
@@ -16,7 +18,8 @@ import org.rationalityfrontline.kevent.subscribe as kSubscribe
 
 open class EventSubscriber : KEventSubscriber {
     var eventListening: Boolean = false
-
+    open fun onNpcLootReceived(it: NpcLootReceived){}
+    open fun onPlayerLootReceived(it: PlayerLootReceived){}
     open fun onMenuShouldLeftClick(it: MenuShouldLeftClick) {}
     open fun onWorldListLoad(it: WorldListLoad) {}
     open fun onWidgetPressed(it: WidgetPressed) {}
@@ -84,6 +87,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onNpcSpawned(it: NpcSpawned) {}
     open fun onNpcChanged(it: NpcChanged) {}
     open fun onNpcDespawned(it: NpcDespawned) {}
+
     open fun onProjectileMoved(it: ProjectileMoved) {}
     open fun onConfigChanged(it: ConfigChanged) {}
     open fun onPostItemComposition(it: PostItemComposition) {}
@@ -247,6 +251,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<NpcActionChanged>(Events.NPC_ACTION_CHANGED) { executeIfListening { onNpcActionChanged(it) } }
         subscribeEvent<NpcChanged>(Events.NPC_CHANGED) { executeIfListening { onNpcChanged(it) } }
         subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNpcDespawned(it) } }
+        subscribeEvent<NpcLootReceived>(Events.NPC_LOOT_RECEIVED){executeIfListening { onNpcLootReceived(it) }}
         subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening { onNpcSpawned(it) } }
         subscribeEvent<AutomatedMenu>(Events.AUTOMATED_MENU) { executeIfListening { onInvokeMenuAction(it) } }
         subscribeEvent<OverheadTextChanged>(Events.OVERHEAD_TEXT_CHANGED) {
@@ -273,6 +278,7 @@ open class EventSubscriber : KEventSubscriber {
         }
         subscribeEvent<PlayerSkullChanged>(Events.PLAYER_SKULL_CHANGED) { executeIfListening { onPlayerSkullChanged(it) } }
         subscribeEvent<PlayerSpawned>(Events.PLAYER_SPAWNED) { executeIfListening { onPlayerSpawned(it) } }
+        subscribeEvent<PlayerLootReceived>(Events.PLAYER_LOOT_RECEIVED){executeIfListening { onPlayerLootReceived(it) }}
         subscribeEvent<PostItemComposition>(Events.POST_ITEM_COMPOSITION) {
             executeIfListening {
                 onPostItemComposition(
