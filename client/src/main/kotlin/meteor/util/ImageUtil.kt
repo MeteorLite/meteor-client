@@ -5,6 +5,8 @@ import net.runelite.api.Client
 import net.runelite.api.IndexedSprite
 import net.runelite.api.SpritePixels
 import java.awt.Image
+import java.awt.geom.AffineTransform
+import java.awt.image.AffineTransformOp
 import java.awt.image.BufferedImage
 import java.awt.image.DirectColorModel
 import java.awt.image.PixelGrabber
@@ -28,15 +30,15 @@ object ImageUtil {
     }
 
     fun resizeImage(
-        image: BufferedImage, newWidth: Int,
-        newHeight: Int
+            image: BufferedImage, newWidth: Int,
+            newHeight: Int
     ): BufferedImage {
         return resizeImage(image, newWidth, newHeight, false)
     }
 
     fun resizeImage(
-        image: BufferedImage, newWidth: Int,
-        newHeight: Int, preserveAspectRatio: Boolean
+            image: BufferedImage, newWidth: Int,
+            newHeight: Int, preserveAspectRatio: Boolean
     ): BufferedImage {
         val resized: Image
         resized = if (preserveAspectRatio) {
@@ -59,13 +61,13 @@ object ImageUtil {
 
     fun toARGB(image: Image): BufferedImage {
         if (image is BufferedImage
-            && image.type == BufferedImage.TYPE_INT_ARGB
+                && image.type == BufferedImage.TYPE_INT_ARGB
         ) {
             return image
         }
         val out = BufferedImage(
-            image.getWidth(null), image.getHeight(null),
-            BufferedImage.TYPE_INT_ARGB
+                image.getWidth(null), image.getHeight(null),
+                BufferedImage.TYPE_INT_ARGB
         )
         val g2d = out.createGraphics()
         g2d.drawImage(image, 0, 0, null)
@@ -74,8 +76,8 @@ object ImageUtil {
     }
 
     fun resizeCanvas(
-        image: BufferedImage, newWidth: Int,
-        newHeight: Int
+            image: BufferedImage, newWidth: Int,
+            newHeight: Int
     ): BufferedImage {
         val dimg = BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB)
         val centeredX = newWidth / 2 - image.width / 2
@@ -90,8 +92,8 @@ object ImageUtil {
         val pixels = IntArray(image.width * image.height)
         try {
             val g = PixelGrabber(
-                image, 0, 0, image.width, image.height, pixels, 0,
-                image.width
+                    image, 0, 0, image.width, image.height, pixels, 0,
+                    image.width
             )
             g.colorModel = DirectColorModel(32, 0xff0000, 0xff00, 0xff, -0x1000000)
             g.grabPixels()
@@ -125,9 +127,9 @@ object ImageUtil {
 			so pad the palette out so that our colors start at idx 1.
 		 */palette.add(0)
         val sourcePixels = image.getRGB(
-            0, 0,
-            image.width, image.height,
-            null, 0, image.width
+                0, 0,
+                image.width, image.height,
+                null, 0, image.width
         )
 
         /*
@@ -152,8 +154,8 @@ object ImageUtil {
         }
         if (palette.size > 256) {
             throw java.lang.RuntimeException(
-                "Passed in image had " + (palette.size - 1)
-                        + " different colors, exceeding the max of 255."
+                    "Passed in image had " + (palette.size - 1)
+                            + " different colors, exceeding the max of 255."
             )
         }
         val sprite = client.createIndexedSprite()
@@ -166,5 +168,12 @@ object ImageUtil {
         sprite.offsetX = 0
         sprite.offsetY = 0
         return sprite
+    }
+
+    fun rotateImage(image: BufferedImage, theta: Double): BufferedImage {
+        val transform = AffineTransform()
+        transform.rotate(theta, image.width / 2.0, image.height / 2.0)
+        val transformOp = AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR)
+        return transformOp.filter(image, null)
     }
 }

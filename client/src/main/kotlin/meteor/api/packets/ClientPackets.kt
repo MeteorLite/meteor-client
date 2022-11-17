@@ -104,6 +104,7 @@ object ClientPackets {
                 "param1" -> value = worldY
                 "id" -> value = groundItemId
                 "shiftPressed" -> value = ctrlPressed
+                else -> println(methodCall.argument)
             }
             encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
         }

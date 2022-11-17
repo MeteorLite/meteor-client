@@ -10,6 +10,7 @@ import meteor.config.MeteorConfig
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.FontManager
 import meteor.game.ItemManager
+import meteor.game.LootManager
 import meteor.game.WorldService
 import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
@@ -35,6 +36,7 @@ import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatCommandManager
 import net.runelite.client.chat.ChatMessageManager
 import meteor.game.npcoverlay.NpcOverlayService
+import meteor.session.SessionManager
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
@@ -115,8 +117,9 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         npcOverlayService = NpcOverlayService()
         PluginManager.loadExternalPlugins()
         xpTrackerService = XpTrackerService(PluginManager.get())
+        SessionManager.start()
         timer.stop()
-        logger.info("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
+        logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
 
     }
 
@@ -128,6 +131,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
     fun initManagers() {
         MenuManager
+        LootManager
         interactionManager = InteractionManager()
         chatMessageManager = ChatMessageManager()
         chatCommandManager = ChatCommandManager()

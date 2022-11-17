@@ -210,7 +210,7 @@ public class UserComparator7 extends AbstractUserComparator {
 									for (var23 = 0; var23 < var9.field3562[var20].length; ++var23) {
 										boolean var24 = false;
 										if (var9.field3564 != null) {
-											var24 = Client.field733.method3956(var9.field3562[var20][var23]);
+											var24 = Client.keyHandlerInstance.getKeyPressed(var9.field3562[var20][var23]);
 										}
 
 										if (class151.method3180(var9.field3562[var20][var23]) || var24) {
@@ -220,7 +220,7 @@ public class UserComparator7 extends AbstractUserComparator {
 											}
 
 											byte var33 = var9.field3563[var20][var23];
-											if (var33 == 0 || ((var33 & 8) == 0 || !Client.field733.method3956(86) && !Client.field733.method3956(82) && !Client.field733.method3956(81)) && ((var33 & 2) == 0 || Client.field733.method3956(86)) && ((var33 & 1) == 0 || Client.field733.method3956(82)) && ((var33 & 4) == 0 || Client.field733.method3956(81))) {
+											if (var33 == 0 || ((var33 & 8) == 0 || !Client.keyHandlerInstance.getKeyPressed(86) && !Client.keyHandlerInstance.getKeyPressed(82) && !Client.keyHandlerInstance.getKeyPressed(81)) && ((var33 & 2) == 0 || Client.keyHandlerInstance.getKeyPressed(86)) && ((var33 & 1) == 0 || Client.keyHandlerInstance.getKeyPressed(82)) && ((var33 & 4) == 0 || Client.keyHandlerInstance.getKeyPressed(81))) {
 												var28 = true;
 												break;
 											}
@@ -571,7 +571,7 @@ public class UserComparator7 extends AbstractUserComparator {
 								ScriptEvent var31;
 								int[] var38;
 								if (var9.field3598 != null) {
-									var38 = Client.field733.method3985();
+									var38 = Client.keyHandlerInstance.method3985();
 
 									for (var23 = 0; var23 < var38.length; ++var23) {
 										var31 = new ScriptEvent();
@@ -583,7 +583,7 @@ public class UserComparator7 extends AbstractUserComparator {
 								}
 
 								if (var9.field3599 != null) {
-									var38 = Client.field733.method3959();
+									var38 = Client.keyHandlerInstance.method3959();
 
 									for (var23 = 0; var23 < var38.length; ++var23) {
 										var31 = new ScriptEvent();

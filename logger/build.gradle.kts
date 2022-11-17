@@ -14,7 +14,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenLocal") {
             artifactId = "logger"
-            version = rootProject.extra.get("release") as String
+            version = "1.7.0"
             from(components["kotlin"])
         }
     }

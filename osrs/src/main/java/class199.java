@@ -185,7 +185,7 @@ public class class199 implements class30 {
 		descriptor = "(II)Z",
 		garbageValue = "-413170912"
 	)
-	public boolean method3956(int var1) {
+	public boolean getKeyPressed(int var1) {
 		return var1 >= 0 && var1 < 112 ? this.field2251[var1] : false;
 	}
 

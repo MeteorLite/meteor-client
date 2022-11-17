@@ -557,7 +557,7 @@ public enum ModeWhere implements class342 {
 					case 0:
 						Client.field734.method3915(var0.field2240);
 						var3.method5767(true);
-						var3.method5806(var0.field2243, var0.field2236, Client.field733.method3956(82), Client.field733.method3956(81));
+						var3.method5806(var0.field2243, var0.field2236, Client.keyHandlerInstance.getKeyPressed(82), Client.keyHandlerInstance.getKeyPressed(81));
 						break;
 					case 1:
 						var3.method5807(var0.field2243, var0.field2236);

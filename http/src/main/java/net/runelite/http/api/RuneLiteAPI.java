@@ -60,7 +60,7 @@ public class RuneLiteAPI {
   private static final String BASE = "https://api.runelite.net";
   private static final String WSBASE = "http://api.runelite.net/ws";
   private static final String STATICBASE = "http://static.runelite.net";
-  private static final String METEOR_SESSION = "http://session.openosrs.dev";
+  private static final String METEOR_SESSION = "http://meteor-session.ddns.net";
   public static String userAgent;
   private static String version;
 
