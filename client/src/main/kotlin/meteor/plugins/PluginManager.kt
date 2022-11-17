@@ -86,6 +86,7 @@ import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
+import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
 import rs117.hd.HdPlugin
 import java.io.File
@@ -187,6 +188,7 @@ object PluginManager {
         init<WorldMapWalkerPlugin>()
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
+        init<ZulrahPlugin>()
     }
 
     private fun loadExternal(jar: File) {
