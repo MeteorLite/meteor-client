@@ -18,6 +18,7 @@ import meteor.plugins.bank.BankPlugin
 import meteor.plugins.banksetups.BankSetups
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.camera.CameraPlugin
+import meteor.plugins.cannonreloader.CannonReloaderPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.commands.CommandsPlugin
 import meteor.plugins.continueclicker.ContinueClickerPlugin
@@ -79,6 +80,7 @@ import net.runelite.client.plugins.mining.MiningPlugin
 import net.runelite.client.plugins.motherlode.MotherlodePlugin
 import net.runelite.client.plugins.npchighlight.NpcIndicatorsPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
+import net.runelite.client.plugins.cannon.CannonPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
@@ -120,6 +122,8 @@ object PluginManager {
         init<BoostsPlugin>()
         init<BossTimersPlugin>()
         init<CameraPlugin>()
+        init<CannonPlugin>()
+        init<CannonReloaderPlugin>()
         init<ChatCommandsPlugin>()
         init<ChatHistoryPlugin>()
         init<ClueScrollPlugin>()
