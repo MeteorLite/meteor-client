@@ -136,11 +136,10 @@ public class CannonPlugin extends Plugin {
 		removeCounter();
 		spotPoints.clear();
 	}
-
-	@Subscribe
-	public void onItemContainerChanged(ItemContainerChanged event)
+	@Override
+	public void onItemContainerChanged(ItemContainerChanged it)
 	{
-		if (event.getItemContainer() != client.getItemContainer(InventoryID.INVENTORY))
+		if (it.getItemContainer() != client.getItemContainer(InventoryID.INVENTORY))
 		{
 			return;
 		}
@@ -153,7 +152,7 @@ public class CannonPlugin extends Plugin {
 
 		if (!cannonPlaced)
 		{
-			for (Item item : event.getItemContainer().getItems())
+			for (Item item : it.getItemContainer().getItems())
 			{
 				if (item == null)
 				{
@@ -191,10 +190,10 @@ public class CannonPlugin extends Plugin {
 		cannonSpotOverlay.setHidden(!hasAll);
 	}
 
-	@Subscribe
-	public void onConfigChanged(ConfigChanged event)
+	@Override
+	public void onConfigChanged(ConfigChanged it)
 	{
-		if (event.getGroup().equals("cannon"))
+		if (it.getGroup().equals("cannon"))
 		{
 			if (!config.showInfobox())
 			{
@@ -211,10 +210,10 @@ public class CannonPlugin extends Plugin {
 
 	}
 
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged gameStateChanged)
+	@Override
+	public void onGameStateChanged(GameStateChanged it)
 	{
-		if (gameStateChanged.getGameState() != GameState.LOGGED_IN)
+		if (it.getGameState() != GameState.LOGGED_IN)
 		{
 			return;
 		}
@@ -229,10 +228,10 @@ public class CannonPlugin extends Plugin {
 		}
 	}
 
-	@Subscribe
-	public void onGameObjectSpawned(GameObjectSpawned event)
+	@Override
+	public void onGameObjectSpawned(GameObjectSpawned it)
 	{
-		GameObject gameObject = event.getGameObject();
+		GameObject gameObject = it.getGameObject();
 
 		Player localPlayer = client.getLocalPlayer();
 		if ((gameObject.getId() == ObjectID.CANNON_BASE || gameObject.getId() == ObjectID.CANNON_BASE_43029) && !cannonPlaced)
@@ -247,16 +246,16 @@ public class CannonPlugin extends Plugin {
 		}
 	}
 
-	@Subscribe
-	public void onMenuOptionClicked(MenuOptionClicked event)
+	@Override
+	public void onMenuOptionClicked(MenuOptionClicked it)
 	{
-		if (cannonPosition != null || (event.getId() != ObjectID.DWARF_MULTICANNON && event.getId() != ObjectID.DWARF_MULTICANNON_43027))
+		if (cannonPosition != null || (it.getId() != ObjectID.DWARF_MULTICANNON && it.getId() != ObjectID.DWARF_MULTICANNON_43027))
 		{
 			return;
 		}
 
 		// Check if cannonballs are being used on the cannon
-		if (event.getMenuAction() == MenuAction.WIDGET_TARGET_ON_GAME_OBJECT && client.getSelectedWidget().getId() == WidgetInfo.INVENTORY.getId())
+		if (it.getMenuAction() == MenuAction.WIDGET_TARGET_ON_GAME_OBJECT && client.getSelectedWidget().getId() == WidgetInfo.INVENTORY.getId())
 		{
 			final Widget selected = client.getSelectedWidget();
 			final int itemId = selected.getItemId();
@@ -266,20 +265,20 @@ public class CannonPlugin extends Plugin {
 			}
 		}
 		// Check for the Fire option being selected on the cannon.
-		else if (event.getMenuAction() != MenuAction.GAME_OBJECT_FIRST_OPTION)
+		else if (it.getMenuAction() != MenuAction.GAME_OBJECT_FIRST_OPTION)
 		{
 			return;
 		}
 
 		// Store the click location as a WorldPoint to avoid issues with scene loads
-		clickedCannonLocation = WorldPoint.fromScene(client, event.getParam0(), event.getParam1(), client.getPlane());
+		clickedCannonLocation = WorldPoint.fromScene(client, it.getParam0(), it.getParam1(), client.getPlane());
 		//log.debug("Updated cannon location: {}", clickedCannonLocation);
 	}
 
-	@Subscribe
-	public void onVarbitChanged(VarbitChanged varbitChanged)
+	@Override
+	public void onVarbitChanged(VarbitChanged it)
 	{
-		if (varbitChanged.getIndex() == VarPlayer.CANNON_AMMO.getId())
+		if (it.getIndex() == VarPlayer.CANNON_AMMO.getId())
 		{
 			cballsLeft = client.getVar(VarPlayer.CANNON_AMMO);
 
@@ -291,29 +290,29 @@ public class CannonPlugin extends Plugin {
 		}
 	}
 
-	@Subscribe
-	public void onChatMessage(ChatMessage event)
+	@Override
+	public void onChatMessage(ChatMessage it)
 	{
-		if (event.getType() != ChatMessageType.SPAM && event.getType() != ChatMessageType.GAMEMESSAGE)
+		if (it.getType() != ChatMessageType.SPAM && it.getType() != ChatMessageType.GAMEMESSAGE)
 		{
 			return;
 		}
 
-		if (event.getMessage().equals("You add the furnace."))
+		if (it.getMessage().equals("You add the furnace."))
 		{
 			cannonPlaced = true;
 			addCounter();
 			firstCannonLoad = true;
 		}
-		else if (event.getMessage().contains("You pick up the cannon")
-			|| event.getMessage().contains("Your cannon has decayed. Speak to Nulodion to get a new one!")
-			|| event.getMessage().contains("Your cannon has been destroyed!"))
+		else if (it.getMessage().contains("You pick up the cannon")
+			|| it.getMessage().contains("Your cannon has decayed. Speak to Nulodion to get a new one!")
+			|| it.getMessage().contains("Your cannon has been destroyed!"))
 		{
 			cannonPlaced = false;
 			removeCounter();
 			cannonPosition = null;
 		}
-		else if (event.getMessage().startsWith("You load the cannon with"))
+		else if (it.getMessage().startsWith("You load the cannon with"))
 		{
 			// Set the cannon's position and object if the player's animation was interrupted during setup
 			if (cannonPosition == null && clickedCannonLocation != null)
@@ -345,14 +344,14 @@ public class CannonPlugin extends Plugin {
 
 			cannonBallNotificationSent = false;
 		}
-		else if (event.getMessage().contains("Your cannon is out of ammo!"))
+		else if (it.getMessage().contains("Your cannon is out of ammo!"))
 		{
 			if (config.showCannonNotifications())
 			{
 			//	notifier.notify("Your cannon is out of ammo!");
 			}
 		}
-		else if (event.getMessage().equals("This isn't your cannon!") || event.getMessage().equals("This is not your cannon."))
+		else if (it.getMessage().equals("This isn't your cannon!") || it.getMessage().equals("This is not your cannon."))
 		{
 			clickedCannonLocation = null;
 		}
