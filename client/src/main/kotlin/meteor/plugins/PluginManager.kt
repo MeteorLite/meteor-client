@@ -18,6 +18,7 @@ import meteor.plugins.bank.BankPlugin
 import meteor.plugins.banksetups.BankSetups
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.camera.CameraPlugin
+import meteor.plugins.cannonreloader.CannonReloaderPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.commands.CommandsPlugin
 import meteor.plugins.continueclicker.ContinueClickerPlugin
@@ -80,10 +81,12 @@ import net.runelite.client.plugins.mining.MiningPlugin
 import net.runelite.client.plugins.motherlode.MotherlodePlugin
 import net.runelite.client.plugins.npchighlight.NpcIndicatorsPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
+import net.runelite.client.plugins.cannon.CannonPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
+import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
 import rs117.hd.HdPlugin
 import java.io.File
@@ -122,6 +125,8 @@ object PluginManager {
         init<BoostsPlugin>()
         init<BossTimersPlugin>()
         init<CameraPlugin>()
+        init<CannonPlugin>()
+        init<CannonReloaderPlugin>()
         init<ChatCommandsPlugin>()
         init<ChatHistoryPlugin>()
         init<ClueScrollPlugin>()
@@ -183,6 +188,7 @@ object PluginManager {
         init<WorldMapWalkerPlugin>()
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
+        init<ZulrahPlugin>()
     }
 
     private fun loadExternal(jar: File) {
