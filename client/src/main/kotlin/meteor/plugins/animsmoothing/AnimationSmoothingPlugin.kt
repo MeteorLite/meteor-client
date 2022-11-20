@@ -41,8 +41,8 @@ class AnimationSmoothingPlugin : Plugin() {
         client.isInterpolateObjectAnimations = false
     }
 
-    override fun onConfigChanged(event: ConfigChanged) {
-        if (event.group == CONFIG_GROUP) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group == CONFIG_GROUP) {
             update()
         }
     }

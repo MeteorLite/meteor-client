@@ -60,15 +60,15 @@ class FpsOverlay internal constructor(
         position = OverlayPosition.DYNAMIC
     }
 
-    override fun onFocusChanged(event: FocusChanged) {
-        isFocused = event.focused
+    override fun onFocusChanged(it: FocusChanged) {
+        isFocused = it.focused
     }
 
     private val isEnforced: Boolean
-        private get() = (config.limitFps()
+        get() = (config.limitFps()
                 || config.limitFpsUnfocused() && !isFocused)
     private val fpsValueColor: Color
-        private get() = if (isEnforced) Color.red else Color.yellow
+        get() = if (isEnforced) Color.red else Color.yellow
 
     override fun render(graphics: Graphics2D): Dimension? {
         if (!config.drawFps()) {

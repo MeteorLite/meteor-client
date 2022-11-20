@@ -297,7 +297,7 @@ class Hooks : Callbacks {
 
     companion object {
         @JvmStatic
-        fun clearColorBuffer(x: Int, y: Int, width: Int, height: Int, color: Int) {
+        fun clearColorBuffer(x: Int, y: Int, width: Int, height: Int) {
             val bp = client.bufferProvider
             val canvasWidth = bp.width
             val pixels = bp.pixels

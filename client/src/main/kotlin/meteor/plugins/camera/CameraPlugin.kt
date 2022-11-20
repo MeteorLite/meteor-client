@@ -117,7 +117,7 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
         client.setInvertPitch(config.invertPitch())
     }
 
-    override fun onScriptCallbackEvent(event: ScriptCallbackEvent) {
+    override fun onScriptCallbackEvent(it: ScriptCallbackEvent) {
         if (client.indexScripts.isOverlayOutdated) {
             // if any cache overlay fails to load then assume at least one of the zoom scripts is outdated
             // and prevent zoom extending entirely.
@@ -125,14 +125,14 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
         }
         val intStack = client.intStack
         val intStackSize = client.intStackSize
-        if (!controlDown && "scrollWheelZoom" == event.eventName && config.controlFunction() == ControlFunction.CONTROL_TO_ZOOM) {
+        if (!controlDown && "scrollWheelZoom" == it.eventName && config.controlFunction() == ControlFunction.CONTROL_TO_ZOOM) {
             intStack[intStackSize - 1] = 1
         }
-        if ("innerZoomLimit" == event.eventName && config.innerLimit()) {
+        if ("innerZoomLimit" == it.eventName && config.innerLimit()) {
             intStack[intStackSize - 1] = INNER_ZOOM_LIMIT
             return
         }
-        if ("outerZoomLimit" == event.eventName) {
+        if ("outerZoomLimit" == it.eventName) {
             val outerLimit = Ints.constrainToRange(
                 config.outerLimit(),
              OUTER_LIMIT_MIN,
@@ -142,18 +142,18 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
             intStack[intStackSize - 1] = outerZoomLimit
             return
         }
-        if ("scrollWheelZoomIncrement" == event.eventName && config.zoomIncrement() != DEFAULT_ZOOM_INCREMENT) {
+        if ("scrollWheelZoomIncrement" == it.eventName && config.zoomIncrement() != DEFAULT_ZOOM_INCREMENT) {
             intStack[intStackSize - 1] = config.zoomIncrement()
             return
         }
-        if ("lookPreservePitch" == event.eventName && config.compassLookPreservePitch()) {
+        if ("lookPreservePitch" == it.eventName && config.compassLookPreservePitch()) {
             intStack[intStackSize - 1] = client.cameraPitch
             return
         }
         if (config.innerLimit()) {
             // This lets the options panel's slider have an exponential rate
             val exponent = 2.0
-            when (event.eventName) {
+            when (it.eventName) {
                 "zoomLinToExp" -> {
                     val range = intStack[intStackSize - 1].toDouble()
                     var value = intStack[intStackSize - 2].toDouble()
@@ -170,13 +170,13 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
         }
     }
 
-    override fun onFocusChanged(event: FocusChanged) {
-        if (!event.focused) {
+    override fun onFocusChanged(it: FocusChanged) {
+        if (!it.focused) {
             controlDown = false
         }
     }
 
-    override fun onConfigChanged(ev: ConfigChanged) {
+    override fun onConfigChanged(it: ConfigChanged) {
         copyConfigs()
     }
 
@@ -225,13 +225,13 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
      * Checks if the menu has any options, because menu entries are built each
      * tick and the MouseListener runs on the awt thread
      */
-    override fun onClientTick(event: ClientTick) {
+    override fun onClientTick(it: ClientTick) {
         menuHasEntries = hasMenuEntries(client.menuEntries)
         sliderTooltip = null
     }
 
-    override fun onScriptPreFired(ev: ScriptPreFired) {
-        when (ev.scriptId) {
+    override fun onScriptPreFired(it: ScriptPreFired) {
+        when (it.scriptId) {
             ScriptID.SETTINGS_SLIDER_CHOOSE_ONOP -> {
                 val arg = client.intStackSize - 7
                 val intStack = client.intStack
@@ -243,8 +243,8 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
         }
     }
 
-    override fun onWidgetLoaded(ev: WidgetLoaded) {
-        if (ev.groupId == WidgetID.SETTINGS_SIDE_GROUP_ID) {
+    override fun onWidgetLoaded(it: WidgetLoaded) {
+        if (it.groupId == WidgetID.SETTINGS_SIDE_GROUP_ID) {
             addZoomTooltip(client.getWidget(WidgetInfo.SETTINGS_SIDE_CAMERA_ZOOM_SLIDER_TRACK))
         }
     }
@@ -259,14 +259,14 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
         return Tooltip("Camera Zoom: $value / $max")
     }
 
-    override fun onBeforeRender(ev: BeforeRender) {
+    override fun onBeforeRender(it: BeforeRender) {
         if (sliderTooltip != null) {
             tooltipManager.add(sliderTooltip!!)
         }
     }
 
-    override fun onGameStateChanged(gameStateChanged: GameStateChanged) {
-        when (gameStateChanged.gameState) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        when (it.gameState) {
             GameState.HOPPING -> savedCameraYaw = client.mapAngle
             GameState.LOGGED_IN -> {
                 if (savedCameraYaw != 0 && config.preserveYaw()) {

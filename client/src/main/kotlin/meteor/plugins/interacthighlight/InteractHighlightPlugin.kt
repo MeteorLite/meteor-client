@@ -33,6 +33,7 @@ import net.runelite.api.*
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
 
+@Suppress("DEPRECATION")
 @PluginDescriptor(
     name = "Interact Highlight",
     description = "Outlines npcs and objects you interact with or hover over",

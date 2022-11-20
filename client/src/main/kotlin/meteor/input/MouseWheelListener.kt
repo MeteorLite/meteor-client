@@ -27,5 +27,5 @@ package meteor.input
 import java.awt.event.MouseWheelEvent
 
 interface MouseWheelListener {
-    fun mouseWheelMoved(event: MouseWheelEvent): MouseWheelEvent
+    fun mouseWheelMoved(it: MouseWheelEvent): MouseWheelEvent
 }

@@ -397,15 +397,15 @@ class XpTrackerPlugin : Plugin() {
         }
     }*/
 
-    override fun onMenuEntryAdded(event: MenuEntryAdded) {
-        val widgetID: Int = event.param1
-        if (WidgetInfo.TO_GROUP(widgetID) != WidgetID.SKILLS_GROUP_ID || !event.option!!.startsWith("View")
+    override fun onMenuEntryAdded(it: MenuEntryAdded) {
+        val widgetID: Int = it.param1
+        if (WidgetInfo.TO_GROUP(widgetID) != WidgetID.SKILLS_GROUP_ID || !it.option!!.startsWith("View")
         ) {
             return
         }
 
         // Get skill from menu option, eg. "View <col=ff981f>Attack</col> guide"
-        val skillText: String = event.option!!.split(" ").get(1)
+        val skillText: String = it.option!!.split(" ").get(1)
         val skill = Skill.valueOf(Text.removeTags(skillText).uppercase(Locale.getDefault()))
         client.createMenuEntry(-1)
             .setTarget(skillText)

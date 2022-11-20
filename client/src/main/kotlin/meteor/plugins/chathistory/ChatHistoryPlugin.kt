@@ -110,13 +110,13 @@ class ChatHistoryPlugin : Plugin(), KeyListener {
         }
     }
 
-    override fun onMenuOpened(event: MenuOpened) {
-        if (event.menuEntries.size < 2 || !config.copyToClipboard()) {
+    override fun onMenuOpened(it: MenuOpened) {
+        if (it.menuEntries.size < 2 || !config.copyToClipboard()) {
             return
         }
 
         // Use second entry as first one can be walk here with transparent chatbox
-        val entry = event.menuEntries[event.menuEntries.size - 2]
+        val entry = it.menuEntries[it.menuEntries.size - 2]
         if (entry.type != MenuAction.CC_OP_LOW_PRIORITY && entry.type != MenuAction.RUNELITE) {
             return
         }
@@ -157,30 +157,30 @@ class ChatHistoryPlugin : Plugin(), KeyListener {
                 }
     }
 
-    override fun onMenuOptionClicked(event: MenuOptionClicked) {
-        val menuOption = event.getMenuOption()
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        val menuOption = it.getMenuOption()
 
         // The menu option for clear history is "<col=ffff00>Public:</col> Clear history"
         if (menuOption!!.endsWith(CLEAR_HISTORY)) {
-            clearChatboxHistory(ChatboxTab.of(event.getParam1()))
+            clearChatboxHistory(ChatboxTab.of(it.getParam1()))
         }
     }
 
-    override fun onMenuEntryAdded(entry: MenuEntryAdded) {
-        if (entry.identifier != MenuAction.CC_OP.id) {
+    override fun onMenuEntryAdded(it: MenuEntryAdded) {
+        if (it.identifier != MenuAction.CC_OP.id) {
             return
         }
-        val tab: ChatboxTab? = ChatboxTab.of(entry.param1)
-        if (tab?.after == null || !config.clearHistory() || !entry.option!!.endsWith(tab.after)) {
+        val tab: ChatboxTab? = ChatboxTab.of(it.param1)
+        if (tab?.after == null || !config.clearHistory() || !it.option!!.endsWith(tab.after)) {
             return
         }
         val clearEntry = client.createMenuEntry(-2)
                 .setType(MenuAction.RUNELITE_HIGH_PRIORITY)
-        clearEntry.param1 = entry.param1
+        clearEntry.param1 = it.param1
         val optionBuilder = StringBuilder()
         if (tab != ChatboxTab.ALL) {
             // Pull tab name from menu since Trade/Group is variable
-            val option = entry.option
+            val option = it.option
             val idx = option!!.indexOf(':')
             if (idx != -1) {
                 optionBuilder.append(option, 0, idx).append(":</col> ")

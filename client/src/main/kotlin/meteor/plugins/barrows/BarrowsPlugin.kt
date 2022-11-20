@@ -86,14 +86,14 @@ class BarrowsPlugin : Plugin() {
         }
     }
 
-    override fun onConfigChanged(event: ConfigChanged) {
-        if (event.group == "barrows" && !config.showPrayerDrainTimer()) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group == "barrows" && !config.showPrayerDrainTimer()) {
             stopPrayerDrainTimer()
         }
     }
 
-    override fun onGameStateChanged(event: GameStateChanged) {
-        if (event.gameState == GameState.LOGGED_IN) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.gameState == GameState.LOGGED_IN) {
             val isInCrypt = isInCrypt
             if (!isInCrypt && barrowsPrayerDrainTimer != null) {
                 stopPrayerDrainTimer()
@@ -103,8 +103,8 @@ class BarrowsPlugin : Plugin() {
         }
     }
 
-    override fun onWidgetLoaded(event: WidgetLoaded) {
-        if (event.groupId == WidgetID.BARROWS_REWARD_GROUP_ID && config.showChestValue()) {
+    override fun onWidgetLoaded(it: WidgetLoaded) {
+        if (it.groupId == WidgetID.BARROWS_REWARD_GROUP_ID && config.showChestValue()) {
             val barrowsRewardContainer = client.getItemContainer(InventoryID.BARROWS_REWARD)
                     ?: return
             val items = barrowsRewardContainer.items
@@ -122,7 +122,7 @@ class BarrowsPlugin : Plugin() {
             chatMessageManager!!.queue(QueuedMessage.builder()
                     .type(ChatMessageType.ITEM_EXAMINE)
                     .runeLiteFormattedMessage(message.build()))
-        } else if (event.groupId == WidgetID.BARROWS_PUZZLE_GROUP_ID) {
+        } else if (it.groupId == WidgetID.BARROWS_PUZZLE_GROUP_ID) {
             val answer = client.getWidget(WidgetInfo.BARROWS_FIRST_PUZZLE)!!.modelId - 3
             puzzleAnswer = null
             for (puzzleNode in POSSIBLE_SOLUTIONS) {
@@ -135,7 +135,7 @@ class BarrowsPlugin : Plugin() {
         }
     }
 
-    override fun onBeforeRender(beforeRender: BeforeRender) {
+    override fun onBeforeRender(it: BeforeRender) {
         // The barrows brothers and potential overlays have timers to unhide them each tick. Set them
         // hidden here instead of in the overlay, because if the overlay renders on the ABOVE_WIDGETS
         // layer due to being moved outside of the snap corner, it will be running after the overlays

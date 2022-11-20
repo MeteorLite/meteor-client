@@ -30,11 +30,9 @@ import eventbus.events.GameTick
 import eventbus.events.GraphicChanged
 import lombok.AccessLevel
 import lombok.Getter
-import meteor.Main
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.infobox.InfoBox
 import meteor.ui.overlay.infobox.InfoBoxManager
 import net.runelite.api.ChatMessageType
@@ -74,7 +72,7 @@ class CookingPlugin : Plugin() {
 			session = null;
 		}
 	}*/
-    override fun onGameTick(gameTick: GameTick) {
+    override fun onGameTick(it: GameTick) {
         if (session == null || config.statTimeout() == 0) {
             return
         }
@@ -85,9 +83,9 @@ class CookingPlugin : Plugin() {
         }
     }
 
-    override fun onGraphicChanged(graphicChanged: GraphicChanged) {
+    override fun onGraphicChanged(it: GraphicChanged) {
         val player = client.localPlayer
-        if (graphicChanged.actor !== player) {
+        if (it.actor !== player) {
             return
         }
         if (player.graphic == GraphicID.WINE_MAKE && config.fermentTimer()) {
@@ -105,11 +103,11 @@ class CookingPlugin : Plugin() {
         }
     }
 
-    override fun onChatMessage(event: ChatMessage) {
-        if (event.type != ChatMessageType.SPAM) {
+    override fun onChatMessage(it: ChatMessage) {
+        if (it.type != ChatMessageType.SPAM) {
             return
         }
-        val message = event.message
+        val message = it.message
         if (message.startsWith("You successfully cook")
                 || message.startsWith("You successfully bake")
                 || message.startsWith("You successfully fry")

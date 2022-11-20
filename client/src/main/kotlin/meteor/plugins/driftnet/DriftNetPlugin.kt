@@ -28,12 +28,9 @@ package meteor.plugins.driftnet
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableSet
 import eventbus.events.*
-import lombok.Getter
-import meteor.Main
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import meteor.ui.overlay.OverlayManager
 import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
 import java.util.function.Consumer
@@ -79,11 +76,11 @@ class DriftNetPlugin : Plugin() {
         reset()
     }
 
-    override fun onGameStateChanged(event: GameStateChanged) {
-        if (event.gameState != GameState.LOGGED_IN) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.gameState != GameState.LOGGED_IN) {
             annette = null
         }
-        when (event.gameState) {
+        when (it.gameState) {
             GameState.LOGIN_SCREEN, GameState.HOPPING, GameState.LOADING -> reset()
             GameState.LOGGED_IN -> {
                 inDriftNetArea = checkArea()
@@ -101,7 +98,7 @@ class DriftNetPlugin : Plugin() {
         inDriftNetArea = false
     }
 
-    override fun onVarbitChanged(event: VarbitChanged) {
+    override fun onVarbitChanged(it: VarbitChanged) {
         updateDriftNetVarbits()
     }
 
@@ -117,9 +114,9 @@ class DriftNetPlugin : Plugin() {
         }
     }
 
-    override fun onInteractingChanged(event: InteractingChanged) {
-        if (armInteraction && event.source === client.localPlayer && event.target is NPC && (event.target as NPC?)!!.id == NpcID.FISH_SHOAL) {
-            tagFish(event.target)
+    override fun onInteractingChanged(it: InteractingChanged) {
+        if (armInteraction && it.source === client.localPlayer && it.target is NPC && (it.target as NPC?)!!.id == NpcID.FISH_SHOAL) {
+            tagFish(it.target)
             armInteraction = false
         }
     }
@@ -148,11 +145,11 @@ class DriftNetPlugin : Plugin() {
         armInteraction = false
     }
 
-    override fun onChatMessage(event: ChatMessage) {
+    override fun onChatMessage(it: ChatMessage) {
         if (!inDriftNetArea) {
             return
         }
-        if (event.type == ChatMessageType.SPAM && event.message == CHAT_PRODDING_FISH) {
+        if (it.type == ChatMessageType.SPAM && it.message == CHAT_PRODDING_FISH) {
             val target = client.localPlayer!!.interacting
             if (target is NPC && target.id == NpcID.FISH_SHOAL) {
                 tagFish(target)
@@ -169,45 +166,45 @@ class DriftNetPlugin : Plugin() {
         taggedFish[fishTarget] = client.tickCount
     }
 
-    override fun onNpcSpawned(event: NpcSpawned) {
-        val npc = event.npc
+    override fun onNpcSpawned(it: NpcSpawned) {
+        val npc = it.npc
         if (npc.id == NpcID.FISH_SHOAL) {
             fish.add(npc)
         }
     }
 
-    override fun onNpcDespawned(event: NpcDespawned) {
-        val npc = event.npc
+    override fun onNpcDespawned(it: NpcDespawned) {
+        val npc = it.npc
         fish.remove(npc)
         taggedFish.remove(npc)
     }
 
-    override fun onGameObjectSpawned(event: GameObjectSpawned) {
-        val `object` = event.gameObject
-        if (`object`.id == ObjectID.ANNETTE) {
-            annette = `object`
+    override fun onGameObjectSpawned(it: GameObjectSpawned) {
+        val gameObj = it.gameObject
+        if (gameObj.id == ObjectID.ANNETTE) {
+            annette = gameObj
         }
         for (net in NETS) {
-            if (net.objectId == `object`.id) {
-                net.net = `object`
+            if (net.objectId == gameObj.id) {
+                net.net = gameObj
             }
         }
     }
 
-    override fun onGameObjectDespawned(event: GameObjectDespawned) {
-        val `object` = event.gameObject
-        if (`object` === annette) {
+    override fun onGameObjectDespawned(it: GameObjectDespawned) {
+        val gameObj = it.gameObject
+        if (gameObj === annette) {
             annette = null
         }
         for (net in NETS) {
-            if (net.objectId == `object`.id) {
+            if (net.objectId == gameObj.id) {
                 net.net = null
             }
         }
     }
 
-    override fun onItemContainerChanged(event: ItemContainerChanged) {
-        val itemContainer = event.itemContainer
+    override fun onItemContainerChanged(it: ItemContainerChanged) {
+        val itemContainer = it.itemContainer
         if (itemContainer !== client.getItemContainer(InventoryID.INVENTORY)) {
             return
         }

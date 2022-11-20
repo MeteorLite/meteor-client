@@ -30,8 +30,8 @@ class JadAutoPrayerPlugin : Plugin() {
     }
 
     @Subscribe
-    override fun onAnimationChanged(event: AnimationChanged) {
-        val actor: Actor = event.actor
+    override fun onAnimationChanged(it: AnimationChanged) {
+        val actor: Actor = it.actor
         when (actor.animation) {
             AnimationID.TZTOK_JAD_MAGIC_ATTACK, JALTOK_JAD_MAGE_ATTACK -> if (client.getVar(
                     Varbits.PRAYER_PROTECT_FROM_MAGIC

@@ -31,8 +31,8 @@ import meteor.ui.composables.ui.onPluginToggled
 
 @Composable
 fun configPanel() {
-    if (lastPlugin.configuration != null) descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)!!
-    var mod = Modifier.background(if (darkLightMode.value) darkThemeColors.background else lightThemeColors.background
+    if (lastPlugin.configuration != null) descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)
+    val mod = Modifier.background(if (darkLightMode.value) darkThemeColors.background else lightThemeColors.background
     ).fillMaxHeight().width(375.dp)
     Column {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {

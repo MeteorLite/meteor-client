@@ -27,11 +27,8 @@ package meteor.plugins.blastmine
 import eventbus.events.GameObjectSpawned
 import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
-import lombok.Getter
-import meteor.Main
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.overlay.*
 import net.runelite.api.GameState
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.WidgetInfo
@@ -56,8 +53,8 @@ class BlastMinePlugin : Plugin() {
         }
     }
 
-    override fun onGameObjectSpawned(event: GameObjectSpawned) {
-        val gameObject = event.gameObject
+    override fun onGameObjectSpawned(it: GameObjectSpawned) {
+        val gameObject = it.gameObject
         val blastMineRockType: BlastMineRockType = BlastMineRockType.getRockType(gameObject.id)
                 ?: return
         val newRock = BlastMineRock(gameObject, blastMineRockType)
@@ -67,13 +64,13 @@ class BlastMinePlugin : Plugin() {
         }
     }
 
-    override fun onGameStateChanged(event: GameStateChanged) {
-        if (event.gameState == GameState.LOADING) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.gameState == GameState.LOADING) {
             rocks.clear()
         }
     }
 
-    override fun onGameTick(gameTick: GameTick) {
+    override fun onGameTick(it: GameTick) {
         if (rocks.isEmpty()) {
             return
         }

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package meteor.api.packets
 
 import com.google.common.reflect.TypeToken
@@ -401,7 +403,7 @@ object ClientPackets {
         var selectedWidgetSlot = client.selectedSpellChildIndex
         // Yes, keeping both in case of a future fix in naming
         val selectedWidget = client.selectedSpellWidget
-        val selectedSpellWidget = client.selectedSpellWidget
+
         when (opcode) {
             MenuAction.ITEM_USE_ON_GAME_OBJECT, MenuAction.WIDGET_TARGET_ON_GAME_OBJECT -> return createItemOnObjectPacket(
                 "OPOBJT",

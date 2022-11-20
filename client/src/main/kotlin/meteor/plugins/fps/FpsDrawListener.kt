@@ -67,8 +67,8 @@ class FpsDrawListener internal constructor(private val config: FpsConfig) : Even
         }
     }
 
-    override fun onFocusChanged(event: FocusChanged) {
-        isFocused = event.focused
+    override fun onFocusChanged(it: FocusChanged) {
+        isFocused = it.focused
         reloadConfig() // load new delay
     }
 

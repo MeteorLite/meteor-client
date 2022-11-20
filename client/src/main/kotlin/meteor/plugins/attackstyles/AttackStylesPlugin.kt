@@ -31,13 +31,9 @@ import eventbus.events.ConfigChanged
 import eventbus.events.GameStateChanged
 import eventbus.events.ScriptPostFired
 import eventbus.events.VarbitChanged
-import meteor.Main
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.plugins.animsmoothing.AnimationSmoothingConfig
 import meteor.rs.ClientThread
-import meteor.rs.ClientThread.invoke
-import meteor.ui.overlay.OverlayManager
 import net.runelite.api.*
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
@@ -101,14 +97,14 @@ class AttackStylesPlugin : Plugin() {
         hideWidget(client.getWidget(WidgetInfo.COMBAT_AUTO_RETALIATE), config.hideAutoRetaliate())
     }
 
-    override fun onGameStateChanged(event: GameStateChanged) {
-        if (event.gameState == GameState.LOGGED_IN) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.gameState == GameState.LOGGED_IN) {
             resetWarnings()
         }
     }
 
-    override fun onVarbitChanged(event: VarbitChanged) {
-        if (event.getVarpId() == VarPlayer.ATTACK_STYLE.id || event.getVarbitId() == Varbits.EQUIPPED_WEAPON_TYPE || event.getVarbitId() == Varbits.DEFENSIVE_CASTING_MODE) {
+    override fun onVarbitChanged(it: VarbitChanged) {
+        if (it.getVarpId() == VarPlayer.ATTACK_STYLE.id || it.getVarbitId() == Varbits.EQUIPPED_WEAPON_TYPE || it.getVarbitId() == Varbits.DEFENSIVE_CASTING_MODE) {
             val currentAttackStyleVarbit = client.getVarpValue(VarPlayer.ATTACK_STYLE.id)
             val currentEquippedWeaponTypeVarbit = client.getVarbitValue(Varbits.EQUIPPED_WEAPON_TYPE)
             val currentCastingModeVarbit = client.getVarbitValue(Varbits.DEFENSIVE_CASTING_MODE)
@@ -126,10 +122,10 @@ class AttackStylesPlugin : Plugin() {
         }
     }
 
-    override fun onConfigChanged(event: ConfigChanged) {
-        if (event.group == "attackIndicator") {
-            val enabled = java.lang.Boolean.TRUE.toString() == event.newValue
-            when (event.key) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group == "attackIndicator") {
+            val enabled = java.lang.Boolean.TRUE.toString() == it.newValue
+            when (it.key) {
                 "warnForDefensive" -> updateWarnedSkills(enabled, Skill.DEFENCE)
                 "warnForAttack" -> updateWarnedSkills(enabled, Skill.ATTACK)
                 "warnForStrength" -> updateWarnedSkills(enabled, Skill.STRENGTH)

@@ -7,16 +7,16 @@ object NPCs {
         var npcs: ArrayList<NPC>? = null
         for (npc in Main.client.npcs) {
             npc?.let {
-                val npc = NPC(it)
+                val thisNpc = NPC(it)
                 if (npcs == null) {
                     npcs = ArrayList()
-                    if ((alive && !npc.npc.isDead) || !alive) {
-                        npcs!!.add(npc)
+                    if ((alive && !thisNpc.npc.isDead) || !alive) {
+                        npcs!!.add(thisNpc)
                     } else {}
 
                 } else
-                    if ((alive && !npc.npc.isDead) || !alive) {
-                        npcs!!.add(npc)
+                    if ((alive && !thisNpc.npc.isDead) || !alive) {
+                        npcs!!.add(thisNpc)
                     } else {}
             }
         }
