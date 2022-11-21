@@ -28,7 +28,7 @@ class HiScorePlugin : Plugin() {
         "HiScore",
         Octicons.Graph16,
         iconColor = uiColor,
-        description = "Notes",
+        description = "Player Hiscores",
         onClick = {
             onClick()
         },

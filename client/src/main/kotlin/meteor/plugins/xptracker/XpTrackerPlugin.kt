@@ -81,7 +81,7 @@ class XpTrackerPlugin : Plugin() {
         "xp",
         Octicons.Meter16,
         iconColor = uiColor,
-        description = "Notes",
+        description = "Xp tracker   ",
         onClick = {
             onClick()
         },

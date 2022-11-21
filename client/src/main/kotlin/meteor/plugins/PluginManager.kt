@@ -70,6 +70,7 @@ import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.hunter.HunterPlugin
+import meteor.plugins.infopanel.InfoPanelPlugin
 import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -150,6 +151,7 @@ object PluginManager {
         init<HerbiboarPlugin>()
         init<HiScorePlugin>()
         init<HunterPlugin>()
+        init<InfoPanelPlugin>()
         init<InterfaceStylesPlugin>()
         init<InteractHighlightPlugin>()
         init<InventoryTagsPlugin>()
