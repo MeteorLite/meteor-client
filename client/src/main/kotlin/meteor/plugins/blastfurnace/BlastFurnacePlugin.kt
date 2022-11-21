@@ -29,13 +29,9 @@ import eventbus.events.GameObjectDespawned
 import eventbus.events.GameObjectSpawned
 import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
-import lombok.AccessLevel
-import lombok.Getter
-import meteor.Main
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.infobox.InfoBox
 import meteor.ui.overlay.infobox.InfoBoxManager
 import net.runelite.api.*
@@ -71,30 +67,30 @@ class BlastFurnacePlugin : Plugin() {
         foremanTimer = null
     }
 
-    override fun onGameObjectSpawned(event: GameObjectSpawned) {
-        val gameObject = event.gameObject
+    override fun onGameObjectSpawned(it: GameObjectSpawned) {
+        val gameObject = it.gameObject
         when (gameObject.id) {
             ObjectID.CONVEYOR_BELT -> conveyorBelt = gameObject
             BAR_DISPENSER -> barDispenser = gameObject
         }
     }
 
-    override fun onGameObjectDespawned(event: GameObjectDespawned) {
-        val gameObject = event.gameObject
+    override fun onGameObjectDespawned(it: GameObjectDespawned) {
+        val gameObject = it.gameObject
         when (gameObject.id) {
             ObjectID.CONVEYOR_BELT -> conveyorBelt = null
             BAR_DISPENSER -> barDispenser = null
         }
     }
 
-    override fun onGameStateChanged(event: GameStateChanged) {
-        if (event.gameState == GameState.LOADING) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.gameState == GameState.LOADING) {
             conveyorBelt = null
             barDispenser = null
         }
     }
 
-    override fun onGameTick(event: GameTick) {
+    override fun onGameTick(it: GameTick) {
         val npcDialog = client.getWidget(WidgetInfo.DIALOG_NPC_TEXT) ?: return
 
         // blocking dialog check until 5 minutes needed to avoid re-adding while dialog message still displayed

@@ -31,8 +31,8 @@ import java.awt.event.MouseWheelEvent
 
 object TranslateMouseWheelListener : MouseWheelListener {
     val client = Main.client
-    override fun mouseWheelMoved(event: MouseWheelEvent): MouseWheelEvent {
-        return translateEvent(event)
+    override fun mouseWheelMoved(it: MouseWheelEvent): MouseWheelEvent {
+        return translateEvent(it)
     }
 
     private fun translateEvent(e: MouseWheelEvent): MouseWheelEvent {

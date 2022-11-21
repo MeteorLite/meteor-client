@@ -69,37 +69,37 @@ class GroundItemInputListener(var plugin: GroundItemsPlugin, var config: GroundI
         }
     }
 
-    override fun mousePressed(e: MouseEvent): MouseEvent {
-        val mousePos = Point(e.x, e.y)
+    override fun mousePressed(mouseEvent: MouseEvent): MouseEvent {
+        val mousePos = Point(mouseEvent.x, mouseEvent.y)
         if (plugin.hotKeyPressed) {
-            if (SwingUtilities.isLeftMouseButton(e)) {
+            if (SwingUtilities.isLeftMouseButton(mouseEvent)) {
                 // Process both click boxes for hidden and highlighted items
                 if (plugin.hiddenBoxBounds != null && plugin.hiddenBoxBounds!!.key.contains(mousePos)) {
                     plugin.updateList(plugin.hiddenBoxBounds!!.value.name!!, true)
-                    e.consume()
-                    return e
+                    mouseEvent.consume()
+                    return mouseEvent
                 }
                 if (plugin.highlightBoxBounds != null && plugin.highlightBoxBounds!!.key.contains(mousePos)) {
                     plugin.updateList(plugin.highlightBoxBounds!!.value.name!!, false)
-                    e.consume()
-                    return e
+                    mouseEvent.consume()
+                    return mouseEvent
                 }
 
                 // There is one name click box for left click and one for right click
                 if (plugin.textBoxBounds != null && plugin.textBoxBounds!!.key.contains(mousePos)) {
                     plugin.updateList(plugin.textBoxBounds!!.value.name!!, false)
-                    e.consume()
-                    return e
+                    mouseEvent.consume()
+                    return mouseEvent
                 }
-            } else if (SwingUtilities.isRightMouseButton(e)) {
+            } else if (SwingUtilities.isRightMouseButton(mouseEvent)) {
                 if (plugin.textBoxBounds != null && plugin.textBoxBounds!!.key.contains(mousePos)) {
                     plugin.updateList(plugin.textBoxBounds!!.value.name!!, true)
-                    e.consume()
-                    return e
+                    mouseEvent.consume()
+                    return mouseEvent
                 }
             }
         }
-        return e
+        return mouseEvent
     }
 
     companion object {

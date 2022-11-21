@@ -1,7 +1,6 @@
 package meteor.plugins.oneclickagility
 
 import eventbus.events.*
-import meteor.Main
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -28,8 +27,8 @@ class OneClickAgilityPlugin : Plugin() {
         resetCourse()
     }
 
-    override fun onConfigChanged(event: ConfigChanged) {
-        if (event.group == "oneclickagility") {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group == "oneclickagility") {
             resetCourse()
         }
     }
@@ -39,18 +38,17 @@ class OneClickAgilityPlugin : Plugin() {
         gameEventManager.simulateGameEvents(this)
     }
 
-    override fun onMenuOptionClicked(event: MenuOptionClicked) {
-        if (event.getMenuOption() == "<col=00ff00>One Click Agility") {
-            handleClick(event)
-        } else if (event.getMenuOption() == "One Click Agility") {
-            event.consume()
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if (it.getMenuOption() == "<col=00ff00>One Click Agility") {
+            handleClick(it)
+        } else if (it.getMenuOption() == "One Click Agility") {
+            it.consume()
         }
     }
 
-    override fun onClientTick(event: ClientTick) {
+    override fun onClientTick(it: ClientTick) {
         if (client.localPlayer == null || client.gameState != GameState.LOGGED_IN) return
-        val text: String
-        text = if (course!!.getCurrentObstacleArea(client.localPlayer) == null) {
+        val text: String = if (course!!.getCurrentObstacleArea(client.localPlayer) == null) {
             if (config.consumeMisclicks()) {
                 "One Click Agility"
             } else {
@@ -70,77 +68,77 @@ class OneClickAgilityPlugin : Plugin() {
         )
     }
 
-    override fun onGameObjectSpawned(event: GameObjectSpawned) {
-        if (event.gameObject == null) {
+    override fun onGameObjectSpawned(it: GameObjectSpawned) {
+        if (it.gameObject == null) {
             return
         }
-        if (event.gameObject.id == 10869) {
-            pyramidTop = event.gameObject
+        if (it.gameObject.id == 10869) {
+            pyramidTop = it.gameObject
         }
-        if (PORTAL_IDS.contains(event.gameObject.id)) {
-            portals.add(event.gameObject)
+        if (PORTAL_IDS.contains(it.gameObject.id)) {
+            portals.add(it.gameObject)
             return
         }
-        addToCourse(event.gameObject)
+        addToCourse(it.gameObject)
     }
 
-    override fun onGameObjectDespawned(event: GameObjectDespawned) {
-        if (event.gameObject == null) {
+    override fun onGameObjectDespawned(it: GameObjectDespawned) {
+        if (it?.gameObject == null) {
             return
         }
-        if (PORTAL_IDS.contains(event.gameObject.id)) {
-            portals.remove(event.gameObject)
+        if (PORTAL_IDS.contains(it.gameObject.id)) {
+            portals.remove(it.gameObject)
             return
         }
-        if (event.gameObject.id == 10869) {
+        if (it.gameObject.id == 10869) {
             pyramidTop = null
         }
-        removeFromCourse(event.gameObject)
+        removeFromCourse(it.gameObject)
     }
 
-    override fun onWallObjectSpawned(event: WallObjectSpawned) {
-        addToCourse(event.wallObject)
+    override fun onWallObjectSpawned(it: WallObjectSpawned) {
+        addToCourse(it.wallObject)
     }
 
-    override fun onWallObjectDespawned(event: WallObjectDespawned) {
-        removeFromCourse(event.wallObject)
+    override fun onWallObjectDespawned(it: WallObjectDespawned) {
+        removeFromCourse(it.wallObject)
     }
 
-    override fun onDecorativeObjectSpawned(event: DecorativeObjectSpawned) {
-        if (event.decorativeObject.id == 10851) {
-            if (pyramidTopObstacle == null || pyramidTopObstacle!!.y > event.decorativeObject.y) {
-                pyramidTopObstacle = event.decorativeObject
+    override fun onDecorativeObjectSpawned(it: DecorativeObjectSpawned) {
+        if (it.decorativeObject.id == 10851) {
+            if (pyramidTopObstacle == null || pyramidTopObstacle!!.y > it.decorativeObject.y) {
+                pyramidTopObstacle = it.decorativeObject
                 return
             }
         }
-        addToCourse(event.decorativeObject)
+        addToCourse(it.decorativeObject)
     }
 
-    override fun onDecorativeObjectDespawned(event: DecorativeObjectDespawned) {
-        if (event.decorativeObject.id == 10851 && event.decorativeObject === pyramidTopObstacle) {
+    override fun onDecorativeObjectDespawned(it: DecorativeObjectDespawned) {
+        if (it.decorativeObject.id == 10851 && it.decorativeObject === pyramidTopObstacle) {
             pyramidTopObstacle = null
             return
         }
-        removeFromCourse(event.decorativeObject)
+        removeFromCourse(it.decorativeObject)
     }
 
-    override fun onGroundObjectSpawned(event: GroundObjectSpawned) {
-        addToCourse(event.groundObject)
+    override fun onGroundObjectSpawned(it: GroundObjectSpawned) {
+        addToCourse(it.groundObject)
     }
 
-    override fun onGroundObjectDespawned(event: GroundObjectDespawned) {
-        removeFromCourse(event.groundObject)
+    override fun onGroundObjectDespawned(it: GroundObjectDespawned) {
+        removeFromCourse(it.groundObject)
     }
 
-    override fun onItemSpawned(event: ItemSpawned) {
-        if (event.item.id == MARK_ID) {
-            marks.add(event.tile)
+    override fun onItemSpawned(it: ItemSpawned) {
+        if (it.item.id == MARK_ID) {
+            marks.add(it.tile)
         }
     }
 
-    override fun onItemDespawned(event: ItemDespawned) {
-        if (event.item.id == MARK_ID) {
-            marks.remove(event.tile)
+    override fun onItemDespawned(it: ItemDespawned) {
+        if (it.item.id == MARK_ID) {
+            marks.remove(it.tile)
         }
     }
 
@@ -156,13 +154,13 @@ class OneClickAgilityPlugin : Plugin() {
         }
     }
 
-    private fun handleClick(event: MenuOptionClicked) {
+    private fun handleClick(it: MenuOptionClicked) {
         if (config.skillBoost()) {
             val boost = client.getBoostedSkillLevel(Skill.AGILITY) - client.getRealSkillLevel(Skill.AGILITY)
             if (config.boostAmount() > boost) {
                 val food = getWidgetItem(SUMMER_PIE_ID)
                 if (food != null) {
-                    event.menuEntry = createSummerPieMenuEntry(food)
+                    it.menuEntry = createSummerPieMenuEntry(food)
                     return
                 }
             }
@@ -172,7 +170,7 @@ class OneClickAgilityPlugin : Plugin() {
                     .worldLocation == SEERS_END && client.localPlayer!!
                     .animation != 714
             ) {
-                event.menuEntry = createSeersTeleportMenuEntry()
+                it.menuEntry = createSeersTeleportMenuEntry()
                 return
             }
         }
@@ -182,7 +180,7 @@ class OneClickAgilityPlugin : Plugin() {
                     .worldLocation == PYRAMID_TOP_LEFT)
                 && pyramidTop!!.renderable.modelHeight == 309
             ) {
-                event.menuEntry = createPyramidTopMenuEntry()
+                it.menuEntry = createPyramidTopMenuEntry()
                 return
             }
         }
@@ -194,9 +192,9 @@ class OneClickAgilityPlugin : Plugin() {
                     val markTile = client.scene.tiles[mark.plane][mark.sceneLocation.x][mark.sceneLocation.y]
                     if (markTile != null && checkTileForMark(markTile)) {
                         if (config.pickUpCoins() && checkTileForCoins(markTile)) {
-                            event.menuEntry = createCoinsMenuEntry(mark)
+                            it.menuEntry = createCoinsMenuEntry(mark)
                         } else {
-                            event.menuEntry = createMarkMenuEntry(mark)
+                            it.menuEntry = createMarkMenuEntry(mark)
                         }
                         return
                     } else {
@@ -208,10 +206,10 @@ class OneClickAgilityPlugin : Plugin() {
                 marks.remove(wrongMarkTile)
             }
         }
-        if (!portals.isEmpty()) {
+        if (portals.isNotEmpty()) {
             for (portal in portals) {
                 if (obstacleArea.containsObject(portal) && portal.clickbox != null) {
-                    event.menuEntry = createPortalMenuEntry(portal)
+                    it.menuEntry = createPortalMenuEntry(portal)
                     return
                 }
             }
@@ -220,11 +218,11 @@ class OneClickAgilityPlugin : Plugin() {
             (client.localPlayer!!.isMoving
                     || client.localPlayer!!.poseAnimation != client.localPlayer!!.idlePoseAnimation)
         ) {
-            event.consume()
+            it.consume()
             return
         }
-        obstacleArea.createMenuEntry()?.let {
-            event.menuEntry = it
+        obstacleArea.createMenuEntry()?.let {thisMenu->
+            it.menuEntry = thisMenu
         }
     }
 

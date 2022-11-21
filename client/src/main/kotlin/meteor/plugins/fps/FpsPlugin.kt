@@ -54,15 +54,15 @@ class FpsPlugin : Plugin() {
     private val overlay = FpsOverlay(this, config)
     private val drawListener = FpsDrawListener(config)
     private val drawManager = DrawManager
-    override fun onConfigChanged(event: ConfigChanged) {
-        if (event.group == CONFIG_GROUP_KEY) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group == CONFIG_GROUP_KEY) {
             drawListener.reloadConfig()
         }
     }
 
-    override fun onFocusChanged(event: FocusChanged) {
-        drawListener.onFocusChanged(event)
-        overlay.onFocusChanged(event)
+    override fun onFocusChanged(it: FocusChanged) {
+        drawListener.onFocusChanged(it)
+        overlay.onFocusChanged(it)
     }
 
     override fun onStart() {

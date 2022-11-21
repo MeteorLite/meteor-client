@@ -65,13 +65,16 @@ import meteor.plugins.bosstimer.BossTimersPlugin
 import meteor.plugins.chathistory.ChatHistoryPlugin
 import meteor.plugins.cooking.CookingPlugin
 import meteor.plugins.corp.CorpPlugin
+import meteor.plugins.coxhelper.CoxPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.hunter.HunterPlugin
+import meteor.plugins.infopanel.InfoPanelPlugin
 import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
+import meteor.plugins.olmswapper.OlmSwapperPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -104,7 +107,6 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<HunterPlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
@@ -135,6 +137,7 @@ object PluginManager {
         init<ContinueClickerPlugin>()
         init<CookingPlugin>()
         init<CorpPlugin>()
+        init<CoxPlugin>()
         init<CtrlPlayerOptions>()
         init<DefaultWorldPlugin>()
         init<DevToolsPlugin>()
@@ -150,6 +153,8 @@ object PluginManager {
         init<GuardiansOfTheRiftPlugin>()
         init<HerbiboarPlugin>()
         init<HiScorePlugin>()
+        init<HunterPlugin>()
+        init<InfoPanelPlugin>()
         init<InterfaceStylesPlugin>()
         init<InteractHighlightPlugin>()
         init<InventoryTagsPlugin>()
@@ -172,6 +177,7 @@ object PluginManager {
         init<ObjectIndicatorsPlugin>()
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
+        init<OlmSwapperPlugin>()
         init<PuzzleSolverPlugin>()
         init<PvPKeys>()
         init<PrayerFlickerPlugin>()

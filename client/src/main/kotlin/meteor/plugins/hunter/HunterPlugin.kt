@@ -60,8 +60,8 @@ class HunterPlugin : Plugin() {
     }
 
     @Subscribe
-    override fun onGameObjectSpawned(event: GameObjectSpawned) {
-        val gameObject = event.gameObject
+    override fun onGameObjectSpawned(it: GameObjectSpawned) {
+        val gameObject = it.gameObject
         val trapLocation = gameObject.worldLocation
         val myTrap = traps[trapLocation]
         val localPlayer = client.localPlayer
@@ -114,20 +114,20 @@ class HunterPlugin : Plugin() {
      * still there. If the trap is gone, it removes the trap from the local players trap collection.
      */
     @Subscribe
-    override fun onGameTick(event: GameTick) {
+    override fun onGameTick(it: GameTick) {
         // Check if all traps are still there, and remove the ones that are not.
-        val it: MutableIterator<Map.Entry<WorldPoint, HunterTrap>> = traps.entries.iterator()
+        val trapPoint: MutableIterator<Map.Entry<WorldPoint, HunterTrap>> = traps.entries.iterator()
         val tiles = client.scene.tiles
         val expire = Instant.now().minus(HunterTrap.Companion.TRAP_TIME.multipliedBy(2))
-        while (it.hasNext()) {
-            val (world, trap) = it.next()
+        while (trapPoint.hasNext()) {
+            val (world, trap) = trapPoint.next()
             val local = LocalPoint.fromWorld(client, world)
 
             // Not within the client's viewport
             if (local == null) {
                 // Cull very old traps
                 if (trap.placedOn.isBefore(expire)) {
-                    it.remove()
+                    trapPoint.remove()
                     continue
                 }
                 continue
@@ -155,18 +155,18 @@ class HunterPlugin : Plugin() {
                 }
             }
             if (!containsAnything || containsYoungTree) {
-                it.remove()
+                trapPoint.remove()
             } else if (containsBoulder) // For traps like deadfalls. This is different because when the trap is gone, there is still a GameObject (boulder)
             {
-                it.remove()
+                trapPoint.remove()
             }
         }
         lastTickLocalPlayerLocation = client.localPlayer!!.worldLocation
     }
 
     @Subscribe
-    override fun onConfigChanged(event: ConfigChanged) {
-        if (event.group == "hunterplugin") {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group == "hunterplugin") {
             overlay.updateConfig()
         }
     }

@@ -53,7 +53,7 @@ class CorpPlugin : Plugin() {
                     .npc(npc)
                     .tile(true)
                     .highlightColor(Color.RED.brighter())
-                    .render { n: NPC? -> config.markDarkCore() }
+                    .render { config.markDarkCore() }
         }
         null
     }
@@ -73,14 +73,14 @@ class CorpPlugin : Plugin() {
         players.clear()
     }
 
-    override fun onGameStateChanged(gameStateChanged: GameStateChanged) {
-        if (gameStateChanged.gameState == GameState.LOADING) {
+    override fun onGameStateChanged(it: GameStateChanged) {
+        if (it.gameState == GameState.LOADING) {
             players.clear()
         }
     }
 
-    override fun onNpcSpawned(npcSpawned: NpcSpawned) {
-        val npc = npcSpawned.npc
+    override fun onNpcSpawned(it: NpcSpawned) {
+        val npc = it.npc
         when (npc.id) {
             NpcID.CORPOREAL_BEAST -> {
                 corp = npc
@@ -93,8 +93,8 @@ class CorpPlugin : Plugin() {
         }
     }
 
-    override fun onNpcDespawned(npcDespawned: NpcDespawned) {
-        val npc = npcDespawned.npc
+    override fun onNpcDespawned(it: NpcDespawned) {
+        val npc = it.npc
         if (npc === corp) {
             corp = null
             players.clear()
@@ -119,26 +119,26 @@ class CorpPlugin : Plugin() {
         }
     }
 
-    override fun onHitsplatApplied(hitsplatApplied: HitsplatApplied) {
-        val actor = hitsplatApplied.actor
+    override fun onHitsplatApplied(it: HitsplatApplied) {
+        val actor = it.actor
         if (actor !== corp) {
             return
         }
-        totalDamage += hitsplatApplied.hitsplat.amount
+        totalDamage += it.hitsplat.amount
     }
 
-    override fun onInteractingChanged(interactingChanged: InteractingChanged) {
-        val source = interactingChanged.source
-        val target = interactingChanged.target
+    override fun onInteractingChanged(it: InteractingChanged) {
+        val source = it.source
+        val target = it.target
         if (corp == null || target !== corp) {
             return
         }
         players.add(source)
     }
 
-    override fun onVarbitChanged(varbitChanged: VarbitChanged) {
-        if (corp != null && varbitChanged.getVarbitId() == Varbits.CORP_DAMAGE) {
-            val myDamage = varbitChanged.getValue()
+    override fun onVarbitChanged(it: VarbitChanged) {
+        if (corp != null && it.getVarbitId() == Varbits.CORP_DAMAGE) {
+            val myDamage = it.getValue()
             // avoid resetting our counter when the client's is reset
             if (myDamage > 0) {
                 yourDamage = myDamage
@@ -146,8 +146,8 @@ class CorpPlugin : Plugin() {
         }
     }
 
-    override fun onMenuEntryAdded(menuEntryAdded: MenuEntryAdded) {
-        val menuEntry = menuEntryAdded.menuEntry
+    override fun onMenuEntryAdded(it: MenuEntryAdded) {
+        val menuEntry = it.menuEntry
         menuEntry?.let {
             val npc = menuEntry.npc
             if (npc == null || DARK_ENERGY_CORE != npc.name) {

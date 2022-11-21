@@ -179,14 +179,14 @@ class EntityHiderPlugin : Plugin() {
             .split(config.hideNPCsOnDeathName().lowercase(Locale.getDefault()))) {
             (hideNPCsOnDeathName as HashSet<String>).add(s)
         }
-        for (s in Text.COMMA_SPLITTER.split(config.hideNPCsOnDeathID())) {
+        for (s in Text.COMMA_SPLITTER.split(config.hideNPCsOnDeathID() as CharSequence)) {
             try {
                 (hideNPCsOnDeathID as HashSet<Int>).add(s.toInt())
             } catch (ignored: NumberFormatException) {
             }
         }
         for (s in Text.COMMA_SPLITTER
-            .split(config.hideNPCsOnAnimationID())) {
+            .split(config.hideNPCsOnAnimationID() as CharSequence)) {
             try {
                 (hideNPCsOnAnimationID as HashSet<Int>).add(s.toInt())
             } catch (ignored: NumberFormatException) {
@@ -196,7 +196,7 @@ class EntityHiderPlugin : Plugin() {
             .split(config.blacklistDeadNpcsName().lowercase(Locale.getDefault()))) {
             (blacklistName as HashSet<String>).add(s)
         }
-        for (s in Text.COMMA_SPLITTER.split(config.blacklistDeadNpcsID())) {
+        for (s in Text.COMMA_SPLITTER.split(config.blacklistDeadNpcsID() as CharSequence)) {
             try {
                 (blacklistID as HashSet<Int>).add(s.toInt())
             } catch (ignored: NumberFormatException) {

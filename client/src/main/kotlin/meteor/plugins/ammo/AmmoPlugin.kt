@@ -60,11 +60,11 @@ class AmmoPlugin : Plugin() {
         counterBox = null
     }
 
-    override fun onItemContainerChanged(event: ItemContainerChanged) {
-        if (event.itemContainer != client.getItemContainer(InventoryID.EQUIPMENT)) {
+    override fun onItemContainerChanged(it: ItemContainerChanged) {
+        if (it.itemContainer != client.getItemContainer(InventoryID.EQUIPMENT)) {
             return
         }
-        checkInventory(event.itemContainer.items)
+        checkInventory(it.itemContainer.items)
     }
 
     private fun checkInventory(items: Array<Item>) {

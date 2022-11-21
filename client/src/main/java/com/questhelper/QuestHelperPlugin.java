@@ -180,7 +180,7 @@ public class QuestHelperPlugin extends Plugin
 	private int lastActiveVar = -1;
 
 	private ToolbarButton toolbarButton = new ToolbarButton("Quest Helper", "quest_helper.png",
-			"Shows information for current quest",
+			"Shows info for quest",
 			Alignment.Companion.getTopCenter(), false, togglePanel());
 
 	@Override

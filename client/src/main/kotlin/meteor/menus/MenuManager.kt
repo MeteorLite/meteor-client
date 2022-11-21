@@ -73,11 +73,11 @@ object MenuManager : EventSubscriber() {
         managedMenuOptions.remove(customMenuOption.widgetId, customMenuOption)
     }
 
-    override fun onMenuEntryAdded(event: MenuEntryAdded) {
-        if (client.spellSelected || event.opcode != MenuAction.CC_OP.id) {
+    override fun onMenuEntryAdded(it: MenuEntryAdded) {
+        if (client.spellSelected || it.opcode != MenuAction.CC_OP.id) {
             return
         }
-        val widgetId: Int = event.param1
+        val widgetId: Int = it.param1
         val options: Collection<WidgetMenuOption> = managedMenuOptions.get(widgetId)
         if (options.isEmpty()) {
             return
@@ -102,20 +102,20 @@ object MenuManager : EventSubscriber() {
         }
     }
 
-    override fun onMenuOptionClicked(event: MenuOptionClicked) {
-        if (event.getMenuAction() != MenuAction.RUNELITE) {
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if (it.getMenuAction() != MenuAction.RUNELITE) {
             return
         }
 
-        val widgetId: Int = event.getParam1()
+        val widgetId: Int = it.getParam1()
         val options: Collection<WidgetMenuOption> = managedMenuOptions.get(widgetId)
         for (curMenuOption in options) {
-            if (curMenuOption.getMenuTarget() == event.getMenuTarget() && curMenuOption.menuOption == event.getMenuOption()) {
-                curMenuOption.widget?.let {
+            if (curMenuOption.getMenuTarget() == it.getMenuTarget() && curMenuOption.menuOption == it.getMenuOption()) {
+                curMenuOption.widget?.let {widget ->
                     WidgetMenuOptionClicked(
-                        event.getMenuOption()!!,
-                        event.getMenuTarget()!!,
-                        it,
+                        it.getMenuOption()!!,
+                        it.getMenuTarget()!!,
+                        widget,
                         curMenuOption.widgetId
                     )
                     eventBus.post(eventbus.Events.WIDGET_MENU_OPTION_CLICKED, it)
@@ -144,8 +144,8 @@ object MenuManager : EventSubscriber() {
         }
     }
 
-    override fun onPlayerMenuOptionsChanged(event: PlayerMenuOptionsChanged) {
-        val idx: Int = event.index
+    override fun onPlayerMenuOptionsChanged(it: PlayerMenuOptionsChanged) {
+        val idx: Int = it.index
         val menuText = playerMenuIndexMap[idx]
             ?: return  // not our menu
 

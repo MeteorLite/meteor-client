@@ -171,45 +171,14 @@ object ConfigManager {
     }
 
     fun getElementType(enumSet: EnumSet<*>?): Class<*>? {
-        var enumSet = enumSet
-        if (enumSet!!.isEmpty()) {
-            enumSet = EnumSet.complementOf(enumSet)
+        var thisSet = enumSet
+        if (thisSet!!.isEmpty()) {
+            thisSet = EnumSet.complementOf(thisSet)
         }
-        return enumSet!!.iterator().next().javaClass.declaringClass
+        return thisSet!!.iterator().next().javaClass.declaringClass
     }
 
-    fun findEnumClass(`class`: String,
-                      classLoader: ClassLoader): Class<Enum<*>> {
-        var transformedString = StringBuilder()
-        try {
-            val strings = `class`.substring(0, `class`.indexOf("{")).split("\\.").toTypedArray()
-            var i = 0
-            while (i != strings.size) {
-                when (i) {
-                    0 -> {
-                        transformedString.append(strings[i])
-                    }
-                    strings.size - 1 -> {
-                        transformedString.append("$").append(strings[i])
-                    }
-                    else -> {
-                        transformedString.append(".").append(strings[i])
-                    }
-                }
-                i++
-            }
-            return classLoader.loadClass(transformedString.toString()) as Class<Enum<*>>
-        } catch (e2: java.lang.Exception) {
-            // Will likely fail a lot
-        }
-        try {
-            return classLoader.loadClass(`class`.substring(0, `class`.indexOf("{"))) as Class<Enum<*>>
-        } catch (e: java.lang.Exception) {
-            // Will likely fail a lot
-        }
-        transformedString = StringBuilder()
-        throw RuntimeException("Failed to find Enum for " + `class`.substring(0, `class`.indexOf("{")))
-    }
+
 
     fun colorFromString(string: String): Color? {
         return try {
@@ -221,15 +190,15 @@ object ConfigManager {
     }
 
     fun splitKey(key: String): Array<String>? {
-        var key = key
-        val i = key.indexOf('.')
+        var newKey = key
+        val i = newKey.indexOf('.')
         if (i == -1) {
             // all keys must have a group and key
             return null
         }
-        val group = key.substring(0, i)
-        key = key.substring(i + 1)
-        return arrayOf(group, key)
+        val group = newKey.substring(0, i)
+        newKey = newKey.substring(i + 1)
+        return arrayOf(group, newKey)
     }
 
     fun saveProperties() {
@@ -297,7 +266,7 @@ object ConfigManager {
         EventBus.post(Events.CONFIG_CHANGED, configChanged)
     }
 
-    public fun getAllDeclaredInterfaceFields(clazz: Class<*>): Collection<Field> {
+    fun getAllDeclaredInterfaceFields(clazz: Class<*>): Collection<Field> {
         val methods: MutableCollection<Field> = HashSet()
         val interfaces = Stack<Class<*>>()
         interfaces.push(clazz)
@@ -407,7 +376,7 @@ object ConfigManager {
         saveProperties()
     }
 
-    fun getConfigDescriptor(configurationProxy: Config): ConfigDescriptor? {
+    fun getConfigDescriptor(configurationProxy: Config): ConfigDescriptor {
         val inter: Class<*> = configurationProxy.javaClass.interfaces[0] ?: configurationProxy::class.java.interfaces[0]
         val group: ConfigGroup = inter.getAnnotation(ConfigGroup::class.java)
             ?: throw IllegalArgumentException("Not a config group")

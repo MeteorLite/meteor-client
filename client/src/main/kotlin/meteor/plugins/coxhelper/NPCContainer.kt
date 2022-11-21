@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Woox <https://github.com/wooxsolo>
+ * Copyright (c) 2019, Ganom <https://github.com/Ganom>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,38 +23,48 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.animsmoothing
+package meteor.plugins.coxhelper
 
-import eventbus.events.ConfigChanged
-import meteor.plugins.Plugin
-import meteor.plugins.PluginDescriptor
+import lombok.AccessLevel
+import lombok.AllArgsConstructor
+import lombok.Getter
+import lombok.Setter
+import net.runelite.api.Actor
+import net.runelite.api.NPC
+import java.awt.Color
 
-@PluginDescriptor(name = "Animation Smoothing", description = "Show smoother player, NPC, and object animations", tags = ["npcs", "objects", "players"], enabledByDefault = false)
-class AnimationSmoothingPlugin : Plugin() {
-    private val config = configuration<AnimationSmoothingConfig>()
-    override fun onStart() {
-        update()
-    }
 
-    override fun onStop() {
-        client.isInterpolatePlayerAnimations = false
-        client.isInterpolateNpcAnimations = false
-        client.isInterpolateObjectAnimations = false
-    }
+internal class NPCContainer(val npc: NPC) {
+    private val npcIndex: Int = npc.index
+    private val npcName: String = npc.name
+    var npcSize = 0
 
-    override fun onConfigChanged(it: ConfigChanged) {
-        if (it.group == CONFIG_GROUP) {
-            update()
+    var ticksUntilAttack: Int = 0
+
+    private val intermissionPeriod: Int = 0
+
+    private val npcSpeed: Int = 0
+
+    private val npcInteracting: Actor? = npc.interacting
+
+    @Setter(AccessLevel.PACKAGE)
+    var attackStyle: Attackstyle
+
+    init {
+        attackStyle = Attackstyle.UNKNOWN
+        val composition = npc.transformedComposition
+        if (composition != null) {
+            npcSize = composition.size
         }
     }
 
-    private fun update() {
-        client.isInterpolatePlayerAnimations = config.smoothPlayerAnimations()
-        client.isInterpolateNpcAnimations = config.smoothNpcAnimations()
-        client.isInterpolateObjectAnimations = config.smoothObjectAnimations()
-    }
+    @AllArgsConstructor
+    @Getter(AccessLevel.PACKAGE)
+    enum class Attackstyle(private val name_: String? = null, val color: Color? = null) {
+        MAGE("Mage", Color.CYAN), RANGE("Range", Color.GREEN), MELEE("Melee", Color.RED), UNKNOWN(
+            "Unknown",
+            Color.WHITE
+        );
 
-    companion object {
-        const val CONFIG_GROUP = "animationSmoothing"
     }
 }

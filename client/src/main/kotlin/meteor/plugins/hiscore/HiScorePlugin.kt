@@ -7,17 +7,13 @@ import meteor.config.ConfigManager
 import meteor.menus.MenuManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.pluginPanel
 import meteor.ui.composables.preferences.uiColor
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
-import net.runelite.api.IconID
 import net.runelite.api.MenuAction
 import net.runelite.http.api.hiscore.HiscoreClient
-import net.runelite.http.api.hiscore.HiscoreEndpoint
-import net.runelite.http.api.hiscore.HiscoreResult
 import okhttp3.OkHttpClient
 
 
@@ -32,7 +28,7 @@ class HiScorePlugin : Plugin() {
         "HiScore",
         Octicons.Graph16,
         iconColor = uiColor,
-        description = "Notes",
+        description = "Player Hiscores",
         onClick = {
             onClick()
         },
@@ -41,11 +37,11 @@ class HiScorePlugin : Plugin() {
 
 
 
-    override fun onMenuOptionClicked(event: MenuOptionClicked) {
-        if (event.getMenuAction() == MenuAction.RUNELITE_PLAYER && event.getMenuOption()
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if (it.getMenuAction() == MenuAction.RUNELITE_PLAYER && it.getMenuOption()
                 .equals("Lookup")
         ) {
-            val player = event.menuEntry.player?.name
+            val player = it.menuEntry.player?.name
             ConfigManager.setConfiguration(
                 "hiscore",
                 "username",
