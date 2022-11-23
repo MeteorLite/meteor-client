@@ -1,11 +1,12 @@
 package meteor.plugins.prayerflicker
 
+import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Prayers
+import dev.hoot.api.widgets.Widgets
 import eventbus.events.ClientTick
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
 import meteor.api.packets.ClientPackets
-import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -13,7 +14,6 @@ import meteor.util.ColorUtil.wrapWithColorTag
 import net.runelite.api.GameState
 import net.runelite.api.MenuAction
 import net.runelite.api.Varbits
-import net.runelite.api.mixins.Inject
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Color
 
@@ -22,17 +22,17 @@ class PrayerFlickerPlugin : Plugin() {
 
     var toggle = false
 
-    @Inject
-    private val clientThread: ClientThread? = null
-
-    @Inject
-    private val keyManager: KeyManager? = null
-
-    private val quickPrayerWidgetID = WidgetInfo.MINIMAP_QUICK_PRAYER_ORB.packedId
-
+    private val quickPrayerWidgetID = WidgetInfo.MINIMAP_QUICK_PRAYER_ORB
 
     private fun togglePrayer() {
-        ClientPackets.queueClickPacket(0, 0)
+
+                WidgetPackets.widgetAction(Widgets.get(quickPrayerWidgetID), "Activate")
+                ClientPackets.queueClickPacket(0, 0)
+
+                WidgetPackets.widgetAction(Widgets.get(quickPrayerWidgetID), "Deactivate")
+                ClientPackets.queueClickPacket(0, 0)
+
+
     }
 
     override fun onStart() {
@@ -52,7 +52,7 @@ class PrayerFlickerPlugin : Plugin() {
             return
         }
         if (toggle) {
-            val quickPrayer = client.getVar(Varbits.QUICK_PRAYER) === 1
+            val quickPrayer = client.getVarbitValue(Varbits.QUICK_PRAYER) == 1
             if (quickPrayer) {
                 togglePrayer()
             }
@@ -61,27 +61,13 @@ class PrayerFlickerPlugin : Plugin() {
     }
 
 
-    fun toggleFlicker() {
-        toggle = !toggle
-        if (client.gameState != GameState.LOGGED_IN) {
-            return
-        }
-        if (!toggle) {
-            clientThread!!.invoke {
-                if (Prayers.isQuickPrayerEnabled()) {
-                    togglePrayer()
-                }
-            }
-        }
-    }
-
     fun toggleFlicker(on: Boolean) {
         toggle = on
         if (client.gameState != GameState.LOGGED_IN) {
             return
         }
         if (!toggle) {
-            clientThread!!.invoke {
+            ClientThread.invoke {
                 if (Prayers.isQuickPrayerEnabled()) {
                     togglePrayer()
                 }
@@ -93,7 +79,7 @@ class PrayerFlickerPlugin : Plugin() {
     override fun onClientTick(it: ClientTick) {
         val menuEntries = client.menuEntries
         for (entry in menuEntries) {
-            if (entry.actionParam1 == quickPrayerWidgetID) {
+            if (entry.param1 == quickPrayerWidgetID.packedId) {
                 addMenuEntry()
                 return
             }
