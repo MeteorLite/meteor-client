@@ -440,7 +440,7 @@ public class MixinInjector extends AbstractInjector
 						}
 					}
 
-					log.debug("[DEBUG] Injected mixin method {} to {}", copy, targetClass);
+					//log.debug("[DEBUG] Injected mixin method {} to {}", copy, targetClass);
 					++injected;
 				}
 				else if (hasInject)
@@ -474,7 +474,7 @@ public class MixinInjector extends AbstractInjector
 
 					setOwnersToTargetClass(mixinClass, targetClass, method, copiedMethods);
 
-					log.debug("[DEBUG] Injected mixin method {} to {}", method, targetClass);
+					//log.debug("[DEBUG] Injected mixin method {} to {}", method, targetClass);
 					++injected;
 				}
 				else if (mixinMethod.findAnnotation(REPLACE) != null)
@@ -560,7 +560,7 @@ public class MixinInjector extends AbstractInjector
 
 					setOwnersToTargetClass(mixinClass, targetClass, obMethod, copiedMethods);
 
-					log.debug("[DEBUG] Replaced method {} with mixin method {}", obMethod, mixinMethod);
+					//log.debug("[DEBUG] Replaced method {} with mixin method {}", obMethod, mixinMethod);
 					replaced++;
 				}
 			}
@@ -606,7 +606,7 @@ public class MixinInjector extends AbstractInjector
 					Type newType = new Type("L" + inject.toVanilla(deobTypeClass).getName() + ";");
 
 					((ANewArray) i).setType(newType);
-					log.debug("[DEBUG] Replaced {} type {} with type {}", i, type, newType);
+					//log.debug("[DEBUG] Replaced {} type {} with type {}", i, type, newType);
 				}
 			}
 			else if (i instanceof InvokeInstruction)

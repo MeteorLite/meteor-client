@@ -10,15 +10,14 @@ package com.openosrs.injector.transformers;
 import com.google.common.base.Stopwatch;
 import com.openosrs.injector.injection.InjectData;
 import lombok.RequiredArgsConstructor;
+import meteor.Logger;
 import net.runelite.asm.Named;
-import org.gradle.api.logging.Logger;
-import org.gradle.api.logging.Logging;
 
 @RequiredArgsConstructor
 public abstract class InjectTransformer implements Named
 {
 	protected final InjectData inject;
-	protected final Logger log = Logging.getLogger(this.getClass());
+	protected final Logger log = new Logger(this.getClass().getName());
 	private Stopwatch stopwatch;
 
 	public final void transform()

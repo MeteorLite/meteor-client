@@ -186,7 +186,7 @@ public class InjectHook extends AbstractInjector
 				return;
 			}
 
-			log.trace("Found injection location for hook {} at instruction {}", hookInfo.method.getName(), sfi);
+			//log.trace("Found injection location for hook {} at instruction {}", hookInfo.method.getName(), sfi);
 			++injectedHooks;
 
 			StackContext value = ic.getPops().get(0);
@@ -272,7 +272,7 @@ public class InjectHook extends AbstractInjector
 			}
 
 			// inject hook after 'i'
-			log.debug("[DEBUG] Found array injection location for hook {} at instruction {}", hookInfo.method.getName(), i);
+			//log.debug("[DEBUG] Found array injection location for hook {} at instruction {}", hookInfo.method.getName(), i);
 			++injectedHooks;
 
 			int idx = ins.getInstructions().indexOf(i);

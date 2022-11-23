@@ -202,17 +202,17 @@ public class RasterizerAlpha extends AbstractInjector
 			if (orCount != 0)
 			{
 				counts[0] += orCount;
-				log.info("[INFO] Added {} OR's into {}", orCount, mc.getMethod());
+				//log.info("[INFO] Added {} OR's into {}", orCount, mc.getMethod());
 			}
 			if (count != 0)
 			{
 				counts[1] += count;
-				log.info("[INFO] Injected {} DrawAlpha invokes into {}", count, mc.getMethod());
+				//log.info("[INFO] Injected {} DrawAlpha invokes into {}", count, mc.getMethod());
 			}
 		});
 
 		ex.run();
-		log.info("[INFO] Injected {} DrawAlpha invokes and {} ors", counts[1], counts[0]);
+		//log.info("[INFO] Injected {} DrawAlpha invokes and {} ors", counts[1], counts[0]);
 	}
 
 	private static boolean pushesToSameVar(InstructionContext cA, InstructionContext cB)

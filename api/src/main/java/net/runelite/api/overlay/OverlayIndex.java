@@ -32,8 +32,8 @@ import java.util.Set;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import meteor.Logger;
 
-@Slf4j
 public class OverlayIndex
 {
 	@Getter
@@ -52,7 +52,7 @@ public class OverlayIndex
 		}
 		catch (IOException ex)
 		{
-			log.warn("unable to load overlay index", ex);
+			new Logger("ScriptOverlays").error("unable to load overlay index", ex);
 		}
 	}
 

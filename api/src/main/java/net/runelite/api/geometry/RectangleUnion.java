@@ -34,7 +34,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class RectangleUnion
 {
 	private RectangleUnion()
@@ -62,7 +61,7 @@ public class RectangleUnion
 			return null;
 		}
 
-		boolean trace = log.isTraceEnabled();
+		boolean trace = false;
 
 		// Sort all of the rectangles so they are ordered by their left edge
 		lefts.sort(Comparator.comparingInt(Rectangle::getX1));
@@ -114,7 +113,7 @@ public class RectangleUnion
 			}
 			if (trace)
 			{
-				log.trace("{}{}", remove ? "-" : "+", rect);
+				//log.trace("{}{}", remove ? "-" : "+", rect);
 			}
 
 			int y1 = rect.y1;
@@ -154,9 +153,9 @@ public class RectangleUnion
 							{
 								chunk = (s.left ? ">" : "[") + System.identityHashCode(s.chunk) + (s.left ? "]" : "<");
 							}
-							log.trace("{} = {} {}", s.y, s.value, chunk);
+							//log.trace("{} = {} {}", s.y, s.value, chunk);
 						}
-						log.trace("");
+						//log.trace("");
 					}
 					break;
 				}
@@ -230,10 +229,10 @@ public class RectangleUnion
 						rightChunk = s.chunk;
 					}
 
-					log.trace("Joining {} onto {}", System.identityHashCode(rightChunk), System.identityHashCode(leftChunk));
+					//log.trace("Joining {} onto {}", System.identityHashCode(rightChunk), System.identityHashCode(leftChunk));
 					if (first.left == s.left)
 					{
-						log.trace("reverse");
+						//log.trace("reverse");
 						if (first.left)
 						{
 							leftChunk.reverse();
@@ -243,7 +242,7 @@ public class RectangleUnion
 							rightChunk.reverse();
 						}
 					}
-					log.trace("{} {}", first.y, s.y);
+					//log.trace("{} {}", first.y, s.y);
 					rightChunk.appendTo(leftChunk);
 
 					first.chunk = null;

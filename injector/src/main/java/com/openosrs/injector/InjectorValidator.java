@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import meteor.Logger;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.pool.Class;
-import org.gradle.api.logging.Logging;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;
 
 @RequiredArgsConstructor
