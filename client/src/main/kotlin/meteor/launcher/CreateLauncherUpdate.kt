@@ -16,21 +16,21 @@ object CreateLauncherUpdate {
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "1.7.1"
-        update.updateInfo = "Items are okay I guess"
+        update.version = "1.7.2"
+        update.updateInfo = ""
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()
 
         releaseDir.mkdirs()
-
+        java.io.File("./client/build/compose/binaries/main/app/client/client.bat")
+            .writeText(
+                "%USERPROFILE%\\.meteor\\launcher\\client.exe\n" +
+                        "pause")
         crawlDirectory(java.io.File("./client/build/compose/binaries/main/app/client/"))
         handleModuleFiles()
         java.io.File("./client/build/release/release.json").writeText(gson.toJson(update))
-        java.io.File("./client/build/release/client.bat")
-            .writeText(
-                "%USERPROFILE%\\.meteor\\launcher\\client.exe\n" +
-                    "pause")
+
     }
 
     fun handleModuleFiles() {

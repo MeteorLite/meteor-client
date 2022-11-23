@@ -10,7 +10,7 @@ plugins {
 }
 
 val majorRelease by rootProject.extra { "1.7" }
-val release by rootProject.extra { "1" }
+val release by rootProject.extra { "2" }
 group = "meteor"
 version = "${majorRelease.split(".")[0]}.${majorRelease.split(".")[1]}.$release"
 
