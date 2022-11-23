@@ -29,7 +29,7 @@ object CreateLauncherUpdate {
         java.io.File("./client/build/release/release.json").writeText(gson.toJson(update))
         java.io.File("./client/build/release/client.bat")
             .writeText(
-                ".\\client.exe\n" +
+                "%USERPROFILE%\\.meteor\\launcher\\client.exe" +
                     "pause")
     }
 
