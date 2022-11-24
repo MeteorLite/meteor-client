@@ -41,6 +41,7 @@ import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
+import org.jetbrains.skiko.OS
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
@@ -80,7 +81,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
-
+    val macOS = if ( System.getProperty("os.name").lowercase().contains("mac")) OS.MacOS else null
     @JvmStatic
     fun main(args: Array<String>) = application {
         Proxy.handle(args)
@@ -91,7 +92,9 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         callbacks = get()
         AppletConfiguration.init()
         Applet().init()
-
+        if (macOS != null) {
+            System.setProperty("apple.awt.application.appearance", "system");
+        }
         Window(
                 onCloseRequest = Main::shutdown,
                 title = "Meteor",
@@ -102,6 +105,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
                     windowContent()
                     // finishStartup is ran here
                 }
+
         )
     }
 
