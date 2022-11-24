@@ -1,5 +1,6 @@
 package meteor.plugins.prayerflicker
 
+import dev.hoot.api.game.Game
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Prayers
 import dev.hoot.api.widgets.Widgets
@@ -28,11 +29,8 @@ class PrayerFlickerPlugin : Plugin() {
 
                 WidgetPackets.widgetAction(Widgets.get(quickPrayerWidgetID), "Activate")
                 ClientPackets.queueClickPacket(0, 0)
-
                 WidgetPackets.widgetAction(Widgets.get(quickPrayerWidgetID), "Deactivate")
                 ClientPackets.queueClickPacket(0, 0)
-
-
     }
 
     override fun onStart() {
@@ -42,18 +40,20 @@ class PrayerFlickerPlugin : Plugin() {
     }
 
     override fun onStop() {
-
         toggle = false
 
     }
 
     override fun onGameTick(it: GameTick) {
-        if (client.gameState != GameState.LOGGED_IN) {
-            return
+        if(Game.getState() == GameState.LOGGED_IN && client.localPlayer != null)
+        if (Prayers.getPoints() == 0){
+            toggle = false
         }
+
         if (toggle) {
             val quickPrayer = client.getVarbitValue(Varbits.QUICK_PRAYER) == 1
             if (quickPrayer) {
+
                 togglePrayer()
             }
             togglePrayer()
@@ -63,9 +63,7 @@ class PrayerFlickerPlugin : Plugin() {
 
     fun toggleFlicker(on: Boolean) {
         toggle = on
-        if (client.gameState != GameState.LOGGED_IN) {
-            return
-        }
+
         if (!toggle) {
             ClientThread.invoke {
                 if (Prayers.isQuickPrayerEnabled()) {
