@@ -97,10 +97,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         callbacks = get()
         AppletConfiguration.init()
         Applet().init()
-        if (macOS != null) {
-            System.setProperty("apple.awt.application.appearance", "system")
-            MeteorliteTheme.installDark()
-        }
+
         Window(
                 onCloseRequest = Main::shutdown,
                 title = "Meteor",
