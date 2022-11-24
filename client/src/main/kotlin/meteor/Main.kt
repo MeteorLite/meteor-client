@@ -3,6 +3,8 @@ package meteor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.window.*
+import com.formdev.flatlaf.FlatLaf
+import com.formdev.flatlaf.FlatPropertiesLaf
 import dev.hoot.api.InteractionManager
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
@@ -82,18 +84,22 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
     val macOS = if ( System.getProperty("os.name").lowercase().contains("mac")) OS.MacOS else null
+    val winOS = if ( System.getProperty("os.name").lowercase().contains("win")) OS.Windows else null
     @JvmStatic
     fun main(args: Array<String>) = application {
         Proxy.handle(args)
         ClientPackets
-        MeteorliteTheme.installDark()
+        if (winOS != null) {
+            MeteorliteTheme.installDark()
+        }
         timer.start()
         startKoin { modules(Module.CLIENT_MODULE) }
         callbacks = get()
         AppletConfiguration.init()
         Applet().init()
         if (macOS != null) {
-            System.setProperty("apple.awt.application.appearance", "system");
+            System.setProperty("apple.awt.application.appearance", "system")
+            MeteorliteTheme.installDark()
         }
         Window(
                 onCloseRequest = Main::shutdown,
