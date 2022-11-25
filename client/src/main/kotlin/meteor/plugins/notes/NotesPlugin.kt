@@ -12,7 +12,7 @@ import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
 
 
-@PluginDescriptor(name = "Notes", enabledByDefault = true, disabledOnStartup = false)
+@PluginDescriptor(name = "Notes", enabledByDefault = true)
 class NotesPlugin : Plugin() {
 
     var panel: PluginPanel? = null
@@ -20,7 +20,7 @@ class NotesPlugin : Plugin() {
     private var notesButton = ToolbarButton(
         "Notes",
         Octicons.Note24,
-        iconColor = uiColor,
+        iconColor = uiColor.value,
         description = "Notes",
         onClick = {
             onClick()

@@ -1,5 +1,6 @@
 package meteor.plugins.autorun
 
+import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread

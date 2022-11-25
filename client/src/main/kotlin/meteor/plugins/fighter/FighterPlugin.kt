@@ -1,0 +1,141 @@
+package meteor.plugins.fighter
+
+import dev.hoot.api.commons.Time
+import dev.hoot.api.entities.Players
+import dev.hoot.api.entities.TileItems
+import dev.hoot.api.game.Combat
+import dev.hoot.api.game.Game
+import dev.hoot.api.items.Inventory
+import dev.hoot.api.magic.Regular
+import dev.hoot.api.movement.Movement
+import dev.hoot.api.packets.ItemPackets
+import dev.hoot.api.widgets.Dialog
+import dev.hoot.api.widgets.Prayers
+import eventbus.events.ChatMessage
+import eventbus.events.GameTick
+import meteor.Logger
+import meteor.Main.executor
+import meteor.api.items.Items
+import meteor.api.loot.Loots
+import meteor.api.npcs.NPCs
+import meteor.api.packets.ClientPackets
+import meteor.game.ItemManager
+import meteor.plugins.Plugin
+import meteor.plugins.PluginDescriptor
+import meteor.plugins.autoalch.AutoAlchConfig
+import meteor.rs.ClientThread
+import net.runelite.api.TileItem
+import net.runelite.api.coords.WorldPoint
+import java.util.*
+import javax.inject.Singleton
+
+@PluginDescriptor(name = "Fighter", description = "Kills Monsters Automatically", enabledByDefault = false)
+@Singleton
+class FighterPlugin : Plugin() {
+    private val log = Logger("Fighter")
+    private val config = configuration<FighterConfig>()
+
+    private var startPoint: WorldPoint? = null
+    private val notOurItems: MutableList<TileItem> = ArrayList()
+    override fun onStart() {
+
+        if (config.quickPrayer() && !Prayers.isQuickPrayerEnabled()) {
+            Prayers.toggleQuickPrayer(true)
+        }
+
+
+        if (Game.isLoggedIn()) {
+            startPoint = Players.getLocal().worldLocation
+        }
+    }
+
+    override fun onGameTick(it: GameTick) {
+        try {
+            if (Movement.isWalking()) {
+                return
+            }
+            if (config.flick() && Prayers.isQuickPrayerEnabled()) {
+                Prayers.toggleQuickPrayer(false)
+            }
+            if (config.eat() && Combat.getHealthPercent() <= config.healthPercent()) {
+                val foods = config.foods().split(",".toRegex()).toList()
+                Items.getAll()?.filter { it.name in foods }?.forEach{
+                        ItemPackets.itemAction(it, "Eat")
+                        ClientPackets.queueClickPacket(0, 0)
+                        return
+                }
+            }
+            if (config.restore() && Prayers.getPoints() < 5) {
+                Inventory.getAll()?.filter { it.name == "Prayer potion" || it.name == "Super Restore" }?.forEach {
+                    ItemPackets.itemAction(it, "Drink")
+                    ClientPackets.queueClickPacket(0, 0)
+                    return
+                }
+            }
+            if (config.buryBones()) {
+                Items.getAll()?.filter { it.hasAction("Bury") }?.forEach {
+                    ItemPackets.itemAction(it, "Bury")
+                    ClientPackets.queueClickPacket(0, 0)
+                    return
+                }
+
+            }
+            val local = Players.getLocal()
+
+            val itemsToLoot = config.loot().split(",")
+            if (!Inventory.isFull()&& Loots.exists(itemsToLoot)) {
+                Loots .getAll()?.filter{
+                    (it.loot. tile.worldLocation.distanceTo(local.worldLocation) < config.attackRange() && !notOurItems.contains(it.loot)
+                            && (it.loot.name != null && itemsToLoot.contains(it.loot.name)
+                            || config.lootValue() > -1
+                            && ItemManager.getItemPrice(it.loot.id) * it.loot.quantity > config.lootValue()
+                            || config.untradables()
+                            && !it.loot.isTradable
+                            || it.loot.hasInventoryAction("Destroy")))
+                }?.forEach {
+                    if(local.isIdle)
+                    it.interact("Take")
+               }
+            }
+            if (config.alching()) {
+                val alchSpell = config.alchSpell()
+                if (alchSpell!!.canCast()) {
+                    val alchItems = config.alchItems().split(",".toRegex())
+                    val alchItem = Items.getAll()?.filter {it.name != null && alchItems.contains(it.name) }
+                    val spellToUse =
+                        if (alchSpell.spell.name == AutoAlchConfig.AlchType.HIGH.name)
+                            Regular.HIGH_LEVEL_ALCHEMY.widget.id
+                        else
+                            Regular.LOW_LEVEL_ALCHEMY.widget.id
+                    alchItem?.forEach {
+                        ItemPackets.queueSpellOnItemPacket(it.id, it.slot, spellToUse)
+                    }
+                }
+            }
+            if (local.interacting != null && !Dialog.canContinue()) {
+                return
+            }
+
+            if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
+            val mob = NPCs.getAll(true)?.filter {
+                    config.monster().split(",".toRegex()).toList().contains(it.npc.name)
+                    && !it.npc.isDead
+                    && it.npc.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }
+            mob?.forEach {npc->
+                            npc.npc.interact("Attack")
+                    }
+            }
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
+
+
+    override fun onChatMessage(it: ChatMessage) {
+        val message = it.message
+        if (message.contains("other players have dropped")) {
+            val notOurs = TileItems.getAt(Players.getLocal().worldLocation) { true }
+            notOurItems.addAll(notOurs)
+        }
+    }
+}

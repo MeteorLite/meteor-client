@@ -33,11 +33,11 @@ fun LazyGridScope.hiscoreBossGrid() {
                 Column(modifier = Modifier.background(surface)) {
                     Text(
                             text = "Rank:" + max(0, result.getSkill(item).rank).toString(),
-                            style = TextStyle(fontSize = 10.sp, color = uiColor)
+                            style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                     )
                     Text(
                             text = "Boss:" + item.name.lowercase().replace('_', ' '),
-                            style = TextStyle(fontSize = 10.sp, color = uiColor)
+                            style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                     )
 
                 }
@@ -57,7 +57,7 @@ fun LazyGridScope.hiscoreBossGrid() {
                                     style = TextStyle(
                                             fontSize = 10.sp,
                                             textAlign = TextAlign.Center,
-                                            color = uiColor
+                                            color = uiColor.value
                                     )
                             )
                         }

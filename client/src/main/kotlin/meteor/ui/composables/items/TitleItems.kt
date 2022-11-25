@@ -27,7 +27,7 @@ fun LazyListScope.titleItems(){
                 modifier = Modifier.fillMaxWidth().padding(it.title.padding.dp),
                 text = it.name(),
                 style = TextStyle(
-                    color = uiColor,
+                    color = uiColor.value,
                     fontSize = it.title.size.sp,
                     textAlign = TextAlign.Center,
                 )

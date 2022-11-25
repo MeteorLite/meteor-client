@@ -50,7 +50,7 @@ class LootTrackerPluginPanel:PluginPanel() {
                     Row(modifier = Modifier.width(350.dp).background(surface,RoundedCornerShape(4.dp)), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly) {
                         Text(
                             map.key,
-                            style = TextStyle(color = uiColor, fontSize = 24.sp),
+                            style = TextStyle(color = uiColor.value, fontSize = 24.sp),
 
                         )
                         Spacer(Modifier.width(30.dp))

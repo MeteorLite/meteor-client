@@ -11,7 +11,7 @@ import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
 
-@PluginDescriptor(name = "Info Panel plugin")
+@PluginDescriptor(name = "Info Panel plugin", enabledByDefault = true)
 class InfoPanelPlugin : Plugin() {
 
 
@@ -20,7 +20,7 @@ class InfoPanelPlugin : Plugin() {
     private val infoPanelButton = ToolbarButton(
         "Info Panel",
         Octicons.Info16,
-        iconColor = uiColor,
+        iconColor = uiColor.value,
         description = "Info",
         onClick = {
             onClick()

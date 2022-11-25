@@ -44,7 +44,7 @@ fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
             modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
+                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
             }
         }
         Row(
@@ -52,10 +52,11 @@ fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
             modifier = Modifier.fillMaxWidth().height(32.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Switch(toggled, onCheckedChange = {
+
+                Checkbox(toggled, onCheckedChange = {
                     ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
                     toggled = it
-                }, enabled = true, modifier = Modifier.scale(0.85f), colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface))
+                }, enabled = true, modifier = Modifier.scale(0.85f), colors = CheckboxDefaults.colors(checkedColor = uiColor.value, uncheckedColor = surface))
             }
         }
     }
@@ -83,7 +84,7 @@ fun hotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDes
                 label = {
                     Text(
                         configItemDescriptor.name(),
-                        style = TextStyle(color = uiColor, fontSize = 14.sp)
+                        style = TextStyle(color = uiColor.value, fontSize = 14.sp)
                     )
                 },
                 value = keyBind.toString(),
@@ -123,7 +124,7 @@ fun colorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
         modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background )
     ) {
         MaterialTheme(colors = darkThemeColors) {
-            Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
+            Text(configItemDescriptor.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
         }
     }
     Row(
@@ -159,7 +160,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
             modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
+                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
             }
         }
         Row(
@@ -172,7 +173,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
 
                     Text(
                         configStr,
-                        color = uiColor,
+                        color = uiColor.value,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true })
                             .background(
@@ -196,7 +197,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
                                 )
                                 //println(it.toString())
                             }, content = {
-                                Text(text = it.toString(), color = uiColor, fontSize = 14.sp)
+                                Text(text = it.toString(), color = uiColor.value, fontSize = 14.sp)
                             })
                         }
                     }

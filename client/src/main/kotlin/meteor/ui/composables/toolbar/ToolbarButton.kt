@@ -45,7 +45,7 @@ class ToolbarButton(
                 alignment = alignment,
                 bottom = bottom,
                 onClick = onClick,
-                iconColor = mutableStateOf(uiColor).value
+                iconColor = uiColor.value
             )
 
     @OptIn(ExperimentalFoundationApi::class)
@@ -59,7 +59,7 @@ class ToolbarButton(
                     Text(
                         description.toString(),
                         style = TextStyle(
-                            color = uiColor,
+                            color = uiColor.value,
                             letterSpacing = 2.sp,
                             fontSize = 9.sp,
                             fontWeight = FontWeight.Medium
@@ -82,7 +82,7 @@ class ToolbarButton(
                         Icon(
                             icon!!,
                             contentDescription = description,
-                            tint = if (iconColor == null) mutableStateOf(uiColor).value else mutableStateOf(iconColor!!).value,
+                            tint = uiColor.value,
                         )
                     else if (imageResource != null)
                         Image(

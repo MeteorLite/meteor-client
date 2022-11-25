@@ -64,7 +64,7 @@ fun searchBar(
                 state.value = value
             },
             textStyle = TextStyle(
-                color = uiColor,
+                color = uiColor.value,
                 letterSpacing = 4.sp,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Medium,
@@ -74,13 +74,13 @@ fun searchBar(
             modifier = Modifier.fillMaxWidth().height(50.dp),
             shape = RoundedCornerShape(20.dp),
             label = {
-                if (state.value.text.isEmpty())Text("Search", color = uiColor)
+                if (state.value.text.isEmpty())Text("Search", color = uiColor.value)
             },
             leadingIcon = {
                 Icon(
                     Octicons.Search16,
                     contentDescription = "Opens Plugin configuration panel",
-                    tint = uiColor,
+                    tint = uiColor.value,
 
                     )
             }
@@ -133,7 +133,7 @@ fun plugins() {
                                 Text(
                                     plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).description,
                                     style = TextStyle(
-                                        color = uiColor,
+                                        color = uiColor.value,
                                         letterSpacing = 2.sp,
                                         fontSize = pluginListSize.value.sp,
                                         fontWeight = FontWeight.Medium
@@ -151,7 +151,7 @@ fun plugins() {
                             Text(
                                 plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
                                 style = TextStyle(
-                                    color = uiColor,
+                                    color = uiColor.value,
                                     letterSpacing = 2.sp,
                                     fontSize = pluginListSize.value.sp,
                                     fontWeight = FontWeight.Medium
@@ -176,7 +176,7 @@ fun plugins() {
                                 Icon(
                                     Icons.Filled.Refresh,
                                     contentDescription = "Reload plugin",
-                                    tint = uiColor
+                                    tint = uiColor.value
                                 )
                             }
                         }
@@ -191,7 +191,7 @@ fun plugins() {
                                 Icon(
                                     Octicons.Gear24,
                                     contentDescription = "Opens Plugin configuration panel",
-                                    tint = uiColor,
+                                    tint = uiColor.value,
 
                                     )
                             }
@@ -207,7 +207,7 @@ fun plugins() {
                             onPluginToggled(switchState, plugin),
                             enabled = true,
                             modifier = Modifier.scale(0.75f).padding(bottom = 2.dp),
-                            colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface)
+                            colors = SwitchDefaults.colors(checkedThumbColor = uiColor.value, uncheckedThumbColor = darkThemeColors.primarySurface)
                         )
 
 

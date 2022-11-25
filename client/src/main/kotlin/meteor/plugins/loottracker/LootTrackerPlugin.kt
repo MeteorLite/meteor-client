@@ -28,7 +28,7 @@ import java.nio.file.Paths
 import kotlin.io.path.Path
 
 
-@PluginDescriptor(name = "Loot Tracker")
+@PluginDescriptor(name = "Loot Tracker",enabledByDefault = true)
 class LootTrackerPlugin: Plugin() {
 
     var lootObject: MutableList<LootTrackerObject> = mutableListOf()
@@ -38,7 +38,7 @@ class LootTrackerPlugin: Plugin() {
     private var lootTrackerButton = ToolbarButton(
         "LootTracker",
         Octicons.Briefcase24,
-        iconColor = uiColor,
+        iconColor = uiColor.value,
         description = "Tracks loot",
         onClick = {
             onClick()
@@ -71,17 +71,26 @@ class LootTrackerPlugin: Plugin() {
                  }
             }
         }
-
-
-    }
-
-    override fun onClientTick(it: ClientTick) {
         priceObject.forEach{
             priceMap.putIfAbsent(it.npc,it.price )
         }
         lootObject.forEach{
             multiMap.value.putIfAbsent(it.name, LootTrackerItem(id = it.id, quantity = mutableStateOf(it.quantity)))
         }
+
+    }
+    init{
+        priceObject.forEach{
+            priceMap.putIfAbsent(it.npc,it.price )
+        }
+        lootObject.forEach{
+            multiMap.value.putIfAbsent(it.name, LootTrackerItem(id = it.id, quantity = mutableStateOf(it.quantity)))
+        }
+    }
+
+    override fun onGameStateChanged(it: GameStateChanged) {
+
+
        if(Game.getState() == GameState.LOGGED_IN && client.localPlayer?.name != null){
 
             when {

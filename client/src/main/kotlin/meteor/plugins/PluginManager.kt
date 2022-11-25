@@ -71,6 +71,7 @@ import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
+import meteor.plugins.fighter.FighterPlugin
 import meteor.plugins.hunter.HunterPlugin
 import meteor.plugins.infopanel.InfoPanelPlugin
 import meteor.plugins.loottracker.LootTrackerPlugin
@@ -108,6 +109,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
@@ -147,6 +149,7 @@ object PluginManager {
         init<ExamplePlugin>()
         init<EntityHiderPlugin>()
         init<FishingPlugin>()
+        init<FighterPlugin>()
         init<FpsPlugin>()
         init<FullscreenPlugin>()
         init<GauntletExtendedPlugin>()

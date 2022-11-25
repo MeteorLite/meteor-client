@@ -54,7 +54,8 @@ import java.util.concurrent.TimeUnit
     name = "XP Tracker",
     description = "Enable the XP Tracker panel",
     tags = ["experience", "levels", "panel"],
-    configGroup = "xpTracker"
+    configGroup = "xpTracker",
+    enabledByDefault = true,
 )
 class XpTrackerPlugin : Plugin() {
     private val skillIconManager = SkillIconManager
@@ -80,7 +81,7 @@ class XpTrackerPlugin : Plugin() {
     private var xpButton = ToolbarButton(
         "xp",
         Octicons.Meter16,
-        iconColor = uiColor,
+        iconColor = uiColor.value,
         description = "Xp tracker   ",
         onClick = {
             onClick()

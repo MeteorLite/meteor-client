@@ -44,7 +44,7 @@ fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItem
             modifier = Modifier.fillMaxWidth(0.5f).height(46.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
+                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
             }
         }
 
@@ -56,7 +56,7 @@ fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItem
                 Text(
                     text = setConfigValue.toString(),
                     modifier = Modifier.padding(8.dp).width(46.dp).background(surface),
-                    style = TextStyle(color = uiColor, fontSize = 14.sp, textAlign = TextAlign.Center)
+                    style = TextStyle(color = uiColor.value, fontSize = 14.sp, textAlign = TextAlign.Center)
                 )
                 Spacer(Modifier.width(5.dp).background(background ) )
                 Slider(
@@ -72,7 +72,7 @@ fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItem
                     },
                     valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
                     modifier = Modifier.height(12.dp).background(background ) ,
-                    colors = SliderDefaults.colors(thumbColor = uiColor, activeTrackColor = uiColor, inactiveTrackColor = Color.Gray)
+                    colors = SliderDefaults.colors(thumbColor = uiColor.value, activeTrackColor = uiColor.value, inactiveTrackColor = Color.Gray)
                 )
             }
         }
@@ -112,11 +112,11 @@ fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = uiColor, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor.value, fontSize = 14.sp)
                         )
                     },
                     maxLines = 30,
-                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor.value, fontSize = 14.sp)
                 )
             }
         }
@@ -156,10 +156,10 @@ fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = uiColor, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor.value, fontSize = 14.sp)
                         )
                     },
-                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor.value, fontSize = 14.sp)
                 )
             }
         }

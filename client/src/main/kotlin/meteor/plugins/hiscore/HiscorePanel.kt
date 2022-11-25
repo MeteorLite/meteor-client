@@ -46,7 +46,7 @@ class HiscorePanel : PluginPanel() {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                             text = username,
-                            style = TextStyle(fontSize = 20.sp, textAlign = TextAlign.Center, color = uiColor),
+                            style = TextStyle(fontSize = 20.sp, textAlign = TextAlign.Center, color = uiColor.value),
                             textAlign = TextAlign.Center
                     )
                 }
@@ -72,7 +72,7 @@ class HiscorePanel : PluginPanel() {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                             text = "Activities Completed",
-                            style = TextStyle(fontSize = 15.sp, textAlign = TextAlign.Center, color = uiColor),
+                            style = TextStyle(fontSize = 15.sp, textAlign = TextAlign.Center, color = uiColor.value),
                             textAlign = TextAlign.Center
                     )
                 }
@@ -93,7 +93,7 @@ class HiscorePanel : PluginPanel() {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                             text = "Boss kills",
-                            style = TextStyle(fontSize = 15.sp, textAlign = TextAlign.Center, color = uiColor),
+                            style = TextStyle(fontSize = 15.sp, textAlign = TextAlign.Center, color = uiColor.value),
                             textAlign = TextAlign.Center
                     )
                 }

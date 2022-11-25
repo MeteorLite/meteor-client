@@ -1,5 +1,6 @@
 package meteor.plugins.autobankpin
 
+import dev.hoot.api.commons.StopWatch
 import eventbus.events.GameTick
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
@@ -8,6 +9,11 @@ import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo.BANK_PIN_INSTRUCTION_TEXT
 import java.awt.event.KeyEvent
 import java.awt.event.KeyEvent.*
+import java.sql.Time
+import java.time.Instant
+import java.util.concurrent.TimeUnit
+import javax.management.timer.Timer
+import kotlin.time.Duration.Companion.seconds
 
 @PluginDescriptor(name = "Auto Bank Pin", description = "Automatically enters your bank pin", enabledByDefault = false)
 class AutoBankPinPlugin : Plugin() {
@@ -85,9 +91,9 @@ class AutoBankPinPlugin : Plugin() {
         }
     }
 
-
     override fun onGameTick(it: GameTick) {
         EnterBankPin()
+
     }
 
     private fun sendKey(char: Int) {

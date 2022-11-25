@@ -37,7 +37,7 @@ fun LazyGridScope.hiscoreSkillGrid() {
                                             result.getSkill(item).rank
                                     ).toString()
                             ).value,
-                            style = TextStyle(fontSize = 10.sp, color = uiColor)
+                            style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                     )
                     Text(
                             text = mutableStateOf(
@@ -46,7 +46,7 @@ fun LazyGridScope.hiscoreSkillGrid() {
                                             result.getSkill(item).experience
                                     ).toString()
                             ).value,
-                            style = TextStyle(fontSize = 10.sp, color = uiColor)
+                            style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                     )
                 }
 
@@ -64,7 +64,7 @@ fun LazyGridScope.hiscoreSkillGrid() {
                         Spacer(modifier = Modifier.width(15.dp))
                         Text(
                                 text = mutableStateOf(result.getSkill(item)?.level.toString()).value,
-                                style = TextStyle(fontSize = 15.sp, color = uiColor)
+                                style = TextStyle(fontSize = 15.sp, color = uiColor.value)
                         )
                     }
                 }
@@ -88,7 +88,7 @@ fun LazyGridScope.overallSkillItem() {
                 Row(horizontalArrangement = Arrangement.Center) {
                     Text(
                             text = mutableStateOf(result.getSkill(overall)?.level.toString()).value,
-                            style = TextStyle(fontSize = 10.sp, color = uiColor)
+                            style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                     )
                 }
             }

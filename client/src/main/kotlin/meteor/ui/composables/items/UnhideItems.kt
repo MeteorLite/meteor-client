@@ -22,9 +22,9 @@ import meteor.ui.composables.preferences.*
 
 @Composable
 fun unhideEnum(config : ConfigItemDescriptor){
-            var toggledEnum = remember { mutableStateOf(false) }
-    descriptor.items?.filter { config.item.keyName == it.item.keyName }
-        ?.forEach { hiddenEnum ->
+            val toggledEnum = remember { mutableStateOf(false) }
+    descriptor.items.filter { config.item.keyName == it.item.keyName }
+        .forEach { hiddenEnum ->
 
             var expanded by remember { mutableStateOf(false) }
             var configStr = ConfigManager.getConfiguration(descriptor.group.value, hiddenEnum.key())!!
@@ -34,7 +34,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
                     modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background )
                 ) {
                     MaterialTheme(colors = darkThemeColors) {
-                        Text(hiddenEnum.name(), style = TextStyle(color = uiColor, fontSize = 14.sp))
+                        Text(hiddenEnum.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
                     }
                 }
                 Row(
@@ -47,7 +47,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
 
                             Text(
                                 configStr,
-                                color = uiColor,
+                                color = uiColor.value,
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true })
                                     .background(
@@ -78,7 +78,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
                                         }
 
                                     }, content = {
-                                        Text(text = ec.toString(), color = uiColor, fontSize = 14.sp)
+                                        Text(text = ec.toString(), color = uiColor.value, fontSize = 14.sp)
                                     })
                                 }
                             }
@@ -147,7 +147,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
 }
 @Composable
 fun hiddenItems(config : ConfigItemDescriptor){
-    descriptor.items?.filter { config.item.keyName == it.item.keyName }?.forEach { hidden ->
+    descriptor.items.filter { config.item.keyName == it.item.keyName }.forEach { hidden ->
         val toggled = remember {
             mutableStateOf(
                 ConfigManager.getConfiguration(
@@ -167,7 +167,7 @@ fun hiddenItems(config : ConfigItemDescriptor){
                 modifier = Modifier.fillMaxWidth(0.8f).height(32.dp)
                     .background(background )
             ) {
-                Text(hidden.name(), style = TextStyle(uiColor, 14.sp))
+                Text(hidden.name(), style = TextStyle(uiColor.value, 14.sp))
             }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -175,14 +175,14 @@ fun hiddenItems(config : ConfigItemDescriptor){
                 modifier = Modifier.fillMaxWidth().height(32.dp)
                     .background(background )
             ) {
-                Switch(toggled.value, onCheckedChange = {
+                Checkbox(toggled.value, onCheckedChange = {
                     ConfigManager.setConfiguration(
                         descriptor.group.value,
                         hidden.key(),
                         it
                     )
                     toggled.value = it
-                }, enabled = true, modifier = Modifier.scale(0.85f), colors =SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = darkThemeColors.primarySurface))
+                }, enabled = true, modifier = Modifier.scale(0.85f), colors =CheckboxDefaults.colors(checkedColor = uiColor.value, uncheckedColor = surface,checkmarkColor = background))
             }
         }
 

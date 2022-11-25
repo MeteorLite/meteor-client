@@ -46,7 +46,7 @@ lateinit var lastPlugin: Plugin
 val darkLightMode
     get() = mutableStateOf(Main.meteorConfig.theme())
 val uiColor
-    get() = Color(Main.meteorConfig.uiColor().rgb)
+    get() = mutableStateOf(Color(Main.meteorConfig.uiColor().rgb))
 val surface: Color
     get() = if (darkLightMode.value) darkThemeColors.surface
     else lightThemeColors.surface
@@ -84,7 +84,7 @@ val pluginListButton = addButton(
     ToolbarButton(
         "Plugins",
         Octicons.Plug24,
-        iconColor = uiColor,
+        iconColor = uiColor.value,
         description = "Opens Plugins list",
         onClick = {
             when {
