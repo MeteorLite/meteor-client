@@ -38,7 +38,9 @@ object Loots {
     fun exists(name: String): Boolean {
         return getAll()?.any { it.loot.name == name } ?: false
     }
-
+    fun exists(name: List<String>): Boolean {
+        return getAll()?.any { it.loot.name in name } ?: false
+    }
     fun exists(id: Int): Boolean {
         return getAll()?.any { it.loot.id == id || it.loot.notedId == id } ?: false
     }
