@@ -49,6 +49,7 @@ import java.util.Set;
 )
 public class AoeWarningPlugin extends Plugin {
 
+
   private static final int VERZIK_REGION = 12611;
   private static final int GROTESQUE_GUARDIANS_REGION = 6727;
   @Getter(AccessLevel.PACKAGE)

@@ -109,6 +109,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()

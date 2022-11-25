@@ -35,6 +35,7 @@ object Loots {
         return getAll(sortByDistance)?.firstOrNull { ids.contains(it.loot.id)}
     }
 
+
     fun exists(name: String): Boolean {
         return getAll()?.any { it.loot.name == name } ?: false
     }

@@ -85,7 +85,7 @@ fun configPanelHeader() {
                     Icon(
                         imageVector = Octicons.ChevronLeft24,
                         contentDescription = "Back to plugin page",
-                        tint = uiColor,
+                        tint = uiColor.value,
                     )
                 }
             }
@@ -93,7 +93,7 @@ fun configPanelHeader() {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                         lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
-                        style = TextStyle(color = uiColor, fontSize = 24.sp),
+                        style = TextStyle(color = uiColor.value, fontSize = 24.sp),
                         modifier = Modifier.padding(top = 10.dp)
                     )
                 }
@@ -110,7 +110,7 @@ fun configPanelHeader() {
                     onPluginToggled(switchState, lastPlugin),
                     enabled = true,
                     modifier = Modifier.scale(0.75f),
-                    colors = SwitchDefaults.colors(checkedThumbColor = uiColor, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)
+                    colors = SwitchDefaults.colors(checkedThumbColor = uiColor.value, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)
                 )
 
             }

@@ -2,6 +2,7 @@ package meteor.plugins.hiscore
 
 import compose.icons.Octicons
 import compose.icons.octicons.Graph16
+import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
 import meteor.config.ConfigManager
 import meteor.menus.MenuManager
@@ -15,6 +16,7 @@ import meteor.ui.composables.toolbar.removeButton
 import net.runelite.api.MenuAction
 import net.runelite.http.api.hiscore.HiscoreClient
 import okhttp3.OkHttpClient
+import org.jetbrains.skiko.currentNanoTime
 
 
 @PluginDescriptor(name = "Hiscore", enabledByDefault = true, disabledOnStartup = false)
@@ -27,7 +29,7 @@ class HiScorePlugin : Plugin() {
     private var notesButton = ToolbarButton(
         "HiScore",
         Octicons.Graph16,
-        iconColor = uiColor,
+        iconColor = uiColor.value,
         description = "Player Hiscores",
         onClick = {
             onClick()
@@ -41,6 +43,7 @@ class HiScorePlugin : Plugin() {
         if (it.getMenuAction() == MenuAction.RUNELITE_PLAYER && it.getMenuOption()
                 .equals("Lookup")
         ) {
+
             val player = it.menuEntry.player?.name
             ConfigManager.setConfiguration(
                 "hiscore",

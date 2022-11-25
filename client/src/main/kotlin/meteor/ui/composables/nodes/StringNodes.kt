@@ -51,11 +51,11 @@ fun stringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Confi
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = uiColor, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor.value, fontSize = 14.sp)
                         )
                     },
                     maxLines = 30,
-                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor.value, fontSize = 14.sp)
                 )
             }
         }
@@ -95,12 +95,12 @@ fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = uiColor, fontSize = 14.sp)
+                            style = TextStyle(color = uiColor.value, fontSize = 14.sp)
                         )
                     },
                     singleLine = true,
                     modifier = Modifier.padding(all = 3.dp).fillMaxWidth(),
-                    textStyle = TextStyle(color = uiColor, fontSize = 14.sp)
+                    textStyle = TextStyle(color = uiColor.value, fontSize = 14.sp)
                 )
             }
         }

@@ -49,7 +49,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                         style = TextStyle(
                             fontSize = 20.sp,
                             textAlign = TextAlign.Center,
-                            color = uiColor,
+                            color = uiColor.value,
                             letterSpacing = 2.sp
                         ),
                         textAlign = TextAlign.Center,
@@ -90,7 +90,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Center,
-                                color = uiColor,
+                                color = uiColor.value,
                                 letterSpacing = 2.sp
                             ),
                             textAlign = TextAlign.Left,
@@ -100,7 +100,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Center,
-                                color = uiColor,
+                                color = uiColor.value,
                                 letterSpacing = 2.sp
                             ),
                             textAlign = TextAlign.Left,
@@ -110,7 +110,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Center,
-                                color = uiColor,
+                                color = uiColor.value,
                                 letterSpacing = 2.sp
                             ),
                             textAlign = TextAlign.Right,
@@ -122,7 +122,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                                 style = TextStyle(
                                     fontSize = 17.sp,
                                     textAlign = TextAlign.Center,
-                                    color = uiColor,
+                                    color = uiColor.value,
                                     letterSpacing = 2.sp
                                 ),
                                 textAlign = TextAlign.Left,
@@ -143,7 +143,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Center,
-                                color = uiColor,
+                                color = uiColor.value,
                                 letterSpacing = 2.sp
                             ),
                             textAlign = TextAlign.Left,
@@ -153,7 +153,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             style = TextStyle(
                                 fontSize = 17.sp,
                                 textAlign = TextAlign.Center,
-                                color = uiColor,
+                                color = uiColor.value,
                                 letterSpacing = 2.sp
                             ),
                             textAlign = TextAlign.Left,
@@ -261,7 +261,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                                     value = skillProgress,
                                     valueRange = startFloat..endFloat
                                 ).background(shape = RoundedCornerShape(3.dp), color = surface),
-                                color = uiColor,
+                                color = uiColor.value,
                                 backgroundColor = surface,
                                 progress = skillProgress
                             )

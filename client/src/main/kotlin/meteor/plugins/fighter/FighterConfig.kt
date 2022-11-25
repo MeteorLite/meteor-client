@@ -137,7 +137,6 @@ interface FighterConfig : Config {
     fun alchSpell(): AlchSpell? {
         return AlchSpell.HIGH
     }
-
     @ConfigItem(
         keyName = "alchItems",
         name = "Alch items",

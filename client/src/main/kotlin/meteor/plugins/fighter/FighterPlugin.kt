@@ -115,6 +115,7 @@ class FighterPlugin : Plugin() {
             if (local.interacting != null && !Dialog.canContinue()) {
                 return
             }
+
             if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
             val mob = NPCs.getAll(true)?.filter {
                     config.monster().split(",".toRegex()).toList().contains(it.npc.name)

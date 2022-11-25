@@ -18,7 +18,6 @@ enum class AlchSpell(val spell: Regular, vararg requirements: RuneRequirement) {
     LOW(Regular.LOW_LEVEL_ALCHEMY, RuneRequirement(1, Rune.NATURE), RuneRequirement(1, Rune.FIRE));
 
     private val requirements: Array<RuneRequirement>
-
     init {
         this.requirements = requirements as Array<RuneRequirement>
     }

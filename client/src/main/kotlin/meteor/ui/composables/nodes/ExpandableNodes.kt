@@ -83,7 +83,7 @@ fun Expandable(
                     Icon(
                         imageVector = Icons.Filled.ArrowDropDown,
                         contentDescription = "Drop-Down Arrow",
-                        tint = uiColor
+                        tint = uiColor.value
                     )
                 }
             }
@@ -118,7 +118,7 @@ fun expandToolbar(
                         modifier = Modifier.height(35.dp),
                         imageVector = if (expanded) Octicons.ChevronRight16 else Octicons.ChevronLeft16,
                         contentDescription = "Drop-Down Arrow",
-                        tint = uiColor
+                        tint = uiColor.value
                     )
                 }
             }
@@ -159,7 +159,7 @@ fun sectionItem(title:String, content: @Composable () -> Unit) {
                 modifier = Modifier
                     .weight(8f).padding(start = 20.dp),
                 text = title,
-                color = uiColor,
+                color = uiColor.value,
                 fontSize = size.value.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
