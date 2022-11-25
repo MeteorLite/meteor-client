@@ -31,13 +31,11 @@ import joptsimple.ArgumentAcceptingOptionSpec;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.util.EnumConverter;
-import lombok.extern.java.Log;
 import meteor.Logger;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.deob.util.JarUtil;
 import static net.runelite.deob.util.JarUtil.load;
-import org.gradle.api.logging.Logging;
 
 public class Injector extends InjectData implements InjectTaskHandler
 {

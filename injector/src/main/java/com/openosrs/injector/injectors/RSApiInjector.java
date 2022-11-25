@@ -211,7 +211,7 @@ public class RSApiInjector extends AbstractInjector
 				final ClassFile targetClass = InjectUtil.vanillaFromApiMethod(inject, apiMethod);
 				final Method vanillaMethod = inject.toVanilla(deobMethod);
 				final String garbage = DeobAnnotations.getDecoder(deobMethod);
-				log.debug("[DEBUG] Injecting invoker {} for {} into {}", apiMethod.getMethod(), vanillaMethod.getPoolMethod(), targetClass.getPoolClass());
+				//log.debug("[DEBUG] Injecting invoker {} for {} into {}", apiMethod.getMethod(), vanillaMethod.getPoolMethod(), targetClass.getPoolClass());
 				InjectInvoke.inject(targetClass, apiMethod, vanillaMethod, garbage);
 				++voke;
 				apiMethod.setInjected(true);
@@ -279,7 +279,7 @@ public class RSApiInjector extends AbstractInjector
 			if (apiMethod.getSignature().getArguments().size() == 1)
 			{
 				++set;
-				log.debug("[DEBUG] Injecting setter {} for {} into {}", apiMethod.getMethod(), field.getPoolField(), targetClass.getPoolClass());
+				//log.debug("[DEBUG] Injecting setter {} for {} into {}", apiMethod.getMethod(), field.getPoolField(), targetClass.getPoolClass());
 				InjectSetter.inject(
 					targetClass,
 					apiMethod,
@@ -290,7 +290,7 @@ public class RSApiInjector extends AbstractInjector
 			else
 			{
 				++get;
-				log.debug("[DEBUG] Injecting getter {} for {} into {}", apiMethod.getMethod(), field.getPoolField(), targetClass.getPoolClass());
+				//log.debug("[DEBUG] Injecting getter {} for {} into {}", apiMethod.getMethod(), field.getPoolField(), targetClass.getPoolClass());
 				InjectGetter.inject(
 					targetClass,
 					apiMethod,

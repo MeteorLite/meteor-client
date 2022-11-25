@@ -228,7 +228,7 @@ public class ScriptVM extends AbstractInjector
 				.mapToInt(AStore::getVariableIndex)
 				.reduce(Math::min)
 				.orElseThrow(() -> new InjectException("Unable to find any Script AStores in runScript"));
-			log.debug("[DEBUG] Found script index {}", outerSciptIdx);
+			//log.debug("[DEBUG] Found script index {}", outerSciptIdx);
 
 			ListIterator<Instruction> instrIter = instrs.getInstructions().listIterator();
 			while (instrIter.hasNext())
@@ -255,7 +255,7 @@ public class ScriptVM extends AbstractInjector
 			{
 				throw new InjectException("Unable to find ILoad for invokedFromPc IStore");
 			}
-			log.debug("[DEBUG] Found pc index {}", pcLocalVar);
+			//log.debug("[DEBUG] Found pc index {}", pcLocalVar);
 
 			ListIterator<Instruction> instrIter = instrs.getInstructions().listIterator();
 			while (instrIter.hasNext())
@@ -287,7 +287,7 @@ public class ScriptVM extends AbstractInjector
 		}
 
 		// Inject call to vmExecuteOpcode
-		log.debug("[DEBUG] Found instruction array index {}", instructionArrayLocalVar);
+		//log.debug("[DEBUG] Found instruction array index {}", instructionArrayLocalVar);
 		if (currentOpcodeStore == null)
 		{
 			throw new InjectException("Unable to find IStore for current opcode");

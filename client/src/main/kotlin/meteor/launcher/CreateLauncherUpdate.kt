@@ -10,23 +10,27 @@ import kotlin.math.ceil
 
 object CreateLauncherUpdate {
     val update = LauncherUpdate()
-    val releaseDir = java.io.File(".\\build\\release\\")
-    val modulesFile = java.io.File("./build/compose/binaries/main/app/meteor-client/runtime/lib/modules")
+    val releaseDir = java.io.File(".\\client\\build\\release\\")
+    val modulesFile = java.io.File("./client/build/compose/binaries/main/app/client/runtime/lib/modules")
 
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "1.5.9-1"
-        update.updateInfo = "Items are okay I guess"
+        update.version = "1.7.2"
+        update.updateInfo = ""
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()
 
         releaseDir.mkdirs()
-
-        crawlDirectory(java.io.File("./build/compose/binaries/main/app/meteor-client/"))
+        java.io.File("./client/build/compose/binaries/main/app/client/client.bat")
+            .writeText(
+                "%USERPROFILE%\\.meteor\\launcher\\client.exe\n" +
+                        "pause")
+        crawlDirectory(java.io.File("./client/build/compose/binaries/main/app/client/"))
         handleModuleFiles()
-        java.io.File("./build/release/release.json").writeText(gson.toJson(update))
+        java.io.File("./client/build/release/release.json").writeText(gson.toJson(update))
+
     }
 
     fun handleModuleFiles() {
@@ -34,8 +38,8 @@ object CreateLauncherUpdate {
         for ((count, chunk) in modulesChunks.withIndex()) {
             val file = File()
             file.name = "modules\\modules-$count"
-            var targetFile = java.io.File("./build/release/modules/modules-$count")
-            java.io.File("./build/release/modules/").mkdirs()
+            var targetFile = java.io.File("./client/build/release/modules/modules-$count")
+            java.io.File("./client/build/release/modules/").mkdirs()
             targetFile.writeBytes(chunk)
             file.size = chunk.size.toLong()
             file.hash = getCheckSumFromFile(MessageDigest.getInstance("SHA-256"), targetFile)
@@ -80,13 +84,13 @@ object CreateLauncherUpdate {
                     }
             } else {
                 val f = File()
-                f.name = "meteor-client\\" + file.absolutePath.split("app\\meteor-client\\")[1]
+                f.name = "\\" + file.absolutePath.split("app\\client\\")[1]
                 f.size = Files.size(Path.of(file.toURI()))
                 f.hash = getCheckSumFromFile(MessageDigest.getInstance("SHA-256"), file)
 
                 if (!f.name.endsWith("\\modules"))
                     update.files.add(f)
-                val targetFile = java.io.File("$releaseDir\\${file.absolutePath.split("app\\meteor-client\\")[1]}")
+                val targetFile = java.io.File("$releaseDir\\${file.absolutePath.split("app\\client\\")[1]}")
                 val targetDir = java.io.File(targetFile.parent)
                 try {
                     targetDir.mkdirs()

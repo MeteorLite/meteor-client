@@ -58,7 +58,6 @@ class LootTrackerPlugin: Plugin() {
         val npc = it.npc
         val items = it.items
         val name = npc!!.name
-        println(it.toString())
         items.forEach { ist ->
             nameInput(name,ist.id,ist.quantity)
             priceInput(name,Prices.getItemPrice(ist.id))

@@ -68,7 +68,6 @@ init {
                 else -> return
             }
         }
-        println("Npc dead")
         processNpcLoot(npc)
     }
 

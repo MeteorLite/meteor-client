@@ -11,7 +11,6 @@ repositories {
 }
 
 dependencies {
-    implementation(gradleApi())
     implementation(project(":annotations"))
     implementation(project(":logger"))
     implementation(group = "com.google.code.findbugs", name = "jsr305", version = "_")

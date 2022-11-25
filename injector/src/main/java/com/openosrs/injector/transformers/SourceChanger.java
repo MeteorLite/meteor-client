@@ -26,14 +26,14 @@ public class SourceChanger extends InjectTransformer
 	void transformImpl()
 	{
 		inject.forEachPair(this::rename);
-		log.info("[INFO] Changed source file debug information for {} classes", n);
+		//log.info("[INFO] Changed source file debug information for {} classes", n);
 	}
 
 	private void rename(ClassFile rsclient, ClassFile vanilla)
 	{
 		++n;
 		final String newSrc = rsclient.getSource();
-		log.debug("[DEBUG] Changing src from {} to {}", vanilla.getSource(), newSrc);
+		//log.debug("[DEBUG] Changing src from {} to {}", vanilla.getSource(), newSrc);
 		vanilla.setSource(newSrc);
 	}
 }

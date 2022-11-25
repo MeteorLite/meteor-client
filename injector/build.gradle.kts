@@ -15,13 +15,13 @@ repositories{
 dependencies{
     compileOnly("org.projectlombok:lombok:_")
     annotationProcessor("org.projectlombok:lombok:_")
-    implementation(gradleApi())
 
     implementation(project(":annotations"))
     implementation(project(":deobfuscator"))
     implementation(project(":api-rs"))
     implementation(project(":osrs"))
     implementation(project(":logger"))
+    implementation("javax.inject:javax.inject:1")
 
     implementation(group = "org.ow2.asm", name = "asm", version = "_")
     implementation(group = "org.ow2.asm", name = "asm-util", version = "_")
