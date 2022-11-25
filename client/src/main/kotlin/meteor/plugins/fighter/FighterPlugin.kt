@@ -1,5 +1,6 @@
 package meteor.plugins.fighter
 
+import dev.hoot.api.commons.Time
 import dev.hoot.api.entities.Players
 import dev.hoot.api.entities.TileItems
 import dev.hoot.api.game.Combat
@@ -22,6 +23,7 @@ import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.autoalch.AutoAlchConfig
+import meteor.rs.ClientThread
 import net.runelite.api.TileItem
 import net.runelite.api.coords.WorldPoint
 import java.util.*
@@ -114,12 +116,12 @@ class FighterPlugin : Plugin() {
                 return
             }
             if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
-            val mob = NPCs.getAll(true)?.filter { it.npc.name != null
-                    && it.npc.name.lowercase() in config.monster().lowercase()
+            val mob = NPCs.getAll(true)?.filter {
+                    config.monster().split(",".toRegex()).toList().contains(it.npc.name)
                     && !it.npc.isDead
                     && it.npc.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }
             mob?.forEach {npc->
-                        npc.npc.interact("Attack")
+                            npc.npc.interact("Attack")
                     }
             }
         } catch (ex: Exception) {
