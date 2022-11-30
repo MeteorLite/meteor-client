@@ -895,7 +895,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 							if (defaultLeftClickOp != actionIdx && (leftClickOp == null || leftClickOp != actionIdx))
 							{
 								leftClickMenus.add(client.createMenuEntry(idx)
-									.setOption(opName)
+									.setOption("LClick " + opName)
+									.setTarget(itemComposition.getName())
 									.setType(MenuAction.RUNELITE)
 									.onClick(heldItemConsumer(itemComposition, opName, actionIdx, false)));
 							}
@@ -905,7 +906,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 							if (defaultShiftClickOp != actionIdx && (shiftClickOp == null || shiftClickOp != actionIdx))
 							{
 								shiftClickMenus.add(client.createMenuEntry(idx)
-									.setOption(opName)
+									.setOption("Shift " + opName)
+									.setTarget(itemComposition.getName())
 									.setType(MenuAction.RUNELITE)
 									.onClick(heldItemConsumer(itemComposition, opName, actionIdx, true)));
 							}
@@ -918,14 +920,16 @@ public class MenuEntrySwapperPlugin extends Plugin
 						if (defaultLeftClickOp != -1 && config.leftClickCustomization())
 						{
 							leftClickMenus.add(client.createMenuEntry(idx)
-								.setOption("Use")
+								.setOption("LClick " + "Use")
+								.setTarget(itemComposition.getName())
 								.setType(MenuAction.RUNELITE)
 								.onClick(heldItemConsumer(itemComposition, "Use", -1, false)));
 						}
 						if (defaultShiftClickOp != -1 && config.shiftClickCustomization())
 						{
 							shiftClickMenus.add(client.createMenuEntry(idx)
-								.setOption("Use")
+								.setOption("Shift " + "Use")
+								.setTarget(itemComposition.getName())
 								.setType(MenuAction.RUNELITE)
 								.onClick(heldItemConsumer(itemComposition, "Use", -1, true)));
 						}
@@ -936,6 +940,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 				{
 					leftClickMenus.add(client.createMenuEntry(idx)
 						.setOption("Reset")
+						.setTarget(itemComposition.getName())
 						.setType(MenuAction.RUNELITE)
 						.onClick(e ->
 						{
@@ -956,6 +961,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 				{
 					shiftClickMenus.add(client.createMenuEntry(idx)
 						.setOption("Reset")
+						.setTarget(itemComposition.getName())
 						.setType(MenuAction.RUNELITE)
 						.onClick(e ->
 						{
