@@ -76,13 +76,13 @@ class AgilityPlugin : Plugin() {
     }
 
     override fun onItemSpawned(it: ItemSpawned) {
-        if (it.item.id == ItemID.MARK_OF_GRACE) {
+        if (it.item.getId() == ItemID.MARK_OF_GRACE) {
             marks.add(it.tile)
         }
     }
 
     override fun onItemDespawned(it: ItemDespawned) {
-        if (it.item.id == ItemID.MARK_OF_GRACE) {
+        if (it.item.getId() == ItemID.MARK_OF_GRACE) {
             marks.remove(it.tile)
         }
     }

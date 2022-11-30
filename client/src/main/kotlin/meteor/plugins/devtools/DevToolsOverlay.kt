@@ -211,7 +211,7 @@ class DevToolsOverlay(val plugin: DevToolsPlugin) : Overlay() {
                 var current: Node = itemLayer.bottom
                 while (current is TileItem) {
                     val item = current
-                    OverlayUtil.renderTileOverlay(graphics, itemLayer, "ID: " + item.id + " Qty:" + item.quantity, RED)
+                    OverlayUtil.renderTileOverlay(graphics, itemLayer, "ID: " + item.getId() + " Qty:" + item.quantity, RED)
                     current = current.getNext()
                 }
             }

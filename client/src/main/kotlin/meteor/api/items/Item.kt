@@ -8,10 +8,8 @@ import dev.hoot.api.items.Bank.WithdrawOption
 import dev.hoot.api.widgets.Dialog
 import meteor.Logger
 import meteor.api.packets.ClientPackets.createClientPacket
-import net.runelite.api.Client
+import net.runelite.api.*
 import net.runelite.api.Item
-import net.runelite.api.MenuAction
-import net.runelite.api.Player
 import net.runelite.api.widgets.WidgetInfo
 import java.util.*
 
@@ -53,12 +51,12 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
         }
     }
 
-    fun useOn(loot: meteor.api.loot.Loot) {
+    fun useOn(loot: TileItem) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         GameThread.invoke {
-            log.info("[Use-on Loot] [${loot.loot.name}]")
-            createClientPacket(loot.loot.getMenu(0, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM.id))!!.send()
+            log.info("[Use-on Loot] [${loot.getName()}]")
+            createClientPacket(loot.getMenu(0, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM.id))!!.send()
         }
     }
 

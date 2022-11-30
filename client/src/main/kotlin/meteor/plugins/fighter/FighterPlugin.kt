@@ -2,7 +2,6 @@ package meteor.plugins.fighter
 
 import dev.hoot.api.commons.Time
 import dev.hoot.api.entities.Players
-import dev.hoot.api.entities.TileItems
 import dev.hoot.api.game.Combat
 import dev.hoot.api.game.Game
 import dev.hoot.api.items.Inventory
@@ -85,13 +84,13 @@ class FighterPlugin : Plugin() {
             val itemsToLoot = config.loot().split(",")
             if (!Inventory.isFull()&& Loots.exists(itemsToLoot)) {
                 Loots .getAll()?.filter{
-                    (it.loot. tile.worldLocation.distanceTo(local.worldLocation) < config.attackRange() && !notOurItems.contains(it.loot)
-                            && (it.loot.name != null && itemsToLoot.contains(it.loot.name)
+                    (it.tile.worldLocation.distanceTo(local.worldLocation) < config.attackRange() && !notOurItems.contains(it)
+                            && (it.getName() != null && itemsToLoot.contains(it.getName())
                             || config.lootValue() > -1
-                            && ItemManager.getItemPrice(it.loot.id) * it.loot.quantity > config.lootValue()
+                            && ItemManager.getItemPrice(it.getId()) * it.quantity > config.lootValue()
                             || config.untradables()
-                            && !it.loot.isTradable
-                            || it.loot.hasInventoryAction("Destroy")))
+                            && !it.isTradable
+                            || it.hasInventoryAction("Destroy")))
                 }?.forEach {
                     if(local.isIdle)
                     it.interact("Take")
@@ -134,8 +133,10 @@ class FighterPlugin : Plugin() {
     override fun onChatMessage(it: ChatMessage) {
         val message = it.message
         if (message.contains("other players have dropped")) {
-            val notOurs = TileItems.getAt(Players.getLocal().worldLocation) { true }
-            notOurItems.addAll(notOurs)
+            val notOurs = Loots.getAt(Players.getLocal().worldLocation)
+            notOurs?.forEach {
+                notOurItems.add(it)
+            }
         }
     }
 }
