@@ -1,11 +1,9 @@
 package meteor.launcher
 
 import com.google.gson.GsonBuilder
-import java.io.FileInputStream
-import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.Path
-import java.security.MessageDigest
+import java.util.zip.CRC32
 import kotlin.math.ceil
 
 object CreateLauncherUpdate {
@@ -16,7 +14,7 @@ object CreateLauncherUpdate {
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "1.7.2"
+        update.version = "1.7.3"
         update.updateInfo = ""
 
         if (releaseDir.exists())
@@ -42,7 +40,7 @@ object CreateLauncherUpdate {
             java.io.File("./client/build/release/modules/").mkdirs()
             targetFile.writeBytes(chunk)
             file.size = chunk.size.toLong()
-            file.hash = getCheckSumFromFile(MessageDigest.getInstance("SHA-256"), targetFile)
+            file.hash = generateCRC(targetFile)
             update.modulesParts.add(file)
         }
     }
@@ -86,7 +84,7 @@ object CreateLauncherUpdate {
                 val f = File()
                 f.name = "\\" + file.absolutePath.split("app\\client\\")[1]
                 f.size = Files.size(Path.of(file.toURI()))
-                f.hash = getCheckSumFromFile(MessageDigest.getInstance("SHA-256"), file)
+                f.hash = generateCRC(file)
 
                 if (!f.name.endsWith("\\modules"))
                     update.files.add(f)
@@ -101,45 +99,10 @@ object CreateLauncherUpdate {
         }
     }
 
-    fun getCheckSumFromFile(digest: MessageDigest, file: java.io.File): String {
-        val fis = FileInputStream(file)
-        val byteArray = updateDigest(digest, fis).digest()
-        fis.close()
-        val hexCode = encodeHex(byteArray)
-        return String(hexCode)
+    fun generateCRC(file: java.io.File): String {
+        val crc32 = CRC32()
+        val bytes = file.readBytes()
+        crc32.update(bytes)
+        return crc32.value.toString()
     }
-
-    fun encodeHex(data: ByteArray): CharArray {
-        val l = data.size
-        val out = CharArray(l shl 1)
-        // two characters form the hex value.
-        var i = 0
-        var j = 0
-        while (i < l) {
-            out[j++] = DIGITS_UPPER[0xF0 and data[i].toInt() ushr 4]
-            out[j++] = DIGITS_UPPER[0x0F and data[i].toInt()]
-            i++
-        }
-        return out
-    }
-
-    /**
-     * Reads through an InputStream and updates the digest for the data
-     *
-     * @param digest The MessageDigest to use (e.g. MD5)
-     * @param data Data to digest
-     * @return the digest
-     */
-    private fun updateDigest(digest: MessageDigest, data: InputStream): MessageDigest {
-        val buffer = ByteArray(1024)
-        var read = data.read(buffer, 0, 1024)
-        while (read > -1) {
-            digest.update(buffer, 0, read)
-            read = data.read(buffer, 0, 1024)
-        }
-        return digest
-    }
-
-    private val DIGITS_UPPER =
-        charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F')
 }
