@@ -2,7 +2,6 @@ package meteor
 
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import com.formdev.flatlaf.FlatLaf
 import com.formdev.flatlaf.FlatPropertiesLaf
@@ -111,7 +110,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
                 title = "Meteor",
                 icon = painterResource("Meteor_icon.png"),
                 undecorated = meteorConfig.fullscreen(),
-                state =  rememberWindowState(placement = WindowPlacement.Floating, size =   DpSize(Applet().minimalWidth.dp + meteorConfig.toolbarWidth().dp, 542.dp)),
+                state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
                 content = {
                     windowContent()
                     // finishStartup is ran here
