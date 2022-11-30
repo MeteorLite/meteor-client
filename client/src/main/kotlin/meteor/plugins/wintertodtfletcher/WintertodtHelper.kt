@@ -70,7 +70,7 @@ class WintertodtHelper : Plugin() {
         if (Skills.getBoostedLevel(Skill.HITPOINTS) <= config.healAt())
             Items.getAll()?.let { items ->
                 for (item in items) {
-                    if (item.actions.contains("Eat")) {
+                    if (item.actions?.contains("Eat") == true) {
                         allowance++
                         item.interact("Eat")
                         return true

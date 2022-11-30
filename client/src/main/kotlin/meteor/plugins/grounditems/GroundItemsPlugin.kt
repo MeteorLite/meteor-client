@@ -130,12 +130,12 @@ class GroundItemsPlugin : Plugin() {
         val item = it.item
         val tile = it.tile
         val groundItem = buildGroundItem(tile, item)
-        val existing = collectedGroundItems[tile.worldLocation, item.id]
+        val existing = collectedGroundItems[tile.worldLocation, item.getId()]
         if (existing != null) {
             existing.quantity = existing.quantity + groundItem.quantity
             // The spawn time remains set at the oldest spawn
         } else {
-            collectedGroundItems.put(tile.worldLocation, item.id, groundItem)
+            collectedGroundItems.put(tile.worldLocation, item.getId(), groundItem)
         }
         handleLootbeam(tile.worldLocation)
     }
@@ -143,10 +143,10 @@ class GroundItemsPlugin : Plugin() {
     override fun onItemDespawned(it: ItemDespawned) {
         val item = it.item
         val tile = it.tile
-        val groundItem = collectedGroundItems[tile.worldLocation, item.id]
+        val groundItem = collectedGroundItems[tile.worldLocation, item.getId()]
         if (groundItem != null) {
             if (groundItem.quantity <= item.quantity) {
-                collectedGroundItems.remove(tile.worldLocation, item.id)
+                collectedGroundItems.remove(tile.worldLocation, item.getId())
             } else {
                 groundItem.quantity = groundItem.quantity - item.quantity
                 // When picking up an item when multiple stacks appear on the ground,
@@ -164,7 +164,7 @@ class GroundItemsPlugin : Plugin() {
         val oldQuantity = it.oldQuantity
         val newQuantity = it.newQuantity
         val diff = newQuantity - oldQuantity
-        val groundItem = collectedGroundItems[tile.worldLocation, item.id]
+        val groundItem = collectedGroundItems[tile.worldLocation, item.getId()]
         if (groundItem != null) {
             groundItem.quantity = groundItem.quantity + diff
         }
@@ -233,7 +233,7 @@ class GroundItemsPlugin : Plugin() {
 
     private fun buildGroundItem(tile: Tile, item: TileItem): GroundItem {
         // Collect the data for the item
-        val itemId = item.id
+        val itemId = item.getId()
         val itemComposition = itemManager.getItemComposition(itemId)
         val realItemId = if (itemComposition!!.note != -1) itemComposition.linkedNoteId else itemId
         val alchPrice = itemComposition.haPrice

@@ -8,10 +8,8 @@ import dev.hoot.api.items.Bank.WithdrawOption
 import dev.hoot.api.widgets.Dialog
 import meteor.Logger
 import meteor.api.packets.ClientPackets.createClientPacket
-import net.runelite.api.Client
+import net.runelite.api.*
 import net.runelite.api.Item
-import net.runelite.api.MenuAction
-import net.runelite.api.Player
 import net.runelite.api.widgets.WidgetInfo
 import java.util.*
 
@@ -21,9 +19,9 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
     fun use() {
         widgetId = WidgetInfo.INVENTORY.packedId
         log.info("[Use]")
-        client.selectedSpellWidget = widgetId
-        client.selectedSpellChildIndex = slot
-        client.selectedSpellItemId = id
+        client!!.selectedSpellWidget = widgetId
+        client!!.selectedSpellChildIndex = slot
+        client!!.selectedSpellItemId = id
     }
 
     fun useOn(item: meteor.api.items.Item) {
@@ -31,7 +29,7 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
         use()
         GameThread.invoke {
             log.info("[Use-on Item] [${item.name}]")
-            createClientPacket(item.getMenu(0, MenuAction.WIDGET_TARGET_ON_WIDGET.id))!!.send()
+            item.getMenu(0, MenuAction.WIDGET_TARGET_ON_WIDGET.id)?.let { createClientPacket(it) }!!.send()
         }
     }
 
@@ -53,12 +51,12 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
         }
     }
 
-    fun useOn(loot: meteor.api.loot.Loot) {
+    fun useOn(loot: TileItem) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         GameThread.invoke {
-            log.info("[Use-on Loot] [${loot.loot.name}]")
-            createClientPacket(loot.loot.getMenu(0, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM.id))!!.send()
+            log.info("[Use-on Loot] [${loot.getName()}]")
+            createClientPacket(loot.getMenu(0, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM.id))!!.send()
         }
     }
 
@@ -76,7 +74,7 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
         GameThread.invoke {
             log.info("[Spell Use-on]")
             slot = Items.getSlot(id)
-            createClientPacket(getMenu(0, MenuAction.WIDGET_USE_ON_ITEM.id))!!.send()
+            getMenu(0, MenuAction.WIDGET_USE_ON_ITEM.id)?.let { createClientPacket(it) }!!.send()
         }
     }
 
@@ -179,19 +177,21 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
     }
 
     fun hasAction(vararg actions: String): Boolean {
-        return Arrays.stream(actions).anyMatch { x -> getActions().contains(x) }
+        return Arrays.stream(actions).anyMatch { x -> actions.contains(x) }
     }
 
     fun interact(action: String) {
         if (actions == null) {
             return
         }
-        val index = arrayListOf<String>(*rawActions).indexOf(action)
+        val index = rawActions?.indexOf(action)
         if (index == -1) {
             log.warn("Action idx not found for $action")
             return
         }
-        invoke(index)
+        if (index != null) {
+            invoke(index)
+        }
     }
 
     fun interact(idx: Int) {
@@ -199,6 +199,6 @@ class Item(client: Client, id: Int, quantity: Int) : Item(client, id, quantity) 
     }
 
     fun invoke(index: Int) {
-        GameThread.invoke { createClientPacket(getMenu(index))!!.send() }
+        GameThread.invoke { getMenu(index)?.let { createClientPacket(it) }!!.send() }
     }
 }

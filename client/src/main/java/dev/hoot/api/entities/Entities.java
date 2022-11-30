@@ -45,7 +45,7 @@ public abstract class Entities<T extends SceneEntity>
 		return nearest(to, Predicates.ids(ids));
 	}
 
-	public static List<? extends SceneEntity> getHoveredEntities()
+/*	public static List<? extends SceneEntity> getHoveredEntities()
 	{
 		MenuEntry[] menuEntries = Game.getClient().getMenuEntries();
 		if (menuEntries.length == 0)
@@ -130,5 +130,5 @@ public abstract class Entities<T extends SceneEntity>
 		}
 
 		return out;
-	}
+	}*/
 }
