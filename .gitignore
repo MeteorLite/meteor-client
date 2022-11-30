@@ -6,3 +6,4 @@ build/
 client/.mixin.out
 .mixin.out
 injected-client/src/main/java
+client/src/main/resources/injected-client.jar
