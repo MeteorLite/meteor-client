@@ -24,40 +24,107 @@
  */
 package meteor.plugins.antidrag
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
+import meteor.config.legacy.*
 import net.runelite.api.Constants
+import java.awt.Color
+import java.awt.event.KeyEvent
 
-@ConfigGroup(AntiDragPlugin.Companion.CONFIG_GROUP)
+@ConfigGroup("AntiDrag")
 interface AntiDragConfig : Config {
+    @ConfigItem(
+        position = 0,
+        keyName = "alwaysOn",
+        name = "Always On",
+        description = "Makes the anti-drag always active and disables the hotkey toggle",
+        disabledBy = "toggleKeyBind || holdKeyBind",
+    )
+    fun alwaysOn(): Boolean {
+        return false
+    }
+
+    @ConfigItem(
+        position = 1,
+        keyName = "toggleKeyBind",
+        name = "Toggle with Keybind",
+        description = "Toggle anti drag on and off, rather than always on.",
+        disabledBy = "alwaysOn || holdKeyBind",
+    )
+    fun toggleKeyBind(): Boolean {
+        return false
+    }
+
+    @ConfigItem(
+        position = 2,
+        keyName = "holdKeyBind",
+        name = "Hold with Keybind",
+        description = "Hold anti drag key to turn it on, rather than toggle it on or off.",
+        disabledBy = "alwaysOn || toggleKeyBind",
+    )
+    fun holdKeyBind(): Boolean {
+        return false
+    }
+
+    @ConfigItem(
+        keyName = "key",
+        name = "Keybind",
+        description = "The keybind you want to use for antidrag",
+        position = 3,
+    )
+    fun key(): ModifierlessKeybind {
+        return ModifierlessKeybind(KeyEvent.VK_SHIFT, KeyEvent.KEY_PRESSED)
+    }
+
+    @Range(max = 500)
     @ConfigItem(
         keyName = "dragDelay",
         name = "Drag Delay",
         description = "Configures the inventory drag delay in client ticks (20ms)",
-        position = 1
+        position = 4
     )
     fun dragDelay(): Int {
         return Constants.GAME_TICK_LENGTH / Constants.CLIENT_TICK_LENGTH // one game tick
     }
 
+    @Range(max = 500)
     @ConfigItem(
-        keyName = "onShiftOnly",
-        name = "On Shift Only",
-        description = "Configures whether to only adjust the delay while holding shift.",
-        position = 2
+        keyName = "bankDragDelay",
+        name = "Bank Drag Delay",
+        description = "Configures the bank drag delay in client ticks (20ms)",
+        position = 5
     )
-    fun onShiftOnly(): Boolean {
-        return true
+    fun bankDragDelay(): Int {
+        return Constants.GAME_TICK_LENGTH / Constants.CLIENT_TICK_LENGTH // one game tick
     }
 
     @ConfigItem(
-        keyName = "disableOnCtrl",
-        name = "Disable On Control Pressed",
-        description = "Configures whether to ignore the delay while holding control.",
-        position = 3
+        keyName = "reqFocus",
+        name = "Reset on focus loss",
+        description = "Disable antidrag when losing focus (like alt tabbing)",
+        position = 6,
     )
-    fun disableOnCtrl(): Boolean {
+    fun reqFocus(): Boolean {
         return false
+    }
+
+    @ConfigItem(
+        keyName = "overlay",
+        name = "Enable overlay",
+        description = "Do you really need a description?",
+        position = 7,
+
+    )
+    fun overlay(): Boolean {
+        return false
+    }
+
+    @Alpha
+    @ConfigItem(
+        keyName = "color",
+        name = "Overlay color",
+        description = "Change the overlay color, duh",
+        position = 8
+    )
+    fun color(): Color? {
+        return Color(255, 0, 0, 30)
     }
 }
