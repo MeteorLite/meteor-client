@@ -99,13 +99,13 @@ init {
         val location: LocalPoint = tile.localLocation
         val packed: Int = location.sceneX shl 8 or location.sceneY
         itemSpawns.put(packed, ItemStack(item.id, item.quantity, location))
-        log.info("Item spawn {} ({}) location {}", item.id, item.quantity, location)
+        //log.info("Item spawn {} ({}) location {}", item.id, item.quantity, location)
     }
 
     override fun onItemDespawned(it: ItemDespawned) {
         val item: TileItem = it.item
         val location: LocalPoint = it.tile.localLocation
-        log.debug("Item despawn {} ({}) location {}", item.id, item.quantity, location)
+        //log.debug("Item despawn {} ({}) location {}", item.id, item.quantity, location)
     }
 
     override fun onItemQuantityChanged(it: ItemQuantityChanged) {

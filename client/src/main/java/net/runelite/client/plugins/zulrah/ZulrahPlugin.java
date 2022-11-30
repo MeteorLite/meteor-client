@@ -153,7 +153,7 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
       clearSnakelingCollection();
       holdingSnakelingHotkey = false;
       handleTotalTicksInfoBox(true);
-      log.info("Zulrah Reset!");
+      //log.info("Zulrah Reset!");
    }
 
    public void keyTyped(KeyEvent e) {
