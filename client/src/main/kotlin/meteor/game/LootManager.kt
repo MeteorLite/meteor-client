@@ -98,7 +98,7 @@ init {
         val tile: Tile = it.tile
         val location: LocalPoint = tile.localLocation
         val packed: Int = location.sceneX shl 8 or location.sceneY
-        itemSpawns.put(packed, ItemStack(item.id, item.quantity, location))
+        itemSpawns.put(packed, ItemStack(item.getId(), item.quantity, location))
         //log.info("Item spawn {} ({}) location {}", item.id, item.quantity, location)
     }
 
@@ -117,7 +117,7 @@ init {
         if (diff <= 0) {
             return
         }
-        itemSpawns.put(packed, ItemStack(item.id, diff, location))
+        itemSpawns.put(packed, ItemStack(item.getId(), diff, location))
     }
 
     override fun onAnimationChanged(it: AnimationChanged) {

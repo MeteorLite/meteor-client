@@ -167,7 +167,8 @@ public abstract class RSTileItemMixin implements RSTileItem
 	}
 
 	@Inject
-	private ItemComposition getComposition()
+	@Override
+	public ItemComposition getComposition()
 	{
 		return client.getItemComposition(getId());
 	}

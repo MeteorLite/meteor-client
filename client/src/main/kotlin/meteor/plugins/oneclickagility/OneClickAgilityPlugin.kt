@@ -131,13 +131,13 @@ class OneClickAgilityPlugin : Plugin() {
     }
 
     override fun onItemSpawned(it: ItemSpawned) {
-        if (it.item.id == MARK_ID) {
+        if (it.item.getId() == MARK_ID) {
             marks.add(it.tile)
         }
     }
 
     override fun onItemDespawned(it: ItemDespawned) {
-        if (it.item.id == MARK_ID) {
+        if (it.item.getId() == MARK_ID) {
             marks.remove(it.tile)
         }
     }
@@ -230,7 +230,7 @@ class OneClickAgilityPlugin : Plugin() {
         val items = tile.groundItems ?: return false
         for (item in items) {
             if (item == null) continue
-            if (item.id == MARK_ID) return true
+            if (item.getId() == MARK_ID) return true
         }
         return false
     }
@@ -239,7 +239,7 @@ class OneClickAgilityPlugin : Plugin() {
         val items = tile.groundItems ?: return false
         for (item in items) {
             if (item == null) continue
-            if (item.id == COIN_ID) return true
+            if (item.getId() == COIN_ID) return true
         }
         return false
     }
