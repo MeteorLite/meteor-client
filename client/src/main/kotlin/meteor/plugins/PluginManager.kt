@@ -56,6 +56,7 @@ import meteor.plugins.worldmap.WorldMapPlugin
 import meteor.plugins.worldmapwalker.WorldMapWalkerPlugin
 import meteor.plugins.xptracker.XpTrackerPlugin
 import meteor.plugins.animsmoothing.AnimationSmoothingPlugin
+import meteor.plugins.antidrag.AntiDragPlugin
 import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import meteor.plugins.barrows.BarrowsPlugin
