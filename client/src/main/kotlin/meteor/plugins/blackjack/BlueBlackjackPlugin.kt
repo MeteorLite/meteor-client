@@ -35,7 +35,7 @@ import net.runelite.api.ChatMessageType
 import net.runelite.api.GameState
 import net.runelite.api.MenuEntry
 import org.apache.commons.lang3.ArrayUtils
-import javax.inject.Inject
+
 
 @PluginDescriptor(
     name = "[b] Blackjack",
