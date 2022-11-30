@@ -72,6 +72,7 @@ import meteor.plugins.coxhelper.CoxPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
+import meteor.plugins.emojis.EmojiPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.fighter.FighterPlugin
 import meteor.plugins.hunter.HunterPlugin
@@ -151,6 +152,7 @@ object PluginManager {
         init<DevToolsPlugin>()
         init<DriftNetPlugin>()
         init<ExamplePlugin>()
+        init<EmojiPlugin>()
         init<EntityHiderPlugin>()
         init<FishingPlugin>()
         init<FighterPlugin>()
