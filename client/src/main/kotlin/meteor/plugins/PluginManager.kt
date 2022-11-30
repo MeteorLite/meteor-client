@@ -118,6 +118,7 @@ object PluginManager {
         init<AnimationSmoothingPlugin>()
         init<AoeWarningPlugin>()
         init<AttackStylesPlugin>()
+        init<AntiDragPlugin>()
         init<AutoAlchPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoClickerPlugin>()

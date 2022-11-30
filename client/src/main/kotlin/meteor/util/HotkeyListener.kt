@@ -80,5 +80,5 @@ open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener 
 
     }
 
-    protected fun hotkeyReleased() {}
+    protected open fun hotkeyReleased() {}
 }
