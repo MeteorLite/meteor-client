@@ -35,10 +35,8 @@ import java.awt.Graphics2D
 import java.awt.Polygon
 
 class TileIndicatorsOverlay(
-    plugin: TileIndicatorsPlugin
-
+    var config: TileIndicatorsConfig
 ) : Overlay() {
-    var config = plugin.config
 
     override fun render(graphics: Graphics2D): Dimension? {
         if (config.highlightHoveredTile()) {
