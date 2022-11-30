@@ -60,6 +60,7 @@ import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import meteor.plugins.barrows.BarrowsPlugin
 import meteor.plugins.barrowsdoorhighlighter.BarrowsDoorHighlighter
+import meteor.plugins.blackjack.BlueBlackjackPlugin
 import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import meteor.plugins.blastmine.BlastMinePlugin
 import meteor.plugins.bosstimer.BossTimersPlugin
@@ -128,6 +129,7 @@ object PluginManager {
         init<BarrowsDoorHighlighter>()
         init<BlastFurnacePlugin>()
         init<BlastMinePlugin>()
+        init<BlueBlackjackPlugin>()
         init<BoostsPlugin>()
         init<BossTimersPlugin>()
         init<CameraPlugin>()
