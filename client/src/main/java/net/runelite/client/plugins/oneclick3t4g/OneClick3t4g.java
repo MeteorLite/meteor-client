@@ -1,6 +1,5 @@
 package net.runelite.client.plugins.oneclick3t4g;
 
-import dev.hoot.api.items.Inventory;
 import eventbus.events.ChatMessage;
 import eventbus.events.ClientTick;
 import eventbus.events.MenuOptionClicked;
@@ -61,15 +60,14 @@ public class OneClick3t4g extends Plugin {
             return;
         }
         if(config.humidify()){
-            if(Inventory.getFirst(1825,1827,1829,1823)==null){
-                if(Inventory.getFirst(1831)!=null){
+            if(Items.INSTANCE.getFirst(new int[] {1825,1827,1829,1823}, InventoryID.INVENTORY)==null){
+                if(Items.INSTANCE.getFirst(new int[] {1831}, InventoryID.INVENTORY)!=null){
                     event.setMenuEntry(client.createMenuEntry("Cast","<col=00ff00>Humidify</col>",1,CC_OP.getId(),-1, client.getWidget(WidgetInfo.SPELL_HUMIDIFY).getId(),false));
-                    return;
                 }else{
                     client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you need to bring waterskins for this disabling plugin", null);
                     PluginManager.INSTANCE.toggle(this);
-                    return;
                 }
+                return;
             }
         }
         if(!Items.INSTANCE.inventoryContains(6333)||!Items.INSTANCE.inventoryContains(946)){
@@ -95,15 +93,14 @@ public class OneClick3t4g extends Plugin {
         }
         if(startingTickCount==-1||(client.getTickCount()-startingTickCount)>2){
             if(config.humidify()){
-                if(Inventory.getAll(1825,1827,1829,1823).isEmpty()){
-                    if(Inventory.getFirst(1831)!=null){
+                if(Items.INSTANCE.getFirst(new int[] {1825,1827,1829,1823}, InventoryID.INVENTORY)==null){
+                    if(Items.INSTANCE.getFirst(new int[] {1831}, InventoryID.INVENTORY)!=null){
                         event.setMenuEntry(client.createMenuEntry("Cast","<col=00ff00>Humidify</col>",1,CC_OP.getId(),-1,14286958,false));
-                        return;
                     }else{
                         client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "you need to bring waterskins for this disabling plugin", null);
                         PluginManager.INSTANCE.toggle(this);
-                        return;
                     }
+                    return;
                 }
             }
             Item knife = getItem(946);

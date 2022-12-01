@@ -1,7 +1,6 @@
 package meteor.api.items
 
 import dev.hoot.api.commons.Time
-import dev.hoot.api.game.Game
 import dev.hoot.api.game.GameThread
 import dev.hoot.api.items.Bank
 import dev.hoot.api.widgets.Dialog
@@ -218,13 +217,13 @@ object Items {
     fun cacheItems(container: ItemContainer) {
         val uncached = Arrays.stream(container.items)
             .filter { x: Item ->
-                !Game.getClient().isItemDefinitionCached(x.id)
+                !Main.client.isItemDefinitionCached(x.id)
             }
             .collect(Collectors.toList())
         if (!uncached.isEmpty()) {
             GameThread.invokeLater<Any?> {
                 for (item in uncached) {
-                    Game.getClient().getItemComposition(item.id)
+                    Main.client.getItemComposition(item.id)
                 }
                 null
             }
@@ -233,7 +232,7 @@ object Items {
 
     fun getInventory(filter: Predicate<Item?>): List<Item> {
         val items: MutableList<Item> = ArrayList()
-        val container = Game.getClient().getItemContainer(InventoryID.INVENTORY) ?: return items
+        val container = Main.client.getItemContainer(InventoryID.INVENTORY) ?: return items
         cacheItems(container)
         val containerItems = container.items
         var i = 0

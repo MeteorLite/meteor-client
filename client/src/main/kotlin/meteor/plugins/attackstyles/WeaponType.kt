@@ -49,7 +49,7 @@ enum class WeaponType(vararg attackStyles: AttackStyle?) {
             weaponTypes = builder.build()
         }
 
-        fun getWeaponType(id: Int): WeaponType? {
+         fun getWeaponType(id: Int): WeaponType? {
             return weaponTypes!![id]
         }
     }

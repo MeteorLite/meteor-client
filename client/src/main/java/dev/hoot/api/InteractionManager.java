@@ -4,9 +4,7 @@ import dev.hoot.api.commons.Rand;
 import dev.hoot.api.commons.Time;
 import dev.hoot.api.events.AutomatedMenu;
 import dev.hoot.api.game.GameThread;
-import dev.hoot.api.input.naturalmouse.NaturalMouse;
 import dev.hoot.api.movement.Movement;
-import dev.hoot.api.packets.Packets;
 import dev.hoot.api.widgets.DialogOption;
 import dev.hoot.api.widgets.Widgets;
 import eventbus.events.DialogProcessed;
@@ -34,8 +32,6 @@ public class InteractionManager extends EventSubscriber
 
 	private Logger log = new Logger("InteractionManager");
 
-	private NaturalMouse naturalMouse = new NaturalMouse();
-
 	private InteractionConfig config = new InteractionConfig() {};
 
 	private Client client = Main.INSTANCE.getClient();
@@ -59,85 +55,28 @@ public class InteractionManager extends EventSubscriber
 
 		try
 		{
-			switch (config.interactMethod())
+			if (config.mouseBehavior() != MouseBehavior.DISABLED)
 			{
-				case MOUSE_EVENTS:
-					if (!interactReady())
-					{
-						throw new InteractionException("Interacting too fast");
-					}
-
-					client.setPendingAutomation(e);
-
-					log.debug("Sending click to [{}, {}]", clickPoint.x, clickPoint.y);
-
-					long tag = e.getEntityTag();
-					if (tag != -1337)
-					{
-						long[] entitiesAtMouse = client.getEntitiesAtMouse();
-						int count = client.getEntitiesAtMouseCount();
-						if (count < 1000)
-						{
-							entitiesAtMouse[count] = tag;
-							client.setEntitiesAtMouseCount(count + 1);
-						}
-					}
-
-					if (config.naturalMouse())
-					{
-						naturalMouse.moveTo(clickPoint.x, clickPoint.y);
-					}
-					else
-					{
-						mouseHandler.sendMovement(clickPoint.x, clickPoint.y);
-					}
-
-					mouseHandler.sendClick(clickPoint.x, clickPoint.y);
-					break;
-
-				case INVOKE:
-					if (config.mouseBehavior() != MouseBehavior.DISABLED)
-					{
-						mouseHandler.sendMovement(clickPoint.x, clickPoint.y);
-						mouseHandler.sendClick(-1, -1);
-					}
-
-					processAction(e, clickPoint.x, clickPoint.y);
-
-				case PACKETS:
-					if (config.mouseBehavior() != MouseBehavior.DISABLED)
-					{
-						if (config.naturalMouse())
-						{
-							naturalMouse.moveTo(clickPoint.x, clickPoint.y);
-						}
-						else
-						{
-							mouseHandler.sendMovement(clickPoint.x, clickPoint.y);
-						}
-
-						ClientPackets.INSTANCE.queueClickPacket(clickPoint.x, clickPoint.y);
-					}
-
-					GameThread.invoke(() ->
-					{
-						try
-						{
-							PacketBufferNode packetBufferNode = ClientPackets.INSTANCE.createClientPacket(e);
-							if (packetBufferNode != null)
-								packetBufferNode.send();
-							else
-								System.out.println("No valid packet to write");
-						}
-						catch (InteractionException ex)
-						{
-							log.debug("{}, falling back to invoke", ex.getMessage());
-							processAction(e, clickPoint.x, clickPoint.y);
-						}
-					});
-
-					break;
+				mouseHandler.sendMovement(clickPoint.x, clickPoint.y);
+				ClientPackets.INSTANCE.queueClickPacket(clickPoint.x, clickPoint.y);
 			}
+
+			GameThread.invoke(() ->
+			{
+				try
+				{
+					PacketBufferNode packetBufferNode = ClientPackets.INSTANCE.createClientPacket(e);
+					if (packetBufferNode != null)
+						packetBufferNode.send();
+					else
+						System.out.println("No valid packet to write");
+				}
+				catch (InteractionException ex)
+				{
+					log.debug("{}, falling back to invoke", ex.getMessage());
+					processAction(e, clickPoint.x, clickPoint.y);
+				}
+			});
 		}
 		catch (InteractionException ex)
 		{

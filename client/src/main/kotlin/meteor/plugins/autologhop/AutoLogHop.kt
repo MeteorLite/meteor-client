@@ -1,8 +1,6 @@
 package meteor.plugins.autologhop
 
-import dev.hoot.api.game.Game
 import dev.hoot.api.game.Worlds
-import dev.hoot.api.items.Inventory
 import dev.hoot.api.packets.WidgetPackets
 import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
@@ -10,6 +8,7 @@ import eventbus.events.PlayerSpawned
 import meteor.Main
 import meteor.Main.executor
 import meteor.Main.worldService
+import meteor.api.items.Items
 import meteor.api.packets.ClientPackets
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -38,7 +37,7 @@ class AutoLogHop : Plugin() {
 
     private var login = false
     fun startup() {
-        val full = Inventory.isFull()
+        val full = Items.isFull()
     }
 
     fun shutdown() {}
@@ -51,7 +50,7 @@ class AutoLogHop : Plugin() {
 
     override fun onGameStateChanged(it: GameStateChanged) {
 
-        if (!login || Game.getState() !== GameState.LOGIN_SCREEN || config.user().isBlank() || config.password()
+        if (!login || Main.client.gameState != GameState.LOGIN_SCREEN || config.user().isBlank() || config.password()
                 .isBlank()
         ) {
             return
@@ -169,7 +168,7 @@ class AutoLogHop : Plugin() {
     private fun hopWorlds() {
         assert(client.isClientThread)
         val world: net.runelite.api.World =
-            Worlds.getRandom(Predicate { x: net.runelite.api.World -> x.id != client.world && x.isNormal && x.isMembers })
+            Worlds.getRandom { x: net.runelite.api.World -> x.id != client.world && x.isNormal && x.isMembers }
         val rsWorld = client.createWorld()
         rsWorld.activity = world.activity
         rsWorld.address = world.address

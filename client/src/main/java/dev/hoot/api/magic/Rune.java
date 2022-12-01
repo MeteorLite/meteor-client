@@ -1,7 +1,8 @@
 package dev.hoot.api.magic;
 
 import dev.hoot.api.items.Equipment;
-import dev.hoot.api.items.Inventory;
+import meteor.api.items.Items;
+import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemID;
 
@@ -51,9 +52,7 @@ public enum Rune
 			return Integer.MAX_VALUE;
 		}
 
-		Item rune = Inventory.getFirst(x -> x.getName() != null && x.getName().contains("rune") &&
-				Arrays.stream(runeNames)
-						.anyMatch(name -> x.getId() == runeId || x.getName().contains(name)));
+		Item rune = Items.INSTANCE.getFirst(runeNames, InventoryID.INVENTORY);
 		if (rune == null)
 		{
 			return 0;

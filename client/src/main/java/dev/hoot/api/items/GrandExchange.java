@@ -161,11 +161,11 @@ public class GrandExchange
 
 	public static void sell(Predicate<Item> filter)
 	{
-		Item item = Inventory.getFirst(filter);
+/*		Item item = Inventory.getFirst(filter);
 		if (item != null)
 		{
 			Game.getClient().interact(1, 57, item.getSlot(), 30605312);
-		}
+		}*/
 	}
 
 	public static void sell(int... ids)

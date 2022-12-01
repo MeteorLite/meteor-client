@@ -1,6 +1,5 @@
 package meteor.plugins.guardiansoftherift
 
-import dev.hoot.api.quests.Quest
 import meteor.api.npcs.NPCs
 import meteor.game.ItemManager
 import meteor.ui.overlay.Overlay
@@ -84,17 +83,17 @@ class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin) : Overlay(
         if (itemID == ItemID.BODY_RUNE)
             return client.getRealSkillLevel(Skill.RUNECRAFT) >= 20
         if (itemID == ItemID.COSMIC_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 27 && Quest.LOST_CITY.state == QuestState.FINISHED
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 27 && Quest.LOST_CITY.getState(client) == QuestState.FINISHED
         if (itemID == ItemID.CHAOS_RUNE)
             return client.getRealSkillLevel(Skill.RUNECRAFT) >= 35
         if (itemID == ItemID.NATURE_RUNE)
             return client.getRealSkillLevel(Skill.RUNECRAFT) >= 44
         if (itemID == ItemID.LAW_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 54 && Quest.TROLL_STRONGHOLD.state == QuestState.FINISHED
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 54 && Quest.TROLL_STRONGHOLD.getState(client) == QuestState.FINISHED
         if (itemID == ItemID.DEATH_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 65 && Quest.MOURNINGS_END_PART_II.state == QuestState.FINISHED
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 65 && Quest.MOURNINGS_END_PART_II.getState(client) == QuestState.FINISHED
         if (itemID == ItemID.BLOOD_RUNE)
-            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 77 && Quest.SINS_OF_THE_FATHER.state == QuestState.FINISHED
+            return client.getRealSkillLevel(Skill.RUNECRAFT) >= 77 && Quest.SINS_OF_THE_FATHER.getState(client) == QuestState.FINISHED
         return false
     }
 
