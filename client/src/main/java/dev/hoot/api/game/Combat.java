@@ -1,6 +1,5 @@
 package dev.hoot.api.game;
 
-import dev.hoot.api.commons.Predicates;
 import dev.hoot.api.widgets.Widgets;
 import net.runelite.api.NPC;
 import net.runelite.api.Player;

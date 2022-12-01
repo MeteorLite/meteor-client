@@ -1,7 +1,8 @@
 package dev.hoot.api.movement.pathfinder;
 
 import dev.hoot.api.game.Vars;
-import dev.hoot.api.items.Inventory;
+import meteor.api.items.Items;
+import net.runelite.api.InventoryID;
 import net.runelite.api.ItemID;
 import net.runelite.api.coords.WorldPoint;
 
@@ -67,7 +68,7 @@ public enum TeleportItem
 
 	public boolean canUse()
 	{
-		return hasRequirements() && Inventory.getFirst(itemId) != null;
+		return hasRequirements() && Items.INSTANCE.getFirst(new int[] {itemId}, InventoryID.INVENTORY) != null;
 	}
 
 	public boolean hasRequirements()

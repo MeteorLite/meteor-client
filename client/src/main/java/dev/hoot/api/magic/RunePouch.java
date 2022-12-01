@@ -1,7 +1,8 @@
 package dev.hoot.api.magic;
 
 import dev.hoot.api.game.Vars;
-import dev.hoot.api.items.Inventory;
+import meteor.api.items.Items;
+import net.runelite.api.InventoryID;
 
 import java.util.Arrays;
 
@@ -117,6 +118,6 @@ public class RunePouch
 
 	public static boolean hasPouch()
 	{
-		return Inventory.getFirst("Rune pouch") != null;
+		return Items.INSTANCE.getFirst(new String[] {"Rune pouch"}, InventoryID.INVENTORY) != null;
 	}
 }

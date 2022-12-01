@@ -3,12 +3,14 @@ package dev.hoot.api.movement.pathfinder;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Worlds;
 import dev.hoot.api.input.Keyboard;
+import dev.hoot.api.items.Bank;
 import dev.hoot.api.items.Equipment;
-import dev.hoot.api.items.Inventory;
 import dev.hoot.api.magic.Magic;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
 import meteor.Main;
+import meteor.api.items.Items;
+import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.widgets.Widget;
@@ -90,7 +92,7 @@ public class TeleportLoader
 					{
 						teleports.add(new Teleport(tele.getDestination(), 5, () ->
 						{
-							Item item = Inventory.getFirst(tele.getItemId());
+							Item item = Items.INSTANCE.getFirst(new int[]{tele.getItemId()}, InventoryID.INVENTORY);
 							if (item != null)
 							{
 								Item i = new Item(item.getId(), item.getQuantity());
@@ -184,7 +186,7 @@ public class TeleportLoader
 
 	public static void jewelryTeleport(String target, int... ids)
 	{
-		Item inv = Inventory.getFirst(ids);
+		Item inv = Items.INSTANCE.getFirst(ids, InventoryID.INVENTORY);
 
 		if (inv != null)
 		{
@@ -210,7 +212,7 @@ public class TeleportLoader
 
 	public static void jewelryPopupTeleport(String target, int... ids)
 	{
-		Item inv = Inventory.getFirst(ids);
+		Item inv = Items.INSTANCE.getFirst(ids, InventoryID.INVENTORY);
 
 		if (inv != null)
 		{
@@ -251,43 +253,43 @@ public class TeleportLoader
 
 	public static boolean ringOfDueling()
 	{
-		return Inventory.getFirst(RING_OF_DUELING) != null
-				|| Equipment.getFirst(RING_OF_DUELING) != null;
+		return Items.INSTANCE.getFirst(RING_OF_DUELING, InventoryID.INVENTORY) != null
+				|| Items.INSTANCE.getFirst(RING_OF_DUELING, InventoryID.EQUIPMENT) != null;
 	}
 
 	public static boolean gamesNecklace()
 	{
-		return Inventory.getFirst(GAMES_NECKLACE) != null
-				|| Equipment.getFirst(GAMES_NECKLACE) != null;
+		return Items.INSTANCE.getFirst(GAMES_NECKLACE, InventoryID.INVENTORY) != null
+				|| Items.INSTANCE.getFirst(GAMES_NECKLACE, InventoryID.EQUIPMENT) != null;
 	}
 
 	public static boolean combatBracelet()
 	{
-		return Inventory.getFirst(COMBAT_BRACELET) != null
-				|| Equipment.getFirst(COMBAT_BRACELET) != null;
+		return Items.INSTANCE.getFirst(COMBAT_BRACELET, InventoryID.INVENTORY) != null
+				|| Items.INSTANCE.getFirst(COMBAT_BRACELET, InventoryID.EQUIPMENT) != null;
 	}
 
 	public static boolean skillsNecklace()
 	{
-		return Inventory.getFirst(SKILLS_NECKLACE) != null
-				|| Equipment.getFirst(SKILLS_NECKLACE) != null;
+		return Items.INSTANCE.getFirst(SKILLS_NECKLACE, InventoryID.INVENTORY) != null
+				|| Items.INSTANCE.getFirst(SKILLS_NECKLACE, InventoryID.EQUIPMENT) != null;
 	}
 
 	public static boolean ringOfWealth()
 	{
-		return Inventory.getFirst(RING_OF_WEALTH) != null
-				|| Equipment.getFirst(RING_OF_WEALTH) != null;
+		return Items.INSTANCE.getFirst(RING_OF_WEALTH, InventoryID.INVENTORY) != null
+				|| Items.INSTANCE.getFirst(RING_OF_WEALTH, InventoryID.EQUIPMENT) != null;
 	}
 
 	public static boolean amuletOfGlory()
 	{
-		return Inventory.getFirst(AMULET_OF_GLORY) != null
-				|| Equipment.getFirst(AMULET_OF_GLORY) != null;
+		return Items.INSTANCE.getFirst(AMULET_OF_GLORY, InventoryID.INVENTORY) != null
+				|| Items.INSTANCE.getFirst(AMULET_OF_GLORY, InventoryID.EQUIPMENT) != null;
 	}
 
 	public static boolean necklaceOfPassage()
 	{
-		return Inventory.getFirst(NECKLACE_OF_PASSAGE) != null
-				|| Equipment.getFirst(NECKLACE_OF_PASSAGE) != null;
+		return Items.INSTANCE.getFirst(NECKLACE_OF_PASSAGE, InventoryID.INVENTORY) != null
+				|| Items.INSTANCE.getFirst(NECKLACE_OF_PASSAGE, InventoryID.EQUIPMENT) != null;
 	}
 }

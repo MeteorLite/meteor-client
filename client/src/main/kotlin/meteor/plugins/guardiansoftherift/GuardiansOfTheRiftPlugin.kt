@@ -1,9 +1,9 @@
 package meteor.plugins.guardiansoftherift
 
-import dev.hoot.api.entities.TileObjects
-import dev.hoot.api.items.Inventory
 import dev.hoot.api.movement.pathfinder.Walker
 import eventbus.events.*
+import meteor.api.items.Items
+import meteor.api.objects.Objects
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -78,24 +78,24 @@ class GuardiansOfTheRiftPlugin : Plugin() {
     var elementalPriority = false
 
     fun hasGuardianStones(): Boolean {
-        if (Inventory.contains(elementalStoneID, catalyticStoneID))
+        if (Items.inventoryContains(elementalStoneID, catalyticStoneID))
             return true
         return false
     }
 
     fun setAltars(): Boolean {
-        GUARDIAN_AIR = TileObjects.getNearest(43701) as GameObject?
-        GUARDIAN_MIND = TileObjects.getNearest(43705) as GameObject?
-        GUARDIAN_BODY = TileObjects.getNearest(43709) as GameObject?
-        GUARDIAN_CHAOS = TileObjects.getNearest(43706) as GameObject?
-        GUARDIAN_DEATH = TileObjects.getNearest(43707) as GameObject?
-        GUARDIAN_LAW = TileObjects.getNearest(43712) as GameObject?
-        GUARDIAN_BLOOD = TileObjects.getNearest(43708) as GameObject?
-        GUARDIAN_FIRE = TileObjects.getNearest(43704) as GameObject?
-        GUARDIAN_NATURE = TileObjects.getNearest(43711) as GameObject?
-        GUARDIAN_EARTH = TileObjects.getNearest(43703) as GameObject?
-        GUARDIAN_WATER = TileObjects.getNearest(43702) as GameObject?
-        GUARDIAN_COSMIC = TileObjects.getNearest(43710) as GameObject?
+        GUARDIAN_AIR = Objects.getFirst(43701) as GameObject?
+        GUARDIAN_MIND = Objects.getFirst(43705) as GameObject?
+        GUARDIAN_BODY = Objects.getFirst(43709) as GameObject?
+        GUARDIAN_CHAOS = Objects.getFirst(43706) as GameObject?
+        GUARDIAN_DEATH = Objects.getFirst(43707) as GameObject?
+        GUARDIAN_LAW = Objects.getFirst(43712) as GameObject?
+        GUARDIAN_BLOOD = Objects.getFirst(43708) as GameObject?
+        GUARDIAN_FIRE = Objects.getFirst(43704) as GameObject?
+        GUARDIAN_NATURE = Objects.getFirst(43711) as GameObject?
+        GUARDIAN_EARTH = Objects.getFirst(43703) as GameObject?
+        GUARDIAN_WATER = Objects.getFirst(43702) as GameObject?
+        GUARDIAN_COSMIC = Objects.getFirst(43710) as GameObject?
         try {
             altars.add(GUARDIAN_AIR!!)
             altars.add(GUARDIAN_MIND!!)
@@ -118,7 +118,7 @@ class GuardiansOfTheRiftPlugin : Plugin() {
 
 
     fun getRemains(): ArrayList<TileObject> {
-        val remains = TileObjects.getAll(GUARDIAN_REMAINS_1, GUARDIAN_PARTS_1, GUARDIAN_PARTS_2)
+        val remains = Objects.getAll(GUARDIAN_REMAINS_1, GUARDIAN_PARTS_1, GUARDIAN_PARTS_2)
         return remains as ArrayList<TileObject>
     }
 

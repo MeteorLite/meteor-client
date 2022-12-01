@@ -2,7 +2,6 @@ package meteor.plugins.fighter
 
 import dev.hoot.api.game.Combat
 import dev.hoot.api.game.Game
-import dev.hoot.api.items.Inventory
 import dev.hoot.api.magic.Regular
 import dev.hoot.api.movement.Movement
 import dev.hoot.api.packets.ItemPackets
@@ -64,7 +63,7 @@ class FighterPlugin : Plugin() {
                 }
             }
             if (config.restore() && Prayers.getPoints() < 5) {
-                Inventory.getAll()?.filter { it.name == "Prayer potion" || it.name == "Super Restore" }?.forEach {
+                Items.getAll()?.filter { it.name == "Prayer potion" || it.name == "Super Restore" }?.forEach {
                     ItemPackets.itemAction(it, "Drink")
                     ClientPackets.queueClickPacket(0, 0)
                     return
@@ -81,7 +80,7 @@ class FighterPlugin : Plugin() {
             val local = Main.client.localPlayer!!
 
             val itemsToLoot = config.loot().split(",")
-            if (!Inventory.isFull()&& Loots.exists(itemsToLoot)) {
+            if (!Items.isFull()&& Loots.exists(itemsToLoot)) {
                 Loots .getAll()?.filter{
                     (it.tile.worldLocation.distanceTo(local.worldLocation) < config.attackRange() && !notOurItems.contains(it)
                             && (it.getName() != null && itemsToLoot.contains(it.getName())
