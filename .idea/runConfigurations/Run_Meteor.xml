@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Meteor" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Run Meteor" type="GradleRunConfiguration" factoryName="Gradle" singleton="false">
     <selectedOptions>
       <option name="external.system.vm.parameters.fragment" />
     </selectedOptions>

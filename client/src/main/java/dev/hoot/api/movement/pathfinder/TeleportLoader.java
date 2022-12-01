@@ -1,6 +1,5 @@
 package dev.hoot.api.movement.pathfinder;
 
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Worlds;
 import dev.hoot.api.input.Keyboard;
@@ -87,14 +86,14 @@ public class TeleportLoader
 
 				for (TeleportItem tele : TeleportItem.values())
 				{
-					if (tele.canUse() && tele.getDestination().distanceTo(Players.getLocal().getWorldLocation()) > 20)
+					if (tele.canUse() && tele.getDestination().distanceTo(Main.client.getLocalPlayer().getWorldLocation()) > 20)
 					{
 						teleports.add(new Teleport(tele.getDestination(), 5, () ->
 						{
 							Item item = Inventory.getFirst(tele.getItemId());
 							if (item != null)
 							{
-								meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+								Item i = new Item(item.getId(), item.getQuantity());
 
 								i.interact(tele.getAction());
 							}
@@ -164,7 +163,7 @@ public class TeleportLoader
 					continue;
 				}
 
-				if (teleportSpell.getPoint().distanceTo(Players.getLocal().getWorldLocation()) > 50)
+				if (teleportSpell.getPoint().distanceTo(Main.client.getLocalPlayer().getWorldLocation()) > 50)
 				{
 					teleports.add(new Teleport(teleportSpell.getPoint(), 5, () ->
 					{
@@ -189,7 +188,7 @@ public class TeleportLoader
 
 		if (inv != null)
 		{
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), inv.getId(), inv.getQuantity());
+			Item i = new Item(inv.getId(), inv.getQuantity());
 			if (Dialog.isViewingOptions())
 			{
 				Dialog.chooseOption(target);
@@ -203,7 +202,7 @@ public class TeleportLoader
 		Item equipped = Equipment.getFirst(ids);
 		if (equipped != null)
 		{
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), equipped.getId(), equipped.getQuantity());
+			Item i = new Item(equipped.getId(), equipped.getQuantity());
 
 			i.interact(target);
 		}
@@ -215,7 +214,7 @@ public class TeleportLoader
 
 		if (inv != null)
 		{
-			meteor.api.items.Item it = new meteor.api.items.Item(Main.INSTANCE.getClient(), inv.getId(), inv.getQuantity());
+			Item it = new Item(inv.getId(), inv.getQuantity());
 
 			Widget baseWidget = Widgets.get(187, 3);
 			if (Widgets.isVisible(baseWidget))
@@ -244,7 +243,7 @@ public class TeleportLoader
 		Item equipped = Equipment.getFirst(ids);
 		if (equipped != null)
 		{
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), equipped.getId(), equipped.getQuantity());
+			Item i = new Item(equipped.getId(), equipped.getQuantity());
 
 			i.interact(target);
 		}

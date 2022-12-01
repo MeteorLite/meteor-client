@@ -1,8 +1,8 @@
 package dev.hoot.api.widgets;
 
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.GameThread;
+import meteor.Main;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 
@@ -27,7 +27,7 @@ public class Minigames
 				return;
 			}
 
-			if (teleportGraphics.contains(Players.getLocal().getGraphic()))
+			if (teleportGraphics.contains(Main.client.getLocalPlayer().getGraphic()))
 			{
 				return;
 			}

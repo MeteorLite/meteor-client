@@ -6,6 +6,7 @@ import dev.hoot.api.game.Vars;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
 import meteor.Main;
+import meteor.api.items.Items;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
@@ -100,8 +101,8 @@ public class Trade
 			return;
 		}
 
-		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
-		i.offer(quantity);
+		Item i = new Item(item.getId(), item.getQuantity());
+		Items.offer(i, quantity);
 	}
 
 	public static void offer(int id, int quantity)

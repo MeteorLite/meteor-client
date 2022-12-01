@@ -4,7 +4,6 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import dev.hoot.api.commons.Rand;
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Vars;
 import dev.hoot.api.movement.pathfinder.BankLocation;
@@ -13,6 +12,7 @@ import dev.hoot.api.movement.pathfinder.Walker;
 import dev.hoot.api.scene.Tiles;
 import dev.hoot.api.widgets.Widgets;
 import lombok.extern.slf4j.Slf4j;
+import meteor.Main;
 import net.runelite.api.Client;
 import net.runelite.api.Locatable;
 import net.runelite.api.MenuAction;
@@ -82,7 +82,7 @@ public class Movement
 
 	public static boolean isWalking()
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 		WorldPoint destination = getDestination();
 		return local.isMoving()
 				&& destination != null
@@ -135,7 +135,7 @@ public class Movement
 
 	public static void walk(WorldArea worldArea)
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 
 		if (worldArea.contains(local.getWorldLocation()))
 		{

@@ -2,6 +2,7 @@ package dev.hoot.api.entities;
 
 import dev.hoot.api.game.Game;
 import dev.hoot.api.scene.Tiles;
+import meteor.Main;
 import net.runelite.api.DecorativeObject;
 import net.runelite.api.GameObject;
 import net.runelite.api.GroundObject;
@@ -47,17 +48,17 @@ public class TileObjects extends TileEntities<TileObject>
 
 	public static TileObject getNearest(Predicate<TileObject> filter)
 	{
-		return TILE_OBJECTS.nearest(Players.getLocal().getWorldLocation(), filter);
+		return TILE_OBJECTS.nearest(Main.client.getLocalPlayer().getWorldLocation(), filter);
 	}
 
 	public static TileObject getNearest(int... ids)
 	{
-		return TILE_OBJECTS.nearest(Players.getLocal().getWorldLocation(), ids);
+		return TILE_OBJECTS.nearest(Main.client.getLocalPlayer().getWorldLocation(), ids);
 	}
 
 	public static TileObject getNearest(String... names)
 	{
-		return TILE_OBJECTS.nearest(Players.getLocal().getWorldLocation(), names);
+		return TILE_OBJECTS.nearest(Main.client.getLocalPlayer().getWorldLocation(), names);
 	}
 
 	public static TileObject getNearest(WorldPoint to, Predicate<TileObject> filter)

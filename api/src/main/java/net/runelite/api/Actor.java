@@ -31,6 +31,7 @@ import java.awt.image.BufferedImage;
 import javax.annotation.Nullable;
 
 import dev.hoot.api.SceneEntity;
+import dev.hoot.api.events.AutomatedMenu;
 import net.runelite.api.annotations.VisibleForDevtools;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
@@ -39,7 +40,7 @@ import net.runelite.api.coords.WorldPoint;
 /**
  * Represents a RuneScape actor/entity.
  */
-public interface Actor extends Renderable, SceneEntity
+public interface Actor extends Renderable, Locatable
 {
 	/**
 	 * Gets the combat level of the actor.
@@ -430,4 +431,22 @@ public interface Actor extends Renderable, SceneEntity
 	{
 		return getAnimation() != -1;
 	}
+
+	int getActionOpcode(int action);
+
+	String[] getRawActions();
+
+	void interact(int action);
+
+	void interact(String action);
+
+	void interact(int index, int opcode);
+
+	void interact(int identifier, int opcode, int param0, int param1);
+
+	default AutomatedMenu getMenu(int identifier, int opcode, int param0, int param1) {
+		return new AutomatedMenu(identifier, opcode, param0, param1, -1, -1);
+	}
+
+	long getTag();
 }

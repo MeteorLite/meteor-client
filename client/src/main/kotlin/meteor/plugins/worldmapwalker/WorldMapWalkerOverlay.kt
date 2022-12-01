@@ -1,8 +1,8 @@
 package meteor.plugins.worldmapwalker
 
-import dev.hoot.api.entities.Players
 import dev.hoot.api.game.Game
 import dev.hoot.api.movement.pathfinder.Walker
+import meteor.Main
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
@@ -73,7 +73,7 @@ class WorldMapWalkerOverlay(var plugin: WorldMapWalkerPlugin) : Overlay() {
         if (path.isEmpty()) {
             return null
         }
-        val player: Player = Players.getLocal()
+        val player: Player = Main.client.localPlayer!!
         var minDist: Int = path[0].distanceTo(player)
         var index = 0
         for (i in 1 until path.size) {

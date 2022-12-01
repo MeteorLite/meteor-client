@@ -1,8 +1,6 @@
 package dev.hoot.api.game;
 
 import dev.hoot.api.commons.Predicates;
-import dev.hoot.api.entities.NPCs;
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.widgets.Widgets;
 import net.runelite.api.NPC;
 import net.runelite.api.Player;
@@ -81,7 +79,7 @@ public class Combat
 		return AttackStyle.fromIndex(Vars.getVarp(43));
 	}
 
-	public static NPC getAttackableNPC(int... ids)
+/*	public static NPC getAttackableNPC(int... ids)
 	{
 		return getAttackableNPC(Predicates.ids(ids));
 	}
@@ -104,7 +102,7 @@ public class Combat
 
 		return NPCs.getNearest(x -> x.hasAction("Attack") && Players.getNearest(p -> p.getInteracting() != null
 				&& p.getInteracting().equals(x)) == null && x.getInteracting() == null && filter.test(x));
-	}
+	}*/
 
 	public static int getCurrentHealth()
 	{

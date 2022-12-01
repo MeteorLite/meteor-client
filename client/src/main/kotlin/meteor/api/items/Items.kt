@@ -1,9 +1,14 @@
 package meteor.api.items
 
+import dev.hoot.api.commons.Time
 import dev.hoot.api.game.Game
 import dev.hoot.api.game.GameThread
+import dev.hoot.api.items.Bank
+import dev.hoot.api.widgets.Dialog
 import meteor.Main
+import meteor.api.packets.ClientPackets
 import net.runelite.api.InventoryID
+import net.runelite.api.Item
 import net.runelite.api.ItemContainer
 import net.runelite.api.widgets.WidgetInfo
 import java.util.*
@@ -108,7 +113,7 @@ object Items {
                         continue
                     }
 
-                    val newItem = Item(Main.client, item.id, item.quantity)
+                    val newItem = Item(item.id, item.quantity)
                     newItem.widgetId = WidgetInfo.INVENTORY.packedId
                     newItem.slot = slot
                     if (items == null) {
@@ -133,7 +138,7 @@ object Items {
                         continue
                     }
 
-                    val newItem = Item(Main.client, item.id, item.quantity)
+                    val newItem = Item(item.id, item.quantity)
                     newItem.widgetId = WidgetInfo.EQUIPMENT.packedId
                     newItem.slot = slot
                     if (items == null) {
@@ -147,7 +152,7 @@ object Items {
         return items
     }
 
-    fun getItems(items: List<net.runelite.api.Item>): List<IntArray> {
+    fun getItems(items: List<Item>): List<IntArray> {
         val retItems: MutableList<IntArray> = ArrayList()
         var currItemID = -1
         var currQuantity = -1
@@ -181,7 +186,7 @@ object Items {
             if (it.items.isNotEmpty())
                 for (item in it.items) {
                     if (slot == index)
-                        return Item(Main.client, item.id, item.quantity)
+                        return Item(item.id, item.quantity)
                     slot++
                 }
         }
@@ -212,7 +217,7 @@ object Items {
 
     fun cacheItems(container: ItemContainer) {
         val uncached = Arrays.stream(container.items)
-            .filter { x: net.runelite.api.Item ->
+            .filter { x: Item ->
                 !Game.getClient().isItemDefinitionCached(x.id)
             }
             .collect(Collectors.toList())
@@ -226,8 +231,8 @@ object Items {
         }
     }
 
-    fun getInventory(filter: Predicate<net.runelite.api.Item?>): List<net.runelite.api.Item>? {
-        val items: MutableList<net.runelite.api.Item> = ArrayList()
+    fun getInventory(filter: Predicate<Item?>): List<Item> {
+        val items: MutableList<Item> = ArrayList()
         val container = Game.getClient().getItemContainer(InventoryID.INVENTORY) ?: return items
         cacheItems(container)
         val containerItems = container.items
@@ -248,7 +253,7 @@ object Items {
     }
 
     fun getFirstEmptySlot(): Int {
-        val items: List<net.runelite.api.Item> = getInventory { true }!!
+        val items: List<Item> = getInventory { true }!!
         var lastIndex = 0
         if (items.isEmpty()) {
             return lastIndex
@@ -279,4 +284,85 @@ object Items {
         }
     }
 
+    private fun hasAction(vararg actions: String): Boolean {
+        return Arrays.stream(actions).anyMatch { x -> actions.contains(x) }
+    }
+
+    @JvmStatic
+    fun withdraw(item: Item, amount: Int, withdrawMode: Bank.WithdrawMode? = Bank.WithdrawMode.DEFAULT) {
+        if (Bank.isOpen()) {
+            item.widgetId = item.calculateWidgetId(WidgetInfo.BANK_ITEM_CONTAINER)
+
+            val withdrawOption = Bank.WithdrawOption.ofAmount(item, amount)
+            if (withdrawMode == Bank.WithdrawMode.NOTED && !Bank.isNotedWithdrawMode()) {
+                Bank.setWithdrawMode(true)
+                Time.sleepUntil({ Bank.isNotedWithdrawMode() }, 1200)
+            }
+
+            if (withdrawMode == Bank.WithdrawMode.ITEM && Bank.isNotedWithdrawMode()) {
+                Bank.setWithdrawMode(false)
+                Time.sleepUntil({ !Bank.isNotedWithdrawMode() }, 1200)
+            }
+
+            if (withdrawOption == Bank.WithdrawOption.X && hasAction("Withdraw-$amount")) {
+                item.interact(Bank.WithdrawOption.LAST_QUANTITY.menuIndex)
+            } else {
+                item.interact(withdrawOption.menuIndex)
+                if (withdrawOption == Bank.WithdrawOption.X) {
+                    Time.sleepUntil({ Dialog.isEnterInputOpen() }, 1200)
+                    Dialog.enterInput(amount)
+                }
+            }
+        }
+    }
+
+    @JvmStatic
+    fun deposit(item: Item, amount: Int) {
+        if (Bank.isOpen()) {
+            item.widgetId = item.calculateWidgetId(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER)
+
+            val withdrawOption = Bank.WithdrawOption.ofAmount(item, amount)
+
+            if (withdrawOption == Bank.WithdrawOption.X && hasAction("Deposit-$amount")) {
+                item.interact(Bank.WithdrawOption.LAST_QUANTITY.menuIndex + 1)
+            } else {
+                val menu = item.getMenu(withdrawOption.menuIndex + 1)
+                menu?.let {
+                    ClientPackets.createClientPacket(it)!!.send()
+                    if (withdrawOption == Bank.WithdrawOption.X) {
+                        Dialog.enterInput(amount)
+                    }
+                }
+            }
+        }
+    }
+
+    @JvmStatic
+    fun offer(item: Item, quantity: Int) {
+        when (quantity) {
+            1 -> item.interact("Offer")
+            5 -> item.interact("Offer-5")
+            10 -> item.interact("Offer-10")
+            else -> if (quantity > item.quantity) {
+                item.interact("Offer-All")
+            } else {
+                item.interact("Offer-X")
+                Dialog.enterInput(quantity)
+            }
+        }
+    }
+
+    @JvmStatic
+    fun withdrawLastQuantity(item: Item, withdrawMode: Bank.WithdrawMode = Bank.WithdrawMode.DEFAULT) {
+        val withdrawOption = Bank.WithdrawOption.LAST_QUANTITY
+        if (withdrawMode == Bank.WithdrawMode.NOTED && !Bank.isNotedWithdrawMode()) {
+            Bank.setWithdrawMode(true)
+        }
+
+        if (withdrawMode == Bank.WithdrawMode.ITEM && Bank.isNotedWithdrawMode()) {
+            Bank.setWithdrawMode(false)
+        }
+
+        item.interact(withdrawOption.menuIndex)
+    }
 }

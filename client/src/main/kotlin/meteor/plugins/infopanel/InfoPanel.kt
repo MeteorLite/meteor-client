@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import compose.icons.Octicons
 import compose.icons.octicons.MarkGithub16
 import meteor.Main.client
-import meteor.api.items.Item
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.intColor
 import meteor.ui.composables.preferences.surface

@@ -2,6 +2,7 @@ package dev.hoot.api.entities;
 
 import dev.hoot.api.commons.Predicates;
 import dev.hoot.api.game.Game;
+import meteor.Main;
 import net.runelite.api.Actor;
 import net.runelite.api.Projectile;
 import net.runelite.api.coords.LocalPoint;
@@ -42,7 +43,7 @@ public class Projectiles
 		return getAll(filter).stream()
 				.min(Comparator.comparingInt(p ->
 						WorldPoint.fromLocal(Game.getClient(), (int) p.getX(), (int) p.getY(), Game.getClient().getPlane())
-								.distanceTo(Players.getLocal().getWorldLocation()))
+								.distanceTo(Main.client.getLocalPlayer().getWorldLocation()))
 				)
 				.orElse(null);
 	}

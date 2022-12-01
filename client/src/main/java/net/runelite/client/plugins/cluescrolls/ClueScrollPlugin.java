@@ -334,7 +334,7 @@ public class ClueScrollPlugin extends Plugin
 					{
 						if (invItem.getId() == rune.getId())
 						{
-							inventoryItems[i] = new Item(c, invItem.getId(), rune.getQuantity() + invItem.getQuantity());
+							inventoryItems[i] = new Item(invItem.getId(), rune.getQuantity() + invItem.getQuantity());
 							runePouchContents.remove(rune);
 							break;
 						}
@@ -392,7 +392,7 @@ public class ClueScrollPlugin extends Plugin
 			}
 
 			final int itemId = runepouchEnum.getIntValue(runeId);
-			Item item = new Item(c, itemId, amount);
+			Item item = new Item(itemId, amount);
 			items.add(item);
 		}
 		return items;

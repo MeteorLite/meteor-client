@@ -68,7 +68,7 @@ class StatusBarsPlugin : Plugin() {
         val interacting = localPlayer.interacting
         if (config.hideAfterCombatDelay() == 0) {
             barsDisplayed = true
-        } else if (interacting is NPC && ArrayUtils.contains(interacting.composition.actions, "Attack")
+        } else if (interacting is NPC && ArrayUtils.contains(interacting.composition!!.actions, "Attack")
             || interacting is Player && client.getVarbitValue(Varbits.PVP_SPEC_ORB) == 1
         ) {
             lastCombatActionTickCount = client.tickCount

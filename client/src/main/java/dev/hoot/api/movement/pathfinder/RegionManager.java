@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.hoot.api.RegionConfig;
 import dev.hoot.api.TileFlag;
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.movement.Reachable;
 import dev.hoot.api.scene.Tiles;

@@ -2,8 +2,6 @@ package dev.hoot.api.movement.pathfinder;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.hoot.api.entities.NPCs;
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.entities.TileObjects;
 import dev.hoot.api.game.Skills;
 import dev.hoot.api.game.Vars;
@@ -16,7 +14,7 @@ import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
 import lombok.Value;
 import meteor.Main;
-import meteor.api.objects.Object;
+import meteor.api.npcs.NPCs;
 import net.runelite.api.Item;
 import net.runelite.api.NPC;
 import net.runelite.api.QuestState;
@@ -230,7 +228,7 @@ public class TransportLoader
 			}
 
 			// Motherload Mine
-			if (MLM.contains(Players.getLocal()))
+			if (MLM.contains(Main.INSTANCE.getClient().getLocalPlayer()))
 			{
 				transports.addAll(motherloadMineTransport(new WorldPoint(3726, 5643, 0)));
 				transports.addAll(motherloadMineTransport(new WorldPoint(3726, 5654, 0)));
@@ -422,13 +420,12 @@ public class TransportLoader
 			{
 				return;
 			}
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+			Item i = new Item(item.getId(), item.getQuantity());
 
 			TileObject transport = TileObjects.getFirstSurrounding(source, 5, objId);
 			if (transport != null)
 			{
-				Object object = new Object(transport);
-				i.useOn(object);
+				i.useOn(transport);
 			}
 		}, "");
 	}
@@ -442,7 +439,8 @@ public class TransportLoader
 	{
 		return new Transport(source, destination, 10, 0, () ->
 		{
-			NPC npc = NPCs.getNearest(x -> x.getWorldLocation().distanceTo(source) <= 10 && x.getId() == npcId);
+			NPC npc = NPCs.INSTANCE.getFirst(npcId, true, true);
+			//NPC npc = NPCs.getNearest(x -> x.getWorldLocation().distanceTo(source) <= 10 && x.getId() == npcId);
 			if (npc != null)
 			{
 				npc.interact(action);
@@ -474,8 +472,8 @@ public class TransportLoader
 
 				return;
 			}
-
-			NPC npc = NPCs.getNearest(x -> x.getWorldLocation().distanceTo(source) <= 10 && x.getId() == npcId);
+			NPC npc = NPCs.INSTANCE.getFirst(npcId, true, true);
+			//NPC npc = NPCs.getNearest(x -> x.getWorldLocation().distanceTo(source) <= 10 && x.getId() == npcId);
 			if (npc != null)
 			{
 				npc.interact(0);

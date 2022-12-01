@@ -5,12 +5,12 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import dev.hoot.api.commons.Rand;
 import dev.hoot.api.commons.Time;
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.movement.Movement;
 import dev.hoot.api.movement.Reachable;
 import dev.hoot.api.scene.Tiles;
 import lombok.extern.slf4j.Slf4j;
+import meteor.Main;
 import net.runelite.api.Player;
 import net.runelite.api.Tile;
 import net.runelite.api.WallObject;
@@ -65,7 +65,7 @@ public class Walker
 
 	public static boolean walkTo(WorldPoint destination, boolean localRegion)
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 		if (destination.equals(local.getWorldLocation()))
 		{
 			return true;
@@ -150,7 +150,7 @@ public class Walker
 
 	public static boolean walkAlong(WorldPoint destination, List<WorldPoint> path, Map<WorldPoint, List<Transport>> transports)
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 		WorldPoint endTile = path.get(path.size() - 1);
 
 		if (!endTile.equals(destination) && endTile.distanceTo(destination) > 5)
@@ -199,7 +199,7 @@ public class Walker
 
 	public static List<WorldPoint> reachablePath(List<WorldPoint> remainingPath)
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 		List<WorldPoint> out = new ArrayList<>();
 		for (WorldPoint p : remainingPath)
 		{
@@ -222,7 +222,7 @@ public class Walker
 
 	public static boolean step(WorldPoint destination)
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 		log.debug("Stepping towards " + destination);
 		Movement.walk(destination);
 
@@ -257,7 +257,7 @@ public class Walker
 
 	public static boolean handleTransports(List<WorldPoint> path, Map<WorldPoint, List<Transport>> transports)
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 		for (int i = 0; i < MAX_INTERACT_DISTANCE; i++)
 		{
 			if (i + 1 >= path.size())
@@ -401,7 +401,7 @@ public class Walker
 
 	public static ArrayList<WorldPoint> buildPath(WorldPoint destination, boolean localRegion)
 	{
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 		Map<WorldPoint, List<Transport>> transports = buildTransportLinks();
 		LinkedHashMap<WorldPoint, Teleport> teleports = buildTeleportLinks(destination);
 		List<WorldPoint> startPoints = new ArrayList<>(teleports.keySet());
@@ -413,7 +413,7 @@ public class Walker
 	public static LinkedHashMap<WorldPoint, Teleport> buildTeleportLinks(WorldPoint destination)
 	{
 		LinkedHashMap<WorldPoint, Teleport> out = new LinkedHashMap<>();
-		Player local = Players.getLocal();
+		Player local = Main.client.getLocalPlayer();
 
 		for (Teleport teleport : TeleportLoader.buildTeleports())
 		{
