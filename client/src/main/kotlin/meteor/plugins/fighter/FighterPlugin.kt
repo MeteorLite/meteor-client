@@ -116,10 +116,10 @@ class FighterPlugin : Plugin() {
 
             if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
             val mob = NPCs.getAll(true, sortByDistance = true)?.filter {
-                    config.monster().split(",".toRegex()).toList().contains(it.name)
-                    && !it.isDead
-                    && it.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }?.firstOrNull()
-                mob?.interact("Attack")
+                    config.monster().split(",".toRegex()).toList().contains(it.npc.name)
+                    && !it.npc.isDead
+                    && it.npc.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }?.firstOrNull()
+                mob?.npc?.interact("Attack")
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
