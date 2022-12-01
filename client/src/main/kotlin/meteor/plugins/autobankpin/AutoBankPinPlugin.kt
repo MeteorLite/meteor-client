@@ -1,6 +1,5 @@
 package meteor.plugins.autobankpin
 
-import dev.hoot.api.commons.StopWatch
 import eventbus.events.GameTick
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin

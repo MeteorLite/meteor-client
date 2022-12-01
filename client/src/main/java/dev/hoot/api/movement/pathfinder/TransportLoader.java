@@ -6,20 +6,15 @@ import dev.hoot.api.entities.TileObjects;
 import dev.hoot.api.game.Skills;
 import dev.hoot.api.game.Vars;
 import dev.hoot.api.game.Worlds;
-import dev.hoot.api.items.Inventory;
 import dev.hoot.api.movement.Movement;
 import dev.hoot.api.movement.Reachable;
-import dev.hoot.api.quests.Quest;
 import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
 import lombok.Value;
 import meteor.Main;
+import meteor.api.items.Items;
 import meteor.api.npcs.NPCs;
-import net.runelite.api.Item;
-import net.runelite.api.NPC;
-import net.runelite.api.QuestState;
-import net.runelite.api.Skill;
-import net.runelite.api.TileObject;
+import net.runelite.api.*;
 import net.runelite.api.coords.Direction;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
@@ -94,7 +89,7 @@ public class TransportLoader
 	{
 		List<Transport> transports = new ArrayList<>();
 
-		int gold = Inventory.getFirst(995) != null ? Inventory.getFirst(995).getQuantity() : 0;
+		int gold = Items.INSTANCE.getFirst(new int[] {995}, InventoryID.INVENTORY) != null ? Items.INSTANCE.getFirst(new int[] {995}, InventoryID.INVENTORY).getQuantity() : 0;
 		if (gold >= 10)
 		{
 			transports.add(objectTransport(
@@ -124,7 +119,7 @@ public class TransportLoader
 		}
 
 		// Lumbridge castle dining room, ignore if RFD is in progress.
-		if (Quest.RECIPE_FOR_DISASTER.getState() != QuestState.IN_PROGRESS)
+		if (Quest.RECIPE_FOR_DISASTER.getState(Main.client) != QuestState.IN_PROGRESS)
 		{
 			transports.add(objectTransport(new WorldPoint(3213, 3221, 0), new WorldPoint(3212, 3221, 0), 12349, "Open"));
 			transports.add(objectTransport(new WorldPoint(3212, 3221, 0), new WorldPoint(3213, 3221, 0), 12349, "Open"));
@@ -188,11 +183,11 @@ public class TransportLoader
 			}
 
 			// Spirit Trees
-			if (Quest.TREE_GNOME_VILLAGE.getState() == QuestState.FINISHED)
+			if (Quest.TREE_GNOME_VILLAGE.getState(Main.client) == QuestState.FINISHED)
 			{
 				for (var source : SPIRIT_TREES)
 				{
-					if (source.location.equals("Gnome Stronghold") && Quest.THE_GRAND_TREE.getState() == QuestState.FINISHED)
+					if (source.location.equals("Gnome Stronghold") && Quest.THE_GRAND_TREE.getState(Main.client) == QuestState.FINISHED)
 					{
 						continue;
 					}
@@ -204,7 +199,7 @@ public class TransportLoader
 			}
 
 			// Tree Gnome Village
-			if (Quest.TREE_GNOME_VILLAGE.getState() != QuestState.NOT_STARTED)
+			if (Quest.TREE_GNOME_VILLAGE.getState(Main.client) != QuestState.NOT_STARTED)
 			{
 				transports.add(npcTransport(new WorldPoint(2504, 3192, 0), new WorldPoint(2515, 3159, 0), 4968, "Follow"));
 				transports.add(npcTransport(new WorldPoint(2515, 3159, 0), new WorldPoint(2504, 3192, 0), 4968, "Follow"));
@@ -221,7 +216,7 @@ public class TransportLoader
 			}
 
 			// Waterbirth island
-			if (Quest.THE_FREMENNIK_TRIALS.getState() == QuestState.FINISHED || gold >= 1000)
+			if (Quest.THE_FREMENNIK_TRIALS.getState(Main.client) == QuestState.FINISHED || gold >= 1000)
 			{
 				transports.add(npcTransport(new WorldPoint(2544, 3760, 0), new WorldPoint(2620, 3682, 0), 10407, "Rellekka"));
 				transports.add(npcTransport(new WorldPoint(2620, 3682, 0), new WorldPoint(2547, 3759, 0), 5937, "Waterbirth Island"));
@@ -415,7 +410,7 @@ public class TransportLoader
 	{
 		return new Transport(source, destination, Integer.MAX_VALUE, 0, () ->
 		{
-			Item item = Inventory.getFirst(itemId);
+			Item item = Items.INSTANCE.getFirst(new int[] {itemId}, InventoryID.INVENTORY);
 			if (item == null)
 			{
 				return;

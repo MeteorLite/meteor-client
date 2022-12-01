@@ -27,7 +27,6 @@
 
 package net.runelite.client.plugins.gauntletextended;
 
-import dev.hoot.api.items.Inventory;
 import dev.hoot.api.widgets.Prayers;
 import eventbus.events.*;
 import lombok.Getter;

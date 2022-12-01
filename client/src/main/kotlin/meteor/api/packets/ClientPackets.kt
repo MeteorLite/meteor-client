@@ -6,7 +6,6 @@ import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
-import dev.hoot.api.packets.MovementPackets
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import meteor.Main

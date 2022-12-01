@@ -1,6 +1,5 @@
 package meteor.api.objects
 
-import dev.hoot.api.game.Game
 import meteor.Main
 import net.runelite.api.Tile
 import net.runelite.api.TileObject
@@ -56,7 +55,7 @@ object Objects {
         val gameObjects = tile.gameObjects
         if (gameObjects != null) {
             for (gameObject in gameObjects) {
-                if (gameObject == null || !Game.getClient()
+                if (gameObject == null || !Main.client
                         .isTileObjectValid(tile, gameObject) || gameObject.id == -1
                 ) {
                     continue
