@@ -27,7 +27,7 @@ package net.runelite.api
 import dev.hoot.api.SceneEntity
 import dev.hoot.api.events.AutomatedMenu
 import eventbus.Events
-import meteor.api.loot.LootInvoke
+import meteor.api.loot.Interact
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.util.Text
@@ -127,6 +127,6 @@ interface TileItem : Renderable {
     }
 
     fun invoke() {
-        client!!.callbacks.post(Events.LOOT_INVOKE, LootInvoke(getMenu(index)))
+        client!!.callbacks.post(Events.INTERACT, Interact(getMenu(index)))
     }
 }

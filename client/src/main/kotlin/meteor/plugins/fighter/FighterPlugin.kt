@@ -56,7 +56,7 @@ class FighterPlugin : Plugin() {
             if (config.flick() && Prayers.isQuickPrayerEnabled()) {
                 Prayers.toggleQuickPrayer(false)
             }
-            if (config.eat() && Combat.getHealthPercent() <= config.healthPercent()) {
+/*            if (config.eat() && Combat.getHealthPercent() <= config.healthPercent()) {
                 val foods = config.foods().split(",".toRegex()).toList()
                 Items.getAll()?.filter { it.name in foods }?.forEach{
                         ItemPackets.itemAction(it, "Eat")
@@ -70,7 +70,7 @@ class FighterPlugin : Plugin() {
                     ClientPackets.queueClickPacket(0, 0)
                     return
                 }
-            }
+            }*/
             if (config.buryBones()) {
                 Items.getAll()?.filter { it.hasAction("Bury") }?.forEach {
                     ItemPackets.itemAction(it, "Bury")
@@ -116,13 +116,11 @@ class FighterPlugin : Plugin() {
             }
 
             if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
-            val mob = NPCs.getAll(true)?.filter {
+            val mob = NPCs.getAll(true, sortByDistance = true)?.filter {
                     config.monster().split(",".toRegex()).toList().contains(it.npc.name)
                     && !it.npc.isDead
-                    && it.npc.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }
-            mob?.forEach {npc->
-                            npc.npc.interact("Attack")
-                    }
+                    && it.npc.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }?.firstOrNull()
+                mob?.npc?.interact("Attack")
             }
         } catch (ex: Exception) {
             ex.printStackTrace()

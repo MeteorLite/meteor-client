@@ -3,13 +3,10 @@ package meteor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.window.*
-import com.formdev.flatlaf.FlatLaf
-import com.formdev.flatlaf.FlatPropertiesLaf
 import dev.hoot.api.InteractionManager
 import dev.hoot.api.game.GameThread
 import eventbus.Events
-import eventbus.events.GameStateChanged
-import meteor.api.loot.LootInvoke
+import meteor.api.loot.Interact
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
 import meteor.config.MeteorConfig
@@ -43,7 +40,7 @@ import net.runelite.client.chat.ChatCommandManager
 import net.runelite.client.chat.ChatMessageManager
 import meteor.game.npcoverlay.NpcOverlayService
 import meteor.session.SessionManager
-import net.runelite.api.GameState
+import net.runelite.api.Item
 import net.runelite.api.TileItem
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
@@ -138,7 +135,8 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
     fun initApi() {
         TileItem.client = client
-        KEVENT.subscribe<LootInvoke>(Events.LOOT_INVOKE) {
+        Item.client = client
+        KEVENT.subscribe<Interact>(Events.INTERACT) {
             GameThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
         }
     }

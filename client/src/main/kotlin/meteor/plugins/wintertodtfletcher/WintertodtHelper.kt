@@ -3,10 +3,10 @@ package meteor.plugins.wintertodtfletcher
 import dev.hoot.api.game.Skills
 import eventbus.events.GameTick
 import eventbus.events.HitsplatApplied
-import meteor.api.items.Item
 import meteor.api.items.Items
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import net.runelite.api.Item
 import net.runelite.api.Skill
 
 @PluginDescriptor(

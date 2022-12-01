@@ -29,6 +29,9 @@ import dev.hoot.api.Identifiable
 import dev.hoot.api.SceneEntity
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.util.Randomizer
+import eventbus.Events
+import meteor.Logger
+import meteor.api.loot.Interact
 import net.runelite.api.util.Text
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetID
@@ -36,18 +39,23 @@ import net.runelite.api.widgets.WidgetInfo
 import java.awt.Point
 import java.awt.Rectangle
 import java.util.*
-import java.util.concurrent.ThreadLocalRandom
+
 import java.util.stream.Collectors
 
-open class Item(val client: Client? = null, private val id : Int = 0, val quantity: Int = 0) : Identifiable, EntityNameable {
+open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable, EntityNameable {
+    companion object {
+        lateinit var client: Client
+        var log = Logger("Item")
+    }
+
+    var slot = 0
+    var actionParam = 0
+    var widgetId = 0
+
     override fun getId(): Int {
         return id
     }
-    var slot = 0
 
-    // Interaction
-    var actionParam = 0
-    var widgetId = 0
     override fun getName(): String? {
         val name = composition.name ?: return "null"
         return Text.removeTags(Text.sanitize(name))
@@ -57,7 +65,7 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
         get() = Type[widgetId]
 
     fun calculateWidgetId(containerInfo: WidgetInfo?): Int {
-        return calculateWidgetId(client!!.getWidget(containerInfo))
+        return calculateWidgetId(client.getWidget(containerInfo))
     }
 
     fun calculateWidgetId(containerWidget: Widget?): Int {
@@ -72,7 +80,7 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
     }
 
     val composition: ItemComposition
-        get() = client!!.getItemComposition(getId())
+        get() = client.getItemComposition(getId())
     val isTradable: Boolean
         get() = composition.isTradeable
     val isStackable: Boolean
@@ -91,7 +99,7 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
         get() = Randomizer.getRandomPointIn(bounds)
     val rawActions: Array<String?>?
         get() {
-            val widget = client!!.getWidget(widgetId)
+            val widget = client.getWidget(widgetId)
             if (widget != null) {
                 if (type == Type.EQUIPMENT) {
                     return widget.rawActions
@@ -116,7 +124,7 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
     fun getMenu(actionIndex: Int): AutomatedMenu? {
         when (type) {
             Type.TRADE, Type.TRADE_INVENTORY -> {
-                val widget = client!!.getWidget(widgetId)
+                val widget = client.getWidget(widgetId)
                 if (widget != null) {
                     val itemChild = widget.getChild(slot)
                     if (itemChild != null) {
@@ -131,7 +139,7 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
             )
 
             Type.BANK, Type.BANK_INVENTORY -> return getMenu(actionIndex, MenuAction.CC_OP.id)
-            Type.UNKNOWN -> client!!.logger.error("Couldn't determine item type for: {}, widgetid: {}", id, widgetId)
+            Type.UNKNOWN -> client.logger.error("Couldn't determine item type for: {}, widgetid: {}", id, widgetId)
         }
         return null
     }
@@ -156,7 +164,7 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
     fun getMenu(actionIndex: Int, opcode: Int): AutomatedMenu? {
         when (type) {
             Type.TRADE, Type.TRADE_INVENTORY -> {
-                val itemWidget = client!!.getWidget(widgetId) ?: return null
+                val itemWidget = client.getWidget(widgetId) ?: return null
                 return itemWidget.getMenu(actionIndex, opcode)
             }
 
@@ -170,14 +178,14 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
                 WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId
             )
 
-            Type.UNKNOWN -> client!!.logger.error("Couldn't determine item type for: {}, widgetid: {}", id, widgetId)
+            Type.UNKNOWN -> client.logger.error("Couldn't determine item type for: {}, widgetid: {}", id, widgetId)
         }
         return null
     }
 
     private val bounds: Rectangle
         get() {
-            val widget: Widget = client!!.getWidget(widgetId)
+            val widget: Widget = client.getWidget(widgetId)
                 ?: return Rectangle(-1, -1, 0, 0)
             if (type != Type.EQUIPMENT) {
                 val slot = widget.getChild(slot)
@@ -214,7 +222,113 @@ open class Item(val client: Client? = null, private val id : Int = 0, val quanti
         }
     }
 
-    companion object {
-        private val random = ThreadLocalRandom.current()
+    fun use() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Use]")
+        client
+        client.selectedSpellWidget = widgetId
+        client.selectedSpellChildIndex = slot
+        client.selectedSpellItemId = id
+    }
+
+    fun useOn(item: Item) {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        use()
+        log.info("[Use-on Item] [${item.name}]")
+        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_WIDGET.id)?.let { Interact(it) })
+    }
+
+    fun useOn(npc: NPC) {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        use()
+        log.info("[Use-on NPC] [${npc.name}]")
+        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_NPC.id)?.let { Interact(it) })
+    }
+
+    fun useOn(player: Player) {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        use()
+        log.info("[Use-on Player] [${player.name}]")
+        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_PLAYER.id)?.let { Interact(it) })
+    }
+
+    fun useOn(loot: TileItem) {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        use()
+        log.info("[Use-on Loot] [${loot.getName()}]")
+        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM.id)?.let { Interact(it) })
+    }
+
+    fun useOn(obj: TileObject) {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        use()
+        log.info("[Use-on Object] [${obj.name}]")
+        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_GAME_OBJECT.id)?.let { Interact(it) })
+    }
+
+    fun spellUseOn() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Spell Use-on]")
+        slot = getSlot(id)
+        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_USE_ON_ITEM.id)?.let { Interact(it) })
+    }
+
+    fun getSlot(id: Int): Int {
+        client.getItemContainer(InventoryID.INVENTORY)?.let {
+            var slot = 0
+            if (it.items.isNotEmpty())
+                for (item in it.items) {
+                    if (item.id == id)
+                        return slot
+                    slot++
+                }
+        }
+        return -1
+    }
+
+    fun wield() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Wield]")
+        interact("Wield")
+    }
+
+    fun eat() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Eat]")
+        interact("Eat")
+    }
+
+    fun drop() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Drop]")
+        interact("Drop")
+    }
+
+    fun rub() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Rub]")
+        interact("Rub")
+    }
+
+    fun interact(action: String) {
+        if (actions == null) {
+            return
+        }
+        val index = rawActions?.indexOf(action)
+        if (index == -1) {
+            log.warn("Action idx not found for $action")
+            return
+        }
+        if (index != null) {
+            invoke(index)
+        }
+    }
+
+    fun interact(idx: Int) {
+        invoke(idx)
+    }
+
+    fun invoke(index: Int) {
+        client.callbacks.post(Events.INTERACT, getMenu(index)?.let { Interact(it) })
     }
 }
