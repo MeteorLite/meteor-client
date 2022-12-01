@@ -1,7 +1,5 @@
 package meteor.plugins.fighter
 
-import dev.hoot.api.commons.Time
-import dev.hoot.api.entities.Players
 import dev.hoot.api.game.Combat
 import dev.hoot.api.game.Game
 import dev.hoot.api.items.Inventory
@@ -13,6 +11,7 @@ import dev.hoot.api.widgets.Prayers
 import eventbus.events.ChatMessage
 import eventbus.events.GameTick
 import meteor.Logger
+import meteor.Main
 import meteor.Main.executor
 import meteor.api.items.Items
 import meteor.api.loot.Loots
@@ -44,7 +43,7 @@ class FighterPlugin : Plugin() {
 
 
         if (Game.isLoggedIn()) {
-            startPoint = Players.getLocal().worldLocation
+            startPoint = Main.client.localPlayer!!.worldLocation
         }
     }
 
@@ -56,7 +55,7 @@ class FighterPlugin : Plugin() {
             if (config.flick() && Prayers.isQuickPrayerEnabled()) {
                 Prayers.toggleQuickPrayer(false)
             }
-/*            if (config.eat() && Combat.getHealthPercent() <= config.healthPercent()) {
+            if (config.eat() && Combat.getHealthPercent() <= config.healthPercent()) {
                 val foods = config.foods().split(",".toRegex()).toList()
                 Items.getAll()?.filter { it.name in foods }?.forEach{
                         ItemPackets.itemAction(it, "Eat")
@@ -70,7 +69,7 @@ class FighterPlugin : Plugin() {
                     ClientPackets.queueClickPacket(0, 0)
                     return
                 }
-            }*/
+            }
             if (config.buryBones()) {
                 Items.getAll()?.filter { it.hasAction("Bury") }?.forEach {
                     ItemPackets.itemAction(it, "Bury")
@@ -79,7 +78,7 @@ class FighterPlugin : Plugin() {
                 }
 
             }
-            val local = Players.getLocal()
+            val local = Main.client.localPlayer!!
 
             val itemsToLoot = config.loot().split(",")
             if (!Inventory.isFull()&& Loots.exists(itemsToLoot)) {
@@ -117,10 +116,10 @@ class FighterPlugin : Plugin() {
 
             if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
             val mob = NPCs.getAll(true, sortByDistance = true)?.filter {
-                    config.monster().split(",".toRegex()).toList().contains(it.npc.name)
-                    && !it.npc.isDead
-                    && it.npc.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }?.firstOrNull()
-                mob?.npc?.interact("Attack")
+                    config.monster().split(",".toRegex()).toList().contains(it.name)
+                    && !it.isDead
+                    && it.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }?.firstOrNull()
+                mob?.interact("Attack")
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
@@ -131,7 +130,7 @@ class FighterPlugin : Plugin() {
     override fun onChatMessage(it: ChatMessage) {
         val message = it.message
         if (message.contains("other players have dropped")) {
-            val notOurs = Loots.getAt(Players.getLocal().worldLocation)
+            val notOurs = Loots.getAt(Main.client.localPlayer!!.worldLocation)
             notOurs?.forEach {
                 notOurItems.add(it)
             }

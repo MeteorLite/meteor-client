@@ -161,6 +161,21 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         } else Arrays.stream(rawActions).map { str: String? -> Text.removeTags(str) }
             .collect(Collectors.toList())
 
+    open fun hasAction(vararg actions: String): Boolean {
+        val raw: Array<String?> = rawActions ?: return false
+        return if (actions.isEmpty()) {
+            Arrays.stream(raw).anyMatch { obj: String? ->
+                Objects.nonNull(
+                    obj
+                )
+            }
+        } else Arrays.stream(actions).anyMatch { x: String? ->
+            actions.contains(
+                x
+            )
+        }
+    }
+
     fun getMenu(actionIndex: Int, opcode: Int): AutomatedMenu? {
         when (type) {
             Type.TRADE, Type.TRADE_INVENTORY -> {
