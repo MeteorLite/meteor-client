@@ -1,6 +1,5 @@
 package meteor.plugins.worldmapwalker
 
-import dev.hoot.api.entities.Players
 import dev.hoot.api.game.Game
 import dev.hoot.api.movement.Movement
 import dev.hoot.api.movement.pathfinder.Walker
@@ -9,6 +8,7 @@ import dev.hoot.api.widgets.Widgets
 import eventbus.events.GameTick
 import eventbus.events.MenuEntryAdded
 import meteor.Logger
+import meteor.Main
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.worldmap.WorldMapOverlay
@@ -44,7 +44,7 @@ class WorldMapWalkerPlugin : Plugin() {
         if (Movement.isWalking()) {
             return
         }
-        if (mapPoint == null || mapPoint!!.distanceTo(Players.getLocal().worldLocation) <= 2) {
+        if (mapPoint == null || mapPoint!!.distanceTo(Main.client.localPlayer!!.worldLocation) <= 2) {
             mapPoint = null
             return
         }

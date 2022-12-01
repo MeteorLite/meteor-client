@@ -1,6 +1,5 @@
 package dev.hoot.api.movement.pathfinder;
 
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Worlds;
 import dev.hoot.api.input.Keyboard;
@@ -87,7 +86,7 @@ public class TeleportLoader
 
 				for (TeleportItem tele : TeleportItem.values())
 				{
-					if (tele.canUse() && tele.getDestination().distanceTo(Players.getLocal().getWorldLocation()) > 20)
+					if (tele.canUse() && tele.getDestination().distanceTo(Main.client.getLocalPlayer().getWorldLocation()) > 20)
 					{
 						teleports.add(new Teleport(tele.getDestination(), 5, () ->
 						{
@@ -164,7 +163,7 @@ public class TeleportLoader
 					continue;
 				}
 
-				if (teleportSpell.getPoint().distanceTo(Players.getLocal().getWorldLocation()) > 50)
+				if (teleportSpell.getPoint().distanceTo(Main.client.getLocalPlayer().getWorldLocation()) > 50)
 				{
 					teleports.add(new Teleport(teleportSpell.getPoint(), 5, () ->
 					{

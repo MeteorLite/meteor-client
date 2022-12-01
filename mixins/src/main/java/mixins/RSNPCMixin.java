@@ -291,6 +291,7 @@ public abstract class RSNPCMixin implements RSNPC
 	}
 
 	@Inject
+	@Override
 	public AutomatedMenu getMenu(int actionIndex)
 	{
 		return getMenu(getIndex(), getActionOpcode(actionIndex));

@@ -189,7 +189,7 @@ init {
         }
         val x: Int = location.sceneX
         val y: Int = location.sceneY
-        val size = npc.composition.size
+        val size = npc.composition!!.size
 
         // Some NPCs drop items onto multiple tiles
         val allItems: MutableCollection<ItemStack> = ArrayList()
@@ -262,12 +262,12 @@ init {
         if (playerLocationLastTick!!.x < x) {
             x -= 1
         } else {
-            x += min(playerLocationLastTick!!.x - x, composition.size)
+            x += min(playerLocationLastTick!!.x - x, composition!!.size)
         }
         if (playerLocationLastTick!!.y < y) {
             y -= 1
         } else {
-            y += min(playerLocationLastTick!!.getY() - y, composition.size)
+            y += min(playerLocationLastTick!!.getY() - y, composition!!.size)
         }
         return WorldPoint(x, y, worldLocation.plane)
     }

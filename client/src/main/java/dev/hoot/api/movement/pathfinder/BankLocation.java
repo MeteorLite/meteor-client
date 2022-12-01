@@ -1,7 +1,7 @@
 package dev.hoot.api.movement.pathfinder;
 
-import dev.hoot.api.entities.Players;
 import dev.hoot.api.movement.Movement;
+import meteor.Main;
 import net.runelite.api.coords.WorldArea;
 
 import java.util.Arrays;
@@ -61,7 +61,7 @@ public enum BankLocation
 	public static BankLocation getNearest()
 	{
 		return Arrays.stream(values())
-				.min(Comparator.comparingInt(x -> x.getArea().distanceTo2D(Players.getLocal().getWorldLocation())))
+				.min(Comparator.comparingInt(x -> x.getArea().distanceTo2D(Main.client.getLocalPlayer().getWorldLocation())))
 				.orElse(null);
 	}
 

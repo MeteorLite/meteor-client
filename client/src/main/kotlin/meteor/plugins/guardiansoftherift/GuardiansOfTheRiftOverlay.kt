@@ -1,7 +1,7 @@
 package meteor.plugins.guardiansoftherift
 
-import dev.hoot.api.entities.NPCs
 import dev.hoot.api.quests.Quest
+import meteor.api.npcs.NPCs
 import meteor.game.ItemManager
 import meteor.ui.overlay.Overlay
 import meteor.util.AsyncBufferedImage
@@ -18,7 +18,7 @@ import java.awt.geom.Path2D
 class GuardiansOfTheRiftOverlay(var plugin: GuardiansOfTheRiftPlugin) : Overlay() {
     val itemManager = ItemManager
     override fun render(graphics: Graphics2D): Dimension? {
-        val guardian = NPCs.getNearest(plugin.greatGuardianID)
+        val guardian = NPCs.getFirst(plugin.greatGuardianID)
 
         guardian?.let {
             graphics.color = Color.GREEN

@@ -7,6 +7,7 @@ import net.runelite.api.NPC;
 import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.PacketBufferNode;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class NPCPackets
@@ -38,7 +39,7 @@ public class NPCPackets
 
 	public static void npcAction(NPC npc, String action, boolean ctrlDown)
 	{
-		List<String> actions = npc.getActions();
+		List<String> actions = Arrays.stream(npc.getRawActions()).toList();
 		int index = actions.indexOf(action);
 		switch (index)
 		{
