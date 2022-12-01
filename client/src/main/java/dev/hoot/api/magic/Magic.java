@@ -38,7 +38,7 @@ public class Magic
 	public static void cast(Spell spell, Item target)
 	{
 		selectSpell(spell);
-		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), target.getId(), target.getQuantity());
+		Item i = new Item(target.getId(), target.getQuantity());
 		i.spellUseOn();
 	}
 

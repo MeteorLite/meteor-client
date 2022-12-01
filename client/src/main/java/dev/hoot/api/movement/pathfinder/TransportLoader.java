@@ -422,13 +422,12 @@ public class TransportLoader
 			{
 				return;
 			}
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+			Item i = new Item(item.getId(), item.getQuantity());
 
 			TileObject transport = TileObjects.getFirstSurrounding(source, 5, objId);
 			if (transport != null)
 			{
-				Object object = new Object(transport);
-				i.useOn(object);
+				i.useOn(transport);
 			}
 		}, "");
 	}

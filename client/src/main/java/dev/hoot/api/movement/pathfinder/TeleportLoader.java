@@ -94,7 +94,7 @@ public class TeleportLoader
 							Item item = Inventory.getFirst(tele.getItemId());
 							if (item != null)
 							{
-								meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
+								Item i = new Item(item.getId(), item.getQuantity());
 
 								i.interact(tele.getAction());
 							}
@@ -189,7 +189,7 @@ public class TeleportLoader
 
 		if (inv != null)
 		{
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), inv.getId(), inv.getQuantity());
+			Item i = new Item(inv.getId(), inv.getQuantity());
 			if (Dialog.isViewingOptions())
 			{
 				Dialog.chooseOption(target);
@@ -203,7 +203,7 @@ public class TeleportLoader
 		Item equipped = Equipment.getFirst(ids);
 		if (equipped != null)
 		{
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), equipped.getId(), equipped.getQuantity());
+			Item i = new Item(equipped.getId(), equipped.getQuantity());
 
 			i.interact(target);
 		}
@@ -215,7 +215,7 @@ public class TeleportLoader
 
 		if (inv != null)
 		{
-			meteor.api.items.Item it = new meteor.api.items.Item(Main.INSTANCE.getClient(), inv.getId(), inv.getQuantity());
+			Item it = new Item(inv.getId(), inv.getQuantity());
 
 			Widget baseWidget = Widgets.get(187, 3);
 			if (Widgets.isVisible(baseWidget))
@@ -244,7 +244,7 @@ public class TeleportLoader
 		Item equipped = Equipment.getFirst(ids);
 		if (equipped != null)
 		{
-			meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), equipped.getId(), equipped.getQuantity());
+			Item i = new Item(equipped.getId(), equipped.getQuantity());
 
 			i.interact(target);
 		}

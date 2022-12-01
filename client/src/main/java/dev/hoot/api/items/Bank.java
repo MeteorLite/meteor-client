@@ -224,8 +224,8 @@ public class Bank extends Items
 		{
 			return;
 		}
-		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
-		i.deposit(amount);
+		Item i = new Item(item.getId(), item.getQuantity());
+		meteor.api.items.Items.deposit(i, amount);
 	}
 
 	public static void withdrawAll(String name, WithdrawMode withdrawMode)
@@ -261,8 +261,8 @@ public class Bank extends Items
 		{
 			return;
 		}
-		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
-		i.withdraw(amount, withdrawMode);
+		Item i = new Item(item.getId(), item.getQuantity());
+		meteor.api.items.Items.withdraw(i, amount, withdrawMode);
 	}
 
 	public static void withdrawLastQuantity(String name, WithdrawMode withdrawMode)
@@ -284,8 +284,8 @@ public class Bank extends Items
 			return;
 		}
 
-		meteor.api.items.Item i = new meteor.api.items.Item(Main.INSTANCE.getClient(), item.getId(), item.getQuantity());
-		i.withdrawLastQuantity(withdrawMode);
+		Item i = new Item(item.getId(), item.getQuantity());
+		meteor.api.items.Items.withdrawLastQuantity(i, withdrawMode);
 	}
 
 	public static void setWithdrawMode(boolean noted)

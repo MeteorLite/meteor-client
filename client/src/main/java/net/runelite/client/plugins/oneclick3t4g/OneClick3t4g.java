@@ -5,7 +5,6 @@ import eventbus.events.ChatMessage;
 import eventbus.events.ClientTick;
 import eventbus.events.MenuOptionClicked;
 import meteor.Main;
-import meteor.api.items.Item;
 import meteor.api.items.Items;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
@@ -206,9 +205,8 @@ public class OneClick3t4g extends Plugin {
             PluginManager.INSTANCE.toggle(this);
         }
     }
-    private meteor.api.items.Item getItem(int id) {
-        meteor.api.items.Item item = Items.INSTANCE.getFirst(new int[]{id}, InventoryID.INVENTORY);
-        return item;
+    private Item getItem(int id) {
+        return Items.INSTANCE.getFirst(new int[]{id}, InventoryID.INVENTORY);
     }
 
     @Override
