@@ -139,7 +139,9 @@ class DemonicGorillaPlugin : Plugin() {
                 gorilla.attacksUntilSwitch = (3 - if (correctPrayer) 1 else 0)
             }
         }
-        checkGorillaAttackStyleSwitch(gorilla, protectedStyle!!)
+        if (protectedStyle != null) {
+            checkGorillaAttackStyleSwitch(gorilla, protectedStyle)
+        }
         val tickCounter = client.tickCount
         gorilla.nextAttackTick = (tickCounter + 5)
     }
