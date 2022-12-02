@@ -27,6 +27,7 @@ package mixins;
 import dev.hoot.api.events.AutomatedMenu;
 import java.awt.Polygon;
 import java.awt.Shape;
+import java.util.Arrays;
 
 import eventbus.Events;
 import eventbus.events.NpcChanged;

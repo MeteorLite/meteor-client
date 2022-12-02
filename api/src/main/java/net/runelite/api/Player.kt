@@ -28,67 +28,108 @@ import dev.hoot.api.events.AutomatedMenu
 import eventbus.Events
 import meteor.Logger
 import meteor.api.loot.Interact
+import java.awt.Polygon
 
 /**
- * Represents a non-player character in the game.
+ * Represents a player entity in the game.
  */
 @JvmDefaultWithCompatibility
-interface NPC : Actor {
+interface Player : Actor {
     companion object {
         lateinit var client: Client
         var log = Logger("NPC")
     }
-    /**
-     * Gets the ID of the NPC.
-     *
-     * @return the ID of the NPC
-     * //@see NpcID
-     */
-    var id: Int
-    override fun getName(): String
+
     override fun getCombatLevel(): Int
-
-    fun getMenu(actionIndex: Int): AutomatedMenu?
-
-    /**
-     * Gets the index position of this NPC in the clients cached
-     * NPC array.
-     *
-     * @return the NPC index
-     * @see Client.getCachedNPCs
-     */
-    val index: Int
+    val playerId: Int
 
     /**
-     * Gets the composition of this NPC.
+     * Gets the composition of this player.
      *
      * @return the composition
      */
-    var composition: NPCComposition?
+    val playerComposition: PlayerComposition?
 
     /**
-     * Get the composition for this NPC and transform it if required
+     * Gets the polygons that make up the players model.
      *
-     * @return the transformed NPC
+     * @return the model polygons
      */
-    var transformedComposition: NPCComposition?
-    val transformedId: Int
-    val transformedName: String?
-    val transformedLevel: Int
+    val polygons: Array<Polygon?>?
+
+    /**
+     * Gets the current team cape team number the player is on.
+     *
+     * @return team number, or 0 if not on any team
+     */
+    val team: Int
+
+    /**
+     * Checks whether this player is a member of the same friends chat
+     * the local player.
+     *
+     * @return true if the player is a friends chat member, false otherwise
+     */
+    val isFriendsChatMember: Boolean
+
+    /**
+     * Checks whether this player is a friend of the local player.
+     *
+     * @return true if the player is a friend, false otherwise
+     */
+    val isFriend: Boolean
+
+    /**
+     * Checks whether the player is a member of the same clan as the local player.
+     *
+     * @return
+     */
+    val isClanMember: Boolean
+
+    /**
+     * Gets the displayed overhead icon of the player.
+     *
+     * @return the overhead icon
+     */
+    val overheadIcon: HeadIcon?
+
+    /**
+     * Gets the displayed skull icon of the player.
+     *
+     * @return the skull icon
+     */
+    val skullIcon: SkullIcon?
+
+    /**
+     * This is almost always not what you want
+     * @return literal 0
+     */
+    val rSSkillLevel: Int
+
+    //	String[] getActions();
+    val index: Int
+    val isIdle: Boolean
+    val id: Int
+        get() = playerId
+
+    override fun isAnimating(): Boolean {
+        return animation != -1
+    }
 
     override fun interact(action: String) {
-        if (composition?.actions == null) {
-            return
-        }
         val index = arrayListOf(*rawActions).indexOf(action)
         if (index == -1) {
-            log.warn("No action found for $action")
+            NPC.log.warn("No action found for $action")
             return
         }
         invoke(index)
     }
 
     fun invoke(index: Int) {
-        client.callbacks.post(Events.INTERACT, getMenu(index)?.let { Interact(it) })
+        client.callbacks.post(Events.INTERACT, getMenu(index, getActionOpcode(index))?.let { Interact(it) })
+    }
+
+    fun getMenu(actionIndex: Int, opcode: Int): AutomatedMenu? {
+        return getMenu(actionIndex, opcode, 0, 0)
     }
 }

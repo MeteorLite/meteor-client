@@ -139,7 +139,7 @@ class InteractHighlightPlugin : Plugin() {
         return null
     }
 
-    fun findNpc(id: Int): NPC {
+    fun findNpc(id: Int): NPC? {
         return client.cachedNPCs[id]
     }
 

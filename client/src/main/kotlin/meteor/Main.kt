@@ -34,14 +34,12 @@ import meteor.util.ExecutorServiceExceptionLogger
 import meteor.util.GameEventManager
 import meteor.util.Proxy
 import meteor.util.RuntimeConfigLoader
-import net.runelite.api.Client
 import net.runelite.api.hooks.Callbacks
 import net.runelite.client.chat.ChatCommandManager
 import net.runelite.client.chat.ChatMessageManager
 import meteor.game.npcoverlay.NpcOverlayService
 import meteor.session.SessionManager
-import net.runelite.api.Item
-import net.runelite.api.TileItem
+import net.runelite.api.*
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
@@ -136,6 +134,8 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     fun initApi() {
         TileItem.client = client
         Item.client = client
+        NPC.client = client
+        Player.client = client
         KEVENT.subscribe<Interact>(Events.INTERACT) {
             GameThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
         }

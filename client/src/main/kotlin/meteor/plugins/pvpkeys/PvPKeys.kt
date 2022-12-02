@@ -14,10 +14,7 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.util.HotkeyListener
-import net.runelite.api.Actor
-import net.runelite.api.InventoryID
-import net.runelite.api.ItemContainer
-import net.runelite.api.Prayer
+import net.runelite.api.*
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
@@ -195,6 +192,7 @@ class PvPKeys : Plugin() {
     }
     private val lasttarget: HotkeyListener = object : HotkeyListener(Supplier { config.Lasttarget() }) {
         override fun hotkeyPressed() {
+            target as Player
             target!!.interact("Attack")
         }
     }
