@@ -61,7 +61,7 @@ import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import meteor.plugins.barrows.BarrowsPlugin
 import meteor.plugins.barrowsdoorhighlighter.BarrowsDoorHighlighter
-import meteor.plugins.blackjack.BlueBlackjackPlugin
+import meteor.plugins.blackjack.BlackjackPlugin
 import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import meteor.plugins.blastmine.BlastMinePlugin
 import meteor.plugins.bosstimer.BossTimersPlugin
@@ -69,6 +69,7 @@ import meteor.plugins.chathistory.ChatHistoryPlugin
 import meteor.plugins.cooking.CookingPlugin
 import meteor.plugins.corp.CorpPlugin
 import meteor.plugins.coxhelper.CoxPlugin
+import meteor.plugins.demonicgorilla.DemonicGorillaPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
@@ -77,6 +78,7 @@ import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.fighter.FighterPlugin
 import meteor.plugins.hunter.HunterPlugin
 import meteor.plugins.infopanel.InfoPanelPlugin
+import meteor.plugins.keyremapping.KeyRemappingPlugin
 import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
 import meteor.plugins.olmswapper.OlmSwapperPlugin
@@ -132,7 +134,7 @@ object PluginManager {
         init<BarrowsDoorHighlighter>()
         init<BlastFurnacePlugin>()
         init<BlastMinePlugin>()
-        init<BlueBlackjackPlugin>()
+        init<BlackjackPlugin>()
         init<BoostsPlugin>()
         init<BossTimersPlugin>()
         init<CameraPlugin>()
@@ -149,6 +151,7 @@ object PluginManager {
         init<CoxPlugin>()
         init<CtrlPlayerOptions>()
         init<DefaultWorldPlugin>()
+        init<DemonicGorillaPlugin>()
         init<DevToolsPlugin>()
         init<DriftNetPlugin>()
         init<ExamplePlugin>()
@@ -173,6 +176,7 @@ object PluginManager {
         init<ItemStatPlugin>()
         init<JadAutoPrayerPlugin>()
         init<KeyboardBankPinPlugin>()
+        init<KeyRemappingPlugin>()
         init<LootTrackerPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()

@@ -38,14 +38,14 @@ import org.apache.commons.lang3.ArrayUtils
 
 
 @PluginDescriptor(
-    name = "[b] Blackjack",
+    name = "Blackjack",
     enabledByDefault = false,
     description = "Allows for one-click blackjacking, both knocking out and pickpocketing",
     tags = ["blackjack", "thieving"]
 )
-class BlueBlackjackPlugin : Plugin() {
+class BlackjackPlugin : Plugin() {
 
-    private val config = configuration<BlueBlackjackConfig>()
+    private val config = configuration<BlackjackConfig>()
     private var nextKnockOutTick: Long = 0
     private var knockout = true
 
