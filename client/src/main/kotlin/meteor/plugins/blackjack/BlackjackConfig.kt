@@ -28,8 +28,8 @@ import meteor.config.legacy.ConfigGroup
 import meteor.config.legacy.ConfigItem
 
 
-@ConfigGroup("blueliteblackjack")
-interface BlueBlackjackConfig : Config {
+@ConfigGroup("blackjack")
+interface BlackjackConfig : Config {
     @ConfigItem(
         keyName = "pickpocketOnAggro",
         name = "Pickpocket when aggro'd",

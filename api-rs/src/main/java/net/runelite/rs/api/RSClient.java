@@ -42,6 +42,9 @@ import net.runelite.mapping.Import;
 
 public interface RSClient extends RSGameEngine, Client
 {
+	@Import("isLargePlayerInfo")
+	boolean isLargePlayerInfo();
+
 	@Import("cameraX")
 	@Override
 	int getCameraX();

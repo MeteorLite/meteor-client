@@ -262,7 +262,7 @@ public enum class6 implements class342 {
 		if (var0.field1205 != 0) {
 			if (var0.targetIndex != -1) {
 				Object var13 = null;
-				var3 = Script.field972 ? 65536 : 32768;
+				var3 = Script.isLargePlayerInfo ? 65536 : 32768;
 				if (var0.targetIndex < var3) {
 					var13 = Client.npcs[var0.targetIndex];
 				} else if (var0.targetIndex >= var3) {
