@@ -107,7 +107,9 @@ abstract class WidgetItemOverlay(vararg overlayModes: ItemOverlayMode) : Overlay
             WidgetID.PLAYER_TRADE_INVENTORY_GROUP_ID
         )
     }
-
+    protected fun showOnInventory() {
+        drawAfterLayer(WidgetInfo.INVENTORY)
+    }
     protected fun showOnBank() {
         drawAfterLayer(WidgetInfo.BANK_ITEM_CONTAINER)
     }
