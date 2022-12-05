@@ -24,13 +24,13 @@ class KeyboardBankPinPlugin : Plugin() {
                 buttonRect.setOnKeyListener(JavaScriptCallback { e: ScriptEvent ->
                     val typedChar = e.typedKeyChar - '0'.code
                     if (typedChar == buttonId) {
-                        val chatboxTypedText = client.getVar(VarClientStr.CHATBOX_TYPED_TEXT)
-                        val inputText = client.getVar(VarClientStr.INPUT_TEXT)
+                        val chatboxTypedText = client.getVarcStrValue(VarClientStr.CHATBOX_TYPED_TEXT.index)
+                        val inputText = client.getVarcStrValue(VarClientStr.INPUT_TEXT.index)
                         ClientThread.invokeLater {
                             // reset chatbox input to avoid pin going to chatbox..
-                            client.setVar(VarClientStr.CHATBOX_TYPED_TEXT, chatboxTypedText)
+                            client.setVarcStrValue(VarClientStr.CHATBOX_TYPED_TEXT.index, chatboxTypedText)
                             client.runScript(ScriptID.CHAT_PROMPT_INIT)
-                            client.setVar(VarClientStr.INPUT_TEXT, inputText)
+                            client.setVarcStrValue(VarClientStr.INPUT_TEXT.index, inputText)
                             client.runScript(ScriptID.CHAT_TEXT_INPUT_REBUILD, "")
                             client.runScript(*onOpListener)
                         }

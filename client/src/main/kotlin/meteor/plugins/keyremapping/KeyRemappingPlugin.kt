@@ -34,7 +34,7 @@ class KeyRemappingPlugin : Plugin() {
         ClientThread.invoke {
             if (client.gameState == GameState.LOGGED_IN) {
                 lockChat()
-                client.setVar(VarClientStr.CHATBOX_TYPED_TEXT, "")
+                client.setVarcStrValue(VarClientStr.CHATBOX_TYPED_TEXT.index, "")
             }
         }
     }
@@ -58,7 +58,7 @@ class KeyRemappingPlugin : Plugin() {
         }
 
         val worldMapSearch: Widget? = client.getWidget(WidgetInfo.WORLD_MAP_SEARCH)
-        return worldMapSearch == null || client.getVar(VarClientInt.WORLD_MAP_SEARCH_FOCUSED) != 1
+        return worldMapSearch == null || client.getVarcIntValue(VarClientInt.WORLD_MAP_SEARCH_FOCUSED.index) != 1
     }
 
     val isDialogOpen: Boolean
@@ -106,7 +106,7 @@ class KeyRemappingPlugin : Plugin() {
                     if (isChatboxTransparent) JagexColors.CHAT_TYPED_TEXT_TRANSPARENT_BACKGROUND else JagexColors.CHAT_TYPED_TEXT_OPAQUE_BACKGROUND
                 setChatboxWidgetInput(
                     chatboxInput,
-                    ColorUtil.wrapWithColorTag(client.getVar(VarClientStr.CHATBOX_TYPED_TEXT) + "*", textColor)
+                    ColorUtil.wrapWithColorTag(client.getVarcIntValue(VarClientStr.CHATBOX_TYPED_TEXT.index).toString() + "*", textColor)
                 )
             }
         }

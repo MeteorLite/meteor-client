@@ -896,22 +896,6 @@ public interface Client extends GameEngine
 	int getVarbitValue(@Varbit int varbit);
 
 	/**
-	 * Gets an int value corresponding to the passed variable.
-	 *
-	 * @param varClientInt the variable
-	 * @return the value
-	 */
-	int getVar(VarClientInt varClientInt);
-
-	/**
-	 * Gets a String value corresponding to the passed variable.
-	 *
-	 * @param varClientStr the variable
-	 * @return the value
-	 */
-	String getVar(VarClientStr varClientStr);
-
-	/**
 	 * Gets the value of a given VarClientInt
 	 *
 	 * @param varcIntId the VarClientInt id
@@ -928,16 +912,6 @@ public interface Client extends GameEngine
 	 */
 	@VisibleForExternalPlugins
 	String getVarcStrValue(int varcStrId);
-
-	/**
-	 * Sets a VarClientString to the passed value
-	 */
-	void setVar(VarClientStr varClientStr, String value);
-
-	/**
-	 * Sets a VarClientInt to the passed value
-	 */
-	void setVar(VarClientInt varClientStr, int value);
 
 	/**
 	 * Sets the value of a varbit

@@ -82,13 +82,13 @@ internal class MouseTooltipOverlay(var config: MouseTooltipConfig) : Overlay() {
         }
 
         // If this varc is set, a tooltip will be displayed soon
-        val tooltipTimeout = client.getVar(VarClientInt.TOOLTIP_TIMEOUT)
+        val tooltipTimeout = client.getVarcIntValue(VarClientInt.TOOLTIP_TIMEOUT.index)
         if (tooltipTimeout > client.gameCycle) {
             return null
         }
 
         // If this varc is set, a tooltip is already being displayed
-        val tooltipDisplayed = client.getVar(VarClientInt.TOOLTIP_VISIBLE)
+        val tooltipDisplayed = client.getVarcIntValue(VarClientInt.TOOLTIP_VISIBLE.index)
         if (tooltipDisplayed == 1) {
             return null
         }

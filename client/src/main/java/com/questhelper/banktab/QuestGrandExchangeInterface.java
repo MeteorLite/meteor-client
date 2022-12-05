@@ -164,8 +164,8 @@ public class QuestGrandExchangeInterface
 
 		grandExchangeTitle.setHidden(true);
 
-		client.setVar(VarClientStr.INPUT_TEXT, "");
-		client.setVar(VarClientInt.INPUT_TYPE, 14);
+		client.setVarcStrValue(VarClientStr.INPUT_TEXT.getIndex(), "");
+		client.setVarcIntValue(VarClientInt.INPUT_TYPE.getIndex(), 14);
 
 		clientThread.invokeLater(() -> updateSearchInterface(false));
 	}
@@ -181,8 +181,8 @@ public class QuestGrandExchangeInterface
 		questBackgroundWidget.revalidate();
 		grandExchangeTitle.setHidden(false);
 		active = true;
-		client.setVar(VarClientStr.INPUT_TEXT, "quest-helper");
-		client.setVar(VarClientInt.INPUT_TYPE, 14);
+		client.setVarcStrValue(VarClientStr.INPUT_TEXT.getIndex(), "quest-helper");
+		client.setVarcIntValue(VarClientInt.INPUT_TYPE.getIndex(), 14);
 
 		clientThread.invokeLater(() -> updateSearchInterface(true));
 	}

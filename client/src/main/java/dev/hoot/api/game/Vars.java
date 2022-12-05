@@ -23,11 +23,11 @@ public class Vars
 
 	public static int getVarcInt(VarClientInt varClientInt)
 	{
-		return Game.getClient().getVar(varClientInt);
+		return Game.getClient().getVarcIntValue(varClientInt.getIndex());
 	}
 
 	public static String getVarcStr(VarClientStr varClientStr)
 	{
-		return Game.getClient().getVar(varClientStr);
+		return Game.getClient().getVarcStrValue(varClientStr.getIndex());
 	}
 }

@@ -75,8 +75,8 @@ object BankSearch {
                 // this clears the input text and type, and resets the chatbox to allow input
                 client!!.runScript(ScriptID.MESSAGE_LAYER_CLOSE, 1, 1, 0)
             } else {
-                client!!.setVar(VarClientInt.INPUT_TYPE, InputType.NONE.type)
-                client.setVar(VarClientStr.INPUT_TEXT, "")
+                client!!.setVarcIntValue(VarClientInt.INPUT_TYPE.index, InputType.NONE.type)
+                client.setVarcStrValue(VarClientStr.INPUT_TEXT.index, "")
             }
             layoutBank()
         }

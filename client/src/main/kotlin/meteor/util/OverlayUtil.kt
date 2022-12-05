@@ -229,7 +229,7 @@ object OverlayUtil {
 
     fun renderPrayerOverlay(graphics: Graphics2D, prayer: Prayer, color: Color): Rectangle? {
         val widget = Main.client.getWidget(prayer.widgetInfo)
-        if (widget == null || Main.client.getVar(VarClientInt.INVENTORY_TAB) != InterfaceTab.PRAYER.id) {
+        if (widget == null || Main.client.getVarcIntValue(VarClientInt.INVENTORY_TAB.index) != InterfaceTab.PRAYER.id) {
             return null
         }
         val bounds = widget.bounds

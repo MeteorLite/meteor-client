@@ -125,7 +125,7 @@ object KeyRemappingListener : KeyListener {
                     e.consume()
                     plugin.typing = false
                     ClientThread.invoke {
-                        client.setVar(VarClientStr.CHATBOX_TYPED_TEXT, "")
+                        client.setVarcStrValue(VarClientStr.CHATBOX_TYPED_TEXT.index, "")
                         plugin.lockChat()
                     }
                 }
@@ -134,7 +134,7 @@ object KeyRemappingListener : KeyListener {
                     ClientThread.invoke { plugin.lockChat() }
                 }
                 KeyEvent.VK_BACK_SPACE ->
-                    if (Strings.isNullOrEmpty(client.getVar(VarClientStr.CHATBOX_TYPED_TEXT))) {
+                    if (Strings.isNullOrEmpty(client.getVarcStrValue(VarClientStr.CHATBOX_TYPED_TEXT.index))) {
                         plugin.typing = false
                         ClientThread.invoke { plugin.lockChat() }
                     }

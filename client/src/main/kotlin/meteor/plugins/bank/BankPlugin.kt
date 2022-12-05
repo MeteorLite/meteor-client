@@ -170,7 +170,7 @@ class BankPlugin : Plugin() {
         } else if (it.scriptId == ScriptID.BANKMAIN_SEARCH_REFRESH) {
             // vanilla only lays out the bank every 40 client ticks, so if the search input has changed,
             // and the bank wasn't laid out this tick, lay it out early
-            val inputText = client.getVar(VarClientStr.INPUT_TEXT)
+            val inputText = client.getVarcStrValue(VarClientStr.INPUT_TEXT.index)
             if (searchString !== inputText && client.gameCycle % 40 != 0) {
                 clientThread.invokeLater { bankSearch.layoutBank() }
                 searchString = inputText

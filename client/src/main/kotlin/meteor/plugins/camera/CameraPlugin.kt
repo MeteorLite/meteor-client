@@ -254,7 +254,7 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
     }
 
     private fun makeSliderTooltip(): Tooltip {
-        val value = client.getVar(VarClientInt.CAMERA_ZOOM_RESIZABLE_VIEWPORT)
+        val value = client.getVarcIntValue(VarClientInt.CAMERA_ZOOM_RESIZABLE_VIEWPORT.index)
         val max = if (config.innerLimit()) INNER_ZOOM_LIMIT else DEFAULT_INNER_ZOOM_LIMIT
         return Tooltip("Camera Zoom: $value / $max")
     }
