@@ -33,13 +33,13 @@ import net.runelite.api.coords.WorldPoint
 
 
 @PluginDescriptor(
-    name = "OneClickChins",
+    name = "One Click Chinchompas",
     enabledByDefault = false,
     description = "one click chinchompas. Requires you to lay the traps initially(WHILE PLUGIN IS ON) as it only resets."
 )
 class Oneclickchinsplugin : Plugin() {
-    private val traps: MutableMap<WorldPoint, BoxTrap?> = HashMap()
-    private val fallenTraps: MutableMap<WorldPoint, BoxTrap?> = HashMap()
+    private val traps: MutableMap<WorldPoint, BoxTrap?> = HashMap<WorldPoint, BoxTrap?>()
+    private val fallenTraps: MutableMap<WorldPoint, BoxTrap?> = HashMap<WorldPoint, BoxTrap?>()
     private var timeout = 0
     private val config = configuration<Oneclickchinsconfig>()
     override fun onGameObjectSpawned(it: GameObjectSpawned) {
