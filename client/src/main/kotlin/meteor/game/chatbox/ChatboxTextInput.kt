@@ -24,12 +24,11 @@
  */
 package meteor.game.chatbox
 
-import com.google.common.base.Strings
 
+import com.google.common.base.Strings
 import meteor.input.KeyListener
 import meteor.input.MouseListener
 import meteor.rs.ClientThread
-import meteor.util.IntPredicate
 import net.runelite.api.FontID
 import net.runelite.api.ScriptEvent
 import net.runelite.api.util.Text
@@ -43,9 +42,6 @@ import java.awt.datatransfer.UnsupportedFlavorException
 import java.awt.event.KeyEvent
 import java.awt.event.MouseEvent
 import java.io.IOException
-
-
-import java.util.function.ToIntFunction
 import java.util.regex.Pattern
 import javax.swing.SwingUtilities
 
@@ -63,10 +59,10 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
     var cursorEnd = 0
     var selectionStart = -1
     var selectionEnd = -1
-    var charValidator: IntPredicate? = defaultCharValidator
+    var charValidator: (Int) -> Boolean? = defaultCharValidator
     var onClose: (() -> Unit?)? = null
-    var onDone: (String)->Boolean? = {false}
-    var onChanged: (()->String)? = null
+    var onDone: (String) -> Boolean? = {false}
+    var onChanged: (() -> String)? = null
 
     var fontID = FontID.QUILL_8
 
@@ -74,9 +70,9 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
 
     // These are lambdas for atomic updates
     private var isInBounds: (MouseEvent)->Boolean? = {false}
-    private var getLineOffset: ToIntFunction<Int>? = null
-    private var getPointCharOffset: ToIntFunction<Point>? = null
-    fun addCharValidator(validator: IntPredicate): ChatboxTextInput {
+    private var getLineOffset: ((Int)-> Int)? = null
+    private var getPointCharOffset: ((Point) -> Int)? = null
+    fun addCharValidator(validator: (Int) -> Boolean): ChatboxTextInput {
          charValidator =  validator
         return this
     }
@@ -100,7 +96,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
     fun value(value: String): ChatboxTextInput {
         val sb = StringBuffer()
         for (c in value.toCharArray()) {
-            if (charValidator!!(c.code)) {
+            if (charValidator(c.code)!!) {
                 sb.append(c)
             }
         }
@@ -147,12 +143,12 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
         return value.toString()
     }
 
-    fun charValidator(validator: IntPredicate?): ChatboxTextInput {
+    fun charValidator(validator: ((Int)->Boolean?)?): ChatboxTextInput {
         var valid = validator
-        if (valid == null) {
+        if(valid != null) {
             valid = defaultCharValidator
+            charValidator = valid
         }
-        charValidator = valid
         return this
     }
 
@@ -163,9 +159,10 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
 
     open fun onDone(onDone: (String)->Unit?): ChatboxTextInput? {
         this.onDone = { s: String ->
-            onDone.invoke(s)
+            onDone(s)
             true
         }
+
         return this
     }
 
@@ -344,9 +341,9 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
         }
         val ccl = container.canvasLocation
         isInBounds =  { ev: MouseEvent -> bounds.contains(Point(ev.x - ccl.x, ev.y - ccl.y)) }
-        getPointCharOffset = ToIntFunction { p: Point ->
+        getPointCharOffset = label@{ p: Point ->
             if (bounds.width <= 0) {
-                return@ToIntFunction 0
+                return@label 0
             }
             var cx = p.x - ccl.x - x
             val cy = p.y - ccl.y - oy
@@ -363,7 +360,8 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
 
             // `i` is used to track max execution time incase there is a font with ligature width data that causes this to fail
             var i = tsValue.length
-            while (i >= 0 && charIndex >= 0 && charIndex <= tsValue.length) {
+
+            whileLabel@ while  (i >= 0 && charIndex >= 0 && charIndex <= tsValue.length) {
                 val lcx = if (charIndex > 0) font.getTextWidth(
                     Text.escapeJagex(
                         tsValue.substring(
@@ -391,15 +389,15 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                     i--
                     continue
                 }
-                break
-                i--
+                //i--
+                break@whileLabel
             }
             charIndex = charIndex.coerceIn(0, tsValue.length)
             line.start + charIndex
         }
-        getLineOffset = ToIntFunction { code: Int ->
+        getLineOffset = label@ { code: Int ->
             if (editLines.size < 2) {
-                return@ToIntFunction cursorStart
+                return@label cursorStart
             }
             var currentLine = -1
             var i = 0
@@ -417,19 +415,19 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 i++
             }
             if (currentLine == -1 || code == KeyEvent.VK_UP && currentLine == 0 || code == KeyEvent.VK_DOWN && currentLine == editLines.size - 1) {
-                return@ToIntFunction cursorStart
+                return@label cursorStart
             }
             val line = editLines[currentLine]
             val direction = if (code == KeyEvent.VK_UP) -1 else 1
             val dest = Point(cursor.canvasLocation.x, cursor.canvasLocation.y + direction * oh)
-            val charOffset = getPointCharOffset!!.applyAsInt(dest)
+            val charOffset = getPointCharOffset!!(dest)
 
             // Place cursor on right line if whitespace keep it on the same line or skip a line
             val nextLine = editLines[currentLine + direction]
             if(direction == -1 && charOffset >= line.start) {
-                return@ToIntFunction nextLine.end
+                return@label nextLine.end
             }else if (charOffset > nextLine.end && currentLine + direction != editLines.size - 1)
-                return@ToIntFunction nextLine.end
+                return@label nextLine.end
             charOffset
         }
     }
@@ -441,7 +439,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
     private fun getCharOffset(ev: MouseEvent): Int {
         return if (getPointCharOffset == null) {
             0
-        } else getPointCharOffset!!.applyAsInt(ev.point)
+        } else getPointCharOffset!!(ev.point)
     }
 
     override fun open() {
@@ -466,7 +464,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
             return
         }
         val c = e.keyChar
-        if (charValidator!!(c.code)) {
+        if (charValidator(c.code)!!) {
             if (cursorStart != cursorEnd) {
                 value.delete(cursorStart, cursorEnd)
             }
@@ -510,7 +508,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                         var i = 0
                         while (i < s.length) {
                             val ch = s[i]
-                            if (charValidator!!(ch.code)) {
+                            if (charValidator(ch.code)!!) {
                                 value.insert(cursorStart, ch)
                                 cursorStart++
                             }
@@ -602,11 +600,11 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
             }
             KeyEvent.VK_UP -> {
                 ev.consume()
-                newPos = getLineOffset!!.applyAsInt(code)
+                newPos = getLineOffset!!(code)
             }
             KeyEvent.VK_DOWN -> {
                 ev.consume()
-                newPos = getLineOffset!!.applyAsInt(code)
+                newPos = getLineOffset!!(code)
             }
             KeyEvent.VK_HOME -> {
                 ev.consume()
@@ -706,7 +704,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
     }
     private val CURSOR_FLASH_RATE_MILLIS = 1000
     private val BREAK_MATCHER = Pattern.compile("[^a-zA-Z\\d']")
-    private val defaultCharValidator: IntPredicate
+    private val defaultCharValidator: (Int)-> Boolean
         get() = { i: Int -> i in 32..126 }
 
 }

@@ -143,7 +143,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     }
 
     fun initOverlays() {
-        WidgetOverlay.createOverlays().forEach(Consumer { overlay: WidgetOverlay -> overlayManager.add(overlay) })
+        WidgetOverlay.createOverlays().forEach{ overlay: WidgetOverlay -> overlayManager.add(overlay) }
         overlayManager.add(TooltipOverlay())
         overlayManager.add(WorldMapOverlay())
     }
