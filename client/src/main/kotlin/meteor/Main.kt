@@ -78,7 +78,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     lateinit var chatCommandManager: ChatCommandManager
     val httpClient = OkHttpClient()
     val xpClient = XpClient(httpClient)
-    val chatClient = ChatClient(httpClient);
+    val chatClient = ChatClient(httpClient)
     val overlayManager = OverlayManager
     val overlayRenderer = OverlayRenderer()
     val fontManager = FontManager
@@ -88,6 +88,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val worldService = WorldService
     val macOS = if ( System.getProperty("os.name").lowercase().contains("mac")) OS.MacOS else null
     val winOS = if ( System.getProperty("os.name").lowercase().contains("win")) OS.Windows else null
+
     @JvmStatic
     fun main(args: Array<String>) = application {
         Proxy.handle(args)
@@ -129,7 +130,6 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         SessionManager.start()
         timer.stop()
         logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
-
     }
 
     fun initApi() {

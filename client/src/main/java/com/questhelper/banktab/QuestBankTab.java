@@ -136,7 +136,7 @@ public class QuestBankTab extends EventSubscriber
 	@Override
 	public void onGrandExchangeSearched(GrandExchangeSearched event)
 	{
-		final String input = client.getVar(VarClientStr.INPUT_TEXT);
+		final String input = client.getVarcStrValue(VarClientStr.INPUT_TEXT.getIndex());
 		String QUEST_BANK_TAG = "quest-helper";
 
 		if (!input.equals(QUEST_BANK_TAG) || questHelper.getSelectedQuest() == null)
