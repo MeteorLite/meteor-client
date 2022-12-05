@@ -15,6 +15,7 @@ import meteor.game.FontManager
 import meteor.game.ItemManager
 import meteor.game.LootManager
 import meteor.game.WorldService
+import meteor.game.chatbox.ChatboxPanelManager
 import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
@@ -142,7 +143,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     }
 
     fun initOverlays() {
-        WidgetOverlay.createOverlays().forEach(Consumer { overlay: WidgetOverlay -> overlayManager.add(overlay) })
+        WidgetOverlay.createOverlays().forEach{ overlay: WidgetOverlay -> overlayManager.add(overlay) }
         overlayManager.add(TooltipOverlay())
         overlayManager.add(WorldMapOverlay())
     }
@@ -150,6 +151,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     fun initManagers() {
         MenuManager
         LootManager
+        ChatboxPanelManager
         interactionManager = InteractionManager()
         chatMessageManager = ChatMessageManager()
         chatCommandManager = ChatCommandManager()
