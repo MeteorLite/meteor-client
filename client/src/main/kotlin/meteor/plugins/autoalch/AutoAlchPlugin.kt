@@ -1,7 +1,9 @@
 package meteor.plugins.autoalch
 
+import dev.hoot.api.magic.Magic
 import dev.hoot.api.magic.Regular
 import dev.hoot.api.packets.ItemPackets
+import dev.hoot.api.packets.WidgetPackets
 import eventbus.events.GameTick
 import eventbus.events.StatChanged
 import meteor.api.items.Items
@@ -25,7 +27,7 @@ class AutoAlchPlugin : Plugin() {
     val config: AutoAlchConfig = configuration()
 
     override fun onStatChanged(it: StatChanged) {
-        if (it.skill === Skill.MAGIC) {
+        if (it.skill == Skill.MAGIC) {
             if (it.xp != 0) {
                 timeout = delay()
             }
@@ -37,16 +39,15 @@ class AutoAlchPlugin : Plugin() {
             timeout = 0
         }
         if (timeout == 0) {
-            val x = Items.getFirst(config.itemID())
-            if (x != null) {
-                ClientPackets.queueClickPacket(0, 0)
                 val spellToUse =
                     if (config.alchType() == AutoAlchConfig.AlchType.HIGH)
-                        Regular.HIGH_LEVEL_ALCHEMY.widget.id
+                        Regular.HIGH_LEVEL_ALCHEMY
                     else
-                        Regular.LOW_LEVEL_ALCHEMY.widget.id
-                ItemPackets.queueSpellOnItemPacket(x.id, x.slot, spellToUse)
+                        Regular.LOW_LEVEL_ALCHEMY
+            Items.getFirst(config.itemID())?.let{
+            Magic.cast(spellToUse,it)
             }
+
         }
         timeout--
     }
@@ -55,7 +56,7 @@ class AutoAlchPlugin : Plugin() {
         var delay: Int
         do {
             val random = rand.nextGaussian() * 1 + 3
-            delay = random.roundToInt().toInt()
+            delay = random.roundToInt()
         } while (delay <= 1 || delay >= 9)
         return delay
     }
