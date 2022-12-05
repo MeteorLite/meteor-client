@@ -116,7 +116,6 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<GroundMarkerPlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
@@ -166,6 +165,7 @@ object PluginManager {
         init<GauntletExtendedPlugin>()
         init<HdPlugin>()
         init<GroundItemsPlugin>()
+        init<GroundMarkerPlugin>()
         init<GuardiansOfTheRiftPlugin>()
         init<HerbiboarPlugin>()
         init<HiScorePlugin>()

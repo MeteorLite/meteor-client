@@ -40,7 +40,7 @@ object ChatboxItemSearch : ChatboxTextInput() {
 
     private var onItemSelected: ((Int)->Unit)? = {}
 
-    data class ItemIcon(private val texturesToReplace: ShortArray?, private val colorsToReplace: ShortArray?,
+    class ItemIcon(private val texturesToReplace: ShortArray?, private val colorsToReplace: ShortArray?,
                            private val modelId: Int = 0
     ) {
         override fun equals(other: Any?): Boolean {
