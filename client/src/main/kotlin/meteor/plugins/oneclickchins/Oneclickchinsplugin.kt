@@ -130,20 +130,20 @@ class Oneclickchinsplugin : Plugin() {
         }
     }
 
-    private fun handleClick(event: MenuOptionClicked) {
+    private fun handleClick(it: MenuOptionClicked) {
         if (timeout > 0) return
         if (client.players.size > 1 && config.playerspotted()) {
-            event.consume()
+            it.consume()
             return
         }
         //i think pick up fallen ones IF there's less than 30s(.5) after they fall, gives some wiggle room.
         if (fallenTraps.values.any { boxTrap: BoxTrap? -> boxTrap?.trapTimeRemaining!! < 30 }
             || resetTrapMenuEntry() == null && resetExpiredTrapMenuEntry() != null) {
-            event.menuEntry = resetExpiredTrapMenuEntry()!!
+            it.menuEntry = resetExpiredTrapMenuEntry()!!
             return
         }
         if (resetTrapMenuEntry() != null) {
-            event.menuEntry = resetTrapMenuEntry()!!
+            it.menuEntry = resetTrapMenuEntry()!!
         }
     }
 
