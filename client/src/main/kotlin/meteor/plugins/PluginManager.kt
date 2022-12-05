@@ -76,12 +76,14 @@ import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.emojis.EmojiPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.fighter.FighterPlugin
+import meteor.plugins.groundmarkers.GroundMarkerPlugin
 import meteor.plugins.hunter.HunterPlugin
 import meteor.plugins.infopanel.InfoPanelPlugin
 import meteor.plugins.keyremapping.KeyRemappingPlugin
 import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
 import meteor.plugins.olmswapper.OlmSwapperPlugin
+import meteor.plugins.oneclickchins.Oneclickchinsplugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -114,7 +116,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-
+        init<GroundMarkerPlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
@@ -192,6 +194,7 @@ object PluginManager {
         init<ObjectIndicatorsPlugin>()
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
+        init<Oneclickchinsplugin>()
         init<OlmSwapperPlugin>()
         init<PuzzleSolverPlugin>()
         init<PvPKeys>()
