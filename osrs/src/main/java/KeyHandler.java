@@ -25,12 +25,12 @@ public class KeyHandler implements KeyListener, FocusListener {
    )
    class30[] field143 = new class30[3];
    @ObfuscatedName("m")
-   boolean[] field146 = new boolean[112];
+   boolean[] KeyHandler_pressedKeys = new boolean[112];
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1016027891
    )
-   volatile int field148 = 0;
+   volatile int KeyHandler_idleCycles = 0;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -47,7 +47,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       garbageValue = "-1025402851"
    )
    int method354() {
-      return this.field148;
+      return this.KeyHandler_idleCycles;
    }
 
    @ObfuscatedName("v")
@@ -80,7 +80,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       garbageValue = "38"
    )
    void method361() {
-      ++this.field148;
+      ++this.KeyHandler_idleCycles;
       this.method358();
       Iterator var1 = this.field145.iterator();
 
@@ -126,9 +126,9 @@ public class KeyHandler implements KeyListener, FocusListener {
       }
 
       if (var2 >= 0) {
-         this.field146[var2] = true;
+         this.KeyHandler_pressedKeys[var2] = true;
          this.field144.add(new class34(1, var2));
-         this.field148 = 0;
+         this.KeyHandler_idleCycles = 0;
       }
 
       var1.consume();
@@ -150,7 +150,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       }
 
       if (var2 >= 0) {
-         this.field146[var2] = false;
+         this.KeyHandler_pressedKeys[var2] = false;
          this.field144.add(new class34(2, var2));
       }
 
@@ -195,8 +195,8 @@ public class KeyHandler implements KeyListener, FocusListener {
 
    public final synchronized void focusLost(FocusEvent var1) {
       for(int var2 = 0; var2 < 112; ++var2) {
-         if (this.field146[var2]) {
-            this.field146[var2] = false;
+         if (this.KeyHandler_pressedKeys[var2]) {
+            this.KeyHandler_pressedKeys[var2] = false;
             this.field144.add(new class34(2, var2));
          }
       }
