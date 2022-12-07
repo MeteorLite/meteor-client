@@ -62,7 +62,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
     var charValidator: (Int) -> Boolean? = defaultCharValidator
     var onClose: (() -> Unit?)? = {}
     var onDone: (String) -> Boolean? = {false}
-    var onChanged: (String)->Unit? = {}
+    var onChanged: ((String)->Unit?)? = {}
 
     var fontID = FontID.QUILL_8
 
@@ -475,7 +475,9 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
             }
             value.insert(cursorStart, c)
             cursorAt(cursorStart + 1)
-                onChanged(getValue())
+            if(onChanged != null) {
+                onChanged!!(getValue())
+            }
 
         }
     }
@@ -519,7 +521,9 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                             i++
                         }
                         cursorAt(cursorStart)
-                            onChanged(getValue())
+                        if(onChanged != null) {
+                            onChanged!!(getValue())
+                        }
 
                     } catch (ex: IOException) {
                        // ChatboxTextInput.log.warn("Unable to get clipboard", ex)
@@ -553,13 +557,17 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 if (cursorStart != cursorEnd) {
                     value.delete(cursorStart, cursorEnd)
                     cursorAt(cursorStart)
-                    onChanged(getValue())
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
+                    }
                     return
                 }
                 if (cursorStart < value.length) {
                     value.deleteCharAt(cursorStart)
                     cursorAt(cursorStart)
-                    onChanged(getValue())
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
+                    }
                 }
                 return
             }
@@ -567,13 +575,17 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 if (cursorStart != cursorEnd) {
                     value.delete(cursorStart, cursorEnd)
                     cursorAt(cursorStart)
-                    onChanged(getValue())
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
+                    }
                     return
                 }
                 if (cursorStart > 0) {
                     value.deleteCharAt(cursorStart - 1)
                     cursorAt(cursorStart - 1)
-                    onChanged(getValue())
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
+                    }
                 }
                 return
             }

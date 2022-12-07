@@ -117,7 +117,6 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<FairyRingPlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()
@@ -160,6 +159,7 @@ object PluginManager {
         init<ExamplePlugin>()
         init<EmojiPlugin>()
         init<EntityHiderPlugin>()
+        init<FairyRingPlugin>()
         init<FishingPlugin>()
         init<FighterPlugin>()
         init<FpsPlugin>()
