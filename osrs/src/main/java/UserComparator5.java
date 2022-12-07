@@ -5,16 +5,13 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dk")
-@Implements("UserComparator5")
 public class UserComparator5 extends AbstractUserComparator {
    @ObfuscatedName("fk")
    @ObfuscatedSignature(
       descriptor = "Lon;"
    )
-   @Export("spriteIds")
    static GraphicsDefaults spriteIds;
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public UserComparator5(boolean var1) {
@@ -26,7 +23,6 @@ public class UserComparator5 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;I)I",
       garbageValue = "-1440387042"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (var1.world != 0) {
          if (var2.world == 0) {

@@ -4,7 +4,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ho")
-@Implements("Animation")
 public class Animation {
    @ObfuscatedName("h")
    static int[] field2454 = new int[500];
@@ -18,25 +17,18 @@ public class Animation {
    @ObfuscatedSignature(
       descriptor = "Lhn;"
    )
-   @Export("skeleton")
    Skeleton skeleton = null;
    @ObfuscatedName("q")
-   @Export("transformCount")
    int transformCount = -1;
    @ObfuscatedName("f")
-   @Export("transformSkeletonLabels")
    int[] transformSkeletonLabels;
    @ObfuscatedName("r")
-   @Export("transformXs")
    int[] transformXs;
    @ObfuscatedName("u")
-   @Export("transformYs")
    int[] transformYs;
    @ObfuscatedName("b")
-   @Export("transformZs")
    int[] transformZs;
    @ObfuscatedName("j")
-   @Export("hasAlphaTransform")
    boolean hasAlphaTransform = false;
 
    @ObfuscatedSignature(

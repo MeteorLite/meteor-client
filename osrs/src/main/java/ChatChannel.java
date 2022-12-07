@@ -5,19 +5,16 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bd")
-@Implements("ChatChannel")
 public class ChatChannel {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "[Lbv;"
    )
-   @Export("messages")
    Message[] messages = new Message[100];
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1171646571
    )
-   @Export("count")
    int count;
 
    @ObfuscatedName("h")
@@ -25,7 +22,6 @@ public class ChatChannel {
       descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lbv;",
       garbageValue = "1717245391"
    )
-   @Export("addMessage")
    Message addMessage(int var1, String var2, String var3, String var4) {
       Message var5 = this.messages[99];
 
@@ -56,7 +52,6 @@ public class ChatChannel {
       descriptor = "(II)Lbv;",
       garbageValue = "-370186174"
    )
-   @Export("getMessage")
    Message getMessage(int var1) {
       return var1 >= 0 && var1 < this.count ? this.messages[var1] : null;
    }
@@ -66,7 +61,6 @@ public class ChatChannel {
       descriptor = "(I)I",
       garbageValue = "1046620565"
    )
-   @Export("size")
    int size() {
       return this.count;
    }

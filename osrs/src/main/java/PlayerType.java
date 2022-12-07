@@ -5,43 +5,36 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lq")
-@Implements("PlayerType")
 public enum PlayerType implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_normal")
    PlayerType_normal(0, -1, true, false, true),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_playerModerator")
    PlayerType_playerModerator(1, 0, true, true, true),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_jagexModerator")
    PlayerType_jagexModerator(2, 1, true, true, false),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_ironman")
    PlayerType_ironman(3, 2, false, false, true),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_ultimateIronman")
    PlayerType_ultimateIronman(4, 3, false, false, true),
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_hardcoreIronman")
    PlayerType_hardcoreIronman(5, 10, false, false, true),
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -103,19 +96,15 @@ public enum PlayerType implements class345 {
    @ObfuscatedGetter(
       intValue = -1797425475
    )
-   @Export("id")
    final int id;
    @ObfuscatedName("l")
    @ObfuscatedGetter(
       intValue = 378599095
    )
-   @Export("modIcon")
    public final int modIcon;
    @ObfuscatedName("t")
-   @Export("isPrivileged")
    public final boolean isPrivileged;
    @ObfuscatedName("c")
-   @Export("isUser")
    public final boolean isUser;
 
    PlayerType(int var3, int var4, boolean var5, boolean var6, boolean var7) {
@@ -130,7 +119,6 @@ public enum PlayerType implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

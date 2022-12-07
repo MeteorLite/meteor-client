@@ -5,34 +5,26 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cs")
-@Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
    @ObfuscatedName("hv")
    @ObfuscatedSignature(
       descriptor = "Lpz;"
    )
-   @Export("WorldMapElement_fonts")
    static Fonts WorldMapElement_fonts;
    @ObfuscatedName("h")
-   @Export("isRunning")
    boolean isRunning = true;
    @ObfuscatedName("e")
-   @Export("lock")
    Object lock = new Object();
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1063919825
    )
-   @Export("index")
    int index = 0;
    @ObfuscatedName("x")
-   @Export("xs")
    int[] xs = new int[500];
    @ObfuscatedName("m")
-   @Export("ys")
    int[] ys = new int[500];
    @ObfuscatedName("q")
-   @Export("millis")
    long[] millis = new long[500];
 
    public void run() {
@@ -55,7 +47,6 @@ public class MouseRecorder implements Runnable {
       descriptor = "(IB)Ljava/lang/String;",
       garbageValue = "110"
    )
-   @Export("colorStartTag")
    static String colorStartTag(int var0) {
       return "<col=" + Integer.toHexString(var0) + ">";
    }
@@ -113,7 +104,6 @@ public class MouseRecorder implements Runnable {
       descriptor = "(IB)V",
       garbageValue = "-91"
    )
-   @Export("changeGameOptions")
    static final void changeGameOptions(int var0) {
       class136.method3073();
       HealthBar.method2526();

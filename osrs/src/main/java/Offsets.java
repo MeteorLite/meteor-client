@@ -50,7 +50,6 @@ public class Offsets {
       descriptor = "(II)Lga;",
       garbageValue = "-1342591919"
    )
-   @Export("SequenceDefinition_get")
    public static SequenceDefinition SequenceDefinition_get(int var0) {
       SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
       if (var1 != null) {

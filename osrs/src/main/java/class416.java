@@ -235,7 +235,6 @@ public class class416 extends class417 {
       descriptor = "(IZIZI)V",
       garbageValue = "1915202354"
    )
-   @Export("sortWorldList")
    static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
       if (World.World_worlds != null) {
          WorldMapSection1.doWorldSorting(0, World.World_worlds.length - 1, var0, var1, var2, var3);

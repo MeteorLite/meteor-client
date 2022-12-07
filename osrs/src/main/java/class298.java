@@ -26,7 +26,6 @@ public class class298 {
       descriptor = "(Ljava/lang/String;ZI)V",
       garbageValue = "-578583912"
    )
-   @Export("findItemDefinitions")
    static void findItemDefinitions(String var0, boolean var1) {
       var0 = var0.toLowerCase();
       short[] var2 = new short[16];

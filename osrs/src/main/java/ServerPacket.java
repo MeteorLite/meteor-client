@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jf")
-@Implements("ServerPacket")
 public class ServerPacket {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -586,13 +585,11 @@ public class ServerPacket {
    @ObfuscatedGetter(
       intValue = -170435115
    )
-   @Export("id")
    public final int id;
    @ObfuscatedName("dy")
    @ObfuscatedGetter(
       intValue = -1413935371
    )
-   @Export("length")
    public final int length;
 
    ServerPacket(int var1, int var2) {
@@ -605,7 +602,6 @@ public class ServerPacket {
       descriptor = "(Lcj;IIII)V",
       garbageValue = "1927055632"
    )
-   @Export("addPlayerToMenu")
    static final void addPlayerToMenu(Player var0, int var1, int var2, int var3) {
       if (class155.localPlayer != var0) {
          if (Client.menuOptionsCount < 400) {

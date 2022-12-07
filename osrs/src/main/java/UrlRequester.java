@@ -11,15 +11,12 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dl")
-@Implements("UrlRequester")
 public abstract class UrlRequester implements Runnable {
    @ObfuscatedName("h")
    final Thread field1440 = new Thread(this);
    @ObfuscatedName("e")
-   @Export("isClosed")
    volatile boolean isClosed;
    @ObfuscatedName("v")
-   @Export("requests")
    Queue requests = new LinkedList();
    @ObfuscatedName("x")
    @ObfuscatedGetter(
@@ -102,7 +99,6 @@ public abstract class UrlRequester implements Runnable {
       descriptor = "(Ljava/net/URL;B)Ldm;",
       garbageValue = "1"
    )
-   @Export("request")
    public UrlRequest request(URL var1) {
       UrlRequest var2 = new UrlRequest(var1);
       synchronized(this) {
@@ -117,7 +113,6 @@ public abstract class UrlRequester implements Runnable {
       descriptor = "(I)V",
       garbageValue = "-73462571"
    )
-   @Export("close")
    public void close() {
       this.isClosed = true;
 
@@ -194,7 +189,6 @@ public abstract class UrlRequester implements Runnable {
       descriptor = "(IIIIIILhc;Lgw;I)V",
       garbageValue = "14932540"
    )
-   @Export("addObjects")
    static final void addObjects(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, CollisionMap var7) {
       if (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var1][var2] & 2) != 0 || (Tiles.Tiles_renderFlags[var0][var1][var2] & 16) == 0) {
          if (var0 < Tiles.Tiles_minPlane) {

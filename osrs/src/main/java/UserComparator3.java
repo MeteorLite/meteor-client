@@ -4,13 +4,10 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("df")
-@Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
    @ObfuscatedName("d")
-   @Export("userHomeDirectory")
    public static String userHomeDirectory;
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public UserComparator3(boolean var1) {
@@ -22,7 +19,6 @@ public class UserComparator3 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;I)I",
       garbageValue = "-1236968818"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (var2.world != var1.world) {
          return this.reversed ? var1.world - var2.world : var2.world - var1.world;
@@ -40,7 +36,6 @@ public class UserComparator3 extends AbstractUserComparator {
       descriptor = "(II)Lgd;",
       garbageValue = "1513245443"
    )
-   @Export("StructDefinition_getStructDefinition")
    public static StructComposition StructDefinition_getStructDefinition(int var0) {
       StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
       if (var1 != null) {

@@ -6,13 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("em")
 public class class139 {
    @ObfuscatedName("fu")
-   @Export("worldHost")
    static String worldHost;
    @ObfuscatedName("iv")
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   @Export("redHintArrowSprite")
    static SpritePixels redHintArrowSprite;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

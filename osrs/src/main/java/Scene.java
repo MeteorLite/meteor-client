@@ -4,112 +4,80 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hc")
-@Implements("Scene")
 public class Scene {
    @ObfuscatedName("h")
-   @Export("Scene_isLowDetail")
    public static boolean Scene_isLowDetail = true;
    @ObfuscatedName("n")
-   @Export("tileUpdateCount")
    static int tileUpdateCount = 0;
    @ObfuscatedName("k")
-   @Export("Scene_plane")
    static int Scene_plane = 0;
    @ObfuscatedName("a")
-   @Export("Scene_drawnCount")
    static int Scene_drawnCount;
    @ObfuscatedName("s")
-   @Export("Scene_cameraXTileMin")
    static int Scene_cameraXTileMin;
    @ObfuscatedName("l")
-   @Export("Scene_cameraXTileMax")
    static int Scene_cameraXTileMax;
    @ObfuscatedName("t")
-   @Export("Scene_cameraYTileMin")
    static int Scene_cameraYTileMin;
    @ObfuscatedName("c")
-   @Export("Scene_cameraYTileMax")
    static int Scene_cameraYTileMax;
    @ObfuscatedName("p")
-   @Export("Scene_cameraXTile")
    static int Scene_cameraXTile;
    @ObfuscatedName("d")
-   @Export("Scene_cameraYTile")
    static int Scene_cameraYTile;
    @ObfuscatedName("y")
-   @Export("Scene_cameraX")
    static int Scene_cameraX;
    @ObfuscatedName("z")
-   @Export("Scene_cameraY")
    static int Scene_cameraY;
    @ObfuscatedName("w")
-   @Export("Scene_cameraZ")
    static int Scene_cameraZ;
    @ObfuscatedName("as")
-   @Export("Scene_cameraPitchSine")
    static int Scene_cameraPitchSine;
    @ObfuscatedName("ad")
-   @Export("Scene_cameraPitchCosine")
    static int Scene_cameraPitchCosine;
    @ObfuscatedName("ao")
-   @Export("Scene_cameraYawSine")
    static int Scene_cameraYawSine;
    @ObfuscatedName("am")
-   @Export("Scene_cameraYawCosine")
    static int Scene_cameraYawCosine;
    @ObfuscatedName("av")
    @ObfuscatedSignature(
       descriptor = "[Lhp;"
    )
-   @Export("gameObjects")
    static GameObject[] gameObjects = new GameObject[100];
    @ObfuscatedName("au")
-   @Export("checkClick")
    static boolean checkClick = false;
    @ObfuscatedName("ar")
-   @Export("Scene_selectedPlane")
    static int Scene_selectedPlane = 0;
    @ObfuscatedName("at")
-   @Export("Scene_selectedScreenX")
    static int Scene_selectedScreenX = 0;
    @ObfuscatedName("ay")
-   @Export("Scene_selectedScreenY")
    static int Scene_selectedScreenY = 0;
    @ObfuscatedName("an")
-   @Export("Scene_selectedX")
    public static int Scene_selectedX = -1;
    @ObfuscatedName("ab")
-   @Export("Scene_selectedY")
    public static int Scene_selectedY = -1;
    @ObfuscatedName("al")
-   @Export("viewportWalking")
    static boolean viewportWalking = false;
    @ObfuscatedName("ak")
-   @Export("Scene_planesCount")
    static int Scene_planesCount = 4;
    @ObfuscatedName("af")
-   @Export("Scene_planeOccluderCounts")
    static int[] Scene_planeOccluderCounts;
    @ObfuscatedName("ai")
    @ObfuscatedSignature(
       descriptor = "[[Lhv;"
    )
-   @Export("Scene_planeOccluders")
    static Occluder[][] Scene_planeOccluders;
    @ObfuscatedName("ax")
-   @Export("Scene_currentOccludersCount")
    static int Scene_currentOccludersCount;
    @ObfuscatedName("ah")
    @ObfuscatedSignature(
       descriptor = "[Lhv;"
    )
-   @Export("Scene_currentOccluders")
    static Occluder[] Scene_currentOccluders;
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("Scene_tilesDeque")
    static NodeDeque Scene_tilesDeque;
    @ObfuscatedName("aj")
    static final int[] field2574;
@@ -126,66 +94,48 @@ public class Scene {
    @ObfuscatedName("bh")
    static final int[] field2580;
    @ObfuscatedName("bc")
-   @Export("visibilityMap")
    static boolean[][][][] visibilityMap;
    @ObfuscatedName("bl")
-   @Export("visibleTiles")
    static boolean[][] visibleTiles;
    @ObfuscatedName("bv")
-   @Export("Scene_viewportXCenter")
    static int Scene_viewportXCenter;
    @ObfuscatedName("bx")
-   @Export("Scene_viewportYCenter")
    static int Scene_viewportYCenter;
    @ObfuscatedName("bg")
-   @Export("Scene_viewportXMin")
    static int Scene_viewportXMin;
    @ObfuscatedName("bz")
-   @Export("Scene_viewportYMin")
    static int Scene_viewportYMin;
    @ObfuscatedName("bi")
-   @Export("Scene_viewportXMax")
    static int Scene_viewportXMax;
    @ObfuscatedName("br")
-   @Export("Scene_viewportYMax")
    static int Scene_viewportYMax;
    @ObfuscatedName("e")
-   @Export("planes")
    int planes;
    @ObfuscatedName("v")
-   @Export("xSize")
    int xSize;
    @ObfuscatedName("x")
-   @Export("ySize")
    int ySize;
    @ObfuscatedName("m")
-   @Export("tileHeights")
    int[][][] tileHeights;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "[[[Lhe;"
    )
-   @Export("tiles")
    Tile[][][] tiles;
    @ObfuscatedName("f")
-   @Export("minPlane")
    int minPlane = 0;
    @ObfuscatedName("r")
-   @Export("tempGameObjectsCount")
    int tempGameObjectsCount = 0;
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "[Lhp;"
    )
-   @Export("tempGameObjects")
    GameObject[] tempGameObjects = new GameObject[5000];
    @ObfuscatedName("b")
    int[][][] field2537;
    @ObfuscatedName("bw")
-   @Export("tileShape2D")
    int[][] tileShape2D = new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1}, {0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1}};
    @ObfuscatedName("bp")
-   @Export("tileRotation2D")
    int[][] tileRotation2D = new int[][]{{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, {12, 8, 4, 0, 13, 9, 5, 1, 14, 10, 6, 2, 15, 11, 7, 3}, {15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0}, {3, 7, 11, 15, 2, 6, 10, 14, 1, 5, 9, 13, 0, 4, 8, 12}};
 
    static {
@@ -215,7 +165,6 @@ public class Scene {
    }
 
    @ObfuscatedName("h")
-   @Export("clear")
    public void clear() {
       int var1;
       int var2;
@@ -248,7 +197,6 @@ public class Scene {
    }
 
    @ObfuscatedName("e")
-   @Export("init")
    public void init(int var1) {
       this.minPlane = var1;
 
@@ -263,7 +211,6 @@ public class Scene {
    }
 
    @ObfuscatedName("v")
-   @Export("setLinkBelow")
    public void setLinkBelow(int var1, int var2) {
       Tile var3 = this.tiles[0][var1][var2];
 
@@ -292,7 +239,6 @@ public class Scene {
    }
 
    @ObfuscatedName("m")
-   @Export("setTileMinPlane")
    public void setTileMinPlane(int var1, int var2, int var3, int var4) {
       Tile var5 = this.tiles[var1][var2][var3];
       if (var5 != null) {
@@ -301,7 +247,6 @@ public class Scene {
    }
 
    @ObfuscatedName("q")
-   @Export("addTile")
    public void addTile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19, int var20) {
       SceneTilePaint var21;
       int var22;
@@ -342,7 +287,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIILhr;JI)V"
    )
-   @Export("newFloorDecoration")
    public void newFloorDecoration(int var1, int var2, int var3, int var4, Renderable var5, long var6, int var8) {
       if (var5 != null) {
          FloorDecoration var9 = new FloorDecoration();
@@ -364,7 +308,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIILhr;JLhr;Lhr;)V"
    )
-   @Export("newGroundItemPile")
    public void newGroundItemPile(int var1, int var2, int var3, int var4, Renderable var5, long var6, Renderable var8, Renderable var9) {
       ItemLayer var10 = new ItemLayer();
       var10.first = var5;
@@ -400,7 +343,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIILhr;Lhr;IIJI)V"
    )
-   @Export("newBoundaryObject")
    public void newBoundaryObject(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, long var9, int var11) {
       if (var5 != null || var6 != null) {
          BoundaryObject var12 = new BoundaryObject();
@@ -428,7 +370,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIILhr;Lhr;IIIIJI)V"
    )
-   @Export("newWallDecoration")
    public void newWallDecoration(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, int var9, int var10, long var11, int var13) {
       if (var5 != null) {
          WallDecoration var14 = new WallDecoration();
@@ -472,7 +413,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIIILhr;IJZ)Z"
    )
-   @Export("drawEntity")
    public boolean drawEntity(int var1, int var2, int var3, int var4, int var5, Renderable var6, int var7, long var8, boolean var10) {
       if (var6 == null) {
          return true;
@@ -511,7 +451,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIIILhr;IJIIII)Z"
    )
-   @Export("addNullableObject")
    public boolean addNullableObject(int var1, int var2, int var3, int var4, int var5, Renderable var6, int var7, long var8, int var10, int var11, int var12, int var13) {
       return var6 == null ? true : this.newGameObject(var1, var10, var11, var12 - var10 + 1, var13 - var11 + 1, var2, var3, var4, var6, var7, true, var8, 0);
    }
@@ -520,7 +459,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIIIIIILhr;IZJI)Z"
    )
-   @Export("newGameObject")
    boolean newGameObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, Renderable var9, int var10, boolean var11, long var12, int var14) {
       int var16;
       for(int var15 = var2; var15 < var2 + var4; ++var15) {
@@ -591,7 +529,6 @@ public class Scene {
    }
 
    @ObfuscatedName("n")
-   @Export("clearTempGameObjects")
    public void clearTempGameObjects() {
       for(int var1 = 0; var1 < this.tempGameObjectsCount; ++var1) {
          GameObject var2 = this.tempGameObjects[var1];
@@ -606,7 +543,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(Lhp;)V"
    )
-   @Export("removeGameObject")
    void removeGameObject(GameObject var1) {
       for(int var2 = var1.startX; var2 <= var1.endX; ++var2) {
          for(int var3 = var1.startY; var3 <= var1.endY; ++var3) {
@@ -651,7 +587,6 @@ public class Scene {
    }
 
    @ObfuscatedName("s")
-   @Export("removeBoundaryObject")
    public void removeBoundaryObject(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       if (var4 != null) {
@@ -660,7 +595,6 @@ public class Scene {
    }
 
    @ObfuscatedName("l")
-   @Export("removeWallDecoration")
    public void removeWallDecoration(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       if (var4 != null) {
@@ -669,7 +603,6 @@ public class Scene {
    }
 
    @ObfuscatedName("t")
-   @Export("removeGameObject")
    public void removeGameObject(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       if (var4 != null) {
@@ -687,7 +620,6 @@ public class Scene {
    }
 
    @ObfuscatedName("c")
-   @Export("removeFloorDecoration")
    public void removeFloorDecoration(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       if (var4 != null) {
@@ -696,7 +628,6 @@ public class Scene {
    }
 
    @ObfuscatedName("p")
-   @Export("removeGroundItemPile")
    public void removeGroundItemPile(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       if (var4 != null) {
@@ -726,7 +657,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(III)Lhp;"
    )
-   @Export("getGameObject")
    public GameObject getGameObject(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       if (var4 == null) {
@@ -749,28 +679,24 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(III)Lhs;"
    )
-   @Export("getFloorDecoration")
    public FloorDecoration getFloorDecoration(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       return var4 != null && var4.floorDecoration != null ? var4.floorDecoration : null;
    }
 
    @ObfuscatedName("as")
-   @Export("getBoundaryObjectTag")
    public long getBoundaryObjectTag(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       return var4 != null && var4.boundaryObject != null ? var4.boundaryObject.tag : 0L;
    }
 
    @ObfuscatedName("ad")
-   @Export("getWallDecorationTag")
    public long getWallDecorationTag(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       return var4 != null && var4.wallDecoration != null ? var4.wallDecoration.tag : 0L;
    }
 
    @ObfuscatedName("ao")
-   @Export("getGameObjectTag")
    public long getGameObjectTag(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       if (var4 == null) {
@@ -790,14 +716,12 @@ public class Scene {
    }
 
    @ObfuscatedName("am")
-   @Export("getFloorDecorationTag")
    public long getFloorDecorationTag(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       return var4 != null && var4.floorDecoration != null ? var4.floorDecoration.tag : 0L;
    }
 
    @ObfuscatedName("av")
-   @Export("getObjectFlags")
    public int getObjectFlags(int var1, int var2, int var3, long var4) {
       Tile var6 = this.tiles[var1][var2][var3];
       if (var6 == null) {
@@ -961,7 +885,6 @@ public class Scene {
    }
 
    @ObfuscatedName("ay")
-   @Export("drawTileMinimap")
    public void drawTileMinimap(int[] var1, int var2, int var3, int var4, int var5, int var6) {
       Tile var7 = this.tiles[var4][var5][var6];
       if (var7 != null) {
@@ -1026,7 +949,6 @@ public class Scene {
    }
 
    @ObfuscatedName("al")
-   @Export("menuOpen")
    public void menuOpen(int var1, int var2, int var3, boolean var4) {
       if (!shouldSendWalk() || var4) {
          checkClick = true;
@@ -1040,13 +962,11 @@ public class Scene {
    }
 
    @ObfuscatedName("ag")
-   @Export("setViewportWalking")
    public void setViewportWalking() {
       viewportWalking = true;
    }
 
    @ObfuscatedName("af")
-   @Export("draw")
    public void draw(int var1, int var2, int var3, int var4, int var5, int var6) {
       if (var1 < 0) {
          var1 = 0;
@@ -1246,7 +1166,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(Lhe;Z)V"
    )
-   @Export("drawTile")
    void drawTile(Tile var1, boolean var2) {
       Scene_tilesDeque.addFirst(var1);
 
@@ -1776,7 +1695,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(Lhj;IIIIIII)V"
    )
-   @Export("drawTileUnderlay")
    void drawTileUnderlay(SceneTilePaint var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       int var9;
       int var10 = var9 = (var7 << 7) - Scene_cameraX;
@@ -1887,7 +1805,6 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(Lhy;IIIIII)V"
    )
-   @Export("drawTileOverlay")
    void drawTileOverlay(SceneTileModel var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       int var8 = var1.vertexX.length;
 
@@ -1963,7 +1880,6 @@ public class Scene {
    }
 
    @ObfuscatedName("aq")
-   @Export("occlude")
    void occlude() {
       int var1 = Scene_planeOccluderCounts[Scene_plane];
       Occluder[] var2 = Scene_planeOccluders[Scene_plane];
@@ -2414,7 +2330,6 @@ public class Scene {
    }
 
    @ObfuscatedName("x")
-   @Export("Scene_addOccluder")
    public static void Scene_addOccluder(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       Occluder var8 = new Occluder();
       var8.minTileX = var2 / 128;
@@ -2432,7 +2347,6 @@ public class Scene {
    }
 
    @ObfuscatedName("an")
-   @Export("Scene_buildVisiblityMap")
    public static void Scene_buildVisiblityMap(int[] var0, int var1, int var2, int var3, int var4) {
       Scene_viewportXMin = 0;
       Scene_viewportYMin = 0;
@@ -2531,7 +2445,6 @@ public class Scene {
    }
 
    @ObfuscatedName("az")
-   @Export("shouldSendWalk")
    public static boolean shouldSendWalk() {
       return viewportWalking && Scene_selectedX != -1;
    }
@@ -2555,7 +2468,6 @@ public class Scene {
    }
 
    @ObfuscatedName("aj")
-   @Export("containsBounds")
    static boolean containsBounds(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if (var1 < var2 && var1 < var3 && var1 < var4) {
          return false;

@@ -5,25 +5,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bi")
-@Implements("FriendSystem")
 public class FriendSystem {
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lqi;"
    )
-   @Export("loginType")
    final LoginType loginType;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lng;"
    )
-   @Export("friendsList")
    public final FriendsList friendsList;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lnj;"
    )
-   @Export("ignoreList")
    public final IgnoreList ignoreList;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
@@ -63,7 +59,6 @@ public class FriendSystem {
       descriptor = "(Lqy;IB)V",
       garbageValue = "15"
    )
-   @Export("readUpdate")
    final void readUpdate(Buffer var1, int var2) {
       this.friendsList.read(var1, var2);
       this.field833 = 2;
@@ -75,7 +70,6 @@ public class FriendSystem {
       descriptor = "(I)V",
       garbageValue = "1832627577"
    )
-   @Export("processFriendUpdates")
    final void processFriendUpdates() {
       for(class391 var1 = (class391)this.friendsList.field4504.method6844(); var1 != null; var1 = (class391)this.friendsList.field4504.method6846()) {
          if ((long)var1.field4520 < Message.method1197() / 1000L - 5L) {
@@ -98,7 +92,6 @@ public class FriendSystem {
       descriptor = "(B)V",
       garbageValue = "62"
    )
-   @Export("clear")
    final void clear() {
       this.field833 = 0;
       this.friendsList.clear();
@@ -110,7 +103,6 @@ public class FriendSystem {
       descriptor = "(Lrp;ZI)Z",
       garbageValue = "-112378137"
    )
-   @Export("isFriended")
    final boolean isFriended(Username var1, boolean var2) {
       if (var1 == null) {
          return false;
@@ -126,7 +118,6 @@ public class FriendSystem {
       descriptor = "(Lrp;B)Z",
       garbageValue = "3"
    )
-   @Export("isIgnored")
    final boolean isIgnored(Username var1) {
       if (var1 == null) {
          return false;
@@ -140,7 +131,6 @@ public class FriendSystem {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "182534146"
    )
-   @Export("addFriend")
    final void addFriend(String var1) {
       if (var1 != null) {
          Username var2 = new Username(var1, this.loginType);
@@ -170,7 +160,6 @@ public class FriendSystem {
       descriptor = "(I)Z",
       garbageValue = "-922602942"
    )
-   @Export("friendsListIsFull")
    final boolean friendsListIsFull() {
       return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.field692 != 1;
    }
@@ -180,7 +169,6 @@ public class FriendSystem {
       descriptor = "(Ljava/lang/String;B)V",
       garbageValue = "6"
    )
-   @Export("addIgnore")
    final void addIgnore(String var1) {
       if (var1 != null) {
          Username var2 = new Username(var1, this.loginType);
@@ -217,7 +205,6 @@ public class FriendSystem {
       descriptor = "(I)Z",
       garbageValue = "42588260"
    )
-   @Export("canAddIgnore")
    final boolean canAddIgnore() {
       return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.field692 != 1;
    }
@@ -227,7 +214,6 @@ public class FriendSystem {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "1809224453"
    )
-   @Export("removeFriend")
    final void removeFriend(String var1) {
       if (var1 != null) {
          Username var2 = new Username(var1, this.loginType);
@@ -250,7 +236,6 @@ public class FriendSystem {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "1971260533"
    )
-   @Export("removeIgnore")
    final void removeIgnore(String var1) {
       if (var1 != null) {
          Username var2 = new Username(var1, this.loginType);
@@ -273,7 +258,6 @@ public class FriendSystem {
       descriptor = "(Lrp;I)Z",
       garbageValue = "122630394"
    )
-   @Export("isFriendAndHasWorld")
    final boolean isFriendAndHasWorld(Username var1) {
       Friend var2 = (Friend)this.friendsList.getByUsername(var1);
       return var2 != null && var2.hasWorld();
@@ -409,7 +393,6 @@ public class FriendSystem {
       descriptor = "([BI)Lbm;",
       garbageValue = "-457159576"
    )
-   @Export("newScript")
    static Script newScript(byte[] var0) {
       Script var1 = new Script();
       Buffer var2 = new Buffer(var0);
@@ -640,7 +623,6 @@ public class FriendSystem {
       descriptor = "(Lkd;I)Z",
       garbageValue = "-1358269638"
    )
-   @Export("isComponentHidden")
    static boolean isComponentHidden(Widget var0) {
       return var0.isHidden;
    }

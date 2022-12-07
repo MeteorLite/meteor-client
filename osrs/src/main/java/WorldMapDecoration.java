@@ -5,25 +5,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("iz")
-@Implements("WorldMapDecoration")
 public class WorldMapDecoration {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 1056681405
    )
-   @Export("objectDefinitionId")
    final int objectDefinitionId;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 141981565
    )
-   @Export("decoration")
    final int decoration;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1928545853
    )
-   @Export("rotation")
    final int rotation;
 
    WorldMapDecoration(int var1, int var2, int var3) {

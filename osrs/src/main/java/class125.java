@@ -244,7 +244,6 @@ public class class125 {
       descriptor = "(Lcb;III)V",
       garbageValue = "-1404765395"
    )
-   @Export("runScript")
    static void runScript(ScriptEvent var0, int var1, int var2) {
       Object[] var3 = var0.args;
       Script var4;
@@ -649,7 +648,6 @@ public class class125 {
       descriptor = "(Lly;III)Lrx;",
       garbageValue = "-16711936"
    )
-   @Export("SpriteBuffer_getSprite")
    public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
       byte[] var4 = var0.takeFile(var1, var2);
       boolean var3;

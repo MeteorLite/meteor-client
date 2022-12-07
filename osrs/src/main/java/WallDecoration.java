@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hb")
-@Implements("WallDecoration")
 public final class WallDecoration {
    @ObfuscatedName("bz")
    @ObfuscatedGetter(
@@ -17,67 +16,56 @@ public final class WallDecoration {
    @ObfuscatedGetter(
       intValue = 13169171
    )
-   @Export("z")
    int z;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 195804449
    )
-   @Export("x")
    int x;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -878815741
    )
-   @Export("y")
    int y;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 1962326121
    )
-   @Export("orientation")
    int orientation;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 1777240723
    )
-   @Export("orientation2")
    int orientation2;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = -1641152353
    )
-   @Export("xOffset")
    int xOffset;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = 1040498041
    )
-   @Export("yOffset")
    int yOffset;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable1")
    public Renderable renderable1;
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable2")
    public Renderable renderable2;
    @ObfuscatedName("b")
    @ObfuscatedGetter(
       longValue = -4565289188219368055L
    )
-   @Export("tag")
    public long tag = 0L;
    @ObfuscatedName("j")
    @ObfuscatedGetter(
       intValue = 1162489357
    )
-   @Export("flags")
    int flags = 0;
 
    @ObfuscatedName("h")
@@ -305,7 +293,6 @@ public final class WallDecoration {
       descriptor = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lmb;I)I",
       garbageValue = "643814592"
    )
-   @Export("compareStrings")
    public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {
       int var3 = var0.length();
       int var4 = var1.length();
@@ -397,7 +384,6 @@ public final class WallDecoration {
       descriptor = "(Ljava/lang/CharSequence;II[BIB)I",
       garbageValue = "-81"
    )
-   @Export("encodeStringCp1252")
    public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
       int var5 = var2 - var1;
 

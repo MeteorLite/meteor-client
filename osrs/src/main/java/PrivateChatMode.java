@@ -4,7 +4,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rt")
-@Implements("PrivateChatMode")
 public class PrivateChatMode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

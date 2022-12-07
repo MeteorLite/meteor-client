@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pq")
-@Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
    @ObfuscatedName("x")
    @ObfuscatedGetter(
@@ -28,7 +27,6 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
       descriptor = "(B)Lpk;",
       garbageValue = "-45"
    )
-   @Export("get")
    public PlatformInfo get() {
       byte var1;
       if (Decimator.formattedOperatingSystemName.startsWith("win")) {

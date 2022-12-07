@@ -21,7 +21,6 @@ public final class class317 {
       descriptor = "(Lkd;Lgr;IIZS)V",
       garbageValue = "229"
    )
-   @Export("addWidgetItemMenuItem")
    static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
       String[] var5 = var1.inventoryActions;
       byte var6 = -1;

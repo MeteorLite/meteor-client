@@ -4,13 +4,10 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lk")
-@Implements("Skills")
 public class Skills {
    @ObfuscatedName("e")
-   @Export("Skills_enabled")
    public static final boolean[] Skills_enabled = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false};
    @ObfuscatedName("v")
-   @Export("Skills_experienceTable")
    public static int[] Skills_experienceTable = new int[99];
 
    static {

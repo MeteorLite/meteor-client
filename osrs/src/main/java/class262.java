@@ -9,7 +9,6 @@ public abstract class class262 implements class264 {
    @ObfuscatedSignature(
       descriptor = "Lnv;"
    )
-   @Export("ItemDefinition_fontPlain11")
    static Font ItemDefinition_fontPlain11;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
@@ -42,7 +41,6 @@ public abstract class class262 implements class264 {
       descriptor = "(Lcj;IIB)V",
       garbageValue = "64"
    )
-   @Export("performPlayerAnimation")
    static void performPlayerAnimation(Player var0, int var1, int var2) {
       if (var0.sequence == var1 && var1 != -1) {
          int var3 = Offsets.SequenceDefinition_get(var1).field2276;
@@ -72,7 +70,6 @@ public abstract class class262 implements class264 {
       descriptor = "(III)V",
       garbageValue = "1733231225"
    )
-   @Export("resumePauseWidget")
    static void resumePauseWidget(int var0, int var1) {
       PacketBufferNode var2 = class136.getPacketBufferNode(ClientPacket.field3141, Client.packetWriter.isaacCipher);
       var2.packetBuffer.writeIntME(var1);

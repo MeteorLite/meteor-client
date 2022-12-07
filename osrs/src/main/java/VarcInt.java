@@ -7,25 +7,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fe")
-@Implements("VarcInt")
 public class VarcInt extends DualNode {
    @ObfuscatedName("sk")
    @ObfuscatedSignature(
       descriptor = "Lfn;"
    )
-   @Export("guestClanChannel")
    static ClanChannel guestClanChannel;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("VarcInt_archive")
    public static AbstractArchive VarcInt_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("VarcInt_cached")
    static EvictingDualNodeHashTable VarcInt_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("a")
    @ObfuscatedSignature(
@@ -36,10 +32,8 @@ public class VarcInt extends DualNode {
    @ObfuscatedGetter(
       intValue = -1028390641
    )
-   @Export("menuX")
    static int menuX;
    @ObfuscatedName("v")
-   @Export("persist")
    public boolean persist = false;
 
    @ObfuscatedName("e")

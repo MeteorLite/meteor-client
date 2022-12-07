@@ -5,58 +5,45 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fj")
-@Implements("KitDefinition")
 public class KitDefinition extends DualNode {
    @ObfuscatedName("vy")
    @ObfuscatedSignature(
       descriptor = "Lpb;"
    )
-   @Export("worldMap")
    static WorldMap worldMap;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("KitDefinition_archive")
    public static AbstractArchive KitDefinition_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("KitDefinition_modelsArchive")
    public static AbstractArchive KitDefinition_modelsArchive;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("KitDefinition_cached")
    static EvictingDualNodeHashTable KitDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 984840871
    )
-   @Export("bodypartID")
    public int bodypartID = -1;
    @ObfuscatedName("q")
-   @Export("models2")
    int[] models2;
    @ObfuscatedName("f")
-   @Export("recolorFrom")
    short[] recolorFrom;
    @ObfuscatedName("r")
-   @Export("recolorTo")
    short[] recolorTo;
    @ObfuscatedName("u")
-   @Export("retextureFrom")
    short[] retextureFrom;
    @ObfuscatedName("b")
-   @Export("retextureTo")
    short[] retextureTo;
    @ObfuscatedName("j")
-   @Export("models")
    int[] models = new int[]{-1, -1, -1, -1, -1};
    @ObfuscatedName("g")
-   @Export("nonSelectable")
    public boolean nonSelectable = false;
 
    @ObfuscatedName("e")
@@ -64,7 +51,6 @@ public class KitDefinition extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "1"
    )
-   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -81,7 +67,6 @@ public class KitDefinition extends DualNode {
       descriptor = "(Lqy;IB)V",
       garbageValue = "0"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.bodypartID = var1.readUnsignedByte();
@@ -127,7 +112,6 @@ public class KitDefinition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "-1712752741"
    )
-   @Export("ready")
    public boolean ready() {
       if (this.models2 == null) {
          return true;
@@ -149,7 +133,6 @@ public class KitDefinition extends DualNode {
       descriptor = "(B)Lgi;",
       garbageValue = "32"
    )
-   @Export("getModelData")
    public ModelData getModelData() {
       if (this.models2 == null) {
          return null;
@@ -206,7 +189,6 @@ public class KitDefinition extends DualNode {
       descriptor = "(I)Lgi;",
       garbageValue = "1769518048"
    )
-   @Export("getKitDefinitionModels")
    public ModelData getKitDefinitionModels() {
       ModelData[] var1 = new ModelData[5];
       int var2 = 0;
@@ -239,7 +221,6 @@ public class KitDefinition extends DualNode {
       descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
       garbageValue = "1365388558"
    )
-   @Export("addGameMessage")
    static void addGameMessage(int var0, String var1, String var2) {
       class381.addChatMessage(var0, var1, var2, (String)null);
    }

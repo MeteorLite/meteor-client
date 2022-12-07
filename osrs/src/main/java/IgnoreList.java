@@ -4,13 +4,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nj")
-@Implements("IgnoreList")
 public class IgnoreList extends UserList {
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lqi;"
    )
-   @Export("loginType")
    final LoginType loginType;
 
    @ObfuscatedSignature(
@@ -26,7 +24,6 @@ public class IgnoreList extends UserList {
       descriptor = "(B)Lov;",
       garbageValue = "47"
    )
-   @Export("newInstance")
    User newInstance() {
       return new Ignored();
    }
@@ -36,7 +33,6 @@ public class IgnoreList extends UserList {
       descriptor = "(II)[Lov;",
       garbageValue = "1710517567"
    )
-   @Export("newTypedArray")
    User[] newTypedArray(int var1) {
       return new Ignored[var1];
    }
@@ -46,7 +42,6 @@ public class IgnoreList extends UserList {
       descriptor = "(Lqy;II)V",
       garbageValue = "1829255932"
    )
-   @Export("read")
    public void read(Buffer var1, int var2) {
       while(true) {
          if (var1.offset < var2) {

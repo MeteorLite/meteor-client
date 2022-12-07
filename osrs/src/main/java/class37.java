@@ -8,7 +8,6 @@ public class class37 {
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   @Export("reflectionChecks")
    public static IterableNodeDeque reflectionChecks = new IterableNodeDeque();
 
    @ObfuscatedName("r")

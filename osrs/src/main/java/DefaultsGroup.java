@@ -5,13 +5,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oo")
-@Implements("DefaultsGroup")
 public class DefaultsGroup {
    @ObfuscatedName("uw")
    @ObfuscatedSignature(
       descriptor = "Lbi;"
    )
-   @Export("friendSystem")
    public static FriendSystem friendSystem;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -22,7 +20,6 @@ public class DefaultsGroup {
    @ObfuscatedGetter(
       intValue = 107189111
    )
-   @Export("group")
    final int group;
 
    DefaultsGroup(int var1) {

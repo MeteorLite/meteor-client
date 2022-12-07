@@ -65,7 +65,6 @@ public class class149 extends class152 {
       descriptor = "(I)[Llq;",
       garbageValue = "-1628551002"
    )
-   @Export("PlayerType_values")
    public static PlayerType[] PlayerType_values() {
       return new PlayerType[]{PlayerType.PlayerType_hardcoreIronman, PlayerType.field4155, PlayerType.PlayerType_ironman, PlayerType.field4149, PlayerType.field4161, PlayerType.PlayerType_jagexModerator, PlayerType.field4157, PlayerType.field4156, PlayerType.PlayerType_normal, PlayerType.field4153, PlayerType.field4145, PlayerType.field4154, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ultimateIronman, PlayerType.field4158, PlayerType.field4159, PlayerType.field4160};
    }
@@ -75,7 +74,6 @@ public class class149 extends class152 {
       descriptor = "(II)Lgv;",
       garbageValue = "-640568434"
    )
-   @Export("getParamDefinition")
    public static ParamComposition getParamDefinition(int var0) {
       ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
       if (var1 != null) {

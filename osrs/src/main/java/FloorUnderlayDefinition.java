@@ -5,49 +5,41 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gh")
-@Implements("FloorUnderlayDefinition")
 public class FloorUnderlayDefinition extends DualNode {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("FloorUnderlayDefinition_cached")
    public static EvictingDualNodeHashTable FloorUnderlayDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("eb")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive4")
    static Archive archive4;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 96971943
    )
-   @Export("rgb")
    int rgb = 0;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 1260139413
    )
-   @Export("hue")
    public int hue;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -565427519
    )
-   @Export("saturation")
    public int saturation;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 181988641
    )
-   @Export("lightness")
    public int lightness;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = -1840693311
    )
-   @Export("hueMultiplier")
    public int hueMultiplier;
 
    @ObfuscatedName("v")
@@ -55,7 +47,6 @@ public class FloorUnderlayDefinition extends DualNode {
       descriptor = "(I)V",
       garbageValue = "838197238"
    )
-   @Export("postDecode")
    void postDecode() {
       this.setHsl(this.rgb);
    }
@@ -65,7 +56,6 @@ public class FloorUnderlayDefinition extends DualNode {
       descriptor = "(Lqy;IB)V",
       garbageValue = "66"
    )
-   @Export("decode")
    void decode(Buffer var1, int var2) {
       while(true) {
          int var3 = var1.readUnsignedByte();
@@ -82,7 +72,6 @@ public class FloorUnderlayDefinition extends DualNode {
       descriptor = "(Lqy;III)V",
       garbageValue = "-1969198767"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2, int var3) {
       if (var2 == 1) {
          this.rgb = var1.readMedium();
@@ -95,7 +84,6 @@ public class FloorUnderlayDefinition extends DualNode {
       descriptor = "(II)V",
       garbageValue = "1966104725"
    )
-   @Export("setHsl")
    void setHsl(int var1) {
       double var2 = (double)(var1 >> 16 & 255) / 256.0D;
       double var4 = (double)(var1 >> 8 & 255) / 256.0D;

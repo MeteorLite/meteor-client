@@ -9,7 +9,6 @@ public class class312 {
       descriptor = "(ZLqx;B)V",
       garbageValue = "7"
    )
-   @Export("updateNpcs")
    static final void updateNpcs(boolean var0, PacketBuffer var1) {
       Client.field779 = 0;
       Client.field564 = 0;

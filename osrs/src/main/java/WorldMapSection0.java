@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ia")
-@Implements("WorldMapSection0")
 public class WorldMapSection0 implements WorldMapSection {
    @ObfuscatedName("ek")
    @ObfuscatedSignature(
@@ -16,85 +15,71 @@ public class WorldMapSection0 implements WorldMapSection {
    @ObfuscatedGetter(
       intValue = -775946595
    )
-   @Export("oldZ")
    int oldZ;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -2093535297
    )
-   @Export("newZ")
    int newZ;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -800807313
    )
-   @Export("oldX")
    int oldX;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -1297788611
    )
-   @Export("oldY")
    int oldY;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -579844915
    )
-   @Export("newX")
    int newX;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1584822871
    )
-   @Export("newY")
    int newY;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = 606340351
    )
-   @Export("oldChunkXLow")
    int oldChunkXLow;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = 590623623
    )
-   @Export("oldChunkYLow")
    int oldChunkYLow;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = -1894538493
    )
-   @Export("oldChunkXHigh")
    int oldChunkXHigh;
    @ObfuscatedName("b")
    @ObfuscatedGetter(
       intValue = -1241213671
    )
-   @Export("oldChunkYHigh")
    int oldChunkYHigh;
    @ObfuscatedName("j")
    @ObfuscatedGetter(
       intValue = 676896973
    )
-   @Export("newChunkXLow")
    int newChunkXLow;
    @ObfuscatedName("g")
    @ObfuscatedGetter(
       intValue = 233278855
    )
-   @Export("newChunkYLow")
    int newChunkYLow;
    @ObfuscatedName("i")
    @ObfuscatedGetter(
       intValue = 1590440195
    )
-   @Export("newChunkXHigh")
    int newChunkXHigh;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
       intValue = -305259083
    )
-   @Export("newChunkYHigh")
    int newChunkYHigh;
 
    @ObfuscatedName("h")
@@ -102,7 +87,6 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(Lit;B)V",
       garbageValue = "86"
    )
-   @Export("expandBounds")
    public void expandBounds(WorldMapArea var1) {
       if (var1.regionLowX > this.newX) {
          var1.regionLowX = this.newX;
@@ -127,7 +111,6 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(IIII)Z",
       garbageValue = "986597458"
    )
-   @Export("containsCoord")
    public boolean containsCoord(int var1, int var2, int var3) {
       if (var1 >= this.oldZ && var1 < this.newZ + this.oldZ) {
          return var2 >= (this.oldX << 6) + (this.oldChunkXLow << 3) && var2 <= (this.oldX << 6) + (this.oldChunkXHigh << 3) + 7 && var3 >= (this.oldY << 6) + (this.oldChunkYLow << 3) && var3 <= (this.oldY << 6) + (this.oldChunkYHigh << 3) + 7;
@@ -141,7 +124,6 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(IIS)Z",
       garbageValue = "-11823"
    )
-   @Export("containsPosition")
    public boolean containsPosition(int var1, int var2) {
       return var1 >= (this.newX << 6) + (this.newChunkXLow << 3) && var1 <= (this.newX << 6) + (this.newChunkXHigh << 3) + 7 && var2 >= (this.newY << 6) + (this.newChunkYLow << 3) && var2 <= (this.newY << 6) + (this.newChunkYHigh << 3) + 7;
    }
@@ -151,7 +133,6 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(IIIB)[I",
       garbageValue = "-52"
    )
-   @Export("getBorderTileLengths")
    public int[] getBorderTileLengths(int var1, int var2, int var3) {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
@@ -166,7 +147,6 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(III)Lky;",
       garbageValue = "1584933614"
    )
-   @Export("coord")
    public Coord coord(int var1, int var2) {
       if (!this.containsPosition(var1, var2)) {
          return null;
@@ -182,7 +162,6 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(Lqy;I)V",
       garbageValue = "1737950913"
    )
-   @Export("read")
    public void read(Buffer var1) {
       this.oldZ = var1.readUnsignedByte();
       this.newZ = var1.readUnsignedByte();
@@ -206,7 +185,6 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(B)V",
       garbageValue = "49"
    )
-   @Export("postRead")
    void postRead() {
    }
 

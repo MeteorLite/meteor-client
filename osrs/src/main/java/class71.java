@@ -14,19 +14,16 @@ public class class71 {
    @ObfuscatedGetter(
       intValue = -373657743
    )
-   @Export("KitDefinition_fileCount")
    public static int KitDefinition_fileCount;
    @ObfuscatedName("as")
    @ObfuscatedSignature(
       descriptor = "[[Lkd;"
    )
-   @Export("Widget_interfaceComponents")
    public static Widget[][] Widget_interfaceComponents;
    @ObfuscatedName("ed")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive12")
    static Archive archive12;
 
    @ObfuscatedName("v")

@@ -56,7 +56,6 @@ class class13 extends DefaultTlsClient {
       descriptor = "(Ljava/lang/String;I)I",
       garbageValue = "-339253147"
    )
-   @Export("stringCp1252NullTerminatedByteSize")
    public static int stringCp1252NullTerminatedByteSize(String var0) {
       return var0.length() + 1;
    }

@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kl")
-@Implements("MusicPatch")
 public class MusicPatch extends Node {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
@@ -16,7 +15,6 @@ public class MusicPatch extends Node {
    @ObfuscatedSignature(
       descriptor = "[Laf;"
    )
-   @Export("rawSounds")
    RawSound[] rawSounds = new RawSound[128];
    @ObfuscatedName("v")
    short[] field3399 = new short[128];
@@ -515,7 +513,6 @@ public class MusicPatch extends Node {
       descriptor = "(I)V",
       garbageValue = "-638414665"
    )
-   @Export("clear")
    void clear() {
       this.field3404 = null;
    }

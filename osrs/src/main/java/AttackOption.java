@@ -6,19 +6,16 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cz")
-@Implements("AttackOption")
 public enum AttackOption implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
-   @Export("AttackOption_dependsOnCombatLevels")
    AttackOption_dependsOnCombatLevels(0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
-   @Export("AttackOption_alwaysRightClick")
    AttackOption_alwaysRightClick(1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -29,7 +26,6 @@ public enum AttackOption implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
-   @Export("AttackOption_hidden")
    AttackOption_hidden(3),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
@@ -41,13 +37,11 @@ public enum AttackOption implements class345 {
    @ObfuscatedGetter(
       intValue = 1102902677
    )
-   @Export("menuWidth")
    static int menuWidth;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = -1340490443
    )
-   @Export("id")
    final int id;
 
    AttackOption(int var3) {
@@ -59,7 +53,6 @@ public enum AttackOption implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
@@ -81,7 +74,6 @@ public enum AttackOption implements class345 {
       descriptor = "(III)Lkd;",
       garbageValue = "-1318941452"
    )
-   @Export("getWidgetChild")
    public static Widget getWidgetChild(int var0, int var1) {
       Widget var2 = class175.getWidget(var0);
       if (var1 == -1) {

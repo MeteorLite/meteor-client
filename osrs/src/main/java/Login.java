@@ -6,28 +6,23 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bu")
-@Implements("Login")
 public class Login {
    @ObfuscatedName("e")
-   @Export("clearLoginScreen")
    static boolean clearLoginScreen;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -994097247
    )
-   @Export("xPadding")
    static int xPadding = 0;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("runesSprite")
    static IndexedSprite[] runesSprite;
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("logoSprite")
    static IndexedSprite logoSprite;
    @ObfuscatedName("o")
    @ObfuscatedSignature(
@@ -43,16 +38,13 @@ public class Login {
    @ObfuscatedGetter(
       intValue = -1802972375
    )
-   @Export("loginBoxX")
    static int loginBoxX;
    @ObfuscatedName("y")
    @ObfuscatedGetter(
       intValue = -561151419
    )
-   @Export("Login_loadingPercent")
    static int Login_loadingPercent;
    @ObfuscatedName("z")
-   @Export("Login_loadingText")
    static String Login_loadingText;
    @ObfuscatedName("ah")
    @ObfuscatedGetter(
@@ -70,25 +62,18 @@ public class Login {
    @ObfuscatedGetter(
       intValue = 860431235
    )
-   @Export("loginIndex")
    static int loginIndex;
    @ObfuscatedName("bh")
-   @Export("Login_response0")
    static String Login_response0;
    @ObfuscatedName("be")
-   @Export("Login_response1")
    static String Login_response1;
    @ObfuscatedName("bf")
-   @Export("Login_response2")
    static String Login_response2;
    @ObfuscatedName("bo")
-   @Export("Login_response3")
    static String Login_response3;
    @ObfuscatedName("by")
-   @Export("Login_username")
    static String Login_username;
    @ObfuscatedName("bw")
-   @Export("Login_password")
    static String Login_password;
    @ObfuscatedName("bc")
    @ObfuscatedGetter(
@@ -107,28 +92,23 @@ public class Login {
    @ObfuscatedGetter(
       intValue = -1156426449
    )
-   @Export("currentLoginField")
    static int currentLoginField;
    @ObfuscatedName("cq")
-   @Export("worldSelectOpen")
    static boolean worldSelectOpen;
    @ObfuscatedName("cj")
    @ObfuscatedGetter(
       intValue = -1726708665
    )
-   @Export("hoveredWorldIndex")
    static int hoveredWorldIndex;
    @ObfuscatedName("cn")
    @ObfuscatedGetter(
       intValue = -1039174001
    )
-   @Export("worldSelectPage")
    static int worldSelectPage;
    @ObfuscatedName("cm")
    @ObfuscatedGetter(
       intValue = -231318101
    )
-   @Export("worldSelectPagesCount")
    static int worldSelectPagesCount;
    @ObfuscatedName("cu")
    @ObfuscatedGetter(

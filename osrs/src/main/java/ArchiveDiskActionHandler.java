@@ -6,19 +6,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @Deprecated
 @ObfuscatedName("lf")
-@Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("ArchiveDiskActionHandler_requestQueue")
    public static NodeDeque ArchiveDiskActionHandler_requestQueue = new NodeDeque();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("ArchiveDiskActionHandler_responseQueue")
    public static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
    @ObfuscatedName("v")
    @ObfuscatedGetter(
@@ -26,7 +23,6 @@ public class ArchiveDiskActionHandler implements Runnable {
    )
    static int field4173 = 0;
    @ObfuscatedName("x")
-   @Export("ArchiveDiskActionHandler_lock")
    static Object ArchiveDiskActionHandler_lock = new Object();
 
    public void run() {

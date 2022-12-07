@@ -311,7 +311,6 @@ public class class199 implements class30 {
       descriptor = "(Lnv;Lnv;Lnv;I)V",
       garbageValue = "-672132656"
    )
-   @Export("drawTitle")
    static void drawTitle(Font var0, Font var1, Font var2) {
       Login.xPadding = (CollisionMap.canvasWidth - 765) / 2;
       Login.loginBoxX = Login.xPadding + 202;

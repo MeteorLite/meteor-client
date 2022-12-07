@@ -5,13 +5,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ds")
-@Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
    @ObfuscatedName("tu")
    @ObfuscatedSignature(
       descriptor = "Lax;"
    )
-   @Export("pcmPlayer1")
    static PcmPlayer pcmPlayer1;
    @ObfuscatedName("fi")
    @ObfuscatedGetter(
@@ -19,7 +17,6 @@ public class UserComparator8 extends AbstractUserComparator {
    )
    static int field1461;
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public UserComparator8(boolean var1) {
@@ -31,7 +28,6 @@ public class UserComparator8 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;B)I",
       garbageValue = "81"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (Client.worldId == var1.world) {
          if (var2.world != Client.worldId) {

@@ -31,7 +31,6 @@ public final class class410 {
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("headIconPrayerSprites")
    static SpritePixels[] headIconPrayerSprites;
    @ObfuscatedName("m")
    public float[] field4612 = new float[16];

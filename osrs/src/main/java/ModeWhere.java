@@ -10,7 +10,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mr")
-@Implements("ModeWhere")
 public enum ModeWhere implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -82,7 +81,6 @@ public enum ModeWhere implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lqy;"
    )
-   @Export("NetCache_responseArchiveBuffer")
    public static Buffer NetCache_responseArchiveBuffer;
    @ObfuscatedName("bo")
    @ObfuscatedSignature(
@@ -93,13 +91,11 @@ public enum ModeWhere implements class345 {
    @ObfuscatedGetter(
       intValue = -1693192727
    )
-   @Export("selectedItemWidget")
    static int selectedItemWidget;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
       intValue = -59463617
    )
-   @Export("id")
    final int id;
    @ObfuscatedName("n")
    final Set field4323 = new HashSet();
@@ -127,7 +123,6 @@ public enum ModeWhere implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
@@ -137,7 +132,6 @@ public enum ModeWhere implements class345 {
       descriptor = "(Ljava/lang/String;ZZB)V",
       garbageValue = "40"
    )
-   @Export("openURL")
    public static void openURL(String var0, boolean var1, boolean var2) {
       if (var1) {
          if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
@@ -163,7 +157,6 @@ public enum ModeWhere implements class345 {
    }
 
    @ObfuscatedName("e")
-   @Export("base37DecodeLong")
    public static String base37DecodeLong(long var0) {
       if (var0 > 0L && var0 < 6582952005840035281L) {
          if (var0 % 37L == 0L) {

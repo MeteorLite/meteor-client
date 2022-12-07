@@ -51,7 +51,6 @@ public class class169 {
       descriptor = "(IB)V",
       garbageValue = "0"
    )
-   @Export("playSong")
    static void playSong(int var0) {
       if (var0 == -1 && !Client.playingJingle) {
          class6.method39();
@@ -75,7 +74,6 @@ public class class169 {
       descriptor = "([Lkd;Lkd;ZI)V",
       garbageValue = "2119865006"
    )
-   @Export("revalidateWidgetScroll")
    static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
       int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width;
       int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height;

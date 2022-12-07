@@ -7,25 +7,20 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bl")
-@Implements("ScriptFrame")
 public class ScriptFrame {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lbm;"
    )
-   @Export("script")
    Script script;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1822027501
    )
-   @Export("pc")
    int pc = -1;
    @ObfuscatedName("v")
-   @Export("intLocals")
    int[] intLocals;
    @ObfuscatedName("x")
-   @Export("stringLocals")
    String[] stringLocals;
 
    @ObfuscatedName("x")
@@ -133,7 +128,6 @@ public class ScriptFrame {
       descriptor = "(IIIB)V",
       garbageValue = "-9"
    )
-   @Export("worldToScreen")
    static final void worldToScreen(int var0, int var1, int var2) {
       if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
          int var3 = SpotAnimationDefinition.getTileHeight(var0, var1, class383.Client_plane) - var2;

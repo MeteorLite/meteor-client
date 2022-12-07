@@ -5,19 +5,16 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gu")
-@Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("VarbitDefinition_archive")
    public static AbstractArchive VarbitDefinition_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("VarbitDefinition_cached")
    public static EvictingDualNodeHashTable VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("q")
    static final int[] field2112 = new int[32];
@@ -25,19 +22,16 @@ public class VarbitComposition extends DualNode {
    @ObfuscatedGetter(
       intValue = 1633221379
    )
-   @Export("baseVar")
    public int baseVar;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -270804781
    )
-   @Export("startBit")
    public int startBit;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -1549035405
    )
-   @Export("endBit")
    public int endBit;
 
    static {
@@ -55,7 +49,6 @@ public class VarbitComposition extends DualNode {
       descriptor = "(Lqy;I)V",
       garbageValue = "2093010759"
    )
-   @Export("decode")
    public void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -72,7 +65,6 @@ public class VarbitComposition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "1158300194"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.baseVar = var1.readUnsignedShort();
@@ -87,7 +79,6 @@ public class VarbitComposition extends DualNode {
       descriptor = "(IB)Lbm;",
       garbageValue = "-42"
    )
-   @Export("getScript")
    static Script getScript(int var0) {
       Script var1 = (Script)Script.Script_cached.get((long)var0);
       if (var1 != null) {

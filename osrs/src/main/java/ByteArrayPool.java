@@ -7,25 +7,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nf")
-@Implements("ByteArrayPool")
 public class ByteArrayPool {
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 165480711
    )
-   @Export("ByteArrayPool_smallCount")
    static int ByteArrayPool_smallCount = 0;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = -458850417
    )
-   @Export("ByteArrayPool_mediumCount")
    static int ByteArrayPool_mediumCount = 0;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = 408344857
    )
-   @Export("ByteArrayPool_largeCount")
    static int ByteArrayPool_largeCount = 0;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
@@ -53,13 +49,10 @@ public class ByteArrayPool {
    )
    static int field4439 = 50;
    @ObfuscatedName("i")
-   @Export("ByteArrayPool_small")
    static byte[][] ByteArrayPool_small = new byte[1000][];
    @ObfuscatedName("o")
-   @Export("ByteArrayPool_medium")
    static byte[][] ByteArrayPool_medium = new byte[250][];
    @ObfuscatedName("n")
-   @Export("ByteArrayPool_large")
    static byte[][] ByteArrayPool_large = new byte[100][];
    @ObfuscatedName("k")
    static byte[][] field4445 = new byte[50][];
@@ -80,7 +73,6 @@ public class ByteArrayPool {
       descriptor = "(IZB)[B",
       garbageValue = "80"
    )
-   @Export("ByteArrayPool_getArrayBool")
    public static synchronized byte[] ByteArrayPool_getArrayBool(int var0, boolean var1) {
       byte[] var4;
       if ((var0 == 100 || var0 < 100 && var1) && ByteArrayPool_smallCount > 0) {

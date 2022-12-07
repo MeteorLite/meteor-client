@@ -17,13 +17,11 @@ public class class34 {
    )
    public static int field205;
    @ObfuscatedName("ga")
-   @Export("secureRandom")
    static SecureRandom secureRandom;
    @ObfuscatedName("qv")
    @ObfuscatedSignature(
       descriptor = "Lqk;"
    )
-   @Export("HitSplatDefinition_cached")
    static class451 HitSplatDefinition_cached;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
@@ -116,7 +114,6 @@ public class class34 {
       descriptor = "([Lkd;IIIIIIIIB)V",
       garbageValue = "-10"
    )
-   @Export("drawInterface")
    static final void drawInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5);
       Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();

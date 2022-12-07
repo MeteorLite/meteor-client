@@ -3,7 +3,6 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("jy")
-@Implements("MusicPatchNode2")
 public class MusicPatchNode2 {
    @ObfuscatedName("tl")
    @ObfuscatedGetter(

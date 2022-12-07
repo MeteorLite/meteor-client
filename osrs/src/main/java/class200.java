@@ -7,7 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gt")
 public class class200 extends Node {
    @ObfuscatedName("dj")
-   @Export("isLargePlayerInfo")
    static boolean isLargePlayerInfo;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
@@ -45,7 +44,6 @@ public class class200 extends Node {
       descriptor = "([BI)V",
       garbageValue = "1133722447"
    )
-   @Export("ByteArrayPool_release")
    public static synchronized void ByteArrayPool_release(byte[] var0) {
       if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4438) {
          ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
@@ -110,7 +108,6 @@ public class class200 extends Node {
       descriptor = "(IIIIIZB)Lrx;",
       garbageValue = "0"
    )
-   @Export("getItemSprite")
    public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
       if (var1 == -1) {
          var4 = 0;

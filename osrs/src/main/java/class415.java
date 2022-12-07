@@ -11,7 +11,6 @@ public abstract class class415 extends class262 implements class474 {
    )
    static int field4647;
    @ObfuscatedName("m")
-   @Export("Interpreter_stringLocals")
    static String[] Interpreter_stringLocals;
 
    @ObfuscatedSignature(

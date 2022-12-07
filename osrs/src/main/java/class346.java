@@ -27,7 +27,6 @@ public class class346 {
       descriptor = "(Ljava/lang/CharSequence;I)Z",
       garbageValue = "-1098096483"
    )
-   @Export("isNumber")
    public static boolean isNumber(CharSequence var0) {
       return class190.method3772(var0, 10, true);
    }

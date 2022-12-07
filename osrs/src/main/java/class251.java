@@ -19,13 +19,11 @@ public class class251 {
    @ObfuscatedSignature(
       descriptor = "Lka;"
    )
-   @Export("midiPcmStream")
    static MidiPcmStream midiPcmStream;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 2091175605
    )
-   @Export("value")
    final int value;
 
    class251(int var1) {

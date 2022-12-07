@@ -10,7 +10,6 @@ class class383 implements Comparator {
    @ObfuscatedGetter(
       intValue = -457974623
    )
-   @Export("Client_plane")
    static int Client_plane;
    // $FF: synthetic field
    @ObfuscatedSignature(

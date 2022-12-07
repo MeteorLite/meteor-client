@@ -8,7 +8,6 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@Implements("JSONArray")
 @ObfuscatedName("org/json/JSONArray")
 public class JSONArray {
    ArrayList myArrayList;

@@ -6,13 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("t")
 public class class19 {
    @ObfuscatedName("vb")
-   @Export("foundItemIds")
    static short[] foundItemIds;
    @ObfuscatedName("hi")
    @ObfuscatedSignature(
       descriptor = "Lfl;"
    )
-   @Export("socketTask")
    static Task socketTask;
    @ObfuscatedName("h")
    Future field112;
@@ -99,7 +97,6 @@ public class class19 {
       descriptor = "(Lqx;IB)V",
       garbageValue = "0"
    )
-   @Export("updatePlayers")
    static final void updatePlayers(PacketBuffer var0, int var1) {
       int var2 = var0.offset;
       Players.Players_pendingUpdateCount = 0;

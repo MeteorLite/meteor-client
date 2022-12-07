@@ -12,7 +12,6 @@ public class class365 implements Iterator {
    @ObfuscatedGetter(
       intValue = -1083525607
    )
-   @Export("baseY")
    static int baseY;
    @ObfuscatedName("h")
    @ObfuscatedSignature(

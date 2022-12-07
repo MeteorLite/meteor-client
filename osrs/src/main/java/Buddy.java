@@ -5,25 +5,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oa")
-@Implements("Buddy")
 public class Buddy extends User {
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 1767210019
    )
-   @Export("world")
    public int world = -1;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1595280059
    )
-   @Export("int2")
    public int int2;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = -894638573
    )
-   @Export("rank")
    public int rank;
 
    @ObfuscatedName("aj")
@@ -31,7 +27,6 @@ public class Buddy extends User {
       descriptor = "(III)V",
       garbageValue = "-87975301"
    )
-   @Export("set")
    void set(int var1, int var2) {
       this.world = var1;
       this.int2 = var2;
@@ -42,7 +37,6 @@ public class Buddy extends User {
       descriptor = "(I)I",
       garbageValue = "1755298116"
    )
-   @Export("getWorld")
    public int getWorld() {
       return this.world;
    }
@@ -52,7 +46,6 @@ public class Buddy extends User {
       descriptor = "(I)Z",
       garbageValue = "-1364221450"
    )
-   @Export("hasWorld")
    public boolean hasWorld() {
       return this.world > 0;
    }

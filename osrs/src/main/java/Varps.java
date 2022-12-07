@@ -3,16 +3,12 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("ks")
-@Implements("Varps")
 public class Varps {
    @ObfuscatedName("h")
-   @Export("Varps_masks")
    static int[] Varps_masks = new int[32];
    @ObfuscatedName("e")
-   @Export("Varps_temp")
    public static int[] Varps_temp;
    @ObfuscatedName("v")
-   @Export("Varps_main")
    public static int[] Varps_main;
    @ObfuscatedName("i")
    public static short[][] field3445;

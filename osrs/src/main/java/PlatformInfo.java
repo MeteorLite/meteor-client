@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pk")
-@Implements("PlatformInfo")
 public class PlatformInfo extends Node {
    @ObfuscatedName("ar")
    @ObfuscatedGetter(
@@ -139,7 +138,6 @@ public class PlatformInfo extends Node {
       descriptor = "(Lqy;B)V",
       garbageValue = "0"
    )
-   @Export("write")
    public void write(Buffer var1) {
       var1.writeByte(9);
       var1.writeByte(this.field4700);
@@ -179,7 +177,6 @@ public class PlatformInfo extends Node {
       descriptor = "(I)I",
       garbageValue = "316580569"
    )
-   @Export("size")
    public int size() {
       byte var1 = 39;
       int var2 = var1 + FaceNormal.method4618(this.field4717);

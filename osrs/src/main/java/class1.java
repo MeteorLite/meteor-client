@@ -10,7 +10,6 @@ public class class1 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Ldm;"
    )
-   @Export("World_request")
    static UrlRequest World_request;
    @ObfuscatedName("a")
    @ObfuscatedGetter(
@@ -63,7 +62,6 @@ public class class1 implements Callable {
       descriptor = "(IIII)V",
       garbageValue = "1539382446"
    )
-   @Export("queueSoundEffect")
    static void queueSoundEffect(int var0, int var1, int var2) {
       if (StructComposition.clientPreferences.method2426() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
          Client.soundEffectIds[Client.soundEffectCount] = var0;

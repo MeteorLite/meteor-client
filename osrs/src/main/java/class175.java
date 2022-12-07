@@ -44,7 +44,6 @@ public class class175 {
       descriptor = "(II)I",
       garbageValue = "-1790788447"
    )
-   @Export("getVarbit")
    public static int getVarbit(int var0) {
       VarbitComposition var2 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
       VarbitComposition var1;
@@ -73,7 +72,6 @@ public class class175 {
       descriptor = "(II)Lkd;",
       garbageValue = "1101221337"
    )
-   @Export("getWidget")
    public static Widget getWidget(int var0) {
       int var1 = var0 >> 16;
       int var2 = var0 & '\uffff';
@@ -92,7 +90,6 @@ public class class175 {
       descriptor = "(Lan;Lnv;B)V",
       garbageValue = "0"
    )
-   @Export("loginScreen")
    static void loginScreen(GameEngine var0, Font var1) {
       int var4;
       int var81;

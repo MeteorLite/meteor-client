@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jh")
-@Implements("LoginPacket")
 public class LoginPacket implements class274 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -46,7 +45,6 @@ public class LoginPacket implements class274 {
    @ObfuscatedGetter(
       intValue = 367370965
    )
-   @Export("cacheGamebuild")
    public static int cacheGamebuild;
    @ObfuscatedName("bw")
    @ObfuscatedSignature(
@@ -57,7 +55,6 @@ public class LoginPacket implements class274 {
    @ObfuscatedGetter(
       intValue = 580881537
    )
-   @Export("id")
    public final int id;
 
    static {

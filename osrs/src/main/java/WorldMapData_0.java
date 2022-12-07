@@ -4,14 +4,12 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hd")
-@Implements("WorldMapData_0")
 public class WorldMapData_0 extends AbstractWorldMapData {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "(Lqy;I)V",
       garbageValue = "106235772"
    )
-   @Export("init")
    void init(Buffer var1) {
       int var2 = var1.readUnsignedByte();
       if (var2 != WorldMapID.field2984.value) {
@@ -33,7 +31,6 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       descriptor = "(Lqy;I)V",
       garbageValue = "1703912011"
    )
-   @Export("readGeography")
    void readGeography(Buffer var1) {
       super.planes = Math.min(super.planes, 4);
       super.floorUnderlayIds = new short[1][64][64];

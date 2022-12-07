@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("co")
-@Implements("LoginScreenAnimation")
 public class LoginScreenAnimation {
    @ObfuscatedName("tn")
    @ObfuscatedGetter(
@@ -22,7 +21,6 @@ public class LoginScreenAnimation {
    @ObfuscatedSignature(
       descriptor = "Lrt;"
    )
-   @Export("privateChatMode")
    static PrivateChatMode privateChatMode;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -91,7 +89,6 @@ public class LoginScreenAnimation {
       descriptor = "(B)V",
       garbageValue = "87"
    )
-   @Export("initColors")
    void initColors() {
       this.field1277 = new int[256];
 
@@ -180,7 +177,6 @@ public class LoginScreenAnimation {
       descriptor = "(III)V",
       garbageValue = "1789761719"
    )
-   @Export("draw")
    void draw(int var1, int var2) {
       if (this.field1276 == null) {
          this.initColors();

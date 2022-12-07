@@ -5,64 +5,53 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bn")
-@Implements("GraphicsObject")
 public class GraphicsObject extends Renderable {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 1763916019
    )
-   @Export("id")
    int id;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -1296860225
    )
-   @Export("cycleStart")
    int cycleStart;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1267714979
    )
-   @Export("plane")
    int plane;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -983407105
    )
-   @Export("y")
    int y;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -1470591223
    )
-   @Export("x")
    int x;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1313330391
    )
-   @Export("z")
    int z;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lga;"
    )
-   @Export("sequenceDefinition")
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = -1859823171
    )
-   @Export("frame")
    int frame;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = 2082705889
    )
-   @Export("frameCycle")
    int frameCycle;
    @ObfuscatedName("b")
-   @Export("isFinished")
    boolean isFinished;
 
    GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
@@ -90,7 +79,6 @@ public class GraphicsObject extends Renderable {
       descriptor = "(II)V",
       garbageValue = "110882397"
    )
-   @Export("advance")
    final void advance(int var1) {
       if (!this.isFinished) {
          this.frameCycle += var1;
@@ -118,7 +106,6 @@ public class GraphicsObject extends Renderable {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       SpotAnimationDefinition var1 = ClanSettings.SpotAnimationDefinition_get(this.id);
       Model var2;

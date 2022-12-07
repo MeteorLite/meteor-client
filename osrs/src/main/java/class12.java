@@ -136,7 +136,6 @@ class class12 extends SSLSocket {
       descriptor = "(IIIIB)V",
       garbageValue = "90"
    )
-   @Export("itemContainerSetItem")
    static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
       ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var4 == null) {

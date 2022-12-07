@@ -4,7 +4,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ce")
-@Implements("HealthBar")
 public class HealthBar extends Node {
    @ObfuscatedName("ex")
    @ObfuscatedSignature(
@@ -15,13 +14,11 @@ public class HealthBar extends Node {
    @ObfuscatedSignature(
       descriptor = "Lfw;"
    )
-   @Export("definition")
    HealthBarDefinition definition;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   @Export("updates")
    IterableNodeDeque updates = new IterableNodeDeque();
 
    @ObfuscatedSignature(
@@ -36,7 +33,6 @@ public class HealthBar extends Node {
       descriptor = "(IIIIS)V",
       garbageValue = "-24757"
    )
-   @Export("put")
    void put(int var1, int var2, int var3, int var4) {
       HealthBarUpdate var5 = null;
       int var6 = 0;
@@ -72,7 +68,6 @@ public class HealthBar extends Node {
       descriptor = "(II)Lcu;",
       garbageValue = "-1494424352"
    )
-   @Export("get")
    HealthBarUpdate get(int var1) {
       HealthBarUpdate var2 = (HealthBarUpdate)this.updates.last();
       if (var2 != null && var2.cycle <= var1) {
@@ -97,7 +92,6 @@ public class HealthBar extends Node {
       descriptor = "(I)Z",
       garbageValue = "-1047690816"
    )
-   @Export("isEmpty")
    boolean isEmpty() {
       return this.updates.method6774();
    }
@@ -145,7 +139,6 @@ public class HealthBar extends Node {
       descriptor = "(IIIIIIIII)V",
       garbageValue = "824026775"
    )
-   @Export("drawWidgets")
    static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if (Players.loadInterface(var0)) {
          MouseHandler.field268 = null;

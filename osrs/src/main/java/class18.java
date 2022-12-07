@@ -10,7 +10,6 @@ class class18 implements Comparator {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("HitSplatDefinition_archive")
    public static AbstractArchive HitSplatDefinition_archive;
    // $FF: synthetic field
    @ObfuscatedSignature(
@@ -86,7 +85,6 @@ class class18 implements Comparator {
       descriptor = "(Lkd;I[B[BB)V",
       garbageValue = "120"
    )
-   @Export("Widget_setKey")
    static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
       if (var0.field3622 == null) {
          if (var2 == null) {
@@ -132,7 +130,6 @@ class class18 implements Comparator {
       descriptor = "(Lkd;III)V",
       garbageValue = "-1041605206"
    )
-   @Export("clickWidget")
    static final void clickWidget(Widget var0, int var1, int var2) {
       if (Client.clickedWidget == null && !Client.isMenuOpen) {
          if (var0 != null && class306.method6317(var0) != null) {

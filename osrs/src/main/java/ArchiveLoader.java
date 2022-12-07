@@ -5,25 +5,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cq")
-@Implements("ArchiveLoader")
 public class ArchiveLoader {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive")
    final Archive archive;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1940986101
    )
-   @Export("groupCount")
    final int groupCount;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 2076780085
    )
-   @Export("loadedCount")
    int loadedCount = 0;
 
    @ObfuscatedSignature(
@@ -39,7 +35,6 @@ public class ArchiveLoader {
       descriptor = "(B)Z",
       garbageValue = "3"
    )
-   @Export("isLoaded")
    boolean isLoaded() {
       this.loadedCount = 0;
 
@@ -57,7 +52,6 @@ public class ArchiveLoader {
       descriptor = "(Lkd;I)Ljava/lang/String;",
       garbageValue = "764446077"
    )
-   @Export("Widget_getSpellActionName")
    static String Widget_getSpellActionName(Widget var0) {
       if (PacketWriter.Widget_unpackTargetMask(Clock.getWidgetFlags(var0)) == 0) {
          return null;

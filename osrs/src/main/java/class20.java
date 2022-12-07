@@ -10,16 +10,13 @@ public class class20 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Lep;"
    )
-   @Export("guestClanSettings")
    static ClanSettings guestClanSettings;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Lac;"
    )
-   @Export("pcmPlayerProvider")
    public static class51 pcmPlayerProvider;
    @ObfuscatedName("am")
-   @Export("fontHelvetica13")
    static java.awt.Font fontHelvetica13;
    @ObfuscatedName("h")
    @ObfuscatedSignature(

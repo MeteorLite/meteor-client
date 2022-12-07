@@ -18,13 +18,11 @@ public class class109 extends UrlRequester {
    @ObfuscatedGetter(
       intValue = -903100173
    )
-   @Export("musicTrackGroupId")
    public static int musicTrackGroupId;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("title_muteSprite")
    static IndexedSprite[] title_muteSprite;
    @ObfuscatedName("m")
    final boolean field1447;
@@ -119,7 +117,6 @@ public class class109 extends UrlRequester {
       descriptor = "(II)Lfi;",
       garbageValue = "-388064227"
    )
-   @Export("VarpDefinition_get")
    public static VarpDefinition VarpDefinition_get(int var0) {
       VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -141,7 +138,6 @@ public class class109 extends UrlRequester {
       descriptor = "(Lbz;Lbz;IZI)I",
       garbageValue = "1199021579"
    )
-   @Export("compareWorlds")
    static int compareWorlds(World var0, World var1, int var2, boolean var3) {
       if (var2 == 1) {
          int var4 = var0.population;

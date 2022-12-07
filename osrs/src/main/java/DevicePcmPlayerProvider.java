@@ -4,13 +4,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("y")
-@Implements("DevicePcmPlayerProvider")
 public class DevicePcmPlayerProvider implements class51 {
    @ObfuscatedName("ty")
    @ObfuscatedSignature(
       descriptor = "Lby;"
    )
-   @Export("decimator")
    static Decimator decimator;
 
    @ObfuscatedName("h")
@@ -18,7 +16,6 @@ public class DevicePcmPlayerProvider implements class51 {
       descriptor = "(I)Lax;",
       garbageValue = "999216376"
    )
-   @Export("player")
    public PcmPlayer player() {
       return new DevicePcmPlayer();
    }
@@ -38,7 +35,6 @@ public class DevicePcmPlayerProvider implements class51 {
       descriptor = "(Lkd;IIB)V",
       garbageValue = "1"
    )
-   @Export("checkIfMinimapClicked")
    static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
       if (Client.minimapState == 0 || Client.minimapState == 3) {
          if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !SceneTilePaint.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) {
@@ -88,7 +84,6 @@ public class DevicePcmPlayerProvider implements class51 {
       descriptor = "(ZS)V",
       garbageValue = "226"
    )
-   @Export("addNpcsToScene")
    static final void addNpcsToScene(boolean var0) {
       for(int var1 = 0; var1 < Client.npcCount; ++var1) {
          NPC var2 = Client.npcs[Client.npcIndices[var1]];

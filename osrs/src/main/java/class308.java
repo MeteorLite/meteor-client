@@ -8,6 +8,5 @@ public class class308 {
    @ObfuscatedSignature(
       descriptor = "Lkq;"
    )
-   @Export("huffman")
    static Huffman huffman;
 }

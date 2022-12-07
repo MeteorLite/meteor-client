@@ -13,7 +13,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.Reflection;
 
-@Implements("JSONObject")
 @ObfuscatedName("org/json/JSONObject")
 public class JSONObject {
    public static final Object NULL = new JSONObject$Null();

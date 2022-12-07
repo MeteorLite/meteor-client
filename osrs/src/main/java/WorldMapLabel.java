@@ -5,34 +5,28 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ii")
-@Implements("WorldMapLabel")
 public class WorldMapLabel {
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("options_buttons_0Sprite")
    static IndexedSprite options_buttons_0Sprite;
    @ObfuscatedName("h")
-   @Export("text")
    String text;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1395351999
    )
-   @Export("width")
    int width;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1987376379
    )
-   @Export("height")
    int height;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Liq;"
    )
-   @Export("size")
    WorldMapLabelSize size;
 
    @ObfuscatedSignature(
@@ -50,7 +44,6 @@ public class WorldMapLabel {
       descriptor = "(CLmb;B)I",
       garbageValue = "50"
    )
-   @Export("lowercaseChar")
    static int lowercaseChar(char var0, Language var1) {
       int var2 = var0 << 4;
       if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) {
@@ -70,7 +63,6 @@ public class WorldMapLabel {
       descriptor = "([Lkd;II)V",
       garbageValue = "1544392799"
    )
-   @Export("runComponentCloseListeners")
    static final void runComponentCloseListeners(Widget[] var0, int var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          Widget var3 = var0[var2];

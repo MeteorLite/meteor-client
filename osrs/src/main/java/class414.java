@@ -6,13 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ob")
 public class class414 implements class419 {
    @ObfuscatedName("m")
-   @Export("SpriteBuffer_yOffsets")
    public static int[] SpriteBuffer_yOffsets;
    @ObfuscatedName("jb")
    @ObfuscatedGetter(
       intValue = -1436966015
    )
-   @Export("cameraY")
    static int cameraY;
    @ObfuscatedName("h")
    @ObfuscatedSignature(

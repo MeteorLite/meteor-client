@@ -5,13 +5,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qi")
-@Implements("LoginType")
 public class LoginType {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lqi;"
    )
-   @Export("oldscape")
    public static final LoginType oldscape = new LoginType(7, 0, "", "");
    @ObfuscatedName("e")
    @ObfuscatedSignature(

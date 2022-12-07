@@ -9,16 +9,13 @@ public class class145 extends class136 {
    @ObfuscatedGetter(
       intValue = -1959574939
    )
-   @Export("idxCount")
    public static int idxCount;
    @ObfuscatedName("j")
-   @Export("musicTrackBoolean")
    public static boolean musicTrackBoolean;
    @ObfuscatedName("jz")
    @ObfuscatedGetter(
       intValue = 402004555
    )
-   @Export("cameraX")
    static int cameraX;
    @ObfuscatedName("h")
    String field1708;

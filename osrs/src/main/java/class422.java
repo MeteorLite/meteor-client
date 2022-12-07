@@ -7,13 +7,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("pf")
 public class class422 implements class421 {
    @ObfuscatedName("h")
-   @Export("RunException_applet")
    public static Applet RunException_applet;
    @ObfuscatedName("ao")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("Widget_archive")
    static AbstractArchive Widget_archive;
    @ObfuscatedName("v")
    @ObfuscatedSignature(

@@ -558,36 +558,48 @@ public abstract class RSModelMixin implements RSModel
 	@Inject
 	@Override
 	public int getCenterX() {
+		if (lastOffsets == null)
+			return 0;
 		return lastOffsets.getCenterX();
 	}
 
 	@Inject
 	@Override
 	public int getCenterY() {
+		if (lastOffsets == null)
+			return 0;
 		return lastOffsets.getCenterY();
 	}
 
 	@Inject
 	@Override
 	public int getCenterZ() {
+		if (lastOffsets == null)
+			return 0;
 		return lastOffsets.getCenterY();
 	}
 
 	@Inject
 	@Override
 	public int getExtremeX() {
+		if (lastOffsets == null)
+			return 0;
 		return lastOffsets.getExtremeX();
 	}
 
 	@Inject
 	@Override
 	public int getExtremeY() {
+		if (lastOffsets == null)
+			return 0;
 		return lastOffsets.getExtremeY();
 	}
 
 	@Inject
 	@Override
 	public int getExtremeZ() {
+		if (lastOffsets == null)
+			return 0;
 		return lastOffsets.getExtremeZ();
 	}
 }

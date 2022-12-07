@@ -5,13 +5,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fi")
-@Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("VarpDefinition_archive")
    public static AbstractArchive VarpDefinition_archive;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
@@ -22,19 +20,16 @@ public class VarpDefinition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("VarpDefinition_cached")
    static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("el")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive14")
    static Archive archive14;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -609772131
    )
-   @Export("type")
    public int type = 0;
 
    @ObfuscatedName("e")
@@ -42,7 +37,6 @@ public class VarpDefinition extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "0"
    )
-   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -59,7 +53,6 @@ public class VarpDefinition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "1920154303"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 5) {
          this.type = var1.readUnsignedShort();
@@ -72,7 +65,6 @@ public class VarpDefinition extends DualNode {
       descriptor = "(II)Lgn;",
       garbageValue = "325063701"
    )
-   @Export("getObjectDefinition")
    public static ObjectComposition getObjectDefinition(int var0) {
       ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -101,7 +93,6 @@ public class VarpDefinition extends DualNode {
       descriptor = "(Lln;IIIBZB)V",
       garbageValue = "-66"
    )
-   @Export("requestNetFile")
    static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
       long var6 = (long)((var1 << 16) + var2);
       NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6);
@@ -148,7 +139,6 @@ public class VarpDefinition extends DualNode {
       descriptor = "([BI)V",
       garbageValue = "-1710620347"
    )
-   @Export("SpriteBuffer_decode")
    public static void SpriteBuffer_decode(byte[] var0) {
       Buffer var1 = new Buffer(var0);
       var1.offset = var0.length - 2;

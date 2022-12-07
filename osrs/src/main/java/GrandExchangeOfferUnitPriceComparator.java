@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mx")
-@Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
    @ObfuscatedName("x")
    static boolean field4275;
@@ -13,7 +12,6 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
    @ObfuscatedSignature(
       descriptor = "Ljk;"
    )
-   @Export("worldMapEvent")
    static WorldMapEvent worldMapEvent;
 
    @ObfuscatedName("h")
@@ -21,7 +19,6 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
       descriptor = "(Lmg;Lmg;I)I",
       garbageValue = "1387071428"
    )
-   @Export("compare_bridged")
    int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
       return var1.grandExchangeOffer.unitPrice < var2.grandExchangeOffer.unitPrice ? -1 : (var2.grandExchangeOffer.unitPrice == var1.grandExchangeOffer.unitPrice ? 0 : 1);
    }

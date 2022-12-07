@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cg")
-@Implements("NPC")
 public final class NPC extends Actor {
    @ObfuscatedName("f")
    @ObfuscatedGetter(
@@ -18,19 +17,16 @@ public final class NPC extends Actor {
    )
    static int field1317 = 1;
    @ObfuscatedName("i")
-   @Export("Tiles_hueMultiplier")
    static int[] Tiles_hueMultiplier;
    @ObfuscatedName("mw")
    @ObfuscatedGetter(
       intValue = -736500721
    )
-   @Export("menuY")
    static int menuY;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lgz;"
    )
-   @Export("definition")
    NPCComposition definition;
    @ObfuscatedName("e")
    String field1311 = "";
@@ -69,7 +65,6 @@ public final class NPC extends Actor {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       if (this.definition == null) {
          return null;
@@ -342,7 +337,6 @@ public final class NPC extends Actor {
       descriptor = "(I)Z",
       garbageValue = "-200769249"
    )
-   @Export("isVisible")
    final boolean isVisible() {
       return this.definition != null;
    }

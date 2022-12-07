@@ -5,12 +5,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("z")
-@Implements("Canvas")
 public final class Canvas extends java.awt.Canvas {
    @ObfuscatedName("r")
    static byte[][][] field136;
    @ObfuscatedName("h")
-   @Export("component")
    Component component;
 
    Canvas(Component var1) {

@@ -5,52 +5,43 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fm")
-@Implements("WorldMapElement")
 public class WorldMapElement extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("WorldMapElement_archive")
    public static AbstractArchive WorldMapElement_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "[Lfm;"
    )
-   @Export("WorldMapElement_cached")
    public static WorldMapElement[] WorldMapElement_cached;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1016505837
    )
-   @Export("WorldMapElement_count")
    public static int WorldMapElement_count;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("WorldMapElement_cachedSprites")
    public static EvictingDualNodeHashTable WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(256);
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 914760617
    )
-   @Export("objectId")
    public final int objectId;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = -211487071
    )
-   @Export("sprite1")
    public int sprite1 = -1;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = -1538930309
    )
-   @Export("sprite2")
    int sprite2 = -1;
    @ObfuscatedName("r")
-   @Export("name")
    public String name;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
@@ -61,17 +52,14 @@ public class WorldMapElement extends DualNode {
    @ObfuscatedGetter(
       intValue = 743086435
    )
-   @Export("textSize")
    public int textSize = 0;
    @ObfuscatedName("g")
    public boolean field1936 = true;
    @ObfuscatedName("i")
    public boolean field1940 = false;
    @ObfuscatedName("o")
-   @Export("menuActions")
    public String[] menuActions = new String[5];
    @ObfuscatedName("n")
-   @Export("menuTargetName")
    public String menuTargetName;
    @ObfuscatedName("k")
    int[] field1933;
@@ -99,13 +87,11 @@ public class WorldMapElement extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lgj;"
    )
-   @Export("horizontalAlignment")
    public HorizontalAlignment horizontalAlignment;
    @ObfuscatedName("p")
    @ObfuscatedSignature(
       descriptor = "Lgl;"
    )
-   @Export("verticalAlignment")
    public VerticalAlignment verticalAlignment;
    @ObfuscatedName("d")
    int[] field1930;
@@ -115,7 +101,6 @@ public class WorldMapElement extends DualNode {
    @ObfuscatedGetter(
       intValue = -249321649
    )
-   @Export("category")
    public int category;
 
    public WorldMapElement(int var1) {
@@ -130,7 +115,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "2"
    )
-   @Export("decode")
    public void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -147,7 +131,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(Lqy;IB)V",
       garbageValue = "1"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.sprite1 = var1.method8568();
@@ -262,7 +245,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(ZI)Lrx;",
       garbageValue = "-36987014"
    )
-   @Export("getSpriteBool")
    public SpritePixels getSpriteBool(boolean var1) {
       int var2 = this.sprite1;
       return this.getSprite(var2);
@@ -273,7 +255,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(II)Lrx;",
       garbageValue = "-2019258857"
    )
-   @Export("getSprite")
    SpritePixels getSprite(int var1) {
       if (var1 < 0) {
          return null;
@@ -297,7 +278,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(B)I",
       garbageValue = "-125"
    )
-   @Export("getObjectId")
    public int getObjectId() {
       return this.objectId;
    }
@@ -307,7 +287,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(Lcb;B)V",
       garbageValue = "31"
    )
-   @Export("runScriptEvent")
    public static void runScriptEvent(ScriptEvent var0) {
       class125.runScript(var0, 500000, 475000);
    }

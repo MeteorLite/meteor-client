@@ -5,25 +5,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hz")
-@Implements("FaceNormal")
 public class FaceNormal {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -1593342669
    )
-   @Export("x")
    int x;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -2131754663
    )
-   @Export("y")
    int y;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1522131961
    )
-   @Export("z")
    int z;
 
    @ObfuscatedName("ae")

@@ -5,49 +5,41 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ip")
-@Implements("WorldMapIcon_1")
 public class WorldMapIcon_1 extends AbstractWorldMapIcon {
    @ObfuscatedName("eq")
    @ObfuscatedSignature(
       descriptor = "Lou;"
    )
-   @Export("js5Socket")
    static AbstractSocket js5Socket;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 1999558433
    )
-   @Export("objectDefId")
    final int objectDefId;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Liy;"
    )
-   @Export("region")
    final WorldMapRegion region;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 2110951989
    )
-   @Export("element")
    int element;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lii;"
    )
-   @Export("label")
    WorldMapLabel label;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 342751675
    )
-   @Export("subWidth")
    int subWidth;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1976189839
    )
-   @Export("subHeight")
    int subHeight;
 
    @ObfuscatedSignature(
@@ -65,7 +57,6 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
       descriptor = "(B)V",
       garbageValue = "-100"
    )
-   @Export("init")
    void init() {
       this.element = VarpDefinition.getObjectDefinition(this.objectDefId).transform().mapIconId;
       this.label = this.region.createMapLabel(JagexCache.WorldMapElement_get(this.element));
@@ -86,7 +77,6 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "2098413555"
    )
-   @Export("getElement")
    public int getElement() {
       return this.element;
    }
@@ -96,7 +86,6 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
       descriptor = "(I)Lii;",
       garbageValue = "849546905"
    )
-   @Export("getLabel")
    WorldMapLabel getLabel() {
       return this.label;
    }
@@ -106,7 +95,6 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "-520723785"
    )
-   @Export("getSubWidth")
    int getSubWidth() {
       return this.subWidth;
    }
@@ -116,7 +104,6 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "1290081241"
    )
-   @Export("getSubHeight")
    int getSubHeight() {
       return this.subHeight;
    }

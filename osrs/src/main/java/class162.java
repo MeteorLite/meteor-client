@@ -8,7 +8,6 @@ public class class162 extends class173 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive6")
    static Archive archive6;
    @ObfuscatedName("h")
    String field1823;

@@ -9,13 +9,11 @@ public abstract class class173 {
    @ObfuscatedGetter(
       intValue = -389562639
    )
-   @Export("gameCyclesToDo")
    static int gameCyclesToDo;
    @ObfuscatedName("bv")
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("clientLanguage")
    static Language clientLanguage;
    @ObfuscatedName("x")
    String field1900;

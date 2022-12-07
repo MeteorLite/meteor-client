@@ -5,52 +5,43 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hs")
-@Implements("FloorDecoration")
 public final class FloorDecoration {
    @ObfuscatedName("u")
-   @Export("SpriteBuffer_pixels")
    public static byte[][] SpriteBuffer_pixels;
    @ObfuscatedName("cx")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("worldSelectArrows")
    static IndexedSprite[] worldSelectArrows;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 133255249
    )
-   @Export("z")
    int z;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -2083520512
    )
-   @Export("x")
    int x;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1531498091
    )
-   @Export("y")
    int y;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable")
    public Renderable renderable;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       longValue = 4180672137059809271L
    )
-   @Export("tag")
    public long tag;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = -1420887887
    )
-   @Export("flags")
    int flags;
 
    @ObfuscatedName("hv")
@@ -58,7 +49,6 @@ public final class FloorDecoration {
       descriptor = "(Lct;IB)V",
       garbageValue = "13"
    )
-   @Export("updateActorSequence")
    static final void updateActorSequence(Actor var0, int var1) {
       SequenceDefinition var2;
       int var3;

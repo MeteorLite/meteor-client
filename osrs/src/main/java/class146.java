@@ -16,7 +16,6 @@ public class class146 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lnv;"
    )
-   @Export("fontBold12")
    static Font fontBold12;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

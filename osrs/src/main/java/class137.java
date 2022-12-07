@@ -9,13 +9,11 @@ public class class137 extends class136 {
    @ObfuscatedGetter(
       intValue = 1408608023
    )
-   @Export("js5Port")
    static int js5Port;
    @ObfuscatedName("qa")
    @ObfuscatedSignature(
       descriptor = "Lqk;"
    )
-   @Export("HitSplatDefinition_cachedSprites")
    static class451 HitSplatDefinition_cachedSprites;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
@@ -62,7 +60,6 @@ public class class137 extends class136 {
       descriptor = "(IB)I",
       garbageValue = "124"
    )
-   @Export("Messages_getHistorySize")
    static int Messages_getHistorySize(int var0) {
       ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0);
       return var1 == null ? 0 : var1.size();

@@ -5,25 +5,20 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("by")
-@Implements("Decimator")
 public class Decimator {
    @ObfuscatedName("c")
-   @Export("formattedOperatingSystemName")
    public static String formattedOperatingSystemName;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 364790869
    )
-   @Export("inputRate")
    int inputRate;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 126236859
    )
-   @Export("outputRate")
    int outputRate;
    @ObfuscatedName("q")
-   @Export("table")
    int[][] table;
 
    public Decimator(int var1, int var2) {
@@ -80,7 +75,6 @@ public class Decimator {
       descriptor = "([BB)[B",
       garbageValue = "77"
    )
-   @Export("resample")
    byte[] resample(byte[] var1) {
       if (this.table != null) {
          int var2 = (int)((long)var1.length * (long)this.outputRate / (long)this.inputRate) + 14;
@@ -126,7 +120,6 @@ public class Decimator {
       descriptor = "(II)I",
       garbageValue = "-1104276170"
    )
-   @Export("scaleRate")
    int scaleRate(int var1) {
       if (this.table != null) {
          var1 = (int)((long)var1 * (long)this.outputRate / (long)this.inputRate);
@@ -140,7 +133,6 @@ public class Decimator {
       descriptor = "(IS)I",
       garbageValue = "-256"
    )
-   @Export("scalePosition")
    int scalePosition(int var1) {
       if (this.table != null) {
          var1 = (int)((long)this.outputRate * (long)var1 / (long)this.inputRate) + 6;

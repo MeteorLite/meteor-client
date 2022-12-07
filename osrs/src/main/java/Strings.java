@@ -2,7 +2,6 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("li")
-@Implements("Strings")
 public class Strings {
    @ObfuscatedName("ch")
    public static String field3910 = "Please visit the support page for assistance.";

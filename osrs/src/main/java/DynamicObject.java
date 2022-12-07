@@ -5,61 +5,51 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bk")
-@Implements("DynamicObject")
 public class DynamicObject extends Renderable {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -2074471671
    )
-   @Export("id")
    int id;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1709661329
    )
-   @Export("type")
    int type;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1920524297
    )
-   @Export("orientation")
    int orientation;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -14987683
    )
-   @Export("plane")
    int plane;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -1813409375
    )
-   @Export("x")
    int x;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = -1033732035
    )
-   @Export("y")
    int y;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lga;"
    )
-   @Export("sequenceDefinition")
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = 1771160437
    )
-   @Export("frame")
    int frame;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = 672307685
    )
-   @Export("cycleStart")
    int cycleStart;
 
    @ObfuscatedSignature(
@@ -102,7 +92,6 @@ public class DynamicObject extends Renderable {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       int var2;
       if (this.sequenceDefinition != null) {
@@ -177,7 +166,6 @@ public class DynamicObject extends Renderable {
       descriptor = "(Lqy;Lql;I)Lql;",
       garbageValue = "-1322672693"
    )
-   @Export("readStringIntParameters")
    static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
       int var2 = var0.readUnsignedByte();
       int var3;

@@ -3,23 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("bh")
-@Implements("VorbisCodebook")
 public class VorbisCodebook {
    @ObfuscatedName("h")
-   @Export("dimensions")
    int dimensions;
    @ObfuscatedName("e")
-   @Export("entries")
    int entries;
    @ObfuscatedName("v")
-   @Export("lengthMap")
    int[] lengthMap;
    @ObfuscatedName("x")
    int[] field391;
    @ObfuscatedName("m")
    float[][] field392;
    @ObfuscatedName("q")
-   @Export("keys")
    int[] keys;
 
    VorbisCodebook() {
@@ -224,7 +219,6 @@ public class VorbisCodebook {
    }
 
    @ObfuscatedName("h")
-   @Export("mapType1QuantValues")
    static int mapType1QuantValues(int var0, int var1) {
       int var2 = (int)Math.pow((double)var0, 1.0D / (double)var1) + 1;
 

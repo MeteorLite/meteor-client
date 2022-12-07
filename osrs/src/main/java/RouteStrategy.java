@@ -5,37 +5,31 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gg")
-@Implements("RouteStrategy")
 public abstract class RouteStrategy {
    @ObfuscatedName("ak")
    @ObfuscatedSignature(
       descriptor = "Lrm;"
    )
-   @Export("rasterProvider")
    public static AbstractRasterProvider rasterProvider;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -2015601201
    )
-   @Export("approxDestinationX")
    public int approxDestinationX;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 941706195
    )
-   @Export("approxDestinationY")
    public int approxDestinationY;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -20945427
    )
-   @Export("approxDestinationSizeX")
    public int approxDestinationSizeX;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -390996803
    )
-   @Export("approxDestinationSizeY")
    public int approxDestinationSizeY;
 
    @ObfuscatedName("h")
@@ -43,7 +37,6 @@ public abstract class RouteStrategy {
       descriptor = "(IIILgw;I)Z",
       garbageValue = "1813316312"
    )
-   @Export("hasArrived")
    protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
 
    @ObfuscatedName("h")

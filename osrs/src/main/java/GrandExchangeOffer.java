@@ -5,40 +5,33 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mz")
-@Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
    @ObfuscatedName("h")
-   @Export("state")
    byte state;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -512398981
    )
-   @Export("id")
    public int id;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1186373323
    )
-   @Export("unitPrice")
    public int unitPrice;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -717642563
    )
-   @Export("totalQuantity")
    public int totalQuantity;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -1074991029
    )
-   @Export("currentQuantity")
    public int currentQuantity;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1552101637
    )
-   @Export("currentPrice")
    public int currentPrice;
 
    public GrandExchangeOffer() {
@@ -62,7 +55,6 @@ public class GrandExchangeOffer {
       descriptor = "(B)I",
       garbageValue = "1"
    )
-   @Export("status")
    public int status() {
       return this.state & 7;
    }
@@ -72,7 +64,6 @@ public class GrandExchangeOffer {
       descriptor = "(I)I",
       garbageValue = "-1498486537"
    )
-   @Export("type")
    public int type() {
       return (this.state & 8) == 8 ? 1 : 0;
    }

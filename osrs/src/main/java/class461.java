@@ -14,7 +14,6 @@ public class class461 extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("DBRowType_cache")
    static EvictingDualNodeHashTable DBRowType_cache = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
    Object[][] field4893;

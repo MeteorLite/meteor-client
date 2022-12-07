@@ -5,16 +5,13 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bg")
-@Implements("GrandExchangeOfferOwnWorldComparator")
 public class GrandExchangeOfferOwnWorldComparator implements Comparator {
    @ObfuscatedName("cc")
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("worldSelectBackSprites")
    static SpritePixels[] worldSelectBackSprites;
    @ObfuscatedName("h")
-   @Export("filterWorlds")
    boolean filterWorlds;
 
    @ObfuscatedName("h")
@@ -22,7 +19,6 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       descriptor = "(Lmg;Lmg;B)I",
       garbageValue = "-94"
    )
-   @Export("compare_bridged")
    int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
       if (var2.world == var1.world) {
          return 0;

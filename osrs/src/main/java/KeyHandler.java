@@ -13,7 +13,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("as")
-@Implements("KeyHandler")
 public class KeyHandler implements KeyListener, FocusListener {
    @ObfuscatedName("e")
    Collection field144 = new ArrayList(100);
@@ -296,7 +295,6 @@ public class KeyHandler implements KeyListener, FocusListener {
       descriptor = "(Lkd;I)Z",
       garbageValue = "-969832307"
    )
-   @Export("runCs1")
    static final boolean runCs1(Widget var0) {
       if (var0.cs1Comparisons == null) {
          return false;

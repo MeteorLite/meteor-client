@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gz")
-@Implements("NPCComposition")
 public class NPCComposition extends DualNode {
    @ObfuscatedName("tq")
    @ObfuscatedGetter(
@@ -17,7 +16,6 @@ public class NPCComposition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("NpcDefinition_archive")
    static AbstractArchive NpcDefinition_archive;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
@@ -28,31 +26,25 @@ public class NPCComposition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("NpcDefinition_cached")
    static EvictingDualNodeHashTable NpcDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("NpcDefinition_cachedModels")
    static EvictingDualNodeHashTable NpcDefinition_cachedModels = new EvictingDualNodeHashTable(50);
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = -109388973
    )
-   @Export("id")
    public int id;
    @ObfuscatedName("u")
-   @Export("name")
    public String name = "null";
    @ObfuscatedName("b")
    @ObfuscatedGetter(
       intValue = -1021399127
    )
-   @Export("size")
    public int size = 1;
    @ObfuscatedName("j")
-   @Export("models")
    int[] models;
    @ObfuscatedName("g")
    int[] field2026;
@@ -60,43 +52,36 @@ public class NPCComposition extends DualNode {
    @ObfuscatedGetter(
       intValue = -499537861
    )
-   @Export("idleSequence")
    public int idleSequence = -1;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
       intValue = 274326889
    )
-   @Export("turnLeftSequence")
    public int turnLeftSequence = -1;
    @ObfuscatedName("n")
    @ObfuscatedGetter(
       intValue = -634834111
    )
-   @Export("turnRightSequence")
    public int turnRightSequence = -1;
    @ObfuscatedName("k")
    @ObfuscatedGetter(
       intValue = 1587887915
    )
-   @Export("walkSequence")
    public int walkSequence = -1;
    @ObfuscatedName("a")
    @ObfuscatedGetter(
       intValue = 1430199505
    )
-   @Export("walkBackSequence")
    public int walkBackSequence = -1;
    @ObfuscatedName("s")
    @ObfuscatedGetter(
       intValue = 1601988001
    )
-   @Export("walkLeftSequence")
    public int walkLeftSequence = -1;
    @ObfuscatedName("l")
    @ObfuscatedGetter(
       intValue = 1871825673
    )
-   @Export("walkRightSequence")
    public int walkRightSequence = -1;
    @ObfuscatedName("t")
    @ObfuscatedGetter(
@@ -139,85 +124,66 @@ public class NPCComposition extends DualNode {
    )
    public int field2044 = -1;
    @ObfuscatedName("ad")
-   @Export("recolorFrom")
    short[] recolorFrom;
    @ObfuscatedName("ao")
-   @Export("recolorTo")
    public short[] recolorTo;
    @ObfuscatedName("am")
-   @Export("retextureFrom")
    short[] retextureFrom;
    @ObfuscatedName("av")
-   @Export("retextureTo")
    public short[] retextureTo;
    @ObfuscatedName("au")
-   @Export("actions")
    public String[] actions = new String[5];
    @ObfuscatedName("ar")
-   @Export("drawMapDot")
    public boolean drawMapDot = true;
    @ObfuscatedName("at")
    @ObfuscatedGetter(
       intValue = -917269397
    )
-   @Export("combatLevel")
    public int combatLevel = -1;
    @ObfuscatedName("ay")
    @ObfuscatedGetter(
       intValue = -124469981
    )
-   @Export("widthScale")
    int widthScale = 128;
    @ObfuscatedName("an")
    @ObfuscatedGetter(
       intValue = -1404076757
    )
-   @Export("heightScale")
    int heightScale = 128;
    @ObfuscatedName("ab")
-   @Export("isVisible")
    public boolean isVisible = false;
    @ObfuscatedName("al")
    @ObfuscatedGetter(
       intValue = 408004249
    )
-   @Export("ambient")
    int ambient = 0;
    @ObfuscatedName("ag")
    @ObfuscatedGetter(
       intValue = -182569543
    )
-   @Export("contrast")
    int contrast = 0;
    @ObfuscatedName("az")
    @ObfuscatedGetter(
       intValue = -478636009
    )
-   @Export("rotation")
    public int rotation = 32;
    @ObfuscatedName("ak")
-   @Export("transforms")
    public int[] transforms;
    @ObfuscatedName("af")
    @ObfuscatedGetter(
       intValue = 1750524771
    )
-   @Export("transformVarbit")
    int transformVarbit = -1;
    @ObfuscatedName("ai")
    @ObfuscatedGetter(
       intValue = -2035410821
    )
-   @Export("transformVarp")
    int transformVarp = -1;
    @ObfuscatedName("ax")
-   @Export("isInteractable")
    public boolean isInteractable = true;
    @ObfuscatedName("ah")
-   @Export("isClickable")
    public boolean isClickable = true;
    @ObfuscatedName("aw")
-   @Export("isFollower")
    public boolean isFollower = false;
    @ObfuscatedName("aj")
    int[] field2065 = null;
@@ -227,7 +193,6 @@ public class NPCComposition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lql;"
    )
-   @Export("params")
    IterableNodeHashTable params;
 
    @ObfuscatedName("v")
@@ -235,7 +200,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(B)V",
       garbageValue = "-60"
    )
-   @Export("postDecode")
    void postDecode() {
    }
 
@@ -244,7 +208,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "0"
    )
-   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -261,7 +224,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "-1000073156"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       int var3;
       int var4;
@@ -559,7 +521,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(I)Lgz;",
       garbageValue = "-549841481"
    )
-   @Export("transform")
    public final NPCComposition transform() {
       int var1 = -1;
       if (this.transformVarbit != -1) {
@@ -583,7 +544,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "2130957543"
    )
-   @Export("transformIsVisible")
    public boolean transformIsVisible() {
       if (this.transforms == null) {
          return true;
@@ -608,7 +568,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(III)I",
       garbageValue = "-1577076717"
    )
-   @Export("getIntParam")
    public int getIntParam(int var1, int var2) {
       return UserComparator8.method2819(this.params, var1, var2);
    }
@@ -618,7 +577,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(ILjava/lang/String;B)Ljava/lang/String;",
       garbageValue = "100"
    )
-   @Export("getStringParam")
    public String getStringParam(int var1, String var2) {
       IterableNodeHashTable var4 = this.params;
       String var3;
@@ -686,7 +644,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(II)Lgr;",
       garbageValue = "-664337463"
    )
-   @Export("ItemDefinition_get")
    public static ItemComposition ItemDefinition_get(int var0) {
       ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
       if (var1 != null) {

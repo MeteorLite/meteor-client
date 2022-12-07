@@ -10,7 +10,6 @@ public class class170 extends class173 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive18")
    static Archive archive18;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

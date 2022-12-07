@@ -5,31 +5,26 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ix")
-@Implements("AbstractWorldMapIcon")
 public abstract class AbstractWorldMapIcon {
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lky;"
    )
-   @Export("coord2")
    public final Coord coord2;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lky;"
    )
-   @Export("coord1")
    public final Coord coord1;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = -2136203537
    )
-   @Export("screenX")
    int screenX;
    @ObfuscatedName("b")
    @ObfuscatedGetter(
       intValue = -108942395
    )
-   @Export("screenY")
    int screenY;
 
    @ObfuscatedSignature(
@@ -45,7 +40,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "2098413555"
    )
-   @Export("getElement")
    public abstract int getElement();
 
    @ObfuscatedName("v")
@@ -53,7 +47,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(I)Lii;",
       garbageValue = "849546905"
    )
-   @Export("getLabel")
    abstract WorldMapLabel getLabel();
 
    @ObfuscatedName("x")
@@ -61,7 +54,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "-520723785"
    )
-   @Export("getSubWidth")
    abstract int getSubWidth();
 
    @ObfuscatedName("m")
@@ -69,7 +61,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "1290081241"
    )
-   @Export("getSubHeight")
    abstract int getSubHeight();
 
    @ObfuscatedName("a")
@@ -77,7 +68,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(III)Z",
       garbageValue = "-587750672"
    )
-   @Export("fitsScreen")
    boolean fitsScreen(int var1, int var2) {
       if (this.elementFitsScreen(var1, var2)) {
          return true;
@@ -91,7 +81,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(S)Z",
       garbageValue = "3416"
    )
-   @Export("hasValidElement")
    boolean hasValidElement() {
       return this.getElement() >= 0;
    }
@@ -101,7 +90,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(III)Z",
       garbageValue = "949717302"
    )
-   @Export("elementFitsScreen")
    boolean elementFitsScreen(int var1, int var2) {
       if (!this.hasValidElement()) {
          return false;
@@ -156,7 +144,6 @@ public abstract class AbstractWorldMapIcon {
       descriptor = "(IIB)Z",
       garbageValue = "74"
    )
-   @Export("labelFitsScreen")
    boolean labelFitsScreen(int var1, int var2) {
       WorldMapLabel var3 = this.getLabel();
       if (var3 == null) {

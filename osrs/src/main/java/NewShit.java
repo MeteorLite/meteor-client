@@ -11,7 +11,6 @@ public class NewShit {
    @ObfuscatedSignature(
       descriptor = "Lld;"
    )
-   @Export("NetCache_currentResponse")
    public static NetFileRequest NetCache_currentResponse;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

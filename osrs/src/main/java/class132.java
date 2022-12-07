@@ -46,7 +46,6 @@ public enum class132 implements class345 {
    @ObfuscatedGetter(
       intValue = 1796142361
    )
-   @Export("id")
    final int id;
 
    class132(int var3, int var4) {
@@ -59,7 +58,6 @@ public enum class132 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
@@ -69,7 +67,6 @@ public enum class132 implements class345 {
       descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
       garbageValue = "1018084003"
    )
-   @Export("RunException_sendStackTrace")
    public static void RunException_sendStackTrace(String var0, Throwable var1) {
       if (var1 != null) {
          var1.printStackTrace();

@@ -14,7 +14,6 @@ final class class101 implements class297 {
    @ObfuscatedGetter(
       intValue = 978763523
    )
-   @Export("selectedItemSlot")
    static int selectedItemSlot;
    // $FF: synthetic field
    @ObfuscatedSignature(
@@ -49,7 +48,6 @@ final class class101 implements class297 {
       descriptor = "(II)V",
       garbageValue = "1255396169"
    )
-   @Export("setWindowedMode")
    static void setWindowedMode(int var0) {
       Client.field739 = 0L;
       if (var0 >= 2) {

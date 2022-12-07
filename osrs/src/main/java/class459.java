@@ -13,7 +13,6 @@ public class class459 extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("DBTableType_cache")
    public static EvictingDualNodeHashTable DBTableType_cache = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
    public int[][] field4883;

@@ -13,7 +13,6 @@ public class class133 extends class136 {
    @ObfuscatedName("bg")
    static String field1635;
    @ObfuscatedName("id")
-   @Export("regionLandArchives")
    static byte[][] regionLandArchives;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

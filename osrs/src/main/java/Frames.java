@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ha")
-@Implements("Frames")
 public class Frames extends DualNode {
    @ObfuscatedName("td")
    @ObfuscatedGetter(
@@ -16,10 +15,8 @@ public class Frames extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("titlebuttonSprite")
    static IndexedSprite titlebuttonSprite;
    @ObfuscatedName("a")
-   @Export("ByteArrayPool_alternativeSizes")
    public static int[] ByteArrayPool_alternativeSizes;
    @ObfuscatedName("ez")
    @ObfuscatedSignature(
@@ -30,7 +27,6 @@ public class Frames extends DualNode {
    @ObfuscatedSignature(
       descriptor = "[Lho;"
    )
-   @Export("frames")
    Animation[] frames;
 
    @ObfuscatedSignature(
@@ -71,7 +67,6 @@ public class Frames extends DualNode {
       descriptor = "(II)Z",
       garbageValue = "-974350891"
    )
-   @Export("hasAlphaTransform")
    public boolean hasAlphaTransform(int var1) {
       return this.frames[var1].hasAlphaTransform;
    }

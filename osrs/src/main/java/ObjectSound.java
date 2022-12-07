@@ -5,43 +5,36 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("br")
-@Implements("ObjectSound")
 public final class ObjectSound extends Node {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("objectSounds")
    static NodeDeque objectSounds = new NodeDeque();
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1401561861
    )
-   @Export("plane")
    int plane;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1199351805
    )
-   @Export("x")
    int x;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -1317524287
    )
-   @Export("y")
    int y;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -661899648
    )
-   @Export("maxX")
    int maxX;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1301434539
    )
-   @Export("maxY")
    int maxY;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
@@ -52,19 +45,16 @@ public final class ObjectSound extends Node {
    @ObfuscatedSignature(
       descriptor = "Lgn;"
    )
-   @Export("obj")
    ObjectComposition obj;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = -1499670769
    )
-   @Export("soundEffectId")
    int soundEffectId;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Lap;"
    )
-   @Export("stream1")
    RawPcmStream stream1;
    @ObfuscatedName("j")
    @ObfuscatedGetter(
@@ -77,7 +67,6 @@ public final class ObjectSound extends Node {
    )
    int field839;
    @ObfuscatedName("i")
-   @Export("soundEffectIds")
    int[] soundEffectIds;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
@@ -88,7 +77,6 @@ public final class ObjectSound extends Node {
    @ObfuscatedSignature(
       descriptor = "Lap;"
    )
-   @Export("stream2")
    RawPcmStream stream2;
 
    @ObfuscatedName("v")
@@ -96,7 +84,6 @@ public final class ObjectSound extends Node {
       descriptor = "(I)V",
       garbageValue = "-1596084359"
    )
-   @Export("set")
    void set() {
       int var1 = this.soundEffectId;
       ObjectComposition var2 = this.obj.transform();
@@ -150,7 +137,6 @@ public final class ObjectSound extends Node {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
       garbageValue = "11"
    )
-   @Export("insertMenuItemNoShift")
    public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
       class37.method706(var0, var1, var2, var3, var4, var5, -1, false);
    }

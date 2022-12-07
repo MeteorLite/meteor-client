@@ -20,7 +20,6 @@ public class class31 {
    @ObfuscatedGetter(
       intValue = 460402933
    )
-   @Export("currentPort")
    static int currentPort;
 
    static {
@@ -32,7 +31,6 @@ public class class31 {
       descriptor = "(IB)V",
       garbageValue = "1"
    )
-   @Export("runWidgetOnLoadListener")
    static void runWidgetOnLoadListener(int var0) {
       if (var0 != -1) {
          if (Players.loadInterface(var0)) {

@@ -8,6 +8,5 @@ public final class class357 {
    @ObfuscatedSignature(
       descriptor = "Lfl;"
    )
-   @Export("js5SocketTask")
    static Task js5SocketTask;
 }

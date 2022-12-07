@@ -5,31 +5,26 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ij")
-@Implements("WorldMapData_1")
 public class WorldMapData_1 extends AbstractWorldMapData {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 673523519
    )
-   @Export("chunkXLow")
    int chunkXLow;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1046620565
    )
-   @Export("chunkYLow")
    int chunkYLow;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1891808843
    )
-   @Export("chunkX")
    int chunkX;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 1231900861
    )
-   @Export("chunkY")
    int chunkY;
 
    @ObfuscatedName("h")
@@ -37,7 +32,6 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(Lqy;B)V",
       garbageValue = "16"
    )
-   @Export("init")
    void init(Buffer var1) {
       int var2 = var1.readUnsignedByte();
       if (var2 != WorldMapID.field2983.value) {
@@ -63,7 +57,6 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(Lqy;I)V",
       garbageValue = "1703912011"
    )
-   @Export("readGeography")
    void readGeography(Buffer var1) {
       super.planes = Math.min(super.planes, 4);
       super.floorUnderlayIds = new short[1][64][64];
@@ -97,7 +90,6 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "-1726020547"
    )
-   @Export("getChunkXLow")
    int getChunkXLow() {
       return this.chunkXLow;
    }
@@ -107,7 +99,6 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "660980173"
    )
-   @Export("getChunkYLow")
    int getChunkYLow() {
       return this.chunkYLow;
    }
@@ -117,7 +108,6 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "-1808236663"
    )
-   @Export("getChunkX")
    int getChunkX() {
       return this.chunkX;
    }
@@ -127,7 +117,6 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "-1429277578"
    )
-   @Export("getChunkY")
    int getChunkY() {
       return this.chunkY;
    }

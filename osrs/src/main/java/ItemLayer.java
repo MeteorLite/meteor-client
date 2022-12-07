@@ -5,55 +5,46 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gy")
-@Implements("ItemLayer")
 public final class ItemLayer {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -550242183
    )
-   @Export("z")
    int z;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -733443873
    )
-   @Export("x")
    int x;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 659820055
    )
-   @Export("y")
    int y;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("first")
    Renderable first;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("second")
    Renderable second;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("third")
    Renderable third;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       longValue = -8382761698159618857L
    )
-   @Export("tag")
    long tag;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = -999463859
    )
-   @Export("height")
    int height;
 
    @ObfuscatedName("h")

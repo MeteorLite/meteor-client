@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nh")
-@Implements("Timer")
 public class Timer {
    @ObfuscatedName("vx")
    static Iterator field4460;
@@ -129,7 +128,6 @@ public class Timer {
       descriptor = "(Lqy;B)V",
       garbageValue = "-113"
    )
-   @Export("write")
    public void write(Buffer var1) {
       long var2 = this.field4454;
       var2 /= 10L;

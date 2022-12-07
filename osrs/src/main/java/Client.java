@@ -19,17 +19,14 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@Implements("Client")
 @ObfuscatedName("client")
 public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedName("st")
    @ObfuscatedSignature(
       descriptor = "[Lep;"
    )
-   @Export("currentClanSettings")
    static ClanSettings[] currentClanSettings;
    @ObfuscatedName("sw")
-   @Export("playingJingle")
    static boolean playingJingle;
    @ObfuscatedName("vw")
    @ObfuscatedGetter(
@@ -40,13 +37,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 304920807
    )
-   @Export("viewportOffsetX")
    static int viewportOffsetX;
    @ObfuscatedName("ui")
    @ObfuscatedGetter(
       intValue = 658238419
    )
-   @Export("viewportOffsetY")
    static int viewportOffsetY;
    @ObfuscatedName("ws")
    static int[] field806;
@@ -54,7 +49,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 1298103577
    )
-   @Export("destinationX")
    static int destinationX;
    @ObfuscatedName("wt")
    static int[] field785;
@@ -67,10 +61,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -801254203
    )
-   @Export("destinationY")
    static int destinationY;
    @ObfuscatedName("ts")
-   @Export("isCameraLocked")
    static boolean isCameraLocked;
    @ObfuscatedName("th")
    static boolean field772;
@@ -78,19 +70,16 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 421577261
    )
-   @Export("currentTrackGroupId")
    static int currentTrackGroupId;
    @ObfuscatedName("sj")
    @ObfuscatedSignature(
       descriptor = "[Lfn;"
    )
-   @Export("currentClanChannels")
    static ClanChannel[] currentClanChannels;
    @ObfuscatedName("vg")
    @ObfuscatedSignature(
       descriptor = "[Lmz;"
    )
-   @Export("grandExchangeOffers")
    static GrandExchangeOffer[] grandExchangeOffers;
    @ObfuscatedName("uc")
    @ObfuscatedGetter(
@@ -101,7 +90,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lko;"
    )
-   @Export("playerAppearance")
    static PlayerComposition playerAppearance;
    @ObfuscatedName("ub")
    @ObfuscatedGetter(
@@ -109,61 +97,49 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static int field793;
    @ObfuscatedName("vj")
-   @Export("archiveLoaders")
    static ArrayList archiveLoaders;
    @ObfuscatedName("vt")
    @ObfuscatedGetter(
       intValue = -1259057673
    )
-   @Export("archiveLoadersDone")
    static int archiveLoadersDone;
    @ObfuscatedName("tw")
    @ObfuscatedGetter(
       intValue = -604972557
    )
-   @Export("soundEffectCount")
    static int soundEffectCount;
    @ObfuscatedName("to")
-   @Export("soundEffectIds")
    static int[] soundEffectIds;
    @ObfuscatedName("tj")
-   @Export("queuedSoundEffectLoops")
    static int[] queuedSoundEffectLoops;
    @ObfuscatedName("tf")
-   @Export("queuedSoundEffectDelays")
    static int[] queuedSoundEffectDelays;
    @ObfuscatedName("sh")
    @ObfuscatedGetter(
       intValue = 1125738065
    )
-   @Export("minimapState")
    static int minimapState;
    @ObfuscatedName("tr")
    @ObfuscatedSignature(
       descriptor = "[Lak;"
    )
-   @Export("soundEffects")
    static SoundEffect[] soundEffects;
    @ObfuscatedName("vh")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("Widget_cachedModels")
    static EvictingDualNodeHashTable Widget_cachedModels;
    @ObfuscatedName("ta")
-   @Export("soundLocations")
    static int[] soundLocations;
    @ObfuscatedName("vp")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("Widget_cachedFonts")
    static EvictingDualNodeHashTable Widget_cachedFonts;
    @ObfuscatedName("ud")
    @ObfuscatedSignature(
       descriptor = "Lpd;"
    )
-   @Export("platformInfoProvider")
    static PlatformInfoProvider platformInfoProvider;
    @ObfuscatedName("ro")
    @ObfuscatedGetter(
@@ -179,7 +155,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lni;"
    )
-   @Export("archive5")
    static class384 archive5;
    @ObfuscatedName("ut")
    static boolean[] field773;
@@ -187,13 +162,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -117040113
    )
-   @Export("mapIconCount")
    static int mapIconCount;
    @ObfuscatedName("sl")
-   @Export("mapIconXs")
    static int[] mapIconXs;
    @ObfuscatedName("sv")
-   @Export("mapIconYs")
    static int[] mapIconYs;
    @ObfuscatedName("ul")
    static short field778;
@@ -205,7 +177,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("mapIcons")
    static SpritePixels[] mapIcons;
    @ObfuscatedName("uy")
    static short field510;
@@ -215,7 +186,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -2061488415
    )
-   @Export("viewportZoom")
    static int viewportZoom;
    @ObfuscatedName("ua")
    static short field690;
@@ -223,7 +193,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -509639003
    )
-   @Export("viewportWidth")
    static int viewportWidth;
    @ObfuscatedName("vv")
    @ObfuscatedGetter(
@@ -234,13 +203,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -897458695
    )
-   @Export("viewportHeight")
    static int viewportHeight;
    @ObfuscatedName("ue")
-   @Export("zoomHeight")
    static short zoomHeight;
    @ObfuscatedName("ug")
-   @Export("zoomWidth")
    static short zoomWidth;
    @ObfuscatedName("ux")
    static int[] field775;
@@ -254,7 +220,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lbg;"
    )
-   @Export("GrandExchangeEvents_worldComparator")
    static GrandExchangeOfferOwnWorldComparator GrandExchangeEvents_worldComparator;
    @ObfuscatedName("vr")
    @ObfuscatedGetter(
@@ -265,7 +230,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "[Lgw;"
    )
-   @Export("collisionMaps")
    static CollisionMap[] collisionMaps;
    @ObfuscatedName("bh")
    static boolean field674 = true;
@@ -273,25 +237,20 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -1786376969
    )
-   @Export("worldId")
    public static int worldId = 1;
    @ObfuscatedName("bf")
    @ObfuscatedGetter(
       intValue = -478869749
    )
-   @Export("worldProperties")
    static int worldProperties = 0;
    @ObfuscatedName("by")
    @ObfuscatedGetter(
       intValue = 459972555
    )
-   @Export("gameBuild")
    static int gameBuild = 0;
    @ObfuscatedName("bc")
-   @Export("isMembersWorld")
    public static boolean isMembersWorld = false;
    @ObfuscatedName("bl")
-   @Export("isLowDetail")
    static boolean isLowDetail = false;
    @ObfuscatedName("bi")
    @ObfuscatedGetter(
@@ -302,7 +261,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 505322101
    )
-   @Export("clientType")
    static int clientType = -1;
    @ObfuscatedName("bq")
    @ObfuscatedGetter(
@@ -310,7 +268,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static int field698 = -1;
    @ObfuscatedName("bn")
-   @Export("onMobile")
    static boolean onMobile = false;
    @ObfuscatedName("ba")
    @ObfuscatedGetter(
@@ -321,22 +278,18 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 849546905
    )
-   @Export("gameState")
    static int gameState = 0;
    @ObfuscatedName("dn")
-   @Export("isLoading")
    static boolean isLoading = true;
    @ObfuscatedName("da")
    @ObfuscatedGetter(
       intValue = -1399173809
    )
-   @Export("cycle")
    static int cycle = 0;
    @ObfuscatedName("de")
    @ObfuscatedGetter(
       longValue = -8630714732823869625L
    )
-   @Export("mouseLastLastPressedTimeMillis")
    static long mouseLastLastPressedTimeMillis = 1L;
    @ObfuscatedName("dw")
    @ObfuscatedGetter(
@@ -354,43 +307,36 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static long field522 = -1L;
    @ObfuscatedName("ds")
-   @Export("hadFocus")
    static boolean hadFocus = true;
    @ObfuscatedName("dc")
    @ObfuscatedGetter(
       intValue = -1446195321
    )
-   @Export("rebootTimer")
    static int rebootTimer = 0;
    @ObfuscatedName("dk")
    @ObfuscatedGetter(
       intValue = 1689383815
    )
-   @Export("hintArrowType")
    static int hintArrowType = 0;
    @ObfuscatedName("df")
    @ObfuscatedGetter(
       intValue = 53054479
    )
-   @Export("hintArrowNpcIndex")
    static int hintArrowNpcIndex = 0;
    @ObfuscatedName("dy")
    @ObfuscatedGetter(
       intValue = 689063901
    )
-   @Export("hintArrowPlayerIndex")
    static int hintArrowPlayerIndex = 0;
    @ObfuscatedName("dx")
    @ObfuscatedGetter(
       intValue = -1525015337
    )
-   @Export("hintArrowX")
    static int hintArrowX = 0;
    @ObfuscatedName("dr")
    @ObfuscatedGetter(
       intValue = -1084314735
    )
-   @Export("hintArrowY")
    static int hintArrowY = 0;
    @ObfuscatedName("dd")
    @ObfuscatedGetter(
@@ -411,25 +357,21 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
-   @Export("playerAttackOption")
    static AttackOption playerAttackOption;
    @ObfuscatedName("dp")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
-   @Export("npcAttackOption")
    static AttackOption npcAttackOption;
    @ObfuscatedName("eh")
    @ObfuscatedGetter(
       intValue = -1081196793
    )
-   @Export("titleLoadingStage")
    static int titleLoadingStage;
    @ObfuscatedName("ee")
    @ObfuscatedGetter(
       intValue = -419480225
    )
-   @Export("js5ConnectState")
    static int js5ConnectState;
    @ObfuscatedName("em")
    @ObfuscatedGetter(
@@ -440,13 +382,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -321791745
    )
-   @Export("js5Errors")
    static int js5Errors;
    @ObfuscatedName("fp")
    @ObfuscatedGetter(
       intValue = -83131829
    )
-   @Export("loginState")
    static int loginState;
    @ObfuscatedName("fg")
    @ObfuscatedGetter(
@@ -476,31 +416,25 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedName("gh")
    static final String field554;
    @ObfuscatedName("gr")
-   @Export("Login_isUsernameRemembered")
    static boolean Login_isUsernameRemembered;
    @ObfuscatedName("gk")
    @ObfuscatedSignature(
       descriptor = "Lbb;"
    )
-   @Export("secureRandomFuture")
    static SecureRandomFuture secureRandomFuture;
    @ObfuscatedName("gg")
-   @Export("randomDatData")
    static byte[] randomDatData;
    @ObfuscatedName("gi")
    @ObfuscatedSignature(
       descriptor = "[Lcg;"
    )
-   @Export("npcs")
    static NPC[] npcs;
    @ObfuscatedName("hs")
    @ObfuscatedGetter(
       intValue = 1742658927
    )
-   @Export("npcCount")
    static int npcCount;
    @ObfuscatedName("hx")
-   @Export("npcIndices")
    static int[] npcIndices;
    @ObfuscatedName("ho")
    @ObfuscatedGetter(
@@ -513,25 +447,20 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lde;"
    )
-   @Export("packetWriter")
    public static final PacketWriter packetWriter;
    @ObfuscatedName("hf")
    @ObfuscatedGetter(
       intValue = 914543801
    )
-   @Export("logoutTimer")
    static int logoutTimer;
    @ObfuscatedName("hr")
-   @Export("hadNetworkError")
    static boolean hadNetworkError;
    @ObfuscatedName("hz")
    @ObfuscatedSignature(
       descriptor = "Lnh;"
    )
-   @Export("timer")
    static Timer timer;
    @ObfuscatedName("hg")
-   @Export("fontsMap")
    static HashMap fontsMap;
    @ObfuscatedName("hp")
    @ObfuscatedGetter(
@@ -559,16 +488,12 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static int field658;
    @ObfuscatedName("it")
-   @Export("selectedItemName")
    static String selectedItemName;
    @ObfuscatedName("iy")
-   @Export("regionMapArchiveIds")
    static int[] regionMapArchiveIds;
    @ObfuscatedName("ia")
-   @Export("isInInstance")
    static boolean isInInstance;
    @ObfuscatedName("im")
-   @Export("instanceChunkTemplates")
    static int[][][] instanceChunkTemplates;
    @ObfuscatedName("in")
    static final int[] field579;
@@ -603,19 +528,16 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -606509143
    )
-   @Export("alternativeScrollbarWidth")
    static int alternativeScrollbarWidth;
    @ObfuscatedName("jn")
    @ObfuscatedGetter(
       intValue = 1701036907
    )
-   @Export("camAngleX")
    static int camAngleX;
    @ObfuscatedName("jx")
    @ObfuscatedGetter(
       intValue = -1633873355
    )
-   @Export("camAngleY")
    static int camAngleY;
    @ObfuscatedName("jf")
    @ObfuscatedGetter(
@@ -641,13 +563,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 1951368499
    )
-   @Export("oculusOrbState")
    static int oculusOrbState;
    @ObfuscatedName("ja")
    @ObfuscatedGetter(
       intValue = 1891106199
    )
-   @Export("camFollowHeight")
    static int camFollowHeight;
    @ObfuscatedName("ka")
    @ObfuscatedGetter(
@@ -668,13 +588,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -904534999
    )
-   @Export("oculusOrbNormalSpeed")
    static int oculusOrbNormalSpeed;
    @ObfuscatedName("kx")
    @ObfuscatedGetter(
       intValue = 807828661
    )
-   @Export("oculusOrbSlowedSpeed")
    static int oculusOrbSlowedSpeed;
    @ObfuscatedName("ke")
    @ObfuscatedGetter(
@@ -699,85 +617,66 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -1080955203
    )
-   @Export("overheadTextCount")
    static int overheadTextCount;
    @ObfuscatedName("kp")
    @ObfuscatedGetter(
       intValue = -251743249
    )
-   @Export("overheadTextLimit")
    static int overheadTextLimit;
    @ObfuscatedName("ku")
-   @Export("overheadTextXs")
    static int[] overheadTextXs;
    @ObfuscatedName("kt")
-   @Export("overheadTextYs")
    static int[] overheadTextYs;
    @ObfuscatedName("ko")
-   @Export("overheadTextAscents")
    static int[] overheadTextAscents;
    @ObfuscatedName("ki")
-   @Export("overheadTextXOffsets")
    static int[] overheadTextXOffsets;
    @ObfuscatedName("kz")
-   @Export("overheadTextColors")
    static int[] overheadTextColors;
    @ObfuscatedName("kd")
-   @Export("overheadTextEffects")
    static int[] overheadTextEffects;
    @ObfuscatedName("kf")
-   @Export("overheadTextCyclesRemaining")
    static int[] overheadTextCyclesRemaining;
    @ObfuscatedName("kq")
-   @Export("overheadText")
    static String[] overheadText;
    @ObfuscatedName("kk")
-   @Export("tileLastDrawnActor")
    static int[][] tileLastDrawnActor;
    @ObfuscatedName("kw")
    @ObfuscatedGetter(
       intValue = 1676158973
    )
-   @Export("viewportDrawCount")
    static int viewportDrawCount;
    @ObfuscatedName("kj")
    @ObfuscatedGetter(
       intValue = -1444752263
    )
-   @Export("viewportTempX")
    static int viewportTempX;
    @ObfuscatedName("kh")
    @ObfuscatedGetter(
       intValue = -1136866163
    )
-   @Export("viewportTempY")
    static int viewportTempY;
    @ObfuscatedName("lb")
    @ObfuscatedGetter(
       intValue = -1284637171
    )
-   @Export("mouseCrossX")
    static int mouseCrossX;
    @ObfuscatedName("lc")
    @ObfuscatedGetter(
       intValue = -1923066637
    )
-   @Export("mouseCrossY")
    static int mouseCrossY;
    @ObfuscatedName("ll")
    @ObfuscatedGetter(
       intValue = -72070731
    )
-   @Export("mouseCrossState")
    static int mouseCrossState;
    @ObfuscatedName("lk")
    @ObfuscatedGetter(
       intValue = -2144438923
    )
-   @Export("mouseCrossColor")
    static int mouseCrossColor;
    @ObfuscatedName("lu")
-   @Export("showMouseCross")
    static boolean showMouseCross;
    @ObfuscatedName("lg")
    @ObfuscatedGetter(
@@ -793,25 +692,21 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -2075416401
    )
-   @Export("dragItemSlotSource")
    static int dragItemSlotSource;
    @ObfuscatedName("lh")
    @ObfuscatedGetter(
       intValue = 1800438489
    )
-   @Export("draggedWidgetX")
    static int draggedWidgetX;
    @ObfuscatedName("lj")
    @ObfuscatedGetter(
       intValue = 778021723
    )
-   @Export("draggedWidgetY")
    static int draggedWidgetY;
    @ObfuscatedName("li")
    @ObfuscatedGetter(
       intValue = 1981845999
    )
-   @Export("dragItemSlotDestination")
    static int dragItemSlotDestination;
    @ObfuscatedName("le")
    static boolean field630;
@@ -819,7 +714,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 1731996675
    )
-   @Export("itemDragDuration")
    static int itemDragDuration;
    @ObfuscatedName("lt")
    @ObfuscatedGetter(
@@ -827,19 +721,16 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static int field691;
    @ObfuscatedName("ln")
-   @Export("showLoadingMessages")
    static boolean showLoadingMessages;
    @ObfuscatedName("ly")
    @ObfuscatedSignature(
       descriptor = "[Lcj;"
    )
-   @Export("players")
    static Player[] players;
    @ObfuscatedName("lr")
    @ObfuscatedGetter(
       intValue = -653603109
    )
-   @Export("localPlayerIndex")
    static int localPlayerIndex;
    @ObfuscatedName("lx")
    @ObfuscatedGetter(
@@ -852,13 +743,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static long field637;
    @ObfuscatedName("mn")
-   @Export("renderSelf")
    static boolean renderSelf;
    @ObfuscatedName("ms")
    @ObfuscatedGetter(
       intValue = -1173896191
    )
-   @Export("drawPlayerNames")
    static int drawPlayerNames;
    @ObfuscatedName("mk")
    @ObfuscatedGetter(
@@ -868,13 +757,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedName("me")
    static int[] field641;
    @ObfuscatedName("mb")
-   @Export("playerMenuOpcodes")
    static final int[] playerMenuOpcodes;
    @ObfuscatedName("mr")
-   @Export("playerMenuActions")
    static String[] playerMenuActions;
    @ObfuscatedName("mi")
-   @Export("playerOptionsPriorities")
    static boolean[] playerOptionsPriorities;
    @ObfuscatedName("md")
    static int[] field645;
@@ -882,99 +768,75 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 444610161
    )
-   @Export("combatTargetPlayerIndex")
    static int combatTargetPlayerIndex;
    @ObfuscatedName("mu")
    @ObfuscatedSignature(
       descriptor = "[[[Lmq;"
    )
-   @Export("groundItems")
    static NodeDeque[][][] groundItems;
    @ObfuscatedName("mv")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("pendingSpawns")
    static NodeDeque pendingSpawns;
    @ObfuscatedName("ma")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("projectiles")
    static NodeDeque projectiles;
    @ObfuscatedName("mo")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("graphicsObjects")
    static NodeDeque graphicsObjects;
    @ObfuscatedName("mm")
-   @Export("currentLevels")
    static int[] currentLevels;
    @ObfuscatedName("mj")
-   @Export("levels")
    static int[] levels;
    @ObfuscatedName("my")
-   @Export("experience")
    static int[] experience;
    @ObfuscatedName("mp")
-   @Export("leftClickOpensMenu")
    static boolean leftClickOpensMenu;
    @ObfuscatedName("mc")
-   @Export("isMenuOpen")
    static boolean isMenuOpen;
    @ObfuscatedName("nm")
    @ObfuscatedGetter(
       intValue = 2013462879
    )
-   @Export("menuOptionsCount")
    static int menuOptionsCount;
    @ObfuscatedName("nv")
-   @Export("menuArguments1")
    static int[] menuArguments1;
    @ObfuscatedName("nu")
-   @Export("menuArguments2")
    static int[] menuArguments2;
    @ObfuscatedName("ny")
-   @Export("menuOpcodes")
    static int[] menuOpcodes;
    @ObfuscatedName("np")
-   @Export("menuIdentifiers")
    static int[] menuIdentifiers;
    @ObfuscatedName("ne")
    static int[] menuItemIds;
    @ObfuscatedName("na")
-   @Export("menuActions")
    static String[] menuActions;
    @ObfuscatedName("nl")
-   @Export("menuTargets")
    static String[] menuTargets;
    @ObfuscatedName("nk")
-   @Export("menuShiftClick")
    static boolean[] menuShiftClick;
    @ObfuscatedName("nf")
-   @Export("followerOpsLowPriority")
    static boolean followerOpsLowPriority;
    @ObfuscatedName("nh")
-   @Export("shiftClickDrop")
    static boolean shiftClickDrop;
    @ObfuscatedName("nr")
-   @Export("tapToDrop")
    static boolean tapToDrop;
    @ObfuscatedName("nd")
-   @Export("showMouseOverText")
    static boolean showMouseOverText;
    @ObfuscatedName("no")
    @ObfuscatedGetter(
       intValue = -749158239
    )
-   @Export("viewportX")
    static int viewportX;
    @ObfuscatedName("nq")
    @ObfuscatedGetter(
       intValue = 1174058235
    )
-   @Export("viewportY")
    static int viewportY;
    @ObfuscatedName("nz")
    @ObfuscatedGetter(
@@ -990,40 +852,32 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -1639704995
    )
-   @Export("isItemSelected")
    static int isItemSelected;
    @ObfuscatedName("nc")
-   @Export("isSpellSelected")
    static boolean isSpellSelected;
    @ObfuscatedName("oy")
    @ObfuscatedGetter(
       intValue = -825825707
    )
-   @Export("selectedSpellChildIndex")
    static int selectedSpellChildIndex;
    @ObfuscatedName("og")
    @ObfuscatedGetter(
       intValue = -264024497
    )
-   @Export("selectedSpellItemId")
    static int selectedSpellItemId;
    @ObfuscatedName("os")
-   @Export("selectedSpellActionName")
    static String selectedSpellActionName;
    @ObfuscatedName("od")
-   @Export("selectedSpellName")
    static String selectedSpellName;
    @ObfuscatedName("oq")
    @ObfuscatedGetter(
       intValue = -1495174825
    )
-   @Export("rootInterface")
    static int rootInterface;
    @ObfuscatedName("oa")
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
-   @Export("interfaceParents")
    static NodeHashTable interfaceParents;
    @ObfuscatedName("ox")
    @ObfuscatedGetter(
@@ -1039,7 +893,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 812943257
    )
-   @Export("chatEffects")
    static int chatEffects;
    @ObfuscatedName("on")
    @ObfuscatedGetter(
@@ -1050,70 +903,58 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("meslayerContinueWidget")
    static Widget meslayerContinueWidget;
    @ObfuscatedName("of")
    @ObfuscatedGetter(
       intValue = 809546495
    )
-   @Export("runEnergy")
    static int runEnergy;
    @ObfuscatedName("ow")
    @ObfuscatedGetter(
       intValue = -761634595
    )
-   @Export("weight")
    static int weight;
    @ObfuscatedName("op")
    @ObfuscatedGetter(
       intValue = 643587025
    )
-   @Export("staffModLevel")
    static int staffModLevel;
    @ObfuscatedName("oj")
    @ObfuscatedGetter(
       intValue = -1825146679
    )
-   @Export("followerIndex")
    static int followerIndex;
    @ObfuscatedName("oc")
-   @Export("playerMod")
    static boolean playerMod;
    @ObfuscatedName("oz")
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("viewportWidget")
    static Widget viewportWidget;
    @ObfuscatedName("om")
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("clickedWidget")
    static Widget clickedWidget;
    @ObfuscatedName("ob")
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("clickedWidgetParent")
    static Widget clickedWidgetParent;
    @ObfuscatedName("or")
    @ObfuscatedGetter(
       intValue = 1107452813
    )
-   @Export("widgetClickX")
    static int widgetClickX;
    @ObfuscatedName("pe")
    @ObfuscatedGetter(
       intValue = 1093404483
    )
-   @Export("widgetClickY")
    static int widgetClickY;
    @ObfuscatedName("pv")
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("draggedOnWidget")
    static Widget draggedOnWidget;
    @ObfuscatedName("pa")
    static boolean field745;
@@ -1140,13 +981,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static int field703;
    @ObfuscatedName("px")
-   @Export("isDraggingWidget")
    static boolean isDraggingWidget;
    @ObfuscatedName("po")
    @ObfuscatedGetter(
       intValue = 673017441
    )
-   @Export("cycleCntr")
    static int cycleCntr;
    @ObfuscatedName("pl")
    static int[] field706;
@@ -1180,7 +1019,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 756647275
    )
-   @Export("chatCycle")
    static int chatCycle;
    @ObfuscatedName("pi")
    @ObfuscatedGetter(
@@ -1221,7 +1059,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = -142840217
    )
-   @Export("mouseWheelRotation")
    static int mouseWheelRotation;
    @ObfuscatedName("qj")
    @ObfuscatedSignature(
@@ -1232,7 +1069,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("scriptEvents")
    static NodeDeque scriptEvents;
    @ObfuscatedName("qr")
    @ObfuscatedSignature(
@@ -1253,13 +1089,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
-   @Export("widgetFlags")
    static NodeHashTable widgetFlags;
    @ObfuscatedName("qm")
    @ObfuscatedGetter(
       intValue = 1685586111
    )
-   @Export("rootWidgetCount")
    static int rootWidgetCount;
    @ObfuscatedName("qb")
    @ObfuscatedGetter(
@@ -1273,22 +1107,17 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedName("qx")
    static boolean[] field733;
    @ObfuscatedName("qy")
-   @Export("rootWidgetXs")
    static int[] rootWidgetXs;
    @ObfuscatedName("qz")
-   @Export("rootWidgetYs")
    static int[] rootWidgetYs;
    @ObfuscatedName("rf")
-   @Export("rootWidgetWidths")
    static int[] rootWidgetWidths;
    @ObfuscatedName("rq")
-   @Export("rootWidgetHeights")
    static int[] rootWidgetHeights;
    @ObfuscatedName("rk")
    @ObfuscatedGetter(
       intValue = -544956459
    )
-   @Export("gameDrawingMode")
    static int gameDrawingMode;
    @ObfuscatedName("rh")
    @ObfuscatedGetter(
@@ -1296,7 +1125,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static long field739;
    @ObfuscatedName("rl")
-   @Export("isResizable")
    static boolean isResizable;
    @ObfuscatedName("ra")
    static int[] field741;
@@ -1304,13 +1132,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedGetter(
       intValue = 1034069959
    )
-   @Export("publicChatMode")
    static int publicChatMode;
    @ObfuscatedName("rs")
    @ObfuscatedGetter(
       intValue = -1887729789
    )
-   @Export("tradeChatMode")
    static int tradeChatMode;
    @ObfuscatedName("rg")
    static String field744;
@@ -1666,7 +1492,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(B)V",
       garbageValue = "-101"
    )
-   @Export("resizeGame")
    protected final void resizeGame() {
       field739 = Message.method1197() + 500L;
       this.resizeJS();
@@ -1681,7 +1506,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(B)V",
       garbageValue = "0"
    )
-   @Export("setUp")
    protected final void setUp() {
       int[] var1 = new int[]{20, 260, 10000};
       int[] var2 = new int[]{1000, 100, 500};
@@ -1739,7 +1563,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(B)V",
       garbageValue = "-22"
    )
-   @Export("doCycle")
    protected final void doCycle() {
       ++cycle;
       this.doCycleJs5();
@@ -1813,7 +1636,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(ZI)V",
       garbageValue = "920051106"
    )
-   @Export("draw")
    protected final void draw(boolean var1) {
       boolean var2 = class37.method701();
       if (var2 && playingJingle && TileItem.pcmPlayer0 != null) {
@@ -1891,7 +1713,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(I)V",
       garbageValue = "1295386641"
    )
-   @Export("kill0")
    protected final void kill0() {
       if (WorldMapArea.varcs.hasUnwrittenChanges()) {
          WorldMapArea.varcs.write();
@@ -2031,7 +1852,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(I)V",
       garbageValue = "-1825291822"
    )
-   @Export("doCycleJs5")
    void doCycleJs5() {
       if (gameState != 1000) {
          boolean var1 = WallDecoration.method4830();
@@ -2047,7 +1867,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(I)V",
       garbageValue = "-924281456"
    )
-   @Export("doCycleJs5Connect")
    void doCycleJs5Connect() {
       if (NetCache.NetCache_crcMismatches >= 4) {
          this.error("js5crc");
@@ -2206,7 +2025,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(II)V",
       garbageValue = "1264077438"
    )
-   @Export("js5Error")
    void js5Error(int var1) {
       class357.js5SocketTask = null;
       WorldMapIcon_1.js5Socket = null;
@@ -2244,7 +2062,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(B)V",
       garbageValue = "25"
    )
-   @Export("doCycleLoggedOut")
    final void doCycleLoggedOut() {
       Object var1 = packetWriter.getSocket();
       PacketBuffer var2 = packetWriter.packetBuffer;
@@ -2942,7 +2759,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(I)V",
       garbageValue = "-35306056"
    )
-   @Export("doCycleLoggedIn")
    final void doCycleLoggedIn() {
       if (rebootTimer > 1) {
          --rebootTimer;
@@ -3649,7 +3465,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(I)V",
       garbageValue = "-1654731746"
    )
-   @Export("resizeJS")
    void resizeJS() {
       int var1 = CollisionMap.canvasWidth;
       int var2 = Language.canvasHeight;
@@ -3678,7 +3493,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(S)V",
       garbageValue = "-25398"
    )
-   @Export("drawLoggedIn")
    final void drawLoggedIn() {
       int var1;
       if (rootInterface != -1) {
@@ -5784,7 +5598,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(I)V",
       garbageValue = "919576358"
    )
-   @Export("menu")
    final void menu() {
       boolean var1 = false;
 
@@ -5947,7 +5760,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(I)Z",
       garbageValue = "1964270751"
    )
-   @Export("shouldLeftClickOpenMenu")
    final boolean shouldLeftClickOpenMenu() {
       int var1 = menuOptionsCount - 1;
       return (leftClickOpensMenu && menuOptionsCount > 2 || class281.method5505(var1)) && !menuShiftClick[var1];
@@ -5958,7 +5770,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(III)V",
       garbageValue = "712334109"
    )
-   @Export("openMenu")
    final void openMenu(int var1, int var2) {
       int var3 = class146.fontBold12.stringWidth("Choose Option");
 
@@ -6006,7 +5817,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(ZI)V",
       garbageValue = "-462347970"
    )
-   @Export("resizeRoot")
    final void resizeRoot(boolean var1) {
       ByteArrayPool.method7319(rootInterface, CollisionMap.canvasWidth, Language.canvasHeight, var1);
    }
@@ -6016,7 +5826,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(Lkd;I)V",
       garbageValue = "-1538657910"
    )
-   @Export("alignWidget")
    void alignWidget(Widget var1) {
       Widget var2 = var1.parentId == -1 ? null : class175.getWidget(var1.parentId);
       int var3;
@@ -6157,7 +5966,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(B)Lrp;",
       garbageValue = "77"
    )
-   @Export("username")
    public Username username() {
       return class155.localPlayer != null ? class155.localPlayer.username : null;
    }
@@ -6598,7 +6406,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(B)Lpb;",
       garbageValue = "45"
    )
-   @Export("getWorldMap")
    static WorldMap getWorldMap() {
       return KitDefinition.worldMap;
    }
@@ -6608,7 +6415,6 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       descriptor = "(S)V",
       garbageValue = "-4511"
    )
-   @Export("playPcmPlayers")
    static final void playPcmPlayers() {
       if (UserComparator8.pcmPlayer1 != null) {
          UserComparator8.pcmPlayer1.run();

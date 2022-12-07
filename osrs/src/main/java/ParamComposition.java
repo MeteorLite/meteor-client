@@ -5,36 +5,29 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gv")
-@Implements("ParamComposition")
 public class ParamComposition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("ParamDefinition_archive")
    static AbstractArchive ParamDefinition_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("ParamDefinition_cached")
    static EvictingDualNodeHashTable ParamDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("du")
    static boolean field2121;
    @ObfuscatedName("v")
-   @Export("type")
    char type;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 818744259
    )
-   @Export("defaultInt")
    public int defaultInt;
    @ObfuscatedName("m")
-   @Export("defaultStr")
    public String defaultStr;
    @ObfuscatedName("q")
-   @Export("autoDisable")
    boolean autoDisable = true;
 
    @ObfuscatedName("v")
@@ -42,7 +35,6 @@ public class ParamComposition extends DualNode {
       descriptor = "(B)V",
       garbageValue = "-35"
    )
-   @Export("postDecode")
    void postDecode() {
    }
 
@@ -51,7 +43,6 @@ public class ParamComposition extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "125"
    )
-   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -68,7 +59,6 @@ public class ParamComposition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "1176853720"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          byte var4 = var1.readByte();
@@ -103,7 +93,6 @@ public class ParamComposition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "1916237971"
    )
-   @Export("isString")
    public boolean isString() {
       return this.type == 's';
    }

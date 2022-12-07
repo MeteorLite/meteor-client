@@ -6,46 +6,35 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bq")
-@Implements("Interpreter")
 public class Interpreter {
    @ObfuscatedName("x")
-   @Export("Interpreter_intLocals")
    static int[] Interpreter_intLocals;
    @ObfuscatedName("q")
-   @Export("Interpreter_arrayLengths")
    static int[] Interpreter_arrayLengths = new int[5];
    @ObfuscatedName("f")
-   @Export("Interpreter_arrays")
    static int[][] Interpreter_arrays = new int[5][5000];
    @ObfuscatedName("r")
-   @Export("Interpreter_intStack")
    static int[] Interpreter_intStack = new int[1000];
    @ObfuscatedName("b")
-   @Export("Interpreter_stringStack")
    static String[] Interpreter_stringStack = new String[1000];
    @ObfuscatedName("j")
    @ObfuscatedGetter(
       intValue = 54505361
    )
-   @Export("Interpreter_stringStackSize")
    static int Interpreter_stringStackSize;
    @ObfuscatedName("g")
    @ObfuscatedGetter(
       intValue = -1648484327
    )
-   @Export("Interpreter_frameDepth")
    static int Interpreter_frameDepth = 0;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "[Lbl;"
    )
-   @Export("Interpreter_frames")
    static ScriptFrame[] Interpreter_frames = new ScriptFrame[50];
    @ObfuscatedName("l")
-   @Export("Interpreter_calendar")
    static java.util.Calendar Interpreter_calendar = java.util.Calendar.getInstance();
    @ObfuscatedName("t")
-   @Export("Interpreter_MONTHS")
    static final String[] Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
    @ObfuscatedName("p")
    static boolean field865 = false;
@@ -132,7 +121,6 @@ public class Interpreter {
       descriptor = "(IIIIII)V",
       garbageValue = "1417118672"
    )
-   @Export("drawScrollBar")
    static final void drawScrollBar(int var0, int var1, int var2, int var3, int var4) {
       class89.scrollBarSprites[0].drawAt(var0, var1);
       class89.scrollBarSprites[1].drawAt(var0, var3 + var1 - 16);

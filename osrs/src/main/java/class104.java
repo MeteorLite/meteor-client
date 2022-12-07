@@ -82,7 +82,6 @@ public class class104 {
    )
    static final class104 field1396 = new class104(13);
    @ObfuscatedName("ij")
-   @Export("xteaKeys")
    static int[][] xteaKeys;
    @ObfuscatedName("n")
    @ObfuscatedGetter(

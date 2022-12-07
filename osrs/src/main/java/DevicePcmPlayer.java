@@ -10,22 +10,17 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("w")
-@Implements("DevicePcmPlayer")
 public class DevicePcmPlayer extends PcmPlayer {
    @ObfuscatedName("h")
-   @Export("format")
    AudioFormat format;
    @ObfuscatedName("e")
-   @Export("line")
    SourceDataLine line;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1829305965
    )
-   @Export("capacity2")
    int capacity2;
    @ObfuscatedName("x")
-   @Export("byteSamples")
    byte[] byteSamples;
 
    @ObfuscatedName("h")
@@ -33,7 +28,6 @@ public class DevicePcmPlayer extends PcmPlayer {
       descriptor = "(I)V",
       garbageValue = "-1022018312"
    )
-   @Export("init")
    protected void init() {
       this.format = new AudioFormat((float)(PcmPlayer.field325 * 22050), 16, class286.PcmPlayer_stereo ? 2 : 1, true, false);
       this.byteSamples = new byte[256 << (class286.PcmPlayer_stereo ? 2 : 1)];
@@ -44,7 +38,6 @@ public class DevicePcmPlayer extends PcmPlayer {
       descriptor = "(IB)V",
       garbageValue = "-95"
    )
-   @Export("open")
    protected void open(int var1) throws LineUnavailableException {
       try {
          Info var2 = new Info(SourceDataLine.class, this.format, var1 << (class286.PcmPlayer_stereo ? 2 : 1));
@@ -67,13 +60,11 @@ public class DevicePcmPlayer extends PcmPlayer {
       descriptor = "(B)I",
       garbageValue = "116"
    )
-   @Export("position")
    protected int position() {
       return this.capacity2 - (this.line.available() >> (class286.PcmPlayer_stereo ? 2 : 1));
    }
 
    @ObfuscatedName("x")
-   @Export("write")
    protected void write() {
       int var1 = 256;
       if (class286.PcmPlayer_stereo) {
@@ -98,7 +89,6 @@ public class DevicePcmPlayer extends PcmPlayer {
       descriptor = "(B)V",
       garbageValue = "-126"
    )
-   @Export("close")
    protected void close() {
       if (this.line != null) {
          this.line.close();
@@ -112,7 +102,6 @@ public class DevicePcmPlayer extends PcmPlayer {
       descriptor = "(I)V",
       garbageValue = "1458227244"
    )
-   @Export("discard")
    protected void discard() {
       this.line.flush();
    }

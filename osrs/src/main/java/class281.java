@@ -10,21 +10,17 @@ public final class class281 {
    @ObfuscatedSignature(
       descriptor = "Lnc;"
    )
-   @Export("friendsChat")
    static FriendsChat friendsChat;
    @ObfuscatedName("sa")
-   @Export("ClanChat_inClanChat")
    static boolean ClanChat_inClanChat;
    @ObfuscatedName("v")
    static final HashMap field3318 = new HashMap();
    @ObfuscatedName("m")
-   @Export("cacheDir")
    public static File cacheDir;
    @ObfuscatedName("jk")
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("mapDotSprites")
    static SpritePixels[] mapDotSprites;
 
    static {

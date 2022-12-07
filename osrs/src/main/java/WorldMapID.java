@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("iv")
-@Implements("WorldMapID")
 public class WorldMapID {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -21,13 +20,11 @@ public class WorldMapID {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("hoveredItemContainer")
    static Widget hoveredItemContainer;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1808192051
    )
-   @Export("value")
    final int value;
 
    WorldMapID(int var1) {

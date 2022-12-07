@@ -9,7 +9,6 @@ public class class213 {
    @ObfuscatedSignature(
       descriptor = "Lpk;"
    )
-   @Export("platformInfo")
    static PlatformInfo platformInfo;
    @ObfuscatedName("e")
    @ObfuscatedSignature(

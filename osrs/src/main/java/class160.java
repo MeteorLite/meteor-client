@@ -52,7 +52,6 @@ public class class160 extends class136 {
       descriptor = "(Lqx;II)V",
       garbageValue = "784609466"
    )
-   @Export("readPlayerUpdate")
    static void readPlayerUpdate(PacketBuffer var0, int var1) {
       boolean var2 = var0.readBits(1) == 1;
       if (var2) {

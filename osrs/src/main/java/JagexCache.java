@@ -6,34 +6,28 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fg")
-@Implements("JagexCache")
 public class JagexCache {
    @ObfuscatedName("x")
-   @Export("JagexCache_locationFile")
    static File JagexCache_locationFile;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "Lqa;"
    )
-   @Export("JagexCache_randomDat")
    public static BufferedFile JagexCache_randomDat = null;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Lqa;"
    )
-   @Export("JagexCache_dat2File")
    public static BufferedFile JagexCache_dat2File = null;
    @ObfuscatedName("o")
    @ObfuscatedSignature(
       descriptor = "Lqa;"
    )
-   @Export("JagexCache_idx255File")
    public static BufferedFile JagexCache_idx255File = null;
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "[Lqa;"
    )
-   @Export("JagexCache_idxFiles")
    public static BufferedFile[] JagexCache_idxFiles;
 
    @ObfuscatedName("h")
@@ -41,7 +35,6 @@ public class JagexCache {
       descriptor = "(II)Lfm;",
       garbageValue = "-2126803038"
    )
-   @Export("WorldMapElement_get")
    public static WorldMapElement WorldMapElement_get(int var0) {
       return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
    }
@@ -64,7 +57,6 @@ public class JagexCache {
       descriptor = "(Ljava/lang/CharSequence;B)I",
       garbageValue = "-14"
    )
-   @Export("hashString")
    public static int hashString(CharSequence var0) {
       int var1 = var0.length();
       int var2 = 0;

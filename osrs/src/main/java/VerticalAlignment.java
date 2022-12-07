@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gl")
-@Implements("VerticalAlignment")
 public enum VerticalAlignment implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -16,7 +15,6 @@ public enum VerticalAlignment implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lgl;"
    )
-   @Export("VerticalAlignment_centered")
    VerticalAlignment_centered(2, 1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -28,7 +26,6 @@ public enum VerticalAlignment implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive17")
    static Archive archive17;
    @ObfuscatedName("hm")
    @ObfuscatedGetter(
@@ -39,13 +36,11 @@ public enum VerticalAlignment implements class345 {
    @ObfuscatedGetter(
       intValue = -269075113
    )
-   @Export("value")
    public final int value;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -1751694473
    )
-   @Export("id")
    final int id;
 
    VerticalAlignment(int var3, int var4) {
@@ -58,7 +53,6 @@ public enum VerticalAlignment implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

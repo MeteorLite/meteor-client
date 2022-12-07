@@ -4,19 +4,16 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("aw")
-@Implements("SoundSystem")
 public class SoundSystem implements Runnable {
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("ObjectDefinition_modelsArchive")
    static AbstractArchive ObjectDefinition_modelsArchive;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "[Lax;"
    )
-   @Export("players")
    volatile PcmPlayer[] players = new PcmPlayer[2];
 
    public void run() {
@@ -84,7 +81,6 @@ public class SoundSystem implements Runnable {
       descriptor = "(Ljava/lang/String;ZI)V",
       garbageValue = "-582152447"
    )
-   @Export("drawLoadingMessage")
    static final void drawLoadingMessage(String var0, boolean var1) {
       if (Client.showLoadingMessages) {
          byte var2 = 4;

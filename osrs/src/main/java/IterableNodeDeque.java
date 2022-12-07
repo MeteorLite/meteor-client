@@ -6,13 +6,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mv")
-@Implements("IterableNodeDeque")
 public class IterableNodeDeque implements Iterable, Collection {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lpl;"
    )
-   @Export("sentinel")
    Node sentinel = new Node();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -26,7 +24,6 @@ public class IterableNodeDeque implements Iterable, Collection {
    }
 
    @ObfuscatedName("h")
-   @Export("rsClear")
    public void rsClear() {
       while(this.sentinel.previous != this.sentinel) {
          this.sentinel.previous.remove();
@@ -38,7 +35,6 @@ public class IterableNodeDeque implements Iterable, Collection {
    @ObfuscatedSignature(
       descriptor = "(Lpl;)V"
    )
-   @Export("addFirst")
    public void addFirst(Node var1) {
       if (var1.next != null) {
          var1.remove();
@@ -54,7 +50,6 @@ public class IterableNodeDeque implements Iterable, Collection {
    @ObfuscatedSignature(
       descriptor = "(Lpl;)V"
    )
-   @Export("addLast")
    public void addLast(Node var1) {
       if (var1.next != null) {
          var1.remove();
@@ -70,7 +65,6 @@ public class IterableNodeDeque implements Iterable, Collection {
    @ObfuscatedSignature(
       descriptor = "()Lpl;"
    )
-   @Export("last")
    public Node last() {
       return this.method6771((Node)null);
    }
@@ -100,7 +94,6 @@ public class IterableNodeDeque implements Iterable, Collection {
    @ObfuscatedSignature(
       descriptor = "()Lpl;"
    )
-   @Export("previous")
    public Node previous() {
       Node var1 = this.field4335;
       if (var1 == this.sentinel) {
@@ -222,7 +215,6 @@ public class IterableNodeDeque implements Iterable, Collection {
    @ObfuscatedSignature(
       descriptor = "(Lpl;Lpl;)V"
    )
-   @Export("IterableNodeDeque_addBefore")
    public static void IterableNodeDeque_addBefore(Node var0, Node var1) {
       if (var0.next != null) {
          var0.remove();

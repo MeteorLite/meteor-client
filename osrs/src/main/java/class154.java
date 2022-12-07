@@ -14,7 +14,6 @@ public class class154 extends class136 {
    @ObfuscatedGetter(
       intValue = -854586489
    )
-   @Export("baseX")
    static int baseX;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

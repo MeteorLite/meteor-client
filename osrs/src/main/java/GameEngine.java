@@ -25,7 +25,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("an")
-@Implements("GameEngine")
 public abstract class GameEngine extends Applet implements Runnable, FocusListener, WindowListener {
    @ObfuscatedName("vo")
    @ObfuscatedSignature(
@@ -36,46 +35,37 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedSignature(
       descriptor = "Lan;"
    )
-   @Export("gameEngine")
    static GameEngine gameEngine = null;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1203794955
    )
-   @Export("GameEngine_redundantStartThreadCount")
    static int GameEngine_redundantStartThreadCount = 0;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       longValue = 4122648005638566587L
    )
-   @Export("stopTimeMs")
    static long stopTimeMs = 0L;
    @ObfuscatedName("q")
-   @Export("isKilled")
    static boolean isKilled = false;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = 1837674965
    )
-   @Export("cycleDurationMillis")
    static int cycleDurationMillis = 20;
    @ObfuscatedName("b")
    @ObfuscatedGetter(
       intValue = -530252609
    )
-   @Export("fiveOrOne")
    static int fiveOrOne = 1;
    @ObfuscatedName("j")
    @ObfuscatedGetter(
       intValue = 1522705797
    )
-   @Export("fps")
    protected static int fps = 0;
    @ObfuscatedName("o")
-   @Export("graphicsTickTimes")
    static long[] graphicsTickTimes = new long[32];
    @ObfuscatedName("k")
-   @Export("clientTickTimes")
    static long[] clientTickTimes = new long[32];
    @ObfuscatedName("an")
    @ObfuscatedGetter(
@@ -83,7 +73,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    )
    static int field230 = 500;
    @ObfuscatedName("ah")
-   @Export("volatileFocus")
    static volatile boolean volatileFocus = true;
    @ObfuscatedName("aj")
    @ObfuscatedSignature(
@@ -94,40 +83,33 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedGetter(
       longValue = -4832067984480184411L
    )
-   @Export("garbageCollectorLastCollectionTime")
    static long garbageCollectorLastCollectionTime = -1L;
    @ObfuscatedName("aa")
    @ObfuscatedGetter(
       longValue = -1788910031421667657L
    )
-   @Export("garbageCollectorLastCheckTimeMs")
    static long garbageCollectorLastCheckTimeMs = -1L;
    @ObfuscatedName("f")
-   @Export("hasErrored")
    boolean hasErrored = false;
    @ObfuscatedName("s")
    @ObfuscatedGetter(
       intValue = 1978140097
    )
-   @Export("contentWidth")
    protected int contentWidth;
    @ObfuscatedName("l")
    @ObfuscatedGetter(
       intValue = 49859079
    )
-   @Export("contentHeight")
    protected int contentHeight;
    @ObfuscatedName("t")
    @ObfuscatedGetter(
       intValue = -185229721
    )
-   @Export("canvasX")
    int canvasX = 0;
    @ObfuscatedName("c")
    @ObfuscatedGetter(
       intValue = 1564967965
    )
-   @Export("canvasY")
    int canvasY = 0;
    @ObfuscatedName("z")
    @ObfuscatedGetter(
@@ -143,28 +125,21 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedGetter(
       intValue = 484486501
    )
-   @Export("maxCanvasWidth")
    int maxCanvasWidth;
    @ObfuscatedName("ao")
    @ObfuscatedGetter(
       intValue = 401178799
    )
-   @Export("maxCanvasHeight")
    int maxCanvasHeight;
    @ObfuscatedName("au")
-   @Export("frame")
    Frame frame;
    @ObfuscatedName("ar")
-   @Export("canvas")
    java.awt.Canvas canvas;
    @ObfuscatedName("at")
-   @Export("fullRedraw")
    volatile boolean fullRedraw = true;
    @ObfuscatedName("ab")
-   @Export("resizeCanvasNextFrame")
    boolean resizeCanvasNextFrame = false;
    @ObfuscatedName("al")
-   @Export("isCanvasInvalid")
    volatile boolean isCanvasInvalid = false;
    @ObfuscatedName("ag")
    @ObfuscatedGetter(
@@ -175,13 +150,10 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedSignature(
       descriptor = "Ld;"
    )
-   @Export("mouseWheelHandler")
    MouseWheelHandler mouseWheelHandler;
    @ObfuscatedName("ai")
-   @Export("clipboard")
    Clipboard clipboard;
    @ObfuscatedName("ax")
-   @Export("eventQueue")
    final EventQueue eventQueue;
 
    protected GameEngine() {
@@ -203,7 +175,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(III)V",
       garbageValue = "1034759117"
    )
-   @Export("setMaxCanvasSize")
    protected final void setMaxCanvasSize(int var1, int var2) {
       if (this.maxCanvasWidth != var1 || var2 != this.maxCanvasHeight) {
          this.method514();
@@ -218,7 +189,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(Ljava/lang/Object;I)V",
       garbageValue = "812093850"
    )
-   @Export("post")
    final void post(Object var1) {
       if (this.eventQueue != null) {
          for(int var2 = 0; var2 < 50 && this.eventQueue.peekEvent() != null; ++var2) {
@@ -237,7 +207,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)Lff;",
       garbageValue = "815709128"
    )
-   @Export("mouseWheel")
    protected class166 mouseWheel() {
       if (this.mouseWheelHandler == null) {
          this.mouseWheelHandler = new MouseWheelHandler();
@@ -252,7 +221,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)V",
       garbageValue = "-65"
    )
-   @Export("setUpClipboard")
    protected void setUpClipboard() {
       this.clipboard = this.getToolkit().getSystemClipboard();
    }
@@ -280,7 +248,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "316580569"
    )
-   @Export("setUpKeyboard")
    protected final void setUpKeyboard() {
       if (TaskHandler.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
          class29.KeyHandler_keyCodes[186] = 57;
@@ -348,7 +315,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "-1257419471"
    )
-   @Export("resizeCanvas")
    final void resizeCanvas() {
       Container var1 = this.container();
       if (var1 != null) {
@@ -386,7 +352,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)V",
       garbageValue = "-101"
    )
-   @Export("resizeGame")
    protected abstract void resizeGame();
 
    @ObfuscatedName("a")
@@ -394,7 +359,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "-1765015837"
    )
-   @Export("clearBackground")
    void clearBackground() {
       int var1 = this.canvasX;
       int var2 = this.canvasY;
@@ -440,7 +404,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "1144522069"
    )
-   @Export("replaceCanvas")
    final void replaceCanvas() {
       keyHandlerInstance.method352(this.canvas);
       AttackOption.method2603(this.canvas);
@@ -466,7 +429,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(IIIIB)V",
       garbageValue = "-39"
    )
-   @Export("startThread")
    protected final void startThread(int var1, int var2, int var3, int var4) {
       try {
          if (gameEngine != null) {
@@ -503,7 +465,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)V",
       garbageValue = "62"
    )
-   @Export("addCanvas")
    final synchronized void addCanvas() {
       Container var1 = this.container();
       if (this.canvas != null) {
@@ -553,7 +514,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)Z",
       garbageValue = "88"
    )
-   @Export("checkHost")
    protected final boolean checkHost() {
       String var1 = this.getDocumentBase().getHost().toLowerCase();
       if (!var1.equals("jagex.com") && !var1.endsWith(".jagex.com")) {
@@ -585,7 +545,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)V",
       garbageValue = "-42"
    )
-   @Export("clientTick")
    void clientTick() {
       long var1 = Message.method1197();
       long var3 = clientTickTimes[class1.field2];
@@ -607,7 +566,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "683817333"
    )
-   @Export("graphicsTick")
    void graphicsTick() {
       Container var1 = this.container();
       long var2 = Message.method1197();
@@ -673,7 +631,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "-1133942382"
    )
-   @Export("kill")
    final synchronized void kill() {
       if (!isKilled) {
          isKilled = true;
@@ -715,7 +672,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)V",
       garbageValue = "0"
    )
-   @Export("setUp")
    protected abstract void setUp();
 
    @ObfuscatedName("an")
@@ -723,7 +679,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)V",
       garbageValue = "-22"
    )
-   @Export("doCycle")
    protected abstract void doCycle();
 
    @ObfuscatedName("ab")
@@ -731,7 +686,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(ZI)V",
       garbageValue = "920051106"
    )
-   @Export("draw")
    protected abstract void draw(boolean var1);
 
    @ObfuscatedName("al")
@@ -739,7 +693,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "1295386641"
    )
-   @Export("kill0")
    protected abstract void kill0();
 
    @ObfuscatedName("ag")
@@ -747,7 +700,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(ILjava/lang/String;ZI)V",
       garbageValue = "1038398992"
    )
-   @Export("drawInitial")
    protected final void drawInitial(int var1, String var2, boolean var3) {
       try {
          Graphics var4 = this.canvas.getGraphics();
@@ -814,7 +766,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "754431924"
    )
-   @Export("error")
    protected void error(String var1) {
       if (!this.hasErrored) {
          this.hasErrored = true;
@@ -834,7 +785,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)Ljava/awt/Container;",
       garbageValue = "-1750796052"
    )
-   @Export("container")
    Container container() {
       return (Container)(this.frame != null ? this.frame : this);
    }
@@ -844,7 +794,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)Lok;",
       garbageValue = "1915646281"
    )
-   @Export("getFrameContentBounds")
    Bounds getFrameContentBounds() {
       Container var1 = this.container();
       int var2 = Math.max(var1.getWidth(), this.field223);
@@ -863,7 +812,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)Z",
       garbageValue = "-1602409348"
    )
-   @Export("hasFrame")
    protected final boolean hasFrame() {
       return this.frame != null;
    }
@@ -1009,7 +957,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(IIIZIB)J",
       garbageValue = "22"
    )
-   @Export("calculateTag")
    public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
       long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17;
       if (var3) {
@@ -1288,7 +1235,6 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(IIIILrx;Lkv;I)V",
       garbageValue = "-1646892146"
    )
-   @Export("worldToMinimap")
    static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
       int var6 = var3 * var3 + var2 * var2;
       if (var6 > 4225 && var6 < 90000) {

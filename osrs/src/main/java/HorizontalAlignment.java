@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gj")
-@Implements("HorizontalAlignment")
 public enum HorizontalAlignment implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -16,7 +15,6 @@ public enum HorizontalAlignment implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lgj;"
    )
-   @Export("HorizontalAlignment_centered")
    HorizontalAlignment_centered(1, 1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -28,13 +26,11 @@ public enum HorizontalAlignment implements class345 {
    @ObfuscatedGetter(
       intValue = -1932312333
    )
-   @Export("value")
    public final int value;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 200031989
    )
-   @Export("id")
    final int id;
 
    HorizontalAlignment(int var3, int var4) {
@@ -47,7 +43,6 @@ public enum HorizontalAlignment implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

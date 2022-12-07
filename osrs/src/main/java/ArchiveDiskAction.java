@@ -5,28 +5,23 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lt")
-@Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 11477361
    )
-   @Export("type")
    int type;
    @ObfuscatedName("e")
-   @Export("data")
    public byte[] data;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Loi;"
    )
-   @Export("archiveDisk")
    public ArchiveDisk archiveDisk;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive")
    public Archive archive;
 
    @ObfuscatedName("q")
@@ -34,7 +29,6 @@ public class ArchiveDiskAction extends Node {
       descriptor = "(Lqx;II)Z",
       garbageValue = "945337988"
    )
-   @Export("updateExternalPlayer")
    static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
       int var2 = var0.readBits(2);
       int var3;

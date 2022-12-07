@@ -63,7 +63,6 @@ public class class148 extends class152 {
       descriptor = "(CI)Z",
       garbageValue = "2023912721"
    )
-   @Export("isCharPrintable")
    public static boolean isCharPrintable(char var0) {
       if (var0 >= ' ' && var0 <= '~') {
          return true;

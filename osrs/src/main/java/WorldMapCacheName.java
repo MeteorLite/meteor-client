@@ -4,7 +4,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ic")
-@Implements("WorldMapCacheName")
 public class WorldMapCacheName {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -32,7 +31,6 @@ public class WorldMapCacheName {
    )
    public static final WorldMapCacheName field3004 = new WorldMapCacheName("labels");
    @ObfuscatedName("q")
-   @Export("name")
    public final String name;
 
    WorldMapCacheName(String var1) {
@@ -405,7 +403,6 @@ public class WorldMapCacheName {
       descriptor = "([BI)[B",
       garbageValue = "-606090063"
    )
-   @Export("decompressBytes")
    static final byte[] decompressBytes(byte[] var0) {
       Buffer var1 = new Buffer(var0);
       int var2 = var1.readUnsignedByte();

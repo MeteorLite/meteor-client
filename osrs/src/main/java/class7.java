@@ -258,7 +258,6 @@ public class class7 {
       descriptor = "(I)V",
       garbageValue = "1774309040"
    )
-   @Export("Clan_leaveChat")
    static final void Clan_leaveChat() {
       PacketBufferNode var0 = class136.getPacketBufferNode(ClientPacket.field3145, Client.packetWriter.isaacCipher);
       var0.packetBuffer.writeByte(0);

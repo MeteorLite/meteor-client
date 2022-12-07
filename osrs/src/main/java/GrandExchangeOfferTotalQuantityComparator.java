@@ -6,13 +6,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lx")
-@Implements("GrandExchangeOfferTotalQuantityComparator")
 final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1715620411
    )
-   @Export("SpriteBuffer_spriteWidth")
    public static int SpriteBuffer_spriteWidth;
 
    @ObfuscatedName("h")
@@ -20,7 +18,6 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
       descriptor = "(Lmg;Lmg;B)I",
       garbageValue = "22"
    )
-   @Export("compare_bridged")
    int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
       return var1.grandExchangeOffer.totalQuantity < var2.grandExchangeOffer.totalQuantity ? -1 : (var2.grandExchangeOffer.totalQuantity == var1.grandExchangeOffer.totalQuantity ? 0 : 1);
    }
@@ -38,7 +35,6 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
       descriptor = "(Lkd;II)V",
       garbageValue = "137593594"
    )
-   @Export("Widget_setKeyIgnoreHeld")
    static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
       if (var0.field3622 == null) {
          throw new RuntimeException();

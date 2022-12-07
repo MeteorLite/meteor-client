@@ -21,7 +21,6 @@ public class class155 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lcj;"
    )
-   @Export("localPlayer")
    static Player localPlayer;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

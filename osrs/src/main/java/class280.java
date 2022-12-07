@@ -8,7 +8,6 @@ public class class280 {
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("worldSelectStars")
    static IndexedSprite[] worldSelectStars;
 
    @ObfuscatedName("h")
@@ -16,7 +15,6 @@ public class class280 {
       descriptor = "(Lqx;I)V",
       garbageValue = "785365671"
    )
-   @Export("updatePlayer")
    static final void updatePlayer(PacketBuffer var0) {
       var0.importIndex();
       int var1 = Client.localPlayerIndex;

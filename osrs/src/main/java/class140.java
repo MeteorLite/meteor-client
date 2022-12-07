@@ -9,7 +9,6 @@ public class class140 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("worldSelectRightSprite")
    static IndexedSprite worldSelectRightSprite;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

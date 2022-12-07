@@ -8,37 +8,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 import netscape.javascript.JSObject;
 
 @ObfuscatedName("cu")
-@Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
    @ObfuscatedName("iz")
    @ObfuscatedGetter(
       intValue = -902524381
    )
-   @Export("selectedItemId")
    static int selectedItemId;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 1203912281
    )
-   @Export("cycle")
    int cycle;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -395288459
    )
-   @Export("health")
    int health;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = 1291576245
    )
-   @Export("health2")
    int health2;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -426163011
    )
-   @Export("cycleOffset")
    int cycleOffset;
 
    HealthBarUpdate(int var1, int var2, int var3, int var4) {
@@ -53,7 +47,6 @@ public class HealthBarUpdate extends Node {
       descriptor = "(IIIII)V",
       garbageValue = "839931958"
    )
-   @Export("set")
    void set(int var1, int var2, int var3, int var4) {
       this.cycle = var1;
       this.health = var2;

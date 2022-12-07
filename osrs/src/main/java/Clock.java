@@ -4,10 +4,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fz")
-@Implements("Clock")
 public abstract class Clock {
    @ObfuscatedName("r")
-   @Export("ItemDefinition_inMembersWorld")
    static boolean ItemDefinition_inMembersWorld;
 
    @ObfuscatedName("h")
@@ -15,7 +13,6 @@ public abstract class Clock {
       descriptor = "(I)V",
       garbageValue = "118747683"
    )
-   @Export("mark")
    public abstract void mark();
 
    @ObfuscatedName("e")
@@ -23,7 +20,6 @@ public abstract class Clock {
       descriptor = "(III)I",
       garbageValue = "1532577739"
    )
-   @Export("wait")
    public abstract int wait(int var1, int var2);
 
    @ObfuscatedName("h")
@@ -262,7 +258,6 @@ public abstract class Clock {
       descriptor = "(Lkd;B)I",
       garbageValue = "63"
    )
-   @Export("getWidgetFlags")
    static int getWidgetFlags(Widget var0) {
       IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32));
       return var1 != null ? var1.integer : var0.flags;

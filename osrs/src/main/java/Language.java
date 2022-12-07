@@ -11,13 +11,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mb")
-@Implements("Language")
 public class Language implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("Language_EN")
    public static final Language Language_EN;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -28,7 +26,6 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("Language_FR")
    public static final Language Language_FR;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -44,7 +41,6 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("Language_ES")
    public static final Language Language_ES;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -60,21 +56,17 @@ public class Language implements class345 {
    @ObfuscatedGetter(
       intValue = 1226653913
    )
-   @Export("canvasHeight")
    public static int canvasHeight;
    @ObfuscatedName("ad")
-   @Export("Widget_loadedInterfaces")
    static boolean[] Widget_loadedInterfaces;
    @ObfuscatedName("r")
    final String field4300;
    @ObfuscatedName("u")
-   @Export("language")
    final String language;
    @ObfuscatedName("b")
    @ObfuscatedGetter(
       intValue = 1679709169
    )
-   @Export("id")
    final int id;
 
    static {
@@ -120,7 +112,6 @@ public class Language implements class345 {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "0"
    )
-   @Export("getLanguage")
    String getLanguage() {
       return this.language;
    }
@@ -130,7 +121,6 @@ public class Language implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

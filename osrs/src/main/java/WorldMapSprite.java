@@ -4,10 +4,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ir")
-@Implements("WorldMapSprite")
 public final class WorldMapSprite {
    @ObfuscatedName("e")
-   @Export("tileColors")
    final int[] tileColors;
 
    WorldMapSprite() {
@@ -23,7 +21,6 @@ public final class WorldMapSprite {
       descriptor = "(III)I",
       garbageValue = "77614709"
    )
-   @Export("getTileColor")
    final int getTileColor(int var1, int var2) {
       return this.tileColors[var2 * 64 + var1];
    }

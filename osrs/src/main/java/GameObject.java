@@ -5,73 +5,61 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hp")
-@Implements("GameObject")
 public final class GameObject {
    @ObfuscatedName("sb")
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   @Export("sceneMinimapSprite")
    static SpritePixels sceneMinimapSprite;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -1864133043
    )
-   @Export("plane")
    int plane;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -1769154667
    )
-   @Export("z")
    int z;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -472121489
    )
-   @Export("centerX")
    int centerX;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 1527155529
    )
-   @Export("centerY")
    int centerY;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -835257591
    )
-   @Export("orientation")
    int orientation;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable")
    public Renderable renderable;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = 1451034711
    )
-   @Export("startX")
    int startX;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = 1873413133
    )
-   @Export("endX")
    int endX;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = -1389612741
    )
-   @Export("startY")
    int startY;
    @ObfuscatedName("b")
    @ObfuscatedGetter(
       intValue = 675535951
    )
-   @Export("endY")
    int endY;
    @ObfuscatedName("j")
    @ObfuscatedGetter(
@@ -82,19 +70,16 @@ public final class GameObject {
    @ObfuscatedGetter(
       intValue = 187670921
    )
-   @Export("lastDrawn")
    int lastDrawn;
    @ObfuscatedName("i")
    @ObfuscatedGetter(
       longValue = -7754761910240207891L
    )
-   @Export("tag")
    public long tag = 0L;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
       intValue = -799893141
    )
-   @Export("flags")
    int flags = 0;
 
    @ObfuscatedName("x")

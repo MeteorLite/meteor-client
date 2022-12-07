@@ -8,31 +8,25 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("da")
-@Implements("Messages")
 public class Messages {
    @ObfuscatedName("h")
-   @Export("Messages_channels")
    static final Map Messages_channels = new HashMap();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lql;"
    )
-   @Export("Messages_hashTable")
    static final IterableNodeHashTable Messages_hashTable = new IterableNodeHashTable(1024);
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lmm;"
    )
-   @Export("Messages_queue")
    static final IterableDualNodeQueue Messages_queue = new IterableDualNodeQueue();
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -1199730995
    )
-   @Export("Messages_count")
    static int Messages_count = 0;
    @ObfuscatedName("av")
-   @Export("loginScreenFontMetrics")
    static FontMetrics loginScreenFontMetrics;
 
    @ObfuscatedName("h")
@@ -49,7 +43,6 @@ public class Messages {
       descriptor = "(Lqy;IIIIIII)V",
       garbageValue = "-1974916673"
    )
-   @Export("loadTerrain")
    static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
       boolean var7 = var1 >= 0 && var1 < 4 && var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104;
       int var8;

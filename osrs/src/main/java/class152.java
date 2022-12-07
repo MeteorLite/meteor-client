@@ -23,7 +23,6 @@ public abstract class class152 extends Node {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "-1882870143"
    )
-   @Export("doCheat")
    static final void doCheat(String var0) {
       if (var0.equalsIgnoreCase("toggleroof")) {
          StructComposition.clientPreferences.method2486(!StructComposition.clientPreferences.method2412());

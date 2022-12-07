@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jp")
-@Implements("ClientPacket")
 public class ClientPacket implements class274 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -551,13 +550,11 @@ public class ClientPacket implements class274 {
    @ObfuscatedGetter(
       intValue = 148030627
    )
-   @Export("id")
    final int id;
    @ObfuscatedName("dw")
    @ObfuscatedGetter(
       intValue = -1150175255
    )
-   @Export("length")
    final int length;
 
    ClientPacket(int var1, int var2) {
@@ -570,7 +567,6 @@ public class ClientPacket implements class274 {
       descriptor = "([BIII)Ljava/lang/String;",
       garbageValue = "-457974623"
    )
-   @Export("decodeStringCp1252")
    public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
       char[] var3 = new char[var2];
       int var4 = 0;

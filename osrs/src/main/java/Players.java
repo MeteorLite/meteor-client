@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ci")
-@Implements("Players")
 public class Players {
    @ObfuscatedName("v")
    static byte[] field1370 = new byte[2048];
@@ -23,37 +22,28 @@ public class Players {
    @ObfuscatedGetter(
       intValue = -316088161
    )
-   @Export("Players_count")
    static int Players_count = 0;
    @ObfuscatedName("f")
-   @Export("Players_indices")
    static int[] Players_indices = new int[2048];
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = 888769669
    )
-   @Export("Players_emptyIdxCount")
    static int Players_emptyIdxCount = 0;
    @ObfuscatedName("u")
-   @Export("Players_emptyIndices")
    static int[] Players_emptyIndices = new int[2048];
    @ObfuscatedName("b")
-   @Export("Players_regions")
    static int[] Players_regions = new int[2048];
    @ObfuscatedName("j")
-   @Export("Players_orientations")
    static int[] Players_orientations = new int[2048];
    @ObfuscatedName("g")
-   @Export("Players_targetIndices")
    static int[] Players_targetIndices = new int[2048];
    @ObfuscatedName("i")
    @ObfuscatedGetter(
       intValue = 279882375
    )
-   @Export("Players_pendingUpdateCount")
    static int Players_pendingUpdateCount = 0;
    @ObfuscatedName("o")
-   @Export("Players_pendingUpdateIndices")
    static int[] Players_pendingUpdateIndices = new int[2048];
    @ObfuscatedName("n")
    @ObfuscatedSignature(
@@ -66,7 +56,6 @@ public class Players {
       descriptor = "(II)Z",
       garbageValue = "1396196168"
    )
-   @Export("loadInterface")
    public static boolean loadInterface(int var0) {
       if (Language.Widget_loadedInterfaces[var0]) {
          return true;

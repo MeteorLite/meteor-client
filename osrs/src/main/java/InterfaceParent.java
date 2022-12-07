@@ -5,19 +5,16 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cx")
-@Implements("InterfaceParent")
 public class InterfaceParent extends Node {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 545250955
    )
-   @Export("group")
    int group;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -829260005
    )
-   @Export("type")
    int type;
    @ObfuscatedName("v")
    boolean field1067 = false;
@@ -41,7 +38,6 @@ public class InterfaceParent extends Node {
       descriptor = "(ZLqx;I)V",
       garbageValue = "-560600334"
    )
-   @Export("loadRegions")
    static final void loadRegions(boolean var0, PacketBuffer var1) {
       Client.isInInstance = var0;
       int var2;

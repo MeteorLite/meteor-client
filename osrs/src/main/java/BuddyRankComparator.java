@@ -4,22 +4,18 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dr")
-@Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("SequenceDefinition_skeletonsArchive")
    static AbstractArchive SequenceDefinition_skeletonsArchive;
    @ObfuscatedName("ac")
-   @Export("client")
    @ObfuscatedSignature(
       descriptor = "Lclient;"
    )
    public static Client client;
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public BuddyRankComparator(boolean var1) {
@@ -31,7 +27,6 @@ public class BuddyRankComparator extends AbstractUserComparator {
       descriptor = "(Loa;Loa;B)I",
       garbageValue = "2"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (var2.rank != var1.rank) {
          return this.reversed ? var1.rank - var2.rank : var2.rank - var1.rank;
@@ -49,7 +44,6 @@ public class BuddyRankComparator extends AbstractUserComparator {
       descriptor = "(IIIIIIIB)V",
       garbageValue = "-96"
    )
-   @Export("addPendingSpawnToScene")
    static final void addPendingSpawnToScene(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
       if (var2 >= 1 && var3 >= 1 && var2 <= 102 && var3 <= 102) {
          if (Client.isLowDetail && var0 != class383.Client_plane) {

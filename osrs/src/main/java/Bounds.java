@@ -5,31 +5,26 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ok")
-@Implements("Bounds")
 public class Bounds {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 600302737
    )
-   @Export("lowX")
    public int lowX;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 979622241
    )
-   @Export("lowY")
    public int lowY;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1664174563
    )
-   @Export("highX")
    public int highX;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -1804459671
    )
-   @Export("highY")
    public int highY;
 
    public Bounds(int var1, int var2, int var3, int var4) {
@@ -46,7 +41,6 @@ public class Bounds {
       descriptor = "(IIB)V",
       garbageValue = "0"
    )
-   @Export("setLow")
    public void setLow(int var1, int var2) {
       this.lowX = var1;
       this.lowY = var2;
@@ -57,7 +51,6 @@ public class Bounds {
       descriptor = "(IIB)V",
       garbageValue = "6"
    )
-   @Export("setHigh")
    public void setHigh(int var1, int var2) {
       this.highX = var1;
       this.highY = var2;

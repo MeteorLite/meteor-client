@@ -90,7 +90,6 @@ public class class276 {
       descriptor = "(I)I",
       garbageValue = "2126981871"
    )
-   @Export("getGcDuration")
    protected static int getGcDuration() {
       int var0 = 0;
       if (Projectile.garbageCollector == null || !Projectile.garbageCollector.isValid()) {
@@ -135,7 +134,7 @@ public class class276 {
    )
    static final void method5485(MenuAction var0, int var1, int var2) {
       if (var0 != null) {
-         WorldMapData_0.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.field904, var0.action, var0.field899, var1, var2);
+         WorldMapData_0.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.itemId, var0.action, var0.target, var1, var2);
       }
 
    }

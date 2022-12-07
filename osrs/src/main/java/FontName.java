@@ -5,52 +5,43 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pt")
-@Implements("FontName")
 public class FontName {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
-   @Export("FontName_plain11")
    public static final FontName FontName_plain11 = new FontName("p11_full");
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
-   @Export("FontName_plain12")
    public static final FontName FontName_plain12 = new FontName("p12_full");
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
-   @Export("FontName_bold12")
    public static final FontName FontName_bold12 = new FontName("b12_full");
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
-   @Export("FontName_verdana11")
    public static final FontName FontName_verdana11 = new FontName("verdana_11pt_regular");
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
-   @Export("FontName_verdana13")
    public static final FontName FontName_verdana13 = new FontName("verdana_13pt_regular");
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
-   @Export("FontName_verdana15")
    public static final FontName FontName_verdana15 = new FontName("verdana_15pt_regular");
    @ObfuscatedName("fb")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive19")
    static Archive archive19;
    @ObfuscatedName("f")
-   @Export("name")
    String name;
 
    FontName(String var1) {
@@ -140,7 +131,6 @@ public class FontName {
       descriptor = "(II)Ljava/lang/String;",
       garbageValue = "-1334048221"
    )
-   @Export("formatItemStacks")
    static final String formatItemStacks(int var0) {
       String var1 = Integer.toString(var0);
 

@@ -23,7 +23,6 @@ public abstract class class136 extends Node {
       descriptor = "(Ljp;Lrg;B)Ljx;",
       garbageValue = "107"
    )
-   @Export("getPacketBufferNode")
    public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
       PacketBufferNode var2 = class109.method2781();
       var2.clientPacket = var0;

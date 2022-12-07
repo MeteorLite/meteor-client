@@ -3,7 +3,6 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("hy")
-@Implements("SceneTileModel")
 public final class SceneTileModel {
    @ObfuscatedName("k")
    static int[] field2658 = new int[6];
@@ -20,49 +19,34 @@ public final class SceneTileModel {
    @ObfuscatedName("p")
    static final int[][] field2660 = new int[][]{{0, 1, 2, 3, 0, 0, 1, 3}, {1, 1, 2, 3, 1, 0, 1, 3}, {0, 1, 2, 3, 1, 0, 1, 3}, {0, 0, 1, 2, 0, 0, 2, 4, 1, 0, 4, 3}, {0, 0, 1, 4, 0, 0, 4, 3, 1, 1, 2, 4}, {0, 0, 4, 3, 1, 0, 1, 2, 1, 0, 2, 4}, {0, 1, 2, 4, 1, 0, 1, 4, 1, 0, 4, 3}, {0, 4, 1, 2, 0, 4, 2, 5, 1, 0, 4, 5, 1, 0, 5, 3}, {0, 4, 1, 2, 0, 4, 2, 3, 0, 4, 3, 5, 1, 0, 4, 5}, {0, 0, 4, 5, 1, 4, 1, 2, 1, 4, 2, 3, 1, 4, 3, 5}, {0, 0, 1, 5, 0, 1, 4, 5, 0, 1, 2, 4, 1, 0, 5, 3, 1, 5, 4, 3, 1, 4, 2, 3}, {1, 0, 1, 5, 1, 1, 4, 5, 1, 1, 2, 4, 0, 0, 5, 3, 0, 5, 4, 3, 0, 4, 2, 3}, {1, 0, 5, 4, 1, 0, 1, 5, 0, 0, 4, 3, 0, 4, 5, 3, 0, 5, 2, 3, 0, 1, 2, 5}};
    @ObfuscatedName("h")
-   @Export("vertexX")
    int[] vertexX;
    @ObfuscatedName("e")
-   @Export("vertexY")
    int[] vertexY;
    @ObfuscatedName("v")
-   @Export("vertexZ")
    int[] vertexZ;
    @ObfuscatedName("x")
-   @Export("triangleColorA")
    int[] triangleColorA;
    @ObfuscatedName("m")
-   @Export("triangleColorB")
    int[] triangleColorB;
    @ObfuscatedName("q")
-   @Export("triangleColorC")
    int[] triangleColorC;
    @ObfuscatedName("f")
-   @Export("faceX")
    int[] faceX;
    @ObfuscatedName("r")
-   @Export("faceY")
    int[] faceY;
    @ObfuscatedName("u")
-   @Export("faceZ")
    int[] faceZ;
    @ObfuscatedName("b")
-   @Export("triangleTextureId")
    int[] triangleTextureId;
    @ObfuscatedName("j")
-   @Export("isFlat")
    boolean isFlat = true;
    @ObfuscatedName("g")
-   @Export("shape")
    int shape;
    @ObfuscatedName("i")
-   @Export("rotation")
    int rotation;
    @ObfuscatedName("o")
-   @Export("underlayRgb")
    int underlayRgb;
    @ObfuscatedName("n")
-   @Export("overlayRgb")
    int overlayRgb;
 
    SceneTileModel(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19) {

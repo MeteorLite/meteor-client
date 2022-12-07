@@ -6,7 +6,6 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@Implements("JSONTokener")
 @ObfuscatedName("org/json/JSONTokener")
 public class JSONTokener {
    boolean useLastChar;

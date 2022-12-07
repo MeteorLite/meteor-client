@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ex")
 public class class141 extends class136 {
    @ObfuscatedName("bb")
-   @Export("otp")
    static String otp;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ll")
-@Implements("WorldMapDecorationType")
 public enum WorldMapDecorationType implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -127,7 +126,6 @@ public enum WorldMapDecorationType implements class345 {
    @ObfuscatedGetter(
       intValue = -1868950557
    )
-   @Export("id")
    public final int id;
 
    @ObfuscatedSignature(
@@ -143,7 +141,6 @@ public enum WorldMapDecorationType implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

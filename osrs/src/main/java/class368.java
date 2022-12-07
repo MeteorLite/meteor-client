@@ -10,7 +10,6 @@ public class class368 {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("dragInventoryWidget")
    static Widget dragInventoryWidget;
    @ObfuscatedName("j")
    @ObfuscatedGetter(

@@ -5,13 +5,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bx")
-@Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
    @ObfuscatedName("so")
    @ObfuscatedSignature(
       descriptor = "Laz;"
    )
-   @Export("pcmStreamMixer")
    static PcmStreamMixer pcmStreamMixer;
    @ObfuscatedName("jy")
    @ObfuscatedGetter(
@@ -24,7 +22,6 @@ public class ApproximateRouteStrategy extends RouteStrategy {
       descriptor = "(IIILgw;I)Z",
       garbageValue = "1813316312"
    )
-   @Export("hasArrived")
    protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
       return var2 == super.approxDestinationX && var3 == super.approxDestinationY;
    }

@@ -5,31 +5,25 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hn")
-@Implements("Skeleton")
 public class Skeleton extends Node {
    @ObfuscatedName("lf")
    @ObfuscatedSignature(
       descriptor = "Lht;"
    )
-   @Export("textureProvider")
    static TextureProvider textureProvider;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 227763471
    )
-   @Export("id")
    int id;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = 15717685
    )
-   @Export("count")
    int count;
    @ObfuscatedName("r")
-   @Export("transformTypes")
    int[] transformTypes;
    @ObfuscatedName("u")
-   @Export("labels")
    int[][] labels;
    @ObfuscatedName("b")
    @ObfuscatedSignature(

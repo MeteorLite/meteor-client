@@ -15,10 +15,8 @@ import org.bouncycastle.crypto.tls.TlsCredentials;
 @ObfuscatedName("g")
 class class11 implements TlsAuthentication {
    @ObfuscatedName("q")
-   @Export("SpriteBuffer_spriteWidths")
    public static int[] SpriteBuffer_spriteWidths;
    @ObfuscatedName("r")
-   @Export("soundSystemExecutor")
    static ScheduledExecutorService soundSystemExecutor;
    // $FF: synthetic field
    @ObfuscatedSignature(

@@ -8,6 +8,5 @@ public class class97 {
    @ObfuscatedGetter(
       intValue = -1117488829
    )
-   @Export("cameraPitch")
    static int cameraPitch;
 }

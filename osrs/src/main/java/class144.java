@@ -9,7 +9,6 @@ public class class144 extends class152 {
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("mapMarkerSprites")
    static SpritePixels[] mapMarkerSprites;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
@@ -295,7 +294,6 @@ public class class144 extends class152 {
       descriptor = "([Lkd;IIIIIIII)V",
       garbageValue = "-1314248659"
    )
-   @Export("updateInterface")
    static final void updateInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       for(int var8 = 0; var8 < var0.length; ++var8) {
          Widget var9 = var0[var8];

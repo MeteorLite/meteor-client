@@ -84,7 +84,6 @@ public final class class282 {
       descriptor = "(IIIILrx;Lkv;I)V",
       garbageValue = "826966523"
    )
-   @Export("drawSpriteOnMinimap")
    static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
       if (var4 != null) {
          int var6 = Client.camAngleY & 2047;

@@ -5,10 +5,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kh")
-@Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
    @ObfuscatedName("h")
-   @Export("directBuffer")
    ByteBuffer directBuffer;
 
    @ObfuscatedName("v")
@@ -16,7 +14,6 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
       descriptor = "(B)[B",
       garbageValue = "-108"
    )
-   @Export("get")
    byte[] get() {
       byte[] var1 = new byte[this.directBuffer.capacity()];
       this.directBuffer.position(0);
@@ -29,7 +26,6 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
       descriptor = "([BI)V",
       garbageValue = "-878200260"
    )
-   @Export("set")
    public void set(byte[] var1) {
       this.directBuffer = ByteBuffer.allocateDirect(var1.length);
       this.directBuffer.position(0);

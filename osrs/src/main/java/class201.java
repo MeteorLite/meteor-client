@@ -10,7 +10,6 @@ public class class201 implements class30 {
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   @Export("compass")
    static SpritePixels compass;
    @ObfuscatedName("h")
    char[] field2327 = new char[128];

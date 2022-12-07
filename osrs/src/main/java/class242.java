@@ -8,6 +8,5 @@ public class class242 {
    @ObfuscatedSignature(
       descriptor = "Lfp;"
    )
-   @Export("taskHandler")
    protected static TaskHandler taskHandler;
 }

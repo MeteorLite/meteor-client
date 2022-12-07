@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("my")
 public class class358 {
    @ObfuscatedName("h")
-   @Export("cp1252AsciiExtension")
    public static final char[] cp1252AsciiExtension = new char[]{'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'};
    @ObfuscatedName("m")
    @ObfuscatedGetter(
@@ -19,19 +18,16 @@ public class class358 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive13")
    static Archive archive13;
    @ObfuscatedName("iw")
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("headIconHintSprites")
    static SpritePixels[] headIconHintSprites;
    @ObfuscatedName("oe")
    @ObfuscatedGetter(
       intValue = 1164204793
    )
-   @Export("selectedSpellWidget")
    static int selectedSpellWidget;
 
    @ObfuscatedName("au")
@@ -185,7 +181,6 @@ public class class358 {
       descriptor = "(III)V",
       garbageValue = "-1783114355"
    )
-   @Export("updateItemPile")
    static final void updateItemPile(int var0, int var1) {
       NodeDeque var2 = Client.groundItems[class383.Client_plane][var0][var1];
       if (var2 == null) {
@@ -238,7 +233,6 @@ public class class358 {
       descriptor = "(ZI)V",
       garbageValue = "-1198990155"
    )
-   @Export("setTapToDrop")
    static void setTapToDrop(boolean var0) {
       Client.tapToDrop = var0;
    }

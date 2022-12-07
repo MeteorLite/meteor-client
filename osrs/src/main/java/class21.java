@@ -19,7 +19,6 @@ public class class21 {
    @ObfuscatedGetter(
       intValue = 429125907
    )
-   @Export("selectedSpellFlags")
    static int selectedSpellFlags;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

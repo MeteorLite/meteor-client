@@ -37,7 +37,6 @@ public enum class86 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lff;"
    )
-   @Export("mouseWheel")
    static class166 mouseWheel;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
@@ -60,7 +59,6 @@ public enum class86 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.field1103;
    }

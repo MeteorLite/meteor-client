@@ -7,16 +7,12 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("il")
-@Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
    @ObfuscatedName("i")
-   @Export("worldMapData0Set")
    HashSet worldMapData0Set;
    @ObfuscatedName("o")
-   @Export("worldMapData1Set")
    HashSet worldMapData1Set;
    @ObfuscatedName("n")
-   @Export("iconList")
    List iconList;
 
    @ObfuscatedName("bn")
@@ -24,7 +20,6 @@ public class WorldMapAreaData extends WorldMapArea {
       descriptor = "(Lqy;Lqy;IZI)V",
       garbageValue = "-2083183142"
    )
-   @Export("init")
    void init(Buffer var1, Buffer var2, int var3, boolean var4) {
       this.read(var1, var3);
       int var5 = var2.readUnsignedShort();
@@ -66,7 +61,6 @@ public class WorldMapAreaData extends WorldMapArea {
       descriptor = "(Lqy;ZB)V",
       garbageValue = "31"
    )
-   @Export("initIconsList")
    void initIconsList(Buffer var1, boolean var2) {
       this.iconList = new LinkedList();
       int var3 = var1.readUnsignedShort();
@@ -87,7 +81,6 @@ public class WorldMapAreaData extends WorldMapArea {
       descriptor = "(Lcj;ZB)V",
       garbageValue = "8"
    )
-   @Export("addPlayerToScene")
    static void addPlayerToScene(Player var0, boolean var1) {
       if (var0 != null && var0.isVisible() && !var0.isHidden) {
          var0.isUnanimated = false;

@@ -5,13 +5,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("on")
-@Implements("GraphicsDefaults")
 public class GraphicsDefaults {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 331911785
    )
-   @Export("compass")
    public int compass = -1;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
@@ -22,13 +20,11 @@ public class GraphicsDefaults {
    @ObfuscatedGetter(
       intValue = -1948624063
    )
-   @Export("mapScenes")
    public int mapScenes = -1;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 874836143
    )
-   @Export("headIconsPk")
    public int headIconsPk = -1;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
@@ -71,7 +67,6 @@ public class GraphicsDefaults {
       descriptor = "(Lly;B)V",
       garbageValue = "8"
    )
-   @Export("decode")
    public void decode(AbstractArchive var1) {
       byte[] var2 = var1.takeFileFlat(DefaultsGroup.field4578.group);
       Buffer var3 = new Buffer(var2);

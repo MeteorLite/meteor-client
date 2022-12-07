@@ -4,25 +4,20 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jj")
-@Implements("DemotingHashTable")
 public final class DemotingHashTable {
    @ObfuscatedName("h")
-   @Export("capacity")
    int capacity;
    @ObfuscatedName("e")
-   @Export("remaining")
    int remaining;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lql;"
    )
-   @Export("hashTable")
    IterableNodeHashTable hashTable;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lmm;"
    )
-   @Export("queue")
    IterableDualNodeQueue queue;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
@@ -48,7 +43,6 @@ public final class DemotingHashTable {
    }
 
    @ObfuscatedName("h")
-   @Export("get")
    public Object get(long var1) {
       Wrapper var3 = (Wrapper)this.hashTable.get(var1);
       if (var3 == null) {
@@ -79,7 +73,6 @@ public final class DemotingHashTable {
    }
 
    @ObfuscatedName("e")
-   @Export("remove")
    void remove(long var1) {
       Wrapper var3 = (Wrapper)this.hashTable.get(var1);
       this.removeWrapper(var3);
@@ -89,7 +82,6 @@ public final class DemotingHashTable {
    @ObfuscatedSignature(
       descriptor = "(Ljd;)V"
    )
-   @Export("removeWrapper")
    void removeWrapper(Wrapper var1) {
       if (var1 != null) {
          var1.remove();
@@ -105,7 +97,6 @@ public final class DemotingHashTable {
    }
 
    @ObfuscatedName("m")
-   @Export("put")
    public void put(Object var1, long var2, int var4) {
       if (var4 > this.capacity) {
          throw new IllegalStateException();
@@ -137,7 +128,6 @@ public final class DemotingHashTable {
    }
 
    @ObfuscatedName("q")
-   @Export("demote")
    public void demote(int var1) {
       for(Wrapper var2 = (Wrapper)this.queue.last(); var2 != null; var2 = (Wrapper)this.queue.previous()) {
          if (var2.isSoft()) {
@@ -158,7 +148,6 @@ public final class DemotingHashTable {
    }
 
    @ObfuscatedName("f")
-   @Export("clear")
    public void clear() {
       this.queue.clear();
       this.hashTable.clear();

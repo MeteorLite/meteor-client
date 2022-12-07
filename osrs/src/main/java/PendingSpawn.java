@@ -5,43 +5,36 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cm")
-@Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
    @ObfuscatedName("ns")
    @ObfuscatedSignature(
       descriptor = "Lbs;"
    )
-   @Export("tempMenuAction")
    static MenuAction tempMenuAction;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -768872951
    )
-   @Export("plane")
    int plane;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1473814219
    )
-   @Export("type")
    int type;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1941580187
    )
-   @Export("x")
    int x;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 301883379
    )
-   @Export("y")
    int y;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -1863285855
    )
-   @Export("objectId")
    int objectId;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
@@ -77,13 +70,11 @@ public final class PendingSpawn extends Node {
    @ObfuscatedGetter(
       intValue = 583629257
    )
-   @Export("delay")
    int delay = 0;
    @ObfuscatedName("o")
    @ObfuscatedGetter(
       intValue = 1183420635
    )
-   @Export("hitpoints")
    int hitpoints = -1;
 
    @ObfuscatedName("h")

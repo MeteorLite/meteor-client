@@ -5,25 +5,21 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cr")
-@Implements("TileItem")
 public final class TileItem extends Renderable {
    @ObfuscatedName("ss")
    @ObfuscatedSignature(
       descriptor = "Lax;"
    )
-   @Export("pcmPlayer0")
    static PcmPlayer pcmPlayer0;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -1495440553
    )
-   @Export("id")
    int id;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1996619089
    )
-   @Export("quantity")
    int quantity;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
@@ -45,7 +41,6 @@ public final class TileItem extends Renderable {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       return NPCComposition.ItemDefinition_get(this.id).getModel(this.quantity);
    }

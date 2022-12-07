@@ -5,52 +5,42 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hj")
-@Implements("SceneTilePaint")
 public final class SceneTilePaint {
    @ObfuscatedName("l")
-   @Export("ByteArrayPool_arrays")
    public static byte[][][] ByteArrayPool_arrays;
    @ObfuscatedName("db")
-   @Export("mouseCam")
    static boolean mouseCam;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 15870629
    )
-   @Export("swColor")
    int swColor;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -1110971815
    )
-   @Export("seColor")
    int seColor;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -489464065
    )
-   @Export("neColor")
    int neColor;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -542131165
    )
-   @Export("nwColor")
    int nwColor;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = -813926199
    )
-   @Export("texture")
    int texture;
    @ObfuscatedName("q")
-   @Export("isFlat")
    boolean isFlat = true;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = -235347683
    )
-   @Export("rgb")
    int rgb;
 
    SceneTilePaint(int var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {

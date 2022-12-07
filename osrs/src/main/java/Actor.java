@@ -5,28 +5,23 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ct")
-@Implements("Actor")
 public abstract class Actor extends Renderable {
    @ObfuscatedName("av")
    @ObfuscatedGetter(
       intValue = -389894911
    )
-   @Export("x")
    int x;
    @ObfuscatedName("au")
    @ObfuscatedGetter(
       intValue = 65440413
    )
-   @Export("y")
    int y;
    @ObfuscatedName("ar")
    @ObfuscatedGetter(
       intValue = 1214343763
    )
-   @Export("rotation")
    int rotation;
    @ObfuscatedName("at")
-   @Export("isWalking")
    boolean isWalking = false;
    @ObfuscatedName("ay")
    @ObfuscatedGetter(
@@ -37,55 +32,46 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = 627237213
    )
-   @Export("playerCycle")
    int playerCycle;
    @ObfuscatedName("ab")
    @ObfuscatedGetter(
       intValue = -345007929
    )
-   @Export("idleSequence")
    int idleSequence = -1;
    @ObfuscatedName("al")
    @ObfuscatedGetter(
       intValue = 285862749
    )
-   @Export("turnLeftSequence")
    int turnLeftSequence = -1;
    @ObfuscatedName("ag")
    @ObfuscatedGetter(
       intValue = -1599221413
    )
-   @Export("turnRightSequence")
    int turnRightSequence = -1;
    @ObfuscatedName("az")
    @ObfuscatedGetter(
       intValue = 498947341
    )
-   @Export("walkSequence")
    int walkSequence = -1;
    @ObfuscatedName("ak")
    @ObfuscatedGetter(
       intValue = -1244346649
    )
-   @Export("walkBackSequence")
    int walkBackSequence = -1;
    @ObfuscatedName("af")
    @ObfuscatedGetter(
       intValue = -1074551991
    )
-   @Export("walkLeftSequence")
    int walkLeftSequence = -1;
    @ObfuscatedName("ai")
    @ObfuscatedGetter(
       intValue = 635132903
    )
-   @Export("walkRightSequence")
    int walkRightSequence = -1;
    @ObfuscatedName("ax")
    @ObfuscatedGetter(
       intValue = 942099641
    )
-   @Export("runSequence")
    int runSequence = -1;
    @ObfuscatedName("ah")
    @ObfuscatedGetter(
@@ -123,10 +109,8 @@ public abstract class Actor extends Renderable {
    )
    int field1197 = -1;
    @ObfuscatedName("ac")
-   @Export("overheadText")
    String overheadText = null;
    @ObfuscatedName("bh")
-   @Export("isAutoChatting")
    boolean isAutoChatting;
    @ObfuscatedName("be")
    boolean field1187 = false;
@@ -134,52 +118,40 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = 1917412835
    )
-   @Export("overheadTextCyclesRemaining")
    int overheadTextCyclesRemaining = 100;
    @ObfuscatedName("bo")
    @ObfuscatedGetter(
       intValue = -1708374603
    )
-   @Export("overheadTextColor")
    int overheadTextColor = 0;
    @ObfuscatedName("by")
    @ObfuscatedGetter(
       intValue = -1814648137
    )
-   @Export("overheadTextEffect")
    int overheadTextEffect = 0;
    @ObfuscatedName("bp")
-   @Export("hitSplatCount")
    byte hitSplatCount = 0;
    @ObfuscatedName("bc")
-   @Export("hitSplatTypes")
    int[] hitSplatTypes = new int[4];
    @ObfuscatedName("bl")
-   @Export("hitSplatValues")
    int[] hitSplatValues = new int[4];
    @ObfuscatedName("bv")
-   @Export("hitSplatCycles")
    int[] hitSplatCycles = new int[4];
    @ObfuscatedName("bx")
-   @Export("hitSplatTypes2")
    int[] hitSplatTypes2 = new int[4];
    @ObfuscatedName("bg")
-   @Export("hitSplatValues2")
    int[] hitSplatValues2 = new int[4];
    @ObfuscatedName("bz")
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   @Export("healthBars")
    IterableNodeDeque healthBars = new IterableNodeDeque();
    @ObfuscatedName("bi")
    @ObfuscatedGetter(
       intValue = 254868797
    )
-   @Export("targetIndex")
    int targetIndex = -1;
    @ObfuscatedName("br")
-   @Export("false0")
    boolean false0 = false;
    @ObfuscatedName("bq")
    @ObfuscatedGetter(
@@ -192,19 +164,16 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = -23593053
    )
-   @Export("movementSequence")
    int movementSequence = -1;
    @ObfuscatedName("bs")
    @ObfuscatedGetter(
       intValue = 1618805973
    )
-   @Export("movementFrame")
    int movementFrame = 0;
    @ObfuscatedName("bt")
    @ObfuscatedGetter(
       intValue = 81322447
    )
-   @Export("movementFrameCycle")
    int movementFrameCycle = 0;
    @ObfuscatedName("bu")
    @ObfuscatedGetter(
@@ -215,25 +184,21 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = 94737613
    )
-   @Export("sequence")
    int sequence = -1;
    @ObfuscatedName("bb")
    @ObfuscatedGetter(
       intValue = 1723796857
    )
-   @Export("sequenceFrame")
    int sequenceFrame = 0;
    @ObfuscatedName("bm")
    @ObfuscatedGetter(
       intValue = -1043036109
    )
-   @Export("sequenceFrameCycle")
    int sequenceFrameCycle = 0;
    @ObfuscatedName("bk")
    @ObfuscatedGetter(
       intValue = -1398805233
    )
-   @Export("sequenceDelay")
    int sequenceDelay = 0;
    @ObfuscatedName("bd")
    @ObfuscatedGetter(
@@ -244,13 +209,11 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = 385930223
    )
-   @Export("spotAnimation")
    int spotAnimation = -1;
    @ObfuscatedName("cl")
    @ObfuscatedGetter(
       intValue = 1092439411
    )
-   @Export("spotAnimationFrame")
    int spotAnimationFrame = 0;
    @ObfuscatedName("cq")
    @ObfuscatedGetter(
@@ -306,13 +269,11 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = -5311601
    )
-   @Export("npcCycle")
    int npcCycle = 0;
    @ObfuscatedName("ct")
    @ObfuscatedGetter(
       intValue = 1571258463
    )
-   @Export("defaultHeight")
    int defaultHeight = 200;
    @ObfuscatedName("cu")
    @ObfuscatedGetter(
@@ -336,7 +297,6 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = -947520985
    )
-   @Export("orientation")
    int orientation;
    @ObfuscatedName("cz")
    @ObfuscatedGetter(
@@ -352,19 +312,15 @@ public abstract class Actor extends Renderable {
    @ObfuscatedGetter(
       intValue = 472227045
    )
-   @Export("pathLength")
    int pathLength = 0;
    @ObfuscatedName("ck")
-   @Export("pathX")
    int[] pathX = new int[10];
    @ObfuscatedName("ci")
-   @Export("pathY")
    int[] pathY = new int[10];
    @ObfuscatedName("dh")
    @ObfuscatedSignature(
       descriptor = "[Lgs;"
    )
-   @Export("pathTraversed")
    class204[] pathTraversed = new class204[10];
    @ObfuscatedName("dn")
    @ObfuscatedGetter(
@@ -387,7 +343,6 @@ public abstract class Actor extends Renderable {
       descriptor = "(I)Z",
       garbageValue = "-200769249"
    )
-   @Export("isVisible")
    boolean isVisible() {
       return false;
    }
@@ -407,7 +362,6 @@ public abstract class Actor extends Renderable {
       descriptor = "(IIIIIII)V",
       garbageValue = "-45918745"
    )
-   @Export("addHitSplat")
    final void addHitSplat(int var1, int var2, int var3, int var4, int var5, int var6) {
       boolean var7 = true;
       boolean var8 = true;
@@ -488,7 +442,6 @@ public abstract class Actor extends Renderable {
       descriptor = "(IIIIIII)V",
       garbageValue = "1256732773"
    )
-   @Export("addHealthBar")
    final void addHealthBar(int var1, int var2, int var3, int var4, int var5, int var6) {
       HealthBarDefinition var8 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var1);
       HealthBarDefinition var7;
@@ -550,7 +503,6 @@ public abstract class Actor extends Renderable {
       descriptor = "(IB)V",
       garbageValue = "0"
    )
-   @Export("removeHealthBar")
    final void removeHealthBar(int var1) {
       HealthBarDefinition var3 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var1);
       HealthBarDefinition var2;

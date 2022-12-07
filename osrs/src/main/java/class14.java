@@ -18,7 +18,6 @@ public class class14 {
    @ObfuscatedGetter(
       intValue = -866172123
    )
-   @Export("oculusOrbFocalPointY")
    static int oculusOrbFocalPointY;
    @ObfuscatedName("h")
    @ObfuscatedGetter(

@@ -7,43 +7,33 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ag")
-@Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
    @ObfuscatedName("io")
    @ObfuscatedSignature(
       descriptor = "Lhc;"
    )
-   @Export("scene")
    static Scene scene;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = 1143257971
    )
-   @Export("id")
    int id;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = 1361333621
    )
-   @Export("size")
    int size;
    @ObfuscatedName("v")
-   @Export("operations")
    int[] operations;
    @ObfuscatedName("x")
-   @Export("creationErrors")
    int[] creationErrors;
    @ObfuscatedName("m")
-   @Export("arguments")
    byte[][][] arguments;
    @ObfuscatedName("q")
-   @Export("fields")
    Field[] fields;
    @ObfuscatedName("f")
-   @Export("intReplaceValues")
    int[] intReplaceValues;
    @ObfuscatedName("r")
-   @Export("methods")
    Method[] methods;
 
    @ObfuscatedName("jw")
@@ -65,7 +55,6 @@ public class ReflectionCheck extends Node {
       descriptor = "(Lcg;IIIB)V",
       garbageValue = "-113"
    )
-   @Export("addNpcToMenu")
    static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
       NPCComposition var4 = var0.definition;
       if (Client.menuOptionsCount < 400) {
@@ -185,9 +174,9 @@ public class ReflectionCheck extends Node {
       PendingSpawn.tempMenuAction.param1 = Client.menuArguments2[var0];
       PendingSpawn.tempMenuAction.opcode = Client.menuOpcodes[var0];
       PendingSpawn.tempMenuAction.identifier = Client.menuIdentifiers[var0];
-      PendingSpawn.tempMenuAction.field904 = Client.menuItemIds[var0];
+      PendingSpawn.tempMenuAction.itemId = Client.menuItemIds[var0];
       PendingSpawn.tempMenuAction.action = Client.menuActions[var0];
-      PendingSpawn.tempMenuAction.field899 = Client.menuTargets[var0];
+      PendingSpawn.tempMenuAction.target = Client.menuTargets[var0];
    }
 
    @ObfuscatedName("mb")
@@ -195,7 +184,6 @@ public class ReflectionCheck extends Node {
       descriptor = "(Ljava/lang/String;S)V",
       garbageValue = "10506"
    )
-   @Export("clanKickUser")
    static final void clanKickUser(String var0) {
       if (class281.friendsChat != null) {
          PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field3090, Client.packetWriter.isaacCipher);

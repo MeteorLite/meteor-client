@@ -2,7 +2,6 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 
-@Implements("JSONObject$Null")
 @ObfuscatedName("org/json/JSONObject$Null")
 final class JSONObject$Null {
 
