@@ -612,7 +612,7 @@ public class class34 {
                                     SequenceDefinition var37 = null;
                                     var26 = -1;
                                     if (var20 != -1) {
-                                       var37 = class216.SequenceDefinition_get(var20);
+                                       var37 = Offsets.SequenceDefinition_get(var20);
                                        var26 = var10.modelFrame;
                                     }
 

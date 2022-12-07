@@ -78,7 +78,7 @@ public class GraphicsObject extends Renderable {
       int var8 = ClanSettings.SpotAnimationDefinition_get(this.id).sequence;
       if (var8 != -1) {
          this.isFinished = false;
-         this.sequenceDefinition = class216.SequenceDefinition_get(var8);
+         this.sequenceDefinition = Offsets.SequenceDefinition_get(var8);
       } else {
          this.isFinished = true;
       }

@@ -4,45 +4,45 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hf")
-public class class216 {
+public class Offsets {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -2055361545
    )
-   int field2600;
+   int xMid;
    @ObfuscatedName("e")
    @ObfuscatedGetter(
       intValue = -1890114663
    )
-   int field2596;
+   int yMid;
    @ObfuscatedName("v")
    @ObfuscatedGetter(
       intValue = -1812849095
    )
-   int field2597;
+   int zMid;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 320710353
    )
-   int field2598;
+   int xMidOffset;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 1128965299
    )
-   int field2599;
+   int yMidOffset;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 678945951
    )
-   int field2595;
+   int zMidOffset;
 
-   class216(int var1, int var2, int var3, int var4, int var5, int var6) {
-      this.field2600 = var1;
-      this.field2596 = var2;
-      this.field2597 = var3;
-      this.field2598 = var4;
-      this.field2599 = var5;
-      this.field2595 = var6;
+   Offsets(int var1, int var2, int var3, int var4, int var5, int var6) {
+      this.xMid = var1;
+      this.yMid = var2;
+      this.zMid = var3;
+      this.xMidOffset = var4;
+      this.yMidOffset = var5;
+      this.zMidOffset = var6;
    }
 
    @ObfuscatedName("e")

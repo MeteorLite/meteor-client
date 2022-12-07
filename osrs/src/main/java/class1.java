@@ -202,7 +202,7 @@ public class class1 implements Callable {
 
             var17 = var0.readUnsignedByte();
             if (var5 == var3.sequence && var5 != -1) {
-               var7 = class216.SequenceDefinition_get(var5).field2276;
+               var7 = Offsets.SequenceDefinition_get(var5).field2276;
                if (var7 == 1) {
                   var3.sequenceFrame = 0;
                   var3.sequenceFrameCycle = 0;
@@ -213,7 +213,7 @@ public class class1 implements Callable {
                if (var7 == 2) {
                   var3.field1223 = 0;
                }
-            } else if (var5 == -1 || var3.sequence == -1 || class216.SequenceDefinition_get(var5).field2300 >= class216.SequenceDefinition_get(var3.sequence).field2300) {
+            } else if (var5 == -1 || var3.sequence == -1 || Offsets.SequenceDefinition_get(var5).field2300 >= Offsets.SequenceDefinition_get(var3.sequence).field2300) {
                var3.sequence = var5;
                var3.sequenceFrame = 0;
                var3.sequenceFrameCycle = 0;

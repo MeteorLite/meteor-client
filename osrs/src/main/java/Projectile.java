@@ -150,7 +150,7 @@ public final class Projectile extends Renderable {
       this.isMoving = false;
       int var12 = ClanSettings.SpotAnimationDefinition_get(this.id).sequence;
       if (var12 != -1) {
-         this.sequenceDefinition = class216.SequenceDefinition_get(var12);
+         this.sequenceDefinition = Offsets.SequenceDefinition_get(var12);
       } else {
          this.sequenceDefinition = null;
       }

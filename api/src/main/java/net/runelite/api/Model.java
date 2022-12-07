@@ -24,6 +24,8 @@
  */
 package net.runelite.api;
 
+import java.util.HashMap;
+
 /**
  * Represents the model of an object.
  */

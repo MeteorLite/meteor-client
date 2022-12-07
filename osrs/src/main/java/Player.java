@@ -368,8 +368,8 @@ public final class Player extends Actor {
       if (this.appearance == null) {
          return null;
       } else {
-         SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? class216.SequenceDefinition_get(super.sequence) : null;
-         SequenceDefinition var2 = super.movementSequence == -1 || this.isUnanimated || super.idleSequence == super.movementSequence && var1 != null ? null : class216.SequenceDefinition_get(super.movementSequence);
+         SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? Offsets.SequenceDefinition_get(super.sequence) : null;
+         SequenceDefinition var2 = super.movementSequence == -1 || this.isUnanimated || super.idleSequence == super.movementSequence && var1 != null ? null : Offsets.SequenceDefinition_get(super.movementSequence);
          Model var3 = this.appearance.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
          if (var3 == null) {
             return null;
@@ -564,7 +564,7 @@ public final class Player extends Actor {
       garbageValue = "72"
    )
    final void method2298(int var1, int var2, class204 var3) {
-      if (super.sequence != -1 && class216.SequenceDefinition_get(super.sequence).field2284 == 1) {
+      if (super.sequence != -1 && Offsets.SequenceDefinition_get(super.sequence).field2284 == 1) {
          super.sequence = -1;
       }
 

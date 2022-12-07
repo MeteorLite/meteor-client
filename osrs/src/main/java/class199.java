@@ -120,7 +120,7 @@ public class class199 implements class30 {
                ScriptEvent var3 = new ScriptEvent();
                var3.method2255(var1);
                var3.setArgs(var2.field3467);
-               class216.method4611().addFirst(var3);
+               Offsets.method4611().addFirst(var3);
             }
          }
       }
@@ -152,7 +152,7 @@ public class class199 implements class30 {
                ScriptEvent var3 = new ScriptEvent();
                var3.method2255(var2);
                var3.setArgs(var1.field3467);
-               class216.method4611().addFirst(var3);
+               Offsets.method4611().addFirst(var3);
             }
 
          }
@@ -212,7 +212,7 @@ public class class199 implements class30 {
                   ScriptEvent var4 = new ScriptEvent();
                   var4.method2255(this.field2305);
                   var4.setArgs(var3.field3465);
-                  class216.method4611().addFirst(var4);
+                  Offsets.method4611().addFirst(var4);
                   this.method4068();
                }
 

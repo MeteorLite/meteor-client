@@ -180,7 +180,7 @@ public class Model extends Renderable {
    @Export("radius")
    int radius;
    @ObfuscatedName("al")
-   HashMap field2704 = new HashMap();
+   HashMap offsetsMap = new HashMap();
    @ObfuscatedName("bs")
    @Export("overrideHue")
    public byte overrideHue;
@@ -527,7 +527,7 @@ public class Model extends Renderable {
    @ObfuscatedName("r")
    @Export("calculateBoundingBox")
    void calculateBoundingBox(int var1) {
-      if (!this.field2704.containsKey(var1)) {
+      if (!this.offsetsMap.containsKey(var1)) {
          int var2 = 0;
          int var3 = 0;
          int var4 = 0;
@@ -566,23 +566,23 @@ public class Model extends Renderable {
             }
          }
 
-         class216 var14 = new class216((var5 + var2) / 2, (var6 + var3) / 2, (var7 + var4) / 2, (var5 - var2 + 1) / 2, (var6 - var3 + 1) / 2, (var7 - var4 + 1) / 2);
+         Offsets offsets = new Offsets((var5 + var2) / 2, (var6 + var3) / 2, (var7 + var4) / 2, (var5 - var2 + 1) / 2, (var6 - var3 + 1) / 2, (var7 - var4 + 1) / 2);
          boolean var15 = true;
-         if (var14.field2598 < 32) {
-            var14.field2598 = 32;
+         if (offsets.xMidOffset < 32) {
+            offsets.xMidOffset = 32;
          }
 
-         if (var14.field2595 < 32) {
-            var14.field2595 = 32;
+         if (offsets.zMidOffset < 32) {
+            offsets.zMidOffset = 32;
          }
 
          if (this.isSingleTile) {
             boolean var16 = true;
-            var14.field2598 += 8;
-            var14.field2595 += 8;
+            offsets.xMidOffset += 8;
+            offsets.zMidOffset += 8;
          }
 
-         this.field2704.put(var1, var14);
+         this.offsetsMap.put(var1, offsets);
       }
    }
 
@@ -651,7 +651,7 @@ public class Model extends Renderable {
    @Export("resetBounds")
    public void resetBounds() {
       this.boundsType = 0;
-      this.field2704.clear();
+      this.offsetsMap.clear();
    }
 
    @ObfuscatedName("i")
@@ -1781,13 +1781,13 @@ public class Model extends Renderable {
                                  ViewportMouse.field2742 = Math.abs(ViewportMouse.field2747);
                               }
 
-                              class216 var50 = (class216)this.field2704.get(var1);
-                              var40 = var50.field2600 + var6;
-                              var41 = var7 + var50.field2596;
-                              var42 = var8 + var50.field2597;
-                              var56 = var50.field2598;
-                              var57 = var50.field2599;
-                              var45 = var50.field2595;
+                              Offsets var50 = (Offsets)this.offsetsMap.get(var1);
+                              var40 = var50.xMid + var6;
+                              var41 = var7 + var50.yMid;
+                              var42 = var8 + var50.zMid;
+                              var56 = var50.xMidOffset;
+                              var57 = var50.yMidOffset;
+                              var45 = var50.zMidOffset;
                               var46 = class358.field4347 - var40;
                               var47 = ViewportMouse.field2746 - var41;
                               var48 = class133.field1637 - var42;

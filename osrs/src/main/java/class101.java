@@ -39,7 +39,7 @@ final class class101 implements class297 {
          ScriptEvent var1 = new ScriptEvent();
          var1.method2255(this.val$cc);
          var1.setArgs(this.val$cc.method6185().field3468);
-         class216.method4611().addFirst(var1);
+         Offsets.method4611().addFirst(var1);
       }
 
    }

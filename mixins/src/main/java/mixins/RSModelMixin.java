@@ -39,11 +39,7 @@ import net.runelite.api.mixins.Shadow;
 import net.runelite.api.model.Jarvis;
 import net.runelite.api.model.Triangle;
 import net.runelite.api.model.Vertex;
-import net.runelite.rs.api.RSAnimation;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSFrames;
-import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSSkeleton;
+import net.runelite.rs.api.*;
 
 @Mixin(RSModel.class)
 public abstract class RSModelMixin implements RSModel
@@ -548,5 +544,50 @@ public abstract class RSModelMixin implements RSModel
 	public void setVertexNormalsZ(int[] vertexNormalsZ)
 	{
 		rl$vertexNormalsZ = vertexNormalsZ;
+	}
+
+	@Inject
+	RSOffsets lastOffsets = null;
+
+	@MethodHook(value = "calculateBoundingBox", end = true)
+	@Inject
+	public void postDraw(int var1) {
+		lastOffsets = getOffsetsMap().get(var1);
+	}
+
+	@Inject
+	@Override
+	public int getCenterX() {
+		return lastOffsets.getCenterX();
+	}
+
+	@Inject
+	@Override
+	public int getCenterY() {
+		return lastOffsets.getCenterY();
+	}
+
+	@Inject
+	@Override
+	public int getCenterZ() {
+		return lastOffsets.getCenterY();
+	}
+
+	@Inject
+	@Override
+	public int getExtremeX() {
+		return lastOffsets.getExtremeX();
+	}
+
+	@Inject
+	@Override
+	public int getExtremeY() {
+		return lastOffsets.getExtremeY();
+	}
+
+	@Inject
+	@Override
+	public int getExtremeZ() {
+		return lastOffsets.getExtremeZ();
 	}
 }

@@ -4987,7 +4987,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                var39 = npcs[var20];
                if (var39 != null) {
                   if (var5 == var39.sequence && var5 != -1) {
-                     var8 = class216.SequenceDefinition_get(var5).field2276;
+                     var8 = Offsets.SequenceDefinition_get(var5).field2276;
                      if (var8 == 1) {
                         var39.sequenceFrame = 0;
                         var39.sequenceFrameCycle = 0;
@@ -4996,7 +4996,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                      } else if (var8 == 2) {
                         var39.field1223 = 0;
                      }
-                  } else if (var5 == -1 || var39.sequence == -1 || class216.SequenceDefinition_get(var5).field2300 >= class216.SequenceDefinition_get(var39.sequence).field2300) {
+                  } else if (var5 == -1 || var39.sequence == -1 || Offsets.SequenceDefinition_get(var5).field2300 >= Offsets.SequenceDefinition_get(var39.sequence).field2300) {
                      var39.sequence = var5;
                      var39.sequenceFrame = 0;
                      var39.sequenceFrameCycle = 0;

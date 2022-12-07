@@ -189,7 +189,7 @@ public class SpotAnimationDefinition extends DualNode {
 
       Model var5;
       if (this.sequence != -1 && var1 != -1) {
-         var5 = class216.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
+         var5 = Offsets.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
       } else {
          var5 = var2.toSharedSpotAnimationModel(true);
       }

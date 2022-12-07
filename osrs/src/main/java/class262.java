@@ -45,7 +45,7 @@ public abstract class class262 implements class264 {
    @Export("performPlayerAnimation")
    static void performPlayerAnimation(Player var0, int var1, int var2) {
       if (var0.sequence == var1 && var1 != -1) {
-         int var3 = class216.SequenceDefinition_get(var1).field2276;
+         int var3 = Offsets.SequenceDefinition_get(var1).field2276;
          if (var3 == 1) {
             var0.sequenceFrame = 0;
             var0.sequenceFrameCycle = 0;
@@ -56,7 +56,7 @@ public abstract class class262 implements class264 {
          if (var3 == 2) {
             var0.field1223 = 0;
          }
-      } else if (var1 == -1 || var0.sequence == -1 || class216.SequenceDefinition_get(var1).field2300 >= class216.SequenceDefinition_get(var0.sequence).field2300) {
+      } else if (var1 == -1 || var0.sequence == -1 || Offsets.SequenceDefinition_get(var1).field2300 >= Offsets.SequenceDefinition_get(var0.sequence).field2300) {
          var0.sequence = var1;
          var0.sequenceFrame = 0;
          var0.sequenceFrameCycle = 0;
