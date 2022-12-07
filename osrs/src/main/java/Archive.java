@@ -96,8 +96,8 @@ public class Archive extends AbstractArchive {
          int var2 = this.index;
          long var3 = (long)(var2 + 16711680);
          int var1;
-         if (class185.NetCache_currentResponse != null && class185.NetCache_currentResponse.key == var3) {
-            var1 = ModeWhere.NetCache_responseArchiveBuffer.offset * 99 / (ModeWhere.NetCache_responseArchiveBuffer.array.length - class185.NetCache_currentResponse.padding) + 1;
+         if (NewShit.NetCache_currentResponse != null && NewShit.NetCache_currentResponse.key == var3) {
+            var1 = ModeWhere.NetCache_responseArchiveBuffer.offset * 99 / (ModeWhere.NetCache_responseArchiveBuffer.array.length - NewShit.NetCache_currentResponse.padding) + 1;
          } else {
             var1 = 0;
          }
@@ -417,8 +417,8 @@ public class Archive extends AbstractArchive {
          int var3 = this.index;
          long var4 = (long)((var3 << 16) + var1);
          int var2;
-         if (class185.NetCache_currentResponse != null && var4 == class185.NetCache_currentResponse.key) {
-            var2 = ModeWhere.NetCache_responseArchiveBuffer.offset * 99 / (ModeWhere.NetCache_responseArchiveBuffer.array.length - class185.NetCache_currentResponse.padding) + 1;
+         if (NewShit.NetCache_currentResponse != null && var4 == NewShit.NetCache_currentResponse.key) {
+            var2 = ModeWhere.NetCache_responseArchiveBuffer.offset * 99 / (ModeWhere.NetCache_responseArchiveBuffer.array.length - NewShit.NetCache_currentResponse.padding) + 1;
          } else {
             var2 = 0;
          }

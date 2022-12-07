@@ -597,7 +597,7 @@ public class class34 {
                                     }
                                  } else {
                                     NPCComposition var50 = null;
-                                    class185 var51 = null;
+                                    NewShit var51 = null;
                                     if (var10.modelType == 6) {
                                        var25 = var10.modelId;
                                        if (var25 >= 0 && var25 < Client.npcs.length) {
@@ -616,7 +616,7 @@ public class class34 {
                                        var26 = var10.modelFrame;
                                     }
 
-                                    var45 = var10.method6228(var37, var26, var39, class155.localPlayer.appearance, var50, var51);
+                                    var45 = var10.getModel(var37, var26, var39, class155.localPlayer.appearance, var50, var51);
                                     if (var45 == null && Widget.field3539) {
                                        class69.invalidateWidget(var10);
                                     }

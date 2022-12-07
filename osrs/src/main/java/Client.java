@@ -1712,7 +1712,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       class31.currentPort = ClanChannel.worldPort;
       class86.field1104 = class304.field3516;
       TriBool.field4548 = class304.field3515;
-      class185.field2017 = class304.field3521;
+      NewShit.field2017 = class304.field3521;
       Varps.field3445 = class304.field3517;
       TaskHandler.urlRequester = new class109(this.field590, 210);
       this.setUpKeyboard();
@@ -2143,7 +2143,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   }
 
                   NetCache.NetCache_responseHeaderBuffer.offset = 0;
-                  class185.NetCache_currentResponse = null;
+                  NewShit.NetCache_currentResponse = null;
                   ModeWhere.NetCache_responseArchiveBuffer = null;
                   NetCache.field4216 = 0;
 
@@ -5868,7 +5868,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                         int var12 = menuItemIds[var15];
                         String var13 = menuActions[var15];
                         String var14 = menuTargets[var15];
-                        WorldMapData_0.method4844(var22, var9, var23, var11, var12, var13, var14, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
+                        WorldMapData_0.menuAction(var22, var9, var23, var11, var12, var13, var14, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
                      }
 
                      isMenuOpen = false;
@@ -5908,7 +5908,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                      var22 = menuItemIds[var2];
                      String var16 = menuActions[var2];
                      String var17 = menuTargets[var2];
-                     WorldMapData_0.method4844(var4, var5, var21, var15, var22, var16, var17, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
+                     WorldMapData_0.menuAction(var4, var5, var21, var15, var22, var16, var17, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
                   }
 
                   if (var20 == 2 && menuOptionsCount > 0) {

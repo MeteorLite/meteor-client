@@ -48,12 +48,12 @@ public final class NPC extends Actor {
    @ObfuscatedSignature(
       descriptor = "Lgp;"
    )
-   class185 field1314;
+   NewShit field1314;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lgp;"
    )
-   class185 field1316;
+   NewShit field1316;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -315,7 +315,7 @@ public final class NPC extends Actor {
       descriptor = "(Lgp;I)V",
       garbageValue = "-812185885"
    )
-   void method2542(class185 var1) {
+   void method2542(NewShit var1) {
       this.field1316 = var1;
    }
 
@@ -324,7 +324,7 @@ public final class NPC extends Actor {
       descriptor = "(I)Lgp;",
       garbageValue = "894608808"
    )
-   class185 method2543() {
+   NewShit method2543() {
       return this.field1316;
    }
 
@@ -333,7 +333,7 @@ public final class NPC extends Actor {
       descriptor = "(Lgp;I)V",
       garbageValue = "-1612778242"
    )
-   void method2544(class185 var1) {
+   void method2544(NewShit var1) {
       this.field1314 = var1;
    }
 

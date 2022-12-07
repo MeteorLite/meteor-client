@@ -1455,7 +1455,7 @@ public class Widget extends Node {
       descriptor = "(Lga;IZLko;Lgz;Lgp;I)Lhh;",
       garbageValue = "-1671121568"
    )
-   public Model method6228(SequenceDefinition var1, int var2, boolean var3, PlayerComposition var4, NPCComposition var5, class185 var6) {
+   public Model getModel(SequenceDefinition var1, int var2, boolean var3, PlayerComposition var4, NPCComposition var5, NewShit var6) {
       field3539 = false;
       int var7;
       int var8;
@@ -1495,7 +1495,7 @@ public class Widget extends Node {
                var12 = ModelData.ModelData_get(field3531, var8, 0);
                break;
             case 2:
-               var12 = class129.getNpcDefinition(var8).method3666((class185)null);
+               var12 = class129.getNpcDefinition(var8).method3666((NewShit)null);
                break;
             case 3:
                var12 = var4 != null ? var4.getModelData() : null;

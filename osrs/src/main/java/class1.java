@@ -185,7 +185,7 @@ public class class1 implements Callable {
                }
 
                var15 = (long)(++NPC.field1315 - 1);
-               var3.method2544(new class185(var15, var6, var13, var14));
+               var3.method2544(new NewShit(var15, var6, var13, var14));
             }
          }
 
@@ -351,7 +351,7 @@ public class class1 implements Callable {
                }
 
                var15 = (long)(++NPC.field1317 - 1);
-               var3.method2542(new class185(var15, var6, var13, var14));
+               var3.method2542(new NewShit(var15, var6, var13, var14));
             }
          }
 

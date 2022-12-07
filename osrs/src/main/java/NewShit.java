@@ -4,7 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gp")
-public class class185 {
+public class NewShit {
    @ObfuscatedName("g")
    public static short[] field2017;
    @ObfuscatedName("o")
@@ -25,7 +25,7 @@ public class class185 {
    @ObfuscatedName("x")
    short[] field2016;
 
-   public class185(long var1, int[] var3, short[] var4, short[] var5) {
+   public NewShit(long var1, int[] var3, short[] var4, short[] var5) {
       this.field2018 = var1;
       this.field2013 = var3;
       this.field2015 = var4;

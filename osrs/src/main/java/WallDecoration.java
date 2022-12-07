@@ -140,7 +140,7 @@ public final class WallDecoration {
 
                   NetCache.NetCache_loadTime = 0;
                   byte var5 = 0;
-                  if (class185.NetCache_currentResponse == null) {
+                  if (NewShit.NetCache_currentResponse == null) {
                      var5 = 8;
                   } else if (NetCache.field4216 == 0) {
                      var5 = 1;
@@ -168,7 +168,7 @@ public final class WallDecoration {
                         break;
                      }
 
-                     if (class185.NetCache_currentResponse == null) {
+                     if (NewShit.NetCache_currentResponse == null) {
                         NetCache.NetCache_responseHeaderBuffer.offset = 0;
                         var7 = NetCache.NetCache_responseHeaderBuffer.readUnsignedByte();
                         var8 = NetCache.NetCache_responseHeaderBuffer.readUnsignedShort();
@@ -187,8 +187,8 @@ public final class WallDecoration {
                         }
 
                         int var14 = var9 == 0 ? 5 : 9;
-                        class185.NetCache_currentResponse = var13;
-                        ModeWhere.NetCache_responseArchiveBuffer = new Buffer(var10 + var14 + class185.NetCache_currentResponse.padding);
+                        NewShit.NetCache_currentResponse = var13;
+                        ModeWhere.NetCache_responseArchiveBuffer = new Buffer(var10 + var14 + NewShit.NetCache_currentResponse.padding);
                         ModeWhere.NetCache_responseArchiveBuffer.writeByte(var9);
                         ModeWhere.NetCache_responseArchiveBuffer.writeInt(var10);
                         NetCache.field4216 = 8;
@@ -198,11 +198,11 @@ public final class WallDecoration {
                            NetCache.field4216 = 1;
                            NetCache.NetCache_responseHeaderBuffer.offset = 0;
                         } else {
-                           class185.NetCache_currentResponse = null;
+                           NewShit.NetCache_currentResponse = null;
                         }
                      }
                   } else {
-                     var6 = ModeWhere.NetCache_responseArchiveBuffer.array.length - class185.NetCache_currentResponse.padding;
+                     var6 = ModeWhere.NetCache_responseArchiveBuffer.array.length - NewShit.NetCache_currentResponse.padding;
                      var7 = 512 - NetCache.field4216;
                      if (var7 > var6 - ModeWhere.NetCache_responseArchiveBuffer.offset) {
                         var7 = var6 - ModeWhere.NetCache_responseArchiveBuffer.offset;
@@ -222,7 +222,7 @@ public final class WallDecoration {
                      ModeWhere.NetCache_responseArchiveBuffer.offset += var7;
                      NetCache.field4216 += var7;
                      if (var6 == ModeWhere.NetCache_responseArchiveBuffer.offset) {
-                        if (class185.NetCache_currentResponse.key == 16711935L) {
+                        if (NewShit.NetCache_currentResponse.key == 16711935L) {
                            class169.field1878 = ModeWhere.NetCache_responseArchiveBuffer;
 
                            for(var8 = 0; var8 < 256; ++var8) {
@@ -246,7 +246,7 @@ public final class WallDecoration {
                            NetCache.NetCache_crc.reset();
                            NetCache.NetCache_crc.update(ModeWhere.NetCache_responseArchiveBuffer.array, 0, var6);
                            var8 = (int)NetCache.NetCache_crc.getValue();
-                           if (var8 != class185.NetCache_currentResponse.crc) {
+                           if (var8 != NewShit.NetCache_currentResponse.crc) {
                               try {
                                  NetCache.NetCache_socket.close();
                               } catch (Exception var20) {
@@ -261,10 +261,10 @@ public final class WallDecoration {
 
                            NetCache.NetCache_crcMismatches = 0;
                            NetCache.NetCache_ioExceptions = 0;
-                           class185.NetCache_currentResponse.archive.write((int)(class185.NetCache_currentResponse.key & 65535L), ModeWhere.NetCache_responseArchiveBuffer.array, 16711680L == (class185.NetCache_currentResponse.key & 16711680L), class157.field1804);
+                           NewShit.NetCache_currentResponse.archive.write((int)(NewShit.NetCache_currentResponse.key & 65535L), ModeWhere.NetCache_responseArchiveBuffer.array, 16711680L == (NewShit.NetCache_currentResponse.key & 16711680L), class157.field1804);
                         }
 
-                        class185.NetCache_currentResponse.remove();
+                        NewShit.NetCache_currentResponse.remove();
                         if (class157.field1804) {
                            --NetCache.NetCache_pendingPriorityResponsesCount;
                         } else {
@@ -272,7 +272,7 @@ public final class WallDecoration {
                         }
 
                         NetCache.field4216 = 0;
-                        class185.NetCache_currentResponse = null;
+                        NewShit.NetCache_currentResponse = null;
                         ModeWhere.NetCache_responseArchiveBuffer = null;
                      } else {
                         if (NetCache.field4216 != 512) {

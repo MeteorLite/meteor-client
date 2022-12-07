@@ -247,7 +247,7 @@ public class PlayerComposition {
    @Export("getModel")
    public Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
       if (this.npcTransformId != -1) {
-         return class129.getNpcDefinition(this.npcTransformId).method3723(var1, var2, var3, var4, (class185)null);
+         return class129.getNpcDefinition(this.npcTransformId).method3723(var1, var2, var3, var4, (NewShit)null);
       } else {
          long var5 = this.hash;
          int[] var7 = this.equipment;
@@ -344,7 +344,7 @@ public class PlayerComposition {
                   }
 
                   if (this.bodyColors[var13] < Varps.field3445[var13].length) {
-                     var20.recolor(class185.field2017[var13], Varps.field3445[var13][this.bodyColors[var13]]);
+                     var20.recolor(NewShit.field2017[var13], Varps.field3445[var13][this.bodyColors[var13]]);
                   }
                }
 
@@ -377,7 +377,7 @@ public class PlayerComposition {
    @Export("getModelData")
    ModelData getModelData() {
       if (this.npcTransformId != -1) {
-         return class129.getNpcDefinition(this.npcTransformId).method3666((class185)null);
+         return class129.getNpcDefinition(this.npcTransformId).method3666((NewShit)null);
       } else {
          boolean var1 = false;
 
@@ -426,7 +426,7 @@ public class PlayerComposition {
                }
 
                if (this.bodyColors[var5] < Varps.field3445[var5].length) {
-                  var8.recolor(class185.field2017[var5], Varps.field3445[var5][this.bodyColors[var5]]);
+                  var8.recolor(NewShit.field2017[var5], Varps.field3445[var5][this.bodyColors[var5]]);
                }
             }
 

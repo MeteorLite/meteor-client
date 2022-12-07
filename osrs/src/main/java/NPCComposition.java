@@ -430,7 +430,7 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lga;ILga;ILgp;B)Lhh;",
       garbageValue = "115"
    )
-   public final Model method3723(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4, class185 var5) {
+   public final Model method3723(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4, NewShit var5) {
       if (this.transforms != null) {
          NPCComposition var10 = this.transform();
          return var10 == null ? null : var10.method3723(var1, var2, var3, var4, var5);
@@ -475,7 +475,7 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lgp;I)Lgi;",
       garbageValue = "1744013797"
    )
-   public final ModelData method3666(class185 var1) {
+   public final ModelData method3666(NewShit var1) {
       if (this.transforms != null) {
          NPCComposition var2 = this.transform();
          return var2 == null ? null : var2.method3666(var1);
@@ -489,7 +489,7 @@ public class NPCComposition extends DualNode {
       descriptor = "([ILgp;I)Lgi;",
       garbageValue = "951395147"
    )
-   ModelData method3669(int[] var1, class185 var2) {
+   ModelData method3669(int[] var1, NewShit var2) {
       int[] var3 = var1;
       if (var2 != null && var2.field2013 != null) {
          var3 = var2.field2013;
