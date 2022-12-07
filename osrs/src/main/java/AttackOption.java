@@ -1,92 +1,108 @@
-import java.awt.Image;
+import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
-@Implements("AttackOption")
-public enum AttackOption implements class342 {
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Lcb;"
-	)
-	@Export("AttackOption_dependsOnCombatLevels")
-	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lcb;"
-	)
-	@Export("AttackOption_alwaysRightClick")
-	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lcb;"
-	)
-	field1285(2),
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "Lcb;"
-	)
-	@Export("AttackOption_hidden")
-	AttackOption_hidden(3),
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "Lcb;"
-	)
-	field1289(4);
+@ObfuscatedName("cz")
+public enum AttackOption implements class345 {
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Lcz;"
+   )
+   AttackOption_dependsOnCombatLevels(0),
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "Lcz;"
+   )
+   AttackOption_alwaysRightClick(1),
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "Lcz;"
+   )
+   field1347(2),
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      descriptor = "Lcz;"
+   )
+   AttackOption_hidden(3),
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      descriptor = "Lcz;"
+   )
+   field1346(4);
 
-	@ObfuscatedName("ak")
-	static Image field1295;
-	@ObfuscatedName("al")
-	protected static String field1294;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 827039641
-	)
-	@Export("id")
-	final int id;
+   @ObfuscatedName("mf")
+   @ObfuscatedGetter(
+      intValue = 1102902677
+   )
+   static int menuWidth;
+   @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1340490443
+   )
+   final int id;
 
-	AttackOption(int var3) {
-		this.id = var3;
-	}
+   AttackOption(int var3) {
+      this.id = var3;
+   }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "0"
-	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.id;
-	}
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "(B)I",
+      garbageValue = "96"
+   )
+   public int rsOrdinal() {
+      return this.id;
+   }
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIII)I",
-		garbageValue = "1633135416"
-	)
-	public static int method2540(int var0, int var1, int var2, int var3, int var4, int var5) {
-		if ((var5 & 1) == 1) {
-			int var6 = var3;
-			var3 = var4;
-			var4 = var6;
-		}
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/awt/Component;B)V",
+      garbageValue = "0"
+   )
+   static void method2603(Component var0) {
+      var0.removeMouseListener(MouseHandler.MouseHandler_instance);
+      var0.removeMouseMotionListener(MouseHandler.MouseHandler_instance);
+      var0.removeFocusListener(MouseHandler.MouseHandler_instance);
+      MouseHandler.MouseHandler_currentButtonVolatile = 0;
+   }
 
-		var2 &= 3;
-		if (var2 == 0) {
-			return var0;
-		} else if (var2 == 1) {
-			return var1;
-		} else {
-			return var2 == 2 ? 7 - var0 - (var3 - 1) : 7 - var1 - (var4 - 1);
-		}
-	}
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "(III)Lkd;",
+      garbageValue = "-1318941452"
+   )
+   public static Widget getWidgetChild(int var0, int var1) {
+      Widget var2 = class175.getWidget(var0);
+      if (var1 == -1) {
+         return var2;
+      } else {
+         return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null;
+      }
+   }
 
-	@ObfuscatedName("y")
-	@Export("Entity_unpackID")
-	public static int Entity_unpackID(long var0) {
-		return (int)(var0 >>> 17 & 4294967295L);
-	}
+   @ObfuscatedName("az")
+   @ObfuscatedSignature(
+      descriptor = "(IB)I",
+      garbageValue = "82"
+   )
+   static int method2610(int var0) {
+      return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
+   }
+
+   @ObfuscatedName("bw")
+   @ObfuscatedSignature(
+      descriptor = "(ILky;ZB)V",
+      garbageValue = "2"
+   )
+   static void method2608(int var0, Coord var1, boolean var2) {
+      WorldMapArea var3 = Client.getWorldMap().getMapArea(var0);
+      int var4 = class155.localPlayer.plane;
+      int var5 = class154.baseX * 64 + (class155.localPlayer.x >> 7);
+      int var6 = class365.baseY * 64 + (class155.localPlayer.y >> 7);
+      Coord var7 = new Coord(var4, var5, var6);
+      Client.getWorldMap().method8046(var3, var7, var1, var2);
+   }
 }

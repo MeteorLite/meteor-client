@@ -3,7 +3,8 @@ package com.jagex.oldscape.pub;
 import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.Future;
+import net.runelite.mapping.Implements;
 
 public interface OtlTokenRequester {
-	Future request(String var1, URL var2, Map var3, String var4);
+   Future request(String var1, URL var2, Map var3, String var4);
 }

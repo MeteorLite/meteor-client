@@ -770,21 +770,17 @@ public class Perspective
 
 	private static SimplePolygon calculateAABB(Client client, Model m, int jauOrient, int x, int y, int z)
 	{
-		int ex = m.getExtremeX();
-		if (ex == -1)
-		{
-			// dynamic models don't get stored when they render where this normally happens
-			m.calculateBoundsCylinder();
-			m.calculateExtreme(0);
-			ex = m.getExtremeX();
-		}
+		AABB aabb = m.getAABB(jauOrient);
 
-		int x1 = m.getCenterX();
-		int y1 = m.getCenterZ();
-		int z1 = m.getCenterY();
+		int x1 = aabb.getCenterX();
+		int y1 = aabb.getCenterZ();
+		int z1 = aabb.getCenterY();
 
-		int ey = m.getExtremeZ();
-		int ez = m.getExtremeY();
+		int ex = aabb.getExtremeX();
+		int ey = aabb.getExtremeZ();
+		int ez = aabb.getExtremeY();
+
+
 
 		int x2 = x1 + ex;
 		int y2 = y1 + ey;

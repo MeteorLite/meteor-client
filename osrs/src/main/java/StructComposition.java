@@ -3,129 +3,133 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ge")
-@Implements("StructComposition")
+@ObfuscatedName("gd")
 public class StructComposition extends DualNode {
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Llg;"
-	)
-	@Export("StructDefinition_archive")
-	public static AbstractArchive StructDefinition_archive;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Ljx;"
-	)
-	@Export("StructDefinition_cached")
-	public static EvictingDualNodeHashTable StructDefinition_cached;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lpe;"
-	)
-	@Export("params")
-	IterableNodeHashTable params;
+   @ObfuscatedName("vs")
+   @ObfuscatedSignature(
+      descriptor = "Lch;"
+   )
+   static ClientPreferences clientPreferences;
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Lly;"
+   )
+   public static AbstractArchive StructDefinition_archive;
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "Ljv;"
+   )
+   static EvictingDualNodeHashTable StructDefinition_cached = new EvictingDualNodeHashTable(64);
+   @ObfuscatedName("f")
+   public static int[] SpriteBuffer_spriteHeights;
+   @ObfuscatedName("u")
+   static int[] field2122;
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "Lql;"
+   )
+   IterableNodeHashTable params;
 
-	static {
-		StructDefinition_cached = new EvictingDualNodeHashTable(64);
-	}
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "(I)V",
+      garbageValue = "-2106689877"
+   )
+   void postDecode() {
+   }
 
-	StructComposition() {
-	}
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "(Lqy;S)V",
+      garbageValue = "192"
+   )
+   void decode(Buffer var1) {
+      while(true) {
+         int var2 = var1.readUnsignedByte();
+         if (var2 == 0) {
+            return;
+         }
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-35"
-	)
-	@Export("postDecode")
-	void postDecode() {
-	}
+         this.decodeNext(var1, var2);
+      }
+   }
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqr;B)V",
-		garbageValue = "-50"
-	)
-	@Export("decode")
-	void decode(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
-				return;
-			}
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      descriptor = "(Lqy;IB)V",
+      garbageValue = "-42"
+   )
+   void decodeNext(Buffer var1, int var2) {
+      if (var2 == 249) {
+         this.params = DynamicObject.readStringIntParameters(var1, this.params);
+      }
 
-			this.decodeNext(var1, var2);
-		}
-	}
+   }
 
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "(Lqr;II)V",
-		garbageValue = "-458084373"
-	)
-	@Export("decodeNext")
-	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 249) {
-			this.params = FaceNormal.readStringIntParameters(var1, this.params);
-		}
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      descriptor = "(IIB)I",
+      garbageValue = "76"
+   )
+   public int getIntParam(int var1, int var2) {
+      return UserComparator8.method2819(this.params, var1, var2);
+   }
 
-	}
+   @ObfuscatedName("q")
+   @ObfuscatedSignature(
+      descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
+      garbageValue = "-389894911"
+   )
+   public String getStringParam(int var1, String var2) {
+      IterableNodeHashTable var4 = this.params;
+      String var3;
+      if (var4 == null) {
+         var3 = var2;
+      } else {
+         ObjectNode var5 = (ObjectNode)var4.get((long)var1);
+         if (var5 == null) {
+            var3 = var2;
+         } else {
+            var3 = (String)var5.obj;
+         }
+      }
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "-1059246046"
-	)
-	@Export("getIntParam")
-	public int getIntParam(int var1, int var2) {
-		return Language.method6584(this.params, var1, var2);
-	}
+      return var3;
+   }
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-348365462"
-	)
-	@Export("getStringParam")
-	public String getStringParam(int var1, String var2) {
-		return class388.method7304(this.params, var1, var2);
-	}
+   @ObfuscatedName("e")
+   static final void method3820(long var0) {
+      try {
+         Thread.sleep(var0);
+      } catch (InterruptedException var3) {
+         ;
+      }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(II)F",
-		garbageValue = "473934492"
-	)
-	public static float method3677(int var0) {
-		var0 &= 16383;
-		return (float)(6.283185307179586D * (double)((float)var0 / 16384.0F));
-	}
+   }
 
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-268428904"
-	)
-	public static void method3676() {
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
-			if (ArchiveDiskActionHandler.field4122 != 0) {
-				ArchiveDiskActionHandler.field4122 = 1;
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "([BILjava/lang/CharSequence;I)I",
+      garbageValue = "1948411725"
+   )
+   public static int method3810(byte[] var0, int var1, CharSequence var2) {
+      int var3 = var2.length();
+      int var4 = var1;
 
-				try {
-					ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock.wait();
-				} catch (InterruptedException var3) {
-				}
-			}
+      for(int var5 = 0; var5 < var3; ++var5) {
+         char var6 = var2.charAt(var5);
+         if (var6 <= 127) {
+            var0[var4++] = (byte)var6;
+         } else if (var6 <= 2047) {
+            var0[var4++] = (byte)(192 | var6 >> 6);
+            var0[var4++] = (byte)(128 | var6 & 63);
+         } else {
+            var0[var4++] = (byte)(224 | var6 >> 12);
+            var0[var4++] = (byte)(128 | var6 >> 6 & 63);
+            var0[var4++] = (byte)(128 | var6 & 63);
+         }
+      }
 
-		}
-	}
-
-	@ObfuscatedName("ff")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-969804644"
-	)
-	static int method3661(int var0) {
-		return var0 * 3 + 600;
-	}
+      return var4 - var1;
+   }
 }

@@ -4,57 +4,57 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pq")
-@Implements("Fonts")
+@ObfuscatedName("pz")
 public class Fonts {
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Llg;"
-	)
-	@Export("spritesArchive")
-	AbstractArchive spritesArchive;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Llg;"
-	)
-	@Export("fontsArchive")
-	AbstractArchive fontsArchive;
-	@ObfuscatedName("c")
-	@Export("map")
-	HashMap map;
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Lly;"
+   )
+   AbstractArchive spritesArchive;
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "Lly;"
+   )
+   AbstractArchive fontsArchive;
+   @ObfuscatedName("v")
+   HashMap map;
 
-	@ObfuscatedSignature(
-		descriptor = "(Llg;Llg;)V"
-	)
-	public Fonts(AbstractArchive var1, AbstractArchive var2) {
-		this.spritesArchive = var1;
-		this.fontsArchive = var2;
-		this.map = new HashMap();
-	}
+   @ObfuscatedSignature(
+      descriptor = "(Lly;Lly;)V"
+   )
+   public Fonts(AbstractArchive var1, AbstractArchive var2) {
+      this.spritesArchive = var1;
+      this.fontsArchive = var2;
+      this.map = new HashMap();
+   }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "([Lpz;I)Ljava/util/HashMap;",
-		garbageValue = "-379561139"
-	)
-	@Export("createMap")
-	public HashMap createMap(FontName[] var1) {
-		HashMap var2 = new HashMap();
-		FontName[] var3 = var1;
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "([Lpt;I)Ljava/util/HashMap;",
+      garbageValue = "-1014513679"
+   )
+   public HashMap createMap(FontName[] var1) {
+      HashMap var2 = new HashMap();
+      FontName[] var3 = var1;
 
-		for (int var4 = 0; var4 < var3.length; ++var4) {
-			FontName var5 = var3[var4];
-			if (this.map.containsKey(var5)) {
-				var2.put(var5, this.map.get(var5));
-			} else {
-				Font var6 = UserComparator10.method2790(this.spritesArchive, this.fontsArchive, var5.name, "");
-				if (var6 != null) {
-					this.map.put(var5, var6);
-					var2.put(var5, var6);
-				}
-			}
-		}
+      for(int var4 = 0; var4 < var3.length; ++var4) {
+         FontName var5 = var3[var4];
+         if (this.map.containsKey(var5)) {
+            var2.put(var5, this.map.get(var5));
+         } else {
+            AbstractArchive var7 = this.spritesArchive;
+            AbstractArchive var8 = this.fontsArchive;
+            String var9 = var5.name;
+            int var10 = var7.getGroupId(var9);
+            int var11 = var7.getFileId(var10, "");
+            Font var6 = Timer.method7358(var7, var8, var10, var11);
+            if (var6 != null) {
+               this.map.put(var5, var6);
+               var2.put(var5, var6);
+            }
+         }
+      }
 
-		return var2;
-	}
+      return var2;
+   }
 }

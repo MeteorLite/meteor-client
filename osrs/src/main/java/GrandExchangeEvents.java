@@ -7,108 +7,86 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ly")
-@Implements("GrandExchangeEvents")
+@ObfuscatedName("lr")
 public class GrandExchangeEvents {
-	@ObfuscatedName("f")
-	@Export("GrandExchangeEvents_ageComparator")
-	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("c")
-	@Export("GrandExchangeEvents_priceComparator")
-	public static Comparator GrandExchangeEvents_priceComparator;
-	@ObfuscatedName("x")
-	@Export("GrandExchangeEvents_nameComparator")
-	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("h")
-	@Export("GrandExchangeEvents_quantityComparator")
-	public static Comparator GrandExchangeEvents_quantityComparator;
-	@ObfuscatedName("l")
-	@Export("musicTrackBoolean")
-	public static boolean musicTrackBoolean;
-	@ObfuscatedName("a")
-	@Export("events")
-	public final List events;
+   @ObfuscatedName("e")
+   public static Comparator GrandExchangeEvents_ageComparator = new GrandExchangeOfferAgeComparator();
+   @ObfuscatedName("v")
+   public static Comparator GrandExchangeEvents_priceComparator;
+   @ObfuscatedName("x")
+   public static Comparator GrandExchangeEvents_nameComparator;
+   @ObfuscatedName("m")
+   public static Comparator GrandExchangeEvents_quantityComparator;
+   @ObfuscatedName("h")
+   public final List events;
 
-	static {
-		GrandExchangeEvents_ageComparator = new GrandExchangeOfferAgeComparator();
-		new GrandExchangeOfferWorldComparator();
-		GrandExchangeEvents_priceComparator = new GrandExchangeOfferUnitPriceComparator();
-		GrandExchangeEvents_nameComparator = new GrandExchangeOfferNameComparator();
-		GrandExchangeEvents_quantityComparator = new GrandExchangeOfferTotalQuantityComparator();
-	}
+   static {
+      new GrandExchangeOfferWorldComparator();
+      GrandExchangeEvents_priceComparator = new GrandExchangeOfferUnitPriceComparator();
+      GrandExchangeEvents_nameComparator = new GrandExchangeOfferNameComparator();
+      GrandExchangeEvents_quantityComparator = new GrandExchangeOfferTotalQuantityComparator();
+   }
 
-	@ObfuscatedSignature(
-		descriptor = "(Lqr;Z)V",
-		garbageValue = "1"
-	)
-	public GrandExchangeEvents(Buffer var1, boolean var2) {
-		int var3 = var1.readUnsignedShort();
-		boolean var4 = var1.readUnsignedByte() == 1;
-		byte var5;
-		if (var4) {
-			var5 = 1;
-		} else {
-			var5 = 0;
-		}
+   @ObfuscatedSignature(
+      descriptor = "(Lqy;Z)V",
+      garbageValue = "1"
+   )
+   public GrandExchangeEvents(Buffer var1, boolean var2) {
+      int var3 = var1.readUnsignedShort();
+      boolean var4 = var1.readUnsignedByte() == 1;
+      byte var5;
+      if (var4) {
+         var5 = 1;
+      } else {
+         var5 = 0;
+      }
 
-		int var6 = var1.readUnsignedShort();
-		this.events = new ArrayList(var6);
+      int var6 = var1.readUnsignedShort();
+      this.events = new ArrayList(var6);
 
-		for (int var7 = 0; var7 < var6; ++var7) {
-			this.events.add(new GrandExchangeEvent(var1, var5, var3));
-		}
+      for(int var7 = 0; var7 < var6; ++var7) {
+         this.events.add(new GrandExchangeEvent(var1, var5, var3));
+      }
 
-	}
+   }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Comparator;ZI)V",
-		garbageValue = "-1882491116"
-	)
-	@Export("sort")
-	public void sort(Comparator var1, boolean var2) {
-		if (var2) {
-			Collections.sort(this.events, var1);
-		} else {
-			Collections.sort(this.events, Collections.reverseOrder(var1));
-		}
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/util/Comparator;ZI)V",
+      garbageValue = "1698148596"
+   )
+   public void sort(Comparator var1, boolean var2) {
+      if (var2) {
+         Collections.sort(this.events, var1);
+      } else {
+         Collections.sort(this.events, Collections.reverseOrder(var1));
+      }
 
-	}
+   }
 
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "(III)Lbk;",
-		garbageValue = "866437887"
-	)
-	@Export("Messages_getByChannelAndID")
-	static Message Messages_getByChannelAndID(int var0, int var1) {
-		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
-		return var2.getMessage(var1);
-	}
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "(Laa;B)V",
+      garbageValue = "-67"
+   )
+   static final void PcmStream_disable(PcmStream var0) {
+      var0.active = false;
+      if (var0.sound != null) {
+         var0.sound.position = 0;
+      }
 
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "-1985609196"
-	)
-	static void method6463(boolean var0) {
-		byte var1 = 0;
-		boolean var2 = BufferedSink.clientPreferences.method2472() >= Client.field494;
-		if (!var2) {
-			var1 = 12;
-		} else if (ClanChannelMember.client.method1184() || ClanChannelMember.client.method1366()) {
-			var1 = 10;
-		}
+      for(PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+         PcmStream_disable(var1);
+      }
 
-		GrandExchangeOfferOwnWorldComparator.method1171(var1);
-		if (var0) {
-			Login.Login_username = "";
-			Login.Login_password = "";
-			class360.field4308 = 0;
-			class355.otp = "";
-		}
+   }
 
-		PcmPlayer.method830();
-		class283.method5450();
-	}
+   @ObfuscatedName("ak")
+   @ObfuscatedSignature(
+      descriptor = "(IB)I",
+      garbageValue = "82"
+   )
+   static int method6569(int var0) {
+      return (int)((Math.log((double)var0) / Interpreter.field871 - 7.0D) * 256.0D);
+   }
 }
