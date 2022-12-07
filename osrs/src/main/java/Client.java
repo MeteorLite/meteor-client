@@ -1163,12 +1163,12 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static int field709;
    @ObfuscatedName("pc")
-   static int[] field636;
+   static int[] changedSkills;
    @ObfuscatedName("pb")
    @ObfuscatedGetter(
       intValue = 2040914153
    )
-   static int field711;
+   static int changedSkillsCount;
    @ObfuscatedName("pz")
    static int[] field712;
    @ObfuscatedName("pt")
@@ -1561,8 +1561,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       field707 = 0;
       changedItemContainers = new int[32];
       field709 = 0;
-      field636 = new int[32];
-      field711 = 0;
+      changedSkills = new int[32];
+      changedSkillsCount = 0;
       field712 = new int[32];
       field713 = 0;
       chatCycle = 0;
@@ -4609,7 +4609,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   }
                }
 
-               field636[++field711 - 1 & 31] = var27;
+               changedSkills[++changedSkillsCount - 1 & 31] = var27;
                var1.serverPacket = null;
                return true;
             }

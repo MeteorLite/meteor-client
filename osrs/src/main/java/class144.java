@@ -730,11 +730,11 @@ public class class144 extends class152 {
                            var9.field3668 = Client.field709;
                         }
 
-                        if (var9.onStatTransmit != null && Client.field711 > var9.field3637) {
-                           if (var9.statTransmitTriggers != null && Client.field711 - var9.field3637 <= 32) {
+                        if (var9.onStatTransmit != null && Client.changedSkillsCount > var9.field3637) {
+                           if (var9.statTransmitTriggers != null && Client.changedSkillsCount - var9.field3637 <= 32) {
                               label785:
-                              for(var39 = var9.field3637; var39 < Client.field711; ++var39) {
-                                 var23 = Client.field636[var39 & 31];
+                              for(var39 = var9.field3637; var39 < Client.changedSkillsCount; ++var39) {
+                                 var23 = Client.changedSkills[var39 & 31];
 
                                  for(var37 = 0; var37 < var9.statTransmitTriggers.length; ++var37) {
                                     if (var23 == var9.statTransmitTriggers[var37]) {
@@ -753,7 +753,7 @@ public class class144 extends class152 {
                               Client.scriptEvents.addFirst(var22);
                            }
 
-                           var9.field3637 = Client.field711;
+                           var9.field3637 = Client.changedSkillsCount;
                         }
 
                         if (Client.chatCycle > var9.field3572 && var9.onChatTransmit != null) {
