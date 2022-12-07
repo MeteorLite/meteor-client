@@ -4,119 +4,98 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
-@Implements("PendingSpawn")
+@ObfuscatedName("cm")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("kb")
-	@ObfuscatedGetter(
-		intValue = -218447275
-	)
-	@Export("oculusOrbFocalPointY")
-	static int oculusOrbFocalPointY;
-	@ObfuscatedName("ng")
-	@ObfuscatedSignature(
-		descriptor = "Lbu;"
-	)
-	@Export("tempMenuAction")
-	static MenuAction tempMenuAction;
-	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = 1263397621
-	)
-	@Export("plane")
-	int plane;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = -842145695
-	)
-	@Export("type")
-	int type;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 1177382329
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = 108970709
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = -629751609
-	)
-	@Export("objectId")
-	int objectId;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 876767589
-	)
-	int field1125;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = 405039167
-	)
-	int field1126;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 1279879293
-	)
-	int field1127;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 365543913
-	)
-	int field1120;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = -1709598819
-	)
-	int field1129;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -2023596541
-	)
-	int field1130;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = 592744411
-	)
-	@Export("delay")
-	int delay;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = -313479829
-	)
-	@Export("hitpoints")
-	int hitpoints;
+   @ObfuscatedName("ns")
+   @ObfuscatedSignature(
+      descriptor = "Lbs;"
+   )
+   static MenuAction tempMenuAction;
+   @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -768872951
+   )
+   int plane;
+   @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1473814219
+   )
+   int type;
+   @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -1941580187
+   )
+   int x;
+   @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 301883379
+   )
+   int y;
+   @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1863285855
+   )
+   int objectId;
+   @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1543631763
+   )
+   int field1175;
+   @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -1082491127
+   )
+   int field1166;
+   @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -323138543
+   )
+   int field1167;
+   @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -910085015
+   )
+   int field1168;
+   @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -1613827299
+   )
+   int field1169;
+   @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -1272901055
+   )
+   int field1165 = 31;
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 583629257
+   )
+   int delay = 0;
+   @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = 1183420635
+   )
+   int hitpoints = -1;
 
-	PendingSpawn() {
-		this.field1130 = 31;
-		this.delay = 0;
-		this.hitpoints = -1;
-	}
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(IB)V",
+      garbageValue = "-39"
+   )
+   void method2338(int var1) {
+      this.field1165 = var1;
+   }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "14"
-	)
-	void method2310(int var1) {
-		this.field1130 = var1;
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "62"
-	)
-	boolean method2311(int var1) {
-		if (var1 >= 0 && var1 <= 4) {
-			return (this.field1130 & 1 << var1) != 0;
-		} else {
-			return true;
-		}
-	}
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "(II)Z",
+      garbageValue = "-2145111937"
+   )
+   boolean method2341(int var1) {
+      if (var1 >= 0 && var1 <= 4) {
+         return (this.field1165 & 1 << var1) != 0;
+      } else {
+         return true;
+      }
+   }
 }

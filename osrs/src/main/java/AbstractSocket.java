@@ -4,84 +4,68 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ok")
-@Implements("AbstractSocket")
+@ObfuscatedName("ou")
 public abstract class AbstractSocket {
-	AbstractSocket() {
-	}
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(II)Z",
+      garbageValue = "-1050513320"
+   )
+   public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-1620434704"
-	)
-	@Export("isAvailable")
-	public abstract boolean isAvailable(int var1) throws IOException;
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "(B)I",
+      garbageValue = "-16"
+   )
+   public abstract int available() throws IOException;
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1875273278"
-	)
-	@Export("available")
-	public abstract int available() throws IOException;
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "1910038551"
+   )
+   public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(S)I",
-		garbageValue = "7042"
-	)
-	@Export("readUnsignedByte")
-	public abstract int readUnsignedByte() throws IOException;
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      descriptor = "([BIII)I",
+      garbageValue = "2022338375"
+   )
+   public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "([BIII)I",
-		garbageValue = "-1864209340"
-	)
-	@Export("read")
-	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      descriptor = "([BIIB)V",
+      garbageValue = "43"
+   )
+   public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "([BIII)V",
-		garbageValue = "1825322520"
-	)
-	@Export("write")
-	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
+   @ObfuscatedName("q")
+   @ObfuscatedSignature(
+      descriptor = "(I)V",
+      garbageValue = "985050188"
+   )
+   public abstract void close();
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "78"
-	)
-	@Export("close")
-	public abstract void close();
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(II)Lfj;",
+      garbageValue = "1371636425"
+   )
+   public static KitDefinition KitDefinition_get(int var0) {
+      KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         byte[] var2 = KitDefinition.KitDefinition_archive.takeFile(3, var0);
+         var1 = new KitDefinition();
+         if (var2 != null) {
+            var1.decode(new Buffer(var2));
+         }
 
-	@ObfuscatedName("gt")
-	@ObfuscatedSignature(
-		descriptor = "(Lgg;IIII)V",
-		garbageValue = "377152430"
-	)
-	static void method7484(SequenceDefinition var0, int var1, int var2, int var3) {
-		if (Client.soundEffectCount < 50 && BufferedSink.clientPreferences.method2411() != 0) {
-			if (var0.field2214 != null && var0.field2214.containsKey(var1)) {
-				int var4 = (Integer)var0.field2214.get(var1);
-				if (var4 != 0) {
-					int var7 = var4 >> 8;
-					int var8 = var4 >> 4 & 7;
-					int var9 = var4 & 15;
-					Client.soundEffectIds[Client.soundEffectCount] = var7;
-					Client.queuedSoundEffectLoops[Client.soundEffectCount] = var8;
-					Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
-					Client.soundEffects[Client.soundEffectCount] = null;
-					int var10 = (var2 - 64) / 128;
-					int var11 = (var3 - 64) / 128;
-					Client.soundLocations[Client.soundEffectCount] = var9 + (var11 << 8) + (var10 << 16);
-					++Client.soundEffectCount;
-				}
-
-			}
-		}
-	}
+         KitDefinition.KitDefinition_cached.put(var1, (long)var0);
+         return var1;
+      }
+   }
 }

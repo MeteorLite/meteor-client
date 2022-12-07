@@ -134,12 +134,17 @@ public class JarUtil
 			{
 				JarEntry entry = new JarEntry(cf.getName() + ".class");
 				entry.setTime(-1);
-				jout.putNextEntry(entry);
+				try {
+					jout.putNextEntry(entry);
 
-				byte[] data = writeClass(group, cf);
+					byte[] data = writeClass(group, cf);
 
-				jout.write(data);
-				jout.closeEntry();
+					jout.write(data);
+					jout.closeEntry();
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		catch (IOException e)

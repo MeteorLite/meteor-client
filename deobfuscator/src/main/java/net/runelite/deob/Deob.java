@@ -64,19 +64,13 @@ public class Deob
 	public static final int OBFUSCATED_NAME_MAX_LEN = 3;
 	private static final boolean CHECK_EXEC = false;
 
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
-		if (args == null || args.length < 2)
-		{
-			System.err.println("Syntax: input_jar output_jar");
-			System.exit(-1);
-		}
-
 		logger.info("Deobfuscator revision {}", DeobProperties.getRevision());
 
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		ClassGroup group = JarUtil.load(new File(args[0]), true);
+		ClassGroup group = JarUtil.load(new File("./deobfuscator/gamepack-210.jar"), true);
 
 		// remove except RuntimeException
 		run(group, new RuntimeExceptions());
@@ -136,7 +130,7 @@ public class Deob
 		//new MaxMemoryTransformer().transform(group);
 		//new RuneliteBufferTransformer().transform(group);
 
-		JarUtil.save(group, new File(args[1]));
+		JarUtil.save(group, new File("./deobfuscator/deob-210.jar"));
 
 		stopwatch.stop();
 		logger.info("Done in {}", stopwatch);

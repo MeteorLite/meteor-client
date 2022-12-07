@@ -27,6 +27,7 @@ package net.runelite.deob.updater;
 import java.io.File;
 import java.io.IOException;
 import net.runelite.asm.ClassGroup;
+import net.runelite.deob.CreateAnnotations;
 import net.runelite.deob.deobfuscators.mapping.AnnotationIntegrityChecker;
 import net.runelite.deob.deobfuscators.mapping.AnnotationMapper;
 import net.runelite.deob.deobfuscators.mapping.Mapper;
@@ -47,6 +48,7 @@ public class UpdateMappings
 
 	public void update()
 	{
+		CreateAnnotations.run(group1);
 		Mapper mapper = new Mapper(group1, group2);
 		mapper.run();
 		ParallelExecutorMapping mapping = mapper.getMapping();
@@ -84,16 +86,11 @@ public class UpdateMappings
 
 	public static void main(String[] args) throws IOException
 	{
-		if (args.length < 3)
-		{
-			System.exit(-1);
-		}
-
 		UpdateMappings u = new UpdateMappings(
-			JarUtil.load(new File(args[0])),
-			JarUtil.load(new File(args[1]))
+			JarUtil.load(new File("./deobfuscator/osrs-209.jar")),
+			JarUtil.load(new File("./deobfuscator/deob-210.jar"))
 		);
 		u.update();
-		u.save(new File(args[2]));
+		u.save(new File("./deobfuscator/osrs-210.jar"));
 	}
 }

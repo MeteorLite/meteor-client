@@ -1,33 +1,66 @@
 import java.util.concurrent.Callable;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cg")
-@Implements("SecureRandomCallable")
+@ObfuscatedName("cl")
 public class SecureRandomCallable implements Callable {
-	SecureRandomCallable() {
-	}
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      descriptor = "Lrx;"
+   )
+   static SpritePixels leftTitleSprite;
 
-	public Object call() {
-		return class9.method74();
-	}
+   @ObfuscatedName("call")
+   public Object call() {
+      return class69.method2031();
+   }
 
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "1604405350"
-	)
-	static int method2203(int var0, int var1) {
-		for (int var2 = 0; var2 < 8; ++var2) {
-			if (var1 <= var0 + 30) {
-				return var2;
-			}
+   @ObfuscatedName("o")
+   @ObfuscatedSignature(
+      descriptor = "(IB)Lha;",
+      garbageValue = "6"
+   )
+   static Frames getFrames(int var0) {
+      Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         AbstractArchive var3 = SequenceDefinition.SequenceDefinition_animationsArchive;
+         AbstractArchive var4 = BuddyRankComparator.SequenceDefinition_skeletonsArchive;
+         boolean var5 = true;
+         int[] var6 = var3.getGroupFileIds(var0);
 
-			var0 += 30;
-			var0 += var2 != 1 && var2 != 3 ? 5 : 20;
-		}
+         for(int var7 = 0; var7 < var6.length; ++var7) {
+            byte[] var8 = var3.getFile(var0, var6[var7]);
+            if (var8 == null) {
+               var5 = false;
+            } else {
+               int var9 = (var8[0] & 255) << 8 | var8[1] & 255;
+               byte[] var10 = var4.getFile(var9, 0);
+               if (var10 == null) {
+                  var5 = false;
+               }
+            }
+         }
 
-		return 0;
-	}
+         Frames var2;
+         if (!var5) {
+            var2 = null;
+         } else {
+            try {
+               var2 = new Frames(var3, var4, var0, false);
+            } catch (Exception var12) {
+               var2 = null;
+            }
+         }
+
+         if (var2 != null) {
+            SequenceDefinition.SequenceDefinition_cachedFrames.put(var2, (long)var0);
+         }
+
+         return var2;
+      }
+   }
 }

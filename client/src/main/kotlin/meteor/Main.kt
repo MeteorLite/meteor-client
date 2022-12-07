@@ -50,6 +50,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
 import org.rationalityfrontline.kevent.KEVENT
+import java.lang.Exception
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -159,7 +160,10 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     }
 
     fun shutdown() {
-        PluginManager.shutdown()
+        try {
+            PluginManager.shutdown()
+        } catch (_: Exception) {}
+
         exitApplication()
     }
 
