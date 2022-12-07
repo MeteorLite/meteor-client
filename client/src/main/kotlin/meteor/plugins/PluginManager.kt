@@ -85,6 +85,8 @@ import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
 import meteor.plugins.olmswapper.OlmSwapperPlugin
 import meteor.plugins.oneclickchins.Oneclickchinsplugin
+import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
+import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -197,6 +199,8 @@ object PluginManager {
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
         init<Oneclickchinsplugin>()
+        init<OneClickGlassblowingPlugin>()
+        init<OneClickFurnacePlugin>()
         init<OlmSwapperPlugin>()
         init<PuzzleSolverPlugin>()
         init<PvPKeys>()
