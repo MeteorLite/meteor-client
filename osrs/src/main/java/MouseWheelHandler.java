@@ -44,6 +44,7 @@ public final class MouseWheelHandler implements class166, MouseWheelListener {
       return var1;
    }
 
+   @ObfuscatedName("mouseWheelMoved")
    public synchronized void mouseWheelMoved(MouseWheelEvent var1) {
       this.rotation += var1.getWheelRotation();
    }

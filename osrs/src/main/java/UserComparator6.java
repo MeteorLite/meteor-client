@@ -31,6 +31,7 @@ public class UserComparator6 extends AbstractUserComparator {
       }
    }
 
+   @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }

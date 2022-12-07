@@ -25,7 +25,7 @@ public abstract class class415 extends class262 implements class474 {
       descriptor = "(II)Lpv;",
       garbageValue = "307947551"
    )
-   protected abstract class417 vmethod8354(int var1);
+   protected abstract class417 vmethod8207(int var1);
 
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -41,8 +41,8 @@ public abstract class class415 extends class262 implements class474 {
       descriptor = "(II)Ljava/lang/Object;",
       garbageValue = "816156929"
    )
-   public Object vmethod8869(int var1) {
-      class417 var2 = this.vmethod8354(var1);
+   public Object vmethod8697(int var1) {
+      class417 var2 = this.vmethod8207(var1);
       return var2 != null && var2.method7893() ? var2.method7894() : null;
    }
 
@@ -53,7 +53,7 @@ public abstract class class415 extends class262 implements class474 {
    )
    public class475 method7877(Buffer var1) {
       int var2 = var1.readUnsignedShort();
-      class417 var3 = this.vmethod8354(var2);
+      class417 var3 = this.vmethod8207(var2);
       class475 var4 = new class475(var2);
       Class var5 = var3.field4651.field4875;
       if (var5 == Integer.class) {

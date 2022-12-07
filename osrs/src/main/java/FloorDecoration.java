@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -64,7 +62,7 @@ public final class FloorDecoration {
          if (var0.field1234 >= Client.cycle) {
             boolean var11 = var0.field1234 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0;
             if (!var11) {
-               var12 = Offsets.SequenceDefinition_get(var0.sequence);
+               var12 = AABB.SequenceDefinition_get(var0.sequence);
                if (var12 != null && !var12.isCachedModelIdSet()) {
                   var11 = var0.sequenceFrameCycle + 1 > var12.frameLengths[var0.sequenceFrame];
                } else {
@@ -93,7 +91,7 @@ public final class FloorDecoration {
             } else {
                label621: {
                   if (var0.sequence != -1 && var0.sequenceDelay == 0) {
-                     var2 = Offsets.SequenceDefinition_get(var0.sequence);
+                     var2 = AABB.SequenceDefinition_get(var0.sequence);
                      if (var0.field1252 > 0 && var2.field2290 == 0) {
                         ++var0.field1239;
                         break label621;
@@ -286,7 +284,7 @@ public final class FloorDecoration {
       FriendSystem.method1862(var0);
       var0.isWalking = false;
       if (var0.movementSequence != -1) {
-         var2 = Offsets.SequenceDefinition_get(var0.movementSequence);
+         var2 = AABB.SequenceDefinition_get(var0.movementSequence);
          if (var2 != null) {
             if (!var2.isCachedModelIdSet() && var2.frameIds != null) {
                ++var0.movementFrameCycle;
@@ -354,7 +352,7 @@ public final class FloorDecoration {
 
          var14 = ClanSettings.SpotAnimationDefinition_get(var0.spotAnimation).sequence;
          if (var14 != -1) {
-            var12 = Offsets.SequenceDefinition_get(var14);
+            var12 = AABB.SequenceDefinition_get(var14);
             if (var12 != null && var12.frameIds != null && !var12.isCachedModelIdSet()) {
                ++var0.field1214;
                if (var0.spotAnimationFrame < var12.frameIds.length && var0.field1214 > var12.frameLengths[var0.spotAnimationFrame]) {
@@ -383,7 +381,7 @@ public final class FloorDecoration {
       }
 
       if (var0.sequence != -1 && var0.sequenceDelay <= 1) {
-         var2 = Offsets.SequenceDefinition_get(var0.sequence);
+         var2 = AABB.SequenceDefinition_get(var0.sequence);
          if (var2.field2290 == 1 && var0.field1252 > 0 && var0.field1233 <= Client.cycle && var0.field1234 < Client.cycle) {
             var0.sequenceDelay = 1;
             return;
@@ -391,7 +389,7 @@ public final class FloorDecoration {
       }
 
       if (var0.sequence != -1 && var0.sequenceDelay == 0) {
-         var2 = Offsets.SequenceDefinition_get(var0.sequence);
+         var2 = AABB.SequenceDefinition_get(var0.sequence);
          if (var2 == null) {
             var0.sequence = -1;
          } else if (!var2.isCachedModelIdSet() && var2.frameIds != null) {

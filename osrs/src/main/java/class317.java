@@ -45,7 +45,7 @@ public final class class317 {
       }
 
       if (var6 != -1 && var7 != null) {
-         class37.method706(var7, MouseRecorder.colorStartTag(16748608) + var1.name, var6, 0, var2, var0.id, var1.id, var4);
+         class37.insertMenuItem(var7, MouseRecorder.colorStartTag(16748608) + var1.name, var6, 0, var2, var0.id, var1.id, var4);
       }
 
    }

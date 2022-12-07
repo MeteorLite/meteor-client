@@ -81,7 +81,7 @@ public abstract class RouteStrategy {
    )
    static final void method4180(int var0, int var1) {
       if (Client.hintArrowType == 2) {
-         ScriptFrame.worldToScreen(Client.field531 * 64 + (Client.hintArrowX - class154.baseX * 64 << 7), (Client.hintArrowY - class365.baseY * 64 << 7) + Client.field626 * 4096, Client.field530 * 4);
+         ScriptFrame.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - class154.baseX * 64 << 7), (Client.hintArrowY - class365.baseY * 64 << 7) + Client.hintArrowSubY * 4096, Client.field530 * 4);
          if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
             class358.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
          }

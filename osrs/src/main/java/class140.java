@@ -36,7 +36,7 @@ public class class140 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   void vmethod3349(Buffer var1) {
+   void vmethod3254(Buffer var1) {
       this.field1676 = var1.readUnsignedShort();
       this.field1677 = var1.readByte();
    }
@@ -46,7 +46,7 @@ public class class140 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   void vmethod3350(ClanSettings var1) {
+   void vmethod3248(ClanSettings var1) {
       var1.method3175(this.field1676, this.field1677);
    }
 
@@ -107,7 +107,7 @@ public class class140 extends class136 {
       descriptor = "(II)V",
       garbageValue = "1425199157"
    )
-   static void method3102(int var0) {
+   static void updateGameState(int var0) {
       if (var0 != Client.gameState) {
          if (Client.gameState == 30) {
             Client.field572.method4068();

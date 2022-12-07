@@ -41,7 +41,7 @@ public class FaceNormal {
          Player.logOut();
       } else {
          Client.timer.method7330();
-         class140.method3102(40);
+         class140.updateGameState(40);
          class14.field83 = Client.packetWriter.getSocket();
          Client.packetWriter.removeSocket();
       }

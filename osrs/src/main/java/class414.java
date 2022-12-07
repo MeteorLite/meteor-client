@@ -38,6 +38,6 @@ public class class414 implements class419 {
       garbageValue = "-99"
    )
    public int method7867(int var1) {
-      return this.field4644.vmethod8265(var1);
+      return this.field4644.vmethod8144(var1);
    }
 }

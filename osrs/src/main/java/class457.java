@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -8,7 +9,7 @@ final class class457 implements class452 {
       descriptor = "(Ljava/lang/Object;Lqy;I)V",
       garbageValue = "-1165050397"
    )
-   public void vmethod8422(Object var1, Buffer var2) {
+   public void vmethod8274(Object var1, Buffer var2) {
       this.method8413((String)var1, var2);
    }
 
@@ -17,7 +18,7 @@ final class class457 implements class452 {
       descriptor = "(Lqy;I)Ljava/lang/Object;",
       garbageValue = "1911852841"
    )
-   public Object vmethod8414(Buffer var1) {
+   public Object vmethod8273(Buffer var1) {
       return var1.readStringCp1252NullTerminated();
    }
 

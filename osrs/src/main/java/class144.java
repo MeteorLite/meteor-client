@@ -34,7 +34,7 @@ public class class144 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   void vmethod3336(Buffer var1) {
+   void vmethod3238(Buffer var1) {
       this.field1703 = var1.readUnsignedShort();
       var1.readUnsignedByte();
       if (var1.readUnsignedByte() != 255) {
@@ -49,7 +49,7 @@ public class class144 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   void vmethod3337(ClanChannel var1) {
+   void vmethod3239(ClanChannel var1) {
       var1.removeMember(this.field1703);
    }
 
@@ -464,7 +464,7 @@ public class class144 extends class152 {
                            for(var23 = 0; var23 < var9.field3622[var20].length; ++var23) {
                               boolean var24 = false;
                               if (var9.field3692 != null) {
-                                 var24 = Client.something.getKeyPressed(var9.field3622[var20][var23]);
+                                 var24 = Client.keyHandlerInstance.getKeyPressed(var9.field3622[var20][var23]);
                               }
 
                               if (class281.method5501(var9.field3622[var20][var23]) || var24) {
@@ -474,7 +474,7 @@ public class class144 extends class152 {
                                  }
 
                                  byte var33 = var9.field3623[var20][var23];
-                                 if (var33 == 0 || ((var33 & 8) == 0 || !Client.something.getKeyPressed(86) && !Client.something.getKeyPressed(82) && !Client.something.getKeyPressed(81)) && ((var33 & 2) == 0 || Client.something.getKeyPressed(86)) && ((var33 & 1) == 0 || Client.something.getKeyPressed(82)) && ((var33 & 4) == 0 || Client.something.getKeyPressed(81))) {
+                                 if (var33 == 0 || ((var33 & 8) == 0 || !Client.keyHandlerInstance.getKeyPressed(86) && !Client.keyHandlerInstance.getKeyPressed(82) && !Client.keyHandlerInstance.getKeyPressed(81)) && ((var33 & 2) == 0 || Client.keyHandlerInstance.getKeyPressed(86)) && ((var33 & 1) == 0 || Client.keyHandlerInstance.getKeyPressed(82)) && ((var33 & 4) == 0 || Client.keyHandlerInstance.getKeyPressed(81))) {
                                     var28 = true;
                                     break;
                                  }
@@ -676,11 +676,11 @@ public class class144 extends class152 {
                         ScriptEvent var25;
                         int var37;
                         int var39;
-                        if (var9.onVarTransmit != null && Client.field707 > var9.field3645) {
-                           if (var9.varTransmitTriggers != null && Client.field707 - var9.field3645 <= 32) {
+                        if (var9.onVarTransmit != null && Client.changedVarpCount > var9.field3645) {
+                           if (var9.varTransmitTriggers != null && Client.changedVarpCount - var9.field3645 <= 32) {
                               label833:
-                              for(var39 = var9.field3645; var39 < Client.field707; ++var39) {
-                                 var23 = Client.field706[var39 & 31];
+                              for(var39 = var9.field3645; var39 < Client.changedVarpCount; ++var39) {
+                                 var23 = Client.changedVarps[var39 & 31];
 
                                  for(var37 = 0; var37 < var9.varTransmitTriggers.length; ++var37) {
                                     if (var23 == var9.varTransmitTriggers[var37]) {
@@ -699,13 +699,13 @@ public class class144 extends class152 {
                               Client.scriptEvents.addFirst(var22);
                            }
 
-                           var9.field3645 = Client.field707;
+                           var9.field3645 = Client.changedVarpCount;
                         }
 
-                        if (var9.onInvTransmit != null && Client.field709 > var9.field3668) {
-                           if (var9.invTransmitTriggers != null && Client.field709 - var9.field3668 <= 32) {
+                        if (var9.onInvTransmit != null && Client.changedItemContainersCount > var9.field3668) {
+                           if (var9.invTransmitTriggers != null && Client.changedItemContainersCount - var9.field3668 <= 32) {
                               label809:
-                              for(var39 = var9.field3668; var39 < Client.field709; ++var39) {
+                              for(var39 = var9.field3668; var39 < Client.changedItemContainersCount; ++var39) {
                                  var23 = Client.changedItemContainers[var39 & 31];
 
                                  for(var37 = 0; var37 < var9.invTransmitTriggers.length; ++var37) {
@@ -725,7 +725,7 @@ public class class144 extends class152 {
                               Client.scriptEvents.addFirst(var22);
                            }
 
-                           var9.field3668 = Client.field709;
+                           var9.field3668 = Client.changedItemContainersCount;
                         }
 
                         if (var9.onStatTransmit != null && Client.changedSkillsCount > var9.field3637) {
@@ -825,7 +825,7 @@ public class class144 extends class152 {
                         ScriptEvent var31;
                         int[] var38;
                         if (var9.field3658 != null) {
-                           var38 = Client.something.method4108();
+                           var38 = Client.keyHandlerInstance.method4108();
 
                            for(var23 = 0; var23 < var38.length; ++var23) {
                               var31 = new ScriptEvent();
@@ -837,7 +837,7 @@ public class class144 extends class152 {
                         }
 
                         if (var9.field3653 != null) {
-                           var38 = Client.something.method4109();
+                           var38 = Client.keyHandlerInstance.method4109();
 
                            for(var23 = 0; var23 < var38.length; ++var23) {
                               var31 = new ScriptEvent();

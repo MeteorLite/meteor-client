@@ -32,7 +32,7 @@ public class class422 implements class421 {
       descriptor = "(B)[B",
       garbageValue = "0"
    )
-   public byte[] vmethod7924() throws UnsupportedEncodingException {
+   public byte[] vmethod7797() throws UnsupportedEncodingException {
       return this.field4658 == null ? new byte[0] : this.field4658.toString().getBytes("UTF-8");
    }
 

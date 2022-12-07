@@ -139,6 +139,7 @@ public class Bounds {
       return this.highY + this.lowY;
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return null;
    }

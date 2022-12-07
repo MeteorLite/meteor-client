@@ -78,7 +78,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedSignature(
       descriptor = "Las;"
    )
-   static KeyHandler keyHandlerInstance = new KeyHandler();
+   static KeyHandler keyHandler = new KeyHandler();
    @ObfuscatedName("ap")
    @ObfuscatedGetter(
       longValue = -4832067984480184411L
@@ -277,7 +277,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
          class29.KeyHandler_keyCodes[520] = 59;
       }
 
-      keyHandlerInstance.method355(this.canvas);
+      keyHandler.method355(this.canvas);
    }
 
    @ObfuscatedName("g")
@@ -286,7 +286,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       garbageValue = "504544713"
    )
    protected final void method500() {
-      keyHandlerInstance.method361();
+      keyHandler.method361();
    }
 
    @ObfuscatedName("i")
@@ -295,7 +295,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       garbageValue = "0"
    )
    protected void method501(class30 var1, int var2) {
-      keyHandlerInstance.method353(var1, var2);
+      keyHandler.method353(var1, var2);
    }
 
    @ObfuscatedName("o")
@@ -405,14 +405,14 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       garbageValue = "1144522069"
    )
    final void replaceCanvas() {
-      keyHandlerInstance.method352(this.canvas);
+      keyHandler.method352(this.canvas);
       AttackOption.method2603(this.canvas);
       if (this.mouseWheelHandler != null) {
          this.mouseWheelHandler.method310(this.canvas);
       }
 
       this.addCanvas();
-      keyHandlerInstance.method355(this.canvas);
+      keyHandler.method355(this.canvas);
       java.awt.Canvas var1 = this.canvas;
       var1.addMouseListener(MouseHandler.MouseHandler_instance);
       var1.addMouseMotionListener(MouseHandler.MouseHandler_instance);
@@ -663,7 +663,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
             }
          }
 
-         this.vmethod1227();
+         this.vmethod1485();
       }
    }
 
@@ -821,8 +821,9 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(I)V",
       garbageValue = "1344730333"
    )
-   protected abstract void vmethod1227();
+   protected abstract void vmethod1485();
 
+   @ObfuscatedName("destroy")
    public final void destroy() {
       if (this == gameEngine && !isKilled) {
          stopTimeMs = Message.method1197();
@@ -831,6 +832,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
+   @ObfuscatedName("paint")
    public final synchronized void paint(Graphics var1) {
       if (this == gameEngine && !isKilled) {
          this.fullRedraw = true;
@@ -844,12 +846,14 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
+   @ObfuscatedName("stop")
    public final void stop() {
       if (this == gameEngine && !isKilled) {
          stopTimeMs = Message.method1197() + 4000L;
       }
    }
 
+   @ObfuscatedName("focusGained")
    public final void focusGained(FocusEvent var1) {
       volatileFocus = true;
       this.fullRedraw = true;
@@ -864,8 +868,10 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    public final void windowOpened(WindowEvent var1) {
    }
 
+   @ObfuscatedName("init")
    public abstract void init();
 
+   @ObfuscatedName("run")
    public void run() {
       try {
          if (TaskHandler.javaVendor != null) {
@@ -925,12 +931,14 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       this.kill();
    }
 
+   @ObfuscatedName("start")
    public final void start() {
       if (this == gameEngine && !isKilled) {
          stopTimeMs = 0L;
       }
    }
 
+   @ObfuscatedName("update")
    public final void update(Graphics var1) {
       this.paint(var1);
    }
@@ -945,6 +953,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       volatileFocus = false;
    }
 
+   @ObfuscatedName("windowClosing")
    public final void windowClosing(WindowEvent var1) {
       this.destroy();
    }
@@ -1220,7 +1229,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
                }
             }
 
-            class140.method3102(30);
+            class140.updateGameState(30);
             Client.playPcmPlayers();
             class384.method7371();
             var19 = class136.getPacketBufferNode(ClientPacket.field3107, Client.packetWriter.isaacCipher);

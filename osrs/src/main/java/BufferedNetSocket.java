@@ -97,6 +97,7 @@ public class BufferedNetSocket extends AbstractSocket {
       this.source.close();
    }
 
+   @ObfuscatedName("finalize")
    protected void finalize() {
       this.close();
    }

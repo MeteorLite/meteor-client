@@ -15,6 +15,7 @@ class class383 implements Comparator {
    @ObfuscatedSignature(
       descriptor = "Lni;"
    )
+   @ObfuscatedName("this$0")
    final class384 this$0;
 
    @ObfuscatedSignature(
@@ -37,10 +38,12 @@ class class383 implements Comparator {
       }
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 
+   @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.method7362((class385)var1, (class385)var2);
    }

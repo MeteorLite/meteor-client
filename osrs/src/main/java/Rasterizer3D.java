@@ -1434,7 +1434,7 @@ public class Rasterizer3D extends Rasterizer2D {
          method4340(var0, var1, var2, var3, var4, var5, method4380(var20, var6), method4380(var20, var7), method4380(var20, var8));
       } else {
          Rasterizer3D_isLowDetailTexture = Rasterizer3D_textureLoader.isLowDetail(var18);
-         field2505 = Rasterizer3D_textureLoader.vmethod4813(var18);
+         field2505 = Rasterizer3D_textureLoader.vmethod4645(var18);
          var20 = var4 - var3;
          int var21 = var1 - var0;
          int var22 = var5 - var3;
@@ -2475,7 +2475,7 @@ public class Rasterizer3D extends Rasterizer2D {
          method4340(var0, var1, var2, var3, var4, var5, method4380(var20, var6), method4380(var20, var7), method4380(var20, var8));
       } else {
          Rasterizer3D_isLowDetailTexture = Rasterizer3D_textureLoader.isLowDetail(var18);
-         field2505 = Rasterizer3D_textureLoader.vmethod4813(var18);
+         field2505 = Rasterizer3D_textureLoader.vmethod4645(var18);
          var20 = var4 - var3;
          int var21 = var1 - var0;
          int var22 = var5 - var3;

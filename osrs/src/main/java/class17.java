@@ -22,6 +22,7 @@ class class17 implements SSLSession {
    @ObfuscatedSignature(
       descriptor = "Li;"
    )
+   @ObfuscatedName("this$1")
    final class12 this$1;
 
    @ObfuscatedSignature(
@@ -39,6 +40,7 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
+   @ObfuscatedName("getValue")
    public Object getValue(String var1) {
       throw new UnsupportedOperationException();
    }
@@ -63,6 +65,7 @@ class class17 implements SSLSession {
       return 0;
    }
 
+   @ObfuscatedName("getPeerPrincipal")
    public Principal getPeerPrincipal() throws SSLPeerUnverifiedException {
       return null;
    }
@@ -79,6 +82,7 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
+   @ObfuscatedName("putValue")
    public void putValue(String var1, Object var2) {
       throw new UnsupportedOperationException();
    }
@@ -87,18 +91,22 @@ class class17 implements SSLSession {
       return this.this$1.field69;
    }
 
+   @ObfuscatedName("removeValue")
    public void removeValue(String var1) {
       throw new UnsupportedOperationException();
    }
 
+   @ObfuscatedName("getId")
    public byte[] getId() {
       throw new UnsupportedOperationException();
    }
 
+   @ObfuscatedName("invalidate")
    public void invalidate() {
       throw new UnsupportedOperationException();
    }
 
+   @ObfuscatedName("isValid")
    public boolean isValid() {
       throw new UnsupportedOperationException();
    }

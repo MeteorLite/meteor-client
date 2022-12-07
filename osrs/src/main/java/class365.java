@@ -37,10 +37,12 @@ public class class365 implements Iterator {
       this.field4364 = var1;
    }
 
+   @ObfuscatedName("hasNext")
    public boolean hasNext() {
       return this.field4365 < this.field4364.field4369;
    }
 
+   @ObfuscatedName("next")
    public Object next() {
       if (this.field4364.field4372 != this.field4366) {
          throw new ConcurrentModificationException();
@@ -53,6 +55,7 @@ public class class365 implements Iterator {
       }
    }
 
+   @ObfuscatedName("remove")
    public void remove() {
       throw new UnsupportedOperationException();
    }

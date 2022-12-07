@@ -57,7 +57,7 @@ public class class37 {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZI)V",
       garbageValue = "-2077316645"
    )
-   static final void method706(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
+   static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
       if (!Client.isMenuOpen) {
          if (Client.menuOptionsCount < 500) {
             Client.menuActions[Client.menuOptionsCount] = var0;

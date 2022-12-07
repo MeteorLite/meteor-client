@@ -22,10 +22,12 @@ public class UserComparator2 implements Comparator {
       return this.reversed ? var1.getUsername().compareToTyped(var2.getUsername()) : var2.getUsername().compareToTyped(var1.getUsername());
    }
 
+   @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compare_bridged((User)var1, (User)var2);
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }

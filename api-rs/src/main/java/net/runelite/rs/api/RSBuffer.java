@@ -110,10 +110,6 @@ public interface RSBuffer extends Buffer, RSNode
     @Override
     int readShortAddLE();
 
-    @Import("null")
-    @Override
-    int readShortLE();
-
     @Import("readInt")
     @Override
     int readInt();

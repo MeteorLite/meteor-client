@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -42,7 +43,7 @@ public class class142 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   void vmethod3336(Buffer var1) {
+   void vmethod3238(Buffer var1) {
       this.field1687 = var1.readUnsignedShort();
       this.field1690 = var1.readByte();
       this.field1689 = var1.readUnsignedShort();
@@ -55,7 +56,7 @@ public class class142 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   void vmethod3337(ClanChannel var1) {
+   void vmethod3239(ClanChannel var1) {
       ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1687);
       var2.rank = this.field1690;
       var2.world = this.field1689;

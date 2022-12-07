@@ -1,10 +1,9 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hf")
-public class Offsets {
+public class AABB {
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -2055361545
@@ -36,7 +35,7 @@ public class Offsets {
    )
    int zMidOffset;
 
-   Offsets(int var1, int var2, int var3, int var4, int var5, int var6) {
+   AABB(int var1, int var2, int var3, int var4, int var5, int var6) {
       this.xMid = var1;
       this.yMid = var2;
       this.zMid = var3;

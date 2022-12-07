@@ -35,7 +35,7 @@ public abstract class UrlRequester implements Runnable {
       descriptor = "(Ldm;I)V",
       garbageValue = "756674113"
    )
-   abstract void vmethod2773(UrlRequest var1) throws IOException;
+   abstract void vmethod2700(UrlRequest var1) throws IOException;
 
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -128,6 +128,7 @@ public abstract class UrlRequester implements Runnable {
 
    }
 
+   @ObfuscatedName("run")
    public void run() {
       while(!this.isClosed) {
          try {
@@ -144,7 +145,7 @@ public abstract class UrlRequester implements Runnable {
                }
             }
 
-            this.vmethod2773(var1);
+            this.vmethod2700(var1);
          } catch (Exception var7) {
             class132.RunException_sendStackTrace((String)null, var7);
          }

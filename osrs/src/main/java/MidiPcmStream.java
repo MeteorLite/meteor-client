@@ -195,7 +195,7 @@ public class MidiPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("r")
-   protected synchronized int vmethod5753() {
+   protected synchronized int vmethod5648() {
       return 0;
    }
 

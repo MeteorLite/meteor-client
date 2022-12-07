@@ -138,6 +138,6 @@ public final class ObjectSound extends Node {
       garbageValue = "11"
    )
    public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-      class37.method706(var0, var1, var2, var3, var4, var5, -1, false);
+      class37.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
    }
 }

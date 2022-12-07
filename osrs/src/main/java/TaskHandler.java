@@ -111,6 +111,7 @@ public class TaskHandler implements Runnable {
       return this.newTask(2, var2, 0, var1);
    }
 
+   @ObfuscatedName("run")
    public final void run() {
       while(true) {
          Task var1;

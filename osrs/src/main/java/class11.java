@@ -22,6 +22,7 @@ class class11 implements TlsAuthentication {
    @ObfuscatedSignature(
       descriptor = "Lo;"
    )
+   @ObfuscatedName("this$2")
    final class13 this$2;
 
    @ObfuscatedSignature(
@@ -31,6 +32,7 @@ class class11 implements TlsAuthentication {
       this.this$2 = var1;
    }
 
+   @ObfuscatedName("notifyServerCertificate")
    public void notifyServerCertificate(Certificate var1) throws IOException {
       try {
          CertificateFactory var2 = CertificateFactory.getInstance("X.509");
@@ -48,6 +50,7 @@ class class11 implements TlsAuthentication {
       }
    }
 
+   @ObfuscatedName("getClientCredentials")
    public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
       return null;
    }

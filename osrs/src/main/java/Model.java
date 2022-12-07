@@ -1,6 +1,5 @@
 import java.util.HashMap;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -148,7 +147,7 @@ public class Model extends Renderable {
    @ObfuscatedName("ab")
    int radius;
    @ObfuscatedName("al")
-   HashMap offsetsMap = new HashMap();
+   HashMap aabb = new HashMap();
    @ObfuscatedName("bs")
    public byte overrideHue;
    @ObfuscatedName("bt")
@@ -486,7 +485,7 @@ public class Model extends Renderable {
 
    @ObfuscatedName("r")
    void calculateBoundingBox(int var1) {
-      if (!this.offsetsMap.containsKey(var1)) {
+      if (!this.aabb.containsKey(var1)) {
          int var2 = 0;
          int var3 = 0;
          int var4 = 0;
@@ -525,23 +524,23 @@ public class Model extends Renderable {
             }
          }
 
-         Offsets offsets = new Offsets((var5 + var2) / 2, (var6 + var3) / 2, (var7 + var4) / 2, (var5 - var2 + 1) / 2, (var6 - var3 + 1) / 2, (var7 - var4 + 1) / 2);
+         AABB var14 = new AABB((var5 + var2) / 2, (var6 + var3) / 2, (var7 + var4) / 2, (var5 - var2 + 1) / 2, (var6 - var3 + 1) / 2, (var7 - var4 + 1) / 2);
          boolean var15 = true;
-         if (offsets.xMidOffset < 32) {
-            offsets.xMidOffset = 32;
+         if (var14.xMidOffset < 32) {
+            var14.xMidOffset = 32;
          }
 
-         if (offsets.zMidOffset < 32) {
-            offsets.zMidOffset = 32;
+         if (var14.zMidOffset < 32) {
+            var14.zMidOffset = 32;
          }
 
          if (this.isSingleTile) {
             boolean var16 = true;
-            offsets.xMidOffset += 8;
-            offsets.zMidOffset += 8;
+            var14.xMidOffset += 8;
+            var14.zMidOffset += 8;
          }
 
-         this.offsetsMap.put(var1, offsets);
+         this.aabb.put(var1, var14);
       }
    }
 
@@ -608,7 +607,7 @@ public class Model extends Renderable {
    @ObfuscatedName("g")
    public void resetBounds() {
       this.boundsType = 0;
-      this.offsetsMap.clear();
+      this.aabb.clear();
    }
 
    @ObfuscatedName("i")
@@ -1726,7 +1725,7 @@ public class Model extends Renderable {
                                  ViewportMouse.field2742 = Math.abs(ViewportMouse.field2747);
                               }
 
-                              Offsets var50 = (Offsets)this.offsetsMap.get(var1);
+                              AABB var50 = (AABB)this.aabb.get(var1);
                               var40 = var50.xMid + var6;
                               var41 = var7 + var50.yMid;
                               var42 = var8 + var50.zMid;

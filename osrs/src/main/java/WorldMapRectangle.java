@@ -30,6 +30,7 @@ public final class WorldMapRectangle {
    @ObfuscatedSignature(
       descriptor = "Lie;"
    )
+   @ObfuscatedName("this$0")
    final WorldMapManager this$0;
 
    @ObfuscatedSignature(

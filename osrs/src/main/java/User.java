@@ -66,6 +66,7 @@ public class User implements Comparable {
       }
    }
 
+   @ObfuscatedName("compareTo")
    public int compareTo(Object var1) {
       return this.compareTo_user((User)var1);
    }

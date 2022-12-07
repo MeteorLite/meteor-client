@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -67,7 +65,7 @@ public class GraphicsObject extends Renderable {
       int var8 = ClanSettings.SpotAnimationDefinition_get(this.id).sequence;
       if (var8 != -1) {
          this.isFinished = false;
-         this.sequenceDefinition = Offsets.SequenceDefinition_get(var8);
+         this.sequenceDefinition = AABB.SequenceDefinition_get(var8);
       } else {
          this.isFinished = true;
       }

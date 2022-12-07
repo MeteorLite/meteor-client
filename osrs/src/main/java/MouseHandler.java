@@ -144,6 +144,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    public final void focusGained(FocusEvent var1) {
    }
 
+   @ObfuscatedName("mouseReleased")
    public final synchronized void mouseReleased(MouseEvent var1) {
       if (MouseHandler_instance != null) {
          MouseHandler_idleCycles = 0;
@@ -160,6 +161,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
       this.mouseMoved(var1);
    }
 
+   @ObfuscatedName("mouseClicked")
    public final void mouseClicked(MouseEvent var1) {
       if (var1.isPopupTrigger()) {
          var1.consume();
@@ -188,6 +190,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
       this.mouseMoved(var1);
    }
 
+   @ObfuscatedName("mousePressed")
    public final synchronized void mousePressed(MouseEvent var1) {
       if (MouseHandler_instance != null) {
          MouseHandler_idleCycles = 0;

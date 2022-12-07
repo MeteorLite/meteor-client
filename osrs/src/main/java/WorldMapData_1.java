@@ -121,6 +121,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       return this.chunkY;
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof WorldMapData_1)) {
          return false;

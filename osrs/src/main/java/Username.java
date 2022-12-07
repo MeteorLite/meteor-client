@@ -186,6 +186,7 @@ public class Username implements Comparable {
       }
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (var1 instanceof Username) {
          Username var2 = (Username)var1;
@@ -201,14 +202,17 @@ public class Username implements Comparable {
       }
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       return this.cleanName == null ? 0 : this.cleanName.hashCode();
    }
 
+   @ObfuscatedName("compareTo")
    public int compareTo(Object var1) {
       return this.compareToTyped((Username)var1);
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.getName();
    }

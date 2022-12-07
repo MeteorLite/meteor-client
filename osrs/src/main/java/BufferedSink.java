@@ -127,6 +127,7 @@ public class BufferedSink implements Runnable {
 
    }
 
+   @ObfuscatedName("run")
    public void run() {
       do {
          int var1;

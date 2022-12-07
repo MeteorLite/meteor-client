@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -1606,10 +1605,10 @@ public class Widget extends Node {
          while(var2.hasNext()) {
             class173 var3 = (class173)var2.next();
             String var4 = String.format("%%%S%%", var3.method3503());
-            if (var3.vmethod3504() == 0) {
-               var1.replaceAll(var4, Integer.toString(var3.vmethod3511()));
+            if (var3.vmethod3379() == 0) {
+               var1.replaceAll(var4, Integer.toString(var3.vmethod3378()));
             } else {
-               var1.replaceAll(var4, var3.vmethod3505());
+               var1.replaceAll(var4, var3.vmethod3380());
             }
          }
 
@@ -1633,11 +1632,11 @@ public class Widget extends Node {
          while(var3.hasNext()) {
             class173 var4 = (class173)var3.next();
             if (!var4.method3503().equals("user_id")) {
-               if (var4.vmethod3504() != 0) {
+               if (var4.vmethod3379() != 0) {
                   return null;
                }
 
-               var1[var2++] = var4.vmethod3511();
+               var1[var2++] = var4.vmethod3378();
                if (var2 > 3) {
                   return null;
                }

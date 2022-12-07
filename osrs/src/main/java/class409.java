@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -100,6 +101,7 @@ public final class class409 {
       this.method7757(this.field4605 * var1.field4600 + this.field4603 * var1.field4606 + var1.field4603 * this.field4606 - this.field4600 * var1.field4605, this.field4606 * var1.field4600 + (var1.field4606 * this.field4600 - var1.field4603 * this.field4605) + var1.field4605 * this.field4603, this.field4600 * var1.field4603 + var1.field4606 * this.field4605 - var1.field4600 * this.field4603 + this.field4606 * var1.field4605, var1.field4606 * this.field4606 - this.field4603 * var1.field4603 - var1.field4600 * this.field4600 - this.field4605 * var1.field4605);
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       boolean var1 = true;
       float var2 = 1.0F;
@@ -110,10 +112,12 @@ public final class class409 {
       return (int)var2;
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.field4603 + "," + this.field4600 + "," + this.field4605 + "," + this.field4606;
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof class409)) {
          return false;

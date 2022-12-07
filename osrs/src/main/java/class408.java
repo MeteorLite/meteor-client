@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -33,6 +34,7 @@ public class class408 {
       return (float)Math.sqrt((double)(this.field4598 * this.field4598 + this.field4599 * this.field4599 + this.field4597 * this.field4597));
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.field4598 + ", " + this.field4599 + ", " + this.field4597;
    }

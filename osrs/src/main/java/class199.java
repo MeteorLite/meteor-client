@@ -1,5 +1,5 @@
 import java.awt.datatransfer.Clipboard;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -20,7 +20,7 @@ public class class199 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "1119176744"
    )
-   public boolean vmethod4138(int var1) {
+   public boolean vmethod3949(int var1) {
       if (this.field2305 == null) {
          return false;
       } else {
@@ -53,7 +53,7 @@ public class class199 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "-916991313"
    )
-   public boolean vmethod4099(int var1) {
+   public boolean vmethod3989(int var1) {
       switch(var1) {
       case 81:
          this.field2306 = false;
@@ -71,7 +71,7 @@ public class class199 implements class30 {
       descriptor = "(CI)Z",
       garbageValue = "-258182"
    )
-   public boolean vmethod4097(char var1) {
+   public boolean vmethod3951(char var1) {
       if (this.field2305 == null) {
          return false;
       } else if (!ObjectSound.method1871(var1)) {
@@ -100,7 +100,7 @@ public class class199 implements class30 {
       descriptor = "(ZI)Z",
       garbageValue = "333814410"
    )
-   public boolean vmethod4102(boolean var1) {
+   public boolean vmethod3953(boolean var1) {
       return false;
    }
 
@@ -120,7 +120,7 @@ public class class199 implements class30 {
                ScriptEvent var3 = new ScriptEvent();
                var3.method2255(var1);
                var3.setArgs(var2.field3467);
-               Offsets.method4611().addFirst(var3);
+               AABB.method4611().addFirst(var3);
             }
          }
       }
@@ -152,7 +152,7 @@ public class class199 implements class30 {
                ScriptEvent var3 = new ScriptEvent();
                var3.method2255(var2);
                var3.setArgs(var1.field3467);
-               Offsets.method4611().addFirst(var3);
+               AABB.method4611().addFirst(var3);
             }
 
          }
@@ -212,7 +212,7 @@ public class class199 implements class30 {
                   ScriptEvent var4 = new ScriptEvent();
                   var4.method2255(this.field2305);
                   var4.setArgs(var3.field3465);
-                  Offsets.method4611().addFirst(var4);
+                  AABB.method4611().addFirst(var4);
                   this.method4068();
                }
 

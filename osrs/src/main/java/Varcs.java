@@ -209,7 +209,7 @@ public class Varcs {
    void read() {
       AccessFile var1 = this.getPreferencesFile(false);
 
-      label226: {
+      label211: {
          try {
             byte[] var2 = new byte[(int)var1.length()];
 
@@ -224,60 +224,60 @@ public class Varcs {
             Buffer var14 = new Buffer(var2);
             if (var14.array.length - var14.offset >= 1) {
                int var15 = var14.readUnsignedByte();
-               if (var15 >= 0 && var15 <= 2) {
-                  int var7;
-                  int var8;
-                  int var9;
-                  int var16;
-                  if (var15 >= 2) {
-                     var16 = var14.readUnsignedShort();
-                     var7 = 0;
-
-                     while(true) {
-                        if (var7 >= var16) {
-                           break label226;
-                        }
-
-                        var8 = var14.readUnsignedShort();
-                        var9 = var14.readUnsignedByte();
-                        class456 var10 = (class456)World.findEnumerated(class456.method8407(), var9);
-                        Object var11 = var10.method8396(var14);
-                        if (this.intsPersistence[var8]) {
-                           this.map.put(var8, var11);
-                        }
-
-                        ++var7;
-                     }
-                  } else {
-                     var16 = var14.readUnsignedShort();
-
-                     for(var7 = 0; var7 < var16; ++var7) {
-                        var8 = var14.readUnsignedShort();
-                        var9 = var14.readInt();
-                        if (this.intsPersistence[var8]) {
-                           this.map.put(var8, var9);
-                        }
-                     }
-
-                     var7 = var14.readUnsignedShort();
-                     var8 = 0;
-
-                     while(true) {
-                        if (var8 >= var7) {
-                           break label226;
-                        }
-
-                        var14.readUnsignedShort();
-                        var14.readStringCp1252NullTerminated();
-                        ++var8;
-                     }
-                  }
+               if (var15 < 0 || var15 > 2) {
+                  return;
                }
 
-               return;
+               int var7;
+               int var8;
+               int var9;
+               int var16;
+               if (var15 >= 2) {
+                  var16 = var14.readUnsignedShort();
+                  var7 = 0;
+
+                  while(true) {
+                     if (var7 >= var16) {
+                        break label211;
+                     }
+
+                     var8 = var14.readUnsignedShort();
+                     var9 = var14.readUnsignedByte();
+                     class456 var10 = (class456)World.findEnumerated(class456.method8407(), var9);
+                     Object var11 = var10.method8396(var14);
+                     if (this.intsPersistence[var8]) {
+                        this.map.put(var8, var11);
+                     }
+
+                     ++var7;
+                  }
+               } else {
+                  var16 = var14.readUnsignedShort();
+
+                  for(var7 = 0; var7 < var16; ++var7) {
+                     var8 = var14.readUnsignedShort();
+                     var9 = var14.readInt();
+                     if (this.intsPersistence[var8]) {
+                        this.map.put(var8, var9);
+                     }
+                  }
+
+                  var7 = var14.readUnsignedShort();
+                  var8 = 0;
+
+                  while(true) {
+                     if (var8 >= var7) {
+                        break label211;
+                     }
+
+                     var14.readUnsignedShort();
+                     var14.readStringCp1252NullTerminated();
+                     ++var8;
+                  }
+               }
             }
          } catch (Exception var25) {
-            break label226;
+            break label211;
          } finally {
             try {
                var1.close();

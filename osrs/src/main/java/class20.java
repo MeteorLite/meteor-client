@@ -27,6 +27,7 @@ public class class20 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Ln;"
    )
+   @ObfuscatedName("this$0")
    final class14 this$0;
 
    @ObfuscatedSignature(
@@ -37,6 +38,7 @@ public class class20 implements Callable {
       this.field117 = var2;
    }
 
+   @ObfuscatedName("call")
    public Object call() throws Exception {
       try {
          while(this.field117.method88()) {

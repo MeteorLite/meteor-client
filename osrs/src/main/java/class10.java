@@ -130,7 +130,7 @@ public class class10 {
             ByteArrayOutputStream var13 = new ByteArrayOutputStream();
 
             try {
-               var13.write(this.field50.vmethod7924());
+               var13.write(this.field50.vmethod7797());
                var13.writeTo(this.field53.getOutputStream());
             } catch (IOException var11) {
                var11.printStackTrace();

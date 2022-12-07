@@ -327,7 +327,7 @@ public class PcmPlayer {
       if (this.stream != null && this.field328 <= 0) {
          this.field328 += field325 * 22050 >> 4;
          GrandExchangeEvents.PcmStream_disable(this.stream);
-         this.method801(this.stream, this.stream.vmethod1052());
+         this.method801(this.stream, this.stream.vmethod1019());
          int var4 = 0;
          int var5 = 255;
 
@@ -365,7 +365,7 @@ public class PcmPlayer {
                            var11 = var11.after;
                         } else {
                            var11.active = true;
-                           int var13 = var11.vmethod5753();
+                           int var13 = var11.vmethod5648();
                            var4 += var13;
                            if (var12 != null) {
                               var12.position += var13;
@@ -378,7 +378,7 @@ public class PcmPlayer {
                            PcmStream var14 = var11.firstSubStream();
                            if (var14 != null) {
                               for(int var15 = var11.field383; var14 != null; var14 = var11.nextSubStream()) {
-                                 this.method801(var14, var15 * var14.vmethod1052() >> 8);
+                                 this.method801(var14, var15 * var14.vmethod1019() >> 8);
                               }
                            }
 

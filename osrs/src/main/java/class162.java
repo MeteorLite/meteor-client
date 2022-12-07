@@ -31,7 +31,7 @@ public class class162 extends class173 {
       descriptor = "(B)I",
       garbageValue = "16"
    )
-   public int vmethod3504() {
+   public int vmethod3379() {
       return 1;
    }
 
@@ -40,7 +40,7 @@ public class class162 extends class173 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "380048809"
    )
-   public String vmethod3505() {
+   public String vmethod3380() {
       return this.field1823;
    }
 }

@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("pg")
@@ -12,6 +13,7 @@ public class class440 {
       this.field4809 = var2;
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       int var1 = 0;
       if (this.field4811 != null) {
@@ -25,6 +27,7 @@ public class class440 {
       return var1;
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (var1 != null && var1 instanceof class440) {
          class440 var2 = (class440)var1;
@@ -50,6 +53,7 @@ public class class440 {
       }
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.field4811 + ", " + this.field4809;
    }

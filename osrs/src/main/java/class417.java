@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -19,7 +20,7 @@ public abstract class class417 implements class261 {
       descriptor = "(Lqy;II)V",
       garbageValue = "1487404426"
    )
-   abstract void vmethod7892(Buffer var1, int var2);
+   abstract void vmethod7769(Buffer var1, int var2);
 
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -55,7 +56,7 @@ public abstract class class417 implements class261 {
                var1.readStringCp1252NullCircumfixed();
             }
          } else {
-            this.vmethod7892(var1, var2);
+            this.vmethod7769(var1, var2);
          }
       }
    }

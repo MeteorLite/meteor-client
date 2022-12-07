@@ -15,10 +15,12 @@ final class GrandExchangeOfferNameComparator implements Comparator {
       return var1.getOfferName().compareTo(var2.getOfferName());
    }
 
+   @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }

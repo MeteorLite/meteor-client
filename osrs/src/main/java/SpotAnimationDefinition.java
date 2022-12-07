@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -169,7 +167,7 @@ public class SpotAnimationDefinition extends DualNode {
 
       Model var5;
       if (this.sequence != -1 && var1 != -1) {
-         var5 = Offsets.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
+         var5 = AABB.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
       } else {
          var5 = var2.toSharedSpotAnimationModel(true);
       }

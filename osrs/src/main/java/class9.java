@@ -234,13 +234,13 @@ public class class9 implements class345 {
          }
 
          short var10 = -1;
-         if (Client.something.getKeyPressed(33)) {
+         if (Client.keyHandlerInstance.getKeyPressed(33)) {
             var10 = 0;
-         } else if (Client.something.getKeyPressed(49)) {
+         } else if (Client.keyHandlerInstance.getKeyPressed(49)) {
             var10 = 1024;
          }
 
-         if (Client.something.getKeyPressed(48)) {
+         if (Client.keyHandlerInstance.getKeyPressed(48)) {
             if (var10 == 0) {
                var10 = 1792;
             } else if (var10 == 1024) {
@@ -248,7 +248,7 @@ public class class9 implements class345 {
             } else {
                var10 = 1536;
             }
-         } else if (Client.something.getKeyPressed(50)) {
+         } else if (Client.keyHandlerInstance.getKeyPressed(50)) {
             if (var10 == 0) {
                var10 = 256;
             } else if (var10 == 1024) {
@@ -259,15 +259,15 @@ public class class9 implements class345 {
          }
 
          byte var11 = 0;
-         if (Client.something.getKeyPressed(35)) {
+         if (Client.keyHandlerInstance.getKeyPressed(35)) {
             var11 = -1;
-         } else if (Client.something.getKeyPressed(51)) {
+         } else if (Client.keyHandlerInstance.getKeyPressed(51)) {
             var11 = 1;
          }
 
          var2 = 0;
          if (var10 >= 0 || var11 != 0) {
-            var2 = Client.something.getKeyPressed(81) ? Client.oculusOrbSlowedSpeed : Client.oculusOrbNormalSpeed;
+            var2 = Client.keyHandlerInstance.getKeyPressed(81) ? Client.oculusOrbSlowedSpeed : Client.oculusOrbNormalSpeed;
             var2 *= 16;
             Client.field596 = var10;
             Client.field597 = var11;
@@ -303,38 +303,38 @@ public class class9 implements class345 {
             Client.field597 = -1;
          }
 
-         if (Client.something.getKeyPressed(13)) {
+         if (Client.keyHandlerInstance.getKeyPressed(13)) {
             Client.packetWriter.addNode(class136.getPacketBufferNode(ClientPacket.field3073, Client.packetWriter.isaacCipher));
             Client.oculusOrbState = 0;
          }
       }
 
       if (MouseHandler.MouseHandler_currentButton == 4 && SceneTilePaint.mouseCam) {
-         var0 = MouseHandler.MouseHandler_y - Client.field592;
+         var0 = MouseHandler.MouseHandler_y - Client.mouseCamClickedY;
          Client.camAngleDX = var0 * 2;
-         Client.field592 = var0 != -1 && var0 != 1 ? (Client.field592 + MouseHandler.MouseHandler_y) / 2 : MouseHandler.MouseHandler_y;
-         var1 = Client.field591 - MouseHandler.MouseHandler_x;
+         Client.mouseCamClickedY = var0 != -1 && var0 != 1 ? (Client.mouseCamClickedY + MouseHandler.MouseHandler_y) / 2 : MouseHandler.MouseHandler_y;
+         var1 = Client.mouseCamClickedX - MouseHandler.MouseHandler_x;
          Client.camAngleDY = var1 * 2;
-         Client.field591 = var1 != -1 && var1 != 1 ? (MouseHandler.MouseHandler_x + Client.field591) / 2 : MouseHandler.MouseHandler_x;
+         Client.mouseCamClickedX = var1 != -1 && var1 != 1 ? (MouseHandler.MouseHandler_x + Client.mouseCamClickedX) / 2 : MouseHandler.MouseHandler_x;
       } else {
-         if (Client.something.getKeyPressed(96)) {
+         if (Client.keyHandlerInstance.getKeyPressed(96)) {
             Client.camAngleDY += (-24 - Client.camAngleDY) / 2;
-         } else if (Client.something.getKeyPressed(97)) {
+         } else if (Client.keyHandlerInstance.getKeyPressed(97)) {
             Client.camAngleDY += (24 - Client.camAngleDY) / 2;
          } else {
             Client.camAngleDY /= 2;
          }
 
-         if (Client.something.getKeyPressed(98)) {
+         if (Client.keyHandlerInstance.getKeyPressed(98)) {
             Client.camAngleDX += (12 - Client.camAngleDX) / 2;
-         } else if (Client.something.getKeyPressed(99)) {
+         } else if (Client.keyHandlerInstance.getKeyPressed(99)) {
             Client.camAngleDX += (-12 - Client.camAngleDX) / 2;
          } else {
             Client.camAngleDX /= 2;
          }
 
-         Client.field592 = MouseHandler.MouseHandler_y;
-         Client.field591 = MouseHandler.MouseHandler_x;
+         Client.mouseCamClickedY = MouseHandler.MouseHandler_y;
+         Client.mouseCamClickedX = MouseHandler.MouseHandler_x;
       }
 
       Client.camAngleY = Client.camAngleDY / 2 + Client.camAngleY & 2047;

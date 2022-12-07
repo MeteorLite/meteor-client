@@ -148,7 +148,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(II)Z",
       garbageValue = "-1786884574"
    )
-   public boolean vmethod4813(int var1) {
+   public boolean vmethod4645(int var1) {
       return this.textures[var1].field2442;
    }
 

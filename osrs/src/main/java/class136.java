@@ -9,14 +9,14 @@ public abstract class class136 extends Node {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   abstract void vmethod3349(Buffer var1);
+   abstract void vmethod3254(Buffer var1);
 
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   abstract void vmethod3350(ClanSettings var1);
+   abstract void vmethod3248(ClanSettings var1);
 
    @ObfuscatedName("e")
    @ObfuscatedSignature(

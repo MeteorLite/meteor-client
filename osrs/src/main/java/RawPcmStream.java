@@ -90,7 +90,7 @@ public class RawPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("r")
-   protected int vmethod5753() {
+   protected int vmethod5648() {
       return this.field379 == 0 && this.field376 == 0 ? 0 : 1;
    }
 
@@ -694,7 +694,7 @@ public class RawPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("af")
-   int vmethod1052() {
+   int vmethod1019() {
       int var1 = this.field369 * 3 >> 6;
       var1 = (var1 ^ var1 >> 31) + (var1 >>> 31);
       if (this.numLoops == 0) {

@@ -76,6 +76,7 @@ public class LoginType {
       this.field4839 = var4;
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.field4839;
    }

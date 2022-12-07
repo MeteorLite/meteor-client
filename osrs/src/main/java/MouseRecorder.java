@@ -27,6 +27,7 @@ public class MouseRecorder implements Runnable {
    @ObfuscatedName("q")
    long[] millis = new long[500];
 
+   @ObfuscatedName("run")
    public void run() {
       for(; this.isRunning; class12.method157(50L)) {
          Object var1 = this.lock;

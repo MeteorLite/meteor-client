@@ -63,7 +63,7 @@ public class class456 implements class345 {
       garbageValue = "-667358219"
    )
    public Object method8396(Buffer var1) {
-      return this.field4869.vmethod8414(var1);
+      return this.field4869.vmethod8273(var1);
    }
 
    @ObfuscatedName("h")
@@ -216,7 +216,7 @@ public class class456 implements class345 {
    )
    public static void method8395(Object var0, Buffer var1) {
       class452 var2 = method8408(var0.getClass());
-      var2.vmethod8422(var0, var1);
+      var2.vmethod8274(var0, var1);
    }
 
    @ObfuscatedName("m")

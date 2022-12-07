@@ -1,13 +1,13 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-
 @ObfuscatedName("org/json/JSONObject$Null")
 final class JSONObject$Null {
-
    JSONObject$Null() {
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return var1 == null || this == var1;
    }

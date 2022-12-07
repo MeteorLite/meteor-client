@@ -3,6 +3,7 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -20,7 +21,7 @@ public class class423 implements class421 {
       descriptor = "(B)[B",
       garbageValue = "0"
    )
-   public byte[] vmethod7924() throws UnsupportedEncodingException {
+   public byte[] vmethod7797() throws UnsupportedEncodingException {
       return this.method7925().getBytes("UTF-8");
    }
 

@@ -21,6 +21,7 @@ public abstract class class173 {
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
+   @ObfuscatedName("this$0")
    final class163 this$0;
 
    @ObfuscatedSignature(
@@ -36,14 +37,14 @@ public abstract class class173 {
       descriptor = "(B)I",
       garbageValue = "16"
    )
-   public abstract int vmethod3504();
+   public abstract int vmethod3379();
 
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "380048809"
    )
-   public String vmethod3505() {
+   public String vmethod3380() {
       return null;
    }
 
@@ -52,7 +53,7 @@ public abstract class class173 {
       descriptor = "(I)I",
       garbageValue = "-736426895"
    )
-   public int vmethod3511() {
+   public int vmethod3378() {
       return -1;
    }
 

@@ -95,7 +95,7 @@ public class class175 {
       int var81;
       int var82;
       if (Login.worldSelectOpen) {
-         class201 var80 = Client.something;
+         class201 var80 = Client.keyHandlerInstance;
          class201 var3 = var80;
 
          while(true) {
@@ -248,7 +248,7 @@ public class class175 {
                   var4 = 1;
                }
 
-               class201 var38 = Client.something;
+               class201 var38 = Client.keyHandlerInstance;
                class201 var8 = var38;
                int var86;
                short var87;
@@ -374,7 +374,7 @@ public class class175 {
 
                            TaskHandler.setLoginResponseString("", "Connecting to server...", "");
                            InterfaceParent.method2251(false);
-                           class140.method3102(20);
+                           class140.updateGameState(20);
                            return;
                         }
 
@@ -472,7 +472,7 @@ public class class175 {
 
                                        TaskHandler.setLoginResponseString("", "Connecting to server...", "");
                                        InterfaceParent.method2251(false);
-                                       class140.method3102(20);
+                                       class140.updateGameState(20);
                                        return;
                                     }
                                  }
@@ -538,7 +538,7 @@ public class class175 {
                               class141.otp = "";
                               InterfaceParent.method2251(true);
                               TaskHandler.setLoginResponseString("", "Connecting to server...", "");
-                              class140.method3102(20);
+                              class140.updateGameState(20);
                               return;
                            }
 
@@ -591,7 +591,7 @@ public class class175 {
                                     class141.otp = "";
                                     InterfaceParent.method2251(true);
                                     TaskHandler.setLoginResponseString("", "Connecting to server...", "");
-                                    class140.method3102(20);
+                                    class140.updateGameState(20);
                                     return;
                                  }
 
@@ -1184,7 +1184,7 @@ public class class175 {
                                        }
 
                                        if (var127) {
-                                          class140.method3102(50);
+                                          class140.updateGameState(50);
                                           return;
                                        }
                                     }
@@ -1278,7 +1278,7 @@ public class class175 {
                                           }
 
                                           if (var127) {
-                                             class140.method3102(50);
+                                             class140.updateGameState(50);
                                           }
 
                                           return;
@@ -1326,7 +1326,7 @@ public class class175 {
                                     TaskHandler.setLoginResponseString("", "Connecting to server...", "");
                                     Client.field640 = class471.field4969;
                                     InterfaceParent.method2251(false);
-                                    class140.method3102(20);
+                                    class140.updateGameState(20);
                                  }
                               } else if (Login.loginIndex == 12) {
                                  var9 = UrlRequest.loginBoxCenter;

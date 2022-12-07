@@ -125,6 +125,7 @@ public class Language implements class345 {
       return this.id;
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.getLanguage().toLowerCase(Locale.ENGLISH);
    }

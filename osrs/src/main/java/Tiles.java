@@ -332,7 +332,7 @@ public final class Tiles {
             } else {
                Login.Login_loadingText = "Loaded title screen";
                Login.Login_loadingPercent = 50;
-               class140.method3102(5);
+               class140.updateGameState(5);
                Client.titleLoadingStage = 70;
             }
          } else if (Client.titleLoadingStage == 70) {
@@ -551,7 +551,7 @@ public final class Tiles {
                Client.titleLoadingStage = 150;
             }
          } else if (Client.titleLoadingStage == 150) {
-            class140.method3102(10);
+            class140.updateGameState(10);
          }
       }
    }

@@ -15,6 +15,7 @@ class class18 implements Comparator {
    @ObfuscatedSignature(
       descriptor = "Lj;"
    )
+   @ObfuscatedName("this$0")
    final class10 this$0;
 
    @ObfuscatedSignature(
@@ -33,10 +34,12 @@ class class18 implements Comparator {
       return ((Float)var2.getValue()).compareTo((Float)var1.getValue());
    }
 
+   @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.method257((Entry)var1, (Entry)var2);
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }

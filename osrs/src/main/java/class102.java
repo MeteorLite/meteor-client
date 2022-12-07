@@ -13,6 +13,7 @@ final class class102 implements class297 {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
+   @ObfuscatedName("val$cc")
    final Widget val$cc;
 
    @ObfuscatedSignature(
@@ -27,12 +28,12 @@ final class class102 implements class297 {
       descriptor = "(I)V",
       garbageValue = "-1798262930"
    )
-   public void vmethod5829() {
+   public void vmethod5708() {
       if (this.val$cc != null && this.val$cc.method6185().field3469 != null) {
          ScriptEvent var1 = new ScriptEvent();
          var1.method2255(this.val$cc);
          var1.setArgs(this.val$cc.method6185().field3469);
-         Offsets.method4611().addFirst(var1);
+         AABB.method4611().addFirst(var1);
       }
 
    }

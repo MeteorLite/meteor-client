@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -133,6 +134,7 @@ public class class411 {
       this.field4619 += var3;
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.field4624 + "," + this.field4625 + "," + this.field4622 + "," + this.field4627 + "\n" + this.field4617 + "," + this.field4620 + "," + this.field4623 + "," + this.field4626 + "\n" + this.field4618 + "," + this.field4621 + "," + this.field4616 + "," + this.field4619;
    }

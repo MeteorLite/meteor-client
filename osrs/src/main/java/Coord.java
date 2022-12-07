@@ -86,14 +86,17 @@ public class Coord {
       return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       return this.packed();
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return this.toString(",");
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (this == var1) {
          return true;

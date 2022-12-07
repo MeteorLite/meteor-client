@@ -82,7 +82,7 @@ public class class139 {
             var3 = new class155(this);
          }
 
-         ((class136)var3).vmethod3349(var1);
+         ((class136)var3).vmethod3254(var1);
          this.field1669.addFirst((Node)var3);
       }
 
@@ -96,7 +96,7 @@ public class class139 {
    public void method3094(ClanSettings var1) {
       if (this.field1674 == var1.field1723 && this.field1668 == var1.field1746) {
          for(class136 var2 = (class136)this.field1669.last(); var2 != null; var2 = (class136)this.field1669.previous()) {
-            var2.vmethod3350(var1);
+            var2.vmethod3248(var1);
          }
 
          ++var1.field1746;

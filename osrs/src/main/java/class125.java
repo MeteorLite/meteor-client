@@ -270,8 +270,8 @@ public class class125 {
          int var10 = 0;
          boolean var30 = false;
 
-         label947: {
-            label948: {
+         label952: {
+            label953: {
                try {
                   int var13;
                   try {
@@ -335,7 +335,6 @@ public class class125 {
 
                      Interpreter.field874 = var0.field1084;
 
-                     label932:
                      while(true) {
                         ++var10;
                         if (var10 > var1) {
@@ -356,7 +355,7 @@ public class class125 {
                            switch(var14) {
                            case 0:
                               var30 = false;
-                              break label932;
+                              break label953;
                            case 1:
                            default:
                               break;
@@ -399,7 +398,7 @@ public class class125 {
                         } else if (var33 == 21) {
                            if (Interpreter.Interpreter_frameDepth == 0) {
                               var30 = false;
-                              break label948;
+                              break label952;
                            }
 
                            ScriptFrame var40 = Interpreter.Interpreter_frames[--Interpreter.Interpreter_frameDepth];
@@ -563,15 +562,19 @@ public class class125 {
                      var9 = true;
                      StringBuilder var27 = new StringBuilder(30);
                      var27.append("").append(var4.key).append(" ");
+                     var13 = Interpreter.Interpreter_frameDepth - 1;
 
-                     for(var13 = Interpreter.Interpreter_frameDepth - 1; var13 >= 0; --var13) {
+                     while(true) {
+                        if (var13 < 0) {
+                           var27.append("").append(var8);
+                           class132.RunException_sendStackTrace(var27.toString(), var31);
+                           var30 = false;
+                           break;
+                        }
+
                         var27.append("").append(Interpreter.Interpreter_frames[var13].script.key).append(" ");
+                        --var13;
                      }
-
-                     var27.append("").append(var8);
-                     class132.RunException_sendStackTrace(var27.toString(), var31);
-                     var30 = false;
-                     break label947;
                   }
                } finally {
                   if (var30) {
@@ -593,8 +596,8 @@ public class class125 {
                }
 
                while(Interpreter.field867.size() > 0) {
-                  class98 var34 = (class98)Interpreter.field867.remove(0);
-                  ModelData0.widgetDefaultMenuAction(var34.method2592(), var34.method2593(), var34.method2594(), var34.method2599(), "");
+                  class98 var26 = (class98)Interpreter.field867.remove(0);
+                  ModelData0.widgetDefaultMenuAction(var26.method2592(), var26.method2593(), var26.method2594(), var26.method2599(), "");
                }
 
                if (Interpreter.field865) {
@@ -610,8 +613,8 @@ public class class125 {
             }
 
             while(Interpreter.field867.size() > 0) {
-               class98 var41 = (class98)Interpreter.field867.remove(0);
-               ModelData0.widgetDefaultMenuAction(var41.method2592(), var41.method2593(), var41.method2594(), var41.method2599(), "");
+               class98 var34 = (class98)Interpreter.field867.remove(0);
+               ModelData0.widgetDefaultMenuAction(var34.method2592(), var34.method2593(), var34.method2594(), var34.method2599(), "");
             }
 
             if (Interpreter.field865) {
@@ -627,8 +630,8 @@ public class class125 {
          }
 
          while(Interpreter.field867.size() > 0) {
-            class98 var26 = (class98)Interpreter.field867.remove(0);
-            ModelData0.widgetDefaultMenuAction(var26.method2592(), var26.method2593(), var26.method2594(), var26.method2599(), "");
+            class98 var41 = (class98)Interpreter.field867.remove(0);
+            ModelData0.widgetDefaultMenuAction(var41.method2592(), var41.method2593(), var41.method2594(), var41.method2599(), "");
          }
 
          if (Interpreter.field865) {

@@ -27,6 +27,8 @@ package mixins;
 import java.awt.Shape;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.runelite.api.AABB;
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.hooks.DrawCallbacks;
@@ -40,6 +42,7 @@ import net.runelite.api.model.Jarvis;
 import net.runelite.api.model.Triangle;
 import net.runelite.api.model.Vertex;
 import net.runelite.rs.api.*;
+import org.jetbrains.annotations.NotNull;
 
 @Mixin(RSModel.class)
 public abstract class RSModelMixin implements RSModel
@@ -547,59 +550,18 @@ public abstract class RSModelMixin implements RSModel
 	}
 
 	@Inject
-	RSOffsets lastOffsets = null;
-
-	@MethodHook(value = "calculateBoundingBox", end = true)
-	@Inject
-	public void postDraw(int var1) {
-		lastOffsets = getOffsetsMap().get(var1);
-	}
+	public int lastOrientation = -1;
 
 	@Inject
 	@Override
-	public int getCenterX() {
-		if (lastOffsets == null)
-			return 0;
-		return lastOffsets.getCenterX();
+	public int getLastOrientation() {
+		return lastOrientation;
 	}
-
 	@Inject
 	@Override
-	public int getCenterY() {
-		if (lastOffsets == null)
-			return 0;
-		return lastOffsets.getCenterY();
-	}
-
-	@Inject
-	@Override
-	public int getCenterZ() {
-		if (lastOffsets == null)
-			return 0;
-		return lastOffsets.getCenterY();
-	}
-
-	@Inject
-	@Override
-	public int getExtremeX() {
-		if (lastOffsets == null)
-			return 0;
-		return lastOffsets.getExtremeX();
-	}
-
-	@Inject
-	@Override
-	public int getExtremeY() {
-		if (lastOffsets == null)
-			return 0;
-		return lastOffsets.getExtremeY();
-	}
-
-	@Inject
-	@Override
-	public int getExtremeZ() {
-		if (lastOffsets == null)
-			return 0;
-		return lastOffsets.getExtremeZ();
+	public AABB getAABB(int orientation) {
+		calculateExtreme(orientation);
+		lastOrientation = orientation;
+		return getAABBMap().get(lastOrientation);
 	}
 }

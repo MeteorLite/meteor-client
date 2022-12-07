@@ -1,5 +1,5 @@
 import java.util.concurrent.Callable;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -30,6 +30,7 @@ public class class1 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Lr;"
    )
+   @ObfuscatedName("this$0")
    final class7 this$0;
 
    @ObfuscatedSignature(
@@ -41,8 +42,9 @@ public class class1 implements Callable {
       this.field1 = var3;
    }
 
+   @ObfuscatedName("call")
    public Object call() {
-      return this.field1.vmethod13(this.field5);
+      return this.field1.vmethod12(this.field5);
    }
 
    @ObfuscatedName("u")
@@ -200,7 +202,7 @@ public class class1 implements Callable {
 
             var17 = var0.readUnsignedByte();
             if (var5 == var3.sequence && var5 != -1) {
-               var7 = Offsets.SequenceDefinition_get(var5).field2276;
+               var7 = AABB.SequenceDefinition_get(var5).field2276;
                if (var7 == 1) {
                   var3.sequenceFrame = 0;
                   var3.sequenceFrameCycle = 0;
@@ -211,7 +213,7 @@ public class class1 implements Callable {
                if (var7 == 2) {
                   var3.field1223 = 0;
                }
-            } else if (var5 == -1 || var3.sequence == -1 || Offsets.SequenceDefinition_get(var5).field2300 >= Offsets.SequenceDefinition_get(var3.sequence).field2300) {
+            } else if (var5 == -1 || var3.sequence == -1 || AABB.SequenceDefinition_get(var5).field2300 >= AABB.SequenceDefinition_get(var3.sequence).field2300) {
                var3.sequence = var5;
                var3.sequenceFrame = 0;
                var3.sequenceFrameCycle = 0;

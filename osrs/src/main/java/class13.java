@@ -29,6 +29,7 @@ class class13 extends DefaultTlsClient {
       this.this$1 = var1;
    }
 
+   @ObfuscatedName("getClientExtensions")
    public Hashtable getClientExtensions() throws IOException {
       Hashtable var1 = super.getClientExtensions();
       if (var1 == null) {
@@ -47,6 +48,7 @@ class class13 extends DefaultTlsClient {
       return var1;
    }
 
+   @ObfuscatedName("getAuthentication")
    public TlsAuthentication getAuthentication() throws IOException {
       return new class11(this);
    }

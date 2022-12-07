@@ -63,7 +63,7 @@ public class class201 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "1119176744"
    )
-   public boolean vmethod4138(int var1) {
+   public boolean vmethod3949(int var1) {
       this.method4101(var1);
       this.field2324[var1] = true;
       this.field2325[var1] = true;
@@ -77,7 +77,7 @@ public class class201 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "-916991313"
    )
-   public boolean vmethod4099(int var1) {
+   public boolean vmethod3989(int var1) {
       this.field2324[var1] = false;
       this.field2325[var1] = false;
       this.field2318[var1] = true;
@@ -90,7 +90,7 @@ public class class201 implements class30 {
       descriptor = "(CI)Z",
       garbageValue = "-258182"
    )
-   public boolean vmethod4097(char var1) {
+   public boolean vmethod3951(char var1) {
       int var2 = this.field2322 + 1 & 127;
       if (var2 != this.field2321) {
          this.field2316[this.field2322] = -1;
@@ -106,7 +106,7 @@ public class class201 implements class30 {
       descriptor = "(ZI)Z",
       garbageValue = "333814410"
    )
-   public boolean vmethod4102(boolean var1) {
+   public boolean vmethod3953(boolean var1) {
       return false;
    }
 

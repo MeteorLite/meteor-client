@@ -38,7 +38,7 @@ public class class149 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   void vmethod3336(Buffer var1) {
+   void vmethod3238(Buffer var1) {
       var1.readUnsignedByte();
       this.field1752 = var1.readUnsignedShort();
       this.field1751 = var1.readByte();
@@ -53,7 +53,7 @@ public class class149 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   void vmethod3337(ClanChannel var1) {
+   void vmethod3239(ClanChannel var1) {
       ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1752);
       var2.rank = this.field1751;
       var2.world = this.field1753;

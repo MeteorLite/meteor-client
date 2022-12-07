@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -37,6 +38,7 @@ public final class class385 implements Comparable {
       }
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (var1 instanceof class385) {
          return this.field4497.equals(((class385)var1).field4497);
@@ -45,10 +47,12 @@ public final class class385 implements Comparable {
       }
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       return this.field4497.hashCode();
    }
 
+   @ObfuscatedName("compareTo")
    public int compareTo(Object var1) {
       return this.method7393((class385)var1);
    }

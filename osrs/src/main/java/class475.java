@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
@@ -20,6 +21,7 @@ public class class475 {
       this.field4981 = var2;
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof class475)) {
          return false;
@@ -35,6 +37,7 @@ public class class475 {
       }
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       return super.hashCode();
    }

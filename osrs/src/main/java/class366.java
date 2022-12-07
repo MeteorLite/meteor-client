@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -120,6 +121,7 @@ public class class366 extends AbstractQueue {
       this.field4373[var1].field4363 = var1;
    }
 
+   @ObfuscatedName("remove")
    public boolean remove(Object var1) {
       class364 var2 = (class364)this.field4368.remove(var1);
       if (var2 == null) {
@@ -145,14 +147,17 @@ public class class366 extends AbstractQueue {
       }
    }
 
+   @ObfuscatedName("peek")
    public Object peek() {
       return this.field4369 == 0 ? null : this.field4373[0].field4362;
    }
 
+   @ObfuscatedName("size")
    public int size() {
       return this.field4369;
    }
 
+   @ObfuscatedName("poll")
    public Object poll() {
       if (this.field4369 == 0) {
          return null;
@@ -174,10 +179,12 @@ public class class366 extends AbstractQueue {
       }
    }
 
+   @ObfuscatedName("contains")
    public boolean contains(Object var1) {
       return this.field4368.containsKey(var1);
    }
 
+   @ObfuscatedName("toArray")
    public Object[] toArray() {
       Object[] var1 = super.toArray();
       if (this.field4371 != null) {
@@ -189,10 +196,12 @@ public class class366 extends AbstractQueue {
       return var1;
    }
 
+   @ObfuscatedName("iterator")
    public Iterator iterator() {
       return new class365(this);
    }
 
+   @ObfuscatedName("offer")
    public boolean offer(Object var1) {
       if (this.field4368.containsKey(var1)) {
          throw new IllegalArgumentException("");

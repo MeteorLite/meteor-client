@@ -35,6 +35,7 @@ public class Ignored extends User {
       return this.compareTo_ignored((Ignored)var1);
    }
 
+   @ObfuscatedName("compareTo")
    public int compareTo(Object var1) {
       return this.compareTo_ignored((Ignored)var1);
    }

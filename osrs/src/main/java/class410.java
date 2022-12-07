@@ -404,6 +404,7 @@ public final class class410 {
       return var1;
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       boolean var1 = true;
       byte var2 = 1;
@@ -411,6 +412,7 @@ public final class class410 {
       return var3;
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof class410)) {
          return false;
@@ -427,6 +429,7 @@ public final class class410 {
       }
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       StringBuilder var1 = new StringBuilder();
       this.method7781();

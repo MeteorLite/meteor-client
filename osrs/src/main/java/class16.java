@@ -1,5 +1,6 @@
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -13,6 +14,7 @@ public class class16 implements ThreadFactory {
    @ObfuscatedSignature(
       descriptor = "Ln;"
    )
+   @ObfuscatedName("this$0")
    final class14 this$0;
 
    @ObfuscatedSignature(
@@ -25,6 +27,7 @@ public class class16 implements ThreadFactory {
       this.field92 = var2 != null ? var2.getThreadGroup() : Thread.currentThread().getThreadGroup();
    }
 
+   @ObfuscatedName("newThread")
    public Thread newThread(Runnable var1) {
       Thread var2 = new Thread(this.field92, var1, this.this$0.field85 + "-rest-request-" + this.field91.getAndIncrement(), 0L);
       var2.setDaemon(true);

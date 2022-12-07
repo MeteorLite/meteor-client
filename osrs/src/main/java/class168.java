@@ -15,6 +15,7 @@ public class class168 {
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
+   @ObfuscatedName("this$0")
    final class163 this$0;
 
    @ObfuscatedSignature(
@@ -118,7 +119,7 @@ public class class168 {
       garbageValue = "-2191"
    )
    protected static final int method3482() {
-      return GameEngine.keyHandlerInstance.method354();
+      return GameEngine.keyHandler.getIdleCycles();
    }
 
    @ObfuscatedName("aq")

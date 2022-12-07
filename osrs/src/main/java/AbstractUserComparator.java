@@ -32,6 +32,7 @@ public abstract class AbstractUserComparator implements Comparator {
       return this.nextComparator == null ? 0 : this.nextComparator.compare(var1, var2);
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }

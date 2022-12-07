@@ -182,6 +182,7 @@ public class BufferedSource implements Runnable {
 
    }
 
+   @ObfuscatedName("run")
    public void run() {
       while(true) {
          int var1;

@@ -18,10 +18,13 @@ class class12 extends SSLSocket {
    @ObfuscatedSignature(
       descriptor = "Lk;"
    )
+   @ObfuscatedName("this$0")
    final class15 this$0;
    // $FF: synthetic field
+   @ObfuscatedName("val$tlsClientProtocol")
    final TlsClientProtocol val$tlsClientProtocol;
    // $FF: synthetic field
+   @ObfuscatedName("val$host")
    final String val$host;
 
    @ObfuscatedSignature(
@@ -44,6 +47,7 @@ class class12 extends SSLSocket {
       return this.val$tlsClientProtocol.getOutputStream();
    }
 
+   @ObfuscatedName("close")
    public synchronized void close() throws IOException {
       this.val$tlsClientProtocol.close();
    }
@@ -60,6 +64,7 @@ class class12 extends SSLSocket {
       return null;
    }
 
+   @ObfuscatedName("getSession")
    public SSLSession getSession() {
       return new class17(this);
    }
@@ -82,6 +87,7 @@ class class12 extends SSLSocket {
    public void setEnabledCipherSuites(String[] var1) {
    }
 
+   @ObfuscatedName("startHandshake")
    public void startHandshake() throws IOException {
       this.val$tlsClientProtocol.connect(new class13(this));
    }

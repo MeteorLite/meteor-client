@@ -37,7 +37,7 @@ public class class109 extends UrlRequester {
       descriptor = "(Ldm;I)V",
       garbageValue = "756674113"
    )
-   void vmethod2773(UrlRequest var1) throws IOException {
+   void vmethod2700(UrlRequest var1) throws IOException {
       URLConnection var2 = null;
 
       try {

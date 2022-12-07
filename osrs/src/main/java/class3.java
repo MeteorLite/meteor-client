@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -7,5 +8,5 @@ public interface class3 {
    @ObfuscatedSignature(
       descriptor = "(Lqy;)Lqy;"
    )
-   Buffer vmethod13(Buffer var1);
+   Buffer vmethod12(Buffer var1);
 }

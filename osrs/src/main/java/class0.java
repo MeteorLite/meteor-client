@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -7,7 +8,7 @@ public class class0 implements class3 {
    @ObfuscatedSignature(
       descriptor = "(Lqy;)Lqy;"
    )
-   public Buffer vmethod13(Buffer var1) {
+   public Buffer vmethod12(Buffer var1) {
       Buffer var2 = new Buffer(100);
       this.method2(var1, var2);
       return var2;

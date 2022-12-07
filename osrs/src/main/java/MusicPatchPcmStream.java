@@ -142,7 +142,7 @@ public class MusicPatchPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("r")
-   protected int vmethod5753() {
+   protected int vmethod5648() {
       return 0;
    }
 

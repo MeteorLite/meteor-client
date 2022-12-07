@@ -100,7 +100,7 @@ public class class312 {
             boolean var11;
             int var12;
             if (ParamComposition.field2121) {
-               var10 = Client.field645[var1.readBits(3)];
+               var10 = Client.defaultRotations[var1.readBits(3)];
                if (var5) {
                   var6.orientation = var6.rotation = var10;
                }
@@ -177,7 +177,7 @@ public class class312 {
                }
 
                var7 = var1.readBits(1);
-               var12 = Client.field645[var1.readBits(3)];
+               var12 = Client.defaultRotations[var1.readBits(3)];
                if (var5) {
                   var6.orientation = var6.rotation = var12;
                }

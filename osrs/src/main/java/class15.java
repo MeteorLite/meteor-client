@@ -7,6 +7,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
@@ -26,7 +27,6 @@ public class class15 extends SSLSocketFactory {
       if (Security.getProvider("BC") == null) {
          Security.addProvider(new BouncyCastleProvider());
       }
-
    }
 
    @ObfuscatedName("h")
@@ -38,6 +38,7 @@ public class class15 extends SSLSocketFactory {
       return new class12(this, var2, var1);
    }
 
+   @ObfuscatedName("createSocket")
    public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
       if (var1 == null) {
          var1 = new Socket();

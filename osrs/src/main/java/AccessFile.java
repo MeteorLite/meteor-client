@@ -120,6 +120,7 @@ public final class AccessFile {
       return var4;
    }
 
+   @ObfuscatedName("finalize")
    protected void finalize() throws Throwable {
       if (this.file != null) {
          System.out.println("");

@@ -163,7 +163,7 @@ public class ScriptFrame {
       garbageValue = "-124"
    )
    static final void method1172(String var0, String var1, int var2, int var3, int var4, int var5, int var6) {
-      class37.method706(var0, var1, var2, var3, var4, var5, var6, false);
+      class37.insertMenuItem(var0, var1, var2, var3, var4, var5, var6, false);
    }
 
    @ObfuscatedName("md")

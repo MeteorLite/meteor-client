@@ -1,4 +1,5 @@
 import java.io.UnsupportedEncodingException;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,5 +10,5 @@ public interface class421 {
       descriptor = "(B)[B",
       garbageValue = "0"
    )
-   byte[] vmethod7924() throws UnsupportedEncodingException;
+   byte[] vmethod7797() throws UnsupportedEncodingException;
 }

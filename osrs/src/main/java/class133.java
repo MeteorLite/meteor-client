@@ -53,7 +53,7 @@ public class class133 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   void vmethod3349(Buffer var1) {
+   void vmethod3254(Buffer var1) {
       this.field1638 = var1.readUnsignedShort();
       this.field1632 = var1.readInt();
       this.field1633 = var1.readUnsignedByte();
@@ -65,7 +65,7 @@ public class class133 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   void vmethod3350(ClanSettings var1) {
+   void vmethod3248(ClanSettings var1) {
       var1.method3178(this.field1638, this.field1632, this.field1633, this.field1631);
    }
 }

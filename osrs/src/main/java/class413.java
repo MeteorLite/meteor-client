@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -406,7 +405,7 @@ public enum class413 implements class345 {
                      return 1;
                   } else if (var0 == 3189) {
                      var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     SequenceDefinition var4 = Offsets.SequenceDefinition_get(var3);
+                     SequenceDefinition var4 = AABB.SequenceDefinition_get(var3);
                      if (var4.isCachedModelIdSet()) {
                         Login.method2096(var4.SequenceDefinition_cachedModelId);
                      }

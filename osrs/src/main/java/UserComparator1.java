@@ -22,10 +22,12 @@ public class UserComparator1 implements Comparator {
       return this.reversed ? var1.compareTo_user(var2) : var2.compareTo_user(var1);
    }
 
+   @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compare_bridged((User)var1, (User)var2);
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }

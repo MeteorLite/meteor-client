@@ -1,3 +1,5 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -18,7 +20,7 @@ public class FriendsList extends UserList {
    @ObfuscatedSignature(
       descriptor = "Lma;"
    )
-   public LinkDeque field4504 = new LinkDeque();
+   public LinkDeque friendLoginUpdates = new LinkDeque();
 
    @ObfuscatedSignature(
       descriptor = "(Lqi;)V"
@@ -101,7 +103,7 @@ public class FriendsList extends UserList {
                   if (var6 != var11.world) {
                      boolean var14 = true;
 
-                     for(class391 var13 = (class391)this.field4504.last(); var13 != null; var13 = (class391)this.field4504.previous()) {
+                     for(class391 var13 = (class391)this.friendLoginUpdates.last(); var13 != null; var13 = (class391)this.friendLoginUpdates.previous()) {
                         if (var13.field4521.equals(var4)) {
                            if (var6 != 0 && var13.field4522 == 0) {
                               var13.remove();
@@ -114,7 +116,7 @@ public class FriendsList extends UserList {
                      }
 
                      if (var14) {
-                        this.field4504.addFirst(new class391(var4, var6));
+                        this.friendLoginUpdates.addFirst(new class391(var4, var6));
                      }
                   }
                } else {

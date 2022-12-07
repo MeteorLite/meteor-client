@@ -497,7 +497,7 @@ public class class303 {
          }
 
          if (var3 && this.field3512 != null) {
-            this.field3512.vmethod5829();
+            this.field3512.vmethod5708();
          }
 
          return var3;
@@ -1219,7 +1219,7 @@ public class class303 {
    )
    void method5957() {
       if (this.field3511 != null) {
-         this.field3511.vmethod5829();
+         this.field3511.vmethod5708();
       }
 
    }

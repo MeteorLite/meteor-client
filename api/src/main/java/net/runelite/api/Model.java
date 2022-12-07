@@ -24,6 +24,9 @@
  */
 package net.runelite.api;
 
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 
 /**
@@ -58,13 +61,6 @@ public interface Model extends Mesh, Renderable
 
 	void calculateExtreme(int orientation);
 
-	int getCenterX();
-	int getCenterY();
-	int getCenterZ();
-	int getExtremeX();
-	int getExtremeY();
-	int getExtremeZ();
-
 	int getXYZMag();
 	boolean isClickable();
 	
@@ -78,4 +74,12 @@ public interface Model extends Mesh, Renderable
 	byte getOverrideHue();
 	byte getOverrideSaturation();
 	byte getOverrideLuminance();
+
+	HashMap<Integer, AABB>  getAABBMap();
+
+	AABB getAABB(int orientation);
+
+	void calculateBoundingBox(int orientation);
+
+	int getLastOrientation();
 }

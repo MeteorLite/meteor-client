@@ -1,5 +1,5 @@
 import java.security.SecureRandom;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -50,13 +50,13 @@ public class class34 {
       } else {
          switch(this.field200) {
          case 1:
-            return var1.vmethod4138(this.field202);
+            return var1.vmethod3949(this.field202);
          case 2:
-            return var1.vmethod4099(this.field202);
+            return var1.vmethod3989(this.field202);
          case 3:
-            return var1.vmethod4097((char)this.field202);
+            return var1.vmethod3951((char)this.field202);
          case 4:
-            return var1.vmethod4102(this.field202 == 1);
+            return var1.vmethod3953(this.field202 == 1);
          default:
             return false;
          }
@@ -609,7 +609,7 @@ public class class34 {
                                     SequenceDefinition var37 = null;
                                     var26 = -1;
                                     if (var20 != -1) {
-                                       var37 = Offsets.SequenceDefinition_get(var20);
+                                       var37 = AABB.SequenceDefinition_get(var20);
                                        var26 = var10.modelFrame;
                                     }
 

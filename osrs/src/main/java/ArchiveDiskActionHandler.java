@@ -25,6 +25,7 @@ public class ArchiveDiskActionHandler implements Runnable {
    @ObfuscatedName("x")
    static Object ArchiveDiskActionHandler_lock = new Object();
 
+   @ObfuscatedName("run")
    public void run() {
       try {
          while(true) {

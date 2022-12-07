@@ -54,7 +54,7 @@ public class class153 {
             var3 = new class149(this);
          }
 
-         ((class152)var3).vmethod3336(var1);
+         ((class152)var3).vmethod3238(var1);
          this.field1772.addFirst((Node)var3);
       }
 
@@ -68,7 +68,7 @@ public class class153 {
    public void method3284(ClanChannel var1) {
       if (var1.key == this.field1775 && this.field1771 == var1.field1794) {
          for(class152 var2 = (class152)this.field1772.last(); var2 != null; var2 = (class152)this.field1772.previous()) {
-            var2.vmethod3337(var1);
+            var2.vmethod3239(var1);
          }
 
          ++var1.field1794;

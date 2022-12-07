@@ -12,6 +12,7 @@ public class SecureRandomCallable implements Callable {
    )
    static SpritePixels leftTitleSprite;
 
+   @ObfuscatedName("call")
    public Object call() {
       return class69.method2031();
    }

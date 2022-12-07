@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -31,7 +32,7 @@ public class class158 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   void vmethod3349(Buffer var1) {
+   void vmethod3254(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
          this.field1812 = var1.readLong();
@@ -45,7 +46,7 @@ public class class158 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   void vmethod3350(ClanSettings var1) {
+   void vmethod3248(ClanSettings var1) {
       var1.method3174(this.field1812, this.field1808);
    }
 

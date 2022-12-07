@@ -1,3 +1,5 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -69,7 +71,7 @@ public class FriendSystem {
       garbageValue = "1832627577"
    )
    final void processFriendUpdates() {
-      for(class391 var1 = (class391)this.friendsList.field4504.last(); var1 != null; var1 = (class391)this.friendsList.field4504.previous()) {
+      for(class391 var1 = (class391)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (class391)this.friendsList.friendLoginUpdates.previous()) {
          if ((long)var1.field4520 < Message.method1197() / 1000L - 5L) {
             if (var1.field4522 > 0) {
                KitDefinition.addGameMessage(5, "", var1.field4521 + " has logged in.");

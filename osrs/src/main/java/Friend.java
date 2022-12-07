@@ -46,6 +46,7 @@ public class Friend extends Buddy {
       return this.compareToFriend((Friend)var1);
    }
 
+   @ObfuscatedName("compareTo")
    public int compareTo(Object var1) {
       return this.compareToFriend((Friend)var1);
    }

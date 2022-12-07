@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -25,6 +23,7 @@ public class UserComparator10 extends AbstractUserComparator {
       }
    }
 
+   @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
@@ -77,7 +76,7 @@ public class UserComparator10 extends AbstractUserComparator {
                   }
 
                   if (var5 != -1) {
-                     SequenceDefinition var6 = Offsets.SequenceDefinition_get(var5);
+                     SequenceDefinition var6 = AABB.SequenceDefinition_get(var5);
                      if (!var6.isCachedModelIdSet()) {
                         for(var3.modelFrameCycle += Client.field563; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; class69.invalidateWidget(var3)) {
                            var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame];

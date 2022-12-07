@@ -16,6 +16,7 @@ public class SoundSystem implements Runnable {
    )
    volatile PcmPlayer[] players = new PcmPlayer[2];
 
+   @ObfuscatedName("run")
    public void run() {
       try {
          for(int var1 = 0; var1 < 2; ++var1) {

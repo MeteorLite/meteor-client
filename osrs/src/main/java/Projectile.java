@@ -1,6 +1,5 @@
 import java.lang.management.GarbageCollectorMXBean;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -123,7 +122,7 @@ public final class Projectile extends Renderable {
       this.isMoving = false;
       int var12 = ClanSettings.SpotAnimationDefinition_get(this.id).sequence;
       if (var12 != -1) {
-         this.sequenceDefinition = Offsets.SequenceDefinition_get(var12);
+         this.sequenceDefinition = AABB.SequenceDefinition_get(var12);
       } else {
          this.sequenceDefinition = null;
       }

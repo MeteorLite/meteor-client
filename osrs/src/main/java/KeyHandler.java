@@ -45,7 +45,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       descriptor = "(I)I",
       garbageValue = "-1025402851"
    )
-   int method354() {
+   int getIdleCycles() {
       return this.KeyHandler_idleCycles;
    }
 
@@ -105,6 +105,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       this.field144 = var1;
    }
 
+   @ObfuscatedName("keyPressed")
    public final synchronized void keyPressed(KeyEvent var1) {
       int var2;
       label24: {
@@ -133,6 +134,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       var1.consume();
    }
 
+   @ObfuscatedName("keyReleased")
    public final synchronized void keyReleased(KeyEvent var1) {
       int var2;
       label17: {
@@ -156,6 +158,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       var1.consume();
    }
 
+   @ObfuscatedName("keyTyped")
    public final synchronized void keyTyped(KeyEvent var1) {
       char var2 = var1.getKeyChar();
       if (var2 != 0 && var2 != '\uffff') {
@@ -192,6 +195,7 @@ public class KeyHandler implements KeyListener, FocusListener {
       this.field144.add(new class34(4, 1));
    }
 
+   @ObfuscatedName("focusLost")
    public final synchronized void focusLost(FocusEvent var1) {
       for(int var2 = 0; var2 < 112; ++var2) {
          if (this.KeyHandler_pressedKeys[var2]) {

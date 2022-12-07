@@ -203,7 +203,7 @@ public final class ArchiveDisk {
 
             while(true) {
                if (var7 < var3) {
-                  label171: {
+                  label170: {
                      int var9 = 0;
                      int var10;
                      if (var4) {
@@ -214,7 +214,7 @@ public final class ArchiveDisk {
                            try {
                               this.datFile.read(ArchiveDisk_buffer, 0, 10);
                            } catch (EOFException var17) {
-                              break label171;
+                              break label170;
                            }
 
                            var10 = ((ArchiveDisk_buffer[1] & 255) << 16) + ((ArchiveDisk_buffer[0] & 255) << 24) + (ArchiveDisk_buffer[3] & 255) + ((ArchiveDisk_buffer[2] & 255) << 8);
@@ -225,7 +225,7 @@ public final class ArchiveDisk {
                            try {
                               this.datFile.read(ArchiveDisk_buffer, 0, 8);
                            } catch (EOFException var16) {
-                              break label171;
+                              break label170;
                            }
 
                            var10 = (ArchiveDisk_buffer[1] & 255) + ((ArchiveDisk_buffer[0] & 255) << 8);
@@ -320,6 +320,7 @@ public final class ArchiveDisk {
       }
    }
 
+   @ObfuscatedName("toString")
    public String toString() {
       return "" + this.archive;
    }

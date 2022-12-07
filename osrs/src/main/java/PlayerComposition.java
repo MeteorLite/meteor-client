@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -48,7 +46,7 @@ public class PlayerComposition {
    )
    class175[] field3478;
    @ObfuscatedName("u")
-   boolean field3473 = false;
+   boolean isFemale = false;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -57,7 +55,7 @@ public class PlayerComposition {
    )
    public void method5867(int[] var1, class175[] var2, boolean var3, int[] var4, int var5, int var6, int var7) {
       this.field3478 = var2;
-      this.field3473 = var3;
+      this.isFemale = var3;
       this.field3476 = var7;
       this.method5850(var1, var4, var5, var6);
    }
@@ -223,7 +221,7 @@ public class PlayerComposition {
       this.hash += (long)(this.field3474 * 590976369) * 354323345L;
       this.equipment[5] = var3;
       this.equipment[9] = var4;
-      if (var1 != 0L && var1 != this.hash || this.field3473) {
+      if (var1 != 0L && var1 != this.hash || this.isFemale) {
          PlayerAppearance_cachedModels.remove(var1);
       }
 

@@ -33,6 +33,7 @@ public class class169 {
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
+   @ObfuscatedName("this$0")
    final class163 this$0;
 
    @ObfuscatedSignature(

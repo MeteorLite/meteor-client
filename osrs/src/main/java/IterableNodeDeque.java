@@ -145,6 +145,7 @@ public class IterableNodeDeque implements Iterable, Collection {
       return true;
    }
 
+   @ObfuscatedName("size")
    public int size() {
       return this.method6773();
    }
@@ -153,18 +154,22 @@ public class IterableNodeDeque implements Iterable, Collection {
       throw new RuntimeException();
    }
 
+   @ObfuscatedName("iterator")
    public Iterator iterator() {
       return new IterableNodeDequeDescendingIterator(this);
    }
 
+   @ObfuscatedName("isEmpty")
    public boolean isEmpty() {
       return this.method6774();
    }
 
+   @ObfuscatedName("toArray")
    public Object[] toArray() {
       return this.method6775();
    }
 
+   @ObfuscatedName("toArray")
    public Object[] toArray(Object[] var1) {
       int var2 = 0;
 
@@ -195,18 +200,22 @@ public class IterableNodeDeque implements Iterable, Collection {
       throw new RuntimeException();
    }
 
+   @ObfuscatedName("add")
    public boolean add(Object var1) {
       return this.method6810((Node)var1);
    }
 
+   @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 
+   @ObfuscatedName("hashCode")
    public int hashCode() {
       return super.hashCode();
    }
 
+   @ObfuscatedName("clear")
    public void clear() {
       this.rsClear();
    }

@@ -94,7 +94,7 @@ public class class273 {
                         String[] var9 = var8.inventoryActions;
                         int var10 = -1;
                         if (Client.shiftClickDrop) {
-                           boolean var11 = Client.tapToDrop || Client.something.getKeyPressed(81);
+                           boolean var11 = Client.tapToDrop || Client.keyHandlerInstance.getKeyPressed(81);
                            if (var11) {
                               var10 = var8.getShiftClickIndex();
                            }
@@ -204,7 +204,7 @@ public class class273 {
                }
 
                if (var14 != null) {
-                  class37.method706(var14, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.itemId, var0.prioritizeMenuEntry);
+                  class37.insertMenuItem(var14, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.itemId, var0.prioritizeMenuEntry);
                }
             }
 

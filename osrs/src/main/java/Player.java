@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -339,8 +337,8 @@ public final class Player extends Actor {
       if (this.appearance == null) {
          return null;
       } else {
-         SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? Offsets.SequenceDefinition_get(super.sequence) : null;
-         SequenceDefinition var2 = super.movementSequence == -1 || this.isUnanimated || super.idleSequence == super.movementSequence && var1 != null ? null : Offsets.SequenceDefinition_get(super.movementSequence);
+         SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? AABB.SequenceDefinition_get(super.sequence) : null;
+         SequenceDefinition var2 = super.movementSequence == -1 || this.isUnanimated || super.idleSequence == super.movementSequence && var1 != null ? null : AABB.SequenceDefinition_get(super.movementSequence);
          Model var3 = this.appearance.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
          if (var3 == null) {
             return null;
@@ -526,7 +524,7 @@ public final class Player extends Actor {
       garbageValue = "72"
    )
    final void method2298(int var1, int var2, class204 var3) {
-      if (super.sequence != -1 && Offsets.SequenceDefinition_get(super.sequence).field2284 == 1) {
+      if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).field2284 == 1) {
          super.sequence = -1;
       }
 
@@ -693,7 +691,7 @@ public final class Player extends Actor {
       Client.currentTrackGroupId = -1;
       Client.playingJingle = false;
       UrlRequester.method2769();
-      class140.method3102(10);
+      class140.updateGameState(10);
    }
 
    @ObfuscatedName("ki")

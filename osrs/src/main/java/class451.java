@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -35,7 +36,7 @@ public class class451 extends class415 implements class264 {
       descriptor = "(II)Lpv;",
       garbageValue = "307947551"
    )
-   protected class417 vmethod8354(int var1) {
+   protected class417 vmethod8207(int var1) {
       DemotingHashTable var3 = this.field4864;
       synchronized(this.field4864) {
          class416 var2 = (class416)this.field4864.get((long)var1);
@@ -75,6 +76,7 @@ public class class451 extends class415 implements class264 {
       }
    }
 
+   @ObfuscatedName("iterator")
    public Iterator iterator() {
       return new class450(this);
    }

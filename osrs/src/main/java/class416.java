@@ -13,7 +13,7 @@ public class class416 extends class417 {
       descriptor = "(Lqy;II)V",
       garbageValue = "1487404426"
    )
-   void vmethod7892(Buffer var1, int var2) {
+   void vmethod7769(Buffer var1, int var2) {
    }
 
    @ObfuscatedName("v")

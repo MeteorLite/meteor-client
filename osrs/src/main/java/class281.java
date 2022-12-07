@@ -4,6 +4,7 @@ import java.util.TimeZone;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+
 @ObfuscatedName("jg")
 public final class class281 {
    @ObfuscatedName("sf")
@@ -71,7 +72,7 @@ public final class class281 {
       if (!var2 || var0 != class17.field101 || MusicPatchNode2.field3341 != var1) {
          class17.field101 = var0;
          MusicPatchNode2.field3341 = var1;
-         class140.method3102(25);
+         class140.updateGameState(25);
          SoundSystem.drawLoadingMessage("Loading - please wait.", true);
          int var3 = class154.baseX * 64;
          int var4 = class365.baseY * 64;

@@ -26,6 +26,7 @@ public class class374 {
    )
    int field4429;
 
+   @ObfuscatedName("toString")
    public String toString() {
       boolean var1 = true;
       int var2 = 10 - Integer.toString(this.field4427).length();

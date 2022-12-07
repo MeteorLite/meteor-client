@@ -126,6 +126,7 @@ public final class IterableNodeHashTable implements Iterable {
       }
    }
 
+   @ObfuscatedName("iterator")
    public Iterator iterator() {
       return new IterableNodeHashTableIterator(this);
    }
