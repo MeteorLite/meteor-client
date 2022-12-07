@@ -74,6 +74,7 @@ import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.emojis.EmojiPlugin
+import meteor.plugins.fairyring.FairyRingPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.fighter.FighterPlugin
 import meteor.plugins.groundmarkers.GroundMarkerPlugin
@@ -116,6 +117,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+        init<FairyRingPlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AmmoPlugin>()

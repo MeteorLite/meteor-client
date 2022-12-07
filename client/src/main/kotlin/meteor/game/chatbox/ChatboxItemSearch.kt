@@ -73,7 +73,7 @@ object ChatboxItemSearch : ChatboxTextInput() {
     init {
         lines(1)
         prompt("Item Search")
-        onChanged.run {
+        onChanged {
             clientThread.invokeLater {
                 filterResults()
                 update()
