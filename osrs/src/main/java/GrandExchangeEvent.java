@@ -79,9 +79,9 @@ public class GrandExchangeEvent {
    )
    static void method6616() {
       Tiles.Tiles_minPlane = 99;
-      Tiles.field1028 = new short[4][104][104];
-      class490.field5062 = new short[4][104][104];
-      Tiles.field1033 = new byte[4][104][104];
+      Tiles.Tiles_underlays = new short[4][104][104];
+      class490.Tiles_overlays = new short[4][104][104];
+      Tiles.Tiles_shapes = new byte[4][104][104];
       class358.field4344 = new byte[4][104][104];
       class159.field1816 = new int[4][105][105];
       Canvas.field136 = new byte[4][105][105];

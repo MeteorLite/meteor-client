@@ -93,13 +93,13 @@ public class Messages {
             }
 
             if (var8 <= 49) {
-               class490.field5062[var1][var2][var3] = Client.field515 < 209 ? (short)var0.readByte() : (short)var0.readShort();
-               Tiles.field1033[var1][var2][var3] = (byte)((var8 - 2) / 4);
+               class490.Tiles_overlays[var1][var2][var3] = Client.field515 < 209 ? (short)var0.readByte() : (short)var0.readShort();
+               Tiles.Tiles_shapes[var1][var2][var3] = (byte)((var8 - 2) / 4);
                class358.field4344[var1][var2][var3] = (byte)(var8 - 2 + var6 & 3);
             } else if (var8 <= 81) {
                Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var8 - 49);
             } else {
-               Tiles.field1028[var1][var2][var3] = (short)(var8 - 81);
+               Tiles.Tiles_underlays[var1][var2][var3] = (short)(var8 - 81);
             }
          }
       } else {

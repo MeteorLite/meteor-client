@@ -1325,7 +1325,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedSignature(
       descriptor = "Lgc;"
    )
-   public static class201 keyHandlerInstance;
+   public static class201 something;
    @ObfuscatedName("re")
    @ObfuscatedSignature(
       descriptor = "Lgb;"
@@ -1598,7 +1598,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       field744 = "";
       field523 = new long[100];
       field746 = 0;
-      keyHandlerInstance = new class201();
+      something = new class201();
       field572 = new class199();
       field710 = 0;
       field774 = new int[128];
@@ -1719,7 +1719,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       this.method539();
       class86.mouseWheel = this.mouseWheel();
       this.method501(field572, 0);
-      this.method501(keyHandlerInstance, 1);
+      this.method501(something, 1);
       WorldMapArea.masterDisk = new ArchiveDisk(255, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idx255File, 500000);
       StructComposition.clientPreferences = class319.method6375();
       this.setUpClipboard();
@@ -1754,7 +1754,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
          if (var1 == null) {
             Occluder.method4627();
             playPcmPlayers();
-            keyHandlerInstance.method4103();
+            something.method4103();
             this.method500();
             MouseHandler var8 = MouseHandler.MouseHandler_instance;
             synchronized(MouseHandler.MouseHandler_instance) {
@@ -3130,13 +3130,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                      packetWriter.addNode(var18);
                   }
 
-                  if (keyHandlerInstance.field2326 > 0) {
+                  if (something.field2326 > 0) {
                      var14 = class136.getPacketBufferNode(ClientPacket.field3048, packetWriter.isaacCipher);
                      var14.packetBuffer.writeShort(0);
                      var15 = var14.packetBuffer.offset;
                      long var19 = Message.method1197();
 
-                     for(var5 = 0; var5 < keyHandlerInstance.field2326; ++var5) {
+                     for(var5 = 0; var5 < something.field2326; ++var5) {
                         long var21 = var19 - field679;
                         if (var21 > 16777215L) {
                            var21 = 16777215L;
@@ -3144,7 +3144,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
                         field679 = var19;
                         var14.packetBuffer.writeMedium((int)var21);
-                        var14.packetBuffer.writeByte(keyHandlerInstance.field2323[var5]);
+                        var14.packetBuffer.writeByte(something.field2323[var5]);
                      }
 
                      var14.packetBuffer.writeLengthShort(var14.packetBuffer.offset - var15);
@@ -3155,7 +3155,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                      --field807;
                   }
 
-                  if (keyHandlerInstance.getKeyPressed(96) || keyHandlerInstance.getKeyPressed(97) || keyHandlerInstance.getKeyPressed(98) || keyHandlerInstance.getKeyPressed(99)) {
+                  if (something.getKeyPressed(96) || something.getKeyPressed(97) || something.getKeyPressed(98) || something.getKeyPressed(99)) {
                      field603 = true;
                   }
 
@@ -3309,18 +3309,18 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   field745 = false;
                   field710 = 0;
 
-                  while(keyHandlerInstance.method4114() && field710 < 128) {
-                     if (staffModLevel >= 2 && keyHandlerInstance.getKeyPressed(82) && keyHandlerInstance.field2328 == 66) {
+                  while(something.method4114() && field710 < 128) {
+                     if (staffModLevel >= 2 && something.getKeyPressed(82) && something.field2328 == 66) {
                         String var44 = LoginScreenAnimation.method2390();
                         BuddyRankComparator.client.method497(var44);
-                     } else if (oculusOrbState != 1 || keyHandlerInstance.field2315 <= 0) {
-                        field751[field710] = keyHandlerInstance.field2328;
-                        field774[field710] = keyHandlerInstance.field2315;
+                     } else if (oculusOrbState != 1 || something.field2315 <= 0) {
+                        field751[field710] = something.field2328;
+                        field774[field710] = something.field2315;
                         ++field710;
                      }
                   }
 
-                  if (TaskHandler.method3443() && keyHandlerInstance.getKeyPressed(82) && keyHandlerInstance.getKeyPressed(81) && mouseWheelRotation != 0) {
+                  if (TaskHandler.method3443() && something.getKeyPressed(82) && something.getKeyPressed(81) && mouseWheelRotation != 0) {
                      var3 = class155.localPlayer.plane - mouseWheelRotation;
                      if (var3 < 0) {
                         var3 = 0;
@@ -3454,7 +3454,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                                                                   var4 = Scene.Scene_selectedY;
                                                                   PacketBufferNode var43 = class136.getPacketBufferNode(ClientPacket.field3083, packetWriter.isaacCipher);
                                                                   var43.packetBuffer.writeByte(5);
-                                                                  var43.packetBuffer.method8580(keyHandlerInstance.getKeyPressed(82) ? (keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+                                                                  var43.packetBuffer.method8580(something.getKeyPressed(82) ? (something.getKeyPressed(81) ? 2 : 1) : 0);
                                                                   var43.packetBuffer.method8607(class154.baseX * 64 + var3);
                                                                   var43.packetBuffer.writeIntME(class365.baseY * 64 + var4);
                                                                   packetWriter.addNode(var43);
@@ -3586,7 +3586,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                                                          case 0:
                                                             field572.method4066(var47.field2312);
                                                             var49.method5880(true);
-                                                            var49.method5919(var47.field2311, var47.field2310, keyHandlerInstance.getKeyPressed(82), keyHandlerInstance.getKeyPressed(81));
+                                                            var49.method5919(var47.field2311, var47.field2310, something.getKeyPressed(82), something.getKeyPressed(81));
                                                             break;
                                                          case 1:
                                                             var49.method6102(var47.field2311, var47.field2310);

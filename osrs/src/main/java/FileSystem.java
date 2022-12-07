@@ -33,15 +33,15 @@ public class FileSystem {
       int var3;
       if (var0 == 3500) {
          var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.keyHandlerInstance.getKeyPressed(var3) ? 1 : 0;
+         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.something.getKeyPressed(var3) ? 1 : 0;
          return 1;
       } else if (var0 == 3501) {
          var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.keyHandlerInstance.method4136(var3) ? 1 : 0;
+         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.something.method4136(var3) ? 1 : 0;
          return 1;
       } else if (var0 == 3502) {
          var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.keyHandlerInstance.method4104(var3) ? 1 : 0;
+         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.something.method4104(var3) ? 1 : 0;
          return 1;
       } else {
          return 2;

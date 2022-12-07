@@ -426,7 +426,7 @@ public class WorldMap {
          int var7 = (int)((float)this.centerTileY - ((float)(var2 - this.worldMapDisplayY) - (float)this.getDisplayHeight() * this.zoom / 2.0F) / this.zoom);
          this.mouseCoord = this.currentMapArea.coord(var6 + this.currentMapArea.getRegionLowX() * 64, var7 + this.currentMapArea.getRegionLowY() * 64);
          if (this.mouseCoord != null && var3) {
-            class201 var8 = Client.keyHandlerInstance;
+            class201 var8 = Client.something;
             int var11;
             int var12;
             if (TaskHandler.method3443() && var8.getKeyPressed(82) && var8.getKeyPressed(81)) {

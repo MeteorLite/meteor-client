@@ -209,9 +209,9 @@ public final class class384 {
       garbageValue = "-720383995"
    )
    static void method7371() {
-      Tiles.field1028 = null;
-      class490.field5062 = null;
-      Tiles.field1033 = null;
+      Tiles.Tiles_underlays = null;
+      class490.Tiles_overlays = null;
+      Tiles.Tiles_shapes = null;
       class358.field4344 = null;
       class159.field1816 = null;
       Canvas.field136 = null;

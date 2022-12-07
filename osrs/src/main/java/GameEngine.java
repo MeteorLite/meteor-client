@@ -89,7 +89,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedSignature(
       descriptor = "Las;"
    )
-   static KeyHandler field228 = new KeyHandler();
+   static KeyHandler keyHandlerInstance = new KeyHandler();
    @ObfuscatedName("ap")
    @ObfuscatedGetter(
       longValue = -4832067984480184411L
@@ -310,7 +310,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
          class29.KeyHandler_keyCodes[520] = 59;
       }
 
-      field228.method355(this.canvas);
+      keyHandlerInstance.method355(this.canvas);
    }
 
    @ObfuscatedName("g")
@@ -319,7 +319,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       garbageValue = "504544713"
    )
    protected final void method500() {
-      field228.method361();
+      keyHandlerInstance.method361();
    }
 
    @ObfuscatedName("i")
@@ -328,7 +328,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       garbageValue = "0"
    )
    protected void method501(class30 var1, int var2) {
-      field228.method353(var1, var2);
+      keyHandlerInstance.method353(var1, var2);
    }
 
    @ObfuscatedName("o")
@@ -442,14 +442,14 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    )
    @Export("replaceCanvas")
    final void replaceCanvas() {
-      field228.method352(this.canvas);
+      keyHandlerInstance.method352(this.canvas);
       AttackOption.method2603(this.canvas);
       if (this.mouseWheelHandler != null) {
          this.mouseWheelHandler.method310(this.canvas);
       }
 
       this.addCanvas();
-      field228.method355(this.canvas);
+      keyHandlerInstance.method355(this.canvas);
       java.awt.Canvas var1 = this.canvas;
       var1.addMouseListener(MouseHandler.MouseHandler_instance);
       var1.addMouseMotionListener(MouseHandler.MouseHandler_instance);

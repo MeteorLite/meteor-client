@@ -61,7 +61,7 @@ public class DevicePcmPlayerProvider implements class51 {
                int var12 = class155.localPlayer.y - var10 >> 7;
                PacketBufferNode var13 = class136.getPacketBufferNode(ClientPacket.field3097, Client.packetWriter.isaacCipher);
                var13.packetBuffer.writeByte(18);
-               var13.packetBuffer.method8580(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+               var13.packetBuffer.method8580(Client.something.getKeyPressed(82) ? (Client.something.getKeyPressed(81) ? 2 : 1) : 0);
                var13.packetBuffer.method8607(class154.baseX * 64 + var11);
                var13.packetBuffer.writeIntME(class365.baseY * 64 + var12);
                var13.packetBuffer.writeByte(var4);

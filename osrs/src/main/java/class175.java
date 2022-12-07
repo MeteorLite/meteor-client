@@ -98,7 +98,7 @@ public class class175 {
       int var81;
       int var82;
       if (Login.worldSelectOpen) {
-         class201 var80 = Client.keyHandlerInstance;
+         class201 var80 = Client.something;
          class201 var3 = var80;
 
          while(true) {
@@ -251,7 +251,7 @@ public class class175 {
                   var4 = 1;
                }
 
-               class201 var38 = Client.keyHandlerInstance;
+               class201 var38 = Client.something;
                class201 var8 = var38;
                int var86;
                short var87;

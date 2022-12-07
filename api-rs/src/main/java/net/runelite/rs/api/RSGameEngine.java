@@ -36,7 +36,7 @@ public interface RSGameEngine extends GameEngine
 	@Import("post")
 	void post(Object canvas);
 
-	@Import("keyHandler")
+	@Import("keyHandlerInstance")
 	RSKeyHandler getKeyHandler();
 
 	@Import("resizeCanvas")

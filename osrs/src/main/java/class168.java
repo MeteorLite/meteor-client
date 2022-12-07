@@ -119,7 +119,7 @@ public class class168 {
       garbageValue = "-2191"
    )
    protected static final int method3482() {
-      return GameEngine.field228.method354();
+      return GameEngine.keyHandlerInstance.method354();
    }
 
    @ObfuscatedName("aq")
