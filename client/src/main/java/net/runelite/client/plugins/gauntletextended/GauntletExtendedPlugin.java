@@ -489,10 +489,10 @@ public class GauntletExtendedPlugin extends Plugin
 		}
 
 		if (event.getMessage().contains("prayers have been disabled")) {
-			if (config.autoPray()&&hunllef.getAttackPhase() == Hunllef.AttackPhase.MAGIC)
+			if (hunllef.getAttackPhase() == Hunllef.AttackPhase.MAGIC)
 				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MAGIC))
 					Prayers.toggle(Prayer.PROTECT_FROM_MAGIC);
-			if (config.autoPray()&&hunllef.getAttackPhase() == Hunllef.AttackPhase.RANGE)
+			if (hunllef.getAttackPhase() == Hunllef.AttackPhase.RANGE)
 				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MISSILES))
 					Prayers.toggle(Prayer.PROTECT_FROM_MISSILES);
 		}
