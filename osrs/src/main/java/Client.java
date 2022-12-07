@@ -18,7 +18,6 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
 @Implements("Client")
 @ObfuscatedName("client")
@@ -1157,7 +1156,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    )
    static int field707;
    @ObfuscatedName("pk")
-   static int[] field708;
+   static int[] changedItemContainers;
    @ObfuscatedName("pd")
    @ObfuscatedGetter(
       intValue = 1841099769
@@ -1560,7 +1559,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       cycleCntr = 1;
       field706 = new int[32];
       field707 = 0;
-      field708 = new int[32];
+      changedItemContainers = new int[32];
       field709 = 0;
       field636 = new int[32];
       field711 = 0;
@@ -4045,7 +4044,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                }
 
                class136.method3073();
-               field708[++field709 - 1 & 31] = var5 & 32767;
+               changedItemContainers[++field709 - 1 & 31] = var5 & 32767;
                var1.serverPacket = null;
                return true;
             }
@@ -5312,7 +5311,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                }
 
                class136.method3073();
-               field708[++field709 - 1 & 31] = var5 & 32767;
+               changedItemContainers[++field709 - 1 & 31] = var5 & 32767;
                var1.serverPacket = null;
                return true;
             }
@@ -5693,7 +5692,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             if (ServerPacket.field3262 == var1.serverPacket) {
                var20 = var3.method8592();
                DynamicObject.method2139(var20);
-               field708[++field709 - 1 & 31] = var20 & 32767;
+               changedItemContainers[++field709 - 1 & 31] = var20 & 32767;
                var1.serverPacket = null;
                return true;
             }

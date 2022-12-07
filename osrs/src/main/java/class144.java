@@ -708,7 +708,7 @@ public class class144 extends class152 {
                            if (var9.invTransmitTriggers != null && Client.field709 - var9.field3668 <= 32) {
                               label809:
                               for(var39 = var9.field3668; var39 < Client.field709; ++var39) {
-                                 var23 = Client.field708[var39 & 31];
+                                 var23 = Client.changedItemContainers[var39 & 31];
 
                                  for(var37 = 0; var37 < var9.invTransmitTriggers.length; ++var37) {
                                     if (var23 == var9.invTransmitTriggers[var37]) {
