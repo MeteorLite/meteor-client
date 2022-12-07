@@ -84,16 +84,11 @@ public class UpdateMappings
 
 	public static void main(String[] args) throws IOException
 	{
-		if (args.length < 3)
-		{
-			System.exit(-1);
-		}
-
 		UpdateMappings u = new UpdateMappings(
-			JarUtil.load(new File(args[0])),
-			JarUtil.load(new File(args[1]))
+			JarUtil.load(new File("./deobfuscator/osrs-209.jar")),
+			JarUtil.load(new File("./deobfuscator/deob-210.jar"))
 		);
 		u.update();
-		u.save(new File(args[2]));
+		u.save(new File("./deobfuscator/osrs-210.jar"));
 	}
 }

@@ -4,5 +4,5 @@ import net.runelite.mapping.ObfuscatedName;
 @Implements("JSONString")
 @ObfuscatedName("org/json/JSONString")
 public interface JSONString {
-	String toJSONString();
+   String toJSONString();
 }

@@ -73,7 +73,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 		OptionSet options = parser.parse(args);
 		String oprsVer = "1.0-SNAPSHOT";
 
-		File vanillaFile = new File("./gamepack-209-nobouncy.jar");
+		File vanillaFile = new File("./gamepack-210.jar");
 		injector.vanilla = load(vanillaFile);
 		injector.deobfuscated = load(
 			new File("../osrs/build/libs/osrs-" + oprsVer + ".jar"));

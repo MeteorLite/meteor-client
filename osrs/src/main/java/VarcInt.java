@@ -1,70 +1,189 @@
+import java.io.File;
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fq")
+@ObfuscatedName("fe")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Llg;"
-	)
-	@Export("VarcInt_archive")
-	public static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Ljx;"
-	)
-	@Export("VarcInt_cached")
-	public static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("c")
-	@Export("persist")
-	public boolean persist;
+   @ObfuscatedName("sk")
+   @ObfuscatedSignature(
+      descriptor = "Lfn;"
+   )
+   @Export("guestClanChannel")
+   static ClanChannel guestClanChannel;
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Lly;"
+   )
+   @Export("VarcInt_archive")
+   public static AbstractArchive VarcInt_archive;
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "Ljv;"
+   )
+   @Export("VarcInt_cached")
+   static EvictingDualNodeHashTable VarcInt_cached = new EvictingDualNodeHashTable(64);
+   @ObfuscatedName("a")
+   @ObfuscatedSignature(
+      descriptor = "Lfn;"
+   )
+   static ClanChannel field1956;
+   @ObfuscatedName("mh")
+   @ObfuscatedGetter(
+      intValue = -1028390641
+   )
+   @Export("menuX")
+   static int menuX;
+   @ObfuscatedName("v")
+   @Export("persist")
+   public boolean persist = false;
 
-	static {
-		VarcInt_cached = new EvictingDualNodeHashTable(64);
-	}
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "(Lqy;I)V",
+      garbageValue = "-1121101967"
+   )
+   void method3573(Buffer var1) {
+      while(true) {
+         int var2 = var1.readUnsignedByte();
+         if (var2 == 0) {
+            return;
+         }
 
-	public VarcInt() {
-		this.persist = false;
-	}
+         this.method3574(var1, var2);
+      }
+   }
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lqr;B)V",
-		garbageValue = "-1"
-	)
-	public void method3459(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
-				return;
-			}
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "(Lqy;II)V",
+      garbageValue = "511684289"
+   )
+   void method3574(Buffer var1, int var2) {
+      if (var2 == 2) {
+         this.persist = true;
+      }
 
-			this.method3463(var1, var2);
-		}
-	}
+   }
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqr;IB)V",
-		garbageValue = "1"
-	)
-	void method3463(Buffer var1, int var2) {
-		if (var2 == 2) {
-			this.persist = true;
-		}
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/String;Ljava/lang/String;II)Ljava/io/File;",
+      garbageValue = "2144931745"
+   )
+   public static File method3572(String var0, String var1, int var2) {
+      String var3 = var2 == 0 ? "" : "" + var2;
+      JagexCache.JagexCache_locationFile = new File(UserComparator3.userHomeDirectory, "jagex_cl_" + var0 + "_" + var1 + var3 + ".dat");
+      String var4 = null;
+      String var5 = null;
+      boolean var6 = false;
+      File var22;
+      if (JagexCache.JagexCache_locationFile.exists()) {
+         try {
+            AccessFile var7 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
 
-	}
+            Buffer var8;
+            int var9;
+            for(var8 = new Buffer((int)var7.length()); var8.offset < var8.array.length; var8.offset += var9) {
+               var9 = var7.read(var8.array, var8.offset, var8.array.length - var8.offset);
+               if (var9 == -1) {
+                  throw new IOException();
+               }
+            }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(S)[Ljw;",
-		garbageValue = "20279"
-	)
-	@Export("ServerPacket_values")
-	public static ServerPacket[] ServerPacket_values() {
-		return new ServerPacket[]{ServerPacket.field3194, ServerPacket.field3131, ServerPacket.field3230, ServerPacket.field3153, ServerPacket.field3134, ServerPacket.field3135, ServerPacket.field3136, ServerPacket.field3179, ServerPacket.field3160, ServerPacket.field3139, ServerPacket.field3140, ServerPacket.field3141, ServerPacket.field3142, ServerPacket.field3168, ServerPacket.field3144, ServerPacket.field3151, ServerPacket.field3221, ServerPacket.field3147, ServerPacket.field3227, ServerPacket.field3149, ServerPacket.field3242, ServerPacket.field3197, ServerPacket.field3138, ServerPacket.field3150, ServerPacket.field3154, ServerPacket.field3155, ServerPacket.field3156, ServerPacket.field3132, ServerPacket.field3158, ServerPacket.field3159, ServerPacket.field3174, ServerPacket.field3146, ServerPacket.field3162, ServerPacket.field3201, ServerPacket.field3191, ServerPacket.field3165, ServerPacket.field3166, ServerPacket.field3167, ServerPacket.field3163, ServerPacket.field3169, ServerPacket.field3170, ServerPacket.field3171, ServerPacket.field3172, ServerPacket.field3243, ServerPacket.field3173, ServerPacket.field3175, ServerPacket.field3176, ServerPacket.field3210, ServerPacket.field3178, ServerPacket.field3199, ServerPacket.field3180, ServerPacket.field3181, ServerPacket.field3182, ServerPacket.field3183, ServerPacket.field3184, ServerPacket.field3137, ServerPacket.field3186, ServerPacket.field3187, ServerPacket.field3143, ServerPacket.field3189, ServerPacket.field3152, ServerPacket.field3217, ServerPacket.field3192, ServerPacket.field3193, ServerPacket.field3177, ServerPacket.field3195, ServerPacket.field3196, ServerPacket.field3130, ServerPacket.field3198, ServerPacket.field3188, ServerPacket.field3200, ServerPacket.field3229, ServerPacket.field3211, ServerPacket.field3203, ServerPacket.field3204, ServerPacket.field3205, ServerPacket.field3206, ServerPacket.field3207, ServerPacket.field3208, ServerPacket.field3209, ServerPacket.field3148, ServerPacket.field3164, ServerPacket.field3212, ServerPacket.field3213, ServerPacket.field3214, ServerPacket.field3215, ServerPacket.field3216, ServerPacket.field3185, ServerPacket.field3218, ServerPacket.field3219, ServerPacket.field3220, ServerPacket.field3202, ServerPacket.field3222, ServerPacket.field3223, ServerPacket.field3224, ServerPacket.field3225, ServerPacket.field3226, ServerPacket.field3239, ServerPacket.field3228, ServerPacket.field3190, ServerPacket.field3145, ServerPacket.field3231, ServerPacket.field3232, ServerPacket.field3233, ServerPacket.field3234, ServerPacket.field3235, ServerPacket.field3236, ServerPacket.field3237, ServerPacket.field3238, ServerPacket.field3161, ServerPacket.field3240};
-	}
+            var8.offset = 0;
+            var9 = var8.readUnsignedByte();
+            if (var9 < 1 || var9 > 3) {
+               throw new IOException("" + var9);
+            }
+
+            int var10 = 0;
+            if (var9 > 1) {
+               var10 = var8.readUnsignedByte();
+            }
+
+            if (var9 <= 2) {
+               var4 = var8.readStringCp1252NullCircumfixed();
+               if (var10 == 1) {
+                  var5 = var8.readStringCp1252NullCircumfixed();
+               }
+            } else {
+               var4 = var8.readCESU8();
+               if (var10 == 1) {
+                  var5 = var8.readCESU8();
+               }
+            }
+
+            var7.close();
+         } catch (IOException var20) {
+            var20.printStackTrace();
+         }
+
+         if (var4 != null) {
+            var22 = new File(var4);
+            if (!var22.exists()) {
+               var4 = null;
+            }
+         }
+
+         if (var4 != null) {
+            var22 = new File(var4, "test.dat");
+            if (!WorldMapLabelSize.method4858(var22, true)) {
+               var4 = null;
+            }
+         }
+      }
+
+      if (var4 == null && var2 == 0) {
+         label124:
+         for(int var15 = 0; var15 < class89.cacheSubPaths.length; ++var15) {
+            for(int var16 = 0; var16 < class121.cacheParentPaths.length; ++var16) {
+               File var17 = new File(class121.cacheParentPaths[var16] + class89.cacheSubPaths[var15] + File.separatorChar + var0 + File.separatorChar);
+               if (var17.exists() && WorldMapLabelSize.method4858(new File(var17, "test.dat"), true)) {
+                  var4 = var17.toString();
+                  var6 = true;
+                  break label124;
+               }
+            }
+         }
+      }
+
+      if (var4 == null) {
+         var4 = UserComparator3.userHomeDirectory + File.separatorChar + "jagexcache" + var3 + File.separatorChar + var0 + File.separatorChar + var1 + File.separatorChar;
+         var6 = true;
+      }
+
+      if (var5 != null) {
+         File var21 = new File(var5);
+         var22 = new File(var4);
+
+         try {
+            File[] var23 = var21.listFiles();
+            File[] var18 = var23;
+
+            for(int var11 = 0; var11 < var18.length; ++var11) {
+               File var12 = var18[var11];
+               File var13 = new File(var22, var12.getName());
+               boolean var14 = var12.renameTo(var13);
+               if (!var14) {
+                  throw new IOException();
+               }
+            }
+         } catch (Exception var19) {
+            var19.printStackTrace();
+         }
+
+         var6 = true;
+      }
+
+      if (var6) {
+         UserComparator7.method2828(new File(var4), (File)null);
+      }
+
+      return new File(var4);
+   }
 }

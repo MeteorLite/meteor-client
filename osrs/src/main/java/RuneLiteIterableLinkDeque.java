@@ -19,11 +19,11 @@ public class RuneLiteIterableLinkDeque implements Iterator {
 	}
 
 	@Export("next")
-	public class388 next() {
+	public Link next() {
 		if (this.link == this.linkDeque.sentinel) {
 			throw new NoSuchElementException();
 		} else {
-			class388 var1 = (class388)this.link;
+			Link var1 = this.link;
 			this.link = this.link.previous;
 			return var1;
 		}

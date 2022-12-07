@@ -4,137 +4,96 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bz")
+@ObfuscatedName("bm")
 @Implements("Script")
 public class Script extends DualNode {
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Ljx;"
-	)
-	@Export("Script_cached")
-	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("dq")
-	@Export("isLargePlayerInfo")
-	static boolean isLargePlayerInfo;
-	@ObfuscatedName("pb")
-	@ObfuscatedGetter(
-		intValue = 2134394913
-	)
-	@Export("widgetDragDuration")
-	static int widgetDragDuration;
-	@ObfuscatedName("px")
-	@ObfuscatedSignature(
-		descriptor = "[Lkn;"
-	)
-	static Widget[] field971;
-	@ObfuscatedName("f")
-	String field962;
-	@ObfuscatedName("c")
-	@Export("opcodes")
-	int[] opcodes;
-	@ObfuscatedName("x")
-	@Export("intOperands")
-	int[] intOperands;
-	@ObfuscatedName("h")
-	@Export("stringOperands")
-	String[] stringOperands;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1624364019
-	)
-	@Export("localIntCount")
-	int localIntCount;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -2093681401
-	)
-	@Export("localStringCount")
-	int localStringCount;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 1508495137
-	)
-	@Export("intArgumentCount")
-	int intArgumentCount;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 1760588085
-	)
-	@Export("stringArgumentCount")
-	int stringArgumentCount;
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "[Lpe;"
-	)
-	@Export("switches")
-	IterableNodeHashTable[] switches;
+   @ObfuscatedName("tp")
+   @ObfuscatedGetter(
+      intValue = 621523353
+   )
+   static int field1001;
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Ljv;"
+   )
+   @Export("Script_cached")
+   static EvictingDualNodeHashTable Script_cached = new EvictingDualNodeHashTable(128);
+   @ObfuscatedName("e")
+   String field990;
+   @ObfuscatedName("v")
+   @Export("opcodes")
+   int[] opcodes;
+   @ObfuscatedName("x")
+   @Export("intOperands")
+   int[] intOperands;
+   @ObfuscatedName("m")
+   @Export("stringOperands")
+   String[] stringOperands;
+   @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1144522069
+   )
+   @Export("localIntCount")
+   int localIntCount;
+   @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 506367355
+   )
+   @Export("localStringCount")
+   int localStringCount;
+   @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -1904250989
+   )
+   @Export("intArgumentCount")
+   int intArgumentCount;
+   @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 705152755
+   )
+   @Export("stringArgumentCount")
+   int stringArgumentCount;
+   @ObfuscatedName("b")
+   @ObfuscatedSignature(
+      descriptor = "[Lql;"
+   )
+   @Export("switches")
+   IterableNodeHashTable[] switches;
 
-	static {
-		Script_cached = new EvictingDualNodeHashTable(128);
-	}
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      descriptor = "(II)[Lql;",
+      garbageValue = "-1776194631"
+   )
+   @Export("newIterableNodeHashTable")
+   IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
+      return new IterableNodeHashTable[var1];
+   }
 
-	Script() {
-	}
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      descriptor = "(II)Lbv;",
+      garbageValue = "-1509182401"
+   )
+   @Export("Messages_getMessage")
+   static Message Messages_getMessage(int var0) {
+      return (Message)Messages.Messages_hashTable.get((long)var0);
+   }
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(IS)[Lpe;",
-		garbageValue = "10134"
-	)
-	@Export("newIterableNodeHashTable")
-	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
-		return new IterableNodeHashTable[var1];
-	}
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      descriptor = "(IB)V",
+      garbageValue = "-85"
+   )
+   @Export("clearItemContainer")
+   static void clearItemContainer(int var0) {
+      ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+      if (var1 != null) {
+         for(int var2 = 0; var2 < var1.ids.length; ++var2) {
+            var1.ids[var2] = -1;
+            var1.quantities[var2] = 0;
+         }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lfz;",
-		garbageValue = "-1956190631"
-	)
-	@Export("KitDefinition_get")
-	public static KitDefinition KitDefinition_get(int var0) {
-		KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = KitDefinition.KitDefinition_archive.takeFile(3, var0);
-			var1 = new KitDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			KitDefinition.KitDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1548637382"
-	)
-	static void method2120() {
-		Tiles.Tiles_minPlane = 99;
-		Tiles.Tiles_underlays = new short[4][104][104];
-		Tiles.Tiles_overlays = new short[4][104][104];
-		Tiles.Tiles_shapes = new byte[4][104][104];
-		class174.field1852 = new byte[4][104][104];
-		UserComparator7.field1410 = new int[4][105][105];
-		class32.field179 = new byte[4][105][105];
-		Tiles.field995 = new int[105][105];
-		class32.Tiles_hue = new int[104];
-		FriendSystem.Tiles_saturation = new int[104];
-		DefaultsGroup.Tiles_lightness = new int[104];
-		ClanChannelMember.Tiles_hueMultiplier = new int[104];
-		class410.field4590 = new int[104];
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)[Llq;",
-		garbageValue = "19"
-	)
-	public static StudioGame[] method2127() {
-		return new StudioGame[]{StudioGame.runescape, StudioGame.game4, StudioGame.game5, StudioGame.stellardawn, StudioGame.game3, StudioGame.oldscape};
-	}
+      }
+   }
 }

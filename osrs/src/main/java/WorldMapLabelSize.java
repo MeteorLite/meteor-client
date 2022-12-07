@@ -1,106 +1,132 @@
+import java.io.File;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hb")
+@ObfuscatedName("iq")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Lhb;"
-	)
-	@Export("WorldMapLabelSize_small")
-	public static final WorldMapLabelSize WorldMapLabelSize_small;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lhb;"
-	)
-	@Export("WorldMapLabelSize_medium")
-	public static final WorldMapLabelSize WorldMapLabelSize_medium;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lhb;"
-	)
-	@Export("WorldMapLabelSize_large")
-	public static final WorldMapLabelSize WorldMapLabelSize_large;
-	@ObfuscatedName("id")
-	@ObfuscatedSignature(
-		descriptor = "[Lri;"
-	)
-	@Export("mapMarkerSprites")
-	static SpritePixels[] mapMarkerSprites;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = -1882289025
-	)
-	final int field2753;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = -1885400359
-	)
-	final int field2755;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -2018479119
-	)
-	final int field2756;
+   @ObfuscatedName("vf")
+   @ObfuscatedGetter(
+      longValue = -4916200356723856723L
+   )
+   static long field2824;
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Liq;"
+   )
+   @Export("WorldMapLabelSize_small")
+   public static final WorldMapLabelSize WorldMapLabelSize_small = new WorldMapLabelSize(2, 0, 4);
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "Liq;"
+   )
+   @Export("WorldMapLabelSize_medium")
+   public static final WorldMapLabelSize WorldMapLabelSize_medium = new WorldMapLabelSize(0, 1, 2);
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "Liq;"
+   )
+   @Export("WorldMapLabelSize_large")
+   public static final WorldMapLabelSize WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
+   @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1619983487
+   )
+   final int field2829;
+   @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 547050313
+   )
+   final int field2828;
+   @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1330231937
+   )
+   final int field2830;
 
-	static {
-		WorldMapLabelSize_small = new WorldMapLabelSize(0, 0, 4);
-		WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
-		WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
-	}
+   WorldMapLabelSize(int var1, int var2, int var3) {
+      this.field2829 = var1;
+      this.field2828 = var2;
+      this.field2830 = var3;
+   }
 
-	WorldMapLabelSize(int var1, int var2, int var3) {
-		this.field2753 = var1;
-		this.field2755 = var2;
-		this.field2756 = var3;
-	}
+   @ObfuscatedName("e")
+   @ObfuscatedSignature(
+      descriptor = "(FI)Z",
+      garbageValue = "-1921654209"
+   )
+   boolean method4859(float var1) {
+      return var1 >= (float)this.field2830;
+   }
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(FI)Z",
-		garbageValue = "-803182216"
-	)
-	boolean method4685(float var1) {
-		return var1 >= (float)this.field2756;
-	}
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(I)[Liq;",
+      garbageValue = "-1709132598"
+   )
+   static WorldMapLabelSize[] method4851() {
+      return new WorldMapLabelSize[]{WorldMapLabelSize_medium, WorldMapLabelSize_large, WorldMapLabelSize_small};
+   }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lhb;",
-		garbageValue = "1767891912"
-	)
-	static WorldMapLabelSize[] method4694() {
-		return new WorldMapLabelSize[]{WorldMapLabelSize_large, WorldMapLabelSize_medium, WorldMapLabelSize_small};
-	}
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/io/File;ZI)Z",
+      garbageValue = "-823658761"
+   )
+   public static boolean method4858(File var0, boolean var1) {
+      try {
+         RandomAccessFile var2 = new RandomAccessFile(var0, "rw");
+         int var3 = var2.read();
+         var2.seek(0L);
+         var2.write(var3);
+         var2.seek(0L);
+         var2.close();
+         if (var1) {
+            var0.delete();
+         }
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(B)Ljc;",
-		garbageValue = "58"
-	)
-	static PacketBufferNode method4683() {
-		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
-	}
+         return true;
+      } catch (Exception var4) {
+         return false;
+      }
+   }
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(IS)Lhb;",
-		garbageValue = "4994"
-	)
-	static WorldMapLabelSize method4686(int var0) {
-		WorldMapLabelSize[] var1 = method4694();
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      descriptor = "(CI)Z",
+      garbageValue = "1850317115"
+   )
+   @Export("isDigit")
+   public static boolean isDigit(char var0) {
+      return var0 >= '0' && var0 <= '9';
+   }
 
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			WorldMapLabelSize var3 = var1[var2];
-			if (var0 == var3.field2755) {
-				return var3;
-			}
-		}
+   @ObfuscatedName("ae")
+   @ObfuscatedSignature(
+      descriptor = "(ILbm;ZB)I",
+      garbageValue = "1"
+   )
+   static int method4852(int var0, Script var1, boolean var2) {
+      if (var0 == 7463) {
+         boolean var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
+         ItemLayer.method4198(var3);
+         return 1;
+      } else {
+         return 2;
+      }
+   }
 
-		return null;
-	}
+   @ObfuscatedName("lw")
+   @ObfuscatedSignature(
+      descriptor = "(III)V",
+      garbageValue = "228437568"
+   )
+   static void method4861(int var0, int var1) {
+      class276.method5485(PendingSpawn.tempMenuAction, var0, var1);
+      PendingSpawn.tempMenuAction = null;
+   }
 }

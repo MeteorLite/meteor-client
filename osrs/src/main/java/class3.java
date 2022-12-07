@@ -3,9 +3,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("x")
 public interface class3 {
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(Lqr;)Lqr;"
-	)
-	Buffer vmethod12(Buffer var1);
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "(Lqy;)Lqy;"
+   )
+   Buffer vmethod13(Buffer var1);
 }

@@ -1,66 +1,33 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("h")
+@ObfuscatedName("m")
 public final class class4 {
-	@ObfuscatedName("tb")
-	@ObfuscatedGetter(
-		intValue = 101626496
-	)
-	static int field11;
+   @ObfuscatedName("ej")
+   @ObfuscatedSignature(
+      descriptor = "Lln;"
+   )
+   @Export("archive9")
+   static Archive archive9;
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "2019597533"
-	)
-	@Export("iLog")
-	public static int iLog(int var0) {
-		int var1 = 0;
-		if (var0 < 0 || var0 >= 65536) {
-			var0 >>>= 16;
-			var1 += 16;
-		}
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      descriptor = "(CS)Z",
+      garbageValue = "12575"
+   )
+   static boolean method22(char var0) {
+      return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"ï¿½$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1;
+   }
 
-		if (var0 >= 256) {
-			var0 >>>= 8;
-			var1 += 8;
-		}
-
-		if (var0 >= 16) {
-			var0 >>>= 4;
-			var1 += 4;
-		}
-
-		if (var0 >= 4) {
-			var0 >>>= 2;
-			var1 += 2;
-		}
-
-		if (var0 >= 1) {
-			var0 >>>= 1;
-			++var1;
-		}
-
-		return var0 + var1;
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "1186884492"
-	)
-	static final int method15(int var0, int var1) {
-		int var2 = class320.method6262(var0 + 45365, var1 + 91923, 4) - 128 + (class320.method6262(10294 + var0, 37821 + var1, 2) - 128 >> 1) + (class320.method6262(var0, var1, 1) - 128 >> 2);
-		var2 = (int)((double)var2 * 0.3D) + 35;
-		if (var2 < 10) {
-			var2 = 10;
-		} else if (var2 > 60) {
-			var2 = 60;
-		}
-
-		return var2;
-	}
+   @ObfuscatedName("n")
+   @ObfuscatedSignature(
+      descriptor = "(B)V",
+      garbageValue = "15"
+   )
+   static final void method21() {
+      Object var10000 = null;
+      String var0 = "You can't add yourself to your own ignore list";
+      KitDefinition.addGameMessage(30, "", var0);
+   }
 }

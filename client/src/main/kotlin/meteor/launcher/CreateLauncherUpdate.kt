@@ -1,21 +1,23 @@
 package meteor.launcher
 
 import com.google.gson.GsonBuilder
+import meteor.launcher.model.File
+import meteor.launcher.model.LauncherUpdate
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.zip.CRC32
 import kotlin.math.ceil
 
 object CreateLauncherUpdate {
-    val update = LauncherUpdate()
-    val releaseDir = java.io.File(".\\client\\build\\release\\")
-    val modulesFile = java.io.File("./client/build/compose/binaries/main/app/client/runtime/lib/modules")
+    private val release = LauncherUpdate()
+    private val releaseDir = java.io.File(".\\client\\build\\release\\")
+    private val modulesFile = java.io.File("./client/build/compose/binaries/main/app/client/runtime/lib/modules")
 
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        update.version = "1.7.4"
-        update.updateInfo = ""
+        release.version = "64" // Last merged PR is version
+        release.updateInfo = ""
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()
@@ -27,25 +29,24 @@ object CreateLauncherUpdate {
                         "pause")
         crawlDirectory(java.io.File("./client/build/compose/binaries/main/app/client/"))
         handleModuleFiles()
-        java.io.File("./client/build/release/release.json").writeText(gson.toJson(update))
-
+        java.io.File("./client/build/release/release.json").writeText(gson.toJson(release))
     }
 
-    fun handleModuleFiles() {
+    private fun handleModuleFiles() {
         val modulesChunks = divideModules()
         for ((count, chunk) in modulesChunks.withIndex()) {
             val file = File()
             file.name = "modules\\modules-$count"
-            var targetFile = java.io.File("./client/build/release/modules/modules-$count")
+            val targetFile = java.io.File("./client/build/release/modules/modules-$count")
             java.io.File("./client/build/release/modules/").mkdirs()
             targetFile.writeBytes(chunk)
             file.size = chunk.size.toLong()
             file.hash = generateCRC(targetFile)
-            update.modulesParts.add(file)
+            release.modulesParts.add(file)
         }
     }
 
-    fun divideModules(): ArrayList<ByteArray> {
+    private fun divideModules(): ArrayList<ByteArray> {
         val source = modulesFile.readBytes()
         var bytesRead = 0
         val chunksize = 45 * 1024 * 1024
@@ -72,7 +73,7 @@ object CreateLauncherUpdate {
         return chunksArray
     }
 
-    fun crawlDirectory(dir: java.io.File) {
+    private fun crawlDirectory(dir: java.io.File) {
         for (file in dir.listFiles()!!) {
             if (file.isDirectory) {
                 if (file.listFiles()!!.isNotEmpty())
@@ -87,7 +88,7 @@ object CreateLauncherUpdate {
                 f.hash = generateCRC(file)
 
                 if (!f.name.endsWith("\\modules"))
-                    update.files.add(f)
+                    release.files.add(f)
                 val targetFile = java.io.File("$releaseDir\\${file.absolutePath.split("app\\client\\")[1]}")
                 val targetDir = java.io.File(targetFile.parent)
                 try {
@@ -99,10 +100,9 @@ object CreateLauncherUpdate {
         }
     }
 
-    fun generateCRC(file: java.io.File): String {
+    private fun generateCRC(file: java.io.File): String {
         val crc32 = CRC32()
-        val bytes = file.readBytes()
-        crc32.update(bytes)
+        crc32.update(file.readBytes())
         return crc32.value.toString()
     }
 }
