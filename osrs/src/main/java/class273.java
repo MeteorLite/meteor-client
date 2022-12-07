@@ -95,7 +95,7 @@ public class class273 {
                         String[] var9 = var8.inventoryActions;
                         int var10 = -1;
                         if (Client.shiftClickDrop) {
-                           boolean var11 = Client.tapToDrop || Client.field747.method4106(81);
+                           boolean var11 = Client.tapToDrop || Client.keyHandlerInstance.getKeyPressed(81);
                            if (var11) {
                               var10 = var8.getShiftClickIndex();
                            }

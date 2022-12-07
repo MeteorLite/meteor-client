@@ -98,7 +98,7 @@ public class class175 {
       int var81;
       int var82;
       if (Login.worldSelectOpen) {
-         class201 var80 = Client.field747;
+         class201 var80 = Client.keyHandlerInstance;
          class201 var3 = var80;
 
          while(true) {
@@ -251,7 +251,7 @@ public class class175 {
                   var4 = 1;
                }
 
-               class201 var38 = Client.field747;
+               class201 var38 = Client.keyHandlerInstance;
                class201 var8 = var38;
                int var86;
                short var87;
@@ -480,7 +480,7 @@ public class class175 {
                                     }
                                  }
 
-                                 if ((var8.method4106(82) || var8.method4106(87)) && var8.field2328 == 67) {
+                                 if ((var8.getKeyPressed(82) || var8.getKeyPressed(87)) && var8.field2328 == 67) {
                                     Clipboard var111 = Toolkit.getDefaultToolkit().getSystemClipboard();
                                     var112 = var111.getContents(BuddyRankComparator.client);
                                     var14 = 20 - Login.Login_password.length();
