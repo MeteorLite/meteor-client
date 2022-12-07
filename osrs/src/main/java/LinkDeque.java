@@ -23,7 +23,7 @@ public class LinkDeque {
    @ObfuscatedSignature(
       descriptor = "(Lpr;)V"
    )
-   public void method6845(Link var1) {
+   public void addFirst(Link var1) {
       if (var1.next != null) {
          var1.remove();
       }
@@ -38,7 +38,7 @@ public class LinkDeque {
    @ObfuscatedSignature(
       descriptor = "()Lpr;"
    )
-   public Link method6844() {
+   public Link last() {
       Link var1 = this.sentinel.previous;
       if (var1 == this.sentinel) {
          this.current = null;
@@ -53,7 +53,7 @@ public class LinkDeque {
    @ObfuscatedSignature(
       descriptor = "()Lpr;"
    )
-   public Link method6846() {
+   public Link previous() {
       Link var1 = this.current;
       if (var1 == this.sentinel) {
          this.current = null;

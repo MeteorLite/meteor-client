@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -132,13 +131,13 @@ public class Interpreter {
 
       int var6 = (var3 - 32 - var5) * var2 / (var4 - var3);
       Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field651);
-      Rasterizer2D.method8894(var0, var6 + var1 + 16, var5, Client.field584);
-      Rasterizer2D.method8894(var0 + 1, var6 + var1 + 16, var5, Client.field584);
-      Rasterizer2D.method8892(var0, var6 + var1 + 16, 16, Client.field584);
-      Rasterizer2D.method8892(var0, var6 + var1 + 17, 16, Client.field584);
-      Rasterizer2D.method8894(var0 + 15, var6 + var1 + 16, var5, Client.field532);
-      Rasterizer2D.method8894(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field532);
-      Rasterizer2D.method8892(var0, var6 + var5 + var1 + 15, 16, Client.field532);
-      Rasterizer2D.method8892(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field532);
+      Rasterizer2D.Rasterizer2D_drawVerticalLine(var0, var6 + var1 + 16, var5, Client.field584);
+      Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field584);
+      Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 16, 16, Client.field584);
+      Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 17, 16, Client.field584);
+      Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field532);
+      Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field532);
+      Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var5 + var1 + 15, 16, Client.field532);
+      Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field532);
    }
 }

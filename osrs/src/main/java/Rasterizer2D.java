@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -575,10 +573,10 @@ public class Rasterizer2D extends DualNode {
 
    @ObfuscatedName("dk")
    public static void Rasterizer2D_drawRectangle(int var0, int var1, int var2, int var3, int var4) {
-      method8892(var0, var1, var2, var4);
-      method8892(var0, var3 + var1 - 1, var2, var4);
-      method8894(var0, var1, var3, var4);
-      method8894(var0 + var2 - 1, var1, var3, var4);
+      Rasterizer2D_drawHorizontalLine(var0, var1, var2, var4);
+      Rasterizer2D_drawHorizontalLine(var0, var3 + var1 - 1, var2, var4);
+      Rasterizer2D_drawVerticalLine(var0, var1, var3, var4);
+      Rasterizer2D_drawVerticalLine(var0 + var2 - 1, var1, var3, var4);
    }
 
    @ObfuscatedName("df")
@@ -593,7 +591,7 @@ public class Rasterizer2D extends DualNode {
    }
 
    @ObfuscatedName("dy")
-   public static void method8892(int var0, int var1, int var2, int var3) {
+   public static void Rasterizer2D_drawHorizontalLine(int var0, int var1, int var2, int var3) {
       if (var1 >= Rasterizer2D_yClipStart && var1 < Rasterizer2D_yClipEnd) {
          if (var0 < Rasterizer2D_xClipStart) {
             var2 -= Rasterizer2D_xClipStart - var0;
@@ -643,7 +641,7 @@ public class Rasterizer2D extends DualNode {
    }
 
    @ObfuscatedName("dr")
-   public static void method8894(int var0, int var1, int var2, int var3) {
+   public static void Rasterizer2D_drawVerticalLine(int var0, int var1, int var2, int var3) {
       if (var0 >= Rasterizer2D_xClipStart && var0 < Rasterizer2D_xClipEnd) {
          if (var1 < Rasterizer2D_yClipStart) {
             var2 -= Rasterizer2D_yClipStart - var1;
@@ -699,16 +697,16 @@ public class Rasterizer2D extends DualNode {
       var3 -= var1;
       if (var3 == 0) {
          if (var2 >= 0) {
-            method8892(var0, var1, var2 + 1, var4);
+            Rasterizer2D_drawHorizontalLine(var0, var1, var2 + 1, var4);
          } else {
-            method8892(var0 + var2, var1, -var2 + 1, var4);
+            Rasterizer2D_drawHorizontalLine(var0 + var2, var1, -var2 + 1, var4);
          }
 
       } else if (var2 == 0) {
          if (var3 >= 0) {
-            method8894(var0, var1, var3 + 1, var4);
+            Rasterizer2D_drawVerticalLine(var0, var1, var3 + 1, var4);
          } else {
-            method8894(var0, var3 + var1, -var3 + 1, var4);
+            Rasterizer2D_drawVerticalLine(var0, var3 + var1, -var3 + 1, var4);
          }
 
       } else {
