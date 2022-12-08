@@ -48,4 +48,5 @@ interface DefaultWorldConfig : Config {
     fun lastWorld(): Int {
         return 0
     }
+    //Fixed
 }

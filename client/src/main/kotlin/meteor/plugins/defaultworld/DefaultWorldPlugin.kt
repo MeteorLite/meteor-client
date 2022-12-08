@@ -79,8 +79,10 @@ class DefaultWorldPlugin : Plugin() {
 
         val correctedWorld = if (newWorld < 300) newWorld + 300 else newWorld
 
-        // Old School RuneScape worlds start on 301 so don't even bother trying to find lower id ones
-        // and also do not try to set world if we are already on it
+        /*
+        Old School RuneScape worlds start on 301 so don't even bother trying to find lower id ones
+        and also do not try to set world if we are already on it
+        */
         if (correctedWorld <= 300 || client.world == correctedWorld) {
             return false
         }
