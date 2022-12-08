@@ -24,6 +24,8 @@
  */
 package net.runelite.api;
 
+import net.runelite.mapping.Import;
+
 /**
  * Information about a specific {@link NpcID}
  */
@@ -97,9 +99,16 @@ public interface NPCComposition extends ParamHolder
 	 */
 	HeadIcon getOverheadIcon();
 
+
+	int[] getHeadIconArchiveIds();
+
+	short[] getHeadIconSpriteIndexes();
+
 	int getIndex();
 
 	void setIndex(int npcIndex);
+
+
 
 	int getTransformVarbit();
 	

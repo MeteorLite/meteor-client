@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -23,6 +24,7 @@ public final class Player extends Actor {
    @ObfuscatedGetter(
       intValue = -1022197567
    )
+   @Export("headIconPrayer")
    int headIconPrayer = -1;
    @ObfuscatedName("q")
    String[] actions = new String[3];

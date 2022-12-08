@@ -17,7 +17,8 @@ public class Prayers
 
 	public static void toggle(Prayer prayer)
 	{
-		Widget widget = Widgets.get(prayer.getWidgetInfo());
+
+		Widget widget = Widgets. get(prayer.getWidgetInfo());
 		if (widget != null)
 		{
 			widget.interact(0);

@@ -20,7 +20,7 @@ public class NPCComposition extends DualNode {
    @ObfuscatedGetter(
       intValue = 646794717
    )
-   static int field2022;
+   static int defaultHeadIconArchive;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
@@ -185,9 +185,9 @@ public class NPCComposition extends DualNode {
    @ObfuscatedName("aw")
    public boolean isFollower = false;
    @ObfuscatedName("aj")
-   int[] field2065 = null;
+   public int[] headIconArchiveIds = null;
    @ObfuscatedName("aq")
-   short[] field2021 = null;
+   public short[] headIconSpriteIndexes = null;
    @ObfuscatedName("ap")
    @ObfuscatedSignature(
       descriptor = "Lql;"
@@ -300,10 +300,10 @@ public class NPCComposition extends DualNode {
          int var5;
          if (var2 == 102) {
             if (GrandExchangeOfferUnitPriceComparator.field4275) {
-               this.field2065 = new int[1];
-               this.field2021 = new short[1];
-               this.field2065[0] = field2022;
-               this.field2021[0] = (short)var1.readUnsignedShort();
+               this.headIconArchiveIds = new int[1];
+               this.headIconSpriteIndexes = new short[1];
+               this.headIconArchiveIds[0] = defaultHeadIconArchive;
+               this.headIconSpriteIndexes[0] = (short)var1.readUnsignedShort();
             } else {
                var3 = var1.readUnsignedByte();
                var4 = 0;
@@ -312,16 +312,16 @@ public class NPCComposition extends DualNode {
                   ++var4;
                }
 
-               this.field2065 = new int[var4];
-               this.field2021 = new short[var4];
+               this.headIconArchiveIds = new int[var4];
+               this.headIconSpriteIndexes = new short[var4];
 
                for(int var6 = 0; var6 < var4; ++var6) {
                   if ((var3 & 1 << var6) == 0) {
-                     this.field2065[var6] = -1;
-                     this.field2021[var6] = -1;
+                     this.headIconArchiveIds[var6] = -1;
+                     this.headIconSpriteIndexes[var6] = -1;
                   } else {
-                     this.field2065[var6] = var1.method8568();
-                     this.field2021[var6] = (short)var1.method8781();
+                     this.headIconArchiveIds[var6] = var1.method8568();
+                     this.headIconSpriteIndexes[var6] = (short)var1.method8781();
                   }
                }
             }
@@ -599,7 +599,7 @@ public class NPCComposition extends DualNode {
       garbageValue = "-700368633"
    )
    public boolean method3672() {
-      return this.field2065 != null && this.field2021 != null;
+      return this.headIconArchiveIds != null && this.headIconSpriteIndexes != null;
    }
 
    @ObfuscatedName("n")
@@ -608,7 +608,7 @@ public class NPCComposition extends DualNode {
       garbageValue = "-1876307033"
    )
    public int[] method3678() {
-      return this.field2065;
+      return this.headIconArchiveIds;
    }
 
    @ObfuscatedName("k")
@@ -617,7 +617,7 @@ public class NPCComposition extends DualNode {
       garbageValue = "803471346"
    )
    public int method3663(int var1) {
-      return this.field2065 != null && var1 < this.field2065.length ? this.field2065[var1] : -1;
+      return this.headIconArchiveIds != null && var1 < this.headIconArchiveIds.length ? this.headIconArchiveIds[var1] : -1;
    }
 
    @ObfuscatedName("a")
@@ -626,7 +626,7 @@ public class NPCComposition extends DualNode {
       garbageValue = "-44005875"
    )
    public short[] method3715() {
-      return this.field2021;
+      return this.headIconSpriteIndexes;
    }
 
    @ObfuscatedName("s")
@@ -635,7 +635,7 @@ public class NPCComposition extends DualNode {
       garbageValue = "257867612"
    )
    public short method3673(int var1) {
-      return this.field2021 != null && var1 < this.field2021.length ? this.field2021[var1] : -1;
+      return this.headIconSpriteIndexes != null && var1 < this.headIconSpriteIndexes.length ? this.headIconSpriteIndexes[var1] : -1;
    }
 
    @ObfuscatedName("e")

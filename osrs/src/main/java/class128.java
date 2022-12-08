@@ -32,15 +32,15 @@ public class class128 implements class120 {
          int var75 = Players.Players_count;
          int[] var7 = Players.Players_indices;
          byte var8 = 0;
-         Player var10;
+         Player player;
          if (var1 < var75 && var0.playerCycle == Client.cycle) {
-            var10 = (Player)var0;
+            player = (Player)var0;
             boolean var9;
             if (Client.drawPlayerNames == 0) {
                var9 = false;
-            } else if (var10 != class155.localPlayer) {
+            } else if (player != class155.localPlayer) {
                boolean var11 = (Client.drawPlayerNames & 4) != 0;
-               var9 = var11 || SoundCache.method890() && var10.isFriend() || class121.method2887() && var10.isFriendsChatMember();
+               var9 = var11 || SoundCache.method890() && player.isFriend() || class121.method2887() && player.isFriendsChatMember();
             } else {
                var9 = GraphicsObject.method2026();
             }
@@ -152,22 +152,22 @@ public class class128 implements class120 {
 
          var89 += var8;
          if (var1 < var75) {
-            var10 = (Player)var0;
-            if (var10.isHidden) {
+            player = (Player)var0;
+            if (player.isHidden) {
                return;
             }
 
-            if (var10.headIconPk != -1 || var10.headIconPrayer != -1) {
+            if (player.headIconPk != -1 || player.headIconPrayer != -1) {
                ClientPreferences.method2513(var0, var0.defaultHeight + 15);
                if (Client.viewportTempX > -1) {
-                  if (var10.headIconPk != -1) {
+                  if (player.headIconPk != -1) {
                      var89 += 25;
-                     World.headIconPkSprites[var10.headIconPk].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var89);
+                     World.headIconPkSprites[player.headIconPk].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var89);
                   }
 
-                  if (var10.headIconPrayer != -1) {
+                  if (player.headIconPrayer != -1) {
                      var89 += 25;
-                     class410.headIconPrayerSprites[var10.headIconPrayer].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var89);
+                     class410.headIconPrayerSprites[player.headIconPrayer].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var89);
                   }
                }
             }
