@@ -27,10 +27,19 @@
     ]
   },
   "1": {
-    "name": "field3048",
+    "name": "EVENT_KEYBOARD",
     "size": -2,
     "deobname": "field3048",
-    "structure": []
+    "structure": [
+      {
+        "method": "writeMedium",
+        "argument": "time"
+      },
+      {
+        "method": "writeByte",
+        "argument": "keyPressed"
+      }
+    ]
   },
   "2": {
     "name": "OPHELDT",
@@ -884,10 +893,23 @@
     ]
   },
   "58": {
-    "name": "field3114",
+    "name": "EVENT_MOUSE_CLICK",
     "size": 6,
     "deobname": "field3114",
-    "structure": []
+    "structure": [
+      {
+        "method": "writeShort",
+        "argument": "mouseInfo"
+      },
+      {
+        "method": "writeShort",
+        "argument": "x"
+      },
+      {
+        "method": "writeShort",
+        "argument": "y"
+      }
+    ]
   },
   "59": {
     "name": "OPLOC2",
@@ -1347,10 +1369,27 @@
     ]
   },
   "92": {
-    "name": "field3083",
+    "name": "MOVE_GAMECLICK",
     "size": -1,
     "deobname": "field3083",
-    "structure": []
+    "structure": [
+      {
+        "method": "writeByte",
+        "argument": "_five_"
+      },
+      {
+        "method": "method8580",
+        "argument": "ctrlPressed"
+      },
+      {
+        "method": "method8607",
+        "argument": "worldX"
+      },
+      {
+        "method": "writeIntME",
+        "argument": "worldY"
+      }
+    ]
   },
   "93": {
     "name": "field3129",
