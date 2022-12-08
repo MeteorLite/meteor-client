@@ -72,7 +72,7 @@ class DefaultWorldPlugin : Plugin() {
         if (System.getProperty("cli.world") != null) {
             return false
         }
-        val newWorld = if (config.useLastWorld()) config.lastWorld() else config.world
+        val newWorld = if (config.useLastWorld()) config.lastWorld() else config.world()
 
         if (newWorld == 0)
             return false

@@ -31,8 +31,9 @@ import meteor.config.legacy.ConfigItem
 @ConfigGroup("defaultworld")
 interface DefaultWorldConfig : Config {
     @ConfigItem(keyName = "defaultWorld", name = "Default world", description = "World to use as default one")
-    val world: Int
-        get() = 0
+    fun world() : Int {
+        return 0
+    }
 
     @ConfigItem(
         keyName = "useLastWorld",
