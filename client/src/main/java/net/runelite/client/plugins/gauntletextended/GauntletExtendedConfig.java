@@ -38,6 +38,7 @@ import meteor.config.legacy.ConfigItem;
 import meteor.config.legacy.ConfigSection;
 import meteor.config.legacy.Range;
 import meteor.config.legacy.Units;
+import net.runelite.api.Prayer;
 
 @ConfigGroup("gauntlet")
 public interface GauntletExtendedConfig extends Config
@@ -45,37 +46,98 @@ public interface GauntletExtendedConfig extends Config
 
 
 	@ConfigItem(
-			name = "Auto Pray",
-			description = "Automatically pray during final encounter",
+			keyName = "autoPrayer",
+			name = "Auto Prayer",
+			description = "Automatically switches your prayers because why not",
 			position = 0,
-			keyName = "autoPray"
+			section = hunllefSection
 	)
-	@Units(Units.POINTS)
 	default boolean autoPray()
 	{
 		return false;
 	}
 
 	@ConfigItem(
-			name = "Auto Weapon Swap",
-			description = "Automatically swap weapons during final encounter",
-			position = 0,
-			keyName = "autoPray"
+			keyName = "drinkPotions",
+			name = "Auto Potion",
+			description = "Automatically drinks potion when under 10 prayer",
+			position = 1,
+			section = hunllefSection
 	)
+	default boolean potionToggle()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "tickFoodToggle",
+			name = "Auto Eat",
+			description = "Auto eats when hp is below 20",
+			position = 1,
+			section = hunllefSection
+	)
+	default boolean autoTickEatToggle()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "offensivePrayerToggle",
+			name = "Offensive Prayer Toggle",
+			description = "Toggles the option to use offensive prayers with Auto Prayer",
+			position = 1,
+			section = hunllefSection
+	)
+	default boolean offensivePrayerToggle()
+	{
+		return false;
+	}
+	@ConfigItem(
+			keyName = "meleeoffensivePrayer",
+			name = "Melee Offensive Prayer",
+			description = "Choose which offensive prayer to use with Auto Prayer",
+			position = 2,
+			section = hunllefSection
+	)
+	default meleeOffensivePrayers meleeoffensivePrayer()
+	{
+		return meleeOffensivePrayers.PIETY;
+	}
+	@ConfigItem(
+			keyName = "magicoffensivePrayer",
+			name = "Magic Offensive Prayer",
+			description = "Choose which offensive prayer to use with Auto Prayer",
+			position = 3,
+			section = hunllefSection
+	)
+	default magicOffensivePrayers magicoffensivePrayer()
+	{
+		return magicOffensivePrayers.AUGURY;
+	}
+	@ConfigItem(
+			keyName = "rangeoffensivePrayer",
+			name = "Range Offensive Prayer",
+			description = "Choose which offensive prayer to use with Auto Prayer",
+			position = 4,
+			section = hunllefSection
+	)
+	default rangeOffensivePrayers rangeoffensivePrayer()
+	{
+		return rangeOffensivePrayers.RIGOUR;
+	}
+	@ConfigSection(
+			name = "Resources",
+			description = "Resources section.",
+			position = 0,
+			keyName = "resourcesSection"
+	)
+	String resourcesSection = "Resources";
 	@Units(Units.POINTS)
 	default boolean autoWeaponSwap()
 	{
 		return false;
 	}
 
-	// Sections
-	@ConfigSection(
-		name = "Resources",
-		description = "Resources section.",
-		position = 0,
-		keyName = "resourcesSection"
-	)
-	String resourcesSection = "Resources";
 
 	@ConfigSection(
 		name = "Utilities",
@@ -1184,5 +1246,59 @@ public interface GauntletExtendedConfig extends Config
 	enum ResourceFilter
 	{
 		ALL, BASIC, CUSTOM, OFF
+	}
+	public enum meleeOffensivePrayers
+	{
+		INCREDIBLE_REFLEXES(Prayer.INCREDIBLE_REFLEXES),
+		CHIVALRY(Prayer.CHIVALRY),
+		PIETY(Prayer.PIETY);
+
+		private final Prayer prayer;
+
+		meleeOffensivePrayers (Prayer prayer)
+		{
+			this.prayer = prayer;
+		}
+
+		public Prayer getPrayer()
+		{
+			return prayer;
+		}
+	}
+
+	public enum magicOffensivePrayers
+	{
+		MYSTIC_MIGHT(Prayer.MYSTIC_MIGHT),
+		AUGURY(Prayer.AUGURY);
+
+		private final Prayer prayer;
+
+		magicOffensivePrayers (Prayer prayer)
+		{
+			this.prayer = prayer;
+		}
+
+		public Prayer getPrayer()
+		{
+			return prayer;
+		}
+	}
+
+	public enum rangeOffensivePrayers
+	{
+		EAGLE_EYE(Prayer.EAGLE_EYE),
+		RIGOUR(Prayer.RIGOUR);
+
+		private final Prayer prayer;
+
+		rangeOffensivePrayers (Prayer prayer)
+		{
+			this.prayer = prayer;
+		}
+
+		public Prayer getPrayer()
+		{
+			return prayer;
+		}
 	}
 }

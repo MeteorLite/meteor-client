@@ -76,6 +76,9 @@ object Items {
     fun getFirst(vararg ids: Int, container: InventoryID? = InventoryID.INVENTORY): Item? {
         return getAll(*ids, container = container)?.firstOrNull()
     }
+    fun getFirst(container: InventoryID? = InventoryID.INVENTORY, vararg ids: Int): Item? {
+        return getAll(*ids, container = container)?.firstOrNull()
+    }
 
     fun getFirstBank(vararg ids: Int, container: InventoryID? = InventoryID.BANK): Item? {
         return getAll(*ids, container = container)?.firstOrNull()
