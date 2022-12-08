@@ -58,8 +58,12 @@ public interface RSNPCComposition extends NPCComposition
 	@Override
 	int getSize();
 
-	@Import("headIconPrayer")
-	int getRsOverheadIcon();
+	@Import("headIconArchiveIds")
+	int[] getHeadIconArchiveIds();
+
+	@Import("headIconSpriteIndexes")
+	short[] getHeadIconSpriteIndexes();
+
 
 	@Import("params")
 	RSIterableNodeHashTable getParams();

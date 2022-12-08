@@ -25,7 +25,6 @@
 package meteor.game.chatbox
 
 
-import com.google.common.base.Strings
 import meteor.input.KeyListener
 import meteor.input.MouseListener
 import meteor.rs.ClientThread
@@ -42,6 +41,7 @@ import java.awt.datatransfer.UnsupportedFlavorException
 import java.awt.event.KeyEvent
 import java.awt.event.MouseEvent
 import java.io.IOException
+import java.util.function.Predicate
 import java.util.regex.Pattern
 import javax.swing.SwingUtilities
 
@@ -60,9 +60,9 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
     var selectionStart = -1
     var selectionEnd = -1
     var charValidator: (Int) -> Boolean? = defaultCharValidator
-    var onClose: (() -> Unit?)? = null
+    var onClose: (() -> Unit?)? = {}
     var onDone: (String) -> Boolean? = {false}
-    var onChanged: (() -> String)? = null
+    var onChanged: ((String)->Unit?)? = {}
 
     var fontID = FontID.QUILL_8
 
@@ -157,7 +157,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
         return this
     }
 
-    open fun onDone(onDone: (String)->Unit?): ChatboxTextInput? {
+    fun onDone(onDone: (String)->Unit?): ChatboxTextInput {
         this.onDone = { s: String ->
             onDone(s)
             true
@@ -165,14 +165,18 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
 
         return this
     }
-
+    fun isDone(onDone: (String) -> Boolean): ChatboxTextInput {
+        this.onDone = onDone
+        return this
+    }
     /**
      * Called when the user attempts to close the input by pressing enter
      * Return false to cancel the close
      */
 
-    fun onChanged(onChanged: ()->(String)): ChatboxTextInput {
+    fun onChanged(onChanged: (String)-> Unit?): ChatboxTextInput {
         this.onChanged = onChanged
+
         return this
     }
 
@@ -297,7 +301,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 cursor.originalHeight = h
                 cursor.revalidate()
             }
-            if (!Strings.isNullOrEmpty(lt)) {
+            if (!lt.isNullOrEmpty()) {
                 val leftText = container.createChild(-1, WidgetType.TEXT)
                 leftText.fontId = fontID
                 leftText.text = lt
@@ -307,7 +311,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 leftText.originalHeight = h
                 leftText.revalidate()
             }
-            if (!Strings.isNullOrEmpty(mt)) {
+            if (!mt.isNullOrEmpty()) {
                 val background = container.createChild(-1, WidgetType.RECTANGLE)
                 background.textColor = 0x113399
                 background.isFilled = true
@@ -322,11 +326,12 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 middleText.originalX = mtx
                 middleText.originalY = y
                 middleText.originalWidth = mtw
+
                 middleText.originalHeight = h
                 middleText.textColor = 0xFFFFFF
                 middleText.revalidate()
             }
-            if (!Strings.isNullOrEmpty(rt)) {
+            if (!rt.isNullOrEmpty()) {
                 val rightText = container.createChild(-1, WidgetType.TEXT)
                 rightText.text = rt
                 rightText.fontId = fontID
@@ -389,8 +394,8 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                     i--
                     continue
                 }
-                //i--
                 break@whileLabel
+
             }
             charIndex = charIndex.coerceIn(0, tsValue.length)
             line.start + charIndex
@@ -449,7 +454,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
 
     override fun close() {
         if (onClose != null) {
-            onClose!!.invoke()
+            onClose?.invoke()
         }
     }
 
@@ -470,9 +475,10 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
             }
             value.insert(cursorStart, c)
             cursorAt(cursorStart + 1)
-            if (onChanged != null) {
-                onChanged!!.run { getValue() }
+            if(onChanged != null) {
+                onChanged!!(getValue())
             }
+
         }
     }
 
@@ -515,9 +521,10 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                             i++
                         }
                         cursorAt(cursorStart)
-                        if (onChanged != null) {
-                            onChanged!!.run { getValue() }
+                        if(onChanged != null) {
+                            onChanged!!(getValue())
                         }
+
                     } catch (ex: IOException) {
                        // ChatboxTextInput.log.warn("Unable to get clipboard", ex)
                     } catch (ex: UnsupportedFlavorException) {
@@ -550,16 +557,16 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 if (cursorStart != cursorEnd) {
                     value.delete(cursorStart, cursorEnd)
                     cursorAt(cursorStart)
-                    if (onChanged != null) {
-                        onChanged!!.run {  getValue()}
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
                     }
                     return
                 }
                 if (cursorStart < value.length) {
                     value.deleteCharAt(cursorStart)
                     cursorAt(cursorStart)
-                    if (onChanged != null) {
-                        onChanged!!.run{getValue()}
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
                     }
                 }
                 return
@@ -568,16 +575,16 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
                 if (cursorStart != cursorEnd) {
                     value.delete(cursorStart, cursorEnd)
                     cursorAt(cursorStart)
-                    if (onChanged != null) {
-                        onChanged!!.run{getValue()}
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
                     }
                     return
                 }
                 if (cursorStart > 0) {
                     value.deleteCharAt(cursorStart - 1)
                     cursorAt(cursorStart - 1)
-                    if (onChanged != null) {
-                        onChanged!!.run{getValue()}
+                    if(onChanged != null) {
+                        onChanged!!(getValue())
                     }
                 }
                 return
@@ -616,9 +623,7 @@ open class ChatboxTextInput : ChatboxInput(), KeyListener, MouseListener {
             }
             KeyEvent.VK_ENTER -> {
                 ev.consume()
-                if ( !onDone(getValue())!!) {
-                    return
-                }
+                if ( !onDone(getValue())!!)
                 chatboxPanelManager.close()
                 return
             }

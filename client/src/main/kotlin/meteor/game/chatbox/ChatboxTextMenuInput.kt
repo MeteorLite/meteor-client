@@ -37,7 +37,7 @@ object ChatboxTextMenuInput :
 
     private var title: String? = null
     private val options: MutableList<Entry> = ArrayList()
-    private var onClose: (() -> Unit?)? = null
+    private var onClose: (() -> Unit?)? = {}
     fun title(title: String?): ChatboxTextMenuInput {
         this.title = title
         return this

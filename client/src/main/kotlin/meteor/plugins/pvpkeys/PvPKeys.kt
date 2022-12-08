@@ -6,9 +6,11 @@ import dev.hoot.api.magic.Ancient
 import dev.hoot.api.magic.Magic
 import dev.hoot.api.widgets.Prayers
 import eventbus.events.ClientTick
+import eventbus.events.GameTick
 import eventbus.events.InteractingChanged
 import eventbus.events.MenuOptionClicked
 import meteor.api.items.Items
+import meteor.api.npcs.NPCs
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -36,6 +38,7 @@ class PvPKeys : Plugin() {
 
     val rangeGear: MutableList<String>
         get() = mutableListOf(*config.RangeIDs()!!.split(",").toTypedArray())
+
 
 
     override fun onStart() {

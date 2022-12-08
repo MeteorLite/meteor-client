@@ -46,7 +46,7 @@ object ChatboxPanelManager : EventSubscriber() {
     private val chatboxTextMenuInputProvider = ChatboxTextMenuInput
     private val chatboxTextInputProvider = ChatboxTextInput()
 
-    private var currentInput: ChatboxInput? = null
+    var currentInput: ChatboxInput? = null
     init{
         subscribeEvents()
     }

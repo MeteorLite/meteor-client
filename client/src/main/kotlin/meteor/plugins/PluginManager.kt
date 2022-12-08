@@ -74,6 +74,7 @@ import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import meteor.plugins.driftnet.DriftNetPlugin
 import meteor.plugins.emojis.EmojiPlugin
+import meteor.plugins.fairyring.FairyRingPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.fighter.FighterPlugin
 import meteor.plugins.groundmarkers.GroundMarkerPlugin
@@ -86,6 +87,7 @@ import meteor.plugins.olmswapper.OlmSwapperPlugin
 import meteor.plugins.oneclickchins.Oneclickchinsplugin
 import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
 import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
+import meteor.plugins.virtuallevels.VirtualLevelsPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -160,6 +162,7 @@ object PluginManager {
         init<ExamplePlugin>()
         init<EmojiPlugin>()
         init<EntityHiderPlugin>()
+        init<FairyRingPlugin>()
         init<FishingPlugin>()
         init<FighterPlugin>()
         init<FpsPlugin>()
@@ -212,6 +215,7 @@ object PluginManager {
         init<TileIndicatorsPlugin>()
         init<TilemanModePlugin>()
         init<TimersPlugin>()
+        init<VirtualLevelsPlugin>()
         init<WorldMapPlugin>()
         init<WorldMapWalkerPlugin>()
         init<WintertodtHelper>()
