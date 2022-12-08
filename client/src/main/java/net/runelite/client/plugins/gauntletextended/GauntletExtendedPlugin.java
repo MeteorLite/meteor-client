@@ -27,7 +27,6 @@
 
 package net.runelite.client.plugins.gauntletextended;
 
-import dev.hoot.api.widgets.Prayers;
 import eventbus.events.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,7 +39,9 @@ import meteor.rs.ClientThread;
 import meteor.ui.overlay.OverlayManager;
 import net.runelite.api.*;
 import net.runelite.api.queries.GameObjectQuery;
+import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.plugins.gauntletextended.entity.*;
 import net.runelite.client.plugins.gauntletextended.overlay.*;
 import net.runelite.client.plugins.gauntletextended.resource.ResourceManager;
@@ -70,12 +71,40 @@ public class GauntletExtendedPlugin extends Plugin
 	public static final int HUNLEFF_TORNADO = 8418;
 	public boolean isFirstPlayerPhase = true;
 
-	private static final Set<Integer> MELEE_ANIM_IDS = Set.of(
+	private static final List<Integer> MELEE_ANIM_IDS = List.of(
 		ONEHAND_STAB_SWORD_ANIMATION, ONEHAND_SLASH_SWORD_ANIMATION,
 		ONEHAND_SLASH_AXE_ANIMATION, ONEHAND_CRUSH_PICKAXE_ANIMATION,
 		ONEHAND_CRUSH_AXE_ANIMATION, UNARMED_PUNCH_ANIMATION,
 		UNARMED_KICK_ANIMATION, ONEHAND_STAB_HALBERD_ANIMATION,
 		ONEHAND_SLASH_HALBERD_ANIMATION
+	);
+	private static final List<Integer> MELEE_WEAPONS = List.of(
+			ItemID.CORRUPTED_HALBERD_BASIC, ItemID.CORRUPTED_HALBERD_ATTUNED,
+			ItemID.CORRUPTED_HALBERD_PERFECTED, ItemID.CRYSTAL_HALBERD_BASIC, ItemID.CRYSTAL_HALBERD_ATTUNED,
+			ItemID.CRYSTAL_HALBERD_PERFECTED
+	);
+
+	private static final List<Integer> RANGE_WEAPONS = List.of(
+			ItemID.CORRUPTED_BOW_BASIC, ItemID.CORRUPTED_BOW_ATTUNED,
+			ItemID.CORRUPTED_BOW_PERFECTED, ItemID.CRYSTAL_BOW_BASIC, ItemID.CRYSTAL_BOW_ATTUNED,
+			ItemID.CRYSTAL_BOW_PERFECTED
+	);
+
+	private static final List<Integer> MAGE_WEAPONS = List.of(
+			ItemID.CORRUPTED_STAFF_BASIC, ItemID.CORRUPTED_STAFF_ATTUNED,
+			ItemID.CORRUPTED_STAFF_PERFECTED, ItemID.CRYSTAL_STAFF_BASIC,
+			ItemID.CRYSTAL_BOW_ATTUNED, ItemID.CRYSTAL_BOW_PERFECTED
+	);
+
+	private static final List<Integer> POTIONS= List.of(
+			ItemID.EGNIOL_POTION_1, ItemID.EGNIOL_POTION_2, ItemID.EGNIOL_POTION_3, ItemID.EGNIOL_POTION_4
+	);
+
+	private static final Set<Integer> FOOD = Set.of(
+			ItemID.PADDLEFISH
+	);
+	private static final List<Integer> TICK_FOOD = List.of(
+			ItemID.CRYSTAL_PADDLEFISH, ItemID.CORRUPTED_PADDLEFISH
 	);
 
 	private static final Set<Integer> ATTACK_ANIM_IDS = new HashSet<>();
@@ -313,24 +342,73 @@ public class GauntletExtendedPlugin extends Plugin
 	}
 
 	@Override
-	public void onGameTick(final GameTick event)
-	{
-		if (hunllef == null)
-		{
+	public void onGameTick(final GameTick event) {
+		if (hunllef == null) {
 			return;
 		}
 
 		hunllef.decrementTicksUntilNextAttack();
 
-		if (missile != null && missile.getProjectile().getRemainingCycles() <= 0)
-		{
+		if (missile != null && missile.getProjectile().getRemainingCycles() <= 0) {
 			missile = null;
 		}
 
-		if (!tornadoes.isEmpty())
-		{
+		if (!tornadoes.isEmpty()) {
 			tornadoes.forEach(Tornado::updateTimeLeft);
 		}
+		if (config.autoPray() && hunllef != null && inHunllef && !client
+				.isPrayerActive(hunllef.getAttackPhase().getPrayer())) {
+			activatePrayer(hunllef.getAttackPhase().getPrayer());
+		}
+		if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.MAGIC && isItemEquipped(MAGE_WEAPONS)) {
+			if (getItems(RANGE_WEAPONS) != null) {
+				rangeWeapon();
+			} else if (getItems(MELEE_WEAPONS) != null) {
+				meleeWeapon();
+			}
+
+		}
+		if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.MELEE && isItemEquipped(MELEE_WEAPONS)) {
+			if (getItems(MAGE_WEAPONS) != null) {
+				mageWeapon();
+			} else if (getItems(RANGE_WEAPONS) != null) {
+				rangeWeapon();
+			}
+
+		}
+		if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.RANGED && isItemEquipped(RANGE_WEAPONS)) {
+			if (getItems(MELEE_WEAPONS) != null) {
+				meleeWeapon();
+			} else if (getItems(MAGE_WEAPONS) != null) {
+				mageWeapon();
+			}
+
+		}
+		if (isItemEquipped(RANGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
+			activatePrayer(config.rangeoffensivePrayer().getPrayer());
+		}
+		if (isItemEquipped(MAGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
+			activatePrayer(config.magicoffensivePrayer().getPrayer());
+		}
+		if (isItemEquipped(MELEE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
+			activatePrayer(config.meleeoffensivePrayer().getPrayer());
+		}
+		int currentPrayerPoints = client.getBoostedSkillLevel(Skill.PRAYER);
+		int nextRestoreVal = 10;
+		if (config.potionToggle() && currentPrayerPoints <= nextRestoreVal) {
+			drinkPotion();
+		}
+		int currentHitpoints = client.getBoostedSkillLevel(Skill.HITPOINTS);
+		int nextTickHeal = 20;
+		if (config.autoTickEatToggle() && currentHitpoints <= nextTickHeal){
+			autoEat();
+			autoTickEat();
+		}
+	}
+
+	private Object getItems(Collection<Integer> ids) {
+		var array = ids.stream().mapToInt(i -> i).toArray();
+		return Items.INSTANCE.getFirst(array, InventoryID.INVENTORY);
 	}
 
 	@Override
@@ -487,15 +565,6 @@ public class GauntletExtendedPlugin extends Plugin
 		{
 			resourceManager.parseChatMessage(event.getMessage());
 		}
-
-		if (event.getMessage().contains("prayers have been disabled")) {
-			if (hunllef.getAttackPhase() == Hunllef.AttackPhase.MAGIC)
-				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MAGIC))
-					Prayers.toggle(Prayer.PROTECT_FROM_MAGIC);
-			if (hunllef.getAttackPhase() == Hunllef.AttackPhase.RANGE)
-				if (!Prayers.isEnabled(Prayer.PROTECT_FROM_MISSILES))
-					Prayers.toggle(Prayer.PROTECT_FROM_MISSILES);
-		}
 	}
 
 	@Override
@@ -626,7 +695,6 @@ public class GauntletExtendedPlugin extends Plugin
 		overlayManager.add(overlayTimer);
 		overlayManager.add(overlayGauntlet);
 	}
-
 	private void initHunllef()
 	{
 		inHunllef = true;
@@ -639,7 +707,164 @@ public class GauntletExtendedPlugin extends Plugin
 		overlayManager.add(overlayPrayerWidget);
 		overlayManager.add(overlayPrayerBox);
 	}
+	public void activatePrayer(Prayer prayer)
+	{
+		if (prayer == null)
+		{
+			return;
+		}
 
+		//check if prayer is already active this tick
+		if (client.isPrayerActive(prayer))
+		{
+			return;
+		}
+
+		WidgetInfo widgetInfo = prayer.getWidgetInfo();
+
+		if (widgetInfo == null)
+		{
+			return;
+		}
+		Widget prayer_widget = client.getWidget(widgetInfo);
+
+		if (prayer_widget == null)
+		{
+			return;
+		}
+
+		if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0)
+		{
+			return;
+		}
+
+		clientThread.invoke(() ->
+				client.invokeMenuAction(
+						"Activate",
+						prayer_widget.getName(),
+						1,
+						MenuAction.CC_OP.getId(),
+						prayer_widget.getItemId(),
+						prayer_widget.getId()
+				)
+		);
+	}
+	public void meleeWeapon() {
+		Widget inventory = client.getWidget(WidgetInfo.INVENTORY);
+
+		if (inventory == null) {
+			return;
+		}
+
+		for (int mw: MELEE_WEAPONS) {
+			var mi = Items.INSTANCE.getFirst(InventoryID.INVENTORY, mw);
+			if (mi != null)
+				mi.interact("Wield");
+		}
+	}
+	public void rangeWeapon() {
+		Widget inventory = client.getWidget(WidgetInfo.INVENTORY);
+
+		if (inventory == null) {
+			return;
+		}
+
+		for (int rw: RANGE_WEAPONS) {
+			var ri = Items.INSTANCE.getFirst(InventoryID.INVENTORY, rw);
+			if (ri != null)
+				ri.interact("Wield");
+		}
+	}
+
+	public void mageWeapon() {
+		Widget inventory = client.getWidget(WidgetInfo.INVENTORY);
+
+		if (inventory == null) {
+			return;
+		}
+
+		for (int mw: MAGE_WEAPONS) {
+			var mi = Items.INSTANCE.getFirst(InventoryID.INVENTORY, mw);
+			if (mi != null)
+				mi.interact("Wield");
+		}
+	}
+	public void drinkPotion() {
+		Widget inventory = client.getWidget(WidgetInfo.INVENTORY);
+
+		if (inventory == null) {
+			return;
+		}
+		for (int potion: POTIONS) {
+			var item = Items.INSTANCE.getFirst(InventoryID.INVENTORY, potion);
+			if (item != null)
+				item.interact("Drink");
+		}
+
+
+	}
+
+	public void autoEat() {
+		Widget inventory = client.getWidget(WidgetInfo.INVENTORY);
+
+		if (inventory == null) {
+			return;
+		}
+
+		Item item = Items.INSTANCE.getFirst(InventoryID.INVENTORY, ItemID.PADDLEFISH);
+		if (item != null)
+			item.interact("Eat");
+
+	}
+
+	public void autoTickEat() {
+		Widget inventory = client.getWidget(WidgetInfo.INVENTORY);
+
+		if (inventory == null) {
+			return;
+		}
+
+		for (int food: TICK_FOOD) {
+			var item = Items.INSTANCE.getFirst(InventoryID.INVENTORY, food);
+			if (item != null)
+				item.interact("Eat");
+		}
+
+	}
+
+	/*WidgetItem getItems(Collection<Integer> ids)
+	{
+		Widget inventoryWidget = client.getWidget(WidgetInfo.INVENTORY);
+		List<WidgetItem> matchedItems = new ArrayList<>();
+
+		if (inventoryWidget != null)
+		{
+			Collection<WidgetItem> items = inventoryWidget.getWidgetItems();
+			for (WidgetItem item : items)
+			{
+				if (ids.contains(item.getWidget().getItemId()))
+				{
+					return item;
+				}
+			}
+		}
+		return null;
+	}*/
+	public boolean isItemEquipped(Collection<Integer> itemIds) {
+		assert client.isClientThread();
+
+		ItemContainer equipmentContainer = client.getItemContainer(InventoryID.EQUIPMENT);
+		if (equipmentContainer != null) {
+			Item[] items = equipmentContainer.getItems();
+				for (Item item : items) {
+				if (item == null) continue;
+				if (itemIds.contains(item.getId())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	private boolean isGauntletVarbitSet()
 	{
 		return client.getVarbitValue(9178) == 1;
