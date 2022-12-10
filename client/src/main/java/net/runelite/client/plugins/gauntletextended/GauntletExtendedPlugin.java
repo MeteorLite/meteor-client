@@ -387,10 +387,10 @@ public class GauntletExtendedPlugin extends Plugin
 		if (isItemEquipped(RANGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
 			activatePrayer(config.rangeoffensivePrayer().getPrayer());
 		}
-		if (isItemEquipped(MAGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
+		else if (isItemEquipped(MAGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
 			activatePrayer(config.magicoffensivePrayer().getPrayer());
 		}
-		if (isItemEquipped(MELEE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
+		else if (isItemEquipped(MELEE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
 			activatePrayer(config.meleeoffensivePrayer().getPrayer());
 		}
 		int currentPrayerPoints = client.getBoostedSkillLevel(Skill.PRAYER);
