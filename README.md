@@ -1,7 +1,7 @@
 # meteor-client
 
  ![Kotlin](https://img.shields.io/badge/kotlin-%230095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white) ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)  
-![OSRS](https://img.shields.io/badge/osrs-208-blue.svg) ![Build Status](https://img.shields.io/github/workflow/status/meteorlite/meteor-client/Build%20MeteorLite)
+![OSRS](https://img.shields.io/badge/osrs-210-blue.svg) ![Build Status](https://img.shields.io/github/workflow/status/meteorlite/meteor-client/Build%20MeteorLite)
 
 Join our Discord https://discord.gg/Y85d6NH6z3
 
