@@ -201,7 +201,7 @@ fun plugins() {
                                     .background(background  )
                             )
                         }
-                        val switchState = remember { mutableStateOf(plugin.shouldEnable()) }
+                        val switchState = mutableStateOf(plugin.shouldEnable())
                         Switch(
                             switchState.value,
                             onPluginToggled(switchState, plugin),
