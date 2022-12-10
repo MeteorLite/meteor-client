@@ -42,3 +42,18 @@ tasks.compileJava {
     sourceCompatibility = JavaVersion.VERSION_17.toString()
     targetCompatibility = JavaVersion.VERSION_17.toString()
 }
+publishing {
+    repositories {
+        mavenLocal()
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = rootProject.group.toString()
+            artifactId = project.name
+            version = rootProject.project.version.toString()
+            from(components["java"])
+            println("Publishing maven: [group: $groupId, artifact: $artifactId, $version")
+        }
+    }
+}

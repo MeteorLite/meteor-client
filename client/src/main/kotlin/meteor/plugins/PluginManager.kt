@@ -300,7 +300,7 @@ object PluginManager {
     fun initExternalPlugin(jar: File, manifest: Manifest) {
         try {
             val classLoader = URLClassLoader(arrayOf(jar.toURI().toURL()))
-            val plugin = classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).newInstance() as Plugin
+            val plugin = classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor().newInstance() as Plugin
             if (plugins.any { p -> p.getName().equals(plugin.getName()) })
                 throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
