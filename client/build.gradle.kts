@@ -154,6 +154,21 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
             "-Xbackend-threads=4")
     }
 }
+publishing {
+    repositories {
+        mavenLocal()
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = rootProject.group.toString()
+            artifactId = project.name
+            version = rootProject.project.version.toString()
+            from(components["java"])
+            println("Publishing maven: [group: $groupId, artifact")
+        }
+    }
+}
 
 tasks.withType<org.gradle.jvm.tasks.Jar> {
     exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")
