@@ -105,15 +105,16 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         Applet().init()
 
         Window(
-                onCloseRequest = Main::shutdown,
-                title = "Meteor",
-                icon = painterResource("Meteor_icon.png"),
-                undecorated = meteorConfig.fullscreen(),
-                state =  rememberWindowState(placement = WindowPlacement.Floating, size =   DpSize(818.dp, 542.dp)),
-                content = {
-                    windowContent()
-                    // finishStartup is ran here
-                }
+            onCloseRequest = Main::shutdown,
+            title = "Meteor",
+            icon = painterResource("Meteor_icon.png"),
+            undecorated = meteorConfig.fullscreen(),
+            state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
+            content = {
+                windowContent()
+                // finishStartup is ran here
+            }
+
         )
     }
 
