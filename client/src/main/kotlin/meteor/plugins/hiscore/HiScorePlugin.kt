@@ -1,22 +1,18 @@
 package meteor.plugins.hiscore
 
-import compose.icons.Octicons
-import compose.icons.octicons.Graph16
-import eventbus.events.GameTick
+import androidx.compose.ui.Alignment
 import eventbus.events.MenuOptionClicked
 import meteor.config.ConfigManager
 import meteor.menus.MenuManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.preferences.pluginPanel
-import meteor.ui.composables.preferences.uiColor
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
 import net.runelite.api.MenuAction
 import net.runelite.http.api.hiscore.HiscoreClient
 import okhttp3.OkHttpClient
-import org.jetbrains.skiko.currentNanoTime
 
 
 @PluginDescriptor(name = "Hiscore", enabledByDefault = true, disabledOnStartup = false)
@@ -26,15 +22,15 @@ class HiScorePlugin : Plugin() {
     var config = configuration<HiscoreConfig>()
 
 
-    private var notesButton = ToolbarButton(
+    private var hiScoreButton = ToolbarButton(
         "HiScore",
-        Octicons.Graph16,
-        iconColor = uiColor.value,
+        imageResource = "/plugins/hiscore/normal.png",
         description = "Player Hiscores",
         onClick = {
             onClick()
         },
-        bottom = false
+        bottom = false,
+        alignment = Alignment.Center
     )
 
 
@@ -59,17 +55,17 @@ class HiScorePlugin : Plugin() {
             HiscorePanel.result = hiscoreClient.lookup(config.username())
         }
         pluginPanel.value = panel
-        togglePluginPanel(notesButton)
+        togglePluginPanel(hiScoreButton)
     }
 
     override fun onStart() {
         MenuManager.addPlayerMenuItem("Lookup")
         panel = HiscorePanel()
-        addButton(notesButton)
+        addButton(hiScoreButton)
     }
 
     override fun onStop() {
-        removeButton(notesButton)
+        removeButton(hiScoreButton)
         panel = null
     }
 }

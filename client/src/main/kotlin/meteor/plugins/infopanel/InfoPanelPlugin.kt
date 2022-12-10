@@ -1,5 +1,6 @@
 package meteor.plugins.infopanel
 
+import androidx.compose.ui.Alignment
 import compose.icons.Octicons
 import compose.icons.octicons.Info16
 import meteor.plugins.Plugin
@@ -19,13 +20,13 @@ class InfoPanelPlugin : Plugin() {
 
     private val infoPanelButton = ToolbarButton(
         "Info Panel",
-        Octicons.Info16,
-        iconColor = uiColor.value,
+        imageResource = "/plugins/info/info_icon.png",
         description = "Info",
         onClick = {
             onClick()
         },
-        bottom = false
+        bottom = false,
+        alignment = Alignment.Center,
     )
 
     fun onClick() {

@@ -1,5 +1,6 @@
 package meteor.plugins.notes
 
+import androidx.compose.ui.Alignment
 import compose.icons.Octicons
 import compose.icons.octicons.Note24
 import meteor.plugins.Plugin
@@ -19,13 +20,13 @@ class NotesPlugin : Plugin() {
 
     private var notesButton = ToolbarButton(
         "Notes",
-        Octicons.Note24,
-        iconColor = uiColor.value,
+        imageResource = "/plugins/notes/notes_icon.png",
         description = "Notes",
         onClick = {
             onClick()
         },
-        bottom = false
+        bottom = false,
+        alignment = Alignment.Center
     )
 
     fun onClick() {

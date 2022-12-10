@@ -1,6 +1,7 @@
 package meteor.plugins.loottracker
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
 import com.google.gson.reflect.TypeToken
 import compose.icons.Octicons
 import compose.icons.octicons.Briefcase24
@@ -37,9 +38,9 @@ class LootTrackerPlugin: Plugin() {
 
     private var lootTrackerButton = ToolbarButton(
         "LootTracker",
-        Octicons.Briefcase24,
-        iconColor = uiColor.value,
-        description = "Tracks loot",
+        imageResource = "/plugins/loottracker/panel_icon.png",
+        description = "Loot Tracker",
+        alignment = Alignment.Center,
         onClick = {
             onClick()
         },
@@ -124,21 +125,15 @@ class LootTrackerPlugin: Plugin() {
     fun onClick() {
         pluginPanel.value = panel
         togglePluginPanel(lootTrackerButton)
-
     }
 
     override fun onStart() {
         panel = LootTrackerPluginPanel()
         addButton(lootTrackerButton)
-
-
     }
 
     override fun onStop() {
         removeButton(lootTrackerButton)
         panel = null
     }
-
-
-
 }

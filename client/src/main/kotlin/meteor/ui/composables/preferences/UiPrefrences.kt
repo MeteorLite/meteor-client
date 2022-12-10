@@ -5,6 +5,7 @@ import androidx.compose.material.lightColors
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import com.google.common.collect.Multimap
 import compose.icons.Octicons
@@ -83,9 +84,10 @@ val lightThemeColors = lightColors(
 val pluginListButton = addButton(
     ToolbarButton(
         "Plugins",
-        Octicons.Plug24,
-        iconColor = uiColor.value,
+        imageResource = "/plugins/config/config_icon.png",
         description = "Opens Plugins list",
+        bottom = false,
+        alignment = Alignment.Center,
         onClick = {
             when {
                 pluginPanelIsOpen.value -> {

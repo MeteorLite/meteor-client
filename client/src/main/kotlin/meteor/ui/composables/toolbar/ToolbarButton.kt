@@ -2,7 +2,6 @@ package meteor.ui.composables.toolbar
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -40,7 +39,7 @@ class ToolbarButton(
                 name,
                 icon = null,
                 imageResource = imageResource,
-                backgroundColor = mutableStateOf(background).value ,
+                backgroundColor = mutableStateOf(background).value,
                 description = description,
                 alignment = alignment,
                 bottom = bottom,
@@ -69,11 +68,7 @@ class ToolbarButton(
                 }
 
             }) {
-            Box(
-                modifier = Modifier.clip(CircleShape).background(mutableStateOf(background).value).width(45.dp)
-                    .height(45.dp),
-                contentAlignment = alignment
-            ) {
+            Box(modifier = Modifier.clip(RoundedCornerShape(1)).size(40.dp), contentAlignment = alignment) {
                 IconButton(
                     onClick = onClick,
                     modifier = Modifier.align(Alignment.Center)
@@ -91,10 +86,6 @@ class ToolbarButton(
                         )
                 }
             }
-            Spacer(
-                Modifier.height(10.dp)
-                    .background(background)
-            )
         }
     }
 }

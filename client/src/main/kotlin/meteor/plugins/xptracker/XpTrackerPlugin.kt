@@ -25,6 +25,7 @@
  */
 package meteor.plugins.xptracker
 
+import androidx.compose.ui.Alignment
 import com.google.common.collect.ImmutableList
 import compose.icons.Octicons
 import compose.icons.octicons.Meter16
@@ -80,14 +81,15 @@ class XpTrackerPlugin : Plugin() {
     var panel: PluginPanel? = null
     private var xpButton = ToolbarButton(
         "xp",
-        Octicons.Meter16,
-        iconColor = uiColor.value,
-        description = "Xp tracker   ",
+        imageResource = "/plugins/hiscore/overall.png",
+        description = "XP Tracker",
         onClick = {
             onClick()
         },
-        bottom = false
+        bottom = false,
+        alignment = Alignment.Center,
     )
+
     fun onClick() {
         pluginPanel.value = panel
         togglePluginPanel(xpButton)
