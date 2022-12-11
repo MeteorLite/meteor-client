@@ -2,6 +2,7 @@ package meteor
 
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import dev.hoot.api.InteractionManager
 import dev.hoot.api.game.GameThread
@@ -104,15 +105,15 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         Applet().init()
 
         Window(
-                onCloseRequest = Main::shutdown,
-                title = "Meteor",
-                icon = painterResource("Meteor_icon.png"),
-                undecorated = meteorConfig.fullscreen(),
-                state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
-                content = {
-                    windowContent()
-                    // finishStartup is ran here
-                }
+            onCloseRequest = Main::shutdown,
+            title = "Meteor",
+            icon = painterResource("Meteor_icon.png"),
+            undecorated = meteorConfig.fullscreen(),
+            state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
+            content = {
+                windowContent()
+                // finishStartup is ran here
+            }
 
         )
     }

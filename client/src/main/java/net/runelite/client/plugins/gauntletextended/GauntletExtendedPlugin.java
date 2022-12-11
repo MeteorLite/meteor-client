@@ -93,7 +93,7 @@ public class GauntletExtendedPlugin extends Plugin
 	private static final List<Integer> MAGE_WEAPONS = List.of(
 			ItemID.CORRUPTED_STAFF_BASIC, ItemID.CORRUPTED_STAFF_ATTUNED,
 			ItemID.CORRUPTED_STAFF_PERFECTED, ItemID.CRYSTAL_STAFF_BASIC,
-			ItemID.CRYSTAL_BOW_ATTUNED, ItemID.CRYSTAL_BOW_PERFECTED
+			ItemID.CRYSTAL_STAFF_ATTUNED, ItemID.CRYSTAL_STAFF_PERFECTED
 	);
 
 	private static final List<Integer> POTIONS= List.of(
@@ -360,7 +360,7 @@ public class GauntletExtendedPlugin extends Plugin
 				.isPrayerActive(hunllef.getAttackPhase().getPrayer())) {
 			activatePrayer(hunllef.getAttackPhase().getPrayer());
 		}
-		if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.MAGIC && isItemEquipped(MAGE_WEAPONS)) {
+		else if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.MAGIC && isItemEquipped(MAGE_WEAPONS)) {
 			if (getItems(RANGE_WEAPONS) != null) {
 				rangeWeapon();
 			} else if (getItems(MELEE_WEAPONS) != null) {
@@ -368,7 +368,7 @@ public class GauntletExtendedPlugin extends Plugin
 			}
 
 		}
-		if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.MELEE && isItemEquipped(MELEE_WEAPONS)) {
+		else if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.MELEE && isItemEquipped(MELEE_WEAPONS)) {
 			if (getItems(MAGE_WEAPONS) != null) {
 				mageWeapon();
 			} else if (getItems(RANGE_WEAPONS) != null) {
@@ -376,7 +376,7 @@ public class GauntletExtendedPlugin extends Plugin
 			}
 
 		}
-		if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.RANGED && isItemEquipped(RANGE_WEAPONS)) {
+		else if (inHunllef && hunllef.getNpc().getComposition().getOverheadIcon() == HeadIcon.RANGED && isItemEquipped(RANGE_WEAPONS)) {
 			if (getItems(MELEE_WEAPONS) != null) {
 				meleeWeapon();
 			} else if (getItems(MAGE_WEAPONS) != null) {
@@ -387,10 +387,10 @@ public class GauntletExtendedPlugin extends Plugin
 		if (isItemEquipped(RANGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
 			activatePrayer(config.rangeoffensivePrayer().getPrayer());
 		}
-		if (isItemEquipped(MAGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
+		else if (isItemEquipped(MAGE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
 			activatePrayer(config.magicoffensivePrayer().getPrayer());
 		}
-		if (isItemEquipped(MELEE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
+		else if (isItemEquipped(MELEE_WEAPONS) && config.offensivePrayerToggle() && inHunllef) {
 			activatePrayer(config.meleeoffensivePrayer().getPrayer());
 		}
 		int currentPrayerPoints = client.getBoostedSkillLevel(Skill.PRAYER);
