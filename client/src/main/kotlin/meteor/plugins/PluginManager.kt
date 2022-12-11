@@ -88,6 +88,7 @@ import meteor.plugins.oneclickchins.Oneclickchinsplugin
 import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
 import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
+import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -122,6 +123,7 @@ object PluginManager {
     init {
         init<Meteor>()
         init<AgilityPlugin>()
+        init<AlchemicalHydraPlugin>()
         init<AmmoPlugin>()
         init<AnimationSmoothingPlugin>()
         init<AoeWarningPlugin>()
