@@ -15,7 +15,7 @@ interface KeyRemappingConfig : Config {
         keyName = "cameraRemap",
         name = "Remap Camera",
         description = "Configures whether the camera movement uses remapped keys",
-        section = "Settings for remapping the camera"
+        section = "Camera Remapping"
     )
     fun cameraRemap(): Boolean {
         return true
@@ -26,7 +26,7 @@ interface KeyRemappingConfig : Config {
         keyName = "up",
         name = "Camera Up key",
         description = "The key which will replace up.",
-        section = "Settings for remapping the camera"
+        section = "Camera Remapping"
     )
     fun up(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_W, 0)
@@ -37,10 +37,10 @@ interface KeyRemappingConfig : Config {
         keyName = "down",
         name = "Camera Down key",
         description = "The key which will replace down.",
-        section = "Settings for remapping the camera"
+        section = "Camera Remapping"
     )
     fun down(): ModifierlessKeybind {
-        return ModifierlessKeybind(KeyEvent.VK_S, 0)
+        return ModifierlessKeybind(KeyEvent.VK_Z, 0)
     }
 
     @ConfigItem(
@@ -48,10 +48,10 @@ interface KeyRemappingConfig : Config {
         keyName = "left",
         name = "Camera Left key",
         description = "The key which will replace left.",
-        section = "Settings for remapping the camera"
+        section = "Camera Remapping"
     )
     fun left(): ModifierlessKeybind {
-        return ModifierlessKeybind(KeyEvent.VK_A, 0)
+        return ModifierlessKeybind(KeyEvent.VK_X, 0)
     }
 
     @ConfigItem(
@@ -59,7 +59,7 @@ interface KeyRemappingConfig : Config {
         keyName = "right",
         name = "Camera Right key",
         description = "The key which will replace right.",
-        section = "Settings for remapping the camera"
+        section = "Camera Remapping"
     )
     fun right(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_D, 0)
@@ -70,7 +70,7 @@ interface KeyRemappingConfig : Config {
         keyName = "fkeyRemap",
         name = "Remap F Keys",
         description = "Configures whether F-Keys use remapped keys",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun fkeyRemap(): Boolean {
         return false
@@ -81,7 +81,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f1",
         name = "F1",
         description = "The key which will replace {F1}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f1(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_1, 0)
@@ -92,7 +92,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f2",
         name = "F2",
         description = "The key which will replace {F2}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f2(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_2, 0)
@@ -103,7 +103,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f3",
         name = "F3",
         description = "The key which will replace {F3}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f3(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_3, 0)
@@ -114,7 +114,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f4",
         name = "F4",
         description = "The key which will replace {F4}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f4(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_4, 0)
@@ -125,7 +125,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f5",
         name = "F5",
         description = "The key which will replace {F5}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f5(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_5, 0)
@@ -136,7 +136,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f6",
         name = "F6",
         description = "The key which will replace {F6}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f6(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_6, 0)
@@ -147,7 +147,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f7",
         name = "F7",
         description = "The key which will replace {F7}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f7(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_7, 0)
@@ -158,7 +158,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f8",
         name = "F8",
         description = "The key which will replace {F8}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f8(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_8, 0)
@@ -169,7 +169,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f9",
         name = "F9",
         description = "The key which will replace {F9}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f9(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_9, 0)
@@ -180,7 +180,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f10",
         name = "F10",
         description = "The key which will replace {F10}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f10(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_0, 0)
@@ -191,7 +191,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f11",
         name = "F11",
         description = "The key which will replace {F11}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f11(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_MINUS, 0)
@@ -202,7 +202,7 @@ interface KeyRemappingConfig : Config {
         keyName = "f12",
         name = "F12",
         description = "The key which will replace {F12}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun f12(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_EQUALS, 0)
@@ -213,7 +213,7 @@ interface KeyRemappingConfig : Config {
         keyName = "esc",
         name = "ESC",
         description = "The key which will replace {ESC}.",
-        section = "Settings for remapping the F Keys"
+        section = "F Key Remapping"
     )
     fun esc(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_ESCAPE, 0)
@@ -240,10 +240,17 @@ interface KeyRemappingConfig : Config {
     }
 
 
-    @ConfigSection(name = "Camera Remapping", description = "Settings for remapping the camera", position = 0)
+    @ConfigSection(
+        name = "Camera Remapping",
+        description = "Settings for remapping the camera",
+        position = 0,
+        closedByDefault = false)
     val cameraSection: String
 
-    @ConfigSection(name = "F Key Remapping", description = "Settings for remapping the F Keys", position = 1)
+    @ConfigSection(name = "F Key Remapping",
+        description = "Settings for remapping the F Keys",
+        position = 1,
+        closedByDefault = false)
     val SettingsforremappingtheFKeys: String
 
 }

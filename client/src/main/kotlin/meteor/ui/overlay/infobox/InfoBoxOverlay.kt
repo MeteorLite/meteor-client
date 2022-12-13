@@ -47,7 +47,7 @@ class InfoBoxOverlay internal constructor(
     private val infoboxManager = InfoBoxManager
     private val tooltipManager = TooltipManager
     override val name: String
-    val config = Main.meteorConfig!!
+    val config = Main.meteorConfig
 
     val infoBoxes = CopyOnWriteArrayList<InfoBox>()
     var orientation: ComponentOrientation
@@ -117,7 +117,7 @@ class InfoBoxOverlay internal constructor(
             val intersectionRectangle: Rectangle = Rectangle(component.bounds)
             intersectionRectangle.translate(bounds!!.x, bounds!!.y)
             if (intersectionRectangle.contains(mouse)) {
-                val tooltip: String = component.tooltip!!
+                val tooltip: String? = component.tooltip
                 if (!Strings.isNullOrEmpty(tooltip)) {
                     tooltipManager.add(Tooltip(tooltip))
                 }
