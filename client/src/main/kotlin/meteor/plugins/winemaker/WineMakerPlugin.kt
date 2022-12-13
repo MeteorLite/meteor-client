@@ -12,7 +12,7 @@ import net.runelite.api.InventoryID
 import net.runelite.api.ItemID
 import net.runelite.api.MenuAction
 
-@PluginDescriptor(name = "Winemaker", description = "Makes wines in at the bank", enabledByDefault = false)
+@PluginDescriptor(name = "Winemaker", description = "Makes wines at the bank", enabledByDefault = false)
 class WineMakerPlugin: Plugin() {
     private var ticktimer = 0
 
