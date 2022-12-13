@@ -90,6 +90,7 @@ import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
 import meteor.plugins.prayerpotdrinker.PrayerPotDrinker
+import meteor.plugins.kebabbuyer.KebabBuyerPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -225,6 +226,7 @@ object PluginManager {
         init<XpTrackerPlugin>()
         init<ZulrahPlugin>()
         init<PrayerPotDrinker>()
+        init<KebabBuyerPlugin>()
     }
 
     private fun loadExternal(jar: File) {
