@@ -330,6 +330,12 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         interact("Eat")
     }
 
+    fun drink() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Drink]")
+        interact("Drink")
+    }
+
     fun drop() {
         widgetId = WidgetInfo.INVENTORY.packedId
         log.info("[Drop]")

@@ -1,6 +1,5 @@
 /*
  * Copyright (c) 2020, dutta64 <https://github.com/dutta64>
- * Copyright (c) 2019, ganom <https://github.com/Ganom>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,29 +21,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package meteor.plugins.gauntletextended.entity
 
-package net.runelite.client.plugins.gauntletextended.entity;
+import lombok.EqualsAndHashCode
+import net.runelite.api.NPC
+import net.runelite.api.NpcID
+import java.awt.Color
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import net.runelite.api.NPC;
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+class Demiboss(@field:EqualsAndHashCode.Include val npc: NPC) {
+    val type: Type? = Type.fromId(npc.id)
 
-@RequiredArgsConstructor
-public class Tornado
-{
-	private static final int TICK_DURATION = 21;
+    enum class Type(private val ids: Set<Int>? = null, val outlineColor: Color? = null) {
+        BEAR(setOf(NpcID.CRYSTALLINE_BEAR, NpcID.CORRUPTED_BEAR), Color.RED), DARK_BEAST(
+            setOf(
+                NpcID.CRYSTALLINE_DARK_BEAST, NpcID.CORRUPTED_DARK_BEAST
+            ), Color.GREEN
+        ),
+        DRAGON(setOf(NpcID.CRYSTALLINE_DRAGON, NpcID.CORRUPTED_DRAGON), Color.BLUE);
 
-	@Getter
-	private int timeLeft = TICK_DURATION;
-
-	@Getter
-	private final NPC npc;
-
-	public void updateTimeLeft()
-	{
-		if (timeLeft >= 0)
-		{
-			timeLeft--;
-		}
-	}
+        companion object {
+            fun fromId(id: Int): Type? {
+                for (type in values()) {
+                    if (type.ids!!.contains(id)) {
+                        return type
+                    }
+                }
+                return null
+            }
+        }
+    }
 }

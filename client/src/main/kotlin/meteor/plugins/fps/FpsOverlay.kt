@@ -25,13 +25,13 @@
 package meteor.plugins.fps
 
 import eventbus.events.FocusChanged
+import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
 import meteor.ui.overlay.OverlayPriority
 import meteor.util.OverlayUtil
 import net.runelite.api.Point
 import net.runelite.api.widgets.WidgetInfo
-import net.runelite.client.plugins.gauntletextended.overlay.Overlay
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
@@ -47,7 +47,7 @@ import java.awt.Graphics2D
 class FpsOverlay internal constructor(
     plugin: FpsPlugin?, // Local dependencies
     private val config: FpsConfig
-) : Overlay(plugin) {
+) : Overlay() {
 
 
     // Often changing values
@@ -90,8 +90,6 @@ class FpsOverlay internal constructor(
         OverlayUtil.renderTextLocation(graphics, point, text, fpsValueColor)
         return null
     }
-
-    override fun determineLayer() {}
 
     companion object {
         private const val Y_OFFSET = 1

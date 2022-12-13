@@ -14,8 +14,8 @@ import meteor.ui.overlay.Overlay
 open class Plugin() : EventSubscriber() {
     var configuration: Config? = null
 
-    var client = Main.client
-    val overlayManager = Main.overlayManager
+    open var client = Main.client
+    open val overlayManager = Main.overlayManager
     val overlays = ArrayList<Overlay>()
     var running = false
 
