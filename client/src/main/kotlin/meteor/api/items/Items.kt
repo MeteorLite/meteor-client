@@ -76,6 +76,7 @@ object Items {
     fun getFirst(vararg ids: Int, container: InventoryID? = InventoryID.INVENTORY): Item? {
         return getAll(*ids, container = container)?.firstOrNull()
     }
+
     fun getFirst(container: InventoryID? = InventoryID.INVENTORY, vararg ids: Int): Item? {
         return getAll(*ids, container = container)?.firstOrNull()
     }
@@ -114,7 +115,6 @@ object Items {
                         slot++
                         continue
                     }
-
                     val newItem = Item(item.id, item.quantity)
                     newItem.widgetId = WidgetInfo.INVENTORY.packedId
                     newItem.slot = slot
@@ -171,6 +171,7 @@ object Items {
                     }
                     return@forEach
                 }
+
                 else -> {
                     currQuantity++
                     if (items.size - 1 == items.indexOf(it)) {
@@ -280,14 +281,11 @@ object Items {
                 }
                 return -1
             }
+
             else -> {
                 -1
             }
         }
-    }
-
-    private fun hasAction(vararg actions: String): Boolean {
-        return Arrays.stream(actions).anyMatch { x -> actions.contains(x) }
     }
 
     @JvmStatic
@@ -306,13 +304,14 @@ object Items {
                 Time.sleepUntil({ !Bank.isNotedWithdrawMode() }, 1200)
             }
 
-            if (withdrawOption == Bank.WithdrawOption.X && hasAction("Withdraw-$amount")) {
+            if (withdrawOption == Bank.WithdrawOption.X && item.actions?.contains("Withdraw-$amount") == true) {
                 item.interact(Bank.WithdrawOption.LAST_QUANTITY.menuIndex)
             } else {
                 item.interact(withdrawOption.menuIndex)
                 if (withdrawOption == Bank.WithdrawOption.X) {
                     Time.sleepUntil({ Dialog.isEnterInputOpen() }, 1200)
                     Dialog.enterInput(amount)
+                    Time.sleepUntil({ !Dialog.isOpen() }, 1200)
                 }
             }
         }
@@ -325,14 +324,17 @@ object Items {
 
             val withdrawOption = Bank.WithdrawOption.ofAmount(item, amount)
 
-            if (withdrawOption == Bank.WithdrawOption.X && hasAction("Deposit-$amount")) {
+            if (withdrawOption == Bank.WithdrawOption.X && item.actions?.contains("Deposit-$amount") == true) {
                 item.interact(Bank.WithdrawOption.LAST_QUANTITY.menuIndex + 1)
+            } else if (withdrawOption == Bank.WithdrawOption.ALL && item.actions?.contains("Deposit-All") == true) {
+                item.interact(Bank.WithdrawOption.ALL.menuIndex + 1)
             } else {
                 val menu = item.getMenu(withdrawOption.menuIndex + 1)
                 menu?.let {
                     ClientPackets.createClientPacket(it)!!.send()
                     if (withdrawOption == Bank.WithdrawOption.X) {
                         Dialog.enterInput(amount)
+                        Time.sleepUntil({ !Dialog.isOpen() }, 1200)
                     }
                 }
             }
@@ -350,6 +352,7 @@ object Items {
             } else {
                 item.interact("Offer-X")
                 Dialog.enterInput(quantity)
+                Time.sleepUntil({ !Dialog.isOpen() }, 1200)
             }
         }
     }
