@@ -40,7 +40,7 @@ interface KeyRemappingConfig : Config {
         section = "Camera Remapping"
     )
     fun down(): ModifierlessKeybind {
-        return ModifierlessKeybind(KeyEvent.VK_Z, 0)
+        return ModifierlessKeybind(KeyEvent.VK_S, 0)
     }
 
     @ConfigItem(
@@ -51,7 +51,7 @@ interface KeyRemappingConfig : Config {
         section = "Camera Remapping"
     )
     fun left(): ModifierlessKeybind {
-        return ModifierlessKeybind(KeyEvent.VK_X, 0)
+        return ModifierlessKeybind(KeyEvent.VK_A, 0)
     }
 
     @ConfigItem(
