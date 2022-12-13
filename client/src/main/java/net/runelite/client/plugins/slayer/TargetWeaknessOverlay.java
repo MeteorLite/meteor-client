@@ -33,6 +33,7 @@ import javax.inject.Inject;
 import meteor.Main;
 import meteor.game.ItemManager;
 import meteor.game.NPCManager;
+import meteor.ui.overlay.Overlay;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.util.OverlayUtil;
@@ -41,7 +42,7 @@ import net.runelite.api.NPC;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.client.plugins.gauntletextended.overlay.Overlay;
+
 
 class TargetWeaknessOverlay extends Overlay
 {
@@ -53,7 +54,7 @@ class TargetWeaknessOverlay extends Overlay
 
 	TargetWeaknessOverlay(SlayerPlugin plugin, SlayerConfig config)
 	{
-		super(plugin);
+		super();
 		this.client = Main.client;
 		this.config = config;
 		this.plugin = plugin;
@@ -136,10 +137,5 @@ class TargetWeaknessOverlay extends Overlay
 		{
 			OverlayUtil.INSTANCE.renderImageLocation(graphics, imageLoc, image);
 		}
-	}
-
-	@Override
-	public void determineLayer() {
-
 	}
 }

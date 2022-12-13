@@ -32,10 +32,10 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import com.questhelper.questhelpers.QuestHelper;
 import meteor.Main;
+import meteor.ui.overlay.Overlay;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.ui.overlay.OverlayPriority;
-import net.runelite.client.plugins.gauntletextended.overlay.Overlay;
 import org.jetbrains.annotations.NotNull;
 import org.rationalityfrontline.kevent.KEvent;
 
@@ -45,7 +45,7 @@ public class QuestHelperWidgetOverlay extends Overlay
 
 	public QuestHelperWidgetOverlay(QuestHelperPlugin plugin)
 	{
-		super(plugin);
+		super();
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ALWAYS_ON_TOP);
 		setPriority(OverlayPriority.HIGH);
@@ -82,8 +82,4 @@ public class QuestHelperWidgetOverlay extends Overlay
 		return "qhwidgetOverlay";
 	}
 
-	@Override
-	public void determineLayer() {
-
-	}
 }

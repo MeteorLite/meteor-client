@@ -133,7 +133,6 @@ class HydraExtraOverlay(
                 if (hpLeft <= 83) {
                     textColor = Color.RED
                 }
-                println(hpLeft)
                 val text = hpLeft.toString()
                 val textLoc = plugin.hydra!!.npc.getCanvasTextLocation(graphics, text, 75)
                 if (textLoc != null) {

@@ -22,6 +22,11 @@ object Items {
         return false
     }
 
+    fun inventoryContainsAny(ids: MutableList<Int>): Boolean {
+        ids.forEach { if (inventoryContains(it)) return true }
+        return false
+    }
+
     fun inventoryContains(vararg names: String): Boolean {
         names.forEach { if (inventoryContains(it)) return true }
         return false

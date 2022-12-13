@@ -21,37 +21,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package meteor.plugins.gauntletextended.overlay
 
-package net.runelite.client.plugins.gauntletextended.overlay;
+import meteor.ui.overlay.OverlayLayer
+import meteor.plugins.Plugin
+import meteor.ui.overlay.Overlay
+import java.awt.*
 
+abstract class Overlay protected constructor(plugin: Plugin?) : Overlay(OverlayLayer.ABOVE_SCENE) {
+    abstract fun determineLayer()
 
-import meteor.plugins.Plugin;
-import meteor.ui.overlay.OverlayLayer;
-
-import java.awt.*;
-
-public abstract class Overlay extends meteor.ui.overlay.Overlay
-{
-	protected Overlay(final Plugin plugin)
-	{
-		super(OverlayLayer.ABOVE_SCENE);
-	}
-
-	public abstract void determineLayer();
-
-	static void drawOutlineAndFill(final Graphics2D graphics2D, final Color outlineColor, final Color fillColor, final float strokeWidth, final Shape shape)
-	{
-		final Color originalColor = graphics2D.getColor();
-		final Stroke originalStroke = graphics2D.getStroke();
-
-		graphics2D.setStroke(new BasicStroke(strokeWidth));
-		graphics2D.setColor(outlineColor);
-		graphics2D.draw(shape);
-
-		graphics2D.setColor(fillColor);
-		graphics2D.fill(shape);
-
-		graphics2D.setColor(originalColor);
-		graphics2D.setStroke(originalStroke);
-	}
+    companion object {
+        fun drawOutlineAndFill(
+            graphics2D: Graphics2D,
+            outlineColor: Color?,
+            fillColor: Color?,
+            strokeWidth: Float,
+            shape: Shape?
+        ) {
+            val originalColor = graphics2D.color
+            val originalStroke = graphics2D.stroke
+            graphics2D.stroke = BasicStroke(strokeWidth)
+            graphics2D.color = outlineColor
+            graphics2D.draw(shape)
+            graphics2D.color = fillColor
+            graphics2D.fill(shape)
+            graphics2D.color = originalColor
+            graphics2D.stroke = originalStroke
+        }
+    }
 }
