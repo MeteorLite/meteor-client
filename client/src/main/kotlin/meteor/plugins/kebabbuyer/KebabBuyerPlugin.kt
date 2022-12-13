@@ -70,10 +70,8 @@ class KebabBuyerPlugin : Plugin() {
     }
 
     private fun buyKebabs() {
-        if (!Movement.isRunEnabled()) {
+        if (!Movement.isRunEnabled() && Movement.isWalking()) {
             Movement.toggleRun()
-            ticktimer = 2
-            return
         }
 
         if (Movement.isWalking()) {
