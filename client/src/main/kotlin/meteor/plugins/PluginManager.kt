@@ -89,6 +89,7 @@ import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
 import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
+import meteor.plugins.winemaker.WineMakerPlugin
 import meteor.plugins.prayerpotdrinker.PrayerPotDrinker
 import meteor.plugins.kebabbuyer.KebabBuyerPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
@@ -225,6 +226,7 @@ object PluginManager {
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
         init<ZulrahPlugin>()
+        init<WineMakerPlugin>()
         init<PrayerPotDrinker>()
         init<KebabBuyerPlugin>()
     }
