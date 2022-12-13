@@ -89,6 +89,7 @@ import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
 import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
+import meteor.plugins.winemaker.WineMakerPlugin
 import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
@@ -223,6 +224,7 @@ object PluginManager {
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
         init<ZulrahPlugin>()
+        init<WineMakerPlugin>()
     }
 
     private fun loadExternal(jar: File) {
