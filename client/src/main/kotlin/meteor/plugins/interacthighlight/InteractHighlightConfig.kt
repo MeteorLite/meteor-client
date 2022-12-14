@@ -34,7 +34,7 @@ interface InteractHighlightConfig : Config {
         name = "Show on hover",
         description = "Outline NPCs when hovered",
         position = 1,
-        section = "Settings for NPC highlight"
+        section = "NPCs"
     )
     fun npcShowHover(): Boolean {
         return true
@@ -45,7 +45,7 @@ interface InteractHighlightConfig : Config {
         name = "Show on interact",
         description = "Outline NPCs when interacted",
         position = 2,
-        section = "Settings for NPC highlight"
+        section = "NPCs"
     )
     fun npcShowInteract(): Boolean {
         return true
@@ -57,7 +57,7 @@ interface InteractHighlightConfig : Config {
         name = "NPC hover",
         description = "The color of the hover outline for NPCs",
         position = 3,
-        section = "Settings for NPC highlight"
+        section = "NPCs"
     )
     fun npcHoverHighlightColor(): Color? {
         return Color(-0x6f000100, true)
@@ -69,7 +69,7 @@ interface InteractHighlightConfig : Config {
         name = "NPC attack hover",
         description = "The color of the attack hover outline for NPCs",
         position = 4,
-        section = "Settings for NPC highlight"
+        section = "NPCs"
     )
     fun npcAttackHoverHighlightColor(): Color? {
         return Color(-0x6f000100, true)
@@ -81,7 +81,7 @@ interface InteractHighlightConfig : Config {
         name = "NPC interact",
         description = "The color of the target outline for NPCs",
         position = 5,
-        section = "Settings for NPC highlight"
+        section = "NPCs"
     )
     fun npcInteractHighlightColor(): Color? {
         return Color(-0x6f010000, true)
@@ -93,7 +93,7 @@ interface InteractHighlightConfig : Config {
         name = "NPC attack",
         description = "The color of the outline on attacked NPCs",
         position = 6,
-        section = "Settings for NPC highlight"
+        section = "NPCs"
     )
     fun npcAttackHighlightColor(): Color? {
         return Color(-0x6f010000, true)
@@ -104,7 +104,7 @@ interface InteractHighlightConfig : Config {
         name = "Show on hover",
         description = "Outline objects when hovered",
         position = 1,
-        section = "Settings for object highlight"
+        section = "Objects"
     )
     fun objectShowHover(): Boolean {
         return true
@@ -115,7 +115,7 @@ interface InteractHighlightConfig : Config {
         name = "Show on interact",
         description = "Outline objects when interacted",
         position = 2,
-        section = "Settings for object highlight"
+        section = "Objects"
     )
     fun objectShowInteract(): Boolean {
         return true
@@ -127,7 +127,7 @@ interface InteractHighlightConfig : Config {
         name = "Object hover",
         description = "The color of the hover outline for objects",
         position = 4,
-        section = "Settings for object highlight"
+        section = "Objects"
     )
     fun objectHoverHighlightColor(): Color? {
         return Color(-0x6fff0001, true)
@@ -139,7 +139,7 @@ interface InteractHighlightConfig : Config {
         name = "Object interact",
         description = "The color of the target outline for objects",
         position = 6,
-        section = "Settings for object highlight"
+        section = "Objects"
     )
     fun objectInteractHighlightColor(): Color? {
         return Color(-0x6f010000, true)
