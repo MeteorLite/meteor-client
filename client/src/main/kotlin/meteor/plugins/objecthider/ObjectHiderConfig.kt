@@ -12,7 +12,7 @@ interface ObjectHiderConfig : Config {
         name = "Object IDs",
         description = "Configure hidden objects by id. Format: (id), (id)",
         position = 1,
-        section = "Hide Objects ID"
+        section = "Hide by ID"
     )
     fun objectIds(): String {
         return ""
@@ -34,7 +34,7 @@ interface ObjectHiderConfig : Config {
         name = "Hide all game objects",
         description = "",
         position = 5,
-        section = "Hide All Object"
+        section = "Hide all objects"
     )
     fun hideAllGameObjects(): Boolean {
         return false
@@ -45,7 +45,7 @@ interface ObjectHiderConfig : Config {
         name = "Hide all decorative objects",
         description = "",
         position = 6,
-        section = "Hide All Object"
+        section = "Hide all objects"
     )
     fun hideAllDecorativeObjects(): Boolean {
         return false
@@ -56,7 +56,7 @@ interface ObjectHiderConfig : Config {
         name = "Hide all wall objects",
         description = "",
         position = 7,
-        section = "Hide All Object"
+        section = "Hide all objects"
     )
     fun hideAllWallObjects(): Boolean {
         return false
@@ -67,7 +67,7 @@ interface ObjectHiderConfig : Config {
         name = "Hide all ground objects",
         description = "",
         position = 8,
-        section = "Hide All Object"
+        section = "Hide all objects"
     )
     fun hideAllGroundObjects(): Boolean {
         return false

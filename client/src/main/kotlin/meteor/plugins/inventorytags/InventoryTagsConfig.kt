@@ -34,7 +34,7 @@ interface InventoryTagsConfig : Config {
         keyName = "showTagOutline",
         name = "Outline",
         description = "Configures whether or not item tags show be outlined",
-        section = "How tags are displayed in the inventory"
+        section = "Tag display mode"
     )
     fun showTagOutline(): Boolean {
         return true
@@ -45,7 +45,7 @@ interface InventoryTagsConfig : Config {
         keyName = "tagUnderline",
         name = "Underline",
         description = "Configures whether or not item tags should be underlined",
-        section = "How tags are displayed in the inventory"
+        section = "Tag display mode"
     )
     fun showTagUnderline(): Boolean {
         return false
@@ -56,7 +56,7 @@ interface InventoryTagsConfig : Config {
         keyName = "tagFill",
         name = "Fill",
         description = "Configures whether or not item tags should be filled",
-        section = "How tags are displayed in the inventory"
+        section = "Tag display mode"
     )
     fun showTagFill(): Boolean {
         return false
@@ -68,7 +68,7 @@ interface InventoryTagsConfig : Config {
         keyName = "fillOpacity",
         name = "Fill opacity",
         description = "Configures the opacity of the tag \"Fill\"",
-        section = "How tags are displayed in the inventory"
+        section = "Tag display mode"
     )
     fun fillOpacity(): Int {
         return 50
