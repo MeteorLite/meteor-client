@@ -89,6 +89,7 @@ import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
 import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
+import meteor.plugins.autoeater.AutoEaterPlugin
 import meteor.plugins.oneclicksandstone.OneClickSandstonePlugin
 import meteor.plugins.runepouch.RunepouchPlugin
 import meteor.plugins.winemaker.WineMakerPlugin
@@ -137,6 +138,7 @@ object PluginManager {
         init<AutoAlchPlugin>()
         init<AutoBankPinPlugin>()
         init<AutoClickerPlugin>()
+        init<AutoEaterPlugin>()
         init<AutoLoginPlugin>()
         init<AutoLogHop>()
         init<AutoRunPlugin>()
