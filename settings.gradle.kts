@@ -5,7 +5,7 @@ pluginManagement {
     }
 }
 plugins {
-    id("de.fayard.refreshVersions") version("0.50.2")
+    id("de.fayard.refreshVersions") version("0.51.0")
 }
 rootProject.name = "meteor-client"
 

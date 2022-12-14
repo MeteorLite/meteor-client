@@ -3,8 +3,8 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version "1.3.0-alpha01-dev827"
-    kotlin("plugin.serialization") version "1.7.20"
+    id("org.jetbrains.compose") version "1.3.0-beta04-dev885"
+    kotlin("plugin.serialization") version "1.7.21"
     java
     `maven-publish`
 }
@@ -42,7 +42,7 @@ dependencies {
     runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.70")
 
     //GPU
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation(group = "net.runelite.jocl", name = "jocl", version = "_")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-x64")
     runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-arm64")
@@ -89,12 +89,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:_")
 }
 
-tasks {
-    processResources {
-        dependsOn(":injector:inject")
-        dependsOn(":scripts:assembleScripts")
-    }
-    compose.desktop {
+compose {
+    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0-dev-k1.8.0-RC-4c1865595ed")
+
+    desktop {
         application {
             mainClass = "meteor.Main"
             nativeDistributions {
@@ -119,6 +117,13 @@ tasks {
                 "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED"
             )
         }
+    }
+}
+
+tasks {
+    processResources {
+        dependsOn(":injector:inject")
+        dependsOn(":scripts:assembleScripts")
     }
     jar {
         archiveFileName.set("meteor-client-$majorRelease-r$release.jar")
