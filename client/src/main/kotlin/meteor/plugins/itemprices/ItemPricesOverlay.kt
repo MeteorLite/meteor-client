@@ -38,6 +38,7 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
 
+
 class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
     val config = plugin.config
     private val tooltipManager = TooltipManager
@@ -60,7 +61,7 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
             return null
         }
         val menuEntry = menuEntries[last]
-        val action = MenuAction.of(menuEntry.type.id)
+        val action = menuEntry.type
         val widgetId = menuEntry.param1
         val groupId = WidgetInfo.TO_GROUP(widgetId)
         val isAlching = menuEntry.option == "Cast" && menuEntry.target
@@ -119,13 +120,13 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
                     }
                 }
                 WidgetID.INVENTORY_GROUP_ID -> {
-                    if (config.hideInventory() && !(config.showWhileAlching() && isAlching)) {
-                        return null
-                    }
                     val text = makeValueTooltip(menuEntry)
                     if (text != null) {
                         tooltipManager
                             .add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
+                    }
+                    if (config.hideInventory() && !(config.showWhileAlching() && isAlching)) {
+                        return null
                     }
                 }
                 WidgetID.BANK_GROUP_ID, WidgetID.BANK_INVENTORY_GROUP_ID, WidgetID.SEED_VAULT_GROUP_ID, WidgetID.SEED_VAULT_INVENTORY_GROUP_ID -> {
@@ -139,6 +140,40 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
             else -> {}
         }
         return null
+    }
+
+    private fun addTooltip(menuEntry: MenuEntry, isAlching: Boolean, groupId: Int) {
+        // Item tooltip values
+        when (groupId) {
+            WidgetID.EXPLORERS_RING_ALCH_GROUP_ID -> {
+                if (!config.showWhileAlching()) {
+                    return
+                }
+                if (config.hideInventory() && (!config.showWhileAlching() || !isAlching)) {
+                    return
+                }
+                // Make tooltip
+                val text = makeValueTooltip(menuEntry)
+                if (text != null) {
+                    tooltipManager.add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
+                }
+            }
+            WidgetID.INVENTORY_GROUP_ID, WidgetID.POH_TREASURE_CHEST_INVENTORY_GROUP_ID -> {
+                if (config.hideInventory() && (!config.showWhileAlching() || !isAlching)) {
+                    return
+                }
+                val text = makeValueTooltip(menuEntry)
+                if (text != null) {
+                    tooltipManager.add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
+                }
+            }
+            WidgetID.BANK_GROUP_ID, WidgetID.BANK_INVENTORY_GROUP_ID, WidgetID.SEED_VAULT_GROUP_ID, WidgetID.SEED_VAULT_INVENTORY_GROUP_ID -> {
+                val text = makeValueTooltip(menuEntry)
+                if (text != null) {
+                    tooltipManager.add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
+                }
+            }
+        }
     }
 
     private fun makeValueTooltip(menuEntry: MenuEntry): String? {

@@ -37,4 +37,14 @@ class ItemPricesPlugin : Plugin() {
     var config = configuration<ItemPricesConfig>()
     val overlay = overlay(ItemPricesOverlay(this))
 
+
+    @Throws(Exception::class)
+    override fun onStart() {
+        overlayManager.add(overlay)
+    }
+
+    @Throws(Exception::class)
+    override fun onStop() {
+        overlayManager.remove(overlay)
+    }
 }
