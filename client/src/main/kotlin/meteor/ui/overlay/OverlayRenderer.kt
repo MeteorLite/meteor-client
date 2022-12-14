@@ -154,39 +154,39 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             var y = originalY
             var width = currentManagedBounds!!.width
             var height = currentManagedBounds!!.height
-/*            when (meteorUI.getCurrentCursor().getType()) {
-                Cursor.N_RESIZE_CURSOR -> {
-                    y += top
-                    height -= top
-                }
-                Cursor.NW_RESIZE_CURSOR -> {
-                    x += left
-                    y += top
-                    width -= left
-                    height -= top
-                }
-                Cursor.W_RESIZE_CURSOR -> {
-                    x += left
-                    width -= left
-                }
-                Cursor.SW_RESIZE_CURSOR -> {
-                    x += left
-                    width -= left
-                    height = top
-                }
-                Cursor.S_RESIZE_CURSOR -> height = top
-                Cursor.SE_RESIZE_CURSOR -> {
-                    width = left
-                    height = top
-                }
-                Cursor.E_RESIZE_CURSOR -> width = left
-                Cursor.NE_RESIZE_CURSOR -> {
-                    y += top
-                    width = left
-                    height -= top
-                }
-                else -> {}
-            }*/
+            /*            when (meteorUI.getCurrentCursor().getType()) {
+                            Cursor.N_RESIZE_CURSOR -> {
+                                y += top
+                                height -= top
+                            }
+                            Cursor.NW_RESIZE_CURSOR -> {
+                                x += left
+                                y += top
+                                width -= left
+                                height -= top
+                            }
+                            Cursor.W_RESIZE_CURSOR -> {
+                                x += left
+                                width -= left
+                            }
+                            Cursor.SW_RESIZE_CURSOR -> {
+                                x += left
+                                width -= left
+                                height = top
+                            }
+                            Cursor.S_RESIZE_CURSOR -> height = top
+                            Cursor.SE_RESIZE_CURSOR -> {
+                                width = left
+                                height = top
+                            }
+                            Cursor.E_RESIZE_CURSOR -> width = left
+                            Cursor.NE_RESIZE_CURSOR -> {
+                                y += top
+                                width = left
+                                height -= top
+                            }
+                            else -> {}
+                        }*/
             val minOverlaySize: Int = currentManagedOverlay!!.minimumSize
             val widthOverflow = Math.max(0, minOverlaySize - width)
             val heightOverflow = Math.max(0, minOverlaySize - height)
@@ -259,18 +259,18 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             -OVERLAY_RESIZE_TOLERANCE
         )
         val outcode = toleranceRect.outcode(mouseEvent.point)
-/*            when (outcode) {
-                Rectangle.OUT_TOP -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR))
-                Rectangle.OUT_TOP or Rectangle.OUT_LEFT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR))
-                Rectangle.OUT_LEFT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR))
-                Rectangle.OUT_LEFT or Rectangle.OUT_BOTTOM -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR))
-                Rectangle.OUT_BOTTOM -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR))
-                Rectangle.OUT_BOTTOM or Rectangle.OUT_RIGHT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR))
-                Rectangle.OUT_RIGHT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR))
-                Rectangle.OUT_RIGHT or Rectangle.OUT_TOP -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR))
-                else ->         // center
-                    meteorUI.setCursor(meteorUI.getDefaultCursor())
-            }*/
+        /*            when (outcode) {
+                        Rectangle.OUT_TOP -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR))
+                        Rectangle.OUT_TOP or Rectangle.OUT_LEFT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR))
+                        Rectangle.OUT_LEFT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR))
+                        Rectangle.OUT_LEFT or Rectangle.OUT_BOTTOM -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR))
+                        Rectangle.OUT_BOTTOM -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR))
+                        Rectangle.OUT_BOTTOM or Rectangle.OUT_RIGHT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR))
+                        Rectangle.OUT_RIGHT -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR))
+                        Rectangle.OUT_RIGHT or Rectangle.OUT_TOP -> meteorUI.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR))
+                        else ->         // center
+                            meteorUI.setCursor(meteorUI.getDefaultCursor())
+                    }*/
         return mouseEvent
     }
 
@@ -533,25 +533,25 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         )
     }
 
-/*    private fun createRightClickMenuEntries(overlay: Overlay): Array<MenuEntry>? {
-        val menuEntries: List<OverlayMenuEntry> = overlay.menuEntries
-        if (menuEntries.isEmpty()) {
-            return null
-        }
-        val entries = ArrayList<MenuEntry>()
+    /*    private fun createRightClickMenuEntries(overlay: Overlay): Array<MenuEntry>? {
+            val menuEntries: List<OverlayMenuEntry> = overlay.menuEntries
+            if (menuEntries.isEmpty()) {
+                return null
+            }
+            val entries = ArrayList<MenuEntry>()
 
-        // Add in reverse order so they display correctly in the right-click menu
-        for (i in menuEntries.indices.reversed()) {
-            val overlayMenuEntry = menuEntries[i]
-            val entry = MenuEntry()
-            entry.option = overlayMenuEntry.option
-            entry.target = meteor.util.ColorUtil.wrapWithColorTag(overlayMenuEntry.target, JagexColors.MENU_TARGET)
-            entry.type = overlayMenuEntry.menuAction!!.id
-            entry.identifier = OverlayManager.overlays.indexOf(overlay) // overlay id
-            entries.add(entry)
-        }
-        return entries.toArray(arrayOf(MenuEntry()))
-    }*/
+            // Add in reverse order so they display correctly in the right-click menu
+            for (i in menuEntries.indices.reversed()) {
+                val overlayMenuEntry = menuEntries[i]
+                val entry = MenuEntry()
+                entry.option = overlayMenuEntry.option
+                entry.target = meteor.util.ColorUtil.wrapWithColorTag(overlayMenuEntry.target, JagexColors.MENU_TARGET)
+                entry.type = overlayMenuEntry.menuAction!!.id
+                entry.identifier = OverlayManager.overlays.indexOf(overlay) // overlay id
+                entries.add(entry)
+            }
+            return entries.toArray(arrayOf(MenuEntry()))
+        }*/
 
     fun renderAfterInterface(
         graphics: Graphics2D, interfaceId: Int,
@@ -725,7 +725,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
         // Set font based on configuration
         graphics.font = fontManager.runescapeSmallFont
         graphics.translate(point.x, point.y)
-        overlay.bounds!!.location = point
+        overlay.bounds?.location = point
         val overlayDimension: Dimension? = try {
             overlay.render(graphics)
         } catch (ex: Exception) {
@@ -733,7 +733,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             return
         }
         val dimension = MoreObjects.firstNonNull(overlayDimension, Dimension())
-        overlay.bounds!!.size = dimension
+        overlay.bounds?.size = dimension
     }
 
     private fun resetOverlayManagementMode() {

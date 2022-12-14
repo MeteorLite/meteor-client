@@ -89,6 +89,8 @@ import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
 import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
+import meteor.plugins.oneclicksandstone.OneClickSandstonePlugin
+import meteor.plugins.runepouch.RunepouchPlugin
 import meteor.plugins.winemaker.WineMakerPlugin
 import meteor.plugins.prayerpotdrinker.PrayerPotDrinker
 import meteor.plugins.kebabbuyer.KebabBuyerPlugin
@@ -187,6 +189,7 @@ object PluginManager {
         init<ItemPricesPlugin>()
         init<ItemStatPlugin>()
         init<JadAutoPrayerPlugin>()
+        init<KebabBuyerPlugin>()
         init<KeyboardBankPinPlugin>()
         init<KeyRemappingPlugin>()
         init<LootTrackerPlugin>()
@@ -207,11 +210,14 @@ object PluginManager {
         init<Oneclickchinsplugin>()
         init<OneClickGlassblowingPlugin>()
         init<OneClickFurnacePlugin>()
+        init<OneClickSandstonePlugin>()
         init<OlmSwapperPlugin>()
         init<PuzzleSolverPlugin>()
         init<PvPKeys>()
         init<PrayerFlickerPlugin>()
+        init<PrayerPotDrinker>()
         init<QuestHelperPlugin>()
+        init<RunepouchPlugin>()
         init<RsnHiderPlugin>()
         init<SlayerPlugin>()
         init<SpecBarPlugin>()
@@ -221,14 +227,12 @@ object PluginManager {
         init<TilemanModePlugin>()
         init<TimersPlugin>()
         init<VirtualLevelsPlugin>()
+        init<WineMakerPlugin>()
         init<WorldMapPlugin>()
         init<WorldMapWalkerPlugin>()
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
         init<ZulrahPlugin>()
-        init<WineMakerPlugin>()
-        init<PrayerPotDrinker>()
-        init<KebabBuyerPlugin>()
     }
 
     private fun loadExternal(jar: File) {
