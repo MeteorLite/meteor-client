@@ -11,10 +11,7 @@ import meteor.events.NpcLootReceived
 import meteor.events.PlayerLootReceived
 import meteor.events.PluginChanged
 import net.runelite.api.events.MenuOpened
-import org.rationalityfrontline.kevent.KEvent
-import org.rationalityfrontline.kevent.KEventSubscriber
-import org.rationalityfrontline.kevent.unsubscribeAll
-import org.rationalityfrontline.kevent.subscribe as kSubscribe
+import org.rationalityfrontline.kevent.*
 
 open class EventSubscriber : KEventSubscriber {
     var eventListening: Boolean = false
@@ -343,7 +340,7 @@ open class EventSubscriber : KEventSubscriber {
     }
 
     private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {
-        kSubscribe(type) { event -> unit.invoke(event.data) }
+        subscribe(type, threadMode = SubscriberThreadMode.POSTING) { event -> unit.invoke(event.data) }
     }
 
 
@@ -363,7 +360,7 @@ open class EventSubscriber : KEventSubscriber {
     private val charPool: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
 
     val randomString = (1..10)
-        .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+        .map { kotlin.random.Random.nextInt(0, charPool.size) }
         .map(charPool::get)
         .joinToString("")
 
