@@ -19,11 +19,11 @@ repositories {
     maven {url = uri("https://androidx.dev/storage/compose-compiler/repository")}
     maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
     maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/")}
+    maven { url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev/") }
     google()
     mavenCentral()
     maven { url = uri("https://repo.runelite.net/") }
     maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
-    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/") }
 }
 
 dependencies {
@@ -67,7 +67,7 @@ dependencies {
     annotationProcessor(group= "org.projectlombok", name= "lombok", version= "_")
 
     //Util
-    implementation("org.rationalityfrontline:kevent:2.1.4")
+    implementation(project(":eventbus"))
     implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
     implementation(group = "com.google.guava", name = "guava", version = "_")
