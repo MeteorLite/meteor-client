@@ -55,7 +55,7 @@ public class CannonSpotOverlay extends Overlay {
 	private final CannonConfig config;
 
 
-	private ItemManager itemManager;
+	private ItemManager itemManager = ItemManager.INSTANCE;
 
 	@Setter(AccessLevel.PACKAGE)
 	private boolean hidden;
