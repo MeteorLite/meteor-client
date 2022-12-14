@@ -240,17 +240,34 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
     fun use() {
         widgetId = WidgetInfo.INVENTORY.packedId
         log.info("[Use]")
-        client
-        client.selectedSpellWidget = widgetId
-        client.selectedSpellChildIndex = slot
-        client.selectedSpellItemId = id
+        client.invokeMenuAction(
+            "Use",
+            "<col=ff9040>${name}</col>",
+            0,
+            MenuAction.WIDGET_TARGET.id,
+            slot,
+            WidgetInfo.INVENTORY.packedId,
+            id,
+            -1,
+            -1
+        )
     }
 
     fun useOn(item: Item) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         log.info("[Use-on Item] [${item.name}]")
-        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_WIDGET.id)?.let { Interact(it) })
+        client.invokeMenuAction(
+            "Use",
+            "<col=ff9040>${name}</col><col=ffffff> -> <col=ff9040>${item.name}</col>",
+            0,
+            MenuAction.WIDGET_TARGET_ON_WIDGET.id,
+            item.slot,
+            WidgetInfo.INVENTORY.packedId,
+            item.id,
+            -1,
+            -1
+        )
     }
 
     fun useOn(npc: NPC) {
@@ -311,6 +328,12 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         widgetId = WidgetInfo.INVENTORY.packedId
         log.info("[Eat]")
         interact("Eat")
+    }
+
+    fun drink() {
+        widgetId = WidgetInfo.INVENTORY.packedId
+        log.info("[Drink]")
+        interact("Drink")
     }
 
     fun drop() {

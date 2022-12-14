@@ -28,11 +28,12 @@ package com.questhelper.overlays;
 import com.questhelper.QuestHelperPlugin;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+
 import com.questhelper.questhelpers.QuestHelper;
 import meteor.Main;
+import meteor.ui.overlay.Overlay;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
-import net.runelite.client.plugins.gauntletextended.overlay.Overlay;
 import org.jetbrains.annotations.NotNull;
 import org.rationalityfrontline.kevent.KEvent;
 
@@ -44,7 +45,7 @@ public class QuestHelperWorldOverlay extends Overlay
 
 	public QuestHelperWorldOverlay(QuestHelperPlugin plugin)
 	{
-		super(plugin);
+		super();
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.plugin = plugin;
@@ -80,8 +81,4 @@ public class QuestHelperWorldOverlay extends Overlay
 		return "qhworldoverlay";
 	}
 
-	@Override
-	public void determineLayer() {
-
-	}
 }

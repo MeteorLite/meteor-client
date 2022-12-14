@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2018, Lotto <https://github.com/devLotto>
- * Copyright (c) 2019, Trevor <https://github.com/Trevor159>
+ * Copyright (c) 2019, Lucas <https://github.com/lucwousin>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -23,54 +22,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.questhelper.overlays;
+package meteor.plugins.alchemicalhydra
 
-import com.questhelper.QuestHelperPlugin;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import com.questhelper.questhelpers.QuestHelper;
-import meteor.Main;
-import meteor.ui.overlay.Overlay;
-import meteor.ui.overlay.OverlayLayer;
-import meteor.ui.overlay.OverlayPosition;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
+import meteor.game.SpriteManager
+import meteor.util.ImageUtil.resizeImage
+import net.runelite.api.coords.WorldPoint
+import java.awt.image.BufferedImage
 
-public class QuestHelperWorldArrowOverlay extends Overlay
-{
-	private final QuestHelperPlugin plugin;
+enum class HydraPhase(val attacksPerSwitch: Int = 0, val deathAnim1: Int = 0, val deathAnim2: Int = 0,
+                      val specProjectileId: Int = 0, val specAnimationId: Int = 0, private val specImageID: Int = 0,
+                      val fountain: WorldPoint? = null
+) {
+    ONE(3, 8237, 8238, 1644, 0, 1774, WorldPoint(1371, 10263, 0)), TWO(
+        3,
+        8244,
+        8245,
+        0,
+        8241,
+        1959,
+        WorldPoint(1371, 10272, 0)
+    ),
+    THREE(3, 8251, 8252, 0, 8248, 1800, WorldPoint(1362, 10272, 0)), FOUR(1, 8257, 8258, 1644, 0, 1774, null);
 
-	public QuestHelperWorldArrowOverlay(QuestHelperPlugin plugin)
-	{
-		super();
-		setPosition(OverlayPosition.DYNAMIC);
-		setLayer(OverlayLayer.ABOVE_SCENE);
-		this.plugin = plugin;
-	}
-
-	@Override
-	public Dimension render(Graphics2D graphics)
-	{
-		QuestHelper quest = plugin.getSelectedQuest();
-
-		if (quest != null && quest.getCurrentStep() != null)
-		{
-			quest.getCurrentStep().makeWorldArrowOverlayHint(graphics, plugin);
-		}
-
-		return null;
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "qhworldarrowoverlay";
-	}
-
+    private var specImage: BufferedImage? = null
+    fun getSpecImage(spriteManager: SpriteManager): BufferedImage? {
+        if (specImage == null) {
+            val tmp = spriteManager.getSprite(specImageID, 0)
+            specImage = if (tmp == null) null else resizeImage(
+                tmp,
+                HydraOverlay.IMGSIZE,
+                HydraOverlay.IMGSIZE
+            )
+        }
+        return specImage
+    }
 }

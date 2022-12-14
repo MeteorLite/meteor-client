@@ -88,7 +88,11 @@ import meteor.plugins.oneclickchins.Oneclickchinsplugin
 import meteor.plugins.oneclickfurnace.OneClickFurnacePlugin
 import meteor.plugins.oneclickglassblowing.OneClickGlassblowingPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
-import net.runelite.client.plugins.gauntletextended.GauntletExtendedPlugin
+import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
+import meteor.plugins.winemaker.WineMakerPlugin
+import meteor.plugins.prayerpotdrinker.PrayerPotDrinker
+import meteor.plugins.kebabbuyer.KebabBuyerPlugin
+import meteor.plugins.gauntletextended.GauntletExtendedPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.itemstats.ItemStatPlugin
@@ -122,6 +126,7 @@ object PluginManager {
     init {
         init<Meteor>()
         init<AgilityPlugin>()
+        init<AlchemicalHydraPlugin>()
         init<AmmoPlugin>()
         init<AnimationSmoothingPlugin>()
         init<AoeWarningPlugin>()
@@ -221,6 +226,9 @@ object PluginManager {
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
         init<ZulrahPlugin>()
+        init<WineMakerPlugin>()
+        init<PrayerPotDrinker>()
+        init<KebabBuyerPlugin>()
     }
 
     private fun loadExternal(jar: File) {
