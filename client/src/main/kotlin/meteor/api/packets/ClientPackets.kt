@@ -1,11 +1,9 @@
-@file:Suppress("DEPRECATION")
-
 package meteor.api.packets
 
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import dev.hoot.api.InteractionException
-import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.events.MenuAutomated
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import meteor.Main
@@ -392,7 +390,7 @@ object ClientPackets {
         return ""
     }
 
-    fun createClientPacket(menu: AutomatedMenu): PacketBufferNode? {
+    fun createClientPacket(menu: MenuAutomated): PacketBufferNode? {
         val opcode = menu.opcode
         val client = Main.client
         val id = menu.identifier
@@ -595,13 +593,6 @@ object ClientPackets {
                     param1 + client.baseY,
                     false
                 )
-            }
-            MenuAction.CC_OP_LOW_PRIORITY,
-            MenuAction.CC_OP -> {
-                val widget = Widgets.fromId(param1) ?: return null
-                val child = (if (param0 == -1) null else widget.getChild(param0))
-                    ?: return WidgetPackets.createDefaultAction(id, param1, -1, param0)
-                return WidgetPackets.createDefaultAction(id, param1, child.itemId, param0)
             }
             else -> {}
         }

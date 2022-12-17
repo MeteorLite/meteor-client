@@ -100,7 +100,7 @@ public interface RSWidget extends Widget
 
 	@Import("actions")
 	@Override
-	String[] getRawActions();
+	String[] getActions();
 
 	@Import("itemActions")
 	@Override

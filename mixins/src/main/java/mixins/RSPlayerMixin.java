@@ -24,11 +24,11 @@
  */
 package mixins;
 
-import dev.hoot.api.events.AutomatedMenu;
 import java.awt.Polygon;
 import java.awt.Shape;
 import java.util.ArrayList;
 
+import dev.hoot.api.events.MenuAutomated;
 import eventbus.Events;
 import eventbus.events.OverheadPrayerChanged;
 import eventbus.events.PlayerChanged;
@@ -383,13 +383,7 @@ public abstract class RSPlayerMixin implements RSPlayer
 	}
 
 	@Inject
-	public AutomatedMenu getMenu(int actionIndex)
-	{
-		return getMenu(getIndex(), getActionOpcode(actionIndex));
-	}
-
-	@Inject
-	public AutomatedMenu getMenu(int actionIndex, int opcode)
+	public MenuAutomated getMenu(int actionIndex, int opcode)
 	{
 		return getMenu(actionIndex, opcode, 0, 0);
 	}

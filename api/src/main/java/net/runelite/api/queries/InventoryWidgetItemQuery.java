@@ -87,8 +87,8 @@ public class InventoryWidgetItemQuery extends WidgetItemQuery
 					if (isDragged)
 					{
 						Point p = child.getWidgetItemDragOffsets();
-						dragOffsetX = p.getX();
-						dragOffsetY = p.getY();
+						dragOffsetX = p.x;
+						dragOffsetY = p.y;
 					}
 					// set bounds to same size as default inventory
 					Rectangle bounds = child.getBounds();

@@ -159,10 +159,10 @@ public class MapPuzzle extends QuestStep
 				if (widget1 != null)
 				{
 					Line2D.Double line = new Line2D.Double(
-						widget1.getCanvasLocation().getX() + (widget1.getWidth() / 2.0f),
-						widget1.getCanvasLocation().getY() + (widget1.getHeight() / 2.0f),
-						widget2.getCanvasLocation().getX() + (widget2.getWidth() / 2.0f),
-						widget2.getCanvasLocation().getY() + (widget2.getHeight() / 2.0f));
+						widget1.getCanvasLocation().x + (widget1.getWidth() / 2.0f),
+						widget1.getCanvasLocation().y + (widget1.getHeight() / 2.0f),
+						widget2.getCanvasLocation().x + (widget2.getWidth() / 2.0f),
+						widget2.getCanvasLocation().y + (widget2.getHeight() / 2.0f));
 
 					graphics.setColor(new Color(0, 255, 255, 65));
 					graphics.fill(widget1.getBounds());

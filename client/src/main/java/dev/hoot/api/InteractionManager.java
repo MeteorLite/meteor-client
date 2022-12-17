@@ -2,7 +2,7 @@ package dev.hoot.api;
 
 import dev.hoot.api.commons.Rand;
 import dev.hoot.api.commons.Time;
-import dev.hoot.api.events.AutomatedMenu;
+import dev.hoot.api.events.MenuAutomated;
 import dev.hoot.api.game.GameThread;
 import dev.hoot.api.movement.Movement;
 import dev.hoot.api.widgets.DialogOption;
@@ -37,7 +37,7 @@ public class InteractionManager extends EventSubscriber
 	private Client client = Main.INSTANCE.getClient();
 
 	@Override
-	public void onInvokeMenuAction(AutomatedMenu e)
+	public void onInvokeMenuAction(MenuAutomated e)
 	{
 		String debug = "O=" + e.getOption()
 				+ " | T=" + e.getTarget()
@@ -46,8 +46,7 @@ public class InteractionManager extends EventSubscriber
 				+ " | P0=" + e.getParam0()
 				+ " | P1=" + e.getParam1()
 				+ " | X=" + e.getClickX()
-				+ " | Y=" + e.getClickY()
-				+ " | TAG=" + e.getEntityTag();
+				+ " | Y=" + e.getClickY();
 
 		log.debug("[Automated] {}", debug);
 		Point clickPoint = getClickPoint(e);
@@ -65,16 +64,47 @@ public class InteractionManager extends EventSubscriber
 			{
 				try
 				{
-					PacketBufferNode packetBufferNode = ClientPackets.INSTANCE.createClientPacket(e);
-					if (packetBufferNode != null)
-						packetBufferNode.send();
+					if (e.getOpcode() == MenuAction.CC_OP || e.getOpcode() == MenuAction.CC_OP_LOW_PRIORITY)
+					{
+						int param0 = e.getParam0();
+						int param1 = e.getParam1();
+						int id = e.getIdentifier();
+						int itemId = e.getItemId();
+						if (itemId != -1)
+						{
+							client.invokeWidgetAction(id, param1, param0, itemId, "");
+							return;
+						}
+
+						var widget = Widgets.fromId(e.getParam1());
+						if (widget == null)
+						{
+							return;
+						}
+
+						var child = param0 == -1 ? null : widget.getChild(param0);
+						if (child == null)
+						{
+							client.invokeWidgetAction(id, param1, param0, -1, "");
+							return;
+						}
+
+						client.invokeWidgetAction(id, param1, param0, child.getItemId(), "");
+					}
 					else
-						System.out.println("No valid packet to write");
+					{
+						PacketBufferNode node = ClientPackets.INSTANCE.createClientPacket(e);
+						if (node != null) {
+							node.send();
+						} else {
+							Main.INSTANCE.getLogger().error("Could not create requested packet!");
+						}
+					}
 				}
 				catch (InteractionException ex)
 				{
-					log.debug("{}, falling back to invoke", ex.getMessage());
-					processAction(e, clickPoint.x, clickPoint.y);
+					log.error("Packet interaction failed, falling back to invoke", ex);
+					processAction(e, -1, -1);
 				}
 			});
 		}
@@ -82,11 +112,6 @@ public class InteractionManager extends EventSubscriber
 		{
 			log.error("Interaction failed: {}", ex.getMessage());
 			client.setPendingAutomation(null);
-		}
-		finally
-		{
-			long duration = System.currentTimeMillis() - e.getTimestamp();
-			Time.sleep(Constants.CLIENT_TICK_LENGTH + duration);
 		}
 	}
 
@@ -127,12 +152,12 @@ public class InteractionManager extends EventSubscriber
 		}
 	}
 
-	private void processAction(AutomatedMenu entry, int x, int y)
+	private void processAction(MenuAutomated entry, int x, int y)
 	{
 
 	}
 
-	private Point getClickPoint(AutomatedMenu e)
+	private Point getClickPoint(MenuAutomated e)
 	{
 		if (config.mouseBehavior() == MouseBehavior.OFF_SCREEN)
 		{
