@@ -30,7 +30,8 @@ import meteor.ui.overlay.OverlayPosition
 import meteor.ui.overlay.Tooltip
 import meteor.ui.overlay.TooltipManager
 import meteor.util.ColorUtil
-import meteor.util.QuantityFormatter
+import meteor.util.QuantityFormatter.formatNumber
+import meteor.util.QuantityFormatter.quantityToStackSize
 import net.runelite.api.*
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
@@ -38,9 +39,9 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
 
-
-class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
-    val config = plugin.config
+class ItemPricesOverlay(plugin: ItemPricesPlugin) :
+    Overlay() {
+    private val config = plugin.config
     private val tooltipManager = TooltipManager
     private val itemStringBuilder = StringBuilder()
 
@@ -48,7 +49,6 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
 
     init {
         position = OverlayPosition.DYNAMIC
-
     }
 
     override fun render(graphics: Graphics2D): Dimension? {
@@ -64,80 +64,37 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
         val action = menuEntry.type
         val widgetId = menuEntry.param1
         val groupId = WidgetInfo.TO_GROUP(widgetId)
-        val isAlching = menuEntry.option == "Cast" && menuEntry.target
-            .contains("High Level Alchemy")
+        val isAlching = menuEntry.option == "Cast" && menuEntry.target.contains("High Level Alchemy")
         when (action) {
+            MenuAction.WIDGET_TARGET_ON_WIDGET -> {
+                // Check target widget is the inventory
+                if (menuEntry.widget!!.id != WidgetInfo.INVENTORY.id) {
+                    return null
+                }
+                // Require showWhileAlching and Cast High Level Alchemy
+                if (!config.showWhileAlching() || !isAlching) {
+                    return null
+                }
+                addTooltip(menuEntry, isAlching, groupId)
+            }
             MenuAction.WIDGET_USE_ON_ITEM -> {
                 if (!config.showWhileAlching() || !isAlching) {
                     return null
                 }
-                when (groupId) {
-                    WidgetID.EXPLORERS_RING_ALCH_GROUP_ID -> {
-                        if (!config.showWhileAlching()) {
-                            return null
-                        }
-                        if (config.hideInventory() && !(config.showWhileAlching() && isAlching)) {
-                            return null
-                        }
-                        // Make tooltip
-                        val text = makeValueTooltip(menuEntry)
-                        if (text != null) {
-                            tooltipManager
-                                .add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
-                        }
-                    }
-                    WidgetID.INVENTORY_GROUP_ID -> {
-                        if (config.hideInventory() && !(config.showWhileAlching() && isAlching)) {
-                            return null
-                        }
-                        val text = makeValueTooltip(menuEntry)
-                        if (text != null) {
-                            tooltipManager
-                                .add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
-                        }
-                    }
-                    WidgetID.BANK_GROUP_ID, WidgetID.BANK_INVENTORY_GROUP_ID, WidgetID.SEED_VAULT_GROUP_ID, WidgetID.SEED_VAULT_INVENTORY_GROUP_ID -> {
-                        val text = makeValueTooltip(menuEntry)
-                        if (text != null) {
-                            tooltipManager
-                                .add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
-                        }
-                    }
-                }
+                addTooltip(menuEntry, isAlching, groupId)
             }
-            MenuAction.CC_OP, MenuAction.ITEM_USE, MenuAction.ITEM_FIRST_OPTION, MenuAction.ITEM_SECOND_OPTION, MenuAction.ITEM_THIRD_OPTION, MenuAction.ITEM_FOURTH_OPTION, MenuAction.ITEM_FIFTH_OPTION -> when (groupId) {
-                WidgetID.EXPLORERS_RING_ALCH_GROUP_ID -> {
-                    if (!config.showWhileAlching()) {
-                        return null
-                    }
-                    if (config.hideInventory() && !(config.showWhileAlching() && isAlching)) {
-                        return null
-                    }
-                    val text = makeValueTooltip(menuEntry)
-                    if (text != null) {
-                        tooltipManager
-                            .add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
-                    }
-                }
-                WidgetID.INVENTORY_GROUP_ID -> {
-                    val text = makeValueTooltip(menuEntry)
-                    if (text != null) {
-                        tooltipManager
-                            .add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
-                    }
-                    if (config.hideInventory() && !(config.showWhileAlching() && isAlching)) {
-                        return null
-                    }
-                }
-                WidgetID.BANK_GROUP_ID, WidgetID.BANK_INVENTORY_GROUP_ID, WidgetID.SEED_VAULT_GROUP_ID, WidgetID.SEED_VAULT_INVENTORY_GROUP_ID -> {
-                    val text = makeValueTooltip(menuEntry)
-                    if (text != null) {
-                        tooltipManager
-                            .add(Tooltip(ColorUtil.prependColorTag(text, Color(238, 238, 238))))
-                    }
+            MenuAction.CC_OP, MenuAction.ITEM_USE, MenuAction.ITEM_FIRST_OPTION, MenuAction.ITEM_SECOND_OPTION, MenuAction.ITEM_THIRD_OPTION, MenuAction.ITEM_FOURTH_OPTION, MenuAction.ITEM_FIFTH_OPTION -> addTooltip(
+                menuEntry,
+                isAlching,
+                groupId
+            )
+            MenuAction.WIDGET_TARGET -> {                // Check that this is the inventory
+                if (menuEntry.widget?.id == WidgetInfo.INVENTORY.id) {
+                    addTooltip(menuEntry, isAlching, groupId)
                 }
             }
             else -> {}
+
         }
         return null
     }
@@ -185,16 +142,12 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
         var container: ItemContainer? = null
 
         // Inventory item
-        when (widgetId) {
-            INVENTORY_ITEM_WIDGETID, BANK_INVENTORY_ITEM_WIDGETID, EXPLORERS_RING_ITEM_WIDGETID, SEED_VAULT_INVENTORY_ITEM_WIDGETID -> {
-                container = client.getItemContainer(InventoryID.INVENTORY)
-            }
-            BANK_ITEM_WIDGETID -> {
-                container = client.getItemContainer(InventoryID.BANK)
-            }
-            SEED_VAULT_ITEM_WIDGETID -> {
-                container = client.getItemContainer(InventoryID.SEED_VAULT)
-            }
+        if (widgetId == INVENTORY_ITEM_WIDGETID || widgetId == BANK_INVENTORY_ITEM_WIDGETID || widgetId == EXPLORERS_RING_ITEM_WIDGETID || widgetId == SEED_VAULT_INVENTORY_ITEM_WIDGETID || widgetId == POH_TREASURE_CHEST_INVENTORY_ITEM_WIDGETID) {
+            container = client.getItemContainer(InventoryID.INVENTORY)
+        } else if (widgetId == BANK_ITEM_WIDGETID) {
+            container = client.getItemContainer(InventoryID.BANK)
+        } else if (widgetId == SEED_VAULT_ITEM_WIDGETID) {
+            container = client.getItemContainer(InventoryID.SEED_VAULT)
         }
         if (container == null) {
             return null
@@ -207,19 +160,19 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
     }
 
     private fun getItemStackValueText(item: Item): String? {
-        val id = itemManager.canonicalize(item.id)
+        val id: Int = itemManager.canonicalize(item.id)
         val qty = item.quantity
 
         // Special case for coins and platinum tokens
         if (id == ItemID.COINS_995) {
-            return QuantityFormatter.formatNumber(qty.toLong()) + " gp"
+            return formatNumber(qty.toLong()) + " gp"
         } else if (id == ItemID.PLATINUM_TOKEN) {
-            return QuantityFormatter.formatNumber(qty * 1000L) + " gp"
+            return formatNumber(qty * 1000L) + " gp"
         }
-        val itemDef = itemManager.getItemComposition(id)
+        val itemDef: ItemComposition? = itemManager.getItemComposition(id)
 
         // Only check prices for things with store prices
-        if (itemDef!!.price <= 0) {
+        if (itemDef == null || itemDef.price <= 0) {
             return null
         }
         var gePrice = 0
@@ -243,11 +196,11 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
     private fun stackValueText(qty: Int, gePrice: Int, haValue: Int, haProfit: Int): String {
         if (gePrice > 0) {
             itemStringBuilder.append("GE: ")
-                .append(QuantityFormatter.quantityToStackSize(gePrice.toLong() * qty))
+                .append(quantityToStackSize(gePrice.toLong() * qty))
                 .append(" gp")
             if (config.showEA() && qty > 1) {
                 itemStringBuilder.append(" (")
-                    .append(QuantityFormatter.quantityToStackSize(gePrice.toLong()))
+                    .append(quantityToStackSize(gePrice.toLong()))
                     .append(" ea)")
             }
         }
@@ -256,11 +209,11 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
                 itemStringBuilder.append("</br>")
             }
             itemStringBuilder.append("HA: ")
-                .append(QuantityFormatter.quantityToStackSize(haValue.toLong() * qty))
+                .append(quantityToStackSize(haValue.toLong() * qty))
                 .append(" gp")
             if (config.showEA() && qty > 1) {
                 itemStringBuilder.append(" (")
-                    .append(QuantityFormatter.quantityToStackSize(haValue.toLong()))
+                    .append(quantityToStackSize(haValue.toLong()))
                     .append(" ea)")
             }
         }
@@ -284,21 +237,19 @@ class ItemPricesOverlay(var plugin: ItemPricesPlugin) : Overlay() {
     }
 
     private fun calculateHAProfit(haPrice: Int, gePrice: Int): Int {
-        val natureRunePrice = itemManager.getItemPrice(ItemID.NATURE_RUNE)
+        val natureRunePrice: Int = itemManager.getItemPrice(ItemID.NATURE_RUNE)
         return haPrice - gePrice - natureRunePrice
     }
 
     companion object {
         private val INVENTORY_ITEM_WIDGETID = WidgetInfo.INVENTORY.packedId
-        private val BANK_INVENTORY_ITEM_WIDGETID = WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER
-            .packedId
+        private val BANK_INVENTORY_ITEM_WIDGETID = WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId
         private val BANK_ITEM_WIDGETID = WidgetInfo.BANK_ITEM_CONTAINER.packedId
-        private val EXPLORERS_RING_ITEM_WIDGETID = WidgetInfo.EXPLORERS_RING_ALCH_INVENTORY
-            .packedId
-        private val SEED_VAULT_ITEM_WIDGETID = WidgetInfo.SEED_VAULT_ITEM_CONTAINER
-            .packedId
-        private val SEED_VAULT_INVENTORY_ITEM_WIDGETID = WidgetInfo.SEED_VAULT_INVENTORY_ITEMS_CONTAINER
-            .packedId
+        private val EXPLORERS_RING_ITEM_WIDGETID = WidgetInfo.EXPLORERS_RING_ALCH_INVENTORY.packedId
+        private val SEED_VAULT_ITEM_WIDGETID = WidgetInfo.SEED_VAULT_ITEM_CONTAINER.packedId
+        private val SEED_VAULT_INVENTORY_ITEM_WIDGETID = WidgetInfo.SEED_VAULT_INVENTORY_ITEMS_CONTAINER.packedId
+        private val POH_TREASURE_CHEST_INVENTORY_ITEM_WIDGETID =
+            WidgetInfo.POH_TREASURE_CHEST_INVENTORY_CONTAINER.packedId
 
         private fun haProfitColor(haProfit: Int): Color {
             return if (haProfit >= 0) Color.GREEN else Color.RED
