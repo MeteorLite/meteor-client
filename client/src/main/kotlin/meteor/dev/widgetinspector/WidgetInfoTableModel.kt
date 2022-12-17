@@ -99,7 +99,7 @@ object WidgetInfoTableModel : AbstractTableModel() {
     private fun populateWidgetFields(): List<WidgetField<*>> {
         val out: MutableList<WidgetField<*>> = ArrayList<WidgetField<*>>()
         out.add(WidgetField("Id", Widget::getId))
-        out.add(WidgetField("Actions", Widget::getRawActions))
+        out.add(WidgetField("Actions", Widget::getActions))
         out.add(
             WidgetField(
                 "Type",

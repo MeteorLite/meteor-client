@@ -1060,7 +1060,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 					// find the lowest op from the widget actions, to prevent setting a swap to the default left click
 					// action regardless of what is swapped.
 					int lowestOp = 0;
-					while (lowestOp < w.getRawActions().length && Strings.isNullOrEmpty(w.getRawActions()[lowestOp]))
+					while (lowestOp < w.getActions().length && Strings.isNullOrEmpty(w.getActions()[lowestOp]))
 					{
 						++lowestOp;
 					}
@@ -1372,7 +1372,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 			&& w != null && (w.getIndex() == -1 || w.getItemId() != -1)
 			&& !itemOp && WidgetInfo.TO_GROUP(w.getId()) != WidgetID.EQUIPMENT_GROUP_ID)
 		{
-			final String[] actions = w.getRawActions();
+			final String[] actions = w.getActions();
 			int numActions = 0;
 			for (String action : actions)
 			{

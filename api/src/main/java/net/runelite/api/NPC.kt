@@ -24,10 +24,11 @@
  */
 package net.runelite.api
 
-import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.events.MenuAutomated
 import eventbus.Events
 import meteor.Logger
 import meteor.api.loot.Interact
+import net.runelite.api.mixins.Inject
 
 /**
  * Represents a non-player character in the game.
@@ -47,8 +48,6 @@ interface NPC : Actor {
     var id: Int
     override fun getName(): String
     override fun getCombatLevel(): Int
-
-    fun getMenu(actionIndex: Int): AutomatedMenu?
 
     /**
      * Gets the index position of this NPC in the clients cached
@@ -90,5 +89,13 @@ interface NPC : Actor {
 
     fun invoke(index: Int) {
         client.callbacks.post(Events.INTERACT, getMenu(index)?.let { Interact(it) })
+    }
+
+    fun getMenu(actionIndex: Int): MenuAutomated? {
+        return getMenu(index, getActionOpcode(actionIndex))
+    }
+
+    fun getMenu(actionIndex: Int, opcode: Int): MenuAutomated? {
+        return getMenu(index, opcode, 0, 0)
     }
 }

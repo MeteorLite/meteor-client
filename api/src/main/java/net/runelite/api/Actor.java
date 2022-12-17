@@ -31,7 +31,7 @@ import java.awt.image.BufferedImage;
 import javax.annotation.Nullable;
 
 import dev.hoot.api.SceneEntity;
-import dev.hoot.api.events.AutomatedMenu;
+import dev.hoot.api.events.MenuAutomated;
 import net.runelite.api.annotations.VisibleForDevtools;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
@@ -444,9 +444,35 @@ public interface Actor extends Renderable, Locatable
 
 	void interact(int identifier, int opcode, int param0, int param1);
 
-	default AutomatedMenu getMenu(int identifier, int opcode, int param0, int param1) {
-		return new AutomatedMenu(identifier, opcode, param0, param1, -1, -1);
+	default MenuAutomated getMenu(int identifier, int opcode, int param0, int param1)
+	{
+		return getMenu(identifier, opcode, param0, param1, -1);
 	}
+
+	default MenuAutomated getMenu(int identifier, int opcode, int param0, int param1, int itemId)
+	{
+		MenuAutomated builder = MenuAutomated.Companion.builder()
+				.identifier(identifier)
+				.opcode(MenuAction.of(opcode))
+				.param0(param0)
+				.param1(param1)
+				.itemId(itemId);
+
+		if (this instanceof SceneEntity)
+		{
+			builder.entity((SceneEntity) this);
+		}
+		else
+		{
+			Point clickPoint = getClickPoint();
+			builder.clickX(clickPoint.x)
+					.clickY(clickPoint.y);
+		}
+
+		return builder;
+	}
+
+	Point getClickPoint();
 
 	long getTag();
 }

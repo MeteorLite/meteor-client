@@ -143,13 +143,13 @@ public abstract class RSTileMixin implements RSTile
 
 		Point p1 = this.getSceneLocation();
 		Point p2 = other.getSceneLocation();
-		if (p1.getX() == p2.getX() && p1.getY() == p2.getY())
+		if (p1.x == p2.x && p1.y == p2.y)
 		{
 			return true;
 		}
 
-		int dx = p2.getX() - p1.getX();
-		int dy = p2.getY() - p1.getY();
+		int dx = p2.x - p1.x;
+		int dy = p2.y - p1.y;
 		int dxAbs = Math.abs(dx);
 		int dyAbs = Math.abs(dy);
 
@@ -174,8 +174,8 @@ public abstract class RSTileMixin implements RSTile
 
 		if (dxAbs > dyAbs)
 		{
-			int x = p1.getX();
-			int yBig = p1.getY() << 16; // The y position is represented as a bigger number to handle rounding
+			int x = p1.x;
+			int yBig = p1.y << 16; // The y position is represented as a bigger number to handle rounding
 			int slope = (dy << 16) / dxAbs;
 			yBig += 0x8000; // Add half of a tile
 			if (dy < 0)
@@ -184,7 +184,7 @@ public abstract class RSTileMixin implements RSTile
 			}
 			int direction = dx < 0 ? -1 : 1;
 
-			while (x != p2.getX())
+			while (x != p2.x)
 			{
 				x += direction;
 				int y = yBig >>> 16;
@@ -204,8 +204,8 @@ public abstract class RSTileMixin implements RSTile
 		}
 		else
 		{
-			int y = p1.getY();
-			int xBig = p1.getX() << 16; // The x position is represented as a bigger number to handle rounding
+			int y = p1.y;
+			int xBig = p1.x << 16; // The x position is represented as a bigger number to handle rounding
 			int slope = (dx << 16) / dyAbs;
 			xBig += 0x8000; // Add half of a tile
 			if (dx < 0)
@@ -214,7 +214,7 @@ public abstract class RSTileMixin implements RSTile
 			}
 			int direction = dy < 0 ? -1 : 1;
 
-			while (y != p2.getY())
+			while (y != p2.y)
 			{
 				y += direction;
 				int x = xBig >>> 16;
@@ -272,8 +272,8 @@ public abstract class RSTileMixin implements RSTile
 		Point p1 = this.getSceneLocation();
 		Point p2 = other.getSceneLocation();
 
-		int middleX = p1.getX();
-		int middleY = p1.getY();
+		int middleX = p1.x;
+		int middleY = p1.y;
 		int currentX = middleX;
 		int currentY = middleY;
 		int offsetX = 64;
@@ -297,7 +297,7 @@ public abstract class RSTileMixin implements RSTile
 			// currentX is for the local coordinate while currentMapX is for the index in the directions and distances arrays
 			int currentMapX = currentX - middleX + offsetX;
 			int currentMapY = currentY - middleY + offsetY;
-			if ((currentX == p2.getX()) && (currentY == p2.getY()))
+			if ((currentX == p2.x) && (currentY == p2.y))
 			{
 				isReachable = true;
 				break;
@@ -390,8 +390,8 @@ public abstract class RSTileMixin implements RSTile
 			int upperboundDistance = Integer.MAX_VALUE;
 			int pathLength = Integer.MAX_VALUE;
 			int checkRange = 10;
-			int approxDestinationX = p2.getX();
-			int approxDestinationY = p2.getY();
+			int approxDestinationX = p2.x;
+			int approxDestinationY = p2.y;
 			for (int i = approxDestinationX - checkRange; i <= checkRange + approxDestinationX; ++i)
 			{
 				for (int j = approxDestinationY - checkRange; j <= checkRange + approxDestinationY; ++j)
@@ -444,7 +444,7 @@ public abstract class RSTileMixin implements RSTile
 		int index = 1;
 		int directionNew;
 		int directionOld;
-		for (directionNew = directionOld = directions[currentX - middleX + offsetX][currentY - middleY + offsetY]; p1.getX() != currentX || p1.getY() != currentY; directionNew = directions[currentX - middleX + offsetX][currentY - middleY + offsetY])
+		for (directionNew = directionOld = directions[currentX - middleX + offsetX][currentY - middleY + offsetY]; p1.x != currentX || p1.y != currentY; directionNew = directions[currentX - middleX + offsetX][currentY - middleY + offsetY])
 		{
 			if (directionNew != directionOld)
 			{

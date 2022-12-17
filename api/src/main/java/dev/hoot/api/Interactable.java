@@ -1,37 +1,26 @@
 package dev.hoot.api;
 
-import dev.hoot.api.events.AutomatedMenu;
+import dev.hoot.api.events.MenuAutomated;
+import net.runelite.api.MenuAction;
 import net.runelite.api.util.Text;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public interface Interactable
 {
-	Point getClickPoint();
-
-	String[] getRawActions();
+	net.runelite.api.Point getClickPoint();
 
 	int getActionOpcode(int action);
 
-	default List<String> getActions()
-	{
-		if (getRawActions() == null)
-		{
-			return null;
-		}
-
-		return Arrays.stream(getRawActions()).map(Text::removeTags).collect(Collectors.toList());
-	}
+	String[] getActions();
 
 	default void interact(Predicate<String> predicate)
 	{
-		String[] raw = getRawActions();
+		String[] raw = getActions();
 		if (raw == null)
 		{
 			return;
@@ -55,7 +44,7 @@ public interface Interactable
 		}
 
 		ArrayList<String> actions = new ArrayList<>();
-		for (String s : getRawActions())
+		for (String s : getActions())
 		{
 			if (s == null)
 				s = "null";
@@ -78,7 +67,7 @@ public interface Interactable
 
 	default boolean hasAction(String... actions)
 	{
-		String[] raw = getRawActions();
+		String[] raw = getActions();
 		if (raw == null)
 		{
 			return false;
@@ -89,28 +78,48 @@ public interface Interactable
 			return Arrays.stream(raw).anyMatch(Objects::nonNull);
 		}
 
-		return Arrays.stream(actions).anyMatch(x -> getActions().contains(x));
+		return Arrays.stream(actions).anyMatch(x -> Arrays.stream(getActions()).toList().contains(x));
 	}
 
-	default AutomatedMenu getMenu(String action)
+	MenuAutomated getMenu(int actionIndex);
+
+	MenuAutomated getMenu(int actionIndex, int opcode);
+
+	default int getActionIndex(String action)
 	{
-		return getMenu(getActions().indexOf(action));
+		return Collections.singletonList(getActions()).indexOf(action);
 	}
 
-	AutomatedMenu getMenu(int actionIndex);
-
-	AutomatedMenu getMenu(int actionIndex, int opcode);
-
-	default AutomatedMenu getMenu(int identifier, int opcode, int param0, int param1)
+	default MenuAutomated getMenu(String action)
 	{
+		return getMenu(getActionIndex(action));
+	}
+
+	default MenuAutomated getMenu(int identifier, int opcode, int param0, int param1)
+	{
+		return getMenu(identifier, opcode, param0, param1, -1);
+	}
+
+	default MenuAutomated getMenu(int identifier, int opcode, int param0, int param1, int itemId)
+	{
+		MenuAutomated builder = MenuAutomated.Companion.builder()
+				.identifier(identifier)
+				.opcode(MenuAction.of(opcode))
+				.param0(param0)
+				.param1(param1)
+				.itemId(itemId);
+
 		if (this instanceof SceneEntity)
 		{
-			return new AutomatedMenu(identifier, opcode, param0, param1, -1, -1,
-					((SceneEntity) this).getTag());
+			builder.entity((SceneEntity) this);
 		}
 		else
 		{
-			return new AutomatedMenu(identifier, opcode, param0, param1, -1, -1);
+			net.runelite.api.Point clickPoint = getClickPoint();
+			builder.clickX(clickPoint.x)
+					.clickY(clickPoint.y);
 		}
+
+		return builder;
 	}
 }

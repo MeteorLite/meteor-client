@@ -1,6 +1,6 @@
 package meteor.plugins
 
-import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.events.MenuAutomated
 import dev.hoot.api.events.MenuActionProcessed
 import dev.hoot.api.events.PacketSent
 import eventbus.Events
@@ -92,7 +92,7 @@ open class EventSubscriber : KEventSubscriber {
     open fun onPluginChanged(it: PluginChanged) {}
     open fun onInfoBoxMenuClicked(it: InfoBoxMenuClicked) {}
     open fun onOverheadTextChanged(it: OverheadTextChanged) {}
-    open fun onInvokeMenuAction(it: AutomatedMenu) {}
+    open fun onInvokeMenuAction(it: MenuAutomated) {}
     open fun onHitsplatApplied(it: HitsplatApplied) {}
     open fun onPacketSent(it: PacketSent) {}
     open fun onMenuOpened(it: MenuOpened) {}
@@ -250,7 +250,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening { onNpcDespawned(it) } }
         subscribeEvent<NpcLootReceived>(Events.NPC_LOOT_RECEIVED){executeIfListening { onNpcLootReceived(it) }}
         subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening { onNpcSpawned(it) } }
-        subscribeEvent<AutomatedMenu>(Events.AUTOMATED_MENU) { executeIfListening { onInvokeMenuAction(it) } }
+        subscribeEvent<MenuAutomated>(Events.AUTOMATED_MENU) { executeIfListening { onInvokeMenuAction(it) } }
         subscribeEvent<OverheadTextChanged>(Events.OVERHEAD_TEXT_CHANGED) {
             executeIfListening {
                 onOverheadTextChanged(

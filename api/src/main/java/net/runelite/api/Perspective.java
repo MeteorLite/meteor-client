@@ -365,8 +365,8 @@ public class Perspective
 			final int yy = sin * x - y * cos >> 16;
 
 			Point loc = minimapDrawWidget.getCanvasLocation();
-			int miniMapX = loc.getX() + xx + minimapDrawWidget.getWidth() / 2;
-			int miniMapY = minimapDrawWidget.getHeight() / 2 + loc.getY() + yy;
+			int miniMapX = loc.x + xx + minimapDrawWidget.getWidth() / 2;
+			int miniMapY = minimapDrawWidget.getHeight() / 2 + loc.y + yy;
 			return new Point(miniMapX, miniMapY);
 		}
 
@@ -535,10 +535,10 @@ public class Perspective
 		}
 
 		Polygon poly = new Polygon();
-		poly.addPoint(p1.getX(), p1.getY());
-		poly.addPoint(p2.getX(), p2.getY());
-		poly.addPoint(p3.getX(), p3.getY());
-		poly.addPoint(p4.getX(), p4.getY());
+		poly.addPoint(p1.x, p1.y);
+		poly.addPoint(p2.x, p2.y);
+		poly.addPoint(p3.x, p3.y);
+		poly.addPoint(p4.x, p4.y);
 
 		return poly;
 	}
@@ -577,9 +577,9 @@ public class Perspective
 
 		FontMetrics fm = graphics.getFontMetrics();
 		Rectangle2D bounds = fm.getStringBounds(text, graphics);
-		int xOffset = p.getX() - (int) (bounds.getWidth() / 2);
+		int xOffset = p.x - (int) (bounds.getWidth() / 2);
 
-		return new Point(xOffset, p.getY());
+		return new Point(xOffset, p.y);
 	}
 
 	/**
@@ -607,8 +607,8 @@ public class Perspective
 			return null;
 		}
 
-		int xOffset = p.getX() - image.getWidth() / 2;
-		int yOffset = p.getY() - image.getHeight() / 2;
+		int xOffset = p.x - image.getWidth() / 2;
+		int yOffset = p.y - image.getHeight() / 2;
 
 		return new Point(xOffset, yOffset);
 	}
@@ -634,8 +634,8 @@ public class Perspective
 			return null;
 		}
 
-		int xOffset = p.getX() - image.getWidth() / 2;
-		int yOffset = p.getY() - image.getHeight() / 2;
+		int xOffset = p.x - image.getWidth() / 2;
+		int yOffset = p.y - image.getHeight() / 2;
 
 		return new Point(xOffset, yOffset);
 	}
@@ -664,8 +664,8 @@ public class Perspective
 			return null;
 		}
 
-		int xOffset = p.getX() - spritePixels.getWidth() / 2;
-		int yOffset = p.getY() - spritePixels.getHeight() / 2;
+		int xOffset = p.x - spritePixels.getWidth() / 2;
+		int yOffset = p.y - spritePixels.getHeight() / 2;
 
 		return new Point(xOffset, yOffset);
 	}
@@ -925,8 +925,8 @@ public class Perspective
 
 		FontMetrics fm = graphics.getFontMetrics();
 		Rectangle2D bounds = fm.getStringBounds(text, graphics);
-		int xOffset = p.getX() - (int) (bounds.getWidth() / 2);
-		int yOffset = p.getY() - (int) (bounds.getHeight() / 2) + fm.getAscent();
+		int xOffset = p.x - (int) (bounds.getWidth() / 2);
+		int yOffset = p.y - (int) (bounds.getHeight() / 2) + fm.getAscent();
 
 		return new Point(xOffset, yOffset);
 	}
@@ -953,8 +953,8 @@ public class Perspective
 		if (p1 != null && p2 != null)
 		{
 			Polygon polygon = new Polygon();
-			polygon.addPoint(p1.getX(), p1.getY());
-			polygon.addPoint(p2.getX(), p2.getY());
+			polygon.addPoint(p1.x, p1.y);
+			polygon.addPoint(p2.x, p2.y);
 			return polygon;
 		}
 		return null;

@@ -24,11 +24,11 @@
  */
 package mixins;
 
-import dev.hoot.api.events.AutomatedMenu;
 import java.awt.Polygon;
 import java.awt.Shape;
 import java.util.Arrays;
 
+import dev.hoot.api.events.MenuAutomated;
 import eventbus.Events;
 import eventbus.events.NpcChanged;
 import eventbus.events.NpcDespawned;
@@ -292,14 +292,13 @@ public abstract class RSNPCMixin implements RSNPC
 	}
 
 	@Inject
-	@Override
-	public AutomatedMenu getMenu(int actionIndex)
+	public MenuAutomated getMenu(int actionIndex)
 	{
 		return getMenu(getIndex(), getActionOpcode(actionIndex));
 	}
 
 	@Inject
-	public AutomatedMenu getMenu(int actionIndex, int opcode)
+	public MenuAutomated getMenu(int actionIndex, int opcode)
 	{
 		return getMenu(getIndex(), opcode, 0, 0);
 	}

@@ -1,5 +1,5 @@
 package meteor.api.loot
 
-import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.events.MenuAutomated
 
-class Interact(val menu: AutomatedMenu)
+class Interact(val menu: MenuAutomated)

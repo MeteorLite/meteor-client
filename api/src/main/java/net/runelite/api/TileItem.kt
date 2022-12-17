@@ -25,7 +25,7 @@
 package net.runelite.api
 
 import dev.hoot.api.SceneEntity
-import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.events.MenuAutomated
 import eventbus.Events
 import meteor.api.loot.Interact
 import net.runelite.api.coords.LocalPoint
@@ -54,8 +54,8 @@ interface TileItem : Renderable {
     var index: Int
 
     fun getId(): Int
-    fun getMenu(idx: Int) : AutomatedMenu
-    fun getMenu(idx: Int, opcode: Int) : AutomatedMenu
+    fun getMenu(idx: Int) : MenuAutomated
+    fun getMenu(idx: Int, opcode: Int) : MenuAutomated
     fun getComposition() : ItemComposition
     fun interact(idx: Int)
     fun interact(identifier: Int, opcode: Int, param0: Int, param1: Int)
@@ -66,16 +66,6 @@ interface TileItem : Renderable {
     fun getTag() : Long
     fun pickup()
     fun getName(): String?
-    fun getMenu(identifier: Int, opcode: Int, param0: Int, param1: Int): AutomatedMenu? {
-        return if (this is SceneEntity) {
-            AutomatedMenu(
-                identifier, opcode, param0, param1, -1, -1,
-                (this as SceneEntity).tag
-            )
-        } else {
-            AutomatedMenu(identifier, opcode, param0, param1, -1, -1)
-        }
-    }
 
     fun distanceTo(locatable: Locatable): Int {
         return tile.distanceTo(locatable.worldLocation)
@@ -129,4 +119,27 @@ interface TileItem : Renderable {
     fun invoke() {
         client!!.callbacks.post(Events.INTERACT, Interact(getMenu(index)))
     }
+
+    fun getMenu(identifier: Int, opcode: Int, param0: Int, param1: Int): MenuAutomated? {
+        return getMenu(identifier, opcode, param0, param1, -1)
+    }
+
+    fun getMenu(identifier: Int, opcode: Int, param0: Int, param1: Int, itemId: Int): MenuAutomated? {
+        val builder: MenuAutomated = MenuAutomated.builder()
+            .identifier(identifier)
+            .opcode(MenuAction.of(opcode))
+            .param0(param0)
+            .param1(param1)
+            .itemId(itemId)
+        if (this is SceneEntity) {
+            builder.entity(this as SceneEntity)
+        } else {
+            val clickPoint: Point = getClickPoint()
+            builder.clickX(clickPoint.x)
+                .clickY(clickPoint.y)
+        }
+        return builder
+    }
+
+    fun getClickPoint(): Point
 }
