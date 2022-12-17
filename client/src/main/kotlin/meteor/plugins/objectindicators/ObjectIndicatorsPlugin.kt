@@ -116,7 +116,7 @@ class ObjectIndicatorsPlugin : Plugin() {
     }
 
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
-        if (!client.isKeyPressed(KeyCode.KC_SHIFT)) {
+        if (it.opcode != MenuAction.EXAMINE_OBJECT.id || !client.isKeyPressed(KeyCode.KC_SHIFT)) {
             return
         }
         val tile: Tile = client.scene.tiles[client.plane][it.param0][it.param1]
