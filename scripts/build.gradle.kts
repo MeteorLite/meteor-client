@@ -14,10 +14,10 @@ dependencies {
     annotationProcessor(group = "org.eclipse.sisu", name = "org.eclipse.sisu.inject", version = "_")
 
     compileOnly(group = "org.apache.maven.plugin-tools", name = "maven-plugin-annotations", version = "_")
-    implementation("net.runelite:cache:1.8.33")
+    implementation(project(":cache"))
     implementation(project(":api"))
     implementation(project(":logger"))
-    runtimeOnly(group = "com.google.guava", name = "guava", version = "_")
+    implementation("com.google.guava:guava:31.1-jre")
     runtimeOnly(group = "org.apache.maven", name = "maven-plugin-api", version = "_")
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")

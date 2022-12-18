@@ -32,6 +32,7 @@ import eventbus.Events;
 import eventbus.events.ScriptCallbackEvent;
 import eventbus.events.ScriptPostFired;
 import eventbus.events.ScriptPreFired;
+import net.runelite.api.ChatMessageType;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
@@ -125,7 +126,16 @@ public abstract class ScriptVMMixin implements RSClient
 					client.setIntStackSize(intStackSize);
 					return true;
 				}
-
+				else if ("mes".equals(stringOp))
+				{
+					int intStackSize = client.getIntStackSize();
+					int messageType = client.getIntStack()[--intStackSize];
+					String message = client.getStringStack()[--stringStackSize];
+					client.setStringStackSize(stringStackSize);
+					client.setIntStackSize(intStackSize);
+					client.addChatMessage(ChatMessageType.of(messageType), "", message, null, true);
+					return true;
+				}
 				ScriptCallbackEvent event = new ScriptCallbackEvent(currentScript, stringOp);
 				client.getCallbacks().post(Events.SCRIPT_CALLBACK, event);
 				return true;

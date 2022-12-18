@@ -12,6 +12,7 @@ rootProject.name = "meteor-client"
 include("annotations")
 include("api")
 include("api-rs")
+include("cache")
 include("client")
 include("deobfuscator")
 include("eventbus")
