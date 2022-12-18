@@ -27,33 +27,57 @@ package net.runelite.api.overlay;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
+import java.util.function.Function;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import meteor.Logger;
+
 
 public class OverlayIndex
 {
 	@Getter
 	private static final Set<Integer> overlays = new HashSet<>();
 
+	private static Logger log = new Logger("Scripts");
+
+	/**
+	 * Stores transformer callbacks for given cache object.
+	 * The key is of format (indexId << 16 | archiveId).
+	 * The value is of format:
+	 * byte[] function(originalBytesFromCache){ if (doNothing) return originalBytesFromCache; else return customBytes; }
+	 */
+	@Getter
+	private static final HashMap<Integer, Function<byte[], byte[]>> cacheTransformers = new HashMap<>();
+
 	static
 	{
-		try (InputStream indexStream = OverlayIndex.class.getResourceAsStream("/runelite/index");
-			DataInputStream in = new DataInputStream(indexStream))
-		{
-			int id;
-			while ((id = in.readInt()) != -1)
+		try (InputStream indexStream = OverlayIndex.class.getResourceAsStream("/runelite/index")) {
+			assert indexStream != null;
+			try (DataInputStream in = new DataInputStream(indexStream))
 			{
-				overlays.add(id);
+				int id;
+				while ((id = in.readInt()) != -1)
+				{
+					overlays.add(id);
+				}
 			}
 		}
 		catch (IOException ex)
 		{
-			new Logger("ScriptOverlays").error("unable to load overlay index", ex);
+			log.warn("unable to load overlay index", ex);
 		}
+	}
+
+	public static boolean hasCacheTransformer(int indexId, int archiveId)
+	{
+		return cacheTransformers.containsKey(indexId << 16 | archiveId);
+	}
+
+	public static Function<byte[], byte[]> getCacheTransformer(int indexId, int archiveId)
+	{
+		return cacheTransformers.get(indexId << 16 | archiveId);
 	}
 
 	public static boolean hasOverlay(int indexId, int archiveId)

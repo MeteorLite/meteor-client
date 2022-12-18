@@ -24,7 +24,7 @@ dependencies {
     compileOnly(project(":osrs"))
     compileOnly(project(":api"))
     compileOnly(project(":logger"))
-    implementation("net.runelite:cache:1.8.0")
+    compileOnly(project(":cache"))
 }
 tasks{
 test {

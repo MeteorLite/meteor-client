@@ -137,8 +137,8 @@ class CorpPlugin : Plugin() {
     }
 
     override fun onVarbitChanged(it: VarbitChanged) {
-        if (corp != null && it.getVarbitId() == Varbits.CORP_DAMAGE) {
-            val myDamage = it.getValue()
+        if (corp != null && it.varbitId == Varbits.CORP_DAMAGE) {
+            val myDamage = it.value
             // avoid resetting our counter when the client's is reset
             if (myDamage > 0) {
                 yourDamage = myDamage

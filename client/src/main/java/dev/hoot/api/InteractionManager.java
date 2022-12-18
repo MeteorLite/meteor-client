@@ -154,7 +154,8 @@ public class InteractionManager extends EventSubscriber
 
 	private void processAction(MenuAutomated entry, int x, int y)
 	{
-
+		GameThread.invoke(() -> client.invokeMenuAction(entry.getOption(), entry.getTarget(), entry.getIdentifier(),
+				entry.getOpcode().getId(), entry.getParam0(), entry.getParam1(), x, y));
 	}
 
 	private Point getClickPoint(MenuAutomated e)

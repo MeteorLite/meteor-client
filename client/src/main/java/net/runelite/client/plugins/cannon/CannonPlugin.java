@@ -278,7 +278,7 @@ public class CannonPlugin extends Plugin {
 	@Override
 	public void onVarbitChanged(VarbitChanged it)
 	{
-		if (it.getIndex() == VarPlayer.CANNON_AMMO.getId())
+		if (it.getVarpId() == VarPlayer.CANNON_AMMO.getId())
 		{
 			cballsLeft = client.getVar(VarPlayer.CANNON_AMMO);
 

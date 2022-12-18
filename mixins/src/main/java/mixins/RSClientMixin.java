@@ -41,23 +41,8 @@ import javax.annotation.Nullable;
 import eventbus.Events;
 import eventbus.events.*;
 import meteor.Logger;
-import net.runelite.api.Actor;
-import net.runelite.api.Animation;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Deque;
-import net.runelite.api.EnumComposition;
-import net.runelite.api.FriendContainer;
-import net.runelite.api.GameState;
-import net.runelite.api.GrandExchangeOffer;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.HintArrowType;
-import net.runelite.api.Ignore;
-import net.runelite.api.IndexDataBase;
-import net.runelite.api.IndexedSprite;
-import net.runelite.api.IntegerNode;
-import net.runelite.api.InventoryID;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.MenuAction;
+import net.runelite.api.*;
+
 import static net.runelite.api.MenuAction.CANCEL;
 import static net.runelite.api.MenuAction.PLAYER_EIGTH_OPTION;
 import static net.runelite.api.MenuAction.PLAYER_FIFTH_OPTION;
@@ -67,31 +52,10 @@ import static net.runelite.api.MenuAction.PLAYER_SECOND_OPTION;
 import static net.runelite.api.MenuAction.PLAYER_SEVENTH_OPTION;
 import static net.runelite.api.MenuAction.PLAYER_SIXTH_OPTION;
 import static net.runelite.api.MenuAction.PLAYER_THIRD_OPTION;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.MessageNode;
-import net.runelite.api.Model;
-import net.runelite.api.ModelData;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.NameableContainer;
-import net.runelite.api.NodeCache;
-import net.runelite.api.ObjectComposition;
-import net.runelite.api.Perspective;
 import static net.runelite.api.MenuAction.UNKNOWN;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
-import net.runelite.api.Player;
-import net.runelite.api.Point;
-import net.runelite.api.Prayer;
-import net.runelite.api.Projectile;
-import net.runelite.api.ScriptEvent;
-import net.runelite.api.Skill;
-import net.runelite.api.SpritePixels;
-import net.runelite.api.StructComposition;
-import net.runelite.api.Tile;
-import net.runelite.api.TileObject;
-import net.runelite.api.VarPlayer;
-import net.runelite.api.Varbits;
-import net.runelite.api.WorldType;
+
+import net.runelite.api.Deque;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
@@ -944,7 +908,8 @@ public abstract class RSClientMixin implements RSClient
 					client.getTempMenuAction().getParam1() == client.getMenuArguments2()[client.getMenuOptionCount() - 1] &&
 					client.getTempMenuAction().getOption().equals(client.getMenuOptions()[client.getMenuOptionCount() - 1]) &&
 					client.getTempMenuAction().getIdentifier() == client.getMenuIdentifiers()[client.getMenuOptionCount() - 1] &&
-					client.getTempMenuAction().getOpcode() == client.getMenuOpcodes()[client.getMenuOptionCount() - 1];
+					client.getTempMenuAction().getOpcode() == client.getMenuOpcodes()[client.getMenuOptionCount() - 1] &&
+					client.getTempMenuAction().getItemId() == client.getMenuItemIds()[client.getMenuOptionCount() - 1];
 		}
 
 		for (int i = 0; i < menuEntries.length; ++i)
@@ -966,6 +931,7 @@ public abstract class RSClientMixin implements RSClient
 			client.getTempMenuAction().setOption(client.getMenuOptions()[client.getMenuOptionCount() - 1]);
 			client.getTempMenuAction().setIdentifier(client.getMenuIdentifiers()[client.getMenuOptionCount() - 1]);
 			client.getTempMenuAction().setOpcode(client.getMenuOpcodes()[client.getMenuOptionCount() - 1]);
+			client.getTempMenuAction().setItemId(client.getMenuItemIds()[client.getMenuOptionCount() - 1]);
 		}
 	}
 
@@ -1000,9 +966,9 @@ public abstract class RSClientMixin implements RSClient
 		client.getMenuForceLeftClick()[left] = client.getMenuForceLeftClick()[right];
 		client.getMenuForceLeftClick()[right] = menuForceLeftClick;
 
-		RSRuneLiteMenuEntry tmpEntry = rl$menuEntries[left];
+		RSRuneLiteMenuEntry var2 = rl$menuEntries[left];
 		rl$menuEntries[left] = rl$menuEntries[right];
-		rl$menuEntries[right] = tmpEntry;
+		rl$menuEntries[right] = var2;
 
 		rl$menuEntries[left].setIdx(left);
 		rl$menuEntries[right].setIdx(right);
@@ -1084,6 +1050,7 @@ public abstract class RSClientMixin implements RSClient
 				client.getMenuArguments1()[tmpOptionsCount] = menuEntryAdded.getParam0();
 				client.getMenuArguments2()[tmpOptionsCount] = menuEntryAdded.getParam1();
 				client.getMenuForceLeftClick()[tmpOptionsCount] = menuEntryAdded.getForceLeftClick();
+				client.getMenuItemIds()[tmpOptionsCount] = menuEntryAdded.getItemId();
 			}
 		}
 	}
@@ -1364,6 +1331,10 @@ public abstract class RSClientMixin implements RSClient
 				}
 			}
 		}
+		else if (gameState == GameState.LOGIN_SCREEN)
+		{
+			loadVarbits();
+		}
 	}
 
 
@@ -1442,12 +1413,82 @@ public abstract class RSClientMixin implements RSClient
 		client.getCallbacks().post(Events.GRAND_EXCHANGE_OFFER_CHANGED, offerChangedEvent);
 	}
 
+	@Inject
+	private static Map<Integer, ArrayList<Integer>> varbitsMap;
+
+	@Inject
+	public static void loadVarbits()
+	{
+		// Load varbits into map<index, varbitIds>
+		if (varbitsMap == null)
+		{
+			varbitsMap = new HashMap<>();
+			RSArchive archive = client.getIndexConfig();
+			int[] fileIds = archive.getFileIds(14);
+
+			for (int i = 0; i < fileIds.length; i++)
+			{
+				VarbitComposition varbitComposition = client.getVarbit(i);
+				if (varbitComposition != null)
+				{
+					int idx = varbitComposition.getIndex();
+					if (varbitsMap.containsKey(idx))
+					{
+						varbitsMap.get(idx).add(i);
+					}
+					else
+					{
+						ArrayList<Integer> varbitIds = new ArrayList<>();
+						varbitIds.add(i);
+						varbitsMap.put(idx, varbitIds);
+					}
+				}
+			}
+		}
+	}
+
+	@Inject
+	private static int[] oldVarps;
+
 	@FieldHook("Varps_main")
 	@Inject
 	public static void settingsChanged(int idx)
 	{
-		VarbitChanged varbitChanged = new VarbitChanged(idx);
+		// Varp changed
+		VarbitChanged varbitChanged = new VarbitChanged();
+		varbitChanged.setVarpId(idx);
+		varbitChanged.setValue(client.getVarpValue(idx));
 		client.getCallbacks().post(Events.VARBIT_CHANGED, varbitChanged);
+
+		// Varbit changed
+		if (oldVarps == null)
+		{
+			oldVarps = new int[client.getVarps().length];
+		}
+
+		if (!Arrays.equals(oldVarps, client.getVarps()))
+		{
+			ArrayList<Integer> varbitIds = varbitsMap.get(idx);
+
+			if (varbitIds == null || varbitIds.isEmpty())
+			{
+				return;
+			}
+
+			for (int varbitId : varbitIds)
+			{
+				int oldValue = client.getVarbitValue(oldVarps, varbitId);
+				int newValue = client.getVarbitValue(client.getVarps(), varbitId);
+				if (oldValue != newValue)
+				{
+					varbitChanged.setVarpId(-1);
+					varbitChanged.setVarbitId(varbitId);
+					varbitChanged.setValue(newValue);
+					client.getCallbacks().post(Events.VARBIT_CHANGED, varbitChanged);
+				}
+			}
+			System.arraycopy(client.getVarps(), 0, oldVarps, 0, oldVarps.length);
+		}
 	}
 
 	@FieldHook("isResizable")

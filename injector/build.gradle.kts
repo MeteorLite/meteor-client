@@ -21,6 +21,7 @@ dependencies{
     implementation(project(":api-rs"))
     implementation(project(":osrs"))
     implementation(project(":logger"))
+    implementation(project(":cache"))
     implementation("javax.inject:javax.inject:1")
 
     implementation(group = "org.ow2.asm", name = "asm", version = "_")
