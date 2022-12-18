@@ -39,7 +39,8 @@ class MenuEntryAdded(
     var opcode: Int,
     var param0: Int,
     var param1: Int,
-    val forceLeftClick: Boolean
+    val forceLeftClick: Boolean,
+    var itemId: Int = -1
 ) {
     // Here for RuneLite compatibility (different parameter order)
     constructor(
