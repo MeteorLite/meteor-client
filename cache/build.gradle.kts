@@ -52,13 +52,6 @@ dependencies {
     implementation(group = "org.antlr", name = "antlr4-runtime", version = "4.8-1")
     implementation(group = "org.apache.commons", name = "commons-compress", version = "1.21")
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.32")
-
-    testAnnotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.24")
-
-    testCompileOnly(group = "org.projectlombok", name = "lombok", version = "1.18.24")
-
-    testImplementation(group = "junit", name = "junit", version = "4.13.1")
-    testImplementation(group = "net.runelite.rs", name = "cache", version = "165")
 }
 
 tasks {
