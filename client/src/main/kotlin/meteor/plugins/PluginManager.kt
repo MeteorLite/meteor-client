@@ -105,6 +105,8 @@ import net.runelite.client.plugins.motherlode.MotherlodePlugin
 import net.runelite.client.plugins.npchighlight.NpcIndicatorsPlugin
 import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.cannon.CannonPlugin
+import meteor.plugins.examine.ExaminePlugin
+import meteor.plugins.itemcharges.ItemChargePlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
@@ -171,6 +173,7 @@ object PluginManager {
         init<ExamplePlugin>()
         init<EmojiPlugin>()
         init<EntityHiderPlugin>()
+        init<ExaminePlugin>()
         init<FairyRingPlugin>()
         init<FishingPlugin>()
         init<FighterPlugin>()
@@ -188,6 +191,7 @@ object PluginManager {
         init<InterfaceStylesPlugin>()
         init<InteractHighlightPlugin>()
         init<InventoryTagsPlugin>()
+        init<ItemChargePlugin>()
         init<ItemPricesPlugin>()
         init<ItemStatPlugin>()
         init<JadAutoPrayerPlugin>()

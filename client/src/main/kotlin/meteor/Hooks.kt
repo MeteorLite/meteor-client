@@ -5,6 +5,7 @@ import eventbus.events.BeforeMenuRender
 import eventbus.events.BeforeRender
 import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
+import meteor.Main.chatMessageManager
 import meteor.Main.client
 import meteor.Main.overlayRenderer
 import meteor.input.KeyManager
@@ -90,6 +91,7 @@ class Hooks : Callbacks {
 
         // cull infoboxes
         InfoBoxManager.cull()
+        chatMessageManager.process()
     }
 
     override fun frame() {
