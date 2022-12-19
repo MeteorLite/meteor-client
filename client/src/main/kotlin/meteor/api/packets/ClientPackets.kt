@@ -594,6 +594,13 @@ object ClientPackets {
                     false
                 )
             }
+            MenuAction.CC_OP_LOW_PRIORITY,
+            MenuAction.CC_OP -> {
+                val widget = Widgets.fromId(param1) ?: return null
+                val child = (if (param0 == -1) null else widget.getChild(param0))
+                    ?: return WidgetPackets.createDefaultAction(id, param1, -1, param0)
+                return WidgetPackets.createDefaultAction(id, param1, child.itemId, param0)
+            }
             else -> {}
         }
         throw InteractionException("Couldn't parse packet from opcode: $opcode")
