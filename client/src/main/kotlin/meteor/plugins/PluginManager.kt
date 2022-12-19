@@ -107,6 +107,7 @@ import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.cannon.CannonPlugin
 import meteor.plugins.examine.ExaminePlugin
 import meteor.plugins.itemcharges.ItemChargePlugin
+import meteor.plugins.pestcontrol.PestControlPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
@@ -129,6 +130,7 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+        init<PestControlPlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AlchemicalHydraPlugin>()
