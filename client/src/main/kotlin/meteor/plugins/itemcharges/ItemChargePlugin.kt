@@ -53,6 +53,7 @@ import java.util.regex.Pattern
 )
 @Slf4j
 class ItemChargePlugin : Plugin() {
+    private var push: Boolean = true
     private val clientThread = ClientThread
     private val configManager = ConfigManager
     private val itemManager = ItemManager
@@ -87,15 +88,15 @@ class ItemChargePlugin : Plugin() {
     }
 
     override fun onConfigChanged(it: ConfigChanged) {
-        if (it.group != ItemChargeConfig.GROUP) {
+        if (it.group != ItemChargeConfig.GROUP || !push) {
             return
         }
         clientThread.invoke { updateInfoboxes() }
     }
 
-    override fun onChatMessage(it: ChatMessage) {
-        if (it.type == ChatMessageType.GAMEMESSAGE || it.type == ChatMessageType.SPAM) {
-            val message = Text.removeTags(it.message)
+    override fun onChatMessage(event: ChatMessage) {
+        if (event.type === ChatMessageType.GAMEMESSAGE || event.type === ChatMessageType.SPAM) {
+            val message = Text.removeTags(event.message)
             val dodgyCheckMatcher = DODGY_CHECK_PATTERN.matcher(message)
             val dodgyProtectMatcher = DODGY_PROTECT_PATTERN.matcher(message)
             val dodgyBreakMatcher = DODGY_BREAK_PATTERN.matcher(message)
@@ -116,153 +117,129 @@ class ItemChargePlugin : Plugin() {
             val bloodEssenceCheckMatcher = BLOOD_ESSENCE_CHECK_PATTERN.matcher(message)
             val bloodEssenceExtractMatcher = BLOOD_ESSENCE_EXTRACT_PATTERN.matcher(message)
             val braceletOfClayCheckMatcher = BRACELET_OF_CLAY_CHECK_PATTERN.matcher(message)
-            when {
-                dodgyBreakMatcher.find() -> updateDodgyNecklaceCharges(MAX_DODGY_CHARGES)
-                dodgyCheckMatcher.find() -> updateDodgyNecklaceCharges(dodgyCheckMatcher.group(1).toInt())
-                dodgyProtectMatcher.find() -> updateDodgyNecklaceCharges(dodgyProtectMatcher.group(1).toInt())
-                amuletOfChemistryCheckMatcher.find() ->
-                    updateAmuletOfChemistryCharges(amuletOfChemistryCheckMatcher.group(1).toInt())
-                amuletOfChemistryUsedMatcher.find() -> {
-                    val match = amuletOfChemistryUsedMatcher.group(1)
-                    var charges = 1
-                    if (match != "one") {
-                        charges = match.toInt()
-                    }
-                    updateAmuletOfChemistryCharges(charges)
+            if (dodgyBreakMatcher.find()) {
+                updateDodgyNecklaceCharges(MAX_DODGY_CHARGES)
+            } else if (dodgyCheckMatcher.find()) {
+                updateDodgyNecklaceCharges(dodgyCheckMatcher.group(1).toInt())
+            } else if (dodgyProtectMatcher.find()) {
+                updateDodgyNecklaceCharges(dodgyProtectMatcher.group(1).toInt())
+            } else if (amuletOfChemistryCheckMatcher.find()) {
+                updateAmuletOfChemistryCharges(amuletOfChemistryCheckMatcher.group(1).toInt())
+            } else if (amuletOfChemistryUsedMatcher.find()) {
+                val match = amuletOfChemistryUsedMatcher.group(1)
+                var charges = 1
+                if (match != "one") {
+                    charges = match.toInt()
                 }
-                amuletOfChemistryBreakMatcher.find() -> {
-                    updateAmuletOfChemistryCharges(MAX_AMULET_OF_CHEMISTRY_CHARGES)
-                }
-                amuletOfBountyCheckMatcher.find() -> {
-                    updateAmuletOfBountyCharges(amuletOfBountyCheckMatcher.group(1).toInt())
-                }
-                amuletOfBountyUsedMatcher.find() -> {
-                    updateAmuletOfBountyCharges(amuletOfBountyUsedMatcher.group(1).toInt())
-                }
-                message == AMULET_OF_BOUNTY_BREAK_TEXT -> {
-                    updateAmuletOfBountyCharges(MAX_AMULET_OF_BOUNTY_CHARGES)
-                }
-                message.contains(BINDING_BREAK_TEXT) -> {
+                updateAmuletOfChemistryCharges(charges)
+            } else if (amuletOfChemistryBreakMatcher.find()) {
+                updateAmuletOfChemistryCharges(MAX_AMULET_OF_CHEMISTRY_CHARGES)
+            } else if (amuletOfBountyCheckMatcher.find()) {
+                updateAmuletOfBountyCharges(amuletOfBountyCheckMatcher.group(1).toInt())
+            } else if (amuletOfBountyUsedMatcher.find()) {
+                updateAmuletOfBountyCharges(amuletOfBountyUsedMatcher.group(1).toInt())
+            } else if (message == AMULET_OF_BOUNTY_BREAK_TEXT) {
+                updateAmuletOfBountyCharges(MAX_AMULET_OF_BOUNTY_CHARGES)
+            } else if (message.contains(BINDING_BREAK_TEXT)) {
 
-                    // This chat message triggers before the used message so add 1 to the max charges to ensure proper sync
-                    updateBindingNecklaceCharges(MAX_BINDING_CHARGES + 1)
+                // This chat message triggers before the used message so add 1 to the max charges to ensure proper sync
+                updateBindingNecklaceCharges(MAX_BINDING_CHARGES + 1)
+            } else if (bindingNecklaceUsedMatcher.find()) {
+                val equipment = client.getItemContainer(InventoryID.EQUIPMENT)
+                if (equipment!!.contains(ItemID.BINDING_NECKLACE)) {
+                    updateBindingNecklaceCharges(getItemCharges(ItemChargeConfig.KEY_BINDING_NECKLACE) - 1)
                 }
-                bindingNecklaceUsedMatcher.find() -> {
-                    val equipment = client.getItemContainer(InventoryID.EQUIPMENT)
-                    if (equipment!!.contains(ItemID.BINDING_NECKLACE)) {
-                        updateBindingNecklaceCharges(getItemCharges(ItemChargeConfig.KEY_BINDING_NECKLACE) - 1)
-                    }
+            } else if (bindingNecklaceCheckMatcher.find()) {
+                val match = bindingNecklaceCheckMatcher.group(1)
+                var charges = 1
+                if (match != "one") {
+                    charges = match.toInt()
                 }
-                bindingNecklaceCheckMatcher.find() -> {
-                    val match = bindingNecklaceCheckMatcher.group(1)
-                    var charges = 1
-                    if (match != "one") {
-                        charges = match.toInt()
-                    }
-                    updateBindingNecklaceCharges(charges)
+                updateBindingNecklaceCharges(charges)
+            } else if (ringOfForgingCheckMatcher.find()) {
+                val match = ringOfForgingCheckMatcher.group(1)
+                var charges = 1
+                if (match != "one") {
+                    charges = match.toInt()
                 }
-                ringOfForgingCheckMatcher.find() -> {
-                    val match = ringOfForgingCheckMatcher.group(1)
-                    var charges = 1
-                    if (match != "one") {
-                        charges = match.toInt()
-                    }
+                updateRingOfForgingCharges(charges)
+            } else if (message == RING_OF_FORGING_USED_TEXT || message == RING_OF_FORGING_VARROCK_PLATEBODY) {
+                val inventory = client.getItemContainer(InventoryID.INVENTORY)
+                val equipment = client.getItemContainer(InventoryID.EQUIPMENT) ?: return
+
+                // Determine if the player smelted with a Ring of Forging equipped.
+                if (equipment.contains(ItemID.RING_OF_FORGING) && (message == RING_OF_FORGING_USED_TEXT || inventory!!.count(
+                        ItemID.IRON_ORE
+                    ) > 1)
+                ) {
+                    val charges = Ints.constrainToRange(
+                        getItemCharges(ItemChargeConfig.KEY_RING_OF_FORGING) - 1,
+                        0,
+                        MAX_RING_OF_FORGING_CHARGES
+                    )
                     updateRingOfForgingCharges(charges)
                 }
-                message == RING_OF_FORGING_USED_TEXT || message == RING_OF_FORGING_VARROCK_PLATEBODY -> {
-                    val inventory = client.getItemContainer(InventoryID.INVENTORY)
-                    val equipment = client.getItemContainer(InventoryID.EQUIPMENT) ?: return
-
-                    // Determine if the player smelted with a Ring of Forging equipped.
-                    if (equipment.contains(ItemID.RING_OF_FORGING) && (message == RING_OF_FORGING_USED_TEXT || inventory!!.count(
-                            ItemID.IRON_ORE
-                        ) > 1)
-                    ) {
-                        val charges = Ints.constrainToRange(
-                            getItemCharges(ItemChargeConfig.KEY_RING_OF_FORGING) - 1,
-                            0,
-                            MAX_RING_OF_FORGING_CHARGES
-                        )
-                        updateRingOfForgingCharges(charges)
-                    }
-                }
-                message == RING_OF_FORGING_BREAK_TEXT -> {
-                    updateRingOfForgingCharges(MAX_RING_OF_FORGING_CHARGES)
-                }
-                chronicleAddMatcher.find() -> {
-                    val match = chronicleAddMatcher.group(1)
-                    if (match == "one") {
-                        setItemCharges(ItemChargeConfig.KEY_CHRONICLE, 1)
-                    } else {
-                        setItemCharges(ItemChargeConfig.KEY_CHRONICLE, match.toInt())
-                    }
-                }
-                chronicleUseAndCheckMatcher.find() -> {
-                    setItemCharges(ItemChargeConfig.KEY_CHRONICLE, chronicleUseAndCheckMatcher.group(1).toInt())
-                }
-                message == CHRONICLE_ONE_CHARGE_TEXT -> {
+            } else if (message == RING_OF_FORGING_BREAK_TEXT) {
+                updateRingOfForgingCharges(MAX_RING_OF_FORGING_CHARGES)
+            } else if (chronicleAddMatcher.find()) {
+                val match = chronicleAddMatcher.group(1)
+                if (match == "one") {
                     setItemCharges(ItemChargeConfig.KEY_CHRONICLE, 1)
+                } else {
+                    setItemCharges(ItemChargeConfig.KEY_CHRONICLE, match.toInt())
                 }
-                message == CHRONICLE_EMPTY_TEXT || message == CHRONICLE_NO_CHARGES_TEXT -> {
-                    setItemCharges(ItemChargeConfig.KEY_CHRONICLE, 0)
+            } else if (chronicleUseAndCheckMatcher.find()) {
+                setItemCharges(ItemChargeConfig.KEY_CHRONICLE, chronicleUseAndCheckMatcher.group(1).toInt())
+            } else if (message == CHRONICLE_ONE_CHARGE_TEXT) {
+                setItemCharges(ItemChargeConfig.KEY_CHRONICLE, 1)
+            } else if (message == CHRONICLE_EMPTY_TEXT || message == CHRONICLE_NO_CHARGES_TEXT) {
+                setItemCharges(ItemChargeConfig.KEY_CHRONICLE, 0)
+            } else if (message == CHRONICLE_FULL_TEXT) {
+                setItemCharges(ItemChargeConfig.KEY_CHRONICLE, 1000)
+            } else if (slaughterActivateMatcher.find()) {
+                val found = slaughterActivateMatcher.group(1)
+                if (found == null) {
+                    updateBraceletOfSlaughterCharges(MAX_SLAYER_BRACELET_CHARGES)
+                } else {
+                    updateBraceletOfSlaughterCharges(found.toInt())
                 }
-                message == CHRONICLE_FULL_TEXT -> {
-                    setItemCharges(ItemChargeConfig.KEY_CHRONICLE, 1000)
+            } else if (slaughterCheckMatcher.find()) {
+                updateBraceletOfSlaughterCharges(slaughterCheckMatcher.group(1).toInt())
+            } else if (expeditiousActivateMatcher.find()) {
+                val found = expeditiousActivateMatcher.group(1)
+                if (found == null) {
+                    updateExpeditiousBraceletCharges(MAX_SLAYER_BRACELET_CHARGES)
+                } else {
+                    updateExpeditiousBraceletCharges(found.toInt())
                 }
-                slaughterActivateMatcher.find() -> {
-                    val found = slaughterActivateMatcher.group(1)
-                    if (found == null) {
-                        updateBraceletOfSlaughterCharges(MAX_SLAYER_BRACELET_CHARGES)
-                    } else {
-                        updateBraceletOfSlaughterCharges(found.toInt())
-                    }
-                }
-                slaughterCheckMatcher.find() -> {
-                    updateBraceletOfSlaughterCharges(slaughterCheckMatcher.group(1).toInt())
-                }
-                expeditiousActivateMatcher.find() -> {
-                    val found = expeditiousActivateMatcher.group(1)
-                    if (found == null) {
-                        updateExpeditiousBraceletCharges(MAX_SLAYER_BRACELET_CHARGES)
-                    } else {
-                        updateExpeditiousBraceletCharges(found.toInt())
-                    }
-                }
-                expeditiousCheckMatcher.find() -> {
-                    updateExpeditiousBraceletCharges(expeditiousCheckMatcher.group(1).toInt())
-                }
-                bloodEssenceCheckMatcher.find() -> {
-                    updateBloodEssenceCharges(bloodEssenceCheckMatcher.group(1).toInt())
-                }
-                bloodEssenceExtractMatcher.find() -> {
-                    updateBloodEssenceCharges(
-                        getItemCharges(ItemChargeConfig.KEY_BLOOD_ESSENCE) - bloodEssenceExtractMatcher.group(
-                            1
-                        ).toInt()
-                    )
-                }
-                message.contains(BLOOD_ESSENCE_ACTIVATE_TEXT) -> {
-                    updateBloodEssenceCharges(MAX_BLOOD_ESSENCE_CHARGES)
-                }
-                braceletOfClayCheckMatcher.find() -> {
-                    updateBraceletOfClayCharges(braceletOfClayCheckMatcher.group(1).toInt())
-                }
-                message == BRACELET_OF_CLAY_USE_TEXT || message == BRACELET_OF_CLAY_USE_TEXT_TRAHAEARN -> {
-                    val equipment = client.getItemContainer(InventoryID.EQUIPMENT)
+            } else if (expeditiousCheckMatcher.find()) {
+                updateExpeditiousBraceletCharges(expeditiousCheckMatcher.group(1).toInt())
+            } else if (bloodEssenceCheckMatcher.find()) {
+                updateBloodEssenceCharges(bloodEssenceCheckMatcher.group(1).toInt())
+            } else if (bloodEssenceExtractMatcher.find()) {
+                updateBloodEssenceCharges(
+                    getItemCharges(ItemChargeConfig.KEY_BLOOD_ESSENCE) - bloodEssenceExtractMatcher.group(
+                        1
+                    ).toInt()
+                )
+            } else if (message.contains(BLOOD_ESSENCE_ACTIVATE_TEXT)) {
+                updateBloodEssenceCharges(MAX_BLOOD_ESSENCE_CHARGES)
+            } else if (braceletOfClayCheckMatcher.find()) {
+                updateBraceletOfClayCharges(braceletOfClayCheckMatcher.group(1).toInt())
+            } else if (message == BRACELET_OF_CLAY_USE_TEXT || message == BRACELET_OF_CLAY_USE_TEXT_TRAHAEARN) {
+                val equipment = client.getItemContainer(InventoryID.EQUIPMENT)
 
-                    // Determine if the player mined with a Bracelet of Clay equipped.
-                    if (equipment != null && equipment.contains(ItemID.BRACELET_OF_CLAY)) {
-                        val charges = Ints.constrainToRange(
-                            getItemCharges(ItemChargeConfig.KEY_BRACELET_OF_CLAY) - 1,
-                            0,
-                            MAX_BRACELET_OF_CLAY_CHARGES
-                        )
-                        updateBraceletOfClayCharges(charges)
-                    }
+                // Determine if the player mined with a Bracelet of Clay equipped.
+                if (equipment != null && equipment.contains(ItemID.BRACELET_OF_CLAY)) {
+                    val charges = Ints.constrainToRange(
+                        getItemCharges(ItemChargeConfig.KEY_BRACELET_OF_CLAY) - 1,
+                        0,
+                        MAX_BRACELET_OF_CLAY_CHARGES
+                    )
+                    updateBraceletOfClayCharges(charges)
                 }
-                message == BRACELET_OF_CLAY_BREAK_TEXT -> {
-                    updateBraceletOfClayCharges(MAX_BRACELET_OF_CLAY_CHARGES)
-                }
+            } else if (message == BRACELET_OF_CLAY_BREAK_TEXT) {
+                updateBraceletOfClayCharges(MAX_BRACELET_OF_CLAY_CHARGES)
             }
         }
     }
@@ -400,7 +377,7 @@ class ItemChargePlugin : Plugin() {
                 val itemWithConfig: ItemWithConfig? = ItemWithConfig.findItem(id)
                 if (itemWithConfig != null) {
                     type = itemWithConfig.type
-                    charges = getItemCharges(itemWithConfig.configKey)
+                    charges = getItemCharges(itemWithConfig.configKey, false)
                 }
             }
             val enabled = type != null && type.enabled!!.test(config)
@@ -431,8 +408,9 @@ class ItemChargePlugin : Plugin() {
         }
     }
 
-    fun getItemCharges(key: String?): Int {
+    fun getItemCharges(key: String?, push: Boolean = true): Int {
         // Migrate old non-profile configurations
+        this.push = push
         val s = configManager.getConfiguration(ItemChargeConfig.GROUP, key!!, String::class.java)
         var i = s?.toInt()
         if (i != null) {

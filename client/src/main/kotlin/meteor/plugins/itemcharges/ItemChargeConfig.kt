@@ -328,6 +328,7 @@ interface ItemChargeConfig : Config {
 
     companion object {
         const val GROUP = "itemCharge"
+        const val GROUP2 = "itemCharge2"
         const val KEY_AMULET_OF_BOUNTY = "amuletOfBounty"
         const val KEY_AMULET_OF_CHEMISTRY = "amuletOfChemistry"
         const val KEY_BINDING_NECKLACE = "bindingNecklace"
