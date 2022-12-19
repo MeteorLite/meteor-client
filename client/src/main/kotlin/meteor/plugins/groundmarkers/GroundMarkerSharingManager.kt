@@ -30,6 +30,7 @@ import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import lombok.extern.slf4j.Slf4j
 import meteor.Logger
+import meteor.Main
 import meteor.Main.client
 import meteor.chat.QueuedMessage.Companion.builder
 import meteor.game.chatbox.ChatboxPanelManager
@@ -57,7 +58,7 @@ internal class GroundMarkerSharingManager(
 ) {
     private val log = Logger("GM Sharing Manager")
 
-    private val chatMessageManager = ChatMessageManager()
+    private val chatMessageManager = Main.chatMessageManager
     private val chatboxPanelManager = ChatboxPanelManager
     private val gson = Gson()
     fun addImportExportMenuOptions() {
