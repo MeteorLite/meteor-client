@@ -21,7 +21,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.blackjack
+package meteor.plugins.oneclickblackjack
 
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
@@ -29,7 +29,7 @@ import meteor.config.legacy.ConfigItem
 
 
 @ConfigGroup("blackjack")
-interface BlackjackConfig : Config {
+interface OneClickBlackjackConfig : Config {
     @ConfigItem(
         keyName = "pickpocketOnAggro",
         name = "Pickpocket when aggro'd",

@@ -61,7 +61,7 @@ import meteor.plugins.attackstyles.AttackStylesPlugin
 import net.runelite.client.plugins.aoewarnings.AoeWarningPlugin
 import meteor.plugins.barrows.BarrowsPlugin
 import meteor.plugins.barrowsdoorhighlighter.BarrowsDoorHighlighter
-import meteor.plugins.blackjack.BlackjackPlugin
+import meteor.plugins.oneclickblackjack.OneClickBlackjackPlugin
 import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import meteor.plugins.blastmine.BlastMinePlugin
 import meteor.plugins.bosstimer.BossTimersPlugin
@@ -107,6 +107,8 @@ import net.runelite.client.plugins.npcunaggroarea.NpcAggroAreaPlugin
 import net.runelite.client.plugins.cannon.CannonPlugin
 import meteor.plugins.examine.ExaminePlugin
 import meteor.plugins.itemcharges.ItemChargePlugin
+import meteor.plugins.lowdetail.LowDetailPlugin
+import meteor.plugins.oneclickkarambwans.OneClickKarambwansPlugin
 import meteor.plugins.pestcontrol.PestControlPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
@@ -152,7 +154,6 @@ object PluginManager {
         init<BarrowsDoorHighlighter>()
         init<BlastFurnacePlugin>()
         init<BlastMinePlugin>()
-        init<BlackjackPlugin>()
         init<BoostsPlugin>()
         init<BossTimersPlugin>()
         init<CameraPlugin>()
@@ -201,6 +202,7 @@ object PluginManager {
         init<KeyboardBankPinPlugin>()
         init<KeyRemappingPlugin>()
         init<LootTrackerPlugin>()
+        init<LowDetailPlugin>()
         init<MenuEntrySwapperPlugin>()
         init<MinimapPlugin>()
         init<MiningPlugin>()
@@ -215,9 +217,11 @@ object PluginManager {
         init<ObjectIndicatorsPlugin>()
         init<OneClick3t4g>()
         init<OneClickAgilityPlugin>()
+        init<OneClickBlackjackPlugin>()
         init<Oneclickchinsplugin>()
         init<OneClickGlassblowingPlugin>()
         init<OneClickFurnacePlugin>()
+        init<OneClickKarambwansPlugin>()
         init<OneClickSandstonePlugin>()
         init<OlmSwapperPlugin>()
         init<PuzzleSolverPlugin>()
