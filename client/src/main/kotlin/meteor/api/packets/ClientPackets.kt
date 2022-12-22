@@ -1,9 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package meteor.api.packets
 
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import dev.hoot.api.InteractionException
-import dev.hoot.api.events.MenuAutomated
+import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import meteor.Main
@@ -390,7 +392,7 @@ object ClientPackets {
         return ""
     }
 
-    fun createClientPacket(menu: MenuAutomated): PacketBufferNode? {
+    fun createClientPacket(menu: AutomatedMenu): PacketBufferNode? {
         val opcode = menu.opcode
         val client = Main.client
         val id = menu.identifier

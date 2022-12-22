@@ -253,8 +253,8 @@ public class NpcStep extends DetailedQuestStep
 
 			if (!npcs.isEmpty() && npcs.get(0).getMinimapLocation() != null)
 			{
-				int x = npcs.get(0).getMinimapLocation().x;
-				int y = npcs.get(0).getMinimapLocation().y;
+				int x = npcs.get(0).getMinimapLocation().getX();
+				int y = npcs.get(0).getMinimapLocation().getY();
 				Line2D.Double line = new Line2D.Double(x, y - 18, x, y - 8);
 
 				DirectionArrow.drawMinimapArrow(graphics, line, getQuestHelper().getConfig().targetOverlayColor());

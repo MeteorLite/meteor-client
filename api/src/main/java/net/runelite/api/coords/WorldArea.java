@@ -108,7 +108,7 @@ public class WorldArea
 	{
 		Point p1 = this.getComparisonPoint(other);
 		Point p2 = other.getComparisonPoint(this);
-		return new Point(Math.abs(p1.x - p2.x), Math.abs(p1.y - p2.y));
+		return new Point(Math.abs(p1.getX() - p2.getX()), Math.abs(p1.getY() - p2.getY()));
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class WorldArea
 	public int distanceTo2D(WorldArea other)
 	{
 		Point distances = getAxisDistances(other);
-		return Math.max(distances.x, distances.y);
+		return Math.max(distances.getX(), distances.getY());
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class WorldArea
 		}
 
 		Point distances = getAxisDistances(other);
-		return distances.x + distances.y == 1;
+		return distances.getX() + distances.getY() == 1;
 	}
 
 	/**
@@ -227,8 +227,8 @@ public class WorldArea
 		{
 			Point p1 = this.getComparisonPoint(other);
 			Point p2 = other.getComparisonPoint(this);
-			WorldArea w1 = new WorldArea(p1.x, p1.y , 1, 1, this.getPlane());
-			return (w1.canTravelInDirection(client, p2.x - p1.x, p2.y - p1.y));
+			WorldArea w1 = new WorldArea(p1.getX(), p1.getY() , 1, 1, this.getPlane());
+			return (w1.canTravelInDirection(client, p2.getX() - p1.getX(), p2.getY() - p1.getY()));
 		}
 		return false;
 	}
@@ -247,7 +247,7 @@ public class WorldArea
 		}
 
 		Point distances = getAxisDistances(other);
-		return distances.x + distances.y == 0;
+		return distances.getX() + distances.getY() == 0;
 	}
 
 	/**
@@ -559,7 +559,7 @@ public class WorldArea
 		int dx = target.x - this.x;
 		int dy = target.y - this.y;
 		Point axisDistances = getAxisDistances(target);
-		if (stopAtMeleeDistance && axisDistances.x + axisDistances.y == 1)
+		if (stopAtMeleeDistance && axisDistances.getX() + axisDistances.getY() == 1)
 		{
 			// NPC is in melee distance of target, so no movement is done
 			return this;
@@ -576,7 +576,7 @@ public class WorldArea
 
 		int dxSig = Integer.signum(dx);
 		int dySig = Integer.signum(dy);
-		if (stopAtMeleeDistance && axisDistances.x == 1 && axisDistances.y == 1)
+		if (stopAtMeleeDistance && axisDistances.getX() == 1 && axisDistances.getY() == 1)
 		{
 			// When it needs to stop at melee distance, it will only attempt
 			// to travel along the x axis when it is standing diagonally

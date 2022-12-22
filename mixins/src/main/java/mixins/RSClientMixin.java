@@ -28,7 +28,7 @@ package mixins;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.primitives.Doubles;
-import dev.hoot.api.events.MenuAutomated;
+import dev.hoot.api.events.AutomatedMenu;
 import dev.hoot.api.events.ResumePauseSent;
 import dev.hoot.api.widgets.DialogOption;
 import java.math.BigInteger;
@@ -2991,7 +2991,7 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	private static final AtomicReference<MenuAutomated> automatedMenu = new AtomicReference<>(null);
+	private static final AtomicReference<AutomatedMenu> automatedMenu = new AtomicReference<>(null);
 
 	@Copy("menuAction")
 	@Replace("menuAction")
@@ -3068,7 +3068,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 		else
 		{
-			MenuAutomated menu = automatedMenu.getAndSet(null);
+			AutomatedMenu menu = automatedMenu.getAndSet(null);
 			if (menu != null)
 			{
 				menuEntry.setIdentifier(menu.getIdentifier());
@@ -3154,7 +3154,7 @@ public abstract class RSClientMixin implements RSClient
 	private static Instant lastInteractionTime = Instant.ofEpochMilli(0);
 
 	@Inject
-	public void interact(MenuAutomated automatedMenu)
+	public void interact(AutomatedMenu automatedMenu)
 	{
 		client.getCallbacks().post(Events.AUTOMATED_MENU, automatedMenu);
 	}
@@ -3365,7 +3365,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public void setPendingAutomation(MenuAutomated replacement)
+	public void setPendingAutomation(AutomatedMenu replacement)
 	{
 		if (lastMenuChange + 20 > System.currentTimeMillis() && replacement != null)
 		{
@@ -3378,7 +3378,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public MenuAutomated getPendingAutomation()
+	public AutomatedMenu getPendingAutomation()
 	{
 		if (lastMenuChange + 100 < System.currentTimeMillis() && automatedMenu.get() != null)
 		{

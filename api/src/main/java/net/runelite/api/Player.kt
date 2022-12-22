@@ -24,7 +24,7 @@
  */
 package net.runelite.api
 
-import dev.hoot.api.events.MenuAutomated
+import dev.hoot.api.events.AutomatedMenu
 import eventbus.Events
 import meteor.Logger
 import meteor.api.loot.Interact
@@ -129,7 +129,7 @@ interface Player : Actor {
         client.callbacks.post(Events.INTERACT, getMenu(index, getActionOpcode(index))?.let { Interact(it) })
     }
 
-    fun getMenu(actionIndex: Int, opcode: Int): MenuAutomated? {
+    fun getMenu(actionIndex: Int, opcode: Int): AutomatedMenu? {
         return getMenu(actionIndex, opcode, 0, 0)
     }
 }

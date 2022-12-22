@@ -55,8 +55,8 @@ public class Jarvis
 		for (int i = 0; i < xs.length; i++)
 		{
 			Point p = points.get(i);
-			xs[i] = p.x;
-			ys[i] = p.y;
+			xs[i] = p.getX();
+			ys[i] = p.getY();
 		}
 
 		SimplePolygon poly = convexHull(xs, ys);

@@ -309,11 +309,10 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
-	@Override
-	public net.runelite.api.Point getClickPoint()
+	public java.awt.Point getClickPoint()
 	{
 		java.awt.Point point = Randomizer.getRandomPointIn(getBounds());
-		return new net.runelite.api.Point(point.x, point.y);
+		return new java.awt.Point(point.x, point.y);
 	}
 
 	@Inject

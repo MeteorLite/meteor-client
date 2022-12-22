@@ -33,8 +33,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import dev.hoot.api.MouseHandler;
-import dev.hoot.api.SceneEntity;
-import dev.hoot.api.events.MenuAutomated;
+import dev.hoot.api.events.AutomatedMenu;
 import meteor.Logger;
 import net.runelite.api.annotations.VarCInt;
 import net.runelite.api.annotations.Varbit;
@@ -2470,25 +2469,16 @@ public interface Client extends GameEngine
 	default void interact(int identifier, int opcode, int param0, int param1,
 						  int clickX, int clickY)
 	{
-		interact(identifier, opcode, param0, param1, clickX, clickY, null);
+		interact(identifier, opcode, param0, param1, clickX, clickY, -1337);
 	}
 
 	default void interact(int identifier, int opcode, int param0, int param1, int clickX, int clickY,
-						  SceneEntity sceneEntity)
+						  long entityTag)
 	{
-		interact(
-				MenuAutomated.Companion.builder()
-						.identifier(identifier)
-						.opcode(MenuAction.of(opcode))
-						.param0(param0)
-						.param1(param1)
-						.clickX(clickX)
-						.clickY(clickY)
-						.entity(sceneEntity)
-		);
+		interact(new AutomatedMenu(identifier, opcode, param0, param1, clickX, clickY, entityTag));
 	}
 
-	void interact(MenuAutomated menuAutomated);
+	void interact(AutomatedMenu automatedMenu);
 
 	int getMouseLastPressedX();
 
@@ -2598,9 +2588,9 @@ public interface Client extends GameEngine
 
 	void setMenuOpen(boolean open);
 
-	void setPendingAutomation(MenuAutomated entry);
+	void setPendingAutomation(AutomatedMenu entry);
 
-	MenuAutomated getPendingAutomation();
+	AutomatedMenu getPendingAutomation();
 
 	VarbitComposition getVarbitComposition(int varbitId);
 

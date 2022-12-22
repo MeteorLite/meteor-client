@@ -27,7 +27,7 @@ package net.runelite.api
 import dev.hoot.api.EntityNameable
 import dev.hoot.api.Identifiable
 import dev.hoot.api.SceneEntity
-import dev.hoot.api.events.MenuAutomated
+import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.util.Randomizer
 import eventbus.Events
 import meteor.Logger
@@ -39,6 +39,7 @@ import net.runelite.api.widgets.WidgetInfo
 import java.awt.Point
 import java.awt.Rectangle
 import java.util.*
+
 import java.util.stream.Collectors
 
 open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable, EntityNameable {
@@ -101,12 +102,12 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
             val widget = client.getWidget(widgetId)
             if (widget != null) {
                 if (type == Type.EQUIPMENT) {
-                    return widget.actions
+                    return widget.rawActions
                 }
                 val itemChild = widget.getChild(slot)
                 return if (itemChild != null) {
-                    itemChild.actions
-                } else widget.actions
+                    itemChild.rawActions
+                } else widget.rawActions
             }
             return null
         }
@@ -120,7 +121,7 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         return if (action >= 4) MenuAction.CC_OP_LOW_PRIORITY.id else MenuAction.CC_OP.id
     }
 
-    open fun getMenu(actionIndex: Int): MenuAutomated? {
+    fun getMenu(actionIndex: Int): AutomatedMenu? {
         when (type) {
             Type.TRADE, Type.TRADE_INVENTORY -> {
                 val widget = client.getWidget(widgetId)
@@ -132,76 +133,26 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
                 }
             }
 
-            Type.EQUIPMENT, Type.INVENTORY, Type.BANK, Type.BANK_INVENTORY -> return getMenu(
+            Type.EQUIPMENT, Type.INVENTORY -> return getMenu(
                 actionIndex,
                 if (actionIndex > 4) MenuAction.CC_OP_LOW_PRIORITY.id else MenuAction.CC_OP.id
             )
 
+            Type.BANK, Type.BANK_INVENTORY -> return getMenu(actionIndex, MenuAction.CC_OP.id)
             Type.UNKNOWN -> client.logger.error("Couldn't determine item type for: {}, widgetid: {}", id, widgetId)
         }
         return null
     }
 
-    open fun getMenu(identifier: Int, opcode: Int, param0: Int, param1: Int): MenuAutomated? {
-        return getMenu(identifier, opcode, param0, param1, -1)
-    }
-
-    open fun getMenu(identifier: Int, opcode: Int, param0: Int, param1: Int, itemId: Int): MenuAutomated? {
-        val builder = MenuAutomated.builder()
-            .identifier(identifier)
-            .opcode(MenuAction.of(opcode))
-            .param0(param0)
-            .param1(param1)
-            .itemId(itemId)
-        if (this is SceneEntity) {
-            builder.entity(this as SceneEntity)
+    fun getMenu(identifier: Int, opcode: Int, param0: Int, param1: Int): AutomatedMenu {
+        return if (this is SceneEntity) {
+            AutomatedMenu(
+                identifier, opcode, param0, param1, -1, -1,
+                (this as SceneEntity).tag
+            )
         } else {
-            val clickPoint: net.runelite.api.Point = getClickPoint()
-            builder.clickX(clickPoint.x)
-                .clickY(clickPoint.y)
+            AutomatedMenu(identifier, opcode, param0, param1, -1, -1)
         }
-        return builder
-    }
-
-    fun getClickPoint(): net.runelite.api.Point {
-        val widget = client.getWidget(widgetId)
-        val point = Randomizer.getRandomPointIn(widget?.bounds)
-        return net.runelite.api.Point(point.x, point.y)
-    }
-
-    open fun getMenu(actionIndex: Int, opcode: Int): MenuAutomated? {
-        when (type) {
-            Type.TRADE, Type.TRADE_INVENTORY -> {
-                val itemWidget = client.getWidget(widgetId) ?: return null
-                return itemWidget.getMenu(actionIndex, opcode)
-            }
-
-            Type.EQUIPMENT -> return getMenu(actionIndex + 1, opcode, -1, widgetId, id)
-            Type.INVENTORY -> return getMenu(
-                if (actionIndex == 0) 0 else actionIndex + 1,
-                opcode,
-                slot,
-                widgetId,
-                id
-            )
-
-            Type.BANK -> return getMenu(actionIndex, opcode, slot, WidgetInfo.BANK_ITEM_CONTAINER.packedId, id)
-            Type.BANK_INVENTORY -> return getMenu(
-                actionIndex + 1,
-                opcode,
-                slot,
-                WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
-                id
-            )
-
-            Type.UNKNOWN -> client.logger.error(
-                "Couldn't determine item type for: {}, widgetid: {}, itemid: {}",
-                id,
-                widgetId,
-                id
-            )
-        }
-        return null
     }
 
     val actions: List<String>?
@@ -223,6 +174,28 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
                 x
             )
         }
+    }
+
+    fun getMenu(actionIndex: Int, opcode: Int): AutomatedMenu? {
+        when (type) {
+            Type.TRADE, Type.TRADE_INVENTORY -> {
+                val itemWidget = client.getWidget(widgetId) ?: return null
+                return itemWidget.getMenu(actionIndex, opcode)
+            }
+
+            Type.EQUIPMENT -> return getMenu(actionIndex + 1, opcode, actionParam, widgetId)
+            Type.INVENTORY -> return getMenu(if (actionIndex == 0) 0 else actionIndex + 1, opcode, slot, widgetId)
+            Type.BANK -> return getMenu(actionIndex, opcode, slot, WidgetInfo.BANK_ITEM_CONTAINER.packedId)
+            Type.BANK_INVENTORY -> return getMenu(
+                actionIndex,
+                opcode,
+                slot,
+                WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId
+            )
+
+            Type.UNKNOWN -> client.logger.error("Couldn't determine item type for: {}, widgetid: {}", id, widgetId)
+        }
+        return null
     }
 
     private val bounds: Rectangle

@@ -1,6 +1,6 @@
 package mixins;
 
-import dev.hoot.api.events.MenuAutomated;
+import dev.hoot.api.events.AutomatedMenu;
 import dev.hoot.api.util.Randomizer;
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -53,7 +53,7 @@ public abstract class RSTileObjectMixin implements TileObject
 
 	@Override
 	@Inject
-	public String[] getActions()
+	public String[] getRawActions()
 	{
 		return client.getObjectDefinition(getId()).getActions();
 	}
@@ -178,10 +178,10 @@ public abstract class RSTileObjectMixin implements TileObject
 	}
 
 	@Inject
-	public net.runelite.api.Point getClickPoint()
+	public java.awt.Point getClickPoint()
 	{
 		java.awt.Point point = Randomizer.getRandomPointIn(getBounds());
-		return new net.runelite.api.Point(point.x, point.y);
+		return new java.awt.Point(point.x, point.y);
 	}
 
 	@Inject
@@ -197,7 +197,7 @@ public abstract class RSTileObjectMixin implements TileObject
 			Point screenCoords = Perspective.localToCanvas(client, getLocalLocation(), client.getPlane());
 			if (screenCoords != null)
 			{
-				return new Rectangle(screenCoords.x, screenCoords.y, 0, 0);
+				return new Rectangle(screenCoords.getX(), screenCoords.getY(), 0, 0);
 			}
 			return new Rectangle(-1, -1, 0, 0);
 		}
@@ -207,7 +207,7 @@ public abstract class RSTileObjectMixin implements TileObject
 	@Override
 	public void interact(int index, int opcode)
 	{
-		interact(getId(), opcode, menuPoint().x, menuPoint().y);
+		interact(getId(), opcode, menuPoint().getX(), menuPoint().getY());
 	}
 
 	@Inject
@@ -218,14 +218,14 @@ public abstract class RSTileObjectMixin implements TileObject
 	}
 
 	@Inject
-	public MenuAutomated getMenu(int actionIndex)
+	public AutomatedMenu getMenu(int actionIndex)
 	{
 		return getMenu(getId(), getActionOpcode(actionIndex));
 	}
 
 	@Inject
-	public MenuAutomated getMenu(int actionIndex, int opcode)
+	public AutomatedMenu getMenu(int actionIndex, int opcode)
 	{
-		return getMenu(getId(), opcode, menuPoint().x, menuPoint().y);
+		return getMenu(getId(), opcode, menuPoint().getX(), menuPoint().getY());
 	}
 }

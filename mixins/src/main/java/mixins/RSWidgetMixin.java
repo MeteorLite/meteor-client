@@ -24,7 +24,7 @@
  */
 package mixins;
 
-import dev.hoot.api.events.MenuAutomated;
+import dev.hoot.api.events.AutomatedMenu;
 import dev.hoot.api.util.Randomizer;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -275,7 +275,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	public Rectangle getBounds()
 	{
 		Point canvasLocation = getCanvasLocation();
-		return new Rectangle(canvasLocation.x, canvasLocation.y, getWidth(), getHeight());
+		return new Rectangle(canvasLocation.getX(), canvasLocation.getY(), getWidth(), getHeight());
 	}
 
 	@Inject
@@ -344,8 +344,8 @@ public abstract class RSWidgetMixin implements RSWidget
 		if (isDragged)
 		{
 			Point p = getWidgetItemDragOffsets();
-			dragOffsetX = p.x;
-			dragOffsetY = p.y;
+			dragOffsetX = p.getX();
+			dragOffsetY = p.getY();
 		}
 
 		Rectangle bounds = new Rectangle(itemX - 1, itemY - 1, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
@@ -453,7 +453,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	public boolean contains(Point point)
 	{
 		Rectangle bounds = getBounds();
-		return bounds != null && bounds.contains(new java.awt.Point(point.x, point.y));
+		return bounds != null && bounds.contains(new java.awt.Point(point.getX(), point.getY()));
 	}
 
 	@Inject
@@ -710,10 +710,10 @@ public abstract class RSWidgetMixin implements RSWidget
 	}
 
 	@Inject
-	public net.runelite.api.Point getClickPoint()
+	public java.awt.Point getClickPoint()
 	{
 		java.awt.Point point = Randomizer.getRandomPointIn(getBounds());
-		return new net.runelite.api.Point(point.x, point.y);
+		return new java.awt.Point(point.x, point.y);
 	}
 
 	@Inject
@@ -736,14 +736,14 @@ public abstract class RSWidgetMixin implements RSWidget
 	}
 
 	@Inject
-	public MenuAutomated getMenu(int actionIndex)
+	public AutomatedMenu getMenu(int actionIndex)
 	{
 		return getMenu(actionIndex, getActionOpcode(actionIndex));
 	}
 
 	@Inject
-	public MenuAutomated getMenu(int actionIndex, int opcode)
+	public AutomatedMenu getMenu(int actionIndex, int opcode)
 	{
-		return getMenu(getMenuIdentifier(actionIndex), opcode, getIndex(), getId(), getItemId());
+		return getMenu(getMenuIdentifier(actionIndex), opcode, getIndex(), getId());
 	}
 }
