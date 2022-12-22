@@ -32,6 +32,10 @@ public abstract class RSTileItemMixin implements RSTileItem
 	private int rl$sceneY = -1;
 
 	@Inject
+	private int rl$index = -1;
+
+
+	@Inject
 	RSTileItemMixin()
 	{
 	}
@@ -280,5 +284,15 @@ public abstract class RSTileItemMixin implements RSTileItem
 	{
 		return getMenu(getId(), opcode,
 				getTile().getSceneLocation().x, getTile().getSceneLocation().y);
+	}
+
+	@Inject
+	public int getIndex() {
+		return rl$index;
+	}
+
+	@Inject
+	public void setIndex(int x) {
+		rl$index = x;
 	}
 }
