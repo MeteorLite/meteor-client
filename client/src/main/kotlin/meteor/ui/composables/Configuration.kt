@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -75,7 +76,7 @@ fun configPanelHeader() {
             modifier = Modifier.fillMaxWidth().height(42.dp).background(surface,
                 RoundedCornerShape(10.dp))
         ) {
-            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(75.dp)) {
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(40.dp)) {
                 IconButton( onClick = {
                     when {
                         configOpen.value -> configOpen.value = false
@@ -89,19 +90,18 @@ fun configPanelHeader() {
                     )
                 }
             }
-            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(250.dp)) {
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(210.dp)) {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                         lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
-                        style = TextStyle(color = uiColor.value, fontSize = 18.sp),
-                        modifier = Modifier.offset(x = -25.dp, y = 0.dp)
+                        style = TextStyle(color = uiColor.value, fontSize = 18.sp, textAlign = TextAlign.Left),
                     )
                 }
             }
             Row(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.End,
-                modifier = Modifier.width(50.dp).offset(x = -35.dp, y = 0.dp)
+                modifier = Modifier.width(50.dp)
             ) {
                 val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
 
