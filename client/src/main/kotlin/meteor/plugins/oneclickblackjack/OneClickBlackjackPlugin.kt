@@ -38,7 +38,7 @@ import org.apache.commons.lang3.ArrayUtils
 
 
 @PluginDescriptor(
-    name = "Blackjack",
+    name = "One Click Blackjack",
     enabledByDefault = false,
     description = "Allows for one-click blackjacking, both knocking out and pickpocketing",
     tags = ["blackjack", "thieving"]

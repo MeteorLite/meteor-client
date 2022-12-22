@@ -133,7 +133,6 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
-        init<PestControlPlugin>()
         init<Meteor>()
         init<AgilityPlugin>()
         init<AlchemicalHydraPlugin>()
@@ -225,6 +224,7 @@ object PluginManager {
         init<OneClickKarambwansPlugin>()
         init<OneClickSandstonePlugin>()
         init<OlmSwapperPlugin>()
+        init<PestControlPlugin>()
         init<PuzzleSolverPlugin>()
         init<PvPKeys>()
         init<PrayerFlickerPlugin>()

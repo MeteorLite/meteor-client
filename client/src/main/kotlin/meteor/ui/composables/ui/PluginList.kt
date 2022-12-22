@@ -1,10 +1,7 @@
 package meteor.ui.composables.ui
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.TooltipArea
-import androidx.compose.foundation.TooltipPlacement
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -20,8 +17,10 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
 import compose.icons.Octicons
 import compose.icons.octicons.Gear24
@@ -127,18 +126,21 @@ fun plugins() {
                 Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(background ) ) {
                     TooltipArea(
                         modifier = Modifier.background(
-                            shape = RoundedCornerShape(3.dp), color = surface
+                            shape = RoundedCornerShape(16.dp), color = surface
                         ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
-                            Column(modifier = Modifier.width(200.dp).background(surface, RoundedCornerShape(4.dp))) {
-                                Text(
-                                    plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).description,
-                                    style = TextStyle(
-                                        color = uiColor.value,
-                                        letterSpacing = 2.sp,
-                                        fontSize = pluginListSize.value.sp,
-                                        fontWeight = FontWeight.Medium
-                                    ),
-
+                            Box(modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 10.dp, maxWidth = 200.dp, maxHeight = 200.dp)
+                                .background(color = surface, RoundedCornerShape(5.dp)), contentAlignment = Alignment.Center)
+                            {
+                                    Text(
+                                        plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).description,
+                                        style = TextStyle(
+                                            color = uiColor.value,
+                                            textAlign = TextAlign.Center,
+                                            letterSpacing = 2.sp,
+                                            fontSize = pluginListSize.value.sp,
+                                            fontWeight = FontWeight.Medium
+                                        ),
+                                        modifier = Modifier.padding(vertical = 5.dp)
                                     )
                             }
 
