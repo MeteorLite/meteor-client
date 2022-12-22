@@ -24,7 +24,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.blackjack
+package meteor.plugins.oneclickblackjack
 
 import eventbus.events.ChatMessage
 import eventbus.events.ClientTick
@@ -43,9 +43,9 @@ import org.apache.commons.lang3.ArrayUtils
     description = "Allows for one-click blackjacking, both knocking out and pickpocketing",
     tags = ["blackjack", "thieving"]
 )
-class BlackjackPlugin : Plugin() {
+class OneClickBlackjackPlugin : Plugin() {
 
-    private val config = configuration<BlackjackConfig>()
+    private val config = configuration<OneClickBlackjackConfig>()
     private var nextKnockOutTick: Long = 0
     private var knockout = true
 
