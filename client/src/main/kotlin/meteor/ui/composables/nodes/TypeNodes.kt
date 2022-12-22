@@ -184,7 +184,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
                     DropdownMenu(
                         expanded = expanded,
                         onDismissRequest = { expanded = false },
-                        modifier = Modifier.width(375.dp).padding(horizontal = 5.dp)
+                        modifier = Modifier.width(300.dp).padding(horizontal = 5.dp)
                     ) {
                         configItemDescriptor.type?.enumConstants?.forEach {
                             DropdownMenuItem(onClick = {

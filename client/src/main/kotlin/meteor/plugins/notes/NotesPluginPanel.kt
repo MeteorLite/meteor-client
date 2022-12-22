@@ -44,12 +44,12 @@ class NotesPluginPanel : PluginPanel() {
 
             Row(
                 verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                modifier = Modifier.fillMaxHeight().width(375.dp).background(Color(0xFF242424))
+                modifier = Modifier.fillMaxHeight().width(300.dp).background(Color(0xFF242424))
             ) {
                 MaterialTheme(colors = darkThemeColors) {
 
                     OutlinedTextField(
-                        modifier = Modifier.width(375.dp).fillMaxHeight().background(Color(0xFF242424)),
+                        modifier = Modifier.width(300.dp).fillMaxHeight().background(Color(0xFF242424)),
                         value = text.value.toString(),
                         onValueChange = {
                             text.value = it

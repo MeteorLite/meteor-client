@@ -1,7 +1,11 @@
 package meteor.plugins.hiscore
 
 import compose.icons.Octicons
+import compose.icons.TablerIcons
 import compose.icons.octicons.Graph16
+import compose.icons.octicons.People16
+import compose.icons.octicons.People24
+import compose.icons.tablericons.Trophy
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
 import meteor.config.ConfigManager
@@ -28,9 +32,10 @@ class HiScorePlugin : Plugin() {
 
     private var notesButton = ToolbarButton(
         "HiScore",
-        Octicons.Graph16,
+        TablerIcons.Trophy,
         iconColor = uiColor.value,
         description = "Player Hiscores",
+        position = 3,
         onClick = {
             onClick()
         },

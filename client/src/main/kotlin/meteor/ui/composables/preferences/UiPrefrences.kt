@@ -85,7 +85,8 @@ val pluginListButton = addButton(
         "Plugins",
         Octicons.Plug24,
         iconColor = uiColor.value,
-        description = "Opens Plugins list",
+        description = "Plugin List",
+        position = 1,
         onClick = {
             when {
                 pluginPanelIsOpen.value -> {

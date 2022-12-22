@@ -2,7 +2,6 @@ package meteor.ui.composables.toolbar
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -17,6 +16,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.ui.composables.preferences.background
@@ -27,7 +28,8 @@ class ToolbarButton(
     var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color? = null ,
     var backgroundColor: Color? = null,
     var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
-    var bottom: Boolean = false, var onClick: () -> Unit
+    var bottom: Boolean = false, var onClick: () -> Unit,
+    var position: Int? = null
 ) {
 
     //Required for java access
@@ -54,25 +56,28 @@ class ToolbarButton(
         TooltipArea(
             modifier = Modifier.background(
                 shape = RoundedCornerShape(3.dp), color = surface
-            ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
-                Column(modifier = Modifier.width(57.dp).background(surface, RoundedCornerShape(4.dp))) {
+            ), tooltipPlacement = TooltipPlacement.ComponentRect(offset = DpOffset(x = -10.dp, y = 0.dp)), tooltip = {
+                Box(modifier = Modifier.sizeIn(minWidth = 60.dp, minHeight = 20.dp, maxWidth = 60.dp, maxHeight = 200.dp)
+                    .background(color = surface, RoundedCornerShape(5.dp)), contentAlignment = Alignment.Center) {
                     Text(
                         description.toString(),
-                        style = TextStyle(
+                        style = TextStyle
+                            (
                             color = uiColor.value,
+                            textAlign = TextAlign.Center,
                             letterSpacing = 2.sp,
-                            fontSize = 9.sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.Medium
-                        ),
-
+                            ),
+                        modifier = Modifier.padding(vertical = 5.dp)
                         )
                 }
 
             }) {
             Box(
-                modifier = Modifier.clip(CircleShape).background(mutableStateOf(background).value).width(45.dp)
-                    .height(45.dp),
-                contentAlignment = alignment
+                modifier = Modifier.padding(vertical = 5.dp).clip(RoundedCornerShape(size = 7.dp)).background(mutableStateOf(background).value).width(35.dp)
+                    .height(35.dp),
+                contentAlignment = alignment,
             ) {
                 IconButton(
                     onClick = onClick,

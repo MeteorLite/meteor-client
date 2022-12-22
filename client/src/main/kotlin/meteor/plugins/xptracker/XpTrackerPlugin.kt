@@ -27,6 +27,7 @@ package meteor.plugins.xptracker
 
 import com.google.common.collect.ImmutableList
 import compose.icons.Octicons
+import compose.icons.octicons.Graph16
 import compose.icons.octicons.Meter16
 import eventbus.events.*
 import meteor.Main
@@ -80,9 +81,10 @@ class XpTrackerPlugin : Plugin() {
     var panel: PluginPanel? = null
     private var xpButton = ToolbarButton(
         "xp",
-        Octicons.Meter16,
+        Octicons.Graph16,
         iconColor = uiColor.value,
-        description = "Xp tracker   ",
+        description = "Xp tracker",
+        position = 1,
         onClick = {
             onClick()
         },

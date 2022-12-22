@@ -25,7 +25,8 @@ class InfoPanelPlugin : Plugin() {
         onClick = {
             onClick()
         },
-        bottom = false
+        bottom = false,
+        position = 99
     )
 
     fun onClick() {

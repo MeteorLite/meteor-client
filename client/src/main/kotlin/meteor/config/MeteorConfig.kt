@@ -39,7 +39,7 @@ interface MeteorConfig : Config {
         position = 0,
     )
     fun toolbarWidth(): Int {
-        return 35
+        return 45
     }
 
     @ConfigItem(
@@ -60,7 +60,7 @@ interface MeteorConfig : Config {
         position = 0,
     )
     fun pluginListTextSize(): Int {
-        return 15
+        return 14
     }
 
     @Range(min = 1, max = 19, textInput = false)

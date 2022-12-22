@@ -22,6 +22,7 @@ class NotesPlugin : Plugin() {
         Octicons.Note24,
         iconColor = uiColor.value,
         description = "Notes",
+        position = 98,
         onClick = {
             onClick()
         },

@@ -58,7 +58,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
                             DropdownMenu(
                                 expanded = expanded,
                                 onDismissRequest = { expanded = false },
-                                modifier = Modifier.width(375.dp).padding(horizontal = 5.dp)
+                                modifier = Modifier.width(300.dp).padding(horizontal = 5.dp)
                             ) {
                                 hiddenEnum.type?.enumConstants?.forEach { ec->
                                     DropdownMenuItem(onClick = {

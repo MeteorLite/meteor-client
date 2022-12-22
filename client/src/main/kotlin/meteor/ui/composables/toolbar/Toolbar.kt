@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import meteor.Main
+import meteor.plugins.infopanel.InfoPanel
 import meteor.ui.composables.preferences.*
 
 
@@ -31,8 +32,7 @@ fun ToolbarPanel() {
             modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(surface)
         ) {
             MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
-                for (button in topToolbar)
-                    button.CreateComponent()
+                topToolbar.sortedBy { it.position }.forEach { it.CreateComponent() }
             }
         }
 
