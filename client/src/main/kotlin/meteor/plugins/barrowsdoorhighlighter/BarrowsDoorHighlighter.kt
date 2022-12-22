@@ -11,7 +11,7 @@ import net.runelite.api.NullObjectID
 import net.runelite.api.WallObject
 
 
-@PluginDescriptor(name = "Barrows Door Highlighter")
+@PluginDescriptor(name = "Barrows Door Highlight")
 class BarrowsDoorHighlighter : Plugin() {
     val doors: MutableSet<WallObject> = HashSet()
     val config = configuration<BarrowsDoorHighlighterConfig>()

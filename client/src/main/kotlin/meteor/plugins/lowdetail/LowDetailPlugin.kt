@@ -24,8 +24,7 @@
  */
 package meteor.plugins.lowdetail
 
-import eventbus.events.BeforeRender
-import eventbus.events.ConfigChanged
+import eventbus.events.*
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -59,9 +58,11 @@ class LowDetailPlugin : Plugin() {
         clientThread.invoke { client.changeMemoryMode(false) }
     }
 
-
-
-
+    override fun onChatMessage(it: ChatMessage) {
+        if (it.message == "Welcome to Old School RuneScape."){
+            client.changeMemoryMode(config.lowDetail())
+        }
+    }
 
     override fun onConfigChanged(it: ConfigChanged) {
         if (it.group.equals(LowDetailConfig.Companion.GROUP)) {
@@ -72,7 +73,6 @@ class LowDetailPlugin : Plugin() {
             }
         }
     }
-
 
     override fun onBeforeRender(it: BeforeRender) {
         // This needs to be set to the current plane, but there is no event for plane change, so
