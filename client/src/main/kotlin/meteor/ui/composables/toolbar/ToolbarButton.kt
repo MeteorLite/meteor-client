@@ -29,7 +29,7 @@ class ToolbarButton(
     var backgroundColor: Color? = null,
     var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
     var bottom: Boolean = false, var onClick: () -> Unit,
-    var position: Int? = null
+    var position: Int = 999
 ) {
 
     //Required for java access
