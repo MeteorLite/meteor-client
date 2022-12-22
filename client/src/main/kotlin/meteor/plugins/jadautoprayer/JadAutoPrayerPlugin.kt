@@ -18,18 +18,14 @@ import net.runelite.api.widgets.WidgetInfo
 )
 class JadAutoPrayerPlugin : Plugin() {
 
-    @Inject
-    private val clientThread: ClientThread? = null
+    private val clientThread = ClientThread
 
-    @Throws(Exception::class)
-    protected fun startUp() {
+    override fun onStart() {
     }
 
-    @Throws(Exception::class)
-    protected fun shutDown() {
+    override fun onStop() {
     }
 
-    @Subscribe
     override fun onAnimationChanged(it: AnimationChanged) {
         val actor: Actor = it.actor
         when (actor.animation) {
@@ -37,21 +33,38 @@ class JadAutoPrayerPlugin : Plugin() {
                     Varbits.PRAYER_PROTECT_FROM_MAGIC
                 ) == 0
             ) {
-                activatePrayer(WidgetInfo.PRAYER_PROTECT_FROM_MAGIC)
+                activatePrayer(Prayer.PROTECT_FROM_MAGIC)
             }
             AnimationID.TZTOK_JAD_RANGE_ATTACK, JALTOK_JAD_RANGE_ATTACK -> if (client.getVar(Varbits.PRAYER_PROTECT_FROM_MISSILES) == 0) {
-                activatePrayer(WidgetInfo.PRAYER_PROTECT_FROM_MISSILES)
+                activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             }
             else -> {}
         }
     }
 
-    fun activatePrayer(widgetInfo: WidgetInfo?) {
-        val prayer_widget: Widget = client.getWidget(widgetInfo) ?: return
+    private fun activatePrayer(prayer: Prayer?) {
+        if (prayer == null) {
+            return
+        }
+
+        //check if prayer is already active this tick
+        if (client.isPrayerActive(prayer)) {
+            return
+        }
+        val widgetInfo = prayer.widgetInfo ?: return
+        val prayerWidget = client.getWidget(widgetInfo) ?: return
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        clientThread!!.invoke {
+        clientThread.invoke {
+            client.invokeMenuAction(
+                "Activate",
+                prayerWidget.name,
+                1,
+                MenuAction.CC_OP.id,
+                prayerWidget.itemId,
+                prayerWidget.id
+            )
         }
     }
 

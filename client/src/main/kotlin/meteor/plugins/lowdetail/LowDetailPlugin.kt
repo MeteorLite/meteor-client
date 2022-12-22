@@ -41,10 +41,10 @@ import net.runelite.api.GameState
 class LowDetailPlugin : Plugin() {
 
 
-    private val clientThread: ClientThread? = null
+    private val clientThread = ClientThread
     private val config = configuration<LowDetailConfig>()
     override fun onStart() {
-        clientThread?.invoke {
+        clientThread.invoke {
 
             // When the client starts it initializes the texture size based on the memory mode setting.
             // Don't set low memory before the login screen is ready to prevent loading the low detail textures,
@@ -56,7 +56,7 @@ class LowDetailPlugin : Plugin() {
     }
 
     override fun onStop() {
-        clientThread?.invoke { client.changeMemoryMode(false) }
+        clientThread.invoke { client.changeMemoryMode(false) }
     }
 
 
@@ -65,7 +65,7 @@ class LowDetailPlugin : Plugin() {
 
     override fun onConfigChanged(it: ConfigChanged) {
         if (it.group.equals(LowDetailConfig.Companion.GROUP)) {
-            clientThread?.invoke {
+            clientThread.invoke {
                 if (client.gameState.state >= GameState.LOGIN_SCREEN.state) {
                     client.changeMemoryMode(config.lowDetail())
                 }
