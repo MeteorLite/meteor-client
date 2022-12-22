@@ -57,7 +57,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                 }
                 Spacer(Modifier.height(8.dp))
                 Row(
-                    Modifier.background(surface, RoundedCornerShape(8.dp)).height(150.dp).width(375.dp),
+                    Modifier.background(surface, RoundedCornerShape(8.dp)).height(150.dp).width(300.dp),
                     horizontalArrangement = Arrangement.SpaceAround,
                     verticalAlignment = Alignment.CenterVertically
                 ) {

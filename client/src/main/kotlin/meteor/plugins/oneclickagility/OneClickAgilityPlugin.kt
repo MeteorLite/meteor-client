@@ -48,7 +48,7 @@ class OneClickAgilityPlugin : Plugin() {
 
     override fun onClientTick(it: ClientTick) {
         if (client.localPlayer == null || client.gameState != GameState.LOGGED_IN) return
-        val text: String = if (course!!.getCurrentObstacleArea(client.localPlayer) == null) {
+        val text: String = if (course?.getCurrentObstacleArea(client.localPlayer) == null) {
             if (config.consumeMisclicks()) {
                 "One Click Agility"
             } else {

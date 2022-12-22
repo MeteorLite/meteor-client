@@ -33,7 +33,7 @@ import meteor.ui.composables.ui.onPluginToggled
 fun configPanel() {
     if (lastPlugin.configuration != null) descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)
     val mod = Modifier.background(if (darkLightMode.value) darkThemeColors.background else lightThemeColors.background
-    ).fillMaxHeight().width(375.dp)
+    ).fillMaxHeight().width(300.dp)
     Column {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
 
@@ -58,7 +58,7 @@ fun configPanel() {
 fun configs(){
     LazyColumn(
         horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-        modifier = Modifier.width(375.dp).fillMaxHeight().background(background )
+        modifier = Modifier.width(300.dp).fillMaxHeight().background(background )
     ) {
         titleItems()
         sectionItems()
@@ -93,15 +93,15 @@ fun configPanelHeader() {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                         lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
-                        style = TextStyle(color = uiColor.value, fontSize = 24.sp),
-                        modifier = Modifier.padding(top = 10.dp)
+                        style = TextStyle(color = uiColor.value, fontSize = 18.sp),
+                        modifier = Modifier.offset(x = -25.dp, y = 0.dp)
                     )
                 }
             }
             Row(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.End,
-                modifier = Modifier.width(50.dp)
+                modifier = Modifier.width(50.dp).offset(x = -35.dp, y = 0.dp)
             ) {
                 val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
 

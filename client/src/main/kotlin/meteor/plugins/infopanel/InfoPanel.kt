@@ -31,7 +31,7 @@ class InfoPanel: PluginPanel() {
     }
     @Composable
     override fun Content() {
-        Column(modifier = Modifier.width(375.dp).padding(5.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceEvenly){
+        Column(modifier = Modifier.width(300.dp).padding(5.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceEvenly){
                     Text("OldSchool revision  ${client.revision}", color = intColor)
                     Spacer(Modifier.height(10.dp))
                     discordButton()

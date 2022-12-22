@@ -52,7 +52,7 @@ class HiscorePanel : PluginPanel() {
                 }
             }
 
-            val mod = Modifier.width(375.dp).background(background)
+            val mod = Modifier.width(300.dp).background(background)
 
             LazyVerticalGrid(
                     columns = GridCells.Adaptive(minSize = 75.dp),

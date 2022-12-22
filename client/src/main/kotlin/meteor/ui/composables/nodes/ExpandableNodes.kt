@@ -116,7 +116,7 @@ fun expandToolbar(
 
                     Icon(
                         modifier = Modifier.height(35.dp),
-                        imageVector = if (expanded) Octicons.ChevronRight16 else Octicons.ChevronLeft16,
+                        imageVector = if (expanded) Octicons.ChevronLeft16 else Octicons.ChevronRight16,
                         contentDescription = "Drop-Down Arrow",
                         tint = uiColor.value
                     )

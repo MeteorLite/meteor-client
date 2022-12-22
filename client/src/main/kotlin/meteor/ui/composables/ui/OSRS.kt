@@ -25,6 +25,7 @@ fun OSRSPanel() {
         modifier = mod,
         factory = {
             JPanel().apply {
+
                 layout = BorderLayout()
                 if (!loaded) {
                     applet = Applet.applet

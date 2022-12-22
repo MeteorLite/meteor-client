@@ -18,10 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.LayoutDirection
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.*
 import compose.icons.Octicons
 import compose.icons.octicons.Gear24
 import compose.icons.octicons.Search16
@@ -39,7 +36,7 @@ fun pluginsPanel() {
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Top,
-            modifier = Modifier.fillMaxHeight().width(375.dp)
+            modifier = Modifier.fillMaxHeight().width(300.dp)
         ) {
             plugins()
         }
@@ -127,7 +124,7 @@ fun plugins() {
                     TooltipArea(
                         modifier = Modifier.background(
                             shape = RoundedCornerShape(16.dp), color = surface
-                        ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
+                        ), tooltipPlacement = TooltipPlacement.ComponentRect(offset = DpOffset(x = 15.dp, y = 0.dp)), tooltip = {
                             Box(modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 10.dp, maxWidth = 200.dp, maxHeight = 200.dp)
                                 .background(color = surface, RoundedCornerShape(5.dp)), contentAlignment = Alignment.Center)
                             {
@@ -147,7 +144,7 @@ fun plugins() {
                         }) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.60f).height(32.dp).background(background )
+                            modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(background )
                         ) {
 
                             Text(

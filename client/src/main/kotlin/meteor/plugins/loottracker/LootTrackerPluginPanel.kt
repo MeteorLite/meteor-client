@@ -42,8 +42,8 @@ class LootTrackerPluginPanel:PluginPanel() {
     override fun Content() {
 
 
-        Column(modifier = Modifier.width(375.dp)) {
-            LazyColumn(Modifier.width(350.dp).fillMaxHeight()) {
+        Column(modifier = Modifier.width(300.dp)) {
+            LazyColumn(Modifier.width(275.dp).fillMaxHeight()) {
 
                 items(items = multiMap.value.entrySet().distinct().toMutableStateList()) { map ->
                     Spacer(Modifier.height(10.dp))

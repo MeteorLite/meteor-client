@@ -84,6 +84,7 @@ dependencies {
     implementation("com.formdev:flatlaf-extras:_")
     implementation("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")
     implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
+    implementation("br.com.devsrsouza.compose.icons.jetbrains:tabler-icons:1.0.0")
 
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlin:kotlin-reflect:_")
@@ -110,7 +111,7 @@ compose {
                 "-XX:+UseZGC",
                 "-Xmx1024m",
                 "-ea",
-                "-Dsun.java2d.uiScale=1.0",
+                "-Dsun.java2d.dpiaware=false,",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-opens", "java.base/java.net=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",

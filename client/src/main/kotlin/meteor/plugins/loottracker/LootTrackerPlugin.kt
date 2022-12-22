@@ -3,7 +3,10 @@ package meteor.plugins.loottracker
 import androidx.compose.runtime.mutableStateOf
 import com.google.gson.reflect.TypeToken
 import compose.icons.Octicons
+import compose.icons.TablerIcons
 import compose.icons.octicons.Briefcase24
+import compose.icons.octicons.Database24
+import compose.icons.tablericons.ReportMoney
 import dev.hoot.api.commons.FileUtil
 import dev.hoot.api.game.Game
 import dev.hoot.api.game.Prices
@@ -37,9 +40,10 @@ class LootTrackerPlugin: Plugin() {
 
     private var lootTrackerButton = ToolbarButton(
         "LootTracker",
-        Octicons.Briefcase24,
+        TablerIcons.ReportMoney,
         iconColor = uiColor.value,
-        description = "Tracks loot",
+        description = "Loot Tracker",
+        position = 2,
         onClick = {
             onClick()
         },
