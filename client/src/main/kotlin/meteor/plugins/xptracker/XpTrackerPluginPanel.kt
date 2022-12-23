@@ -263,12 +263,12 @@ class XpTrackerPluginPanel : PluginPanel() {
                                 ).background(shape = RoundedCornerShape(3.dp), color = surface),
                                 color = uiColor.value,
                                 backgroundColor = surface,
-                                progress = skillProgress
+                                progress = if (skillProgress > 1.00f) 1.00f else skillProgress
                             )
                         }
                         Box {
                             Text(
-                                text = "$progress%",
+                                text = if (progress > 1.00f) "100%" else "$progress%",
                                 style = TextStyle(
                                     fontSize = 17.sp,
                                     textAlign = TextAlign.Center,
