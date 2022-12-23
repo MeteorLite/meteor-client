@@ -5,6 +5,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -16,19 +17,16 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.*
 import compose.icons.Octicons
 import compose.icons.octicons.Gear24
 import compose.icons.octicons.Search16
-import meteor.Main
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.PluginManager
 import meteor.ui.composables.preferences.*
-import meteor.util.FontUtil
 
 
 @Composable
@@ -69,7 +67,7 @@ fun searchBar(
             modifier = Modifier.fillMaxWidth().height(60.dp).scale(0.93f),
             shape = RoundedCornerShape(10.dp),
             label = {
-                if (state.value.isEmpty())Text("Search", color = uiColor.value)
+                if (state.value.isEmpty()) Text("Search", color = uiColor.value)
             },
             leadingIcon = {
                 Icon(
@@ -87,9 +85,10 @@ fun searchBar(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun plugins() {
-
-    val textState =  remember { searchValue }
-
+    if (pluginListScrollState == null) {
+        pluginListScrollState = rememberLazyListState()
+    }
+    val textState = remember { searchValue }
     searchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
 
 
@@ -100,7 +99,7 @@ fun plugins() {
             .fillMaxHeight()
     ) {
 
-        LazyColumn(modifier = Modifier.fillMaxHeight()) {
+        LazyColumn(modifier = Modifier.fillMaxHeight(), state = pluginListScrollState!!) {
 
             val searchedText = textState.value
 
@@ -109,7 +108,7 @@ fun plugins() {
                         it.getDescriptor().tags.contains(searchedText)
             }, itemContent = { plugin ->
 
-                Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(background ) ) {
+                Row(modifier = Modifier.fillMaxWidth().height(45.dp).background(background)) {
                     TooltipArea(
                         modifier = Modifier.background(
                             shape = RoundedCornerShape(16.dp), color = surface
@@ -117,23 +116,23 @@ fun plugins() {
                             Box(modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 10.dp, maxWidth = 200.dp, maxHeight = 200.dp)
                                 .background(color = surface, RoundedCornerShape(5.dp)), contentAlignment = Alignment.Center)
                             {
-                                    Text(
-                                        plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).description,
-                                        style = TextStyle(
-                                            color = uiColor.value,
-                                            textAlign = TextAlign.Center,
-                                            letterSpacing = 2.sp,
-                                            fontSize = pluginListSize.value.sp,
-                                            fontWeight = FontWeight.Medium
-                                        ),
-                                        modifier = Modifier.padding(vertical = 5.dp)
-                                    )
+                                Text(
+                                    plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).description,
+                                    style = TextStyle(
+                                        color = uiColor.value,
+                                        textAlign = TextAlign.Center,
+                                        letterSpacing = 2.sp,
+                                        fontSize = pluginListSize.value.sp,
+                                        fontWeight = FontWeight.Medium
+                                    ),
+                                    modifier = Modifier.padding(vertical = 5.dp)
+                                )
                             }
 
                         }) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(background )
+                            modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(background)
                         ) {
 
                             Text(
@@ -155,7 +154,7 @@ fun plugins() {
                         horizontalArrangement = Arrangement.End,
                         modifier = Modifier.fillMaxWidth().padding(top = 15.dp)
                             .height(pluginListSize.value.dp)
-                            .background(background )
+                            .background(background)
                     ) {
                         if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
                             IconButton(
@@ -186,7 +185,7 @@ fun plugins() {
                         } else {
                             Spacer(
                                 Modifier.width(50.dp)
-                                    .background(background  )
+                                    .background(background)
                             )
                         }
                         val switchState = mutableStateOf(plugin.shouldEnable())
@@ -205,7 +204,7 @@ fun plugins() {
                 }
                 Spacer(
                     Modifier.width(pluginSpacer.value.dp)
-                        .background(background )
+                        .background(background)
                 )
 
             })
