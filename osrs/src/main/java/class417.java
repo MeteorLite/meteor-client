@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -106,11 +106,11 @@ public abstract class class417 implements class261 {
                var19 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
                var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
                var20 = class300.method5847(var19);
-               var7 = class459.method8447(var19);
+               var7 = DbTableType.method8447(var19);
                int var21 = class163.method3422(var19);
-               class461 var26 = HealthBarUpdate.method2365(var3);
-               class459 var27 = class146.method3163(var20);
-               int[] var28 = var27.field4883[var7];
+               DbRowType var26 = HealthBarUpdate.getDbRowType(var3);
+               DbTableType var27 = class146.getDbTableType(var20);
+               int[] var28 = var27.types[var7];
                int var12 = 0;
                int var13 = var28.length;
                if (var21 >= 0) {
@@ -122,9 +122,9 @@ public abstract class class417 implements class261 {
                   var13 = var21 + 1;
                }
 
-               Object[] var14 = var26.method8461(var7);
-               if (var14 == null && var27.field4880 != null) {
-                  var14 = var27.field4880[var7];
+               Object[] var14 = var26.getColumnType(var7);
+               if (var14 == null && var27.defaultValues != null) {
+                  var14 = var27.defaultValues[var7];
                }
 
                int var15;
@@ -165,13 +165,13 @@ public abstract class class417 implements class261 {
                var19 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
                var5 = 0;
                var20 = class300.method5847(var19);
-               var7 = class459.method8447(var19);
-               class461 var25 = HealthBarUpdate.method2365(var3);
-               class459 var9 = class146.method3163(var20);
-               int[] var10 = var9.field4883[var7];
-               Object[] var11 = var25.method8461(var7);
-               if (var11 == null && var9.field4880 != null) {
-                  var11 = var9.field4880[var7];
+               var7 = DbTableType.method8447(var19);
+               DbRowType var25 = HealthBarUpdate.getDbRowType(var3);
+               DbTableType var9 = class146.getDbTableType(var20);
+               int[] var10 = var9.types[var7];
+               Object[] var11 = var25.getColumnType(var7);
+               if (var11 == null && var9.defaultValues != null) {
+                  var11 = var9.defaultValues[var7];
                }
 
                if (var11 != null) {
@@ -183,8 +183,8 @@ public abstract class class417 implements class261 {
             } else if (var0 != 7504 && var0 != 7510) {
                if (var0 == 7505) {
                   var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                  class461 var24 = HealthBarUpdate.method2365(var3);
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var24.field4891;
+                  DbRowType var24 = HealthBarUpdate.getDbRowType(var3);
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var24.tableId;
                   return 1;
                } else if (var0 == 7506) {
                   var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];

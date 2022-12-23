@@ -3,8 +3,7 @@ import java.awt.Desktop.Action;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -220,7 +219,7 @@ public enum ModeWhere implements class345 {
       class273.method5480();
       class143.method3127();
       WorldMapElement.WorldMapElement_cachedSprites.clear();
-      class459.DBTableType_cache.clear();
+      DbTableType.DBTableType_cache.clear();
       class420.method7904();
       Client.Widget_cachedModels.clear();
       Client.Widget_cachedFonts.clear();

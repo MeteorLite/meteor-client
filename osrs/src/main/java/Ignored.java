@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -46,7 +44,7 @@ public class Ignored extends User {
       garbageValue = "67"
    )
    public static void method7606(AbstractArchive var0) {
-      class459.field4882 = var0;
+      DbTableType.field4882 = var0;
    }
 
    @ObfuscatedName("h")

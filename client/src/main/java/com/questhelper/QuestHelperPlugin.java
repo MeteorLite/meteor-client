@@ -258,7 +258,6 @@ public class QuestHelperPlugin extends Plugin
 		}
 		if (loadQuestList)
 		{
-			updateQuestList();
 			loadQuestList = false;
 		}
 
@@ -327,28 +326,6 @@ public class QuestHelperPlugin extends Plugin
 	}
 
 	private final Collection<String> configEvents = Arrays.asList("orderListBy", "filterListBy", "questDifficulty", "showCompletedQuests");
-
-	@Override
-	public void onConfigChanged(ConfigChanged event)
-	{
-		if (event.getGroup().equals("questhelper") && configEvents.contains(event.getKey()))
-		{
-			clientThread.invokeLater(this::updateQuestList);
-		}
-	}
-
-	public void updateQuestList()
-	{
-		if (getClient().getGameState() == GameState.LOGGED_IN)
-		{
-			List<QuestHelper> filteredQuests = quests.values()
-					.stream()
-					.filter(Quest::showCompletedQuests).toList();
-			Map<QuestHelperQuest, QuestState> completedQuests = quests.values()
-				.stream()
-				.collect(Collectors.toMap(QuestHelper::getQuest, q -> q.getState(getClient())));
-		}
-	}
 
 	@Override
 	public void onMenuOptionClicked(MenuOptionClicked event)
@@ -599,10 +576,6 @@ public class QuestHelperPlugin extends Plugin
 		if (selectedQuest != null)
 		{
 			selectedQuest.shutDown();
-			if (shouldUpdateList)
-			{
-				updateQuestList();
-			}
 			if (bankTagsMain != null)
 			{
 				bankTagsMain.shutDown();

@@ -1,11 +1,9 @@
 import java.applet.Applet;
 import java.net.URL;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
 @ObfuscatedName("cu")
 public class HealthBarUpdate extends Node {
@@ -59,19 +57,19 @@ public class HealthBarUpdate extends Node {
       descriptor = "(IB)Lqm;",
       garbageValue = "0"
    )
-   public static class461 method2365(int var0) {
-      class461 var1 = (class461)class461.DBRowType_cache.get((long)var0);
+   public static DbRowType getDbRowType(int var0) {
+      DbRowType var1 = (DbRowType) DbRowType.DBRowType_cache.get((long)var0);
       if (var1 != null) {
          return var1;
       } else {
-         byte[] var2 = class461.field4889.takeFile(38, var0);
-         var1 = new class461();
+         byte[] var2 = DbRowType.field4889.takeFile(38, var0);
+         var1 = new DbRowType();
          if (var2 != null) {
             var1.method8456(new Buffer(var2));
          }
 
          var1.method8459();
-         class461.DBRowType_cache.put(var1, (long)var0);
+         DbRowType.DBRowType_cache.put(var1, (long)var0);
          return var1;
       }
    }

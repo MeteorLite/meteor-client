@@ -60,19 +60,19 @@ public class class146 extends class136 {
       descriptor = "(II)Lqs;",
       garbageValue = "1183914569"
    )
-   public static class459 method3163(int var0) {
-      class459 var1 = (class459)class459.DBTableType_cache.get((long)var0);
+   public static DbTableType getDbTableType(int var0) {
+      DbTableType var1 = (DbTableType) DbTableType.DBTableType_cache.get((long)var0);
       if (var1 != null) {
          return var1;
       } else {
-         byte[] var2 = class459.field4882.takeFile(39, var0);
-         var1 = new class459();
+         byte[] var2 = DbTableType.field4882.takeFile(39, var0);
+         var1 = new DbTableType();
          if (var2 != null) {
             var1.method8431(new Buffer(var2));
          }
 
          var1.method8433();
-         class459.DBTableType_cache.put(var1, (long)var0);
+         DbTableType.DBTableType_cache.put(var1, (long)var0);
          return var1;
       }
    }

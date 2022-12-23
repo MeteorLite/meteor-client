@@ -121,7 +121,7 @@ public class Cache
 		}
 	}
 
-	private static Store loadStore(String cache) throws IOException
+	public static Store loadStore(String cache) throws IOException
 	{
 		Store store = new Store(new File(cache));
 		store.load();

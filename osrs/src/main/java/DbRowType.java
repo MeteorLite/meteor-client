@@ -1,10 +1,9 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qm")
-public class class461 extends DualNode {
+public class DbRowType extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
@@ -16,14 +15,14 @@ public class class461 extends DualNode {
    )
    static EvictingDualNodeHashTable DBRowType_cache = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
-   Object[][] field4893;
+   Object[][] columnTypes;
    @ObfuscatedName("x")
    int[][] field4892;
    @ObfuscatedName("m")
    @ObfuscatedGetter(
       intValue = 2001738031
    )
-   public int field4891 = -1;
+   public int tableId = -1;
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -46,8 +45,8 @@ public class class461 extends DualNode {
       descriptor = "(II)[Ljava/lang/Object;",
       garbageValue = "-1711583640"
    )
-   public Object[] method8461(int var1) {
-      return this.field4893 == null ? null : this.field4893[var1];
+   public Object[] getColumnType(int var1) {
+      return this.columnTypes == null ? null : this.columnTypes[var1];
    }
 
    @ObfuscatedName("m")
@@ -58,8 +57,8 @@ public class class461 extends DualNode {
    void method8460(Buffer var1, int var2) {
       if (var2 == 3) {
          int var3 = var1.readUnsignedByte();
-         if (this.field4893 == null) {
-            this.field4893 = new Object[var3][];
+         if (this.columnTypes == null) {
+            this.columnTypes = new Object[var3][];
             this.field4892 = new int[var3][];
          }
 
@@ -71,7 +70,7 @@ public class class461 extends DualNode {
                var6[var7] = var1.readUShortSmart();
             }
 
-            Object[][] var16 = this.field4893;
+            Object[][] var16 = this.columnTypes;
             int var10 = var1.readUShortSmart();
             Object[] var11 = new Object[var6.length * var10];
 
@@ -87,7 +86,7 @@ public class class461 extends DualNode {
             this.field4892[var4] = var6;
          }
       } else if (var2 == 4) {
-         this.field4891 = var1.method8570();
+         this.tableId = var1.method8570();
       }
 
    }
