@@ -3,7 +3,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version "1.3.0-beta04-dev885"
+    id("org.jetbrains.compose") version "1.3.0-rc01"
     kotlin("plugin.serialization") version "1.7.21"
     java
     `maven-publish`
