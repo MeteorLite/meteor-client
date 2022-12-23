@@ -64,4 +64,9 @@ public interface DecorativeObject extends TileObject
 	 * }</pre>
 	 */
 	int getConfig();
+
+
+	// Kris changes:
+	int getOrientation();
+	int getModelOrientation();
 }

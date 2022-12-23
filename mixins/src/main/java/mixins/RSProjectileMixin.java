@@ -54,7 +54,7 @@ public abstract class RSProjectileMixin implements RSProjectile
 	RSProjectileMixin()
 	{
 		final ProjectileSpawned projectileSpawned = new ProjectileSpawned(this);
-		client.getCallbacks().post(Events.PROJECTILE_SPAWNED, projectileSpawned);
+		client.getCallbacks().post(Events.PROJECTILE_SPAWNED,projectileSpawned);
 	}
 
 	@Inject

@@ -40,4 +40,11 @@ public interface RSWallDecoration extends DecorativeObject
 	int getConfig();
 
 	void setPlane(int plane);
+
+
+	// Kris changes
+	@Override
+	default int getModelOrientation() {
+		return 0;
+	}
 }

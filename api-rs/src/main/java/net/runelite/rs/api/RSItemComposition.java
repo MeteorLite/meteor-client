@@ -94,4 +94,8 @@ public interface RSItemComposition extends ItemComposition
 
 	@Import("params")
 	void setParams(RSIterableNodeHashTable params);
+
+	// Kris changes
+	@Import("zoom2d")
+	int getZoom2d();
 }

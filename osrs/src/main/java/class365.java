@@ -1,7 +1,7 @@
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -85,7 +85,7 @@ public class class365 implements Iterator {
             var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
             int var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
             if (var5 >= 1 && var5 <= 10) {
-               class98 var6 = new class98(var5, var3, var4, class175.getWidget(var3).itemId);
+               class98 var6 = new class98(var5, var3, var4, ObjTypeCustomisation.getWidget(var3).itemId);
                Interpreter.field867.add(var6);
                return 1;
             } else {
@@ -98,7 +98,7 @@ public class class365 implements Iterator {
          throw new RuntimeException();
       } else {
          if (var0 >= 2000) {
-            var7 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+            var7 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
          } else {
             var7 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
          }

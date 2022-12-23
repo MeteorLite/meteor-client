@@ -72,7 +72,7 @@ public final class Player extends Actor {
    @ObfuscatedSignature(
       descriptor = "Lhh;"
    )
-   Model model0;
+   Model attachedModel;
    @ObfuscatedName("k")
    @ObfuscatedGetter(
       intValue = 153078199
@@ -259,13 +259,13 @@ public final class Player extends Actor {
          this.isHidden = false;
       }
 
-      class175[] var26 = null;
+      ObjTypeCustomisation[] var26 = null;
       boolean var27 = false;
       var9 = var1.readUnsignedShort();
       var27 = (var9 >> 15 & 1) == 1;
       int var10;
       if (var9 > 0 && var9 != 32768) {
-         var26 = new class175[12];
+         var26 = new ObjTypeCustomisation[12];
 
          for(var10 = 0; var10 < 12; ++var10) {
             int var11 = var9 >> 12 - var10 & 1;
@@ -274,7 +274,7 @@ public final class Player extends Actor {
                int var16 = var1.readUnsignedByte();
                boolean var17 = (var16 & 1) != 0;
                boolean var18 = (var16 & 2) != 0;
-               class175 var19 = new class175(var15);
+               ObjTypeCustomisation var19 = new ObjTypeCustomisation(var15);
                int var20;
                int[] var21;
                boolean var22;
@@ -283,13 +283,13 @@ public final class Player extends Actor {
                if (var17) {
                   var20 = var1.readUnsignedByte();
                   var21 = new int[]{var20 & 15, var20 >> 4 & 15};
-                  var22 = var19.field1913 != null && var21.length == var19.field1913.length;
+                  var22 = var19.recol != null && var21.length == var19.recol.length;
 
                   for(var23 = 0; var23 < 2; ++var23) {
                      if (var21[var23] != 15) {
                         var24 = (short)var1.readUnsignedShort();
                         if (var22) {
-                           var19.field1913[var21[var23]] = var24;
+                           var19.recol[var21[var23]] = var24;
                         }
                      }
                   }
@@ -298,13 +298,13 @@ public final class Player extends Actor {
                if (var18) {
                   var20 = var1.readUnsignedByte();
                   var21 = new int[]{var20 & 15, var20 >> 4 & 15};
-                  var22 = var19.field1914 != null && var21.length == var19.field1914.length;
+                  var22 = var19.retex != null && var21.length == var19.retex.length;
 
                   for(var23 = 0; var23 < 2; ++var23) {
                      if (var21[var23] != 15) {
                         var24 = (short)var1.readUnsignedShort();
                         if (var22) {
-                           var19.field1914[var21[var23]] = var24;
+                           var19.retex[var21[var23]] = var24;
                         }
                      }
                   }
@@ -353,19 +353,19 @@ public final class Player extends Actor {
             if (!this.isUnanimated && super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
                var5 = ClanSettings.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
                if (var5 != null) {
-                  var5.offsetBy(0, -super.field1246, 0);
+                  var5.offsetBy(0, -super.spotAnimHeight, 0);
                   var6 = new Model[]{var3, var5};
                   var3 = new Model(var6, 2);
                }
             }
 
-            if (!this.isUnanimated && this.model0 != null) {
+            if (!this.isUnanimated && this.attachedModel != null) {
                if (Client.cycle >= this.animationCycleEnd) {
-                  this.model0 = null;
+                  this.attachedModel = null;
                }
 
                if (Client.cycle >= this.animationCycleStart && Client.cycle < this.animationCycleEnd) {
-                  var5 = this.model0;
+                  var5 = this.attachedModel;
                   var5.offsetBy(this.field1131 * 4096 - super.x, this.tileHeight2 - this.tileHeight, this.field1137 * 4096 - super.y);
                   if (super.orientation == 512) {
                      var5.rotateY90Ccw();
@@ -396,11 +396,11 @@ public final class Player extends Actor {
             }
 
             var3.isSingleTile = true;
-            if (super.field1243 != 0 && Client.cycle >= super.field1238 && Client.cycle < super.field1200) {
-               var3.overrideHue = super.field1240;
-               var3.overrideSaturation = super.field1220;
-               var3.overrideLuminance = super.field1232;
-               var3.overrideAmount = super.field1243;
+            if (super.recolourAmount != 0 && Client.cycle >= super.recolourStartCycle && Client.cycle < super.recolourEndCycle) {
+               var3.overrideHue = super.recolourHue;
+               var3.overrideSaturation = super.recolourSaturation;
+               var3.overrideLuminance = super.recolourLuminance;
+               var3.overrideAmount = super.recolourAmount;
                var3.field2741 = (short)var4;
             } else {
                var3.overrideAmount = 0;
@@ -525,17 +525,17 @@ public final class Player extends Actor {
       descriptor = "(IILgs;B)V",
       garbageValue = "72"
    )
-   final void method2298(int var1, int var2, class204 var3) {
+   final void move(int var1, int var2, MoveSpeed var3) {
       if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).field2284 == 1) {
          super.sequence = -1;
       }
 
-      super.field1190 = -1;
+      super.movingOrientation = -1;
       if (var1 >= 0 && var1 < 104 && var2 >= 0 && var2 < 104) {
          if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) {
-            if (var3 == class204.field2357) {
+            if (var3 == MoveSpeed.RUN) {
                Player var4 = this;
-               class204 var5 = class204.field2357;
+               MoveSpeed var5 = MoveSpeed.RUN;
                int var6 = super.pathX[0];
                int var7 = super.pathY[0];
                int var8 = this.transformedSize();
@@ -580,7 +580,7 @@ public final class Player extends Actor {
       descriptor = "(IILgs;I)V",
       garbageValue = "-1656318959"
    )
-   final void method2300(int var1, int var2, class204 var3) {
+   final void method2300(int var1, int var2, MoveSpeed var3) {
       if (super.pathLength < 9) {
          ++super.pathLength;
       }

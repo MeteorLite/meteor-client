@@ -25,7 +25,6 @@
 package eventbus.events
 
 import meteor.Event
-import net.runelite.api.Actor
 
 /**
  * An event fired when a cheat (command) is entered

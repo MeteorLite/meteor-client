@@ -76,6 +76,9 @@ interface NPC : Actor {
     val transformedName: String?
     val transformedLevel: Int
 
+    // Kris changes:
+    fun getNameOverride(): String?
+
     override fun interact(action: String) {
         if (composition?.actions == null) {
             return

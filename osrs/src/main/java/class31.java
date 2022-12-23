@@ -1,5 +1,5 @@
 import javax.imageio.ImageIO;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -10,7 +10,7 @@ public class class31 {
    @ObfuscatedGetter(
       intValue = 267846207
    )
-   static int field181;
+   static int cameraMoveToSpeed;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       longValue = -9171562425366214627L
@@ -61,16 +61,16 @@ public class class31 {
       if (class102.field1367 == class145.cameraX && class414.cameraY == Frames.field2616 && MusicPatchNode2.field3342 == ClanChannel.cameraZ && class97.cameraPitch == NPCComposition.field2067 && class101.field1365 == class128.cameraYaw) {
          Client.field772 = false;
          Client.isCameraLocked = false;
-         class109.field1442 = 0;
-         class146.field1718 = 0;
-         class104.field1398 = 0;
-         class415.field4647 = 0;
-         LoginScreenAnimation.field1283 = 0;
-         Tile.field2481 = 0;
-         field181 = 0;
-         class155.field1787 = 0;
-         class34.field208 = 0;
-         Script.field1001 = 0;
+         class109.cameraLookAtX = 0;
+         class146.cameraLookAtY = 0;
+         class104.cameraLookAtHeight = 0;
+         class415.cameraLookAtSpeed = 0;
+         LoginScreenAnimation.cameraLookAtAcceleration = 0;
+         Tile.cameraMoveToAcceleration = 0;
+         cameraMoveToSpeed = 0;
+         class155.cameraMoveToX = 0;
+         class34.cameraMoveToY = 0;
+         Script.cameraMoveToHeight = 0;
       }
 
    }

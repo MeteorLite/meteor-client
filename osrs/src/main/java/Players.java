@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -12,7 +10,7 @@ public class Players {
    @ObfuscatedSignature(
       descriptor = "[Lgs;"
    )
-   static class204[] field1379 = new class204[2048];
+   static MoveSpeed[] field1379 = new MoveSpeed[2048];
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "[Lqy;"

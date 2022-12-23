@@ -1,6 +1,5 @@
 package eventbus.events
 
-import lombok.Value
 import net.runelite.api.Player
 
 /**

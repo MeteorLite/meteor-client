@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -639,7 +637,7 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(III)Lhq;"
    )
-   public BoundaryObject method4452(int var1, int var2, int var3) {
+   public BoundaryObject getWallObject(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       return var4 == null ? null : var4.boundaryObject;
    }
@@ -648,7 +646,7 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(III)Lhb;"
    )
-   public WallDecoration method4604(int var1, int var2, int var3) {
+   public WallDecoration getDecorativeObject(int var1, int var2, int var3) {
       Tile var4 = this.tiles[var1][var2][var3];
       return var4 == null ? null : var4.wallDecoration;
    }

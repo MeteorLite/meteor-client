@@ -1136,4 +1136,7 @@ public interface Widget extends Interactable, Identifiable
 	boolean isVisible();
 
 	void setVisible(boolean visible);
+
+	// Kris changes
+	int getModelRotation();
 }

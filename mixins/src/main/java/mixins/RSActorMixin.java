@@ -213,7 +213,7 @@ public abstract class RSActorMixin implements RSActor
 	@Inject
 	public void interactingChanged(int idx)
 	{
-		InteractingChanged interactingChanged = new InteractingChanged(this, getInteracting());
+		InteractingChanged interactingChanged = new InteractingChanged(this, getInteracting(), getRSInteracting());
 		client.getCallbacks().post(Events.INTERACTING_CHANGED, interactingChanged);
 	}
 
@@ -327,5 +327,55 @@ public abstract class RSActorMixin implements RSActor
 		{
 			return getCanvasTilePoly().getBounds();
 		}
+	}
+
+	// Kris changes
+
+	@FieldHook("movingOrientation")
+	@Inject
+	public void facedDirectionChanged(int idx)
+	{
+		FacedDirectionChanged facedDirectionChanged = new FacedDirectionChanged(this, getFacedDirection(), instantTurn());
+		client.getCallbacks().post(Events.FACED_DIRECTION_CHANGED, facedDirectionChanged);
+	}
+
+	@FieldHook("exactMoveDirection")
+	@Inject
+	public void exactMoveReceived(int idx)
+	{
+		ExactMoveEvent exactMoveEvent = new ExactMoveEvent(this, exactMoveDeltaX1(), exactMoveDeltaX2(), exactMoveDeltaY1(), exactMoveDeltaY2(),
+				exactMoveArrive1Cycle(), exactMoveArrive2Cycle(), exactMoveDirection(), client.getGameCycle());
+		client.getCallbacks().post(Events.EXACT_MOVE_EVENT, exactMoveEvent);
+	}
+
+	@FieldHook("recolourAmount")
+	@Inject
+	public void recolourReceived(int idx) {
+		RecolourEvent event = new RecolourEvent(this, recolourStartCycle(), recolourEndCycle(), recolourHue(), recolourSaturation(), recolourLuminance(),
+				recolourAmount(), client.getGameCycle());
+		client.getCallbacks().post(Events.RECOLOUR_EVENT, event);
+	}
+
+
+	@FieldHook("combatLevelChange")
+	@Inject
+	public void combatLevelChange(int idx) {
+		if (getCombatLevelOverride() == -1) return;
+		CombatLevelChangeEvent event = new CombatLevelChangeEvent(this, getCombatLevel(), getCombatLevelOverride());
+		client.getCallbacks().post(Events.COMBAT_LEVEL_CHANGE_EVENT, event);
+	}
+
+	@FieldHook("currentSequenceFrameIndex")
+	@Inject
+	public void animationFrameIndexChanged(int idx)
+	{
+		AnimationFrameIndexChanged animationChange = new AnimationFrameIndexChanged(this);
+		client.getCallbacks().post(Events.ANIMATION_FRAME_INDEX_CHANGED, animationChange);
+	}
+
+	@FieldHook("showPublicPlayerChat")
+	@Inject
+	public void showPublicPlayerChatChanged(int idx) {
+		client.getCallbacks().post(Events.SHOW_PUBLIC_PLAYER_CHAT_CHANGED, new ShowPublicPlayerChatChanged());
 	}
 }

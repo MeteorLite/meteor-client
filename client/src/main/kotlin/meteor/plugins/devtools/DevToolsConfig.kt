@@ -70,4 +70,9 @@ interface DevToolsConfig : Config {
     fun roofsActive(): Boolean {
         return false
     }
+
+    @ConfigItem(keyName = "eventInspectorActive", name = "Event Inspector", description = "")
+    fun inspectorActive(): Boolean {
+        return false
+    }
 }

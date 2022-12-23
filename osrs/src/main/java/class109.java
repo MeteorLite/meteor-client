@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
 import javax.net.ssl.HttpsURLConnection;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -13,7 +13,7 @@ public class class109 extends UrlRequester {
    @ObfuscatedGetter(
       intValue = -1571751296
    )
-   static int field1442;
+   static int cameraLookAtX;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = -903100173

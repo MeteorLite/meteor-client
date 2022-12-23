@@ -60,4 +60,15 @@ public interface ItemLayer extends TileObject
 	Model getModelBottom();
 	Model getModelMiddle();
 	Model getModelTop();
+
+
+	@Override
+	default int getModelOrientation() {
+		return 0;
+	}
+
+	@Override
+	default int getConfig() {
+		return 0;
+	}
 }

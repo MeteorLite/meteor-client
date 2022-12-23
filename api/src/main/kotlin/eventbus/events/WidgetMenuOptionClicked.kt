@@ -24,13 +24,11 @@
  */
 package eventbus.events
 
-import lombok.Data
 import net.runelite.api.widgets.WidgetInfo
 
 /**
  * A MenuManager widget menu was clicked. This event is fired only for MenuManager managed custom menus.
  */
-@Data
 @Deprecated("")
 class WidgetMenuOptionClicked(val menuOption: String, val menuTarget: String,
                               val widget: WidgetInfo, val widgetId: Int)

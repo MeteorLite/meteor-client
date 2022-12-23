@@ -26,6 +26,8 @@ package net.runelite.api;
 
 import net.runelite.api.kit.KitType;
 
+import javax.annotation.Nullable;
+
 /**
  * Represents the template of a player.
  */
@@ -81,4 +83,16 @@ public interface PlayerComposition
 	void setTransformedNpcId(int id);
 
 	long getHash();
+
+	// Kris changes:
+	int getTransformedNpcId();
+
+	/**
+	 * Get the overrides for this player composition, indexed by kit id. The overrides
+	 * replace the target color/textures for the item instead of using the target colors/textures
+	 * from the item composition. Only works if the kittype is an item.
+	 * @return
+	 */
+	@Nullable
+	ObjTypeCustomisation[] getColorTextureOverrides();
 }

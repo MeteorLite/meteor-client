@@ -27,4 +27,9 @@ public interface RSFloorDecoration extends GroundObject
 	int getConfig();
 
 	void setPlane(int plane);
+
+	@Override
+	default int getModelOrientation() {
+		return 0;
+	}
 }

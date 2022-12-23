@@ -1283,8 +1283,7 @@ public abstract class RSClientMixin implements RSClient
 			client.getPlayerMenuTypes()[idx] = playerAction.getId();
 		}
 
-		PlayerMenuOptionsChanged optionsChanged = new PlayerMenuOptionsChanged();
-		optionsChanged.setIndex(idx);
+		PlayerMenuOptionsChanged optionsChanged = new PlayerMenuOptionsChanged(idx, client.getPlayerOptions()[idx], !client.getPlayerOptionsPriorities()[idx]);
 		client.getCallbacks().post(Events.PLAYER_MENU_OPTIONS_CHANGED, optionsChanged);
 	}
 
@@ -1548,6 +1547,7 @@ public abstract class RSClientMixin implements RSClient
 		{
 			client.setLocalInteractingIndex(client.getHintArrowPlayerTargetIdx() & 2047);
 		}
+		client.getCallbacks().post(Events.HINT_ARROW_EVENT, new HintArrowEvent(client.getHintArrowPlayerTargetIdx(), -1, -1, -1, -1));
 	}
 
 	@FieldHook("combatTargetPlayerIndex")
@@ -3411,4 +3411,139 @@ public abstract class RSClientMixin implements RSClient
 	public boolean[] getPressedKeys() {
 		return getKeyHandler().getPressedKeys();
 	}
+
+	// Kris's events
+
+	@FieldHook("cameraShakeSpeed")
+	@Inject
+	public static void cameraShakeSpeedChange(int idx) {
+		client.getCallbacks().post(Events.CAMERA_SHAKE_EVENT, new CameraShakeEvent(idx, client.cameraShakeIntensity()[idx], client.cameraMoveIntensity()[idx],
+				client.cameraShakeSpeed()[idx]));
+	}
+
+	@FieldHook("cameraShaking")
+	@Inject
+	public static void cameraShakingChange(int idx) {
+		client.getCallbacks().post(Events.CAMERA_RESET_EVENT, new CameraResetEvent(idx));
+	}
+
+	@FieldHook("cameraMoveToAcceleration")
+	@Inject
+	public static void cameraMoveTo(int idx) {
+		client.getCallbacks().post(Events.CAMERA_MOVE_TO_EVENT, new CameraMoveToEvent(client.cameraMoveToX(), client.cameraMoveToY(), client.cameraMoveToHeight(),
+				client.cameraMoveToSpeed(), client.cameraMoveToAcceleration()));
+	}
+
+	@FieldHook("cameraLookAtAcceleration")
+	@Inject
+	public static void cameraLookAt(int idx) {
+		client.getCallbacks().post(Events.CAMERA_LOOK_AT_EVENT, new CameraLookAtEvent(client.cameraLookAtX(), client.cameraLookAtY(), client.cameraLookAtHeight(),
+				client.cameraLookAtSpeed(), client.cameraLookAtAcceleration()));
+	}
+
+	@FieldHook("minimapState")
+	@Inject
+	public static void changeMinimapState(int idx) {
+		client.getCallbacks().post(Events.MINIMAP_STATE_CHANGE, new MinimapStateChange(client.getMinimapState()));
+	}
+
+
+	@Inject
+	@MethodHook("playJingle")
+	public static void playJingle(int jingleId, int unused) {
+		client.getCallbacks().post(Events.JINGLE_PLAYED, new JinglePlayed(jingleId));
+	}
+
+	@Inject
+	@MethodHook(value = "performPlayerAnimation", end = true)
+	public static void performPlayerAnimation(Player var0, int var1, int var2) {
+		client.getCallbacks().post(Events.PLAYER_ANIMATION_PLAYED, new PlayerAnimationPlayed(var0, var1, var2));
+	}
+
+	@Copy("updatePendingSpawn")
+	@Replace("updatePendingSpawn")
+	@SuppressWarnings("InfiniteRecursion")
+	public static void copy$updatePendingSpawn(int plane, int x, int y, int type, int id, int var5, int orientation, int opflags, int delay, int hitpoints) {
+		copy$updatePendingSpawn(plane, x, y, type, id, var5, orientation, opflags, delay, hitpoints);
+		client.getCallbacks().post(Events.PENDING_SPAWN_UPDATED, new PendingSpawnUpdated(plane, x, y, type, id, var5, orientation, opflags, delay, hitpoints));
+	}
+
+	@FieldHook("hintArrowNpcIndex")
+	@Inject
+	public static void hintNpcChanged(int idx) {
+		client.getCallbacks().post(Events.HINT_ARROW_EVENT, new HintArrowEvent(-1, client.getHintArrowNpcTargetIdx(), -1, -1, -1));
+	}
+
+	@FieldHook("hintArrowHeight")
+	@Inject
+	public static void tileHintArrowChanged(int idx) {
+		client.getCallbacks().post(Events.HINT_ARROW_EVENT, new HintArrowEvent(-1, -1, client.getHintArrowX(), client.getHintArrowY(), client.getHintArrowHeight()));
+	}
+
+
+	@Copy("itemContainerSetItem")
+	@Replace("itemContainerSetItem")
+	@SuppressWarnings("InfiniteRecursion")
+	static void copy$setItemTableSlot(int invId, int slotId, int itemId, int quantity) {
+		copy$setItemTableSlot(invId, slotId, itemId, quantity);
+		client.getCallbacks().post(Events.CONTAINER_ITEM_CHANGE, new ContainerItemChange(invId, slotId, itemId, quantity));
+	}
+
+	@Inject
+	@MethodHook("getWidget")
+	public static void postGetWidgetCall(int packedWidget) {
+		latestWidgetCall = packedWidget;
+	}
+
+	@Inject
+	static int latestWidgetCall;
+
+	@Override
+	@Inject
+	public int getLatestWidgetCall()
+	{
+		return latestWidgetCall;
+	}
+
+	@Override
+	@Inject
+	public void setLatestWidgetCall(int value)
+	{
+		latestWidgetCall = value;
+	}
+
+
+	@Inject
+	@FieldHook("rootInterface")
+	public static void onRootInterfaceChange(int idx) {
+		client.getCallbacks().post(Events.IF_OPEN_TOP_EVENT, new IfOpenTopEvent(client.getTopLevelInterfaceId()));
+	}
+
+	@Inject
+	@FieldHook("runEnergy")
+	public static void onRunEnergyChanged(int idx) {
+		client.getCallbacks().post(Events.RUN_ENERGY_CHANGED_EVENT, new RunEnergyChangedEvent(client.getEnergy()));
+	}
+
+	@Inject
+	@MethodHook(value = "ifOpenSub", end = true)
+	public static void onSubInterfaceChange(int targetComponent, int interfaceId, int walkType) {
+		client.getCallbacks().post(Events.IF_OPEN_SUB_EVENT, new IfOpenSubEvent(targetComponent, interfaceId, walkType));
+	}
+
+	@Inject
+	@MethodHook(value = "loadRegions", end = true)
+	public static void onRegionLoad(boolean instanced, RSPacketBuffer buffer) {
+		if (!instanced) {
+			return;
+		}
+		client.getCallbacks().post(Events.REBUILD_REGION_EVENT, new RebuildRegionEvent());
+	}
+
+	@Inject
+	@FieldHook("playerOptionsPriorities")
+	public static void onPlayerMenuOptionChanged(int idx) {
+		client.getCallbacks().post(Events.PLAYER_MENU_OPTIONS_CHANGED, new PlayerMenuOptionsChanged(idx, client.getPlayerOptions()[idx], !client.getPlayerOptionsPriorities()[idx]));
+	}
+
 }

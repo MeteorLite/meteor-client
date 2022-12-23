@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -60,11 +58,11 @@ public class MouseRecorder implements Runnable {
    static int method2264(int var0, Script var1, boolean var2) {
       Widget var3;
       if (var0 == 2700) {
-         var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+         var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.itemId;
          return 1;
       } else if (var0 == 2701) {
-         var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+         var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
          if (var3.itemId != -1) {
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.itemQuantity;
          } else {
@@ -86,14 +84,14 @@ public class MouseRecorder implements Runnable {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.rootInterface;
          return 1;
       } else if (var0 == 2707) {
-         var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+         var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.method6172() ? 1 : 0;
          return 1;
       } else if (var0 == 2708) {
-         var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+         var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
          return class300.method5846(var3);
       } else if (var0 == 2709) {
-         var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+         var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
          return LoginScreenAnimation.method2380(var3);
       } else {
          return 2;

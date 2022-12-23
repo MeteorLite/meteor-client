@@ -15,7 +15,11 @@ public interface RSNPC extends RSActor, NPC
 	@Override
 	int getIndex();
 
-
-
 	void setIndex(int id);
+
+	// Kris changes:
+
+	@Import("nameChange")
+	@Override
+	String getNameOverride();
 }

@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -10,7 +8,7 @@ public class Script extends DualNode {
    @ObfuscatedGetter(
       intValue = 621523353
    )
-   static int field1001;
+   static int cameraMoveToHeight;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Ljv;"

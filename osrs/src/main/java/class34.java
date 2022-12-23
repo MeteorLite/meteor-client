@@ -10,7 +10,7 @@ public class class34 {
    @ObfuscatedGetter(
       intValue = -261570560
    )
-   static int field208;
+   static int cameraMoveToY;
    @ObfuscatedName("u")
    @ObfuscatedGetter(
       intValue = -307686371

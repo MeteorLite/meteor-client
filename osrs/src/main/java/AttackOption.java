@@ -1,6 +1,5 @@
 import java.awt.Component;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -75,7 +74,7 @@ public enum AttackOption implements class345 {
       garbageValue = "-1318941452"
    )
    public static Widget getWidgetChild(int var0, int var1) {
-      Widget var2 = class175.getWidget(var0);
+      Widget var2 = ObjTypeCustomisation.getWidget(var0);
       if (var1 == -1) {
          return var2;
       } else {

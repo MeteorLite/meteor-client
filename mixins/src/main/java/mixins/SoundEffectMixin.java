@@ -27,13 +27,9 @@ package mixins;
 import eventbus.Events;
 import eventbus.events.AreaSoundEffectPlayed;
 import eventbus.events.SoundEffectPlayed;
+import eventbus.events.SoundEffectReceived;
 import net.runelite.api.SoundEffectVolume;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
+import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSActor;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSPcmStream;
@@ -95,7 +91,8 @@ public abstract class SoundEffectMixin implements RSClient
 
 				AreaSoundEffectPlayed event = new AreaSoundEffectPlayed(lastSoundEffectSourceActor,
 						client.getQueuedSoundEffectIDs()[soundIndex], x, y, range,
-						client.getQueuedSoundEffectDelays()[soundIndex]);
+						client.getQueuedSoundEffectDelays()[soundIndex],
+						client.getQueuedSoundEffectLoops()[soundIndex]);
 				client.getCallbacks().post(Events.AREA_SOUND_EFFECT_PLAYED, event);
 				consumed = event.getConsumed();
 			}
@@ -173,4 +170,11 @@ public abstract class SoundEffectMixin implements RSClient
 
 		getSoundEffectAudioQueue().addSubStream((RSPcmStream) rawPcmStream);
 	}
+
+    @Inject
+    @MethodHook("queueSoundEffect")
+    public static void soundEffectReceived(int id, int numLoops, int delay) {
+        SoundEffectReceived event = new SoundEffectReceived(id, numLoops, delay);
+        client.getCallbacks().post(Events.SOUND_EFFECT_RECEIVED, event);
+    }
 }

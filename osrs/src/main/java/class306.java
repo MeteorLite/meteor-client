@@ -1,6 +1,6 @@
 import java.io.File;
 import java.io.RandomAccessFile;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -80,7 +80,7 @@ public class class306 {
                break;
             }
 
-            var2 = class175.getWidget(var2.parentId);
+            var2 = ObjTypeCustomisation.getWidget(var2.parentId);
             if (var2 == null) {
                var1 = null;
                break;

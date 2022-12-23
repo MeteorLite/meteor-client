@@ -24,8 +24,6 @@
  */
 package eventbus.events
 
-import lombok.Getter
-import lombok.Setter
 import net.runelite.api.MenuAction
 import net.runelite.api.MenuEntry
 
@@ -60,8 +58,6 @@ class MenuEntryAdded(
      * Checks if count is the same, but doesn't check if there's
      * been multiple changes
      */
-    @Getter
-    @Setter
     var modified = false
     fun setModified() {
         modified = true

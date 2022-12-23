@@ -18,8 +18,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.ImageObserver;
 import java.net.URL;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -1204,7 +1203,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
             }
 
             Client.playPcmPlayers();
-            class204.method4182();
+            MoveSpeed.method4182();
             ObjectComposition.ObjectDefinition_cachedModelData.clear();
             PacketBufferNode var19;
             if (BuddyRankComparator.client.hasFrame()) {

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -65,14 +64,14 @@ public class class158 extends class136 {
       }
 
       if (class97.cameraPitch < var0) {
-         class97.cameraPitch = (var0 - class97.cameraPitch) * LoginScreenAnimation.field1283 / 1000 + class97.cameraPitch + class415.field4647;
+         class97.cameraPitch = (var0 - class97.cameraPitch) * LoginScreenAnimation.cameraLookAtAcceleration / 1000 + class97.cameraPitch + class415.cameraLookAtSpeed;
          if (class97.cameraPitch > var0) {
             class97.cameraPitch = var0;
          }
       }
 
       if (class97.cameraPitch > var0) {
-         class97.cameraPitch -= (class97.cameraPitch - var0) * LoginScreenAnimation.field1283 / 1000 + class415.field4647;
+         class97.cameraPitch -= (class97.cameraPitch - var0) * LoginScreenAnimation.cameraLookAtAcceleration / 1000 + class415.cameraLookAtSpeed;
          if (class97.cameraPitch < var0) {
             class97.cameraPitch = var0;
          }
@@ -88,12 +87,12 @@ public class class158 extends class136 {
       }
 
       if (var2 > 0) {
-         class128.cameraYaw = class128.cameraYaw + class415.field4647 + var2 * LoginScreenAnimation.field1283 / 1000;
+         class128.cameraYaw = class128.cameraYaw + class415.cameraLookAtSpeed + var2 * LoginScreenAnimation.cameraLookAtAcceleration / 1000;
          class128.cameraYaw &= 2047;
       }
 
       if (var2 < 0) {
-         class128.cameraYaw -= -var2 * LoginScreenAnimation.field1283 / 1000 + class415.field4647;
+         class128.cameraYaw -= -var2 * LoginScreenAnimation.cameraLookAtAcceleration / 1000 + class415.cameraLookAtSpeed;
          class128.cameraYaw &= 2047;
       }
 

@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -228,7 +226,7 @@ public class DevicePcmPlayerProvider implements class51 {
             var9 = var1.method8702();
             var10 = var1.method8530();
             if (var7 >= 0 && var8 >= 0 && var7 < 104 && var8 < 104) {
-               class11.method105(class383.Client_plane, var7, var8, var5, var10, var3, var4, var9, 0, -1);
+               class11.updatePendingSpawn(class383.Client_plane, var7, var8, var5, var10, var3, var4, var9, 0, -1);
             }
 
          } else {
@@ -266,7 +264,7 @@ public class DevicePcmPlayerProvider implements class51 {
                var7 = (var6 >> 4 & 7) + InvDefinition.field1918;
                var8 = (var6 & 7) + class125.field1560;
                if (var7 >= 0 && var8 >= 0 && var7 < 104 && var8 < 104) {
-                  class11.method105(class383.Client_plane, var7, var8, var5, -1, var3, var4, 31, 0, -1);
+                  class11.updatePendingSpawn(class383.Client_plane, var7, var8, var5, -1, var3, var4, 31, 0, -1);
                }
 
             } else {
@@ -385,10 +383,10 @@ public class DevicePcmPlayerProvider implements class51 {
                         int var28 = (var10 << 7) + (var20 << 6);
                         Model var29 = var18.getModel(var3, var4, var25, var27, var26, var28);
                         if (var29 != null) {
-                           class11.method105(class383.Client_plane, var9, var10, var5, -1, 0, 0, 31, var6 + 1, var12 + 1);
+                           class11.updatePendingSpawn(class383.Client_plane, var9, var10, var5, -1, 0, 0, 31, var6 + 1, var12 + 1);
                            var17.animationCycleStart = var6 + Client.cycle;
                            var17.animationCycleEnd = var12 + Client.cycle;
-                           var17.model0 = var29;
+                           var17.attachedModel = var29;
                            var17.field1131 = var9 * 128 + var19 * 64;
                            var17.field1137 = var10 * 128 + var20 * 64;
                            var17.tileHeight2 = var26;
@@ -424,7 +422,7 @@ public class DevicePcmPlayerProvider implements class51 {
                      var9 = Client.field579[var7];
                      if (var3 >= 0 && var4 >= 0 && var3 < 103 && var4 < 103) {
                         if (var9 == 0) {
-                           BoundaryObject var34 = ReflectionCheck.scene.method4452(class383.Client_plane, var3, var4);
+                           BoundaryObject var34 = ReflectionCheck.scene.getWallObject(class383.Client_plane, var3, var4);
                            if (var34 != null) {
                               var37 = Occluder.Entity_unpackID(var34.tag);
                               if (var7 == 2) {
@@ -437,7 +435,7 @@ public class DevicePcmPlayerProvider implements class51 {
                         }
 
                         if (var9 == 1) {
-                           WallDecoration var44 = ReflectionCheck.scene.method4604(class383.Client_plane, var3, var4);
+                           WallDecoration var44 = ReflectionCheck.scene.getDecorativeObject(class383.Client_plane, var3, var4);
                            if (var44 != null) {
                               var37 = Occluder.Entity_unpackID(var44.tag);
                               if (var7 != 4 && var7 != 5) {

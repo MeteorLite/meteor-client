@@ -1,35 +1,30 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gs")
-public enum class204 implements class345 {
+public enum MoveSpeed implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   )
-   field2354((byte)-1),
+   ) STATIONARY((byte)-1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   )
-   field2356((byte)0),
+   ) CRAWL((byte)0),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   )
-   field2355((byte)1),
+   ) WALK((byte)1),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   )
-   field2357((byte)2);
+   ) RUN((byte)2);
 
    @ObfuscatedName("m")
-   public byte field2358;
+   public byte speed;
 
-   class204(byte var3) {
-      this.field2358 = var3;
+   MoveSpeed(byte var3) {
+      this.speed = var3;
    }
 
    @ObfuscatedName("e")
@@ -38,7 +33,7 @@ public enum class204 implements class345 {
       garbageValue = "96"
    )
    public int rsOrdinal() {
-      return this.field2358;
+      return this.speed;
    }
 
    @ObfuscatedName("je")

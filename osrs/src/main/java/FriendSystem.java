@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -563,9 +561,9 @@ public class FriendSystem {
             }
          }
 
-         if (var0.field1190 != -1 && (var0.pathLength == 0 || var0.field1239 > 0)) {
-            var0.orientation = var0.field1190;
-            var0.field1190 = -1;
+         if (var0.movingOrientation != -1 && (var0.pathLength == 0 || var0.field1239 > 0)) {
+            var0.orientation = var0.movingOrientation;
+            var0.movingOrientation = -1;
          }
 
          int var5 = var0.orientation - var0.rotation & 2047;
@@ -578,14 +576,14 @@ public class FriendSystem {
             ++var0.field1245;
             boolean var7;
             if (var5 > 1024) {
-               var0.rotation -= var0.field1228 ? var5 : var0.field1249;
+               var0.rotation -= var0.instantTurn ? var5 : var0.field1249;
                var7 = true;
                if (var5 < var0.field1249 || var5 > 2048 - var0.field1249) {
                   var0.rotation = var0.orientation;
                   var7 = false;
                }
 
-               if (!var0.field1228 && var0.idleSequence == var0.movementSequence && (var0.field1245 > 25 || var7)) {
+               if (!var0.instantTurn && var0.idleSequence == var0.movementSequence && (var0.field1245 > 25 || var7)) {
                   if (var0.turnLeftSequence != -1) {
                      var0.movementSequence = var0.turnLeftSequence;
                   } else {
@@ -593,14 +591,14 @@ public class FriendSystem {
                   }
                }
             } else {
-               var0.rotation += var0.field1228 ? var5 : var0.field1249;
+               var0.rotation += var0.instantTurn ? var5 : var0.field1249;
                var7 = true;
                if (var5 < var0.field1249 || var5 > 2048 - var0.field1249) {
                   var0.rotation = var0.orientation;
                   var7 = false;
                }
 
-               if (!var0.field1228 && var0.idleSequence == var0.movementSequence && (var0.field1245 > 25 || var7)) {
+               if (!var0.instantTurn && var0.idleSequence == var0.movementSequence && (var0.field1245 > 25 || var7)) {
                   if (var0.turnRightSequence != -1) {
                      var0.movementSequence = var0.turnRightSequence;
                   } else {
@@ -610,7 +608,7 @@ public class FriendSystem {
             }
 
             var0.rotation &= 2047;
-            var0.field1228 = false;
+            var0.instantTurn = false;
          } else {
             var0.field1245 = 0;
          }

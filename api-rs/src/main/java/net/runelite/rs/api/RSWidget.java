@@ -616,4 +616,11 @@ public interface RSWidget extends Widget
 	RSWidget setLineHeight(int height);
 
 	void broadcastHidden(boolean hidden);
+
+
+	// Kris changes
+	@Import("modelRotation")
+	@Override
+	int getModelRotation();
+
 }

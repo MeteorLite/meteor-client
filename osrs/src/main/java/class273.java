@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -19,13 +18,13 @@ public class class273 {
       garbageValue = "-912521373"
    )
    static final void method5479(Actor var0) {
-      int var1 = Math.max(1, var0.field1233 - Client.cycle);
-      int var2 = var0.field1196 * 128 + var0.field1181 * 64;
-      int var3 = var0.field1185 * 128 + var0.field1181 * 64;
+      int var1 = Math.max(1, var0.exactMoveArrive1Cycle - Client.cycle);
+      int var2 = var0.exactMoveDeltaX1 * 128 + var0.field1181 * 64;
+      int var3 = var0.exactMoveDeltaY1 * 128 + var0.field1181 * 64;
       var0.x += (var2 - var0.x) / var1;
       var0.y += (var3 - var0.y) / var1;
       var0.field1239 = 0;
-      var0.orientation = var0.field1235;
+      var0.orientation = var0.exactMoveDirection;
    }
 
    @ObfuscatedName("kj")

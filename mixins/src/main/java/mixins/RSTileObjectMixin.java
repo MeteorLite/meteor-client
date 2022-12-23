@@ -9,6 +9,7 @@ import net.runelite.api.MenuAction;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.TileObject;
+import net.runelite.api.coords.Angle;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import java.awt.Graphics2D;
@@ -227,5 +228,17 @@ public abstract class RSTileObjectMixin implements TileObject
 	public AutomatedMenu getMenu(int actionIndex, int opcode)
 	{
 		return getMenu(getId(), opcode, menuPoint().getX(), menuPoint().getY());
+	}
+
+
+	// Kris changes:
+
+	@Override
+	@Inject
+	public Angle getTileObjectAngle()
+	{
+		int orientation = getModelOrientation();
+		int rotation = (getConfig() >> 6) & 3;
+		return new Angle(rotation * 512 + orientation);
 	}
 }

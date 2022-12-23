@@ -2,7 +2,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -114,7 +114,7 @@ public class class14 {
       garbageValue = "39"
    )
    static int method172(int var0, Script var1, boolean var2) {
-      Widget var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+      Widget var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
       if (var0 == 2500) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.x;
          return 1;

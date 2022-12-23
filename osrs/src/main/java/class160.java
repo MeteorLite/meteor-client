@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -67,8 +66,8 @@ public class class160 extends class136 {
             throw new RuntimeException();
          } else {
             Players.Players_regions[var1] = (var4.plane << 28) + (class154.baseX * 64 + var4.pathX[0] >> 13 << 14) + (class365.baseY * 64 + var4.pathY[0] >> 13);
-            if (var4.field1190 != -1) {
-               Players.Players_orientations[var1] = var4.field1190;
+            if (var4.movingOrientation != -1) {
+               Players.Players_orientations[var1] = var4.movingOrientation;
             } else {
                Players.Players_orientations[var1] = var4.orientation;
             }
@@ -119,7 +118,7 @@ public class class160 extends class136 {
                var4.tileY = var7;
             } else {
                var4.field1133 = false;
-               var4.method2298(var6, var7, Players.field1379[var1]);
+               var4.move(var6, var7, Players.field1379[var1]);
             }
 
          } else if (var3 == 2) {
@@ -181,7 +180,7 @@ public class class160 extends class136 {
                var4.tileY = var7;
             } else {
                var4.field1133 = false;
-               var4.method2298(var6, var7, Players.field1379[var1]);
+               var4.move(var6, var7, Players.field1379[var1]);
             }
 
          } else {
@@ -212,7 +211,7 @@ public class class160 extends class136 {
                      var4.tileY = var11;
                   } else {
                      var4.field1133 = false;
-                     var4.method2298(var10, var11, Players.field1379[var1]);
+                     var4.move(var10, var11, Players.field1379[var1]);
                   }
                } else {
                   var4.resetPath(var10, var11);
@@ -240,7 +239,7 @@ public class class160 extends class136 {
                   var4.tileY = var11;
                } else {
                   var4.field1133 = false;
-                  var4.method2298(var10, var11, Players.field1379[var1]);
+                  var4.move(var10, var11, Players.field1379[var1]);
                }
 
                var4.plane = (byte)(var7 + var4.plane & 3);

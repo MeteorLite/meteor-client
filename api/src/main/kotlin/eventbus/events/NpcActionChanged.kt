@@ -29,4 +29,4 @@ import net.runelite.api.NPCComposition
 /**
  * An event where an action of an [NPCComposition] has changed.
  */
-class NpcActionChanged(val npcComposition: NPCComposition, var idx: Int = 0)
+class NpcActionChanged(val npcComposition: NPCComposition, var idx: Int,)

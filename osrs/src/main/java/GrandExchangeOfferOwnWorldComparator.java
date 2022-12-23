@@ -1,6 +1,5 @@
 import java.util.Comparator;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -74,7 +73,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       Widget var3;
       if (var0 >= 2000) {
          var0 -= 1000;
-         var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+         var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
       } else {
          var3 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
       }
@@ -113,8 +112,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
             var3.itemQuantityMode = 2;
          }
 
-         if (var3.field3659 > 0) {
-            var3.modelZoom = var3.modelZoom * 32 / var3.field3659;
+         if (var3.modelRotation > 0) {
+            var3.modelZoom = var3.modelZoom * 32 / var3.modelRotation;
          } else if (var3.rawWidth > 0) {
             var3.modelZoom = var3.modelZoom * 32 / var3.rawWidth;
          }

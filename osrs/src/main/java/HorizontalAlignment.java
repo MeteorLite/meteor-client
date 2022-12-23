@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -63,26 +61,26 @@ public enum HorizontalAlignment implements class345 {
       garbageValue = "1288077313"
    )
    static final void method3660(PacketBuffer var0, int var1, Player var2, int var3) {
-      byte var4 = class204.field2354.field2358;
+      byte var4 = MoveSpeed.STATIONARY.speed;
       if ((var3 & 8192) != 0) {
-         var2.field1196 = var0.method8701();
-         var2.field1185 = var0.readByte();
-         var2.field1230 = var0.method8701();
-         var2.field1213 = var0.method8584();
-         var2.field1233 = var0.method8530() + Client.cycle;
-         var2.field1234 = var0.method8591() + Client.cycle;
-         var2.field1235 = var0.readUnsignedShort();
+         var2.exactMoveDeltaX1 = var0.method8701();
+         var2.exactMoveDeltaY1 = var0.readByte();
+         var2.exactMoveDeltaX2 = var0.method8701();
+         var2.exactMoveDeltaY2 = var0.method8584();
+         var2.exactMoveArrive1Cycle = var0.method8530() + Client.cycle;
+         var2.exactMoveArrive2Cycle = var0.method8591() + Client.cycle;
+         var2.exactMoveDirection = var0.readUnsignedShort();
          if (var2.field1133) {
-            var2.field1196 += var2.tileX;
-            var2.field1185 += var2.tileY;
-            var2.field1230 += var2.tileX;
-            var2.field1213 += var2.tileY;
+            var2.exactMoveDeltaX1 += var2.tileX;
+            var2.exactMoveDeltaY1 += var2.tileY;
+            var2.exactMoveDeltaX2 += var2.tileX;
+            var2.exactMoveDeltaY2 += var2.tileY;
             var2.pathLength = 0;
          } else {
-            var2.field1196 += var2.pathX[0];
-            var2.field1185 += var2.pathY[0];
-            var2.field1230 += var2.pathX[0];
-            var2.field1213 += var2.pathY[0];
+            var2.exactMoveDeltaX1 += var2.pathX[0];
+            var2.exactMoveDeltaY1 += var2.pathY[0];
+            var2.exactMoveDeltaX2 += var2.pathX[0];
+            var2.exactMoveDeltaY2 += var2.pathY[0];
             var2.pathLength = 1;
          }
 
@@ -108,11 +106,11 @@ public enum HorizontalAlignment implements class345 {
       if ((var3 & 4096) != 0) {
          var2.spotAnimation = var0.readUnsignedShort();
          var5 = var0.method8604();
-         var2.field1246 = var5 >> 16;
-         var2.field1227 = (var5 & '\uffff') + Client.cycle;
+         var2.spotAnimHeight = var5 >> 16;
+         var2.spotAnimationStartCycle = (var5 & '\uffff') + Client.cycle;
          var2.spotAnimationFrame = 0;
-         var2.field1214 = 0;
-         if (var2.field1227 > Client.cycle) {
+         var2.spotAnimFrameCycle = 0;
+         if (var2.spotAnimationStartCycle > Client.cycle) {
             var2.spotAnimationFrame = -1;
          }
 
@@ -153,19 +151,19 @@ public enum HorizontalAlignment implements class345 {
       }
 
       if ((var3 & 16384) != 0) {
-         var2.field1238 = Client.cycle + var0.method8591();
-         var2.field1200 = Client.cycle + var0.method8530();
-         var2.field1240 = var0.method8718();
-         var2.field1220 = var0.method8718();
-         var2.field1232 = var0.readByte();
-         var2.field1243 = (byte)var0.method8581();
+         var2.recolourStartCycle = Client.cycle + var0.method8591();
+         var2.recolourEndCycle = Client.cycle + var0.method8530();
+         var2.recolourHue = var0.method8718();
+         var2.recolourSaturation = var0.method8718();
+         var2.recolourLuminance = var0.readByte();
+         var2.recolourAmount = (byte)var0.method8581();
       }
 
       if ((var3 & 128) != 0) {
-         var2.field1190 = var0.method8592();
+         var2.movingOrientation = var0.method8592();
          if (var2.pathLength == 0) {
-            var2.orientation = var2.field1190;
-            var2.field1190 = -1;
+            var2.orientation = var2.movingOrientation;
+            var2.movingOrientation = -1;
          }
       }
 
@@ -207,7 +205,7 @@ public enum HorizontalAlignment implements class345 {
                var2.overheadTextEffect = var5 & 255;
                var2.overheadTextCyclesRemaining = 150;
                var2.isAutoChatting = var14;
-               var2.field1187 = var2 != class155.localPlayer && var19.isUser && "" != Client.field744 && var11.toLowerCase().indexOf(Client.field744) == -1;
+               var2.showPublicPlayerChat = var2 != class155.localPlayer && var19.isUser && "" != Client.field744 && var11.toLowerCase().indexOf(Client.field744) == -1;
                if (var19.isPrivileged) {
                   var12 = var14 ? 91 : 1;
                } else {
@@ -270,24 +268,24 @@ public enum HorizontalAlignment implements class345 {
       }
 
       if ((var3 & 2048) != 0) {
-         class204[] var15 = Players.field1379;
-         class204[] var17 = new class204[]{class204.field2356, class204.field2354, class204.field2357, class204.field2355};
-         var15[var1] = (class204)World.findEnumerated(var17, var0.readByte());
+         MoveSpeed[] var15 = Players.field1379;
+         MoveSpeed[] var17 = new MoveSpeed[]{MoveSpeed.CRAWL, MoveSpeed.STATIONARY, MoveSpeed.RUN, MoveSpeed.WALK};
+         var15[var1] = (MoveSpeed)World.findEnumerated(var17, var0.readByte());
       }
 
       if (var2.field1133) {
          if (var4 == 127) {
             var2.resetPath(var2.tileX, var2.tileY);
          } else {
-            class204 var22;
-            if (var4 != class204.field2354.field2358) {
-               class204[] var20 = new class204[]{class204.field2356, class204.field2354, class204.field2357, class204.field2355};
-               var22 = (class204)World.findEnumerated(var20, var4);
+            MoveSpeed var22;
+            if (var4 != MoveSpeed.STATIONARY.speed) {
+               MoveSpeed[] var20 = new MoveSpeed[]{MoveSpeed.CRAWL, MoveSpeed.STATIONARY, MoveSpeed.RUN, MoveSpeed.WALK};
+               var22 = (MoveSpeed)World.findEnumerated(var20, var4);
             } else {
                var22 = Players.field1379[var1];
             }
 
-            var2.method2298(var2.tileX, var2.tileY, var22);
+            var2.move(var2.tileX, var2.tileY, var22);
          }
       }
 

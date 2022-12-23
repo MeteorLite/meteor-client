@@ -27,4 +27,4 @@ package eventbus.events
 /**
  * Posted when an interface is about to be closed
  */
-class WidgetClosed(var groupId: Int = 0, var modalMode: Int = 0, var unload: Boolean = false)
+class WidgetClosed(var groupId: Int, var modalMode: Int, var unload: Boolean = false)

@@ -123,12 +123,12 @@ public class class1 implements Callable {
          }
 
          if ((var4 & 1024) != 0) {
-            var3.field1238 = Client.cycle + var0.method8592();
-            var3.field1200 = Client.cycle + var0.method8592();
-            var3.field1240 = var0.method8718();
-            var3.field1220 = var0.readByte();
-            var3.field1232 = var0.method8718();
-            var3.field1243 = (byte)var0.method8581();
+            var3.recolourStartCycle = Client.cycle + var0.method8592();
+            var3.recolourEndCycle = Client.cycle + var0.method8592();
+            var3.recolourHue = var0.method8718();
+            var3.recolourSaturation = var0.readByte();
+            var3.recolourLuminance = var0.method8718();
+            var3.recolourAmount = (byte)var0.method8581();
          }
 
          int[] var6;
@@ -190,7 +190,7 @@ public class class1 implements Callable {
          }
 
          if ((var4 & 8192) != 0) {
-            var3.field1253 = var0.method8585();
+            var3.combatLevelChange = var0.method8585();
          }
 
          int var17;
@@ -207,18 +207,18 @@ public class class1 implements Callable {
                   var3.sequenceFrame = 0;
                   var3.sequenceFrameCycle = 0;
                   var3.sequenceDelay = var17;
-                  var3.field1223 = 0;
+                  var3.currentSequenceFrameIndex = 0;
                }
 
                if (var7 == 2) {
-                  var3.field1223 = 0;
+                  var3.currentSequenceFrameIndex = 0;
                }
             } else if (var5 == -1 || var3.sequence == -1 || AABB.SequenceDefinition_get(var5).field2300 >= AABB.SequenceDefinition_get(var3.sequence).field2300) {
                var3.sequence = var5;
                var3.sequenceFrame = 0;
                var3.sequenceFrameCycle = 0;
                var3.sequenceDelay = var17;
-               var3.field1223 = 0;
+               var3.currentSequenceFrameIndex = 0;
                var3.field1252 = var3.pathLength;
             }
          }
@@ -281,28 +281,28 @@ public class class1 implements Callable {
          if ((var4 & 8) != 0) {
             var5 = var0.readUnsignedShort();
             var17 = var0.readUnsignedShort();
-            var3.field1228 = var0.readUnsignedByte() == 1;
+            var3.instantTurn = var0.readUnsignedByte() == 1;
             var7 = var3.x - (var5 - class154.baseX * 64 - class154.baseX * 64) * 64;
             var8 = var3.y - (var17 - class365.baseY * 64 - class365.baseY * 64) * 64;
             if (var7 != 0 || var8 != 0) {
-               var3.field1190 = (int)(Math.atan2((double)var7, (double)var8) * 325.949D) & 2047;
+               var3.movingOrientation = (int)(Math.atan2((double)var7, (double)var8) * 325.949D) & 2047;
             }
          }
 
          if ((var4 & '耀') != 0) {
-            var3.field1196 = var0.method8718();
-            var3.field1185 = var0.readByte();
-            var3.field1230 = var0.method8718();
-            var3.field1213 = var0.method8701();
-            var3.field1233 = var0.readUnsignedShort() + Client.cycle;
-            var3.field1234 = var0.method8530() + Client.cycle;
-            var3.field1235 = var0.readUnsignedShort();
+            var3.exactMoveDeltaX1 = var0.method8718();
+            var3.exactMoveDeltaY1 = var0.readByte();
+            var3.exactMoveDeltaX2 = var0.method8718();
+            var3.exactMoveDeltaY2 = var0.method8701();
+            var3.exactMoveArrive1Cycle = var0.readUnsignedShort() + Client.cycle;
+            var3.exactMoveArrive2Cycle = var0.method8530() + Client.cycle;
+            var3.exactMoveDirection = var0.readUnsignedShort();
             var3.pathLength = 1;
             var3.field1252 = 0;
-            var3.field1196 += var3.pathX[0];
-            var3.field1185 += var3.pathY[0];
-            var3.field1230 += var3.pathX[0];
-            var3.field1213 += var3.pathY[0];
+            var3.exactMoveDeltaX1 += var3.pathX[0];
+            var3.exactMoveDeltaY1 += var3.pathY[0];
+            var3.exactMoveDeltaX2 += var3.pathX[0];
+            var3.exactMoveDeltaY2 += var3.pathY[0];
          }
 
          if ((var4 & 16384) != 0) {
@@ -372,11 +372,11 @@ public class class1 implements Callable {
          if ((var4 & 2) != 0) {
             var3.spotAnimation = var0.readUnsignedShort();
             var5 = var0.method8585();
-            var3.field1246 = var5 >> 16;
-            var3.field1227 = (var5 & '\uffff') + Client.cycle;
+            var3.spotAnimHeight = var5 >> 16;
+            var3.spotAnimationStartCycle = (var5 & '\uffff') + Client.cycle;
             var3.spotAnimationFrame = 0;
-            var3.field1214 = 0;
-            if (var3.field1227 > Client.cycle) {
+            var3.spotAnimFrameCycle = 0;
+            if (var3.spotAnimationStartCycle > Client.cycle) {
                var3.spotAnimationFrame = -1;
             }
 

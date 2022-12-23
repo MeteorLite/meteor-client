@@ -26,7 +26,7 @@ package eventbus.events
 
 import net.runelite.api.Actor
 
-class SoundEffectPlayed(var source: Actor?, var soundId: Int = 0, var delay: Int = 0) {
+class SoundEffectPlayed(var source: Actor?, var soundId: Int, var delay: Int) {
     var consumed: Boolean = false
     fun consume() {
         consumed = true

@@ -35,4 +35,4 @@ import net.runelite.api.coords.LocalPoint
  * For projectiles that target the ground, this event is only triggered once (ie. AoE from Lizardman
  * Shaman).
  */
-class ProjectileMoved(val projectile: Projectile, val position: LocalPoint, val z: Int = 0) : Event()
+class ProjectileMoved(val projectile: Projectile, val position: LocalPoint, val z: Int) : Event()

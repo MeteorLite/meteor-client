@@ -113,7 +113,7 @@ public enum class413 implements class345 {
                   var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
                   var16 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
                   int var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
-                  Widget var15 = class175.getWidget(var9);
+                  Widget var15 = ObjTypeCustomisation.getWidget(var9);
                   class18.clickWidget(var15, var3, var16);
                   return 1;
                } else if (var0 == 3109) {

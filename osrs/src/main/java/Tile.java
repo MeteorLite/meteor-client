@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -10,7 +8,7 @@ public final class Tile extends Node {
    @ObfuscatedGetter(
       intValue = -325316609
    )
-   static int field2481;
+   static int cameraMoveToAcceleration;
    @ObfuscatedName("h")
    @ObfuscatedGetter(
       intValue = -850337333

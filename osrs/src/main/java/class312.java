@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -47,7 +46,7 @@ public class class312 {
                   Client.npcIndices[++Client.npcCount - 1] = var4;
                   var13.npcCycle = Client.cycle;
                   var8 = var1.readBits(3);
-                  var13.method2533(var8, class204.field2355);
+                  var13.move(var8, MoveSpeed.WALK);
                   var9 = var1.readBits(1);
                   if (var9 == 1) {
                      Client.field565[++Client.field564 - 1] = var4;
@@ -57,12 +56,12 @@ public class class312 {
                   var13.npcCycle = Client.cycle;
                   if (var1.readBits(1) == 1) {
                      var8 = var1.readBits(3);
-                     var13.method2533(var8, class204.field2357);
+                     var13.move(var8, MoveSpeed.RUN);
                      var9 = var1.readBits(3);
-                     var13.method2533(var9, class204.field2357);
+                     var13.move(var9, MoveSpeed.RUN);
                   } else {
                      var8 = var1.readBits(3);
-                     var13.method2533(var8, class204.field2356);
+                     var13.move(var8, MoveSpeed.CRAWL);
                   }
 
                   var8 = var1.readBits(1);

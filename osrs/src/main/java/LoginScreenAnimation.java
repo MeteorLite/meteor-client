@@ -1,6 +1,5 @@
 import java.util.Iterator;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -11,7 +10,7 @@ public class LoginScreenAnimation {
    @ObfuscatedGetter(
       intValue = -2012270183
    )
-   static int field1283;
+   static int cameraLookAtAcceleration;
    @ObfuscatedName("qk")
    @ObfuscatedSignature(
       descriptor = "Lob;"

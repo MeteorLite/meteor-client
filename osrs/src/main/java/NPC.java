@@ -27,7 +27,7 @@ public final class NPC extends Actor {
    )
    NPCComposition definition;
    @ObfuscatedName("e")
-   String field1311 = "";
+   String nameChange = "";
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = 1973298013
@@ -55,7 +55,7 @@ public final class NPC extends Actor {
       garbageValue = "1631971802"
    )
    void method2573(String var1) {
-      this.field1311 = var1 == null ? "" : var1;
+      this.nameChange = var1 == null ? "" : var1;
    }
 
    @ObfuscatedName("e")
@@ -79,7 +79,7 @@ public final class NPC extends Actor {
             if (super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
                Model var5 = ClanSettings.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
                if (var5 != null) {
-                  var5.offsetBy(0, -super.field1246, 0);
+                  var5.offsetBy(0, -super.spotAnimHeight, 0);
                   Model[] var6 = new Model[]{var3, var5};
                   var3 = new Model(var6, 2);
                }
@@ -89,11 +89,11 @@ public final class NPC extends Actor {
                var3.isSingleTile = true;
             }
 
-            if (super.field1243 != 0 && Client.cycle >= super.field1238 && Client.cycle < super.field1200) {
-               var3.overrideHue = super.field1240;
-               var3.overrideSaturation = super.field1220;
-               var3.overrideLuminance = super.field1232;
-               var3.overrideAmount = super.field1243;
+            if (super.recolourAmount != 0 && Client.cycle >= super.recolourStartCycle && Client.cycle < super.recolourEndCycle) {
+               var3.overrideHue = super.recolourHue;
+               var3.overrideSaturation = super.recolourSaturation;
+               var3.overrideLuminance = super.recolourLuminance;
+               var3.overrideAmount = super.recolourAmount;
                var3.field2741 = (short)var4;
             } else {
                var3.overrideAmount = 0;
@@ -132,8 +132,8 @@ public final class NPC extends Actor {
       garbageValue = "-1271311386"
    )
    final String method2535() {
-      if (!this.field1311.isEmpty()) {
-         return this.field1311;
+      if (!this.nameChange.isEmpty()) {
+         return this.nameChange;
       } else {
          NPCComposition var1 = this.definition;
          if (var1.transforms != null) {
@@ -152,7 +152,7 @@ public final class NPC extends Actor {
       descriptor = "(ILgs;B)V",
       garbageValue = "-17"
    )
-   final void method2533(int var1, class204 var2) {
+   final void move(int var1, MoveSpeed var2) {
       int var3 = super.pathX[0];
       int var4 = super.pathY[0];
       if (var1 == 0) {
@@ -236,7 +236,7 @@ public final class NPC extends Actor {
 
             super.pathX[0] = var1;
             super.pathY[0] = var2;
-            super.pathTraversed[0] = class204.field2355;
+            super.pathTraversed[0] = MoveSpeed.WALK;
             return;
          }
       }
@@ -368,7 +368,7 @@ public final class NPC extends Actor {
       if (var0 >= 2000) {
          var0 -= 1000;
          var4 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-         var3 = class175.getWidget(var4);
+         var3 = ObjTypeCustomisation.getWidget(var4);
       } else {
          var3 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
       }

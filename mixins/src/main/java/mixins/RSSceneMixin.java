@@ -31,6 +31,9 @@ import static net.runelite.api.Constants.ROOF_FLAG_DESTINATION;
 import static net.runelite.api.Constants.ROOF_FLAG_HOVERED;
 import static net.runelite.api.Constants.ROOF_FLAG_POSITION;
 
+import eventbus.Events;
+import eventbus.events.GetDynamicObjectForAnimationEvent;
+import meteor.Event;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -1296,5 +1299,31 @@ public abstract class RSSceneMixin implements RSScene
 		{
 			renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
 		}
+	}
+
+	// Kris changes:
+
+	@MethodHook("getGameObject")
+	@Inject
+	public void onGameObjectAccess(int var1, int var2, int var3) {
+		client.getCallbacks().post(Events.GET_DYNAMIC_OBJECT_FOR_ANIMATION_EVENT, GetDynamicObjectForAnimationEvent.INSTANCE);
+	}
+
+	@MethodHook("getFloorDecoration")
+	@Inject
+	public void onFloorDecorationAccess(int var1, int var2, int var3) {
+		client.getCallbacks().post(Events.GET_DYNAMIC_OBJECT_FOR_ANIMATION_EVENT, GetDynamicObjectForAnimationEvent.INSTANCE);
+	}
+
+	@MethodHook("getDecorativeObject")
+	@Inject
+	public void onDecorativeObjectAccess(int var1, int var2, int var3) {
+		client.getCallbacks().post(Events.GET_DYNAMIC_OBJECT_FOR_ANIMATION_EVENT, GetDynamicObjectForAnimationEvent.INSTANCE);
+	}
+
+	@MethodHook("getWallObject")
+	@Inject
+	public void onWallObjectAccess(int var1, int var2, int var3) {
+		client.getCallbacks().post(Events.GET_DYNAMIC_OBJECT_FOR_ANIMATION_EVENT, GetDynamicObjectForAnimationEvent.INSTANCE);
 	}
 }

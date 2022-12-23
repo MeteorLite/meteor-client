@@ -24,16 +24,12 @@
  */
 package net.runelite.api.events
 
-import lombok.AccessLevel
-import lombok.Data
-import lombok.Setter
 import net.runelite.api.MenuEntry
 
 /**
  * An event where a menu has been opened.
  */
-@Data
-class MenuOpened(var menuEntries: Array<MenuEntry>) : Iterable<MenuEntry> {
+data class MenuOpened(var menuEntries: Array<MenuEntry>) : Iterable<MenuEntry> {
     /**
      * This should be set to true if anything about the menu
      * in menuEntries is changed, so the changes can be

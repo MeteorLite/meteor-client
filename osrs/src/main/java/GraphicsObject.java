@@ -202,7 +202,7 @@ public class GraphicsObject extends Renderable {
                if (var6 == 4) {
                   var9 = var2[var4++] << 16;
                   var9 += var2[var4++];
-                  var10 = class175.getWidget(var9);
+                  var10 = ObjTypeCustomisation.getWidget(var9);
                   var11 = var2[var4++];
                   if (var11 != -1 && (!NPCComposition.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
                      for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
@@ -240,7 +240,7 @@ public class GraphicsObject extends Renderable {
                if (var6 == 10) {
                   var9 = var2[var4++] << 16;
                   var9 += var2[var4++];
-                  var10 = class175.getWidget(var9);
+                  var10 = ObjTypeCustomisation.getWidget(var9);
                   var11 = var2[var4++];
                   if (var11 != -1 && (!NPCComposition.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
                      for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
@@ -268,7 +268,7 @@ public class GraphicsObject extends Renderable {
 
                if (var6 == 14) {
                   var9 = var2[var4++];
-                  var7 = class175.getVarbit(var9);
+                  var7 = ObjTypeCustomisation.getVarbit(var9);
                }
 
                if (var6 == 15) {

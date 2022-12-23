@@ -26,12 +26,8 @@ package net.runelite.rs.api;
 
 import java.math.BigInteger;
 import java.util.Map;
-import net.runelite.api.AmbientSoundEffect;
-import net.runelite.api.Client;
-import net.runelite.api.Deque;
-import net.runelite.api.ModelData;
-import net.runelite.api.SpritePixels;
-import net.runelite.api.World;
+
+import net.runelite.api.*;
 import net.runelite.api.packets.ClientPacket;
 import net.runelite.api.packets.IsaacCipher;
 import net.runelite.api.clan.ClanRank;
@@ -1737,4 +1733,69 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("widgetDefaultMenuAction")
 	void invokeWidgetAction(int identifier, int param1, int param0, int itemId, String target);
+
+
+	// Kris changes
+	@Override
+	int getLatestWidgetCall();
+	@Override
+	void setLatestWidgetCall(int value);
+	@Import("cameraShaking")
+	@Override
+	boolean[] cameraShaking();
+	@Import("cameraShakeIntensity")
+	@Override
+	int[] cameraShakeIntensity();
+	@Import("cameraMoveIntensity")
+	@Override
+	int[] cameraMoveIntensity();
+	@Import("cameraShakeSpeed")
+	@Override
+	int[] cameraShakeSpeed();
+	@Import("cameraShakeCycle")
+	@Override
+	int[] cameraShakeCycle();
+
+	@Import("cameraLookAtX")
+	@Override
+	int cameraLookAtX();
+	@Import("cameraLookAtY")
+	@Override
+	int cameraLookAtY();
+	@Import("cameraLookAtHeight")
+	@Override
+	int cameraLookAtHeight();
+	@Import("cameraLookAtSpeed")
+	@Override
+	int cameraLookAtSpeed();
+	@Import("cameraLookAtAcceleration")
+	@Override
+	int cameraLookAtAcceleration();
+
+	@Import("cameraMoveToX")
+	@Override
+	int cameraMoveToX();
+	@Import("cameraMoveToY")
+	@Override
+	int cameraMoveToY();
+	@Import("cameraMoveToHeight")
+	@Override
+	int cameraMoveToHeight();
+	@Import("cameraMoveToSpeed")
+	@Override
+	int cameraMoveToSpeed();
+	@Import("cameraMoveToAcceleration")
+	@Override
+	int cameraMoveToAcceleration();
+
+	@Import("minimapState")
+	@Override
+	int getMinimapState();
+	@Import("hintArrowHeight")
+	int getHintArrowHeight();
+
+	@Import("userRegistrationId")
+	@Override
+	long getUserRegistrationId();
+
 }

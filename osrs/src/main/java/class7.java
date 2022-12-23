@@ -1,7 +1,7 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -78,7 +78,7 @@ public class class7 {
       garbageValue = "-831312501"
    )
    static int method54(int var0, Script var1, boolean var2) {
-      Widget var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+      Widget var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
       if (var0 == 2600) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.scrollX;
          return 1;
@@ -231,13 +231,13 @@ public class class7 {
       descriptor = "(IIII)Lcx;",
       garbageValue = "-413394938"
    )
-   static final InterfaceParent method44(int var0, int var1, int var2) {
+   static final InterfaceParent ifOpenSub(int var0, int var1, int var2) {
       InterfaceParent var3 = new InterfaceParent();
       var3.group = var1;
       var3.type = var2;
       Client.interfaceParents.put(var3, (long)var0);
       class69.Widget_resetModelFrames(var1);
-      Widget var4 = class175.getWidget(var0);
+      Widget var4 = ObjTypeCustomisation.getWidget(var0);
       class69.invalidateWidget(var4);
       if (Client.meslayerContinueWidget != null) {
          class69.invalidateWidget(Client.meslayerContinueWidget);

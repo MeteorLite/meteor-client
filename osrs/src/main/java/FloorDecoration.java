@@ -53,14 +53,14 @@ public final class FloorDecoration {
       int var4;
       SequenceDefinition var12;
       int var14;
-      if (var0.field1233 >= Client.cycle) {
+      if (var0.exactMoveArrive1Cycle >= Client.cycle) {
          class273.method5479(var0);
       } else {
          int var5;
          int var7;
          int var8;
-         if (var0.field1234 >= Client.cycle) {
-            boolean var11 = var0.field1234 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0;
+         if (var0.exactMoveArrive2Cycle >= Client.cycle) {
+            boolean var11 = var0.exactMoveArrive2Cycle == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0;
             if (!var11) {
                var12 = AABB.SequenceDefinition_get(var0.sequence);
                if (var12 != null && !var12.isCachedModelIdSet()) {
@@ -71,18 +71,18 @@ public final class FloorDecoration {
             }
 
             if (var11) {
-               var3 = var0.field1234 - var0.field1233;
-               var4 = Client.cycle - var0.field1233;
-               var5 = var0.field1196 * 128 + var0.field1181 * 64;
-               int var13 = var0.field1185 * 128 + var0.field1181 * 64;
-               var7 = var0.field1230 * 128 + var0.field1181 * 64;
-               var8 = var0.field1213 * 128 + var0.field1181 * 64;
+               var3 = var0.exactMoveArrive2Cycle - var0.exactMoveArrive1Cycle;
+               var4 = Client.cycle - var0.exactMoveArrive1Cycle;
+               var5 = var0.exactMoveDeltaX1 * 128 + var0.field1181 * 64;
+               int var13 = var0.exactMoveDeltaY1 * 128 + var0.field1181 * 64;
+               var7 = var0.exactMoveDeltaX2 * 128 + var0.field1181 * 64;
+               var8 = var0.exactMoveDeltaY2 * 128 + var0.field1181 * 64;
                var0.x = (var7 * var4 + var5 * (var3 - var4)) / var3;
                var0.y = (var8 * var4 + var13 * (var3 - var4)) / var3;
             }
 
             var0.field1239 = 0;
-            var0.orientation = var0.field1235;
+            var0.orientation = var0.exactMoveDirection;
             var0.rotation = var0.orientation;
          } else {
             var0.movementSequence = var0.idleSequence;
@@ -129,7 +129,7 @@ public final class FloorDecoration {
                      var0.orientation = 0;
                   }
 
-                  class204 var6 = var0.pathTraversed[var0.pathLength - 1];
+                  MoveSpeed var6 = var0.pathTraversed[var0.pathLength - 1];
                   if (var4 - var14 <= 256 && var4 - var14 >= -256 && var5 - var3 <= 256 && var5 - var3 >= -256) {
                      var7 = var0.orientation - var0.rotation & 2047;
                      if (var7 > 1024) {
@@ -188,9 +188,9 @@ public final class FloorDecoration {
                         }
                      }
 
-                     if (var6 == class204.field2357) {
+                     if (var6 == MoveSpeed.RUN) {
                         var9 <<= 1;
-                     } else if (var6 == class204.field2356) {
+                     } else if (var6 == MoveSpeed.CRAWL) {
                         var9 >>= 1;
                      }
 
@@ -264,8 +264,8 @@ public final class FloorDecoration {
       if (var0.x < 128 || var0.y < 128 || var0.x >= 13184 || var0.y >= 13184) {
          var0.sequence = -1;
          var0.spotAnimation = -1;
-         var0.field1233 = 0;
-         var0.field1234 = 0;
+         var0.exactMoveArrive1Cycle = 0;
+         var0.exactMoveArrive2Cycle = 0;
          var0.x = var0.pathX[0] * 128 + var0.field1181 * 64;
          var0.y = var0.pathY[0] * 128 + var0.field1181 * 64;
          var0.method2348();
@@ -274,8 +274,8 @@ public final class FloorDecoration {
       if (class155.localPlayer == var0 && (var0.x < 1536 || var0.y < 1536 || var0.x >= 11776 || var0.y >= 11776)) {
          var0.sequence = -1;
          var0.spotAnimation = -1;
-         var0.field1233 = 0;
-         var0.field1234 = 0;
+         var0.exactMoveArrive1Cycle = 0;
+         var0.exactMoveArrive2Cycle = 0;
          var0.x = var0.pathX[0] * 128 + var0.field1181 * 64;
          var0.y = var0.pathY[0] * 128 + var0.field1181 * 64;
          var0.method2348();
@@ -345,7 +345,7 @@ public final class FloorDecoration {
          }
       }
 
-      if (var0.spotAnimation != -1 && Client.cycle >= var0.field1227) {
+      if (var0.spotAnimation != -1 && Client.cycle >= var0.spotAnimationStartCycle) {
          if (var0.spotAnimationFrame < 0) {
             var0.spotAnimationFrame = 0;
          }
@@ -354,9 +354,9 @@ public final class FloorDecoration {
          if (var14 != -1) {
             var12 = AABB.SequenceDefinition_get(var14);
             if (var12 != null && var12.frameIds != null && !var12.isCachedModelIdSet()) {
-               ++var0.field1214;
-               if (var0.spotAnimationFrame < var12.frameIds.length && var0.field1214 > var12.frameLengths[var0.spotAnimationFrame]) {
-                  var0.field1214 = 1;
+               ++var0.spotAnimFrameCycle;
+               if (var0.spotAnimationFrame < var12.frameIds.length && var0.spotAnimFrameCycle > var12.frameLengths[var0.spotAnimationFrame]) {
+                  var0.spotAnimFrameCycle = 1;
                   ++var0.spotAnimationFrame;
                   FriendsChat.method7459(var12, var0.spotAnimationFrame, var0.x, var0.y);
                }
@@ -382,7 +382,7 @@ public final class FloorDecoration {
 
       if (var0.sequence != -1 && var0.sequenceDelay <= 1) {
          var2 = AABB.SequenceDefinition_get(var0.sequence);
-         if (var2.field2290 == 1 && var0.field1252 > 0 && var0.field1233 <= Client.cycle && var0.field1234 < Client.cycle) {
+         if (var2.field2290 == 1 && var0.field1252 > 0 && var0.exactMoveArrive1Cycle <= Client.cycle && var0.exactMoveArrive2Cycle < Client.cycle) {
             var0.sequenceDelay = 1;
             return;
          }
@@ -402,8 +402,8 @@ public final class FloorDecoration {
 
             if (var0.sequenceFrame >= var2.frameIds.length) {
                var0.sequenceFrame -= var2.frameCount;
-               ++var0.field1223;
-               if (var0.field1223 >= var2.field2301) {
+               ++var0.currentSequenceFrameIndex;
+               if (var0.currentSequenceFrameIndex >= var2.field2301) {
                   var0.sequence = -1;
                } else if (var0.sequenceFrame >= 0 && var0.sequenceFrame < var2.frameIds.length) {
                   FriendsChat.method7459(var2, var0.sequenceFrame, var0.x, var0.y);
@@ -420,8 +420,8 @@ public final class FloorDecoration {
                class20.method293(var2, var0.sequenceFrame, var0.x, var0.y);
             } else {
                var0.sequenceFrame -= var2.frameCount;
-               ++var0.field1223;
-               if (var0.field1223 >= var2.field2301) {
+               ++var0.currentSequenceFrameIndex;
+               if (var0.currentSequenceFrameIndex >= var2.field2301) {
                   var0.sequence = -1;
                } else if (var0.sequenceFrame >= 0 && var0.sequenceFrame < var3) {
                   class20.method293(var2, var0.sequenceFrame, var0.x, var0.y);

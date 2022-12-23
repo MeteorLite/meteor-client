@@ -132,4 +132,19 @@ interface Player : Actor {
     fun getMenu(actionIndex: Int, opcode: Int): AutomatedMenu? {
         return getMenu(actionIndex, opcode, 0, 0)
     }
+
+
+    // Kris changes
+    override fun isHidden(): Boolean
+    fun minX(): Int
+    fun maxX(): Int
+    fun minY(): Int
+    fun maxY(): Int
+    fun animationCycleStart(): Int
+    fun animationCycleEnd(): Int
+    fun getAttachedModel(): Model?
+    fun move(x: Int, y: Int, type: MoveSpeed?)
+    fun stopMovement(x: Int, y: Int)
+    fun getPlane(): Int
+    fun getTotalLevel(): Int
 }

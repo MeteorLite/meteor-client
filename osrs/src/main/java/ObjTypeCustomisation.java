@@ -14,27 +14,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fx")
-public class class175 {
+public class ObjTypeCustomisation {
    @ObfuscatedName("v")
-   public short[] field1913;
+   public short[] recol;
    @ObfuscatedName("x")
-   public short[] field1914;
+   public short[] retex;
 
-   public class175(int var1) {
+   public ObjTypeCustomisation(int var1) {
       ItemComposition var2 = NPCComposition.ItemDefinition_get(var1);
       if (var2.method3963()) {
-         this.field1913 = new short[var2.recolorTo.length];
-         System.arraycopy(var2.recolorTo, 0, this.field1913, 0, this.field1913.length);
+         this.recol = new short[var2.recolorTo.length];
+         System.arraycopy(var2.recolorTo, 0, this.recol, 0, this.recol.length);
       }
 
       if (var2.method3941()) {
-         this.field1914 = new short[var2.retextureTo.length];
-         System.arraycopy(var2.retextureTo, 0, this.field1914, 0, this.field1914.length);
+         this.retex = new short[var2.retextureTo.length];
+         System.arraycopy(var2.retextureTo, 0, this.retex, 0, this.retex.length);
       }
 
    }
