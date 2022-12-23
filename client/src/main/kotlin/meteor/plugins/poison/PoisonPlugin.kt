@@ -26,14 +26,12 @@ package meteor.plugins.poison
 
 import eventbus.events.ConfigChanged
 import eventbus.events.VarbitChanged
-import lombok.Getter
 import meteor.game.AlternateSprites
 import meteor.game.FontManager.runescapeSmallFont
 import meteor.game.SpriteManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import meteor.ui.overlay.*
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ColorUtil.wrapWithColorTag
 import meteor.util.ImageUtil.getImageSpritePixels
@@ -48,6 +46,7 @@ import java.text.MessageFormat
 import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoUnit
+import kotlin.math.ceil
 
 @PluginDescriptor(
     name = "Poison",
@@ -61,7 +60,6 @@ class PoisonPlugin : Plugin() {
     private val spriteManager = SpriteManager
     private val config = javaConfiguration(PoisonConfig::class.java) as PoisonConfig
 
-    @Getter
     var lastDamage = 0
     private var envenomed = false
     private var infobox: PoisonInfobox? = null
@@ -88,9 +86,9 @@ class PoisonPlugin : Plugin() {
         clientThread.invoke { resetHealthIcon() }
     }
 
-    override fun onVarbitChanged(event: VarbitChanged) {
-        if (event.varpId == VarPlayer.POISON.id) {
-            val poisonValue = event.value
+    override fun onVarbitChanged(it: VarbitChanged) {
+        if (it.varpId == VarPlayer.POISON.id) {
+            val poisonValue = it.value
             nextPoisonTick = Instant.now().plus(Duration.of(POISON_TICK_MILLIS.toLong(), ChronoUnit.MILLIS))
             val damage = nextDamage(poisonValue)
             lastDamage = damage
@@ -122,13 +120,13 @@ class PoisonPlugin : Plugin() {
                 }
             }
             checkHealthIcon()
-        } else if (event.varpId == VarPlayer.DISEASE_VALUE.id) {
+        } else if (it.varpId == VarPlayer.DISEASE_VALUE.id) {
             checkHealthIcon()
         }
     }
 
-    override fun onConfigChanged(event: ConfigChanged) {
-        if (event.group != PoisonConfig.GROUP) {
+    override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group != PoisonConfig.GROUP) {
             return
         }
         if (!config.showInfoboxes() && infobox != null) {
@@ -237,19 +235,19 @@ class PoisonPlugin : Plugin() {
         )
 
         private fun nextDamage(poisonValue: Int): Int {
-            var poisonValue = poisonValue
+            var it: Int = poisonValue
             var damage: Int
-            if (poisonValue >= VENOM_THRESHOLD) {
+            if (it >= VENOM_THRESHOLD) {
                 //Venom Damage starts at 6, and increments in twos;
                 //The VarPlayer increments in values of 1, however.
-                poisonValue -= VENOM_THRESHOLD - 3
-                damage = poisonValue * 2
+                it -= VENOM_THRESHOLD - 3
+                damage = it * 2
                 //Venom Damage caps at 20, but the VarPlayer keeps increasing
                 if (damage > VENOM_MAXIUMUM_DAMAGE) {
                     damage = VENOM_MAXIUMUM_DAMAGE
                 }
             } else {
-                damage = Math.ceil((poisonValue / 5.0f).toDouble()).toInt()
+                damage = ceil((it / 5.0f).toDouble()).toInt()
             }
             return damage
         }

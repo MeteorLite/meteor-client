@@ -27,7 +27,6 @@ package meteor.plugins.poison
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
 import meteor.config.legacy.ConfigItem
-import meteor.plugins.poison.PoisonConfig
 
 @ConfigGroup(PoisonConfig.GROUP)
 interface PoisonConfig : Config {
