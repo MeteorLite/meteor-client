@@ -24,7 +24,7 @@
  */
 package meteor.plugins.minimap
 
-import net.runelite.api.Client
+import meteor.Main
 import net.runelite.api.SpritePixels
 import java.awt.Color
 
@@ -57,8 +57,8 @@ internal object MinimapDot {
         return pixels
     }
 
-    fun create(client: Client?, color: Color): SpritePixels {
+    fun create(color: Color): SpritePixels {
         val pixels = createPixels(color)
-        return client!!.createSpritePixels(pixels, MAP_DOT_WIDTH, MAP_DOT_HEIGHT)
+        return Main.client.createSpritePixels(pixels, MAP_DOT_WIDTH, MAP_DOT_HEIGHT)
     }
 }

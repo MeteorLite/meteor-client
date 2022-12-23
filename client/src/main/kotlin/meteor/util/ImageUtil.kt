@@ -2,7 +2,6 @@ package meteor.util
 
 import com.google.common.primitives.Ints
 import meteor.Main
-import net.runelite.api.Client
 import net.runelite.api.IndexedSprite
 import net.runelite.api.SpritePixels
 import java.awt.Image
@@ -120,7 +119,7 @@ object ImageUtil {
      * @param client Current client instance
      * @return         The image as an `IndexedSprite`
      */
-    fun getImageIndexedSprite(image: BufferedImage, client: Client): IndexedSprite? {
+    fun getImageIndexedSprite(image: BufferedImage): IndexedSprite? {
         val pixels = ByteArray(image.width * image.height)
         val palette: MutableList<Int> = ArrayList()
         /*
@@ -159,7 +158,7 @@ object ImageUtil {
                             + " different colors, exceeding the max of 255."
             )
         }
-        val sprite = client.createIndexedSprite()
+        val sprite = Main.client.createIndexedSprite()
         sprite.pixels = pixels
         sprite.palette = Ints.toArray(palette)
         sprite.width = image.width

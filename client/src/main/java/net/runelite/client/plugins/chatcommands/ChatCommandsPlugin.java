@@ -253,7 +253,7 @@ public class ChatCommandsPlugin extends Plugin
 			final Pet pet = pets[i];
 
 			final BufferedImage image = ImageUtil.INSTANCE.resizeImage(itemManager.getImage(pet.getIconID()), 18, 16);
-			final IndexedSprite sprite = ImageUtil.INSTANCE.getImageIndexedSprite(image, client);
+			final IndexedSprite sprite = ImageUtil.INSTANCE.getImageIndexedSprite(image);
 			newModIcons[modIconIdx + i] = sprite;
 		}
 

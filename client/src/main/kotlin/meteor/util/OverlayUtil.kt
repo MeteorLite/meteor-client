@@ -159,8 +159,8 @@ object OverlayUtil {
         graphics.drawImage(image, x, y, null)
     }
 
-    fun renderMinimapRect(client: Client, graphics: Graphics2D, center: Point, width: Int, height: Int, color: Color?) {
-        val angle = client.mapAngle * Perspective.UNIT
+    fun renderMinimapRect(graphics: Graphics2D, center: Point, width: Int, height: Int, color: Color?) {
+        val angle = Main.client.mapAngle * Perspective.UNIT
         graphics.color = color
         graphics.rotate(angle, center.x.toDouble(), center.y.toDouble())
         graphics.drawRect(center.x - width / 2, center.y - height / 2, width - 1, height - 1)

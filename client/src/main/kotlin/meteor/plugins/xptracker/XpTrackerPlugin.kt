@@ -28,7 +28,6 @@ package meteor.plugins.xptracker
 import com.google.common.collect.ImmutableList
 import compose.icons.Octicons
 import compose.icons.octicons.Graph16
-import compose.icons.octicons.Meter16
 import eventbus.events.*
 import meteor.Main
 import meteor.game.NPCManager
@@ -301,7 +300,7 @@ class XpTrackerPlugin : Plugin() {
                     state.actionType = XpActionType.EXPERIENCE
                     val interacting = client.localPlayer!!.interacting
                     if (interacting is NPC && COMBAT.contains(skill)) {
-                        val xpModifier = worldSetToType(client.worldType).modifier(client)
+                        val xpModifier = worldSetToType(client.worldType).modifier()
                         val npc = interacting
                         xpState.updateNpcExperience(skill, npc, npcManager.getHealth(npc.id), xpModifier)
                     }
