@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018 Hydrox6 <ikada@protonmail.ch>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,47 +22,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.overlay.infobox
+package meteor.plugins.poison
 
-import meteor.plugins.Plugin
-import meteor.ui.overlay.OverlayMenuEntry
-import java.awt.Color
-import java.awt.image.BufferedImage
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
+import meteor.plugins.poison.PoisonConfig
 
-abstract class InfoBox(
-    image: BufferedImage?,
-    open val plugin: Plugin
-) {
-
-    var image: BufferedImage? = null
-
-    var scaledImage: BufferedImage? = null
-
-    var priority: InfoBoxPriority? = null
-
-    open var tooltip: String? = null
-
-    var menuEntries = ArrayList<OverlayMenuEntry>()
-
-    init {
-        this.image = (image)
-        this.priority = (InfoBoxPriority.NONE)
-    }
-
-    abstract val text: String?
-    abstract val textColor: Color?
-    open fun render(): Boolean {
-        return true
-    }
-
-    open fun cull(): Boolean {
+@ConfigGroup(PoisonConfig.GROUP)
+interface PoisonConfig : Config {
+    @ConfigItem(
+        keyName = "showInfoboxes",
+        name = "Show Infoboxes",
+        description = "Configures whether to show the infoboxes"
+    )
+    fun showInfoboxes(): Boolean {
         return false
     }
 
-    // Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-    // as possible by default
-    open val name: String
-        get() =// Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-            // as possible by default
-            plugin.javaClass.simpleName + "_" + javaClass.simpleName
+    @ConfigItem(
+        keyName = "changeHealthIcon",
+        name = "Change HP Orb Icon",
+        description = "Configures whether the hp orb icon should change color to match poison/disease"
+    )
+    fun changeHealthIcon(): Boolean {
+        return true
+    }
+
+    companion object {
+        const val GROUP = "poison"
+    }
 }

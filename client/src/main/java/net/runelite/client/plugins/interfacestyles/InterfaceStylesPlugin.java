@@ -240,7 +240,7 @@ public class InterfaceStylesPlugin extends Plugin
 		{
 			log.debug("Loading: {}", file);
 			BufferedImage image = ImageUtil.INSTANCE.loadImageResource(this.getClass(), file);
-			return ImageUtil.INSTANCE.getImageSpritePixels(image, client);
+			return ImageUtil.INSTANCE.getImageSpritePixels(image);
 		}
 		catch (RuntimeException ex)
 		{
@@ -384,7 +384,7 @@ public class InterfaceStylesPlugin extends Plugin
 
 		if (compassImage != null)
 		{
-			SpritePixels compass = ImageUtil.INSTANCE.getImageSpritePixels(compassImage, client);
+			SpritePixels compass = ImageUtil.INSTANCE.getImageSpritePixels(compassImage);
 			client.setCompass(compass);
 		}
 	}

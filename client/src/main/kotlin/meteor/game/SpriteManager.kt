@@ -112,7 +112,7 @@ object SpriteManager {
             val owner: Class<*> = add[0].javaClass
             for (o in add) {
                 val image: BufferedImage = ImageUtil.loadImageResource(owner, o.fileName)
-                val sp: SpritePixels = ImageUtil.getImageSpritePixels(image, client)
+                val sp: SpritePixels = ImageUtil.getImageSpritePixels(image)
                 overrides[o.spriteId] = sp
             }
         }
