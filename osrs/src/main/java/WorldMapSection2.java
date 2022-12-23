@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -174,7 +172,7 @@ public class WorldMapSection2 implements WorldMapSection {
       garbageValue = "-1887108041"
    )
    static int method4905(int var0, Script var1, boolean var2) {
-      Widget var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+      Widget var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
       if (var0 == 2800) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = PacketWriter.Widget_unpackTargetMask(Clock.getWidgetFlags(var3));
          return 1;

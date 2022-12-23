@@ -2611,4 +2611,42 @@ public interface Client extends GameEngine
 
 	void setVarcStrValue(int index, String text);
 	void setVarcIntValue(@VarCInt int var, int value);
+
+
+	// Kris changes
+	int getLatestWidgetCall();
+	void setLatestWidgetCall(int value);
+
+	int getHintArrowTargetType();
+
+	int getHintArrowNpcTargetIdx();
+
+	int getHintArrowPlayerTargetIdx();
+
+	int getHintArrowX();
+
+	int getHintArrowY();
+	boolean isCameraLocked();
+	boolean[] cameraShaking();
+	int[] cameraShakeIntensity();
+	int[] cameraMoveIntensity();
+	int[] cameraShakeSpeed();
+	int[] cameraShakeCycle();
+
+	int cameraLookAtX();
+	int cameraLookAtY();
+	int cameraLookAtHeight();
+	int cameraLookAtSpeed();
+	int cameraLookAtAcceleration();
+
+	int cameraMoveToX();
+	int cameraMoveToY();
+	int cameraMoveToHeight();
+	int cameraMoveToSpeed();
+	int cameraMoveToAcceleration();
+
+	int getMinimapState();
+
+	long getUserRegistrationId();
+
 }

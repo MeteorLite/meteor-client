@@ -201,4 +201,80 @@ public interface RSActor extends RSRenderable, Actor
 
 	@Import("overheadTextCyclesRemaining")
 	void setOverheadCycle(int cycle);
+
+
+	// Kris changes
+	@Import("showPublicPlayerChat")
+	@Override
+	boolean showPublicPlayerChat();
+	@Import("currentSequenceFrameIndex")
+	@Override
+	int getAnimationFrameIndex();
+	@Import("sequenceDelay")
+	@Override
+	int getAnimationDelay();
+	@Import("spotAnimationStartCycle")
+	@Override
+	int getGraphicStartCycle();
+
+	@Import("movingOrientation")
+	@Override
+	int getFacedDirection();
+
+	@Import("exactMoveDeltaX1")
+	@Override
+	int exactMoveDeltaX1();
+
+	@Import("exactMoveDeltaX2")
+	@Override
+	int exactMoveDeltaX2();
+
+	@Import("exactMoveDeltaY1")
+	@Override
+	int exactMoveDeltaY1();
+
+	@Import("exactMoveDeltaY2")
+	@Override
+	int exactMoveDeltaY2();
+
+	@Import("exactMoveArrive1Cycle")
+	@Override
+	int exactMoveArrive1Cycle();
+
+	@Import("exactMoveArrive2Cycle")
+	@Override
+	int exactMoveArrive2Cycle();
+
+	@Import("exactMoveDirection")
+	@Override
+	int exactMoveDirection();
+
+	@Import("recolourStartCycle")
+	@Override
+	int recolourStartCycle();
+	@Import("recolourEndCycle")
+	@Override
+	int recolourEndCycle();
+	@Import("recolourHue")
+	@Override
+	byte recolourHue();
+	@Import("recolourSaturation")
+	@Override
+	byte recolourSaturation();
+	@Import("recolourLuminance")
+	@Override
+	byte recolourLuminance();
+	@Import("recolourAmount")
+	@Override
+	byte recolourAmount();
+
+	@Import("combatLevelChange")
+	@Override
+	int getCombatLevelOverride();
+
+
+	@Import("instantTurn")
+	@Override
+	boolean instantTurn();
+
 }

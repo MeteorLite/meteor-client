@@ -247,4 +247,9 @@ public interface ItemComposition extends ParamHolder
 	 * @see net.runelite.api.coords.Angle
 	 */
 	void setZan2d(int angle);
+
+
+	// Kris changes
+
+	int getZoom2d();
 }

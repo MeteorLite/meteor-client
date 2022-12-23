@@ -25,7 +25,7 @@
 package eventbus.events
 
 import meteor.Event
-import net.runelite.api.MessageNode
 import net.runelite.api.ChatMessageType
+import net.runelite.api.MessageNode
 
 class ChatMessage(var messageNode: MessageNode, var type: ChatMessageType, var name: String, var message: String, var sender: String?, var timestamp: Int) : Event()

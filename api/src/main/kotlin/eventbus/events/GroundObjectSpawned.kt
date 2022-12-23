@@ -31,5 +31,4 @@ import net.runelite.api.Tile
 /**
  * An event where a [GroundObject] is added to a [Tile].
  */
-class GroundObjectSpawned(val tile: Tile, val groundObject: GroundObject) : Event(){
-}
+class GroundObjectSpawned(val tile: Tile, val groundObject: GroundObject) : Event()

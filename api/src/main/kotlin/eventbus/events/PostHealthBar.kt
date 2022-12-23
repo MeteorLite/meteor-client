@@ -24,7 +24,6 @@
  */
 package eventbus.events
 
-import lombok.Data
 import net.runelite.api.HealthBar
 
 class PostHealthBar(var healthBar: HealthBar)

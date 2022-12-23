@@ -1,3 +1,3 @@
 package eventbus.events
 
-class LoginStateChanged(var index: Int = 0)
+class LoginStateChanged(var index: Int,)

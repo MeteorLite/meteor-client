@@ -4,6 +4,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.LinkedList;
 import java.util.concurrent.ScheduledExecutorService;
+
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -60,7 +61,7 @@ class class11 implements TlsAuthentication {
       descriptor = "(IIIIIIIIIII)V",
       garbageValue = "-507085025"
    )
-   static final void method105(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
+   static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
       PendingSpawn var10 = null;
 
       for(PendingSpawn var11 = (PendingSpawn)Client.pendingSpawns.last(); var11 != null; var11 = (PendingSpawn)Client.pendingSpawns.previous()) {

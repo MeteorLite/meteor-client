@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -75,7 +73,7 @@ public class UserComparator8 extends AbstractUserComparator {
          if (var4 == 0) {
             throw new RuntimeException();
          } else {
-            Widget var6 = class175.getWidget(var9);
+            Widget var6 = ObjTypeCustomisation.getWidget(var9);
             if (var6.children == null) {
                var6.children = new Widget[var11 + 1];
             }
@@ -119,18 +117,18 @@ public class UserComparator8 extends AbstractUserComparator {
          Widget var3;
          if (var0 == 101) {
             var3 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
-            Widget var10 = class175.getWidget(var3.id);
+            Widget var10 = ObjTypeCustomisation.getWidget(var3.id);
             var10.children[var3.childIndex] = null;
             class69.invalidateWidget(var10);
             return 1;
          } else if (var0 == 102) {
-            var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+            var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
             var3.children = null;
             class69.invalidateWidget(var3);
             return 1;
          } else if (var0 != 200) {
             if (var0 == 201) {
-               var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+               var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
                if (var3 != null) {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = 1;
                   if (var2) {

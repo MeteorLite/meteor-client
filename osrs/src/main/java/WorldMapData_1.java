@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -150,7 +148,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       if (var0 >= 2000) {
          var0 -= 1000;
          var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-         var4 = class175.getWidget(var3);
+         var4 = ObjTypeCustomisation.getWidget(var3);
       } else {
          var4 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
       }

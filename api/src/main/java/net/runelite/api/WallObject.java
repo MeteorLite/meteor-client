@@ -81,4 +81,9 @@ public interface WallObject extends TileObject
 
 	Model getModelA();
 	Model getModelB();
+
+	// Kris changes
+	default int getModelOrientation() {
+		return getOrientationA();
+	}
 }

@@ -30,6 +30,8 @@ import java.awt.Shape;
 import java.util.Arrays;
 
 import eventbus.Events;
+import eventbus.events.NPCMoved;
+import eventbus.events.NameChangeEvent;
 import eventbus.events.NpcChanged;
 import eventbus.events.NpcDespawned;
 import net.runelite.api.AnimationID;
@@ -37,16 +39,8 @@ import net.runelite.api.MenuAction;
 import net.runelite.api.NPCComposition;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSNPC;
-import net.runelite.rs.api.RSNPCComposition;
+import net.runelite.api.mixins.*;
+import net.runelite.rs.api.*;
 
 @Mixin(RSNPC.class)
 public abstract class RSNPCMixin implements RSNPC
@@ -302,5 +296,24 @@ public abstract class RSNPCMixin implements RSNPC
 	public AutomatedMenu getMenu(int actionIndex, int opcode)
 	{
 		return getMenu(getIndex(), opcode, 0, 0);
+	}
+
+
+	// Kris changes:
+	@Inject
+	@MethodHook(value = "move", end = true)
+	public void onNPCMovement(int direction, RSMoveSpeed type) {
+		int x = getPathX()[0];
+		int y = getPathY()[0];
+		client.getCallbacks().post(Events.NPC_MOVED, new NPCMoved(this, x, y, type.speed()));
+	}
+
+
+	@FieldHook("nameChange")
+	@Inject
+	public void nameChange(int idx) {
+		if (getNameOverride() == null) return;
+		NameChangeEvent event = new NameChangeEvent(this, getName(), getNameOverride());
+		client.getCallbacks().post(Events.NAME_CHANGE_EVENT, event);
 	}
 }

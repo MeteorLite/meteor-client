@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -76,7 +75,7 @@ public abstract class class136 extends Node {
 
             if (!var2) {
                var4 = (int)var0.key;
-               Widget var5 = class175.getWidget(var4);
+               Widget var5 = ObjTypeCustomisation.getWidget(var4);
                if (var5 != null) {
                   class69.invalidateWidget(var5);
                }

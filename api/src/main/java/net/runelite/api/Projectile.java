@@ -40,6 +40,8 @@ public interface Projectile extends Renderable, Identifiable
 	 */
 	int getId();
 
+	int getRsInteracting();
+
 	/**
 	 * Gets the actor that is targeted by this projectile.
 	 *

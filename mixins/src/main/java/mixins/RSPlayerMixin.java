@@ -30,10 +30,7 @@ import java.awt.Shape;
 import java.util.ArrayList;
 
 import eventbus.Events;
-import eventbus.events.OverheadPrayerChanged;
-import eventbus.events.PlayerChanged;
-import eventbus.events.PlayerCompositionChanged;
-import eventbus.events.PlayerSkullChanged;
+import eventbus.events.*;
 import net.runelite.api.HeadIcon;
 import net.runelite.api.MenuAction;
 import net.runelite.api.Model;
@@ -54,11 +51,7 @@ import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSBuffer;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSPlayer;
-import net.runelite.rs.api.RSUsername;
+import net.runelite.rs.api.*;
 
 @Mixin(RSPlayer.class)
 public abstract class RSPlayerMixin implements RSPlayer
@@ -392,5 +385,24 @@ public abstract class RSPlayerMixin implements RSPlayer
 	public AutomatedMenu getMenu(int actionIndex, int opcode)
 	{
 		return getMenu(actionIndex, opcode, 0, 0);
+	}
+
+	// Kris changes:
+	@Inject
+	@FieldHook("maxY")
+	public void attachedModel(int idx) {
+		client.getCallbacks().post(Events.ATTACHED_MODEL_EVENT, new AttachedModelEvent(this, minX(), minY(), maxX(), maxY(), animationCycleStart(), animationCycleEnd(), getAttachedModel()));
+	}
+
+	@Inject
+	@MethodHook("move")
+	public void onPlayerMovement(int x, int y, RSMoveSpeed type) {
+		client.getCallbacks().post(Events.PLAYER_MOVED, new PlayerMoved(this, x, y, type.speed()));
+	}
+
+	@Inject
+	@MethodHook("resetPath")
+	public void onPlayerPathReset(int x, int y) {
+		client.getCallbacks().post(Events.PLAYER_MOVED,new PlayerMoved(this, x, y, 127));
 	}
 }

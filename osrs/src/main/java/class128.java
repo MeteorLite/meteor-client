@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -216,7 +215,7 @@ public class class128 implements class120 {
             }
          }
 
-         if (var0.overheadText != null && (var1 >= var75 || !var0.field1187 && (Client.publicChatMode == 4 || !var0.isAutoChatting && (Client.publicChatMode == 0 || Client.publicChatMode == 3 || Client.publicChatMode == 1 && ((Player)var0).isFriend())))) {
+         if (var0.overheadText != null && (var1 >= var75 || !var0.showPublicPlayerChat && (Client.publicChatMode == 4 || !var0.isAutoChatting && (Client.publicChatMode == 0 || Client.publicChatMode == 3 || Client.publicChatMode == 1 && ((Player)var0).isFriend())))) {
             ClientPreferences.method2513(var0, var0.defaultHeight + 15);
             if (Client.viewportTempX > -1 && Client.overheadTextCount < Client.overheadTextLimit) {
                Client.overheadTextXOffsets[Client.overheadTextCount] = class146.fontBold12.stringWidth(var0.overheadText) / 2;

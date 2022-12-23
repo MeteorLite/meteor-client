@@ -449,4 +449,35 @@ public interface Actor extends Renderable, Locatable
 	}
 
 	long getTag();
+
+
+	// Kris changes
+
+	int getCombatLevelOverride();
+
+	boolean instantTurn();
+
+	int getFacedDirection();
+
+	int getAnimationDelay();
+
+	int getAnimationFrameIndex();
+
+
+	int exactMoveDeltaX1();
+	int exactMoveDeltaX2();
+	int exactMoveDeltaY1();
+	int exactMoveDeltaY2();
+	int exactMoveArrive1Cycle();
+	int exactMoveArrive2Cycle();
+	int exactMoveDirection();
+
+	int recolourStartCycle();
+	int recolourEndCycle();
+	byte recolourHue();
+	byte recolourSaturation();
+	byte recolourLuminance();
+	byte recolourAmount();
+	int getGraphicStartCycle();
+	boolean showPublicPlayerChat();
 }

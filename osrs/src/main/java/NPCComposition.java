@@ -523,7 +523,7 @@ public class NPCComposition extends DualNode {
    public final NPCComposition transform() {
       int var1 = -1;
       if (this.transformVarbit != -1) {
-         var1 = class175.getVarbit(this.transformVarbit);
+         var1 = ObjTypeCustomisation.getVarbit(this.transformVarbit);
       } else if (this.transformVarp != -1) {
          var1 = Varps.Varps_main[this.transformVarp];
       }
@@ -549,7 +549,7 @@ public class NPCComposition extends DualNode {
       } else {
          int var1 = -1;
          if (this.transformVarbit != -1) {
-            var1 = class175.getVarbit(this.transformVarbit);
+            var1 = ObjTypeCustomisation.getVarbit(this.transformVarbit);
          } else if (this.transformVarp != -1) {
             var1 = Varps.Varps_main[this.transformVarp];
          }

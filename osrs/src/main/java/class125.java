@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -410,7 +409,7 @@ public class class125 {
                            class415.Interpreter_stringLocals = var40.stringLocals;
                         } else if (var33 == 25) {
                            var13 = var7[var20];
-                           Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class175.getVarbit(var13);
+                           Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ObjTypeCustomisation.getVarbit(var13);
                         } else if (var33 == 27) {
                            var13 = var7[var20];
                            Login.method2065(var13, Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);

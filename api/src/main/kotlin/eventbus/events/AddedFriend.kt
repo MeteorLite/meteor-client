@@ -24,9 +24,6 @@
  */
 package eventbus.events
 
-import lombok.Value
-import net.runelite.api.Nameable
-
 /**
  * An event trigger when a player is removed from the friend or ignore list.
  */

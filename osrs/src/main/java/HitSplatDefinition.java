@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -203,7 +201,7 @@ public class HitSplatDefinition extends DualNode {
    public final HitSplatDefinition transform() {
       int var1 = -1;
       if (this.transformVarbit != -1) {
-         var1 = class175.getVarbit(this.transformVarbit);
+         var1 = ObjTypeCustomisation.getVarbit(this.transformVarbit);
       } else if (this.transformVarp != -1) {
          var1 = Varps.Varps_main[this.transformVarp];
       }

@@ -66,8 +66,8 @@ public class ReflectionCheck extends Node {
                if (!var4.isFollower || Client.followerIndex == var1) {
                   String var5 = var0.method2535();
                   int var6;
-                  if (var4.combatLevel != 0 && var0.field1253 != 0) {
-                     var6 = var0.field1253 != -1 ? var0.field1253 : var4.combatLevel;
+                  if (var4.combatLevel != 0 && var0.combatLevelChange != 0) {
+                     var6 = var0.combatLevelChange != -1 ? var0.combatLevelChange : var4.combatLevel;
                      var5 = var5 + class125.method2971(var6, class155.localPlayer.combatLevel) + " " + " (" + "level-" + var6 + ")";
                   }
 

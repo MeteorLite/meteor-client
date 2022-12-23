@@ -90,7 +90,7 @@ public abstract class RSDynamicObjectMixin implements RSDynamicObject
 	{
 		if (animationID != -1)
 		{
-			DynamicObjectAnimationChanged dynamicObjectAnimationChanged = new DynamicObjectAnimationChanged(id, animationID);
+			DynamicObjectAnimationChanged dynamicObjectAnimationChanged = new DynamicObjectAnimationChanged(id, animationID, x, y);
 			client.getCallbacks().post(Events.DYNAMIC_OBJECT_ANIMATION_CHANGED, dynamicObjectAnimationChanged);
 		}
 	}

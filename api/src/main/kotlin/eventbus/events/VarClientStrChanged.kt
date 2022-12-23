@@ -25,9 +25,7 @@
  */
 package eventbus.events
 
-import lombok.Value
-
 /**
  * @see net.runelite.api.VarClientStr
  */
-class VarClientStrChanged(var index: Int = 0)
+class VarClientStrChanged(var index: Int,)

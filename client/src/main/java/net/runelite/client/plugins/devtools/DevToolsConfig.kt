@@ -1,4 +1,4 @@
-package meteor.plugins.devtools
+package net.runelite.client.plugins.devtools
 
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
@@ -68,6 +68,11 @@ interface DevToolsConfig : Config {
 
     @ConfigItem(keyName = "roofsActive", name = "Roofs", description = "")
     fun roofsActive(): Boolean {
+        return false
+    }
+
+    @ConfigItem(keyName = "eventInspectorActive", name = "Event Inspector", description = "")
+    fun inspectorActive(): Boolean {
         return false
     }
 }

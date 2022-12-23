@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -417,7 +415,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                PacketBufferNode var13;
                Widget var17;
                if (var2 == 24) {
-                  var17 = class175.getWidget(var1);
+                  var17 = ObjTypeCustomisation.getWidget(var1);
                   if (var17 != null) {
                      boolean var12 = true;
                      if (var17.contentType > 0) {
@@ -461,7 +459,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3133, Client.packetWriter.isaacCipher);
                         var9.packetBuffer.writeInt(var1);
                         Client.packetWriter.addNode(var9);
-                        var15 = class175.getWidget(var1);
+                        var15 = ObjTypeCustomisation.getWidget(var1);
                         if (var15 != null && var15.cs1Instructions != null && var15.cs1Instructions[0][0] == 5) {
                            var11 = var15.cs1Instructions[0][1];
                            Varps.Varps_main[var11] = 1 - Varps.Varps_main[var11];
@@ -471,7 +469,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3133, Client.packetWriter.isaacCipher);
                         var9.packetBuffer.writeInt(var1);
                         Client.packetWriter.addNode(var9);
-                        var15 = class175.getWidget(var1);
+                        var15 = ObjTypeCustomisation.getWidget(var1);
                         if (var15 != null && var15.cs1Instructions != null && var15.cs1Instructions[0][0] == 5) {
                            var11 = var15.cs1Instructions[0][1];
                            if (Varps.Varps_main[var11] != var15.cs1ComparisonValues[0]) {
@@ -495,7 +493,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9.packetBuffer.writeShort(HealthBarUpdate.selectedItemId);
                         Client.packetWriter.addNode(var9);
                         Client.field624 = 0;
-                        MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                        MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                         Client.field625 = var0;
                      } else if (var2 == 32) {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3049, Client.packetWriter.isaacCipher);
@@ -506,7 +504,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9.packetBuffer.method8599(var1);
                         Client.packetWriter.addNode(var9);
                         Client.field624 = 0;
-                        MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                        MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                         Client.field625 = var0;
                      } else if (var2 == 33) {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3095, Client.packetWriter.isaacCipher);
@@ -515,7 +513,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9.packetBuffer.writeIntME(var4);
                         Client.packetWriter.addNode(var9);
                         Client.field624 = 0;
-                        MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                        MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                         Client.field625 = var0;
                      } else if (var2 == 34) {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3101, Client.packetWriter.isaacCipher);
@@ -524,7 +522,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9.packetBuffer.method8607(var0);
                         Client.packetWriter.addNode(var9);
                         Client.field624 = 0;
-                        MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                        MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                         Client.field625 = var0;
                      } else if (var2 == 35) {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3093, Client.packetWriter.isaacCipher);
@@ -533,7 +531,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9.packetBuffer.writeIntME(var0);
                         Client.packetWriter.addNode(var9);
                         Client.field624 = 0;
-                        MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                        MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                         Client.field625 = var0;
                      } else if (var2 == 36) {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3122, Client.packetWriter.isaacCipher);
@@ -542,7 +540,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9.packetBuffer.method8589(var4);
                         Client.packetWriter.addNode(var9);
                         Client.field624 = 0;
-                        MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                        MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                         Client.field625 = var0;
                      } else if (var2 == 37) {
                         var9 = class136.getPacketBufferNode(ClientPacket.field3104, Client.packetWriter.isaacCipher);
@@ -551,12 +549,12 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                         var9.packetBuffer.writeIntME(var0);
                         Client.packetWriter.addNode(var9);
                         Client.field624 = 0;
-                        MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                        MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                         Client.field625 = var0;
                      } else {
                         if (var2 == 38) {
                            Widget.Widget_runOnTargetLeave();
-                           var17 = class175.getWidget(var1);
+                           var17 = ObjTypeCustomisation.getWidget(var1);
                            Client.isItemSelected = 1;
                            class101.selectedItemSlot = var0;
                            ModeWhere.selectedItemWidget = var1;
@@ -577,7 +575,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                            var9.packetBuffer.method8589(var0);
                            Client.packetWriter.addNode(var9);
                            Client.field624 = 0;
-                           MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                           MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                            Client.field625 = var0;
                         } else if (var2 == 40) {
                            var9 = class136.getPacketBufferNode(ClientPacket.field3139, Client.packetWriter.isaacCipher);
@@ -586,7 +584,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                            var9.packetBuffer.method8607(var4);
                            Client.packetWriter.addNode(var9);
                            Client.field624 = 0;
-                           MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                           MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                            Client.field625 = var0;
                         } else if (var2 == 41) {
                            var9 = class136.getPacketBufferNode(ClientPacket.field3116, Client.packetWriter.isaacCipher);
@@ -595,7 +593,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                            var9.packetBuffer.writeIntME(var4);
                            Client.packetWriter.addNode(var9);
                            Client.field624 = 0;
-                           MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                           MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                            Client.field625 = var0;
                         } else if (var2 == 42) {
                            var9 = class136.getPacketBufferNode(ClientPacket.field3056, Client.packetWriter.isaacCipher);
@@ -604,7 +602,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                            var9.packetBuffer.method8601(var1);
                            Client.packetWriter.addNode(var9);
                            Client.field624 = 0;
-                           MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                           MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                            Client.field625 = var0;
                         } else if (var2 == 43) {
                            var9 = class136.getPacketBufferNode(ClientPacket.field3111, Client.packetWriter.isaacCipher);
@@ -613,7 +611,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                            var9.packetBuffer.method8599(var1);
                            Client.packetWriter.addNode(var9);
                            Client.field624 = 0;
-                           MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                           MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                            Client.field625 = var0;
                         } else if (var2 == 44) {
                            var16 = Client.players[var3];
@@ -816,7 +814,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                                  }
 
                                  if (var2 == 1005) {
-                                    var17 = class175.getWidget(var1);
+                                    var17 = ObjTypeCustomisation.getWidget(var1);
                                     if (var17 != null && var17.itemQuantities[var0] >= 100000) {
                                        KitDefinition.addGameMessage(27, "", var17.itemQuantities[var0] + " x " + NPCComposition.ItemDefinition_get(var4).name);
                                     } else {
@@ -826,7 +824,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
                                     }
 
                                     Client.field624 = 0;
-                                    MusicPatchPcmStream.field3411 = class175.getWidget(var1);
+                                    MusicPatchPcmStream.field3411 = ObjTypeCustomisation.getWidget(var1);
                                     Client.field625 = var0;
                                     break label652;
                                  }
@@ -854,7 +852,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
       if (Client.isItemSelected != 0) {
          Client.isItemSelected = 0;
-         class69.invalidateWidget(class175.getWidget(ModeWhere.selectedItemWidget));
+         class69.invalidateWidget(ObjTypeCustomisation.getWidget(ModeWhere.selectedItemWidget));
       }
 
       if (Client.isSpellSelected) {

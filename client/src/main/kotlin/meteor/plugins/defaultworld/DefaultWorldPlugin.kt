@@ -50,6 +50,10 @@ class DefaultWorldPlugin : Plugin() {
     init {
         KEVENT.subscribe<GameStateChanged>(Events.GAME_STATE_CHANGED) {
             if (it.data.gameState == GameState.LOGGED_IN) {
+                if (it.data.lastGameState == GameState.LOADING) {
+                    return@subscribe
+                }
+
                 ConfigManager.setConfiguration("defaultworld", "lastWorld", client.world)
             }
         }

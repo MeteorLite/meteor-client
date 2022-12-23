@@ -47,18 +47,18 @@ public abstract class class262 implements class264 {
             var0.sequenceFrame = 0;
             var0.sequenceFrameCycle = 0;
             var0.sequenceDelay = var2;
-            var0.field1223 = 0;
+            var0.currentSequenceFrameIndex = 0;
          }
 
          if (var3 == 2) {
-            var0.field1223 = 0;
+            var0.currentSequenceFrameIndex = 0;
          }
       } else if (var1 == -1 || var0.sequence == -1 || AABB.SequenceDefinition_get(var1).field2300 >= AABB.SequenceDefinition_get(var0.sequence).field2300) {
          var0.sequence = var1;
          var0.sequenceFrame = 0;
          var0.sequenceFrameCycle = 0;
          var0.sequenceDelay = var2;
-         var0.field1223 = 0;
+         var0.currentSequenceFrameIndex = 0;
          var0.field1252 = var0.pathLength;
       }
 

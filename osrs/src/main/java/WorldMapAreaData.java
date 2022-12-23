@@ -1,8 +1,7 @@
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -92,7 +91,7 @@ public class WorldMapAreaData extends WorldMapArea {
          int var3 = var0.y >> 7;
          if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
             long var4 = GameEngine.calculateTag(0, 0, 0, false, var0.index);
-            if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) {
+            if (var0.attachedModel != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) {
                var0.isUnanimated = false;
                var0.tileHeight = SpotAnimationDefinition.getTileHeight(var0.x, var0.y, class383.Client_plane);
                var0.playerCycle = Client.cycle;

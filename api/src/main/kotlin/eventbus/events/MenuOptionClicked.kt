@@ -24,11 +24,9 @@
  */
 package eventbus.events
 
-import lombok.Data
 import net.runelite.api.MenuAction
 import net.runelite.api.MenuEntry
 import net.runelite.api.widgets.Widget
-import java.lang.RuntimeException
 
 /**
  * An event where a menu option has been clicked.

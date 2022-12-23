@@ -38,4 +38,4 @@ import net.runelite.api.GrandExchangeOffer
  *
  * See {GrandExchangeOfferState} for potential states an offer can change into.
  */
-class GrandExchangeOfferChanged(var offer: GrandExchangeOffer, var slot: Int = 0)
+class GrandExchangeOfferChanged(var offer: GrandExchangeOffer, var slot: Int,)

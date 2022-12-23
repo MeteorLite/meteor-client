@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -62,42 +61,42 @@ public class class280 {
    )
    static final void method5498(int var0, int var1, int var2) {
       if (class145.cameraX < var0) {
-         class145.cameraX = (var0 - class145.cameraX) * Tile.field2481 / 1000 + class145.cameraX + class31.field181;
+         class145.cameraX = (var0 - class145.cameraX) * Tile.cameraMoveToAcceleration / 1000 + class145.cameraX + class31.cameraMoveToSpeed;
          if (class145.cameraX > var0) {
             class145.cameraX = var0;
          }
       }
 
       if (class145.cameraX > var0) {
-         class145.cameraX -= (class145.cameraX - var0) * Tile.field2481 / 1000 + class31.field181;
+         class145.cameraX -= (class145.cameraX - var0) * Tile.cameraMoveToAcceleration / 1000 + class31.cameraMoveToSpeed;
          if (class145.cameraX < var0) {
             class145.cameraX = var0;
          }
       }
 
       if (class414.cameraY < var1) {
-         class414.cameraY = (var1 - class414.cameraY) * Tile.field2481 / 1000 + class414.cameraY + class31.field181;
+         class414.cameraY = (var1 - class414.cameraY) * Tile.cameraMoveToAcceleration / 1000 + class414.cameraY + class31.cameraMoveToSpeed;
          if (class414.cameraY > var1) {
             class414.cameraY = var1;
          }
       }
 
       if (class414.cameraY > var1) {
-         class414.cameraY -= (class414.cameraY - var1) * Tile.field2481 / 1000 + class31.field181;
+         class414.cameraY -= (class414.cameraY - var1) * Tile.cameraMoveToAcceleration / 1000 + class31.cameraMoveToSpeed;
          if (class414.cameraY < var1) {
             class414.cameraY = var1;
          }
       }
 
       if (ClanChannel.cameraZ < var2) {
-         ClanChannel.cameraZ = (var2 - ClanChannel.cameraZ) * Tile.field2481 / 1000 + ClanChannel.cameraZ + class31.field181;
+         ClanChannel.cameraZ = (var2 - ClanChannel.cameraZ) * Tile.cameraMoveToAcceleration / 1000 + ClanChannel.cameraZ + class31.cameraMoveToSpeed;
          if (ClanChannel.cameraZ > var2) {
             ClanChannel.cameraZ = var2;
          }
       }
 
       if (ClanChannel.cameraZ > var2) {
-         ClanChannel.cameraZ -= (ClanChannel.cameraZ - var2) * Tile.field2481 / 1000 + class31.field181;
+         ClanChannel.cameraZ -= (ClanChannel.cameraZ - var2) * Tile.cameraMoveToAcceleration / 1000 + class31.cameraMoveToSpeed;
          if (ClanChannel.cameraZ < var2) {
             ClanChannel.cameraZ = var2;
          }

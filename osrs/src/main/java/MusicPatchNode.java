@@ -1,5 +1,3 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -133,7 +131,7 @@ public class MusicPatchNode extends Node {
       Widget var3;
       if (var0 >= 2000) {
          var0 -= 1000;
-         var3 = class175.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+         var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
       } else {
          var3 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
       }

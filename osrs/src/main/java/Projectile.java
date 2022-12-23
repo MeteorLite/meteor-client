@@ -312,8 +312,8 @@ public final class Projectile extends Renderable {
          var35 = Client.field604 / 256;
       }
 
-      if (Client.field773[4] && Client.field775[4] + 128 > var35) {
-         var35 = Client.field775[4] + 128;
+      if (Client.cameraShaking[4] && Client.cameraMoveIntensity[4] + 128 > var35) {
+         var35 = Client.cameraMoveIntensity[4] + 128;
       }
 
       int var5 = Client.camAngleY & 2047;
@@ -393,8 +393,8 @@ public final class Projectile extends Renderable {
       var16 = class128.cameraYaw;
 
       for(var17 = 0; var17 < 5; ++var17) {
-         if (Client.field773[var17]) {
-            var18 = (int)(Math.random() * (double)(Client.field803[var17] * 2 + 1) - (double)Client.field803[var17] + Math.sin((double)Client.field617[var17] * ((double)Client.field776[var17] / 100.0D)) * (double)Client.field775[var17]);
+         if (Client.cameraShaking[var17]) {
+            var18 = (int)(Math.random() * (double)(Client.cameraShakeIntensity[var17] * 2 + 1) - (double)Client.cameraShakeIntensity[var17] + Math.sin((double)Client.cameraShakeCycle[var17] * ((double)Client.cameraShakeSpeed[var17] / 100.0D)) * (double)Client.cameraMoveIntensity[var17]);
             if (var17 == 0) {
                class145.cameraX += var18;
             }

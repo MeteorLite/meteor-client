@@ -1,7 +1,9 @@
 package net.runelite.rs.api;
 
+import net.runelite.api.ObjTypeCustomisation;
 import net.runelite.api.PlayerComposition;
 import net.runelite.mapping.Import;
+import org.jetbrains.annotations.Nullable;
 
 public interface RSPlayerComposition extends PlayerComposition
 {
@@ -25,4 +27,14 @@ public interface RSPlayerComposition extends PlayerComposition
 	@Import("setHash")
 	@Override
 	void setHash();
+
+	// Kris changes:
+	@Import("npcTransformId")
+	@Override
+	int getTransformedNpcId();
+
+	@Import("customisations")
+	@Nullable
+	@Override
+	ObjTypeCustomisation[] getColorTextureOverrides();
 }

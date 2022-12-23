@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -363,7 +362,7 @@ public class class9 implements class345 {
       }
 
       VarpDefinition.method3547(var2);
-      Widget var4 = class175.getWidget(var3);
+      Widget var4 = ObjTypeCustomisation.getWidget(var3);
       if (var4 != null) {
          class69.invalidateWidget(var4);
       }
