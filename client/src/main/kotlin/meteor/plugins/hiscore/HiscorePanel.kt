@@ -41,7 +41,7 @@ class HiscorePanel : PluginPanel() {
         Column(modifier = Modifier.height(1000.dp).verticalScroll(rememberScrollState())) {
             Row(
                     verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly,
-                    modifier = Modifier.height(25.dp).width(250.dp).background(background)
+                    modifier = Modifier.height(25.dp).width(300.dp).background(background)
             ) {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
@@ -55,9 +55,9 @@ class HiscorePanel : PluginPanel() {
             val mod = Modifier.width(300.dp).background(background)
 
             LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 75.dp),
-                    modifier = mod.height(350.dp),
-                    contentPadding = PaddingValues(40.dp),
+                    columns = GridCells.Adaptive(minSize = 60.dp),
+                    modifier = mod.height(400.dp),
+                    contentPadding = PaddingValues(35.dp),
                     userScrollEnabled = false,
 
 
@@ -66,8 +66,8 @@ class HiscorePanel : PluginPanel() {
                 overallSkillItem()
             }
             Row(
-                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                    modifier = Modifier.height(20.dp).background(background)
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier.height(20.dp).width(300.dp).background(background)
             ) {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
@@ -78,7 +78,7 @@ class HiscorePanel : PluginPanel() {
                 }
             }
             LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 50.dp),
+                    columns = GridCells.Adaptive(minSize = 60.dp),
                     modifier = mod.height(150.dp),
                     contentPadding = PaddingValues(15.dp),
                     userScrollEnabled = false
@@ -87,8 +87,8 @@ class HiscorePanel : PluginPanel() {
             }
 
             Row(
-                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-                    modifier = Modifier.height(20.dp).background(background)
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly,
+                    modifier = Modifier.height(20.dp).width(300.dp).background(background)
             ) {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
@@ -99,7 +99,7 @@ class HiscorePanel : PluginPanel() {
                 }
             }
             LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 50.dp),
+                    columns = GridCells.Adaptive(minSize = 65.dp),
                     modifier = mod.height(500.dp),
                     userScrollEnabled = false
             ) {

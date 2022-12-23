@@ -39,6 +39,9 @@ var actionsHrMap = mutableStateMapOf<Skill,Int>()
 var startExp = emptyList<Pair<Skill,Int>>()
 var intColor = Color(156, 217, 209)
 var lastButtonClicked : ToolbarButton? = null
+val pluginListSize = mutableStateOf(Main.meteorConfig.pluginListTextSize())
+val pluginSpacer = mutableStateOf(Main.meteorConfig.pluginSpaceBetween())
+var searchValue = mutableStateOf("")
 lateinit var descriptor: ConfigDescriptor
 lateinit var lastPlugin: Plugin
 
