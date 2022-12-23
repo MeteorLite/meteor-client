@@ -27,4 +27,4 @@ package eventbus.events
 import meteor.Event
 import net.runelite.api.Actor
 
-class GraphicChanged(val actor: Actor) : Event()
+class GraphicChanged(val actor: Actor?) : Event()

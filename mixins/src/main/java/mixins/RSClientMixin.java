@@ -1330,7 +1330,7 @@ public abstract class RSClientMixin implements RSClient
 				}
 			}
 		}
-		else if (gameState == GameState.LOGIN_SCREEN)
+		else if (gameState == GameState.LOADING)
 		{
 			loadVarbits();
 		}
@@ -1416,6 +1416,15 @@ public abstract class RSClientMixin implements RSClient
 	private static Map<Integer, ArrayList<Integer>> varbitsMap;
 
 	@Inject
+	private static int[] baseVarData;
+
+	@Inject
+	private static int[] varbitData;
+
+
+	private static final int VARBIT_GROUP_ID = 14;
+
+	@Inject
 	public static void loadVarbits()
 	{
 		// Load varbits into map<index, varbitIds>
@@ -1444,48 +1453,86 @@ public abstract class RSClientMixin implements RSClient
 				}
 			}
 		}
+
+		if (baseVarData == null) {
+			RSArchive configs = client.getIndexConfig();
+			int count = configs.getGroupFileCount(VARBIT_GROUP_ID);
+			int[] ids = configs.getFileIds(VARBIT_GROUP_ID);
+
+			baseVarData = new int[ids.length];
+			varbitData = new int[count];
+
+			int idx = 0;
+			for (int varbitId : ids) {
+				VarbitComposition var8 = client.getVarbit(varbitId);
+				baseVarData[idx++] = var8.getIndex() << 16 | varbitId;
+				varbitData[varbitId] = var8.getIndex() << 16 | var8.getMostSignificantBit() << 8 | var8.getLeastSignificantBit();
+			}
+
+			Arrays.sort(baseVarData);
+		}
 	}
 
 	@Inject
 	private static int[] oldVarps;
 
+	@Shadow("Varps_masks")
+	private static int[] varpsMasks;
+
 	@FieldHook("Varps_main")
 	@Inject
-	public static void settingsChanged(int idx)
-	{
-		// Varp changed
-		VarbitChanged varbitChanged = new VarbitChanged();
-		varbitChanged.setVarpId(idx);
-		varbitChanged.setValue(client.getVarpValue(idx));
-		client.getCallbacks().post(Events.VARBIT_CHANGED, varbitChanged);
-
-		// Varbit changed
+	public static void settingsChanged(int idx) {
 		if (oldVarps == null)
 		{
 			oldVarps = new int[client.getVarps().length];
 		}
 
-		if (!Arrays.equals(oldVarps, client.getVarps()))
-		{
+		if (!Arrays.equals(oldVarps, client.getVarps())) {
 			ArrayList<Integer> varbitIds = varbitsMap.get(idx);
 
-			if (varbitIds == null || varbitIds.isEmpty())
-			{
+			if (varbitIds == null || varbitIds.isEmpty()) {
 				return;
 			}
 
-			for (int varbitId : varbitIds)
-			{
+			for (int varbitId : varbitIds) {
 				int oldValue = client.getVarbitValue(oldVarps, varbitId);
 				int newValue = client.getVarbitValue(client.getVarps(), varbitId);
-				if (oldValue != newValue)
-				{
-					varbitChanged.setVarpId(-1);
-					varbitChanged.setVarbitId(varbitId);
+
+				int changedBits = oldValue ^ newValue;
+				int varbitIndex = Arrays.binarySearch(baseVarData, idx << 16);
+				if (varbitIndex < 0) {
+					varbitIndex = -varbitIndex - 1;
+				}
+
+				for (; varbitIndex < baseVarData.length; ++varbitIndex) {
+					int baseVar = baseVarData[varbitIndex] >> 16;
+					if (baseVar != idx) {
+						break;
+					}
+
+					int varbit = baseVarData[varbitIndex] & 0xFFFF;
+					int endBit = varbitData[varbit] >> 8 & 255;
+					int startBit = varbitData[varbit] & 255;
+					int maxValue = varpsMasks[endBit - startBit] << startBit;
+					if (((oldValue ^ newValue) & maxValue) != 0) {
+						changedBits &= ~maxValue;
+						int varbitValue = (newValue & maxValue) >>> startBit;
+						VarbitChanged varbitChanged = new VarbitChanged();
+						varbitChanged.setVarpId(idx);
+						varbitChanged.setVarbitId(varbit);
+						varbitChanged.setValue(varbitValue);
+						client.getCallbacks().post(Events.VARBIT_CHANGED, varbitChanged);
+					}
+				}
+
+				if (changedBits != 0) {
+					VarbitChanged varbitChanged = new VarbitChanged();
+					varbitChanged.setVarpId(idx);
 					varbitChanged.setValue(newValue);
 					client.getCallbacks().post(Events.VARBIT_CHANGED, varbitChanged);
 				}
 			}
+
 			System.arraycopy(client.getVarps(), 0, oldVarps, 0, oldVarps.length);
 		}
 	}

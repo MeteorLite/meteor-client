@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Abex
+ * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,44 +22,51 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.devtools;
+package net.runelite.client.plugins.devtools;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
+import java.awt.Color;
+import javax.swing.JButton;
+import lombok.Getter;
 
-import eventbus.events.GameTick;
-import lombok.AccessLevel;
-import lombok.Setter;
-
-public abstract class DevToolsFrame extends JFrame
+public class DevToolsButton extends JButton
 {
-	@Setter(AccessLevel.PACKAGE)
-	protected DevToolsButton devToolsButton;
+	@Getter
+	private boolean active;
 
-	public DevToolsFrame()
+	DevToolsButton(String title)
 	{
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		addWindowListener(new WindowAdapter()
+		super(title);
+		addActionListener((ev) -> setActive(!active));
+		this.setToolTipText(title);
+	}
+
+	void setActive(boolean active)
+	{
+		this.active = active;
+
+		if (active)
 		{
-			@Override
-			public void windowClosing(WindowEvent e)
+			setBackground(Color.GREEN);
+		}
+		else
+		{
+			setBackground(null);
+		}
+	}
+
+	void addFrame(DevToolsFrame frame)
+	{
+		frame.setDevToolsButton(this);
+		addActionListener(ev ->
+		{
+			if (isActive())
 			{
-				close();
-				devToolsButton.setActive(false);
+				frame.close();
+			}
+			else
+			{
+				frame.open();
 			}
 		});
-	}
-
-	public void open()
-	{
-		setVisible(true);
-		toFront();
-		repaint();
-	}
-
-	public void close()
-	{
-		setVisible(false);
 	}
 }

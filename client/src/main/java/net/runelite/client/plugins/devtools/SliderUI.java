@@ -1,4 +1,4 @@
-package meteor.plugins.devtools;
+package net.runelite.client.plugins.devtools;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

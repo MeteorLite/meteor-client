@@ -1,4 +1,4 @@
-package meteor.plugins.devtools
+package net.runelite.client.plugins.devtools
 
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.events.MenuActionProcessed

@@ -1,4 +1,4 @@
-package meteor.plugins.devtools
+package net.runelite.client.plugins.devtools
 
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup

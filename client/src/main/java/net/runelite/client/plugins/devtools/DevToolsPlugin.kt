@@ -1,4 +1,4 @@
-package meteor.plugins.devtools
+package net.runelite.client.plugins.devtools
 
 import eventbus.events.ConfigChanged
 import eventbus.events.GameStateChanged
@@ -21,7 +21,7 @@ class DevToolsPlugin : Plugin() {
     override fun onGameStateChanged(it: GameStateChanged) {
         super.onGameStateChanged(it)
 
-        if (it.gameState == GameState.LOGIN_SCREEN) {
+        if (it.gameState != GameState.LOGGED_IN) {
             return
         }
 

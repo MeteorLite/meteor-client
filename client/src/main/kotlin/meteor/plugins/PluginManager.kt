@@ -24,7 +24,7 @@ import meteor.plugins.commands.CommandsPlugin
 import meteor.plugins.continueclicker.ContinueClickerPlugin
 import meteor.plugins.ctrlplayeroptions.CtrlPlayerOptions
 import meteor.plugins.defaultworld.DefaultWorldPlugin
-import meteor.plugins.devtools.DevToolsPlugin
+import net.runelite.client.plugins.devtools.DevToolsPlugin
 import meteor.plugins.entityhider.EntityHiderPlugin
 import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.fps.FpsPlugin

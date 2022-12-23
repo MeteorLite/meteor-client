@@ -1,4 +1,4 @@
-package meteor.plugins.devtools;
+package net.runelite.client.plugins.devtools;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.HashMultimap;
@@ -9,6 +9,7 @@ import eventbus.events.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import meteor.Configuration;
 import meteor.game.FontManager;
 import meteor.rs.ClientThread;
 import meteor.ui.ColorScheme;
@@ -181,7 +182,9 @@ public class EventInspector extends EventInspectorSubscriber {
     private int writeInterval = 100;
 
     private File outputFile;
-    private final File settingsFile = new File(System.getProperty("user.home") + "/.runelite/event-inspector-settings.txt");
+
+
+    private final File settingsFile = new File(Configuration.INSTANCE.getMETEOR_DIR().getAbsolutePath() + "/event-inspector-settings.txt");
     private final List<String> eventBuffer = new ArrayList<>(500);
 
     EventInspector(Client client, ClientThread clientThread, ProjectileTracker projectileTracker) {
@@ -2079,7 +2082,7 @@ public class EventInspector extends EventInspectorSubscriber {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private void resetOutputFile() {
-        File folder = new File(System.getProperty("user.home") + "/.runelite/event-inspector-logs/");
+        File folder = new File(Configuration.INSTANCE.getMETEOR_DIR() + "/event-inspector-logs/");
         folder.mkdirs();
         outputFile = new File(folder, new SimpleDateFormat("yyyy-MM-dd HH-mm-sss").format(new Date()) + ".txt");
     }
@@ -2233,7 +2236,7 @@ public class EventInspector extends EventInspectorSubscriber {
         super.open();
     }
 
-    private final File dictionaryFile = new File(System.getProperty("user.home") + "/.runelite/event-inspector-mappings.txt");
+    private final File dictionaryFile = new File(Configuration.INSTANCE.getMETEOR_DIR().getAbsolutePath() + "/event-inspector-mappings.txt");
     private static final Map<NamedVariableType, Map<Integer, String>> dictionaries = new HashMap<>();
     private final List<WatchService> watchServices = new ArrayList<>();
     private void openDictionary() {

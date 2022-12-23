@@ -1,4 +1,4 @@
-package meteor.plugins.devtools;
+package net.runelite.client.plugins.devtools;
 
 import eventbus.events.ProjectileSpawned;
 import lombok.Data;
