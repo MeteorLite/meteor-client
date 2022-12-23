@@ -27,18 +27,22 @@
 package net.runelite.http.api.hiscore;
 
 import lombok.Getter;
+import net.runelite.api.WorldType;
 import okhttp3.HttpUrl;
+
+import java.util.Set;
 
 @Getter
 public enum HiscoreEndpoint
 {
-	NORMAL("Normal", "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws"),
-	IRONMAN("Ironman", "http://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws"),
-	HARDCORE_IRONMAN("Hardcore Ironman", "http://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws"),
-	ULTIMATE_IRONMAN("Ultimate Ironman", "http://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws"),
-	DEADMAN("Deadman", "http://services.runescape.com/m=hiscore_oldschool_deadman/index_lite.ws"),
-	LEAGUE("Leagues", "http://services.runescape.com/m=hiscore_oldschool_seasonal/index_lite.ws"),
-	TOURNAMENT("Tournament", "http://services.runescape.com/m=hiscore_oldschool_tournament/index_lite.ws");
+	NORMAL("Normal", "https://services.runescape.com/m=hiscore_oldschool/index_lite.ws"),
+	IRONMAN("Ironman", "https://services.runescape.com/m=hiscore_oldschool_ironman/index_lite.ws"),
+	HARDCORE_IRONMAN("Hardcore Ironman", "https://services.runescape.com/m=hiscore_oldschool_hardcore_ironman/index_lite.ws"),
+	ULTIMATE_IRONMAN("Ultimate Ironman", "https://services.runescape.com/m=hiscore_oldschool_ultimate/index_lite.ws"),
+	DEADMAN("Deadman", "https://services.runescape.com/m=hiscore_oldschool_deadman/index_lite.ws"),
+	LEAGUE("Leagues", "https://services.runescape.com/m=hiscore_oldschool_seasonal/index_lite.ws"),
+	TOURNAMENT("Tournament", "https://services.runescape.com/m=hiscore_oldschool_tournament/index_lite.ws"),
+	FRESH_START_WORLD("Fresh Start", "https://secure.runescape.com/m=hiscore_oldschool_fresh_start/index_lite.ws");
 
 	private final String name;
 	private final HttpUrl hiscoreURL;
@@ -46,6 +50,27 @@ public enum HiscoreEndpoint
 	HiscoreEndpoint(String name, String hiscoreURL)
 	{
 		this.name = name;
-		this.hiscoreURL = HttpUrl.parse(hiscoreURL);
+		this.hiscoreURL = HttpUrl.get(hiscoreURL);
+	}
+
+	public static HiscoreEndpoint fromWorldTypes(Set<WorldType> worldTypes)
+	{
+		if (worldTypes.contains(WorldType.SEASONAL))
+		{
+			// this changes between LEAGUE and TOURNAMENT
+			return HiscoreEndpoint.LEAGUE;
+		}
+		else if (worldTypes.contains(WorldType.DEADMAN))
+		{
+			return HiscoreEndpoint.DEADMAN;
+		}
+		else if (worldTypes.contains(WorldType.FRESH_START_WORLD))
+		{
+			return HiscoreEndpoint.FRESH_START_WORLD;
+		}
+		else
+		{
+			return HiscoreEndpoint.NORMAL;
+		}
 	}
 }

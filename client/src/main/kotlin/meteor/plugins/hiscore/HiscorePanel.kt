@@ -79,7 +79,7 @@ class HiscorePanel : PluginPanel() {
             }
             LazyVerticalGrid(
                     columns = GridCells.Adaptive(minSize = 60.dp),
-                    modifier = mod.height(150.dp),
+                    modifier = mod.height(200.dp),
                     contentPadding = PaddingValues(15.dp),
                     userScrollEnabled = false
             ) {

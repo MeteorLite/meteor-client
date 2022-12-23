@@ -65,7 +65,9 @@ public class HiscoreResult
 	private Skill clueScrollElite;
 	private Skill clueScrollMaster;
 	private Skill lastManStanding;
+	private Skill pvpArenaRank;
 	private Skill soulWarsZeal;
+	private Skill riftsClosed;
 	private Skill abyssalSire;
 	private Skill alchemicalHydra;
 	private Skill barrowsChests;
@@ -93,6 +95,7 @@ public class HiscoreResult
 	private Skill kreearra;
 	private Skill krilTsutsaroth;
 	private Skill mimic;
+	private Skill nex;
 	private Skill nightmare;
 	private Skill phosanisNightmare;
 	private Skill obor;
@@ -105,6 +108,8 @@ public class HiscoreResult
 	private Skill theatreOfBlood;
 	private Skill theatreOfBloodHardMode;
 	private Skill thermonuclearSmokeDevil;
+	private Skill tombsOfAmascut;
+	private Skill tombsOfAmascutExpert;
 	private Skill tzKalZuk;
 	private Skill tzTokJad;
 	private Skill venenatis;
@@ -188,8 +193,12 @@ public class HiscoreResult
 				return getClueScrollMaster();
 			case LAST_MAN_STANDING:
 				return getLastManStanding();
+			case PVP_ARENA_RANK:
+				return pvpArenaRank;
 			case SOUL_WARS_ZEAL:
 				return getSoulWarsZeal();
+			case RIFTS_CLOSED:
+				return riftsClosed;
 			case ABYSSAL_SIRE:
 				return abyssalSire;
 			case ALCHEMICAL_HYDRA:
@@ -244,6 +253,8 @@ public class HiscoreResult
 				return krilTsutsaroth;
 			case MIMIC:
 				return mimic;
+			case NEX:
+				return nex;
 			case NIGHTMARE:
 				return nightmare;
 			case PHOSANIS_NIGHTMARE:
@@ -268,6 +279,10 @@ public class HiscoreResult
 				return theatreOfBloodHardMode;
 			case THERMONUCLEAR_SMOKE_DEVIL:
 				return thermonuclearSmokeDevil;
+			case TOMBS_OF_AMASCUT:
+				return  tombsOfAmascut;
+			case TOMBS_OF_AMASCUT_EXPERT:
+				return tombsOfAmascutExpert;
 			case TZKAL_ZUK:
 				return tzKalZuk;
 			case TZTOK_JAD:
