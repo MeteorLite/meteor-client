@@ -51,7 +51,6 @@ open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener 
                 isPressed = true
                 if (!wasPressed) {
                     hotkeyPressed()
-                    println("$e pressed")
                 }
                 if (getModifierForKeyCode(e.keyCode) == null) {
                     isConsumingTyped = true
@@ -67,7 +66,6 @@ open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener 
             if (keybind.get().matches(e)) {
                 if (isPressed) {
                     hotkeyReleased()
-                    println("$e released ")
                 }
                 isPressed = false
                 isConsumingTyped = false
