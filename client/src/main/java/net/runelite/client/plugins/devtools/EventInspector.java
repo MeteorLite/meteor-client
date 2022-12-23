@@ -599,7 +599,6 @@ public class EventInspector extends EventInspectorSubscriber {
     @Override
     public void onGraphicChanged(GraphicChanged event) {
         Actor actor = event.getActor();
-        if (actor == null) return;
         String actorLabel = formatActor(actor);
         StringBuilder graphicsLabelBuilder = new StringBuilder();
         graphicsLabelBuilder.append("Graphics(");

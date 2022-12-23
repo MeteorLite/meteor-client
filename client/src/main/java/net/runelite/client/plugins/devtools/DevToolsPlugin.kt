@@ -21,7 +21,7 @@ class DevToolsPlugin : Plugin() {
     override fun onGameStateChanged(it: GameStateChanged) {
         super.onGameStateChanged(it)
 
-        if (it.gameState != GameState.LOGGED_IN) {
+        if (it.gameState == GameState.LOADING || it.gameState != GameState.LOGGED_IN) {
             return
         }
 

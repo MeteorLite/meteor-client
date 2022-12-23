@@ -201,7 +201,7 @@ public abstract class RSActorMixin implements RSActor
 		client.getCallbacks().post(Events.ANIMATION_CHANGED, animationChange);
 	}
 
-	@FieldHook("spotAnimation")
+	@FieldHook("spotAnimationStartCycle")
 	@Inject
 	public void spotAnimationChanged(int idx)
 	{
