@@ -129,6 +129,9 @@ class Hooks : Callbacks {
         }
     }
 
+    private lateinit var gameImage: Image
+    lateinit var finalImage: Image
+
     override fun draw(mainBufferProvider: MainBufferProvider, graphics: Graphics?, x: Int, y: Int) {
         if (graphics == null) {
             return
@@ -149,8 +152,7 @@ class Hooks : Callbacks {
         }
 
         // Stretch the game image if the user has that enabled
-        val image = mainBufferProvider.image
-        val finalImage: Image
+        gameImage = mainBufferProvider.image
         if (client.isStretchedEnabled) {
             val gc: GraphicsConfiguration = client.canvas.graphicsConfiguration
             val stretchedDimensions: Dimension = client.stretchedDimensions
@@ -177,10 +179,10 @@ class Hooks : Callbacks {
                 }
             )
             stretchedGraphics!!
-                .drawImage(image, 0, 0, stretchedDimensions.width, stretchedDimensions.height, null)
+                .drawImage(gameImage, 0, 0, stretchedDimensions.width, stretchedDimensions.height, null)
             finalImage = stretchedImage!!
         } else {
-            finalImage = image
+            finalImage = gameImage
         }
 
         // Draw the image onto the game canvas
