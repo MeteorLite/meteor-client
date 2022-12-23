@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018 Hydrox6 <ikada@protonmail.ch>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,47 +22,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.ui.overlay.infobox
+package meteor.plugins.poison
 
-import meteor.plugins.Plugin
-import meteor.ui.overlay.OverlayMenuEntry
+import meteor.ui.overlay.infobox.Timer
 import java.awt.Color
 import java.awt.image.BufferedImage
+import java.time.temporal.ChronoUnit
 
-abstract class InfoBox(
-    image: BufferedImage?,
-    open val plugin: Plugin
-) {
-
-    var image: BufferedImage? = null
-
-    var scaledImage: BufferedImage? = null
-
-    var priority: InfoBoxPriority? = null
-
-    open var tooltip: String? = null
-
-    var menuEntries = ArrayList<OverlayMenuEntry>()
-
-    init {
-        this.image = (image)
-        this.priority = (InfoBoxPriority.NONE)
-    }
-
-    abstract val text: String?
-    abstract val textColor: Color?
-    open fun render(): Boolean {
-        return true
-    }
-
-    open fun cull(): Boolean {
-        return false
-    }
-
-    // Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-    // as possible by default
-    open val name: String
-        get() =// Use a combination of plugin name and infobox implementation name to try and make each infobox as unique
-            // as possible by default
-            plugin.javaClass.simpleName + "_" + javaClass.simpleName
+internal class PoisonInfobox(image: BufferedImage?, override val plugin: PoisonPlugin) :
+    Timer(PoisonPlugin.POISON_TICK_MILLIS.toLong(), ChronoUnit.MILLIS, image, plugin, null) {
+    override var tooltip: String?
+        get() = plugin.createTooltip()
+        set(tooltip) {
+            super.tooltip = tooltip
+        }
+    override val textColor: Color
+        get() = Color.RED.brighter()
 }

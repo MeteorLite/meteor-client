@@ -110,6 +110,7 @@ import meteor.plugins.itemcharges.ItemChargePlugin
 import meteor.plugins.lowdetail.LowDetailPlugin
 import meteor.plugins.oneclickkarambwans.OneClickKarambwansPlugin
 import meteor.plugins.pestcontrol.PestControlPlugin
+import meteor.plugins.poison.PoisonPlugin
 import meteor.plugins.reportbutton.ReportButtonPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
@@ -225,6 +226,7 @@ object PluginManager {
         init<OneClickSandstonePlugin>()
         init<OlmSwapperPlugin>()
         init<PestControlPlugin>()
+        init<PoisonPlugin>()
         init<PuzzleSolverPlugin>()
         init<PvPKeys>()
         init<PrayerFlickerPlugin>()
