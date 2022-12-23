@@ -1798,4 +1798,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	long getUserRegistrationId();
 
+	@Import("getDbTableType")
+	RSDbTableType getDbTableType(int var0);
+
+	@Import("getDbRowType")
+	RSDbRowType getDbRowType(int var0);
 }

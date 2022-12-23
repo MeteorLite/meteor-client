@@ -2649,4 +2649,12 @@ public interface Client extends GameEngine
 
 	long getUserRegistrationId();
 
+	void setQuestState(Quest quest, QuestState questState);
+
+	QuestState getQuestState(Quest quest);
+
+	/**
+	 * Gets a entry out of a DBTable Row
+	 */
+	Object getDBTableField(int rowID, int column, int tupleIndex, int fieldIndex);
 }

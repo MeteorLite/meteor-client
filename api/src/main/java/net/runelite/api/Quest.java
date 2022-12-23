@@ -208,15 +208,24 @@ public enum Quest
 
 	public QuestState getState(Client client)
 	{
-		client.runScript(ScriptID.QUEST_STATUS_GET, id);
-		switch (client.getIntStack()[0])
-		{
-			case 2:
-				return QuestState.FINISHED;
-			case 1:
-				return QuestState.NOT_STARTED;
-			default:
-				return QuestState.IN_PROGRESS;
+		return client.getQuestState(this);
+	}
+
+	public static Quest fromId(int id)
+	{
+		for (Quest quest : values()) {
+			if (quest.id == id)
+				return quest;
 		}
+		return null;
+	}
+
+	public static Quest fromName(String name)
+	{
+		for (Quest quest : values()) {
+			if (quest.name.equalsIgnoreCase(name))
+				return quest;
+		}
+		return null;
 	}
 }

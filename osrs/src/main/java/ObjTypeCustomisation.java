@@ -733,7 +733,7 @@ public class ObjTypeCustomisation {
                                           var108.setDoOutput(true);
                                           var108.setConnectTimeout(5000);
                                           OutputStreamWriter var109 = new OutputStreamWriter(var108.getOutputStream());
-                                          var109.write("data2=" + class459.method8435(var125) + "&dest=" + class459.method8435("passwordchoice.ws"));
+                                          var109.write("data2=" + DbTableType.method8435(var125) + "&dest=" + DbTableType.method8435("passwordchoice.ws"));
                                           var109.flush();
                                           InputStream var110 = var108.getInputStream();
                                           var51 = new Buffer(new byte[1000]);
@@ -981,7 +981,7 @@ public class ObjTypeCustomisation {
                                                 var29.setDoOutput(true);
                                                 var29.setConnectTimeout(5000);
                                                 OutputStreamWriter var54 = new OutputStreamWriter(var29.getOutputStream());
-                                                var54.write("data2=" + class459.method8435(var27) + "&dest=" + class459.method8435("passwordchoice.ws"));
+                                                var54.write("data2=" + DbTableType.method8435(var27) + "&dest=" + DbTableType.method8435("passwordchoice.ws"));
                                                 var54.flush();
                                                 InputStream var62 = var29.getInputStream();
                                                 var26 = new Buffer(new byte[1000]);

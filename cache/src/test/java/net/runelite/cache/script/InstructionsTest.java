@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Adam <Adam@sigterm.info>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,16 +22,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.annotations;
+package net.runelite.cache.script;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import net.runelite.api.Varbits;
-import org.intellij.lang.annotations.MagicConstant;
 
-@Documented
-@Retention(RetentionPolicy.SOURCE)
-public @interface Varbit
+import org.junit.Test;
+
+public class InstructionsTest
 {
+	@Test
+	public void testInit()
+	{
+		new Instructions().init();
+	}
+
 }

@@ -52,6 +52,7 @@ dependencies {
     implementation(group = "org.antlr", name = "antlr4-runtime", version = "4.8-1")
     implementation(group = "org.apache.commons", name = "commons-compress", version = "1.21")
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.32")
+    testImplementation("junit:junit:4.13.2")
 }
 
 tasks {

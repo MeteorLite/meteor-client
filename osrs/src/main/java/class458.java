@@ -9,6 +9,6 @@ public final class class458 {
       garbageValue = "2086453978"
    )
    public static void method8425(AbstractArchive var0) {
-      class461.field4889 = var0;
+      DbRowType.field4889 = var0;
    }
 }

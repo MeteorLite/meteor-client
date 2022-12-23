@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Adam <Adam@sigterm.info>
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,16 +22,29 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.annotations;
+package net.runelite.cache;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import net.runelite.api.Varbits;
-import org.intellij.lang.annotations.MagicConstant;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
-@Documented
-@Retention(RetentionPolicy.SOURCE)
-public @interface Varbit
+public class CacheProperties
 {
+	private static Properties getProperties() throws IOException
+	{
+		Properties properties = new Properties();
+		InputStream resourceAsStream = StoreLocation.class.getResourceAsStream("/cache.properties");
+		properties.load(resourceAsStream);
+		return properties;
+	}
+
+	public static int getRsVersion() throws IOException
+	{
+		return (int) Double.parseDouble(getProperties().getProperty("rs.version"));
+	}
+
+	public static int getCacheVersion() throws IOException
+	{
+		return Integer.parseInt(getProperties().getProperty("cache.version"));
+	}
 }

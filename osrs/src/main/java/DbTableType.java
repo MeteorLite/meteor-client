@@ -1,9 +1,8 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qs")
-public class class459 extends DualNode {
+public class DbTableType extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
@@ -15,9 +14,9 @@ public class class459 extends DualNode {
    )
    public static EvictingDualNodeHashTable DBTableType_cache = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
-   public int[][] field4883;
+   public int[][] types;
    @ObfuscatedName("x")
-   public Object[][] field4880;
+   public Object[][] defaultValues;
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -43,8 +42,8 @@ public class class459 extends DualNode {
    void method8440(Buffer var1, int var2) {
       if (var2 == 1) {
          int var3 = var1.readUnsignedByte();
-         if (this.field4883 == null) {
-            this.field4883 = new int[var3][];
+         if (this.types == null) {
+            this.types = new int[var3][];
          }
 
          for(int var4 = var1.readUnsignedByte(); var4 != 255; var4 = var1.readUnsignedByte()) {
@@ -56,13 +55,13 @@ public class class459 extends DualNode {
                var7[var8] = var1.readUShortSmart();
             }
 
-            this.field4883[var5] = var7;
+            this.types[var5] = var7;
             if (var6) {
-               if (this.field4880 == null) {
-                  this.field4880 = new Object[this.field4883.length][];
+               if (this.defaultValues == null) {
+                  this.defaultValues = new Object[this.types.length][];
                }
 
-               Object[][] var17 = this.field4880;
+               Object[][] var17 = this.defaultValues;
                int var11 = var1.readUShortSmart();
                Object[] var12 = new Object[var7.length * var11];
 

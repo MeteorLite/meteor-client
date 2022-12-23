@@ -3177,4 +3177,54 @@ public abstract class RSClientMixin implements RSClient {
                         !client.getPlayerOptionsPriorities()[idx]));
     }
 
+    @Inject
+    public HashMap<Quest, QuestState> questStates = new HashMap<>();
+
+    @Inject
+    @Override
+    public void setQuestState(Quest quest, QuestState questState) {
+        questStates.put(quest, questState);
+    }
+
+    @Inject
+    @Override
+    public QuestState getQuestState(Quest quest) {
+        return questStates.get(quest);
+    }
+
+    @Inject
+    @Override
+    public Object getDBTableField(int rowID, int column, int tupleIndex, int fieldIndex)
+    {
+        RSDbRowType dbRowType = client.getDbRowType(rowID);
+        RSDbTableType dbTableType = client.getDbTableType(dbRowType.getTableId());
+
+        Object[] columnType = dbRowType.getColumnType(column);
+        int[] type = dbTableType.getTypes()[column];
+
+        if (columnType == null)
+        {
+            columnType = dbTableType.getDefaultValues()[column];
+        }
+
+        if (columnType == null)
+        {
+            return null;
+        }
+        else if (tupleIndex >= type.length)
+        {
+            throw new IllegalArgumentException("tuple index too large");
+        }
+        else
+        {
+            if (fieldIndex > columnType.length / type.length)
+            {
+                throw new IllegalArgumentException("field index too large");
+            }
+            else
+            {
+                return columnType[tupleIndex * type.length + fieldIndex];
+            }
+        }
+    }
 }

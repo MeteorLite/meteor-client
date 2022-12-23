@@ -518,7 +518,7 @@ public class LoginScreenAnimation {
    static class460 method2407(int var0) {
       class460 var1 = (class460)Client.Widget_cachedModels.get((long)var0);
       if (var1 == null) {
-         var1 = new class460(Ignored.field4539, class300.method5847(var0), class459.method8447(var0));
+         var1 = new class460(Ignored.field4539, class300.method5847(var0), DbTableType.method8447(var0));
          Client.Widget_cachedModels.put(var1, (long)var0);
       }
 

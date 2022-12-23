@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -153,6 +152,6 @@ public class class420 {
       garbageValue = "-1926979042"
    )
    public static void method7904() {
-      class461.DBRowType_cache.clear();
+      DbRowType.DBRowType_cache.clear();
    }
 }

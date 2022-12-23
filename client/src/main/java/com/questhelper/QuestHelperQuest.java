@@ -483,15 +483,7 @@ public enum QuestHelperQuest
 			}
 			return QuestState.IN_PROGRESS;
 		}
-
-		return GameThread.invokeLater(() -> {
-			client.runScript(ScriptID.QUEST_STATUS_GET, id);
-			return switch (client.getIntStack()[0]) {
-				case 2 -> QuestState.FINISHED;
-				case 1 -> QuestState.NOT_STARTED;
-				default -> QuestState.IN_PROGRESS;
-			};
-		});
+		return client.getQuestState(net.runelite.api.Quest.fromId(id));
 	}
 
 	public int getVar(Client client)
