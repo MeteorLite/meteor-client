@@ -4,14 +4,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
@@ -103,9 +101,8 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
                 Text(text, style = TextStyle(color = Color.Cyan, fontSize = 14.sp), modifier = Modifier.align(Alignment.Bottom))
             }
 
-            LazyColumn(modifier = Modifier.fillMaxWidth().height((requirements.size * 32).dp).background(darkThemeColors.surface).clip(
-                RoundedCornerShape(size = 35.dp)
-            ), horizontalAlignment = Alignment.CenterHorizontally, ) {
+            LazyColumn(modifier = Modifier.fillMaxWidth().height((requirements.size * 32).dp)
+                .background(darkThemeColors.surface), horizontalAlignment = Alignment.CenterHorizontally, ) {
                 items(items = requirements, itemContent = { requirement ->
                     Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background  )){
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
@@ -152,9 +149,8 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
                     else {
                         Row(modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background ) ){
                             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                                modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background ) .clip(
-                                    RoundedCornerShape(size = 30.dp)
-                                )) {
+                                modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background ))
+                            {
                                 val color = Color.White
                                 Text(line, style = TextStyle(color = color, fontSize = 14.sp))
                             }
