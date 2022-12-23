@@ -257,7 +257,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                     BoxWithConstraints(contentAlignment = Alignment.Center) {
                         Box {
                             LinearProgressIndicator(
-                                modifier = Modifier.width(370.dp).height(20.dp).progressSemantics(
+                                modifier = Modifier.width(295.dp).height(20.dp).progressSemantics(
                                     value = skillProgress,
                                     valueRange = startFloat..endFloat
                                 ).background(shape = RoundedCornerShape(3.dp), color = surface),

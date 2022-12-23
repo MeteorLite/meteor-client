@@ -87,7 +87,9 @@ class HiscoreResultBuilder
 		hiscoreResult.setClueScrollElite(skills.get(index++));
 		hiscoreResult.setClueScrollMaster(skills.get(index++));
 		hiscoreResult.setLastManStanding(skills.get(index++));
+		hiscoreResult.setPvpArenaRank(skills.get(index++));
 		hiscoreResult.setSoulWarsZeal(skills.get(index++));
+		hiscoreResult.setRiftsClosed(skills.get(index++));
 		// seasonal doesn't have boss hiscores
 		if (index < skills.size())
 		{
@@ -118,6 +120,7 @@ class HiscoreResultBuilder
 			hiscoreResult.setKreearra(skills.get(index++));
 			hiscoreResult.setKrilTsutsaroth(skills.get(index++));
 			hiscoreResult.setMimic(skills.get(index++));
+			hiscoreResult.setNex(skills.get(index++));
 			hiscoreResult.setNightmare(skills.get(index++));
 			hiscoreResult.setPhosanisNightmare(skills.get(index++));
 			hiscoreResult.setObor(skills.get(index++));
@@ -130,6 +133,8 @@ class HiscoreResultBuilder
 			hiscoreResult.setTheatreOfBlood(skills.get(index++));
 			hiscoreResult.setTheatreOfBloodHardMode(skills.get(index++));
 			hiscoreResult.setThermonuclearSmokeDevil(skills.get(index++));
+			hiscoreResult.setTombsOfAmascut(skills.get(index++));
+			hiscoreResult.setTombsOfAmascutExpert(skills.get(index++));
 			hiscoreResult.setTzKalZuk(skills.get(index++));
 			hiscoreResult.setTzTokJad(skills.get(index++));
 			hiscoreResult.setVenenatis(skills.get(index++));
