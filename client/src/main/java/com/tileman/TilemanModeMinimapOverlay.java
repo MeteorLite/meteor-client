@@ -105,7 +105,7 @@ class TilemanModeMinimapOverlay extends Overlay
 			return;
 		}
 
-		OverlayUtil.INSTANCE.renderMinimapRect(client, graphics, posOnMinimap, TILE_WIDTH, TILE_HEIGHT, getTileColor());
+		OverlayUtil.INSTANCE.renderMinimapRect(graphics, posOnMinimap, TILE_WIDTH, TILE_HEIGHT, getTileColor());
 	}
 
 	private Color getTileColor() {

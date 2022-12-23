@@ -1,12 +1,12 @@
 package meteor.plugins.alchemicalhydra
 
+import meteor.Main
 import meteor.game.SpriteManager
 import meteor.ui.overlay.ComponentOrientation
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayPosition
 import meteor.ui.overlay.PanelComponent
 import meteor.ui.overlay.components.InfoBoxComponent
-import net.runelite.api.Client
 import net.runelite.api.SpritePixels
 import java.awt.Color
 import java.awt.Dimension
@@ -23,7 +23,7 @@ internal class HydraOverlay(
     private var stunImg: BufferedImage? = null
         get() {
             if (field == null) {
-                field = createStunImage(client)
+                field = createStunImage()
             }
             return field
         }
@@ -103,15 +103,15 @@ internal class HydraOverlay(
 
     companion object {
         const val IMGSIZE = 36
-        private fun createStunImage(client: Client): BufferedImage? {
-            val root = getSprite(client, 1788) ?: return null
+        private fun createStunImage(): BufferedImage? {
+            val root = getSprite(1788) ?: return null
             return root.toBufferedImage()
         }
 
-        private fun getSprite(client: Client, id: Int): SpritePixels? {
-            val spriteDb = client.indexSprites
+        private fun getSprite(id: Int): SpritePixels? {
+            val spriteDb = Main.client.indexSprites
             if (spriteDb != null) {
-                val sprites = client.getSprites(spriteDb, id, 0)
+                val sprites = Main.client.getSprites(spriteDb, id, 0)
                 if (sprites != null) {
                     return sprites[0]
                 }

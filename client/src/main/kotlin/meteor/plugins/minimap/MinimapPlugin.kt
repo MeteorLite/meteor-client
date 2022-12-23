@@ -108,7 +108,7 @@ class MinimapPlugin : Plugin() {
 
     private fun applyDot(mapDots: Array<SpritePixels?>, id: Int, color: Color?) {
         if (id < mapDots.size && color != null) {
-            mapDots[id] = MinimapDot.create(client, color)
+            mapDots[id] = MinimapDot.create(color)
         }
     }
 

@@ -23,7 +23,6 @@ import net.runelite.http.api.worlds.WorldType
 import java.awt.event.KeyEvent
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
-import java.util.function.Predicate
 import kotlin.math.abs
 
 @PluginDescriptor(
@@ -100,13 +99,13 @@ class AutoLogHop : Plugin() {
         return if (y > 6400) underLevel else upperLevel
     }
 
-    fun isAttackable(client: Client, player: Player): Boolean {
+    fun isAttackable(player: Player): Boolean {
         var wildernessLevel = 0
-        if (!(client.getVar(Varbits.IN_WILDERNESS) == 1 || net.runelite.api.WorldType.isPvpWorld(client.worldType))) {
+        if (!(client.getVarbitValue(Varbits.IN_WILDERNESS) == 1 || net.runelite.api.WorldType.isPvpWorld(client.worldType))) {
             return false
         }
         if (net.runelite.api.WorldType.isPvpWorld(client.worldType)) {
-            if (Main.client.getVar(Varbits.IN_WILDERNESS) != 1) {
+            if (client.getVarbitValue(Varbits.IN_WILDERNESS) != 1) {
                 return abs(client.localPlayer!!.combatLevel - player.combatLevel) <= 15
             }
             wildernessLevel = 15
@@ -142,7 +141,7 @@ class AutoLogHop : Plugin() {
     private fun isPlayerBad(player: Player): Boolean {
         if (player === client.localPlayer) return false
         if (isInWhitelist(player.name)) return false
-        if (config.combatRange() && !isAttackable(client, player)) return false
+        if (config.combatRange() && !isAttackable(player)) return false
         if (config.skulledOnly() && !isPlayerSkulled(player)) return false
         return passedWildernessChecks()
     }

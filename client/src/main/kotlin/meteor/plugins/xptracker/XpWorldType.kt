@@ -24,31 +24,31 @@
  */
 package meteor.plugins.xptracker
 
-import net.runelite.api.Client
+import meteor.Main
 import net.runelite.api.Varbits
 import net.runelite.api.WorldType
 
 internal enum class XpWorldType {
     NORMAL, TOURNEY, DMM {
-        override fun modifier(client: Client): Int {
+        override fun modifier(): Int {
             return 5
         }
     },
     LEAGUE {
-        override fun modifier(client: Client): Int {
-            if (client.getVarbitValue(Varbits.LEAGUE_RELIC_6) != 0) {
+        override fun modifier(): Int {
+            if (Main.client.getVarbitValue(Varbits.LEAGUE_RELIC_6) != 0) {
                 return 16
             }
-            if (client.getVarbitValue(Varbits.LEAGUE_RELIC_4) != 0) {
+            if (Main.client.getVarbitValue(Varbits.LEAGUE_RELIC_4) != 0) {
                 return 12
             }
-            return if (client.getVarbitValue(Varbits.LEAGUE_RELIC_2) != 0) {
+            return if (Main.client.getVarbitValue(Varbits.LEAGUE_RELIC_2) != 0) {
                 8
             } else 5
         }
     };
 
-    open fun modifier(client: Client): Int {
+    open fun modifier(): Int {
         return 1
     }
 

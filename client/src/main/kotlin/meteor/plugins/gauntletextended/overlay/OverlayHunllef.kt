@@ -26,11 +26,11 @@
  */
 package meteor.plugins.gauntletextended.overlay
 
+import meteor.Main
 import meteor.ui.overlay.OverlayLayer
 import meteor.ui.overlay.OverlayPosition
 import meteor.ui.overlay.OverlayPriority
 import meteor.util.OverlayUtil
-import net.runelite.api.Client
 import net.runelite.api.Perspective
 import net.runelite.api.Point
 import net.runelite.api.Projectile
@@ -119,7 +119,7 @@ class OverlayHunllef(
             return
         }
         val missile = plugin.missile
-        val polygon = getProjectilePolygon(client, missile!!.projectile) ?: return
+        val polygon = getProjectilePolygon(missile!!.projectile) ?: return
         if (config.outlineProjectile()) {
             val originalColor = graphics2D.color
             graphics2D.color = missile.outlineColor
@@ -253,13 +253,13 @@ class OverlayHunllef(
             Color.LIGHT_GRAY
         )
         private const val COLOR_DURATION = 10
-        private fun getProjectilePolygon(client: Client, projectile: Projectile?): Polygon? {
+        private fun getProjectilePolygon(projectile: Projectile?): Polygon? {
             if (projectile == null || projectile.model == null) {
                 return null
             }
             val model = projectile.model
             val localPoint = LocalPoint(projectile.x.toInt(), projectile.y.toInt())
-            val tileHeight = Perspective.getTileHeight(client, localPoint, client.plane)
+            val tileHeight = Perspective.getTileHeight(Main.client, localPoint, Main.client.plane)
             var angle = Math.atan(projectile.velocityY / projectile.velocityX)
             angle = Math.toDegrees(angle) + if (projectile.velocityX < 0) 180 else 0
             angle = if (angle < 0) angle + 360 else angle
@@ -274,7 +274,7 @@ class OverlayHunllef(
             val list: MutableList<Point> = ArrayList()
             for (vertex in vertices) {
                 val point = Perspective.localToCanvas(
-                    client, localPoint.x - vertex!!.x,
+                    Main.client, localPoint.x - vertex!!.x,
                     localPoint.y - vertex.z, tileHeight + vertex.y + projectile.z.toInt()
                 ) ?: continue
                 list.add(point)

@@ -71,7 +71,7 @@ internal class GroundMarkerMinimapOverlay(
         }
         val lp: LocalPoint = LocalPoint.fromWorld(client, point) ?: return
         val posOnMinimap: Point = Perspective.localToMinimap(client, lp) ?: return
-        OverlayUtil.renderMinimapRect(client, graphics, posOnMinimap, TILE_WIDTH, TILE_HEIGHT, color)
+        OverlayUtil.renderMinimapRect(graphics, posOnMinimap, TILE_WIDTH, TILE_HEIGHT, color)
     }
 
     companion object {

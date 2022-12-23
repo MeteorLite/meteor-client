@@ -606,7 +606,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
             if (overlayPosition == OverlayPosition.DYNAMIC
                 || overlayPosition == OverlayPosition.TOOLTIP
             ) {
-                safeRender(client, overlay, layer, graphics, Point())
+                safeRender(overlay, layer, graphics, Point())
 
                 // Restore graphics2d properties
                 graphics.transform = transform
@@ -655,7 +655,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
                 }
                 if (overlay.getPreferredSize() != null)
                     bounds.size = overlay.getPreferredSize()!!
-                safeRender(client, overlay, layer, graphics, location)
+                safeRender(overlay, layer, graphics, location)
 
                 // Restore graphics2d properties prior to drawing bounds
                 graphics.transform = transform
@@ -704,8 +704,7 @@ class OverlayRenderer : KeyListener, MouseAdapter() {
     }
 
     private fun safeRender(
-        client: Client, overlay: Overlay, layer: OverlayLayer, graphics: Graphics2D,
-        point: Point
+        overlay: Overlay, layer: OverlayLayer, graphics: Graphics2D, point: Point
     ) {
         if (!isResizeable && (layer == OverlayLayer.ABOVE_SCENE
                     || layer == OverlayLayer.UNDER_WIDGETS)

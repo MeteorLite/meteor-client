@@ -74,7 +74,7 @@ class EmojiPlugin : Plugin() {
             val emoji = emojis[i]
             try {
                 val image: BufferedImage = emoji.loadImage()
-                val sprite: IndexedSprite? = ImageUtil.getImageIndexedSprite(image!!, client)
+                val sprite: IndexedSprite? = ImageUtil.getImageIndexedSprite(image!!)
                 newModIcons[modIconsStart + i] = sprite
             } catch (ex: Exception) {
                 log.warn("Failed to load the sprite for emoji $emoji", ex)
