@@ -78,7 +78,6 @@ object CreateLauncherUpdate {
             if (file.isDirectory) {
                 if (file.listFiles()!!.isNotEmpty())
                     if (!file.name.equals("legal")) {
-                        println(file.name)
                         crawlDirectory(file)
                     }
             } else {

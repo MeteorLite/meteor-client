@@ -226,7 +226,6 @@ class GroundMarkerPlugin : Plugin() {
         if (point in groundMarkerPoints) {
             groundMarkerPoints.remove(point)
         } else {
-            println(groundMarkerPoints.toString())
             groundMarkerPoints.add(point)
         }
 
