@@ -1,6 +1,7 @@
 package meteor.util
 
 import com.google.common.primitives.Ints
+import meteor.Main
 import net.runelite.api.Client
 import net.runelite.api.IndexedSprite
 import net.runelite.api.SpritePixels
@@ -88,7 +89,7 @@ object ImageUtil {
         return dimg
     }
 
-    fun getImageSpritePixels(image: BufferedImage, client: Client): SpritePixels {
+    fun getImageSpritePixels(image: BufferedImage): SpritePixels {
         val pixels = IntArray(image.width * image.height)
         try {
             val g = PixelGrabber(
@@ -107,7 +108,7 @@ object ImageUtil {
             }
         } catch (ignore: InterruptedException) {
         }
-        return client.createSpritePixels(pixels, image.width, image.height)
+        return Main.client.createSpritePixels(pixels, image.width, image.height)
     }
 
     /**
