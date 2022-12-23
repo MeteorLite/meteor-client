@@ -47,14 +47,14 @@ fun pluginsPanel() {
 @Composable
 fun searchBar(
     modifier: Modifier = Modifier,
-    state: MutableState<TextFieldValue>,
+    state: MutableState<String>,
     placeHolder: String
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().height(60.dp), horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically
     ) {
 
-        TextField(
+        OutlinedTextField(
             value = state.value,
             onValueChange = { value ->
                 state.value = value
@@ -63,14 +63,13 @@ fun searchBar(
                 color = uiColor.value,
                 letterSpacing = 4.sp,
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Medium,
-                fontFamily = FontUtil.crimson
+                fontWeight = FontWeight.Medium
             ),
-
-            modifier = Modifier.fillMaxWidth().height(50.dp),
-            shape = RoundedCornerShape(20.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = uiColor.value, unfocusedBorderColor = uiColor.value, cursorColor = intColor),
+            modifier = Modifier.fillMaxWidth().height(60.dp).scale(0.93f),
+            shape = RoundedCornerShape(10.dp),
             label = {
-                if (state.value.text.isEmpty())Text("Search", color = uiColor.value)
+                if (state.value.isEmpty())Text("Search", color = uiColor.value)
             },
             leadingIcon = {
                 Icon(
@@ -85,24 +84,14 @@ fun searchBar(
     Spacer(Modifier.width(75.dp))
 }
 
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun plugins() {
 
-    val pluginListSize = remember {
-        mutableStateOf(Main.meteorConfig!!.pluginListTextSize())
-    }
-    val pluginSpacer = remember {
-        mutableStateOf(Main.meteorConfig!!.pluginSpaceBetween())
-    }
-    val textState = remember { mutableStateOf(TextFieldValue("")) }
-    Row(
-        modifier = Modifier.height(50.dp).fillMaxWidth().background(surface, RoundedCornerShape(29.dp)),
-        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        searchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
-    }
+    val textState =  remember { searchValue }
+
+    searchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
+
 
     Column(
         horizontalAlignment = Alignment.Start,
@@ -113,7 +102,7 @@ fun plugins() {
 
         LazyColumn(modifier = Modifier.fillMaxHeight()) {
 
-            val searchedText = textState.value.text
+            val searchedText = textState.value
 
             items(items = PluginManager.plugins.filter {
                 it.getName()!!.contains(searchedText, ignoreCase = true) ||

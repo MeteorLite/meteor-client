@@ -25,48 +25,44 @@ import kotlin.math.max
 fun LazyGridScope.hiscoreActivityGrid() {
     items(HiscoreSkill.values().filter { it.type == HiscoreSkillType.ACTIVITY }) { item ->
 
-        Card(backgroundColor = surface, modifier = Modifier.padding(5.dp)) {
+        Card(backgroundColor = surface, modifier = Modifier.padding(5.dp).size(25.dp)) {
 
             TooltipArea(
-                    modifier = Modifier.background(
-                            shape = RoundedCornerShape(3.dp), color = surface
-                    ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
-                Column(modifier = Modifier.background(surface)) {
-                    Text(
+                modifier = Modifier.background(
+                    shape = RoundedCornerShape(3.dp), color = surface
+                ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
+                    Column(modifier = Modifier.background(surface)) {
+                        Text(
                             text = "Rank:" + max(0, result.getSkill(item).rank).toString(),
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
-                    )
-                    Text(
+                        )
+                        Text(
                             text = "Activity:" + item.name.lowercase().replace('_', ' '),
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
-                    )
-                }
-
-            }, delayMillis = 500
-            ) {
-                Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                    Spacer(Modifier.width(15.dp))
-                    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-                        Image(
-                                painter = painterResource("skill_icons_small/activities/${item.name}.png".lowercase()),
-                                contentDescription = item.name
                         )
-                        Row(horizontalArrangement = Arrangement.Center) {
-                            Text(
-                                    text = max(0, result.getSkill(item).level).toString(),
-                                    style = TextStyle(
-                                            fontSize = 10.sp,
-                                            textAlign = TextAlign.Center,
-                                            color = uiColor.value
-                                    )
+                    }
+
+                }, delayMillis = 500
+            ) {
+                Row(horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically, modifier = Modifier.offset(y = 5.dp)) {
+                    Spacer(Modifier.width(15.dp))
+                    Image(
+                        painter = painterResource("skill_icons_small/activities/${item.name}.png".lowercase()),
+                        contentDescription = item.name,
+                        modifier = Modifier.size(12.dp)
+                    )
+                    Row(horizontalArrangement = Arrangement.Center) {
+                        Text(
+                            text = max(0, result.getSkill(item).level).toString(),
+                            style = TextStyle(
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center,
+                                color = uiColor.value
                             )
-                        }
-
-
+                        )
                     }
                 }
             }
         }
-
     }
 }
