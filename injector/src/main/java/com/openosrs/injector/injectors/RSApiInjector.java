@@ -50,6 +50,8 @@ import net.runelite.asm.Type;
 import net.runelite.asm.attributes.Annotated;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
+
+import static com.openosrs.injector.Injector.report;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;
 
 public class RSApiInjector extends AbstractInjector
@@ -74,7 +76,7 @@ public class RSApiInjector extends AbstractInjector
 
 		retryFailures();
 
-		log.info("[INFO] Injected {} getters, {} setters, and {} invokers", get, set, voke);
+		report.add("Injected " + get + " getters, " + set + " setters, and " + voke + " invokers");
 	}
 
 	private void injectFields(ClassFile deobClass, RSApiClass implementingClass)

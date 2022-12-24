@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
 import joptsimple.ArgumentAcceptingOptionSpec;
@@ -41,6 +42,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 {
 	static final Logger log = new Logger("Injector");
 	static Injector injector = new Injector();
+
+	public static ArrayList<String> report = new ArrayList<>();
 
 	public static void main(String[] args)
 	{
@@ -91,6 +94,9 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		injector.initToVanilla();
 		injector.injectVanilla();
+		for (String s : report) {
+			log.warn(s);
+		}
 		save(injector.getVanilla(), injected, OutputMode.JAR, vanillaFile);
 		save(injector.getDeobfuscated(), new File("./deob-test.jar"), OutputMode.JAR, vanillaFile);
 	}

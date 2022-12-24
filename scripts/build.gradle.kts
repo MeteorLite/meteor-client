@@ -1,5 +1,5 @@
 plugins{
-    id("org.jetbrains.kotlin.jvm")
+    kotlin("jvm")
     `maven-publish`
 }
 
@@ -19,6 +19,7 @@ dependencies {
     implementation(project(":logger"))
     implementation("com.google.guava:guava:31.1-jre")
     runtimeOnly(group = "org.apache.maven", name = "maven-plugin-api", version = "_")
+    implementation("org.slf4j:slf4j-simple:2.0.6")
     testImplementation("org.junit.jupiter:junit-jupiter-api:_")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
 }

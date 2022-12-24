@@ -66,6 +66,8 @@ import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
 
+import static com.openosrs.injector.Injector.report;
+
 public class InjectHook extends AbstractInjector
 {
 	private static final String CLINIT = "<clinit>";
@@ -91,8 +93,7 @@ public class InjectHook extends AbstractInjector
 		}
 
 		injectHooks();
-
-		log.info("[INFO] Injected {} field hooks.", injectedHooks);
+		report.add("Injected " +  injectedHooks + " field hooks.");
 	}
 
 	private void injectMethods(Provider<ClassFile> mixinProvider, List<ClassFile> targetClasses)

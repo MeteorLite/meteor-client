@@ -10,15 +10,6 @@ repositories {
     mavenCentral()
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("mavenLocal") {
-            version = rootProject.extra.get("release") as String
-            from(components["java"])
-        }
-    }
-}
-
 dependencies {
     implementation(project(":api"))
     implementation(project(":logger"))

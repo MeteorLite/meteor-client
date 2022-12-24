@@ -89,11 +89,6 @@ public class rs2asmLexer extends Lexer
 
 	static
 	{
-		RuntimeMetaData.checkVersion("4.6", RuntimeMetaData.VERSION);
-	}
-
-	static
-	{
 		tokenNames = new String[_SYMBOLIC_NAMES.length];
 		for (int i = 0; i < tokenNames.length; i++)
 		{

@@ -100,11 +100,6 @@ public class rs2asmParser extends Parser
 
 	static
 	{
-		RuntimeMetaData.checkVersion("4.6", RuntimeMetaData.VERSION);
-	}
-
-	static
-	{
 		tokenNames = new String[_SYMBOLIC_NAMES.length];
 		for (int i = 0; i < tokenNames.length; i++)
 		{

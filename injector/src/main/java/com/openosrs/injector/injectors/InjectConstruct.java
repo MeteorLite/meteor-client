@@ -50,6 +50,8 @@ import net.runelite.asm.attributes.code.instructions.Return;
 import net.runelite.asm.pool.Class;
 import net.runelite.asm.pool.Method;
 import net.runelite.asm.signature.Signature;
+
+import static com.openosrs.injector.Injector.report;
 import static com.openosrs.injector.rsapi.RSApi.CONSTRUCT;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 
@@ -83,7 +85,7 @@ public class InjectConstruct extends AbstractInjector
 			injected++;
 		}
 
-		log.info("[INFO] Injected {} constructors", injected);
+		report.add("Injected " + injected + " constructors");
 	}
 
 	private void injectConstruct(ClassFile targetClass, Method apiMethod)
