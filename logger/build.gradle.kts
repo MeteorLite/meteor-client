@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm")
+    kotlin("jvm")
     `maven-publish`
 }
 
@@ -8,16 +8,6 @@ version = "1.0.0"
 
 repositories {
     mavenCentral()
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenLocal") {
-            artifactId = "logger"
-            version = "1.7.0"
-            from(components["kotlin"])
-        }
-    }
 }
 
 tasks.test {

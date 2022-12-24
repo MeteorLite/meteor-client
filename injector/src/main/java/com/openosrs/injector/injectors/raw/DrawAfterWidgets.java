@@ -251,7 +251,7 @@ public class DrawAfterWidgets extends AbstractInjector
 					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, invoke);
 					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, new GetField(instructions, callbacks.getPoolField()));
 					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, new GetStatic(instructions, client.getPoolField()));
-					log.debug("[DEBUG] injectDrawAfterWidgets injected a call after " + l);
+					//log.debug("[DEBUG] injectDrawAfterWidgets injected a call after " + l);
 
 					injected = true;
 				}

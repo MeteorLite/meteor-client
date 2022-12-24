@@ -48,6 +48,8 @@ import net.runelite.asm.attributes.code.instructions.ALoad;
 import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
 import net.runelite.asm.signature.Signature;
 
+import static com.openosrs.injector.Injector.report;
+
 public class InjectHookMethod extends AbstractInjector
 {
 	private static final Type METHODHOOK = new Type("Lnet/runelite/api/mixins/MethodHook;");
@@ -69,7 +71,7 @@ public class InjectHookMethod extends AbstractInjector
 			injectMethods(entry.getKey(), entry.getValue());
 		}
 
-		log.info("[INFO] Injected {} method hooks", injected);
+		report.add("Injected " + injected + " method hooks");
 	}
 
 	private void injectMethods(Provider<ClassFile> mixinProvider, List<ClassFile> targetClasses)

@@ -76,6 +76,8 @@ import net.runelite.deob.util.JarUtil;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 
+import static com.openosrs.injector.Injector.report;
+
 public class MixinInjector extends AbstractInjector
 {
 	private static final Type COPY = new Type("Lnet/runelite/api/mixins/Copy;");
@@ -112,28 +114,28 @@ public class MixinInjector extends AbstractInjector
 			injectInterfaces(entry.getKey(), entry.getValue());
 		}
 
-		log.info("[INFO] Injected {} interfaces", injectedInterfaces);
+		report.add("Injected " + injectedInterfaces + " mixin interfaces");
 
 		for (Map.Entry<Provider<ClassFile>, List<ClassFile>> entry : mixinTargets.entrySet())
 		{
 			injectFields(entry.getKey(), entry.getValue());
 		}
 
-		log.info("[INFO] Injected {} fields", injectedFields.size());
+		report.add("Injected " + injectedFields.size() + " mixin fields");
 
 		for (Map.Entry<Provider<ClassFile>, List<ClassFile>> entry : mixinTargets.entrySet())
 		{
 			findShadowFields(entry.getKey());
 		}
 
-		log.info("[INFO] Shadowed {} fields", shadowFields.size());
+		report.add("Shadowed " + shadowFields.size() + " fields");
 
 		for (Map.Entry<Provider<ClassFile>, List<ClassFile>> entry : mixinTargets.entrySet())
 		{
 			injectMethods(entry.getKey(), entry.getValue());
 		}
 
-		log.info("[INFO] Injected {}, copied {}, replaced {} methods", injected, copied, replaced);
+		report.add("Injected " + injected + ", copied " + copied + ", replaced " + replaced + " methods");
 
 		inject.runChildInjector(new InjectHook(inject, mixinTargets));
 

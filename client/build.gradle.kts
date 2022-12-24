@@ -88,6 +88,8 @@ dependencies {
 
     implementation(compose.desktop.currentOs)
     implementation("org.jetbrains.kotlin:kotlin-reflect:_")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0-RC2")
+
 }
 
 compose {
@@ -151,29 +153,13 @@ tasks.compileJava {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
-        apiVersion = "1.7"
-        languageVersion = "1.7"
+        apiVersion = "1.8"
+        languageVersion = "1.8"
         jvmTarget = "17"
         // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.
         freeCompilerArgs = listOf( //"-Xuse-k2",
             "-Xjvm-default=all",
             "-Xbackend-threads=4")
-    }
-}
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
-
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = rootProject.group.toString()
-            artifactId = project.name
-            version = rootProject.project.version.toString()
-            from(components["java"])
-            println("Publishing maven: [group: $groupId, artifact")
-        }
     }
 }
 

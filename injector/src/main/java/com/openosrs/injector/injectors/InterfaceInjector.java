@@ -12,6 +12,8 @@ import net.runelite.asm.ClassFile;
 import net.runelite.asm.Interfaces;
 import net.runelite.asm.pool.Class;
 import net.runelite.deob.DeobAnnotations;
+
+import static com.openosrs.injector.Injector.report;
 import static com.openosrs.injector.rsapi.RSApi.API_BASE;
 
 public class InterfaceInjector extends AbstractInjector
@@ -28,7 +30,7 @@ public class InterfaceInjector extends AbstractInjector
 		// forEachPair performs actions on a deob-vanilla pair, which is what's needed here
 		inject.forEachPair(this::injectInterface);
 
-		log.info("[INFO] Injected {} interfaces", implemented);
+		report.add("Injected " + implemented + " class interfaces");
 	}
 
 	private void injectInterface(final ClassFile deobCf, final ClassFile vanillaCf)
@@ -43,7 +45,7 @@ public class InterfaceInjector extends AbstractInjector
 		final String fullName = API_BASE + impls;
 		if (!inject.getRsApi().hasClass(fullName))
 		{
-			if (!fullName.contains("JSON"))
+			if (!fullName.contains("JSON") && !deobCf.getName().contains("jagex"))
 				log.error("[DEBUG] Class {} implements nonexistent interface {}, skipping interface injection",
 					deobCf.getName(),
 					fullName
