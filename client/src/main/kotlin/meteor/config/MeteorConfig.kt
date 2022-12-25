@@ -29,13 +29,13 @@ interface MeteorConfig : Config {
         return true
     }
     @ConfigItem(
-        name = "(requires restart) Enables scriptcreator",
+        name = "(requires restart) Enables console",
         keyName = "Enable scriptcreator",
         description = "",
         position = 0,
     )
     fun console(): Boolean {
-        return true
+        return false
     }
 
 
