@@ -139,7 +139,7 @@ public abstract class ScriptVMMixin implements RSClient
 				}
 				else if ("questInProgress".equals(stringOp))
 				{
-					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.ID, 0, 0);
+					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.DISPLAY_NAME, 0, 0);
 					if (dbResult != null) {
 						Quest quest = Quest.fromName(dbResult.toString());
 						if (quest != null)
@@ -147,7 +147,7 @@ public abstract class ScriptVMMixin implements RSClient
 					}
 				}
 				else if ("questNotStarted".equals(stringOp)) {
-					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.ID, 0, 0);
+					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.DISPLAY_NAME, 0, 0);
 					if (dbResult != null) {
 						Quest quest = Quest.fromName(dbResult.toString());
 						if (quest != null)
@@ -156,7 +156,7 @@ public abstract class ScriptVMMixin implements RSClient
 				}
 				else if ("questFinished".equals(stringOp))
 				{
-					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.ID, 0, 0);
+					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.DISPLAY_NAME, 0, 0);
 					if (dbResult != null) {
 						Quest quest = Quest.fromName(dbResult.toString());
 						if (quest != null)

@@ -28,7 +28,7 @@ public final class DBTableID
 {
 	public interface Quest
 	{
-		int ID = 1;
-		int DISPLAY_NAME = 2;
+		int DISPLAY_NAME = 1;
+		int ID = -1; // unknown
 	}
 }
