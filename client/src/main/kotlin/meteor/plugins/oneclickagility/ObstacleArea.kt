@@ -29,7 +29,7 @@ class ObstacleArea internal constructor(
     fun createMenuEntry(): MenuEntry? {
         return if (nextObstacle != null) {
             if (nextObstacle!!.distanceTo(Game.getClient().localPlayer!!.worldLocation) < 1) null else client.createMenuEntry(
-                nextObstacle!!.rawActions[0],
+                nextObstacle!!.rawActions!![0],
                 nextObstacle!!.name,
                 nextObstacle!!.id,
                 MenuAction.GAME_OBJECT_FIRST_OPTION.id,

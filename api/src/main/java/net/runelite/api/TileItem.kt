@@ -57,7 +57,7 @@ interface TileItem : Renderable {
     fun getMenu(idx: Int) : AutomatedMenu
     fun getMenu(idx: Int, opcode: Int) : AutomatedMenu
     fun getComposition() : ItemComposition
-    fun interact(idx: Int)
+    infix fun interact(idx: Int)
     fun interact(identifier: Int, opcode: Int, param0: Int, param1: Int)
 
     fun interact(idx: Int, opcode: Int)

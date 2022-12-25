@@ -22,6 +22,7 @@ repositories {
     maven { url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev/") }
     google()
     mavenCentral()
+    maven { url = uri("https://jitpack.io") }
     maven { url = uri("https://repo.runelite.net/") }
     maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
 }
@@ -86,9 +87,21 @@ dependencies {
     implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
     implementation("br.com.devsrsouza.compose.icons.jetbrains:tabler-icons:1.0.0")
 
+    //script creator
+    implementation(kotlin("stdlib-jdk8:1.8.0-RC2"))
+    implementation(kotlin("reflect"))
+    implementation(kotlin("script-runtime"))
+    implementation(kotlin("script-util"))
+    implementation(kotlin("compiler-embeddable"))
+    implementation(kotlin("scripting-compiler-embeddable"))
+    implementation(kotlin("script-util"))
+    implementation("org.slf4j:slf4j-api:_")
+    implementation("ch.qos.logback:logback-classic:_")
+    implementation("net.java.dev.jna:jna:_")
+    implementation("com.github.Qawaz.compose-code-editor:codeeditor:3.0.5")
+    implementation("com.halilibo.compose-richtext:richtext-commonmark:_")
+
     implementation(compose.desktop.currentOs)
-    implementation("org.jetbrains.kotlin:kotlin-reflect:_")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0-RC2")
 
 }
 

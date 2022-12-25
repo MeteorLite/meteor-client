@@ -237,7 +237,7 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         }
     }
 
-    fun use() {
+     fun use() {
         widgetId = WidgetInfo.INVENTORY.packedId
         log.info("[Use]")
         client.invokeMenuAction(
@@ -253,7 +253,7 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         )
     }
 
-    fun useOn(item: Item) {
+   infix fun useOn(item: Item) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         log.info("[Use-on Item] [${item.name}]")
@@ -270,28 +270,28 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         )
     }
 
-    fun useOn(npc: NPC) {
+    infix fun useOn(npc: NPC) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         log.info("[Use-on NPC] [${npc.name}]")
         client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_NPC.id)?.let { Interact(it) })
     }
 
-    fun useOn(player: Player) {
+    infix fun useOn(player: Player) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         log.info("[Use-on Player] [${player.name}]")
         client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_PLAYER.id)?.let { Interact(it) })
     }
 
-    fun useOn(loot: TileItem) {
+    infix fun useOn(loot: TileItem) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         log.info("[Use-on Loot] [${loot.getName()}]")
         client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM.id)?.let { Interact(it) })
     }
 
-    fun useOn(obj: TileObject) {
+    infix fun useOn(obj: TileObject) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
         log.info("[Use-on Object] [${obj.name}]")
@@ -348,7 +348,7 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         interact("Rub")
     }
 
-    fun interact(action: String) {
+    infix fun interact(action: String) {
         if (actions == null) {
             return
         }
@@ -362,7 +362,7 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         }
     }
 
-    fun interact(idx: Int) {
+    infix fun interact(idx: Int) {
         invoke(idx)
     }
 

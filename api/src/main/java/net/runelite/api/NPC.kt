@@ -79,7 +79,7 @@ interface NPC : Actor {
     // Kris changes:
     fun getNameOverride(): String?
 
-    override fun interact(action: String) {
+    override infix fun interact(action: String) {
         if (composition?.actions == null) {
             return
         }

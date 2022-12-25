@@ -339,7 +339,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<CheatEntered>(Events.CHEAT_ENTERED) { executeIfListening { onCheatEntered(it) } }
     }
 
-    private inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {
+    internal inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {
         subscribe(type, threadMode = SubscriberThreadMode.POSTING) { event -> unit.invoke(event.data) }
     }
 

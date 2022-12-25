@@ -4,6 +4,8 @@ import dev.hoot.api.game.Game;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.widgets.Widget;
 
+import java.util.Arrays;
+
 public class WidgetPackets
 {
 	public static void widgetFirstOption(net.runelite.api.widgets.Widget widget)
@@ -109,44 +111,23 @@ public class WidgetPackets
 
 	public static void widgetAction(Widget widget, String action)
 	{
-		var actions = widget.getActions();
+		var actions = widget.getRawActions();
 		if (actions == null)
 		{
 			return;
 		}
-		var index = actions.indexOf(action);
-		switch (index)
-		{
-			case 0:
-				widgetFirstOption(widget);
-				break;
-			case 1:
-				widgetSecondOption(widget);
-				break;
-			case 2:
-				widgetThirdOption(widget);
-				break;
-			case 3:
-				widgetFourthOption(widget);
-				break;
-			case 4:
-				widgetFifthOption(widget);
-				break;
-			case 5:
-				widgetSixthOption(widget);
-				break;
-			case 6:
-				widgetSeventhOption(widget);
-				break;
-			case 7:
-				widgetEighthOption(widget);
-				break;
-			case 8:
-				widgetNinthOption(widget);
-				break;
-			case 9:
-				widgetTenthOption(widget);
-				break;
+		var index = Arrays.stream(actions).toList().indexOf(action);
+		switch (index) {
+			case 0 -> widgetFirstOption(widget);
+			case 1 -> widgetSecondOption(widget);
+			case 2 -> widgetThirdOption(widget);
+			case 3 -> widgetFourthOption(widget);
+			case 4 -> widgetFifthOption(widget);
+			case 5 -> widgetSixthOption(widget);
+			case 6 -> widgetSeventhOption(widget);
+			case 7 -> widgetEighthOption(widget);
+			case 8 -> widgetNinthOption(widget);
+			case 9 -> widgetTenthOption(widget);
 		}
 	}
 

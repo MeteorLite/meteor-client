@@ -19,14 +19,14 @@ fun FrameWindowScope.windowContent() {
 
             windowFrame {
                 Main.window = this@windowContent
+
                 when {
-                    pluginsOpen.value ||
-                            configOpen.value ||
-                            pluginPanelIsOpen.value -> window.minimumSize =
-                        Dimension(Applet().clientWidth + Main.meteorConfig.toolbarWidth(), 542)
-                    else -> window.minimumSize =
-                        Dimension(Applet().minimalWidth + Main.meteorConfig.toolbarWidth(), 542)
+                    scriptCreator.value -> window.minimumSize =Dimension(1335, if (consoleOpen.value) consoleHeight else minimumHeight)
+                    pluginsOpen.value || configOpen.value  -> window.minimumSize =
+                        Dimension(Applet().clientWidth + Main.meteorConfig.toolbarWidth(), if (consoleOpen.value) consoleHeight else minimumHeight)
+                    else -> if(!scriptCreator.value) window.minimumSize = Dimension(Applet().minimalWidth + Main.meteorConfig.toolbarWidth(), if (consoleOpen.value) consoleHeight else 542)
                 }
+
                 when {
                     toolBarOpen.value -> toolBar {
                         pluginListButton

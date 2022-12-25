@@ -28,7 +28,15 @@ interface MeteorConfig : Config {
     fun theme(): Boolean {
         return true
     }
-
+    @ConfigItem(
+        name = "(requires restart) Enables scriptcreator",
+        keyName = "Enable scriptcreator",
+        description = "",
+        position = 0,
+    )
+    fun console(): Boolean {
+        return true
+    }
 
 
     @Range(min = 35, max = 100, textInput = false)
