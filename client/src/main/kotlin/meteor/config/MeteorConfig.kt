@@ -29,8 +29,8 @@ interface MeteorConfig : Config {
         return true
     }
     @ConfigItem(
-        name = "(requires restart) Enables console",
-        keyName = "Enable scriptcreator",
+        name = "Enables console",
+        keyName = "console",
         description = "",
         position = 0,
     )
