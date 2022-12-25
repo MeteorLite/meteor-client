@@ -106,7 +106,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         Applet().init()
 
         Window(
-            onCloseRequest = Main::shutdown,
+            onCloseRequest = Main::exitApplication,
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             undecorated = meteorConfig.fullscreen(),
@@ -170,16 +170,10 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         GameEventManager
     }
 
-    fun shutdown() {
+    override fun exitApplication() {
         try {
             PluginManager.shutdown()
         } catch (_: Exception) {}
-
-        exitApplication()
-    }
-
-    override fun exitApplication() {
-        PluginManager.shutdown()
         ConfigManager.saveProperties()
         exitProcess(0)
     }
