@@ -94,5 +94,6 @@ val pluginListButton = addButton(
                 }
                 else -> pluginsOpen.value = !pluginsOpen.value
             }
-        })
+        },
+    position = 0)
 )
