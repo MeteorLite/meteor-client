@@ -9,15 +9,14 @@ import java.awt.Color
 
 @ConfigGroup(value = "Script Creator")
 interface ScriptCreatorConfig : Config {
-
     @ConfigItem(
         keyName = "Font Size",
         name = "Font Size",
-        description = "The font size displayed in the Scripting Console",
+        description = "The size of font for the editor",
         position = 2,
     )
     fun fontSize(): Int {
-        return 12
+        return 14
     }
     @ConfigItem(
         keyName = "Type Color",
@@ -26,8 +25,9 @@ interface ScriptCreatorConfig : Config {
         position = 2,
     )
     fun type(): Color {
-        return Color.BLACK
+        return Color(116, 196, 114)
     }
+
 
     @ConfigItem(
         keyName = "Keyword Color",
@@ -36,7 +36,7 @@ interface ScriptCreatorConfig : Config {
         position = 3,
     )
     fun keyword(): Color {
-        return Color.BLUE
+        return Color(81,60,119)
     }
 
     @ConfigItem(
@@ -46,7 +46,7 @@ interface ScriptCreatorConfig : Config {
         position = 4,
     )
     fun literal(): Color {
-        return Color.GREEN
+        return Color(102, 217, 238)
     }
 
     @ConfigItem(
@@ -56,7 +56,7 @@ interface ScriptCreatorConfig : Config {
         position = 5,
     )
     fun comment(): Color {
-        return Color.GRAY
+        return Color(118, 113, 94)
     }
 
     @ConfigItem(
@@ -66,7 +66,7 @@ interface ScriptCreatorConfig : Config {
         position = 6,
     )
     fun string(): Color {
-        return Color.YELLOW
+        return Color(230, 219, 116)
     }
 
     @ConfigItem(
@@ -76,8 +76,9 @@ interface ScriptCreatorConfig : Config {
         position = 7,
     )
     fun punctuation(): Color {
-        return Color.GREEN
+        return Color(193, 193, 193)
     }
+
 
     @ConfigItem(
         keyName = "Plain Text Color",
@@ -86,9 +87,8 @@ interface ScriptCreatorConfig : Config {
         position = 8,
     )
     fun plain(): Color {
-        return Color.GREEN
+        return Color(179, 227, 157)
     }
-
     @ConfigItem(
         keyName = "Tag Color",
         name = "Tag Color",
@@ -96,7 +96,7 @@ interface ScriptCreatorConfig : Config {
         position = 9,
     )
     fun tag(): Color {
-        return Color.GREEN
+        return Color(38, 42, 114)
     }
 
     @ConfigItem(
@@ -106,8 +106,9 @@ interface ScriptCreatorConfig : Config {
         position = 10,
     )
     fun declaration(): Color {
-        return Color.MAGENTA
+        return Color(181, 255, 205)
     }
+
 
     @ConfigItem(
         keyName = "Source Color",
@@ -116,7 +117,7 @@ interface ScriptCreatorConfig : Config {
         position = 11,
     )
     fun source(): Color {
-        return Color.MAGENTA
+        return Color(248, 248, 240)
     }
 
     @ConfigItem(
@@ -126,7 +127,7 @@ interface ScriptCreatorConfig : Config {
         position = 12,
     )
     fun attrName(): Color {
-        return Color.GREEN
+        return Color(166, 226, 46)
     }
 
     @ConfigItem(
@@ -136,7 +137,7 @@ interface ScriptCreatorConfig : Config {
         position = 13,
     )
     fun attrValue(): Color {
-        return Color.GREEN
+        return Color(230, 219, 116)
     }
 
     @ConfigItem(
@@ -146,7 +147,6 @@ interface ScriptCreatorConfig : Config {
         position = 14,
     )
     fun nocode(): Color {
-        return Color.DARK_GRAY
+        return Color(248, 248, 240)
     }
-
 }

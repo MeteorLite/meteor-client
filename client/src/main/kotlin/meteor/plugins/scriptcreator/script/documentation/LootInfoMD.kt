@@ -4,12 +4,10 @@ val lootInfoMD = """
    
 ## `Loot` Api
 
-Object for interacting with loot in a game or application.
+
 
 ### `first` function
-```kotlin
-inline infix fun <reified T> first(id: T): T?
-```
+
 Get the first instance of loot with the given `id`.
 
 #### Parameters
@@ -20,11 +18,15 @@ Get the first instance of loot with the given `id`.
 
 The first instance of the loot, or `null` if it is not present.
 
-### `exists` function
-```kotlin
-inline infix fun <reified T> exists(id: T): Boolean
-inline infix fun <reified T> exists(id: Iterable<T>): Boolean
+#### Usage
 ```
+val loot123 = Loot first 123
+if (loot123 != null) {
+    // loot with ID 123 is present
+}
+```
+### `exists` function
+
 Check if loot with the given `id` or any of the loot in the given list of IDs are present.
 
 #### Parameters
@@ -34,5 +36,14 @@ Check if loot with the given `id` or any of the loot in the given list of IDs ar
 #### Returns
 
 `true` if the loot is present, or if any of the loot in the given list are present, `false` otherwise.
- 
+
+#### Usage
+```
+if (Loot exists 123) {
+    // loot with ID 123 is present
+}
+
+if (Loot exists listOf(123, 456, 789)) {
+    // any of the loot with IDs 123, 456, or 789 are present    
+}```
 """.trimIndent()

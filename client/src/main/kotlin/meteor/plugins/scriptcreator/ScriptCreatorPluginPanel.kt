@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
@@ -33,6 +34,7 @@ import compose.icons.octicons.Play24
 import compose.icons.octicons.Question24
 import compose.icons.octicons.Stop24
 import dev.hoot.api.commons.FileUtil
+import meteor.plugins.scriptcreator.script.api.Npc
 import meteor.plugins.scriptcreator.script.documentation.*
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.*
@@ -45,6 +47,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
 
     @Composable
     override fun Header() {
+
         var expanded by remember { mutableStateOf(false) }
         Spacer(Modifier.height(6.dp))
         Row(
@@ -157,8 +160,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                     imageVector = Octicons.Stop24,
                     contentDescription = "",
                     modifier = Modifier.clickable {
-                        plugin.stop()
-
+                        plugin.stopScript()
                     }.size(25.dp)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
@@ -168,16 +170,20 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                     contentDescription = "",
                     modifier = Modifier.clickable {
                         if (!md.value)  md.value = true else if (md.value)  md.value = false
-
                     }.size(25.dp)
                 )
                 CursorDropdownMenu(
                     expanded = md.value,
                     onDismissRequest = {
                             md.value = false
-
                     },
                 ) {
+                    DropdownMenuItem({ setSelectedCategory("Use On") }) {
+                        Text("Use On")
+                    }
+                    DropdownMenuItem({ setSelectedCategory("Interact") }) {
+                        Text("Interact")
+                    }
                     DropdownMenuItem({ setSelectedCategory("Bank") }) {
                         Text("Bank")
                     }
@@ -232,7 +238,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
     }
 
 
-    fun setSelectedCategory(selectedCategory: String) {
+    private fun setSelectedCategory(selectedCategory: String) {
         bankInfo.value = false
         gearInfo.value = false
         itemInfo.value = false
@@ -240,7 +246,11 @@ class ScriptCreatorPluginPanel : PluginPanel() {
         lootInfo.value = false
         npcInfo.value = false
         objectInfo.value = false
+        interactInfo.value = false
+        useOnInfo.value = false
         when (selectedCategory) {
+            "Use On" -> useOnInfo.value = true
+            "Interact" -> interactInfo.value = true
             "Bank" -> bankInfo.value = true
             "Gear" -> gearInfo.value = true
             "Item" -> itemInfo.value = true
@@ -249,6 +259,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
             "Npc" -> npcInfo.value = true
             "Object" -> objectInfo.value = true
             "Exit Info" -> {
+                useOnInfo.value = false
                 bankInfo.value = false
                 gearInfo.value = false
                 itemInfo.value = false
@@ -306,55 +317,48 @@ class ScriptCreatorPluginPanel : PluginPanel() {
 
 
                 item {
-                    if (bankInfo.value) {
-                        RichText(
+                    when {
+                        useOnInfo.value -> RichText(
+                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
+                        ) {
+                            Markdown(useOnInfoMD, MarkdownParseOptions(true))
+                        }
+                        interactInfo.value -> RichText(
+                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
+                        ) {
+                            Markdown(interactInfoMD, MarkdownParseOptions(true))
+                        }
+                        bankInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {
                             Markdown(bankInfoMD, MarkdownParseOptions(true))
                         }
-                    }
-
-                    if (gearInfo.value) {
-                        RichText(
+                        gearInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {
                             Markdown(gearInfoMD, MarkdownParseOptions(true))
                         }
-                    }
-
-                    if (itemInfo.value) {
-                        RichText(
+                        itemInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {
                             Markdown(itemInfoMD, MarkdownParseOptions(true))
                         }
-                    }
-
-                    if (keyInfo.value) {
-                        RichText(
+                        keyInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {
                             Markdown(keyInfoMD, MarkdownParseOptions(true))
                         }
-                    }
-
-                    if (lootInfo.value) {
-                        RichText(
+                        lootInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {
                             Markdown(lootInfoMD, MarkdownParseOptions(true))
                         }
-                    }
-
-                    if (npcInfo.value) {
-                        RichText(
+                        npcInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {
                             Markdown(npcInfoMD, MarkdownParseOptions(true))
                         }
-                    }
-                    if (objectInfo.value) {
-                        RichText(
+                        objectInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {
                             Markdown(objectInfoMD, MarkdownParseOptions(true))
@@ -367,8 +371,9 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                             codeState.value = it.text.replace("\t", "   ")
                            textFieldValue = it.copy(annotatedString = parse(it.text))
                         },
-                        textStyle = TextStyle(fontSize = config.fontSize().sp),
+                        textStyle = TextStyle(fontSize = config.fontSize().sp,),
                         maxLines = 1000,
+
                         onTextLayout = { result ->
                             lineTops = Array(result.lineCount) { result. getLineTop(it) }
                         }

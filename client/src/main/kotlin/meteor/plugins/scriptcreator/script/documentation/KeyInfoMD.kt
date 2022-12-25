@@ -3,7 +3,7 @@ package meteor.plugins.scriptcreator.script.documentation
 val keyInfoMD = """
    ## `Key` Api
 
-Object for interacting with keyboard keys in a game or application.
+
 
 ### `type` function
 ```kotlin

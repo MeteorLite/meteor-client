@@ -4,6 +4,7 @@ import compose.icons.Octicons
 import compose.icons.octicons.Code16
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.scriptcreator.script.eventbus.ScriptSubscriber
+import meteor.plugins.scriptcreator.script.eventbus.unsubscribeScript
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.codeState
 import meteor.ui.composables.preferences.scriptCreator
@@ -53,6 +54,11 @@ class ScriptCreatorPlugin : ScriptSubscriber() {
         stop()
         removeButton(consoleButton)
         panel = null
+    }
+
+    fun stopScript(){
+        stop()
+        unsubscribeScript()
     }
 
     fun startScript() {

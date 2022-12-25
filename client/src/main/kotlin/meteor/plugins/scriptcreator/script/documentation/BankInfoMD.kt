@@ -4,7 +4,7 @@ package meteor.plugins.scriptcreator.script.documentation
 val bankInfoMD = """
     ## `Bank` Api
 
-    Object for interacting with a player's bank inventory.
+
 
     ### `contains` function
     ```kotlin
