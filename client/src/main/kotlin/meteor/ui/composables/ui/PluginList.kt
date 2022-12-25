@@ -85,9 +85,8 @@ fun searchBar(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun plugins() {
-    if (pluginListScrollState == null) {
-        pluginListScrollState = rememberLazyListState()
-    }
+    val pluginListScrollState = rememberLazyListState()
+
     val textState = remember { searchValue }
     searchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
 

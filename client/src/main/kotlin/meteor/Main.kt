@@ -24,6 +24,7 @@ import meteor.plugins.xptracker.XpTrackerService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
 import meteor.session.SessionManager
+import meteor.ui.composables.preferences.outPut
 import meteor.ui.composables.ui.windowContent
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
@@ -49,6 +50,9 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
 import org.rationalityfrontline.kevent.KEVENT
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
+import java.nio.charset.Charset
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
@@ -129,6 +133,14 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         xpTrackerService = XpTrackerService(PluginManager.get())
         SessionManager.start()
         timer.stop()
+        System.setOut(PrintStream(object : ByteArrayOutputStream() {
+            override fun flush() {
+                val decodedString = String(buf, 0, count, Charset.defaultCharset())
+                val strippedString = decodedString.replace(Regex("\u001B\\[[;\\d]*m"), "")
+                outPut.value = strippedString
+            }
+
+        }, true))
         logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 

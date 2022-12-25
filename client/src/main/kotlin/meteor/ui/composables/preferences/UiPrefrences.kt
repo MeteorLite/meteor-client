@@ -1,12 +1,11 @@
 package meteor.ui.composables.preferences
 
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.TextFieldValue
 import compose.icons.Octicons
 import compose.icons.octicons.Plug24
 import meteor.Main
@@ -18,32 +17,25 @@ import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.util.MultiMap
 import net.runelite.api.Skill
+import net.runelite.http.api.hiscore.HiscoreResult
 
 
 var pluginsOpen = mutableStateOf(false)
 var configOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
-var lootObject: MutableList<LootTrackerItem> = mutableListOf()
+const val consoleHeight = 717
+const val minimumHeight = 542
+var result: HiscoreResult? = HiscoreResult()
+var consoleOpen = mutableStateOf(Main.meteorConfig.console())
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
-var expMap = mutableStateMapOf<Skill, Int>()
-var priceMap = MultiMap<String, Int>()
-var multiMap = mutableStateOf(MultiMap<String, LootTrackerItem?>())
-var tp = mutableStateOf(0)
-var tpl = mutableStateListOf<Int>()
-var expHrMap = mutableStateMapOf<Skill, Int>()
-var actionsHrMap = mutableStateMapOf<Skill,Int>()
-var startExp = emptyList<Pair<Skill,Int>>()
+var searchValue = mutableStateOf("")
 var intColor = Color(156, 217, 209)
 var lastButtonClicked : ToolbarButton? = null
-val pluginListSize = mutableStateOf(Main.meteorConfig.pluginListTextSize())
-val pluginSpacer = mutableStateOf(Main.meteorConfig.pluginSpaceBetween())
-var searchValue = mutableStateOf("")
-var pluginListScrollState: LazyListState? = null
 lateinit var descriptor: ConfigDescriptor
 lateinit var lastPlugin: Plugin
-
-
+val pluginListSize = mutableStateOf(Main.meteorConfig.pluginListTextSize())
+val pluginSpacer = mutableStateOf(Main.meteorConfig.pluginSpaceBetween())
 val darkLightMode
     get() = mutableStateOf(Main.meteorConfig.theme())
 val uiColor
@@ -86,8 +78,7 @@ val pluginListButton = addButton(
         "Plugins",
         Octicons.Plug24,
         iconColor = uiColor.value,
-        description = "Plugin List",
-        position = 1,
+        description = "Opens Plugins list",
         onClick = {
             when {
                 pluginPanelIsOpen.value -> {

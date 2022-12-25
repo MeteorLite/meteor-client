@@ -112,6 +112,7 @@ import meteor.plugins.oneclickkarambwans.OneClickKarambwansPlugin
 import meteor.plugins.pestcontrol.PestControlPlugin
 import meteor.plugins.poison.PoisonPlugin
 import meteor.plugins.reportbutton.ReportButtonPlugin
+import meteor.plugins.scriptcreator.ScriptCreatorPlugin
 import net.runelite.client.plugins.oneclick3t4g.OneClick3t4g
 import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
@@ -235,6 +236,7 @@ object PluginManager {
         init<ReportButtonPlugin>()
         init<RunepouchPlugin>()
         init<RsnHiderPlugin>()
+        init<ScriptCreatorPlugin>()
         init<SlayerPlugin>()
         init<SpecBarPlugin>()
         init<StatusBarsPlugin>()
