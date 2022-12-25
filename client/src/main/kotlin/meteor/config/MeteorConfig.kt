@@ -29,7 +29,7 @@ interface MeteorConfig : Config {
         return true
     }
     @ConfigItem(
-        name = "Enables console",
+        name = "Enable console",
         keyName = "console",
         description = "",
         position = 0,
