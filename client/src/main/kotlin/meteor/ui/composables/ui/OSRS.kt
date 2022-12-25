@@ -18,6 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import eventbus.events.ConfigChanged
 import kotlinx.coroutines.launch
 import meteor.Main
 import meteor.rs.Applet
@@ -30,10 +31,19 @@ import javax.swing.JPanel
 
 var loaded = false
 var applet = java.applet.Applet()
+var subscribed = false
 
 @Composable
 fun OSRSPanel() {
-
+    if (!subscribed) {
+        Main.eventBus.subscribe<ConfigChanged>(eventbus.Events.CONFIG_CHANGED) {
+            if (it.data.group == "MeteorLite")
+                if (it.data.key == "console")
+                    consoleOpen.value = Main.meteorConfig.console()
+        }
+        subscribed = true
+    }
+    
     LazyColumn {
         item {
             Row {
