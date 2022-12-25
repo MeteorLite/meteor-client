@@ -96,7 +96,6 @@ dependencies {
     implementation(kotlin("scripting-compiler-embeddable"))
     implementation(kotlin("script-util"))
     implementation("org.slf4j:slf4j-api:_")
-    implementation("ch.qos.logback:logback-classic:_")
     implementation("net.java.dev.jna:jna:_")
     implementation("com.github.Qawaz.compose-code-editor:codeeditor:3.0.5")
     implementation("com.halilibo.compose-richtext:richtext-commonmark:_")
