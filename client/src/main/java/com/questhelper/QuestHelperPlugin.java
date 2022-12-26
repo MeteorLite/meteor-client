@@ -273,6 +273,7 @@ public class QuestHelperPlugin extends Plugin
 	{
 		if (event.getItemContainer() == getClient().getItemContainer(InventoryID.BANK))
 		{
+			System.out.println("Updating QH Bank items");
 			questBank.updateLocalBank(event.getItemContainer().getItems());
 		}
 	}

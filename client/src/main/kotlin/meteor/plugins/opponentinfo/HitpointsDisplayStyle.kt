@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Sean Dewar <https://github.com/seandewar>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,21 +22,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.hiscore;
+package meteor.plugins.opponentinfo
 
-import java.util.Map;
-import lombok.Value;
-import net.runelite.http.api.hiscore.HiscoreSkill;
-import net.runelite.http.api.hiscore.Skill;
-
-@Value
-public class HiscoreResult
-{
-	private String player;
-	private Map<HiscoreSkill, Skill> skills;
-
-	public Skill getSkill(HiscoreSkill skill)
-	{
-		return skills.get(skill);
-	}
+enum class HitpointsDisplayStyle {
+    HITPOINTS, PERCENTAGE, BOTH
 }

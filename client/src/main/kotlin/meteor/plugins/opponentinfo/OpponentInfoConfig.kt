@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Jordan Atwood <jordan.atwood423@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,21 +22,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.hiscore;
+package meteor.plugins.opponentinfo
 
-import java.util.Map;
-import lombok.Value;
-import net.runelite.http.api.hiscore.HiscoreSkill;
-import net.runelite.http.api.hiscore.Skill;
+import meteor.config.legacy.Config
+import meteor.config.legacy.ConfigGroup
+import meteor.config.legacy.ConfigItem
 
-@Value
-public class HiscoreResult
-{
-	private String player;
-	private Map<HiscoreSkill, Skill> skills;
+@ConfigGroup("opponentinfo")
+interface OpponentInfoConfig : Config {
+    @ConfigItem(
+        keyName = "lookupOnInteraction",
+        name = "Lookup players on interaction",
+        description = "Display a combat stat comparison panel on player interaction. (follow, trade, challenge, attack, etc.)",
+        position = 0
+    )
+    fun lookupOnInteraction(): Boolean {
+        return false
+    }
 
-	public Skill getSkill(HiscoreSkill skill)
-	{
-		return skills.get(skill);
-	}
+    @ConfigItem(
+        keyName = "hitpointsDisplayStyle",
+        name = "Display style",
+        description = "Show opponent's hitpoints as a value (if known), percentage, or both",
+        position = 1
+    )
+    fun hitpointsDisplayStyle(): HitpointsDisplayStyle? {
+        return HitpointsDisplayStyle.HITPOINTS
+    }
+
+    @ConfigItem(
+        keyName = "showOpponentsInMenu",
+        name = "Show opponents in menu",
+        description = "Marks opponents names in the menu which you are attacking or are attacking you (NPC only)",
+        position = 3
+    )
+    fun showOpponentsInMenu(): Boolean {
+        return false
+    }
 }
