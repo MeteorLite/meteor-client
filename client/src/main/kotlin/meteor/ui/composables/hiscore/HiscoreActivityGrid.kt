@@ -14,10 +14,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import meteor.hiscore.HiscoreSkill
+import meteor.hiscore.HiscoreSkillType
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
-import net.runelite.http.api.hiscore.HiscoreSkill
-import net.runelite.http.api.hiscore.HiscoreSkillType
 import kotlin.math.max
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -33,7 +33,7 @@ fun LazyGridScope.hiscoreActivityGrid() {
                 ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
                     Column(modifier = Modifier.background(surface)) {
                         Text(
-                            text = "Rank:" + max(0, result.getSkill(item).rank).toString(),
+                            text = "Rank:" + max(0, result.getSkill(item)!!.rank).toString(),
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                         )
                         Text(
@@ -53,7 +53,7 @@ fun LazyGridScope.hiscoreActivityGrid() {
                     )
                     Row(horizontalArrangement = Arrangement.Center) {
                         Text(
-                            text = max(0, result.getSkill(item).level).toString(),
+                            text = max(0, result.getSkill(item)!!.level).toString(),
                             style = TextStyle(
                                 fontSize = 12.sp,
                                 textAlign = TextAlign.Center,

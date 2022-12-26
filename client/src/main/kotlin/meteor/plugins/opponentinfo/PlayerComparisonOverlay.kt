@@ -27,6 +27,8 @@ package meteor.plugins.opponentinfo
 
 import meteor.Main
 import meteor.hiscore.HiscoreManager
+import meteor.hiscore.HiscoreResult
+import meteor.hiscore.HiscoreSkill
 import meteor.ui.components.LineComponent
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayLayer
@@ -36,8 +38,6 @@ import meteor.ui.table.TitleComponent.Companion.builder
 import net.runelite.api.Player
 import net.runelite.api.Skill
 import net.runelite.api.util.Text
-import net.runelite.http.api.hiscore.HiscoreResult
-import net.runelite.http.api.hiscore.HiscoreSkill
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
@@ -73,7 +73,7 @@ internal class PlayerComparisonOverlay(
         val opponentName = opponentSkills.player
         panelComponent.children.add(
             builder()
-                .text(opponentName)
+                .text(opponentName!!)
                 .color(HIGHLIGHT_COLOR)
         )
         panelComponent.children.add(
@@ -95,7 +95,7 @@ internal class PlayerComparisonOverlay(
             val opponentSkillLevel = opponentSkill.level
             panelComponent.children.add(
                 LineComponent.Builder()
-                    .left(hiscoreSkill.getName())
+                    .left(hiscoreSkill.skillName)
                     .right("$playerSkillLevel/$opponentSkillLevel")
                     .rightColor(comparisonStatColor(playerSkillLevel, opponentSkillLevel))
                     .build()

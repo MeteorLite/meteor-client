@@ -28,15 +28,12 @@ import com.google.common.cache.CacheBuilder
 import com.google.common.cache.LoadingCache
 import com.google.common.collect.ImmutableMap
 import meteor.Main
-import net.runelite.http.api.hiscore.HiscoreClient
-import net.runelite.http.api.hiscore.HiscoreEndpoint
-import net.runelite.http.api.hiscore.HiscoreResult
 import java.io.IOException
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 
 object HiscoreManager {
-    private val hiscoreClient: HiscoreClient = HiscoreClient(Main.httpClient)
+    private val hiscoreClient: HiscoreClient = HiscoreClient()
     private val executor: ScheduledExecutorService = Main.executor
     internal class HiscoreKey(var username: String, var type: HiscoreEndpoint)
     val EMPTY = HiscoreResult(null, ImmutableMap.of())

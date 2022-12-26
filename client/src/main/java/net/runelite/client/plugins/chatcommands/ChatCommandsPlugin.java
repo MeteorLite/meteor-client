@@ -37,6 +37,10 @@ import lombok.extern.slf4j.Slf4j;
 import meteor.Main;
 import meteor.config.ConfigManager;
 import meteor.game.ItemManager;
+import meteor.hiscore.HiscoreClient;
+import meteor.hiscore.HiscoreEndpoint;
+import meteor.hiscore.HiscoreResult;
+import meteor.hiscore.HiscoreSkill;
 import meteor.input.KeyManager;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
@@ -55,10 +59,6 @@ import net.runelite.client.chat.CommandManager;
 import net.runelite.client.events.ChatInput;
 import net.runelite.http.api.chat.ChatClient;
 import net.runelite.http.api.chat.Duels;
-import net.runelite.http.api.hiscore.HiscoreClient;
-import net.runelite.http.api.hiscore.HiscoreEndpoint;
-import net.runelite.http.api.hiscore.HiscoreResult;
-import net.runelite.http.api.hiscore.HiscoreSkill;
 import net.runelite.http.api.item.ItemPrice;
 import okhttp3.OkHttpClient;
 import org.apache.commons.text.WordUtils;
@@ -142,7 +142,7 @@ public class ChatCommandsPlugin extends Plugin
 	private ChatCommandManager chatCommandManager = Main.INSTANCE.getChatCommandManager();
 	private ScheduledExecutorService executor = Main.INSTANCE.getExecutor();
 	private KeyManager keyManager = KeyManager.INSTANCE;
-	private HiscoreClient hiscoreClient = new HiscoreClient(new OkHttpClient());
+	private HiscoreClient hiscoreClient = new HiscoreClient();
 	private ChatClient chatClient = new ChatClient(new OkHttpClient());
 
 	private Gson gson = new Gson();
@@ -1346,12 +1346,12 @@ public class ChatCommandsPlugin extends Plugin
 				return;
 			}
 
-			final net.runelite.http.api.hiscore.Skill hiscoreSkill = result.getSkill(skill);
+			final meteor.hiscore.Skill hiscoreSkill = result.getSkill(skill);
 			ChatMessageBuilder chatMessageBuilder = new ChatMessageBuilder()
 				.append(ChatColorType.NORMAL)
 				.append("Level ")
 				.append(ChatColorType.HIGHLIGHT)
-				.append(skill.getName()).append(": ").append(String.valueOf(hiscoreSkill.getLevel()))
+				.append(skill.getSkillName()).append(": ").append(String.valueOf(hiscoreSkill.getLevel()))
 				.append(ChatColorType.NORMAL);
 			if (hiscoreSkill.getExperience() != -1)
 			{
@@ -1398,13 +1398,13 @@ public class ChatCommandsPlugin extends Plugin
 				return;
 			}
 
-			int attack = playerStats.getAttack().getLevel();
-			int strength = playerStats.getStrength().getLevel();
-			int defence = playerStats.getDefence().getLevel();
-			int hitpoints = playerStats.getHitpoints().getLevel();
-			int ranged = playerStats.getRanged().getLevel();
-			int prayer = playerStats.getPrayer().getLevel();
-			int magic = playerStats.getMagic().getLevel();
+			int attack = playerStats.getSkill(HiscoreSkill.ATTACK).getLevel();
+			int strength = playerStats.getSkill(HiscoreSkill.STRENGTH).getLevel();
+			int defence = playerStats.getSkill(HiscoreSkill.DEFENCE).getLevel();
+			int hitpoints = playerStats.getSkill(HiscoreSkill.HITPOINTS).getLevel();
+			int ranged = playerStats.getSkill(HiscoreSkill.RANGED).getLevel();
+			int prayer = playerStats.getSkill(HiscoreSkill.PRAYER).getLevel();
+			int magic = playerStats.getSkill(HiscoreSkill.MAGIC).getLevel();
 			int combatLevel = Experience.getCombatLevel(attack, strength, defence, hitpoints, magic, ranged, prayer);
 
 			String response = new ChatMessageBuilder()
@@ -1507,7 +1507,7 @@ public class ChatCommandsPlugin extends Plugin
 	{
 		try
 		{
-			final net.runelite.http.api.hiscore.Skill hiscoreSkill;
+			final meteor.hiscore.Skill hiscoreSkill;
 			final HiscoreLookup lookup = getCorrectLookupFor(chatMessage);
 
 			// League points only exist on the league hiscores
@@ -1519,29 +1519,21 @@ public class ChatCommandsPlugin extends Plugin
 
 			if (result == null)
 			{
-				log.warn("error looking up {} score: not found", minigame.getName().toLowerCase());
+				log.warn("error looking up {} score: not found", minigame.getSkillName().toLowerCase());
 				return;
 			}
 
 			switch (minigame)
 			{
 				case BOUNTY_HUNTER_HUNTER:
-					hiscoreSkill = result.getBountyHunterHunter();
-					break;
 				case BOUNTY_HUNTER_ROGUE:
-					hiscoreSkill = result.getBountyHunterRogue();
-					break;
 				case LAST_MAN_STANDING:
-					hiscoreSkill = result.getLastManStanding();
-					break;
 				case LEAGUE_POINTS:
-					hiscoreSkill = result.getLeaguePoints();
-					break;
 				case SOUL_WARS_ZEAL:
-					hiscoreSkill = result.getSoulWarsZeal();
+					hiscoreSkill = result.getSkill(minigame);
 					break;
 				default:
-					log.warn("error looking up {} score: not implemented", minigame.getName().toLowerCase());
+					log.warn("error looking up {} score: not implemented", minigame.getSkillName().toLowerCase());
 					return;
 			}
 
@@ -1553,7 +1545,7 @@ public class ChatCommandsPlugin extends Plugin
 
 			ChatMessageBuilder chatMessageBuilder = new ChatMessageBuilder()
 				.append(ChatColorType.NORMAL)
-				.append(minigame.getName())
+				.append(minigame.getSkillName())
 				.append(" Score: ")
 				.append(ChatColorType.HIGHLIGHT)
 				.append(String.format("%,d", score));
@@ -1576,7 +1568,7 @@ public class ChatCommandsPlugin extends Plugin
 		}
 		catch (IOException ex)
 		{
-			log.warn("error looking up {}", minigame.getName().toLowerCase(), ex);
+			log.warn("error looking up {}", minigame.getSkillName().toLowerCase(), ex);
 		}
 	}
 
@@ -1600,7 +1592,7 @@ public class ChatCommandsPlugin extends Plugin
 
 		try
 		{
-			final net.runelite.http.api.hiscore.Skill hiscoreSkill;
+			final meteor.hiscore.Skill hiscoreSkill;
 			final HiscoreLookup lookup = getCorrectLookupFor(chatMessage);
 			final HiscoreResult result = hiscoreClient.lookup(lookup.getName(), lookup.getEndpoint());
 
@@ -1615,25 +1607,25 @@ public class ChatCommandsPlugin extends Plugin
 			switch (level)
 			{
 				case "beginner":
-					hiscoreSkill = result.getClueScrollBeginner();
+					hiscoreSkill = result.getSkill(HiscoreSkill.CLUE_SCROLL_BEGINNER);
 					break;
 				case "easy":
-					hiscoreSkill = result.getClueScrollEasy();
+					hiscoreSkill = result.getSkill(HiscoreSkill.CLUE_SCROLL_EASY);
 					break;
 				case "medium":
-					hiscoreSkill = result.getClueScrollMedium();
+					hiscoreSkill = result.getSkill(HiscoreSkill.CLUE_SCROLL_MEDIUM);
 					break;
 				case "hard":
-					hiscoreSkill = result.getClueScrollHard();
+					hiscoreSkill = result.getSkill(HiscoreSkill.CLUE_SCROLL_HARD);
 					break;
 				case "elite":
-					hiscoreSkill = result.getClueScrollElite();
+					hiscoreSkill = result.getSkill(HiscoreSkill.CLUE_SCROLL_ELITE);
 					break;
 				case "master":
-					hiscoreSkill = result.getClueScrollMaster();
+					hiscoreSkill = result.getSkill(HiscoreSkill.CLUE_SCROLL_MASTER);
 					break;
 				case "total":
-					hiscoreSkill = result.getClueScrollAll();
+					hiscoreSkill = result.getSkill(HiscoreSkill.CLUE_SCROLL_ALL);
 					break;
 				default:
 					return;
@@ -2331,7 +2323,7 @@ public class ChatCommandsPlugin extends Plugin
 		}
 		for (HiscoreSkill skill : HiscoreSkill.values())
 		{
-			if (skill.getName().equals(s))
+			if (skill.getSkillName().equals(s))
 			{
 				return skill;
 			}

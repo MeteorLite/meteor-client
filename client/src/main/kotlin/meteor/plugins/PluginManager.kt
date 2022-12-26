@@ -108,6 +108,7 @@ import net.runelite.client.plugins.cannon.CannonPlugin
 import meteor.plugins.examine.ExaminePlugin
 import meteor.plugins.itemcharges.ItemChargePlugin
 import meteor.plugins.lowdetail.LowDetailPlugin
+import meteor.plugins.nmzguzzle.NightmareZoneAFKPlugin
 import meteor.plugins.oneclickkarambwans.OneClickKarambwansPlugin
 import meteor.plugins.opponentinfo.OpponentInfoPlugin
 import meteor.plugins.pestcontrol.PestControlPlugin
@@ -211,6 +212,7 @@ object PluginManager {
         init<MiningPlugin>()
         init<MotherlodePlugin>()
         init<MouseTooltipPlugin>()
+        init<NightmareZoneAFKPlugin>()
         init<NotesPlugin>()
         init<NpcAggroAreaPlugin>()
         init<NpcIndicatorsPlugin>()

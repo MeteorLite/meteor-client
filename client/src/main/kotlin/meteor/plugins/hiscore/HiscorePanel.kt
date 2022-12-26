@@ -15,6 +15,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import meteor.hiscore.HiscoreResult
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.hiscore.hiscoreActivityGrid
 import meteor.ui.composables.hiscore.hiscoreBossGrid
@@ -23,7 +24,6 @@ import meteor.ui.composables.hiscore.overallSkillItem
 import meteor.ui.composables.preferences.background
 import meteor.ui.composables.preferences.darkThemeColors
 import meteor.ui.composables.preferences.uiColor
-import net.runelite.http.api.hiscore.HiscoreResult
 
 class HiscorePanel : PluginPanel() {
     companion object {

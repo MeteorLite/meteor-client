@@ -29,8 +29,6 @@ import com.google.common.util.concurrent.ListenableFuture
 import com.google.common.util.concurrent.ListeningExecutorService
 import com.google.common.util.concurrent.MoreExecutors
 import meteor.hiscore.HiscoreManager.HiscoreKey
-import net.runelite.http.api.hiscore.HiscoreClient
-import net.runelite.http.api.hiscore.HiscoreResult
 import java.io.IOException
 import java.util.concurrent.ScheduledExecutorService
 

@@ -40,11 +40,12 @@ object NPCManager {
     private fun loadStats() {
         JsonReader(
             InputStreamReader(
-                NPCManager::class.java.getResourceAsStream("/npc_stats.json"),
+                NPCManager::class.java.getResourceAsStream("npc_stats.json"),
                 StandardCharsets.UTF_8
             )
         ).use { reader ->
-            val builder: ImmutableMap.Builder<Int, NPCStats> = ImmutableMap.builder<Int, NPCStats>()
+            val builder =
+                ImmutableMap.builderWithExpectedSize<Int, NPCStats>(3123)
             reader.beginObject()
             while (reader.hasNext()) {
                 builder.put(

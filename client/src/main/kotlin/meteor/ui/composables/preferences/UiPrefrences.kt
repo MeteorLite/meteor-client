@@ -10,14 +10,12 @@ import compose.icons.Octicons
 import compose.icons.octicons.Plug24
 import meteor.Main
 import meteor.config.descriptor.ConfigDescriptor
+import meteor.hiscore.HiscoreResult
 import meteor.plugins.Plugin
 import meteor.plugins.loottracker.LootTrackerItem
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
-import meteor.util.MultiMap
-import net.runelite.api.Skill
-import net.runelite.http.api.hiscore.HiscoreResult
 
 
 var pluginsOpen = mutableStateOf(false)
@@ -26,7 +24,7 @@ var pluginPanelIsOpen = mutableStateOf(false)
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 const val consoleHeight = 717
 const val minimumHeight = 542
-var result: HiscoreResult? = HiscoreResult()
+var result: HiscoreResult? = null
 var consoleOpen = mutableStateOf(Main.meteorConfig.console())
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var searchValue = mutableStateOf("")

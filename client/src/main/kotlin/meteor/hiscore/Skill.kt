@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Bram91 <https://github.com/bram91>
+ * Copyright (c) 2021, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,6 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.hiscore;
+package meteor.hiscore
 
-public enum HiscoreSkillType
-{
-	OVERALL,
-	SKILL,
-	ACTIVITY,
-	BOSS
-}
+class Skill(var rank: Int, var level: Int, var experience: Long)

@@ -9,6 +9,7 @@ import compose.icons.tablericons.Trophy
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
 import meteor.config.ConfigManager
+import meteor.hiscore.HiscoreClient
 import meteor.menus.MenuManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -18,14 +19,11 @@ import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
 import net.runelite.api.MenuAction
-import net.runelite.http.api.hiscore.HiscoreClient
-import okhttp3.OkHttpClient
-import org.jetbrains.skiko.currentNanoTime
 
 
 @PluginDescriptor(name = "Hiscore", enabledByDefault = true, disabledOnStartup = false)
 class HiScorePlugin : Plugin() {
-    private val hiscoreClient = HiscoreClient(OkHttpClient())
+    private val hiscoreClient = HiscoreClient()
     var panel: HiscorePanel? = null
     var config = configuration<HiscoreConfig>()
 

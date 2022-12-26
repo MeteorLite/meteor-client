@@ -29,13 +29,11 @@ import com.google.common.annotations.VisibleForTesting
 import eventbus.events.*
 import lombok.AccessLevel
 import lombok.Getter
-import meteor.Main
+import meteor.hiscore.HiscoreEndpoint
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.ui.overlay.OverlayManager
 import net.runelite.api.*
 import net.runelite.api.widgets.WidgetInfo
-import net.runelite.http.api.hiscore.HiscoreEndpoint
 import java.text.DecimalFormat
 import java.time.Duration
 import java.time.Instant

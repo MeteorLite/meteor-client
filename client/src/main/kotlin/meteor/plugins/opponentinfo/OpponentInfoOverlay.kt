@@ -29,6 +29,7 @@ import com.google.common.base.Strings
 import meteor.Main
 import meteor.game.NPCManager
 import meteor.hiscore.HiscoreManager
+import meteor.hiscore.HiscoreSkill
 import meteor.ui.components.ComponentConstants
 import meteor.ui.components.ProgressBarComponent
 import meteor.ui.components.ProgressBarComponent.LabelDisplayMode
@@ -38,7 +39,6 @@ import meteor.ui.overlay.OverlayPriority
 import meteor.ui.table.TitleComponent.Companion.builder
 import net.runelite.api.*
 import net.runelite.api.util.Text
-import net.runelite.http.api.hiscore.HiscoreSkill
 import java.awt.*
 import java.awt.Point
 
@@ -84,7 +84,7 @@ internal class OpponentInfoOverlay(
             } else if (opponent is Player) {
                 val hiscoreResult = hiscoreManager.lookupAsync(opponentName!!, opponentInfoPlugin.hiscoreEndpoint)
                 if (hiscoreResult != null) {
-                    val hp = hiscoreResult.getSkill(HiscoreSkill.HITPOINTS).level
+                    val hp = hiscoreResult.getSkill(HiscoreSkill.HITPOINTS)!!.level
                     if (hp > 0) {
                         lastMaxHealth = hp
                     }

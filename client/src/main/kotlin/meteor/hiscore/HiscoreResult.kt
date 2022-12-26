@@ -22,21 +22,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.hiscore;
+package meteor.hiscore
 
-import java.util.Map;
-import lombok.Value;
-import net.runelite.http.api.hiscore.HiscoreSkill;
-import net.runelite.http.api.hiscore.Skill;
-
-@Value
-public class HiscoreResult
-{
-	private String player;
-	private Map<HiscoreSkill, Skill> skills;
-
-	public Skill getSkill(HiscoreSkill skill)
-	{
-		return skills.get(skill);
-	}
+class HiscoreResult(val player: String?, val skills: Map<HiscoreSkill, Skill>) {
+    fun getSkill(skill: HiscoreSkill): Skill? {
+        return skills[skill]
+    }
 }
