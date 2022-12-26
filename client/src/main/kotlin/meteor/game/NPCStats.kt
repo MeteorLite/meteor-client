@@ -31,34 +31,60 @@ import java.io.IOException
 
 class NPCStats {
     var name: String? = null
+    var wiki: String? = null
+
     var hitpoints = 0
     var combatLevel = 0
     var slayerLevel = 0
     var attackSpeed = 0
+
     var attackLevel = 0
+
     var strengthLevel = 0
+
     var defenceLevel = 0
     var rangeLevel = 0
     var magicLevel = 0
+
     var stab = 0
     var slash = 0
     var crush = 0
     var range = 0
     var magic = 0
+
     var stabDef = 0
+
     var slashDef = 0
+
     var crushDef = 0
     var rangeDef = 0
     var magicDef = 0
+
     var bonusAttack = 0
+
     var bonusStrength = 0
     var bonusRangeStrength = 0
     var bonusMagicDamage = 0
+
     var poisonImmune = false
     var venomImmune = false
-    var dragon = false
+    var cannonImmune = false
+    var thrallImmune = false
+
     var demon = false
+    var dragon = false
+    var fiery = false
+    var kalphite = false
+    var leafy = false
+    var shade = false
+    var spectral = false
     var undead = false
+    var vampyre1 = false
+    var vampyre2 = false
+    var vampyre3 = false
+    var xerician = false
+
+    var respawn = -1
     fun builder(): NPCStats {
         return Builder().start()
     }
@@ -80,6 +106,11 @@ class NPCStats {
 
         fun hitpoints(i: Int): Builder {
             npcStats.hitpoints = i
+            return this
+        }
+
+        fun hitpoints(s: String): Builder {
+            npcStats.wiki = s
             return this
         }
 
@@ -217,6 +248,71 @@ class NPCStats {
             npcStats.undead = b
             return this
         }
+
+        fun wiki(s: String): Builder {
+            npcStats.wiki = s
+            return this
+        }
+
+        fun cannonImmune(b: Boolean): Builder {
+            npcStats.cannonImmune = b
+            return this
+        }
+
+        fun thrallImmune(b: Boolean): Builder {
+            npcStats.thrallImmune = b
+            return this
+        }
+
+        fun fiery(b: Boolean): Builder {
+            npcStats.fiery = b
+            return this
+        }
+
+        fun kalphite(b: Boolean): Builder {
+            npcStats.kalphite = b
+            return this
+        }
+
+        fun leafy(b: Boolean): Builder {
+            npcStats.leafy = b
+            return this
+        }
+
+        fun shade(b: Boolean): Builder {
+            npcStats.shade = b
+            return this
+        }
+
+        fun spectral(b: Boolean): Builder {
+            npcStats.spectral = b
+            return this
+        }
+
+        fun vampyre1(b: Boolean): Builder {
+            npcStats.vampyre1 = b
+            return this
+        }
+
+        fun vampyre2(b: Boolean): Builder {
+            npcStats.vampyre2 = b
+            return this
+        }
+
+        fun vampyre3(b: Boolean): Builder {
+            npcStats.vampyre3 = b
+            return this
+        }
+
+        fun xerician(b: Boolean): Builder {
+            npcStats.xerician = b
+            return this
+        }
+
+        fun respawn(i: Int): Builder {
+            npcStats.respawn = i
+            return this
+        }
     }
 
     /**
@@ -233,13 +329,13 @@ class NPCStats {
     companion object {
         // Because this class is here we can't add the TypeAdapter to gson (easily)
         // doesn't mean we can't use one to do it a bit quicker
-        val NPC_STATS_TYPE_ADAPTER: TypeAdapter<NPCStats?> = object : TypeAdapter<NPCStats?>() {
-            override fun write(out: JsonWriter, value: NPCStats?) {
+        val NPC_STATS_TYPE_ADAPTER: TypeAdapter<NPCStats> = object : TypeAdapter<NPCStats>() {
+            override fun write(out: JsonWriter, value: NPCStats) {
                 throw UnsupportedOperationException("Not supported")
             }
 
             @Throws(IOException::class)
-            override fun read(`in`: JsonReader): NPCStats? {
+            override fun read(`in`: JsonReader): NPCStats {
                 `in`.beginObject()
                 val builder = Builder()
 
@@ -248,6 +344,7 @@ class NPCStats {
                 builder.name(`in`.nextString())
                 while (`in`.hasNext()) {
                     when (`in`.nextName()) {
+                        "wiki" -> builder.wiki(`in`.nextString())
                         "hitpoints" -> builder.hitpoints(`in`.nextInt())
                         "combatLevel" -> builder.combatLevel(`in`.nextInt())
                         "slayerLevel" -> builder.slayerLevel(`in`.nextInt())
@@ -273,9 +370,21 @@ class NPCStats {
                         "bonusMagicDamage" -> builder.bonusMagicDamage(`in`.nextInt())
                         "poisonImmune" -> builder.poisonImmune(`in`.nextBoolean())
                         "venomImmune" -> builder.venomImmune(`in`.nextBoolean())
-                        "dragon" -> builder.dragon(`in`.nextBoolean())
+                        "cannonImmune" -> builder.cannonImmune(`in`.nextBoolean())
+                        "thrallImmune" -> builder.thrallImmune(`in`.nextBoolean())
                         "demon" -> builder.demon(`in`.nextBoolean())
+                        "dragon" -> builder.dragon(`in`.nextBoolean())
+                        "fiery" -> builder.fiery(`in`.nextBoolean())
+                        "kalphite" -> builder.kalphite(`in`.nextBoolean())
+                        "leafy" -> builder.leafy(`in`.nextBoolean())
+                        "shade" -> builder.shade(`in`.nextBoolean())
+                        "spectral" -> builder.spectral(`in`.nextBoolean())
                         "undead" -> builder.undead(`in`.nextBoolean())
+                        "vampyre1" -> builder.vampyre1(`in`.nextBoolean())
+                        "vampyre2" -> builder.vampyre2(`in`.nextBoolean())
+                        "vampyre3" -> builder.vampyre3(`in`.nextBoolean())
+                        "xerician" -> builder.xerician(`in`.nextBoolean())
+                        "respawn" -> builder.respawn(`in`.nextInt())
                     }
                 }
                 `in`.endObject()

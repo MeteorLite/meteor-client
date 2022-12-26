@@ -54,9 +54,9 @@ class ProgressBarComponent : LayoutableRenderableEntity {
     }
 
     private val minimum: Long = 0
-    private val maximum: Long = 100
+    var maximum: Long = 100
     var value = 0.0
-    private val labelDisplayMode = LabelDisplayMode.PERCENTAGE
+    var labelDisplayMode = LabelDisplayMode.PERCENTAGE
     private val centerLabel: String? = null
     var leftLabel: String? = null
     var rightLabel: String? = null

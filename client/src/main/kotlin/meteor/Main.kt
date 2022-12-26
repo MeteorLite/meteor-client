@@ -17,6 +17,7 @@ import meteor.game.LootManager
 import meteor.game.WorldService
 import meteor.game.chatbox.ChatboxPanelManager
 import meteor.game.npcoverlay.NpcOverlayService
+import meteor.hiscore.HiscoreManager
 import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
@@ -89,6 +90,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     val tooltipManager = TooltipManager
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
+    val hiscoreManager = HiscoreManager
     val macOS = if ( System.getProperty("os.name").lowercase().contains("mac")) OS.MacOS else null
     val winOS = if ( System.getProperty("os.name").lowercase().contains("win")) OS.Windows else null
 

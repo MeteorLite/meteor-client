@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Bram91 <https://github.com/bram91>
+ * Copyright (c) 2019, Sean Dewar <https://github.com/seandewar>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.hiscore;
+package meteor.plugins.opponentinfo
 
-public enum HiscoreSkillType
-{
-	OVERALL,
-	SKILL,
-	ACTIVITY,
-	BOSS
+enum class HitpointsDisplayStyle {
+    HITPOINTS, PERCENTAGE, BOTH
 }

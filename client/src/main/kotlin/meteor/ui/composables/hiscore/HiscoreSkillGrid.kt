@@ -11,15 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import meteor.hiscore.HiscoreSkill
+import meteor.hiscore.HiscoreSkillType
 import meteor.plugins.hiscore.HiscorePanel
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
-import net.runelite.http.api.hiscore.HiscoreSkill
-import net.runelite.http.api.hiscore.HiscoreSkillType
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 import kotlin.math.max
 
 var result = HiscorePanel.result!!
@@ -36,7 +34,7 @@ fun LazyGridScope.hiscoreSkillGrid() {
                             text = mutableStateOf(
                                     "Rank:" + max(
                                             0,
-                                            result.getSkill(item).rank
+                                            result.getSkill(item)!!.rank
                                     ).toString()
                             ).value,
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
@@ -45,7 +43,7 @@ fun LazyGridScope.hiscoreSkillGrid() {
                             text = mutableStateOf(
                                     "Total Exp:" + max(
                                             0,
-                                            result.getSkill(item).experience
+                                            result.getSkill(item)!!.experience
                                     ).toString()
                             ).value,
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
