@@ -1,7 +1,9 @@
-package meteor.config
+package meteor.plugins.meteor
 
 
 import androidx.compose.ui.unit.LayoutDirection
+import dev.hoot.api.InteractMethod
+import dev.hoot.api.MouseBehavior
 import meteor.Configuration
 import meteor.config.legacy.*
 import meteor.ui.components.ComponentConstants
@@ -155,13 +157,83 @@ interface MeteorConfig : Config {
 
 
 
+
+    @ConfigItem(
+        keyName = "interactMethod",
+        name = "Interact method",
+        description = "Interaction method",
+        section = "Interaction Manager",
+        position = 1
+    )
+    fun interactMethod(): InteractMethod? {
+        return InteractMethod.PACKETS
+    }
+
+    @ConfigItem(
+        keyName = "naturalMouse",
+        name = "Natural mouse",
+        description = "Uses the 'natural mouse' algorithm to move and click",
+        section = "Interaction Manager",
+        position = 2
+    )
+    fun naturalMouse(): Boolean {
+        return false
+    }
+
+//	@ConfigItem(
+//			keyName = "mouseOffScreen",
+//			name = "Mouse off screen when idle",
+//			description = "Move the mouse off screen if idle",
+//			section = "Interaction Manager",
+//			position = 3
+//	)
+//	default boolean mouseOffScreen()
+//	{
+//		return false;
+//	}
+
+    //	@ConfigItem(
+    //			keyName = "mouseOffScreen",
+    //			name = "Mouse off screen when idle",
+    //			description = "Move the mouse off screen if idle",
+    //			section = "Interaction Manager",
+    //			position = 3
+    //	)
+    //	default boolean mouseOffScreen()
+    //	{
+    //		return false;
+    //	}
+    @ConfigItem(
+        keyName = "mouseBehavior",
+        name = "Mouse behavior",
+        description = "Type of clicks to send to the server",
+        section = "Interaction Manager",
+        position = 4
+    )
+    fun mouseBehavior(): MouseBehavior? {
+        return MouseBehavior.CLICKBOXES
+    }
+
+    @ConfigItem(
+        keyName = "drawMouse",
+        name = "Draw mouse events",
+        description = "Draws the sent mouse events on screen",
+        section = "Interaction Manager",
+        position = 5
+    )
+    fun drawMouse(): Boolean {
+        return false
+    }
+
+
+
         @ConfigSection(
-            name = "Interaction manager",
+            name = "Interaction Manager",
             description = "Interaction settings",
             closedByDefault = true,
             position = 3
         )
-         val interactionManager:String
+         val InteractionManager:String
 
 
         @ConfigSection(

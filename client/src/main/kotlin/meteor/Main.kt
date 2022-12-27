@@ -3,13 +3,13 @@ package meteor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.window.*
-import dev.hoot.api.InteractionManager
+
 import dev.hoot.api.game.GameThread
 import eventbus.Events
 import meteor.api.loot.Interact
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
-import meteor.config.MeteorConfig
+import meteor.plugins.meteor.MeteorConfig
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.FontManager
 import meteor.game.ItemManager
@@ -77,7 +77,6 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     lateinit var callbacks: Callbacks
     lateinit var npcOverlayService: NpcOverlayService
     lateinit var xpTrackerService: XpTrackerService
-    lateinit var interactionManager: InteractionManager
     lateinit var chatMessageManager: ChatMessageManager
     lateinit var chatCommandManager: ChatCommandManager
     val httpClient = OkHttpClient()
@@ -166,7 +165,6 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         MenuManager
         LootManager
         ChatboxPanelManager
-        interactionManager = InteractionManager()
         chatMessageManager = ChatMessageManager()
         chatCommandManager = ChatCommandManager()
         GameEventManager

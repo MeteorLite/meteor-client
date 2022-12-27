@@ -3,10 +3,12 @@ package meteor.ui.composables.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.FrameWindowScope
 import meteor.Main
+import meteor.plugins.scriptcreator.script.eventbus.onGameTick
 import meteor.rs.Applet
 import meteor.ui.composables.configPanel
 import meteor.ui.composables.nodes.sectionItem
@@ -16,17 +18,22 @@ import java.awt.Dimension
 
 @Composable
 fun FrameWindowScope.windowContent() {
+onGameTick{
 
+}
             windowFrame {
                 Main.window = this@windowContent
 
-                when {
-                    scriptCreator.value -> window.minimumSize =Dimension(1335, if (consoleOpen.value) consoleHeight else minimumHeight)
-                    pluginsOpen.value || configOpen.value  -> window.minimumSize =
-                        Dimension(Applet().clientWidth + Main.meteorConfig.toolbarWidth(), if (consoleOpen.value) consoleHeight else minimumHeight)
-                    else -> if(!scriptCreator.value) window.minimumSize = Dimension(Applet().minimalWidth + Main.meteorConfig.toolbarWidth(), if (consoleOpen.value) consoleHeight else 542)
+                val width = when {
+                    scriptCreator.value -> scriptCreatorWidth
+                    pluginsOpen.value || configOpen.value -> totalClientWidth
+                    else -> totalMinimalWidth
                 }
+                val height = when{
+                    consoleOpen.value -> consoleHeight else -> minimumHeight
 
+                }
+                window.minimumSize = Dimension(width,height)
                 when {
                     toolBarOpen.value -> toolBar {
                         pluginListButton
