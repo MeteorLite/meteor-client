@@ -79,6 +79,9 @@ public class KaramjaEasy extends ComplexStateQuestHelper
 
 	ZoneRequirement inCave, inTzhaar, inPothole;
 
+	ConditionalStep swungOnRopeTask, pickedBananasTask, minedGoldTask, goneToSarimTask, goneToArdougneTask,
+		goneToCairnTask, fishedTask, pickedUpSeaweedTask, enteredFightCaveTask, killedJogreTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -87,23 +90,44 @@ public class KaramjaEasy extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doEasy = new ConditionalStep(this, claimReward);
-		doEasy.addStep(notGoneToSarim, goSarim);
-		doEasy.addStep(notPickedBananas, pickBananas);
-		doEasy.addStep(notFished, goFish);
-		doEasy.addStep(new Conditions(notEnteredFightCave, inTzhaar), enterFightCave);
-		doEasy.addStep(new Conditions(notEnteredFightCave, inCave), enterTzhaar);
-		doEasy.addStep(notEnteredFightCave, enterCave);
-		doEasy.addStep(notGoneToArdougne, goArdougne);
-		doEasy.addStep(notMinedGold, mineGold);
-		doEasy.addStep(notSwungOnRope, swingRope);
-		doEasy.addStep(notPickedUpSeaweed, pickupSeaweed);
-		doEasy.addStep(notGoneToCairn, goCairn);
-		doEasy.addStep(new Conditions(notKilledJogre, inPothole), killJogre);
-		doEasy.addStep(notKilledJogre, enterPothole);
+
+		goneToSarimTask = new ConditionalStep(this, goSarim);
+		doEasy.addStep(notGoneToSarim, goneToSarimTask);
+
+		pickedBananasTask = new ConditionalStep(this, pickBananas);
+		doEasy.addStep(notPickedBananas, pickedBananasTask);
+
+		fishedTask = new ConditionalStep(this, goFish);
+		doEasy.addStep(notFished, fishedTask);
+
+		enteredFightCaveTask = new ConditionalStep(this, enterCave);
+		enteredFightCaveTask.addStep(inCave, enterFightCave);
+		enteredFightCaveTask.addStep(inTzhaar, enterTzhaar);
+		doEasy.addStep(notEnteredFightCave, enteredFightCaveTask);
+
+		goneToArdougneTask = new ConditionalStep(this, goArdougne);
+		doEasy.addStep(notGoneToArdougne, goneToArdougneTask);
+
+		minedGoldTask = new ConditionalStep(this, mineGold);
+		doEasy.addStep(notMinedGold, minedGoldTask);
+
+		swungOnRopeTask = new ConditionalStep(this, swingRope);
+		doEasy.addStep(notSwungOnRope, swungOnRopeTask);
+
+		pickedUpSeaweedTask = new ConditionalStep(this, pickupSeaweed);
+		doEasy.addStep(notPickedUpSeaweed, pickedUpSeaweedTask);
+
+		goneToCairnTask = new ConditionalStep(this, goCairn);
+		doEasy.addStep(notGoneToCairn, goneToCairnTask);
+
+		killedJogreTask = new ConditionalStep(this, enterPothole);
+		killedJogreTask.addStep(inPothole, killJogre);
+		doEasy.addStep(notKilledJogre, killedJogreTask);
 
 		return doEasy;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		seaweed = new ItemRequirement("Seaweed", ItemID.SEAWEED);
@@ -119,18 +143,15 @@ public class KaramjaEasy extends ComplexStateQuestHelper
 		notEnteredFightCave = new VarbitRequirement(3574, 0);
 		notKilledJogre = new VarbitRequirement(3575, 0);
 
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(notMinedGold);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins()).showConditioned(new Conditions(LogicType.OR,
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).showConditioned(notMinedGold).isNotConsumed();
+		coins = new ItemRequirement("Coins", ItemCollections.COINS).showConditioned(new Conditions(LogicType.OR,
 			notGoneToSarim, notGoneToArdougne));
-		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notFished);
-		combatGear = new ItemRequirement("Combat gear to defeat a Jogre (level 56)", -1, -1).showConditioned(notKilledJogre);
+		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notFished).isNotConsumed();
+		combatGear = new ItemRequirement("Combat gear to defeat a Jogre (level 56)", -1, -1).showConditioned(notKilledJogre).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		antipoison = new ItemRequirement("Antipoison", ItemCollections.getAntipoisons(), -1);
-
-		// 3578 = 2, completed final task
-		// varplayer 2943 0->1>2>3 when done final task
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		antipoison = new ItemRequirement("Antipoison", ItemCollections.ANTIPOISONS, -1);
 
 		inCave = new ZoneRequirement(cave);
 		inTzhaar = new ZoneRequirement(tzhaar);
@@ -227,47 +248,57 @@ public class KaramjaEasy extends ComplexStateQuestHelper
 		PanelDetails travelSarimSteps = new PanelDetails("Travel to Port Sarim", Collections.singletonList(goSarim),
 			coins.quantity(30));
 		travelSarimSteps.setDisplayCondition(notGoneToSarim);
+		travelSarimSteps.setLockingStep(goneToSarimTask);
 		allSteps.add(travelSarimSteps);
 
 		PanelDetails pickBananasSteps = new PanelDetails("Pick 5 Bananas", Collections.singletonList(pickBananas));
 		pickBananasSteps.setDisplayCondition(notPickedBananas);
+		pickBananasSteps.setLockingStep(pickedBananasTask);
 		allSteps.add(pickBananasSteps);
 
 		PanelDetails goFishSteps = new PanelDetails("Fish North of Banana Plantation", Collections.singletonList(goFish),
 			smallFishingNet);
 		goFishSteps.setDisplayCondition(notFished);
+		goFishSteps.setLockingStep(fishedTask);
 		allSteps.add(goFishSteps);
 
 		PanelDetails enterFightCaveSteps = new PanelDetails("Attempt the Fight Cave or TzHaar Fight Pits", Collections.singletonList(enterFightCave));
 		enterFightCaveSteps.setDisplayCondition(notEnteredFightCave);
+		enterFightCaveSteps.setLockingStep(enteredFightCaveTask);
 		allSteps.add(enterFightCaveSteps);
 
 		PanelDetails goArdougneSteps = new PanelDetails("Travel to Ardougne", Collections.singletonList(goArdougne),
 			coins.quantity(30));
 		goArdougneSteps.setDisplayCondition(notGoneToArdougne);
+		goArdougneSteps.setLockingStep(goneToArdougneTask);
 		allSteps.add(goArdougneSteps);
 
 		PanelDetails mineGoldSteps = new PanelDetails("Mine gold", Collections.singletonList(mineGold),
 			new SkillRequirement(Skill.MINING, 40, true), pickaxe);
 		mineGoldSteps.setDisplayCondition(notMinedGold);
+		mineGoldSteps.setLockingStep(minedGoldTask);
 		allSteps.add(mineGoldSteps);
 
 		PanelDetails swingRopeSteps = new PanelDetails("Swing Rope to Moss Giant Isle", Collections.singletonList(swingRope),
 			new SkillRequirement(Skill.AGILITY, 10, true));
 		swingRopeSteps.setDisplayCondition(notSwungOnRope);
+		swingRopeSteps.setLockingStep(swungOnRopeTask);
 		allSteps.add(swingRopeSteps);
 
 		PanelDetails pickupSeaweedSteps = new PanelDetails("Pickup 5 Seaweed", Collections.singletonList(pickupSeaweed));
 		pickupSeaweedSteps.setDisplayCondition(notPickedUpSeaweed);
+		pickupSeaweedSteps.setLockingStep(pickedUpSeaweedTask);
 		allSteps.add(pickupSeaweedSteps);
 
 		PanelDetails goCairnSteps = new PanelDetails("Explore Cairn Isle", Collections.singletonList(goCairn),
 			new SkillRequirement(Skill.AGILITY, 15, true));
 		goCairnSteps.setDisplayCondition(notGoneToCairn);
+		goCairnSteps.setLockingStep(goneToCairnTask);
 		allSteps.add(goCairnSteps);
 
 		PanelDetails killJogreSteps = new PanelDetails("Kill Jogre in Pothole Dungeon", Collections.singletonList(enterPothole));
 		killJogreSteps.setDisplayCondition(notKilledJogre);
+		killJogreSteps.setLockingStep(killedJogreTask);
 		allSteps.add(killJogreSteps);
 
 		PanelDetails finishOffSteps = new PanelDetails("Finishing off", Collections.singletonList(claimReward));

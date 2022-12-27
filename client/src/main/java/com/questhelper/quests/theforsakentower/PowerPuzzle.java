@@ -31,10 +31,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import eventbus.events.VarbitChanged;
-import meteor.Main;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 /* Possible improvement would be to show a number on each square indicating turns remaining to solved position */
 public class PowerPuzzle extends QuestStep
@@ -104,17 +101,5 @@ public class PowerPuzzle extends QuestStep
 				}
 			}
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "powerpuzzle";
 	}
 }

@@ -25,18 +25,20 @@
 package com.questhelper.quests.mourningsendpartii;
 
 import com.questhelper.ItemCollections;
+import com.questhelper.KeyringCollection;
 import com.questhelper.QuestDescriptor;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.questhelpers.BasicQuestHelper;
 import com.questhelper.requirements.item.ItemRequirement;
+import com.questhelper.requirements.item.KeyringRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.util.Operation;
@@ -71,7 +73,7 @@ public class MourningsEndPartII extends BasicQuestHelper
 {
 	//Items Required
 	ItemRequirement deathTalisman, deathTalismanHeader, mournersOutfit, gasMask, mournerTop, mournerTrousers, mournerBoots, mournerGloves, mournerCloak, chisel, rope, ropeHighlight, prayerPotions, food, newKey, edernsJournal,
-		blackenedCrystal, newlyMadeCrystal, newlyIfOneTrip, deathTalismanNote, mirror, yellowCrystal, cyanCrystal, blueCrystal, fracturedCrystal, fracturedCrystal2, chargedCrystal, chargedCrystalHighlight, newlyMadeCrystalHighlight;
+		blackenedCrystal, newlyMadeCrystal, newlyIfOneTrip, deathTalismanNote, mirror, yellowCrystal, cyanCrystal, blueCrystal, fracturedCrystal, fracturedCrystal2, chargedCrystal, chargedCrystalHighlight, newlyMadeCrystalHighlight, teleportCrystal;
 
 	Requirement inMournerBasement, inMournerHQ, inCave, inTempleF0, inTempleF1, inTempleF2, inTempleF2NorthRoom, inCaveOrF0, inTempleStairSquare, inNorthF2, inSouthF2,
 		knowToUseCrystal, inBlueRoom, inCyanRoom, solvedPuzzle1, solvedPuzzle2, solvedPuzzle3, solvedPuzzle4, solvedPuzzle5, dispenserEmpty, inYellowRoom, usedRope,
@@ -144,7 +146,7 @@ public class MourningsEndPartII extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -405,32 +407,34 @@ public class MourningsEndPartII extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		deathTalisman = new ItemRequirement("Death talisman", ItemID.DEATH_TALISMAN);
-		deathTalisman.addAlternates(ItemID.DEATH_TALISMAN, ItemID.RUNECRAFT_CAPE);
+		deathTalisman = new ItemRequirement("Death talisman", ItemID.DEATH_TALISMAN).isNotConsumed();
+		deathTalisman.addAlternates(ItemID.DEATH_TALISMAN, ItemID.RUNECRAFT_CAPE, ItemID.CATALYTIC_TALISMAN);
 
-		deathTalismanHeader = new ItemRequirement("Death talisman or 50 items asked of you by a dwarf", ItemID.DEATH_TALISMAN);
+		deathTalismanHeader = new ItemRequirement("Death talisman or 50 items asked of you by a dwarf", ItemID.DEATH_TALISMAN).isNotConsumed();
 		deathTalismanNote = new ItemRequirement("Death talisman, or if you're an ironman you can earn one later", ItemID.DEATH_TALISMAN);
 
-		mournerBoots = new ItemRequirement("Mourner boots", ItemID.MOURNER_BOOTS, 1, true);
-		gasMask = new ItemRequirement("Gas mask", ItemID.GAS_MASK, 1, true);
-		mournerGloves = new ItemRequirement("Mourner gloves", ItemID.MOURNER_GLOVES, 1, true);
-		mournerCloak = new ItemRequirement("Mourner cloak", ItemID.MOURNER_CLOAK, 1, true);
-		mournerTop = new ItemRequirement("Mourner top", ItemID.MOURNER_TOP, 1, true);
-		mournerTrousers = new ItemRequirement("Mourner trousers", ItemID.MOURNER_TROUSERS, 1, true);
-		mournersOutfit = new ItemRequirements("Full mourners' outfit", gasMask, mournerTop, mournerTrousers, mournerCloak, mournerBoots, mournerGloves);
+		mournerBoots = new ItemRequirement("Mourner boots", ItemID.MOURNER_BOOTS, 1, true).isNotConsumed();
+		gasMask = new ItemRequirement("Gas mask", ItemID.GAS_MASK, 1, true).isNotConsumed();
+		mournerGloves = new ItemRequirement("Mourner gloves", ItemID.MOURNER_GLOVES, 1, true).isNotConsumed();
+		mournerCloak = new ItemRequirement("Mourner cloak", ItemID.MOURNER_CLOAK, 1, true).isNotConsumed();
+		mournerTop = new ItemRequirement("Mourner top", ItemID.MOURNER_TOP, 1, true).isNotConsumed();
+		mournerTrousers = new ItemRequirement("Mourner trousers", ItemID.MOURNER_TROUSERS, 1, true).isNotConsumed();
+		mournersOutfit = new ItemRequirements("Full mourners' outfit", gasMask, mournerTop, mournerTrousers, mournerCloak, mournerBoots, mournerGloves).isNotConsumed();
 
 		rope = new ItemRequirement("Rope", ItemID.ROPE);
 		ropeHighlight = new ItemRequirement("Rope", ItemID.ROPE);
 		ropeHighlight.setHighlightInInventory(true);
 
-		chisel = new ItemRequirement("Chisel", ItemID.CHISEL);
+		chisel = new ItemRequirement("Chisel", ItemID.CHISEL).isNotConsumed();
 		prayerPotions = new ItemRequirement("Prayer potions for Protect from Melee",
-			ItemCollections.getPrayerPotions(), -1);
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+			ItemCollections.PRAYER_POTIONS, -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		teleportCrystal = new ItemRequirement("Teleport Crystal", ItemID.TELEPORT_CRYSTAL).isNotConsumed();
 
-		newKey = new ItemRequirement("New key", ItemID.NEW_KEY);
+		newKey = new KeyringRequirement("New Key", configManager, KeyringCollection.NEW_KEY);
 		newKey.setTooltip("You can get another from Essyllt's desk");
 
 		edernsJournal = new ItemRequirement("Edern's journal", ItemID.EDERNS_JOURNAL);
@@ -799,7 +803,9 @@ public class MourningsEndPartII extends BasicQuestHelper
 		puzzle5Pillar6 = new ObjectStep(this, NullObjectID.NULL_9960, new WorldPoint(1915, 4613, 1), "Put a blue crystal in the pillar in the blue room.", blueCrystal);
 		puzzle5Pillar6.addIcon(ItemID.BLUE_CRYSTAL);
 
-		puzzle5Pillar5RemoveMirror = new ObjectStep(this, NullObjectID.NULL_9959, new WorldPoint(1898, 4613, 1), "Remove the mirror from the pillar in the south of the first floor.");
+		puzzle5Pillar5RemoveMirror = new ObjectStep(this, NullObjectID.NULL_9959, new WorldPoint(1898, 4613, 1),
+			"REMOVE the mirror from the pillar in the south of the first floor.");
+		puzzle5Pillar5RemoveMirror.addIcon(ItemID.HEALER_ICON);
 		puzzle5Pillar3RotateUp = new ObjectStep(this, NullObjectID.NULL_9954, new WorldPoint(1898, 4650, 1), "Have " +
 			"the mirror in the pillar north west of the dispenser point up.", mirror);
 		puzzle5Pillar3RotateUp.addIcon(ItemID.HAND_MIRROR);
@@ -906,7 +912,7 @@ public class MourningsEndPartII extends BasicQuestHelper
 
 		enterDeathAltarBarrier = new ObjectStep(this, NullObjectID.NULL_9788, new WorldPoint(1865, 4639, 0), "Enter the barrier to the death altar to the west.");
 
-		if (client.getAccountType().isIronman())
+		if (client.getAccountType().isIronman() || client.getAccountType().isGroupIronman())
 		{
 			if (client.getRealSkillLevel(Skill.SLAYER) > 85)
 			{
@@ -996,7 +1002,7 @@ public class MourningsEndPartII extends BasicQuestHelper
 	@Override
 	public List<ItemRequirement> getItemRecommended()
 	{
-		return Arrays.asList(prayerPotions, food);
+		return Arrays.asList(prayerPotions, food, teleportCrystal);
 	}
 
 	@Override
@@ -1022,7 +1028,7 @@ public class MourningsEndPartII extends BasicQuestHelper
 	@Override
 	public List<ExperienceReward> getExperienceRewards()
 	{
-		return Collections.singletonList(new ExperienceReward(Skill.AGILITY, 20000));
+		return Collections.singletonList(new ExperienceReward(Skill.AGILITY, 60000));
 	}
 
 	@Override

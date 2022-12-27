@@ -95,6 +95,9 @@ public class WesternHard extends ComplexStateQuestHelper
 
 	ZoneRequirement inPest, inApeAtoll, inPisc;
 
+	ConditionalStep elfCystalBowTask, monkfishPiscTask, vetPestTask, dashingKebbitTask, apeAtollAgiTask, mahoganyBurnedTask,
+		mineAddyOreTask, lletyaPalmTask, chompyHatTask, isafdarPaintingTask, killZulrahTask, tpApeTask, pickpocketGnomeTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -103,29 +106,56 @@ public class WesternHard extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doHard = new ConditionalStep(this, claimReward);
-		doHard.addStep(new Conditions(notMonkfishPisc, rawMonkfish, caughtMonkfish), monkfishPisc);
-		doHard.addStep(notMonkfishPisc, fishMonkfish);
-		doHard.addStep(new Conditions(notDashingKebbit, birdReady), dashingKebbit);
-		doHard.addStep(notDashingKebbit, getBird);
-		doHard.addStep(notPickpocketGnome, pickpocketGnome);
-		doHard.addStep(notTPApe, tpApe);
-		doHard.addStep(new Conditions(notMahoganyBurned, inApeAtoll, mahoganyLogs, choppedLogs), mahoganyBurned);
-		doHard.addStep(new Conditions(notMahoganyBurned, inApeAtoll), mahoganyChopped);
-		doHard.addStep(notMahoganyBurned, moveToApeMahogany);
-		doHard.addStep(new Conditions(notApeAtollAgi, inApeAtoll), apeAtollAgi);
-		doHard.addStep(notApeAtollAgi, moveToApeAgi);
-		doHard.addStep(notKillZulrah, killZulrah);
-		doHard.addStep(notMineAddyOre, mineAddyOre);
-		doHard.addStep(notElfCystalBow, elfCrystalBow);
-		doHard.addStep(new Conditions(notVetPest, inPest), vetPest);
-		doHard.addStep(notVetPest, moveToPest);
-		doHard.addStep(notIsafdarPainting, isafdarPainting);
-		doHard.addStep(notChompyHat, chompyHat);
-		doHard.addStep(notLletyaPalm, lletyaPalm);
+
+		lletyaPalmTask = new ConditionalStep(this, lletyaPalm);
+		doHard.addStep(notLletyaPalm, lletyaPalmTask);
+
+		monkfishPiscTask = new ConditionalStep(this, fishMonkfish);
+		monkfishPiscTask.addStep(new Conditions(rawMonkfish, caughtMonkfish), monkfishPisc);
+		doHard.addStep(notMonkfishPisc, monkfishPiscTask);
+
+		dashingKebbitTask = new ConditionalStep(this, getBird);
+		dashingKebbitTask.addStep(birdReady, dashingKebbit);
+		doHard.addStep(notDashingKebbit, dashingKebbitTask);
+
+		pickpocketGnomeTask = new ConditionalStep(this, pickpocketGnome);
+		doHard.addStep(notPickpocketGnome, pickpocketGnomeTask);
+
+		tpApeTask = new ConditionalStep(this, tpApe);
+		doHard.addStep(notTPApe, tpApeTask);
+
+		mahoganyBurnedTask = new ConditionalStep(this, moveToApeMahogany);
+		mahoganyBurnedTask.addStep(inApeAtoll, mahoganyChopped);
+		mahoganyBurnedTask.addStep(new Conditions(inApeAtoll, mahoganyLogs, choppedLogs), mahoganyBurned);
+		doHard.addStep(notMahoganyBurned, mahoganyBurnedTask);
+
+		apeAtollAgiTask = new ConditionalStep(this, moveToApeAgi);
+		apeAtollAgiTask.addStep(inApeAtoll, apeAtollAgi);
+		doHard.addStep(notApeAtollAgi, apeAtollAgiTask);
+
+		killZulrahTask = new ConditionalStep(this, killZulrah);
+		doHard.addStep(notKillZulrah, killZulrahTask);
+
+		mineAddyOreTask = new ConditionalStep(this, mineAddyOre);
+		doHard.addStep(notMineAddyOre, mineAddyOreTask);
+
+		elfCystalBowTask = new ConditionalStep(this, elfCrystalBow);
+		doHard.addStep(notElfCystalBow, elfCystalBowTask);
+
+		vetPestTask = new ConditionalStep(this, moveToPest);
+		vetPestTask.addStep(inPest, vetPest);
+		doHard.addStep(notVetPest, vetPestTask);
+
+		isafdarPaintingTask = new ConditionalStep(this, isafdarPainting);
+		doHard.addStep(notIsafdarPainting, isafdarPaintingTask);
+
+		chompyHatTask = new ConditionalStep(this, chompyHat);
+		doHard.addStep(notChompyHat, chompyHatTask);
 
 		return doHard;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notElfCystalBow = new VarplayerRequirement(1182, false, 25);
@@ -145,42 +175,42 @@ public class WesternHard extends ComplexStateQuestHelper
 
 		normalBook = new SpellbookRequirement(Spellbook.NORMAL);
 
-		crystalBow = new ItemRequirement("Crystal bow", ItemCollections.getCrystalBow()).showConditioned(notElfCystalBow);
-		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notMonkfishPisc);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins(), 500).showConditioned(notDashingKebbit);
-		ninjaGreegree = new ItemRequirement("Ninja greegree", ItemCollections.getNinjaGreegree()).showConditioned(notApeAtollAgi);
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes()).showConditioned(notMahoganyBurned);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).showConditioned(notMahoganyBurned);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(notMineAddyOre);
+		crystalBow = new ItemRequirement("Crystal bow", ItemCollections.CRYSTAL_BOW).showConditioned(notElfCystalBow).isNotConsumed();
+		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notMonkfishPisc).isNotConsumed();
+		coins = new ItemRequirement("Coins", ItemCollections.COINS, 500).showConditioned(notDashingKebbit);
+		ninjaGreegree = new ItemRequirement("Ninja greegree", ItemCollections.NINJA_GREEGREE).showConditioned(notApeAtollAgi).isNotConsumed();
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).showConditioned(notMahoganyBurned).isNotConsumed();
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).showConditioned(notMahoganyBurned).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).showConditioned(notMineAddyOre).isNotConsumed();
 		mahoganyPlank = new ItemRequirement("Mahogany planks", ItemID.MAHOGANY_PLANK, 3)
 			.showConditioned(notIsafdarPainting);
 		painting = new ItemRequirement("Isafdar (painting)", ItemID.ISAFDAR_PAINTING).showConditioned(notIsafdarPainting);
 		painting.setTooltip("Can be bought from Sir Renitee in White Knights' Castle for 2,000 gold ");
-		saw = new ItemRequirement("Saw", ItemCollections.getSaw()).showConditioned(notIsafdarPainting);
-		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notIsafdarPainting);
-		lawRunes2 = new ItemRequirement("Law runes", ItemID.LAW_RUNE).showConditioned(notTPApe);
-		fireRunes2 = new ItemRequirement("Fire runes", ItemID.FIRE_RUNE).showConditioned(notTPApe);
-		waterRunes2 = new ItemRequirement("Water runes", ItemID.WATER_RUNE).showConditioned(notTPApe);
+		saw = new ItemRequirement("Saw", ItemCollections.SAW).showConditioned(notIsafdarPainting).isNotConsumed();
+		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notIsafdarPainting).isNotConsumed();
+		lawRunes2 = new ItemRequirement("Law runes", ItemID.LAW_RUNE, 2).showConditioned(notTPApe);
+		fireRunes2 = new ItemRequirement("Fire runes", ItemID.FIRE_RUNE, 2).showConditioned(notTPApe);
+		waterRunes2 = new ItemRequirement("Water runes", ItemID.WATER_RUNE, 2).showConditioned(notTPApe);
 		banana = new ItemRequirement("Banana", ItemID.BANANA).showConditioned(notTPApe);
-		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notLletyaPalm);
-		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notLletyaPalm);
+		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notLletyaPalm).isNotConsumed();
+		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notLletyaPalm).isNotConsumed();
 		palmSapling = new ItemRequirement("Palm sapling", ItemID.PALM_SAPLING).showConditioned(notLletyaPalm);
 
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(notMineAddyOre);
-		ogreBellows = new ItemRequirement("Ogre bellows", ItemCollections.getOgreBellows()).showConditioned(notChompyHat);
-		ogreBow = new ItemRequirement("Ogre bow", ItemCollections.getOgreBow()).showConditioned(notChompyHat);
-		ogreArrows = new ItemRequirement("Ogre / brutal arrows", ItemCollections.getOgreBrutalArrows()).showConditioned(notChompyHat);
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).showConditioned(notMineAddyOre).isNotConsumed();
+		ogreBellows = new ItemRequirement("Ogre bellows", ItemCollections.OGRE_BELLOWS).showConditioned(notChompyHat).isNotConsumed();
+		ogreBow = new ItemRequirement("Ogre bow", ItemCollections.OGRE_BOW).showConditioned(notChompyHat).isNotConsumed();
+		ogreArrows = new ItemRequirement("Ogre / brutal arrows", ItemCollections.OGRE_BRUTAL_ARROWS).showConditioned(notChompyHat);
 		mahoganyLogs = new ItemRequirement("Mahogany logs", ItemID.MAHOGANY_LOGS);
 		rawMonkfish = new ItemRequirement("Raw monkfish", ItemID.RAW_MONKFISH);
-		birdReady = new ItemRequirement("Falconer's glove", ItemID.FALCONERS_GLOVE);
+		birdReady = new ItemRequirement("Falconer's glove", ItemID.FALCONERS_GLOVE).isNotConsumed();
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 		papayas = new ItemRequirement("Papayas", ItemID.PAPAYA_FRUIT, 15);
 		zulrahTP = new ItemRequirement("Zul-andra teleport", ItemID.ZULANDRA_TELEPORT);
-		tpCrystal = new ItemRequirement("Teleport Crystal", ItemCollections.getTeleportCrystal());
+		tpCrystal = new ItemRequirement("Teleport Crystal", ItemCollections.TELEPORT_CRYSTAL).isNotConsumed();
 
 		inApeAtoll = new ZoneRequirement(apeAtoll);
 		inPest = new ZoneRequirement(pest);
@@ -286,7 +316,8 @@ public class WesternHard extends ComplexStateQuestHelper
 		chompyHat.addDialogStep("Can I have a hat please?");
 
 		lletyaPalm = new ObjectStep(this, NullObjectID.NULL_26579, new WorldPoint(2346, 3161, 0),
-			"Check the health of your palm tree in Lletya. It will take about 16 hours to grow fully.", rake, spade,
+			"Check the health of your palm tree in Lletya. It will take about 16 hours to grow fully. " +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.", rake, spade,
 			palmSapling);
 
 		claimReward = new NpcStep(this, NpcID.ELDER_GNOME_CHILD, new WorldPoint(2466, 3460, 0),
@@ -367,71 +398,84 @@ public class WesternHard extends ComplexStateQuestHelper
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
 
+		PanelDetails palmSteps = new PanelDetails("Lletya Palm tree", Collections.singletonList(lletyaPalm),
+			new SkillRequirement(Skill.FARMING, 68), mourningsEndPartI, palmSapling, rake, spade);
+		palmSteps.setDisplayCondition(notLletyaPalm);
+		palmSteps.setLockingStep(lletyaPalmTask);
+		allSteps.add(palmSteps);
+
 		PanelDetails fishSteps = new PanelDetails("Catch And Cook Monkfish", Arrays.asList(fishMonkfish, monkfishPisc),
 			new SkillRequirement(Skill.COOKING, 62), new SkillRequirement(Skill.FISHING, 62),
 			swanSong, smallFishingNet);
 		fishSteps.setDisplayCondition(notMonkfishPisc);
+		fishSteps.setLockingStep(monkfishPiscTask);
 		allSteps.add(fishSteps);
 
 		PanelDetails kebbitSteps = new PanelDetails("Dashing Kebbit", Arrays.asList(getBird, dashingKebbit),
 			new SkillRequirement(Skill.HUNTER, 69), coins);
 		kebbitSteps.setDisplayCondition(notDashingKebbit);
+		kebbitSteps.setLockingStep(dashingKebbitTask);
 		allSteps.add(kebbitSteps);
 
 		PanelDetails gnomeSteps = new PanelDetails("Pickpocket A Gnome", Collections.singletonList(pickpocketGnome),
 			new SkillRequirement(Skill.THIEVING, 75), treeGnomeVillage);
 		gnomeSteps.setDisplayCondition(notPickpocketGnome);
+		gnomeSteps.setLockingStep(pickpocketGnomeTask);
 		allSteps.add(gnomeSteps);
 
 		PanelDetails tpSteps = new PanelDetails("Teleport To Ape Atoll", Collections.singletonList(tpApe),
 			new SkillRequirement(Skill.MAGIC, 64), awowogeiRFD, normalBook, lawRunes2, fireRunes2, waterRunes2, banana);
 		tpSteps.setDisplayCondition(notTPApe);
+		tpSteps.setLockingStep(tpApeTask);
 		allSteps.add(tpSteps);
 
 		PanelDetails mahoSteps = new PanelDetails("Mahogany On Ape Atoll", Arrays.asList(moveToApeMahogany,
 			mahoganyChopped, mahoganyBurned), new SkillRequirement(Skill.FIREMAKING, 50),
 			new SkillRequirement(Skill.WOODCUTTING, 50), monkeyMadnessI, axe, tinderbox);
 		mahoSteps.setDisplayCondition(notMahoganyBurned);
+		mahoSteps.setLockingStep(mahoganyBurnedTask);
 		allSteps.add(mahoSteps);
 
 		PanelDetails agiSteps = new PanelDetails("Ape Atoll Agility Course", Arrays.asList(moveToApeAgi, apeAtollAgi),
 			new SkillRequirement(Skill.AGILITY, 48), monkeyMadnessI, ninjaGreegree);
 		agiSteps.setDisplayCondition(notApeAtollAgi);
+		agiSteps.setLockingStep(apeAtollAgiTask);
 		allSteps.add(agiSteps);
 
 		PanelDetails zulSteps = new PanelDetails("Kill Zulrah", Collections.singletonList(killZulrah), regicide,
 			combatGear);
 		zulSteps.setDisplayCondition(notKillZulrah);
+		zulSteps.setLockingStep(killZulrahTask);
 		allSteps.add(zulSteps);
 
 		PanelDetails addySteps = new PanelDetails("Mine Adamantite in Tirannwn", Collections.singletonList(mineAddyOre),
 			new SkillRequirement(Skill.MINING, 70), regicide, pickaxe);
 		addySteps.setDisplayCondition(notMineAddyOre);
+		addySteps.setLockingStep(mineAddyOreTask);
 		allSteps.add(addySteps);
 
 		PanelDetails elfSteps = new PanelDetails("Kill Elf With Crystal Bow", Collections.singletonList(elfCrystalBow));
 		elfSteps.setDisplayCondition(notElfCystalBow);
+		elfSteps.setLockingStep(elfCystalBowTask);
 		allSteps.add(elfSteps);
 
 		PanelDetails pestSteps = new PanelDetails("Veteran Pest Control", Arrays.asList(moveToPest, vetPest),
-			new CombatLevelRequirement(70), combatGear);
+			new CombatLevelRequirement(100), combatGear);
 		pestSteps.setDisplayCondition(notVetPest);
+		pestSteps.setLockingStep(vetPestTask);
 		allSteps.add(pestSteps);
 
 		PanelDetails isaSteps = new PanelDetails("Isafdar Painting In POH", Collections.singletonList(isafdarPainting),
 			new SkillRequirement(Skill.CONSTRUCTION, 65), rovingElves, mahoganyPlank, painting, saw, hammer);
 		isaSteps.setDisplayCondition(notIsafdarPainting);
+		isaSteps.setLockingStep(isafdarPaintingTask);
 		allSteps.add(isaSteps);
 
 		PanelDetails hatSteps = new PanelDetails("Chompy Bird Hat", Collections.singletonList(chompyHat),
 			new SkillRequirement(Skill.RANGED, 30), bigChompy, ogreBellows, ogreBow, ogreArrows);
 		hatSteps.setDisplayCondition(notChompyHat);
+		hatSteps.setLockingStep(chompyHatTask);
 		allSteps.add(hatSteps);
-
-		PanelDetails palmSteps = new PanelDetails("Lletya Palm tree", Collections.singletonList(lletyaPalm),
-			new SkillRequirement(Skill.FARMING, 68), mourningsEndPartI, palmSapling, rake, spade);
-		palmSteps.setDisplayCondition(notLletyaPalm);
-		allSteps.add(palmSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));
 

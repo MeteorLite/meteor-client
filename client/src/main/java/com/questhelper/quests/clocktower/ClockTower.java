@@ -32,7 +32,7 @@ import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.requirements.ChatMessageRequirement;
 import com.questhelper.requirements.Requirement;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.conditional.ObjectCondition;
@@ -96,7 +96,7 @@ public class ClockTower extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -147,14 +147,15 @@ public class ClockTower extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		bucketOfWater = new ItemRequirement("Bucket of Water or a pair of ice gloves", ItemID.BUCKET_OF_WATER);
-		bucketOfWater.addAlternates(ItemID.ICE_GLOVES);
+		bucketOfWater = new ItemRequirement("Bucket of Water or a pair of ice gloves or smiths gloves(i)", ItemID.BUCKET_OF_WATER);
+		bucketOfWater.addAlternates(ItemID.ICE_GLOVES, ItemID.SMITHS_GLOVES_I);
 		bucketOfWater.setTooltip("There is a bucket spawn next to the well east of the Clocktower. You can fill it on" +
 			" the well");
 		noteAboutWater = new ItemRequirement("There's a bucket and a well and just next to brother cedric for the black cog", -1, -1);
-		staminaPotions = new ItemRequirement("Stamina Potions", ItemCollections.getStaminaPotions());
+		staminaPotions = new ItemRequirement("Stamina Potions", ItemCollections.STAMINA_POTIONS);
 		ardougneCloak = new ItemRequirement("Ardougne Cloak to teleport to monastery", ItemID.ARDOUGNE_CLOAK_1);
 		ardougneCloak.addAlternates(ItemID.ARDOUGNE_CLOAK_2, ItemID.ARDOUGNE_CLOAK_3, ItemID.ARDOUGNE_CLOAK_4);
 		redCog = new ItemRequirement("Red Cog", ItemID.RED_COG);
@@ -241,7 +242,7 @@ public class ClockTower extends BasicQuestHelper
 		blueCogOnBlueSpindle.addIcon(ItemID.BLUE_COG);
 
 		pickupBlackCog = new DetailedQuestStep(this, new WorldPoint(2613, 9639, 0), "Enter the north east door, and " +
-			"pick up the black cog with either a bucket of water or ice gloves equipped.", bucketOfWater, blackCog);
+			"pick up the black cog with a bucket of water, alternatively you can equip ice gloves or smith gloves(i).", bucketOfWater, blackCog);
 		blackCogOnBlackSpindle = new ObjectStep(this, ObjectID.CLOCK_SPINDLE_30, new WorldPoint(2570, 9642, 0),
 			"", blackCog.highlighted());
 		blackCogOnBlackSpindle.addIcon(ItemID.BLACK_COG);

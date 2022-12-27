@@ -36,12 +36,12 @@ import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.item.ItemRequirement;
+import com.questhelper.requirements.player.Favour;
+import com.questhelper.requirements.player.FavourRequirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.player.SpellbookRequirement;
 import com.questhelper.requirements.util.LogicType;
-import com.questhelper.requirements.util.Operation;
 import com.questhelper.requirements.util.Spellbook;
-import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.var.VarplayerRequirement;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.UnlockReward;
@@ -89,6 +89,9 @@ public class KourendElite extends ComplexStateQuestHelper
 
 	Zone redwoodTree, catacombs, skotizoLair, woodcuttingGuild, mountKaruulmDungeon, hydraArea, fish, farming;
 
+	ConditionalStep craftBloodRuneTask, chopRedwoodTask, defeatSkotizoTask, catchAnglerTask, killHydraTask,
+		createTeleportTask, completeRaidTask, fletchBattlestaffTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -97,33 +100,50 @@ public class KourendElite extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doElite = new ConditionalStep(this, claimReward);
-		doElite.addStep(new Conditions(notCraftBloodRune, darkEssenceFragment), craftBloodRune);
-		doElite.addStep(new Conditions(notCraftBloodRune, darkEssenceBlock), chiselEssenceBlock);
-		doElite.addStep(new Conditions(notCraftBloodRune, denseEssenceBlock), bloodVenerateEssenceBlock);
-		doElite.addStep(notCraftBloodRune, bloodMineDenseEssence);
-		doElite.addStep(new Conditions(notCreateTeleport, onArceuusSpellbook), createTeleportTab);
-		doElite.addStep(new Conditions(notCreateTeleport, darkEssenceBlock), switchSpellbook);
-		doElite.addStep(new Conditions(notCreateTeleport, denseEssenceBlock), apeVenerateEssenceBlock);
-		doElite.addStep(notCreateTeleport, apeMineDenseEssence);
-		doElite.addStep(new Conditions(notKillHydra, inHydraArea), killHydra);
-		doElite.addStep(new Conditions(notKillHydra, inMountKaruulmDungeon), enterHydraArea);
-		doElite.addStep(notKillHydra, enterMountKaruulmDungeon);
-		doElite.addStep(new Conditions(notChopRedwood, inRedwoodTree), chopRedwood);
-		doElite.addStep(new Conditions(notChopRedwood, inWoodcuttingGuild), climbRedwoodTree);
-		doElite.addStep(notChopRedwood, enterWoodcuttingGuild);
-		doElite.addStep(new Conditions(notCatchAngler, rawAnglerfish, anglerCaught), cookAnglerfish);
-		doElite.addStep(notCatchAngler, catchAngler);
-		doElite.addStep(notCompleteRaid, completeRaid);
-		doElite.addStep(new Conditions(notDefeatSkotizo, inSkotizoLair), defeatSkotizo);
-		doElite.addStep(new Conditions(notDefeatSkotizo, darkTotem.alsoCheckBank(questBank), inCatacombs), enterSkotizoLair);
-		doElite.addStep(new Conditions(notDefeatSkotizo, darkTotem.alsoCheckBank(questBank)), enterCatacombs);
-		doElite.addStep(notDefeatSkotizo, combineDarkTotem);
-		doElite.addStep(new Conditions(notFletchBattlestaff, barkHarvested), fletchBattlestaff);
-		doElite.addStep(notFletchBattlestaff, plantCelastrusTree);
+
+		fletchBattlestaffTask = new ConditionalStep(this, plantCelastrusTree);
+		fletchBattlestaffTask.addStep(barkHarvested, fletchBattlestaff);
+		doElite.addStep(notFletchBattlestaff, fletchBattlestaffTask);
+
+		craftBloodRuneTask = new ConditionalStep(this, bloodMineDenseEssence);
+		craftBloodRuneTask.addStep(denseEssenceBlock, bloodVenerateEssenceBlock);
+		craftBloodRuneTask.addStep(darkEssenceBlock, chiselEssenceBlock);
+		craftBloodRuneTask.addStep(darkEssenceFragment, craftBloodRune);
+		doElite.addStep(notCraftBloodRune, craftBloodRuneTask);
+
+		createTeleportTask = new ConditionalStep(this, apeMineDenseEssence);
+		createTeleportTask.addStep(denseEssenceBlock, apeVenerateEssenceBlock);
+		createTeleportTask.addStep(darkEssenceBlock, switchSpellbook);
+		createTeleportTask.addStep(onArceuusSpellbook, createTeleportTab);
+		doElite.addStep(notCreateTeleport, createTeleportTask);
+
+		killHydraTask = new ConditionalStep(this, enterMountKaruulmDungeon);
+		killHydraTask.addStep(inMountKaruulmDungeon, enterHydraArea);
+		killHydraTask.addStep(inHydraArea, killHydra);
+		doElite.addStep(notKillHydra, killHydraTask);
+
+		chopRedwoodTask = new ConditionalStep(this, enterWoodcuttingGuild);
+		chopRedwoodTask.addStep(inWoodcuttingGuild, climbRedwoodTree);
+		chopRedwoodTask.addStep(inRedwoodTree, chopRedwood);
+		doElite.addStep(notChopRedwood, chopRedwoodTask);
+
+		catchAnglerTask = new ConditionalStep(this, catchAngler);
+		catchAnglerTask.addStep(new Conditions(rawAnglerfish, anglerCaught), cookAnglerfish);
+		doElite.addStep(notCatchAngler, catchAnglerTask);
+
+		completeRaidTask = new ConditionalStep(this, completeRaid);
+		doElite.addStep(notCompleteRaid, completeRaidTask);
+
+		defeatSkotizoTask = new ConditionalStep(this, combineDarkTotem);
+		defeatSkotizoTask.addStep(darkTotem.alsoCheckBank(questBank), enterCatacombs);
+		defeatSkotizoTask.addStep(new Conditions(darkTotem.alsoCheckBank(questBank), inCatacombs), enterSkotizoLair);
+		defeatSkotizoTask.addStep(inSkotizoLair, defeatSkotizo);
+		doElite.addStep(notDefeatSkotizo, defeatSkotizoTask);
 
 		return doElite;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notCraftBloodRune = new VarplayerRequirement(2086, false, 4);
@@ -138,12 +158,12 @@ public class KourendElite extends ComplexStateQuestHelper
 		onArceuusSpellbook = new SpellbookRequirement(Spellbook.ARCEUUS);
 
 		// Items required
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes())
-			.showConditioned(new Conditions(LogicType.OR, notCraftBloodRune, notCreateTeleport));
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES)
+			.showConditioned(new Conditions(LogicType.OR, notCraftBloodRune, notCreateTeleport)).isNotConsumed();
 		chisel = new ItemRequirement("Chisel", ItemID.CHISEL)
-			.showConditioned(new Conditions(LogicType.OR, notCraftBloodRune, notCreateTeleport));
+			.showConditioned(new Conditions(LogicType.OR, notCraftBloodRune, notCreateTeleport)).isNotConsumed();
 		chisel.setTooltip("One can be found in the Arceuus essence mine.");
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes()).showConditioned(notChopRedwood);
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).showConditioned(notChopRedwood).isNotConsumed();
 		darkTotem = new ItemRequirement("Dark Totem", ItemID.DARK_TOTEM).showConditioned(notDefeatSkotizo);
 		totemBase = new ItemRequirement("Dark totem base", ItemID.DARK_TOTEM_BASE);
 		totemMiddle = new ItemRequirement("Dark totem middle", ItemID.DARK_TOTEM_MIDDLE);
@@ -153,44 +173,40 @@ public class KourendElite extends ComplexStateQuestHelper
 		bloodRune = new ItemRequirement("Blood runes", ItemID.BLOOD_RUNE, 2).showConditioned(notCreateTeleport);
 		lawRune = new ItemRequirement("Law runes", ItemID.LAW_RUNE, 2).showConditioned(notCreateTeleport);
 		soulRune = new ItemRequirement("Soul runes", ItemID.SOUL_RUNE, 2).showConditioned(notCreateTeleport);
-		fishingRod = new ItemRequirement("Fishing rod", ItemID.FISHING_ROD).showConditioned(notCatchAngler);
+		fishingRod = new ItemRequirement("Fishing rod", ItemID.FISHING_ROD).showConditioned(notCatchAngler).isNotConsumed();
 		sandworm = new ItemRequirement("Sandworms", ItemID.SANDWORMS).showConditioned(notCatchAngler);
 		celastrusSapling = new ItemRequirement("Celastrus sapling", ItemID.CELASTRUS_SAPLING).showConditioned(notFletchBattlestaff);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notFletchBattlestaff);
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notFletchBattlestaff).isNotConsumed();
 		combatGear = new ItemRequirement("Combat gear", -1, -1)
-			.showConditioned(new Conditions(LogicType.OR, notDefeatSkotizo, notKillHydra, notCompleteRaid));
+			.showConditioned(new Conditions(LogicType.OR, notDefeatSkotizo, notKillHydra, notCompleteRaid)).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood())
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD)
 			.showConditioned(new Conditions(LogicType.OR, notDefeatSkotizo, notKillHydra, notCompleteRaid));
-		prayerPotion = new ItemRequirement("Prayer potions", ItemCollections.getPrayerPotions())
+		prayerPotion = new ItemRequirement("Prayer potions", ItemCollections.PRAYER_POTIONS)
 			.showConditioned(new Conditions(LogicType.OR, notDefeatSkotizo, notKillHydra, notCompleteRaid));
 		celastrusBark = new ItemRequirement("Celastrus bark", ItemID.CELASTRUS_BARK);
 		darkEssenceBlock = new ItemRequirement("Dark essence block", ItemID.DARK_ESSENCE_BLOCK);
 		darkEssenceFragment = new ItemRequirement("Dark essence fragments", ItemID.DARK_ESSENCE_FRAGMENTS);
 		rawAnglerfish = new ItemRequirement("Raw anglerfish", ItemID.RAW_ANGLERFISH);
-		bootsOfStone = new ItemRequirement("Boots of stone", ItemCollections.getStoneBoots()).showConditioned(notKillHydra);
-		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notFletchBattlestaff);
+		bootsOfStone = new ItemRequirement("Boots of stone", ItemCollections.STONE_BOOTS).showConditioned(notKillHydra).isNotConsumed();
+		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notFletchBattlestaff).isNotConsumed();
 
 		// Items recommended
-		arclight = new ItemRequirement("Arclight", ItemID.ARCLIGHT).showConditioned(notDefeatSkotizo);
+		arclight = new ItemRequirement("Arclight", ItemID.ARCLIGHT).showConditioned(notDefeatSkotizo).isNotConsumed();
 		kharedstsMemoirs = new ItemRequirement("Kharedst's Memoirs or Book of the Dead",
-			Arrays.asList(ItemID.BOOK_OF_THE_DEAD, ItemID.KHAREDSTS_MEMOIRS));
-		xericsTalisman = new ItemRequirement("Xeric's Talisman", ItemID.XERICS_TALISMAN);
-		dramenStaff = new ItemRequirement("Dramen or Lunar staff", ItemCollections.getFairyStaff());
+			Arrays.asList(ItemID.BOOK_OF_THE_DEAD, ItemID.KHAREDSTS_MEMOIRS)).isNotConsumed();
+		xericsTalisman = new ItemRequirement("Xeric's Talisman", ItemID.XERICS_TALISMAN).isNotConsumed();
+		dramenStaff = new ItemRequirement("Dramen or Lunar staff", ItemCollections.FAIRY_STAFF).isNotConsumed();
 		radasBlessing = new ItemRequirement("Rada's Blessing", Arrays.asList(ItemID.RADAS_BLESSING_1,
-			ItemID.RADAS_BLESSING_2, ItemID.RADAS_BLESSING_3));
-		skillsNecklace = new ItemRequirement("Skills necklace", ItemCollections.getSkillsNecklaces());
+			ItemID.RADAS_BLESSING_2, ItemID.RADAS_BLESSING_3)).isNotConsumed();
+		skillsNecklace = new ItemRequirement("Skills necklace", ItemCollections.SKILLS_NECKLACES).isNotConsumed();
 		potatoCactus = new ItemRequirement("Potato cactus", ItemID.POTATO_CACTUS, 8);
-		ultraCompost = new ItemRequirement("Compost", ItemCollections.getCompost());
+		ultraCompost = new ItemRequirement("Compost", ItemCollections.COMPOST);
 
-		arceuusFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_ARCEUUS, Operation.GREATER_EQUAL, 1000,
-			"100% Arceuus favour");
-		hosidiusFavour60 = new VarbitRequirement(Varbits.KOUREND_FAVOR_HOSIDIUS, Operation.GREATER_EQUAL, 600,
-			"60% Hosidius favour");
-		hosidiusFavour75 = new VarbitRequirement(Varbits.KOUREND_FAVOR_HOSIDIUS, Operation.GREATER_EQUAL, 750,
-			"75% Hosidius favour");
-		piscariliusFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_PISCARILIUS, Operation.GREATER_EQUAL, 1000,
-			"100% Piscarilius favour");
+		arceuusFavour = new FavourRequirement(Favour.ARCEUUS, 100);
+		hosidiusFavour60 = new FavourRequirement(Favour.HOSIDIUS, 60);
+		hosidiusFavour75 = new FavourRequirement(Favour.HOSIDIUS, 75);
+		piscariliusFavour = new FavourRequirement(Favour.PISCARILIUS, 100);
 
 		// Zone requirements
 		inRedwoodTree = new ZoneRequirement(redwoodTree);
@@ -301,7 +317,8 @@ public class KourendElite extends ComplexStateQuestHelper
 
 		// Fletch a battlestaff from scratch
 		plantCelastrusTree = new ObjectStep(this, NullObjectID.NULL_34629, new WorldPoint(1244, 3750, 0),
-			"Plant a celastrus sapling (Fully grown after 13 hours). When it's fully grown harvest its bark.",
+			"Plant a celastrus sapling (Fully grown after 13 hours). When it's fully grown harvest its bark. " +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.",
 			celastrusSapling, spade, axe);
 		fletchBattlestaff = new ItemStep(this, "Fletch a battlestaff.", knife.highlighted(),
 			celastrusBark.highlighted());
@@ -351,13 +368,9 @@ public class KourendElite extends ComplexStateQuestHelper
 		req.add(new SkillRequirement(Skill.SLAYER, 95, true));
 		req.add(new SkillRequirement(Skill.WOODCUTTING, 90, true));
 
-		// Overall required favours
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_ARCEUUS, Operation.GREATER_EQUAL, 1000,
-			"100% Arceuus favour"));
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_HOSIDIUS, Operation.GREATER_EQUAL, 750,
-			"75% Hosidius favour"));
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_PISCARILIUS, Operation.GREATER_EQUAL, 1000,
-			"100% Piscarilius favour"));
+		req.add(arceuusFavour);
+		req.add(hosidiusFavour75);
+		req.add(piscariliusFavour);
 
 		return req;
 	}
@@ -389,11 +402,19 @@ public class KourendElite extends ComplexStateQuestHelper
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
 
+		PanelDetails battlestaffStep = new PanelDetails("Battlestaff From Scratch", Arrays.asList(plantCelastrusTree,
+			fletchBattlestaff), new SkillRequirement(Skill.FARMING, 85),
+			new SkillRequirement(Skill.FLETCHING, 40), hosidiusFavour60, spade, celastrusSapling, knife, axe);
+		battlestaffStep.setDisplayCondition(notFletchBattlestaff);
+		battlestaffStep.setLockingStep(fletchBattlestaffTask);
+		allSteps.add(battlestaffStep);
+
 		PanelDetails craftBloodRuneStep = new PanelDetails("Craft Blood Rune",
 			Arrays.asList(bloodMineDenseEssence, bloodVenerateEssenceBlock, chiselEssenceBlock, craftBloodRune),
 			new SkillRequirement(Skill.RUNECRAFT, 77, true), new SkillRequirement(Skill.MINING, 38),
 			new SkillRequirement(Skill.CRAFTING, 38), arceuusFavour, chisel, pickaxe);
 		craftBloodRuneStep.setDisplayCondition(notCraftBloodRune);
+		craftBloodRuneStep.setLockingStep(craftBloodRuneTask);
 		allSteps.add(craftBloodRuneStep);
 
 		PanelDetails createTabStep = new PanelDetails("Ape Atoll Teleport Tablet", Arrays.asList(
@@ -401,18 +422,21 @@ public class KourendElite extends ComplexStateQuestHelper
 			new SkillRequirement(Skill.MAGIC, 90, true), arceuusFavour, chisel, pickaxe,
 			soulRune.quantity(2), lawRune.quantity(2), bloodRune.quantity(2));
 		createTabStep.setDisplayCondition(notCreateTeleport);
+		createTabStep.setLockingStep(createTeleportTask);
 		allSteps.add(createTabStep);
 
 		PanelDetails killHydraStep = new PanelDetails("Kill Hydra", Arrays.asList(enterMountKaruulmDungeon,
 			enterHydraArea, killHydra), new SkillRequirement(Skill.SLAYER, 95, true), combatGear,
 			food, prayerPotion, bootsOfStone);
 		killHydraStep.setDisplayCondition(notKillHydra);
+		killHydraStep.setLockingStep(killHydraTask);
 		allSteps.add(killHydraStep);
 
 		PanelDetails chopRedwoodStep = new PanelDetails("Chop Redwood Logs", Arrays.asList(enterWoodcuttingGuild,
 			climbRedwoodTree, chopRedwood), new SkillRequirement(Skill.WOODCUTTING, 90, true),
 			hosidiusFavour75, axe);
 		chopRedwoodStep.setDisplayCondition(notChopRedwood);
+		chopRedwoodStep.setLockingStep(chopRedwoodTask);
 		allSteps.add(chopRedwoodStep);
 
 		PanelDetails catchAnglerStep = new PanelDetails("Catch And Cook Anglerfish", Arrays.asList(catchAngler,
@@ -420,23 +444,20 @@ public class KourendElite extends ComplexStateQuestHelper
 			new SkillRequirement(Skill.FISHING, 82, true), piscariliusFavour, fishingRod,
 			sandworm);
 		catchAnglerStep.setDisplayCondition(notCatchAngler);
+		catchAnglerStep.setLockingStep(catchAnglerTask);
 		allSteps.add(catchAnglerStep);
 
 		PanelDetails raidStep = new PanelDetails("Complete Chambers Of Xerric Raid", Collections.singletonList(
 			completeRaid));
 		raidStep.setDisplayCondition(notCompleteRaid);
+		raidStep.setLockingStep(completeRaidTask);
 		allSteps.add(raidStep);
 
-		PanelDetails defeatSkotizoStep = new PanelDetails("Defeat Skotizo", Arrays.asList(enterCatacombs,
-			enterSkotizoLair, defeatSkotizo), darkTotem, combatGear, food);
+		PanelDetails defeatSkotizoStep = new PanelDetails("Defeat Skotizo", Arrays.asList(combineDarkTotem,
+			enterCatacombs, enterSkotizoLair, defeatSkotizo), darkTotem, combatGear, food);
 		defeatSkotizoStep.setDisplayCondition(notDefeatSkotizo);
+		defeatSkotizoStep.setLockingStep(defeatSkotizoTask);
 		allSteps.add(defeatSkotizoStep);
-
-		PanelDetails battlestaffStep = new PanelDetails("Battlestaff From Scratch", Arrays.asList(plantCelastrusTree,
-			fletchBattlestaff), new SkillRequirement(Skill.FARMING, 85),
-			new SkillRequirement(Skill.FLETCHING, 40), hosidiusFavour60, spade, celastrusSapling, knife, axe);
-		battlestaffStep.setDisplayCondition(notFletchBattlestaff);
-		allSteps.add(battlestaffStep);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));
 

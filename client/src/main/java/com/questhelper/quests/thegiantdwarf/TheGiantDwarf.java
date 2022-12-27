@@ -41,7 +41,7 @@ import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.player.WeightRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.util.Operation;
 import com.questhelper.requirements.util.Spellbook;
@@ -103,17 +103,18 @@ public class TheGiantDwarf extends BasicQuestHelper
 	//Zones
 	Zone keldagrim, keldagrim2, trollRoom, dwarfEntrance, consortium;
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		// Required
-		coins2500 = new ItemRequirement("coins", ItemCollections.getCoins(), 2500);
+		coins2500 = new ItemRequirement("coins", ItemCollections.COINS, 2500);
 		coins2500.setTooltip("Bring more to be safe.");
-		coins200 = new ItemRequirement("Coins", ItemCollections.getCoins(), 200);
+		coins200 = new ItemRequirement("Coins", ItemCollections.COINS, 200);
 		logs = new ItemRequirement("Logs", ItemID.LOGS);
 		logs.setTooltip("Most logs will work, however, arctic pine logs do not work.");
 		logs.addAlternates(ItemID.OAK_LOGS, ItemID.WILLOW_LOGS, ItemID.TEAK_LOGS, ItemID.MAPLE_LOGS,
 			ItemID.MAHOGANY_LOGS, ItemID.YEW_LOGS, ItemID.MAGIC_LOGS, ItemID.REDWOOD_LOGS);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
 		tinderbox.setHighlightInInventory(true);
 		coal = new ItemRequirement("Coal", ItemID.COAL);
 		coal.setTooltip("There are rocks in the city, but you need 30 Mining.");
@@ -128,7 +129,7 @@ public class TheGiantDwarf extends BasicQuestHelper
 		sapphires3.setTooltip("Purchasable during the quest.");
 		sapphires3.setHighlightInInventory(true);
 		oresBars = new ItemRequirement("Various ores and bars", -1, -1);
-		oresBars.setTooltip("Obtainable during the quest.");
+		oresBars.canBeObtainedDuringQuest();
 		redberryPie = new ItemRequirement("Redberry pie", ItemID.REDBERRY_PIE);
 		redberryPie.setTooltip("Unless you have previously given Thurgo an extra pie with nothing in return.");
 		redberryPieNoInfo = new ItemRequirement("Redberry pie", ItemID.REDBERRY_PIE);
@@ -138,13 +139,13 @@ public class TheGiantDwarf extends BasicQuestHelper
 		rellekkaTeleport = new ItemRequirement("A Camelot/Rellekka teleport (for starting the quest)", ItemID.ENCHANTED_LYRE5);
 		rellekkaTeleport.addAlternates(ItemID.ENCHANTED_LYRE4, ItemID.ENCHANTED_LYRE3, ItemID.ENCHANTED_LYRE2,
 			ItemID.ENCHANTED_LYRE1, ItemID.RELLEKKA_TELEPORT, ItemID.CAMELOT_TELEPORT);
-		rellekkaTeleport.addAlternates(ItemCollections.getSlayerRings());
-		fairyRings = new ItemRequirement("Access to fairy rings", -1, -1);
+		rellekkaTeleport.addAlternates(ItemCollections.SLAYER_RINGS);
+		fairyRings = new ItemRequirement("Access to fairy rings", -1, -1).isNotConsumed();
 		fairyRings.setDisplayItemId(ItemID.FAIRY_RING);
-		staminaPotions = new ItemRequirement("Some stamina potions (when collecting the ores)", ItemCollections.getStaminaPotions());
+		staminaPotions = new ItemRequirement("Some stamina potions (when collecting the ores)", ItemCollections.STAMINA_POTIONS);
 		varrockTeleport = new ItemRequirement("A ring of wealth/amulet of glory/Varrock teleport", ItemID.VARROCK_TELEPORT);
-		varrockTeleport.addAlternates(ItemCollections.getRingOfWealths());
-		varrockTeleport.addAlternates(ItemCollections.getAmuletOfGlories());
+		varrockTeleport.addAlternates(ItemCollections.RING_OF_WEALTHS);
+		varrockTeleport.addAlternates(ItemCollections.AMULET_OF_GLORIES);
 		clay10 = new ItemRequirement("Clay", ItemID.CLAY, 10);
 		copperOre10 = new ItemRequirement("Copper ore", ItemID.COPPER_ORE, 10);
 		tinOre10 = new ItemRequirement("Tin ore", ItemID.TIN_ORE, 10);
@@ -437,6 +438,7 @@ public class TheGiantDwarf extends BasicQuestHelper
 		//((NpcStep) talkToSecretary).addAlternateNpcs(NpcID.PURPLE_PEWTER_SECRETARY, NpcID.GREEN_GEMSTONE_SECRETARY,
 		// NpcID.SILVER_COG_SECRETARY, NpcID.WHITE_CHISEL_SECRETARY);
 		talkToSecretary.addDialogStep("Is there anything I can help you with?");
+		talkToSecretary.addDialogStep("I'll take it.");
 		talkToSecretary.addDialogStep("Do you have another task for me?");
 
 		talkToDirector = new NpcStep(this, NpcID.BLUE_OPAL_DIRECTOR_5999, new WorldPoint(2879, 10199, 1),
@@ -444,6 +446,7 @@ public class TheGiantDwarf extends BasicQuestHelper
 				"just talk to them again for a different one.");
 		((NpcStep) talkToDirector).addAlternateNpcs(NpcID.BLUE_OPAL_DIRECTOR);
 		talkToDirector.addDialogStep("Do you have any more tasks for me?");
+		talkToDirector.addDialogStep("I'll take it.");
 
 		joinCompany = new NpcStep(this, NpcID.BLUE_OPAL_DIRECTOR_5999, new WorldPoint(2879, 10199, 1),
 			"Talk to the director to join the company.");
@@ -459,10 +462,11 @@ public class TheGiantDwarf extends BasicQuestHelper
 		talkToDirectorAfterJoining.addDialogStep("Yes! Long live the Blue Opal!");
 
 		leaveConsortium = new ObjectStep(this, ObjectID.STAIRS_6088, new WorldPoint(2863, 10210, 1),
-			"Talk to Commander Veldaban in west Keldagrim.");
+			"Go down the stairs.");
 
 		talkToVeldabanAfterJoining = new NpcStep(this, NpcID.COMMANDER_VELDABAN_6045, new WorldPoint(2827, 10214, 0),
 			"Talk to Commander Veldaban.");
+		talkToVeldabanAfterJoining.addSubSteps(leaveConsortium);
 		talkToVeldabanAfterJoining.addDialogStep("I'm ready.");
 	}
 
@@ -533,7 +537,7 @@ public class TheGiantDwarf extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		// Varbit 571
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();

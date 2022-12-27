@@ -114,11 +114,12 @@ public class RFDDwarf extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
-		coins320 = new ItemRequirement("Coins", ItemCollections.getCoins(), 320);
+		coins320 = new ItemRequirement("Coins", ItemCollections.COINS, 320);
 		coins320.setTooltip("You only need 120 if you wear a Ring of Charos(a)");
-		coins100 = new ItemRequirement("Coins", ItemCollections.getCoins(), 100);
+		coins100 = new ItemRequirement("Coins", ItemCollections.COINS, 100);
 		milk = new ItemRequirement("Bucket of milk", ItemID.BUCKET_OF_MILK);
 		milk.setTooltip("You can buy this from the  Culinaromancer's Chest");
 		flour = new ItemRequirement("Pot of flour", ItemID.POT_OF_FLOUR);
@@ -129,8 +130,8 @@ public class RFDDwarf extends BasicQuestHelper
 		bowlOfWater.setTooltip("You can find a bowl in Lumbridge Castle's Basement and fill it in the nearby sink");
 		asgarniaAle4 = new ItemRequirement("Asgarnian ale", ItemID.ASGARNIAN_ALE, 4);
 		asgarniaAle4.setTooltip("You can buy them for 3 coins each from Kaylee during the quest");
-		iceGloves = new ItemRequirement("Ice gloves/normal gloves/telekinetic grab", ItemID.ICE_GLOVES);
-		iceGloves.addAlternates(ItemID.LEATHER_GLOVES);
+		iceGloves = new ItemRequirement("Ice gloves/smiths gloves(i)/normal gloves/telekinetic grab", ItemID.ICE_GLOVES).isNotConsumed();
+		iceGloves.addAlternates(ItemID.LEATHER_GLOVES, ItemID.SMITHS_GLOVES_I);
 		iceGloves.setTooltip("You can use normal gloves/telekenetic grab instead, but you'll then need to kill an Ice " +
 			"Fiend");
 		rockCake = new ItemRequirement("Dwarven rock cake", ItemID.DWARVEN_ROCK_CAKE_7510);
@@ -140,7 +141,7 @@ public class RFDDwarf extends BasicQuestHelper
 		teleportFalador2 = new ItemRequirement("Teleport to Falador", ItemID.FALADOR_TELEPORT, 2);
 		teleportLumbridge = new ItemRequirement("Teleport to Lumbridge", ItemID.LUMBRIDGE_TELEPORT);
 
-		coin = new ItemRequirement("Coin", ItemCollections.getCoins());
+		coin = new ItemRequirement("Coin", ItemCollections.COINS);
 		coin.setHighlightInInventory(true);
 
 		asgarnianAle = new ItemRequirement("Asgarnian ale", ItemID.ASGARNIAN_ALE);

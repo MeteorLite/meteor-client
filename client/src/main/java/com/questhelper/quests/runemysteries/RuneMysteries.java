@@ -69,7 +69,7 @@ public class RuneMysteries extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -98,16 +98,17 @@ public class RuneMysteries extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		airTalisman = new ItemRequirement("Air talisman", ItemID.AIR_TALISMAN);
+		airTalisman = new ItemRequirement("Air talisman", ItemID.AIR_TALISMAN).isNotConsumed();
 		airTalisman.setTooltip("You can get another from Duke Horacio if you lost it");
 		researchPackage = new ItemRequirement("Research package", ItemID.RESEARCH_PACKAGE);
 		researchPackage.setTooltip("You can get another from Sedridor if you lost it");
-		notes = new ItemRequirement("Notes", ItemID.NOTES);
+		notes = new ItemRequirement("Research notes", ItemID.RESEARCH_NOTES);
 		notes.setTooltip("You can get another from Aubury if you lost them");
 		varrockTeleport = new ItemRequirement("Varrock teleport", ItemID.VARROCK_TELEPORT);
-		wizardTeleport = new ItemRequirement("A teleport to the Wizard's Tower", ItemCollections.getNecklaceOfPassages());
+		wizardTeleport = new ItemRequirement("A teleport to the Wizard's Tower", ItemCollections.NECKLACE_OF_PASSAGES);
 	}
 
 	public void setupConditions()
@@ -124,8 +125,8 @@ public class RuneMysteries extends BasicQuestHelper
 
 	public void setupSteps()
 	{
-		goUpToHoracio = new ObjectStep(this, ObjectID.STAIRCASE_16671, new WorldPoint(3205, 3208, 0), "Talk to Duke Horacio on the first floor of Lumbidge castle.");
-		talkToHoracio = new NpcStep(this, NpcID.DUKE_HORACIO, new WorldPoint(3210, 3220, 1), "Talk to Duke Horacio on the first floor of Lumbidge castle.");
+		goUpToHoracio = new ObjectStep(this, ObjectID.STAIRCASE_16671, new WorldPoint(3205, 3208, 0), "Talk to Duke Horacio on the first floor of Lumbridge castle.");
+		talkToHoracio = new NpcStep(this, NpcID.DUKE_HORACIO, new WorldPoint(3210, 3220, 1), "Talk to Duke Horacio on the first floor of Lumbridge castle.");
 		talkToHoracio.addDialogStep("Have you any quests for me?");
 		talkToHoracio.addDialogStep("Sure, no problem.");
 		talkToHoracio.addSubSteps(goUpToHoracio);
@@ -143,7 +144,7 @@ public class RuneMysteries extends BasicQuestHelper
 		talkToSedridor.addSubSteps(goDownToSedridor, finishTalkingToSedridor);
 
 		talkToAubury = new NpcStep(this, NpcID.AUBURY, new WorldPoint(3253, 3401, 0), "Bring the Research Package to Aubury in south east Varrock.", researchPackage);
-		talkToAubury.addDialogStep("I have been sent here with a package for you.");
+		talkToAubury.addDialogStep("I've been sent here with a package for you.");
 		talkToAudburyAgain = new NpcStep(this, NpcID.AUBURY, new WorldPoint(3253, 3401, 0), "Talk to Aubury again in south east Varrock.");
 
 		goDownToSedridor2 = new ObjectStep(this, ObjectID.LADDER_2147, new WorldPoint(3104, 3162, 0), "Bring the research notes to Sedridor in the Wizard Tower's basement.", notes);

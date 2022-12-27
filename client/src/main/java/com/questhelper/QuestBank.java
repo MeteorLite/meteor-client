@@ -25,11 +25,13 @@
 package com.questhelper;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.List;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
+import java.util.*;
+
 import lombok.extern.slf4j.Slf4j;
 import meteor.Main;
 import meteor.config.ConfigManager;
@@ -38,32 +40,30 @@ import net.runelite.api.Item;
 import net.runelite.api.WorldType;
 
 @Slf4j
+@Singleton
 public class QuestBank
 {
-	private final ConfigManager configManager;
-	private final Client client;
-	private final Gson gson;
+	public static QuestBank INSTANCE = new QuestBank();
+	private final ConfigManager configManager = ConfigManager.INSTANCE;
+	private final Client client = Main.client;
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	private static final String CONFIG_GROUP = "questhelper";
 	private static final String BANK_KEY = "bankitems";
 
 	private List<Item> bankItems;
+	private final QuestBankData questBankData;
 	private String rsProfileKey;
+
+	private String lastUsername;
 
 	public List<WorldType> worldTypes = Arrays.asList(WorldType.SEASONAL, WorldType.TOURNAMENT_WORLD,
 		WorldType.DEADMAN, WorldType.NOSAVE_MODE);
 
-	public QuestBank(Client client, ConfigManager configManager, Gson gson)
+	public QuestBank()
 	{
-		this.configManager = configManager;
-		this.client = client;
-		this.gson = gson;
+		this.questBankData = new QuestBankData();
 		this.bankItems = new ArrayList<>();
-	}
-
-	public void updateLocalBank(Item[] items)
-	{
-		bankItems = Arrays.asList(items);
 	}
 
 	public List<Item> getBankItems()
@@ -71,33 +71,47 @@ public class QuestBank
 		return bankItems;
 	}
 
+	public void updateLocalBank(Item[] items)
+	{
+		questBankData.set(items);
+		bankItems = questBankData.getAsList();
+	}
+
 	public void emptyState()
 	{
 		rsProfileKey = null;
+		questBankData.setEmpty();
 		bankItems = new ArrayList<>();
 	}
 
 	public void loadState()
 	{
-		saveBankToConfig();
-		loadBankFromConfig();
+		if (!lastUsername.equalsIgnoreCase(Objects.requireNonNull(client.getLocalPlayer()).getName())) {
+			lastUsername = client.getLocalPlayer().getName();
+			loadBankFromConfig();
+		}
 	}
 
 	private void loadBankFromConfig()
 	{
 		// Remove deprecated config
 		configManager.unsetConfiguration(CONFIG_GROUP, getCurrentKey());
-		List<Item> storedItems = gson.fromJson(
-			configManager.getConfiguration(CONFIG_GROUP, BANK_KEY),
-			new TypeToken<List<Item>>(){}.getType());
-		if (storedItems != null)
+
+		//rsProfileKey = configManager.getRSProfileKey();
+		//worldType = RuneScapeProfileType.getCurrent(client);
+
+		String json = configManager.getConfiguration(CONFIG_GROUP, BANK_KEY);
+		try
 		{
-			bankItems = storedItems;
+			questBankData.setIdAndQuantity(gson.fromJson(json, int[].class));
 		}
-		else
+		catch (JsonSyntaxException err)
 		{
-			bankItems = new ArrayList<>();
+			// Due to changing data format from list to array, need to handle for old users
+			questBankData.setIdAndQuantity(new int[0]);
+			saveBankToConfig();
 		}
+		bankItems = questBankData.getAsList();
 	}
 
 	public void saveBankToConfig()
@@ -106,7 +120,8 @@ public class QuestBank
 		{
 			return;
 		}
-		configManager.setConfiguration(CONFIG_GROUP, BANK_KEY, gson.toJson(bankItems));
+
+		configManager.setConfiguration(CONFIG_GROUP, BANK_KEY, gson.toJson(questBankData.getIdAndQuantity()));
 	}
 
 	private String getCurrentKey()

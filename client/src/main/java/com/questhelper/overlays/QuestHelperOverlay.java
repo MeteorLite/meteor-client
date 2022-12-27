@@ -31,14 +31,13 @@ import com.questhelper.QuestHelperPlugin;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import javax.inject.Inject;
 import com.questhelper.questhelpers.QuestHelper;
-import meteor.Main;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPanel;
 import meteor.ui.overlay.OverlayPosition;
 import meteor.ui.overlay.OverlayPriority;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class QuestHelperOverlay extends OverlayPanel
 {
@@ -46,6 +45,7 @@ public class QuestHelperOverlay extends OverlayPanel
 
 	private final QuestHelperPlugin plugin;
 
+	@Inject
 	public QuestHelperOverlay(QuestHelperPlugin plugin)
 	{
 		this.plugin = plugin;
@@ -68,20 +68,8 @@ public class QuestHelperOverlay extends OverlayPanel
 		{
 			return null;
 		}
-		questHelper.getCurrentStep().makeOverlayHint(getPanelComponent(), plugin);
+		questHelper.getCurrentStep().makeOverlayHint(getPanelComponent(), plugin, new ArrayList<>(), new ArrayList<>());
 
 		return super.render(graphics);
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "qhoverlay";
 	}
 }

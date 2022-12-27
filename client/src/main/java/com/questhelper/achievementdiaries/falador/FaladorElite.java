@@ -32,11 +32,14 @@ import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.questhelpers.ComplexStateQuestHelper;
+import com.questhelper.requirements.ComplexRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.item.ItemRequirement;
+import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.player.SkillRequirement;
+import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.var.VarplayerRequirement;
@@ -77,6 +80,9 @@ public class FaladorElite extends ComplexStateQuestHelper
 
 	ZoneRequirement inAirAltar, inFaladorCastle1, inFaladorCastle2, inFaladorCastle3, inTavDungeon, inEastBank;
 
+	ConditionalStep craftedAirRunesTask, purchasedWhite2hSwordTask, gotMagicRootsTask, performedSkillCapeEmoteTask,
+		jumpedOverStrangeFloorTask, madeSaraBrewTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -85,27 +91,40 @@ public class FaladorElite extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doElite = new ConditionalStep(this, claimReward);
-		doElite.addStep(new Conditions(notCraftedAirRunes, inAirAltar), craftAirRunes);
-		doElite.addStep(notCraftedAirRunes, enterAirAltar);
-		doElite.addStep(new Conditions(notGotMagicRoots, stumpNearbyVar), digUpStumpForRoots);
-		doElite.addStep(new Conditions(notGotMagicRoots, magicTreeNearbyCheckedVar), chopMagicTree);
-		doElite.addStep(new Conditions(notGotMagicRoots, magicTreeNearbyNotCheckedVar), chopMagicTree);
-		doElite.addStep(notGotMagicRoots, growMagicTree);
-		doElite.addStep(new Conditions(notPerformedSkillCapeEmote, inFaladorCastle3), performEmote);
-		doElite.addStep(new Conditions(notPerformedSkillCapeEmote, inFaladorCastle2), goUpFaladorCastle3Emote);
-		doElite.addStep(new Conditions(notPerformedSkillCapeEmote, inFaladorCastle1), goUpFaladorCastle2Emote);
-		doElite.addStep(notPerformedSkillCapeEmote, goUpFaladorCastle1Emote);
-		doElite.addStep(new Conditions(notJumpedOverStrangeFloor, inTavDungeon), crossStrangeFloor);
-		doElite.addStep(notJumpedOverStrangeFloor, goToTavDungeon);
-		doElite.addStep(new Conditions(notMadeSaraBrew, inEastBank), craftSaraBrew);
-		doElite.addStep(new Conditions(notMadeSaraBrew), goToEastBank);
-		doElite.addStep(new Conditions(notPurchasedWhite2hSword, inFaladorCastle2), purchaseWhite2hSword);
-		doElite.addStep(new Conditions(notPurchasedWhite2hSword, inFaladorCastle1), goUpFaladorCastle2);
-		doElite.addStep(notPurchasedWhite2hSword, goUpFaladorCastle1);
+
+		gotMagicRootsTask = new ConditionalStep(this, growMagicTree);
+		gotMagicRootsTask.addStep(magicTreeNearbyNotCheckedVar, chopMagicTree);
+		gotMagicRootsTask.addStep(magicTreeNearbyCheckedVar, chopMagicTree);
+		gotMagicRootsTask.addStep(stumpNearbyVar, digUpStumpForRoots);
+		doElite.addStep(notGotMagicRoots, gotMagicRootsTask);
+
+		craftedAirRunesTask = new ConditionalStep(this, enterAirAltar);
+		craftedAirRunesTask.addStep(inAirAltar, craftAirRunes);
+		doElite.addStep(notCraftedAirRunes, craftedAirRunesTask);
+
+		performedSkillCapeEmoteTask = new ConditionalStep(this, goUpFaladorCastle1Emote);
+		performedSkillCapeEmoteTask.addStep(inFaladorCastle1, goUpFaladorCastle2Emote);
+		performedSkillCapeEmoteTask.addStep(inFaladorCastle2, goUpFaladorCastle3Emote);
+		performedSkillCapeEmoteTask.addStep(inFaladorCastle3, performEmote);
+		doElite.addStep(notPerformedSkillCapeEmote, performedSkillCapeEmoteTask);
+
+		jumpedOverStrangeFloorTask = new ConditionalStep(this, goToTavDungeon);
+		jumpedOverStrangeFloorTask.addStep(inTavDungeon, crossStrangeFloor);
+		doElite.addStep(notJumpedOverStrangeFloor, jumpedOverStrangeFloorTask);
+
+		madeSaraBrewTask = new ConditionalStep(this, goToEastBank);
+		madeSaraBrewTask.addStep(inEastBank, craftSaraBrew);
+		doElite.addStep(new Conditions(notMadeSaraBrew), madeSaraBrewTask);
+
+		purchasedWhite2hSwordTask = new ConditionalStep(this, goUpFaladorCastle1);
+		purchasedWhite2hSwordTask.addStep(inFaladorCastle1, goUpFaladorCastle2);
+		purchasedWhite2hSwordTask.addStep(inFaladorCastle2, purchaseWhite2hSword);
+		doElite.addStep(notPurchasedWhite2hSword, purchasedWhite2hSwordTask);
 
 		return doElite;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notCraftedAirRunes = new VarplayerRequirement(1187, false, 5);
@@ -116,13 +135,13 @@ public class FaladorElite extends ComplexStateQuestHelper
 		notMadeSaraBrew = new VarplayerRequirement(1187, false, 10);
 
 		pureEss28 = new ItemRequirement("Pure Essence", ItemID.PURE_ESSENCE, 28).showConditioned(notCraftedAirRunes);
-		airTiara = new ItemRequirement("Air Tiara", ItemID.AIR_TIARA, 1, true).showConditioned(notCraftedAirRunes);
-		coins1920 = new ItemRequirement("Coins", ItemCollections.getCoins(), 1920).showConditioned(notPurchasedWhite2hSword);
-		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notGotMagicRoots);
-		axe = new ItemRequirement("Axe", ItemCollections.getAxes()).showConditioned(notGotMagicRoots);
-		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notGotMagicRoots);
+		airTiara = new ItemRequirement("Air Tiara", ItemID.AIR_TIARA, 1, true).showConditioned(notCraftedAirRunes).isNotConsumed();
+		coins1920 = new ItemRequirement("Coins", ItemCollections.COINS, 1920).showConditioned(notPurchasedWhite2hSword);
+		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notGotMagicRoots).isNotConsumed();
+		axe = new ItemRequirement("Axe", ItemCollections.AXES).showConditioned(notGotMagicRoots).isNotConsumed();
+		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notGotMagicRoots).isNotConsumed();
 		magicTreeSapling = new ItemRequirement("Magic Sapling", ItemID.MAGIC_SAPLING).showConditioned(notGotMagicRoots);
-		skillCape = new ItemRequirement("Any Skill Cape or Quest Cape", ItemCollections.getSkillCape()).showConditioned(notPerformedSkillCapeEmote);
+		skillCape = new ItemRequirement("Any Skill Cape or Quest Cape", ItemCollections.SKILLCAPE).showConditioned(notPerformedSkillCapeEmote);
 		toadflaxPotionUnf = new ItemRequirement("Toadflax Potion (unf)", ItemID.TOADFLAX_POTION_UNF).showConditioned(notMadeSaraBrew);
 		crushedNest = new ItemRequirement("Crushed Nest", ItemID.CRUSHED_NEST).showConditioned(notMadeSaraBrew);
 
@@ -173,7 +192,9 @@ public class FaladorElite extends ComplexStateQuestHelper
 
 		//Step 3 - Magic Roots
 		growMagicTree = new ObjectStep(this, NullObjectID.NULL_8389, new WorldPoint(3004, 3373, 0),
-			"Grow and check the health of a magic tree in Falador Park, afterwards dig up the stump to get the Magic Roots.", magicTreeSapling, rake, spade);
+			"Grow and check the health of a magic tree in Falador Park, afterwards dig up the stump to get the Magic Roots. " +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.",
+			magicTreeSapling, rake, spade);
 		chopMagicTree = new ObjectStep(this, NullObjectID.NULL_8389, new WorldPoint(3004, 3373, 0),
 			"Chop the magic tree that you grew in Falador Park, afterwards dig up the stump to get the Magic Roots.", axe, spade);
 		digUpStumpForRoots = new ObjectStep(this, NullObjectID.NULL_8389, new WorldPoint(3004, 3373, 0),
@@ -235,10 +256,17 @@ public class FaladorElite extends ComplexStateQuestHelper
 		ArrayList<Requirement> req = new ArrayList<>();
 
 		req.add(new SkillRequirement(Skill.AGILITY, 80, true));
-		req.add(new SkillRequirement(Skill.RUNECRAFT, 88, true));
 		req.add(new SkillRequirement(Skill.FARMING, 91, true));
-		req.add(new SkillRequirement(Skill.WOODCUTTING, 75, true));
 		req.add(new SkillRequirement(Skill.HERBLORE, 81, true));
+		req.add(new ComplexRequirement(LogicType.OR, "88 Runecraft or 55 with Raiments of the Eye set",
+			new SkillRequirement(Skill.RUNECRAFT, 88, true, "88 Runecraft"),
+			new ItemRequirements("55 with Raiments of the Eye set",
+				new ItemRequirement("Hat", ItemCollections.EYE_HAT),
+				new ItemRequirement("Top", ItemCollections.EYE_TOP),
+				new ItemRequirement("Bottom", ItemCollections.EYE_BOTTOM),
+				new ItemRequirement("Boot", ItemID.BOOTS_OF_THE_EYE))
+		));
+		req.add(new SkillRequirement(Skill.WOODCUTTING, 75, true));
 
 		req.add(wanted);
 
@@ -249,17 +277,17 @@ public class FaladorElite extends ComplexStateQuestHelper
 	public List<ItemReward> getItemRewards()
 	{
 		return Arrays.asList(
-				new ItemReward("Falador Shield (4)", ItemID.FALADOR_SHIELD_4, 1),
-				new ItemReward("50,000 Exp. Lamp (Any skill over 70)", ItemID.ANTIQUE_LAMP, 1));
+			new ItemReward("Falador Shield (4)", ItemID.FALADOR_SHIELD_4, 1),
+			new ItemReward("50,000 Exp. Lamp (Any skill over 70)", ItemID.ANTIQUE_LAMP, 1));
 	}
 
 	@Override
 	public List<UnlockReward> getUnlockRewards()
 	{
 		return Arrays.asList(
-				new UnlockReward("Tree patch in Falador is now disease free."),
-				new UnlockReward("Increased chance at higher level ores when clearing pay-dirt in the Motherlode Mine."),
-				new UnlockReward("Access to the alternative Amethyst mining spot."));
+			new UnlockReward("Tree patch in Falador is now disease free."),
+			new UnlockReward("Increased chance at higher level ores when clearing pay-dirt in the Motherlode Mine."),
+			new UnlockReward("Access to the alternative Amethyst mining spot."));
 	}
 
 	@Override
@@ -267,35 +295,41 @@ public class FaladorElite extends ComplexStateQuestHelper
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
 
-		PanelDetails airRunesSteps = new PanelDetails("One with the wind..", Arrays.asList(enterAirAltar,
-			craftAirRunes),	new SkillRequirement(Skill.RUNECRAFT, 88, true), airTiara, pureEss28);
-		airRunesSteps.setDisplayCondition(notCraftedAirRunes);
-		allSteps.add(airRunesSteps);
-
-		PanelDetails magicRootsSteps = new PanelDetails("Root of all magic", Collections.singletonList(chopMagicTree),
-			new SkillRequirement(Skill.FARMING, 91, true),
+		PanelDetails magicRootsSteps = new PanelDetails("Root of all magic", Arrays.asList(growMagicTree, chopMagicTree,
+			digUpStumpForRoots), new SkillRequirement(Skill.FARMING, 91, true),
 			new SkillRequirement(Skill.WOODCUTTING, 75, true), axe, spade);
 		magicRootsSteps.setDisplayCondition(notGotMagicRoots);
+		magicRootsSteps.setLockingStep(gotMagicRootsTask);
 		allSteps.add(magicRootsSteps);
+
+		PanelDetails airRunesSteps = new PanelDetails("One with the wind..", Arrays.asList(enterAirAltar,
+			craftAirRunes), new SkillRequirement(Skill.RUNECRAFT, 88, true), airTiara, pureEss28);
+		airRunesSteps.setDisplayCondition(notCraftedAirRunes);
+		airRunesSteps.setLockingStep(craftedAirRunesTask);
+		allSteps.add(airRunesSteps);
 
 		PanelDetails capeEmoteSteps = new PanelDetails("Peak Efficiency", Arrays.asList(goUpFaladorCastle1Emote,
 			goUpFaladorCastle2Emote, goUpFaladorCastle3Emote, performEmote), skillCape);
 		capeEmoteSteps.setDisplayCondition(notPerformedSkillCapeEmote);
+		capeEmoteSteps.setLockingStep(performedSkillCapeEmoteTask);
 		allSteps.add(capeEmoteSteps);
 
 		PanelDetails strangeFloorSteps = new PanelDetails("The River Styx", Arrays.asList(goToTavDungeon,
 			crossStrangeFloor), new SkillRequirement(Skill.AGILITY, 80, true));
 		strangeFloorSteps.setDisplayCondition(notJumpedOverStrangeFloor);
+		strangeFloorSteps.setLockingStep(jumpedOverStrangeFloorTask);
 		allSteps.add(strangeFloorSteps);
 
 		PanelDetails saraBrewSteps = new PanelDetails("Pot Head", Arrays.asList(goToEastBank, craftSaraBrew),
 			new SkillRequirement(Skill.HERBLORE, 81, true), toadflaxPotionUnf, crushedNest);
 		saraBrewSteps.setDisplayCondition(notMadeSaraBrew);
+		saraBrewSteps.setLockingStep(madeSaraBrewTask);
 		allSteps.add(saraBrewSteps);
 
 		PanelDetails swordSteps = new PanelDetails("*Tips Fedora*", Arrays.asList(goUpFaladorCastle1,
-			goUpFaladorCastle2,	purchaseWhite2hSword), wanted, coins1920);
+			goUpFaladorCastle2, purchaseWhite2hSword), wanted, coins1920);
 		swordSteps.setDisplayCondition(notPurchasedWhite2hSword);
+		swordSteps.setLockingStep(purchasedWhite2hSwordTask);
 		allSteps.add(swordSteps);
 
 		PanelDetails finishOffSteps = new PanelDetails("Finishing off", Collections.singletonList(claimReward));

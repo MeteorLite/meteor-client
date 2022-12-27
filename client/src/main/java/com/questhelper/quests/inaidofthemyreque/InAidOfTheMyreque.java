@@ -111,7 +111,7 @@ public class InAidOfTheMyreque extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		setupConditionalSteps();
@@ -223,19 +223,20 @@ public class InAidOfTheMyreque extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		food = new ItemRequirement("Any food", ItemCollections.getGoodEatingFood());
+		food = new ItemRequirement("Any food", ItemCollections.GOOD_EATING_FOOD);
 		foodForChest = new ItemRequirement("Food to put in a chest, multiple pieces in case a Ghast eats some",
-			ItemCollections.getGoodEatingFood());
-		spade = new ItemRequirement("Spade", ItemID.SPADE);
+			ItemCollections.GOOD_EATING_FOOD);
+		spade = new ItemRequirement("Spade", ItemID.SPADE).isNotConsumed();
 		bucketTo5 = new ItemRequirement("buckets (Can use 1 but is much slower)", ItemID.BUCKET, 5);
 		bucketOrSemiFilledBucket = new ItemRequirement("Bucket", ItemID.BUCKET);
 		bucketOrSemiFilledBucket.addAlternates(ItemID.BUCKET_OF_RUBBLE, ItemID.BUCKET_OF_RUBBLE_7624);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes());
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).isNotConsumed();
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
 		planks11 = new ItemRequirement("Plank", ItemID.PLANK, 11);
-		nails44 = new ItemRequirement("Any nails", ItemCollections.getNails(), 44);
+		nails44 = new ItemRequirement("Any nails", ItemCollections.NAILS, 44);
 		swampPaste = new ItemRequirement("Swamp paste", ItemID.SWAMP_PASTE);
 		snails10 = new ItemRequirement("Raw snail", ItemID.THIN_SNAIL_MEAT);
 		snails10.addAlternates(ItemID.FAT_SNAIL_MEAT, ItemID.LEAN_SNAIL_MEAT);
@@ -247,9 +248,8 @@ public class InAidOfTheMyreque extends BasicQuestHelper
 		bronzeAxes10 = new ItemRequirement("Bronze axe", ItemID.BRONZE_AXE, 10);
 		tinderboxes4 = new ItemRequirement("Tinderbox", ItemID.TINDERBOX, 4);
 		tinderbox3 = new ItemRequirement("Tinderbox", ItemID.TINDERBOX, 3);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
-		tinderboxHighlighted = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
-		tinderboxHighlighted.setHighlightInInventory(true);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
+		tinderboxHighlighted = tinderbox.highlighted();
 
 		steelBars2 = new ItemRequirement("Steel bar", ItemID.STEEL_BAR, 2);
 		steelBars2Highlighted = new ItemRequirement("Steel bar", ItemID.STEEL_BAR, 2);
@@ -292,10 +292,10 @@ public class InAidOfTheMyreque extends BasicQuestHelper
 		planks3 = new ItemRequirement("Plank", ItemID.PLANK, 3);
 		planks5 = new ItemRequirement("Plank", ItemID.PLANK, 5);
 		planks6 = new ItemRequirement("Plank", ItemID.PLANK, 6);
-		nails8 = new ItemRequirement("Nails", ItemCollections.getNails(), 8);
-		nails12 = new ItemRequirement("Nails", ItemCollections.getNails(), 12);
-		nails20 = new ItemRequirement("Nails", ItemCollections.getNails(), 20);
-		nails24 = new ItemRequirement("Nails", ItemCollections.getNails(), 24);
+		nails8 = new ItemRequirement("Nails", ItemCollections.NAILS, 8);
+		nails12 = new ItemRequirement("Nails", ItemCollections.NAILS, 12);
+		nails20 = new ItemRequirement("Nails", ItemCollections.NAILS, 20);
+		nails24 = new ItemRequirement("Nails", ItemCollections.NAILS, 24);
 
 		crate = new ItemRequirement("Crate", ItemID.CRATE);
 		crate.setTooltip("You can get another by asking Aurel what you should do now");
@@ -307,10 +307,10 @@ public class InAidOfTheMyreque extends BasicQuestHelper
 		sleepingSeven = new ItemRequirement("The sleeping seven", ItemID.THE_SLEEPING_SEVEN);
 		sleepingSeven.setHighlightInInventory(true);
 
-		hammerHighlighted = new ItemRequirement("Hammer", ItemCollections.getHammer());
+		hammerHighlighted = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
 		hammerHighlighted.setHighlightInInventory(true);
 
-		mould = new ItemRequirement("Rod mould", ItemID.ROD_MOULD);
+		mould = new ItemRequirement("Rod mould", ItemID.ROD_MOULD).isNotConsumed();
 		silvRod = new ItemRequirement("Silvthrill rod", ItemID.SILVTHRILL_ROD);
 		silvRod.setHighlightInInventory(true);
 		softClayHighlighted = new ItemRequirement("Soft clay", ItemID.SOFT_CLAY);
@@ -320,7 +320,7 @@ public class InAidOfTheMyreque extends BasicQuestHelper
 		enchantedRodHighlighted = new ItemRequirement("Silvthrill rod", ItemID.SILVTHRILL_ROD_7638);
 		enchantedRodHighlighted.setHighlightInInventory(true);
 
-		rodOfIvandis = new ItemRequirement("Rod of Ivandis", ItemCollections.getRodOfIvandis());
+		rodOfIvandis = new ItemRequirement("Rod of Ivandis", ItemCollections.ROD_OF_IVANDIS);
 
 		normalSpellbook = new SpellbookRequirement(Spellbook.NORMAL);
 	}
@@ -527,7 +527,7 @@ public class InAidOfTheMyreque extends BasicQuestHelper
 		travelWithIvan.addStep(inTempleTrekArea, killJuvinates);
 		travelWithIvan.addStep(inMyrequeCave, talkToIvanForTrek);
 
-		goIntoCavesAgain = new ConditionalStep(this, climbDownCanifis, "Enter trapdoor behind Canifis.", hammer, softClay);
+		goIntoCavesAgain = new ConditionalStep(this, climbDownCanifis, "Enter the trapdoor behind the Canifis pub.", hammer, softClay);
 
 		ConditionalStep enterPaterToBless = new ConditionalStep(this, goDownToDrezel, enchantedRod, rope);
 

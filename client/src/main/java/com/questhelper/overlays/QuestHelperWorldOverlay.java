@@ -27,15 +27,20 @@ package com.questhelper.overlays;
 
 import com.questhelper.QuestHelperPlugin;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
-
+import javax.inject.Inject;
 import com.questhelper.questhelpers.QuestHelper;
-import meteor.Main;
+import meteor.game.FontManager;
 import meteor.ui.overlay.Overlay;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
+import meteor.util.OverlayUtil;
+import net.runelite.api.Perspective;
+import net.runelite.api.Point;
+import net.runelite.api.coords.LocalPoint;
+import net.runelite.client.chat.JagexColors;
 
 public class QuestHelperWorldOverlay extends Overlay
 {
@@ -45,7 +50,6 @@ public class QuestHelperWorldOverlay extends Overlay
 
 	public QuestHelperWorldOverlay(QuestHelperPlugin plugin)
 	{
-		super();
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.plugin = plugin;
@@ -59,6 +63,26 @@ public class QuestHelperWorldOverlay extends Overlay
 			return null;
 		}
 
+		if (plugin.getCheerer() != null)
+		{
+			LocalPoint lp = LocalPoint.fromWorld(plugin.getClient(), plugin.getCheerer().worldPoint);
+			if (lp != null)
+			{
+				Point p = Perspective.localToCanvas(plugin.getClient(), lp, plugin.getClient().getPlane(),
+					plugin.getCheerer().runeLiteObject.getModelHeight());
+				if (p != null)
+				{
+					Font overheadFont = FontManager.INSTANCE.getRunescapeBoldFont();
+					FontMetrics metrics = graphics.getFontMetrics(overheadFont);
+					Point shiftedP = new Point(p.getX() - (metrics.stringWidth(plugin.getCheerer().getMessage()) / 2), p.getY());
+
+					graphics.setFont(overheadFont);
+					OverlayUtil.INSTANCE.renderTextLocation(graphics, shiftedP, plugin.getCheerer().getMessage(),
+						JagexColors.YELLOW_INTERFACE_TEXT);
+				}
+			}
+		}
+
 		QuestHelper quest = plugin.getSelectedQuest();
 
 		if (quest != null && quest.getCurrentStep() != null)
@@ -66,19 +90,8 @@ public class QuestHelperWorldOverlay extends Overlay
 			quest.getCurrentStep().makeWorldOverlayHint(graphics, plugin);
 		}
 
+		plugin.backgroundHelpers.forEach((name, questHelper) -> questHelper.getCurrentStep().makeWorldOverlayHint(graphics, plugin));
+
 		return null;
 	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "qhworldoverlay";
-	}
-
 }

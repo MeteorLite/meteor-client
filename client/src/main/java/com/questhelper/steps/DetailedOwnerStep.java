@@ -24,32 +24,32 @@
  */
 package com.questhelper.steps;
 
+import com.google.inject.Inject;
 import com.questhelper.QuestHelperPlugin;
 import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.requirements.Requirement;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
+import lombok.NonNull;
 import meteor.Main;
 import meteor.ui.overlay.PanelComponent;
 import net.runelite.api.Client;
-import org.apache.commons.lang3.ArrayUtils;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class DetailedOwnerStep extends QuestStep implements OwnerStep
 {
 	protected QuestStep currentStep;
 
-	protected Requirement[] requirements;
+	protected List<Requirement> requirements = new ArrayList<>();
 
-	protected Client client = Main.INSTANCE.getClient();
+	protected Client client = Main.client;
 
 	public DetailedOwnerStep(QuestHelper questHelper, Requirement... requirements)
 	{
 		super(questHelper);
-		this.requirements = requirements;
+		this.requirements.addAll(Arrays.asList(requirements));
 		setupSteps();
 		addSubSteps(getSteps());
 	}
@@ -57,7 +57,7 @@ public class DetailedOwnerStep extends QuestStep implements OwnerStep
 	public DetailedOwnerStep(QuestHelper questHelper, String text, Requirement... requirements)
 	{
 		super(questHelper, text);
-		this.requirements = requirements;
+		this.requirements.addAll(Arrays.asList(requirements));
 		setupSteps();
 		addSubSteps(getSteps());
 	}
@@ -81,6 +81,7 @@ public class DetailedOwnerStep extends QuestStep implements OwnerStep
 		{
 			currentStep = step;
 			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			currentStep.startUp();
 			return;
 		}
@@ -88,7 +89,8 @@ public class DetailedOwnerStep extends QuestStep implements OwnerStep
 		if (!step.equals(currentStep))
 		{
 			shutDownStep();
-			step.subscribe();
+			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			step.startUp();
 			currentStep = step;
 		}
@@ -108,33 +110,19 @@ public class DetailedOwnerStep extends QuestStep implements OwnerStep
 	{
 	}
 
-	@Override
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, Requirement... additionalRequirements)
-	{
-		Requirement[] allRequirements = ArrayUtils.addAll(additionalRequirements, requirements);
-
-		if (currentStep != null)
-		{
-			if (text == null)
-			{
-				currentStep.makeOverlayHint(panelComponent, plugin, allRequirements);
-			}
-			else
-			{
-				currentStep.makeOverlayHint(panelComponent, plugin, text, allRequirements);
-			}
-		}
-	}
-
 	// This should only have been called from a parent ConditionalStep, so default the additional text to the passed in text
 	@Override
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, List<String> additionalText, Requirement... additionalRequirements)
+	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, @NonNull List<String> additionalText, @NonNull List<Requirement> additionalRequirements)
 	{
-		Requirement[] allRequirements = ArrayUtils.addAll(additionalRequirements, requirements);
+		List<Requirement> allRequirements = new ArrayList<>(additionalRequirements);
+		allRequirements.addAll(requirements);
+
+		List<String> allAdditionalText = new ArrayList<>(additionalText);
+		if (text != null) allAdditionalText.addAll(text);
 
 		if (currentStep != null)
 		{
-			currentStep.makeOverlayHint(panelComponent, plugin, additionalText, allRequirements);
+			currentStep.makeOverlayHint(panelComponent, plugin, allAdditionalText, allRequirements);
 		}
 	}
 
@@ -186,18 +174,6 @@ public class DetailedOwnerStep extends QuestStep implements OwnerStep
 	@Override
 	public Collection<QuestStep> getSteps()
 	{
-		return null;
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
 		return null;
 	}
 }

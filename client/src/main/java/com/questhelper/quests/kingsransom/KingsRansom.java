@@ -36,7 +36,7 @@ import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.var.VarbitRequirement;
-import com.questhelper.requirements.WidgetModelRequirement;
+import com.questhelper.requirements.widget.WidgetModelRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.util.LogicType;
@@ -94,7 +94,7 @@ public class KingsRansom extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -188,15 +188,16 @@ public class KingsRansom extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		scrapPaper = new ItemRequirement("Scrap paper", ItemID.SCRAP_PAPER);
 		addressForm = new ItemRequirement("Address form", ItemID.ADDRESS_FORM);
 		blackHelm = new ItemRequirement("Black knight helm", ItemID.BLACK_KNIGHT_HELM);
 		criminalsThread = new ItemRequirement("Criminal's thread", ItemID.CRIMINALS_THREAD_1809);
 		lawRune = new ItemRequirement("Law rune", ItemID.LAW_RUNE);
-		airRune = new ItemRequirement("Air rune", ItemCollections.getAirRune());
-		airRune.addAlternates(ItemCollections.getAirStaff());
+		airRune = new ItemRequirement("Air rune", ItemCollections.AIR_RUNE);
+		airRune.addAlternates(ItemCollections.AIR_STAFF);
 		hairclip = new ItemRequirement("Hair clip", ItemID.HAIR_CLIP);
 		hairclip.setHighlightInInventory(true);
 
@@ -206,14 +207,14 @@ public class KingsRansom extends BasicQuestHelper
 		bronzeMed = new ItemRequirement("Bronze med helm", ItemID.BRONZE_MED_HELM);
 		bronzeMedWorn = new ItemRequirement("Bronze med helm", ItemID.BRONZE_MED_HELM, 1, true);
 
-		blackKnightBody = new ItemRequirement("Black platebody", ItemID.BLACK_PLATEBODY);
-		blackKnightBodyWorn = new ItemRequirement("Black platebody", ItemID.BLACK_PLATEBODY, 1, true);
+		blackKnightBody = new ItemRequirement("Black platebody", ItemID.BLACK_PLATEBODY).isNotConsumed();
+		blackKnightBodyWorn = blackKnightBody.equipped();
 
-		blackKnightLeg = new ItemRequirement("Black platelegs", ItemID.BLACK_PLATELEGS);
-		blackKnightLegWorn = new ItemRequirement("Black platelegs", ItemID.BLACK_PLATELEGS, 1, true);
+		blackKnightLeg = new ItemRequirement("Black platelegs", ItemID.BLACK_PLATELEGS).isNotConsumed();
+		blackKnightLegWorn = blackKnightLeg.equipped();
 
-		blackKnightHelm = new ItemRequirement("Black full helm", ItemID.BLACK_FULL_HELM);
-		blackKnightHelmWorn = new ItemRequirement("Black full helm", ItemID.BLACK_FULL_HELM, 1, true);
+		blackKnightHelm = new ItemRequirement("Black full helm", ItemID.BLACK_FULL_HELM).isNotConsumed();
+		blackKnightHelmWorn = blackKnightHelm.equipped();
 
 		animateRock = new ItemRequirement("Animate rock scroll", ItemID.ANIMATE_ROCK_SCROLL);
 		animateRock.setTooltip("If you don't have one, you can get another from Wizard Cromperty in Ardougne during " +
@@ -222,7 +223,7 @@ public class KingsRansom extends BasicQuestHelper
 		lockpick = new ItemRequirement("Lockpick", ItemID.LOCKPICK);
 
 		telegrab = new ItemRequirements("Telegrab runes", new ItemRequirement("Law rune", ItemID.LAW_RUNE),
-			new ItemRequirements(LogicType.OR, "Air runes or staff", new ItemRequirement("Air runes", ItemCollections.getAirRune()), new ItemRequirement("Air staff", ItemCollections.getAirStaff())));
+			new ItemRequirements(LogicType.OR, "Air runes or staff", new ItemRequirement("Air runes", ItemCollections.AIR_RUNE), new ItemRequirement("Air staff", ItemCollections.AIR_STAFF)));
 
 		grabOrLockpick = new ItemRequirements(LogicType.OR, "Runes for telekinetic grab or a lockpick", new ItemRequirement("Lockpick", ItemID.LOCKPICK), telegrab);
 

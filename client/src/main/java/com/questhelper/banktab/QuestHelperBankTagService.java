@@ -26,7 +26,6 @@ package com.questhelper.banktab;
 
 import com.questhelper.QuestBank;
 import com.questhelper.QuestHelperPlugin;
-import com.questhelper.panel.PanelDetails;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.util.LogicType;
@@ -35,6 +34,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import javax.inject.Inject;
 import net.runelite.api.InventoryID;
 import net.runelite.api.ItemContainer;
 
@@ -43,6 +43,7 @@ public class QuestHelperBankTagService
 	private final QuestHelperPlugin plugin;
 	private final QuestBank questBank;
 
+	@Inject
 	public QuestHelperBankTagService(QuestHelperPlugin plugin, QuestBank questBank)
 	{
 		this.plugin = plugin;
@@ -74,14 +75,11 @@ public class QuestHelperBankTagService
 	public ArrayList<BankTabItems> getPluginBankTagItemsForSections(boolean onlyGetMissingItems)
 	{
 		ArrayList<BankTabItems> newList = new ArrayList<>();
+/*
+		List<PanelDetails> questSections = plugin.getSelectedQuest().getPanels();*/
 
-		List<PanelDetails> questSections = plugin.getSelectedQuest().getPanels();
-
-		if (questSections == null || questSections.isEmpty())
-		{
-			return newList;
-		}
-
+		return newList;
+/*
 		List<ItemRequirement> recommendedItems = plugin.getSelectedQuest().getItemRecommended();
 
 		if (recommendedItems != null && !recommendedItems.isEmpty())
@@ -110,7 +108,7 @@ public class QuestHelperBankTagService
 			newList.add(pluginItems);
 		}
 
-		return newList;
+		return newList;*/
 	}
 
 	private void getItemsFromRequirement(BankTabItems pluginItems, ItemRequirement itemRequirement)

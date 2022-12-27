@@ -34,7 +34,7 @@ import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.Operation;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
@@ -80,7 +80,7 @@ public class MisthalinMystery extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -258,7 +258,8 @@ public class MisthalinMystery extends BasicQuestHelper
 		inBossRoom = new ZoneRequirement(bossRoom);
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		bucket = new ItemRequirement("Bucket", ItemID.BUCKET);
 		manorKey = new ItemRequirement("Manor key", ItemID.MANOR_KEY_21052);

@@ -41,8 +41,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import meteor.Main;
 import net.runelite.api.ItemID;
 import net.runelite.api.NpcID;
 import net.runelite.api.ObjectID;
@@ -52,8 +50,6 @@ import net.runelite.api.coords.WorldPoint;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.QuestDescriptor;
 import com.questhelper.steps.QuestStep;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 @QuestDescriptor(
 	quest = QuestHelperQuest.ARDOUGNE_EASY
@@ -72,6 +68,9 @@ public class ArdougneEasy extends ComplexStateQuestHelper
 	QuestStep claimReward, essMine, stealCake, sellSilk, eastArdyAltar, fishingTrawler, enterCombatCamp,
 		identifySword, wildyLever, alecksEmporium, probitaPet;
 
+	ConditionalStep essMineTask, stealCakeTask, sellSilkTask, eastArdyAltarTask, fishingTrawlerTask, enterCombatCampTask,
+		identifySwordTask, wildyLeverTask, alecksEmporiumTask, probitaPetTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -80,20 +79,40 @@ public class ArdougneEasy extends ComplexStateQuestHelper
 
 		ConditionalStep doEasy = new ConditionalStep(this, claimReward);
 
-		doEasy.addStep(notAlecksEmporium, alecksEmporium);
-		doEasy.addStep(notFishingTrawler, fishingTrawler);
-		doEasy.addStep(notIdentifySword, identifySword);
-		doEasy.addStep(notEssMine, essMine);
-		doEasy.addStep(notStealCake, stealCake);
-		doEasy.addStep(notSellSilk, sellSilk);
-		doEasy.addStep(notProbitaPet, probitaPet);
-		doEasy.addStep(notEastArdyAltar, eastArdyAltar);
-		doEasy.addStep(notWildyLever, wildyLever);
-		doEasy.addStep(notEnterCombatCamp, enterCombatCamp);
+		alecksEmporiumTask = new ConditionalStep(this, alecksEmporium);
+		doEasy.addStep(notAlecksEmporium, alecksEmporiumTask);
+
+		fishingTrawlerTask = new ConditionalStep(this, fishingTrawler);
+		doEasy.addStep(notFishingTrawler, fishingTrawlerTask);
+
+		identifySwordTask = new ConditionalStep(this, identifySword);
+		doEasy.addStep(notIdentifySword, identifySwordTask);
+
+		essMineTask = new ConditionalStep(this, essMine);
+		doEasy.addStep(notEssMine, essMineTask);
+
+		stealCakeTask = new ConditionalStep(this, stealCake);
+		doEasy.addStep(notStealCake, stealCakeTask);
+
+		sellSilkTask = new ConditionalStep(this, sellSilk);
+		doEasy.addStep(notSellSilk, sellSilkTask);
+
+		probitaPetTask = new ConditionalStep(this, probitaPet);
+		doEasy.addStep(notProbitaPet, probitaPetTask);
+
+		eastArdyAltarTask = new ConditionalStep(this, eastArdyAltar);
+		doEasy.addStep(notEastArdyAltar, eastArdyAltarTask);
+
+		wildyLeverTask = new ConditionalStep(this, wildyLever);
+		doEasy.addStep(notWildyLever, wildyLeverTask);
+
+		enterCombatCampTask = new ConditionalStep(this, enterCombatCamp);
+		doEasy.addStep(notEnterCombatCamp, enterCombatCampTask);
 
 		return doEasy;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notEssMine = new VarplayerRequirement(1196, false, 0);
@@ -109,7 +128,7 @@ public class ArdougneEasy extends ComplexStateQuestHelper
 
 		silk = new ItemRequirement("Silk", ItemID.SILK).showConditioned(notSellSilk);
 		rustySword = new ItemRequirement("Rusty sword", ItemID.RUSTY_SWORD).showConditioned(notIdentifySword);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins()).showConditioned(notIdentifySword);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS).showConditioned(notIdentifySword);
 
 		runeMysteries = new QuestRequirement(QuestHelperQuest.RUNE_MYSTERIES, QuestState.FINISHED);
 		biohazard = new QuestRequirement(QuestHelperQuest.BIOHAZARD, QuestState.FINISHED);
@@ -157,61 +176,6 @@ public class ArdougneEasy extends ComplexStateQuestHelper
 		claimReward.addDialogStep("I have a question about my Achievement Diary.");
 	}
 
-
-	@Override
-	public List<PanelDetails> getPanels()
-	{
-		List<PanelDetails> allSteps = new ArrayList<>();
-
-		PanelDetails aleckSteps = new PanelDetails("Aleck's Hunter Emporium",
-				Collections.singletonList(alecksEmporium));
-		aleckSteps.setDisplayCondition(notAlecksEmporium);
-		allSteps.add(aleckSteps);
-
-		PanelDetails trawlerSteps = new PanelDetails("Fishing Trawler", Collections.singletonList(fishingTrawler));
-		trawlerSteps.setDisplayCondition(notFishingTrawler);
-		allSteps.add(trawlerSteps);
-
-		PanelDetails swordSteps = new PanelDetails("Identify Sword", Collections.singletonList(identifySword),
-				rustySword, coins.quantity(100));
-		swordSteps.setDisplayCondition(notIdentifySword);
-		allSteps.add(swordSteps);
-
-		PanelDetails essSteps = new PanelDetails("Essence Mine", Collections.singletonList(essMine), runeMysteries);
-		essSteps.setDisplayCondition(notEssMine);
-		allSteps.add(essSteps);
-
-		PanelDetails cakeSteps = new PanelDetails("Steal Cake", Collections.singletonList(stealCake),
-				new SkillRequirement(Skill.THIEVING, 5));
-		cakeSteps.setDisplayCondition(notStealCake);
-		allSteps.add(cakeSteps);
-
-		PanelDetails silkSteps = new PanelDetails("Sell Silk", Collections.singletonList(sellSilk), silk);
-		silkSteps.setDisplayCondition(notSellSilk);
-		allSteps.add(silkSteps);
-
-		PanelDetails petSteps = new PanelDetails("Pet Insurance", Collections.singletonList(probitaPet));
-		petSteps.setDisplayCondition(notProbitaPet);
-		allSteps.add(petSteps);
-
-		PanelDetails altarSteps = new PanelDetails("Restore Prayer", Collections.singletonList(eastArdyAltar));
-		altarSteps.setDisplayCondition(notEastArdyAltar);
-		allSteps.add(altarSteps);
-
-		PanelDetails leverSteps = new PanelDetails("Wilderness Lever", Collections.singletonList(wildyLever));
-		leverSteps.setDisplayCondition(notWildyLever);
-		allSteps.add(leverSteps);
-
-		PanelDetails campSteps = new PanelDetails("Combat Camp", Collections.singletonList(enterCombatCamp),
-				biohazard);
-		campSteps.setDisplayCondition(notEnterCombatCamp);
-		allSteps.add(campSteps);
-
-		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));
-
-		return allSteps;
-	}
-
 	@Override
 	public List<ItemRequirement> getItemRequirements()
 	{
@@ -250,16 +214,8 @@ public class ArdougneEasy extends ComplexStateQuestHelper
 		);
 	}
 
-
-	@NotNull
 	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "asfas";
+	public List<PanelDetails> getPanels() {
+		return null;
 	}
 }

@@ -98,14 +98,15 @@ public class RFDEvilDave extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		teleportLumbridge = new ItemRequirement("Teleport to Lumbridge", ItemID.LUMBRIDGE_TELEPORT);
-		teleportEdgeville = new ItemRequirement("Teleport to Edgeville", ItemCollections.getAmuletOfGlories());
+		teleportEdgeville = new ItemRequirement("Teleport to Edgeville", ItemCollections.AMULET_OF_GLORIES);
 
 		stew = new ItemRequirement("Stew", ItemID.STEW);
 		stews = new ItemRequirement("Many stews", ItemID.STEW, -1);
-		cat = new FollowerItemRequirement("A non-overgrown cat for catching rats", ItemCollections.getHuntingCats(),
+		cat = new FollowerItemRequirement("A non-overgrown cat for catching rats", ItemCollections.HUNTING_CATS,
 			NpcCollections.getHuntingCats());
 
 		evilStew = new ItemRequirement("Spicy stew", ItemID.SPICY_STEW);
@@ -136,7 +137,7 @@ public class RFDEvilDave extends BasicQuestHelper
 		talkToDoris = new NpcStep(this, NpcID.DORIS, new WorldPoint(3079, 3494, 0), "Talk to Doris.");
 
 		enterBasement = new ObjectStep(this, ObjectID.TRAPDOOR_12267, new WorldPoint(3077, 3493, 0),
-			"Enter Doris's basement.");
+			"Enter Doris's basement in Edgeville.");
 		((ObjectStep) enterBasement).addAlternateObjects(ObjectID.OPEN_TRAPDOOR);
 
 		talkToEvilDave = new NpcStep(this, NpcID.EVIL_DAVE_4806, new WorldPoint(3080, 9889, 0), "Talk to Evil Dave.");

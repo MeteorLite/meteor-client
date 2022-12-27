@@ -44,7 +44,7 @@ import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.item.ItemOnTileRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.util.Operation;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -74,7 +74,7 @@ import net.runelite.api.widgets.WidgetInfo;
 public class ZogreFleshEaters extends BasicQuestHelper
 {
 	//Items Required
-	ItemRequirement knife, backpack, tankard, tornPage, blackPrism, necroBook, hamBook, portrait, goodPort, strangePotionHighlighted,
+	ItemRequirement knife, backpack, tankard, tornPage, blackPrism, necroBook, hamBook, portrait, goodPort, strangePotionHighlighted, sanfew,
 		badPort, charcoal, papyrus, signedPort, cupOfTea, strangePotion, grishKey, ogreRelic, combatGear, knifeHighlighted, tankardHighlighted;
 
 	Requirement askedAboutSickies, inSurface, inTombF2, killedZombie, searchedCoffin, usedKnife, openedCoffin,
@@ -95,7 +95,7 @@ public class ZogreFleshEaters extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -159,7 +159,8 @@ public class ZogreFleshEaters extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		backpack = new ItemRequirement("Ruined backpack", ItemID.RUINED_BACKPACK);
 		backpack.setHighlightInInventory(true);
@@ -168,7 +169,7 @@ public class ZogreFleshEaters extends BasicQuestHelper
 		tankardHighlighted.setHighlightInInventory(true);
 		tornPage = new ItemRequirement("Torn page", ItemID.TORN_PAGE);
 		blackPrism = new ItemRequirement("Black prism", ItemID.BLACK_PRISM);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE);
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).isNotConsumed();
 		knifeHighlighted = new ItemRequirement("Knife", ItemID.KNIFE);
 		knifeHighlighted.setHighlightInInventory(true);
 		necroBook = new ItemRequirement("Necromancy book", ItemID.NECROMANCY_BOOK);
@@ -180,6 +181,10 @@ public class ZogreFleshEaters extends BasicQuestHelper
 		signedPort = new ItemRequirement("Signed portrait", ItemID.SIGNED_PORTRAIT);
 		papyrus = new ItemRequirement("Papyrus", ItemID.PAPYRUS);
 		papyrus.setHighlightInInventory(true);
+		sanfew = new ItemRequirement("Sanfew serum or Relicym's balm", ItemID.SANFEW_SERUM1);
+		sanfew.addAlternates(ItemID.SANFEW_SERUM2, ItemID.SANFEW_SERUM3, ItemID.SANFEW_SERUM4, ItemID.RELICYMS_BALM1,
+		ItemID.RELICYMS_BALM2, ItemID.RELICYMS_BALM3, ItemID.RELICYMS_BALM4);
+		sanfew.setTooltip("To help prevent disease and restore stats.");
 		charcoal = new ItemRequirement("Charcoal", ItemID.CHARCOAL);
 		cupOfTea = new ItemRequirement("Cup of tea", ItemID.CUP_OF_TEA_4838);
 		strangePotion = new ItemRequirement("Strange potion", ItemID.STRANGE_POTION);
@@ -193,7 +198,7 @@ public class ZogreFleshEaters extends BasicQuestHelper
 		ogreRelic = new ItemRequirement("Ogre artefact", ItemID.OGRE_ARTEFACT);
 		ogreRelic.setTooltip("You can get another by searching the stand where you fought Slash Bash");
 
-		combatGear = new ItemRequirement("Either brutal arrows or Crumble Undead for fighting Slash Bash", -1, -1);
+		combatGear = new ItemRequirement("Either brutal arrows or Crumble Undead for fighting Slash Bash", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 	}
 
@@ -296,9 +301,9 @@ public class ZogreFleshEaters extends BasicQuestHelper
 		bringSignedPortraitToZavistic.addDialogStep("I'm here about the sicks...err Zogres");
 		bringSignedPortraitToZavistic.addDialogStep("I have some items that I'd like you to look at.");
 
+		goUpToSithAgain = new ObjectStep(this, ObjectID.LADDER_16683, new WorldPoint(2597, 3107, 0), "Go upstairs to Sithik upstairs in north Yanille.", strangePotion);
 		usePotionOnTea = new DetailedQuestStep(this, new WorldPoint(2593, 3103, 1), "Use the strange potion on the cup of tea next to Sithik.", strangePotionHighlighted);
 		usePotionOnTea.addIcon(ItemID.STRANGE_POTION);
-		goUpToSithAgain = new ObjectStep(this, ObjectID.LADDER_16683, new WorldPoint(2597, 3107, 0), "Go upstairs to Sithik upstairs in north Yanille.", strangePotion);
 
 		goDownstairsFromSith = new ObjectStep(this, ObjectID.LADDER_16681, new WorldPoint(2597, 3107, 1), "Leave Sithik Int's house.");
 		goUpToOgreSith = new ObjectStep(this, ObjectID.LADDER_16683, new WorldPoint(2597, 3107, 0), "Go upstairs to Sithik again.");
@@ -366,6 +371,7 @@ public class ZogreFleshEaters extends BasicQuestHelper
 	{
 		ArrayList<Requirement> req = new ArrayList<>();
 		req.add(new FreeInventorySlotRequirement(InventoryID.INVENTORY, 5));
+		req.add(sanfew);
 		return req;
 	}
 
@@ -407,7 +413,7 @@ public class ZogreFleshEaters extends BasicQuestHelper
 		List<PanelDetails> allSteps = new ArrayList<>();
 		allSteps.add(new PanelDetails("Starting off", Arrays.asList(talkToGrish, talkToGuard, goDownStairs, searchSkeleton, killZombie, openBackpack, searchLectern, searchCoffin, useKnifeOnCoffin, openCoffin, searchCoffinProperly)));
 		allSteps.add(new PanelDetails("Investigating", Arrays.asList(talkToZavistic, goUpToSith, searchWardrobe, searchCupboard, searchDrawers, usePapyrusOnSith, useTankardOnBartender, usePortraitOnBartender, bringSignedPortraitToZavistic)));
-		allSteps.add(new PanelDetails("Discover the truth", Arrays.asList(goUpToSith, usePotionOnTea, goDownstairsFromSith, goUpToOgreSith, talkToSithForAnswers)));
+		allSteps.add(new PanelDetails("Discover the truth", Arrays.asList(goUpToSithAgain, usePotionOnTea, goDownstairsFromSith, goUpToOgreSith, talkToSithForAnswers)));
 		allSteps.add(new PanelDetails("Help the ogres", Arrays.asList(talkToGrishForKey, talkToGrishForBow, climbBarricadeForBoss, goDownStairsForBoss, enterDoors, goDownToBoss, searchStand, pickUpOgreArtefact, returnArtefactToGrish), combatGear));
 
 		return allSteps;

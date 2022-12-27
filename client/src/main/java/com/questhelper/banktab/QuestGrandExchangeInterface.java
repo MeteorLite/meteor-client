@@ -27,8 +27,10 @@
 package com.questhelper.banktab;
 
 import com.questhelper.QuestHelperPlugin;
+import javax.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
+import meteor.Main;
 import meteor.rs.ClientThread;
 import net.runelite.api.Client;
 import net.runelite.api.FontID;
@@ -64,15 +66,13 @@ public class QuestGrandExchangeInterface
 	@Getter
 	private Widget grandExchangeTitle;
 
-	private final Client client;
+	private final Client client = Main.client;
 	private final QuestHelperPlugin questHelper;
-	private final ClientThread clientThread;
+	private final ClientThread clientThread = ClientThread.INSTANCE;
 
-	public QuestGrandExchangeInterface(Client client, QuestHelperPlugin questHelper, ClientThread clientThread)
+	public QuestGrandExchangeInterface(QuestHelperPlugin questHelper)
 	{
-		this.client = client;
 		this.questHelper = questHelper;
-		this.clientThread = clientThread;
 	}
 
 	public void init()

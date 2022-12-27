@@ -39,7 +39,7 @@ import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.conditional.NpcCondition;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.util.Operation;
 import com.questhelper.rewards.ExperienceReward;
@@ -85,7 +85,7 @@ public class DreamMentor extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 
@@ -162,9 +162,10 @@ public class DreamMentor extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		sealOfPassage = new ItemRequirement("Seal of passage", ItemID.SEAL_OF_PASSAGE);
+		sealOfPassage = new ItemRequirement("Seal of passage", ItemID.SEAL_OF_PASSAGE).isNotConsumed();
 
 		dreamVial = new ItemRequirement("Dream vial (empty)", ItemID.DREAM_VIAL_EMPTY);
 		dreamVial.setHighlightInInventory(true);
@@ -179,10 +180,10 @@ public class DreamMentor extends BasicQuestHelper
 		dreamVialWithGoutweed = new ItemRequirement("Dream vial (herb)", ItemID.DREAM_VIAL_HERB);
 		dreamVialWithGoutweed.setHighlightInInventory(true);
 
-		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
+		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR).isNotConsumed();
 		pestleAndMortar.setHighlightInInventory(true);
 
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
 		hammer.setHighlightInInventory(true);
 
 		goutweed = new ItemRequirement("Goutweed", ItemID.GOUTWEED);
@@ -191,23 +192,23 @@ public class DreamMentor extends BasicQuestHelper
 
 		dreamPotion = new ItemRequirement("Dream potion", ItemID.DREAM_POTION);
 
-		foodAll1 = new ItemRequirement("7 of one type of food", -1, 7);
+		foodAll1 = new ItemRequirement("some type of food", -1, 7);
 		foodAll1.setDisplayItemId(BankSlotIcons.getFood());
-		foodAll2 = new ItemRequirement("7 of another type of food", -1, 7);
+		foodAll2 = new ItemRequirement("some other type of food", -1, 7);
 		foodAll2.setDisplayItemId(BankSlotIcons.getFood());
-		foodAll3 = new ItemRequirement("6 of a third type of food", -1, 6);
+		foodAll3 = new ItemRequirement("a third type of food", -1, 6);
 		foodAll3.setDisplayItemId(BankSlotIcons.getFood());
-		food14 = new ItemRequirement("food, 5x of 2 different types of food, and 4x of another", -1, 14);
+		food14 = new ItemRequirement("food: 5x some type food, 5x some other type of food, 4x a third type of food", -1, 14);
 		food14.setDisplayItemId(BankSlotIcons.getFood());
-		food4 = new ItemRequirement("food, 1x of 2 different types of food, and 2x of another", -1, 4);
+		food4 = new ItemRequirement("food: 1x some type of food, 1x some other type of food, 2x a third type of food", -1, 4);
 		food4.setDisplayItemId(BankSlotIcons.getFood());
-		food6 = new ItemRequirement("food, 2x of 3 different types of food", -1, 6);
+		food6 = new ItemRequirement("food: 2x some type of food, 2x some other type of food, 2x a third type of food", -1, 6);
 		food6.setDisplayItemId(BankSlotIcons.getFood());
 		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
 
 		chest = new ItemRequirement("Cyrisus's chest", ItemID.CYRISUSS_CHEST);
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 	}
 
@@ -249,7 +250,7 @@ public class DreamMentor extends BasicQuestHelper
 		goDownToCyrisus = new ObjectStep(this, ObjectID.LADDER_14996, new WorldPoint(2142, 3944, 0), "Enter the mine in the north east of Lunar Isle.", food14);
 		enterCyrisusCave = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_11399, new WorldPoint(2335, 10346, 2), "Enter the cave entrance on the north wall.");
 		talkToCyrisus = new NpcStep(this, NpcID.FALLEN_MAN, new WorldPoint(2346, 10360, 2), "Attempt to talk to the fallen man.");
-		talkToCyrisus.addDialogStep("Yes");
+		talkToCyrisus.addDialogStep("Yes.");
 
 		feed4Food = new NpcStep(this, NpcID.FALLEN_MAN, new WorldPoint(2346, 10360, 2), "Feed the fallen man 4 food. You'll need to alternate between at least 3 different types of food.", food4);
 
@@ -349,7 +350,7 @@ public class DreamMentor extends BasicQuestHelper
 		useGroundAstralOnVial = new DetailedQuestStep(this, "Add the ground astral rune to the dream vial.", groundAstralRune, dreamVialWithGoutweed);
 		lightBrazier = new ObjectStep(this, NullObjectID.NULL_17025, new WorldPoint(2073, 3912, 0),
 			"Equip your combat equipment, food, and light the Brazier in the west of Lunar Isle's town. The upcoming fight is hard, and you can only leave via the lecturn in the arena and cannot pray. Magic attacks are extremely effective for the fight.",
-			sealOfPassage, tinderbox, combatGear);
+			sealOfPassage, tinderbox.highlighted(), combatGear);
 		lightBrazier.addIcon(ItemID.TINDERBOX);
 
 		talkToCyrisusForDream = new NpcStep(this, NpcID.CYRISUS_3468, new WorldPoint(2075, 3912, 0), "Talk to Cyrisus to enter the dream.", combatGear, sealOfPassage);
@@ -378,7 +379,7 @@ public class DreamMentor extends BasicQuestHelper
 	@Override
 	public List<String> getNotes()
 	{
-		return Collections.singletonList("You will need to fight all 4 bosses in a row without prayers. It's recommended that you use magic as they all have very low magic defence.");
+		return Collections.singletonList("To handle the food you could use Sack of Potatoes(10), Sack of Cabbages(10) and Sack of Onions(10). This would allow you to carry all the food in just three inventory spaces. You will need to fight all 4 bosses in a row without prayers. It's recommended that you use magic as they all have very low magic defence.");
 	}
 
 	@Override

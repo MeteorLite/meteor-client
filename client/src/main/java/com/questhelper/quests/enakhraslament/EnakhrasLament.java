@@ -97,7 +97,7 @@ public class EnakhrasLament extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -188,10 +188,11 @@ public class EnakhrasLament extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes());
-		chiselHighlighted = new ItemRequirement("Chisel", ItemID.CHISEL);
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).isNotConsumed();
+		chiselHighlighted = new ItemRequirement("Chisel", ItemID.CHISEL).isNotConsumed();
 		chiselHighlighted.setHighlightInInventory(true);
 
 		sandstone52 = new ItemRequirement("52 kg of sandstone", -1, -1);
@@ -259,18 +260,18 @@ public class EnakhrasLament extends BasicQuestHelper
 		candle = new ItemRequirement("Candle", ItemID.CANDLE);
 		candle.setHighlightInInventory(true);
 
-		air2 = new ItemRequirement("Air rune", ItemCollections.getAirRune(), 2);
-		airStaff = new ItemRequirement("Air staff", ItemCollections.getAirStaff(), 1, true);
+		air2 = new ItemRequirement("Air rune", ItemCollections.AIR_RUNE, 2);
+		airStaff = new ItemRequirement("Air staff", ItemCollections.AIR_STAFF, 1, true);
 		airRuneOrStaff = new ItemRequirements(LogicType.OR, "2 air runes", air2, airStaff);
-		earth2 = new ItemRequirement("Earth rune", ItemCollections.getEarthRune(), 2);
-		earthStaff = new ItemRequirement("Air staff", ItemCollections.getEarthStaff(), 1, true);
+		earth2 = new ItemRequirement("Earth rune", ItemCollections.EARTH_RUNE, 2);
+		earthStaff = new ItemRequirement("Air staff", ItemCollections.EARTH_STAFF, 1, true);
 		earthRuneOrStaff = new ItemRequirements(LogicType.OR, "2 earth runes", earth2, earthStaff);
 		chaos = new ItemRequirement("Chaos rune", ItemID.CHAOS_RUNE);
 
 		sandstone5 = new ItemRequirement("Sandstone (5kg)", ItemID.SANDSTONE_5KG);
 		sandstone5.setHighlightInInventory(true);
 
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
 
 		onNormals = new SpellbookRequirement(Spellbook.NORMAL);
 	}

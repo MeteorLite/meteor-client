@@ -82,6 +82,13 @@ public class ObjectStep extends DetailedQuestStep
 		this.objectID = objectID;
 	}
 
+	public ObjectStep(QuestHelper questHelper, int objectID, WorldPoint worldPoint, String text, List<Requirement> requirements, List<Requirement> recommended)
+	{
+		super(questHelper, worldPoint, text, requirements, recommended);
+		this.objectID = objectID;
+		this.showAllInArea = false;
+	}
+
 	public void setRevalidateObjects(boolean value)
 	{
 		this.revalidateObjects = value;
@@ -209,13 +216,6 @@ public class ObjectStep extends DetailedQuestStep
 	}
 
 	@Override
-	public void onGameObjectChanged(GameObjectChanged event)
-	{
-		handleRemoveObjects(event.getOldObject());
-		handleObjects(event.getNewObject());
-	}
-
-	@Override
 	public void onGroundObjectSpawned(GroundObjectSpawned event)
 	{
 		handleObjects(event.getGroundObject());
@@ -225,13 +225,6 @@ public class ObjectStep extends DetailedQuestStep
 	public void onGroundObjectDespawned(GroundObjectDespawned event)
 	{
 		handleRemoveObjects(event.getGroundObject());
-	}
-
-	@Override
-	public void onGroundObjectChanged(GroundObjectChanged event)
-	{
-		handleRemoveObjects(event.getPrevious());
-		handleObjects(event.getGroundObject());
 	}
 
 	@Override
@@ -247,13 +240,6 @@ public class ObjectStep extends DetailedQuestStep
 	}
 
 	@Override
-	public void onDecorativeObjectChanged(DecorativeObjectChanged event)
-	{
-		handleRemoveObjects(event.getPrevious());
-		handleObjects(event.getDecorativeObject());
-	}
-
-	@Override
 	public void onWallObjectSpawned(WallObjectSpawned event)
 	{
 		handleObjects(event.getWallObject());
@@ -263,13 +249,6 @@ public class ObjectStep extends DetailedQuestStep
 	public void onWallObjectDespawned(WallObjectDespawned event)
 	{
 		handleRemoveObjects(event.getWallObject());
-	}
-
-	@Override
-	public void onWallObjectChanged(WallObjectChanged event)
-	{
-		handleRemoveObjects(event.getPrevious());
-		handleObjects(event.getWallObject());
 	}
 
 	@Override

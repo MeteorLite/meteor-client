@@ -35,11 +35,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import meteor.game.FontManager;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class DoorPuzzle extends QuestStep
 {
@@ -174,17 +171,5 @@ public class DoorPuzzle extends QuestStep
 				}
 			}
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "doorpuz";
 	}
 }

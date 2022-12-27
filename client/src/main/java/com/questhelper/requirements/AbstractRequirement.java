@@ -25,15 +25,19 @@
 package com.questhelper.requirements;
 
 import com.questhelper.QuestHelperConfig;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nullable;
-
+import lombok.Getter;
 import meteor.ui.components.LineComponent;
 import net.runelite.api.Client;
 
 public abstract class AbstractRequirement implements Requirement
 {
 	private String tooltip;
+	
+	private String urlSuffix;
+
 	private Requirement panelReplacement = null;
 
 	protected boolean shouldCountForFilter = false;
@@ -60,6 +64,19 @@ public abstract class AbstractRequirement implements Requirement
 	{
 		this.tooltip = tooltip;
 	}
+	
+	@Nullable
+	@Override
+	public String getUrlSuffix()
+	{
+		return urlSuffix;
+	}
+
+	@Override
+	public void setUrlSuffix(String urlSuffix)
+	{
+		this.urlSuffix = urlSuffix;
+	}
 
 	@Override
 	public List<LineComponent> getDisplayTextWithChecks(Client client, QuestHelperConfig config)
@@ -73,6 +90,11 @@ public abstract class AbstractRequirement implements Requirement
 
 	protected List<LineComponent> getOverlayDisplayText(Client client, QuestHelperConfig config)
 	{
+		if (!shouldDisplayText(client))
+		{
+			return new ArrayList<>();
+		}
+
 		return Requirement.super.getDisplayTextWithChecks(client, config);
 	}
 

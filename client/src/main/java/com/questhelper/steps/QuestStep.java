@@ -24,6 +24,8 @@
  */
 package com.questhelper.steps;
 
+import com.google.inject.Binder;
+import com.google.inject.Module;
 import static com.questhelper.overlays.QuestHelperOverlay.TITLED_CONTENT_COLOR;
 import com.questhelper.QuestHelperPlugin;
 import com.questhelper.QuestVarbits;
@@ -33,6 +35,7 @@ import com.questhelper.requirements.Requirement;
 import com.questhelper.steps.choice.DialogChoiceChange;
 import com.questhelper.steps.choice.DialogChoiceStep;
 import com.questhelper.steps.choice.DialogChoiceSteps;
+import com.questhelper.steps.choice.WidgetLastState;
 import com.questhelper.steps.choice.WidgetTextChange;
 import com.questhelper.steps.choice.WidgetChoiceStep;
 import com.questhelper.steps.choice.WidgetChoiceSteps;
@@ -44,10 +47,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import eventbus.events.VarbitChanged;
 import eventbus.events.WidgetLoaded;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import meteor.Main;
 import meteor.game.ItemManager;
@@ -60,9 +65,11 @@ import net.runelite.api.Client;
 import net.runelite.api.SpriteID;
 import net.runelite.api.widgets.WidgetID;
 
-public abstract class QuestStep extends EventSubscriber
+public abstract class QuestStep extends EventSubscriber implements Module
 {
-	protected Client client = Main.INSTANCE.getClient();
+
+	protected Client client = Main.client;
+
 
 	protected ClientThread clientThread = ClientThread.INSTANCE;
 
@@ -152,16 +159,25 @@ public abstract class QuestStep extends EventSubscriber
 		this.overlayText.addAll(Arrays.asList(text));
 	}
 
+	@Override
+	public void configure(Binder binder)
+	{
+	}
+
 	public void startUp()
 	{
 		clientThread.invokeLater(this::highlightChoice);
 		clientThread.invokeLater(this::highlightWidgetChoice);
 
 		setupIcon();
+
+		subscribe();
+		setEventListening(true);
 	}
 
 	public void shutDown()
 	{
+		unsubscribe();
 	}
 
 	public void addSubSteps(QuestStep... substep)
@@ -254,6 +270,11 @@ public abstract class QuestStep extends EventSubscriber
 		choices.addChoice(new DialogChoiceStep(questHelper.getConfig(), choice));
 	}
 
+	public void addDialogStep(Pattern pattern)
+	{
+		choices.addChoice(new DialogChoiceStep(questHelper.getConfig(), pattern));
+	}
+
 	public void resetDialogSteps()
 	{
 		choices.resetChoices();
@@ -272,6 +293,11 @@ public abstract class QuestStep extends EventSubscriber
 	public void addDialogStep(int id, String choice)
 	{
 		choices.addChoice(new DialogChoiceStep(questHelper.getConfig(), id, choice));
+	}
+
+	public void addDialogStep(int id, Pattern pattern)
+	{
+		choices.addChoice(new DialogChoiceStep(questHelper.getConfig(), id, pattern));
 	}
 
 	public void addDialogSteps(String... newChoices)
@@ -310,25 +336,33 @@ public abstract class QuestStep extends EventSubscriber
 		widgetChoices.addChoice(new WidgetTextChange(questHelper.getConfig(), choice, groupID, childID, newText));
 	}
 
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, Requirement... additionalRequirements)
+	public void addWidgetLastLoadedCondition(String widgetValue, int widgetGroupID, int widgetChildID, String choiceValue,
+											 int choiceGroupId, int choiceChildId)
 	{
-		makeOverlayHint(panelComponent, plugin, null, additionalRequirements);
+		WidgetLastState conditionWidget = new WidgetLastState(questHelper.getConfig(), widgetValue, widgetGroupID, widgetChildID);
+		widgetChoices.addChoice(conditionWidget);
+
+		WidgetChoiceStep newWidgetChoice = new WidgetChoiceStep(questHelper.getConfig(), choiceValue, choiceGroupId, choiceChildId);
+		newWidgetChoice.setWidgetToCheck(conditionWidget);
+		widgetChoices.addChoice(newWidgetChoice);
 	}
 
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, List<String> additionalText, Requirement... additionalRequirements)
+	public void addDialogLastLoadedCondition(String widgetValue, int widgetGroupID, int widgetChildID, String choiceValue)
+	{
+		addWidgetLastLoadedCondition(widgetValue, widgetGroupID, widgetChildID, choiceValue, 219, 1);
+	}
+
+	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, @NonNull List<String> additionalText, @NonNull List<Requirement> additionalRequirements)
 	{
 		addTitleToPanel(panelComponent);
 
-		if (additionalText != null)
-		{
-			additionalText.stream()
-				.filter(s -> !s.isEmpty())
-				.forEach(line -> addTextToPanel(panelComponent, line));
+		additionalText.stream()
+			.filter(s -> !s.isEmpty())
+			.forEach(line -> addTextToPanel(panelComponent, line));
 
-			if (text != null && (text.size() > 0 && !text.get(0).isEmpty()))
-			{
-				addTextToPanel(panelComponent, "");
-			}
+		if (text != null && (text.size() > 0 && !text.get(0).isEmpty()))
+		{
+			addTextToPanel(panelComponent, "");
 		}
 
 		if (!overlayText.isEmpty())

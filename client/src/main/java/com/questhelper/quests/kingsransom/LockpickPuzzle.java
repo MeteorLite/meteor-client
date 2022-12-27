@@ -31,10 +31,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class LockpickPuzzle extends QuestStep
 {
@@ -136,17 +133,5 @@ public class LockpickPuzzle extends QuestStep
 			graphics.setColor(questHelper.getConfig().targetOverlayColor());
 			graphics.draw(widgetWrapper.getBounds());
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "lockpickpuzzle";
 	}
 }

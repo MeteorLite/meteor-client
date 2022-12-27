@@ -39,7 +39,7 @@ import com.questhelper.steps.ItemStep;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.conditional.NpcCondition;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -94,7 +94,7 @@ public class HolyGrail extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -152,18 +152,19 @@ public class HolyGrail extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		excalibur = new ItemRequirement("Excalibur", ItemID.EXCALIBUR);
+		excalibur = new ItemRequirement("Excalibur", ItemID.EXCALIBUR).isNotConsumed();
 		holyTableNapkin = new ItemRequirement("Holy Table Napkin", ItemID.HOLY_TABLE_NAPKIN);
 		twoMagicWhistles = new ItemRequirement("Magic Whistles", ItemID.MAGIC_WHISTLE, 2);
 		threeCamelotTele = new ItemRequirement("Camelot Teleports", ItemID.CAMELOT_TELEPORT, 3);
 		ardyTele = new ItemRequirement("Ardougne Teleport", ItemID.ARDOUGNE_TELEPORT);
 		faladorTele = new ItemRequirement("Falador Teleport", ItemID.FALADOR_TELEPORT);
-		sixtyCoins = new ItemRequirement("Coins", ItemCollections.getCoins(), 60);
+		sixtyCoins = new ItemRequirement("Coins", ItemCollections.COINS, 60);
 		antipoison = new ItemRequirement("Antipoison", ItemID.ANTIPOISON4);
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		combatGear = new ItemRequirement("A weapon and armour", -1, -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		combatGear = new ItemRequirement("A weapon and armour", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 		emptyInvSpot = new ItemRequirement("Empty Inventory Spot", -1, 1);
 		goldFeather = new ItemRequirement("Magic gold feather", ItemID.MAGIC_GOLD_FEATHER);

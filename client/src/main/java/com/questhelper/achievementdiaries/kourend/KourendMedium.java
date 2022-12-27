@@ -36,8 +36,11 @@ import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.item.ItemRequirement;
+import com.questhelper.requirements.player.Favour;
+import com.questhelper.requirements.player.FavourRequirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
+import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.util.Operation;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.var.VarplayerRequirement;
@@ -45,12 +48,8 @@ import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.UnlockReward;
 import com.questhelper.steps.*;
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -90,6 +89,10 @@ public class KourendMedium extends ComplexStateQuestHelper
 
 	Zone molchIsland;
 
+	ConditionalStep fairyRingTask, killLizardmanTask, travelWithMemoirsTask, mineSulphurTask, enterFarmingGuildTask,
+		switchSpellbooksTask, repairCraneTask, deliverIntelligenceTask, catchBluegillTask, useBoulderShortcutTask,
+		subdueWintertodtTask, catchChinchompaTask, chopMahoganyTreeTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -98,27 +101,54 @@ public class KourendMedium extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doMedium = new ConditionalStep(this, claimReward);
-		doMedium.addStep(notFairyRing, travelFairyRing);
-		doMedium.addStep(notChopMahoganyTree, chopMahoganyTree);
-		doMedium.addStep(notEnterFarmingGuild, enterFarmingGuild);
-		doMedium.addStep(new Conditions(notCatchBluegill, inMolchIsland, kingWorm, hasBird), catchBluegill);
-		doMedium.addStep(new Conditions(notCatchBluegill, inMolchIsland, kingWorm), talkToAlry);
-		doMedium.addStep(new Conditions(notCatchBluegill, inMolchIsland), pickupWorms);
-		doMedium.addStep(notCatchBluegill, travelToMolchIsland);
-		doMedium.addStep(notMineSulphur, mineSulphur);
-		doMedium.addStep(notKillLizardman, killLizardman);
-		doMedium.addStep(notCatchChinchompa, catchChinchompa);
-		doMedium.addStep(notRepairCrane, repairCrane);
-		doMedium.addStep(notSwitchSpellbooks, switchSpellbooks);
-		doMedium.addStep(notUseBoulderShortcut, useBoulderShortcut);
-		doMedium.addStep(notSubdueWintertodt, subdueWintertodt);
-		doMedium.addStep(new Conditions(notDeliverIntelligence, intelligence.alsoCheckBank(questBank)), deliverIntelligence);
-		doMedium.addStep(notDeliverIntelligence, killGangBoss);
-		doMedium.addStep(notTravelWithMemoirs, travelWithMemoirs);
+
+		fairyRingTask = new ConditionalStep(this, travelFairyRing);
+		doMedium.addStep(notFairyRing, fairyRingTask);
+
+		chopMahoganyTreeTask = new ConditionalStep(this, chopMahoganyTree);
+		doMedium.addStep(notChopMahoganyTree, chopMahoganyTreeTask);
+
+		enterFarmingGuildTask = new ConditionalStep(this, enterFarmingGuild);
+		doMedium.addStep(notEnterFarmingGuild, enterFarmingGuildTask);
+
+		catchBluegillTask = new ConditionalStep(this, travelToMolchIsland);
+		catchBluegillTask.addStep(inMolchIsland, pickupWorms);
+		catchBluegillTask.addStep(new Conditions(inMolchIsland, kingWorm), talkToAlry);
+		catchBluegillTask.addStep(new Conditions(inMolchIsland, kingWorm, hasBird), catchBluegill);
+		doMedium.addStep(notCatchBluegill, catchBluegillTask);
+
+		mineSulphurTask = new ConditionalStep(this, mineSulphur);
+		doMedium.addStep(notMineSulphur, mineSulphurTask);
+
+		killLizardmanTask = new ConditionalStep(this, killLizardman);
+		doMedium.addStep(notKillLizardman, killLizardmanTask);
+
+		catchChinchompaTask = new ConditionalStep(this, catchChinchompa);
+		doMedium.addStep(notCatchChinchompa, catchChinchompaTask);
+
+		repairCraneTask = new ConditionalStep(this, repairCrane);
+		doMedium.addStep(notRepairCrane, repairCraneTask);
+
+		switchSpellbooksTask = new ConditionalStep(this, switchSpellbooks);
+		doMedium.addStep(notSwitchSpellbooks, switchSpellbooksTask);
+
+		useBoulderShortcutTask = new ConditionalStep(this, useBoulderShortcut);
+		doMedium.addStep(notUseBoulderShortcut, useBoulderShortcutTask);
+
+		subdueWintertodtTask = new ConditionalStep(this, subdueWintertodt);
+		doMedium.addStep(notSubdueWintertodt, subdueWintertodtTask);
+
+		deliverIntelligenceTask = new ConditionalStep(this, killGangBoss);
+		deliverIntelligenceTask.addStep(intelligence.alsoCheckBank(questBank), deliverIntelligence);
+		doMedium.addStep(notDeliverIntelligence, deliverIntelligenceTask);
+
+		travelWithMemoirsTask = new ConditionalStep(this, travelWithMemoirs);
+		doMedium.addStep(notTravelWithMemoirs, travelWithMemoirsTask);
 
 		return doMedium;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notFairyRing = new VarplayerRequirement(2085, false, 25);
@@ -142,37 +172,38 @@ public class KourendMedium extends ComplexStateQuestHelper
 		memoirPis = new VarbitRequirement(7921, Operation.EQUAL, 0, "");
 
 		// Required items
-		dramenStaff = new ItemRequirement("Dramen or Lunar staff", ItemCollections.getFairyStaff(), 1, true)
-			.showConditioned(notFairyRing);
+		dramenStaff = new ItemRequirement("Dramen or Lunar staff", ItemCollections.FAIRY_STAFF, 1, true)
+			.showConditioned(notFairyRing).isNotConsumed();
 		kharedstsMemoirs = new ItemRequirement("Kharedst's Memoirs or Book of the Dead",
-			Arrays.asList(ItemID.BOOK_OF_THE_DEAD, ItemID.KHAREDSTS_MEMOIRS)).showConditioned(notTravelWithMemoirs);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(notMineSulphur);
-		faceMask = new ItemRequirement("Facemask or slayer helmet", ItemCollections.getSlayerHelmets(), 1, true)
-			.showConditioned(notMineSulphur);
+			Arrays.asList(ItemID.BOOK_OF_THE_DEAD, ItemID.KHAREDSTS_MEMOIRS)).showConditioned(notTravelWithMemoirs).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).showConditioned(notMineSulphur).isNotConsumed();
+		faceMask = new ItemRequirement("Facemask or slayer helmet", ItemCollections.SLAYER_HELMETS, 1, true)
+			.showConditioned(notMineSulphur).isNotConsumed();
 		faceMask.addAlternates(ItemID.FACEMASK, ItemID.GAS_MASK);
-		hammer = new ItemRequirement("A hammer", ItemCollections.getHammer()).showConditioned(notRepairCrane);
-		nails = new ItemRequirement("Nails", ItemCollections.getNails(), 50).showConditioned(notRepairCrane);
-		planks = new ItemRequirement("3 Planks", ItemID.PLANK).showConditioned(notRepairCrane);
+		hammer = new ItemRequirement("A hammer", ItemCollections.HAMMER).showConditioned(notRepairCrane).isNotConsumed();
+		nails = new ItemRequirement("Nails", ItemCollections.NAILS, 50).showConditioned(notRepairCrane);
+		planks = new ItemRequirement("Plank", ItemID.PLANK, 3).showConditioned(notRepairCrane);
 		kingWorm = new ItemRequirement("King worm or fish chunks", ItemID.KING_WORM).showConditioned(notCatchBluegill);
 		kingWorm.addAlternates(ItemID.FISH_CHUNKS);
 		kingWorm.setTooltip("Obtainable on Molch Island");
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes()).showConditioned(notSubdueWintertodt);
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).showConditioned(new Conditions(LogicType.OR,
+			notSubdueWintertodt, notChopMahoganyTree)).isNotConsumed();
 		tinderbox = new ItemRequirement("Tinderbox", Arrays.asList(ItemID.BRUMA_TORCH, ItemID.TINDERBOX))
-			.showConditioned(notSubdueWintertodt);
-		boxTrap = new ItemRequirement("Box trap", ItemID.BOX_TRAP).showConditioned(notCatchChinchompa);
+			.showConditioned(notSubdueWintertodt).isNotConsumed();
+		boxTrap = new ItemRequirement("Box trap", ItemID.BOX_TRAP).showConditioned(notCatchChinchompa).isNotConsumed();
 		intelligence = new ItemRequirement("Intelligence", ItemID.INTELLIGENCE).showConditioned(notDeliverIntelligence);
 
 		// Recommended items
-		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notSubdueWintertodt);
-		warmClothing = new ItemRequirement("Warm clothing", ItemCollections.getWarmClothing(), 4, true)
-			.showConditioned(notSubdueWintertodt);
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notSubdueWintertodt).isNotConsumed();
+		warmClothing = new ItemRequirement("Warm clothing", ItemCollections.WARM_CLOTHING, 4, true)
+			.showConditioned(notSubdueWintertodt).isNotConsumed();
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1).showConditioned(notKillLizardman);
-		antipoison = new ItemRequirement("Anti-poison", ItemCollections.getAntipoisons())
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1).showConditioned(notKillLizardman);
+		antipoison = new ItemRequirement("Anti-poison", ItemCollections.ANTIPOISONS)
 			.showConditioned(notKillLizardman);
 		radasBlessing1 = new ItemRequirement("Rada's Blessing (1)", ItemID.RADAS_BLESSING_1, -1)
-			.showConditioned(notCatchChinchompa);
+			.showConditioned(notCatchChinchompa).isNotConsumed();
 
 		// Required quests
 		fairytaleII = new QuestRequirement(QuestHelperQuest.FAIRYTALE_II__CURE_A_QUEEN, QuestState.IN_PROGRESS);
@@ -183,12 +214,9 @@ public class KourendMedium extends ComplexStateQuestHelper
 		ascentOfArceuus = new QuestRequirement(QuestHelperQuest.THE_ASCENT_OF_ARCEUUS, QuestState.FINISHED);
 		eaglesPeak = new QuestRequirement(QuestHelperQuest.EAGLES_PEAK, QuestState.FINISHED);
 
-		arceuusFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_ARCEUUS, Operation.GREATER_EQUAL, 600,
-			"60% Arceuus favour");
-		hosidiusFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_HOSIDIUS, Operation.GREATER_EQUAL, 600,
-			"60% Hosidius favour");
-		shayzienFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_SHAYZIEN, Operation.GREATER_EQUAL, 400,
-			"40% Shayzien favour");
+		arceuusFavour = new FavourRequirement(Favour.ARCEUUS, 60);
+		hosidiusFavour = new FavourRequirement(Favour.HOSIDIUS, 60);
+		shayzienFavour = new FavourRequirement(Favour.SHAYZIEN, 40);
 
 		// Zone requirements
 		inMolchIsland = new ZoneRequirement(molchIsland);
@@ -362,7 +390,7 @@ public class KourendMedium extends ComplexStateQuestHelper
 	{
 		return Arrays.asList(
 			new ItemReward("Rada's Blessing (2)", ItemID.RADAS_BLESSING_2, 1),
-			new ItemReward("7,500 Exp. Lamp (Any skill over 30)", ItemID.ANTIQUE_LAMP, 1));
+			new ItemReward("7,500 Exp. Lamp (Any skill over 40)", ItemID.ANTIQUE_LAMP, 1));
 	}
 
 	@Override
@@ -383,85 +411,86 @@ public class KourendMedium extends ComplexStateQuestHelper
 		PanelDetails fairyRingStep = new PanelDetails("Fairy Ring To Mount Karuulm",
 			Collections.singletonList(travelFairyRing), dramenStaff, fairytaleII);
 		fairyRingStep.setDisplayCondition(notFairyRing);
+		fairyRingStep.setLockingStep(fairyRingTask);
 		allSteps.add(fairyRingStep);
 
 		PanelDetails chopMahoganyStep = new PanelDetails("Chop Mahogany Tree",
 			Collections.singletonList(chopMahoganyTree), new SkillRequirement(Skill.WOODCUTTING, 50), axe);
 		chopMahoganyStep.setDisplayCondition(notChopMahoganyTree);
+		chopMahoganyStep.setLockingStep(chopMahoganyTreeTask);
 		allSteps.add(chopMahoganyStep);
 
 		PanelDetails enterFarmingGuildStep = new PanelDetails("Enter The Farming Guild",
 			Collections.singletonList(enterFarmingGuild), new SkillRequirement(Skill.FARMING, 45), hosidiusFavour);
 		enterFarmingGuildStep.setDisplayCondition(notEnterFarmingGuild);
+		enterFarmingGuildStep.setLockingStep(enterFarmingGuildTask);
 		allSteps.add(enterFarmingGuildStep);
 
 		PanelDetails catchBluegillStep = new PanelDetails("Catch A Bluegill", Arrays.asList(travelToMolchIsland,
 			pickupWorms, talkToAlry, catchBluegill), new SkillRequirement(Skill.FISHING, 43),
 			new SkillRequirement(Skill.HUNTER, 35), kingWorm);
 		catchBluegillStep.setDisplayCondition(notCatchBluegill);
+		catchBluegillStep.setLockingStep(catchBluegillTask);
 		allSteps.add(catchBluegillStep);
 
 		PanelDetails mineSulphurStep = new PanelDetails("Mine volcanic sulphur", Collections.singletonList(mineSulphur),
 			new SkillRequirement(Skill.MINING, 42), pickaxe, faceMask);
 		mineSulphurStep.setDisplayCondition(notMineSulphur);
+		mineSulphurStep.setLockingStep(mineSulphurTask);
 		allSteps.add(mineSulphurStep);
 
 		PanelDetails killLizardmanStep = new PanelDetails("Kill A Lizardman", Collections.singletonList(killLizardman),
 			food, combatGear, antipoison);
 		killLizardmanStep.setDisplayCondition(notKillLizardman);
+		killLizardmanStep.setLockingStep(killLizardmanTask);
 		allSteps.add(killLizardmanStep);
 
 		PanelDetails catchChinStep = new PanelDetails("Catch A Chinchompa", Collections.singletonList(catchChinchompa),
 			new SkillRequirement(Skill.HUNTER, 53), boxTrap, eaglesPeak);
 		catchChinStep.setDisplayCondition(notCatchChinchompa);
+		catchChinStep.setLockingStep(catchChinchompaTask);
 		allSteps.add(catchChinStep);
 
 		PanelDetails repairCraneStep = new PanelDetails("Repair Crane", Collections.singletonList(repairCrane),
 			new SkillRequirement(Skill.CRAFTING, 30), hammer, nails, planks);
 		repairCraneStep.setDisplayCondition(notRepairCrane);
+		repairCraneStep.setLockingStep(repairCraneTask);
 		allSteps.add(repairCraneStep);
 
 		PanelDetails switchSpellbookStep = new PanelDetails("Arceuus Spellbook", Collections.singletonList(switchSpellbooks),
 			arceuusFavour);
 		switchSpellbookStep.setDisplayCondition(notSwitchSpellbooks);
+		switchSpellbookStep.setLockingStep(switchSpellbooksTask);
 		allSteps.add(switchSpellbookStep);
 
 		PanelDetails leapBoulderStep = new PanelDetails("Leap the boulder", Collections.singletonList(useBoulderShortcut),
 			new SkillRequirement(Skill.AGILITY, 49));
 		leapBoulderStep.setDisplayCondition(notUseBoulderShortcut);
+		leapBoulderStep.setLockingStep(useBoulderShortcutTask);
 		allSteps.add(leapBoulderStep);
 
 		PanelDetails subdueWintertodtStep = new PanelDetails("Subdue the Wintertodt",
 			Collections.singletonList(subdueWintertodt), new SkillRequirement(Skill.FIREMAKING, 50), axe,
 			tinderbox, food, warmClothing, knife, hammer);
 		subdueWintertodtStep.setDisplayCondition(notSubdueWintertodt);
+		subdueWintertodtStep.setLockingStep(subdueWintertodtTask);
 		allSteps.add(subdueWintertodtStep);
 
 		PanelDetails deliverIntelligenceStep = new PanelDetails("Deliver intelligence", Arrays.asList(killGangBoss,
 			deliverIntelligence), combatGear, food, shayzienFavour);
 		deliverIntelligenceStep.setDisplayCondition(notDeliverIntelligence);
+		deliverIntelligenceStep.setLockingStep(deliverIntelligenceTask);
 		allSteps.add(deliverIntelligenceStep);
 
 		PanelDetails travelMemoirsStep = new PanelDetails("Travel With Kharedst's Memoirs",
 			Collections.singletonList(travelWithMemoirs), depthsOfDespair, queenOfThieves,
 			taleOfTheRighteous, forsakenTower, ascentOfArceuus, kharedstsMemoirs);
 		travelMemoirsStep.setDisplayCondition(notTravelWithMemoirs);
+		travelMemoirsStep.setLockingStep(travelWithMemoirsTask);
 		allSteps.add(travelMemoirsStep);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));
 
 		return allSteps;
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "kmed";
 	}
 }

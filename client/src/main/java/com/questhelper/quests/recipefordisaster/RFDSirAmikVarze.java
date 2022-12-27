@@ -131,6 +131,7 @@ public class RFDSirAmikVarze extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		bucketOfMilk = new ItemRequirement("Bucket of milk", ItemID.BUCKET_OF_MILK);
@@ -144,9 +145,9 @@ public class RFDSirAmikVarze extends BasicQuestHelper
 		pot = new ItemRequirement("Pot", ItemID.POT);
 		sweetcorn = new ItemRequirement("Sweetcorn", ItemID.SWEETCORN);
 
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes());
-		machete = new ItemRequirement("Any machete", ItemCollections.getMachete());
-		radimusNotes = new ItemRequirement("Radimus notes", ItemID.RADIMUS_NOTES);
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).isNotConsumed();
+		machete = new ItemRequirement("Any machete", ItemCollections.MACHETE).isNotConsumed();
+		radimusNotes = new ItemRequirement("Radimus notes", ItemID.RADIMUS_NOTES).isNotConsumed();
 		radimusNotes.addAlternates(ItemID.RADIMUS_NOTES_715);
 		if (QuestHelperQuest.LEGENDS_QUEST.getState(client) == QuestState.FINISHED)
 		{
@@ -161,24 +162,24 @@ public class RFDSirAmikVarze extends BasicQuestHelper
 		vanillaPod.setTooltip("You can get a pod from the Kharazi Jungle. Bring an axe and machete to get in");
 		vanillaPod.setHighlightInInventory(true);
 
-		dramenStaffOrLunar = new ItemRequirement("Dramen/lunar staff", ItemID.DRAMEN_STAFF, 1, true);
+		dramenStaffOrLunar = new ItemRequirement("Dramen/lunar staff", ItemID.DRAMEN_STAFF, 1, true).isNotConsumed();
 		dramenStaffOrLunar.addAlternates(ItemID.LUNAR_STAFF);
 		dramenStaffOrLunar.setDisplayMatchedItemName(true);
 
 		dramenBranch = new ItemRequirement("Dramen branch", ItemID.DRAMEN_BRANCH);
 		dramenBranch.setHighlightInInventory(true);
 		dramenBranch.setTooltip("You can get one from the dramen tree under Entrana");
-		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
-		pestleAndMortarHighlighted = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
-		pestleAndMortarHighlighted.setHighlightInInventory(true);
+		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR).isNotConsumed();
+		pestleAndMortarHighlighted = pestleAndMortar.highlighted();
 
-		iceGloves = new ItemRequirement("Ice gloves", ItemID.ICE_GLOVES, 1, true);
+		iceGloves = new ItemRequirement("Ice gloves or smiths gloves(i)", ItemID.ICE_GLOVES).equipped().isNotConsumed();
+		iceGloves.addAlternates(ItemID.SMITHS_GLOVES_I);
 		iceGloves.setTooltip("Although optional, you'll take a lot of damage if you're not wearing them");
 		rawChicken = new ItemRequirement("Raw chicken", ItemID.RAW_CHICKEN);
 		rawChicken.setHighlightInInventory(true);
-		antidragonShield = new ItemRequirement("Anti-dragon shield", ItemCollections.getAntifireShields());
-		antifirePotion = new ItemRequirement("Antifire potion", ItemCollections.getAntifire());
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		antidragonShield = new ItemRequirement("Anti-dragon shield", ItemCollections.ANTIFIRE_SHIELDS).isNotConsumed();
+		antifirePotion = new ItemRequirement("Antifire potion", ItemCollections.ANTIFIRE);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
 		milkyMixture = new ItemRequirement("Milky mixture", ItemID.MILKY_MIXTURE);
@@ -357,7 +358,7 @@ public class RFDSirAmikVarze extends BasicQuestHelper
 	{
 		return Arrays.asList(
 				new UnlockReward("Access to the Evil Chickens Lair"),
-				new UnlockReward("Further acces to the Culinaromancer's Chest"));
+				new UnlockReward("Further access to the Culinaromancer's Chest"));
 	}
 
 	@Override
@@ -372,7 +373,7 @@ public class RFDSirAmikVarze extends BasicQuestHelper
 		allSteps.add(tokenAndEggPanel);
 		allSteps.add(new PanelDetails("Making the brulee", Arrays.asList(useMilkOnCream, useCornflourOnMilky, addPodToCornflourMixture,
 			useEggOnBrulee, grindBranch, useCinnamonOnBrulee, rubToken, useBruleeOnVarze),
-			bucketOfMilk, potOfCream, cornflourMixture, pestleAndMortar, dramenBranch, vanillaPod, evilEgg, token));
+			bucketOfMilk, potOfCream, cornflourMixture, pestleAndMortar, dramenBranch, vanillaPod, evilEgg, token, iceGloves));
 
 		return allSteps;
 	}

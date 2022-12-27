@@ -25,6 +25,7 @@
  */
 package com.questhelper.quests.recruitmentdrive;
 
+import com.google.inject.Inject;
 import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.var.VarbitRequirement;
@@ -43,7 +44,7 @@ import net.runelite.api.coords.WorldPoint;
 
 public class LadyTableStep extends DetailedOwnerStep
 {
-	protected Client client = Main.INSTANCE.getClient();
+	protected Client client = Main.client;
 
 	private Statue[] statues;
 	private final int VARBIT_FINISHED_ROOM = 660;

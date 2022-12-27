@@ -27,12 +27,12 @@
 
 package com.questhelper;
 
+import meteor.util.ImageUtil;
+
 import java.awt.image.BufferedImage;
 import java.util.function.UnaryOperator;
 import javax.annotation.Nonnull;
 import javax.swing.ImageIcon;
-
-import meteor.util.ImageUtil;
 
 public enum Icon
 {

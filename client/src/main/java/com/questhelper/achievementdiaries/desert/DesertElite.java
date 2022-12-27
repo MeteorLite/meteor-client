@@ -31,7 +31,6 @@ import com.questhelper.banktab.BankSlotIcons;
 import com.questhelper.questhelpers.ComplexStateQuestHelper;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
-import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.player.SpellbookRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
@@ -87,6 +86,8 @@ public class DesertElite extends ComplexStateQuestHelper
 
 	ZoneRequirement inBed, inPyramidPlunderLobby, inPyramidRooms, inLastRoom;
 
+	ConditionalStep wildPieTask, iceBarrageTask, dragonDartsTask, talkKQHeadTask, grandGoldChestTask, restorePrayerTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -95,20 +96,33 @@ public class DesertElite extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doElite = new ConditionalStep(this, claimReward);
-		doElite.addStep(notWildPie, wildPie);
-		doElite.addStep(notIceBarrage, iceBarrage);
-		doElite.addStep(new Conditions(notGrandGoldChest, inLastRoom), grandGoldChest);
-		doElite.addStep(new Conditions(notGrandGoldChest, inPyramidRooms), traversePyramid);
-		doElite.addStep(new Conditions(notGrandGoldChest, inPyramidPlunderLobby), startPyramidPlunder);
-		doElite.addStep(notGrandGoldChest, moveToPyramidPlunder);
-		doElite.addStep(notRestorePrayer, restorePrayer);
-		doElite.addStep(new Conditions(notDragonDarts, inBed), dragonDarts);
-		doElite.addStep(notDragonDarts, moveToBed);
-		doElite.addStep(notTalkKQHead, talkKQHead);
+
+		wildPieTask = new ConditionalStep(this, wildPie);
+		doElite.addStep(notWildPie, wildPieTask);
+
+		iceBarrageTask = new ConditionalStep(this, iceBarrage);
+		doElite.addStep(notIceBarrage, iceBarrageTask);
+
+		grandGoldChestTask = new ConditionalStep(this, moveToPyramidPlunder);
+		grandGoldChestTask.addStep(inPyramidPlunderLobby, startPyramidPlunder);
+		grandGoldChestTask.addStep(inPyramidRooms, traversePyramid);
+		grandGoldChestTask.addStep(inLastRoom, grandGoldChest);
+		doElite.addStep(notGrandGoldChest, grandGoldChestTask);
+
+		restorePrayerTask = new ConditionalStep(this, restorePrayer);
+		doElite.addStep(notRestorePrayer, restorePrayerTask);
+
+		dragonDartsTask = new ConditionalStep(this, moveToBed);
+		dragonDartsTask.addStep(inBed, dragonDarts);
+		doElite.addStep(notDragonDarts, dragonDartsTask);
+
+		talkKQHeadTask = new ConditionalStep(this, talkKQHead);
+		doElite.addStep(notTalkKQHead, talkKQHeadTask);
 
 		return doElite;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notWildPie = new VarplayerRequirement(1199, false, 2);
@@ -120,7 +134,7 @@ public class DesertElite extends ComplexStateQuestHelper
 
 		ancientBook = new SpellbookRequirement(Spellbook.ANCIENT);
 
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins()).showConditioned(notTalkKQHead);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS).showConditioned(notTalkKQHead);
 		rawPie = new ItemRequirement("Raw wild pie", ItemID.RAW_WILD_PIE).showConditioned(notWildPie);
 		waterRune = new ItemRequirement("Water rune", ItemID.WATER_RUNE).showConditioned(notIceBarrage);
 		bloodRune = new ItemRequirement("Blood rune", ItemID.BLOOD_RUNE).showConditioned(notIceBarrage);
@@ -129,20 +143,20 @@ public class DesertElite extends ComplexStateQuestHelper
 		feather = new ItemRequirement("Feather", ItemID.FEATHER).showConditioned(notDragonDarts);
 		mahoganyPlank = new ItemRequirement("Mahogany plank", ItemID.MAHOGANY_PLANK).showConditioned(notTalkKQHead);
 		goldLeaves = new ItemRequirement("Gold leaf", ItemID.GOLD_LEAF_8784).showConditioned(notTalkKQHead);
-		saw = new ItemRequirement("Saw", ItemID.SAW).showConditioned(notTalkKQHead);
-		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notTalkKQHead);
-		kqHead = new ItemRequirement("Stuffed KQ head", ItemCollections.getStuffedKQHead()).showConditioned(notTalkKQHead);
+		saw = new ItemRequirement("Saw", ItemID.SAW).showConditioned(notTalkKQHead).isNotConsumed();
+		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notTalkKQHead).isNotConsumed();
+		kqHead = new ItemRequirement("Stuffed KQ head", ItemCollections.STUFFED_KQ_HEAD).showConditioned(notTalkKQHead);
 
-		pharaohSceptre = new ItemRequirement("Pharaoh's sceptre", ItemCollections.getPharoahSceptre());
-		desertBoots = new ItemRequirement("Desert boots", ItemID.DESERT_BOOTS);
-		desertRobe = new ItemRequirement("Desert robe", ItemID.DESERT_ROBE);
-		desertShirt = new ItemRequirement("Desert shirt", ItemID.DESERT_SHIRT);
-		waterskin = new ItemRequirement("Waterskin", ItemCollections.getWaterskin());
+		pharaohSceptre = new ItemRequirement("Pharaoh's sceptre", ItemCollections.PHAROAH_SCEPTRE).isNotConsumed();
+		desertBoots = new ItemRequirement("Desert boots", ItemID.DESERT_BOOTS).isNotConsumed();
+		desertRobe = new ItemRequirement("Desert robe", ItemID.DESERT_ROBE).isNotConsumed();
+		desertShirt = new ItemRequirement("Desert shirt", ItemID.DESERT_SHIRT).isNotConsumed();
+		waterskin = new ItemRequirement("Waterskin", ItemCollections.WATERSKIN).isNotConsumed();
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 
 		inBed = new ZoneRequirement(bed);
 		inLastRoom = new ZoneRequirement(lastRoom);
@@ -178,9 +192,12 @@ public class DesertElite extends ComplexStateQuestHelper
 			"Go through each of the pyramid rooms until the final room.", true);
 		((ObjectStep) traversePyramid).setMaxObjectDistance(40);
 		((ObjectStep) traversePyramid).setMaxRenderDistance(10);
-		for (int i=26619; i<26651; i++)
+		for (int i = 26619; i < 26651; i++)
 		{
-			if (i == 26626) continue;
+			if (i == 26626)
+			{
+				continue;
+			}
 			((ObjectStep) traversePyramid).addAlternateObjects(i);
 		}
 
@@ -196,7 +213,7 @@ public class DesertElite extends ComplexStateQuestHelper
 		iceBarrage.addAlternateNpcs(NpcID.VULTURE_1268);
 
 		wildPie = new ObjectStep(this, ObjectID.CLAY_OVEN, new WorldPoint(3434, 2886, 0),
-			"Cook a wild pie on the clay over in Nardah.", rawPie);
+			"Cook a wild pie on the clay oven in Nardah.", rawPie);
 
 		moveToBed = new TileStep(this, new WorldPoint(3175, 3041, 0),
 			"Go to Bedabin Camp south-west of Al Karid.");
@@ -244,7 +261,7 @@ public class DesertElite extends ComplexStateQuestHelper
 				"directly inside the Elidinis" +
 				" shrine"),
 			new UnlockReward("100% protection against desert heat when the desert amulet is worn"),
-			new UnlockReward("Pharaoh's sceptre can hold up to 8 charges"),
+			new UnlockReward("Pharaoh's sceptre can hold up to 100 charges"),
 			new UnlockReward("Free pass-through of the Shantay Pass"),
 			new UnlockReward("Access to a crevice shortcut, requiring 86 Agility, " +
 				"in the Kalphite Lair from the entrance to the antechamber before the " +
@@ -280,33 +297,39 @@ public class DesertElite extends ComplexStateQuestHelper
 		PanelDetails wildPieSteps = new PanelDetails("Bake Wild Pie", Collections.singletonList(wildPie),
 			new SkillRequirement(Skill.COOKING, 85), rawPie);
 		wildPieSteps.setDisplayCondition(notWildPie);
+		wildPieSteps.setLockingStep(wildPieTask);
 		allSteps.add(wildPieSteps);
 
 		PanelDetails iceBarrageSteps = new PanelDetails("Ice Barrage", Collections.singletonList(iceBarrage),
 			new SkillRequirement(Skill.MAGIC, 94), desertTreasure, ancientBook, waterRune.quantity(6),
 			bloodRune.quantity(2), deathRune.quantity(4));
 		iceBarrageSteps.setDisplayCondition(notIceBarrage);
+		iceBarrageSteps.setLockingStep(iceBarrageTask);
 		allSteps.add(iceBarrageSteps);
 
 		PanelDetails grandGoldChestSteps = new PanelDetails("Grand Gold Chest", Arrays.asList(moveToPyramidPlunder,
 			startPyramidPlunder, grandGoldChest), new SkillRequirement(Skill.THIEVING, 91), icthlarinsLittleHelper);
 		grandGoldChestSteps.setDisplayCondition(notGrandGoldChest);
+		grandGoldChestSteps.setLockingStep(grandGoldChestTask);
 		allSteps.add(grandGoldChestSteps);
 
 		PanelDetails restorePrayerSteps = new PanelDetails("Restore 85 Prayer",
 			Collections.singletonList(restorePrayer), new SkillRequirement(Skill.PRAYER, 85), icthlarinsLittleHelper);
 		restorePrayerSteps.setDisplayCondition(notRestorePrayer);
+		restorePrayerSteps.setLockingStep(restorePrayerTask);
 		allSteps.add(restorePrayerSteps);
 
 		PanelDetails dragonDartsSteps = new PanelDetails("Dragon Darts", Arrays.asList(moveToBed, dragonDarts),
 			new SkillRequirement(Skill.FLETCHING, 95), touristTrap, dragonDartTip, feather);
 		dragonDartsSteps.setDisplayCondition(notDragonDarts);
+		dragonDartsSteps.setLockingStep(dragonDartsTask);
 		allSteps.add(dragonDartsSteps);
 
 		PanelDetails kqHeadSteps = new PanelDetails("Kalphite Queen Head", Collections.singletonList(talkKQHead),
 			new SkillRequirement(Skill.CONSTRUCTION, 78), priestInPeril, kqHead, coins.quantity(50000),
 			mahoganyPlank.quantity(2), goldLeaves.quantity(2), saw, hammer);
 		kqHeadSteps.setDisplayCondition(notTalkKQHead);
+		kqHeadSteps.setLockingStep(talkKQHeadTask);
 		allSteps.add(kqHeadSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));

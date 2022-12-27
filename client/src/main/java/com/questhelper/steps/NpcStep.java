@@ -38,6 +38,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.inject.Inject;
 
 import eventbus.events.GameStateChanged;
 import eventbus.events.NpcChanged;
@@ -54,10 +56,10 @@ import static com.questhelper.overlays.QuestHelperWorldOverlay.IMAGE_Z_OFFSET;
 
 public class NpcStep extends DetailedQuestStep
 {
-	protected Client client = Main.INSTANCE.getClient();
+	protected Client client = Main.client;
 
 	private final int npcID;
-	private final ArrayList<Integer> alternateNpcIDs = new ArrayList<>();
+	private final List<Integer> alternateNpcIDs = new ArrayList<>();
 
 	private boolean allowMultipleHighlights;
 
@@ -72,10 +74,30 @@ public class NpcStep extends DetailedQuestStep
 		this.npcID = npcID;
 	}
 
+	public NpcStep(QuestHelper questHelper, int[] npcID, String text, Requirement... requirements)
+	{
+		super(questHelper, text, requirements);
+		this.npcID = npcID[0];
+		for (int i = 1; i < npcID.length; i++)
+		{
+			this.alternateNpcIDs.add(npcID[i]);
+		}
+	}
+
 	public NpcStep(QuestHelper questHelper, int npcID, WorldPoint worldPoint, String text, Requirement... requirements)
 	{
 		super(questHelper, worldPoint, text, requirements);
 		this.npcID = npcID;
+	}
+
+	public NpcStep(QuestHelper questHelper, int[] npcID, WorldPoint worldPoint, String text, Requirement... requirements)
+	{
+		super(questHelper, worldPoint, text, requirements);
+		this.npcID = npcID[0];
+		for (int i = 1; i < npcID.length; i++)
+		{
+			this.alternateNpcIDs.add(npcID[i]);
+		}
 	}
 
 	public NpcStep(QuestHelper questHelper, int npcID, WorldPoint worldPoint, String text, boolean allowMultipleHighlights, Requirement... requirements)

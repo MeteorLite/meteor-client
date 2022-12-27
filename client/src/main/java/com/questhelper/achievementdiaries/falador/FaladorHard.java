@@ -31,6 +31,7 @@ import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.questhelpers.ComplexStateQuestHelper;
+import com.questhelper.requirements.ComplexRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
@@ -39,6 +40,7 @@ import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.player.WarriorsGuildAccessRequirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
+import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.var.VarplayerRequirement;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.UnlockReward;
@@ -84,6 +86,10 @@ public class FaladorHard extends ComplexStateQuestHelper
 	ZoneRequirement inMindAltar, inWyvernCavern, inIceDungeon, inFaladorCastle1, inHerosGuild, inHerosGuildBasement, inPortSarimChurch,
 		inDwarvenMine, inMiningGuild, inRoguesDen, inMoleDen;
 
+	ConditionalStep craftedMindRunesTask, changedFamilyCrestTask, killedMoleTask, killedWyvernTask, completeAgiCourseTask,
+		enterMiningGuildWithProspectorTask, killedBlueDragonTask, crackedWallSafeTask, praySarimAltarProsyTask,
+		enterWarriorsGuildTask, dwarvenHelmetDwarvenMinesTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -92,35 +98,57 @@ public class FaladorHard extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doHard = new ConditionalStep(this, claimReward);
-		doHard.addStep(new Conditions(notChangedFamilyCrest, inFaladorCastle1), changeFamilyCrest);
-		doHard.addStep(notChangedFamilyCrest, climbLadderWhiteKnightCastle);
-		doHard.addStep(new Conditions(notKilledMole, inMoleDen), killGiantMole);
-		doHard.addStep(notKilledMole, goToGiantMole);
-		doHard.addStep(notCompleteAgiCourse, completeAgiCourse);
-		doHard.addStep(new Conditions(notDwarvenHelmetDwarvenMines, inDwarvenMine), equipDwarvenHelmet);
-		doHard.addStep(notDwarvenHelmetDwarvenMines, enterDwarvenMinesHelmet);
-		doHard.addStep(new Conditions(notEnterMiningGuildWithProspector, inDwarvenMine), enterMiningGuild);
-		doHard.addStep(notEnterMiningGuildWithProspector, enterDwarvenMines);
-		doHard.addStep(notEnterWarriorsGuild, enterWarriorsGuild);
-		doHard.addStep(new Conditions(notKilledBlueDragon, inHerosGuildBasement), killBlueDragon);
-		doHard.addStep(new Conditions(notKilledBlueDragon, inHerosGuild), enterHerosGuildBasement);
-		doHard.addStep(notKilledBlueDragon, enterHerosGuild);
-		doHard.addStep(new Conditions(notCrackedWallSafe, inRoguesDen), crackWallSafe);
-		doHard.addStep(notCrackedWallSafe, enterRoguesDen);
-		doHard.addStep(new Conditions(notCraftedMindRunes, inMindAltar), craftMindRunes);
-		doHard.addStep(notCraftedMindRunes, enterMindAltar);
-		doHard.addStep(new Conditions(notPraySarimAltarProsy, prosyHelm.alsoCheckBank(questBank),
-				prosyLegs.alsoCheckBank(questBank), prosyChest.alsoCheckBank(questBank)),
-			prayAtAltarSarim);
-		doHard.addStep(notPraySarimAltarProsy, getProsySet);
-		doHard.addStep(new Conditions(notKilledWyvern, inWyvernCavern), killWyvern);
-		doHard.addStep(new Conditions(notKilledWyvern, inIceDungeon), enterWyvernCavern);
-		doHard.addStep(notKilledWyvern, goToIceDungeon);
+
+		changedFamilyCrestTask = new ConditionalStep(this, climbLadderWhiteKnightCastle);
+		changedFamilyCrestTask.addStep(inFaladorCastle1, changeFamilyCrest);
+		doHard.addStep(notChangedFamilyCrest, changedFamilyCrestTask);
+
+		killedMoleTask = new ConditionalStep(this, goToGiantMole);
+		killedMoleTask.addStep(inMoleDen, killGiantMole);
+		doHard.addStep(notKilledMole, killedMoleTask);
+
+		completeAgiCourseTask = new ConditionalStep(this, completeAgiCourse);
+		doHard.addStep(notCompleteAgiCourse, completeAgiCourseTask);
+
+		dwarvenHelmetDwarvenMinesTask = new ConditionalStep(this, enterDwarvenMinesHelmet);
+		dwarvenHelmetDwarvenMinesTask.addStep(inDwarvenMine, equipDwarvenHelmet);
+		doHard.addStep(notDwarvenHelmetDwarvenMines, dwarvenHelmetDwarvenMinesTask);
+
+		enterMiningGuildWithProspectorTask = new ConditionalStep(this, enterDwarvenMines);
+		enterMiningGuildWithProspectorTask.addStep(inDwarvenMine, enterMiningGuild);
+		doHard.addStep(notEnterMiningGuildWithProspector, enterMiningGuildWithProspectorTask);
+
+		enterWarriorsGuildTask = new ConditionalStep(this, enterWarriorsGuild);
+		doHard.addStep(notEnterWarriorsGuild, enterWarriorsGuildTask);
+
+		killedBlueDragonTask = new ConditionalStep(this, enterHerosGuild);
+		killedBlueDragonTask.addStep(inHerosGuild, enterHerosGuildBasement);
+		killedBlueDragonTask.addStep(inHerosGuildBasement, killBlueDragon);
+		doHard.addStep(notKilledBlueDragon, killedBlueDragonTask);
+
+		crackedWallSafeTask = new ConditionalStep(this, enterRoguesDen);
+		crackedWallSafeTask.addStep(inRoguesDen, crackWallSafe);
+		doHard.addStep(notCrackedWallSafe, crackedWallSafeTask);
+
+		craftedMindRunesTask = new ConditionalStep(this, enterMindAltar);
+		craftedMindRunesTask.addStep(inMindAltar, craftMindRunes);
+		doHard.addStep(notCraftedMindRunes, craftedMindRunesTask);
+
+		praySarimAltarProsyTask = new ConditionalStep(this, getProsySet);
+		praySarimAltarProsyTask.addStep(new Conditions(notPraySarimAltarProsy, prosyHelm.alsoCheckBank(questBank),
+			prosyLegs.alsoCheckBank(questBank), prosyChest.alsoCheckBank(questBank)), prayAtAltarSarim);
+		doHard.addStep(notPraySarimAltarProsy, praySarimAltarProsyTask);
+
+		killedWyvernTask = new ConditionalStep(this, goToIceDungeon);
+		killedWyvernTask.addStep(inIceDungeon, enterWyvernCavern);
+		killedWyvernTask.addStep(inWyvernCavern, killWyvern);
+		doHard.addStep(notKilledWyvern, killedWyvernTask);
 
 		return doHard;
 
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notCraftedMindRunes = new VarplayerRequirement(1186, false, 26);
@@ -137,26 +165,33 @@ public class FaladorHard extends ComplexStateQuestHelper
 
 		pureEss28 = new ItemRequirement("Pure Essence", ItemID.PURE_ESSENCE, 28).showConditioned(notCraftedMindRunes);
 		mindTiara = new ItemRequirement("Mind Tiara", ItemID.MIND_TIARA, 1, true).showConditioned(notCraftedMindRunes);
-		coins10000 = new ItemRequirement("Coins", ItemCollections.getCoins(), 10000).showConditioned(notChangedFamilyCrest);
-		combatGear = new ItemRequirement("Combat Gear", -1, -1);
-		food = new ItemRequirement("Good healing food.", ItemCollections.getGoodEatingFood(), -1);
-		lightSource = new ItemRequirement("Light Source", ItemCollections.getLightSources(), -1).showConditioned(notKilledMole);
-		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notKilledMole);
-		wyvernProtection = new ItemRequirement("Wyvern Protection", ItemCollections.getAntiWyvernShields()).showConditioned(notKilledWyvern);
-		prospectorHelm = new ItemRequirement("Prospector Helm", ItemID.PROSPECTOR_HELMET, 1, true).showConditioned(notEnterMiningGuildWithProspector);
-		prospectorChest = new ItemRequirement("Prospector Chest", ItemID.PROSPECTOR_JACKET, 1, true).showConditioned(notEnterMiningGuildWithProspector);
-		prospectorLegs = new ItemRequirement("Prospector Legs", ItemID.PROSPECTOR_LEGS, 1, true).showConditioned(notEnterMiningGuildWithProspector);
-		prospectorBoots = new ItemRequirement("Prospector Boots", ItemID.PROSPECTOR_BOOTS, 1, true).showConditioned(notEnterMiningGuildWithProspector);
-		dragonfireProtection = new ItemRequirement("Protection from Dragonfire", ItemCollections.getAntifireShields()).showConditioned(notKilledBlueDragon);
-		prosyHelm = new ItemRequirement("Proselyte Helmet", ItemID.PROSELYTE_SALLET).showConditioned(notPraySarimAltarProsy);
-		prosyChest = new ItemRequirement("Proselyte Chest", ItemID.PROSELYTE_HAUBERK).showConditioned(notPraySarimAltarProsy);
-		prosyLegs = new ItemRequirement("Proselyte Legs", ItemID.PROSELYTE_CUISSE).showConditioned(notPraySarimAltarProsy);
+		coins10000 = new ItemRequirement("Coins", ItemCollections.COINS, 10000).showConditioned(notChangedFamilyCrest);
+		combatGear = new ItemRequirement("Combat Gear", -1, -1).isNotConsumed();
+		food = new ItemRequirement("Good healing food.", ItemCollections.GOOD_EATING_FOOD, -1);
+		lightSource = new ItemRequirement("Light Source", ItemCollections.LIGHT_SOURCES, -1).showConditioned(notKilledMole).isNotConsumed();
+		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notKilledMole).isNotConsumed();
+		wyvernProtection = new ItemRequirement("Wyvern Protection", ItemCollections.ANTI_WYVERN_SHIELDS)
+			.showConditioned(notKilledWyvern).isNotConsumed();
+		prospectorHelm = new ItemRequirement("Prospector Helm", ItemID.PROSPECTOR_HELMET, 1, true)
+			.showConditioned(notEnterMiningGuildWithProspector).isNotConsumed();
+		prospectorChest = new ItemRequirement("Prospector Chest", ItemID.PROSPECTOR_JACKET, 1, true)
+			.showConditioned(notEnterMiningGuildWithProspector).isNotConsumed();
+		prospectorLegs = new ItemRequirement("Prospector Legs", ItemID.PROSPECTOR_LEGS, 1, true)
+			.showConditioned(notEnterMiningGuildWithProspector).isNotConsumed();
+		prospectorBoots = new ItemRequirement("Prospector Boots", ItemID.PROSPECTOR_BOOTS, 1, true)
+			.showConditioned(notEnterMiningGuildWithProspector).isNotConsumed();
+		dragonfireProtection = new ItemRequirement("Protection from Dragonfire", ItemCollections.ANTIFIRE_SHIELDS)
+			.showConditioned(notKilledBlueDragon).isNotConsumed();
+		prosyHelm = new ItemRequirement("Proselyte Helmet", ItemID.PROSELYTE_SALLET).showConditioned(notPraySarimAltarProsy).isNotConsumed();
+		prosyChest = new ItemRequirement("Proselyte Chest", ItemID.PROSELYTE_HAUBERK).showConditioned(notPraySarimAltarProsy).isNotConsumed();
+		prosyLegs = new ItemRequirement("Proselyte Legs", ItemID.PROSELYTE_CUISSE).showConditioned(notPraySarimAltarProsy).isNotConsumed();
 		prosyLegs.addAlternates(ItemID.PROSELYTE_TASSET);
-		dwarvenHelmet = new ItemRequirement("Dwarven Helmet", ItemID.DWARVEN_HELMET, 1).showConditioned(notDwarvenHelmetDwarvenMines);
+		dwarvenHelmet = new ItemRequirement("Dwarven Helmet", ItemID.DWARVEN_HELMET, 1)
+			.showConditioned(notDwarvenHelmetDwarvenMines).isNotConsumed();
 
 		faladorTeleport = new ItemRequirement("Multiple teleports to Falador", ItemID.FALADOR_TELEPORT, -1);
-		combatBracelet = new ItemRequirement("Combat Bracelet", ItemCollections.getCombatBracelets());
-		combatBracelet.addAlternates(ItemCollections.getGamesNecklaces());
+		combatBracelet = new ItemRequirement("Combat Bracelet", ItemCollections.COMBAT_BRACELETS);
+		combatBracelet.addAlternates(ItemCollections.GAMES_NECKLACES);
 
 		prosySet = new ItemRequirements(prosyHelm, prosyLegs, prosyChest);
 		prospectorSet = new ItemRequirements(prospectorBoots, prospectorChest, prospectorHelm, prospectorLegs);
@@ -302,12 +337,19 @@ public class FaladorHard extends ComplexStateQuestHelper
 	public List<Requirement> getGeneralRequirements()
 	{
 		ArrayList<Requirement> req = new ArrayList<>();
-		req.add(new SkillRequirement(Skill.AGILITY, 59, true));
+		req.add(new SkillRequirement(Skill.AGILITY, 50));
 		req.add(new SkillRequirement(Skill.DEFENCE, 50));
-		req.add(new SkillRequirement(Skill.SLAYER, 72, true));
 		req.add(new SkillRequirement(Skill.MINING, 60, true));
 		req.add(new SkillRequirement(Skill.PRAYER, 70));
-		req.add(new SkillRequirement(Skill.RUNECRAFT, 56, true));
+		req.add(new ComplexRequirement(LogicType.OR, "56 Runecraft or 42 with Raiments of the Eye set",
+			new SkillRequirement(Skill.RUNECRAFT, 56, true, "56 Runecraft"),
+			new ItemRequirements("42 with Raiments of the Eye set",
+				new ItemRequirement("Hat", ItemCollections.EYE_HAT),
+				new ItemRequirement("Top", ItemCollections.EYE_TOP),
+				new ItemRequirement("Bottom", ItemCollections.EYE_BOTTOM),
+				new ItemRequirement("Boot", ItemID.BOOTS_OF_THE_EYE))
+		));
+		req.add(new SkillRequirement(Skill.SLAYER, 72, true));
 		req.add(new SkillRequirement(Skill.THIEVING, 50, true));
 		req.add(new WarriorsGuildAccessRequirement());
 
@@ -323,17 +365,17 @@ public class FaladorHard extends ComplexStateQuestHelper
 	public List<ItemReward> getItemRewards()
 	{
 		return Arrays.asList(
-				new ItemReward("Falador Shield (3)", ItemID.FALADOR_SHIELD_3, 1),
-				new ItemReward("15,000 Exp. Lamp (Any skill over 50)", ItemID.ANTIQUE_LAMP, 1));
+			new ItemReward("Falador Shield (3)", ItemID.FALADOR_SHIELD_3, 1),
+			new ItemReward("15,000 Exp. Lamp (Any skill over 50)", ItemID.ANTIQUE_LAMP, 1));
 	}
 
 	@Override
 	public List<UnlockReward> getUnlockRewards()
 	{
 		return Arrays.asList(
-				new UnlockReward("Access to the bank in the Crafting Guild"),
-				new UnlockReward("Giant Moles primary drops are now noted"),
-				new UnlockReward("Access to shortcut to Fountain of Heroes"));
+			new UnlockReward("Access to the bank in the Crafting Guild"),
+			new UnlockReward("Giant Moles primary drops are now noted"),
+			new UnlockReward("Access to shortcut to Fountain of Heroes"));
 	}
 
 	@Override
@@ -344,58 +386,69 @@ public class FaladorHard extends ComplexStateQuestHelper
 		PanelDetails changeCrestSteps = new PanelDetails("To Saradomin!", Arrays.asList(climbLadderWhiteKnightCastle,
 			changeFamilyCrest), new SkillRequirement(Skill.PRAYER, 70), coins10000);
 		changeCrestSteps.setDisplayCondition(notChangedFamilyCrest);
+		changeCrestSteps.setLockingStep(changedFamilyCrestTask);
 		allSteps.add(changeCrestSteps);
 
 		PanelDetails moleSteps = new PanelDetails("Holy Moley!", Arrays.asList(goToGiantMole, killGiantMole),
 			lightSource, spade, combatGear, food);
 		moleSteps.setDisplayCondition(notKilledMole);
+		moleSteps.setLockingStep(killedMoleTask);
 		allSteps.add(moleSteps);
 
 		PanelDetails fallyRoofSteps = new PanelDetails("Make sure to stretch!",
 			Collections.singletonList(completeAgiCourse), new SkillRequirement(Skill.AGILITY, 50));
 		fallyRoofSteps.setDisplayCondition(notCompleteAgiCourse);
+		fallyRoofSteps.setLockingStep(completeAgiCourseTask);
 		allSteps.add(fallyRoofSteps);
 
 		PanelDetails dwarvenHelmSteps = new PanelDetails("A snug fit", Arrays.asList(enterDwarvenMinesHelmet,
-			equipDwarvenHelmet), new SkillRequirement(Skill.DEFENCE, 50), dwarvenHelmet), grimTales;
+			equipDwarvenHelmet), new SkillRequirement(Skill.DEFENCE, 50), dwarvenHelmet, grimTales);
 		dwarvenHelmSteps.setDisplayCondition(notDwarvenHelmetDwarvenMines);
+		dwarvenHelmSteps.setLockingStep(dwarvenHelmetDwarvenMinesTask);
 		allSteps.add(dwarvenHelmSteps);
 
 		PanelDetails miningGuildSteps = new PanelDetails("Gold Rush!", Arrays.asList(enterDwarvenMines,
 			enterMiningGuild), new SkillRequirement(Skill.MINING, 60, true), prospectorHelm, prospectorBoots,
 			prospectorChest, prospectorLegs);
 		miningGuildSteps.setDisplayCondition(notEnterMiningGuildWithProspector);
+		miningGuildSteps.setLockingStep(enterMiningGuildWithProspectorTask);
 		allSteps.add(miningGuildSteps);
 
 		PanelDetails warriorsGuildSteps = new PanelDetails("The Dragon Defender",
 			Collections.singletonList(enterWarriorsGuild), new WarriorsGuildAccessRequirement());
 		warriorsGuildSteps.setDisplayCondition(notEnterWarriorsGuild);
+		warriorsGuildSteps.setLockingStep(enterWarriorsGuildTask);
 		allSteps.add(warriorsGuildSteps);
 
 		PanelDetails blueDragonSteps = new PanelDetails("The Dragon Slayer", Arrays.asList(enterHerosGuild,
 			enterHerosGuildBasement, killBlueDragon), herosQuest, combatGear, food, dragonfireProtection);
 		blueDragonSteps.setDisplayCondition(notKilledBlueDragon);
+		blueDragonSteps.setLockingStep(killedBlueDragonTask);
 		allSteps.add(blueDragonSteps);
 
 		PanelDetails crackSafeSteps = new PanelDetails("The cat burglar", Arrays.asList(enterRoguesDen, crackWallSafe),
 			new SkillRequirement(Skill.THIEVING, 50, true));
 		crackSafeSteps.setDisplayCondition(notCrackedWallSafe);
+		crackSafeSteps.setLockingStep(crackedWallSafeTask);
 		allSteps.add(crackSafeSteps);
 
 		PanelDetails mindRunesSteps = new PanelDetails("Do you mind?", Arrays.asList(enterMindAltar, craftMindRunes),
 			new SkillRequirement(Skill.RUNECRAFT, 56, true), mindTiara, pureEss28);
 		mindRunesSteps.setDisplayCondition(notCraftedMindRunes);
+		mindRunesSteps.setLockingStep(craftedMindRunesTask);
 		allSteps.add(mindRunesSteps);
 
 		PanelDetails praySteps = new PanelDetails("Praise the Lord!", Arrays.asList(getProsySet, prayAtAltarSarim),
 			new SkillRequirement(Skill.DEFENCE, 30), slugMenace, prosyHelm, prosyChest, prosyLegs);
 		praySteps.setDisplayCondition(notPraySarimAltarProsy);
+		praySteps.setLockingStep(praySarimAltarProsyTask);
 		allSteps.add(praySteps);
 
 		PanelDetails wyvernSteps = new PanelDetails("This ain't no dragon!", Arrays.asList(goToIceDungeon,
 			enterWyvernCavern, killWyvern), new SkillRequirement(Skill.SLAYER, 72, true), combatGear, food,
 			wyvernProtection);
 		wyvernSteps.setDisplayCondition(notKilledWyvern);
+		wyvernSteps.setLockingStep(killedWyvernTask);
 		allSteps.add(wyvernSteps);
 
 		PanelDetails finishOffSteps = new PanelDetails("Finishing off", Collections.singletonList(claimReward));

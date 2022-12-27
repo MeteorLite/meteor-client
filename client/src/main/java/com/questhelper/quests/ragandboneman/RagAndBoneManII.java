@@ -25,6 +25,7 @@
 package com.questhelper.quests.ragandboneman;
 
 import com.questhelper.ItemCollections;
+import com.questhelper.KeyringCollection;
 import com.questhelper.QuestDescriptor;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.QuestTile;
@@ -38,6 +39,7 @@ import com.questhelper.requirements.item.ItemOnTileRequirement;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
+import com.questhelper.requirements.item.KeyringRequirement;
 import com.questhelper.requirements.npc.NpcInteractingRequirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
@@ -64,7 +66,6 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.ItemID;
 import net.runelite.api.NpcID;
 import net.runelite.api.NullObjectID;
@@ -73,8 +74,6 @@ import net.runelite.api.QuestState;
 import net.runelite.api.Skill;
 import net.runelite.api.SpriteID;
 import net.runelite.api.coords.WorldPoint;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 @QuestDescriptor(
 	quest = QuestHelperQuest.RAG_AND_BONE_MAN_II
@@ -217,51 +216,52 @@ public class RagAndBoneManII extends BasicQuestHelper
 		return steps;
 	}
 
-	private void setupRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		// Required items
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins());
-		pots = new ItemRequirement("Pot", ItemID.POT);
-		potNeeded = new ItemRequirement("Pot", ItemID.POT, 8).alsoCheckBank(questBank).highlighted();
+		coins = new ItemRequirement("Coins", ItemCollections.COINS);
+		pots = new ItemRequirement("Pot", ItemID.POT).isNotConsumed();
+		potNeeded = new ItemRequirement("Pot", ItemID.POT, 8).alsoCheckBank(questBank).highlighted().isNotConsumed();
 		logs = new ItemRequirement("Logs", ItemID.LOGS);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
-		lightSource = new ItemRequirement("Light source", ItemCollections.getLightSources());
-		dustyKey = new ItemRequirement("Dusty key", ItemID.DUSTY_KEY);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
+		lightSource = new ItemRequirement("Light source", ItemCollections.LIGHT_SOURCES).isNotConsumed();
+		dustyKey = new KeyringRequirement("Dusty Key", configManager, KeyringCollection.DUSTY_KEY).isNotConsumed();
 		dustyKey.canBeObtainedDuringQuest();
-		mirrorShield = new ItemRequirement("Mirror shield", ItemID.MIRROR_SHIELD);
+		mirrorShield = new ItemRequirement("Mirror shield", ItemID.MIRROR_SHIELD).isNotConsumed();
 		mirrorShield.addAlternates(ItemID.VS_SHIELD, ItemID.VS_SHIELD_24266);
 		iceCooler = new ItemRequirement("Ice coolers", ItemID.ICE_COOLER, 10);
 		fishingExplosive = new ItemRequirement("Fishing explosive", ItemID.FISHING_EXPLOSIVE, 10);
 		fishingExplosive.addAlternates(ItemID.FISHING_EXPLOSIVE_6664);
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes());
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).isNotConsumed();
 
 
 		// Optional items
 		rope = new ItemRequirement("Rope", ItemID.ROPE);
 		varrockTeleport = new ItemRequirement("Varrock teleport", ItemID.VARROCK_TELEPORT);
 		lumbridgeTeleport = new ItemRequirement("Lumbridge teleport", ItemID.LUMBRIDGE_TELEPORT);
-		digsitePendant = new ItemRequirement("Digsite pendant", ItemCollections.getDigsitePendants());
-		draynorTeleport = new ItemRequirement("Draynor teleport", ItemCollections.getAmuletOfGlories());
+		digsitePendant = new ItemRequirement("Digsite pendant", ItemCollections.DIGSITE_PENDANTS);
+		draynorTeleport = new ItemRequirement("Draynor teleport", ItemCollections.AMULET_OF_GLORIES);
 		draynorTeleport.addAlternates(ItemID.DRAYNOR_MANOR_TELEPORT);
-		karamjaTeleport = new ItemRequirement("Karamja teleport", ItemCollections.getAmuletOfGlories());
+		karamjaTeleport = new ItemRequirement("Karamja teleport", ItemCollections.AMULET_OF_GLORIES);
 		karamjaTeleport.addAlternates(ItemID.BRIMHAVEN_TELEPORT, ItemID.TAI_BWO_WANNAI_TELEPORT);
 
-		antifireShield = new ItemRequirement("Antifire shield", ItemCollections.getAntifireShields());
+		antifireShield = new ItemRequirement("Antifire shield", ItemCollections.ANTIFIRE_SHIELDS).isNotConsumed();
 		inoculationBracelet = new ItemRequirement("Inoculation bracelet or a potion for Disease",
-			ItemCollections.getAntidisease());
-		ectophial = new ItemRequirement("Ectophial", ItemID.ECTOPHIAL);
-		ringOfDueling = new ItemRequirement("Ring of dueling", ItemCollections.getRingOfDuelings());
-		gamesNecklace = new ItemRequirement("Games necklace", ItemCollections.getGamesNecklaces());
+			ItemCollections.ANTIDISEASE);
+		ectophial = new ItemRequirement("Ectophial", ItemID.ECTOPHIAL).isNotConsumed();
+		ringOfDueling = new ItemRequirement("Ring of dueling", ItemCollections.RING_OF_DUELINGS);
+		gamesNecklace = new ItemRequirement("Games necklace", ItemCollections.GAMES_NECKLACES);
 		nardahTeleport = new ItemRequirement("Nardah teleport", ItemID.NARDAH_TELEPORT);
-		nardahTeleport.addAlternates(ItemCollections.getPharoahSceptre());
+		nardahTeleport.addAlternates(ItemCollections.PHAROAH_SCEPTRE);
 		taverleyTeleport = new ItemRequirement("Taverley teleport", ItemID.TAVERLEY_TELEPORT);
 		taverleyTeleport.addAlternates(ItemID.FALADOR_TELEPORT);
-		rellekkaTeleport = new ItemRequirement("Rellekka teleport", ItemCollections.getEnchantedLyre());
+		rellekkaTeleport = new ItemRequirement("Rellekka teleport", ItemCollections.ENCHANTED_LYRE);
 		rellekkaTeleport.addAlternates(ItemID.RELLEKKA_TELEPORT);
 		gnomeTeleport = new ItemRequirement("Teleport to Gnome Stronghold (Spirit tree/Gnome Glider", -1, 1);
 		feldipTeleport = new ItemRequirement("Teleport to Feldip Hills (Gnome Glider)", ItemID.FELDIP_HILLS_TELEPORT);
 
-		dramenStaff = new ItemRequirement("Dramen staff", ItemID.DRAMEN_STAFF);
+		dramenStaff = new ItemRequirement("Dramen staff", ItemID.DRAMEN_STAFF).isNotConsumed();
 		dramenStaff.addAlternates(ItemID.LUNAR_STAFF);
 
 
@@ -276,7 +276,7 @@ public class RagAndBoneManII extends BasicQuestHelper
 		coinsOrVinegar.addAlternates(ItemID.JUG_OF_VINEGAR, ItemID.COINS_995);
 
 		List<Integer> bonesInVinegar = new ArrayList<>();
-		for (int i = ItemID.BONE_IN_VINEGAR; i <= ItemID.BONE_IN_VINEGAR_7915; i++)
+		for (int i = ItemID.BONE_IN_VINEGAR; i <= ItemID.BONE_IN_VINEGAR_7915; i+=3)
 		{
 			bonesInVinegar.add(i);
 		}
@@ -397,7 +397,7 @@ public class RagAndBoneManII extends BasicQuestHelper
 			"Kill Experiments.", true);
 		((NpcStep) killExperiment).addAlternateNpcs(NpcID.EXPERIMENT_1275);
 		killWerewolf = new NpcStep(this, NpcID.WEREWOLF_2611, new WorldPoint(3491, 3487, 0),
-			"Kill the citizens/werewolves in Canifis.", true);
+			"Kill the citizens/werewolves in Canifis. (Do not use Wolfbane)", true);
 		List<Integer> werewolves = new ArrayList<>();
 		for (int i = NpcID.WEREWOLF_2594; i <= NpcID.LILIYA; i++)
 		{
@@ -981,17 +981,5 @@ public class RagAndBoneManII extends BasicQuestHelper
 		allSteps.add(new PanelDetails("Handing the bones in", Collections.singletonList(giveBones)));
 
 		return allSteps;
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "ragbone2";
 	}
 }
