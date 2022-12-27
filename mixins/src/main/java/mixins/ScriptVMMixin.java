@@ -132,37 +132,6 @@ public abstract class ScriptVMMixin implements RSClient
 					client.addChatMessage(ChatMessageType.of(messageType), "", message, null, true);
 					return true;
 				}
-				else if ("questStatusUpdate".equals(stringOp))
-				{
-					int intStackSize = client.getIntStackSize();
-					currentQuestRow = client.getIntStack()[--intStackSize];
-				}
-				else if ("questInProgress".equals(stringOp))
-				{
-					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.DISPLAY_NAME, 0, 0);
-					if (dbResult != null) {
-						Quest quest = Quest.fromName(dbResult.toString());
-						if (quest != null)
-							client.setQuestState(quest, QuestState.IN_PROGRESS);
-					}
-				}
-				else if ("questNotStarted".equals(stringOp)) {
-					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.DISPLAY_NAME, 0, 0);
-					if (dbResult != null) {
-						Quest quest = Quest.fromName(dbResult.toString());
-						if (quest != null)
-							client.setQuestState(quest, QuestState.NOT_STARTED);
-					}
-				}
-				else if ("questFinished".equals(stringOp))
-				{
-					Object dbResult = client.getDBTableField(currentQuestRow, DBTableID.Quest.DISPLAY_NAME, 0, 0);
-					if (dbResult != null) {
-						Quest quest = Quest.fromName(dbResult.toString());
-						if (quest != null)
-							client.setQuestState(quest, QuestState.FINISHED);
-					}
-				}
 				ScriptCallbackEvent event = new ScriptCallbackEvent(currentScript, stringOp);
 				client.getCallbacks().post(Events.SCRIPT_CALLBACK, event);
 				return true;

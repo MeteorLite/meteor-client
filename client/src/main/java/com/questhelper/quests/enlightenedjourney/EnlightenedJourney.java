@@ -37,7 +37,7 @@ import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
@@ -90,7 +90,7 @@ public class EnlightenedJourney extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -127,7 +127,8 @@ public class EnlightenedJourney extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		papyrus3 = new ItemRequirement("Papyrus", ItemID.PAPYRUS, 3);
 		papyrus2 = new ItemRequirement("Papyrus", ItemID.PAPYRUS, 2);
@@ -143,14 +144,14 @@ public class EnlightenedJourney extends BasicQuestHelper
 		silk10 = new ItemRequirement("Silk", ItemID.SILK, 10);
 		bowl = new ItemRequirement("Bowl", ItemID.BOWL);
 		logs10 = new ItemRequirement("Logs", ItemID.LOGS, 10);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
 		willowBranches12 = new ItemRequirement("Willow branches", ItemID.WILLOW_BRANCH, 12);
 		willowBranches12.setTooltip("You can get these by using secateurs on a willow tree you've grown. Auguste will" +
 			" give you a sapling to grow during the quest if you need one");
 
 		draynorTeleport = new ItemRequirement("Draynor/Port Sarim teleport", ItemID.EXPLORERS_RING_3);
 		draynorTeleport.addAlternates(ItemID.EXPLORERS_RING_4, ItemID.DRAYNOR_MANOR_TELEPORT);
-		draynorTeleport.addAlternates(ItemCollections.getAmuletOfGlories());
+		draynorTeleport.addAlternates(ItemCollections.AMULET_OF_GLORIES);
 
 		balloonStructure = new ItemRequirement("Balloon structure", ItemID.BALLOON_STRUCTURE);
 		origamiBalloon = new ItemRequirement("Origami balloon", ItemID.ORIGAMI_BALLOON);

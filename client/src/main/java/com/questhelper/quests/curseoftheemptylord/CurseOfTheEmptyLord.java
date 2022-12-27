@@ -27,6 +27,7 @@ package com.questhelper.quests.curseoftheemptylord;
 import com.questhelper.QuestDescriptor;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
+import com.questhelper.panel.PanelDetails;
 import com.questhelper.questhelpers.BasicQuestHelper;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
@@ -49,14 +50,11 @@ import java.util.List;
 import java.util.Map;
 
 import eventbus.events.VarbitChanged;
-import meteor.Main;
 import net.runelite.api.ItemID;
 import net.runelite.api.NpcID;
 import net.runelite.api.ObjectID;
 import net.runelite.api.QuestState;
 import net.runelite.api.coords.WorldPoint;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 @QuestDescriptor(
 	quest = QuestHelperQuest.CURSE_OF_THE_EMPTY_LORD
@@ -84,7 +82,7 @@ public class CurseOfTheEmptyLord extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -129,13 +127,15 @@ public class CurseOfTheEmptyLord extends BasicQuestHelper
 		}
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		ringOfVis = new ItemRequirement("Ring of visibility", ItemID.RING_OF_VISIBILITY, 1, true);
-		ghostspeak = new ItemRequirement("Ghostspeak amulet", ItemID.GHOSTSPEAK_AMULET, 1, true);
-		ghostspeakItems = new ItemRequirement("Ghostspeak amulet or Morytania legs 2 or better", ItemID.GHOSTSPEAK_AMULET, 1, true);
+		ringOfVis = new ItemRequirement("Ring of visibility", ItemID.RING_OF_VISIBILITY, 1, true).isNotConsumed();
+		ghostspeak = new ItemRequirement("Ghostspeak amulet", ItemID.GHOSTSPEAK_AMULET, 1, true).isNotConsumed();
+		ghostspeakItems = new ItemRequirement("Ghostspeak amulet or Morytania legs 2 or better", ItemID.GHOSTSPEAK_AMULET,
+			1, true).isNotConsumed();
 		ghostspeakItems.addAlternates(ItemID.MORYTANIA_LEGS_2, ItemID.MORYTANIA_LEGS_3, ItemID.MORYTANIA_LEGS_4);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(new VarbitRequirement(PATH_VARBIT, 3));
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(new VarbitRequirement(PATH_VARBIT, 3)).isNotConsumed();
 	}
 
 	public void setupConditions()
@@ -283,6 +283,16 @@ public class CurseOfTheEmptyLord extends BasicQuestHelper
 		return Collections.singletonList(new UnlockReward("A Set of Ghostly Robes"));
 	}
 
+	@Override
+	public List<PanelDetails> getPanels()
+	{
+		List<PanelDetails> allSteps = new ArrayList<>();
+		allSteps.add(new PanelDetails("Learn about the Empty Lord",
+			Arrays.asList(talkToValdez, talkToRennard, talkToKharrim, talkToLennissa, talkToDhalak, talkToViggora),
+			ghostspeakItems, ringOfVis, knife));
+
+		return allSteps;
+	}
 
 	@Override
 	public List<Requirement> getGeneralRequirements()
@@ -291,17 +301,5 @@ public class CurseOfTheEmptyLord extends BasicQuestHelper
 		req.add(new QuestRequirement(QuestHelperQuest.DESERT_TREASURE, QuestState.IN_PROGRESS));
 		req.add(new QuestRequirement(QuestHelperQuest.THE_RESTLESS_GHOST, QuestState.IN_PROGRESS));
 		return req;
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "cotel";
 	}
 }

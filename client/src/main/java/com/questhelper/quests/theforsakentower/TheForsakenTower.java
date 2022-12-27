@@ -37,7 +37,7 @@ import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
-import com.questhelper.requirements.WidgetModelRequirement;
+import com.questhelper.requirements.widget.WidgetModelRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.util.Operation;
 import com.questhelper.rewards.ExperienceReward;
@@ -90,7 +90,7 @@ public class TheForsakenTower extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -134,12 +134,13 @@ public class TheForsakenTower extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		crank = new ItemRequirement("Generator crank", ItemID.GENERATOR_CRANK);
 		oldNotes = new ItemRequirement("Old notes", ItemID.OLD_NOTES_22774);
 		dinhsHammer = new ItemRequirement("Dinh's hammer", ItemID.DINHS_HAMMER);
-		gamesNecklace = new ItemRequirement("Games necklace for accessing Wintertodt", ItemCollections.getGamesNecklaces());
+		gamesNecklace = new ItemRequirement("Games necklace for accessing Wintertodt", ItemCollections.GAMES_NECKLACES);
 	}
 
 	public void setupConditions()

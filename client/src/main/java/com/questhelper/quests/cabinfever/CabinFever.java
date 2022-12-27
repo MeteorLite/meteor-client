@@ -99,7 +99,7 @@ public class CabinFever extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -343,18 +343,18 @@ public class CabinFever extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 		fuse1 = new ItemRequirement("Fuse", ItemID.FUSE);
 		ropes4 = new ItemRequirement("Rope", ItemID.ROPE, 4);
 		ropes2 = new ItemRequirement("Rope", ItemID.ROPE, 2);
 		ropeHighlight = new ItemRequirement("Rope", ItemID.ROPE);
 		ropeHighlight.setHighlightInInventory(true);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
 		tinderbox.setTooltip("You can get another from the ship's hull");
-		tinderboxHighlight = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
-		tinderboxHighlight.setHighlightInInventory(true);
+		tinderboxHighlight = tinderbox.highlighted();
 		floorTinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX_7156);
 		rope3 = new ItemRequirement("Rope", ItemID.ROPE, 3);
 		floorRope = new ItemRequirement("Rope", ItemID.ROPE_7155);
@@ -365,7 +365,7 @@ public class CabinFever extends BasicQuestHelper
 		planks2 = new ItemRequirement("Repair plank", ItemID.REPAIR_PLANK_7148, 2);
 		planks4 = new ItemRequirement("Repair plank", ItemID.REPAIR_PLANK_7148, 4);
 		planks6 = new ItemRequirement("Repair plank", ItemID.REPAIR_PLANK_7148, 6);
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER);
 		tacks10 = new ItemRequirement("Tacks", ItemID.TACKS, 10);
 		tacks20 = new ItemRequirement("Tacks", ItemID.TACKS, 20);
 		tacks30 = new ItemRequirement("Tacks", ItemID.TACKS, 30);

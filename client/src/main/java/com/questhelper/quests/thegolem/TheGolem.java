@@ -85,7 +85,7 @@ public class TheGolem extends BasicQuestHelper
 	{
 		Map<Integer, QuestStep> steps = new HashMap<>();
 		setupZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 
@@ -164,7 +164,8 @@ public class TheGolem extends BasicQuestHelper
 		throneRoom = new Zone(new WorldPoint(2709, 4879, 2), new WorldPoint(2731, 4919, 2));
 	}
 
-	private void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		letter = new ItemRequirement("Letter", ItemID.LETTER_4615);
 		letter.setHighlightInInventory(true);
@@ -176,10 +177,8 @@ public class TheGolem extends BasicQuestHelper
 		programHighlight = new ItemRequirement("Golem program", ItemID.GOLEM_PROGRAM);
 		programHighlight.setHighlightInInventory(true);
 
-		pestleAndMortarHighlight = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
-		pestleAndMortarHighlight.setHighlightInInventory(true);
-
-		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
+		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR).isNotConsumed();
+		pestleAndMortarHighlight = pestleAndMortar.highlighted();
 
 		mushroomHighlight = new ItemRequirement("Black mushroom", ItemID.BLACK_MUSHROOM);
 		mushroomHighlight.setHighlightInInventory(true);
@@ -220,7 +219,7 @@ public class TheGolem extends BasicQuestHelper
 		statuetteHighlight.setTooltip("If you've lost it, talk to the Curator in the Varrock museum again");
 
 		varrockTeleport = new ItemRequirement("Varrock teleport", ItemID.VARROCK_TELEPORT);
-		digsiteTeleport = new ItemRequirement("Digsite teleport", ItemCollections.getDigsitePendants());
+		digsiteTeleport = new ItemRequirement("Digsite teleport", ItemCollections.DIGSITE_PENDANTS);
 		digsiteTeleport.addAlternates(ItemID.DIGSITE_TELEPORT);
 		waterskins = new ItemRequirement("Waterskins", ItemID.WATERSKIN4, -1);
 	}

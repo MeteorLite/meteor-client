@@ -9,10 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import eventbus.events.VarbitChanged;
-import meteor.Main;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class PuzzleStep extends QuestStep
 {
@@ -219,17 +216,5 @@ public class PuzzleStep extends QuestStep
 				graphics.draw(widget.getBounds());
 			}
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "pzzzzz";
 	}
 }

@@ -36,11 +36,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 
 import eventbus.events.VarbitChanged;
-import meteor.Main;
 import meteor.game.FontManager;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 /* Approach:
 * 1. Arrow pointing what to grab and where to move it to. Do for all pieces
@@ -220,17 +217,5 @@ public class MapPuzzle extends QuestStep
 		g.setTransform(tx);
 		g.fill(arrowHead);
 		g.dispose();
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "mapPuzzle";
 	}
 }

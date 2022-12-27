@@ -1,6 +1,6 @@
 /*
  *
- *  * Copyright (c) 2021, Zoinkwiz
+ *  * Copyright (c) 2022, Zoinkwiz <https://github.com/Zoinkwiz>
  *  * All rights reserved.
  *  *
  *  * Redistribution and use in source and binary forms, with or without
@@ -24,74 +24,32 @@
  *  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-package com.questhelper.requirements;
+package com.questhelper.requirements.npc;
 
-import com.questhelper.requirements.SimpleRequirement;
-import lombok.Getter;
-import lombok.Setter;
+import com.questhelper.requirements.AbstractRequirement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import net.runelite.api.Client;
-import net.runelite.api.widgets.Widget;
 
-public class WidgetModelRequirement extends SimpleRequirement
+public class NoFollowerRequirement extends AbstractRequirement
 {
-	@Setter
-	@Getter
-	protected boolean hasPassed;
-	protected boolean onlyNeedToPassOnce;
+	String text;
 
-	@Getter
-	private final int groupId;
-
-	private final int childId;
-	private final int id;
-	private int childChildId = -1;
-
-	public WidgetModelRequirement(int groupId, int childId, int childChildId, int id)
+	public NoFollowerRequirement(String text)
 	{
-		this.groupId = groupId;
-		this.childId = childId;
-		this.childChildId = childChildId;
-		this.id = id;
-	}
-
-	public WidgetModelRequirement(int groupId, int childId, int id)
-	{
-		this.groupId = groupId;
-		this.childId = childId;
-		this.id = id;
+		this.text = text;
 	}
 
 	@Override
 	public boolean check(Client client)
 	{
-		if (onlyNeedToPassOnce && hasPassed)
-		{
-			return true;
-		}
-		return checkWidget(client);
+		return client.getVarpValue(447) == -1;
 	}
 
-	public boolean checkWidget(Client client)
+	@Override
+	public String getDisplayText()
 	{
-		Widget widget = client.getWidget(groupId, childId);
-		if (widget == null)
-		{
-			return false;
-		}
-		if (childChildId != -1)
-		{
-			widget = widget.getChild(childChildId);
-		}
-		if (widget != null)
-		{
-			return widget.getModelId() == id;
-		}
-		return false;
-	}
-
-	public void checkWidgetText(Client client)
-	{
-		hasPassed = hasPassed || checkWidget(client);
+		return text;
 	}
 }
-

@@ -24,7 +24,6 @@
  *  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-
 package com.questhelper.requirements;
 
 import com.questhelper.QuestHelperConfig;
@@ -40,7 +39,7 @@ import net.runelite.api.Client;
 /**
  * A requirement that must be passed.
  * This is used in both rendering overlays and quest logic.<br>
- * All {@link Requirement}s are run on the {@link}.
+ * All {@link Requirement}s are run on the {@link net.runelite.client}.
  */
 public interface Requirement
 {
@@ -75,7 +74,7 @@ public interface Requirement
 	 */
 	default Color getColor(Client client, QuestHelperConfig config)
 	{
-		return check(client) ? Color.GREEN : Color.RED;
+		return check(client) ? config.passColour() : config.failColour();
 	}
 
 	/**
@@ -96,10 +95,33 @@ public interface Requirement
 	 * @param tooltip the new tooltip
 	 */
 	default void setTooltip(@Nullable String tooltip) {}
+	
+	/**
+	 * If a custom suffix has been set it will be used
+	 * over the default ItemID.
+	 *
+	 * @return custom url
+	 */
+	@Nullable
+	default String getUrlSuffix()
+	{
+		return null;
+	}
+	
+	/**
+	 * Set the suffix of the URL to the argument provided,
+	 *  overrides the url set from the ItemID.
+	 *
+	 * @param urlSuffix the new url
+	 */
+	default void setUrlSuffix(@Nullable String urlSuffix) {}
+	
 
 	default List<LineComponent> getDisplayTextWithChecks(Client client, QuestHelperConfig config)
 	{
 		List<LineComponent> lines = new ArrayList<>();
+
+		if (!shouldDisplayText(client)) return lines;
 
 		String text = getDisplayText();
 		Color color = getColor(client, config);
@@ -118,6 +140,14 @@ public interface Requirement
 	default Requirement getOverlayReplacement()
 	{
 		return null;
+	}
+
+	/**
+	 * @return If requirements pass, returns true
+	 */
+	default boolean shouldDisplayText(Client client)
+	{
+		return true;
 	}
 
 	/**

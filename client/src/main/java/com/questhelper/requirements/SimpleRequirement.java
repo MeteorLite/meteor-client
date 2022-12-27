@@ -47,6 +47,6 @@ public abstract class SimpleRequirement extends AbstractRequirement
 	@Override
 	public Color getColor(Client client, QuestHelperConfig config)
 	{
-		return check(client) ? Color.GREEN : Color.RED;
+		return check(client) ? config.passColour() : config.failColour();
 	}
 }

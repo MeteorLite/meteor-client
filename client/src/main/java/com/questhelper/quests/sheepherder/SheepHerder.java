@@ -108,11 +108,12 @@ public class SheepHerder extends BasicQuestHelper
 		return steps;
 	}
 
-	private void setupRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins());
+		coins = new ItemRequirement("Coins", ItemCollections.COINS);
 
-		energyRestore = new ItemRequirement("Energy restoring items", ItemCollections.getRunRestoreItems());
+		energyRestore = new ItemRequirement("Energy restoring items", ItemCollections.RUN_RESTORE_ITEMS);
 
 		plagueJacket = new ItemRequirement("Plague jacket", ItemID.PLAGUE_JACKET);
 		plagueJacket.setTooltip("You can buy another from Doctor Orbon for 100 coins");

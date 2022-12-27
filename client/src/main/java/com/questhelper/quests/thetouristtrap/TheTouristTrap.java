@@ -25,15 +25,17 @@
 package com.questhelper.quests.thetouristtrap;
 
 import com.questhelper.ItemCollections;
+import com.questhelper.KeyringCollection;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.banktab.BankSlotIcons;
 import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.Requirement;
+import com.questhelper.requirements.item.KeyringRequirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.var.VarplayerRequirement;
 import com.questhelper.requirements.ZoneRequirement;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.QuestPointReward;
 import com.questhelper.rewards.UnlockReward;
@@ -69,9 +71,9 @@ import net.runelite.api.widgets.WidgetInfo;
 public class TheTouristTrap extends BasicQuestHelper
 {
 	//Items Required
-	ItemRequirement desertTop, desertBottom, desertBoot, desertTopWorn, desertBottomWorn, desertBootWorn, bronzeBar3, hammer, feather50,
+	ItemRequirement desertTop, desertBottom, desertBoot, desertTopWorn, desertBottomWorn, desertBootWorn, bronzeBar3, hammer, feather10,
 		metalKey, slaveTop, slaveRobe, slaveBoot, slaveTopWorn, slaveRobeWorn, slaveBootWorn, bedabinKey, technicalPlans, prototypeDart, prototypeDartTip,
-		feather10, bronzeBar, tentiPineapple, bronzeBarHighlighted, barrel, anaInABarrel, anaInABarrelHighlighted, barrelHighlighted;
+		bronzeBar, tentiPineapple, bronzeBarHighlighted, barrel, anaInABarrel, anaInABarrelHighlighted, barrelHighlighted;
 
 	//Items Required
 	ItemRequirement waterskins, knife, pickaxe, coins100, combatGear;
@@ -94,7 +96,7 @@ public class TheTouristTrap extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -193,9 +195,10 @@ public class TheTouristTrap extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 		desertTop = new ItemRequirement("Desert shirt", ItemID.DESERT_SHIRT);
 		desertBottom = new ItemRequirement("Desert robe", ItemID.DESERT_ROBE);
@@ -204,10 +207,9 @@ public class TheTouristTrap extends BasicQuestHelper
 		desertBottomWorn = new ItemRequirement("Desert robe", ItemID.DESERT_ROBE, 1, true);
 		desertBootWorn = new ItemRequirement("Desert boots", ItemID.DESERT_BOOTS, 1, true);
 		bronzeBar3 = new ItemRequirement("Bronze bars", ItemID.BRONZE_BAR, 3);
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
-		feather50 = new ItemRequirement("Feather", ItemID.FEATHER, 50);
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
 
-		metalKey = new ItemRequirement("Metal key", ItemID.METAL_KEY);
+		metalKey = new KeyringRequirement("Metal key", configManager, KeyringCollection.METAL_KEY);
 		metalKey.setTooltip("You can get another by killing the Mercenary Guard outside the Desert Mining Camp");
 		slaveTop = new ItemRequirement("Slave shirt", ItemID.SLAVE_SHIRT);
 		slaveTop.setTooltip("You can trade in a desert robe set for slave clothes with the Male Slave");
@@ -246,9 +248,9 @@ public class TheTouristTrap extends BasicQuestHelper
 		anaInABarrelHighlighted.setHighlightInInventory(true);
 
 		waterskins = new ItemRequirement("Waterskins", ItemID.WATERSKIN4, -1);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes());
-		coins100 = new ItemRequirement("Coins", ItemCollections.getCoins(), 100);
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).isNotConsumed();
+		coins100 = new ItemRequirement("Coins", ItemCollections.COINS, 100);
 	}
 
 	public void loadZones()
@@ -385,7 +387,7 @@ public class TheTouristTrap extends BasicQuestHelper
 	@Override
 	public List<ItemRequirement> getItemRequirements()
 	{
-		return Arrays.asList(desertTop, desertBottom, desertBoot, bronzeBar3, hammer, feather50);
+		return Arrays.asList(desertTop, desertBottom, desertBoot, bronzeBar3, hammer, feather10);
 	}
 
 
@@ -432,11 +434,11 @@ public class TheTouristTrap extends BasicQuestHelper
 		List<PanelDetails> allSteps = new ArrayList<>();
 		allSteps.add(new PanelDetails("Investigating the trap",
 			Arrays.asList(talkToIrena, talkToCaptain, enterCamp, talkToSlave, enterMine, talkToGuard),
-			desertTop, desertBottom, desertBoot, bronzeBar3, hammer, feather50));
+			desertTop, desertBottom, desertBoot, bronzeBar3, hammer, feather10));
 		allSteps.add(new PanelDetails("Helping out",
 			Arrays.asList(talkToShabim, enterCampForTask, goUpToSiad, searchBookcase, talkToSiad, searchChest, returnToShabim,
 				useAnvil, useFeatherOnTip, bringPrototypeToShabim),
-			bronzeBar3, hammer, feather50));
+			bronzeBar3, hammer, feather10));
 		allSteps.add(new PanelDetails("Freeing Ana",
 			Arrays.asList(enterCampWithPineapple, enterMineWithPineapple, talkToGuardWithPineapple, enterDeepMine, getBarrel, enterMineCart, useBarrelOnAna, useBarrelOnMineCart,
 				returnInMineCart, searchBarrelsForAna, sendAnaUp, leaveDeepMine, operateWinch, searchWinchBarrel, useBarrelOnCart, talkToDriver, returnToIrena, talkToAna, talkToIrenaToFinish),

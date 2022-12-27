@@ -82,7 +82,7 @@ public class TheEyesOfGlouphrie extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -168,7 +168,8 @@ public class TheEyesOfGlouphrie extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		bucketOfSap = new ItemRequirement("Bucket of sap", ItemID.BUCKET_OF_SAP);
 		bucketOfSap.setTooltip("You can get this by using a knife on an evergreen tree with a bucket in your " +
@@ -185,11 +186,10 @@ public class TheEyesOfGlouphrie extends BasicQuestHelper
 		mudRuneHighlight.setHighlightInInventory(true);
 		mapleLog = new ItemRequirement("Maple logs", ItemID.MAPLE_LOGS);
 		oakLog = new ItemRequirement("Oak logs", ItemID.OAK_LOGS);
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
-		saw = new ItemRequirement("Saw", ItemCollections.getSaw());
-		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
-		pestleHighlight = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
-		pestleHighlight.setHighlightInInventory(true);
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
+		saw = new ItemRequirement("Saw", ItemCollections.SAW).isNotConsumed();
+		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR).isNotConsumed();
+		pestleHighlight = pestleAndMortar.highlighted();
 		magicGlue = new ItemRequirement("Magic glue", ItemID.MAGIC_GLUE);
 		magicGlue.setHighlightInInventory(true);
 	}
@@ -239,8 +239,9 @@ public class TheEyesOfGlouphrie extends BasicQuestHelper
 		talkToBrimstailAgain.addDialogStep("Of course, I'd love to!");
 
 		goUpToHazelmere = new ObjectStep(this, ObjectID.LADDER_16683, new WorldPoint(2677, 3087, 0),
-			"Go talk to Hazelmere in his hut east of Yanille. Fairy Ring CLS is very close to him.");
-		talkToHazelmere = new NpcStep(this, NpcID.HAZELMERE, new WorldPoint(2677, 3087, 1), "Go talk to Hazelmere in his hut east of Yanille.");
+			"Go talk to Hazelmere in his hut east of Yanille (Fairy Ring CLS).");
+		talkToHazelmere = new NpcStep(this, NpcID.HAZELMERE, new WorldPoint(2677, 3087, 1),
+			"Go talk to Hazelmere in his hut east of Yanille (Fairy Ring CLS).");
 		talkToHazelmere.addSubSteps(goUpToHazelmere);
 
 		enterCaveAgain = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_17209, new WorldPoint(2404, 3419, 0), "Go back to Brimstail's cave in west Tree Gnome Stronghold.", pestleAndMortar, mudRune, bucketOfSap, oakLog, mapleLog, saw, hammer);

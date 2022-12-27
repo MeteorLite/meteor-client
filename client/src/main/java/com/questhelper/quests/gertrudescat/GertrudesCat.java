@@ -80,7 +80,7 @@ public class GertrudesCat extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 
@@ -206,13 +206,14 @@ public class GertrudesCat extends BasicQuestHelper
 		return talkToGertrude;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		bucketOfMilk = new ItemRequirement("Bucket of milk", ItemID.BUCKET_OF_MILK);
 		milkHighlighted = new ItemRequirement("Bucket of milk", ItemID.BUCKET_OF_MILK);
 		milkHighlighted.setHighlightInInventory(true);
 
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins(), 100);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS, 100);
 
 		seasonedSardine = new ItemRequirement("Seasoned Sardine", ItemID.SEASONED_SARDINE);
 		seasonedSardine.setTooltip("Can be created by using a sardine on Doogle leaves(South of Gertrudes House)");

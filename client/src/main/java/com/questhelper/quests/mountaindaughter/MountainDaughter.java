@@ -90,7 +90,7 @@ public class MountainDaughter extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		loadItemRequirements();
+		setupRequirements();
 		loadConditions();
 		loadQuestSteps();
 
@@ -174,19 +174,24 @@ public class MountainDaughter extends BasicQuestHelper
 		KENDAL_CAVE = new Zone(new WorldPoint(2828, 10118, 0), new WorldPoint(2746, 10047, 0));
 	}
 
-	private void loadItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		rope = new ItemRequirement("Rope", ItemID.ROPE);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemID.BRONZE_PICKAXE);
-		pickaxe.addAlternates(ItemCollections.getPickaxes());
+		pickaxe = new ItemRequirement("Any pickaxe", ItemID.BRONZE_PICKAXE).isNotConsumed();
+		pickaxe.addAlternates(ItemCollections.PICKAXES);
 
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes());
-		plank = new ItemRequirement("Any plank", ItemID.PLANK);
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).isNotConsumed();
+		plank = new ItemRequirement("Any plank", ItemID.PLANK).isNotConsumed();
 		plank.addAlternates(ItemID.OAK_PLANK, ItemID.TEAK_PLANK, ItemID.MAHOGANY_PLANK);
-		pole = new ItemRequirement("A staff or a pole", ItemID.POLE);
-		pole.addAlternates(ItemID.LUNAR_STAFF);
-		pole.setTooltip("You can find one in the north part of the Mountain Camp.");
-		gloves = new ItemRequirement("Almost any gloves", ItemID.LEATHER_GLOVES);
+		pole = new ItemRequirement("A staff or a pole", ItemID.POLE).isNotConsumed();
+		pole.addAlternates(ItemID.LUNAR_STAFF, ItemID.STAFF, ItemID.BATTLESTAFF);
+		pole.addAlternates(ItemCollections.AIR_STAFF);
+		pole.addAlternates(ItemCollections.WATER_STAFF);
+		pole.addAlternates(ItemCollections.EARTH_STAFF);
+		pole.addAlternates(ItemCollections.FIRE_STAFF);
+		pole.setTooltip("A Dramen Staff will NOT work. A pole can be obtained from the goat pen north of Hamal's house.");
+		gloves = new ItemRequirement("Almost any gloves", ItemID.LEATHER_GLOVES).isNotConsumed();
 		gloves.addAlternates(ItemID.BARROWS_GLOVES, ItemID.DRAGON_GLOVES, ItemID.RUNE_GLOVES, ItemID.ADAMANT_GLOVES, ItemID.MITHRIL_GLOVES,
 			ItemID.BLACK_GLOVES, ItemID.STEEL_GLOVES, ItemID.IRON_GLOVES, ItemID.BRONZE_GLOVES, ItemID.HARDLEATHER_GLOVES,
 			ItemID.FEROCIOUS_GLOVES, ItemID.GRACEFUL_GLOVES, ItemID.GRANITE_GLOVES);
@@ -206,8 +211,8 @@ public class MountainDaughter extends BasicQuestHelper
 		corpse = new ItemRequirement("Corpse of woman", ItemID.CORPSE_OF_WOMAN);
 		corpse.setTooltip("You can find this corpse again in the Kendal's cave.");
 		muddyRocks = new ItemRequirement("Muddy rock", ItemID.MUDDY_ROCK, 5);
-		slayerRing = new ItemRequirement("Slayer ring for teleports", ItemCollections.getSlayerRings());
-		combatGear = new ItemRequirement("Combat gear for The Kendal fight", -1, -1);
+		slayerRing = new ItemRequirement("Slayer ring for teleports", ItemCollections.SLAYER_RINGS);
+		combatGear = new ItemRequirement("Combat gear for The Kendal fight", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
 		rocks = new ItemRequirement("Muddy rock", ItemID.MUDDY_ROCK);
@@ -256,7 +261,7 @@ public class MountainDaughter extends BasicQuestHelper
 		talkToHamal.addDialogStep("I will search for her!");
 
 		digUpMud = new ObjectStep(this, ObjectID.ROOTS_5885, new WorldPoint(2805, 3661, 0),
-			"Dig some mud from the mud pond south of Hamal's house.");
+			"If you did not bring a staff grab a pole from the goat pen north of Hamal's house. Head south of Hamal's house and dig some mud from the mud pond.");
 
 		rubMudIntoTree = new ObjectStep(this, ObjectID.TALL_TREE, new WorldPoint(2772, 3681, 0),
 			"Use mud on the Tall Tree on the lake north of the camp, and then climb it.",
@@ -394,6 +399,7 @@ public class MountainDaughter extends BasicQuestHelper
 		reqs.add(axe);
 		reqs.add(plank);
 		reqs.add(gloves);
+		reqs.add(pole);
 		return reqs;
 	}
 

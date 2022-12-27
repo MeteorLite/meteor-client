@@ -28,18 +28,23 @@ import com.questhelper.QuestHelperPlugin;
 import com.questhelper.questhelpers.BasicQuestHelper;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.steps.DetailedQuestStep;
+import java.util.List;
+
 import eventbus.events.GameTick;
-import meteor.Main;
+import lombok.NonNull;
 import meteor.ui.components.LineComponent;
 import meteor.ui.overlay.PanelComponent;
 import net.runelite.api.Client;
 import net.runelite.api.widgets.Widget;
+
+import javax.inject.Inject;
 import java.awt.*;
 import java.util.*;
 
 public class DoorPuzzleStep extends DetailedQuestStep
 {
-	Client client = Main.INSTANCE.getClient();
+	@Inject
+	Client client;
 
 	private final int UNKNOWN_VALUE = 0;
 	private final int EMPTY = 1;
@@ -162,7 +167,7 @@ public class DoorPuzzleStep extends DetailedQuestStep
 		newPuzzleState.grid[x].cells[y] = state;
 		newPuzzleState.numberOfGray--;
 		newPuzzleState.rowSolutions[x] = removeIncorrectSolutions(newPuzzleState.rowSolutions[x], y, state);
-		newPuzzleState.rowSolutions[y] = removeIncorrectSolutions(newPuzzleState.rowSolutions[y], x, state);
+		newPuzzleState.columnSolutions[y] = removeIncorrectSolutions(newPuzzleState.columnSolutions[y], x, state);
 		return newPuzzleState;
 	}
 
@@ -367,9 +372,9 @@ public class DoorPuzzleStep extends DetailedQuestStep
 	}
 
 	@Override
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, Requirement... requirement)
+	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, @NonNull List<String> additionalText, @NonNull List<Requirement> requirement)
 	{
-		super.makeOverlayHint(panelComponent, plugin, requirement);
+		super.makeOverlayHint(panelComponent, plugin, additionalText, requirement);
 		Widget panels = client.getWidget(665, 32);
 		if (result == null && panels != null)
 		{

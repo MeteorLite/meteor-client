@@ -28,21 +28,19 @@ package com.questhelper.overlays;
 import com.questhelper.QuestHelperPlugin;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import javax.inject.Inject;
 import com.questhelper.questhelpers.QuestHelper;
-import meteor.Main;
 import meteor.ui.overlay.Overlay;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPosition;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class QuestHelperWorldArrowOverlay extends Overlay
 {
 	private final QuestHelperPlugin plugin;
 
+	@Inject
 	public QuestHelperWorldArrowOverlay(QuestHelperPlugin plugin)
 	{
-		super();
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.plugin = plugin;
@@ -60,17 +58,4 @@ public class QuestHelperWorldArrowOverlay extends Overlay
 
 		return null;
 	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "qhworldarrowoverlay";
-	}
-
 }

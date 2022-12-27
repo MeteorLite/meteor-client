@@ -26,6 +26,7 @@
  */
 package com.questhelper.requirements.item;
 
+import com.questhelper.ItemCollections;
 import com.questhelper.QuestBank;
 import com.questhelper.QuestHelperConfig;
 import com.questhelper.requirements.AbstractRequirement;
@@ -85,7 +86,15 @@ public class ItemRequirement extends AbstractRequirement
 
 	@Getter
 	@Setter
-	private QuestBank questBank;
+	public QuestBank questBank;
+
+	@Getter
+	protected boolean hadItemLastCheck;
+
+	@Getter
+	protected boolean isConsumedItem = true;
+
+	protected boolean shouldAggregate = true;
 
 	public ItemRequirement(String name, int id)
 	{
@@ -131,9 +140,36 @@ public class ItemRequirement extends AbstractRequirement
 		this.addAlternates(items.subList(1, items.size()));
 	}
 
+	public ItemRequirement(String name, ItemCollections itemCollection)
+	{
+		this(name, itemCollection.getItems().get(0), 1);
+		this.setUrlSuffix(itemCollection.getWikiTerm());
+		this.addAlternates(itemCollection.getItems().subList(1, itemCollection.getItems().size()));
+	}
+
+	public ItemRequirement(String name, ItemCollections itemCollection, int quantity)
+	{
+		this(name, itemCollection.getItems().get(0), quantity);
+		this.setUrlSuffix(itemCollection.getWikiTerm());
+		this.addAlternates(itemCollection.getItems().subList(1, itemCollection.getItems().size()));
+	}
+
+	public ItemRequirement(String name, ItemCollections itemCollection, int quantity, boolean equip)
+	{
+		this(name, itemCollection.getItems().get(0), quantity);
+		this.setUrlSuffix(itemCollection.getWikiTerm());
+		this.equip = equip;
+		this.addAlternates(itemCollection.getItems().subList(1, itemCollection.getItems().size()));
+	}
+
 	public void addAlternates(List<Integer> alternates)
 	{
 		this.alternateItems.addAll(alternates);
+	}
+
+	public void addAlternates(ItemCollections alternates)
+	{
+		this.alternateItems.addAll(alternates.getItems());
 	}
 
 	public void addAlternates(Integer... alternates)
@@ -164,6 +200,20 @@ public class ItemRequirement extends AbstractRequirement
 	{
 		ItemRequirement newItem = copy();
 		newItem.setEquip(true);
+		return newItem;
+	}
+
+	public ItemRequirement isNotConsumed()
+	{
+		ItemRequirement newItem = copy();
+		newItem.isConsumedItem = false;
+		return newItem;
+	}
+
+	public ItemRequirement doNotAggregate()
+	{
+		ItemRequirement newItem = copy();
+		newItem.shouldAggregate = false;
 		return newItem;
 	}
 
@@ -198,7 +248,11 @@ public class ItemRequirement extends AbstractRequirement
 		newItem.setDisplayMatchedItemName(displayMatchedItemName);
 		newItem.setConditionToHide(conditionToHide);
 		newItem.questBank = questBank;
+		newItem.hadItemLastCheck = hadItemLastCheck;
+		newItem.isConsumedItem = isConsumedItem;
+		newItem.shouldAggregate = shouldAggregate;
 		newItem.setTooltip(getTooltip());
+		newItem.setUrlSuffix(getUrlSuffix());
 
 		return newItem;
 	}
@@ -227,7 +281,7 @@ public class ItemRequirement extends AbstractRequirement
 	}
 
 	@Override
-	public List<LineComponent> getOverlayDisplayText(Client client, QuestHelperConfig config)
+	protected List<LineComponent> getOverlayDisplayText(Client client, QuestHelperConfig config)
 	{
 		List<LineComponent> lines = new ArrayList<>();
 
@@ -254,7 +308,7 @@ public class ItemRequirement extends AbstractRequirement
 
 		Color color = getColor(client, config);
 		lines.add(new LineComponent.Builder()
-			.left(text.toString())
+				.left(text.toString())
 			.leftColor(color)
 			.build());
 		lines.addAll(getAdditionalText(client, true, config));
@@ -268,16 +322,22 @@ public class ItemRequirement extends AbstractRequirement
 	}
 
 	@Override
+	public boolean shouldDisplayText(Client client)
+	{
+		return !conditionToHide.check(client);
+	}
+
+	@Override
 	public Color getColor(Client client, QuestHelperConfig config)
 	{
-		Color color = Color.RED;
+		Color color = config.failColour();
 		if (!this.isActualItem())
 		{
 			color = Color.GRAY;
 		}
 		else if (this.check(client))
 		{
-			color = Color.GREEN;
+			color = config.passColour();
 		}
 		return color;
 	}
@@ -309,17 +369,17 @@ public class ItemRequirement extends AbstractRequirement
 	public Color getColorConsideringBank(Client client, boolean checkConsideringSlotRestrictions,
 										 List<Item> bankItems, QuestHelperConfig config)
 	{
-		Color color = Color.RED;
+		Color color = config.failColour();
 		if (!this.isActualItem())
 		{
 			color = Color.GRAY;
 		}
 		else if (this.check(client, checkConsideringSlotRestrictions))
 		{
-			color = Color.GREEN;
+			color = config.passColour();
 		}
 
-		if (color == Color.RED && bankItems != null)
+		if (color == config.failColour() && bankItems != null)
 		{
 			if (check(client, false, bankItems))
 			{
@@ -333,7 +393,7 @@ public class ItemRequirement extends AbstractRequirement
 	protected ArrayList<LineComponent> getAdditionalText(Client client, boolean includeTooltip,
 														 QuestHelperConfig config)
 	{
-		Color equipColor = Color.GREEN;
+		Color equipColor = config.passColour();
 
 		ArrayList<LineComponent> lines = new ArrayList<>();
 
@@ -342,7 +402,7 @@ public class ItemRequirement extends AbstractRequirement
 			String equipText = "(equipped)";
 			if (!this.check(client, true))
 			{
-				equipColor = Color.RED;
+				equipColor = config.failColour();
 			}
 			lines.add(new LineComponent.Builder()
 				.left(equipText)
@@ -410,9 +470,11 @@ public class ItemRequirement extends AbstractRequirement
 				allItems));
 			if (remainder <= 0)
 			{
+				hadItemLastCheck = true;
 				return true;
 			}
 		}
+		hadItemLastCheck = false;
 		return false;
 	}
 

@@ -25,6 +25,7 @@
 package com.questhelper.achievementdiaries.morytania;
 
 import com.questhelper.ItemCollections;
+import com.questhelper.KeyringCollection;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
 import com.questhelper.banktab.BankSlotIcons;
@@ -33,6 +34,7 @@ import com.questhelper.requirements.ChatMessageRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
+import com.questhelper.requirements.item.KeyringRequirement;
 import com.questhelper.requirements.player.PrayerRequirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
@@ -83,14 +85,18 @@ public class MorytaniaHard extends ComplexStateQuestHelper
 		notBittercapMush, notPietyAltar, notBridgeSalve, notMithOre, choppedLogs;
 
 	QuestStep claimReward, moveToMine, moveToLevelTwo, mithOre, kharyrll, advancedSpikes, harvestWatermelon, burnMaho,
-		chopMaho, bittercapMush, pietyAltar, bridgeSalve, moveToGrotto, moveToMos, moveToCave, moveToHarmony, moveToUpstairs,
-		moveToCapt, moveToIsland;
+		chopMaho, bittercapMush, pietyAltar, bridgeSalve, moveToGrotto, moveToMosHorror, moveToCaveHorror, moveToHarmony,
+		moveToUpstairs, moveToCaptHorror, moveToIsland, moveToMosMaho, moveToCaveMaho, moveToCaptMaho, moveToCaptMelon,
+		moveToMosMelon;
 
 	NpcStep hardTempleTrekk, caveHorror;
 
 	Zone hauntedMine1, hauntedMine2, grotto, slayerTower2, mos, boat, island, cave, harmony;
 
 	ZoneRequirement inHauntedMine1, inHauntedMine2, inGrotto, inSlayerTower2, inMos, inBoat, inIsland, inCave, inHarmony;
+
+	ConditionalStep kharyrllTask, advancedSpikesTask, harvestWatermelonTask, burnMahoTask, hardTempleTrekkTask,
+		caveHorrorTask, bittercapMushTask, pietyAltarTask, bridgeSalveTask, mithOreTask;
 
 	@Override
 	public QuestStep loadStep()
@@ -100,35 +106,56 @@ public class MorytaniaHard extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doHard = new ConditionalStep(this, claimReward);
-		doHard.addStep(new Conditions(notMithOre, inHauntedMine2), mithOre);
-		doHard.addStep(new Conditions(notMithOre, inHauntedMine1), moveToLevelTwo);
-		doHard.addStep(notMithOre, moveToMine);
-		doHard.addStep(new Conditions(notPietyAltar, inGrotto), pietyAltar);
-		doHard.addStep(notPietyAltar, moveToGrotto);
-		doHard.addStep(notHardTempleTrekk, hardTempleTrekk);
-		doHard.addStep(notBridgeSalve, bridgeSalve);
-		doHard.addStep(new Conditions(notAdvancedSpikes, inSlayerTower2), advancedSpikes);
-		doHard.addStep(notAdvancedSpikes, moveToUpstairs);
-		doHard.addStep(new Conditions(notCaveHorror, inCave), caveHorror);
-		doHard.addStep(new Conditions(notCaveHorror, inMos), moveToCave);
-		doHard.addStep(new Conditions(notCaveHorror, inBoat), moveToMos);
-		doHard.addStep(notCaveHorror, moveToCapt);
-		doHard.addStep(new Conditions(notBurnMaho, inIsland, choppedLogs, mahoLogs), burnMaho);
-		doHard.addStep(new Conditions(notBurnMaho, inIsland), chopMaho);
-		doHard.addStep(new Conditions(notBurnMaho, inCave), moveToIsland);
-		doHard.addStep(new Conditions(notBurnMaho, inMos), moveToCave);
-		doHard.addStep(new Conditions(notBurnMaho, inBoat), moveToMos);
-		doHard.addStep(notBurnMaho, moveToCapt);
-		doHard.addStep(new Conditions(notHarvestWatermelon, inHarmony), harvestWatermelon);
-		doHard.addStep(new Conditions(notHarvestWatermelon, inMos), moveToHarmony);
-		doHard.addStep(new Conditions(notHarvestWatermelon, inBoat), moveToMos);
-		doHard.addStep(notHarvestWatermelon, moveToCapt);
-		doHard.addStep(notKharyrll, kharyrll);
-		doHard.addStep(notBittercapMush, bittercapMush);
+
+		bittercapMushTask = new ConditionalStep(this, bittercapMush);
+		doHard.addStep(notBittercapMush, bittercapMushTask);
+
+		harvestWatermelonTask = new ConditionalStep(this, moveToCaptMelon);
+		harvestWatermelonTask.addStep(inBoat, moveToMosMelon);
+		harvestWatermelonTask.addStep(inMos, moveToHarmony);
+		harvestWatermelonTask.addStep(inHarmony, harvestWatermelon);
+		doHard.addStep(notHarvestWatermelon, harvestWatermelonTask);
+
+		mithOreTask = new ConditionalStep(this, moveToMine);
+		mithOreTask.addStep(inHauntedMine1, moveToLevelTwo);
+		mithOreTask.addStep(inHauntedMine2, mithOre);
+		doHard.addStep(notMithOre, mithOreTask);
+
+		pietyAltarTask = new ConditionalStep(this, moveToGrotto);
+		pietyAltarTask.addStep(inGrotto, pietyAltar);
+		doHard.addStep(notPietyAltar, pietyAltarTask);
+
+		hardTempleTrekkTask = new ConditionalStep(this, hardTempleTrekk);
+		doHard.addStep(notHardTempleTrekk, hardTempleTrekkTask);
+
+		bridgeSalveTask = new ConditionalStep(this, bridgeSalve);
+		doHard.addStep(notBridgeSalve, bridgeSalveTask);
+
+		advancedSpikesTask = new ConditionalStep(this, moveToUpstairs);
+		advancedSpikesTask.addStep(inSlayerTower2, advancedSpikes);
+		doHard.addStep(notAdvancedSpikes, advancedSpikesTask);
+
+		caveHorrorTask = new ConditionalStep(this, moveToCaptHorror);
+		caveHorrorTask.addStep(inBoat, moveToMosHorror);
+		caveHorrorTask.addStep(inMos, moveToCaveHorror);
+		caveHorrorTask.addStep(inCave, caveHorror);
+		doHard.addStep(notCaveHorror, caveHorrorTask);
+
+		burnMahoTask = new ConditionalStep(this, moveToCaptMaho);
+		burnMahoTask.addStep(inBoat, moveToMosMaho);
+		burnMahoTask.addStep(inMos, moveToCaveMaho);
+		burnMahoTask.addStep(inCave, moveToIsland);
+		burnMahoTask.addStep(inIsland, chopMaho);
+		burnMahoTask.addStep(new Conditions(inIsland, choppedLogs, mahoLogs), burnMaho);
+		doHard.addStep(notBurnMaho, burnMahoTask);
+
+		kharyrllTask = new ConditionalStep(this, kharyrll);
+		doHard.addStep(notKharyrll, kharyrllTask);
 
 		return doHard;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notKharyrll = new VarplayerRequirement(1180, false, 23);
@@ -144,41 +171,41 @@ public class MorytaniaHard extends ComplexStateQuestHelper
 
 		piety = new PrayerRequirement("Piety activated", Prayer.PIETY);
 
-		crystalMineKey = new ItemRequirement("Crystal mine key", ItemID.CRYSTALMINE_KEY).showConditioned(notMithOre);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(notMithOre);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins()).showConditioned(notKharyrll);
+		crystalMineKey = new KeyringRequirement(configManager, KeyringCollection.CRYSTAL_MINE_KEY).showConditioned(notMithOre).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).showConditioned(notMithOre).isNotConsumed();
+		coins = new ItemRequirement("Coins", ItemCollections.COINS).showConditioned(notKharyrll);
 		limestoneBrick = new ItemRequirement("Limestone brick", ItemID.LIMESTONE_BRICK).showConditioned(notKharyrll);
-		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notKharyrll);
-		saw = new ItemRequirement("Saw", ItemID.SAW).showConditioned(notKharyrll);
+		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notKharyrll).isNotConsumed();
+		saw = new ItemRequirement("Saw", ItemID.SAW).showConditioned(notKharyrll).isNotConsumed();
 		teakPlank = new ItemRequirement("Teak plank", ItemID.TEAK_PLANK).showConditioned(notKharyrll);
 		lawRune = new ItemRequirement("Law runes", ItemID.LAW_RUNE).showConditioned(notKharyrll);
 		bloodRune = new ItemRequirement("Blood runes", ItemID.BLOOD_RUNE).showConditioned(notKharyrll);
-		noseProtection = new ItemRequirement("Nose protection", ItemCollections.getNoseProtection())
-			.showConditioned(notAdvancedSpikes);
+		noseProtection = new ItemRequirement("Nose protection", ItemCollections.NOSE_PROTECTION)
+			.showConditioned(notAdvancedSpikes).isNotConsumed();
 		watermelonSeeds = new ItemRequirement("Watermelon seeds", ItemID.WATERMELON_SEED)
 			.showConditioned(notHarvestWatermelon);
 		seedDibber = new ItemRequirement("Seed dibber", ItemID.SEED_DIBBER)
-			.showConditioned(new Conditions(LogicType.OR, notBittercapMush, notHarvestWatermelon));
+			.showConditioned(new Conditions(LogicType.OR, notBittercapMush, notHarvestWatermelon)).isNotConsumed();
 		rake = new ItemRequirement("Rake", ItemID.RAKE)
-			.showConditioned(new Conditions(LogicType.OR, notBittercapMush, notHarvestWatermelon));
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes()).showConditioned(notBurnMaho);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).showConditioned(notBurnMaho);
+			.showConditioned(new Conditions(LogicType.OR, notBittercapMush, notHarvestWatermelon)).isNotConsumed();
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).showConditioned(notBurnMaho).isNotConsumed();
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).showConditioned(notBurnMaho).isNotConsumed();
 		witchwoodIcon = new ItemRequirement("Witchwood icon", ItemID.WITCHWOOD_ICON)
-			.showConditioned(new Conditions(LogicType.OR, notCaveHorror, notBurnMaho));
-		lightSource = new ItemRequirement("Light source", ItemCollections.getLightSources())
-			.showConditioned(new Conditions(LogicType.OR, notCaveHorror, notBurnMaho));
+			.showConditioned(new Conditions(LogicType.OR, notCaveHorror, notBurnMaho)).isNotConsumed();
+		lightSource = new ItemRequirement("Light source", ItemCollections.LIGHT_SOURCES)
+			.showConditioned(new Conditions(LogicType.OR, notCaveHorror, notBurnMaho)).isNotConsumed();
 		mushroomSpore = new ItemRequirement("Mushroom spores", ItemID.MUSHROOM_SPORE).showConditioned(notBittercapMush);
 		spade = new ItemRequirement("Spade", ItemID.SPADE)
-			.showConditioned(new Conditions(LogicType.OR, notBittercapMush, notHarvestWatermelon));
+			.showConditioned(new Conditions(LogicType.OR, notBittercapMush, notHarvestWatermelon)).isNotConsumed();
 		mahoLogs = new ItemRequirement("Mahogany logs", ItemID.MAHOGANY_LOGS);
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		fairyAccess = new ItemRequirement("Access to the fairy ring system", ItemCollections.getFairyStaff())
-			.showConditioned(new Conditions(LogicType.OR, notBridgeSalve, notPietyAltar));
-		slayerRing = new ItemRequirement("Slayer ring", ItemCollections.getSlayerRings());
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		fairyAccess = new ItemRequirement("Access to the fairy ring system", ItemCollections.FAIRY_STAFF)
+			.showConditioned(new Conditions(LogicType.OR, notBridgeSalve, notPietyAltar)).isNotConsumed();
+		slayerRing = new ItemRequirement("Slayer ring", ItemCollections.SLAYER_RINGS);
 
 		inHauntedMine1 = new ZoneRequirement(hauntedMine1);
 		inHauntedMine2 = new ZoneRequirement(hauntedMine2);
@@ -247,7 +274,8 @@ public class MorytaniaHard extends ComplexStateQuestHelper
 				"top-down.");
 
 		bittercapMush = new ObjectStep(this, NullObjectID.NULL_8337, new WorldPoint(3452, 3473, 0),
-			"Plant and harvest the bittercap mushrooms in Canifis. It takes 4 hours to fully grow.", rake, seedDibber,
+			"Plant and harvest the bittercap mushrooms in Canifis. It takes 4 hours to fully grow." +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.", rake, seedDibber,
 			mushroomSpore);
 
 		moveToUpstairs = new ObjectStep(this, ObjectID.SPIKEY_CHAIN, new WorldPoint(3422, 3550, 0),
@@ -255,26 +283,38 @@ public class MorytaniaHard extends ComplexStateQuestHelper
 		advancedSpikes = new ObjectStep(this, 16537, new WorldPoint(3447, 3576, 1),
 			"Climb the advanced spike chain. Go down and back up if you rip your hands as you climb.");
 
-		moveToCapt = new ObjectStep(this, ObjectID.GANGPLANK_11209, new WorldPoint(3710, 3496, 0),
-			"Cross the gangplank to Bill Teach's ship.");
-		moveToMos = new NpcStep(this, NpcID.BILL_TEACH_4016, new WorldPoint(3714, 3497, 1),
-			"Talk to Bill Teach to travel to Mos Le'Harmless.");
-		moveToCave = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_3650, new WorldPoint(3748, 2973, 0),
-			"Enter the Mos Le'Harmless Cave.", witchwoodIcon.equipped(), lightSource);
+		moveToCaptHorror = new ObjectStep(this, ObjectID.GANGPLANK_11209, new WorldPoint(3710, 3496, 0),
+			"Cross the gangplank to Bill Teach's ship.", witchwoodIcon.equipped(), lightSource, combatGear, food);
+		moveToMosHorror = new NpcStep(this, NpcID.BILL_TEACH_4016, new WorldPoint(3714, 3497, 1),
+			"Talk to Bill Teach to travel to Mos Le'Harmless.", witchwoodIcon.equipped(), lightSource, combatGear, food);
+		moveToCaveHorror = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_3650, new WorldPoint(3748, 2973, 0),
+			"Enter the Mos Le'Harmless Cave.", witchwoodIcon.equipped(), lightSource, combatGear, food);
 		caveHorror = new NpcStep(this, NpcID.CAVE_HORROR, new WorldPoint(3740, 9373, 0),
 			"Kill a Cave horror.", witchwoodIcon.equipped());
 		caveHorror.addAlternateNpcs(NpcID.CAVE_HORROR_1048, NpcID.CAVE_HORROR_1049, NpcID.CAVE_HORROR_1050,
 			NpcID.CAVE_HORROR_1051);
+		moveToCaptMaho = new ObjectStep(this, ObjectID.GANGPLANK_11209, new WorldPoint(3710, 3496, 0),
+			"Cross the gangplank to Bill Teach's ship.", witchwoodIcon.equipped(), lightSource, axe, tinderbox);
+		moveToMosMaho = new NpcStep(this, NpcID.BILL_TEACH_4016, new WorldPoint(3714, 3497, 1),
+			"Talk to Bill Teach to travel to Mos Le'Harmless.", witchwoodIcon.equipped(), lightSource, axe, tinderbox);
+		moveToCaveMaho = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_3650, new WorldPoint(3748, 2973, 0),
+			"Enter the Mos Le'Harmless Cave.", witchwoodIcon.equipped(), lightSource, axe, tinderbox);
 		moveToIsland = new ObjectStep(this, ObjectID.STAIRCASE_5269, new WorldPoint(3830, 9463, 0),
 			"Climb the staircase in the north east of the Cave Horror dungeon.");
 		burnMaho = new ItemStep(this, "Burn mahogany logs on the island.", tinderbox.highlighted(), mahoLogs.highlighted());
 		chopMaho = new ObjectStep(this, 9034, new WorldPoint(3826, 3056, 0),
 			"Chop mahogany logs on the island.", axe, tinderbox);
+
+		moveToCaptMelon = new ObjectStep(this, ObjectID.GANGPLANK_11209, new WorldPoint(3710, 3496, 0),
+			"Cross the gangplank to Bill Teach's ship.", watermelonSeeds.quantity(3), seedDibber, spade, rake);
+		moveToMosMelon = new NpcStep(this, NpcID.BILL_TEACH_4016, new WorldPoint(3714, 3497, 1),
+			"Talk to Bill Teach to travel to Mos Le'Harmless.", watermelonSeeds.quantity(3), seedDibber, spade, rake);
 		moveToHarmony = new NpcStep(this, NpcID.BROTHER_TRANQUILITY_551, new WorldPoint(3680, 2961, 0),
-			"Talk to Brother Tranquility to travel to Harmony Island.");
+			"Talk to Brother Tranquility to travel to Harmony Island.", watermelonSeeds.quantity(3), seedDibber, spade, rake);
 		moveToHarmony.addDialogStep("Yes, please.");
 		harvestWatermelon = new ObjectStep(this, NullObjectID.NULL_21950, new WorldPoint(3794, 2836, 0),
-			"Plant and harvest watermelon on Harmony Island. It takes 80 minutes to fully grow.",
+			"Plant and harvest watermelon on Harmony Island. It takes 80 minutes to fully grow. " +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.",
 			watermelonSeeds.quantity(3), seedDibber, spade, rake);
 
 		kharyrll = new DetailedQuestStep(this, "Enter the Kharyll portal in your POH. Through a Portal Chamber or " +
@@ -362,60 +402,71 @@ public class MorytaniaHard extends ComplexStateQuestHelper
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
 
-		PanelDetails Steps = new PanelDetails("Haunted Mithril Ore", Arrays.asList(moveToMine, moveToLevelTwo,
+		PanelDetails bitterSteps = new PanelDetails("Bittercap Mushrooms", Collections.singletonList(bittercapMush),
+			new SkillRequirement(Skill.FARMING, 53, true), mushroomSpore, rake, seedDibber, spade);
+		bitterSteps.setDisplayCondition(notBittercapMush);
+		bitterSteps.setLockingStep(bittercapMushTask);
+		allSteps.add(bitterSteps);
+
+		PanelDetails watermelonsSteps = new PanelDetails("Harmony Watermelons", Arrays.asList(moveToCaptMelon,
+			moveToMosMelon, moveToHarmony, harvestWatermelon), new SkillRequirement(Skill.FARMING, 47, true),
+			theGreatBrainRobbery, watermelonSeeds.quantity(3), rake, seedDibber);
+		watermelonsSteps.setDisplayCondition(notHarvestWatermelon);
+		watermelonsSteps.setLockingStep(harvestWatermelonTask);
+		allSteps.add(watermelonsSteps);
+
+		PanelDetails mithSteps = new PanelDetails("Haunted Mithril Ore", Arrays.asList(moveToMine, moveToLevelTwo,
 			mithOre), new SkillRequirement(Skill.MINING, 55, true), hauntedMine, pickaxe, crystalMineKey);
-		Steps.setDisplayCondition(notMithOre);
-		allSteps.add(Steps);
+		mithSteps.setDisplayCondition(notMithOre);
+		mithSteps.setLockingStep(mithOreTask);
+		allSteps.add(mithSteps);
 
 		PanelDetails pietySteps = new PanelDetails("Nature Grotto Piety", Arrays.asList(moveToGrotto, pietyAltar),
 			natureSpirit, kingsRansom, knightWaves, new SkillRequirement(Skill.PRAYER, 70),
 			new SkillRequirement(Skill.DEFENCE, 70));
 		pietySteps.setDisplayCondition(notPietyAltar);
+		pietySteps.setLockingStep(pietyAltarTask);
 		allSteps.add(pietySteps);
 
 		PanelDetails hardSteps = new PanelDetails("Hard Temple Trekk", Collections.singletonList(hardTempleTrekk));
 		hardSteps.setDisplayCondition(notHardTempleTrekk);
+		hardSteps.setLockingStep(hardTempleTrekkTask);
 		allSteps.add(hardSteps);
-
-		PanelDetails spikeSteps = new PanelDetails("Advanced Spike Chain", Arrays.asList(moveToUpstairs,
-			advancedSpikes), new SkillRequirement(Skill.AGILITY, 71, true), noseProtection, food);
-		spikeSteps.setDisplayCondition(notAdvancedSpikes);
-		allSteps.add(spikeSteps);
 
 		PanelDetails salveSteps = new PanelDetails("Shortcut Over the Salve", Collections.singletonList(bridgeSalve),
 			new SkillRequirement(Skill.AGILITY, 65));
 		salveSteps.setDisplayCondition(notBridgeSalve);
+		salveSteps.setLockingStep(bridgeSalveTask);
 		allSteps.add(salveSteps);
 
-		PanelDetails caveHorrorSteps = new PanelDetails("Kill Cave Horror", Arrays.asList(moveToCapt, moveToMos,
-			moveToCave, caveHorror), new SkillRequirement(Skill.SLAYER, 58, true), cabinFever,
-			combatGear, witchwoodIcon.equipped(), lightSource, food);
+		PanelDetails spikeSteps = new PanelDetails("Advanced Spike Chain", Arrays.asList(moveToUpstairs,
+			advancedSpikes), new SkillRequirement(Skill.AGILITY, 71, true), noseProtection, food);
+		spikeSteps.setDisplayCondition(notAdvancedSpikes);
+		spikeSteps.setLockingStep(advancedSpikesTask);
+		allSteps.add(spikeSteps);
+
+		PanelDetails caveHorrorSteps = new PanelDetails("Kill Cave Horror", Arrays.asList(moveToCaptHorror,
+			moveToMosHorror, moveToCaveHorror, caveHorror), new SkillRequirement(Skill.SLAYER, 58, true),
+			cabinFever, combatGear, witchwoodIcon.equipped(), lightSource, food);
 		caveHorrorSteps.setDisplayCondition(notCaveHorror);
+		caveHorrorSteps.setLockingStep(caveHorrorTask);
 		allSteps.add(caveHorrorSteps);
 
-		PanelDetails mahoSteps = new PanelDetails("Chop and Burn Mahogany", Arrays.asList(moveToCapt, moveToMos,
-			chopMaho, burnMaho), new SkillRequirement(Skill.FIREMAKING, 50), new SkillRequirement(Skill.WOODCUTTING, 50),
+		PanelDetails mahoSteps = new PanelDetails("Chop and Burn Mahogany", Arrays.asList(moveToCaptMaho, moveToMosMaho,
+			moveToCaveMaho, moveToIsland, chopMaho, burnMaho), new SkillRequirement(Skill.FIREMAKING, 50),
+			new SkillRequirement(Skill.WOODCUTTING, 50),
 			axe, tinderbox, witchwoodIcon.equipped(), lightSource);
 		mahoSteps.setDisplayCondition(notBurnMaho);
+		mahoSteps.setLockingStep(burnMahoTask);
 		allSteps.add(mahoSteps);
 
-		PanelDetails watermelonsSteps = new PanelDetails("Harmony Watermelons", Arrays.asList(moveToCapt, moveToMos,
-			moveToHarmony, harvestWatermelon), new SkillRequirement(Skill.FARMING, 53, true),
-			theGreatBrainRobbery, watermelonSeeds.quantity(3), rake, seedDibber);
-		watermelonsSteps.setDisplayCondition(notHarvestWatermelon);
-		allSteps.add(watermelonsSteps);
-
 		PanelDetails kharyllSteps = new PanelDetails("Kharyll Portal", Collections.singletonList(kharyrll),
-			new SkillRequirement(Skill.MAGIC, 66), new SkillRequirement(Skill.CONSTRUCTION, 50), desertTreasure,
-			coins.quantity(100000), limestoneBrick.quantity(2), hammer, saw, teakPlank.quantity(3),
+			new SkillRequirement(Skill.MAGIC, 66), new SkillRequirement(Skill.CONSTRUCTION, 50),
+			desertTreasure, coins.quantity(100000), limestoneBrick.quantity(2), hammer, saw, teakPlank.quantity(3),
 			lawRune.quantity(200), bloodRune.quantity(100));
 		kharyllSteps.setDisplayCondition(notKharyrll);
+		kharyllSteps.setLockingStep(kharyrllTask);
 		allSteps.add(kharyllSteps);
-
-		PanelDetails bitterSteps = new PanelDetails("Bittercap Mushrooms", Collections.singletonList(bittercapMush),
-			new SkillRequirement(Skill.FARMING, 53, true), mushroomSpore, rake, seedDibber, spade);
-		bitterSteps.setDisplayCondition(notBittercapMush);
-		allSteps.add(bitterSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));
 

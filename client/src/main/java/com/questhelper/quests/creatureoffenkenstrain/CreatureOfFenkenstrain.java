@@ -88,7 +88,7 @@ public class CreatureOfFenkenstrain extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -149,31 +149,32 @@ public class CreatureOfFenkenstrain extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		ItemRequirement telegrab = new ItemRequirements("Telegrab runes", new ItemRequirement("Law rune",
 			ItemID.LAW_RUNE), new ItemRequirement("Air rune", ItemID.AIR_RUNE));
-		ItemRequirement coins50 = new ItemRequirement("Coins", ItemCollections.getCoins(), 50);
+		ItemRequirement coins50 = new ItemRequirement("Coins", ItemCollections.COINS, 50);
 
 		// TODO: Add magic req once rebased
 		telegrabOrCoins = new ItemRequirements(LogicType.OR,
 			"33 Magic and runes to cast telegrab, or 50 coins",
 			coins50, telegrab);
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
-		ghostSpeakAmulet = new ItemRequirement("Ghostspeak amulet", ItemCollections.getGhostspeak());
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
+		ghostSpeakAmulet = new ItemRequirement("Ghostspeak amulet", ItemCollections.GHOSTSPEAK).isNotConsumed();
 		silverBar = new ItemRequirement("Silver bar", ItemID.SILVER_BAR);
 		bronzeWire = new ItemRequirement("Bronze wires", ItemID.BRONZE_WIRE, 3);
-		needle = new ItemRequirement("Needle", ItemID.NEEDLE);
+		needle = new ItemRequirement("Needle", ItemID.NEEDLE).isNotConsumed();
 		thread = new ItemRequirement("Threads", ItemID.THREAD, 5);
-		spade = new ItemRequirement("Spade", ItemID.SPADE);
-		coins = new ItemRequirement("Coins at least", ItemCollections.getCoins(), 100);
+		spade = new ItemRequirement("Spade", ItemID.SPADE).isNotConsumed();
+		coins = new ItemRequirement("Coins at least", ItemCollections.COINS, 100);
 		pickledBrain = new ItemRequirement("Pickled Brain", ItemID.PICKLED_BRAIN);
 		obsidianAmulet = new ItemRequirement("Obsidian Amulet", ItemID.OBSIDIAN_AMULET);
 		marbleAmulet = new ItemRequirement("Marble Amulet", ItemID.MARBLE_AMULET);
 		starAmulet = new ItemRequirement("Star Amulet", ItemID.STAR_AMULET);
 		decapitatedHead = new ItemRequirement("Decapitated Head", ItemID.DECAPITATED_HEAD);
 		decapitatedHeadWithBrain = new ItemRequirement("Decapitated Head (with brain)", ItemID.DECAPITATED_HEAD_4198);
-		armor = new ItemRequirement("Armour and weapons defeat a level 51 monster and run past level 72 monsters", -1, -1);
+		armor = new ItemRequirement("Armour and weapons defeat a level 51 monster and run past level 72 monsters", -1, -1).isNotConsumed();
 		armor.setDisplayItemId(BankSlotIcons.getCombatGear());
 		cavernKey = new ItemRequirement("Cavern Key", ItemID.CAVERN_KEY);
 		torso = new ItemRequirement("Torso", ItemID.TORSO);
@@ -190,9 +191,9 @@ public class CreatureOfFenkenstrain extends BasicQuestHelper
 
 		fenkenstrainTeleports = new ItemRequirement("Fenkenstrain's Castle Teleport", ItemID.FENKENSTRAINS_CASTLE_TELEPORT, 2);
 		teleportToFurnace = new ItemRequirement("Teleport to any furnace such as glory for Edgeville teleport, Ectophial to Port Phasmatys or a Falador teleport",
-			ItemCollections.getAmuletOfGlories());
+			ItemCollections.AMULET_OF_GLORIES);
 		teleportToFurnace.addAlternates(ItemID.ECTOPHIAL, ItemID.FALADOR_TELEPORT);
-		staminaPotion = new ItemRequirement("Stamina potions", ItemCollections.getStaminaPotions(), -1);
+		staminaPotion = new ItemRequirement("Stamina potions", ItemCollections.STAMINA_POTIONS, -1);
 	}
 
 	public void setupZones()

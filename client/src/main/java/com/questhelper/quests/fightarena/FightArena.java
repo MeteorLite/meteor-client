@@ -78,7 +78,7 @@ public class FightArena extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -130,9 +130,10 @@ public class FightArena extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins(), 5);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS, 5);
 		khazardHelmet = new ItemRequirement("Khazard helmet", ItemID.KHAZARD_HELMET);
 		khazardPlatebody = new ItemRequirement("Khazard armour", ItemID.KHAZARD_ARMOUR);
 		khazardHelmetEquipped = new ItemRequirement("Khazard helmet", ItemID.KHAZARD_HELMET, 1, true);
@@ -140,7 +141,7 @@ public class FightArena extends BasicQuestHelper
 		khaliBrew = new ItemRequirement("Khali brew", ItemID.KHALI_BREW);
 		cellKeys = new ItemRequirement("Khazard cell keys", ItemID.KHAZARD_CELL_KEYS);
 		cellKeys.setHighlightInInventory(true);
-		combatGear = new ItemRequirement("Combat equipment and food (magic/ranged if you want to safe spot)", -1, -1);
+		combatGear = new ItemRequirement("Combat equipment and food (magic/ranged if you want to safe spot)", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 	}
 

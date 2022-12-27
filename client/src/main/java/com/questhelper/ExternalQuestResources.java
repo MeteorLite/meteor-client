@@ -37,6 +37,7 @@ public enum ExternalQuestResources {
 	ANIMAL_MAGNETISM("https://oldschool.runescape.wiki/w/Animal_Magnetism"),
 	ANOTHER_SLICE_OF_HAM("https://oldschool.runescape.wiki/w/Another_Slice_of_H.A.M."),
 	THE_ASCENT_OF_ARCEUUS("https://oldschool.runescape.wiki/w/The_Ascent_of_Arceuus"),
+	BENEATH_CURSED_SANDS("https://oldschool.runescape.wiki/w/Beneath_Cursed_Sands"),
 	BETWEEN_A_ROCK("https://oldschool.runescape.wiki/w/Between_a_Rock..."),
 	BIG_CHOMPY_BIRD_HUNTING("https://oldschool.runescape.wiki/w/Big_Chompy_Bird_Hunting"),
 	BIOHAZARD("https://oldschool.runescape.wiki/w/Biohazard"),
@@ -95,6 +96,7 @@ public enum ExternalQuestResources {
 	IN_SEARCH_OF_THE_MYREQUE("https://oldschool.runescape.wiki/w/In_Search_of_the_Myreque"),
 	JUNGLE_POTION("https://oldschool.runescape.wiki/w/Jungle_Potion"),
 	KINGS_RANSOM("https://oldschool.runescape.wiki/w/King%27s_Ransom"),
+	LAND_OF_THE_GOBLINS("https://oldschool.runescape.wiki/w/Land_of_the_Goblins"),
 	LEGENDS_QUEST("https://oldschool.runescape.wiki/w/Legends%27_Quest"),
 	LOST_CITY("https://oldschool.runescape.wiki/w/Lost_City"),
 	THE_LOST_TRIBE("https://oldschool.runescape.wiki/w/The_Lost_Tribe"),
@@ -148,12 +150,14 @@ public enum ExternalQuestResources {
 	A_SOULS_BANE("https://oldschool.runescape.wiki/w/A_Soul%27s_Bane"),
 	SPIRITS_OF_THE_ELID("https://oldschool.runescape.wiki/w/Spirits_of_the_Elid"),
 	SWAN_SONG("https://oldschool.runescape.wiki/w/Swan_Song"),
+	SLEEPING_GIANTS("https://oldschool.runescape.wiki/w/Sleeping_Giants"),
 	TAI_BWO_WANNAI_TRIO("https://oldschool.runescape.wiki/w/Tai_Bwo_Wannai_Trio"),
 	A_TAIL_OF_TWO_CATS("https://oldschool.runescape.wiki/w/A_Tail_of_Two_Cats"),
 	TALE_OF_THE_RIGHTEOUS("https://oldschool.runescape.wiki/w/Tale_of_the_Righteous"),
 	A_TASTE_OF_HOPE("https://oldschool.runescape.wiki/w/A_Taste_of_Hope"),
 	TEARS_OF_GUTHIX("https://oldschool.runescape.wiki/w/Tears_of_Guthix"),
 	TEMPLE_OF_IKOV("https://oldschool.runescape.wiki/w/Temple_of_Ikov"),
+	TEMPLE_OF_THE_EYE("https://oldschool.runescape.wiki/w/Temple_of_the_Eye"),
 	THRONE_OF_MISCELLANIA("https://oldschool.runescape.wiki/w/Throne_of_Miscellania"),
 	THE_TOURIST_TRAP("https://oldschool.runescape.wiki/w/The_Tourist_Trap"),
 	TOWER_OF_LIFE("https://oldschool.runescape.wiki/w/Tower_of_Life"),
@@ -170,6 +174,7 @@ public enum ExternalQuestResources {
 	ZOGRE_FLESH_EATERS("https://oldschool.runescape.wiki/w/Zogre_Flesh_Eaters"),
 	THE_FREMENNIK_EXILES("https://oldschool.runescape.wiki/w/The_Fremennik_Exiles"),
 	A_PORCINE_OF_INTEREST("https://oldschool.runescape.wiki/w/A_Porcine_of_Interest"),
+	THE_GARDEN_OF_DEATH("https://oldschool.runescape.wiki/w/The_Garden_of_Death"),
 
 	//Miniquests
 	ENTER_THE_ABYSS("https://oldschool.runescape.wiki/w/Enter_the_Abyss"),
@@ -186,6 +191,7 @@ public enum ExternalQuestResources {
 	THE_MAGE_ARENA_II("https://oldschool.runescape.wiki/w/The_Mage_Arena_II"),
 	IN_SEARCH_OF_KNOWLEDGE("https://oldschool.runescape.wiki/w/In_Search_of_Knowledge"),
 	DADDYS_HOME("https://oldschool.runescape.wiki/w/Daddy%27s_Home"),
+	HOPESPEARS_WILL("https://oldschool.runescape.wiki/w/Hopespear%27s_Will"),
 
 	// Fake miniquests
 	KNIGHT_WAVES_TRAINING_GROUNDS("https://oldschool.runescape.wiki/w/Camelot_training_room"),
@@ -266,8 +272,12 @@ public enum ExternalQuestResources {
 
     // Generic helpers
 	MA2_LOCATOR("https://oldschool.runescape.wiki/w/The_Mage_Arena_II"),
+	DAG_ROUTE("https://oldschool.runescape.wiki/w/Waterbirth_Island"),
 
-	WOODCUTTING("https://oldschool.runescape.wiki/w/Pay-to-play_Woodcutting_training");
+	// Skills
+	AGILITY("https://oldschool.runescape.wiki/w/Agility_training"),
+	WOODCUTTING_MEMBER("https://oldschool.runescape.wiki/w/Pay-to-play_Woodcutting_training"),
+	WOODCUTTING("https://oldschool.runescape.wiki/w/Free-to-play_Woodcutting_training");
 
 	ExternalQuestResources()
 	{

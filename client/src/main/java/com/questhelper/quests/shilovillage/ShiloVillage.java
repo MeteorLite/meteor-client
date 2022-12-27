@@ -31,7 +31,7 @@ import com.questhelper.Zone;
 import com.questhelper.banktab.BankSlotIcons;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.questhelpers.BasicQuestHelper;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.conditional.ObjectCondition;
@@ -172,22 +172,23 @@ public class ShiloVillage extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
-		spade = new ItemRequirement("Spade", ItemID.SPADE);
+		spade = new ItemRequirement("Spade", ItemID.SPADE).isNotConsumed();
 		torchOrCandle = new ItemRequirement("Lit torch or candle", ItemID.LIT_TORCH);
 		torchOrCandle.addAlternates(ItemID.LIT_CANDLE);
 		rope = new ItemRequirement("Rope", ItemID.ROPE);
 		bronzeWire = new ItemRequirement("Bronze wire", ItemID.BRONZE_WIRE);
-		chisel = new ItemRequirement("Chisel", ItemID.CHISEL);
+		chisel = new ItemRequirement("Chisel", ItemID.CHISEL).isNotConsumed();
 		bones3 = new ItemRequirement("Bones", ItemID.BONES, 3);
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		staminas = new ItemRequirement("Stamina potions", ItemCollections.getStaminaPotions(), -1);
-		antipoison = new ItemRequirement("Antipoisons", ItemCollections.getAntipoisons(), -1);
-		prayerPotions = new ItemRequirement("Prayer potions", ItemCollections.getPrayerPotions(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		staminas = new ItemRequirement("Stamina potions", ItemCollections.STAMINA_POTIONS, -1);
+		antipoison = new ItemRequirement("Antipoisons", ItemCollections.ANTIPOISONS, -1);
+		prayerPotions = new ItemRequirement("Prayer potions", ItemCollections.PRAYER_POTIONS, -1);
 		quickTeleport = new ItemRequirement("A quick teleport for escaping", -1, -1);
 		papyrus = new ItemRequirement("Papyrus", ItemID.PAPYRUS);
 		charcoal = new ItemRequirement("Charcoal", ItemID.CHARCOAL);

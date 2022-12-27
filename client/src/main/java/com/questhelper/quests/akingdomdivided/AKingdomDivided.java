@@ -45,7 +45,6 @@ import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.util.Spellbook;
 import com.questhelper.requirements.var.VarbitRequirement;
-import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.QuestPointReward;
 import com.questhelper.rewards.UnlockReward;
@@ -135,7 +134,7 @@ public class AKingdomDivided extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 
@@ -413,9 +412,10 @@ public class AKingdomDivided extends BasicQuestHelper
 		prisonRoom = new Zone(new WorldPoint(1181, 10262, 0), new WorldPoint(1200, 10270, 0));
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		combatGearForJudgeOfYama = new ItemRequirement("Melee combat gear to fight Judge of Yama", -1, -1);
+		combatGearForJudgeOfYama = new ItemRequirement("Melee combat gear to fight Judge of Yama", -1, -1).isNotConsumed();
 		combatGearForJudgeOfYama.setDisplayItemId(BankSlotIcons.getMeleeCombatGear());
 		combatGearForJudgeOfYama.setTooltip("Judge of Yama is immune to range and magic attacks.");
 		bluishKey = new ItemRequirement("Bluish Key", ItemID.BLUISH_KEY);
@@ -430,11 +430,11 @@ public class AKingdomDivided extends BasicQuestHelper
 
 		freeInventorySlots = new FreeInventorySlotRequirement(InventoryID.INVENTORY,  1);
 
-		kharedstsMemoirs = new ItemRequirement("Kharedst's Memoirs for teleports", ItemID.KHAREDSTS_MEMOIRS);
-		anyAxe = new ItemRequirement("Any axe", ItemCollections.getAxes());
+		kharedstsMemoirs = new ItemRequirement("Kharedst's Memoirs for teleports", ItemID.KHAREDSTS_MEMOIRS).isNotConsumed();
+		anyAxe = new ItemRequirement("Any axe", ItemCollections.AXES).isNotConsumed();
 		rosesNote2 = new ItemRequirement("Rose's note", ItemID.ROSES_NOTE_25806);
 		rosesNote2.setTooltip("You can get another from the panel in the Forthos Ruin");
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		fireSpellGear = new ItemRequirement("Runes/equipment to cast FIRE bolt or better", -1);
 		fireSpellGear.setDisplayItemId(ItemID.FIRE_RUNE);
 		coldKey = new ItemRequirement("Cold key", ItemID.COLD_KEY);
@@ -442,12 +442,13 @@ public class AKingdomDivided extends BasicQuestHelper
 		rosesNote3.setTooltip("You can get another from the panel in the Settlement Ruins south west of the Wintertodt camp.");
 		food = new ItemRequirement("Decent food", -1, -1);
 		food.setDisplayItemId(BankSlotIcons.getFood());
-		gamesNecklace = new ItemRequirement("Games necklace for Wintertodt camp teleport", ItemCollections.getGamesNecklaces());
+		gamesNecklace = new ItemRequirement("Games necklace for Wintertodt camp teleport", ItemCollections.GAMES_NECKLACES);
 		rosesNote4 = new ItemRequirement("Rose's note", ItemID.ROSES_NOTE_25808);
-		fairyRingStaff = new ItemRequirement("Staff for Fairy rings", ItemCollections.getFairyStaff());
-		fairyRingStaffOrGamesNecklace = new ItemRequirement("Staff for Fairy rings or a Skills Necklace", ItemCollections.getFairyStaff());
-		fairyRingStaffOrGamesNecklace.addAlternates(ItemCollections.getSkillsNecklaces());
-		combatGearForXamphur = new ItemRequirement("Melee or range gear to fight Xamphur.", -1, -1);
+		fairyRingStaff = new ItemRequirement("Staff for Fairy rings", ItemCollections.FAIRY_STAFF);
+		fairyRingStaffOrGamesNecklace = new ItemRequirement("Staff for Fairy rings or a Skills Necklace",
+			ItemCollections.FAIRY_STAFF).isNotConsumed();
+		fairyRingStaffOrGamesNecklace.addAlternates(ItemCollections.SKILLS_NECKLACES);
+		combatGearForXamphur = new ItemRequirement("Melee or range gear to fight Xamphur.", -1, -1).isNotConsumed();
 		combatGearForXamphur.setDisplayItemId(BankSlotIcons.getRangedCombatGear());
 		combatGearForXamphur.setTooltip("Xamphur is immune to magic attacks.");
 

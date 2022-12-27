@@ -223,34 +223,36 @@ public class TheFremennikExiles extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
-		mirrorShield = new ItemRequirement("Mirror shield", ItemID.MIRROR_SHIELD);
+		mirrorShield = new ItemRequirement("Mirror shield", ItemID.MIRROR_SHIELD).isNotConsumed();
 		kegsOfBeer = new ItemRequirement("Kegs of beer", ItemID.KEG_OF_BEER_3801);
 		kegsOfBeer.setTooltip("You can buy some from Rasolo south east of Baxtorian Falls");
 		moltenGlass = new ItemRequirement("Molten glass", ItemID.MOLTEN_GLASS);
 		astralRunes = new ItemRequirement("Astral runes", ItemID.ASTRAL_RUNE);
-		petRock = new ItemRequirement("Pet rock", ItemID.PET_ROCK);
+		petRock = new ItemRequirement("Pet rock", ItemID.PET_ROCK).isNotConsumed();
 		petRock.setTooltip("You can get another from Askeladden in Rellekka");
-		fishingOrFlyFishingRod = new ItemRequirement("Fishing rod", ItemID.FISHING_ROD);
+		fishingOrFlyFishingRod = new ItemRequirement("Fishing rod", ItemID.FISHING_ROD).isNotConsumed();
 		fishingOrFlyFishingRod.addAlternates(ItemID.FLY_FISHING_ROD);
 		fremennikShield = new ItemRequirement("Fremennik shield", ItemID.FREMENNIK_SHIELD);
 		fremennikShield.setTooltip("Obtainable during the quest for 150k, or free with a Ring of Charos(a)");
-		iceGloves = new ItemRequirement("Ice gloves", ItemID.ICE_GLOVES);
-		iceGloves.setTooltip("You can get another pair by killing the Ice Queen under White Wolf Mountain");
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
-		glassblowingPipe = new ItemRequirement("Glassblowing pipe", ItemID.GLASSBLOWING_PIPE);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes());
-		restorePot = new ItemRequirement("Restore potions", ItemCollections.getRestorePotions());
+		iceGloves = new ItemRequirement("Ice gloves or smiths gloves(i)", ItemID.ICE_GLOVES).isNotConsumed();
+		iceGloves.setTooltip("You can get another pair of ice gloves by killing the Ice Queen under White Wolf Mountain");
+		iceGloves.addAlternates(ItemID.SMITHS_GLOVES_I);
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
+		glassblowingPipe = new ItemRequirement("Glassblowing pipe", ItemID.GLASSBLOWING_PIPE).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).isNotConsumed();
+		restorePot = new ItemRequirement("Restore potions", ItemCollections.RESTORE_POTIONS);
 		restorePot.setTooltip("Highly recommended to make up for mistakes");
 
 		runeThrowingaxeOrFriend = new ItemRequirement("Rune thrownaxe, or a friend to help enter Waterbirth Isle " +
 			"Dungeon",
 			ItemID.RUNE_THROWNAXE);
 
-		sealOfPassage = new ItemRequirement("Seal of passage", ItemID.SEAL_OF_PASSAGE);
+		sealOfPassage = new ItemRequirement("Seal of passage", ItemID.SEAL_OF_PASSAGE).isNotConsumed();
 		sealOfPassageOrEliteDiary = ComplexRequirementBuilder.or("Seal of Passage")
 			.with(new VarbitRequirement(Varbits.DIARY_FREMENNIK_ELITE, 1))
 			.with(sealOfPassage)
@@ -259,15 +261,15 @@ public class TheFremennikExiles extends BasicQuestHelper
 		coins150kOrCharos = new ItemRequirements(LogicType.OR,
 			"Ring of Charos(a) or 150k coins",
 			new ItemRequirement("Ring of Charos(a)", ItemID.RING_OF_CHAROSA),
-			new ItemRequirement("Coins", ItemCollections.getCoins(), 150000));
+			new ItemRequirement("Coins", ItemCollections.COINS, 150000));
 
-		coins650 = new ItemRequirement("Coins", ItemCollections.getCoins(), 650);
-		kegs2Or650Coins = new ItemRequirements(LogicType.OR, kegsOfBeer.quantity(2), coins650);
+		coins650 = new ItemRequirement("Coins", ItemCollections.COINS, 650);
+		kegs2Or650Coins = new ItemRequirements(LogicType.OR, "2x kegs of beer or 650 coins", kegsOfBeer.quantity(2), coins650);
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 		rellekkaTeleport = new ItemRequirement("Rellekka teleports", ItemID.RELLEKKA_TELEPORT, -1);
-		rellekkaTeleport.addAlternates(ItemCollections.getEnchantedLyre());
-		rellekkaTeleport.addAlternates(ItemCollections.getSlayerRings());
+		rellekkaTeleport.addAlternates(ItemCollections.ENCHANTED_LYRE);
+		rellekkaTeleport.addAlternates(ItemCollections.SLAYER_RINGS);
 
 
 		// Quest items
@@ -512,9 +514,9 @@ public class TheFremennikExiles extends BasicQuestHelper
 	public List<ExperienceReward> getExperienceRewards()
 	{
 		return Arrays.asList(
-				new ExperienceReward(Skill.SLAYER, 15000),
-				new ExperienceReward(Skill.CRAFTING, 15000),
-				new ExperienceReward(Skill.RUNECRAFT, 5000));
+				new ExperienceReward(Skill.SLAYER, 50000),
+				new ExperienceReward(Skill.CRAFTING, 50000),
+				new ExperienceReward(Skill.RUNECRAFT, 30000));
 	}
 
 	@Override

@@ -32,10 +32,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class SelectingCombatGear extends QuestStep
 {
@@ -100,17 +97,5 @@ public class SelectingCombatGear extends QuestStep
 				graphics.draw(widget.getBounds());
 			}
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "combatgear";
 	}
 }

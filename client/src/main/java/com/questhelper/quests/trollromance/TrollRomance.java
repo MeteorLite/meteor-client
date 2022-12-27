@@ -24,6 +24,7 @@
  */
 package com.questhelper.quests.trollromance;
 
+import com.questhelper.ItemCollections;
 import com.questhelper.QuestDescriptor;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
@@ -63,7 +64,7 @@ public class TrollRomance extends BasicQuestHelper
 {
 	//Items Required
 	ItemRequirement ironBar, mapleLog, rope, cakeTin, swampTar, bucketOfWax, wax, sled, waxedSled, trollweissFlowers,
-		combatGear, sledEquipped, climbingBoots;
+		combatGear, sledEquipped, climbingBoots, gamesNeck;
 
 	Requirement inStrongholdFloor1, inStrongholdFloor2, inPrison, inTrollweiss, atFlowerLocation, inTrollCave, fightableArrgNearby;
 
@@ -80,7 +81,7 @@ public class TrollRomance extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -135,7 +136,8 @@ public class TrollRomance extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		ironBar = new ItemRequirement("Iron bar", ItemID.IRON_BAR);
 		mapleLog = new ItemRequirement("Maple/yew logs", ItemID.MAPLE_LOGS);
@@ -158,9 +160,10 @@ public class TrollRomance extends BasicQuestHelper
 		sledEquipped.setTooltip("You can have Dunstan make another. Bring him a maple log, a rope and an iron bar. You then can apply some wax to it");
 		trollweissFlowers = new ItemRequirement("Trollweiss", ItemID.TROLLWEISS);
 		trollweissFlowers.setTooltip("You can get another from the Trollweiss mountain");
-		climbingBoots = new ItemRequirement("Climbing boots", ItemID.CLIMBING_BOOTS);
+		climbingBoots = new ItemRequirement("Climbing boots", ItemCollections.CLIMBING_BOOTS).isNotConsumed();
 		combatGear = new ItemRequirement("Combat gear, food, and potions", -1, -1);
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
+		gamesNeck = new ItemRequirement("Games necklace", ItemCollections.GAMES_NECKLACES);
 	}
 
 	public void loadZones()
@@ -265,7 +268,12 @@ public class TrollRomance extends BasicQuestHelper
 	{
 		return Arrays.asList(ironBar, mapleLog, rope, cakeTin, swampTar, bucketOfWax, combatGear, climbingBoots);
 	}
-
+	
+	@Override
+	public List<ItemRequirement> getItemRecommended()
+	{
+		return Arrays.asList(gamesNeck);
+	}
 
 	@Override
 	public List<String> getCombatRequirements()
@@ -318,7 +326,7 @@ public class TrollRomance extends BasicQuestHelper
 	public List<PanelDetails> getPanels()
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
-		allSteps.add(new PanelDetails("Starting off", Arrays.asList(talkToUg, talkToAga)));
+		allSteps.add(new PanelDetails("Starting off", Arrays.asList(talkToUg, talkToAga), climbingBoots));
 		allSteps.add(new PanelDetails("Make a sled", Arrays.asList(talkToTenzing, talkToDunstan, talkToDunstanAgain, useTarOnWax, useWaxOnSled), mapleLog, ironBar, rope, swampTar, bucketOfWax, cakeTin));
 		allSteps.add(new PanelDetails("Get flowers", Arrays.asList(enterTrollCave, leaveTrollCave, equipSled, sledSouth, pickFlowers), waxedSled));
 		allSteps.add(new PanelDetails("Fighting for Aga", Arrays.asList(talkToUgWithFlowers, challengeArrg, killArrg, returnToUg), trollweissFlowers, combatGear));

@@ -36,12 +36,12 @@ import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.requirements.player.CombatLevelRequirement;
+import com.questhelper.requirements.player.Favour;
+import com.questhelper.requirements.player.FavourRequirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.player.SpellbookRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
-import com.questhelper.requirements.util.Operation;
 import com.questhelper.requirements.util.Spellbook;
-import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.var.VarplayerRequirement;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.UnlockReward;
@@ -88,6 +88,9 @@ public class KourendHard extends ComplexStateQuestHelper
 
 	Zone forsakenTower, lizardmanTemple, titheFarm, shayzienCrypt, mountKaruulmDungeon, wyrmArea;
 
+	ConditionalStep woodcuttingGuildTask, smeltAddyBarTask, killLizardmanShamanTask, mineLovakiteTask, plantLogavanoTask,
+		killZombieTask, teleportHeartTask, deliverArtifactTask, killWyrmTask, examineMonsterTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -96,28 +99,49 @@ public class KourendHard extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doHard = new ConditionalStep(this, claimReward);
-		doHard.addStep(new Conditions(notDeliverArtifact, artifact), deliverArtifact);
-		doHard.addStep(notDeliverArtifact, talkToCaptainKhaled);
-		doHard.addStep(new Conditions(notPlantLogavano, inTitheFarm), plantLogavanoSeed);
-		doHard.addStep(new Conditions(notPlantLogavano, logavanoSeeds), enterTitheFarm);
-		doHard.addStep(notPlantLogavano, searchSeedTable);
-		doHard.addStep(notWoodcuttingGuild, enterWoodcuttingGuild);
-		doHard.addStep(new Conditions(notKillZombie, inshayzienCrypt), killZombie);
-		doHard.addStep(notKillZombie, entershayzienCrypt);
-		doHard.addStep(notMineLovakite, mineLovakiteOre);
-		doHard.addStep(new Conditions(notSmeltAddyBar, inForsakenTower), smeltAddyBar);
-		doHard.addStep(notSmeltAddyBar, enterForsakenTower);
-		doHard.addStep(new Conditions(notKillWyrm, inWyrmArea), killWyrm);
-		doHard.addStep(new Conditions(notKillWyrm, inMountKaruulmDungeon), enterWyrmArea);
-		doHard.addStep(notKillWyrm, enterMountKaruulmDungeon);
-		doHard.addStep(new Conditions(notKillLizardmanShaman, inLizardmanTemple), killLizardmanShaman);
-		doHard.addStep(notKillLizardmanShaman, enterLizardmanTemple);
-		doHard.addStep(notExamineMonster, castMonsterExamine);
-		doHard.addStep(notTeleportHeart, teleportToHeart);
+
+		deliverArtifactTask = new ConditionalStep(this, talkToCaptainKhaled);
+		deliverArtifactTask.addStep(new Conditions(artifact), deliverArtifact);
+		doHard.addStep(notDeliverArtifact, deliverArtifactTask);
+
+		plantLogavanoTask = new ConditionalStep(this, searchSeedTable);
+		plantLogavanoTask.addStep(logavanoSeeds, enterTitheFarm);
+		plantLogavanoTask.addStep(inTitheFarm, plantLogavanoSeed);
+		doHard.addStep(notPlantLogavano, plantLogavanoTask);
+
+		woodcuttingGuildTask = new ConditionalStep(this, enterWoodcuttingGuild);
+		doHard.addStep(notWoodcuttingGuild, woodcuttingGuildTask);
+
+		killZombieTask = new ConditionalStep(this, entershayzienCrypt);
+		killZombieTask.addStep(inshayzienCrypt, killZombie);
+		doHard.addStep(notKillZombie, killZombieTask);
+
+		mineLovakiteTask = new ConditionalStep(this, mineLovakiteOre);
+		doHard.addStep(notMineLovakite, mineLovakiteTask);
+
+		smeltAddyBarTask = new ConditionalStep(this, enterForsakenTower);
+		smeltAddyBarTask.addStep(inForsakenTower, smeltAddyBar);
+		doHard.addStep(notSmeltAddyBar, smeltAddyBarTask);
+
+		killWyrmTask = new ConditionalStep(this, enterMountKaruulmDungeon);
+		killWyrmTask.addStep(inMountKaruulmDungeon, enterWyrmArea);
+		killWyrmTask.addStep(inWyrmArea, killWyrm);
+		doHard.addStep(notKillWyrm, killWyrmTask);
+
+		killLizardmanShamanTask = new ConditionalStep(this, enterLizardmanTemple);
+		killLizardmanShamanTask.addStep(inLizardmanTemple, killLizardmanShaman);
+		doHard.addStep(notKillLizardmanShaman, killLizardmanShamanTask);
+
+		examineMonsterTask = new ConditionalStep(this, castMonsterExamine);
+		doHard.addStep(notExamineMonster, examineMonsterTask);
+
+		teleportHeartTask = new ConditionalStep(this, teleportToHeart);
+		doHard.addStep(notTeleportHeart, teleportHeartTask);
 
 		return doHard;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notWoodcuttingGuild = new VarplayerRequirement(2085, false, 26);
@@ -135,63 +159,58 @@ public class KourendHard extends ComplexStateQuestHelper
 
 		// Items required
 		adamantiteOre = new ItemRequirement("Adamantite ore", ItemID.ADAMANTITE_ORE).showConditioned(notSmeltAddyBar);
-		coal = new ItemRequirement("6 Coal", ItemID.COAL).showConditioned(notSmeltAddyBar);
-		bootsOfStone = new ItemRequirement("Boots of stone", ItemCollections.getStoneBoots()).showConditioned(notKillWyrm);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(notMineLovakite);
-		lightSource = new ItemRequirement("Light source", ItemCollections.getLightSources())
-			.showConditioned(notKillZombie);
+		coal = new ItemRequirement("Coal", ItemID.COAL).showConditioned(notSmeltAddyBar);
+		bootsOfStone = new ItemRequirement("Boots of stone", ItemCollections.STONE_BOOTS).showConditioned(notKillWyrm).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).showConditioned(notMineLovakite).isNotConsumed();
+		lightSource = new ItemRequirement("Light source", ItemCollections.LIGHT_SOURCES)
+			.showConditioned(notKillZombie).isNotConsumed();
 		xericsTalisman = new ItemRequirement("Xeric's Talisman", Arrays.asList(ItemID.XERICS_TALISMAN,
-			ItemID.MOUNTED_XERICS_TALISMAN)).showConditioned(notTeleportHeart);
+			ItemID.MOUNTED_XERICS_TALISMAN)).showConditioned(notTeleportHeart).isNotConsumed();
 		xericsTalisman.setTooltip("Obtained from Lizardmen as a rare drop and charged with a Lizardman fang");
-		lockpick = new ItemRequirement("Lockpick", ItemID.LOCKPICK).showConditioned(notDeliverArtifact);
-		seedDibber = new ItemRequirement("Seed dibber", ItemID.SEED_DIBBER).showConditioned(notPlantLogavano);
+		lockpick = new ItemRequirement("Lockpick", ItemID.LOCKPICK).showConditioned(notDeliverArtifact).isNotConsumed();
+		seedDibber = new ItemRequirement("Seed dibber", ItemID.SEED_DIBBER).showConditioned(notPlantLogavano).isNotConsumed();
 		astralRune = new ItemRequirement("Astral rune", ItemID.ASTRAL_RUNE).showConditioned(notExamineMonster);
 		cosmicRune = new ItemRequirement("Cosmic rune", ItemID.COSMIC_RUNE).showConditioned(notExamineMonster);
 		mindRune = new ItemRequirement("Mind rune", ItemID.MIND_RUNE).showConditioned(notExamineMonster);
-		wateringCan = new ItemRequirement("Watering can", ItemCollections.getWateringCans())
-			.showConditioned(notPlantLogavano);
-		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notPlantLogavano);
+		wateringCan = new ItemRequirement("Watering can", ItemCollections.WATERING_CANS)
+			.showConditioned(notPlantLogavano).isNotConsumed();
+		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notPlantLogavano).isNotConsumed();
 		artifact = new ItemRequirement("Artifact", ItemID.ARTEFACT).showConditioned(notDeliverArtifact);
 		logavanoSeeds = new ItemRequirement("Logavano seeds", ItemID.LOGAVANO_SEED).showConditioned(notPlantLogavano);
 
 		// Items recommended
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		antipoison = new ItemRequirement("Anti-poison", ItemCollections.getAntipoisons(), -1)
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		antipoison = new ItemRequirement("Anti-poison", ItemCollections.ANTIPOISONS, -1)
 			.showConditioned(notKillLizardmanShaman);
-		dramenStaff = new ItemRequirement("Dramen or Lunar staff", ItemCollections.getFairyStaff(), -1);
+		dramenStaff = new ItemRequirement("Dramen or Lunar staff", ItemCollections.FAIRY_STAFF, -1).isNotConsumed();
 		kharedstsMemoirs = new ItemRequirement("Kharedst's Memoirs or Book of the Dead",
-			Arrays.asList(ItemID.BOOK_OF_THE_DEAD, ItemID.KHAREDSTS_MEMOIRS), -1);
+			Arrays.asList(ItemID.BOOK_OF_THE_DEAD, ItemID.KHAREDSTS_MEMOIRS), -1).isNotConsumed();
 		radasBlessing = new ItemRequirement("Rada's Blessing", Arrays.asList(ItemID.RADAS_BLESSING_1,
-			ItemID.RADAS_BLESSING_2), -1).showConditioned(notWoodcuttingGuild);
-		skillsNecklace = new ItemRequirement("Skills neckalce", ItemCollections.getSkillsNecklaces(), -1);
+			ItemID.RADAS_BLESSING_2), -1).showConditioned(notWoodcuttingGuild).isNotConsumed();
+		skillsNecklace = new ItemRequirement("Skills neckalce", ItemCollections.SKILLS_NECKLACES, -1).isNotConsumed();
 		shayzienHelmet = new ItemRequirement("Shayzien Helmet (5)", ItemID.SHAYZIEN_HELM_5)
-			.showConditioned(notKillLizardmanShaman);
+			.showConditioned(notKillLizardmanShaman).isNotConsumed();
 		shayzienBody = new ItemRequirement("Shayzien Body (5)", ItemID.SHAYZIEN_BODY_5)
-			.showConditioned(notKillLizardmanShaman);
+			.showConditioned(notKillLizardmanShaman).isNotConsumed();
 		shayzienGreaves = new ItemRequirement("Shayzien Greaves (5)", ItemID.SHAYZIEN_GREAVES_5)
-			.showConditioned(notKillLizardmanShaman);
+			.showConditioned(notKillLizardmanShaman).isNotConsumed();
 		shayzienBoots = new ItemRequirement("Shayzien Boots (5)", ItemID.SHAYZIEN_BOOTS_5)
-			.showConditioned(notKillLizardmanShaman);
+			.showConditioned(notKillLizardmanShaman).isNotConsumed();
 		shayzienGloves = new ItemRequirement("Shayzien Gloves (5)", ItemID.SHAYZIEN_GLOVES_5)
-			.showConditioned(notKillLizardmanShaman);
+			.showConditioned(notKillLizardmanShaman).isNotConsumed();
 
 		// Quests required
 		architecturalAlliance = new QuestRequirement(QuestHelperQuest.ARCHITECTURAL_ALLIANCE, QuestState.FINISHED);
 		dreamMentor = new QuestRequirement(QuestHelperQuest.DREAM_MENTOR, QuestState.FINISHED);
 		theForsakenTower = new QuestRequirement(QuestHelperQuest.THE_FORSAKEN_TOWER, QuestState.FINISHED);
 
-		shayzienFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_SHAYZIEN, Operation.GREATER_EQUAL, 1000,
-			"100% Shayzien favour");
-		hosidiusFavour75 = new VarbitRequirement(Varbits.KOUREND_FAVOR_HOSIDIUS, Operation.GREATER_EQUAL, 750,
-			"75% Hosidius favour");
-		hosidiusFavour100 = new VarbitRequirement(Varbits.KOUREND_FAVOR_HOSIDIUS, Operation.GREATER_EQUAL, 1000,
-			"100% Hosidius favour");
-		lovakengjFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_LOVAKENGJ, Operation.GREATER_EQUAL, 300,
-			"30% Lovakengj favour");
-		piscariliusFavour = new VarbitRequirement(Varbits.KOUREND_FAVOR_PISCARILIUS, Operation.GREATER_EQUAL, 750,
-			"75% Piscarilius favour");
+		shayzienFavour = new FavourRequirement(Favour.SHAYZIEN, 100);
+		hosidiusFavour75 = new FavourRequirement(Favour.HOSIDIUS, 100);
+		hosidiusFavour100 = new FavourRequirement(Favour.HOSIDIUS, 100);
+		lovakengjFavour = new FavourRequirement(Favour.LOVAKENGJ, 30);
+		piscariliusFavour = new FavourRequirement(Favour.PISCARILIUS, 75);
 
 		// Zone requirements
 		inForsakenTower = new ZoneRequirement(forsakenTower);
@@ -318,7 +337,7 @@ public class KourendHard extends ComplexStateQuestHelper
 	{
 		ArrayList<Requirement> req = new ArrayList<>();
 		req.add(new CombatLevelRequirement(85));
-		req.add(new SkillRequirement(Skill.FARMING, 74));
+		req.add(new SkillRequirement(Skill.FARMING, 74, true));
 		req.add(new SkillRequirement(Skill.MAGIC, 66, true));
 		req.add(new SkillRequirement(Skill.MINING, 65, true));
 		req.add(new SkillRequirement(Skill.SLAYER, 62, true));
@@ -326,17 +345,10 @@ public class KourendHard extends ComplexStateQuestHelper
 		req.add(new SkillRequirement(Skill.THIEVING, 49));
 		req.add(new SkillRequirement(Skill.WOODCUTTING, 60));
 
-		// Overall required favours
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_ARCEUUS, Operation.GREATER_EQUAL, 1000,
-			"100% Arceuus favour"));
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_HOSIDIUS, Operation.GREATER_EQUAL, 1000,
-			"100% Hosidius favour"));
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_LOVAKENGJ, Operation.GREATER_EQUAL, 1000,
-			"100% Lovakengj favour"));
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_PISCARILIUS, Operation.GREATER_EQUAL, 1000,
-			"100% Piscarilius favour"));
-		req.add(new VarbitRequirement(Varbits.KOUREND_FAVOR_SHAYZIEN, Operation.GREATER_EQUAL, 1000,
-			"100% Shayzien favour"));
+		req.add(shayzienFavour);
+		req.add(hosidiusFavour100);
+		req.add(lovakengjFavour);
+		req.add(piscariliusFavour);
 
 		req.add(architecturalAlliance);
 		req.add(dreamMentor);
@@ -359,7 +371,7 @@ public class KourendHard extends ComplexStateQuestHelper
 	{
 		return Arrays.asList(
 			new UnlockReward("Slayer helmet will work as a shayzien helm (5) after talking to Captain Cleive."),
-			new UnlockReward("5% increased chance ot save a harvest life at the Hosidius and Farming Guild herb patches."),
+			new UnlockReward("5% increased chance to save a harvest life at the Hosidius and Farming Guild herb patches."),
 			new UnlockReward("40 free Dynamite per day from Thirus"),
 			new UnlockReward("Reduced tanning prices at Eodan in Forthos Dungeon to 40%."));
 	}
@@ -372,55 +384,65 @@ public class KourendHard extends ComplexStateQuestHelper
 		PanelDetails deliverArtifactStep = new PanelDetails("Deliver an artifact", Arrays.asList(talkToCaptainKhaled,
 			deliverArtifact), new SkillRequirement(Skill.THIEVING, 49), piscariliusFavour, lockpick);
 		deliverArtifactStep.setDisplayCondition(notDeliverArtifact);
+		deliverArtifactStep.setLockingStep(deliverArtifactTask);
 		allSteps.add(deliverArtifactStep);
 
 		PanelDetails plantLogavanoStep = new PanelDetails("Plant some logavano seeds", Arrays.asList(searchSeedTable,
 			enterTitheFarm, plantLogavanoSeed), new SkillRequirement(Skill.FARMING, 74), hosidiusFavour100,
 			seedDibber, spade, wateringCan, logavanoSeeds);
 		plantLogavanoStep.setDisplayCondition(notPlantLogavano);
+		plantLogavanoStep.setLockingStep(plantLogavanoTask);
 		allSteps.add(plantLogavanoStep);
 
 		PanelDetails woodcuttingGuildStep = new PanelDetails("Enter the woodcutting guild",
 			Collections.singletonList(enterWoodcuttingGuild), new SkillRequirement(Skill.WOODCUTTING, 60),
 			hosidiusFavour75);
 		woodcuttingGuildStep.setDisplayCondition(notWoodcuttingGuild);
+		woodcuttingGuildStep.setLockingStep(woodcuttingGuildTask);
 		allSteps.add(woodcuttingGuildStep);
 
 		PanelDetails killZombieStep = new PanelDetails("Kill a zombie in the crypt", Arrays.asList(entershayzienCrypt,
 			killZombie), lightSource, combatGear, food);
 		killZombieStep.setDisplayCondition(notKillZombie);
+		killZombieStep.setLockingStep(killZombieTask);
 		allSteps.add(killZombieStep);
 
 		PanelDetails mineLovakiteStep = new PanelDetails("Mine some lovakite", Collections.singletonList(mineLovakiteOre),
 			lovakengjFavour, pickaxe);
 		mineLovakiteStep.setDisplayCondition(notMineLovakite);
+		mineLovakiteStep.setLockingStep(mineLovakiteTask);
 		allSteps.add(mineLovakiteStep);
 
 		PanelDetails smeltBarStep = new PanelDetails("Smelt some adamantite", Arrays.asList(enterForsakenTower,
 			smeltAddyBar), new SkillRequirement(Skill.SMITHING, 70), theForsakenTower, adamantiteOre, coal.quantity(6));
 		smeltBarStep.setDisplayCondition(notSmeltAddyBar);
+		smeltBarStep.setLockingStep(smeltAddyBarTask);
 		allSteps.add(smeltBarStep);
 
 		PanelDetails killWyrmStep = new PanelDetails("Slay a wyrm", Arrays.asList(enterMountKaruulmDungeon,
 			enterWyrmArea, killWyrm), new SkillRequirement(Skill.SLAYER, 62), combatGear, food, bootsOfStone);
 		killWyrmStep.setDisplayCondition(notKillWyrm);
+		killWyrmStep.setLockingStep(killWyrmTask);
 		allSteps.add(killWyrmStep);
 
 		PanelDetails killShamanStep = new PanelDetails("Kill a lizardman shaman", Arrays.asList(enterLizardmanTemple,
 			killLizardmanShaman), shayzienFavour, shayzienHelmet, shayzienBody, shayzienGreaves, shayzienBoots, shayzienGloves,
 			antipoison, combatGear);
 		killShamanStep.setDisplayCondition(notKillLizardmanShaman);
+		killShamanStep.setLockingStep(killLizardmanShamanTask);
 		allSteps.add(killShamanStep);
 
 		PanelDetails examineMonsterStep = new PanelDetails("Cast Monster Examine",
 			Collections.singletonList(castMonsterExamine), new SkillRequirement(Skill.MAGIC, 66), dreamMentor,
 			lunarBook, mindRune, astralRune, cosmicRune);
 		examineMonsterStep.setDisplayCondition(notExamineMonster);
+		examineMonsterStep.setLockingStep(examineMonsterTask);
 		allSteps.add(examineMonsterStep);
 
 		PanelDetails teleportHeartStep = new PanelDetails("Teleport to Xeric's Heart", Collections.singletonList(
 			teleportToHeart), architecturalAlliance, xericsTalisman);
 		teleportHeartStep.setDisplayCondition(notTeleportHeart);
+		teleportHeartStep.setLockingStep(teleportHeartTask);
 		allSteps.add(teleportHeartStep);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));

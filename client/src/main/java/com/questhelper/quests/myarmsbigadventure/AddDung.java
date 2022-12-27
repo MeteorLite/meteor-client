@@ -4,6 +4,7 @@ import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.steps.ObjectStep;
 import java.util.Arrays;
+import java.util.Collections;
 
 import eventbus.events.GameTick;
 import net.runelite.api.ItemID;

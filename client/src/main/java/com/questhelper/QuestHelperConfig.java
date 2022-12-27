@@ -24,15 +24,165 @@
  */
 package com.questhelper;
 
+import com.questhelper.panel.questorders.QuestOrders;
+import com.questhelper.questhelpers.QuestDetails;
+import com.questhelper.questhelpers.QuestHelper;
 import java.awt.Color;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import lombok.Getter;
 import meteor.config.legacy.Config;
 import meteor.config.legacy.ConfigGroup;
 import meteor.config.legacy.ConfigItem;
 import meteor.config.legacy.ConfigSection;
+import net.runelite.api.util.Text;
 
 @ConfigGroup("questhelper")
 public interface QuestHelperConfig extends Config
 {
+	enum QuestOrdering implements Comparator<QuestHelper>
+	{
+		/** Sort quests in alphabetical order */
+		A_TO_Z(QuestOrders.sortAToZ(), QuestFilter.QUEST, QuestFilter.MINIQUEST, QuestFilter.ACHIEVEMENT_DIARY,
+			QuestFilter.SKILL_HELPER, QuestFilter.GENERIC_HELPER),
+		/** Sort quests in reverse alphabetical order */
+		Z_TO_A(QuestOrders.sortZToA(), QuestFilter.QUEST, QuestFilter.MINIQUEST, QuestFilter.ACHIEVEMENT_DIARY,
+			QuestFilter.SKILL_HELPER, QuestFilter.GENERIC_HELPER),
+		/** Sort quests according to the Optimal Quest Guide (https://oldschool.runescape.wiki/w/Optimal_quest_guide) */
+		OPTIMAL(QuestOrders.sortOptimalOrder(), QuestFilter.OPTIMAL, QuestFilter.GENERIC_HELPER),
+		/** Sort quests according to the Optimal Quest Guide (Ironman version) (https://oldschool.runescape.wiki/w/Optimal_quest_guide/Ironman) */
+		OPTIMAL_IRONMAN(QuestOrders.sortOptimalIronmanOrder(), QuestFilter.OPTIMAL, QuestFilter.GENERIC_HELPER),
+		/** Sort quest by their release date (https://oldschool.runescape.wiki/w/Quests/Release_dates) */
+		RELEASE_DATE(QuestOrders.sortByRelease(), QuestFilter.QUEST, QuestFilter.MINIQUEST),
+
+		QUEST_POINTS_ASC(QuestOrders.sortByQuestPointRewardAscending(), QuestFilter.QUEST),
+		QUEST_POINTS_DESC(QuestOrders.sortByQuestPointRewardDescending(), QuestFilter.QUEST)
+		;
+
+		private final Comparator<QuestHelper> comparator;
+		@Getter
+		private final QuestFilter[] sections;
+
+		QuestOrdering(Comparator<QuestHelper> comparator, QuestFilter... sections) {
+			this.comparator = comparator;
+			this.sections = sections;
+
+		}
+
+		public List<QuestHelper> sort(Collection<QuestHelper> list) {
+			return list.stream().sorted(this).collect(Collectors.toList());
+		}
+
+		@Override
+		public int compare(QuestHelper o1, QuestHelper o2)
+		{
+			return comparator.compare(o1, o2);
+		}
+	}
+
+	enum QuestFilter implements Predicate<QuestHelper> {
+		/**
+		 * Show all quests
+		 */
+		SHOW_ALL(q -> true),
+		/**
+		 * Show quests where the client meets the quest requirements
+		 */
+		SHOW_MEETS_REQS(QuestHelper::clientMeetsRequirements),
+		/**
+		 * Show all except generic helpers
+		 */
+		OPTIMAL("Optimal ordering",
+				q -> q.getQuest().getQuestType() == QuestDetails.Type.P2P ||
+						q.getQuest().getQuestType() == QuestDetails.Type.F2P ||
+						q.getQuest().getQuestType() == QuestDetails.Type.MINIQUEST ||
+						q.getQuest().getQuestType() == QuestDetails.Type.ACHIEVEMENT_DIARY,
+				false),
+		/**
+		 * Show all free-to-play quests
+		 */
+		FREE_TO_PLAY(QuestDetails.Type.F2P),
+		/**
+		 * Show all members' quests
+		 */
+		MEMBERS(QuestDetails.Type.P2P),
+		/**
+		 * Show all quests
+		 */
+		QUEST("Quests", q -> q.getQuest().getQuestType() == QuestDetails.Type.P2P ||
+				q.getQuest().getQuestType() == QuestDetails.Type.F2P),
+		/**
+		 * Show all miniquests (all miniquests are members' only)
+		 */
+		MINIQUEST("Miniquests", QuestDetails.Type.MINIQUEST),
+		/**
+		 * Show all achievement diaries
+		 */
+		ACHIEVEMENT_DIARY("Achievement diaries", QuestDetails.Type.ACHIEVEMENT_DIARY),
+		/**
+		 * Show all generic helpers
+		 */
+		GENERIC_HELPER("Generic helpers", QuestDetails.Type.GENERIC),
+		/**
+		 * Show all skills
+		 */
+		SKILL_HELPER("Skill helpers", q -> q.getQuest().getQuestType() == QuestDetails.Type.SKILL_P2P ||
+			q.getQuest().getQuestType() == QuestDetails.Type.SKILL_F2P),
+		/**
+		 * Show all free-to-play skills
+		 */
+		SKILL_FREE_TO_PLAY(QuestDetails.Type.SKILL_F2P),
+		/**
+		 * Show all members' skills
+		 */
+		SKILL_MEMBERS(QuestDetails.Type.SKILL_P2P);
+
+
+		private final Predicate<QuestHelper> predicate;
+
+		@Getter
+		private final String displayName;
+
+		protected final boolean shouldDisplay;
+
+		QuestFilter(Predicate<QuestHelper> predicate) {
+			this.predicate = predicate;
+			this.displayName = Text.titleCase(this);
+			this.shouldDisplay = true;
+		}
+
+		QuestFilter(String displayName, Predicate<QuestHelper> predicate) {
+			this.predicate = predicate;
+			this.displayName = displayName;
+			this.shouldDisplay = true;
+		}
+
+		QuestFilter(String displayName, Predicate<QuestHelper> predicate, boolean shouldDisplay) {
+			this.predicate = predicate;
+			this.displayName = displayName;
+			this.shouldDisplay = shouldDisplay;
+		}
+
+		@Override
+		public boolean test(QuestHelper quest) {
+			return predicate.test(quest);
+		}
+
+		public List<QuestHelper> test(Collection<QuestHelper> helpers) {
+
+			return helpers.stream().filter(this).collect(Collectors.toList());
+		}
+
+		public static QuestFilter[] displayFilters()
+		{
+			return Arrays.stream(QuestFilter.values()).filter((questFilter -> questFilter.shouldDisplay)).toArray(QuestFilter[]::new);
+		}
+	}
+
 	@ConfigItem(
 		keyName = "autostartQuests",
 		name = "Auto start helper",
@@ -59,6 +209,81 @@ public interface QuestHelperConfig extends Config
 		description = "Chose whether the overlay should be displayed on screen"
 	)
 	default boolean showOverlay()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "stewBoostsPanel",
+		name = "Use Spicy stew for boosts",
+		description = "Raises the boost maximum boost for certain skills to 5"
+	)
+	default boolean stewBoosts()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "showFan",
+		name = "Have fan appear on quest completion",
+		description = "Have someone appear to celebrate whenever you complete a quest"
+	)
+	default boolean showFan()
+	{
+		return false;
+	}
+
+	@ConfigSection(
+		position = 0,
+		name = "Item highlighting",
+		description = "Determines what items to highlight in the background"
+	)
+	String itemSection = "itemSection";
+
+	@ConfigItem(
+		position = 0,
+		keyName = "highlightItemsBackground",
+		name = "Always highlight needed items",
+		description = "Highlight items you need for marked content type at all times",
+		section = itemSection
+	)
+	default boolean highlightItemsBackground()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		position = 1,
+		keyName = "highlightNeededQuestItems",
+		name = "Highlight quest items",
+		description = "Highlight all quest items you're missing on the floor",
+		section = itemSection
+	)
+	default boolean highlightNeededQuestItems()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		position = 2,
+		keyName = "highlightNeededMiniquestItems",
+		name = "Highlight miniquest items",
+		description = "Highlight all miniquest items you're missing on the floor",
+		section = itemSection
+	)
+	default boolean highlightNeededMiniquestItems()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		position = 3,
+		keyName = "highlightNeededAchievementDiaryItems",
+		name = "Highlight achievement diary items",
+		description = "Highlight all achievement diary items you're missing on the floor",
+		section = itemSection
+	)
+	default boolean highlightNeededAchievementDiaryItems()
 	{
 		return true;
 	}
@@ -152,5 +377,105 @@ public interface QuestHelperConfig extends Config
 	default Color targetOverlayColor()
 	{
 		return Color.CYAN;
+	}
+
+	@ConfigItem(
+		keyName = "passColour",
+		name = "Colour of passed requirements/checks",
+		description = "Change the colour that will indicate a check has passed",
+		section = colorSection
+	)
+	default Color passColour()
+	{
+		return Color.GREEN;
+	}
+
+	@ConfigItem(
+		keyName = "failColour",
+		name = "Colour of failed requirements/checks",
+		description = "Change the colour that will indicate a check has failed",
+		section = colorSection
+	)
+	default Color failColour()
+	{
+		return Color.RED;
+	}
+
+	@ConfigItem(
+		keyName = "boostColour",
+		name = "Colour of boostable skill",
+		description = "Change the colour that will indicate a skill level check has passed",
+		section = colorSection
+	)
+	default Color boostColour()
+	{
+		return Color.ORANGE;
+	}
+
+	@ConfigItem(
+		keyName = "debugColor",
+		name = "Debug Colour",
+		description = "debug",
+		hidden = true,
+		section = colorSection
+	)
+	default Color debugColor()
+	{
+		return Color.MAGENTA;
+	}
+
+	@ConfigSection(
+		position = 2,
+		name = "Quest Filters",
+		description = "Determines which quests should be shown via the selected filter(s)"
+	)
+	String filterSection = "filterSection";
+
+	@ConfigItem(
+		keyName = "orderListBy",
+		name = "Quest order",
+		description = "Configures which way to order the quest list",
+		position = 3,
+		section = filterSection
+	)
+	default QuestOrdering orderListBy()
+	{
+		return QuestOrdering.A_TO_Z;
+	}
+
+	@ConfigItem(
+		keyName = "filterListBy",
+		name = "Filter",
+		description = "Configures what to filter in the quest list",
+		position = 1,
+		section = filterSection
+	)
+	default QuestFilter filterListBy()
+	{
+		return QuestFilter.SHOW_ALL;
+	}
+
+	@ConfigItem(
+		keyName = "questDifficulty",
+		name = "Difficulty",
+		description = "Configures what quest difficulty to show",
+		position = 2,
+		section = filterSection
+	)
+	default QuestDetails.Difficulty difficulty()
+	{
+		return QuestDetails.Difficulty.ALL;
+	}
+
+	@ConfigItem(
+		keyName = "showCompletedQuests",
+		name = "Show Completed Quests",
+		description = "Will include completed quests in the other filter(s) that are chosen",
+		position = 4,
+		section = filterSection
+	)
+	default boolean showCompletedQuests()
+	{
+		return false;
 	}
 }

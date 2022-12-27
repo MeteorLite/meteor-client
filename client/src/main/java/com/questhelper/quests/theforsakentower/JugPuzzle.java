@@ -24,6 +24,7 @@
  */
 package com.questhelper.quests.theforsakentower;
 
+import com.google.inject.Inject;
 import com.questhelper.QuestHelperPlugin;
 import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
@@ -48,6 +49,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import eventbus.events.GameTick;
+import lombok.NonNull;
 import meteor.Main;
 import meteor.ui.overlay.PanelComponent;
 import net.runelite.api.Client;
@@ -57,8 +59,6 @@ import net.runelite.api.ObjectID;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class JugPuzzle extends QuestStep implements OwnerStep
 {
@@ -67,7 +67,7 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 	private static final Pattern JUG_EMPTIED = Pattern.compile("^You empty the ([0-9])-gallon jug");
 	private static final Pattern JUG_CHECKED = Pattern.compile("^The ([0-9])-gallon jug(?: contains ([0-9]) gallons* of coolant| is empty)");
 
-	protected Client client = Main.INSTANCE.getClient();
+	protected Client client = Main.client;
 
 	protected QuestStep currentStep;
 
@@ -108,7 +108,7 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 	}
 
 	@Override
-	public void onGameTick(GameTick event)
+	public void onGameTick(GameTick ignoredEvent)
 	{
 		updateSteps();
 	}
@@ -264,6 +264,7 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 		{
 			currentStep = step;
 			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			currentStep.startUp();
 			return;
 		}
@@ -271,7 +272,8 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 		if (!step.equals(currentStep))
 		{
 			shutDownStep();
-			step.subscribe();
+			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			step.startUp();
 			currentStep = step;
 		}
@@ -288,11 +290,11 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 	}
 
 	@Override
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, Requirement ... requirements)
+	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, @NonNull List<String> additionalText, @NonNull List<Requirement> requirements)
 	{
 		if (currentStep != null)
 		{
-			currentStep.makeOverlayHint(panelComponent, plugin, requirements);
+			currentStep.makeOverlayHint(panelComponent, plugin, additionalText, requirements);
 		}
 	}
 
@@ -410,17 +412,5 @@ public class JugPuzzle extends QuestStep implements OwnerStep
 	{
 		return Arrays.asList(syncStep, searchCupboardTinderbox, searchCupboardJug, fill5Gallon, use5GallonOn8, fill5Gallon2, use5GallonOn82, empty8Gallon, use5GallonOn83,
 			fill5Gallon3, use5GallonOn84, fill5Gallon4, use5GallonOn85, use5GallonOnFurnace, restartPuzzle, lightFurnace, goUpToGroundFloor, goDownToFirstFloor, goDownToGroundFloor);
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "jugpuzzle";
 	}
 }

@@ -52,7 +52,7 @@ public class DwarfCannon extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -102,19 +102,20 @@ public class DwarfCannon extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		staminas = new ItemRequirement("Stamina Potions", ItemCollections.getStaminaPotions());
+		staminas = new ItemRequirement("Stamina Potions", ItemCollections.STAMINA_POTIONS);
 		teleToAsg = new ItemRequirement("Teleport to Falador, Amulet of Glory, or Combat Bracelet",
 			ItemID.FALADOR_TELEPORT);
-		teleToAsg.addAlternates(ItemCollections.getAmuletOfGlories());
-		teleToAsg.addAlternates(ItemCollections.getCombatBracelets());
+		teleToAsg.addAlternates(ItemCollections.AMULET_OF_GLORIES);
+		teleToAsg.addAlternates(ItemCollections.COMBAT_BRACELETS);
 		teleToKand = new ItemRequirement("Teleport to Ardougne, Skills Necklace, or Games Necklace",
-			ItemCollections.getGamesNecklaces());
-		teleToKand.addAlternates(ItemCollections.getSkillsNecklaces());
+			ItemCollections.GAMES_NECKLACES);
+		teleToKand.addAlternates(ItemCollections.SKILLS_NECKLACES);
 		teleToKand.addAlternates(ItemID.ARDOUGNE_TELEPORT);
 
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
 		railing = new ItemRequirement("Railing", ItemID.RAILING);
 		railing.setTooltip("You can get more from Captain Lawgof");
 		toolkit = new ItemRequirement("Toolkit", ItemID.TOOLKIT);

@@ -33,7 +33,7 @@ import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.questhelpers.BasicQuestHelper;
 import com.questhelper.requirements.Requirement;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.item.FollowerItemRequirement;
 import com.questhelper.requirements.npc.FollowerRequirement;
@@ -64,7 +64,7 @@ public class RatCatchers extends BasicQuestHelper
 {
 	// Required
 	ItemRequirement ratPoison, cheese, marrentill, unicornHornDust, bucketOfMilk, catspeakAmuletOrDS2,
-		potOfWeeds, tinderbox, coins101, snakeCharm, fish8, cat, coin;
+		potOfWeeds, tinderbox, coins101, snakeCharm, fish8, cat, coin, kwuarm, vial, redEggs;
 
 	Requirement catFollower;
 
@@ -206,15 +206,16 @@ public class RatCatchers extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		cat = new FollowerItemRequirement("A non-overgrown cat",
-			ItemCollections.getHuntingCats(),
-			NpcCollections.getHuntingCats());
+			ItemCollections.HUNTING_CATS,
+			NpcCollections.getHuntingCats()).isNotConsumed();
 
 		catFollower = new FollowerRequirement("A non-overgrown cat following you", NpcCollections.getHuntingCats());
 		ratPoison = new ItemRequirement("Rat poison", ItemID.RAT_POISON);
-		ratPoison.setTooltip("You can get some from under the Clocktower south of Ardougne");
+		ratPoison.canBeObtainedDuringQuest();
 		cheese = new ItemRequirement("Cheese", ItemID.CHEESE);
 		cheese.addAlternates(ItemID.POISONED_CHEESE);
 		marrentill = new ItemRequirement("Marrentill", ItemID.MARRENTILL);
@@ -225,16 +226,19 @@ public class RatCatchers extends BasicQuestHelper
 		catspeakAmuletOrDS2.addAlternates(ItemID.CATSPEAK_AMULETE);
 		potOfWeeds = new ItemRequirement("Pot of weeds", ItemID.POT_OF_WEEDS);
 		potOfWeeds.setTooltip("You can make this by using some weeds on a pot");
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
-		coins101 = new ItemRequirement("Coins", ItemCollections.getCoins(), 101);
-		coin = new ItemRequirement("Coins", ItemCollections.getCoins());
-		snakeCharm = new ItemRequirement("Snake charm", ItemID.SNAKE_CHARM);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
+		coins101 = new ItemRequirement("Coins", ItemCollections.COINS, 101);
+		coin = new ItemRequirement("Coins", ItemCollections.COINS);
+		kwuarm = new ItemRequirement("Clean kwuarm", ItemID.KWUARM);
+		redEggs = new ItemRequirement("Red spiders' eggs", ItemID.RED_SPIDERS_EGGS);
+		vial = new ItemRequirement("Empty vial", ItemID.VIAL);
+		snakeCharm = new ItemRequirement("Snake charm", ItemID.SNAKE_CHARM).isNotConsumed();
 		snakeCharm.canBeObtainedDuringQuest();
-		fish8 = new ItemRequirement("Fish or more, raw or cooked", ItemCollections.getFishFood(), 8);
-		fish8.addAlternates(ItemCollections.getRawFish());
+		fish8 = new ItemRequirement("Fish or more, raw or cooked", ItemCollections.FISH_FOOD, 8);
+		fish8.addAlternates(ItemCollections.RAW_FISH);
 
 		varrockTeleport = new ItemRequirement("Varrock teleport", ItemID.VARROCK_TELEPORT);
-		sarimTeleport = new ItemRequirement("Port Sarim teleport", ItemCollections.getAmuletOfGlories());
+		sarimTeleport = new ItemRequirement("Port Sarim teleport", ItemCollections.AMULET_OF_GLORIES);
 		sarimTeleport.addAlternates(ItemID.DRAYNOR_MANOR_TELEPORT);
 		pollnivneachTeleport = new ItemRequirement("Pollnivneach teleport", ItemID.POLLNIVNEACH_TELEPORT);
 		ardougneTeleport = new ItemRequirement("Ardougne teleport", ItemID.ARDOUGNE_TELEPORT);
@@ -242,7 +246,7 @@ public class RatCatchers extends BasicQuestHelper
 			ItemID.ARDOUGNE_CLOAK_4);
 		keldagrimTeleport = new ItemRequirement("Mine cart access to Keldagrim from the GE", -1, -1);
 		keldagrimTeleport.setDisplayItemId(ItemID.MINECART_TICKET);
-		carpetCoins = new ItemRequirement("Coins for magic carpet travel", ItemCollections.getCoins(), 1000);
+		carpetCoins = new ItemRequirement("Coins for magic carpet travel", ItemCollections.COINS, 1000);
 
 		directions = new ItemRequirement("Directions", ItemID.DIRECTIONS);
 
@@ -368,7 +372,8 @@ public class RatCatchers extends BasicQuestHelper
 			"Talk to Jimmy Dazzler again.", cat);
 
 		talkToJack = new NpcStep(this, NpcID.HOOKNOSED_JACK, new WorldPoint(3268, 3401, 0),
-			"Talk to Hooknosed Jack in south east Varrock.", cat);
+			"Talk to Hooknosed Jack in south east Varrock.  You can give Jack your vial, kwuarm, and red spiders' eggs" + 
+			" for the rat poison", cat, kwuarm, vial, redEggs);
 		climbJackLadder = new ObjectStep(this, ObjectID.LADDER_11794, new WorldPoint(3268, 3379, 0),
 			"Climb up the ladder south of Jack.", cheese.quantity(4), ratPoison);
 		useRatPoisonOnCheese = new DetailedQuestStep(this, "Add rat poison to your cheese.",
@@ -462,15 +467,15 @@ public class RatCatchers extends BasicQuestHelper
 	@Override
 	public List<ItemRequirement> getItemRequirements()
 	{
-		return Arrays.asList(cat, ratPoison, cheese.quantity(4), marrentill, unicornHornDust, bucketOfMilk,
-			catspeakAmuletOrDS2,
+		return Arrays.asList(cat, cheese.quantity(4), marrentill, unicornHornDust, bucketOfMilk,
+			catspeakAmuletOrDS2, vial, kwuarm, redEggs,
 			potOfWeeds, tinderbox, coins101, snakeCharm, fish8);
 	}
 
 	@Override
 	public List<ItemRequirement> getItemRecommended()
 	{
-		return Arrays.asList(varrockTeleport, sarimTeleport, pollnivneachTeleport, ardougneTeleport, keldagrimTeleport,
+		return Arrays.asList(ratPoison, varrockTeleport, sarimTeleport, pollnivneachTeleport, ardougneTeleport, keldagrimTeleport,
 			carpetCoins);
 	}
 
@@ -509,6 +514,13 @@ public class RatCatchers extends BasicQuestHelper
 				new UnlockReward("Access to the Rat Pits"),
 				new UnlockReward("Ability to train Overgrown Cats into Wiley and Lazy Cats"));
 	}
+	
+	@Override
+	public List<String> getNotes()
+	{
+		return Collections.singletonList("Alternatively, rat poison could be obtained in the basement of the Clocktower south of East" +
+				" Ardougne. If you already have the rat poison it follows that you would not need the vial, red spiders' eggs, or kwuarm.");
+	}
 
 	@Override
 	public List<PanelDetails> getPanels()
@@ -521,7 +533,7 @@ public class RatCatchers extends BasicQuestHelper
 		allSteps.add(new PanelDetails("Helping Jack",
 			Arrays.asList(talkToJack, useRatPoisonOnCheese, climbJackLadder, useCheeseOnHole1, talkToJackAfterCheese,
 				talkToApoth, talkToJackAfterApoth, climbJackLadderAgain, useCatOnHole, feedCatAsItFights, talkToJackAfterFight),
-			cheese.quantity(4), ratPoison, bucketOfMilk, marrentill, unicornHornDust, cat, fish8));
+			cheese.quantity(4), bucketOfMilk, marrentill, unicornHornDust, cat, fish8, vial, kwuarm, redEggs, ratPoison));
 		allSteps.add(new PanelDetails("Helping Joe", Arrays.asList(travelToKeldagrim, talkToSmokinJoe, usePotOnHole,
 			usePotOnHoleAgain, talkToJoeAgain), cat, catspeakAmuletOrDS2, potOfWeeds, tinderbox));
 

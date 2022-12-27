@@ -38,11 +38,10 @@ import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.conditional.ObjectCondition;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.QuestPointReward;
-import com.questhelper.rewards.UnlockReward;
 import com.questhelper.steps.ConditionalStep;
 import com.questhelper.steps.DetailedQuestStep;
 import com.questhelper.steps.NpcStep;
@@ -81,7 +80,7 @@ public class TribalTotem extends BasicQuestHelper
     public Map<Integer, QuestStep> loadSteps()
     {
         loadZones();
-        setupItemRequirements();
+        setupRequirements();
         setupConditions();
         setupSteps();
 
@@ -105,10 +104,11 @@ public class TribalTotem extends BasicQuestHelper
                 .build();
     }
 
-    public void setupItemRequirements()
+ @Override
+ public void setupRequirements()
     {
-        coins = new ItemRequirement("Coins or more for boat trips", ItemCollections.getCoins(), 90);
-        amuletOfGlory = new ItemRequirement("Amulet of glory", ItemCollections.getAmuletOfGlories());
+        coins = new ItemRequirement("Coins or more for boat trips", ItemCollections.COINS, 90);
+        amuletOfGlory = new ItemRequirement("Amulet of glory", ItemCollections.AMULET_OF_GLORIES).isNotConsumed();
         ardougneTeleports = new ItemRequirement("Ardougne teleports", ItemID.ARDOUGNE_TELEPORT);
         addressLabel = new ItemRequirement("Address label", ItemID.ADDRESS_LABEL);
         addressLabel.setHighlightInInventory(true);
