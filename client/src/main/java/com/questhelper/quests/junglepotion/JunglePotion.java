@@ -77,12 +77,13 @@ public class JunglePotion extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		return getSteps();
 	}
 
-	private void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		grimySnakeWeed = new ItemRequirement("Grimy Snake Weed", ItemID.GRIMY_SNAKE_WEED);
 		grimySnakeWeed.setHighlightInInventory(true);
@@ -251,13 +252,13 @@ public class JunglePotion extends BasicQuestHelper
 	public List<ItemRequirement> getItemRecommended()
 	{
 		ArrayList<ItemRequirement> reqs = new ArrayList<>();
-		ItemRequirement food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		ItemRequirement food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 
 		reqs.add(food);
-		reqs.add(new ItemRequirement("Antipoison", ItemCollections.getAntipoisons()));
+		reqs.add(new ItemRequirement("Antipoison", ItemCollections.ANTIPOISONS));
 		ItemRequirement karaTele = new ItemRequirement("Teleport to Karamja (Glory/house teleport)",
 			ItemID.BRIMHAVEN_TELEPORT);
-		karaTele.addAlternates(ItemCollections.getAmuletOfGlories());
+		karaTele.addAlternates(ItemCollections.AMULET_OF_GLORIES);
 		reqs.add(karaTele);
 		return reqs;
 	}

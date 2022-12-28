@@ -66,7 +66,8 @@ public class KaramjaMedium extends BasicQuestHelper
 {
 	// Items required
 	ItemRequirement pickaxe, coins, spiderCarcass, skewerTicksOrArrowShaft, goutTuber, rake, fruitTreeSapling,
-		teasingStick, knife, logs, axe, tradingSticks, opal, smallFishingNet, karambwanVessel, rawKarambwanji;
+		teasingStick, knife, logs, axe, tradingSticks, opal, smallFishingNet, karambwanVessel, rawKarambwanji,
+		rawKarambwanjiOrSmallFishingNet;
 
 	ItemRequirement spade, machete;
 
@@ -84,14 +85,19 @@ public class KaramjaMedium extends BasicQuestHelper
 
 	Requirement grandTree, taiBwoWannaiTrio, dragonSlayerI, shiloVillage, junglePotion;
 
-	QuestStep enterAgilityArena, tag2Pillars, enterVolcano, returnThroughWall, useCart, doCleanup,
-		makeSpiderStick, cookSpider, climbUpToBoat, travelToKhazard, cutTeak, cutMahogany, catchKarambwan, getMachete,
-		flyToKaramja, growFruitTree, trapGraahk, enterBrimhavenDungeon, chopVines, crossLava, climbBrimhavenStaircase,
-		charterFromShipyard, mineRedTopaz, enterCrandor, claimReward;
+	QuestStep enterAgilityArena, tag2Pillars, enterVolcano, returnThroughWall, useCart, doCleanup, makeSpiderStick, cookSpider,
+		climbUpToBoat, travelToKhazard, cutTeak, cutMahogany, catchKarambwanji, catchKarambwan, getMachete, flyToKaramja, growFruitTree,
+		trapGraahk, chopVines, crossLava, climbBrimhavenStaircase, charterFromShipyard, mineRedTopaz, enterCrandor,
+		enterBrimDungeonVine, enterBrimDungeonLava, enterBrimDungeonStairs, claimReward;
 
 	Zone cave, agilityArena, brimhavenDungeon;
 
 	ZoneRequirement inCave, inAgilityArena, inBrimhavenDungeon;
+
+	ConditionalStep claimedTicketTask, enteredWallTask, usedCartTask, earned100Task, cookedSpiderTask,
+		traveledToKhazardTask, cutTeakTask, cutMahogTask, caughtKarambwanTask, exchangedGemsTask, usedGliderTask,
+		grownFruitTreeTask, enteredCrandorTask, trappedGraahkTask, cutVineTask, crossedLavaTask, climbedStairsTask,
+		charteredFromShipyardTask, minedRedRopazTask;
 
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
@@ -102,36 +108,78 @@ public class KaramjaMedium extends BasicQuestHelper
 		Map<Integer, QuestStep> steps = new HashMap<>();
 
 		ConditionalStep doMedium = new ConditionalStep(this, claimReward);
-		doMedium.addStep(new Conditions(notEnteredWall, inCave), returnThroughWall);
-		doMedium.addStep(notEnteredWall, enterVolcano);
-		doMedium.addStep(new Conditions(notEnteredCrandor, inCave), enterCrandor);
-		doMedium.addStep(notEnteredCrandor, enterVolcano);
-		doMedium.addStep(new Conditions(notClaimedTicket, inAgilityArena), tag2Pillars);
-		doMedium.addStep(notClaimedTicket, enterAgilityArena);
-		doMedium.addStep(notUsedCart, useCart);
-		doMedium.addStep(notMinedRedRopaz, mineRedTopaz);
-		doMedium.addStep(notTraveledToKhazard, travelToKhazard);
-		doMedium.addStep(notUsedGlider, flyToKaramja);
-		doMedium.addStep(notCaughtKarambwan, catchKarambwan);
-		doMedium.addStep(notCharteredFromShipyard, charterFromShipyard);
-		doMedium.addStep(notTrappedGraahk, trapGraahk);
-		doMedium.addStep(notEarned100, doCleanup);
-		doMedium.addStep(new Conditions(notCookedSpider, spiderOnAStick), cookSpider);
-		doMedium.addStep(notCookedSpider, makeSpiderStick);
-		doMedium.addStep(notCutTeak, cutTeak);
-		doMedium.addStep(notCutMahog, cutMahogany);
-		doMedium.addStep(notExchangedGems, getMachete);
-		doMedium.addStep(new Conditions(notCutVine, inBrimhavenDungeon), chopVines);
-		doMedium.addStep(new Conditions(notCrossedLava, inBrimhavenDungeon), crossLava);
-		doMedium.addStep(new Conditions(notClimbedStairs, inBrimhavenDungeon), climbBrimhavenStaircase);
-		doMedium.addStep(new Conditions(LogicType.OR, notCutVine, notCrossedLava, notClimbedStairs), enterBrimhavenDungeon);
-		doMedium.addStep(notGrownFruitTree, growFruitTree);
+
+		grownFruitTreeTask = new ConditionalStep(this, growFruitTree);
+		doMedium.addStep(notGrownFruitTree, grownFruitTreeTask);
+
+		enteredWallTask = new ConditionalStep(this, enterVolcano);
+		enteredWallTask.addStep(inCave, returnThroughWall);
+		doMedium.addStep(notEnteredWall, enteredWallTask);
+
+		enteredCrandorTask = new ConditionalStep(this, enterVolcano);
+		enteredCrandorTask.addStep(inCave, enterCrandor);
+		doMedium.addStep(notEnteredCrandor, enteredCrandorTask);
+
+		claimedTicketTask = new ConditionalStep(this, enterAgilityArena);
+		claimedTicketTask.addStep(inAgilityArena, tag2Pillars);
+		doMedium.addStep(notClaimedTicket, claimedTicketTask);
+
+		usedCartTask = new ConditionalStep(this, useCart);
+		doMedium.addStep(notUsedCart, usedCartTask);
+
+		minedRedRopazTask = new ConditionalStep(this, mineRedTopaz);
+		doMedium.addStep(notMinedRedRopaz, minedRedRopazTask);
+
+		traveledToKhazardTask = new ConditionalStep(this, travelToKhazard);
+		doMedium.addStep(notTraveledToKhazard, traveledToKhazardTask);
+
+		usedGliderTask = new ConditionalStep(this, flyToKaramja);
+		doMedium.addStep(notUsedGlider, usedGliderTask);
+
+		caughtKarambwanTask = new ConditionalStep(this, catchKarambwan);
+		caughtKarambwanTask.addStep(rawKarambwanji.alsoCheckBank(questBank), catchKarambwanji);
+		doMedium.addStep(notCaughtKarambwan, caughtKarambwanTask);
+
+		charteredFromShipyardTask = new ConditionalStep(this, charterFromShipyard);
+		doMedium.addStep(notCharteredFromShipyard, charteredFromShipyardTask);
+
+		trappedGraahkTask = new ConditionalStep(this, trapGraahk);
+		doMedium.addStep(notTrappedGraahk, trappedGraahkTask);
+
+		earned100Task = new ConditionalStep(this, doCleanup);
+		doMedium.addStep(notEarned100, earned100Task);
+
+		cookedSpiderTask = new ConditionalStep(this, makeSpiderStick);
+		cookedSpiderTask.addStep(spiderOnAStick, cookSpider);
+		doMedium.addStep(notCookedSpider, cookedSpiderTask);
+
+		cutTeakTask = new ConditionalStep(this, cutTeak);
+		doMedium.addStep(notCutTeak, cutTeakTask);
+
+		cutMahogTask = new ConditionalStep(this, cutMahogany);
+		doMedium.addStep(notCutMahog, cutMahogTask);
+
+		exchangedGemsTask = new ConditionalStep(this, getMachete);
+		doMedium.addStep(notExchangedGems, exchangedGemsTask);
+
+		cutVineTask = new ConditionalStep(this, enterBrimDungeonVine);
+		cutVineTask.addStep(inBrimhavenDungeon, chopVines);
+		doMedium.addStep(notCutVine, cutVineTask);
+
+		crossedLavaTask = new ConditionalStep(this, enterBrimDungeonLava);
+		crossedLavaTask.addStep(inBrimhavenDungeon, crossLava);
+		doMedium.addStep(notCrossedLava, crossedLavaTask);
+
+		climbedStairsTask = new ConditionalStep(this, enterBrimDungeonStairs);
+		climbedStairsTask.addStep(inBrimhavenDungeon, climbBrimhavenStaircase);
+		doMedium.addStep(notClimbedStairs, climbedStairsTask);
 
 		steps.put(0, doMedium);
 
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notClaimedTicket = new VarbitRequirement(3579, 0);
@@ -154,48 +202,48 @@ public class KaramjaMedium extends BasicQuestHelper
 		notTraveledToKhazard = new VarbitRequirement(3596, 0);
 		notCharteredFromShipyard = new VarbitRequirement(3597, 0);
 
-		pickaxe =
-			new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(new Conditions(LogicType.OR,
-				notMinedRedRopaz, notEarned100));
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins()).showConditioned(new Conditions(LogicType.OR,
-			notClaimedTicket, notUsedCart, notTraveledToKhazard, notCharteredFromShipyard));
-		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notCaughtKarambwan);
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES)
+			.showConditioned(new Conditions(LogicType.OR, notMinedRedRopaz, notEarned100)).isNotConsumed();
+		coins = new ItemRequirement("Coins", ItemCollections.COINS)
+			.showConditioned(new Conditions(LogicType.OR, notClaimedTicket, notUsedCart, notTraveledToKhazard, notCharteredFromShipyard));
+		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notCaughtKarambwan).isNotConsumed();
 
 		spiderCarcass = new ItemRequirement("Spider carcass", ItemID.SPIDER_CARCASS).showConditioned(notCookedSpider);
 		spiderCarcass.setTooltip("You can get one killing a spider during Tai Bwo Wannai Cleanup");
-		skewerTicksOrArrowShaft =
-			new ItemRequirement("Arrow shaft or skewer stick", ItemID.ARROW_SHAFT).showConditioned(notCookedSpider);
+		skewerTicksOrArrowShaft = new ItemRequirement("Arrow shaft or skewer stick", ItemID.ARROW_SHAFT).showConditioned(notCookedSpider);
 		skewerTicksOrArrowShaft.addAlternates(ItemID.SKEWER_STICK);
 		goutTuber = new ItemRequirement("Gout tuber", ItemID.GOUT_TUBER).showConditioned(notExchangedGems);
 		goutTuber.setTooltip("This can be obtained rarely during Tai Bwo Wannai Cleanup. Have a spade to dig it up");
-		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notGrownFruitTree);
+		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notGrownFruitTree).isNotConsumed();
 		fruitTreeSapling = new ItemRequirement("A fruit tree sapling you can plant, preferably Palm Tree for the " +
 			"Elite diary", ItemID.PALM_SAPLING).showConditioned(notGrownFruitTree);
 		fruitTreeSapling.addAlternates(ItemID.APPLE_SAPLING, ItemID.BANANA_SAPLING, ItemID.ORANGE_SAPLING, ItemID.CURRY_SAPLING,
 			ItemID.PINEAPPLE_SAPLING, ItemID.PAPAYA_SAPLING, ItemID.DRAGONFRUIT_SAPLING);
-		teasingStick = new ItemRequirement("Teasing stick", ItemID.TEASING_STICK).showConditioned(notTrappedGraahk);
+		teasingStick = new ItemRequirement("Teasing stick", ItemID.TEASING_STICK).showConditioned(notTrappedGraahk).isNotConsumed();
 		teasingStick.setTooltip("You can buy one from the hunter shop in Yanille");
-		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notTrappedGraahk);
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notTrappedGraahk).isNotConsumed();
 		logs = new ItemRequirement("Logs", ItemID.LOGS).showConditioned(notTrappedGraahk);
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes()).showConditioned(new Conditions(LogicType.OR,
-			notTrappedGraahk, notCrossedLava, notClimbedStairs, notCutVine, notCutTeak, notCutMahog));
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).showConditioned(new Conditions(LogicType.OR,
+			notTrappedGraahk, notCrossedLava, notClimbedStairs, notCutVine, notCutTeak, notCutMahog)).isNotConsumed();
 		tradingSticks = new ItemRequirement("Trading sticks", ItemID.TRADING_STICKS).showConditioned(notExchangedGems);
 		tradingSticks.setTooltip("You can get these from villagers when doing Tai Bwo Wannai Cleanup");
 		opal = new ItemRequirement("Opal", ItemID.OPAL).showConditioned(notExchangedGems);
-		opal.setTooltip("You can bring a jade or red topaz instead for a machete if you also bring more trading " +
-			"sticks");
-		karambwanVessel = new ItemRequirement("Karambwan vessel", ItemID.KARAMBWAN_VESSEL).showConditioned(notCaughtKarambwan);
+		opal.setTooltip("You can bring a jade or red topaz instead for a machete if you also bring more trading sticks");
+		karambwanVessel = new ItemRequirement("Karambwan vessel", ItemID.KARAMBWAN_VESSEL).showConditioned(notCaughtKarambwan).isNotConsumed();
 		karambwanVessel.addAlternates(ItemID.KARAMBWAN_VESSEL_3159);
-		rawKarambwanji = new ItemRequirement("Raw karambwanji, or a small fishing net to catch some",
+		rawKarambwanji = new ItemRequirement("Raw karambwanji",
+		ItemID.RAW_KARAMBWANJI).showConditioned(notCaughtKarambwan);
+		rawKarambwanjiOrSmallFishingNet = new ItemRequirement("Raw karambwanji, or a small fishing net to catch some",
 			ItemID.RAW_KARAMBWANJI).showConditioned(notCaughtKarambwan);
+		rawKarambwanjiOrSmallFishingNet.addAlternates(ItemID.SMALL_FISHING_NET);
 
 		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(new Conditions(LogicType.OR,
-			notEarned100, notGrownFruitTree));
-		machete = new ItemRequirement("Machete", ItemID.RED_TOPAZ_MACHETE).showConditioned((notEarned100));
+			notEarned100, notGrownFruitTree)).isNotConsumed();
+		machete = new ItemRequirement("Machete", ItemID.RED_TOPAZ_MACHETE).showConditioned((notEarned100)).isNotConsumed();
 		machete.addAlternates(ItemID.JADE_MACHETE, ItemID.OPAL_MACHETE, ItemID.MACHETE);
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		antipoison = new ItemRequirement("Antipoison", ItemCollections.getAntipoisons(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		antipoison = new ItemRequirement("Antipoison", ItemCollections.ANTIPOISONS, -1);
 
 		spiderOnAStick = new ItemRequirement("Spider on stick", ItemID.SPIDER_ON_STICK);
 		spiderOnAStick.setTooltip("You can get one by using a spider carcass on an arrow shaft");
@@ -215,11 +263,6 @@ public class KaramjaMedium extends BasicQuestHelper
 			"completion of Dragon Slayer I for access to Crandor");
 		shiloVillage = new QuestRequirement(QuestHelperQuest.SHILO_VILLAGE, QuestState.FINISHED);
 		junglePotion = new QuestRequirement(QuestHelperQuest.JUNGLE_POTION, QuestState.FINISHED);
-
-		// 3578 = 2, completed final task
-		// varplayer 2943 0->1>2>3 when done final task
-
-		// Used skewer on spider, 2943 3->4 (VARPLAYER)
 
 		inCave = new ZoneRequirement(cave);
 		inAgilityArena = new ZoneRequirement(agilityArena);
@@ -261,6 +304,8 @@ public class KaramjaMedium extends BasicQuestHelper
 		cutMahogany = new ObjectStep(this, ObjectID.MAHOGANY, new WorldPoint(2820, 3080, 0), "Chop a mahogany tree " +
 			"down either in the Hardwood Grove in Tai Bwo Wannai or in the Kharazi Jungle (requires Legends' Quest started).", axe,
 			tradingSticks.quantity(100));
+		catchKarambwanji = new NpcStep(this, NpcID.FISHING_SPOT_4710, new WorldPoint(2791,3019,0),
+			"Using your small fishing net, catch some raw karambwanji just south of Tai Bwo Wannai, or buy some from the GE.", smallFishingNet);
 		catchKarambwan = new NpcStep(this, NpcID.FISHING_SPOT_4712, new WorldPoint(2899, 3119, 0),
 			"Fish a karambwan from the north east coast of Karamja.", karambwanVessel, rawKarambwanji);
 		getMachete = new NpcStep(this, NpcID.SAFTA_DOC_6423, new WorldPoint(2790, 3100, 0),
@@ -270,12 +315,18 @@ public class KaramjaMedium extends BasicQuestHelper
 		flyToKaramja = new NpcStep(this, NpcID.CAPTAIN_DALBUR, new WorldPoint(3284, 3213, 0),
 			"Fly on a Gnome Glider to Karamja.");
 		growFruitTree = new ObjectStep(this, NullObjectID.NULL_7964, new WorldPoint(2765, 3213, 0),
-			"Grow a fruit tree in the Brimhaven patch.", fruitTreeSapling, rake, spade);
+			"Grow a fruit tree in the Brimhaven patch. " +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.",
+			fruitTreeSapling, rake, spade);
 		trapGraahk = new NpcStep(this, NpcID.HORNED_GRAAHK, new WorldPoint(2770, 3003, 0),
 			"Place logs over a pit north of Cairn Isle, and poke a graahk with a teasing stick. Jump over the pits " +
 				"until the graahk falls in and loot it.", teasingStick, knife, logs);
-		enterBrimhavenDungeon = new ObjectStep(this, ObjectID.DUNGEON_ENTRANCE_20876, new WorldPoint(2745, 3155, 0),
+		enterBrimDungeonVine = new ObjectStep(this, ObjectID.DUNGEON_ENTRANCE_20876, new WorldPoint(2745, 3155, 0),
 			"Enter Brimhaven Dungeon.", axe, coins.quantity(875));
+		enterBrimDungeonLava = new ObjectStep(this, ObjectID.DUNGEON_ENTRANCE_20876, new WorldPoint(2745, 3155, 0),
+			"Enter Brimhaven Dungeon.", coins.quantity(875));
+		enterBrimDungeonStairs = new ObjectStep(this, ObjectID.DUNGEON_ENTRANCE_20876, new WorldPoint(2745, 3155, 0),
+			"Enter Brimhaven Dungeon.", coins.quantity(875));
 		chopVines = new ObjectStep(this, ObjectID.VINES_21731, new WorldPoint(2690, 9564, 0),
 			"Chop the vines nearby.", axe);
 		crossLava = new ObjectStep(this, ObjectID.STEPPING_STONE_21738, new WorldPoint(2649, 9561, 0),
@@ -301,7 +352,7 @@ public class KaramjaMedium extends BasicQuestHelper
 	{
 		return Arrays.asList(coins.quantity(1615), spiderCarcass, skewerTicksOrArrowShaft, goutTuber, spade, rake,
 			fruitTreeSapling, teasingStick, knife, logs, axe, pickaxe, opal.quantity(3), tradingSticks.quantity(500),
-			karambwanVessel, rawKarambwanji, machete);
+			karambwanVessel, rawKarambwanjiOrSmallFishingNet, machete);
 	}
 
 	@Override
@@ -354,105 +405,122 @@ public class KaramjaMedium extends BasicQuestHelper
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
 
+		PanelDetails growFruitTreeSteps = new PanelDetails("Grow a Healthy Fruit Tree",
+			Collections.singletonList(growFruitTree), farming27, fruitTreeSapling, rake, spade);
+		growFruitTreeSteps.setDisplayCondition(notGrownFruitTree);
+		growFruitTreeSteps.setLockingStep(grownFruitTreeTask);
+		allSteps.add(growFruitTreeSteps);
+
 		PanelDetails enteredWallSteps = new PanelDetails("Discover Hidden Wall in Volcano",
 			Arrays.asList(enterVolcano, returnThroughWall), dragonSlayerI);
 		enteredWallSteps.setDisplayCondition(notEnteredWall);
+		enteredWallSteps.setLockingStep(enteredWallTask);
 		allSteps.add(enteredWallSteps);
 
 		PanelDetails enteredCrandorSteps = new PanelDetails("Enter Crandor",
 			Arrays.asList(enterVolcano, enterCrandor), dragonSlayerI, food);
 		enteredCrandorSteps.setDisplayCondition(notEnteredCrandor);
+		enteredCrandorSteps.setLockingStep(enteredCrandorTask);
 		allSteps.add(enteredCrandorSteps);
 
 		PanelDetails enterAgiSteps = new PanelDetails("Claim a ticket in The Agility Arena",
-			Arrays.asList(enterAgilityArena,
-				tag2Pillars), coins.quantity(200));
+			Arrays.asList(enterAgilityArena, tag2Pillars), coins.quantity(200));
 		enterAgiSteps.setDisplayCondition(notClaimedTicket);
+		enterAgiSteps.setLockingStep(claimedTicketTask);
 		allSteps.add(enterAgiSteps);
 
 		PanelDetails usedCartSteps = new PanelDetails("Use Vigroy & Hajedy's Cart Service",
 			Collections.singletonList(useCart), shiloVillage, coins.quantity(200));
 		usedCartSteps.setDisplayCondition(notUsedCart);
+		usedCartSteps.setLockingStep(usedCartTask);
 		allSteps.add(usedCartSteps);
 
 		PanelDetails mineRedTopazSteps = new PanelDetails("Mine Red Topaz", Collections.singletonList(mineRedTopaz),
 			shiloVillage, mining40, pickaxe);
 		mineRedTopazSteps.setDisplayCondition(notMinedRedRopaz);
+		mineRedTopazSteps.setLockingStep(minedRedRopazTask);
 		allSteps.add(mineRedTopazSteps);
 
 		PanelDetails travelToKhazardSteps = new PanelDetails("Travel to Port Khazard",
 			Collections.singletonList(travelToKhazard), shiloVillage, coins.quantity(50));
 		travelToKhazardSteps.setDisplayCondition(notTraveledToKhazard);
+		travelToKhazardSteps.setLockingStep(traveledToKhazardTask);
 		allSteps.add(travelToKhazardSteps);
 
 		PanelDetails useGnomeGliderSteps = new PanelDetails("Use Gnome Glider",
 			Collections.singletonList(flyToKaramja), grandTree);
 		useGnomeGliderSteps.setDisplayCondition(notUsedGlider);
+		useGnomeGliderSteps.setLockingStep(usedGliderTask);
 		allSteps.add(useGnomeGliderSteps);
 
 		PanelDetails catchAKarambwanSteps = new PanelDetails("Catch a Karambwan",
-			Collections.singletonList(catchKarambwan), fishing65, taiBwoWannaiTrio, karambwanVessel, rawKarambwanji);
+			Collections.singletonList(catchKarambwan), fishing65, taiBwoWannaiTrio, karambwanVessel, rawKarambwanjiOrSmallFishingNet);
 		catchAKarambwanSteps.setDisplayCondition(notCaughtKarambwan);
+		catchAKarambwanSteps.setLockingStep(caughtKarambwanTask);
 		allSteps.add(catchAKarambwanSteps);
 
 		PanelDetails charteredShipyardSteps = new PanelDetails("Charter a Ship in The Shipyard",
 			Collections.singletonList(charterFromShipyard), grandTree, coins.quantity(200));
 		charteredShipyardSteps.setDisplayCondition(notCharteredFromShipyard);
+		charteredShipyardSteps.setLockingStep(charteredFromShipyardTask);
 		allSteps.add(charteredShipyardSteps);
 
 		PanelDetails trapAHornedGraahkSteps = new PanelDetails("Trap a Horned Graahk",
 			Collections.singletonList(trapGraahk), hunter41, teasingStick, knife, logs);
 		trapAHornedGraahkSteps.setDisplayCondition(notTrappedGraahk);
+		trapAHornedGraahkSteps.setLockingStep(trappedGraahkTask);
 		allSteps.add(trapAHornedGraahkSteps);
 
 		PanelDetails earn100Steps = new PanelDetails("Earn 100% Favour in Tai Bwo Wannai Cleanup",
 			Collections.singletonList(doCleanup), junglePotion, machete, spade, pickaxe, antipoison);
 		earn100Steps.setDisplayCondition(notEarned100);
+		earn100Steps.setLockingStep(earned100Task);
 		allSteps.add(earn100Steps);
 
 		PanelDetails spiderOnStickSteps = new PanelDetails("Cook a Spider on Stick", Arrays.asList(makeSpiderStick,
 			cookSpider), cooking16, spiderCarcass, skewerTicksOrArrowShaft);
 		spiderOnStickSteps.setDisplayCondition(notCookedSpider);
+		spiderOnStickSteps.setLockingStep(cookedSpiderTask);
 		allSteps.add(spiderOnStickSteps);
 
 		PanelDetails cutATeakTreeSteps = new PanelDetails("Cut a Teak Tree", Collections.singletonList(cutTeak),
 			new SkillRequirement(Skill.WOODCUTTING, 35),
 			junglePotion, axe, tradingSticks.quantity(100));
 		cutATeakTreeSteps.setDisplayCondition(notCutTeak);
+		cutATeakTreeSteps.setLockingStep(cutTeakTask);
 		allSteps.add(cutATeakTreeSteps);
 
 		PanelDetails cutAMahoganyTreeSteps = new PanelDetails("Cut a Mahogany Tree",
 			Collections.singletonList(cutMahogany), junglePotion, woodcutting50, axe, tradingSticks.quantity(100));
 		cutAMahoganyTreeSteps.setDisplayCondition(notCutMahog);
+		cutAMahoganyTreeSteps.setLockingStep(cutMahogTask);
 		allSteps.add(cutAMahoganyTreeSteps);
 
 		PanelDetails exchangeGemsWithSaftaDocSteps = new PanelDetails("Exchange Gems with Safta Doc", Collections.singletonList(getMachete),
 			junglePotion, goutTuber, opal.quantity(3), tradingSticks.quantity(300));
 		exchangeGemsWithSaftaDocSteps.setDisplayCondition(notExchangedGems);
+		exchangeGemsWithSaftaDocSteps.setLockingStep(exchangedGemsTask);
 		allSteps.add(exchangeGemsWithSaftaDocSteps);
 
 		PanelDetails chopVinesSteps = new PanelDetails("Chop Vines in Brimhaven Dungeon",
-			Arrays.asList(enterBrimhavenDungeon, chopVines), new SkillRequirement(Skill.WOODCUTTING, 10), axe,
+			Arrays.asList(enterBrimDungeonVine, chopVines), new SkillRequirement(Skill.WOODCUTTING, 10), axe,
 			coins.quantity(875));
 		chopVinesSteps.setDisplayCondition(notCutVine);
+		chopVinesSteps.setLockingStep(cutVineTask);
 		allSteps.add(chopVinesSteps);
 
 		PanelDetails crossLavaSteps = new PanelDetails("Cross The Lava in Brimhaven Dungeon",
-			Arrays.asList(enterBrimhavenDungeon, crossLava), agility12, axe, coins.quantity(875));
+			Arrays.asList(enterBrimDungeonLava, crossLava), agility12, axe, coins.quantity(875));
 		crossLavaSteps.setDisplayCondition(notCrossedLava);
+		crossLavaSteps.setLockingStep(crossedLavaTask);
 		allSteps.add(crossLavaSteps);
 
 		PanelDetails climbStairsSteps = new PanelDetails("Climb The Stairs in Brimhaven Dungeon",
-			Arrays.asList(enterBrimhavenDungeon, climbBrimhavenStaircase), new SkillRequirement(Skill.WOODCUTTING, 10), axe,
-			coins.quantity(875));
+			Arrays.asList(enterBrimDungeonStairs, climbBrimhavenStaircase), new SkillRequirement(Skill.WOODCUTTING, 10),
+			axe, coins.quantity(875));
 		climbStairsSteps.setDisplayCondition(notClimbedStairs);
+		climbStairsSteps.setLockingStep(climbedStairsTask);
 		allSteps.add(climbStairsSteps);
-
-		PanelDetails growFruitTreeSteps = new PanelDetails("Grow a Healthy Fruit Tree",
-			Collections.singletonList(growFruitTree), farming27, fruitTreeSapling, rake, spade);
-		growFruitTreeSteps.setDisplayCondition(notGrownFruitTree);
-		allSteps.add(growFruitTreeSteps);
-
 
 		PanelDetails finishOffSteps = new PanelDetails("Finishing off", Collections.singletonList(claimReward));
 		allSteps.add(finishOffSteps);

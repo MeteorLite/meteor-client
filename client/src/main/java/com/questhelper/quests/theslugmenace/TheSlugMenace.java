@@ -37,12 +37,11 @@ import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.var.VarbitRequirement;
-import com.questhelper.requirements.WidgetModelRequirement;
+import com.questhelper.requirements.widget.WidgetModelRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
-import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.QuestPointReward;
 import com.questhelper.rewards.UnlockReward;
 import com.questhelper.steps.ConditionalStep;
@@ -92,7 +91,7 @@ public class TheSlugMenace extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -152,12 +151,13 @@ public class TheSlugMenace extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		commorb = new ItemRequirement("Commorb (can get another from Sir Tiffy)", ItemID.COMMORB);
+		commorb = new ItemRequirement("Commorb (can get another from Sir Tiffy)", ItemID.COMMORB).isNotConsumed();
 		commorb.addAlternates(ItemID.COMMORB_V2);
 
-		commorb2 = new ItemRequirement("Commorb v2", ItemID.COMMORB_V2);
+		commorb2 = new ItemRequirement("Commorb v2", ItemID.COMMORB_V2).isNotConsumed();
 		commorb2.setHighlightInInventory(true);
 
 		deadSeaSlug = new ItemRequirement("Dead sea slug", ItemID.DEAD_SEA_SLUG);
@@ -192,7 +192,7 @@ public class TheSlugMenace extends BasicQuestHelper
 		blankFire = new ItemRequirement("Blank fire rune", ItemID.BLANK_FIRE_RUNE);
 		blankMind = new ItemRequirement("Blank mind rune", ItemID.BLANK_MIND_RUNE);
 
-		chisel = new ItemRequirement("Chisel", ItemID.CHISEL);
+		chisel = new ItemRequirement("Chisel", ItemID.CHISEL).isNotConsumed();
 
 		airRune = new ItemRequirement("Air rune", ItemID.AIR_RUNE_9693);
 		earthRune = new ItemRequirement("Earth rune", ItemID.EARTH_RUNE_9695);
@@ -200,7 +200,7 @@ public class TheSlugMenace extends BasicQuestHelper
 		fireRune = new ItemRequirement("Fire rune", ItemID.FIRE_RUNE_9699);
 		mindRune = new ItemRequirement("Mind rune", ItemID.MIND_RUNE_9697);
 
-		meleeGear = new ItemRequirement("Melee weapon to fight the Slug Prince", -1, -1);
+		meleeGear = new ItemRequirement("Melee weapon to fight the Slug Prince", -1, -1).isNotConsumed();
 		meleeGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
 		doorTranscript = new ItemRequirement("Door transcription", ItemID.DOOR_TRANSCRIPTION);
@@ -225,11 +225,11 @@ public class TheSlugMenace extends BasicQuestHelper
 		mindTalisman.addAlternates(ItemID.MIND_TIARA);
 
 		accessToAltars = new ItemRequirements("Access to air, water, earth, fire, and mind runecrafting altars",
-			airTalisman, waterTalisman, earthTalisman, fireTalisman, mindTalisman);
+			airTalisman, waterTalisman, earthTalisman, fireTalisman, mindTalisman).isNotConsumed();
 
-		necklaceOfPassage = new ItemRequirement("Necklace of Passage", ItemCollections.getNecklaceOfPassages());
+		necklaceOfPassage = new ItemRequirement("Necklace of Passage", ItemCollections.NECKLACE_OF_PASSAGES);
 
-		airAltarTeleport = new ItemRequirement("Teleport near Air Altar", ItemCollections.getSkillsNecklaces());
+		airAltarTeleport = new ItemRequirement("Teleport near Air Altar", ItemCollections.SKILLS_NECKLACES);
 		airAltarTeleport.addAlternates(ItemID.FALADOR_TELEPORT, ItemID.RIMMINGTON_TELEPORT);
 		airAltarTeleport.setDisplayMatchedItemName(true);
 		airAltarTeleport.setTooltip("The best items for this are (in order):");
@@ -237,7 +237,7 @@ public class TheSlugMenace extends BasicQuestHelper
 		airAltarTeleport.appendToTooltip("Falador Teleport");
 		airAltarTeleport.appendToTooltip("Rimmington/House Teleport");
 
-		earthAltarTeleport = new ItemRequirement("Teleport near Earth Altar", ItemCollections.getDigsitePendants());
+		earthAltarTeleport = new ItemRequirement("Teleport near Earth Altar", ItemCollections.DIGSITE_PENDANTS);
 		earthAltarTeleport.addAlternates(ItemID.VARROCK_TELEPORT, ItemID.LUMBERYARD_TELEPORT, ItemID.DIGSITE_TELEPORT);
 		earthAltarTeleport.setDisplayMatchedItemName(true);
 		earthAltarTeleport.setTooltip("The best items for this are (in order):");
@@ -246,8 +246,8 @@ public class TheSlugMenace extends BasicQuestHelper
 		earthAltarTeleport.appendToTooltip("Digsite Teleport");
 		earthAltarTeleport.appendToTooltip("Varrock Teleports");
 
-		fireAltarTeleport = new ItemRequirement("Teleport near Fire Altar", ItemCollections.getRingOfDuelings());
-		fireAltarTeleport.addAlternates(ItemCollections.getAmuletOfGlories());
+		fireAltarTeleport = new ItemRequirement("Teleport near Fire Altar", ItemCollections.RING_OF_DUELINGS);
+		fireAltarTeleport.addAlternates(ItemCollections.AMULET_OF_GLORIES);
 		fireAltarTeleport.setTooltip("The best items for this are (in order):");
 		fireAltarTeleport.appendToTooltip("Ring of Dueling");
 		fireAltarTeleport.appendToTooltip("Amulet of Glory (to Al Kharid)");
@@ -259,7 +259,7 @@ public class TheSlugMenace extends BasicQuestHelper
 
 		mindAltarTeleport = new ItemRequirement("Teleport near Mind Altar", ItemID.MIND_ALTAR_TELEPORT);
 		mindAltarTeleport.addAlternates(ItemID.FALADOR_TELEPORT, ItemID.LASSAR_TELEPORT, ItemID.TAVERLEY_TELEPORT);
-		mindAltarTeleport.addAlternates(ItemCollections.getCombatBracelets());
+		mindAltarTeleport.addAlternates(ItemCollections.COMBAT_BRACELETS);
 		mindAltarTeleport.setTooltip("The best items for this are (in order):");
 		mindAltarTeleport.appendToTooltip("Mind Altar Teleport (highly recommended)");
 		mindAltarTeleport.appendToTooltip("Lassar Teleport (Ice Mountain)");

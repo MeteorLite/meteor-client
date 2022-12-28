@@ -41,7 +41,7 @@ import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.QuestPointReward;
@@ -108,21 +108,22 @@ public class FishingContest extends BasicQuestHelper
 		onContestGrounds = new ZoneRequirement(contestGroundsEntrance, tilesEastOfPipe);
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins(), 5);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS, 5);
 		coins.setTooltip("10 if you buy a fishing rod from Jack");
 		fishingPass = new ItemRequirement("Fishing Pass", ItemID.FISHING_PASS);
 		fishingPass.setTooltip("<html>This can be obtained during the quest.<br>If you lose this you can get another from Vestri.</html>");
 		garlic = new ItemRequirement("Garlic", ItemID.GARLIC);
 		garlic.setTooltip("This can be obtained during the quest.");
 		garlic.setHighlightInInventory(true);
-		fishingRod = new ItemRequirement("Fishing Rod", ItemID.FISHING_ROD);
+		fishingRod = new ItemRequirement("Fishing Rod", ItemID.FISHING_ROD).isNotConsumed();
 		fishingRod.setTooltip("This can be obtained during the quest.");
-		spade = new ItemRequirement("Spade", ItemID.SPADE);
+		spade = new ItemRequirement("Spade", ItemID.SPADE).isNotConsumed();
 		redVineWorm = new ItemRequirement("Red Vine Worm", ItemID.RED_VINE_WORM, 1);
 		redVineWorm.setTooltip("This can be obtained during the quest.");
-		food = new ItemRequirement("Food for low levels", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food for low levels", ItemCollections.GOOD_EATING_FOOD, -1);
 		winningFish = new ItemRequirement("Raw Giant Carp", ItemID.RAW_GIANT_CARP);
 		winningFish.setHighlightInInventory(true);
 		trophy = new ItemRequirement("Fishing Trophy", ItemID.FISHING_TROPHY);
@@ -130,7 +131,7 @@ public class FishingContest extends BasicQuestHelper
 		trophy.setTooltip("You can get another from Bonzo in Hemenster if you lost this.");
 
 		// Recommended
-		combatBracelet = new ItemRequirement("Combat Bracelet", ItemCollections.getCombatBracelets());
+		combatBracelet = new ItemRequirement("Combat Bracelet", ItemCollections.COMBAT_BRACELETS);
 		combatBracelet.setHighlightInInventory(true);
 		combatBracelet.setTooltip("Highly recommended!");
 		camelotTeleport = new ItemRequirement("Camelot Teleport", ItemID.CAMELOT_TELEPORT);
@@ -227,7 +228,7 @@ public class FishingContest extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		setupZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 

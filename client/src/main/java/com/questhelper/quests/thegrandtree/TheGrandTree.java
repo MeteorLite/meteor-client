@@ -39,8 +39,8 @@ import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.conditional.NpcCondition;
+import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.rewards.ExperienceReward;
-import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.QuestPointReward;
 import com.questhelper.rewards.UnlockReward;
 import com.questhelper.steps.ConditionalStep;
@@ -97,7 +97,7 @@ public class TheGrandTree extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -165,6 +165,7 @@ public class TheGrandTree extends BasicQuestHelper
 				"need to talk to Femi there. If you didn't help them previously you'll need to pay them 1k.");
 		}
 		goTalkToCharlie3.addRequirement(lumberOrder);
+		goTalkToCharlie3.addRequirement(oneThousandCoins);
 		steps.put(90, goTalkToCharlie3);
 
 		goGetAnitaKey = new ConditionalStep(this, climbUpToAnita, "Talk to Anita in her house west of the Grand Tree.");
@@ -210,19 +211,20 @@ public class TheGrandTree extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		oneThousandCoins = new ItemRequirement("Coins", ItemCollections.getCoins(), 1000);
+		oneThousandCoins = new ItemRequirement("Coins to enter the Stronghold if you didn't help Femi previously", ItemCollections.COINS, 1000)
+			.hideConditioned(new QuestRequirement(QuestHelperQuest.TREE_GNOME_VILLAGE, QuestState.FINISHED));
 
-		accessToFairyRings = new ItemRequirement("Access to Fairy Rings", ItemID.DRAMEN_STAFF);
-		accessToFairyRings.addAlternates(ItemID.LUNAR_STAFF);
+		accessToFairyRings = new ItemRequirement("Access to Fairy Rings", ItemCollections.FAIRY_STAFF).isNotConsumed();
 
-		energyOrStaminaPotions = new ItemRequirement("Energy restoration", ItemCollections.getRunRestoreItems(), -1);
-		combatGear = new ItemRequirement("Combat gear. Safespotting is possible.", -1, -1);
+		energyOrStaminaPotions = new ItemRequirement("Energy restoration", ItemCollections.RUN_RESTORE_ITEMS, -1);
+		combatGear = new ItemRequirement("Combat gear. Safespotting is possible.", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		prayerPotions = new ItemRequirement("Prayer potions", ItemCollections.getPrayerPotions(), -1);
-		transportToGrandTree = new ItemRequirement("Transport to the Grand Tree", ItemCollections.getNecklaceOfPassages());
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		prayerPotions = new ItemRequirement("Prayer potions", ItemCollections.PRAYER_POTIONS, -1);
+		transportToGrandTree = new ItemRequirement("Transport to the Grand Tree", ItemCollections.NECKLACE_OF_PASSAGES);
 
 		translationBook = new ItemRequirement("Translation Book", ItemID.TRANSLATION_BOOK);
 		translationBook.setTooltip("You can get another from Narnode");

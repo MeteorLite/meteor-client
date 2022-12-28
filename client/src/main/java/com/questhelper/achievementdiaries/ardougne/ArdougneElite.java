@@ -91,6 +91,9 @@ public class ArdougneElite extends ComplexStateQuestHelper
 
 	ZoneRequirement inYanille, inYanAgilityCave, inWitchaven;
 
+	ConditionalStep trawlerRayTask, yanAgiTask, pickHeroTask, runeCrossbowTask, imbueSalveTask, pickTorstolTask,
+		ardyRooftopsTask, iceBarrageTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -99,25 +102,43 @@ public class ArdougneElite extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doElite = new ConditionalStep(this, claimReward);
-		doElite.addStep(notIceBarrage, iceBarrage);
-		doElite.addStep(new Conditions(notYanAgi, inYanAgilityCave), yanAgi);
-		doElite.addStep(notYanAgi, moveToYanAgi);
-		doElite.addStep(new Conditions(notImbueSalve, imbuedSalve.alsoCheckBank(questBank)), equipSalve);
-		doElite.addStep(new Conditions(notImbueSalve, enoughNMZPoints), imbueSalve);
-		doElite.addStep(notImbueSalve, farmMorePoints);
-		doElite.addStep(notArdyRooftops, ardyRooftops);
-		doElite.addStep(notPickHero, pickHero);
-		doElite.addStep(new Conditions(notRuneCrossbow, inYanille, madeCrossU, runeCrossbowU, crossbowString), runeCrossbow);
-		doElite.addStep(new Conditions(notRuneCrossbow, inYanille, madeStock, crossbowString, runeLimbs, yewStock), makeUnstrungCross);
-		doElite.addStep(new Conditions(notRuneCrossbow, inYanille, madeLimbs, crossbowString, runeLimbs), fletchStock);
-		doElite.addStep(new Conditions(notRuneCrossbow, inYanille, madeString, crossbowString), smithLimbs);
-		doElite.addStep(new Conditions(notRuneCrossbow, madeString, crossbowString), moveToYan);
-		doElite.addStep(notRuneCrossbow, spinString);
-		doElite.addStep(notPickTorstol, pickTorstol);
+
+		pickTorstolTask = new ConditionalStep(this, pickTorstol);
+		doElite.addStep(notPickTorstol, pickTorstolTask);
+
+		iceBarrageTask = new ConditionalStep(this, iceBarrage);
+		doElite.addStep(notIceBarrage, iceBarrageTask);
+
+		yanAgiTask = new ConditionalStep(this, moveToYanAgi);
+		yanAgiTask.addStep(inYanAgilityCave, yanAgi);
+		doElite.addStep(notYanAgi, yanAgiTask);
+
+		imbueSalveTask = new ConditionalStep(this, farmMorePoints);
+		imbueSalveTask.addStep(enoughNMZPoints, imbueSalve);
+		imbueSalveTask.addStep(imbuedSalve.alsoCheckBank(questBank), equipSalve);
+		doElite.addStep(notImbueSalve, imbueSalveTask);
+
+		trawlerRayTask = new ConditionalStep(this, trawlerRay);
+		doElite.addStep(notTrawlerRay, trawlerRayTask);
+
+		ardyRooftopsTask = new ConditionalStep(this, ardyRooftops);
+		doElite.addStep(notArdyRooftops, ardyRooftopsTask);
+
+		pickHeroTask = new ConditionalStep(this, pickHero);
+		doElite.addStep(notPickHero, pickHeroTask);
+
+		runeCrossbowTask = new ConditionalStep(this, spinString);
+		runeCrossbowTask.addStep(new Conditions(madeString, crossbowString), moveToYan);
+		runeCrossbowTask.addStep(new Conditions(inYanille, madeString, crossbowString), smithLimbs);
+		runeCrossbowTask.addStep(new Conditions(inYanille, madeLimbs, crossbowString, runeLimbs), fletchStock);
+		runeCrossbowTask.addStep(new Conditions(inYanille, madeStock, crossbowString, runeLimbs, yewStock), makeUnstrungCross);
+		runeCrossbowTask.addStep(new Conditions(inYanille, madeCrossU, runeCrossbowU, crossbowString), runeCrossbow);
+		doElite.addStep(notRuneCrossbow, runeCrossbowTask);
 
 		return doElite;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notTrawlerRay = new VarplayerRequirement(1197, false, 6);
@@ -133,36 +154,37 @@ public class ArdougneElite extends ComplexStateQuestHelper
 		enoughNMZPoints = new VarplayerRequirement(1060, 800000, Operation.GREATER_EQUAL,
 			"800,000 Nightmare Zone reward points");
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 		bloodRune = new ItemRequirement("Blood rune", ItemID.BLOOD_RUNE).showConditioned(notIceBarrage);
 		waterRune = new ItemRequirement("Water rune", ItemID.WATER_RUNE).showConditioned(notIceBarrage);
 		deathRune = new ItemRequirement("Death rune", ItemID.DEATH_RUNE).showConditioned(notIceBarrage);
-		lockpick = new ItemRequirement("Lockpick", ItemID.LOCKPICK).showConditioned(notYanAgi);
-		salveAmmy = new ItemRequirement("Salve amulet", ItemCollections.getImbuableSalveAmulet())
-			.showConditioned(notImbueSalve);
-		imbuedSalve = new ItemRequirement("Salve amulet", ItemCollections.getImbuedSalveAmulet())
-			.showConditioned(notImbueSalve);
-		seedDib = new ItemRequirement("Seed dibber", ItemID.SEED_DIBBER).showConditioned(notPickTorstol);
+		lockpick = new ItemRequirement("Lockpick", ItemID.LOCKPICK).showConditioned(notYanAgi).isNotConsumed();
+		salveAmmy = new ItemRequirement("Salve amulet", ItemCollections.IMBUABLE_SALVE_AMULET)
+			.showConditioned(notImbueSalve).isNotConsumed();
+		imbuedSalve = new ItemRequirement("Salve amulet", ItemCollections.IMBUED_SALVE_AMULET)
+			.showConditioned(notImbueSalve).isNotConsumed();
+		seedDib = new ItemRequirement("Seed dibber", ItemID.SEED_DIBBER).showConditioned(notPickTorstol).isNotConsumed();
 		torstolSeed = new ItemRequirement("Torstol seed", ItemID.TORSTOL_SEED).showConditioned(notPickTorstol);
-		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notPickTorstol);
-		compost = new ItemRequirement("Compost", ItemCollections.getCompost()).showConditioned(notPickTorstol);
-		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notPickTorstol);
+		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(notPickTorstol).isNotConsumed();
+		compost = new ItemRequirement("Compost", ItemCollections.COMPOST).showConditioned(notPickTorstol);
+		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(notPickTorstol).isNotConsumed();
+
 		yewLog = new ItemRequirement("Yew logs", ItemID.YEW_LOGS).showConditioned(notRuneCrossbow);
 		runeBar = new ItemRequirement("Rune bar", ItemID.RUNITE_BAR).showConditioned(notRuneCrossbow);
 		sinew = new ItemRequirement("Sinew", ItemID.SINEW).showConditioned(notRuneCrossbow);
-		root = new ItemRequirement("Root", ItemCollections.getNonMagicTreeRoot()).showConditioned(notRuneCrossbow);
+		root = new ItemRequirement("Root", ItemCollections.NON_MAGIC_TREE_ROOT).showConditioned(notRuneCrossbow);
 		sinewOrRoot = new ItemRequirements(LogicType.OR, "Sinew or non-magic tree root", root, sinew)
 			.showConditioned(notRuneCrossbow);
-		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notRuneCrossbow);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notRuneCrossbow);
+		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notRuneCrossbow).isNotConsumed();
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notRuneCrossbow).isNotConsumed();
 		runeCrossbowU = new ItemRequirement("Rune crossbow (u)", ItemID.RUNITE_CROSSBOW_U).showConditioned(notRuneCrossbow);
 		crossbowString = new ItemRequirement("Crossbow string", ItemID.CROSSBOW_STRING)
 			.showConditioned(notRuneCrossbow);
 		yewStock = new ItemRequirement("Yew stock", ItemID.YEW_STOCK).showConditioned(notRuneCrossbow);
 		runeLimbs = new ItemRequirement("Runite limbs", ItemID.RUNITE_LIMBS).showConditioned(notRuneCrossbow);
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 
 		inYanAgilityCave = new ZoneRequirement(yanAgilityCave);
 		inYanille = new ZoneRequirement(yanille);
@@ -263,7 +285,9 @@ public class ArdougneElite extends ComplexStateQuestHelper
 			crossbowString.highlighted());
 
 		pickTorstol = new ObjectStep(this, NullObjectID.NULL_8152, new WorldPoint(2670, 3374, 0),
-			"Plant and harvest the Torstol from the north Ardougne herb patch.", rake, spade, seedDib, torstolSeed);
+			"Plant and harvest the Torstol from the north Ardougne herb patch. " +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.",
+			rake, spade, seedDib, torstolSeed);
 
 		claimReward = new NpcStep(this, NpcID.TWOPINTS, new WorldPoint(2574, 3323, 0),
 			"Talk to Two-pints in the Flying Horse Inn at East Ardougne to claim your reward!");
@@ -296,6 +320,7 @@ public class ArdougneElite extends ComplexStateQuestHelper
 		reqs.add(new SkillRequirement(Skill.MAGIC, 94));
 		reqs.add(new SkillRequirement(Skill.SMITHING, 91, true));
 		reqs.add(new SkillRequirement(Skill.THIEVING, 82, true));
+
 		reqs.add(ancientBook);
 		reqs.add(desertTreasure);
 		reqs.add(hauntedMine);
@@ -337,35 +362,47 @@ public class ArdougneElite extends ComplexStateQuestHelper
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
 
+		PanelDetails torstolSteps = new PanelDetails("Ardougne Torstol", Collections.singletonList(pickTorstol),
+			new SkillRequirement(Skill.FARMING, 85), torstolSeed, compost, rake, seedDib, spade);
+		torstolSteps.setDisplayCondition(notPickTorstol);
+		torstolSteps.setLockingStep(pickTorstolTask);
+		allSteps.add(torstolSteps);
+
 		PanelDetails iceSteps = new PanelDetails("Ice Barrage in Castle Wars", Collections.singletonList(iceBarrage),
 			new SkillRequirement(Skill.MAGIC, 94), desertTreasure, ancientBook, waterRune.quantity(6),
 			bloodRune.quantity(2), deathRune.quantity(4));
 		iceSteps.setDisplayCondition(notIceBarrage);
+		iceSteps.setLockingStep(iceBarrageTask);
 		allSteps.add(iceSteps);
 
 		PanelDetails yanSteps = new PanelDetails("Yanille Agility Dungeon", Arrays.asList(moveToYanAgi, yanAgi),
 			new SkillRequirement(Skill.THIEVING, 82, true), lockpick);
 		yanSteps.setDisplayCondition(notYanAgi);
+		yanSteps.setLockingStep(yanAgiTask);
 		allSteps.add(yanSteps);
 
 		PanelDetails salveSteps = new PanelDetails("Imbued Salve Amulet", Arrays.asList(farmMorePoints, imbueSalve),
 			hauntedMine, salveAmmy, enoughNMZPoints);
 		salveSteps.setDisplayCondition(notImbueSalve);
+		salveSteps.setLockingStep(imbueSalveTask);
 		allSteps.add(salveSteps);
 
 		PanelDetails raySteps = new PanelDetails("Fishing Trawler Manta Ray", Collections.singletonList(trawlerRay),
 			new SkillRequirement(Skill.COOKING, 91, true), new SkillRequirement(Skill.FISHING, 81));
 		raySteps.setDisplayCondition(notTrawlerRay);
+		raySteps.setLockingStep(trawlerRayTask);
 		allSteps.add(raySteps);
 
 		PanelDetails roofSteps = new PanelDetails("Ardougne Rooftop Agility", Collections.singletonList(ardyRooftops),
 			new SkillRequirement(Skill.AGILITY, 90, true));
 		roofSteps.setDisplayCondition(notArdyRooftops);
+		roofSteps.setLockingStep(ardyRooftopsTask);
 		allSteps.add(roofSteps);
 
 		PanelDetails heroSteps = new PanelDetails("Pickpocket Hero", Collections.singletonList(pickHero),
 			new SkillRequirement(Skill.THIEVING, 80));
 		heroSteps.setDisplayCondition(notPickHero);
+		heroSteps.setLockingStep(pickHeroTask);
 		allSteps.add(heroSteps);
 
 		PanelDetails crossSteps = new PanelDetails("Rune Crossbow in Yanille / Witchaven", Arrays.asList(spinString,
@@ -373,12 +410,8 @@ public class ArdougneElite extends ComplexStateQuestHelper
 			new SkillRequirement(Skill.SMITHING, 91, true), new SkillRequirement(Skill.FLETCHING, 69),
 			yewLog, runeBar, hammer, knife, sinewOrRoot);
 		crossSteps.setDisplayCondition(notRuneCrossbow);
+		crossSteps.setLockingStep(runeCrossbowTask);
 		allSteps.add(crossSteps);
-
-		PanelDetails torstolSteps = new PanelDetails("Ardougne Torstol", Collections.singletonList(pickTorstol),
-			new SkillRequirement(Skill.FARMING, 85), torstolSeed, compost, rake, seedDib, spade);
-		torstolSteps.setDisplayCondition(notPickTorstol);
-		allSteps.add(torstolSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));
 

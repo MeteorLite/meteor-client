@@ -176,9 +176,10 @@ public class HazeelCult extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
-		ardougneCloak = new ItemRequirement("Ardougne cloak for Monastery teleport", ItemID.ARDOUGNE_CLOAK_1);
+		ardougneCloak = new ItemRequirement("Ardougne cloak for Monastery teleport", ItemID.ARDOUGNE_CLOAK_1).isNotConsumed();
 		ardougneCloak.addAlternates(ItemID.ARDOUGNE_CLOAK_2, ItemID.ARDOUGNE_CLOAK_3, ItemID.ARDOUGNE_CLOAK_4);
 
 		poison = new ItemRequirement("Poison", ItemID.POISON);

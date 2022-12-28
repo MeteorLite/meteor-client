@@ -39,7 +39,7 @@ import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.QuestPointReward;
@@ -91,7 +91,7 @@ public class InSearchOfTheMyreque extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -185,7 +185,8 @@ public class InSearchOfTheMyreque extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		steelLong = new ItemRequirement("Steel longsword", ItemID.STEEL_LONGSWORD);
 		steelSword2 = new ItemRequirement("Steel sword", ItemID.STEEL_SWORD, 2);
@@ -194,7 +195,7 @@ public class InSearchOfTheMyreque extends BasicQuestHelper
 		steeldagger = new ItemRequirement("Steel dagger", ItemID.STEEL_DAGGER);
 		steelNails225 = new ItemRequirement("Steel nails", ItemID.STEEL_NAILS, 225);
 		druidPouch5 = new ItemRequirement("Charges in a druid pouch", ItemID.DRUID_POUCH_2958, 5);
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
 		plank6 = new ItemRequirement("Plank", ItemID.PLANK, 6);
 		plank3 = new ItemRequirement("Plank", ItemID.PLANK, 3);
 		plank2 = new ItemRequirement("Plank", ItemID.PLANK, 2);
@@ -203,8 +204,8 @@ public class InSearchOfTheMyreque extends BasicQuestHelper
 		steelNails75 = new ItemRequirement("Steel nails", ItemID.STEEL_NAILS, 75);
 		coins10OrCharos = new ItemRequirements(LogicType.OR, "10 coins or a Ring of Charos (a)",
 			new ItemRequirement("Ring of Charos (a)", ItemID.RING_OF_CHAROSA),
-			new ItemRequirement("Coins", ItemCollections.getCoins(), 10));
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+			new ItemRequirement("Coins", ItemCollections.COINS, 10));
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 		morttonTeleport = new ItemRequirement("Teleport to Mort'ton, such as minigame teleport or Barrows Teleport", ItemID.MORTTON_TELEPORT);
 		morttonTeleport.addAlternates(ItemID.BARROWS_TELEPORT);

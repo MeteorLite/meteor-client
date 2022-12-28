@@ -32,10 +32,7 @@ import java.awt.Graphics2D;
 import java.util.Arrays;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class DoorPuzzleStep extends QuestStep
 {
@@ -192,18 +189,6 @@ public class DoorPuzzleStep extends QuestStep
 				}
 			}
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "doorpuzzle";
 	}
 }
 

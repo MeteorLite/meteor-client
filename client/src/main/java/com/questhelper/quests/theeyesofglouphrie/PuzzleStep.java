@@ -24,6 +24,7 @@
  */
 package com.questhelper.quests.theeyesofglouphrie;
 
+import com.google.inject.Inject;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.QuestHelperPlugin;
 import com.questhelper.questhelpers.QuestHelper;
@@ -43,6 +44,7 @@ import java.util.List;
 
 import eventbus.events.GameTick;
 import eventbus.events.ItemContainerChanged;
+import lombok.NonNull;
 import meteor.Main;
 import meteor.ui.overlay.PanelComponent;
 import net.runelite.api.Client;
@@ -53,12 +55,10 @@ import net.runelite.api.ItemID;
 import net.runelite.api.NullObjectID;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class PuzzleStep extends QuestStep implements OwnerStep
 {
-	protected Client client = Main.INSTANCE.getClient();
+	protected Client client = Main.client;
 
 	protected QuestStep currentStep;
 
@@ -633,6 +633,7 @@ public class PuzzleStep extends QuestStep implements OwnerStep
 		{
 			currentStep = step;
 			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			currentStep.startUp();
 			return;
 		}
@@ -640,7 +641,8 @@ public class PuzzleStep extends QuestStep implements OwnerStep
 		if (!step.equals(currentStep))
 		{
 			shutDownStep();
-			step.subscribe();
+			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			step.startUp();
 			currentStep = step;
 		}
@@ -657,11 +659,11 @@ public class PuzzleStep extends QuestStep implements OwnerStep
 	}
 
 	@Override
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, Requirement... requirements)
+	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, @NonNull List<String> additionalText, @NonNull List<Requirement> requirements)
 	{
 		if (currentStep != null)
 		{
-			currentStep.makeOverlayHint(panelComponent, plugin, requirements);
+			currentStep.makeOverlayHint(panelComponent, plugin, additionalText, requirements);
 		}
 	}
 
@@ -709,17 +711,5 @@ public class PuzzleStep extends QuestStep implements OwnerStep
 	public Collection<QuestStep> getSteps()
 	{
 		return Arrays.asList(solvePuzzle, getPieces, clickAnswer1, clickAnswer2, insertDisc, clickDiscHole, clickDiscHole2, clickDiscHole3, clickDiscHole4);
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "puzzstep";
 	}
 }

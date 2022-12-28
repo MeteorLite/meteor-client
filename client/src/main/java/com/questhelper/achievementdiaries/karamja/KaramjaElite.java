@@ -75,6 +75,8 @@ public class KaramjaElite extends ComplexStateQuestHelper
 
 	QuestStep enterNatureAltar, craftRunes, equipCape, checkPalm, checkCalquat, makePotion, claimReward, moveToHorseShoe;
 
+	ConditionalStep craftedRunesTask, equippedCapeTask, checkedPalmTask, checkedCalquatTask, madePotionTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -82,18 +84,28 @@ public class KaramjaElite extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doElite = new ConditionalStep(this, claimReward);
-		doElite.addStep(notEquippedCape, equipCape);
 
-		doElite.addStep(new Conditions(notMadePotion, inHorse), makePotion);
-		doElite.addStep(notMadePotion, moveToHorseShoe);
-		doElite.addStep(new Conditions(notCraftedRunes, inNatureAltar), craftRunes);
-		doElite.addStep(notCraftedRunes, enterNatureAltar);
-		doElite.addStep(notCheckedCalquat, checkCalquat);
-		doElite.addStep(notCheckedPalm, checkPalm);
+		checkedCalquatTask = new ConditionalStep(this, checkCalquat);
+		doElite.addStep(notCheckedCalquat, checkedCalquatTask);
+
+		checkedPalmTask = new ConditionalStep(this, checkPalm);
+		doElite.addStep(notCheckedPalm, checkedPalmTask);
+
+		equippedCapeTask = new ConditionalStep(this, equipCape);
+		doElite.addStep(notEquippedCape, equippedCapeTask);
+
+		madePotionTask = new ConditionalStep(this, moveToHorseShoe);
+		madePotionTask.addStep(inHorse, makePotion);
+		doElite.addStep(notMadePotion, madePotionTask);
+
+		craftedRunesTask = new ConditionalStep(this, enterNatureAltar);
+		craftedRunesTask.addStep(inNatureAltar, craftRunes);
+		doElite.addStep(notCraftedRunes, craftedRunesTask);
 
 		return doElite;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notCraftedRunes = new VarplayerRequirement(1200, false, 1);
@@ -103,9 +115,10 @@ public class KaramjaElite extends ComplexStateQuestHelper
 		notCheckedCalquat = new VarplayerRequirement(1200, false, 5);
 
 		natureTiaraOrAbyss = new ItemRequirement("Nature tiara, or access to nature altar through the Abyss",
-			ItemID.NATURE_TIARA).showConditioned(notCraftedRunes);
+			ItemID.NATURE_TIARA).showConditioned(notCraftedRunes).isNotConsumed();
 		pureEssence = new ItemRequirement("Pure essence", ItemID.PURE_ESSENCE).showConditioned(notCraftedRunes);
-		fireCapeOrInfernal = new ItemRequirement("Fire cape or infernal cape", ItemID.FIRE_CAPE).showConditioned(notEquippedCape);
+		fireCapeOrInfernal = new ItemRequirement("Fire cape or infernal cape", ItemID.FIRE_CAPE)
+			.showConditioned(notEquippedCape).isNotConsumed();
 		fireCapeOrInfernal.addAlternates(ItemID.INFERNAL_CAPE);
 		palmTreeSapling = new ItemRequirement("Palm tree sapling", ItemID.PALM_SAPLING).showConditioned(notCheckedPalm);
 		antidotePlusPlus = new ItemRequirement("Antidote++", ItemID.ANTIDOTE4_5952).showConditioned(notMadePotion);
@@ -113,9 +126,9 @@ public class KaramjaElite extends ComplexStateQuestHelper
 		zulrahScales = new ItemRequirement("Zulrah scales", ItemID.ZULRAHS_SCALES).showConditioned(notMadePotion);
 		calquatSapling = new ItemRequirement("Calquat sapling", ItemID.CALQUAT_SAPLING).showConditioned(notCheckedCalquat);
 		rake = new ItemRequirement("Rake", ItemID.RAKE).showConditioned(new Conditions(LogicType.OR, notCheckedCalquat,
-			notCheckedPalm));
+			notCheckedPalm)).isNotConsumed();
 		spade = new ItemRequirement("Spade", ItemID.SPADE).showConditioned(new Conditions(LogicType.OR, notCheckedCalquat,
-			notCheckedPalm));
+			notCheckedPalm)).isNotConsumed();
 
 
 		farming72 = new SkillRequirement(Skill.FARMING, 72, true);
@@ -138,9 +151,13 @@ public class KaramjaElite extends ComplexStateQuestHelper
 			"Craft a full inventory of nature runes.", pureEssence.quantity(28));
 		equipCape = new DetailedQuestStep(this, "Equip a fire or infernal cape.", fireCapeOrInfernal.equipped());
 		checkPalm = new ObjectStep(this, NullObjectID.NULL_7964, new WorldPoint(2765, 3213, 0),
-			"Grow and check the health of a palm tree in the Brimhaven patch.", palmTreeSapling, rake, spade);
+			"Grow and check the health of a palm tree in the Brimhaven patch. " +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.",
+			palmTreeSapling, rake, spade);
 		checkCalquat = new ObjectStep(this, NullObjectID.NULL_7807, new WorldPoint(2796, 3101, 0),
-			"Grow and check the health of a Calquat in Tai Bwo Wannai.", calquatSapling, rake, spade);
+			"Grow and check the health of a Calquat in Tai Bwo Wannai." +
+				"If you're waiting for it to grow and want to complete further tasks, use the tick box on panel.",
+			calquatSapling, rake, spade);
 		moveToHorseShoe = new DetailedQuestStep(this, new WorldPoint(2734, 3224, 0),
 			"Go to the horse shoe mine north west of Brimhaven.");
 		makePotion = new DetailedQuestStep(this, new WorldPoint(2734, 3224, 0),
@@ -197,30 +214,35 @@ public class KaramjaElite extends ComplexStateQuestHelper
 	{
 		List<PanelDetails> allSteps = new ArrayList<>();
 
-		PanelDetails equipCapeSteps = new PanelDetails("Equip Fire / Infernal Cape",
-			Collections.singletonList(equipCape), fireCapeOrInfernal);
-		equipCapeSteps.setDisplayCondition(notEquippedCape);
-		allSteps.add(equipCapeSteps);
-
-		PanelDetails potionSteps = new PanelDetails("Create Antivenom Potion", Arrays.asList(moveToHorseShoe,
-			makePotion), herblore87, antidotePlusPlus, zulrahScales.quantity(20));
-		potionSteps.setDisplayCondition(notMadePotion);
-		allSteps.add(potionSteps);
-
-		PanelDetails craftRunesSteps = new PanelDetails("Craft 56 Nature Runes", Arrays.asList(enterNatureAltar,
-			craftRunes), runecraft91, pureEssence.quantity(28), natureTiaraOrAbyss);
-		craftRunesSteps.setDisplayCondition(notCraftedRunes);
-		allSteps.add(craftRunesSteps);
-
 		PanelDetails palmSteps = new PanelDetails("Check Palm Tree Health", Collections.singletonList(checkPalm),
 			new SkillRequirement(Skill.FARMING, 68, true), palmTreeSapling, rake, spade);
 		palmSteps.setDisplayCondition(notCheckedPalm);
+		palmSteps.setLockingStep(checkedPalmTask);
 		allSteps.add(palmSteps);
 
 		PanelDetails calquatSteps = new PanelDetails("Check Calquat Tree Health",
 			Collections.singletonList(checkCalquat), farming72, calquatSapling, rake, spade);
 		calquatSteps.setDisplayCondition(notCheckedCalquat);
+		calquatSteps.setLockingStep(checkedCalquatTask);
 		allSteps.add(calquatSteps);
+
+		PanelDetails equipCapeSteps = new PanelDetails("Equip Fire / Infernal Cape",
+			Collections.singletonList(equipCape), fireCapeOrInfernal);
+		equipCapeSteps.setDisplayCondition(notEquippedCape);
+		equipCapeSteps.setLockingStep(equippedCapeTask);
+		allSteps.add(equipCapeSteps);
+
+		PanelDetails potionSteps = new PanelDetails("Create Antivenom Potion", Arrays.asList(moveToHorseShoe,
+			makePotion), herblore87, antidotePlusPlus, zulrahScales.quantity(20));
+		potionSteps.setDisplayCondition(notMadePotion);
+		potionSteps.setLockingStep(madePotionTask);
+		allSteps.add(potionSteps);
+
+		PanelDetails craftRunesSteps = new PanelDetails("Craft 56 Nature Runes", Arrays.asList(enterNatureAltar,
+			craftRunes), runecraft91, pureEssence.quantity(28), natureTiaraOrAbyss);
+		craftRunesSteps.setDisplayCondition(notCraftedRunes);
+		craftRunesSteps.setLockingStep(craftedRunesTask);
+		allSteps.add(craftRunesSteps);
 
 		PanelDetails finishOffSteps = new PanelDetails("Finishing off", Collections.singletonList(claimReward));
 		allSteps.add(finishOffSteps);

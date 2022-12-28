@@ -113,15 +113,18 @@ public class InSearchOfKnowledge extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food5 = new ItemRequirement("Food", ItemCollections.getFishFood(), 5);
-		food5Highlighted = new ItemRequirement("Food", ItemCollections.getFishFood(), 5);
+		food5 = new ItemRequirement("Food", ItemCollections.FISH_FOOD, 5);
+		food5Highlighted = new ItemRequirement("Food", ItemCollections.FISH_FOOD, 5);
 		food5Highlighted.setHighlightInInventory(true);
-		knife = new ItemRequirement("Knife or slash weapon to cut through a web", ItemID.KNIFE);
+		knife = new ItemRequirement("Knife or slash weapon to cut through a web", ItemID.KNIFE).isNotConsumed();
+		knife.addAlternates(ItemID.WILDERNESS_SWORD, ItemID.WILDERNESS_SWORD_1, ItemID.WILDERNESS_SWORD_2,
+			ItemID.WILDERNESS_SWORD_3, ItemID.WILDERNESS_SWORD_4);
 
 		protectFromMagic = new PrayerRequirement("Protect from Magic", Prayer.PROTECT_FROM_MAGIC);
 
@@ -187,7 +190,7 @@ public class InSearchOfKnowledge extends BasicQuestHelper
 			protectFromMagic);
 
 		searchBookcasesForSun = new ObjectStep(this, ObjectID.MUSTY_BOOKSHELF, new WorldPoint(1805, 9935, 0),
-			"Search  the musty bookshelves to the west of Aimeri for the tomes of moon, sun, and temple.",
+			"Search the musty bookshelves to the west of Aimeri for the tomes of moon, sun, and temple.",
 			protectFromMagic);
 
 		searchBookcasesForMoon = new ObjectStep(this, ObjectID.MUSTY_BOOKSHELF_34848, new WorldPoint(1804, 9943, 0),

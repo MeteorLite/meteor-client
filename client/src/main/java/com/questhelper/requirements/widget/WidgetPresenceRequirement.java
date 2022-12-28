@@ -1,5 +1,6 @@
 /*
- *  * Copyright (c) 2021, Senmori
+ *
+ *  * Copyright (c) 2021, Zoinkwiz
  *  * All rights reserved.
  *  *
  *  * Redistribution and use in source and binary forms, with or without
@@ -23,60 +24,69 @@
  *  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+package com.questhelper.requirements.widget;
 
-package com.questhelper.questhelpers;
+import com.questhelper.requirements.SimpleRequirement;
+import javax.annotation.Nullable;
+import lombok.Getter;
+import lombok.Setter;
+import net.runelite.api.Client;
+import net.runelite.api.widgets.Widget;
 
-import com.questhelper.QuestHelperQuest;
-import java.util.function.Predicate;
-
-public interface Quest
+public class WidgetPresenceRequirement extends SimpleRequirement
 {
-	static boolean showCompletedQuests(QuestHelper quest)
+	@Setter
+	@Getter
+	protected boolean hasPassed;
+	protected boolean onlyNeedToPassOnce;
+
+	@Getter
+	protected final int groupId;
+
+	protected final int childId;
+	protected int childChildId = -1;
+
+	public WidgetPresenceRequirement(int groupId, int childId, int childChildId)
 	{
-		return true;
+		this.groupId = groupId;
+		this.childId = childId;
+		this.childChildId = childChildId;
 	}
 
-	/**
-	 * Describes the difficulty of a {@link QuestHelperQuest}
-	 */
-	public enum Difficulty implements Predicate<QuestHelper>
+	public WidgetPresenceRequirement(int groupId, int childId)
 	{
-		ALL,
-		NOVICE,
-		INTERMEDIATE,
-		EXPERIENCED,
-		MASTER,
-		GRANDMASTER,
-		MINIQUEST,
-		ACHIEVEMENT_DIARY,
-		GENERIC,
-		SKILL,
-		;
-
-		@Override
-		public boolean test(QuestHelper quest) {
-			return quest.getQuest().getDifficulty() == this || this == ALL;
-		}
+		this.groupId = groupId;
+		this.childId = childId;
 	}
 
-	/**
-	 * Describes if the quest is free-to-play (F2P), pay-to-play(P2P),
-	 * or a miniquest.
-	 */
-	public enum Type implements Predicate<QuestHelper>
+	@Override
+	public boolean check(Client client)
 	{
-		F2P,
-		P2P,
-		MINIQUEST,
-		ACHIEVEMENT_DIARY,
-		GENERIC,
-		SKILL,
-		;
-
-		@Override
-		public boolean test(QuestHelper quest)
+		if (onlyNeedToPassOnce && hasPassed)
 		{
-			return quest.getQuest().getQuestType() == this;
+			return true;
 		}
+		return checkWidget(client);
+	}
+
+	@Nullable
+	protected Widget getWidget(Client client)
+	{
+		Widget widget = client.getWidget(groupId, childId);
+		if (widget == null)
+		{
+			return null;
+		}
+		if (childChildId != -1)
+		{
+			return widget.getChild(childChildId);
+		}
+		return widget;
+	}
+
+	public boolean checkWidget(Client client)
+	{
+		return getWidget(client) != null;
 	}
 }
+

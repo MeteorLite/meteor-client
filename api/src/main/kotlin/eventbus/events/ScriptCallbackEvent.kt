@@ -30,4 +30,4 @@ import net.runelite.api.Script
 /**
  * A callback from a runelite_callback opcode in a cs2
  */
-class ScriptCallbackEvent(val script: Script, val eventName: String) : Event()
+class ScriptCallbackEvent(val script: Script, var eventName: String) : Event()

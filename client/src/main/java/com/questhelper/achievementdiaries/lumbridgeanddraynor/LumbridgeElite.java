@@ -28,12 +28,15 @@ import com.questhelper.ItemCollections;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
 import com.questhelper.questhelpers.ComplexStateQuestHelper;
+import com.questhelper.requirements.ComplexRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
+import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.quest.QuestPointRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
+import com.questhelper.requirements.util.LogicType;
 import com.questhelper.requirements.util.Operation;
 import com.questhelper.requirements.var.VarplayerRequirement;
 import com.questhelper.rewards.ItemReward;
@@ -83,6 +86,8 @@ public class LumbridgeElite extends ComplexStateQuestHelper
 
 	ZoneRequirement inUnderground, inDorg1, inDorg2, inDraySewer, inOldman, inWaterAltar, inDorgAgi;
 
+	ConditionalStep richChestTask, movarioTask, chopMagicTask, addyPlatebodyTask, waterRunesTask, qcEmoteTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -91,26 +96,39 @@ public class LumbridgeElite extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doElite = new ConditionalStep(this, claimReward);
-		doElite.addStep(new Conditions(notAddyPlatebody, inDraySewer), addyPlatebody);
-		doElite.addStep(notAddyPlatebody, moveToDraySewer);
-		doElite.addStep(new Conditions(notQCEmote, inOldman), qcEmote);
-		doElite.addStep(notQCEmote, moveToOldman);
-		doElite.addStep(new Conditions(notRichChest, inDorg2), richChest);
-		doElite.addStep(new Conditions(notRichChest, inDorg1), dorgStairsChest);
-		doElite.addStep(new Conditions(notRichChest, inUnderground), moveToDorgChest);
-		doElite.addStep(notRichChest, moveToUndergroundChest);
-		doElite.addStep(new Conditions(notMovario, inDorgAgi), movario);
-		doElite.addStep(new Conditions(notMovario, inDorg2), moveToDorgAgi);
-		doElite.addStep(new Conditions(notMovario, inDorg1), dorgStairsMovario);
-		doElite.addStep(new Conditions(notMovario, inUnderground), moveToDorgMovario);
-		doElite.addStep(notMovario, moveToUndergroundMovario);
-		doElite.addStep(new Conditions(notWaterRunes, inWaterAltar), waterRunes);
-		doElite.addStep(notWaterRunes, moveToWater);
-		doElite.addStep(notChopMagic, chopMagic);
+
+		addyPlatebodyTask = new ConditionalStep(this, moveToDraySewer);
+		addyPlatebodyTask.addStep(inDraySewer, addyPlatebody);
+		doElite.addStep(notAddyPlatebody, addyPlatebodyTask);
+
+		qcEmoteTask = new ConditionalStep(this, moveToOldman);
+		qcEmoteTask.addStep(inOldman, qcEmote);
+		doElite.addStep(notQCEmote, qcEmoteTask);
+
+		richChestTask = new ConditionalStep(this, moveToUndergroundChest);
+		richChestTask.addStep(inUnderground, moveToDorgChest);
+		richChestTask.addStep(inDorg1, dorgStairsChest);
+		richChestTask.addStep(inDorg2, richChest);
+		doElite.addStep(notRichChest, richChestTask);
+
+		movarioTask = new ConditionalStep(this, moveToUndergroundMovario);
+		movarioTask.addStep(inUnderground, moveToDorgMovario);
+		movarioTask.addStep(inDorg1, dorgStairsMovario);
+		movarioTask.addStep(inDorg2, moveToDorgAgi);
+		movarioTask.addStep(inDorgAgi, movario);
+		doElite.addStep(notMovario, movarioTask);
+
+		waterRunesTask = new ConditionalStep(this, moveToWater);
+		waterRunesTask.addStep(inWaterAltar, waterRunes);
+		doElite.addStep(notWaterRunes, waterRunesTask);
+
+		chopMagicTask = new ConditionalStep(this, chopMagic);
+		doElite.addStep(notChopMagic, chopMagicTask);
 
 		return doElite;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notRichChest = new VarplayerRequirement(1195, false, 4);
@@ -118,25 +136,26 @@ public class LumbridgeElite extends ComplexStateQuestHelper
 		notChopMagic = new VarplayerRequirement(1195, false, 6);
 		notAddyPlatebody = new VarplayerRequirement(1195, false, 7);
 		notWaterRunes = new VarplayerRequirement(1195, false, 8);
-		notQCEmote = new VarplayerRequirement(1195, true, 9);
+		notQCEmote = new VarplayerRequirement(1195, false, 9);
 
 		// todo find better way to check for all quests completed
-		allQuests = new QuestPointRequirement(286, Operation.EQUAL);
+		allQuests = new QuestPointRequirement(290, Operation.EQUAL);
 
-		lockpick = new ItemRequirement("Lockpick", ItemID.LOCKPICK).showConditioned(notRichChest);
-		crossbow = new ItemRequirement("Crossbow", ItemCollections.getCrossbows()).showConditioned(notMovario);
-		mithgrap = new ItemRequirement("Mith grapple", ItemID.MITH_GRAPPLE_9419).showConditioned(notMovario);
-		lightsource = new ItemRequirement("A lightsource", ItemCollections.getLightSources()).showConditioned(notMovario);
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes()).showConditioned(notChopMagic);
+		lockpick = new ItemRequirement("Lockpick", ItemID.LOCKPICK).showConditioned(notRichChest).isNotConsumed();
+		crossbow = new ItemRequirement("Crossbow", ItemCollections.CROSSBOWS).showConditioned(notMovario).isNotConsumed();
+		mithgrap = new ItemRequirement("Mith grapple", ItemID.MITH_GRAPPLE_9419).showConditioned(notMovario).isNotConsumed();
+		lightsource = new ItemRequirement("A lightsource", ItemCollections.LIGHT_SOURCES).showConditioned(notMovario).isNotConsumed();
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).showConditioned(notChopMagic).isNotConsumed();
 		addyBar = new ItemRequirement("Adamantite bar", ItemID.ADAMANTITE_BAR).showConditioned(notAddyPlatebody);
-		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notAddyPlatebody);
-		essence = new ItemRequirement("Essence", ItemCollections.getEssenceLow()).showConditioned(notWaterRunes);
+		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notAddyPlatebody).isNotConsumed();
+		essence = new ItemRequirement("Essence", ItemCollections.ESSENCE_LOW).showConditioned(notWaterRunes);
 		waterAccessOrAbyss = new ItemRequirement("Access to water altar, or travel through abyss",
-			ItemID.WATER_TIARA).showConditioned(notWaterRunes);
-		qcCape = new ItemRequirement("Quest cape", ItemCollections.getQuestCape()).showConditioned(notQCEmote);
+			ItemID.WATER_TIARA).showConditioned(notWaterRunes).isNotConsumed();
+		waterAccessOrAbyss.setTooltip("Water talisman or tiara");
+		qcCape = new ItemRequirement("Quest cape", ItemCollections.QUEST_CAPE).showConditioned(notQCEmote).isNotConsumed();
 		dorgSphere = new ItemRequirement("Dorgesh-kann Sphere", ItemID.DORGESHKAAN_SPHERE)
 			.showConditioned(new Conditions(notMovario, notRichChest));
-		ringOfDueling = new ItemRequirement("Ring of dueling", ItemCollections.getRingOfDuelings())
+		ringOfDueling = new ItemRequirement("Ring of dueling", ItemCollections.RING_OF_DUELINGS)
 			.showConditioned(notChopMagic);
 
 		inUnderground = new ZoneRequirement(underground);
@@ -231,7 +250,14 @@ public class LumbridgeElite extends ComplexStateQuestHelper
 		List<Requirement> reqs = new ArrayList<>();
 		reqs.add(new SkillRequirement(Skill.AGILITY, 70));
 		reqs.add(new SkillRequirement(Skill.RANGED, 70));
-		reqs.add(new SkillRequirement(Skill.RUNECRAFT, 76));
+		reqs.add(new ComplexRequirement(LogicType.OR, "76 Runecraft or 57 with Raiments of the Eye set",
+			new SkillRequirement(Skill.RUNECRAFT, 76, true, "76 Runecraft"),
+			new ItemRequirements("57 with Raiments of the Eye set",
+				new ItemRequirement("Hat", ItemCollections.EYE_HAT).alsoCheckBank(questBank),
+				new ItemRequirement("Top", ItemCollections.EYE_TOP).alsoCheckBank(questBank),
+				new ItemRequirement("Bottom", ItemCollections.EYE_BOTTOM).alsoCheckBank(questBank),
+				new ItemRequirement("Boot", ItemID.BOOTS_OF_THE_EYE)).alsoCheckBank(questBank)
+		));
 		reqs.add(new SkillRequirement(Skill.SMITHING, 88));
 		reqs.add(new SkillRequirement(Skill.STRENGTH, 70));
 		reqs.add(new SkillRequirement(Skill.THIEVING, 78));
@@ -272,17 +298,20 @@ public class LumbridgeElite extends ComplexStateQuestHelper
 			Arrays.asList(moveToDraySewer, addyPlatebody), new SkillRequirement(Skill.SMITHING, 88),
 			addyBar.quantity(5), hammer);
 		adamantitePlatebodySteps.setDisplayCondition(notAddyPlatebody);
+		adamantitePlatebodySteps.setLockingStep(addyPlatebodyTask);
 		allSteps.add(adamantitePlatebodySteps);
 
 		PanelDetails questCapeEmoteSteps = new PanelDetails("Quest Cape Emote", Arrays.asList(moveToOldman, qcEmote),
 			allQuests, qcCape);
 		questCapeEmoteSteps.setDisplayCondition(notQCEmote);
+		questCapeEmoteSteps.setLockingStep(qcEmoteTask);
 		allSteps.add(questCapeEmoteSteps);
 
 		PanelDetails richChestSteps = new PanelDetails("Dorgesh-Kaan Rich Chest", Arrays.asList(moveToUndergroundChest,
-			moveToDorgChest, dorgStairsChest, richChest), new SkillRequirement(Skill.THIEVING, 78), deathToDorg, lightsource,
-			lockpick);
+			moveToDorgChest, dorgStairsChest, richChest), new SkillRequirement(Skill.THIEVING, 78), deathToDorg,
+			lightsource, lockpick);
 		richChestSteps.setDisplayCondition(notRichChest);
+		richChestSteps.setLockingStep(richChestTask);
 		allSteps.add(richChestSteps);
 
 		PanelDetails movarioSteps = new PanelDetails("Movario", Arrays.asList(moveToUndergroundMovario, moveToDorgMovario,
@@ -290,16 +319,19 @@ public class LumbridgeElite extends ComplexStateQuestHelper
 			new SkillRequirement(Skill.AGILITY, 70), new SkillRequirement(Skill.RANGED, 70),
 			new SkillRequirement(Skill.STRENGTH, 70), deathToDorg, templeOfIkov, mithgrap, crossbow, lightsource);
 		movarioSteps.setDisplayCondition(notMovario);
+		movarioSteps.setLockingStep(movarioTask);
 		allSteps.add(movarioSteps);
 
 		PanelDetails waterRunesSteps = new PanelDetails("140 Water Runes", Arrays.asList(moveToWater, waterRunes),
 			new SkillRequirement(Skill.RUNECRAFT, 76), essence.quantity(28), waterAccessOrAbyss);
 		waterRunesSteps.setDisplayCondition(notWaterRunes);
+		waterRunesSteps.setLockingStep(waterRunesTask);
 		allSteps.add(waterRunesSteps);
 
 		PanelDetails chopMagicsSteps = new PanelDetails("Chop Magics", Collections.singletonList(chopMagic),
 			new SkillRequirement(Skill.WOODCUTTING, 75), axe);
 		chopMagicsSteps.setDisplayCondition(notChopMagic);
+		chopMagicsSteps.setLockingStep(chopMagicTask);
 		allSteps.add(chopMagicsSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));

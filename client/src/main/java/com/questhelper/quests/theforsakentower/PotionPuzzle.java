@@ -24,6 +24,7 @@
  */
 package com.questhelper.quests.theforsakentower;
 
+import com.google.inject.Inject;
 import com.questhelper.QuestHelperPlugin;
 import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
@@ -54,12 +55,10 @@ import net.runelite.api.NullObjectID;
 import net.runelite.api.ObjectID;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class PotionPuzzle extends QuestStep implements OwnerStep
 {
-	protected Client client = Main.INSTANCE.getClient();
+	protected Client client = Main.client;
 
 	// Potion 1
 	private static final Pattern LINE1 = Pattern.compile("^(.*) is directly left of");
@@ -178,6 +177,7 @@ public class PotionPuzzle extends QuestStep implements OwnerStep
 		{
 			currentStep = step;
 			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			currentStep.startUp();
 			return;
 		}
@@ -185,7 +185,8 @@ public class PotionPuzzle extends QuestStep implements OwnerStep
 		if (!step.equals(currentStep))
 		{
 			shutDownStep();
-			step.subscribe();
+			currentStep.subscribe();
+			currentStep.setEventListening(true);
 			step.startUp();
 			currentStep = step;
 		}
@@ -202,11 +203,11 @@ public class PotionPuzzle extends QuestStep implements OwnerStep
 	}
 
 	@Override
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, Requirement... requirements)
+	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, List<String> additionalText, List<Requirement> requirements)
 	{
 		if (currentStep != null)
 		{
-			currentStep.makeOverlayHint(panelComponent, plugin, requirements);
+			currentStep.makeOverlayHint(panelComponent, plugin, additionalText, requirements);
 		}
 	}
 
@@ -371,17 +372,5 @@ public class PotionPuzzle extends QuestStep implements OwnerStep
 				}
 			}
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "potpuzzle";
 	}
 }

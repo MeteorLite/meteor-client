@@ -37,7 +37,7 @@ import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
@@ -90,7 +90,7 @@ public class DeathPlateau extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -151,18 +151,19 @@ public class DeathPlateau extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		asgarnianAle = new ItemRequirement("Asgarnian ale", ItemID.ASGARNIAN_ALE);
 
 		ItemRequirement premadeBlurb = new ItemRequirement("Premade blurb' sp.", ItemID.PREMADE_BLURB_SP);
 		premadeBlurb.addAlternates(ItemID.BLURBERRY_SPECIAL);
-		ItemRequirement coins500 = new ItemRequirement("Coins", ItemCollections.getCoins(), 500);
+		ItemRequirement coins500 = new ItemRequirement("Coins", ItemCollections.COINS, 500);
 
 		premadeBlurbOrCoins = new ItemRequirements(LogicType.OR,
 			"Premade blurb' sp. (or a Blurberry special, or 500 coins to gamble with)",
 			premadeBlurb, coins500);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins(), 60);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS, 60);
 		bread = new ItemRequirement("Bread (UNNOTED)", ItemID.BREAD, 10);
 		trout = new ItemRequirement("Trout (UNNOTED)", ItemID.TROUT, 10);
 		ironBar = new ItemRequirement("Iron bar", ItemID.IRON_BAR);
@@ -180,12 +181,12 @@ public class DeathPlateau extends BasicQuestHelper
 		greenStone = new ItemRequirement("Stone ball", ItemID.STONE_BALL_3113);
 		greenStone.setHighlightInInventory(true);
 		certificate = new ItemRequirement("Certificate", ItemID.CERTIFICATE_3114);
-		climbingBoots = new ItemRequirement("Climbing boots", ItemID.CLIMBING_BOOTS);
+		climbingBoots = new ItemRequirement("Climbing boots", ItemCollections.CLIMBING_BOOTS);
 		spikedBoots = new ItemRequirement("Spiked boots", ItemID.SPIKED_BOOTS);
 		secretMap = new ItemRequirement("Secret way map", ItemID.SECRET_WAY_MAP);
 		combination = new ItemRequirement("Combination", ItemID.COMBINATION);
 		combination.setTooltip("You can get another by talking to Harold upstairs in Burthorpe's Pub");
-		gamesNecklace = new ItemRequirement("Games necklace", ItemCollections.getGamesNecklaces());
+		gamesNecklace = new ItemRequirement("Games necklace", ItemCollections.GAMES_NECKLACES);
 	}
 
 	public void setupZones()

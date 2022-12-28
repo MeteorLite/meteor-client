@@ -88,7 +88,7 @@ public class IncantationStep extends DetailedQuestStep
 	@Override
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if(event.getId() == WidgetInfo.INVENTORY.getId() && event.getMenuOption().equals("Chant"))
+		if(event.getWidgetId() == WidgetInfo.INVENTORY.getId() && event.getMenuOption().equals("Chant"))
 		{
 			incantationPosition = 0;
 		}

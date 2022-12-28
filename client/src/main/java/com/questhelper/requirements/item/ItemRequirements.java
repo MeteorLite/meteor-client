@@ -97,7 +97,8 @@ public class ItemRequirements extends ItemRequirement
 	{
 		Predicate<ItemRequirement> predicate = r -> r.check(client, checkConsideringSlotRestrictions);
 		int successes = (int) itemRequirements.stream().filter(Objects::nonNull).filter(predicate).count();
-		return logicType.compare(successes, itemRequirements.size());
+		hadItemLastCheck = logicType.compare(successes, itemRequirements.size());
+		return hadItemLastCheck;
 	}
 
 	@Override
@@ -105,30 +106,31 @@ public class ItemRequirements extends ItemRequirement
 	{
 		Predicate<ItemRequirement> predicate = r -> r.check(client, checkConsideringSlotRestrictions, items);
 		int successes = (int) itemRequirements.stream().filter(Objects::nonNull).filter(predicate).count();
-		return logicType.compare(successes, itemRequirements.size());
+		hadItemLastCheck = logicType.compare(successes, itemRequirements.size());
+		return hadItemLastCheck;
 	}
 
 	@Override
 	public Color getColor(Client client, QuestHelperConfig config)
 	{
-		return this.check(client, true) ? Color.GREEN : Color.RED;
+		return this.check(client, true) ? config.passColour() : config.failColour();
 	}
 
 	@Override
 	public Color getColorConsideringBank(Client client, boolean checkConsideringSlotRestrictions,
 										 List<Item> bankItems, QuestHelperConfig config)
 	{
-		Color color = Color.RED;
+		Color color = config.failColour();
 		if (!this.isActualItem() && !(this.getItemRequirements() instanceof ArrayList))
 		{
 			color = Color.GRAY;
 		}
 		else if (this.check(client, checkConsideringSlotRestrictions))
 		{
-			color = Color.GREEN;
+			color = config.passColour();
 		}
 
-		if (color == Color.RED && bankItems != null)
+		if (color == config.failColour() && bankItems != null)
 		{
 			if (check(client, false, bankItems))
 			{

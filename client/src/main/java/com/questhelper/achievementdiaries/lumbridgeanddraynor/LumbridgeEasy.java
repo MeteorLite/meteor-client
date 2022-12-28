@@ -79,9 +79,8 @@ public class LumbridgeEasy extends ComplexStateQuestHelper
 
 	Requirement addedRopeToHole;
 
-	QuestStep claimReward, drayAgi, killCaveBug, addRopeToHole, moveToDarkHole,
-		sedridor, moveToSed, moveToWaterAltar, waterRune, hans,
-		chopOak, burnOak, fishAnchovies, bread, mineIron;
+	QuestStep claimReward, drayAgi, killCaveBug, addRopeToHole, moveToDarkHole, sedridor, moveToSed, moveToWaterAltar,
+		waterRune, hans, chopOak, burnOak, fishAnchovies, bread, mineIron;
 
 	NpcStep pickpocket, killZombie;
 
@@ -91,6 +90,9 @@ public class LumbridgeEasy extends ComplexStateQuestHelper
 
 	ZoneRequirement inCave, inSewer, inWater, inMageTower, inLumby;
 
+	ConditionalStep drayAgiTask, killCaveBugTask, sedridorTask, waterRuneTask, hansTask, pickpocketTask, oakTask,
+		killZombieTask, fishAnchoviesTask, breadTask, ironTask, enterHAMTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -99,28 +101,53 @@ public class LumbridgeEasy extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doEasy = new ConditionalStep(this, claimReward);
-		doEasy.addStep(notDrayAgi, drayAgi);
-		doEasy.addStep(new Conditions(notKillZombie, inSewer), killZombie);
-		doEasy.addStep(notKillZombie, moveToDraySewer);
-		doEasy.addStep(new Conditions(notSedridor, inMageTower), sedridor);
-		doEasy.addStep(notSedridor, moveToSed);
-		doEasy.addStep(notEnterHAM, enterHAM);
-		doEasy.addStep(new Conditions(notKillCaveBug, inCave), killCaveBug);
-		doEasy.addStep(new Conditions(addedRopeToHole, notKillCaveBug), moveToDarkHole);
-		doEasy.addStep(notKillCaveBug, addRopeToHole);
-		doEasy.addStep(new Conditions(notWaterRune, inWater), waterRune);
-		doEasy.addStep(notWaterRune, moveToWaterAltar);
-		doEasy.addStep(notBread, bread);
-		doEasy.addStep(notHans, hans);
-		doEasy.addStep(notPickpocket, pickpocket);
-		doEasy.addStep(new Conditions(notOak, oakLogs, choppedLogs), burnOak);
-		doEasy.addStep(notOak, chopOak);
-		doEasy.addStep(notIron, mineIron);
-		doEasy.addStep(notFishAnchovies, fishAnchovies);
+
+		drayAgiTask = new ConditionalStep(this, drayAgi);
+		doEasy.addStep(notDrayAgi, drayAgiTask);
+
+		killZombieTask = new ConditionalStep(this, moveToDraySewer);
+		killZombieTask.addStep(inSewer, killZombie);
+		doEasy.addStep(notKillZombie, killZombieTask);
+
+		sedridorTask = new ConditionalStep(this, moveToSed);
+		sedridorTask.addStep(inMageTower, sedridor);
+		doEasy.addStep(notSedridor, sedridorTask);
+
+		enterHAMTask = new ConditionalStep(this, enterHAM);
+		doEasy.addStep(notEnterHAM, enterHAMTask);
+
+		killCaveBugTask = new ConditionalStep(this, addRopeToHole);
+		killCaveBugTask.addStep(addedRopeToHole, moveToDarkHole);
+		killCaveBugTask.addStep(inCave, killCaveBug);
+		doEasy.addStep(notKillCaveBug, killCaveBugTask);
+
+		waterRuneTask = new ConditionalStep(this, moveToWaterAltar);
+		waterRuneTask.addStep(inWater, waterRune);
+		doEasy.addStep(notWaterRune, waterRuneTask);
+
+		breadTask = new ConditionalStep(this, bread);
+		doEasy.addStep(notBread, breadTask);
+
+		hansTask = new ConditionalStep(this, hans);
+		doEasy.addStep(notHans, hansTask);
+
+		pickpocketTask = new ConditionalStep(this, pickpocket);
+		doEasy.addStep(notPickpocket, pickpocketTask);
+
+		oakTask = new ConditionalStep(this, chopOak);
+		oakTask.addStep(new Conditions(oakLogs, choppedLogs), burnOak);
+		doEasy.addStep(notOak, oakTask);
+
+		ironTask = new ConditionalStep(this, mineIron);
+		doEasy.addStep(notIron, ironTask);
+
+		fishAnchoviesTask = new ConditionalStep(this, fishAnchovies);
+		doEasy.addStep(notFishAnchovies, fishAnchoviesTask);
 
 		return doEasy;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notDrayAgi = new VarplayerRequirement(1194, false, 1);
@@ -138,24 +165,25 @@ public class LumbridgeEasy extends ComplexStateQuestHelper
 
 		addedRopeToHole = new VarbitRequirement(279, 1);
 
-		lightSource = new ItemRequirement("Light source", ItemCollections.getLightSources()).showConditioned(notKillCaveBug);
+		lightSource = new ItemRequirement("Light source", ItemCollections.LIGHT_SOURCES).showConditioned(notKillCaveBug).isNotConsumed();
 		rope = new ItemRequirement("Rope", ItemID.ROPE).showConditioned(notKillCaveBug);
 		spinyHelm = new ItemRequirement("Spiny helmet or slayer helmet (Recommended for low combat levels / Ironmen)",
-			ItemCollections.getWallBeast()).showConditioned(notKillCaveBug);
+			ItemCollections.WALL_BEAST).showConditioned(notKillCaveBug).isNotConsumed();
 		waterAccessOrAbyss = new ItemRequirement("Access to water altar, or travel through abyss.",
-			ItemCollections.getWaterAltar()).showConditioned(notWaterRune);
-		runeEss = new ItemRequirement("Essence", ItemCollections.getEssenceLow()).showConditioned(notWaterRune);
+			ItemCollections.WATER_ALTAR).showConditioned(notWaterRune).isNotConsumed();
+		waterAccessOrAbyss.setTooltip("Water talisman or tiara");
+		runeEss = new ItemRequirement("Essence", ItemCollections.ESSENCE_LOW).showConditioned(notWaterRune);
 		dough = new ItemRequirement("Bread dough", ItemID.BREAD_DOUGH).showConditioned(notBread);
 		oakLogs = new ItemRequirement("Oak logs", ItemID.OAK_LOGS).showConditioned(notOak);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).showConditioned(notOak);
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes()).showConditioned(notOak);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes()).showConditioned(notIron);
-		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notFishAnchovies);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).showConditioned(notOak).isNotConsumed();
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).showConditioned(notOak).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).showConditioned(notIron).isNotConsumed();
+		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET).showConditioned(notFishAnchovies).isNotConsumed();
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 
 		inCave = new ZoneRequirement(cave);
 		inSewer = new ZoneRequirement(sewer);
@@ -314,58 +342,70 @@ public class LumbridgeEasy extends ComplexStateQuestHelper
 		PanelDetails draynorRooftopsSteps = new PanelDetails("Draynor Rooftops", Collections.singletonList(drayAgi),
 			new SkillRequirement(Skill.AGILITY, 10));
 		draynorRooftopsSteps.setDisplayCondition(notDrayAgi);
+		draynorRooftopsSteps.setLockingStep(drayAgiTask);
 		allSteps.add(draynorRooftopsSteps);
 
 		PanelDetails zombieSteps = new PanelDetails("Kill Zombie in Draynor Sewers", Arrays.asList(moveToDraySewer,
 			killZombie), combatGear);
 		zombieSteps.setDisplayCondition(notKillZombie);
+		zombieSteps.setLockingStep(killZombieTask);
 		allSteps.add(zombieSteps);
 
 		PanelDetails sedridorSteps = new PanelDetails("Rune Essence Mine", Arrays.asList(moveToSed, sedridor),
 			runeMysteries);
 		sedridorSteps.setDisplayCondition(notSedridor);
+		sedridorSteps.setLockingStep(sedridorTask);
 		allSteps.add(sedridorSteps);
 
 		PanelDetails enterTheHamHideoutSteps = new PanelDetails("Enter the HAM Hideout", Collections.singletonList(enterHAM));
 		enterTheHamHideoutSteps.setDisplayCondition(notEnterHAM);
+		enterTheHamHideoutSteps.setLockingStep(enterHAMTask);
 		allSteps.add(enterTheHamHideoutSteps);
 
 		PanelDetails killCaveBugSteps = new PanelDetails("Kill Cave Bug", Arrays.asList(addRopeToHole, killCaveBug),
 			new SkillRequirement(Skill.SLAYER, 7), lightSource, rope, spinyHelm);
 		killCaveBugSteps.setDisplayCondition(notKillCaveBug);
+		killCaveBugSteps.setLockingStep(killCaveBugTask);
 		allSteps.add(killCaveBugSteps);
 
 		PanelDetails waterRunesSteps = new PanelDetails("Craft Water Runes", Arrays.asList(moveToWaterAltar, waterRune),
 			new SkillRequirement(Skill.RUNECRAFT, 5), waterAccessOrAbyss, runeEss);
 		waterRunesSteps.setDisplayCondition(notWaterRune);
+		waterRunesSteps.setLockingStep(waterRuneTask);
 		allSteps.add(waterRunesSteps);
 
 		PanelDetails breadSteps = new PanelDetails("Cooking Bread", Collections.singletonList(bread), cooksAssistant,
 			dough);
 		breadSteps.setDisplayCondition(notBread);
+		breadSteps.setLockingStep(breadTask);
 		allSteps.add(breadSteps);
 
 		PanelDetails hansSteps = new PanelDetails("Learn Age from Hans", Collections.singletonList(hans));
 		hansSteps.setDisplayCondition(notHans);
+		hansSteps.setLockingStep(hansTask);
 		allSteps.add(hansSteps);
 
 		PanelDetails pickpocketSteps = new PanelDetails("Pickpocket Man or Woman", Collections.singletonList(pickpocket));
 		pickpocketSteps.setDisplayCondition(notPickpocket);
+		pickpocketSteps.setLockingStep(pickpocketTask);
 		allSteps.add(pickpocketSteps);
 
 		PanelDetails oakSteps = new PanelDetails("Chop and Burn Oak Logs", Arrays.asList(chopOak, burnOak),
 			new SkillRequirement(Skill.WOODCUTTING, 15), new SkillRequirement(Skill.FIREMAKING, 15), tinderbox, axe);
 		oakSteps.setDisplayCondition(notOak);
+		oakSteps.setLockingStep(oakTask);
 		allSteps.add(oakSteps);
 
 		PanelDetails mineIronSteps = new PanelDetails("Mine Iron in Al-Kharid", Collections.singletonList(mineIron),
 			new SkillRequirement(Skill.MINING, 15), pickaxe);
 		mineIronSteps.setDisplayCondition(notIron);
+		mineIronSteps.setLockingStep(ironTask);
 		allSteps.add(mineIronSteps);
 
 		PanelDetails anchoviesSteps = new PanelDetails("Fish Anchovies in Al-Kharid",
 			Collections.singletonList(fishAnchovies), new SkillRequirement(Skill.FISHING, 15), smallFishingNet);
 		anchoviesSteps.setDisplayCondition(notFishAnchovies);
+		anchoviesSteps.setLockingStep(fishAnchoviesTask);
 		allSteps.add(anchoviesSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));

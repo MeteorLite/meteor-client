@@ -56,11 +56,8 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 @QuestDescriptor(
 	quest = QuestHelperQuest.RAG_AND_BONE_MAN_I
@@ -140,27 +137,28 @@ public class RagAndBoneManI extends BasicQuestHelper
 		return steps;
 	}
 
-	private void setupRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		// Required items
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins());
-		pots = new ItemRequirement("Pot", ItemID.POT);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS);
+		pots = new ItemRequirement("Pot", ItemID.POT).isNotConsumed();
 		potNeeded = new ItemRequirement("Pot", ItemID.POT, 8).alsoCheckBank(questBank).highlighted();
 		logs = new ItemRequirement("Logs", ItemID.LOGS);
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
-		lightSource = new ItemRequirement("Light source", ItemCollections.getLightSources());
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
+		lightSource = new ItemRequirement("Light source", ItemCollections.LIGHT_SOURCES).isNotConsumed();
 
 		// Optional items
 		rope = new ItemRequirement("Rope", ItemID.ROPE);
 		spinyHelmet = new ItemRequirement("Spiny helmet", ItemID.SPINY_HELMET);
 		varrockTeleport = new ItemRequirement("Varrock teleport", ItemID.VARROCK_TELEPORT);
 		lumbridgeTeleport = new ItemRequirement("Lumbridge teleport", ItemID.LUMBRIDGE_TELEPORT);
-		digsitePendant = new ItemRequirement("Digsite pendant", ItemCollections.getDigsitePendants());
-		draynorTeleport = new ItemRequirement("Draynor teleport", ItemCollections.getAmuletOfGlories());
+		digsitePendant = new ItemRequirement("Digsite pendant", ItemCollections.DIGSITE_PENDANTS);
+		draynorTeleport = new ItemRequirement("Draynor teleport", ItemCollections.AMULET_OF_GLORIES);
 		draynorTeleport.addAlternates(ItemID.DRAYNOR_MANOR_TELEPORT);
-		karamjaTeleport = new ItemRequirement("Karamja teleport", ItemCollections.getAmuletOfGlories());
+		karamjaTeleport = new ItemRequirement("Karamja teleport", ItemCollections.AMULET_OF_GLORIES);
 		karamjaTeleport.addAlternates(ItemID.BRIMHAVEN_TELEPORT, ItemID.TAI_BWO_WANNAI_TELEPORT);
-		dramenStaff = new ItemRequirement("Dramen staff for fairy rings", ItemID.DRAMEN_STAFF);
+		dramenStaff = new ItemRequirement("Dramen staff for fairy rings", ItemID.DRAMEN_STAFF).isNotConsumed();
 
 		// Quest items
 		jugOfVinegar = new ItemRequirement("Jar of vinegar", ItemID.JUG_OF_VINEGAR);
@@ -415,17 +413,5 @@ public class RagAndBoneManI extends BasicQuestHelper
 			cleanedBones));
 
 		return allSteps;
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "ragbone1";
 	}
 }

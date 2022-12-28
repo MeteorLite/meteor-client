@@ -33,32 +33,34 @@ import java.util.List;
 import java.util.Map;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.steps.QuestStep;
-import meteor.Main;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public abstract class BasicQuestHelper extends QuestHelper
 {
-	public Map<Integer, QuestStep> steps;
+	protected Map<Integer, QuestStep> steps;
 	protected int var;
+
+	@Override
+	public void init()
+	{
+		if (steps == null)
+		{
+			steps = loadSteps();
+		}
+	}
 
 	@Override
 	public void startUp(QuestHelperConfig config)
 	{
+		steps = loadSteps();
 		this.config = config;
-		if(steps == null)
-		{
-			steps = loadSteps();
-			instantiateSteps(steps.values());
-			var = getVar();
-			startUpStep(steps.get(var));
-		}
+		instantiateSteps(steps.values());
+		var = getVar();
+		startUpStep(steps.get(var));
 	}
 
 	@Override
 	public void shutDown()
 	{
-		steps = null;
 		shutDownStep();
 	}
 
@@ -75,7 +77,8 @@ public abstract class BasicQuestHelper extends QuestHelper
 		return false;
 	}
 
-	public List<PanelDetails> getPanels() {
+	public List<PanelDetails> getPanels()
+	{
 		List<PanelDetails> panelSteps = new ArrayList<>();
 		steps.forEach((id, step) -> panelSteps.add(new PanelDetails("", step)));
 		return panelSteps;
@@ -86,17 +89,5 @@ public abstract class BasicQuestHelper extends QuestHelper
 	protected Requirement nor(Requirement... condition)
 	{
 		return new Conditions(LogicType.NOR, condition);
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "def";
 	}
 }

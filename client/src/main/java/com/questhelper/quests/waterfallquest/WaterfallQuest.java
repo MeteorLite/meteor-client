@@ -86,7 +86,7 @@ public class WaterfallQuest extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -143,11 +143,12 @@ public class WaterfallQuest extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		highlightRope = new ItemRequirement("Rope", ItemID.ROPE);
+		highlightRope = new ItemRequirement("Rope", ItemID.ROPE).isNotConsumed();
 		highlightRope.setHighlightInInventory(true);
-		rope = new ItemRequirement("Rope", ItemID.ROPE);
+		rope = new ItemRequirement("Rope", ItemID.ROPE).isNotConsumed();
 
 		book = new ItemRequirement("Book on baxtorian", ItemID.BOOK_ON_BAXTORIAN);
 		book.setHighlightInInventory(true);
@@ -169,8 +170,8 @@ public class WaterfallQuest extends BasicQuestHelper
 		waterRunes = new ItemRequirement("Water runes", ItemID.WATER_RUNE, 6);
 		waterRune = new ItemRequirement("Water rune", ItemID.WATER_RUNE);
 
-		gamesNecklace = new ItemRequirement("Games necklace", ItemCollections.getGamesNecklaces());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		gamesNecklace = new ItemRequirement("Games necklace", ItemCollections.GAMES_NECKLACES);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 	}
 
 	public void loadZones()

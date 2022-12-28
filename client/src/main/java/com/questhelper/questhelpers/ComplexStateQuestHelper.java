@@ -25,35 +25,37 @@
 package com.questhelper.questhelpers;
 
 import com.questhelper.QuestHelperConfig;
+import java.util.ArrayList;
 import java.util.Collections;
-
 import com.questhelper.steps.QuestStep;
-import meteor.Main;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public abstract class ComplexStateQuestHelper extends QuestHelper
 {
-	public QuestStep step;
+	protected QuestStep step;
 	protected int var;
+
+	@Override
+	public void init()
+	{
+		if (step == null)
+		{
+			step = loadStep();
+		}
+	}
 
 	@Override
 	public void startUp(QuestHelperConfig config)
 	{
+		step = loadStep();
 		this.config = config;
-		if (step == null)
-		{
-			step = loadStep();
-			instantiateSteps(Collections.singletonList(step));
-			var = getVar();
-			startUpStep(step);
-		}
+		instantiateSteps(Collections.singletonList(step));
+		var = getVar();
+		startUpStep(step);
 	}
 
 	@Override
 	public void shutDown()
 	{
-		step = null;
 		shutDownStep();
 	}
 
@@ -63,18 +65,5 @@ public abstract class ComplexStateQuestHelper extends QuestHelper
 		return true;
 	}
 
-
 	public abstract QuestStep loadStep();
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "sfaf";
-	}
 }

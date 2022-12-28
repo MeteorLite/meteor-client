@@ -109,13 +109,12 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
                             modifier = Modifier.fillMaxWidth(0.9f).height(32.dp).background(background  )) {
 
                             if (requirement.requirement is ItemRequirement && requirement.requirement.quantity != -1) {
-                                val meetsRequirement = requirement.met
                                 Text(
                                     "${requirement.requirement.quantity}",
                                     style = TextStyle(color = Color.White, fontSize = 14.sp)
                                 )
                                 Spacer(modifier = Modifier.width(5.dp))
-                                val color = if (meetsRequirement) Color.Green else Color.Red
+                                val color = getColorForItemReq(requirement.requirement)
                                 Text(
                                     requirement.requirement.displayText,
                                     style = TextStyle(color = color, fontSize = 14.sp)
@@ -132,6 +131,14 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
                     }
                 })
             }
+        }
+    }
+
+    fun getColorForItemReq(ir: ItemRequirement) : Color {
+        return when (ir.getColorConsideringBank(Main.client, false, questHelper.questBank.bankItems, questHelper.config)) {
+            java.awt.Color.WHITE -> Color.Yellow
+            java.awt.Color.GREEN -> Color.Green
+            else -> Color.Red
         }
     }
 

@@ -71,7 +71,7 @@ public class TheFeud extends BasicQuestHelper
 
 	//Items Requirements
 	ItemRequirement coins, unspecifiedCoins, gloves, headPiece, fakeBeard, desertDisguise,
-			shantayPass, beer, oakBlackjack, glovesEquipped, disguiseEquipped, doorKeys,
+			shantayPass, beer, oakBlackjack, disguiseEquipped, doorKeys,
 			highlightedCoins, snakeCharmHighlighted, snakeBasket, snakeBasketFull,
 			redHotSauce, bucket, dung, poisonHighlighted, oakBlackjackEquipped;
 
@@ -106,7 +106,7 @@ public class TheFeud extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		setupVarBits();
@@ -238,26 +238,28 @@ public class TheFeud extends BasicQuestHelper
 		mayorSpawned = new VarbitRequirement(343, 2);
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins(), 800);
-		unspecifiedCoins = new ItemRequirement("Coins", ItemCollections.getCoins(), -1);
-		highlightedCoins = new ItemRequirement("Coins", ItemCollections.getCoins());
+		coins = new ItemRequirement("Coins", ItemCollections.COINS, 800);
+		unspecifiedCoins = new ItemRequirement("Coins", ItemCollections.COINS, -1);
+		highlightedCoins = new ItemRequirement("Coins", ItemCollections.COINS);
 		highlightedCoins.setHighlightInInventory(true);
-		gloves = new ItemRequirement("Gloves", ItemID.LEATHER_GLOVES);
-		glovesEquipped = new ItemRequirement("Gloves", ItemID.LEATHER_GLOVES, 1, true);
-		headPiece = new ItemRequirement("Kharidian Headpiece", ItemID.KHARIDIAN_HEADPIECE);
+		gloves = new ItemRequirement("Leather or Graceful Gloves", ItemID.LEATHER_GLOVES).isNotConsumed();
+		gloves.addAlternates(ItemCollections.GRACEFUL_GLOVES);
+
+		headPiece = new ItemRequirement("Kharidian Headpiece", ItemID.KHARIDIAN_HEADPIECE).isNotConsumed();
 		headPiece.setHighlightInInventory(true);
-		fakeBeard = new ItemRequirement("Fake Beard", ItemID.FAKE_BEARD);
+		fakeBeard = new ItemRequirement("Fake Beard", ItemID.FAKE_BEARD).isNotConsumed();
 		fakeBeard.setHighlightInInventory(true);
-		desertDisguise = new ItemRequirement("Desert Disguise", ItemID.DESERT_DISGUISE);
-		disguiseEquipped = new ItemRequirement("Desert Disguise", ItemID.DESERT_DISGUISE, 1, true);
+		desertDisguise = new ItemRequirement("Desert Disguise", ItemID.DESERT_DISGUISE).isNotConsumed();
+		disguiseEquipped = new ItemRequirement("Desert Disguise", ItemID.DESERT_DISGUISE, 1, true).isNotConsumed();
 		shantayPass = new ItemRequirement("Shantay Pass", ItemID.SHANTAY_PASS);
 		beer = new ItemRequirement("Beer", ItemID.BEER, 3);
 		beer.setHighlightInInventory(true);
-		oakBlackjack = new ItemRequirement("Oak Blackjack", ItemID.OAK_BLACKJACK);
+		oakBlackjack = new ItemRequirement("Oak Blackjack", ItemID.OAK_BLACKJACK).isNotConsumed();
 		oakBlackjack.setHighlightInInventory(true);
-		oakBlackjackEquipped = new ItemRequirement("Oak Blackjack", ItemID.OAK_BLACKJACK, 1, true);
+		oakBlackjackEquipped = oakBlackjack.equipped();
 		doorKeys = new ItemRequirement("Keys", ItemID.KEYS);
 		doorKeys.setHighlightInInventory(true);
 		snakeCharmHighlighted = new ItemRequirement("Snake Charm", ItemID.SNAKE_CHARM);
@@ -314,6 +316,7 @@ public class TheFeud extends BasicQuestHelper
 		startQuest.addDialogStep("If you are, then why are you still selling goods from a stall?");
 		startQuest.addDialogStep("I'd like to help you but.....");
 		startQuest.addDialogStep("I'll find you your help.");
+		startQuest.addDialogStep("Yes.");
 
 		buyDisguiseGear = new NpcStep(this, NpcID.ALI_MORRISANE, new WorldPoint(3304, 3211, 0), "Buy a Kharidian Headpiece and a Fake Beard to create a disguise.", unspecifiedCoins);
 		buyDisguiseGear.addDialogStep("Okay.");
@@ -382,7 +385,7 @@ public class TheFeud extends BasicQuestHelper
 
 		//Step 13
 		//Hide Behind Cactus - Second Job
-		hideBehindCactus = new ObjectStep(this, ObjectID.CACTUS_6277, new WorldPoint(3364, 2968, 0), "Hide behind the cactus", glovesEquipped, disguiseEquipped);
+		hideBehindCactus = new ObjectStep(this, ObjectID.CACTUS_6277, new WorldPoint(3364, 2968, 0), "Hide behind the cactus", gloves.equipped(), disguiseEquipped);
 
 		//Step 14
 		//Open the Door
@@ -435,11 +438,11 @@ public class TheFeud extends BasicQuestHelper
 		getDung = new ObjectStep(this, ObjectID.TROUGH_6256, new WorldPoint(3343, 2960, 0), "Use the Red Hot Sauce on the Trough and wait for a Camel to poop out the dung.\n Only pickup brown/Ugthanki dung, if you plan to do \"My Arm's Big Adventure\" or \"Forgettable Tale of a Drunken Dwarf\" then you may want to grab four more Ugthanki dung.", redHotSauce);
 		getDung.addIcon(ItemID.RED_HOT_SAUCE);
 
-		givenDungToHag = new NpcStep(this, NpcID.ALI_THE_HAG, new WorldPoint(3345, 2986, 0), "Talk to Ali the Hag and give her your dung.", dung);
+		givenDungToHag = new NpcStep(this, NpcID.ALI_THE_HAG, new WorldPoint(3345, 2986, 0), "Talk to Ali the Hag and give her the dung.", dung);
 
 		//Step 22
 		//Poison The Drink
-		poisonTheDrink = new ObjectStep(this, ObjectID.TABLE_6246, new WorldPoint(3356, 2957, 0), "Use the poison on the beer glass to kill Traiterous Ali.", poisonHighlighted);
+		poisonTheDrink = new ObjectStep(this, ObjectID.TABLE_6246, new WorldPoint(3356, 2957, 0), "Use the poison on the beer glass to kill Traitorous Ali.", poisonHighlighted);
 		poisonTheDrink.addIcon(ItemID.HAGS_POISON);
 
 		//Step 23

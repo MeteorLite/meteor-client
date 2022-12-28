@@ -24,6 +24,10 @@
  */
 package com.questhelper.questhelpers;
 
+import com.google.inject.Binder;
+import com.google.inject.CreationException;
+import com.google.inject.Injector;
+import com.google.inject.Module;
 import com.questhelper.ExternalQuestResources;
 import com.questhelper.QuestBank;
 import com.questhelper.QuestHelperConfig;
@@ -32,10 +36,12 @@ import com.questhelper.QuestHelperQuest;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.requirements.Requirement;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import javax.inject.Inject;
 
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
@@ -46,30 +52,44 @@ import lombok.Setter;
 import meteor.Main;
 import meteor.config.ConfigManager;
 import meteor.plugins.EventSubscriber;
+import meteor.plugins.PluginManager;
 import net.runelite.api.Client;
 import net.runelite.api.QuestState;
 import com.questhelper.steps.OwnerStep;
 import com.questhelper.steps.QuestStep;
 
-public abstract class QuestHelper extends EventSubscriber
+public abstract class QuestHelper extends EventSubscriber implements Module, QuestDebugRenderer
 {
-	protected Client client = Main.INSTANCE.getClient();
-
+	protected Client client = Main.client;
 	@Getter
 	protected ConfigManager configManager = ConfigManager.INSTANCE;
 
-	protected QuestBank questBank;
-
-	@Getter
-	@Setter
-	protected QuestHelperConfig config;
+	public QuestBank questBank = QuestBank.INSTANCE;
 
 	@Getter
 	private QuestStep currentStep;
 
-	@Getter
 	@Setter
 	public QuestHelperQuest quest;
+
+	public QuestHelperQuest getQuest() {
+		return quest;
+	}
+
+	@Setter
+	@Getter
+	protected QuestHelperPlugin questHelperPlugin = (QuestHelperPlugin) PluginManager.INSTANCE.get(QuestHelperPlugin.class);
+
+	@Getter
+	@Setter
+	public QuestHelperConfig config = questHelperPlugin.getConfig();
+
+	@Override
+	public void configure(Binder binder)
+	{
+	}
+
+	public abstract void init();
 
 	public abstract void startUp(QuestHelperConfig config);
 
@@ -79,16 +99,14 @@ public abstract class QuestHelper extends EventSubscriber
 
 	public void debugStartup(QuestHelperConfig config) {}
 
-	public void startUpStep(QuestStep step)
+	protected void startUpStep(QuestStep step)
 	{
-		if (currentStep != step) {
-			shutDownStep();
-		}
 		if (step != null)
 		{
 			currentStep = step;
 			currentStep.startUp();
 			currentStep.subscribe();
+			currentStep.setEventListening(true);
 		}
 		else
 		{
@@ -110,10 +128,26 @@ public abstract class QuestHelper extends EventSubscriber
 	{
 		for (QuestStep step : steps)
 		{
+			instantiateStep(step);
 			if (step instanceof OwnerStep)
 			{
 				instantiateSteps(((OwnerStep) step).getSteps());
 			}
+		}
+	}
+
+	public void instantiateStep(QuestStep questStep)
+	{
+		try
+		{
+			if (questStep != null)
+			{
+				//injector.injectMembers(questStep);
+			}
+		}
+		catch (CreationException ex)
+		{
+			ex.printStackTrace();
 		}
 	}
 
@@ -142,6 +176,8 @@ public abstract class QuestHelper extends EventSubscriber
 	{
 		return quest.getVar(client);
 	}
+
+	public abstract void setupRequirements();
 
 	public List<ItemRequirement> getItemRequirements()
 	{

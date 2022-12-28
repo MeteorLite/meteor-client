@@ -40,6 +40,7 @@ import java.util.Collection;
 import java.util.List;
 
 import eventbus.events.GameTick;
+import meteor.plugins.fishing.FishingSpot;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
@@ -132,7 +133,7 @@ public class SlugSteps extends DetailedOwnerStep
 		addSluglings.addIcon(ItemID.SLUGLINGS);
 		goDownFromTop = new ObjectStep(getQuestHelper(), ObjectID.LADDER_10168, new WorldPoint(2163, 5092, 2), "Go down the ladder and fish for sea creatures.");
 
-		fish5Slugs = new NpcStep(getQuestHelper(), NpcID.FISHING_SPOT, "Fish 5 sluglings or karamthulu from around the coast of the island.", netBowl);
+		fish5Slugs = new NpcStep(getQuestHelper(), FishingSpot.QUEST_RUM_DEAL.getIds(), "Fish 5 sluglings or karamthulu from around the coast of the island.", netBowl);
 		goDownToSluglings = new ObjectStep(getQuestHelper(), ObjectID.WOODEN_STAIR_10137, new WorldPoint(2150, 5088, 1), "Go fish 5 sluglings.", netBowl);
 		goUpFromSluglings = new ObjectStep(getQuestHelper(), ObjectID.WOODEN_STAIR, new WorldPoint(2150, 5088, 0),
 			"Add the sea creatures to the pressure barrel on the top floor.", sluglings);

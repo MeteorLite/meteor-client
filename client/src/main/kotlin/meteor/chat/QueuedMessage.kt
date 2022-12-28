@@ -30,13 +30,23 @@ import net.runelite.api.ChatMessageType
 class QueuedMessage {
     var type: ChatMessageType? = null
     val value: String? = null
-    val name: String? = null
+    var name: String? = null
     val sender: String? = null
     var runeLiteFormattedMessage: String? = null
-    val timestamp = 0
+    var timestamp = 0
 
     fun type(t: ChatMessageType) : QueuedMessage {
         type = t
+        return this
+    }
+
+    fun name(s: String) : QueuedMessage {
+        name = s
+        return this
+    }
+
+    fun timestamp(i: Int) : QueuedMessage {
+        timestamp = i
         return this
     }
 

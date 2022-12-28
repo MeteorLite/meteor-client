@@ -32,7 +32,7 @@ enum class FishingSpot(
     val type: String,
     val worldMapTooltip: String,
     val fishSpriteId: Int,
-    private vararg val ids: Int
+    vararg val ids: Int
 ) {
     SHRIMP(
         "Shrimp, Anchovies", "Anchovies", ItemID.RAW_SHRIMPS,
