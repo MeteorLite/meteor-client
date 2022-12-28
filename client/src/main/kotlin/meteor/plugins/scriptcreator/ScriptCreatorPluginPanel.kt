@@ -178,6 +178,9 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                             md.value = false
                     },
                 ) {
+                    DropdownMenuItem({ setSelectedCategory("Event Info")}){
+                        Text("Event Info")
+                    }
                     DropdownMenuItem({ setSelectedCategory("Use On") }) {
                         Text("Use On")
                     }
@@ -248,7 +251,9 @@ class ScriptCreatorPluginPanel : PluginPanel() {
         objectInfo.value = false
         interactInfo.value = false
         useOnInfo.value = false
+        eventInfo.value = false
         when (selectedCategory) {
+            "Event Info" -> eventInfo.value = true
             "Use On" -> useOnInfo.value = true
             "Interact" -> interactInfo.value = true
             "Bank" -> bankInfo.value = true
@@ -259,6 +264,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
             "Npc" -> npcInfo.value = true
             "Object" -> objectInfo.value = true
             "Exit Info" -> {
+                eventInfo.value = false
                 useOnInfo.value = false
                 bankInfo.value = false
                 gearInfo.value = false
@@ -318,6 +324,11 @@ class ScriptCreatorPluginPanel : PluginPanel() {
 
                 item {
                     when {
+                        eventInfo.value -> RichText(
+                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
+                        ) {
+                            Markdown(eventInfoMD, MarkdownParseOptions(true))
+                        }
                         useOnInfo.value -> RichText(
                             modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
                         ) {

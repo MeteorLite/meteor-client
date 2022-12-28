@@ -14,6 +14,7 @@ import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
 import javax.script.ScriptEngine
+
 import javax.script.ScriptEngineManager
 
 
@@ -23,6 +24,13 @@ class ScriptCreatorPlugin : ScriptSubscriber() {
     var panel: PluginPanel? = null
     val engine: ScriptEngine = ScriptEngineManager().getEngineByExtension("kts")
     var config = configuration<ScriptCreatorConfig>()
+
+    var imports = """ 
+   
+        
+        
+  
+    """.trimIndent()
 
     private var consoleButton = ToolbarButton(
         "Console",
@@ -60,6 +68,8 @@ class ScriptCreatorPlugin : ScriptSubscriber() {
         stop()
         unsubscribeScript()
     }
+
+
 
     fun startScript() {
         start()
