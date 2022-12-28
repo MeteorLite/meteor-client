@@ -37,7 +37,7 @@ import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.conditional.NpcCondition;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
@@ -89,7 +89,7 @@ public class BigChompyBirdHunting extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -158,13 +158,14 @@ public class BigChompyBirdHunting extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		axe = new ItemRequirement("Any axe", ItemCollections.getAxes());
+		axe = new ItemRequirement("Any axe", ItemCollections.AXES).isNotConsumed();
 		feathers = new ItemRequirement("Feathers", ItemID.FEATHER, 100);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE);
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
-		chisel = new ItemRequirement("Chisel", ItemID.CHISEL);
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).isNotConsumed();
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
+		chisel = new ItemRequirement("Chisel", ItemID.CHISEL).isNotConsumed();
 		chisel.setHighlightInInventory(true);
 		wolfBones4 = new ItemRequirement("Wolf bones", ItemID.WOLF_BONES, 4);
 		wolfBones4.setTooltip("You can kill wolves (level 64) around Feldip for bones");
@@ -192,8 +193,8 @@ public class BigChompyBirdHunting extends BasicQuestHelper
 		ogreArrows6Highlighted.setHighlightInInventory(true);
 
 		ogreArrows = new ItemRequirement("Ogre arrow", ItemID.OGRE_ARROW, 1, true);
-		ogreBow = new ItemRequirement("Ogre bow", ItemID.OGRE_BOW, 1, true);
-		ogreBowInventory = new ItemRequirement("Ogre bow", ItemID.OGRE_BOW);
+		ogreBow = new ItemRequirement("Ogre bow", ItemID.OGRE_BOW, 1, true).isNotConsumed();
+		ogreBowInventory = new ItemRequirement("Ogre bow", ItemID.OGRE_BOW).isNotConsumed();
 
 		emptyBellow = new ItemRequirement("Ogre bellows (empty)", ItemID.OGRE_BELLOWS);
 		emptyBellow.setTooltip("You can get more from the chest in Rantz's cave");
@@ -284,8 +285,7 @@ public class BigChompyBirdHunting extends BasicQuestHelper
 
 		killChompy = new NpcStep(this, NpcID.CHOMPY_BIRD, new WorldPoint(2635, 2966, 0), "Kill the chompy. You can only hurt it with an ogre bow + ogre arrows.", ogreBow, ogreArrows);
 		pluckCarcass = new NpcStep(this, NpcID.CHOMPY_BIRD_1476, new WorldPoint(2635, 2966, 0), "Pluck the chompy.");
-		talkToRantzWithChompy = new NpcStep(this, NpcID.RANTZ, new WorldPoint(2631, 2982, 0), "Pick up the chompy and use it on Rantz in the east of Feldip Hills.", chompyHighlighted);
-		talkToRantzWithChompy.addIcon(ItemID.RAW_CHOMPY);
+		talkToRantzWithChompy = new NpcStep(this, NpcID.RANTZ, new WorldPoint(2631, 2982, 0), "Talk to Rantz in the east of Feldip Hills.", chompy);
 
 		enterCaveAgain = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_3379, new WorldPoint(2630, 2999, 0), "Enter Rantz's cave.");
 		talkToFycie = new NpcStep(this, NpcID.FYCIE, new WorldPoint(2649, 9391, 0), "Talk to Fycie.");

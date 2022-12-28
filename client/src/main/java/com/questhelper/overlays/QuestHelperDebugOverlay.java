@@ -32,19 +32,18 @@ import com.questhelper.questhelpers.QuestHelper;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import javax.inject.Inject;
 
-import meteor.Main;
 import meteor.ui.overlay.OverlayLayer;
 import meteor.ui.overlay.OverlayPanel;
 import meteor.ui.overlay.PanelComponent;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class QuestHelperDebugOverlay extends OverlayPanel implements QuestDebugRenderer
 {
 	private final QuestHelperPlugin plugin;
 	private QuestHelper quest;
 
+	@Inject
 	public QuestHelperDebugOverlay(QuestHelperPlugin plugin)
 	{
 		this.plugin = plugin;
@@ -77,17 +76,5 @@ public class QuestHelperDebugOverlay extends OverlayPanel implements QuestDebugR
 		{
 			quest.renderDebugOverlay(graphics, plugin, panelComponent);
 		}*/
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "qhdebug";
 	}
 }

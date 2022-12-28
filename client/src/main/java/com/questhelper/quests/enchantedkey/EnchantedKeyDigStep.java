@@ -24,6 +24,7 @@
  */
 package com.questhelper.quests.enchantedkey;
 
+import com.google.inject.Inject;
 import com.questhelper.QuestHelperPlugin;
 import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.requirements.Requirement;
@@ -41,6 +42,7 @@ import javax.annotation.Nullable;
 
 import eventbus.events.ChatMessage;
 import eventbus.events.VarbitChanged;
+import lombok.NonNull;
 import meteor.game.ItemManager;
 import meteor.ui.components.LineComponent;
 import meteor.ui.overlay.PanelComponent;
@@ -66,9 +68,9 @@ public class EnchantedKeyDigStep extends DetailedQuestStep
 	}
 
 	@Override
-	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, List<String> additionalText, Requirement... additionalRequirements)
+	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, @NonNull List<String> additionalText, @NonNull List<Requirement> additionalRequirements)
 	{
-		super.makeOverlayHint(panelComponent, plugin, additionalText);
+		super.makeOverlayHint(panelComponent, plugin, additionalText, additionalRequirements);
 		if (enchantedKeySolver == null)
 		{
 			return;

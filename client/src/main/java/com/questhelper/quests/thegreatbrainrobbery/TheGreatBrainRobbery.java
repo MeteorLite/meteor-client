@@ -60,7 +60,6 @@ import java.util.List;
 import java.util.Map;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.ItemID;
 import net.runelite.api.NpcID;
 import net.runelite.api.NullObjectID;
@@ -68,8 +67,6 @@ import net.runelite.api.ObjectID;
 import net.runelite.api.QuestState;
 import net.runelite.api.Skill;
 import net.runelite.api.coords.WorldPoint;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 @QuestDescriptor(
 	quest = QuestHelperQuest.THE_GREAT_BRAIN_ROBBERY
@@ -117,7 +114,7 @@ public class TheGreatBrainRobbery extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -215,41 +212,44 @@ public class TheGreatBrainRobbery extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		// Item reqs
-		fishbowlHelmet = new ItemRequirement("Fishbowl helmet", ItemID.FISHBOWL_HELMET);
+		fishbowlHelmet = new ItemRequirement("Fishbowl helmet", ItemID.FISHBOWL_HELMET).isNotConsumed();
 		fishbowlHelmet.setTooltip("You can get another from Murphy in Port Khazard");
-		divingApparatus = new ItemRequirement("Diving apparatus", ItemID.DIVING_APPARATUS);
+		divingApparatus = new ItemRequirement("Diving apparatus", ItemID.DIVING_APPARATUS).isNotConsumed();
 		divingApparatus.setTooltip("You can get another from Murphy in Port Khazard");
 		woodenCats = new ItemRequirement("Wooden cat", ItemID.WOODEN_CAT);
 		oakPlank = new ItemRequirement("Oak plank", ItemID.OAK_PLANK);
-		saw = new ItemRequirement("Saw", ItemCollections.getSaw());
+		saw = new ItemRequirement("Saw", ItemCollections.SAW).isNotConsumed();
 		plank = new ItemRequirement("Plank", ItemID.PLANK);
 		fur = new ItemRequirement("Fur", ItemID.FUR);
 		fur.addAlternates(ItemID.BEAR_FUR, ItemID.GREY_WOLF_FUR);
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
-		nails = new ItemRequirement("Nails", ItemCollections.getNails());
-		holySymbol = new ItemRequirement("Holy symbol", ItemID.HOLY_SYMBOL);
-		ringOfCharos = new ItemRequirement("Ring of Charos", ItemID.RING_OF_CHAROS);
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
+		hammer.setTooltip("a standard hammer, NOT Imcando Hammer, as it will be given to Dr. Fenkenstrain");
+		nails = new ItemRequirement("Nails", ItemCollections.NAILS);
+		holySymbol = new ItemRequirement("Holy symbol", ItemID.HOLY_SYMBOL).isNotConsumed();
+		ringOfCharos = new ItemRequirement("Ring of Charos", ItemID.RING_OF_CHAROS).isNotConsumed();
 		ringOfCharos.addAlternates(ItemID.RING_OF_CHAROSA);
 		ringOfCharos.setDisplayMatchedItemName(true);
 		catsOrResources = new ItemRequirements(LogicType.OR, "10 Wooden cats, or 10 planks and 10 furs to make them",
 			woodenCats.quantity(10), new ItemRequirements(plank.quantity(10), fur.quantity(10)));
-		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX);
+		tinderbox = new ItemRequirement("Tinderbox", ItemID.TINDERBOX).isNotConsumed();
 		tinderbox.addAlternates(ItemID.TINDERBOX_7156);
 
 		// Item recommended
-		ectophial = new ItemRequirement("Ectophial", ItemID.ECTOPHIAL);
-		edgevilleTeleport = new ItemRequirement("Monastery teleport", ItemCollections.getCombatBracelets());
-		edgevilleTeleport.addAlternates(ItemCollections.getAmuletOfGlories());
+		ectophial = new ItemRequirement("Ectophial", ItemID.ECTOPHIAL).isNotConsumed();
+		edgevilleTeleport = new ItemRequirement("Monastery teleport", ItemCollections.COMBAT_BRACELETS);
+		edgevilleTeleport.addAlternates(ItemCollections.AMULET_OF_GLORIES);
+
 		fenkenstrainTeleport = new ItemRequirement("Fenkenstrain's Castle teleport", ItemID.FENKENSTRAINS_CASTLE_TELEPORT);
 		watermelonSeeds = new ItemRequirement("Watermelon seeds to plant on Harmony for Hard Morytania Diary",
 			ItemID.WATERMELON_SEED);
 		combatGearForSafespotting = new ItemRequirement("Combat gear for safespotting", -1, -1);
 		combatGearForSafespotting.setDisplayItemId(BankSlotIcons.getMagicCombatGear());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood());
-		prayerPotions = new ItemRequirement("Prayer potion", ItemCollections.getPrayerPotions());
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD);
+		prayerPotions = new ItemRequirement("Prayer potion", ItemCollections.PRAYER_POTIONS);
 
 		// Quest items
 		prayerBook = new ItemRequirement("Prayer book", ItemID.PRAYER_BOOK);
@@ -471,7 +471,7 @@ public class TheGreatBrainRobbery extends BasicQuestHelper
 		putOrderOnCrate.addSubSteps(goF1WithOrder, goF2WithOrder);
 
 		goToHarmonyAfterFenk = new NpcStep(this, NpcID.BROTHER_TRANQUILITY, new WorldPoint(3681, 2963, 0),
-			"Return Harmony, and talk to Fenkenstrain in the windmill's basement.");
+			"Return to Harmony and talk to Fenkenstrain in the windmill's basement.");
 		goDownToFenk = new ObjectStep(this, ObjectID.LADDER_22173, new WorldPoint(3789, 2826, 0),
 			"Talk to Dr. Fenkenstrain in the Harmony Windmill basement.");
 		talkToFenkOnHarmony = new NpcStep(this, NpcID.DR_FENKENSTRAIN, new WorldPoint(3785, 9225, 0),
@@ -627,17 +627,5 @@ public class TheGreatBrainRobbery extends BasicQuestHelper
 			fishbowlHelmet, divingApparatus, combatGearForSafespotting));
 
 		return allSteps;
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "brainrobbery";
 	}
 }

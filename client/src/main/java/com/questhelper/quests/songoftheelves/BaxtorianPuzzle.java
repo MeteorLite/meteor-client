@@ -24,6 +24,7 @@
  */
 package com.questhelper.quests.songoftheelves;
 
+import com.google.inject.Inject;
 import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.requirements.item.ItemRequirements;
@@ -52,7 +53,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class BaxtorianPuzzle extends DetailedOwnerStep
 {
-	protected Client client = Main.INSTANCE.getClient();
+	protected Client client = Main.client;
 
 	private HashMap<String, ItemRequirement> items;
 	private ArrayList<BaxtorianPillar> pillars;

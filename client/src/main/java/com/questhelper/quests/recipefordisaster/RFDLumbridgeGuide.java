@@ -99,6 +99,7 @@ public class RFDLumbridgeGuide extends BasicQuestHelper
 		return steps;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		milk = new ItemRequirement("Bucket of milk", ItemID.BUCKET_OF_MILK);
@@ -123,7 +124,7 @@ public class RFDLumbridgeGuide extends BasicQuestHelper
 		guidanceCakeHighlighted.setHighlightInInventory(true);
 
 		lumbridgeTeleport = new ItemRequirement("Lumbridge Teleport", ItemID.LUMBRIDGE_TELEPORT);
-		wizardsTowerTeleport = new ItemRequirement("Necklace of Passage for Wizards' Tower teleport", ItemCollections.getNecklaceOfPassages());
+		wizardsTowerTeleport = new ItemRequirement("Necklace of Passage for Wizards' Tower teleport", ItemCollections.NECKLACE_OF_PASSAGES);
 	}
 
 	public void loadZones()

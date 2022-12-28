@@ -80,7 +80,7 @@ public class WitchsHouse extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -99,6 +99,8 @@ public class WitchsHouse extends BasicQuestHelper
 
 		steps.put(1, getTheMagnet);
 		steps.put(2, getTheMagnet);
+		// TODO: Verify this is correct (I believe reading the diary adds 2 to var values)
+		steps.put(4, getTheMagnet);
 
 		ConditionalStep killExperiment = new ConditionalStep(this, getKey);
 		killExperiment.addStep(new Conditions(inShed, experimentNearby), killWitchsExperiment);
@@ -116,6 +118,7 @@ public class WitchsHouse extends BasicQuestHelper
 		killExperiment.addStep(houseKey.alsoCheckBank(questBank), enterHouse);
 
 		steps.put(3, killExperiment);
+		steps.put(5, killExperiment);
 
 		ConditionalStep returnBall = new ConditionalStep(this, getKey);
 		returnBall.addStep(ball.alsoCheckBank(questBank), returnToBoy);
@@ -129,17 +132,18 @@ public class WitchsHouse extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		cheese = new ItemRequirement("Cheese (multiple if you mess up)", ItemID.CHEESE);
-		leatherGloves = new ItemRequirement("Leather gloves", ItemID.LEATHER_GLOVES, 1, true);
-		leatherGloves.setTooltip("Obtainable during quest");
+		leatherGloves = new ItemRequirement("Leather gloves", ItemID.LEATHER_GLOVES, 1, true).isNotConsumed();
+		leatherGloves.canBeObtainedDuringQuest();
 		houseKey = new ItemRequirement("Door key", ItemID.DOOR_KEY);
 		magnet = new ItemRequirement("Magnet", ItemID.MAGNET);
 		shedKey = new ItemRequirement("Key", ItemID.KEY_2411);
 		shedKey.setHighlightInInventory(true);
 		ball = new ItemRequirement("Ball", ItemID.BALL);
-		armourAndWeapon = new ItemRequirement("Combat gear and food for monsters up to level 53", -1, -1);
+		armourAndWeapon = new ItemRequirement("Combat gear and food for monsters up to level 53", -1, -1).isNotConsumed();
 		armourAndWeapon.setDisplayItemId(BankSlotIcons.getCombatGear());
 	}
 

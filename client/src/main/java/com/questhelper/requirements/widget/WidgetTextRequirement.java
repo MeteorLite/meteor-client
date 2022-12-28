@@ -24,8 +24,9 @@
  *  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-package com.questhelper.requirements;
+package com.questhelper.requirements.widget;
 
+import com.questhelper.requirements.SimpleRequirement;
 import java.util.Arrays;
 import java.util.List;
 import lombok.Getter;
@@ -118,13 +119,13 @@ public class WidgetTextRequirement extends SimpleRequirement
 				{
 					if (checkChildren)
 					{
-						if (getChildren(widget, textOption))
+						if (getChildren(widget, textOption) && !widget.isHidden())
 						{
 							return true;
 						}
 					}
 
-					if (widget.getText().contains(textOption))
+					if (widget.getText().contains(textOption) && !widget.isHidden())
 					{
 						return true;
 					}

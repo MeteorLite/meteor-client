@@ -24,7 +24,9 @@
  */
 package com.questhelper.achievementdiaries.wilderness;
 
-import com.questhelper.*;
+import com.questhelper.ItemCollections;
+import com.questhelper.QuestHelperQuest;
+import com.questhelper.Zone;
 import com.questhelper.banktab.BankSlotIcons;
 import com.questhelper.questhelpers.ComplexStateQuestHelper;
 import com.questhelper.requirements.ComplexRequirement;
@@ -52,6 +54,7 @@ import net.runelite.api.QuestState;
 import net.runelite.api.Skill;
 import net.runelite.api.coords.WorldPoint;
 import com.questhelper.requirements.item.ItemRequirement;
+import com.questhelper.QuestDescriptor;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.steps.QuestStep;
 
@@ -76,14 +79,17 @@ public class WildernessMedium extends ComplexStateQuestHelper
 		notWildyGWBloodveld, notEmblemTrader, notGoldHelm, notMuddyChest, notEarthOrb;
 
 	QuestStep claimReward, mineMith, wildyAgi, killAnkou, wildyGWBloodveld, emblemTrader, goldHelm, muddyChest,
-		earthOrb, moveToResource, moveToGodWars, mineGoldOre, smeltGoldOre, moveToEdge, moveToSlayer1, moveToSlayer2,
-		wildyGodwars;
+		earthOrb, moveToResource, moveToGodWars1, moveToGodWars2, mineGoldOre, smeltGoldOre, moveToEdge, moveToSlayer1,
+		moveToSlayer2, wildyGodwars;
 
 	NpcStep entYew, killGreenDrag;
 
 	Zone resource, godWars1, godWars2, slayer, edge;
 
 	ZoneRequirement inResource, inGodWars1, inGodWars2, inSlayer, inEdge;
+
+	ConditionalStep mineMithTask, entYewTask, wildyGodWarsTask, wildyAgiTask, killGreenDragTask, killAnkouTask,
+		wildyGWBloodveldTask, emblemTraderTask, goldHelmTask, muddyChestTask, earthOrbTask;
 
 	@Override
 	public QuestStep loadStep()
@@ -94,30 +100,52 @@ public class WildernessMedium extends ComplexStateQuestHelper
 
 		ConditionalStep doMedium = new ConditionalStep(this, claimReward);
 
-		doMedium.addStep(notEntYew, entYew);
-		doMedium.addStep(new Conditions(notKillAnkou, inSlayer), killAnkou);
-		doMedium.addStep(notKillAnkou, moveToSlayer1);
-		doMedium.addStep(new Conditions(notKillGreenDrag, inSlayer), killGreenDrag);
-		doMedium.addStep(notKillGreenDrag, moveToSlayer2);
-		doMedium.addStep(new Conditions(notWildyGodWars, inGodWars1), wildyGodwars);
-		doMedium.addStep(notWildyGodWars, moveToGodWars);
-		doMedium.addStep(new Conditions(notWildyGWBloodveld, inGodWars2), wildyGWBloodveld);
-		doMedium.addStep(new Conditions(notWildyGWBloodveld, inGodWars1), wildyGodwars);
-		doMedium.addStep(notWildyGWBloodveld, moveToGodWars);
-		doMedium.addStep(notEmblemTrader, emblemTrader);
-		doMedium.addStep(new Conditions(notEarthOrb, inEdge), earthOrb);
-		doMedium.addStep(notEarthOrb, moveToEdge);
-		doMedium.addStep(notMineMith, mineMith);
-		doMedium.addStep(notWildyAgi, wildyAgi);
-		doMedium.addStep(new Conditions(notGoldHelm, inResource, goldBar.quantity(3).alsoCheckBank(questBank)), goldHelm);
-		doMedium.addStep(new Conditions(notGoldHelm, inResource, goldOre.quantity(3)), smeltGoldOre);
-		doMedium.addStep(new Conditions(notGoldHelm, inResource), mineGoldOre);
-		doMedium.addStep(notGoldHelm, moveToResource);
-		doMedium.addStep(notMuddyChest, muddyChest);
+		entYewTask = new ConditionalStep(this, entYew);
+		doMedium.addStep(notEntYew, entYewTask);
+
+		killAnkouTask = new ConditionalStep(this, moveToSlayer1);
+		killAnkouTask.addStep(inSlayer, killAnkou);
+		doMedium.addStep(notKillAnkou, killAnkouTask);
+
+		killGreenDragTask = new ConditionalStep(this, moveToSlayer2);
+		killGreenDragTask.addStep(inSlayer, killGreenDrag);
+		doMedium.addStep(notKillGreenDrag, killGreenDragTask);
+
+		wildyGodWarsTask = new ConditionalStep(this, moveToGodWars1);
+		wildyGodWarsTask.addStep(inGodWars1, wildyGodwars);
+		doMedium.addStep(notWildyGodWars, wildyGodWarsTask);
+
+		wildyGWBloodveldTask = new ConditionalStep(this, moveToGodWars2);
+		wildyGWBloodveldTask.addStep(inGodWars1, wildyGodwars);
+		wildyGWBloodveldTask.addStep(inGodWars2, wildyGWBloodveld);
+		doMedium.addStep(notWildyGWBloodveld, wildyGWBloodveldTask);
+
+		emblemTraderTask = new ConditionalStep(this, emblemTrader);
+		doMedium.addStep(notEmblemTrader, emblemTraderTask);
+
+		earthOrbTask = new ConditionalStep(this, moveToEdge);
+		earthOrbTask.addStep(inEdge, earthOrb);
+		doMedium.addStep(notEarthOrb, earthOrbTask);
+
+		mineMithTask = new ConditionalStep(this, mineMith);
+		doMedium.addStep(notMineMith, mineMithTask);
+
+		wildyAgiTask = new ConditionalStep(this, wildyAgi);
+		doMedium.addStep(notWildyAgi, wildyAgiTask);
+
+		goldHelmTask = new ConditionalStep(this, moveToResource);
+		goldHelmTask.addStep(inResource, mineGoldOre);
+		goldHelmTask.addStep(new Conditions(inResource, goldOre.quantity(3)), smeltGoldOre);
+		goldHelmTask.addStep(new Conditions(inResource, goldBar.quantity(3).alsoCheckBank(questBank)), goldHelm);
+		doMedium.addStep(notGoldHelm, goldHelmTask);
+
+		muddyChestTask = new ConditionalStep(this, muddyChest);
+		doMedium.addStep(notMuddyChest, muddyChestTask);
 
 		return doMedium;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notMineMith = new VarplayerRequirement(1192, false, 13);
@@ -135,30 +163,30 @@ public class WildernessMedium extends ComplexStateQuestHelper
 		combatGear = new ItemRequirement("Combat gear", -1, -1);
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		runeAxe = new ItemRequirement("Rune axe or better", ItemCollections.getRuneAxeBetter())
-			.showConditioned(notEntYew);
-		antiDragonShield = new ItemRequirement("Anti-dragon shield", ItemCollections.getAntifireShields())
-			.showConditioned(notKillGreenDrag);
+		runeAxe = new ItemRequirement("Rune axe or better", ItemCollections.RUNE_AXE_BETTER)
+			.showConditioned(notEntYew).isNotConsumed();
+		antiDragonShield = new ItemRequirement("Anti-dragon shield", ItemCollections.ANTIFIRE_SHIELDS)
+			.showConditioned(notKillGreenDrag).isNotConsumed();
 		godEquip = new ItemRequirement("Various god equipment (1 of each god suggested)", -1, -1)
-			.showConditioned(notWildyGWBloodveld);
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes())
-			.showConditioned(notMineMith);
+			.showConditioned(notWildyGWBloodveld).isNotConsumed();
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES)
+			.showConditioned(notMineMith).isNotConsumed();
 		unpoweredOrb = new ItemRequirement("Unpowered orb", ItemID.UNPOWERED_ORB).showConditioned(notEarthOrb);
 		cosmicRune = new ItemRequirement("Cosmic rune", ItemID.COSMIC_RUNE).showConditioned(notEarthOrb);
 		earthRune = new ItemRequirement("Earth rune", ItemID.EARTH_RUNE).showConditioned(notEarthOrb);
-		knife = new ItemRequirement("Knife or slashing weapon", -1, -1);
+		knife = new ItemRequirement("Knife or slashing weapon", -1, -1).isNotConsumed();
 		muddyKey = new ItemRequirement("Muddy key", ItemID.MUDDY_KEY).showConditioned(notMuddyChest);
 		goldHelmet = new ItemRequirement("Golden helmet not in inventory or bank (make sure this is red)",
-			ItemID.GOLD_HELMET).showConditioned(notGoldHelm);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins()).showConditioned(notGoldHelm);
+			ItemID.GOLD_HELMET).showConditioned(notGoldHelm).isNotConsumed();
+		coins = new ItemRequirement("Coins", ItemCollections.COINS).showConditioned(notGoldHelm);
 		goldBar = new ItemRequirement("Gold bar", ItemID.GOLD_BAR).showConditioned(notGoldHelm);
 		goldOre = new ItemRequirement("Gold ore", ItemID.GOLD_ORE);
-		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notGoldHelm);
+		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notGoldHelm).isNotConsumed();
 		barsOrPick = new ItemRequirements(LogicType.OR, "3 gold bars or a pickaxe", goldBar.quantity(3), pickaxe);
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
-		burningAmulet = new ItemRequirement("Burning amulet", ItemCollections.getBurningAmulets());
-		gamesNeck = new ItemRequirement("Games necklace", ItemCollections.getGamesNecklaces());
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
+		burningAmulet = new ItemRequirement("Burning amulet", ItemCollections.BURNING_AMULETS);
+		gamesNeck = new ItemRequirement("Games necklace", ItemCollections.GAMES_NECKLACES);
 
 		enterGodwars = new ComplexRequirement(LogicType.OR, "60 Agility or Strength",
 			new SkillRequirement(Skill.AGILITY, 60), new SkillRequirement(Skill.STRENGTH, 60));
@@ -199,7 +227,9 @@ public class WildernessMedium extends ComplexStateQuestHelper
 			"Kill a Green dragon in the Wilderness Slayer Cave.", true, combatGear, food, antiDragonShield);
 		killGreenDrag.addAlternateNpcs(NpcID.GREEN_DRAGON_7869, NpcID.GREEN_DRAGON_7870);
 
-		moveToGodWars = new ObjectStep(this, ObjectID.CAVE_26766, new WorldPoint(3017, 3738, 0),
+		moveToGodWars1 = new ObjectStep(this, ObjectID.CAVE_26766, new WorldPoint(3017, 3738, 0),
+			"Enter the Wilderness God Wars Dungeon.", combatGear, food, godEquip);
+		moveToGodWars2 = new ObjectStep(this, ObjectID.CAVE_26766, new WorldPoint(3017, 3738, 0),
 			"Enter the Wilderness God Wars Dungeon.", combatGear, food, godEquip);
 		wildyGodwars = new ObjectStep(this, ObjectID.CREVICE_26767, new WorldPoint(3066, 10142, 3),
 			"Use the crevice to enter the Wilderness God Wars Dungeon. The Strength entrance is to the West.",
@@ -223,10 +253,10 @@ public class WildernessMedium extends ComplexStateQuestHelper
 			"Speak with the Emblem Trader.");
 
 		goldHelm = new ObjectStep(this, ObjectID.ANVIL_2097, new WorldPoint(3190, 3938, 0),
-			"Smith the gold helmet in the Resource Area. If you already have one in your bank you will need to drop " +
-				"it first.", hammer, goldBar.quantity(3));
+			"Smith the gold helmet in the Resource Area. ", hammer, goldBar.quantity(3));
 		moveToResource = new ObjectStep(this, ObjectID.GATE_26760, new WorldPoint(3184, 3944, 0),
-			"Enter the Wilderness Resource Area.", coins.quantity(7500), hammer, barsOrPick);
+			"Enter the Wilderness Resource Area. Check your bank to make sure you DO NOT have a gold helmet.",
+			coins.quantity(7500), hammer, barsOrPick, goldHelmet);
 		smeltGoldOre = new ObjectStep(this, ObjectID.FURNACE_26300, new WorldPoint(3191, 3936, 0),
 			"Smelt the gold ore into gold bars.", hammer, goldOre.quantity(3));
 		mineGoldOre = new ObjectStep(this, ObjectID.ROCKS_11370, new WorldPoint(3184, 3941, 0),
@@ -307,57 +337,68 @@ public class WildernessMedium extends ComplexStateQuestHelper
 		PanelDetails entSteps = new PanelDetails("Ent Yew", Collections.singletonList(entYew),
 			new SkillRequirement(Skill.WOODCUTTING, 61), combatGear, food, runeAxe);
 		entSteps.setDisplayCondition(notEntYew);
+		entSteps.setLockingStep(entYewTask);
 		allSteps.add(entSteps);
 
 		PanelDetails ankouSteps = new PanelDetails("Kill Ankou", Arrays.asList(moveToSlayer1, killAnkou), combatGear,
 			food);
 		ankouSteps.setDisplayCondition(notKillAnkou);
+		ankouSteps.setLockingStep(killAnkouTask);
 		allSteps.add(ankouSteps);
 
 		PanelDetails greenDragSteps = new PanelDetails("Kill Green Dragon", Arrays.asList(moveToSlayer2,
 			killGreenDrag), combatGear, food, antiDragonShield);
 		greenDragSteps.setDisplayCondition(notKillGreenDrag);
+		greenDragSteps.setLockingStep(killGreenDragTask);
 		allSteps.add(greenDragSteps);
 
-		PanelDetails godWarsSteps = new PanelDetails("Enter Wilderness God Wars", Arrays.asList(moveToGodWars,
+		PanelDetails godWarsSteps = new PanelDetails("Enter Wilderness God Wars", Arrays.asList(moveToGodWars1,
 			wildyGodwars));
 		godWarsSteps.setDisplayCondition(notWildyGodWars);
+		godWarsSteps.setLockingStep(wildyGodWarsTask);
 		allSteps.add(godWarsSteps);
 
 		PanelDetails bloodveldSteps = new PanelDetails("Kill Bloodveld in God Wars Dungeon",
-			Arrays.asList(moveToGodWars, wildyGodwars, wildyGWBloodveld), new SkillRequirement(Skill.SLAYER, 50),
+			Arrays.asList(moveToGodWars2, wildyGodwars, wildyGWBloodveld), new SkillRequirement(Skill.SLAYER, 50),
 			enterGodwars, combatGear, food, godEquip);
 		bloodveldSteps.setDisplayCondition(notWildyGWBloodveld);
+		bloodveldSteps.setLockingStep(wildyGWBloodveldTask);
 		allSteps.add(bloodveldSteps);
 
 		PanelDetails emblemSteps = new PanelDetails("Emblem Trader", Collections.singletonList(emblemTrader));
 		emblemSteps.setDisplayCondition(notEmblemTrader);
+		emblemSteps.setLockingStep(emblemTraderTask);
 		allSteps.add(emblemSteps);
 
 		PanelDetails earthOrbSteps = new PanelDetails("Earth Orb", Arrays.asList(moveToEdge, earthOrb),
 			new SkillRequirement(Skill.MAGIC, 60), unpoweredOrb, earthRune.quantity(30), cosmicRune.quantity(3));
 		earthOrbSteps.setDisplayCondition(notEarthOrb);
+		earthOrbSteps.setLockingStep(earthOrbTask);
 		allSteps.add(earthOrbSteps);
 
 		PanelDetails mithSteps = new PanelDetails("Mine Mithril", Collections.singletonList(mineMith),
 			new SkillRequirement(Skill.MINING, 55), pickaxe, knife);
 		mithSteps.setDisplayCondition(notMineMith);
+		mithSteps.setLockingStep(mineMithTask);
 		allSteps.add(mithSteps);
 
 		PanelDetails wildyAgiSteps = new PanelDetails("Wilderness Agility Course",
 			Collections.singletonList(wildyAgi), new SkillRequirement(Skill.AGILITY, 52), knife);
 		wildyAgiSteps.setDisplayCondition(notWildyAgi);
+		wildyAgiSteps.setLockingStep(wildyAgiTask);
 		allSteps.add(wildyAgiSteps);
 
 		PanelDetails goldHelmSteps = new PanelDetails("Gold Helmet in Resource Area", Arrays.asList(moveToResource,
 			mineGoldOre, smeltGoldOre, goldHelm), new SkillRequirement(Skill.SMITHING, 50), betweenARock,
 			coins.quantity(7500), barsOrPick, hammer, knife);
 		goldHelmSteps.setDisplayCondition(notGoldHelm);
+		goldHelmSteps.setLockingStep(goldHelmTask);
 		allSteps.add(goldHelmSteps);
 
 		PanelDetails chestSteps = new PanelDetails("Muddy Chest", Collections.singletonList(muddyChest), muddyKey,
 			knife);
 		chestSteps.setDisplayCondition(notMuddyChest);
+		chestSteps.setLockingStep(muddyChestTask);
 		allSteps.add(chestSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));

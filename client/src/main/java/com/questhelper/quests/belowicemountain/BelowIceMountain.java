@@ -80,7 +80,7 @@ public class BelowIceMountain extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -128,26 +128,27 @@ public class BelowIceMountain extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		cookedMeat = new ItemRequirement("Cooked Meat", ItemID.COOKED_MEAT, 1);
 		bread = new ItemRequirement("Bread", ItemID.BREAD, 1);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE, 1);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins(), 3);
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).isNotConsumed();
+		coins = new ItemRequirement("Coins", ItemCollections.COINS, 3);
 
-		knifeHighlight = new ItemRequirement(true, "Knife", ItemID.KNIFE);
-		breadHighlight = new ItemRequirement(true, "Bread", ItemID.BREAD);
+		knifeHighlight = knife.highlighted();
+		breadHighlight = bread.highlighted();
 
 		steakSandwich = new ItemRequirement("Steak Sandwich", ItemID.STEAK_SANDWICH);
 
 		beerHighlight = new ItemRequirement(true, "Asgarnian Ale", ItemID.ASGARNIAN_ALE);
 
-		iceMountainTeleport = new ItemRequirement("A teleport to near Ice Mountain", ItemCollections.getAmuletOfGlories());
-		iceMountainTeleport.addAlternates(ItemCollections.getCombatBracelets());
+		iceMountainTeleport = new ItemRequirement("A teleport to near Ice Mountain", ItemCollections.AMULET_OF_GLORIES);
+		iceMountainTeleport.addAlternates(ItemCollections.COMBAT_BRACELETS);
 		iceMountainTeleport.addAlternates(ItemID.FALADOR_TELEPORT, ItemID.LASSAR_TELEPORT);
 		faladorTeleport = new ItemRequirement("Falador teleport", ItemID.FALADOR_TELEPORT);
 		varrockTeleport = new ItemRequirement("Varrock teleport", ItemID.VARROCK_TELEPORT);
-		combatGearOrPickaxe = new ItemRequirement("Combat gear or a pickaxe if you don't want to fight", -1, -1);
+		combatGearOrPickaxe = new ItemRequirement("Combat gear or a pickaxe if you don't want to fight", -1, -1).isNotConsumed();
 		combatGearOrPickaxe.setDisplayItemId(BankSlotIcons.getCombatGear());
 	}
 
@@ -297,14 +298,12 @@ public class BelowIceMountain extends BasicQuestHelper
 		allSteps.add(checkalPanel);
 
 		PanelDetails marleyPanel = new PanelDetails("Recruit Marley",
-			Arrays.asList(talkToMarley, talkToCook, getIngredients, makeSandwich, feedMarley),
-			cookedMeat, bread, knife);
+			Arrays.asList(talkToMarley, talkToCook, getIngredients, makeSandwich, feedMarley), cookedMeat, bread, knife);
 		marleyPanel.setLockingStep(getMarley);
 		allSteps.add(marleyPanel);
 
 		PanelDetails burntofPanel = new PanelDetails("Recruit Burntof",
-			Arrays.asList(talkToBurntof, buyBeer, giveBeer, playRPS),
-			coins);
+			Arrays.asList(talkToBurntof, buyBeer, giveBeer, playRPS), coins);
 		burntofPanel.setLockingStep(getBurntof);
 		allSteps.add(burntofPanel);
 

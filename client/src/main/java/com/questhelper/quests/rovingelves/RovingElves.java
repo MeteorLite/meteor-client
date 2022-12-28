@@ -69,7 +69,7 @@ public class RovingElves extends BasicQuestHelper
 
 	//Items Recommended
 	//I don't know amounts of teleports, hopefully someone can fix that later
-	ItemRequirement prayerPotions, food, ardougneTeleports, camelotTeleports, iorwerthCampTeleports, skillsNecklace;
+	ItemRequirement prayerPotions, food, ardougneTeleports, camelotTeleports, iorwerthCampTeleports, skillsNecklace, gamesNecklace;
 
 	Requirement inGlarialsTomb, onDeadTreeIsland, onLedge, onHudonIsland, inFalls, seedNearby, inThroneRoom;
 
@@ -83,7 +83,7 @@ public class RovingElves extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -114,7 +114,8 @@ public class RovingElves extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		seed = new ItemRequirement("Consecration seed", ItemID.CONSECRATION_SEED);
 		seed.addAlternates(ItemID.CONSECRATION_SEED_4206);
@@ -126,24 +127,24 @@ public class RovingElves extends BasicQuestHelper
 		blessedSeedHighlight.setTooltip("You can get another from Eluned");
 		blessedSeedHighlight.setHighlightInInventory(true);
 
-		glarialsPebble = new ItemRequirement("Glarial's pebble", ItemID.GLARIALS_PEBBLE);
+		glarialsPebble = new ItemRequirement("Glarial's pebble", ItemID.GLARIALS_PEBBLE).isNotConsumed();
 		glarialsPebble.setTooltip("You can get another from Golrie under Tree Gnome Village");
-		key = new ItemRequirement("Key", ItemID.KEY_298);
+		key = new ItemRequirement("Key", ItemID.KEY_298).isNotConsumed();
 		key.setTooltip("You can get another from inside Baxtorian Falls");
 
-		keyHint = new ItemRequirement("Key (obtainable in quest)", ItemID.KEY_293);
+		keyHint = new ItemRequirement("Key (obtainable in quest)", ItemID.KEY_293).isNotConsumed();
 
-		pebbleHint = new ItemRequirement("Glarial's pebble (obtainable in quest)", ItemID.GLARIALS_PEBBLE);
-		spade = new ItemRequirement("Spade", ItemID.SPADE);
-		rope = new ItemRequirement("Rope", ItemID.ROPE);
-		highlightRope = new ItemRequirement("Rope", ItemID.ROPE);
-		highlightRope.setHighlightInInventory(true);
+		pebbleHint = new ItemRequirement("Glarial's pebble (obtainable in quest)", ItemID.GLARIALS_PEBBLE).isNotConsumed();
+		spade = new ItemRequirement("Spade", ItemID.SPADE).isNotConsumed();
+		rope = new ItemRequirement("Rope", ItemID.ROPE).isNotConsumed();
+		highlightRope = rope.highlighted();
 		prayerPotions = new ItemRequirement("A few prayer potions", ItemID.PRAYER_POTION4);
-		skillsNecklace = new ItemRequirement("Skills necklace", ItemCollections.getSkillsNecklaces(), 1);
+		skillsNecklace = new ItemRequirement("Skills necklace", ItemCollections.SKILLS_NECKLACES, 1);
+		gamesNecklace = new ItemRequirement("Games necklace", ItemCollections.GAMES_NECKLACES, 1);
 		ardougneTeleports = new ItemRequirement("Ardougne teleports", ItemID.ARDOUGNE_TELEPORT, -1);
 		camelotTeleports = new ItemRequirement("Camelot Teleports", ItemID.CAMELOT_TELEPORT, -1);
 		iorwerthCampTeleports = new ItemRequirement("Iorwerth camp teleports", ItemID.IORWERTH_CAMP_TELEPORT, -1);
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 	}
 
 	public void setupConditions()
@@ -209,7 +210,7 @@ public class RovingElves extends BasicQuestHelper
 	@Override
 	public List<ItemRequirement> getItemRecommended()
 	{
-		return Arrays.asList(prayerPotions, food, skillsNecklace, ardougneTeleports, camelotTeleports, iorwerthCampTeleports);
+		return Arrays.asList(prayerPotions, food, skillsNecklace, gamesNecklace, ardougneTeleports, camelotTeleports, iorwerthCampTeleports);
 	}
 
 	@Override

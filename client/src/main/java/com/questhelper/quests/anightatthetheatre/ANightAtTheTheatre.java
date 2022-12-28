@@ -41,10 +41,8 @@ import com.questhelper.requirements.item.ItemRequirement;
 import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.util.LogicType;
-import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.QuestPointReward;
-import com.questhelper.rewards.UnlockReward;
 import com.questhelper.steps.ConditionalStep;
 import com.questhelper.steps.DetailedQuestStep;
 import com.questhelper.steps.ItemStep;
@@ -97,7 +95,7 @@ public class ANightAtTheTheatre extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 
@@ -143,9 +141,12 @@ public class ANightAtTheTheatre extends BasicQuestHelper
 		steps.put(26, speakWithDaerKandConditional);
 
 		ConditionalStep returnToSpiderCaveConditional = new ConditionalStep(this, returnToSpiderCave);
-		returnToSpiderCaveConditional.addStep(inSpiderCave, useSulphuricAcidOnEggSac);
-		returnToSpiderCaveConditional.addStep(inSisterhoodSanctuaryF1, climbStairsDownSisterhoodF0);
-		returnToSpiderCaveConditional.addStep(inSisterhoodSanctuaryF0, exitSisterhoodSanctuary);
+		returnToSpiderCaveConditional.addStep(new Conditions(sulphuricAcid.alsoCheckBank(questBank), inSpiderCave), useSulphuricAcidOnEggSac);
+		returnToSpiderCaveConditional.addStep(new Conditions(sulphuricAcid.alsoCheckBank(questBank), inSisterhoodSanctuaryF1), climbStairsDownSisterhoodF0);
+		returnToSpiderCaveConditional.addStep(new Conditions(sulphuricAcid.alsoCheckBank(questBank), inSisterhoodSanctuaryF0), exitSisterhoodSanctuary);
+		returnToSpiderCaveConditional.addStep(inSpiderCave, exitSpiderCave);
+		returnToSpiderCaveConditional.addStep(inSisterhoodSanctuaryF0, climbStairsToSisterhoodSanctuaryF1);
+		returnToSpiderCaveConditional.addStep(inSisterhoodSanctuaryF1, speakWithDaerKrand);
 
 		steps.put(28, returnToSpiderCaveConditional);
 		steps.put(30, returnToMysteriousStrangerWithEggs);
@@ -203,12 +204,12 @@ public class ANightAtTheTheatre extends BasicQuestHelper
 		NotYetImplemented = new DetailedQuestStep(this, "Not yet Implemented");
 
 		speakWithMysteriousStrangerToStart = new NpcStep(this, NpcID.MYSTERIOUS_STRANGER_10875, new WorldPoint(3673, 3223, 0),
-			"Speak with the Mysterious Stranger in Ver Sinhaza.");
+			"Speak with the Mysterious Stranger in Ver Sinhaza.", saw);
 		((NpcStep) speakWithMysteriousStrangerToStart).addAlternateNpcs(NpcID.MYSTERIOUS_STRANGER_10876);
 		speakWithMysteriousStrangerToStart.addDialogSteps("What's all this really about?", "What's this thing you need from me?", "Yes.");
 
 		enterVerSinhazaCrypts = new ObjectStep(this, ObjectID.STAIRCASE_42523, new WorldPoint(3682, 3231, 0),
-			"Enter the crypts north east of the Mysterious Stranger.");
+			"Enter the crypts north east of the Mysterious Stranger.", saw);
 		enterVerSinhazaCrypts.addDialogSteps("Yes.");
 
 		killVyrewatchForKey = new NpcStep(this, NpcID.VYREWATCH_11173,
@@ -217,9 +218,9 @@ public class ANightAtTheTheatre extends BasicQuestHelper
 		pickupCryptKey = new ItemStep(this, "Pick up the crypt key", cryptKey);
 		killVyrewatchForKey.addSubSteps(pickupCryptKey);
 
-		unlockTheCryptGate = new ObjectStep(this, ObjectID.GATE_42529, "Unlock the crypt gate with the key.", cryptKey);
+		unlockTheCryptGate = new ObjectStep(this, ObjectID.GATE_42529, "Unlock the crypt gate with the key.", cryptKey, saw);
 
-		searchTheCoffinInVerSinhazaCrypts = new ObjectStep(this, ObjectID.COFFIN_42532, "Search the coffin.");
+		searchTheCoffinInVerSinhazaCrypts = new ObjectStep(this, ObjectID.COFFIN_42532, "Search the coffin.", saw);
 
 		leaveCrypts = new ObjectStep(this, ObjectID.DOOR_42524, "Return to the Mysterious Stranger with Ranis' head.", ranisHead);
 		speakWithMysteriousStrangerWithRanisHead = new NpcStep(this, NpcID.MYSTERIOUS_STRANGER_10875,
@@ -229,7 +230,7 @@ public class ANightAtTheTheatre extends BasicQuestHelper
 		speakWithMysteriousStrangerWithRanisHead.addSubSteps(leaveCrypts);
 
 		speakMoreWithMysteriousStranger = new NpcStep(this, NpcID.MYSTERIOUS_STRANGER_10875, new WorldPoint(3673, 3223, 0),
-			"Speak to the Mysterious Strange some more.");
+			"Speak to the Mysterious Stranger some more.");
 		((NpcStep) speakMoreWithMysteriousStranger).addAlternateNpcs(NpcID.MYSTERIOUS_STRANGER_10876, NpcID.MYSTERIOUS_STRANGER);
 		speakMoreWithMysteriousStranger.addDialogSteps("So what are we doing with Ranis' head?", "So about that memory...");
 
@@ -373,22 +374,23 @@ public class ANightAtTheTheatre extends BasicQuestHelper
 		hesporiArea = new Zone(new WorldPoint(3500, 3364, 0), new WorldPoint(3514, 3350, 0));
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getMeleeCombatGear());
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood());
-		drakansMedallion = new ItemRequirement("Drakan's Medallion", ItemID.DRAKANS_MEDALLION, 1);
-		antiVenom = new ItemRequirement("Anti-venom", ItemCollections.getAntivenoms(), 1);
-		antipoison = new ItemRequirement("Antipoison", ItemCollections.getAntipoisons(), 1);
-		fairyRings = new ItemRequirement("Access to fairy rings", ItemCollections.getFairyStaff(), 1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD);
+		drakansMedallion = new ItemRequirement("Drakan's Medallion", ItemID.DRAKANS_MEDALLION).isNotConsumed();
+		antiVenom = new ItemRequirement("Anti-venom", ItemCollections.ANTIVENOMS);
+		antipoison = new ItemRequirement("Antipoison", ItemCollections.ANTIPOISONS);
+		fairyRings = new ItemRequirement("Access to fairy rings", ItemCollections.FAIRY_STAFF).isNotConsumed();
 
-		flail = new ItemRequirement("Ivandis/Blisterwood flail", ItemID.IVANDIS_FLAIL);
+		flail = new ItemRequirement("Ivandis/Blisterwood flail", ItemID.IVANDIS_FLAIL).isNotConsumed();
 		flail.addAlternates(ItemID.BLISTERWOOD_FLAIL);
-		saw = new ItemRequirement("Saw", ItemCollections.getSaw());
-		ghostSpeakAmulet = new ItemRequirement("Ghostspeak amulet", ItemCollections.getGhostspeak());
+		saw = new ItemRequirement("Saw", ItemCollections.SAW).isNotConsumed();
+		ghostSpeakAmulet = new ItemRequirement("Ghostspeak amulet", ItemCollections.GHOSTSPEAK).isNotConsumed();
 		ghostSpeakAmulet.setTooltip("Morytania legs 2+ work as well.");
-		axe = new ItemRequirement("An axe", ItemCollections.getAxes());
+		axe = new ItemRequirement("An axe", ItemCollections.AXES).isNotConsumed();
 
 		cryptKey = new ItemRequirement("Crypt key", ItemID.CRYPT_KEY);
 		ranisHead = new ItemRequirement("Ranis' Head", ItemID.RANIS_HEAD);
@@ -463,7 +465,7 @@ public class ANightAtTheTheatre extends BasicQuestHelper
 	@Override
 	public List<ItemReward> getItemRewards()
 	{
-		return Collections.singletonList(new ItemReward("Antique Lamp (20,000 Exp. Any Combat Skill)", ItemID.ANTIQUE_LAMP, 3));
+		return Collections.singletonList(new ItemReward("Antique Lamp (20,000 Exp. Any Combat Skill, excluding prayer)", ItemID.ANTIQUE_LAMP, 4));
 	}
 
 	@Override

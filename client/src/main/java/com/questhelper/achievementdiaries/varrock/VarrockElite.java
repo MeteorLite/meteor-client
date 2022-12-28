@@ -26,22 +26,19 @@ package com.questhelper.achievementdiaries.varrock;
 
 import com.questhelper.ItemCollections;
 import com.questhelper.QuestHelperQuest;
-import com.questhelper.QuestVarPlayer;
 import com.questhelper.Zone;
-import com.questhelper.banktab.BankSlotIcons;
 import com.questhelper.questhelpers.ComplexStateQuestHelper;
 import com.questhelper.requirements.ChatMessageRequirement;
+import com.questhelper.requirements.ComplexRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.player.CombatLevelRequirement;
+import com.questhelper.requirements.item.ItemRequirements;
 import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.player.SpellbookRequirement;
 import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.util.LogicType;
-import com.questhelper.requirements.util.Operation;
 import com.questhelper.requirements.util.Spellbook;
-import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.var.VarplayerRequirement;
 import com.questhelper.rewards.ItemReward;
 import com.questhelper.rewards.UnlockReward;
@@ -50,15 +47,12 @@ import com.questhelper.steps.DetailedQuestStep;
 import com.questhelper.steps.ItemStep;
 import com.questhelper.steps.NpcStep;
 import com.questhelper.steps.ObjectStep;
-import com.questhelper.steps.TileStep;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import net.runelite.api.Item;
 import net.runelite.api.ItemID;
 import net.runelite.api.NpcID;
-import net.runelite.api.NullObjectID;
 import net.runelite.api.ObjectID;
 import net.runelite.api.QuestState;
 import net.runelite.api.Skill;
@@ -89,6 +83,8 @@ public class VarrockElite extends ComplexStateQuestHelper
 
 	ZoneRequirement inBank, inLumb, inCookingGuild, inEarth, inAnvil;
 
+	ConditionalStep superCombatTask, summerPieTask, runeDartTask, plankMakeTask, earthRuneTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -97,21 +93,32 @@ public class VarrockElite extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doElite = new ConditionalStep(this, claimReward);
-		doElite.addStep(new Conditions(notSuperCombat, inBank), superCombat);
-		doElite.addStep(notSuperCombat, moveToBank);
-		doElite.addStep(new Conditions(notSummerPie, inCookingGuild), summerPie);
-		doElite.addStep(notSummerPie, moveToCookingGuild);
-		doElite.addStep(new Conditions(notRuneDart, runeDartTip, madeTips), runeDart);
-		doElite.addStep(new Conditions(notRuneDart, inAnvil), dartTip);
-		doElite.addStep(notRuneDart, moveToAnvil);
-		doElite.addStep(new Conditions(notPlankMake, inLumb), plankMake);
-		doElite.addStep(notPlankMake, moveToLumb);
-		doElite.addStep(new Conditions(not100Earth, inEarth), earthRune100);
-		doElite.addStep(not100Earth, moveToEarthRune);
+
+		superCombatTask = new ConditionalStep(this, moveToBank);
+		superCombatTask.addStep(inBank, superCombat);
+		doElite.addStep(notSuperCombat, superCombatTask);
+
+		summerPieTask = new ConditionalStep(this, moveToCookingGuild);
+		summerPieTask.addStep(inCookingGuild, summerPie);
+		doElite.addStep(notSummerPie, summerPieTask);
+
+		runeDartTask = new ConditionalStep(this, moveToAnvil);
+		runeDartTask.addStep(inAnvil, dartTip);
+		runeDartTask.addStep(new Conditions(runeDartTip, madeTips), runeDart);
+		doElite.addStep(notRuneDart, runeDartTask);
+
+		plankMakeTask = new ConditionalStep(this, moveToLumb);
+		plankMakeTask.addStep(inLumb, plankMake);
+		doElite.addStep(notPlankMake, plankMakeTask);
+
+		earthRuneTask = new ConditionalStep(this, moveToEarthRune);
+		earthRuneTask.addStep(inEarth, earthRune100);
+		doElite.addStep(not100Earth, earthRuneTask);
 
 		return doElite;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notSuperCombat = new VarplayerRequirement(1177, false, 7);
@@ -129,18 +136,19 @@ public class VarrockElite extends ComplexStateQuestHelper
 		natureRune = new ItemRequirement("Nature rune", ItemID.NATURE_RUNE).showConditioned(notPlankMake);
 		astralRune = new ItemRequirement("Astral rune", ItemID.ASTRAL_RUNE).showConditioned(notPlankMake);
 		earthRune = new ItemRequirement("Earth rune", ItemID.EARTH_RUNE).showConditioned(notPlankMake);
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins()).showConditioned(notPlankMake);
+		coins = new ItemRequirement("Coins", ItemCollections.COINS).showConditioned(notPlankMake);
 		mahoganyLog = new ItemRequirement("Mahogany logs", ItemID.MAHOGANY_LOGS).showConditioned(notPlankMake);
-		cookingGuild = new ItemRequirement("Access to cooking guild", ItemCollections.getCookingGuild()).showConditioned(notSummerPie);
+		cookingGuild = new ItemRequirement("Access to cooking guild", ItemCollections.COOKING_GUILD).showConditioned(notSummerPie).isNotConsumed();
 		cookingGuild.setTooltip("A chef's hat, Varrock Armour 3, or Cooking Cape");
 		rawPie = new ItemRequirement("Raw summer pie", ItemID.RAW_SUMMER_PIE).showConditioned(notSummerPie);
 		runeBar = new ItemRequirement("Rune bar", ItemID.RUNITE_BAR).showConditioned(notRuneDart);
 		feather = new ItemRequirement("Feather", ItemID.FEATHER).showConditioned(notRuneDart);
-		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notRuneDart);
+		hammer = new ItemRequirement("Hammer", ItemID.HAMMER).showConditioned(notRuneDart).isNotConsumed();
 		runeDartTip = new ItemRequirement("Rune dart tip", ItemID.RUNE_DART_TIP);
-		essence = new ItemRequirement("Essence", ItemCollections.getEssenceLow()).showConditioned(not100Earth);
+		essence = new ItemRequirement("Essence", ItemCollections.ESSENCE_LOW).showConditioned(not100Earth);
 		earthTali = new ItemRequirement("Access to Earth altar, or travel through abyss",
-			ItemCollections.getEarthAltar()).showConditioned(not100Earth);
+			ItemCollections.EARTH_ALTAR).showConditioned(not100Earth).isNotConsumed();
+		earthTali.setTooltip("Earth talisman or tiara");
 
 		inBank = new ZoneRequirement(bank);
 		inLumb = new ZoneRequirement(lumb);
@@ -175,14 +183,13 @@ public class VarrockElite extends ComplexStateQuestHelper
 
 	public void setupSteps()
 	{
-		moveToBank = new TileStep(this, new WorldPoint(3183, 3440, 0),
+		moveToBank = new DetailedQuestStep(this, new WorldPoint(3183, 3440, 0),
 			"Move to the west Varrock bank.");
 		superCombat = new ItemStep(this, "Create a super combat potion.", sAtk4.highlighted(), sStr4.highlighted(),
 			sDef4.highlighted(), torstol.highlighted());
 		moveToLumb = new ObjectStep(this, 2618, new WorldPoint(3308, 3492, 0),
 			"Climb the fence to enter the lumber yard.", natureRune.quantity(20), astralRune.quantity(40),
-			earthRune.quantity(300),
-			coins.quantity(21000), mahoganyLog.quantity(20));
+			earthRune.quantity(300), coins.quantity(21000), mahoganyLog.quantity(20));
 		plankMake = new DetailedQuestStep(this, "Cast plank make until you've made 20 mahogany planks.",
 			natureRune.quantity(20), astralRune.quantity(40), earthRune.quantity(300), coins.quantity(21000), mahoganyLog.quantity(20));
 		moveToCookingGuild = new ObjectStep(this, ObjectID.DOOR_24958, new WorldPoint(3143, 3443, 0),
@@ -193,7 +200,7 @@ public class VarrockElite extends ComplexStateQuestHelper
 			"Travel to the earth altar or go through the abyss.", earthTali, essence.quantity(25));
 		earthRune100 = new ObjectStep(this, 34763, new WorldPoint(2658, 4841, 0),
 			"Craft the earth runes.", essence.quantity(25));
-		moveToAnvil = new TileStep(this, new WorldPoint(3188, 3426, 0),
+		moveToAnvil = new DetailedQuestStep(this, new WorldPoint(3188, 3426, 0),
 			"Go to the anvil beside the west Varrock bank.", runeBar, feather.quantity(10), hammer);
 		dartTip = new ObjectStep(this, ObjectID.ANVIL_2097, new WorldPoint(3188, 3426, 0),
 			"Make rune dart tips on the anvil in west Varrock.", runeBar);
@@ -221,7 +228,14 @@ public class VarrockElite extends ComplexStateQuestHelper
 		reqs.add(new SkillRequirement(Skill.FLETCHING, 81));
 		reqs.add(new SkillRequirement(Skill.HERBLORE, 90));
 		reqs.add(new SkillRequirement(Skill.MAGIC, 86));
-		reqs.add(new SkillRequirement(Skill.RUNECRAFT, 78));
+		reqs.add(new ComplexRequirement(LogicType.OR, "78 Runecraft or 52 with Raiments of the Eye set",
+			new SkillRequirement(Skill.RUNECRAFT, 78, true, "78 Runecraft"),
+			new ItemRequirements("52 with Raiments of the Eye set",
+				new ItemRequirement("Hat", ItemCollections.EYE_HAT),
+				new ItemRequirement("Top", ItemCollections.EYE_TOP),
+				new ItemRequirement("Bottom", ItemCollections.EYE_BOTTOM),
+				new ItemRequirement("Boot", ItemID.BOOTS_OF_THE_EYE))
+		));
 		reqs.add(new SkillRequirement(Skill.SMITHING, 89));
 
 		reqs.add(dreamMentor);
@@ -235,19 +249,19 @@ public class VarrockElite extends ComplexStateQuestHelper
 	public List<ItemReward> getItemRewards()
 	{
 		return Arrays.asList(
-				new ItemReward("Varrock Armor (4)", ItemID.VARROCK_ARMOUR_4, 1),
-				new ItemReward("50,000 Exp. Lamp (Any skill over 70)", ItemID.ANTIQUE_LAMP, 1));
+			new ItemReward("Varrock Armor (4)", ItemID.VARROCK_ARMOUR_4, 1),
+			new ItemReward("50,000 Exp. Lamp (Any skill over 70)", ItemID.ANTIQUE_LAMP, 1));
 	}
 
 	@Override
 	public List<UnlockReward> getUnlockRewards()
 	{
 		return Arrays.asList(
-				new UnlockReward("10% Chance to mine 2 ores at once, up to and including Amethyst"),
-				new UnlockReward("10% Chance of smelting 2 bars at once when using the Edgeville furnace"),
-				new UnlockReward("Zaff will sell 120 Battlestaves per day for 7,000 Coins each"),
-				new UnlockReward("The Skull sceptre will now hold 26 charges"),
-				new UnlockReward("Acts as a prospector jacket for experience bonus and clues"));
+			new UnlockReward("10% Chance to mine 2 ores at once, up to and including Amethyst"),
+			new UnlockReward("10% Chance of smelting 2 bars at once when using the Edgeville furnace"),
+			new UnlockReward("Zaff will sell 120 Battlestaves per day for 7,000 Coins each"),
+			new UnlockReward("The Skull sceptre will now hold 26 charges"),
+			new UnlockReward("Acts as a prospector jacket for experience bonus and clues"));
 	}
 
 	@Override
@@ -258,28 +272,33 @@ public class VarrockElite extends ComplexStateQuestHelper
 		PanelDetails superCombatSteps = new PanelDetails("Make Super Combat", Arrays.asList(moveToBank, superCombat),
 			new SkillRequirement(Skill.HERBLORE, 90), sAtk4, sStr4, sDef4, torstol);
 		superCombatSteps.setDisplayCondition(notSuperCombat);
+		superCombatSteps.setLockingStep(superCombatTask);
 		allSteps.add(superCombatSteps);
 
 		PanelDetails summerPieSteps = new PanelDetails("Summer Pie", Arrays.asList(moveToCookingGuild, summerPie),
 			new SkillRequirement(Skill.COOKING, 95), cookingGuild, rawPie);
 		summerPieSteps.setDisplayCondition(notSummerPie);
+		summerPieSteps.setLockingStep(summerPieTask);
 		allSteps.add(summerPieSteps);
 
 		PanelDetails runeDartsSteps = new PanelDetails("Smith and Fletch 10 Rune Darts", Arrays.asList(moveToAnvil,
 			dartTip, runeDart), new SkillRequirement(Skill.FLETCHING, 81), new SkillRequirement(Skill.SMITHING, 89),
 			touristTrap, runeBar, feather.quantity(10), hammer);
 		runeDartsSteps.setDisplayCondition(notRuneDart);
+		runeDartsSteps.setLockingStep(runeDartTask);
 		allSteps.add(runeDartsSteps);
 
 		PanelDetails plankMakeSteps = new PanelDetails("Plank Make", Arrays.asList(moveToLumb, plankMake),
 			new SkillRequirement(Skill.MAGIC, 86), lunarBook, dreamMentor, natureRune.quantity(20),
 			astralRune.quantity(40), earthRune.quantity(300), coins.quantity(21000), mahoganyLog.quantity(20));
 		plankMakeSteps.setDisplayCondition(notPlankMake);
+		plankMakeSteps.setLockingStep(plankMakeTask);
 		allSteps.add(plankMakeSteps);
 
 		PanelDetails earth100Steps = new PanelDetails("Craft 100 Earth runes", Arrays.asList(moveToEarthRune,
 			earthRune100), new SkillRequirement(Skill.RUNECRAFT, 78), essence.quantity(25), earthTali);
 		earth100Steps.setDisplayCondition(not100Earth);
+		earth100Steps.setLockingStep(earthRuneTask);
 		allSteps.add(earth100Steps);
 
 		PanelDetails finishOffSteps = new PanelDetails("Finishing off", Collections.singletonList(claimReward));

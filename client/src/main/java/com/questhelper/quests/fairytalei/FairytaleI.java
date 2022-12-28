@@ -37,7 +37,7 @@ import com.questhelper.requirements.quest.QuestRequirement;
 import com.questhelper.requirements.Requirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
@@ -88,7 +88,7 @@ public class FairytaleI extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -135,17 +135,18 @@ public class FairytaleI extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		secateurs = new ItemRequirement("Secateurs", ItemID.SECATEURS);
 		draynorSkull = new ItemRequirement("Draynor skull", ItemID.DRAYNOR_SKULL);
 		draynorSkull.canBeObtainedDuringQuest();
 		skullOrSpade = new ItemRequirement("Draynor skull or a spade to get it", ItemID.DRAYNOR_SKULL);
 		skullOrSpade.addAlternates(ItemID.SPADE);
-		spade = new ItemRequirement("Spade", ItemID.SPADE);
-		ghostspeak = new ItemRequirement("Ghostspeak amulet", ItemCollections.getGhostspeak(), 1, true);
+		spade = new ItemRequirement("Spade", ItemID.SPADE).isNotConsumed();
+		ghostspeak = new ItemRequirement("Ghostspeak amulet", ItemCollections.GHOSTSPEAK, 1, true).isNotConsumed();
 		ghostspeak.setTooltip("You can get another from Father Urhney in the Lumbridge Swamp");
-		dramenOrLunarStaff = new ItemRequirement("Dramen or lunar staff", ItemID.DRAMEN_STAFF, 1, true);
+		dramenOrLunarStaff = new ItemRequirement("Dramen or lunar staff", ItemID.DRAMEN_STAFF, 1, true).isNotConsumed();
 		dramenOrLunarStaff.addAlternates(ItemID.LUNAR_STAFF);
 		dramenOrLunarStaff.setDisplayMatchedItemName(true);
 		randomItems = new ItemRequirement("3 random items requested by Malignius", -1);
@@ -155,7 +156,7 @@ public class FairytaleI extends BasicQuestHelper
 		lumbridgeTeleport = new ItemRequirement("Lumbridge teleport", ItemID.LUMBRIDGE_TELEPORT);
 		moryTele = new ItemRequirement("Teleport to Morytania", ItemID.MORTTON_TELEPORT);
 		moryTele.addAlternates(ItemID.BARROWS_TELEPORT, ItemID.ECTOPHIAL);
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 
 		symptomsList = new ItemRequirement("Symptoms list", ItemID.SYMPTOMS_LIST);
 		symptomsList.setTooltip("You can get another from Fairy Nuff");

@@ -49,7 +49,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import net.runelite.api.Item;
 import net.runelite.api.ItemID;
 import net.runelite.api.NpcID;
 import net.runelite.api.ObjectID;
@@ -99,6 +98,9 @@ public class MorytaniaMedium extends ComplexStateQuestHelper
 		inRoom6PastTrap1, inRoom6PastTrap2, inExtraRoom1, inExtraRoom2, inRoom7, inRoom8, inBossRoom, inBrainDeath1,
 		inBrainDeath2, inBoat, inMos;
 
+	ConditionalStep swampLizardTask, canifisAgiTask, hollowTreeTask, dragontoothIslandTask, terrorDogTask,
+		troubleBrewingTask, swampBoatyTask, cannonBallTask, feverSpiderTask, ectophialTPTask, guthBalanceTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -107,27 +109,50 @@ public class MorytaniaMedium extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doMedium = new ConditionalStep(this, claimReward);
-		doMedium.addStep(notSwampBoaty, swampBoaty);
-		doMedium.addStep(new Conditions(notTerrorDog, inBossRoom), terrorDog);
-		doMedium.addStep(notTerrorDog, getToTerrorDogs);
-		doMedium.addStep(notCanifisAgi, canifisAgi);
-		doMedium.addStep(notSwampLizard, swampLizard);
-		doMedium.addStep(notEctophialTP, ectophialTP);
-		doMedium.addStep(notCannonBall, cannonBall);
-		doMedium.addStep(new Conditions(notGuthBalance, guthixBalanceUnf), guthBalance2);
-		doMedium.addStep(notGuthBalance, guthBalance);
-		doMedium.addStep(notHollowTree, hollowTree);
-		doMedium.addStep(notDragontoothIsland, dragontoothIsland);
-		doMedium.addStep(new Conditions(notFeverSpider, inBrainDeath1), feverSpider);
-		doMedium.addStep(new Conditions(notFeverSpider, inBrainDeath2), moveToDownstairs);
-		doMedium.addStep(notFeverSpider, moveToBrainDeath);
-		doMedium.addStep(new Conditions(notTroubleBrewing, inMos), troubleBrewing);
-		doMedium.addStep(new Conditions(notTroubleBrewing, inBoat), moveToMos);
-		doMedium.addStep(notTroubleBrewing, moveToCapt);
+
+		swampBoatyTask = new ConditionalStep(this, swampBoaty);
+		doMedium.addStep(notSwampBoaty, swampBoatyTask);
+
+		terrorDogTask = new ConditionalStep(this, getToTerrorDogs);
+		terrorDogTask.addStep(inBossRoom, terrorDog);
+		doMedium.addStep(notTerrorDog, terrorDogTask);
+
+		canifisAgiTask = new ConditionalStep(this, canifisAgi);
+		doMedium.addStep(notCanifisAgi, canifisAgiTask);
+
+		swampLizardTask = new ConditionalStep(this, swampLizard);
+		doMedium.addStep(notSwampLizard, swampLizardTask);
+
+		ectophialTPTask = new ConditionalStep(this, ectophialTP);
+		doMedium.addStep(notEctophialTP, ectophialTPTask);
+
+		cannonBallTask = new ConditionalStep(this, cannonBall);
+		doMedium.addStep(notCannonBall, cannonBallTask);
+
+		guthBalanceTask = new ConditionalStep(this, guthBalance);
+		guthBalanceTask.addStep(guthixBalanceUnf, guthBalance2);
+		doMedium.addStep(notGuthBalance, guthBalanceTask);
+
+		hollowTreeTask = new ConditionalStep(this, hollowTree);
+		doMedium.addStep(notHollowTree, hollowTreeTask);
+
+		dragontoothIslandTask = new ConditionalStep(this, dragontoothIsland);
+		doMedium.addStep(notDragontoothIsland, dragontoothIslandTask);
+
+		feverSpiderTask = new ConditionalStep(this, moveToBrainDeath);
+		feverSpiderTask.addStep(inBrainDeath1, feverSpider);
+		feverSpiderTask.addStep(inBrainDeath2, moveToDownstairs);
+		doMedium.addStep(notFeverSpider, feverSpiderTask);
+
+		troubleBrewingTask = new ConditionalStep(this, moveToCapt);
+		troubleBrewingTask.addStep(inBoat, moveToMos);
+		troubleBrewingTask.addStep(inMos, troubleBrewing);
+		doMedium.addStep(notTroubleBrewing, troubleBrewingTask);
 
 		return doMedium;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notSwampLizard = new VarplayerRequirement(1180, false, 12);
@@ -144,31 +169,31 @@ public class MorytaniaMedium extends ComplexStateQuestHelper
 
 		protectFromMagic = new PrayerRequirement("Activate Protect from Magic", Prayer.PROTECT_FROM_MAGIC);
 
-		rope = new ItemRequirement("Rope", ItemID.ROPE).showConditioned(notSwampLizard);
+		rope = new ItemRequirement("Rope", ItemID.ROPE).showConditioned(notSwampLizard).isNotConsumed();
 		smallFishingNet = new ItemRequirement("Small fishing net", ItemID.SMALL_FISHING_NET)
-			.showConditioned(notSwampLizard);
-		axe = new ItemRequirement("Axe", ItemCollections.getAxes()).showConditioned(notHollowTree);
+			.showConditioned(notSwampLizard).isNotConsumed();
+		axe = new ItemRequirement("Axe", ItemCollections.AXES).showConditioned(notHollowTree).isNotConsumed();
 		ectoToken = new ItemRequirement("Ecto-token", ItemID.ECTOTOKEN).showConditioned(notDragontoothIsland);
 		ghostspeakAmulet = new ItemRequirement("Ghostspeak Amulet", ItemID.GHOSTSPEAK_AMULET)
-			.showConditioned(notDragontoothIsland);
+			.showConditioned(notDragontoothIsland).isNotConsumed();
 		steelBar = new ItemRequirement("Steel bar", ItemID.STEEL_BAR).showConditioned(notCannonBall);
-		ammoMould = new ItemRequirement("Ammo mould", ItemID.AMMO_MOULD).showConditioned(notCannonBall);
-		slayerGloves = new ItemRequirement("Slayer gloves", ItemID.SLAYER_GLOVES).showConditioned(notFeverSpider);
-		ectophial = new ItemRequirement("Ectophial", ItemID.ECTOPHIAL).showConditioned(notEctophialTP);
-		restorePot = new ItemRequirement("Restore potion (4)", ItemCollections.getRestorePotions()).showConditioned(notGuthBalance);
+		ammoMould = new ItemRequirement("Ammo mould", ItemID.AMMO_MOULD).showConditioned(notCannonBall).isNotConsumed();
+		slayerGloves = new ItemRequirement("Slayer gloves", ItemID.SLAYER_GLOVES).showConditioned(notFeverSpider).isNotConsumed();
+		ectophial = new ItemRequirement("Ectophial", ItemID.ECTOPHIAL).showConditioned(notEctophialTP).isNotConsumed();
+		restorePot = new ItemRequirement("Restore potion (4)", ItemID.RESTORE_POTION4).showConditioned(notGuthBalance);
 		garlic = new ItemRequirement("Garlic", ItemID.GARLIC).showConditioned(notGuthBalance);
 		silverDust = new ItemRequirement("Silver dust", ItemID.SILVER_DUST).showConditioned(notGuthBalance);
 		silverDust.setTooltip("Created by grinding a silver bar in the ectofuntus bone grinder.");
-		guthixBalanceUnf = new ItemRequirement("Guthix balance (unf)", ItemCollections.getGuthixBalanceUnf());
+		guthixBalanceUnf = new ItemRequirement("Guthix balance (unf)", ItemCollections.GUTHIX_BALANCE_UNF);
 
-		slayerRing = new ItemRequirement("Slayer ring", ItemCollections.getSlayerRings()).showConditioned(notTerrorDog);
-		fairyAccess = new ItemRequirement("Access to the fairy ring system", ItemCollections.getFairyStaff())
-			.showConditioned(new Conditions(LogicType.OR, notSwampBoaty, notHollowTree));
+		slayerRing = new ItemRequirement("Slayer ring", ItemCollections.SLAYER_RINGS).showConditioned(notTerrorDog);
+		fairyAccess = new ItemRequirement("Access to the fairy ring system", ItemCollections.FAIRY_STAFF)
+			.showConditioned(new Conditions(LogicType.OR, notSwampBoaty, notHollowTree)).isNotConsumed();
 
-		combatGear = new ItemRequirement("Combat gear", -1, -1);
+		combatGear = new ItemRequirement("Combat gear", -1, -1).isNotConsumed();
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 
 		inHauntedMineZone = new ZoneRequirement(hauntedMineZone);
 		inRoom1 = new ZoneRequirement(room1);
@@ -370,58 +395,69 @@ public class MorytaniaMedium extends ComplexStateQuestHelper
 
 		PanelDetails swampBoatySteps = new PanelDetails("Swamp Boaty", Collections.singletonList(swampBoaty));
 		swampBoatySteps.setDisplayCondition(notSwampBoaty);
+		swampBoatySteps.setLockingStep(swampBoatyTask);
 		allSteps.add(swampBoatySteps);
 
 		PanelDetails terrorDogSteps = new PanelDetails("Terror Dog", getToTerrorDogs.getDisplaySteps(),
 			lairOfTarnRaz, combatGear, food);
 		terrorDogSteps.addSteps(terrorDog);
 		terrorDogSteps.setDisplayCondition(notTerrorDog);
+		terrorDogSteps.setLockingStep(terrorDogTask);
 		allSteps.add(terrorDogSteps);
 
 		PanelDetails canifisSteps = new PanelDetails("Canifis Rooftop Course", Collections.singletonList(canifisAgi),
 			new SkillRequirement(Skill.AGILITY, 40));
 		canifisSteps.setDisplayCondition(notCanifisAgi);
+		canifisSteps.setLockingStep(canifisAgiTask);
 		allSteps.add(canifisSteps);
 
 		PanelDetails swampLizardSteps = new PanelDetails("Swamp Lizard", Collections.singletonList(swampLizard),
 			new SkillRequirement(Skill.HUNTER, 29), rope, smallFishingNet);
 		swampLizardSteps.setDisplayCondition(notSwampLizard);
+		swampLizardSteps.setLockingStep(swampLizardTask);
 		allSteps.add(swampLizardSteps);
 
 		PanelDetails ectophialSteps = new PanelDetails("Ectophial", Collections.singletonList(ectophialTP),
 			ghostsAhoy, ectophial);
 		ectophialSteps.setDisplayCondition(notEctophialTP);
+		ectophialSteps.setLockingStep(ectophialTPTask);
 		allSteps.add(ectophialSteps);
 
 		PanelDetails cannonballsSteps = new PanelDetails("Cannonballs", Collections.singletonList(cannonBall),
 			new SkillRequirement(Skill.SMITHING, 35), dwarfCannon, ammoMould, steelBar);
 		cannonballsSteps.setDisplayCondition(notCannonBall);
+		cannonballsSteps.setLockingStep(cannonBallTask);
 		allSteps.add(cannonballsSteps);
 
 		PanelDetails guthSteps = new PanelDetails("Guthix Balance", Collections.singletonList(guthBalance),
 			new SkillRequirement(Skill.HERBLORE, 22), inAidOfMyreque, restorePot, garlic, silverDust);
 		guthSteps.setDisplayCondition(notGuthBalance);
+		guthSteps.setLockingStep(guthBalanceTask);
 		allSteps.add(guthSteps);
 
 		PanelDetails hollowSteps = new PanelDetails("Hollow Tree", Collections.singletonList(hollowTree),
 			new SkillRequirement(Skill.WOODCUTTING, 45), axe);
 		hollowSteps.setDisplayCondition(notHollowTree);
+		hollowSteps.setLockingStep(hollowTreeTask);
 		allSteps.add(hollowSteps);
 
 		PanelDetails dragSteps = new PanelDetails("Dragontooth Island", Collections.singletonList(dragontoothIsland),
 			ectoToken.quantity(25), ghostspeakAmulet);
 		dragSteps.setDisplayCondition(notDragontoothIsland);
+		dragSteps.setLockingStep(dragontoothIslandTask);
 		allSteps.add(dragSteps);
 
 		PanelDetails feverSteps = new PanelDetails("Fever Spider", Arrays.asList(moveToBrainDeath,
 			moveToDownstairs, feverSpider),
 			new SkillRequirement(Skill.SLAYER, 42), rumDeal, slayerGloves);
 		feverSteps.setDisplayCondition(notFeverSpider);
+		feverSteps.setLockingStep(feverSpiderTask);
 		allSteps.add(feverSteps);
 
 		PanelDetails troubleSteps = new PanelDetails("Trouble Brewing", Arrays.asList(moveToCapt, moveToMos, troubleBrewing),
 			new SkillRequirement(Skill.COOKING, 40), cabinFever);
 		troubleSteps.setDisplayCondition(notTroubleBrewing);
+		troubleSteps.setLockingStep(troubleBrewingTask);
 		allSteps.add(troubleSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));

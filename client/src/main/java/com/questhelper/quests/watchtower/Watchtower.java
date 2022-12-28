@@ -37,7 +37,7 @@ import com.questhelper.requirements.player.SkillRequirement;
 import com.questhelper.requirements.var.VarbitRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
-import com.questhelper.requirements.WidgetTextRequirement;
+import com.questhelper.requirements.widget.WidgetTextRequirement;
 import com.questhelper.requirements.util.LogicType;
 import com.questhelper.rewards.ExperienceReward;
 import com.questhelper.rewards.ItemReward;
@@ -70,7 +70,7 @@ public class Watchtower extends BasicQuestHelper
 	//Items Required
 	ItemRequirement coins20, goldBar, deathRune, pickaxe, dragonBones, rope2, guamUnf, fingernails, rope, tobansKey, goradsTooth, relic3, relic1, relic2, tobansGold,
 		crystal, ogreRelic, rockCake, skavidMap, lightSource, nightshade, nightshade2, crystal2, jangerberries, batBones, groundBatBones, pestleAndMortar, partialPotion, potion,
-		magicPotion, magicPotionHighlight, crystal3, crystal4, crystalHighlight, crystal2Highlight, crystal3Highlight, crystal4Highlight;
+		magicPotion, magicPotionHighlight, crystal3, crystal4, crystalHighlight, crystal2Highlight, crystal3Highlight, crystal4Highlight, fireRes;
 
 	Requirement inWatchtowerFloor1, inWatchtowerFloor2, hasTobansKey, onGrewIsland, talkedToGrew, talkedToOg, knownOgreStep, onTobanIsland, hasGoradsTooth,
 		talkedToToban, hasTobansGold, hasRelic1, hasRelic2, hasRelic3,gettingOgreRockCake, gaveCake, inEndOfJumpingPath, hasBeenAtEndOfPath, knowsRiddle, inScaredSkavidRoom,
@@ -96,7 +96,7 @@ public class Watchtower extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -219,12 +219,13 @@ public class Watchtower extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		guamUnf = new ItemRequirement("Guam potion (unf)", ItemID.GUAM_POTION_UNF);
 		guamUnf.setHighlightInInventory(true);
 
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes());
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).isNotConsumed();
 
 		fingernails = new ItemRequirement("Fingernails", ItemID.FINGERNAILS);
 		rope2 = new ItemRequirement("Rope", ItemID.ROPE, 2);
@@ -252,12 +253,12 @@ public class Watchtower extends BasicQuestHelper
 
 		deathRune = new ItemRequirement("Death rune", ItemID.DEATH_RUNE);
 
-		coins20 = new ItemRequirement("Coins", ItemCollections.getCoins(), 20);
+		coins20 = new ItemRequirement("Coins", ItemCollections.COINS, 20);
 
 		skavidMap = new ItemRequirement("Skavid map", ItemID.SKAVID_MAP);
 		skavidMap.setTooltip("You can get another from the city guard in south east Gu'Tanoth.");
 
-		lightSource = new ItemRequirement("A light source", ItemCollections.getLightSources());
+		lightSource = new ItemRequirement("A light source", ItemCollections.LIGHT_SOURCES).isNotConsumed();
 
 		goldBar = new ItemRequirement("Gold bar", ItemID.GOLD_BAR);
 
@@ -286,7 +287,7 @@ public class Watchtower extends BasicQuestHelper
 		crystal4Highlight.setTooltip("You can get another from the Rock of Dalgroth in the Ogre Enclave");
 		crystal4Highlight.setHighlightInInventory(true);
 
-		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR);
+		pestleAndMortar = new ItemRequirement("Pestle and mortar", ItemID.PESTLE_AND_MORTAR).isNotConsumed();
 		pestleAndMortar.setHighlightInInventory(true);
 
 		batBones = new ItemRequirement("Bat bones", ItemID.BAT_BONES);
@@ -309,6 +310,9 @@ public class Watchtower extends BasicQuestHelper
 		magicPotionHighlight = new ItemRequirement("Magic ogre potion", ItemID.MAGIC_OGRE_POTION);
 		magicPotionHighlight.setTooltip("You can make another with a guam unf potion, adding jangerberries then ground bat bones, and having the Watchtower Wizard enchant it");
 		magicPotionHighlight.setHighlightInInventory(true);
+
+		fireRes = new ItemRequirement("Shields/potions that mitigate dragon's fire", ItemCollections.ANTIFIRE_SHIELDS, -1);
+		fireRes.addAlternates(ItemCollections.ANTIFIRE_POTIONS);
 	}
 
 	public void loadZones()
@@ -498,9 +502,16 @@ public class Watchtower extends BasicQuestHelper
 		leaveScaredSkavidRoom = new ObjectStep(this, ObjectID.CAVE_EXIT_2821, new WorldPoint(2504, 9442, 0), "Talk to four other skavids in their caves.");
 
 		enterSkavid1Cave = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_2808, new WorldPoint(2554, 3053, 0), "Talk to four other skavids in their caves.", skavidMap, lightSource);
+		enterSkavid1Cave.addDialogStep("I'll be fine without a tinderbox.");
+
 		enterSkavid2Cave = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_2807, new WorldPoint(2541, 3053, 0), "Talk to four other skavids in their caves.", skavidMap, lightSource);
+		enterSkavid2Cave.addDialogStep("I'll be fine without a tinderbox.");
+
 		enterSkavid3Cave = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_2806, new WorldPoint(2524, 3069, 0), "Talk to four other skavids in their caves.", skavidMap, lightSource);
+		enterSkavid3Cave.addDialogStep("I'll be fine without a tinderbox.");
+
 		enterSkavid4Cave = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_2805, new WorldPoint(2561, 3024, 0), "Talk to four other skavids in their caves.", skavidMap, lightSource);
+		enterSkavid4Cave.addDialogStep("I'll be fine without a tinderbox.");
 
 		talkToSkavid1 = new NpcStep(this, NpcID.SKAVID_4378, new WorldPoint(2503, 9449, 0), "Talk to the skavid.");
 		talkToSkavid1.addDialogStep("Cur.");
@@ -525,6 +536,7 @@ public class Watchtower extends BasicQuestHelper
 			"Try to go through the gate to the south east cave of Gu'Tanoth. Give the guard a gold bar and go through.", goldBar);
 
 		enterInsaneSkavidCave = new ObjectStep(this, ObjectID.CAVE_ENTRANCE_2810, new WorldPoint(2528, 3013, 0), "Enter the mad skavid's cave.");
+		enterInsaneSkavidCave.addDialogStep("I'll be fine without a tinderbox.");
 
 		talkToInsaneSkavid = new SkavidChoice(this);
 
@@ -612,6 +624,11 @@ public class Watchtower extends BasicQuestHelper
 		return reqs;
 	}
 
+	@Override
+	public List<ItemRequirement> getItemRecommended()
+	{
+		return Arrays.asList(fireRes);
+	}
 
 	@Override
 	public List<String> getCombatRequirements()
@@ -667,7 +684,7 @@ public class Watchtower extends BasicQuestHelper
 			giveTobanDragonBones, searchChestForTobansGold, talkToOgAgain, useRopeOnBranchAgain, talkToGrewAgain, talkToWizardWithRelic), dragonBones, rope2));
 		allSteps.add(new PanelDetails("Enter Gu'Tanoth", Arrays.asList(enterGuTanoth, stealRockCake, talkToGuardBattlement, talkToGuardWithRockCake, jumpGap, talkToCityGuard, talkToCityGuardAgain), ogreRelic, coins20, deathRune, goldBar, lightSource));
 		allSteps.add(new PanelDetails("Learn the Skavid language", Arrays.asList(enterScaredSkavidCave, talkToScaredSkavid, enterSkavid1Cave, tryToGoThroughToInsaneSkavid, enterInsaneSkavidCave, talkToInsaneSkavid,
-			pickUp2Nightshade, useNightshadeOnGuard), goldBar, lightSource, skavidMap));
+			pickUp2Nightshade, useNightshadeOnGuard), Arrays.asList(goldBar, lightSource, skavidMap), Collections.singletonList(fireRes)));
 		allSteps.add(new PanelDetails("Getting the other crystals", Arrays.asList(talkToWizardAgainEnclave, useJangerberriesOnGuam, grindBatBones, useBonesOnPotion, talkToWizardWithPotion, useNightshadeOnGuardAgain, usePotionOnOgre1, mineRock, talkToWizardWithCrystals, useCrystal1, pullLever),
 			guamUnf, jangerberries, pestleAndMortar, batBones, nightshade, pickaxe));
 		return allSteps;

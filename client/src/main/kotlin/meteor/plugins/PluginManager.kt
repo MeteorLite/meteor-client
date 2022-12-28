@@ -361,6 +361,9 @@ object PluginManager {
         }
 
     }
+     fun get(p: Class<out Plugin>): Plugin {
+        return plugins.first { it.javaClass == p }
+     }
 
     inline fun <reified T : Plugin> get(): T {
         return plugins.filterIsInstance<T>().first()

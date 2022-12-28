@@ -5,13 +5,9 @@ import com.questhelper.questhelpers.QuestHelper;
 import com.questhelper.steps.QuestStep;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.Arrays;
 
 import eventbus.events.GameTick;
-import meteor.Main;
 import net.runelite.api.widgets.Widget;
-import org.jetbrains.annotations.NotNull;
-import org.rationalityfrontline.kevent.KEvent;
 
 public class PaintingWall extends QuestStep
 {
@@ -100,17 +96,5 @@ public class PaintingWall extends QuestStep
 				graphics.draw(widget.getBounds());
 			}
 		}
-	}
-
-	@NotNull
-	@Override
-	public KEvent getKEVENT_INSTANCE() {
-		return Main.INSTANCE.getEventBus();
-	}
-
-	@NotNull
-	@Override
-	public String getSUBSCRIBER_TAG() {
-		return "paintingwall";
 	}
 }

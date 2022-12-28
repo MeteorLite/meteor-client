@@ -85,6 +85,9 @@ public class DesertEasy extends ComplexStateQuestHelper
 
 	ZoneRequirement inPyramidPlunderLobby, inFirstRoom, inKalphHive;
 
+	ConditionalStep goldWarblerTask, fiveClayTask, enterKalphTask, enterDesertTask, killVultureTask, nardahHerbTask,
+		collectCactiTask, sellArtefactTask, openSarcTask, cutCactusTask, magicCarpetTask;
+
 	@Override
 	public QuestStep loadStep()
 	{
@@ -93,24 +96,47 @@ public class DesertEasy extends ComplexStateQuestHelper
 		setupSteps();
 
 		ConditionalStep doEasy = new ConditionalStep(this, claimReward);
-		doEasy.addStep(notEnterDesert, enterDesert);
-		doEasy.addStep(notCutCactus, cutCactus);
-		doEasy.addStep(notEnterKalph, enterKalph);
-		doEasy.addStep(new Conditions(notCollectCacti, inKalphHive), collectCacti);
-		doEasy.addStep(notCollectCacti, enterKalphForCacti);
-		doEasy.addStep(notGoldWarbler, goldWarbler);
-		doEasy.addStep(notFiveClay, fiveClay);
-		doEasy.addStep(notMagicCarpet, magicCarpet);
-		doEasy.addStep(notNardahHerb, nardahHerb);
-		doEasy.addStep(notKillVulture, killVulture);
-		doEasy.addStep(new Conditions(notOpenSarc, inFirstRoom), openSarc);
-		doEasy.addStep(new Conditions(notOpenSarc, inPyramidPlunderLobby), startPyramidPlunder);
-		doEasy.addStep(notOpenSarc, moveToPyramidPlunder);
-		doEasy.addStep(notSellArtefact, sellArtefact);
+
+		enterDesertTask = new ConditionalStep(this, enterDesert);
+		doEasy.addStep(notEnterDesert, enterDesertTask);
+
+		cutCactusTask = new ConditionalStep(this, cutCactus);
+		doEasy.addStep(notCutCactus, cutCactusTask);
+
+		enterKalphTask = new ConditionalStep(this, enterKalph);
+		doEasy.addStep(notEnterKalph, enterKalphTask);
+
+		collectCactiTask = new ConditionalStep(this, enterKalphForCacti);
+		collectCactiTask.addStep(inKalphHive, collectCacti);
+		doEasy.addStep(notCollectCacti, collectCactiTask);
+
+		goldWarblerTask = new ConditionalStep(this, goldWarbler);
+		doEasy.addStep(notGoldWarbler, goldWarblerTask);
+
+		fiveClayTask = new ConditionalStep(this, fiveClay);
+		doEasy.addStep(notFiveClay, fiveClayTask);
+
+		magicCarpetTask = new ConditionalStep(this, magicCarpet);
+		doEasy.addStep(notMagicCarpet, magicCarpetTask);
+
+		nardahHerbTask = new ConditionalStep(this, nardahHerb);
+		doEasy.addStep(notNardahHerb, nardahHerbTask);
+
+		killVultureTask = new ConditionalStep(this, killVulture);
+		doEasy.addStep(notKillVulture, killVultureTask);
+
+		openSarcTask = new ConditionalStep(this, moveToPyramidPlunder);
+		openSarcTask.addStep(inPyramidPlunderLobby, startPyramidPlunder);
+		openSarcTask.addStep(inFirstRoom, openSarc);
+		doEasy.addStep(notOpenSarc, openSarcTask);
+
+		sellArtefactTask = new ConditionalStep(this, sellArtefact);
+		doEasy.addStep(notSellArtefact, sellArtefactTask);
 
 		return doEasy;
 	}
 
+	@Override
 	public void setupRequirements()
 	{
 		notGoldWarbler = new VarplayerRequirement(1198, false, 1);
@@ -125,32 +151,32 @@ public class DesertEasy extends ComplexStateQuestHelper
 		notCutCactus = new VarplayerRequirement(1198, false, 10);
 		notMagicCarpet = new VarplayerRequirement(1198, false, 11);
 
-		coins = new ItemRequirement("Coins", ItemCollections.getCoins())
+		coins = new ItemRequirement("Coins", ItemCollections.COINS)
 			.showConditioned(new Conditions(LogicType.OR, notNardahHerb, notMagicCarpet));
 		potatoCacti = new ItemRequirement("Potato Cacti", ItemID.POTATO_CACTUS).showConditioned(notCollectCacti);
 		rope = new ItemRequirement("Rope", ItemID.ROPE)
 			.showConditioned(new Conditions(LogicType.OR, notEnterKalph, notCollectCacti));
 		shantayPass = new ItemRequirement("Shantay pass", ItemID.SHANTAY_PASS).showConditioned(notEnterDesert);
-		birdSnare = new ItemRequirement("Bird snare", ItemID.BIRD_SNARE).showConditioned(notGoldWarbler);
-		pickaxe = new ItemRequirement("Pickaxe", ItemCollections.getPickaxes()).showConditioned(notFiveClay);
-		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notCutCactus);
-		desertBoots = new ItemRequirement("Desert boots", ItemID.DESERT_BOOTS).showConditioned(notEnterDesert);
-		desertRobe = new ItemRequirement("Desert robe", ItemID.DESERT_ROBE).showConditioned(notEnterDesert);
-		desertShirt = new ItemRequirement("Desert shirt", ItemID.DESERT_SHIRT).showConditioned(notEnterDesert);
+		birdSnare = new ItemRequirement("Bird snare", ItemID.BIRD_SNARE).showConditioned(notGoldWarbler).isNotConsumed();
+		pickaxe = new ItemRequirement("Pickaxe", ItemCollections.PICKAXES).showConditioned(notFiveClay).isNotConsumed();
+		knife = new ItemRequirement("Knife", ItemID.KNIFE).showConditioned(notCutCactus).isNotConsumed();
+		desertBoots = new ItemRequirement("Desert boots", ItemID.DESERT_BOOTS).showConditioned(notEnterDesert).isNotConsumed();
+		desertRobe = new ItemRequirement("Desert robe", ItemID.DESERT_ROBE).showConditioned(notEnterDesert).isNotConsumed();
+		desertShirt = new ItemRequirement("Desert shirt", ItemID.DESERT_SHIRT).showConditioned(notEnterDesert).isNotConsumed();
 		pyramidPlunderArtefact = new ItemRequirement("Any Artefact from Pyramid Plunder",
-			ItemCollections.getPlunderArtefacts()).showConditioned(notSellArtefact);
-		emptyWaterskin = new ItemRequirement("Empty waterskin", ItemID.WATERSKIN0).showConditioned(notCutCactus);
-		grimyHerb = new ItemRequirement("Grimy herb", ItemCollections.getGrimyHerb());
+			ItemCollections.PLUNDER_ARTEFACTS).showConditioned(notSellArtefact);
+		emptyWaterskin = new ItemRequirement("Empty waterskin", ItemID.WATERSKIN0).showConditioned(notCutCactus).isNotConsumed();
+		grimyHerb = new ItemRequirement("Grimy herb", ItemCollections.GRIMY_HERB);
 
-		antipoison = new ItemRequirement("Antipoison", ItemCollections.getAntipoisons());
-		waterskin = new ItemRequirement("Waterskin", ItemCollections.getWaterskin());
-		pharaohSceptre = new ItemRequirement("Pharaoh's sceptre", ItemCollections.getPharoahSceptre());
-		necklaceOfPassage = new ItemRequirement("Necklace of passage", ItemCollections.getNecklaceOfPassages());
+		antipoison = new ItemRequirement("Antipoison", ItemCollections.ANTIPOISONS);
+		waterskin = new ItemRequirement("Waterskin", ItemCollections.WATERSKIN).isNotConsumed();
+		pharaohSceptre = new ItemRequirement("Pharaoh's sceptre", ItemCollections.PHAROAH_SCEPTRE).isNotConsumed();
+		necklaceOfPassage = new ItemRequirement("Necklace of passage", ItemCollections.NECKLACE_OF_PASSAGES);
 
 		combatGear = new ItemRequirement("Combat gear and ranged weapon or runes for multiple spell casts", -1, -1);
 		combatGear.setDisplayItemId(BankSlotIcons.getCombatGear());
 
-		food = new ItemRequirement("Food", ItemCollections.getGoodEatingFood(), -1);
+		food = new ItemRequirement("Food", ItemCollections.GOOD_EATING_FOOD, -1);
 
 		inFirstRoom = new ZoneRequirement(firstRoom);
 		inPyramidPlunderLobby = new ZoneRequirement(pyramidPlunderLobby);
@@ -269,7 +295,7 @@ public class DesertEasy extends ComplexStateQuestHelper
 	public List<UnlockReward> getUnlockRewards()
 	{
 		return Arrays.asList(
-			new UnlockReward("Pharaoh's sceptre can hold up to 4 charges"),
+			new UnlockReward("Pharaoh's sceptre can hold up to 10 charges"),
 			new UnlockReward("Goats will always drop noted desert goat horn"),
 			new UnlockReward("Simon Templeton will now buy your noted artefacts too")
 		);
@@ -284,55 +310,66 @@ public class DesertEasy extends ComplexStateQuestHelper
 			Collections.singletonList(enterDesert), desertBoots.equipped(), desertShirt.equipped(), desertRobe.equipped(),
 			shantayPass);
 		enterSteps.setDisplayCondition(notEnterDesert);
+		enterSteps.setLockingStep(enterDesertTask);
 		allSteps.add(enterSteps);
 
 		PanelDetails cutDesertCactiSteps = new PanelDetails("Cut Desert Cacti", Collections.singletonList(cutCactus),
 			knife, emptyWaterskin);
 		cutDesertCactiSteps.setDisplayCondition(notCutCactus);
+		cutDesertCactiSteps.setLockingStep(cutCactusTask);
 		allSteps.add(cutDesertCactiSteps);
 
 		PanelDetails kalphiteHiveSteps = new PanelDetails("Kalphite Hive", Collections.singletonList(enterKalph),
 			rope);
 		kalphiteHiveSteps.setDisplayCondition(notEnterKalph);
+		kalphiteHiveSteps.setLockingStep(enterKalphTask);
 		allSteps.add(kalphiteHiveSteps);
 
 		PanelDetails kalphiteCactiSteps = new PanelDetails("Kalphite Cacti", Arrays.asList(enterKalphForCacti, collectCacti),
 			rope, combatGear, food, antipoison);
 		kalphiteCactiSteps.setDisplayCondition(notCollectCacti);
+		kalphiteCactiSteps.setLockingStep(collectCactiTask);
 		allSteps.add(kalphiteCactiSteps);
 
 		PanelDetails goldenWarblerSteps = new PanelDetails("Golden Warbler", Collections.singletonList(goldWarbler),
 			new SkillRequirement(Skill.HUNTER, 5), birdSnare);
 		goldenWarblerSteps.setDisplayCondition(notGoldWarbler);
+		goldenWarblerSteps.setLockingStep(goldWarblerTask);
 		allSteps.add(goldenWarblerSteps);
 
 		PanelDetails fiveClaySteps = new PanelDetails("Five clay", Collections.singletonList(fiveClay), pickaxe);
 		fiveClaySteps.setDisplayCondition(notFiveClay);
+		fiveClaySteps.setLockingStep(fiveClayTask);
 		allSteps.add(fiveClaySteps);
 
 		PanelDetails magicCarpetRideSteps = new PanelDetails("Magic Carpet Ride",
 			Collections.singletonList(magicCarpet), coins.quantity(200));
 		magicCarpetRideSteps.setDisplayCondition(notMagicCarpet);
+		magicCarpetRideSteps.setLockingStep(magicCarpetTask);
 		allSteps.add(magicCarpetRideSteps);
 
 		PanelDetails nardahHerbCleanerSteps = new PanelDetails("Nardah Herb Cleaner",
 			Collections.singletonList(nardahHerb), grimyHerb, coins.quantity(200));
 		nardahHerbCleanerSteps.setDisplayCondition(notNardahHerb);
+		nardahHerbCleanerSteps.setLockingStep(nardahHerbTask);
 		allSteps.add(nardahHerbCleanerSteps);
 
 		PanelDetails vultureSteps = new PanelDetails("Kill a Vulture", Collections.singletonList(killVulture),
 			combatGear);
 		vultureSteps.setDisplayCondition(notKillVulture);
+		vultureSteps.setLockingStep(killVultureTask);
 		allSteps.add(vultureSteps);
 
 		PanelDetails openSarcSteps = new PanelDetails("First Sarcophagus", Arrays.asList(moveToPyramidPlunder,
 			startPyramidPlunder, openSarc), new SkillRequirement(Skill.THIEVING, 21), icthlarinsLittleHelper);
 		openSarcSteps.setDisplayCondition(notOpenSarc);
+		openSarcSteps.setLockingStep(openSarcTask);
 		allSteps.add(openSarcSteps);
 
 		PanelDetails sellArtefactSteps = new PanelDetails("Sell Artefact", Collections.singletonList(sellArtefact),
 			pyramidPlunderArtefact);
 		sellArtefactSteps.setDisplayCondition(notSellArtefact);
+		sellArtefactSteps.setLockingStep(sellArtefactTask);
 		allSteps.add(sellArtefactSteps);
 
 		allSteps.add(new PanelDetails("Finishing off", Collections.singletonList(claimReward)));

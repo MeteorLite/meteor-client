@@ -39,12 +39,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import javax.inject.Inject;
 
 import eventbus.events.*;
 import meteor.Main;
+import meteor.chat.QueuedMessage;
 import meteor.game.ItemManager;
 import meteor.plugins.EventSubscriber;
-import meteor.plugins.bank.BankSearch;
+import meteor.plugins.PluginManager;
 import meteor.rs.ClientThread;
 import meteor.util.QuantityFormatter;
 import net.runelite.api.ChatMessageType;
@@ -64,7 +66,6 @@ import net.runelite.api.widgets.WidgetType;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
-import meteor.chat.QueuedMessage;
 
 public class QuestBankTab extends EventSubscriber
 {
@@ -89,25 +90,27 @@ public class QuestBankTab extends EventSubscriber
 
 	private ItemManager itemManager = ItemManager.INSTANCE;
 
-	private Client client = Main.INSTANCE.getClient();
+	private Client client = Main.client;
 
 	private ClientThread clientThread = ClientThread.INSTANCE;
 
-	private ChatMessageManager chatMessageManager = Main.INSTANCE.getChatMessageManager();
+	private ChatMessageManager chatMessageManager = Main.chatMessageManager;
 
-	private QuestBankTabInterface questBankTabInterface = new QuestBankTabInterface(client, BankSearch.INSTANCE);
+	private QuestBankTabInterface questBankTabInterface = new QuestBankTabInterface();
 
-	private final QuestHelperPlugin questHelper;
 
-	private QuestGrandExchangeInterface geButtonWidget;
+
+	private final QuestHelperPlugin questHelper = (QuestHelperPlugin) PluginManager.INSTANCE.get(QuestHelperPlugin.class);
+
+	@Inject
+	private QuestGrandExchangeInterface geButtonWidget = new QuestGrandExchangeInterface(questHelper);
+
 	private final HashMap<Widget, BankTabItem> widgetItems = new HashMap<>();
 
 	private final HashMap<BankWidget, BankWidget> fakeToRealItem = new HashMap<>();
 
-	public QuestBankTab(QuestHelperPlugin questHelperPlugin)
+	public QuestBankTab()
 	{
-		questHelper = questHelperPlugin;
-		geButtonWidget = new QuestGrandExchangeInterface(client, questHelper, clientThread);
 	}
 
 	public void startUp()
@@ -195,7 +198,7 @@ public class QuestBankTab extends EventSubscriber
 		}
 	}
 
-/*	@Override
+	@Override
 	public void onScriptCallbackEvent(ScriptCallbackEvent event)
 	{
 		String eventName = event.getEventName();
@@ -213,7 +216,7 @@ public class QuestBankTab extends EventSubscriber
 				event.setEventName("getSearchingQuestHelperTab");
 			}
 		}
-	}*/
+	}
 
 	@Override
 	public void onWidgetLoaded(WidgetLoaded event)

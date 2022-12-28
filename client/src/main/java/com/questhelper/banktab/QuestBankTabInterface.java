@@ -26,10 +26,12 @@
  */
 package com.questhelper.banktab;
 
+import javax.inject.Inject;
 
 import eventbus.events.MenuOptionClicked;
 import lombok.Getter;
 import lombok.Setter;
+import meteor.Main;
 import meteor.plugins.bank.BankSearch;
 import net.runelite.api.Client;
 import net.runelite.api.ScriptEvent;
@@ -61,13 +63,12 @@ public class QuestBankTabInterface
 	@Getter
 	private Widget questBackgroundWidget;
 
-	private final Client client;
-	private final BankSearch bankSearch;
+	private final Client client = Main.client;
+	private final BankSearch bankSearch = BankSearch.INSTANCE;
 
-	public QuestBankTabInterface(Client client, BankSearch bankSearch)
+	public QuestBankTabInterface()
 	{
-		this.client = client;
-		this.bankSearch = bankSearch;
+
 	}
 
 	public void init()

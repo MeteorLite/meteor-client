@@ -77,7 +77,7 @@ public class SeaSlug extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -147,7 +147,8 @@ public class SeaSlug extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		swampPaste = new ItemRequirement("Swamp paste", ItemID.SWAMP_PASTE);
 		dampSticks = new ItemRequirement("Damp sticks", ItemID.DAMP_STICKS);
@@ -260,5 +261,11 @@ public class SeaSlug extends BasicQuestHelper
 				finishQuest)));
 
 		return allSteps;
+	}
+
+	@Override
+	public List<String> getNotes()
+	{
+		return Collections.singletonList("You can complete an Ardougne Medium Diary task by fishing from the fishing platform using a fishing rod or small fishing net (these can be bought from the fishing shop near quest start in Witchaven).");
 	}
 }

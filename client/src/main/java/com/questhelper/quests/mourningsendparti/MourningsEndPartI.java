@@ -94,7 +94,7 @@ public class MourningsEndPartI extends BasicQuestHelper
 	public Map<Integer, QuestStep> loadSteps()
 	{
 		loadZones();
-		setupItemRequirements();
+		setupRequirements();
 		setupConditions();
 		setupSteps();
 		Map<Integer, QuestStep> steps = new HashMap<>();
@@ -167,7 +167,7 @@ public class MourningsEndPartI extends BasicQuestHelper
 		takeAppleToElena.addStep(new Conditions(receivedSieve, naphthaAppleMix), useSieveOnBarrel);
 		takeAppleToElena.addStep(new Conditions(receivedSieve, appleBarrel.alsoCheckBank(questBank), naphtha), useNaphthaOnBarrel);
 		takeAppleToElena.addStep(new Conditions(receivedSieve, appleBarrel.alsoCheckBank(questBank)), getNaphtha);
-		takeAppleToElena.addStep(new Conditions(receivedSieve, rottenApple), useApplesOnPress);
+		takeAppleToElena.addStep(new Conditions(receivedSieve, barrelOfRottenApples), useApplesOnPress);
 		takeAppleToElena.addStep(new Conditions(receivedSieve, emptyBarrel), useBarrelOnPile);
 		takeAppleToElena.addStep(receivedSieve, pickUpBarrel);
 		takeAppleToElena.addStep(givenRottenApple, talkToElenaNoApple);
@@ -186,7 +186,8 @@ public class MourningsEndPartI extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
 		bearFur = new ItemRequirement("Bear fur", ItemID.BEAR_FUR);
 		silk2 = new ItemRequirement("Silk", ItemID.SILK, 2);
@@ -201,7 +202,7 @@ public class MourningsEndPartI extends BasicQuestHelper
 		toadCrunchies.addAlternates(ItemID.TOAD_CRUNCHIES_9538, ItemID.PREMADE_TD_CRUNCH);
 		magicLogs = new ItemRequirement("Magic logs", ItemID.MAGIC_LOGS);
 		leather = new ItemRequirement("Leather", ItemID.LEATHER);
-		ogreBellows = new ItemRequirement("Ogre bellows", ItemID.OGRE_BELLOWS);
+		ogreBellows = new ItemRequirement("Ogre bellows", ItemID.OGRE_BELLOWS).isNotConsumed();
 		ogreBellows.addAlternates(ItemID.OGRE_BELLOWS_1, ItemID.OGRE_BELLOWS_2, ItemID.OGRE_BELLOWS_3);
 		coal20 = new ItemRequirement("10-20 coal", ItemID.COAL, 10);
 		naphtha = new ItemRequirement("Barrel of naphtha", ItemID.BARREL_OF_NAPHTHA);
@@ -212,7 +213,7 @@ public class MourningsEndPartI extends BasicQuestHelper
 		yellowBellow = new ItemRequirement("Yellow dye bellows", ItemID.YELLOW_DYE_BELLOWS);
 		blueBellow = new ItemRequirement("Blue dye bellows", ItemID.BLUE_DYE_BELLOWS);
 		redBellow = new ItemRequirement("Red dye bellows", ItemID.RED_DYE_BELLOWS);
-		mournerMask = new ItemRequirement("Gas mask", ItemID.GAS_MASK);
+		mournerMask = new ItemRequirement("Gas mask", ItemID.GAS_MASK).isNotConsumed();
 		bloodyMournerBody = new ItemRequirement("Bloody mourner top", ItemID.BLOODY_MOURNER_TOP);
 		mournerLegsBroken = new ItemRequirement("Ripped mourner trousers", ItemID.RIPPED_MOURNER_TROUSERS);
 		mournerBoots = new ItemRequirement("Mourner boots", ItemID.MOURNER_BOOTS);
@@ -326,7 +327,7 @@ public class MourningsEndPartI extends BasicQuestHelper
 
 		talkToArianwyn = new NpcStep(this, NpcID.ARIANWYN_9014, new WorldPoint(2354, 3170, 0), "Talk to Arianwyn in Lletya.");
 		talkToArianwyn.addDialogStep("Okay, let's begin.");
-		killMourner = new NpcStep(this, NpcID.MOURNER_9013, new WorldPoint(2385, 3326, 0), "Kill a mourner travelling through the Arandar pass. This is more easily accessed from the north entrance.", true);
+		killMourner = new NpcStep(this, NpcID.MOURNER_9013, new WorldPoint(2385, 3326, 0), "Kill a mourner travelling through the Arandar pass. This is more easily accessed from the north entrance. You'll need 7 free inventory spaces.", true);
 		pickUpLoot = new DetailedQuestStep(this, "Pick up everything the mourner dropped.", mournerBoots, mournerCloak, mournerGloves, mournerLegsBroken, mournerMask, mournerLetter, bloodyMournerBody);
 
 		searchLaundry = new ObjectStep(this, ObjectID.LAUNDRY_BASKET, new WorldPoint(2912, 3418, 0), "Search Tegid's laundry basket in south Taverley for some soap.");
@@ -462,7 +463,7 @@ public class MourningsEndPartI extends BasicQuestHelper
 		req.add(new QuestRequirement(QuestHelperQuest.BIG_CHOMPY_BIRD_HUNTING, QuestState.FINISHED));
 		req.add(new QuestRequirement(QuestHelperQuest.SHEEP_HERDER, QuestState.FINISHED));
 		req.add(new SkillRequirement(Skill.RANGED, 60));
-		req.add(new SkillRequirement(Skill.THIEVING, 50, true));
+		req.add(new SkillRequirement(Skill.THIEVING, 50));
 		return req;
 	}
 
@@ -476,8 +477,8 @@ public class MourningsEndPartI extends BasicQuestHelper
 	public List<ExperienceReward> getExperienceRewards()
 	{
 		return Arrays.asList(
-				new ExperienceReward(Skill.THIEVING, 25000),
-				new ExperienceReward(Skill.HITPOINTS, 25000));
+			new ExperienceReward(Skill.THIEVING, 40000),
+			new ExperienceReward(Skill.HITPOINTS, 25000));
 	}
 
 	@Override
@@ -516,16 +517,20 @@ public class MourningsEndPartI extends BasicQuestHelper
 		allSteps.add(cleanPanel);
 		allSteps.add(repairPanel);
 
-		PanelDetails enterWestArdougnePanel = new PanelDetails("Infiltrate the Mourners", Arrays.asList(enterMournerBase, enterBasement, talkToEssyllt, talkToGnome, useFeatherOnGnome, talkToGnomeWithItems, releaseGnome, giveGnomeItems),
+		PanelDetails enterWestArdougnePanel = new PanelDetails("Infiltrate the Mourners", Arrays.asList(enterMournerBase,
+			enterBasement, talkToEssyllt, talkToGnome, useFeatherOnGnome, talkToGnomeWithItems, releaseGnome, giveGnomeItems),
 			fullMourners, mournerLetter, feather, toadCrunchies, magicLogs, leather);
 
 		allSteps.add(enterWestArdougnePanel);
 
-		allSteps.add(new PanelDetails("Dye the sheep", Arrays.asList(getToads, dyeSheep, enterBaseAfterSheep, enterBasementAfterSheep, talkToEssylltAfterSheep), fixedDevice, ogreBellows, redDye, yellowDye, greenDye, blueDye));
+		allSteps.add(new PanelDetails("Dye the sheep", Arrays.asList(getToads, dyeSheep, enterBaseAfterSheep,
+			enterBasementAfterSheep, talkToEssylltAfterSheep), fixedDevice, ogreBellows, redDye, yellowDye, greenDye, blueDye));
 
 
 		allSteps.add(new PanelDetails("Poison the citizens",
-			Arrays.asList(pickUpRottenApple, talkToElena, pickUpBarrel, useBarrelOnPile, useApplesOnPress, getNaphtha, useNaphthaOnBarrel, useSieveOnBarrel, cookNaphtha, usePowderOnFood1, usePowderOnFood2, talkToEssylltAfterPoison), coal20OrNaphtha));
+			Arrays.asList(pickUpRottenApple, talkToElena, pickUpBarrel, useBarrelOnPile, useApplesOnPress, getNaphtha,
+				useNaphthaOnBarrel, useSieveOnBarrel, cookNaphtha, usePowderOnFood1, usePowderOnFood2,
+				talkToEssylltAfterPoison), coal20OrNaphtha, fullMourners));
 
 		allSteps.add(new PanelDetails("Report back to Arianwyn",
 			Collections.singletonList(returnToArianwyn)));

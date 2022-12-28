@@ -26,13 +26,15 @@ package com.questhelper.quests.elementalworkshopii;
 
 
 import com.questhelper.ItemCollections;
+import com.questhelper.KeyringCollection;
 import com.questhelper.QuestDescriptor;
 import com.questhelper.QuestHelperQuest;
 import com.questhelper.Zone;
 import com.questhelper.panel.PanelDetails;
 import com.questhelper.questhelpers.BasicQuestHelper;
 import com.questhelper.requirements.Requirement;
-import com.questhelper.requirements.WidgetModelRequirement;
+import com.questhelper.requirements.item.KeyringRequirement;
+import com.questhelper.requirements.widget.WidgetModelRequirement;
 import com.questhelper.requirements.ZoneRequirement;
 import com.questhelper.requirements.conditional.Conditions;
 import com.questhelper.requirements.item.ItemOnTileRequirement;
@@ -124,7 +126,7 @@ public class ElementalWorkshopII extends BasicQuestHelper
 	@Override
 	public Map<Integer, QuestStep> loadSteps()
 	{
-		setupItemRequirements();
+		setupRequirements();
 		setupZones();
 		setupConditions();
 		setupSteps();
@@ -261,17 +263,18 @@ public class ElementalWorkshopII extends BasicQuestHelper
 		return steps;
 	}
 
-	public void setupItemRequirements()
+	@Override
+	public void setupRequirements()
 	{
-		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.getPickaxes());
-		hammer = new ItemRequirement("Hammer", ItemCollections.getHammer());
+		pickaxe = new ItemRequirement("Any pickaxe", ItemCollections.PICKAXES).isNotConsumed();
+		hammer = new ItemRequirement("Hammer", ItemCollections.HAMMER).isNotConsumed();
 		coal = new ItemRequirement("Coal", ItemID.COAL, 8);
-		batteredKey = new ItemRequirement("Battered key", ItemID.BATTERED_KEY);
+		batteredKey = new KeyringRequirement("Battered Key", configManager, KeyringCollection.BATTERED_KEY);
 		batteredKey.setTooltip("You can get another by searching the bookcase in the house south of the elemental " +
 			"workshop's entrance");
 
 		camelotTeleport = new ItemRequirement("Camelot teleport", ItemID.CAMELOT_TELEPORT);
-		digsiteTeleport = new ItemRequirement("Digsite teleport", ItemCollections.getDigsitePendants());
+		digsiteTeleport = new ItemRequirement("Digsite teleport", ItemCollections.DIGSITE_PENDANTS);
 		digsiteTeleport.addAlternates(ItemID.DIGSITE_TELEPORT);
 
 		elementalOre = new ItemRequirement("Elemental ore", ItemID.ELEMENTAL_ORE);
@@ -427,6 +430,7 @@ public class ElementalWorkshopII extends BasicQuestHelper
 	{
 		searchBookcase = new ObjectStep(this, ObjectID.BOOKCASE_17382, new WorldPoint(3367, 3335, 0),
 			"Search the marked bookcase in the Exam Centre in the Dig Site.");
+		searchBookcase.addDialogStep("Yes.");
 
 		readBook = new DetailedQuestStep(this, "Read the beaten book.", beatenBook.highlighted());
 		readScroll = new DetailedQuestStep(this, "Read the scroll.", scroll.highlighted());
