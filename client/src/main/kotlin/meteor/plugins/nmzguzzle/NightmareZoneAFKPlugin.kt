@@ -1,50 +1,79 @@
 package meteor.plugins.nmzguzzle
 
 import eventbus.events.GameTick
+import eventbus.events.HitsplatApplied
 import meteor.api.items.Items
+import meteor.api.npcs.NPCs
+import meteor.api.objects.Objects
+import meteor.api.packets.ClientPackets
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import net.runelite.api.ObjectID.POTION_26276
 import net.runelite.api.Skill
 import kotlin.random.Random
 
 @PluginDescriptor(name = "NightmareZone AFK", description = "", enabledByDefault = false)
 class NightmareZoneAFKPlugin : Plugin() {
-    var overloading = false
-    var nextAbsorptionRefill = -1
+    private var overloading = false
+    private var nextAbsorptionRefill = -1
+    private var ticksSinceLastHitsplat = 0
+    private var ticksSinceLastManualAttack = 0
 
     override fun onGameTick(it: GameTick) {
-        val health = client.getBoostedSkillLevel(Skill.HITPOINTS)
-        if (health > 1) {
-            if (overloading)
+        ticksSinceLastHitsplat++
+        ticksSinceLastManualAttack++
+
+        if (Objects.getFirst(POTION_26276) == null)
+            return
+
+        if (ticksSinceLastManualAttack > 5) {
+            if (ticksSinceLastHitsplat > 100 + Random.nextInt(200)) {
+                NPCs.getAll(alive = true, sortByDistance = true)?.firstOrNull()?.interact("Attack")
+                ClientPackets.queueClickPacket(0, 0)
+                ticksSinceLastManualAttack = 0
                 return
-            if (health > 2) {
-                if (health != 51) {
-                    return
-                } else {
-                    val overload = Items.getFirst("Overload (1)", "Overload (2)", "Overload (3)", "Overload (4)")
-                    overload?.let {
-                        overloading = true
-                        it.interact("Drink")
-                    }
-                    return
+            }
+        }
+
+        when (client.getBoostedSkillLevel(Skill.HITPOINTS)) {
+            1 -> overloading = false
+            2 -> Items.getFirst("Dwarven rock cake")?.interact("Guzzle")?.also { return }
+        }
+
+        if (overloading)
+            return
+
+        when (client.getBoostedSkillLevel(Skill.HITPOINTS)) {
+            51 -> {
+                val overload = Items.getFirst("Overload (1)", "Overload (2)", "Overload (3)", "Overload (4)")
+                overload?.let {
+                    overloading = true
+                    it.interact("Drink")
                 }
-            } else { // health == 2
-                Items.getFirst("Dwarven rock cake")?.interact("Guzzle")
+                return
             }
-
-        } else {
-            overloading = false
+            in 52..60 -> Items.getFirst("Dwarven rock cake")?.interact("Eat")?.also { return }
+            in 61..130 -> Items.getFirst("Dwarven rock cake")?.interact("Guzzle")?.also { return }
         }
 
-        val absorptionPoints = client.getWidget(13238274)?.getChild(5)?.text?.toInt()
-        if (nextAbsorptionRefill == -1) {
-            nextAbsorptionRefill = 50 + Random.nextInt(100)
-        }
-        if (absorptionPoints != null) {
-            if (absorptionPoints < nextAbsorptionRefill) {
-                Items.getFirst("Absorption (1)", "Absorption (2)", "Absorption (3)", "Absorption (4)")?.interact("Drink")
+        // Emergency absorption - only uses them if you use one first i.e. widget was visible
+        val text = client.getWidget(13238274)?.getChild(5)?.text
+        text?.let {
+            if (it != "" && it != "1,000") {
+                val absorptionPoints = it.toInt()
+                if (nextAbsorptionRefill == -1) {
+                    nextAbsorptionRefill = 50 + Random.nextInt(100)
+                }
+                if (absorptionPoints < nextAbsorptionRefill) {
+                    Items.getFirst("Absorption (1)", "Absorption (2)", "Absorption (3)", "Absorption (4)")?.interact("Drink")
+                }
             }
         }
+    }
 
+    override fun onHitsplatApplied(it: HitsplatApplied) {
+        if (it.actor != client.localPlayer) {
+            ticksSinceLastHitsplat = 0
+        }
     }
 }
