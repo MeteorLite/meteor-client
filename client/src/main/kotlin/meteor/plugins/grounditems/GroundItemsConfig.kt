@@ -204,7 +204,7 @@ interface GroundItemsConfig : Config {
         return Color.decode("#66B2FF")
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "lowValuePrice",
         name = "Low value price",
@@ -226,7 +226,7 @@ interface GroundItemsConfig : Config {
         return Color.decode("#99FF99")
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "mediumValuePrice",
         name = "Medium value price",
@@ -248,7 +248,7 @@ interface GroundItemsConfig : Config {
         return Color.decode("#FF9600")
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "highValuePrice",
         name = "High value price",
@@ -270,7 +270,7 @@ interface GroundItemsConfig : Config {
         return Color.decode("#FF66B2")
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "insaneValuePrice",
         name = "Insane value price",

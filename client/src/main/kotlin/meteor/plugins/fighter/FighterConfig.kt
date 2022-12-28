@@ -44,7 +44,7 @@ interface FighterConfig : Config {
         return "Any"
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "lootValue",
         name = "Loot GP value",

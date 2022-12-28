@@ -47,7 +47,7 @@ interface AutoClickerConfig : Config {
         return 1500
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "deviation",
         name = "Delay Deviation",
@@ -71,7 +71,7 @@ interface AutoClickerConfig : Config {
         return 3
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "minDelayAFK",
         name = "Min AFK Delay (ms)",
@@ -83,7 +83,7 @@ interface AutoClickerConfig : Config {
         return 5000
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "maxDelayAFK",
         name = "Max AFK Delay (ms)",
@@ -202,7 +202,7 @@ interface AutoClickerConfig : Config {
         return false
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "mouseOnNPCID",
         name = "NPC ID",

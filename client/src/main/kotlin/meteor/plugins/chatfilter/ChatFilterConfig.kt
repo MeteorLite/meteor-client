@@ -135,7 +135,7 @@ interface ChatFilterConfig : Config {
         return false
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(
         keyName = "maxRepeatedPublicChats",
         name = "Repeat filter",
