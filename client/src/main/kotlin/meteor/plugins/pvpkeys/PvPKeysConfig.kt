@@ -61,7 +61,7 @@ interface PvPKeysConfig : Config {
         return ModifierlessKeybind(KeyEvent.VK_Q, KeyEvent.KEY_PRESSED)
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(keyName = "MageIDs", name = "Mage gear id's", description = "", textField = true)
     fun MageIDs(): String? {
         return ""
@@ -72,7 +72,7 @@ interface PvPKeysConfig : Config {
         return ModifierlessKeybind(KeyEvent.VK_W, KeyEvent.KEY_PRESSED)
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(keyName = "RangeIDs", name = "Range gear id's", description = "", textField = true)
     fun RangeIDs(): String? {
         return ""
@@ -83,7 +83,7 @@ interface PvPKeysConfig : Config {
         return ModifierlessKeybind(KeyEvent.VK_E, KeyEvent.KEY_PRESSED)
     }
 
-    @Range(textInput = true)
+    
     @ConfigItem(keyName = "MeleeIDs", name = "Melee gear id's", description = "", textField = true)
     fun MeleeIDs(): String? {
         return ""

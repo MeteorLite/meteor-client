@@ -45,6 +45,7 @@ import net.runelite.client.chat.ChatMessageManager
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
+import org.apache.commons.io.output.TeeOutputStream
 import org.apache.commons.lang3.time.StopWatch
 import org.jetbrains.skiko.OS
 import org.koin.core.component.KoinComponent
@@ -134,14 +135,18 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         xpTrackerService = XpTrackerService(PluginManager.get())
         SessionManager.start()
         timer.stop()
-        System.setOut(PrintStream(object : ByteArrayOutputStream() {
+
+
+       val outStream = PrintStream(object : ByteArrayOutputStream() {
             override fun flush() {
                 val decodedString = String(buf, 0, count, Charset.defaultCharset())
                 val strippedString = decodedString.replace(Regex("\u001B\\[[;\\d]*m"), "")
                 outPut.value = strippedString
             }
 
-        }, true))
+        }, true)
+        val teeStream = TeeOutputStream(System.out, outStream)
+        System.setOut(PrintStream(teeStream, true))
         logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 
