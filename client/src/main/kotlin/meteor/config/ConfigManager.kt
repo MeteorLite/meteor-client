@@ -38,83 +38,169 @@ object ConfigManager {
     var loaded = false
 
     fun setPlayerConfiguration(attribute: String, value: Any) {
-        Main.client.localPlayer?.name?.takeIf { it.isNotEmpty() }?.let {
-            setConfiguration("attributes", attribute, value)
+        Main.client.localPlayer?.let {
+            it.name?.let { name ->
+                if (name.isNotEmpty())
+                    setConfiguration("$name-attributes", attribute, value)
+            }
         }
     }
 
     fun unsetPlayerConfiguration(attribute: String) {
-        Main.client.localPlayer?.name?.takeIf { it.isNotEmpty() }?.let { unsetConfiguration("$it-attributes", attribute) }
+        Main.client.localPlayer?.let {
+            it.name?.let { name ->
+                if (name.isNotEmpty())
+                    unsetConfiguration("$name-attributes", attribute)
+            }
+        }
     }
 
     fun getPlayerConfiguration(attribute: String) : String? {
-        return Main.client.localPlayer?.name?.takeIf { it.isNotEmpty() }?.let { getConfiguration("$it-attributes", attribute) }
+        Main.client.localPlayer?.let {
+            it.name?.let { name ->
+                if (name.isNotEmpty())
+                    return getConfiguration("$name-attributes", attribute)
+            }
+        }
+        return null
     }
+
     fun stringToObject(str: String, type: Class<*>): Any? {
-        return when (type) {
-            Boolean::class.javaPrimitiveType, Boolean::class.java -> str.toBoolean()
-            Int::class.javaPrimitiveType, Int::class.java -> str.toIntOrNull() ?: 1
-            Double::class.javaPrimitiveType, Double::class.java -> str.toDouble()
-            Color::class.java -> colorFromString(str)
-            Dimension::class.java -> {
-                val (width, height) = str.split("x")
-                Dimension(width.toInt(), height.toInt())
-            }
-            Point::class.java -> {
-                val (x, y) = str.split(":")
-                Point(x.toInt(), y.toInt())
-            }
-            Rectangle::class.java -> {
-                val (x, y, width, height) = str.split(":")
-                Rectangle(x.toInt(), y.toInt(), width.toInt(), height.toInt())
-            }
-            Enum::class.java -> java.lang.Enum.valueOf(type as Class<out Enum<*>>, str)
-            Instant::class.java -> Instant.parse(str)
-            Keybind::class.java, ModifierlessKeybind::class.java -> {
-                val (code, mods) = str.split(":")
-                if (type == ModifierlessKeybind::class.java) {
-                    ModifierlessKeybind(code.toInt(), mods.toInt())
-                } else {
-                    Keybind(code.toInt(), mods.toInt())
-                }
-            }
-            WorldPoint::class.java -> {
-                val (x, y, plane) = str.split(":")
-                WorldPoint(x.toInt(), y.toInt(), plane.toInt())
-            }
-            Duration::class.java -> Duration.ofMillis(str.toLong())
-            ByteArray::class.java -> Base64.getUrlDecoder().decode(str)
-            else -> str
+        if (type == Boolean::class.javaPrimitiveType || type == Boolean::class.java) {
+            return (str).toBoolean()
         }
-    }
-    fun objectToString(obj: Any?): String? {
-        return when (obj) {
-            is Color -> obj.rgb.toString()
-            is Enum<*> -> obj.name
-            is Dimension -> "${obj.width}x${obj.height}"
-            is Point -> "${obj.x}:${obj.y}"
-            is Rectangle -> "${obj.x}:${obj.y}:${obj.width}:${obj.height}"
-            is Instant -> obj.toString()
-            is Keybind -> "${obj.keyCode}:${obj.modifiers}"
-            is WorldPoint -> "${obj.x}:${obj.y}:${obj.plane}"
-            is Duration -> obj.toMillis().toString()
-            is ByteArray -> Base64.getUrlEncoder().encodeToString(obj)
-            else -> obj.toString()
+        if (type == Int::class.javaPrimitiveType || type == Int::class.java) {
+            return try {
+                str.toInt()
+            } catch (e: NumberFormatException) {
+                1
+            }
         }
+        if (type == Double::class.javaPrimitiveType || type == Double::class.java) {
+            return str.toDouble()
+        }
+        if (type == Color::class.java) {
+            return colorFromString(str)
+        }
+        if (type == Dimension::class.java) {
+            val splitStr = str.split("x").toTypedArray()
+            val width = splitStr[0].toInt()
+            val height = splitStr[1].toInt()
+            return Dimension(width, height)
+        }
+        if (type == Point::class.java) {
+            val splitStr = str.split(":").toTypedArray()
+            val width = splitStr[0].toInt()
+            val height = splitStr[1].toInt()
+            return Point(width, height)
+        }
+        if (type == Rectangle::class.java) {
+            val splitStr = str.split(":").toTypedArray()
+            val x = splitStr[0].toInt()
+            val y = splitStr[1].toInt()
+            val width = splitStr[2].toInt()
+            val height = splitStr[3].toInt()
+            return Rectangle(x, y, width, height)
+        }
+        if (type.isEnum) {
+            return java.lang.Enum.valueOf(type as Class<out Enum<*>?>, str)
+        }
+        if (type == Instant::class.java) {
+            return Instant.parse(str)
+        }
+        if (type == Keybind::class.java || type == ModifierlessKeybind::class.java) {
+            val splitStr = str.split(":").toTypedArray()
+            val code = splitStr[0].toInt()
+            val mods = splitStr[1].toInt()
+            return if (type == ModifierlessKeybind::class.java) {
+                ModifierlessKeybind(code, mods)
+            } else Keybind(code, mods)
+        }
+        if (type == WorldPoint::class.java) {
+            val splitStr = str.split(":").toTypedArray()
+            val x = splitStr[0].toInt()
+            val y = splitStr[1].toInt()
+            val plane = splitStr[2].toInt()
+            return WorldPoint(x, y, plane)
+        }
+        if (type == Duration::class.java) {
+            return Duration.ofMillis(str.toLong())
+        }
+        if (type == ByteArray::class.java) {
+            return Base64.getUrlDecoder().decode(str)
+        }
+        return str
     }
-    fun colorFromString(string: String): Color? = try {
-        val i = Integer.decode(string)
-        Color(i, true)
-    } catch (e: NumberFormatException) {
-        null
+
+    fun objectToString(type: Any?): String? {
+        if (type is Color) {
+            return type.rgb.toString()
+        }
+        if (type is Enum<*>) {
+            return type.name
+        }
+        if (type is Dimension) {
+            return type.width.toString() + "x" + type.height
+        }
+        if (type is Point) {
+            return type.x.toString() + ":" + type.y
+        }
+        if (type is Rectangle) {
+            return type.x.toString() + ":" + type.y + ":" + type.width + ":" + type.height
+        }
+        if (type is Instant) {
+            return type.toString()
+        }
+        if (type is Keybind) {
+            return type.keyCode.toString() + ":" + type.modifiers
+        }
+        if (type is WorldPoint) {
+            return type.x.toString() + ":" + type.y + ":" + type.plane
+        }
+        if (type is Duration) {
+            return type.toMillis().toString()
+        }
+        if (type is ByteArray) {
+            return Base64.getUrlEncoder().encodeToString(type as ByteArray?)
+        }
+        return if (type is EnumSet<*>) {
+            if (type.size == 0) {
+                getElementType(type as EnumSet<*>?)!!.canonicalName + "{}"
+            } else type.toTypedArray()[0].javaClass.canonicalName + "{" + type + "}"
+        } else type?.toString()
     }
-    fun splitKey(key: String): Array<String>? {
-        return if (key.contains('.')) {
-            arrayOf(key.substringBefore('.'), key.substringAfter('.'))
-        } else {
+
+    fun getElementType(enumSet: EnumSet<*>?): Class<*>? {
+        var thisSet = enumSet
+        if (thisSet!!.isEmpty()) {
+            thisSet = EnumSet.complementOf(thisSet)
+        }
+        return thisSet!!.iterator().next().javaClass.declaringClass
+    }
+
+
+
+    fun colorFromString(string: String): Color? {
+        return try {
+            val i = Integer.decode(string)
+            Color(i, true)
+        } catch (e: NumberFormatException) {
             null
         }
     }
+
+    fun splitKey(key: String): Array<String>? {
+        var newKey = key
+        val i = newKey.indexOf('.')
+        if (i == -1) {
+            // all keys must have a group and key
+            return null
+        }
+        val group = newKey.substring(0, i)
+        newKey = newKey.substring(i + 1)
+        return arrayOf(group, newKey)
+    }
+
     fun saveProperties() {
         if (!METEOR_DIR.exists())
             METEOR_DIR.mkdirs()
@@ -138,21 +224,25 @@ object ConfigManager {
     }
 
     fun getConfigurationKeys(prefix: String): List<String> {
-        return properties.keys
-            .filter { it is String && it.startsWith(prefix) }
-            .map { it as String }
+        return properties.keys.stream().filter { v: Any -> (v as String).startsWith(prefix) }
+                .map { obj: Any? -> String::class.java.cast(obj) }.collect(Collectors.toList())
     }
+
     fun getConfiguration(groupName: String, key: String): String? {
         return properties.getProperty(getWholeKey(groupName, key))
     }
 
     fun <T> getConfiguration(groupName: String, key: String, clazz: Class<T>): T? {
         val value = getConfiguration(groupName, key)
-        return if (value.isNullOrEmpty()) {
-            null
-        } else {
-            stringToObject(value, clazz) as? T
+        if (!Strings.isNullOrEmpty(value)) {
+            try {
+                return stringToObject(value!!, clazz) as T
+            } catch (e: java.lang.Exception) {
+                e.printStackTrace()
+                //log.warn("Unable to unmarshal {} ", getWholeKey(groupName, profile, key), e);
+            }
         }
+        return null
     }
 
     fun getWholeKey(groupName: String, key: String): String {
@@ -176,14 +266,35 @@ object ConfigManager {
         EventBus.post(Events.CONFIG_CHANGED, configChanged)
     }
 
+    fun getAllDeclaredInterfaceFields(clazz: Class<*>): Collection<Field> {
+        val methods: MutableCollection<Field> = HashSet()
+        val interfaces = Stack<Class<*>>()
+        interfaces.push(clazz)
+        while (!interfaces.isEmpty()) {
+            val inter = interfaces.pop()
+            Collections.addAll(methods, *inter.declaredFields)
+            Collections.addAll(interfaces, *inter.interfaces)
+        }
+        return methods
+    }
 
-
+    private fun getAllDeclaredInterfaceMethods(clazz: Class<*>): Collection<Method> {
+        val methods: HashSet<Method> = HashSet()
+        val interfaces = Stack<Class<*>>()
+        interfaces.push(clazz)
+        while (!interfaces.isEmpty()) {
+            val inter: Class<*> = interfaces.pop()
+            Collections.addAll(methods, *inter.declaredMethods)
+            Collections.addAll(interfaces, *inter.interfaces)
+        }
+        return methods
+    }
 
     fun setDefaultConfiguration(config: Any, override: Boolean) {
         val clazz = config.javaClass.interfaces[0]
         val group: ConfigGroup = clazz.getAnnotation(ConfigGroup::class.java)
-            ?: return
-        for (method in clazz.declaredMethods.toMutableSet()) {
+                ?: return
+        for (method in getAllDeclaredInterfaceMethods(clazz)) {
             val item: ConfigItem? = method.getAnnotation(ConfigItem::class.java)
 
             // only apply default configuration for methods which read configuration (0 args)
@@ -230,7 +341,8 @@ object ConfigManager {
                 // null and the empty string are treated identically in sendConfig and treated as an unset
                 // If a config value defaults to "" and the current value is null, it will cause an extra
                 // unset to be sent, so treat them as equal
-                if (current == valueString || current.isNullOrEmpty() && valueString.isNullOrEmpty()) {
+                if (current == valueString || Strings.isNullOrEmpty(current) && Strings
+                                .isNullOrEmpty(valueString)) {
                     continue  // already set to the default value
                 }
 
@@ -239,70 +351,93 @@ object ConfigManager {
             }
         }
     }
+
     fun setConfiguration(groupName: String, key: String, value: Any) {
         // do not save consumers for buttons, they cannot be changed anyway
-        if (value is Consumer<*>) return
+        if (value is Consumer<*>) {
+            return
+        }
 
-        require(!(groupName.isEmpty() || key.isEmpty() || key.indexOf(':') != -1))
+        require(!(Strings.isNullOrEmpty(groupName) || Strings.isNullOrEmpty(key) || key.indexOf(':') != -1))
 
         val wholeKey = getWholeKey(groupName, key)
         var oldValue: String?
-        synchronized(this) {
-            oldValue = properties[wholeKey] as String?
-            properties[wholeKey] = objectToString(value)
-        }
+        synchronized(this) { oldValue = properties.setProperty(wholeKey, objectToString(value)) as String? }
 
         handler.invalidate()
 
-        val configChanged = ConfigChanged().apply {
-            this.group = groupName
-            this.key = key
-            this.oldValue = oldValue
-            this.newValue = objectToString(value)
-        }
+        val configChanged = ConfigChanged()
+        configChanged.group = groupName
+        configChanged.key = key
+        configChanged.oldValue = oldValue
+        configChanged.newValue = objectToString(value)
         EventBus.post(Events.CONFIG_CHANGED, configChanged)
 
         saveProperties()
     }
+
     fun getConfigDescriptor(configurationProxy: Config): ConfigDescriptor {
-        val inter = configurationProxy.javaClass.interfaces[0]
-            ?: configurationProxy::class.java.interfaces[0]
-        val group = inter.getAnnotation(ConfigGroup::class.java)
+        val inter: Class<*> = configurationProxy.javaClass.interfaces[0] ?: configurationProxy::class.java.interfaces[0]
+        val group: ConfigGroup = inter.getAnnotation(ConfigGroup::class.java)
             ?: throw IllegalArgumentException("Not a config group")
-        val sections = inter.declaredFields
+        val sections: List<ConfigSectionDescriptor> =  getAllDeclaredInterfaceFields(inter)
+            .asSequence()
             .filter { it.isAnnotationPresent(ConfigSection::class.java) && it.type == String::class.java }
-            .map { ConfigSectionDescriptor(it[inter].toString(), it.getDeclaredAnnotation(ConfigSection::class.java)) }
-            .sortedBy { it.position() }
-            .toMutableList() + inter.methods
+            .map { ConfigSectionDescriptor(
+                it[inter].toString(),
+                it.getDeclaredAnnotation(ConfigSection::class.java)
+            ) }
+            .sortedBy {  it.position()
+            }.toMutableList() + inter.methods
             .filter { it.parameterCount == 0 && it.isAnnotationPresent(ConfigSection::class.java) }
-            .map { ConfigSectionDescriptor(it.returnType.declaredFields.toString(), it.getDeclaredAnnotation(ConfigSection::class.java)) }
-            .sortedBy { it.position() }
-            .toMutableList()
-        val titles = inter.declaredFields
-            .filter { it.isAnnotationPresent(ConfigTitle::class.java) && it.type == String::class.java }
+            .map {
+                ConfigSectionDescriptor(
+                    it.returnType.declaredFields.toString(),
+                    it.getDeclaredAnnotation(ConfigSection::class.java)
+                )
+            }
+            .sortedBy { it.position()
+            }.toMutableList()
+
+        val titles: List<ConfigTitleDescriptor> = getAllDeclaredInterfaceFields(inter)
+            .asSequence()
+            .filter {  it.isAnnotationPresent(ConfigTitle::class.java) && it.type == String::class.java }
             .map { ConfigTitleDescriptor(it[inter].toString(), it.getDeclaredAnnotation(ConfigTitle::class.java)) }
-            .sortedBy { it.position() }
-        val items = inter.methods
+            .filter { obj: ConfigTitleDescriptor? -> Objects.nonNull(obj) }
+            .sortedBy{ it.position()
+            }.toList()
+        val items: List<ConfigItemDescriptor> = inter.methods
             .filter { it.parameterCount == 0 && it.isAnnotationPresent(ConfigItem::class.java) }
-            .map { ConfigItemDescriptor(it.getDeclaredAnnotation(ConfigItem::class.java), it.returnType, it.getDeclaredAnnotation(Range::class.java), it.getDeclaredAnnotation(Alpha::class.java), it.getDeclaredAnnotation(Units::class.java), it.getDeclaredAnnotation(Icon::class.java), it.getDeclaredAnnotation(Secret::class.java)) }
-            .sortedBy { it.position() }
+            .map {
+                ConfigItemDescriptor(
+                    it.getDeclaredAnnotation(ConfigItem::class.java),
+                    it.returnType,
+                    it.getDeclaredAnnotation(Range::class.java),
+                    it.getDeclaredAnnotation(Alpha::class.java),
+                    it.getDeclaredAnnotation(Units::class.java),
+                    it.getDeclaredAnnotation(Icon::class.java),
+                    it.getDeclaredAnnotation(Secret::class.java)
+                )
+            }
+            .sortedBy { it.position()
+            }.toList()
         return ConfigDescriptor(group, sections, titles, items)
     }
+
     @Synchronized
     fun loadSavedProperties() {
         consumers.clear()
         val newProperties = Properties()
 
-        if (CONFIG_FILE.exists()) {
-            try {
-                FileInputStream(CONFIG_FILE).use { `in` ->
-                    newProperties.load(InputStreamReader(`in`, StandardCharsets.UTF_8))
-                    swapProperties(newProperties)
-                    loaded = true
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
+        if (CONFIG_FILE.exists())
+        try {
+            FileInputStream(CONFIG_FILE).use { `in` ->
+                newProperties.load(InputStreamReader(`in`, StandardCharsets.UTF_8))
+                swapProperties(newProperties)
+                loaded = true
             }
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
         }
         if (!loaded) {
             saveProperties()
@@ -311,18 +446,18 @@ object ConfigManager {
     }
 
     private fun swapProperties(newProperties: Properties) {
+        val newKeys: Set<Any> = HashSet(newProperties.keys)
+        val oldKeys: Set<Any> = HashSet(properties.keys)
         synchronized(this) { handler.invalidate() }
-        val newKeys = newProperties.keys.toSet()
-        val oldKeys = properties.keys.toSet()
         for (wholeKey in oldKeys) {
-            val split = splitKey(wholeKey as String) ?: continue
+            val split = splitKey((wholeKey as String)) ?: continue
             val groupName = split[KEY_SPLITTER_GROUP]
             val key = split[KEY_SPLITTER_KEY]
             val newValue = properties[wholeKey] as String?
             setConfiguration(groupName, key, newValue!!)
         }
         for (wholeKey in newKeys) {
-            val split = splitKey(wholeKey as String) ?: continue
+            val split = splitKey((wholeKey as String)) ?: continue
             val groupName = split[KEY_SPLITTER_GROUP]
             val key = split[KEY_SPLITTER_KEY]
             val newValue = newProperties[wholeKey] as String?
