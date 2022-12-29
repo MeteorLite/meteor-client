@@ -46,6 +46,10 @@ class FighterPlugin : Plugin() {
         }
     }
 
+    fun Collection<String>.containsIgnoreCase(item: String) = any {
+        it.equals(item, ignoreCase = true)
+    }
+
     override fun onGameTick(it: GameTick) {
         try {
             if (Movement.isWalking()) {
@@ -114,10 +118,11 @@ class FighterPlugin : Plugin() {
             }
 
             if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
-            val mob = NPCs.getAll(true, sortByDistance = true)?.filter {
-                    config.monster().split(",".toRegex()).toList().contains(it.name)
-                    && !it.isDead
-                    && it.worldLocation.distanceTo(local.worldLocation) < config.attackRange() }?.firstOrNull()
+            val mob = NPCs.getAll(true, sortByDistance = true)?.firstOrNull {
+                config.monster().split(",".toRegex()).toList().containsIgnoreCase(it.name)
+                        && !it.isDead
+                        && it.worldLocation.distanceTo(local.worldLocation) < config.attackRange()
+            }
                 mob?.interact("Attack")
             }
         } catch (ex: Exception) {

@@ -67,12 +67,12 @@ class HighlightedNpc {
     }
 
     fun trueTile(b: Boolean) : HighlightedNpc {
-        hull = b
+        trueTile = b
         return this
     }
 
     fun swTile(b: Boolean) : HighlightedNpc {
-        hull = b
+        swTile = b
         return this
     }
 
@@ -97,12 +97,12 @@ class HighlightedNpc {
     }
 
     fun swTrueTile(b: Boolean) : HighlightedNpc {
-        hull = b
+        swTrueTile = b
         return this
     }
 
     fun outline(b: Boolean) : HighlightedNpc {
-        hull = b
+        outline = b
         return this
     }
 

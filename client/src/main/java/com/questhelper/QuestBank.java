@@ -55,7 +55,7 @@ public class QuestBank
 	private final QuestBankData questBankData;
 	private String rsProfileKey;
 
-	private String lastUsername;
+	private String lastUsername = "";
 
 	public List<WorldType> worldTypes = Arrays.asList(WorldType.SEASONAL, WorldType.TOURNAMENT_WORLD,
 		WorldType.DEADMAN, WorldType.NOSAVE_MODE);
