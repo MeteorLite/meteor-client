@@ -112,7 +112,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
             title = "Meteor",
             icon = painterResource("Meteor_icon.png"),
             undecorated = meteorConfig.fullscreen(),
-            state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
+           // state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
             content = {
                 windowContent()
                 // finishStartup is ran here
@@ -137,7 +137,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         timer.stop()
 
 
-       val outStream = PrintStream(object : ByteArrayOutputStream() {
+/*       val outStream = PrintStream(object : ByteArrayOutputStream() {
             override fun flush() {
                 val decodedString = String(buf, 0, count, Charset.defaultCharset())
                 val strippedString = decodedString.replace(Regex("\u001B\\[[;\\d]*m"), "")
@@ -146,7 +146,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
 
         }, true)
         val teeStream = TeeOutputStream(System.out, outStream)
-        System.setOut(PrintStream(teeStream, true))
+        System.setOut(PrintStream(teeStream, true))*/
         logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 

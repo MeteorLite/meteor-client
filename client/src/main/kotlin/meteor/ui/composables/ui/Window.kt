@@ -18,9 +18,7 @@ import java.awt.Dimension
 
 @Composable
 fun FrameWindowScope.windowContent() {
-onGameTick{
 
-}
             windowFrame {
                 Main.window = this@windowContent
 
