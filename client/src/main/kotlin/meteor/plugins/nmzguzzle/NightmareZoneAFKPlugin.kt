@@ -23,20 +23,26 @@ class NightmareZoneAFKPlugin : Plugin() {
         ticksSinceLastHitsplat++
         ticksSinceLastManualAttack++
 
+        if (client.getBoostedSkillLevel(Skill.HITPOINTS) == 1)
+            overloading = false
+
         if (Objects.getFirst(POTION_26276) == null)
             return
 
         if (ticksSinceLastManualAttack > 5) {
             if (ticksSinceLastHitsplat > 100 + Random.nextInt(200)) {
-                NPCs.getAll(alive = true, sortByDistance = true)?.firstOrNull()?.interact("Attack")
-                ClientPackets.queueClickPacket(0, 0)
+                NPCs.getAll(alive = true, sortByDistance = true)?.firstOrNull()?.let {
+                    if (it.distanceTo(client.localPlayer) < 2) {
+                        it.interact("Attack")
+                        ClientPackets.queueClickPacket(0, 0)
+                    }
+                }
                 ticksSinceLastManualAttack = 0
                 return
             }
         }
 
         when (client.getBoostedSkillLevel(Skill.HITPOINTS)) {
-            1 -> overloading = false
             2 -> Items.getFirst("Dwarven rock cake")?.interact("Guzzle")?.also { return }
         }
 
