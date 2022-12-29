@@ -121,9 +121,6 @@ compose {
                 }
             }
             jvmArgs(
-                "-XX:+UseDynamicNumberOfGCThreads",
-                "-XX:+UseZGC",
-                "-Xmx1024m",
                 "-ea",
                 "-Dsun.java2d.dpiaware=false,",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
