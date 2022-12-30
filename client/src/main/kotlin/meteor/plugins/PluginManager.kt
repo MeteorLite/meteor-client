@@ -6,6 +6,7 @@ import com.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
 import meteor.config.ConfigManager
+import meteor.plugins.AIOCrabPlugin.CrabFighterPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.agilitybot.AgilityBot
 import meteor.plugins.ammo.AmmoPlugin
@@ -260,6 +261,7 @@ object PluginManager {
         init<WintertodtHelper>()
         init<XpTrackerPlugin>()
         init<ZulrahPlugin>()
+        init<CrabFighterPlugin>()
     }
 
     private fun loadExternal(jar: File) {
