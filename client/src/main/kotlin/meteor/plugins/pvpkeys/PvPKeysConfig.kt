@@ -5,33 +5,31 @@ import meteor.config.legacy.ModifierlessKeybind
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
 import meteor.config.legacy.ConfigItem
-import meteor.config.legacy.Range
 import java.awt.event.KeyEvent
 
 @ConfigGroup("pvpkeys")
 interface PvPKeysConfig : Config {
+    @ConfigItem(keyName = "AutoPray", name = "Auto prayer vs player", description = "Hotkey to enable/disable auto prayer", position = 3)
+    fun AutoPray(): ModifierlessKeybind {
+        return ModifierlessKeybind(KeyEvent.VK_F, KeyEvent.KEY_PRESSED)
+    }
 
-
-    @ConfigItem(
-        keyName = "color",
-        name = "Color",
-        description = "color shit"
-    )
+    @ConfigItem(keyName = "color", name = "Color", description = "color shit")
     fun color(): HsvColor {
         return HsvColor.DEFAULT
     }
 
-    @ConfigItem(keyName = "Magepray", name = "Toggle prot mage", description = "")
+    @ConfigItem(keyName = "Magepray", name = "Toggle prot mage", description = "", position = 4)
     fun Magepray(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_1, KeyEvent.KEY_PRESSED)
     }
 
-    @ConfigItem(keyName = "Rangepray", name = "Toggle prot range", description = "")
+    @ConfigItem(keyName = "Rangepray", name = "Toggle prot range", description = "", position = 5)
     fun Rangepray(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_2, KeyEvent.KEY_PRESSED)
     }
 
-    @ConfigItem(keyName = "Meleepray", name = "Toggle prot melee", description = "")
+    @ConfigItem(keyName = "Meleepray", name = "Toggle prot melee", description = "", position = 6)
     fun Meleepray(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_3, KeyEvent.KEY_PRESSED)
     }
@@ -61,8 +59,8 @@ interface PvPKeysConfig : Config {
         return ModifierlessKeybind(KeyEvent.VK_Q, KeyEvent.KEY_PRESSED)
     }
 
-    
-    @ConfigItem(keyName = "MageIDs", name = "Mage gear id's", description = "", textField = true)
+
+    @ConfigItem(keyName = "MageIDs", name = "Mage gear id's", description = "", textField = true, position = 1)
     fun MageIDs(): String? {
         return ""
     }
@@ -72,8 +70,8 @@ interface PvPKeysConfig : Config {
         return ModifierlessKeybind(KeyEvent.VK_W, KeyEvent.KEY_PRESSED)
     }
 
-    
-    @ConfigItem(keyName = "RangeIDs", name = "Range gear id's", description = "", textField = true)
+
+    @ConfigItem(keyName = "RangeIDs", name = "Range gear id's", description = "", textField = true, position = 2)
     fun RangeIDs(): String? {
         return ""
     }
@@ -83,8 +81,8 @@ interface PvPKeysConfig : Config {
         return ModifierlessKeybind(KeyEvent.VK_E, KeyEvent.KEY_PRESSED)
     }
 
-    
-    @ConfigItem(keyName = "MeleeIDs", name = "Melee gear id's", description = "", textField = true)
+
+    @ConfigItem(keyName = "MeleeIDs", name = "Melee gear id's", description = "", textField = true, position = 0)
     fun MeleeIDs(): String? {
         return ""
     }
@@ -117,6 +115,26 @@ interface PvPKeysConfig : Config {
     @ConfigItem(keyName = "Piety", name = "Toggle piety(d)", description = "")
     fun Piety(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_D, KeyEvent.KEY_PRESSED)
+    }
+
+    @ConfigItem(keyName = "Mysticmight", name = "Toggle mystic might(x)", description = "")
+    fun Mysticmight(): ModifierlessKeybind {
+        return ModifierlessKeybind(KeyEvent.VK_X, KeyEvent.KEY_PRESSED)
+    }
+
+    @ConfigItem(keyName = "Eagleeye", name = "Toggle eagle eye(c)", description = "")
+    fun Eagleyye(): ModifierlessKeybind {
+        return ModifierlessKeybind(KeyEvent.VK_C, KeyEvent.KEY_PRESSED)
+    }
+
+    @ConfigItem(keyName = "Incrediblereflexes", name = "Toggle incredible reflexes(v)", description = "")
+    fun Incrediblereflexes(): ModifierlessKeybind {
+        return ModifierlessKeybind(KeyEvent.VK_V, KeyEvent.KEY_PRESSED)
+    }
+
+    @ConfigItem(keyName = "Ultimatestrength", name = "Toggle ultimate strength(v)", description = "")
+    fun Ultimatestrength(): ModifierlessKeybind {
+        return ModifierlessKeybind(KeyEvent.VK_B, KeyEvent.KEY_PRESSED)
     }
 
     @ConfigItem(keyName = "Lasttarger", name = "Last target", description = "")
