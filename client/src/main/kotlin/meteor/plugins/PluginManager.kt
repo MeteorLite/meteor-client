@@ -7,6 +7,7 @@ import meteor.Configuration
 import meteor.Main
 import meteor.config.ConfigManager
 import meteor.plugins.agility.AgilityPlugin
+import meteor.plugins.agilitybot.AgilityBot
 import meteor.plugins.ammo.AmmoPlugin
 import meteor.plugins.autoalch.AutoAlchPlugin
 import meteor.plugins.autobankpin.AutoBankPinPlugin
@@ -137,8 +138,10 @@ object PluginManager {
     val runningMap = HashMap<Plugin, Boolean>()
 
     init {
+
         init<Meteor>()
         init<AgilityPlugin>()
+        init<AgilityBot>()
         init<AlchemicalHydraPlugin>()
         init<AmmoPlugin>()
         init<AnimationSmoothingPlugin>()
