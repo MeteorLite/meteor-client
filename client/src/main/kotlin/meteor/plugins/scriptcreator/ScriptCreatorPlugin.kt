@@ -76,9 +76,7 @@ class ScriptCreatorPlugin : ScriptSubscriber() {
         try {
             engine.eval(codeState.value)
         } catch (e: Exception) {
-            println(e.cause)
-            println(e.message)
-            println(e.stackTrace)
+            e.printStackTrace()
         }
         subscribeScript()
     }

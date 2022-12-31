@@ -132,7 +132,6 @@ public enum class132 implements class345 {
                var2 = var2 + var0;
             }
 
-            System.out.println("Error: " + var2);
             var2 = var2.replace(':', '.');
             var2 = var2.replace('@', '_');
             var2 = var2.replace('&', '_');

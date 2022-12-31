@@ -64,8 +64,6 @@ class Game : Overlay()
     {
         if (!portal.shielded) { return }
 
-        println("Shield dropped for " +  portal.portal)
-
         portal.shielded = false
         var shieldDrop = shieldsDropped++
 

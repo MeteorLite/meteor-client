@@ -30,7 +30,6 @@ import java.awt.image.VolatileImage
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 
-@Suppress("UNCHECKED_CAST")
 class Hooks : Callbacks {
     private var lastCheck: Long = 0
     private val CHECK: Long = RSTimeUnit.GAME_TICKS.duration

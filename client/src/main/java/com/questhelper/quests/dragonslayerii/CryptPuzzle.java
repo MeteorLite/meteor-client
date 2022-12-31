@@ -280,11 +280,6 @@ public class CryptPuzzle extends DetailedOwnerStep
 				.map(Map.Entry::getValue).findFirst()
 				.orElse(null);
 
-			System.out.println(northBust);
-			System.out.println(southBust);
-			System.out.println(westBust);
-			System.out.println("LOL");
-
 			if (northBust == null || southBust == null || westBust == null)
 			{
 				return;

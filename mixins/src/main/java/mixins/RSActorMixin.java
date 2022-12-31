@@ -161,7 +161,6 @@ public abstract class RSActorMixin implements RSActor
 	@Override
 	public Polygon getCanvasTilePoly()
 	{
-		System.out.println("Getting tile poly");
 		return Perspective.getCanvasTilePoly(client, getLocalLocation());
 	}
 

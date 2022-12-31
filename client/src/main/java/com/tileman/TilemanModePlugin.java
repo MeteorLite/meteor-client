@@ -367,7 +367,6 @@ public class TilemanModePlugin extends Plugin {
 
         for (int regionId : regions) {
             // load points for region
-            log.debug("Loading points for region {}", regionId);
             Collection<WorldPoint> worldPoint = translateToWorldPoint(getTiles(regionId));
             points.addAll(worldPoint);
         }

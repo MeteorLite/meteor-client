@@ -218,7 +218,6 @@ public class class144 extends class152 {
                         return 1;
                      } else if (var0 == 5023) {
                         var8 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-                        System.out.println(var8);
                         return 1;
                      } else if (var0 == 5030) {
                         class87.Interpreter_intStackSize -= 2;

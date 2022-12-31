@@ -123,7 +123,6 @@ public final class AccessFile {
    @ObfuscatedName("finalize")
    protected void finalize() throws Throwable {
       if (this.file != null) {
-         System.out.println("");
          this.close();
       }
 

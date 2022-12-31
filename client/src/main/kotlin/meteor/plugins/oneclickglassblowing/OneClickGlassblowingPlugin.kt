@@ -89,7 +89,6 @@ class OneClickGlassblowingPlugin : Plugin() {
     }
 
     private fun blowGlassHandler(event: MenuOptionClicked) {
-        println("glassblowingStage = $glassblowingStage timeout = $timeout")
         when (glassblowingStage) {
             1 -> {
                 setMenuEntry(event, openBank())
@@ -136,7 +135,6 @@ class OneClickGlassblowingPlugin : Plugin() {
 
     private fun superGlassMakeHandler(event: MenuOptionClicked) {
         if (timeout > 0) return
-        println("superglassMakeStage = $superglassMakeStage")
         when (superglassMakeStage) {
             1 -> {
                 setMenuEntry(event, openBank())

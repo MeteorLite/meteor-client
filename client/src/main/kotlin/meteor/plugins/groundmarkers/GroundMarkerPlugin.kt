@@ -68,7 +68,6 @@ class GroundMarkerPlugin : Plugin() {
         val regions = client.mapRegions ?: return
         for (regionId in regions) {
             // load points for region
-            log.debug("Loading points for region {}", regionId)
             val regionPoints = getPoints(regionId)
             val colorTileMarkers = translateToColorTileMarker(regionPoints)
             points.addAll(colorTileMarkers)
