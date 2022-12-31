@@ -239,7 +239,8 @@ class KEvent(
         try {
             subscriber.consumer(event)
         } catch (e: Exception) {
-            logger.error("Exception happened when calling subscriber of event \"$event\"\n${e.stackTraceToString()}")
+            logger.error("Exception happened when calling subscribing function of event \"$event\"")
+            e.printStackTrace()
         }
     }
 
