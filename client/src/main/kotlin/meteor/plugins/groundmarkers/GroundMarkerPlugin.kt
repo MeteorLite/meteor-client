@@ -142,7 +142,7 @@ class GroundMarkerPlugin : Plugin() {
         val hotKeyPressed = client.isKeyPressed(KeyCode.KC_SHIFT)
 
         if (hotKeyPressed && it.option.equals(WALK_HERE)) {
-            val selectedSceneTile = client.selectedSceneTile?.localLocation
+            val selectedSceneTile = client.selectedSceneTile?.localLocation ?: return
             val worldPoint = WorldPoint.fromLocalInstance(client, selectedSceneTile)
             val regionId = worldPoint.regionID
 
