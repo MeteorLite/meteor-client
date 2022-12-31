@@ -6,7 +6,6 @@ import dev.hoot.api.magic.Ancient
 import dev.hoot.api.magic.Magic
 import dev.hoot.api.widgets.Prayers
 import eventbus.events.ClientTick
-import eventbus.events.GameTick
 import eventbus.events.InteractingChanged
 import eventbus.events.MenuOptionClicked
 import meteor.api.items.Items
@@ -35,28 +34,21 @@ class PvPKeys : Plugin() {
     private var lastEnemy: Player? = null
     private var autoPrayEnabled = false
 
-    override fun onGameTick(it: GameTick) {
-        if (client.gameState != GameState.LOGGED_IN || !autoPrayEnabled) {
-            return;
-        }
-        doAutoSwapPrayers();
-    }
-
     private fun activatePrayer(prayer: Prayer) {
         if (prayer == null) {
-            return;
+            return
         }
 
         //check if prayer is already active this tick
         if (client.isPrayerActive(prayer)) {
-            return;
+            return
         }
 
         var widgetInfo = prayer.widgetInfo ?: return
         var prayerWidget = client.getWidget(widgetInfo) ?: return
 
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
-            return;
+            return
         }
         ClientThread.invoke {
             client.invokeMenuAction("Activate", prayerWidget.name, 1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id)
@@ -305,6 +297,10 @@ class PvPKeys : Plugin() {
         if (gear != null) {
             if (gear.bounds.contains(mousePoint.x, mousePoint.y)) client.insertMenuItem("<col=00FFFF>Copy Gear</col>", "", 10000000, 100000, 0, 0, false)
         }
+        if (client.gameState != GameState.LOGGED_IN || !autoPrayEnabled || lastEnemy?.interacting == null) {
+            return
+        }
+        doAutoSwapPrayers()
     }
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
