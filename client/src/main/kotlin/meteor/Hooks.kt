@@ -156,32 +156,44 @@ class Hooks : Callbacks {
         if (client.isStretchedEnabled) {
             val gc: GraphicsConfiguration = client.canvas.graphicsConfiguration
             val stretchedDimensions: Dimension = client.stretchedDimensions
-            if (lastStretchedDimensions == null || lastStretchedDimensions != stretchedDimensions) {
-                /*
-					Reuse the resulting image instance to avoid creating an extreme amount of objects
-				 */
-                stretchedImage = gc
-                    .createCompatibleVolatileImage(stretchedDimensions.width, stretchedDimensions.height)
+            var status = -1
+            if (stretchedDimensions != lastStretchedDimensions || stretchedImage == null || stretchedImage!!.validate(
+                    gc
+                ).also { status = it } != VolatileImage.IMAGE_OK
+            ) {
+                // if IMAGE_INCOMPATIBLE the image and g2d need to be rebuilt, otherwise
+                // if IMAGE_RESTORED only the g2d needs to be rebuilt
                 stretchedGraphics?.dispose()
-                stretchedGraphics = stretchedImage!!.graphics as Graphics2D
-                lastStretchedDimensions = stretchedDimensions
 
-                /*
-					Fill Canvas before drawing stretched image to prevent artifacts.
-				*/graphics.color = Color.BLACK
-                graphics.fillRect(0, 0, client.canvas.width, client.canvas.height)
+                if (stretchedDimensions != lastStretchedDimensions || stretchedImage == null || status == VolatileImage.IMAGE_INCOMPATIBLE) {
+                    // VolatileImage javadocs says this proactively releases the resources used by the VolatileImage
+                    stretchedImage?.flush()
+
+                    stretchedImage =
+                        gc.createCompatibleVolatileImage(stretchedDimensions.width, stretchedDimensions.height)
+                    lastStretchedDimensions = stretchedDimensions
+                }
+                stretchedGraphics = stretchedImage!!.graphics as Graphics2D
             }
+
             stretchedGraphics!!.setRenderingHint(
                 RenderingHints.KEY_INTERPOLATION,
-                when {
-                    client.isStretchedFast -> RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR
-                    else -> RenderingHints.VALUE_INTERPOLATION_BILINEAR
-                }
+                if (client.isStretchedFast) RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR else RenderingHints.VALUE_INTERPOLATION_BILINEAR
             )
-            stretchedGraphics!!
-                .drawImage(gameImage, 0, 0, stretchedDimensions.width, stretchedDimensions.height, null)
+            stretchedGraphics!!.drawImage(gameImage, 0, 0, stretchedDimensions.width, stretchedDimensions.height, null)
+
             finalImage = stretchedImage!!
         } else {
+
+            if (stretchedImage != null)
+            {
+                stretchedGraphics?.dispose();
+                stretchedImage?.flush();
+
+                stretchedGraphics = null;
+                stretchedImage = null;
+                lastStretchedDimensions = null;
+            }
             finalImage = gameImage
         }
 
