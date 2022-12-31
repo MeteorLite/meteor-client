@@ -122,7 +122,6 @@ compose {
             }
             jvmArgs(
                 "-ea",
-                "-Dsun.java2d.dpiaware=false,",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-opens", "java.base/java.net=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
