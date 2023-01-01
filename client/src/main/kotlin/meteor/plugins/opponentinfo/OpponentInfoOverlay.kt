@@ -169,7 +169,7 @@ internal class OpponentInfoOverlay(
     private fun hasHpHud(opponent: Actor): Boolean {
         val settingEnabled = client.getVarbitValue(Varbits.BOSS_HEALTH_OVERLAY) == 0
         if (settingEnabled && opponent is NPC) {
-            val opponentId = client.getVarpValue(VarPlayer.HP_HUD_NPC_ID.id)
+            val opponentId = client.getVarpValue(VarPlayer.HP_HUD_NPC_ID)
             return opponentId != -1 && opponentId == opponent.id
         }
         return false

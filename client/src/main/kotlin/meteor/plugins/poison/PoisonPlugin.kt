@@ -183,12 +183,12 @@ class PoisonPlugin : Plugin() {
             return
         }
         val newHeart: BufferedImage?
-        val poison = client.getVarpValue(VarPlayer.IS_POISONED.id)
+        val poison = client.getVarpValue(VarPlayer.IS_POISONED)
         newHeart = if (poison >= VENOM_THRESHOLD) {
             HEART_VENOM
         } else if (poison > 0) {
             HEART_POISON
-        } else if (client.getVarpValue(VarPlayer.DISEASE_VALUE.id) > 0) {
+        } else if (client.getVarpValue(VarPlayer.DISEASE_VALUE) > 0) {
             HEART_DISEASE
         } else {
             resetHealthIcon()

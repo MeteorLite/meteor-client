@@ -60,7 +60,7 @@ class AttackStylesPlugin : Plugin() {
 
     private fun pStart() {
         resetWarnings()
-        val attackStyleVarbit = client.getVarpValue(VarPlayer.ATTACK_STYLE.id)
+        val attackStyleVarbit = client.getVarpValue(VarPlayer.ATTACK_STYLE)
         equippedWeaponTypeVarbit = client.getVarbitValue(Varbits.EQUIPPED_WEAPON_TYPE)
         val castingModeVarbit = client.getVarbitValue(Varbits.DEFENSIVE_CASTING_MODE)
         updateAttackStyle(
@@ -105,7 +105,7 @@ class AttackStylesPlugin : Plugin() {
 
     override fun onVarbitChanged(it: VarbitChanged) {
         if (it.varpId == VarPlayer.ATTACK_STYLE.id || it.varbitId == Varbits.EQUIPPED_WEAPON_TYPE || it.varbitId == Varbits.DEFENSIVE_CASTING_MODE) {
-            val currentAttackStyleVarbit = client.getVarpValue(VarPlayer.ATTACK_STYLE.id)
+            val currentAttackStyleVarbit = client.getVarpValue(VarPlayer.ATTACK_STYLE)
             val currentEquippedWeaponTypeVarbit = client.getVarbitValue(Varbits.EQUIPPED_WEAPON_TYPE)
             val currentCastingModeVarbit = client.getVarbitValue(Varbits.DEFENSIVE_CASTING_MODE)
             val weaponSwitch = currentEquippedWeaponTypeVarbit != equippedWeaponTypeVarbit
