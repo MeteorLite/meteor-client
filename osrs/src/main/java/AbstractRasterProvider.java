@@ -7,21 +7,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("rm")
 public abstract class AbstractRasterProvider {
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -564851849
-   )
    static int field4993;
    @ObfuscatedName("v")
    public int[] pixels;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1390359179
-   )
    public int width;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -763025729
-   )
    public int height;
 
    @ObfuscatedName("e")

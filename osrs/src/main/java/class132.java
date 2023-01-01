@@ -38,14 +38,8 @@ public enum class132 implements class345 {
    field1628(1, 4);
 
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 2018184127
-   )
    public final int field1627;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1796142361
-   )
    final int id;
 
    class132(int var3, int var4) {

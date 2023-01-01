@@ -10,14 +10,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fn")
 public class ClanChannel extends Node {
    @ObfuscatedName("fy")
-   @ObfuscatedGetter(
-      intValue = 1655091029
-   )
    static int worldPort;
    @ObfuscatedName("jw")
-   @ObfuscatedGetter(
-      intValue = 2009090259
-   )
    static int cameraZ;
    @ObfuscatedName("h")
    boolean field1801;
@@ -28,9 +22,6 @@ public class ClanChannel extends Node {
    @ObfuscatedName("x")
    int[] sortedMembers;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      longValue = -3180460269199447763L
-   )
    long field1794;
    @ObfuscatedName("q")
    public String name = null;

@@ -15,9 +15,6 @@ public class class382 {
    )
    static final class382 field4480 = new class382(1);
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -2121564167
-   )
    final int field4482;
 
    class382(int var1) {

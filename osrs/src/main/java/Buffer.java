@@ -14,9 +14,6 @@ public class Buffer extends Node {
    @ObfuscatedName("r")
    public byte[] array;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1969198767
-   )
    public int offset;
 
    static {

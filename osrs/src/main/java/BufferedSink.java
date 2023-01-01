@@ -15,21 +15,12 @@ public class BufferedSink implements Runnable {
    @ObfuscatedName("e")
    OutputStream outputStream;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1635330273
-   )
    int capacity;
    @ObfuscatedName("x")
    byte[] buffer;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1327837741
-   )
    int position = 0;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 237091967
-   )
    int limit = 0;
    @ObfuscatedName("f")
    IOException exception;

@@ -12,9 +12,6 @@ public class PacketBufferNode extends Node {
    )
    static PacketBufferNode[] PacketBufferNode_packetBufferNodes = new PacketBufferNode[300];
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1114776315
-   )
    static int PacketBufferNode_packetBufferNodeCount = 0;
    @ObfuscatedName("au")
    @ObfuscatedSignature(
@@ -27,9 +24,6 @@ public class PacketBufferNode extends Node {
    )
    public ClientPacket clientPacket;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -554924555
-   )
    public int clientPacketLength;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -37,9 +31,6 @@ public class PacketBufferNode extends Node {
    )
    public PacketBuffer packetBuffer;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1351842287
-   )
    public int index;
 
    @ObfuscatedName("v")

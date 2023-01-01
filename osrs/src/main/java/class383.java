@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nt")
 class class383 implements Comparator {
    @ObfuscatedName("lv")
-   @ObfuscatedGetter(
-      intValue = -457974623
-   )
    static int Client_plane;
    // $FF: synthetic field
    @ObfuscatedSignature(

@@ -21,14 +21,8 @@ public enum HorizontalAlignment implements class345 {
    field2010(0, 2);
 
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1932312333
-   )
    public final int value;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 200031989
-   )
    final int id;
 
    HorizontalAlignment(int var3, int var4) {

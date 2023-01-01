@@ -12,14 +12,8 @@ public class WorldMapLabel {
    @ObfuscatedName("h")
    String text;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1395351999
-   )
    int width;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1987376379
-   )
    int height;
    @ObfuscatedName("x")
    @ObfuscatedSignature(

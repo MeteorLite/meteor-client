@@ -12,9 +12,6 @@ public class UrlRequest {
    )
    static Clock clock;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = -59160263
-   )
    static int loginBoxCenter;
    @ObfuscatedName("h")
    final URL url;

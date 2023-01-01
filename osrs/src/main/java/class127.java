@@ -91,19 +91,10 @@ public class class127 implements class345 {
    )
    static final class127 field1591 = new class127(16, 16, (String)null, 0, 5);
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 2090577293
-   )
    final int field1575;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = -1826032177
-   )
    final int field1593;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = 607960971
-   )
    final int field1594;
 
    @ObfuscatedSignature(

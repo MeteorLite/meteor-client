@@ -13,14 +13,8 @@ public class class139 {
    )
    static SpritePixels redHintArrowSprite;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -2412790718351732385L
-   )
    long field1674;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 911939033
-   )
    int field1668 = -1;
    @ObfuscatedName("v")
    @ObfuscatedSignature(

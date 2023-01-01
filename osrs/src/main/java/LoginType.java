@@ -52,9 +52,6 @@ public class LoginType {
    )
    public static final LoginType field4837;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -2052296465
-   )
    public final int field4833;
    @ObfuscatedName("j")
    final String field4839;

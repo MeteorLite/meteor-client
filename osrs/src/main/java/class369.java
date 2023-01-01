@@ -5,9 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ny")
 public class class369 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 654594661
-   )
    int field4392;
 
    @ObfuscatedSignature(

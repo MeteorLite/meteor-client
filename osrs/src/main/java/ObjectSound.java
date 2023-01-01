@@ -12,34 +12,16 @@ public final class ObjectSound extends Node {
    )
    static NodeDeque objectSounds = new NodeDeque();
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1401561861
-   )
    int plane;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1199351805
-   )
    int x;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1317524287
-   )
    int y;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -661899648
-   )
    int maxX;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1301434539
-   )
    int maxY;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1369887985
-   )
    int field847;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
@@ -47,9 +29,6 @@ public final class ObjectSound extends Node {
    )
    ObjectComposition obj;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1499670769
-   )
    int soundEffectId;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
@@ -57,21 +36,12 @@ public final class ObjectSound extends Node {
    )
    RawPcmStream stream1;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -384288947
-   )
    int field842;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 1911815479
-   )
    int field839;
    @ObfuscatedName("i")
    int[] soundEffectIds;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1274533343
-   )
    int field850;
    @ObfuscatedName("n")
    @ObfuscatedSignature(

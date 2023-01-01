@@ -10,9 +10,6 @@ public class Ignored extends User {
    )
    static Archive field4539;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -291258823
-   )
    int id;
 
    @ObfuscatedName("h")

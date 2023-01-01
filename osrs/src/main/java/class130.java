@@ -6,9 +6,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ew")
 public class class130 extends DualNode {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1966668885
-   )
    int field1607;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -26,9 +23,6 @@ public class class130 extends DualNode {
    )
    public Skeleton field1603;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1549136257
-   )
    int field1609 = 0;
    @ObfuscatedName("q")
    boolean field1606;

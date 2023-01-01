@@ -5,14 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cd")
 final class class101 implements class297 {
    @ObfuscatedName("tt")
-   @ObfuscatedGetter(
-      intValue = -2019861191
-   )
    static int field1365;
    @ObfuscatedName("ng")
-   @ObfuscatedGetter(
-      intValue = 978763523
-   )
    static int selectedItemSlot;
    // $FF: synthetic field
    @ObfuscatedSignature(

@@ -6,21 +6,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("er")
 public class class142 extends class152 {
    @ObfuscatedName("pw")
-   @ObfuscatedGetter(
-      intValue = -1273089953
-   )
    static int field1691;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 778268445
-   )
    int field1687;
    @ObfuscatedName("e")
    byte field1690;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1782561811
-   )
    int field1689;
    @ObfuscatedName("x")
    String field1688;

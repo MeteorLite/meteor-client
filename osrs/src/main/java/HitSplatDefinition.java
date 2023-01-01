@@ -35,78 +35,36 @@ public class HitSplatDefinition extends DualNode {
    )
    static Archive archive2;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -452341601
-   )
    int fontId = -1;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = 29790821
-   )
    public int textColor = 16777215;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1571140211
-   )
    public int field2132 = 70;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -1857088509
-   )
    int field2138 = -1;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 519800861
-   )
    int field2145 = -1;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 1875529689
-   )
    int field2140 = -1;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 866194173
-   )
    int field2141 = -1;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = -1183512901
-   )
    public int field2142 = 0;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = 695762813
-   )
    public int field2137 = 0;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = -220285237
-   )
    public int field2144 = -1;
    @ObfuscatedName("p")
    String field2128 = "";
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = 1451388863
-   )
    public int field2146 = -1;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = 1013670435
-   )
    public int field2147 = 0;
    @ObfuscatedName("z")
    public int[] transforms;
    @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = 327667697
-   )
    int transformVarbit = -1;
    @ObfuscatedName("as")
-   @ObfuscatedGetter(
-      intValue = -20536057
-   )
    int transformVarp = -1;
 
    @ObfuscatedName("e")

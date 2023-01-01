@@ -6,9 +6,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jc")
 public final class class282 {
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      longValue = -788590648153767697L
-   )
    static long field3327;
 
    @ObfuscatedName("q")

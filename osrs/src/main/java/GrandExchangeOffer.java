@@ -9,29 +9,14 @@ public class GrandExchangeOffer {
    @ObfuscatedName("h")
    byte state;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -512398981
-   )
    public int id;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1186373323
-   )
    public int unitPrice;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -717642563
-   )
    public int totalQuantity;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1074991029
-   )
    public int currentQuantity;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1552101637
-   )
    public int currentPrice;
 
    public GrandExchangeOffer() {

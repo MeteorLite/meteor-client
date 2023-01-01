@@ -12,14 +12,8 @@ public abstract class AbstractArchive {
    )
    static GZipDecompressor gzipDecompressor = new GZipDecompressor();
    @ObfuscatedName("at")
-   @ObfuscatedGetter(
-      intValue = -373211487
-   )
    static int field4213 = 0;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = -195992711
-   )
    int groupCount;
    @ObfuscatedName("l")
    int[] groupIds;
@@ -50,9 +44,6 @@ public abstract class AbstractArchive {
    @ObfuscatedName("ao")
    Object[][] files;
    @ObfuscatedName("av")
-   @ObfuscatedGetter(
-      intValue = 1772103585
-   )
    public int hash;
    @ObfuscatedName("au")
    boolean releaseGroups;

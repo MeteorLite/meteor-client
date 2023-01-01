@@ -12,9 +12,6 @@ public class ItemComposition extends DualNode {
    )
    static AbstractArchive ItemDefinition_archive;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 76789185
-   )
    public static int ItemDefinition_fileCount;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
@@ -32,14 +29,8 @@ public class ItemComposition extends DualNode {
    )
    public static EvictingDualNodeHashTable ItemDefinition_cachedSprites = new EvictingDualNodeHashTable(200);
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 1037666267
-   )
    public int id;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -79179159
-   )
    int model;
    @ObfuscatedName("k")
    public String name = "null";
@@ -52,59 +43,26 @@ public class ItemComposition extends DualNode {
    @ObfuscatedName("t")
    public short[] retextureTo;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = -2078238987
-   )
    public int zoom2d = 2000;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = -809487997
-   )
    public int xan2d = 0;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = -1148033667
-   )
    public int yan2d = 0;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = -897636777
-   )
    public int zan2d = 0;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = 1913553153
-   )
    public int offsetX2d = 0;
    @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = 1827536133
-   )
    public int offsetY2d = 0;
    @ObfuscatedName("as")
-   @ObfuscatedGetter(
-      intValue = -1304719979
-   )
    public int isStackable = 0;
    @ObfuscatedName("ad")
-   @ObfuscatedGetter(
-      intValue = 1868181119
-   )
    public int price = 1;
    @ObfuscatedName("ao")
-   @ObfuscatedGetter(
-      intValue = -712207729
-   )
    public int maleModel = -1;
    @ObfuscatedName("am")
-   @ObfuscatedGetter(
-      intValue = -1461262497
-   )
    public int maleModel1 = -1;
    @ObfuscatedName("av")
-   @ObfuscatedGetter(
-      intValue = -1198196015
-   )
    public int maleModel2 = -1;
    @ObfuscatedName("au")
    public boolean isMembersOnly = false;
@@ -113,118 +71,52 @@ public class ItemComposition extends DualNode {
    @ObfuscatedName("at")
    public String[] inventoryActions = new String[]{null, null, null, null, "Drop"};
    @ObfuscatedName("an")
-   @ObfuscatedGetter(
-      intValue = -573326147
-   )
    int shiftClickIndex = -2;
    @ObfuscatedName("ab")
-   @ObfuscatedGetter(
-      intValue = -1310935043
-   )
    int femaleModel = -1;
    @ObfuscatedName("al")
-   @ObfuscatedGetter(
-      intValue = -136305627
-   )
    int femaleModel1 = -1;
    @ObfuscatedName("ag")
-   @ObfuscatedGetter(
-      intValue = -840315209
-   )
    int femaleOffset = 0;
    @ObfuscatedName("az")
-   @ObfuscatedGetter(
-      intValue = -381342235
-   )
    int maleHeadModel = -1;
    @ObfuscatedName("ak")
-   @ObfuscatedGetter(
-      intValue = -954860879
-   )
    int maleHeadModel2 = -1;
    @ObfuscatedName("af")
-   @ObfuscatedGetter(
-      intValue = 482374965
-   )
    int field2204 = 0;
    @ObfuscatedName("ai")
-   @ObfuscatedGetter(
-      intValue = -428507273
-   )
    int femaleModel2 = -1;
    @ObfuscatedName("ax")
-   @ObfuscatedGetter(
-      intValue = 740482477
-   )
    int femaleHeadModel = -1;
    @ObfuscatedName("ah")
-   @ObfuscatedGetter(
-      intValue = -1566002253
-   )
    int femaleHeadModel2 = -1;
    @ObfuscatedName("aw")
-   @ObfuscatedGetter(
-      intValue = 1042908255
-   )
    int field2243 = -1;
    @ObfuscatedName("aj")
-   @ObfuscatedGetter(
-      intValue = -1329405317
-   )
    int field2244 = -1;
    @ObfuscatedName("aq")
-   @ObfuscatedGetter(
-      intValue = -1923047899
-   )
    int field2245 = -1;
    @ObfuscatedName("ap")
    int[] countobj;
    @ObfuscatedName("aa")
    int[] countco;
    @ObfuscatedName("ae")
-   @ObfuscatedGetter(
-      intValue = -590505645
-   )
    public int note = -1;
    @ObfuscatedName("ac")
-   @ObfuscatedGetter(
-      intValue = -1058213631
-   )
    public int noteTemplate = -1;
    @ObfuscatedName("bh")
-   @ObfuscatedGetter(
-      intValue = 594389235
-   )
    int resizeX = 128;
    @ObfuscatedName("be")
-   @ObfuscatedGetter(
-      intValue = 1646343287
-   )
    int resizeY = 128;
    @ObfuscatedName("bf")
-   @ObfuscatedGetter(
-      intValue = -99918107
-   )
    int resizeZ = 128;
    @ObfuscatedName("bo")
-   @ObfuscatedGetter(
-      intValue = -1743952543
-   )
    public int field2209 = 0;
    @ObfuscatedName("by")
-   @ObfuscatedGetter(
-      intValue = 298604473
-   )
    public int field2222 = 0;
    @ObfuscatedName("bw")
-   @ObfuscatedGetter(
-      intValue = -1347495133
-   )
    public int team = 0;
    @ObfuscatedName("bp")
-   @ObfuscatedGetter(
-      intValue = 64152289
-   )
    public int field2224 = 0;
    @ObfuscatedName("bc")
    @ObfuscatedSignature(
@@ -234,24 +126,12 @@ public class ItemComposition extends DualNode {
    @ObfuscatedName("bl")
    public boolean isTradable = false;
    @ObfuscatedName("bv")
-   @ObfuscatedGetter(
-      intValue = -111748635
-   )
    int unnotedId = -1;
    @ObfuscatedName("bx")
-   @ObfuscatedGetter(
-      intValue = 15600059
-   )
    int notedId = -1;
    @ObfuscatedName("bg")
-   @ObfuscatedGetter(
-      intValue = 420233559
-   )
    public int placeholder = -1;
    @ObfuscatedName("bz")
-   @ObfuscatedGetter(
-      intValue = 628149203
-   )
    public int placeholderTemplate = -1;
 
    @ObfuscatedName("v")

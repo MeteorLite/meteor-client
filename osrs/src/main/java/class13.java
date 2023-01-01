@@ -12,9 +12,6 @@ import org.bouncycastle.crypto.tls.TlsAuthentication;
 @ObfuscatedName("o")
 class class13 extends DefaultTlsClient {
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1791205419
-   )
    static int field78;
    // $FF: synthetic field
    @ObfuscatedSignature(

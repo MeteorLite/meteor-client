@@ -7,14 +7,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("mg")
 public class GrandExchangeEvent {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1765104483
-   )
    public final int world;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      longValue = -4945736935337905557L
-   )
    public final long age;
    @ObfuscatedName("v")
    @ObfuscatedSignature(

@@ -5,9 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("oy")
 public class class391 extends Link {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -934585325
-   )
    public int field4520 = (int)(Message.method1197() / 1000L);
    @ObfuscatedName("e")
    @ObfuscatedSignature(

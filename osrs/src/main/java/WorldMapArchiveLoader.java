@@ -14,9 +14,6 @@ public class WorldMapArchiveLoader {
    )
    AbstractArchive archive;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -646591499
-   )
    int percentLoaded = 0;
    @ObfuscatedName("r")
    boolean loaded = false;

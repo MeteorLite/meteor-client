@@ -12,14 +12,8 @@ public enum class6 implements class345 {
    field17(0, 0);
 
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1124908931
-   )
    final int field16;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -2124090035
-   )
    final int field19;
 
    class6(int var3, int var4) {

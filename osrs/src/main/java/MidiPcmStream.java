@@ -12,14 +12,8 @@ public class MidiPcmStream extends PcmStream {
    )
    NodeHashTable musicPatches = new NodeHashTable(128);
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1432164919
-   )
    int field3362 = 256;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 58001557
-   )
    int field3370 = 1000000;
    @ObfuscatedName("x")
    int[] field3359 = new int[16];
@@ -69,24 +63,12 @@ public class MidiPcmStream extends PcmStream {
    @ObfuscatedName("ao")
    boolean field3355;
    @ObfuscatedName("am")
-   @ObfuscatedGetter(
-      intValue = 1192963143
-   )
    int track;
    @ObfuscatedName("av")
-   @ObfuscatedGetter(
-      intValue = -1500458693
-   )
    int trackLength;
    @ObfuscatedName("au")
-   @ObfuscatedGetter(
-      longValue = 2172914929519981185L
-   )
    long field3379;
    @ObfuscatedName("ar")
-   @ObfuscatedGetter(
-      longValue = 2756622200726587743L
-   )
    long field3380;
    @ObfuscatedName("at")
    @ObfuscatedSignature(

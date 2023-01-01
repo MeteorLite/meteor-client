@@ -11,9 +11,6 @@ public class class144 extends class152 {
    )
    static SpritePixels[] mapMarkerSprites;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -604673245
-   )
    int field1703;
    // $FF: synthetic field
    @ObfuscatedSignature(

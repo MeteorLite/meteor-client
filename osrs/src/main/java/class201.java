@@ -18,31 +18,16 @@ public class class201 implements class30 {
    @ObfuscatedName("v")
    public int[] field2323 = new int[128];
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1561579701
-   )
    public int field2326 = 0;
    @ObfuscatedName("m")
    int[] field2319 = new int[128];
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 784206767
-   )
    int field2320 = 0;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -791064279
-   )
    int field2321 = 0;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1539729439
-   )
    int field2322 = 0;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1119474005
-   )
    int field2317 = 0;
    @ObfuscatedName("b")
    boolean[] field2324 = new boolean[112];
@@ -53,9 +38,6 @@ public class class201 implements class30 {
    @ObfuscatedName("i")
    public char field2315;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1152900247
-   )
    public int field2328;
 
    @ObfuscatedName("h")

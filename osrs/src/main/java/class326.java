@@ -27,9 +27,6 @@ public enum class326 implements class345 {
    field4141(2);
 
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 526450303
-   )
    final int field4142;
 
    class326(int var3) {

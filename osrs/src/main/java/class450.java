@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("qv")
 class class450 implements Iterator {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 2013881303
-   )
    int field4861;
    // $FF: synthetic field
    @ObfuscatedSignature(

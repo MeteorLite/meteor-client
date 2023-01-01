@@ -5,21 +5,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cg")
 public final class NPC extends Actor {
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1482970883
-   )
    static int field1315 = 1;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -107770019
-   )
    static int field1317 = 1;
    @ObfuscatedName("i")
    static int[] Tiles_hueMultiplier;
    @ObfuscatedName("mw")
-   @ObfuscatedGetter(
-      intValue = -736500721
-   )
    static int menuY;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -29,9 +20,6 @@ public final class NPC extends Actor {
    @ObfuscatedName("e")
    String nameChange = "";
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1973298013
-   )
    int field1312 = 31;
    @ObfuscatedName("m")
    @ObfuscatedSignature(

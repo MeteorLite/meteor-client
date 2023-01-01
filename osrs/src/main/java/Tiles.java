@@ -11,9 +11,6 @@ public final class Tiles {
    @ObfuscatedName("e")
    static byte[][][] Tiles_renderFlags = new byte[4][104][104];
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1062908513
-   )
    static int Tiles_minPlane = 99;
    @ObfuscatedName("x")
    static short[][][] Tiles_underlays;
@@ -38,14 +35,8 @@ public final class Tiles {
    @ObfuscatedName("y")
    static final int[] field1025 = new int[]{-1, -1, 1, 1};
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = 559364671
-   )
    static int rndHue = (int)(Math.random() * 17.0D) - 8;
    @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = -475114795
-   )
    static int rndLightness = (int)(Math.random() * 33.0D) - 16;
 
    @ObfuscatedName("r")

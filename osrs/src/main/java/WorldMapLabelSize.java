@@ -9,9 +9,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("iq")
 public class WorldMapLabelSize {
    @ObfuscatedName("vf")
-   @ObfuscatedGetter(
-      longValue = -4916200356723856723L
-   )
    static long field2824;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -29,19 +26,10 @@ public class WorldMapLabelSize {
    )
    public static final WorldMapLabelSize WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1619983487
-   )
    final int field2829;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 547050313
-   )
    final int field2828;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1330231937
-   )
    final int field2830;
 
    WorldMapLabelSize(int var1, int var2, int var3) {

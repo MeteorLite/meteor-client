@@ -22,9 +22,6 @@ public class WorldMapID {
    )
    static Widget hoveredItemContainer;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1808192051
-   )
    final int value;
 
    WorldMapID(int var1) {

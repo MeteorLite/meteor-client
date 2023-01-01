@@ -17,9 +17,6 @@ public class WorldMapElement extends DualNode {
    )
    public static WorldMapElement[] WorldMapElement_cached;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1016505837
-   )
    public static int WorldMapElement_count;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -27,31 +24,16 @@ public class WorldMapElement extends DualNode {
    )
    public static EvictingDualNodeHashTable WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(256);
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 914760617
-   )
    public final int objectId;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -211487071
-   )
    public int sprite1 = -1;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1538930309
-   )
    int sprite2 = -1;
    @ObfuscatedName("r")
    public String name;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1750958439
-   )
    public int field1947;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 743086435
-   )
    public int textSize = 0;
    @ObfuscatedName("g")
    public boolean field1936 = true;
@@ -64,24 +46,12 @@ public class WorldMapElement extends DualNode {
    @ObfuscatedName("k")
    int[] field1933;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = -151297473
-   )
    int field1941 = Integer.MAX_VALUE;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1016813489
-   )
    int field1942 = Integer.MAX_VALUE;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = 2004701437
-   )
    int field1943 = Integer.MIN_VALUE;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -2089039459
-   )
    int field1937 = Integer.MIN_VALUE;
    @ObfuscatedName("c")
    @ObfuscatedSignature(
@@ -98,9 +68,6 @@ public class WorldMapElement extends DualNode {
    @ObfuscatedName("y")
    byte[] field1948;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = -249321649
-   )
    public int category;
 
    public WorldMapElement(int var1) {

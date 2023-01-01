@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fd")
 public class NanoClock extends Clock {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -3571804006841329007L
-   )
    long lastTimeNano = System.nanoTime();
 
    @ObfuscatedName("h")

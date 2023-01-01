@@ -21,14 +21,8 @@ public class class456 implements class345 {
    )
    public static final class456 field4871 = new class456(1, 2, String.class, new class457());
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1157568029
-   )
    public final int field4872;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 984459831
-   )
    public final int field4876;
    @ObfuscatedName("q")
    public final Class field4875;

@@ -16,14 +16,8 @@ public class class319 {
    )
    static final class319 field3782 = new class319(25, 28, 800, 656, 40, 40);
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1826887281
-   )
    final int field3783;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1882364867
-   )
    final int field3784;
 
    class319(int var1, int var2, int var3, int var4, int var5, int var6) {

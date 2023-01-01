@@ -52,29 +52,14 @@ public final class WorldMapManager {
    @ObfuscatedName("j")
    final HashMap fonts;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 579886359
-   )
    int tileX;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = 223405359
-   )
    int tileY;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 936416341
-   )
    int tileWidth;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -687583424
-   )
    int tileHeight;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 542423765
-   )
    public int pixelsPerTile = 0;
 
    @ObfuscatedSignature(

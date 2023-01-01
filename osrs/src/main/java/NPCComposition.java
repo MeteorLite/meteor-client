@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gz")
 public class NPCComposition extends DualNode {
    @ObfuscatedName("tq")
-   @ObfuscatedGetter(
-      intValue = 1158456013
-   )
    static int field2067;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -17,9 +14,6 @@ public class NPCComposition extends DualNode {
    )
    static AbstractArchive NpcDefinition_archive;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 646794717
-   )
    static int defaultHeadIconArchive;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
@@ -32,95 +26,44 @@ public class NPCComposition extends DualNode {
    )
    static EvictingDualNodeHashTable NpcDefinition_cachedModels = new EvictingDualNodeHashTable(50);
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -109388973
-   )
    public int id;
    @ObfuscatedName("u")
    public String name = "null";
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -1021399127
-   )
    public int size = 1;
    @ObfuscatedName("j")
    int[] models;
    @ObfuscatedName("g")
    int[] field2026;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = -499537861
-   )
    public int idleSequence = -1;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 274326889
-   )
    public int turnLeftSequence = -1;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -634834111
-   )
    public int turnRightSequence = -1;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 1587887915
-   )
    public int walkSequence = -1;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 1430199505
-   )
    public int walkBackSequence = -1;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1601988001
-   )
    public int walkLeftSequence = -1;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = 1871825673
-   )
    public int walkRightSequence = -1;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -2080788827
-   )
    public int field2035 = -1;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = 752796561
-   )
    public int field2038 = -1;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 1054411661
-   )
    public int field2039 = -1;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = 875795671
-   )
    public int field2040 = -1;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = 903143861
-   )
    public int field2041 = -1;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = 1152150225
-   )
    public int field2042 = -1;
    @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = -1129939695
-   )
    public int field2043 = -1;
    @ObfuscatedName("as")
-   @ObfuscatedGetter(
-      intValue = -2023873033
-   )
    public int field2044 = -1;
    @ObfuscatedName("ad")
    short[] recolorFrom;
@@ -135,48 +78,24 @@ public class NPCComposition extends DualNode {
    @ObfuscatedName("ar")
    public boolean drawMapDot = true;
    @ObfuscatedName("at")
-   @ObfuscatedGetter(
-      intValue = -917269397
-   )
    public int combatLevel = -1;
    @ObfuscatedName("ay")
-   @ObfuscatedGetter(
-      intValue = -124469981
-   )
    int widthScale = 128;
    @ObfuscatedName("an")
-   @ObfuscatedGetter(
-      intValue = -1404076757
-   )
    int heightScale = 128;
    @ObfuscatedName("ab")
    public boolean isVisible = false;
    @ObfuscatedName("al")
-   @ObfuscatedGetter(
-      intValue = 408004249
-   )
    int ambient = 0;
    @ObfuscatedName("ag")
-   @ObfuscatedGetter(
-      intValue = -182569543
-   )
    int contrast = 0;
    @ObfuscatedName("az")
-   @ObfuscatedGetter(
-      intValue = -478636009
-   )
    public int rotation = 32;
    @ObfuscatedName("ak")
    public int[] transforms;
    @ObfuscatedName("af")
-   @ObfuscatedGetter(
-      intValue = 1750524771
-   )
    int transformVarbit = -1;
    @ObfuscatedName("ai")
-   @ObfuscatedGetter(
-      intValue = -2035410821
-   )
    int transformVarp = -1;
    @ObfuscatedName("ax")
    public boolean isInteractable = true;

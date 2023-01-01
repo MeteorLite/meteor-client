@@ -40,9 +40,6 @@ public enum StudioGame implements class345 {
    @ObfuscatedName("f")
    public final String name;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1618416039
-   )
    final int id;
 
    StudioGame(String var3, String var4, int var5) {

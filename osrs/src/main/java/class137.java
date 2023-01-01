@@ -6,9 +6,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("eq")
 public class class137 extends class136 {
    @ObfuscatedName("fl")
-   @ObfuscatedGetter(
-      intValue = 1408608023
-   )
    static int js5Port;
    @ObfuscatedName("qa")
    @ObfuscatedSignature(
@@ -16,9 +13,6 @@ public class class137 extends class136 {
    )
    static class451 HitSplatDefinition_cachedSprites;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1628784665
-   )
    int field1655;
    @ObfuscatedName("e")
    boolean field1651;

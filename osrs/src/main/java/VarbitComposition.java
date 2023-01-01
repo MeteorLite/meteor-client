@@ -19,19 +19,10 @@ public class VarbitComposition extends DualNode {
    @ObfuscatedName("q")
    static final int[] field2112 = new int[32];
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1633221379
-   )
    public int baseVar;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -270804781
-   )
    public int startBit;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1549035405
-   )
    public int endBit;
 
    static {

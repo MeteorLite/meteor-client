@@ -17,14 +17,8 @@ public class WorldMapRegion {
    )
    public static DemotingHashTable WorldMapRegion_cachedSprites = new DemotingHashTable(37748736, 256);
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1399324249
-   )
    int regionX;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 2131113479
-   )
    int regionY;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
@@ -34,14 +28,8 @@ public class WorldMapRegion {
    @ObfuscatedName("u")
    LinkedList worldMapData1List;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -487091827
-   )
    int backgroundColor;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -2116405889
-   )
    int pixelsPerTile;
    @ObfuscatedName("g")
    List icon0List;

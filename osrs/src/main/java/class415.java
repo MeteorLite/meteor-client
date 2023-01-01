@@ -5,9 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("or")
 public abstract class class415 extends class262 implements class474 {
    @ObfuscatedName("tv")
-   @ObfuscatedGetter(
-      intValue = -1332098541
-   )
    static int cameraLookAtSpeed;
    @ObfuscatedName("m")
    static String[] Interpreter_stringLocals;

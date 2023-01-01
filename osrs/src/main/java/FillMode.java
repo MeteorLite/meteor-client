@@ -23,14 +23,8 @@ public enum FillMode implements class345 {
    @ObfuscatedName("p")
    public static String operatingSystemName;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1399928939
-   )
    public final int field4995;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 2002378091
-   )
    final int field4999;
 
    FillMode(int var3, int var4) {

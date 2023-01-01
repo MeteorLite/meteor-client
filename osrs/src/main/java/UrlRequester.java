@@ -19,9 +19,6 @@ public abstract class UrlRequester implements Runnable {
    @ObfuscatedName("v")
    Queue requests = new LinkedList();
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -2031725395
-   )
    int field1437;
 
    UrlRequester(int var1) {

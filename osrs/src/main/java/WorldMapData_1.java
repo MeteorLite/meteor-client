@@ -5,24 +5,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ij")
 public class WorldMapData_1 extends AbstractWorldMapData {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 673523519
-   )
    int chunkXLow;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1046620565
-   )
    int chunkYLow;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1891808843
-   )
    int chunkX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1231900861
-   )
    int chunkY;
 
    @ObfuscatedName("h")

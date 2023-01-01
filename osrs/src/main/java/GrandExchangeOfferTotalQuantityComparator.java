@@ -8,9 +8,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("lx")
 final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1715620411
-   )
    public static int SpriteBuffer_spriteWidth;
 
    @ObfuscatedName("h")

@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("io")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 633921905
-   )
    final int element;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -17,14 +14,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
    )
    final WorldMapLabel label;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -426824137
-   )
    final int subWidth;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1331062125
-   )
    final int subHeight;
 
    @ObfuscatedSignature(

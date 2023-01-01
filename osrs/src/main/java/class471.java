@@ -36,14 +36,8 @@ public class class471 implements class345 {
    )
    static final class471 field4973 = new class471(5, 8);
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1996327845
-   )
    final int field4970;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1814081275
-   )
    final int field4975;
 
    class471(int var1, int var2) {

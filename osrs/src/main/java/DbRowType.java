@@ -19,9 +19,6 @@ public class DbRowType extends DualNode {
    @ObfuscatedName("x")
    int[][] field4892;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 2001738031
-   )
    public int tableId = -1;
 
    @ObfuscatedName("v")

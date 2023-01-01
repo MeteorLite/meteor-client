@@ -7,9 +7,6 @@ public class class412 {
    @ObfuscatedName("h")
    float[] field4630;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1911705725
-   )
    int field4632;
 
    class412(float[] var1, int var2) {
