@@ -78,14 +78,14 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
                 { client.getBoostedSkillLevel(Skill.HITPOINTS) },
                 { getRestoreValue(Skill.HITPOINTS.getName()) },
                 Supplier {
-                    val poisonState = client.getVarpValue(VarPlayer.IS_POISONED.id)
+                    val poisonState = client.getVarpValue(VarPlayer.IS_POISONED)
                     if (poisonState >= 1000000) {
                         return@Supplier VENOMED_COLOR
                     }
                     if (poisonState > 0) {
                         return@Supplier POISONED_COLOR
                     }
-                    if (client.getVarpValue(VarPlayer.DISEASE_VALUE.id) > 0) {
+                    if (client.getVarpValue(VarPlayer.DISEASE_VALUE) > 0) {
                         return@Supplier DISEASE_COLOR
                     }
                     if (client.getVarbitValue(Varbits.PARASITE) >= 1) {
@@ -95,14 +95,14 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
                 },
                 { HEAL_COLOR },
                 Supplier {
-                    val poisonState = client.getVarpValue(VarPlayer.IS_POISONED.id)
-                    if (poisonState > 0 && poisonState < 50) {
+                    val poisonState = client.getVarpValue(VarPlayer.IS_POISONED)
+                    if (poisonState in 1..49) {
                         return@Supplier heartPoison
                     }
                     if (poisonState >= 1000000) {
                         return@Supplier heartVenom
                     }
-                    if (client.getVarpValue(VarPlayer.DISEASE_VALUE.id) > 0) {
+                    if (client.getVarpValue(VarPlayer.DISEASE_VALUE) > 0) {
                         return@Supplier heartDisease
                     }
                     heartIcon!!
@@ -140,7 +140,7 @@ internal class StatusBarsOverlay(var plugin: StatusBarsPlugin, var config: Statu
         )
         barRenderers[BarMode.SPECIAL_ATTACK] = BarRenderer(
                 { MAX_SPECIAL_ATTACK_VALUE },
-                { client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT.id) / 10 },
+                { client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT) / 10 },
                 { 0 },
                 { SPECIAL_ATTACK_COLOR },
                 { SPECIAL_ATTACK_COLOR },
