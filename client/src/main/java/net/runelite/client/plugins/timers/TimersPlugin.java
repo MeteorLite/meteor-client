@@ -169,7 +169,7 @@ public class TimersPlugin extends Plugin
 		int raidVarb = client.getVarbitValue(Varbits.IN_RAID);
 		int vengCooldownVarb = client.getVarbitValue(Varbits.VENGEANCE_COOLDOWN);
 		int isVengeancedVarb = client.getVarbitValue(Varbits.VENGEANCE_ACTIVE);
-		int poisonVarp = client.getVarbitValue(VarPlayer.POISON.getId());
+		int poisonVarp = client.getVarpValue(VarPlayer.POISON.getId());
 		int pvpVarb = client.getVarbitValue(Varbits.PVP_SPEC_ORB);
 		int corruptionCooldownVarb = client.getVarbitValue(Varbits.CORRUPTION_COOLDOWN);
 		int imbuedHeartCooldownVarb = client.getVarbitValue(Varbits.IMBUED_HEART_COOLDOWN);
