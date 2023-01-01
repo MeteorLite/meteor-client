@@ -12,6 +12,9 @@ public class ApproximateRouteStrategy extends RouteStrategy {
    )
    static PcmStreamMixer pcmStreamMixer;
    @ObfuscatedName("jy")
+   @ObfuscatedGetter(
+      intValue = -1206385217
+   )
    static int field498;
 
    @ObfuscatedName("h")

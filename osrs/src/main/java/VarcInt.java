@@ -29,6 +29,9 @@ public class VarcInt extends DualNode {
    )
    static ClanChannel field1956;
    @ObfuscatedName("mh")
+   @ObfuscatedGetter(
+      intValue = -1028390641
+   )
    static int menuX;
    @ObfuscatedName("v")
    public boolean persist = false;

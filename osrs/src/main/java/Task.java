@@ -14,6 +14,9 @@ public class Task {
    @ObfuscatedName("x")
    public volatile int status = 0;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1101971137
+   )
    int type;
    @ObfuscatedName("q")
    public int intArgument;

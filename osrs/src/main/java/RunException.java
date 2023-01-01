@@ -8,10 +8,19 @@ public class RunException extends RuntimeException {
    @ObfuscatedName("e")
    public static String localPlayerName;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1972222199
+   )
    public static int RunException_revision;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 164996615
+   )
    public static int field5065;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 1618152889
+   )
    public static int clientType;
    @ObfuscatedName("q")
    String message;

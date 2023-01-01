@@ -9,26 +9,59 @@ public final class Projectile extends Renderable {
    @ObfuscatedName("aq")
    static GarbageCollectorMXBean garbageCollector;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -1523052687
+   )
    int id;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1947725359
+   )
    int plane;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 879345441
+   )
    int sourceX;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 140840657
+   )
    int sourceY;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -519343155
+   )
    int sourceZ;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1010896295
+   )
    int endHeight;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -1612153409
+   )
    int cycleStart;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 1384648045
+   )
    int cycleEnd;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -1239204449
+   )
    int slope;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -1545090087
+   )
    int startHeight;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 1220656091
+   )
    int targetIndex;
    @ObfuscatedName("g")
    boolean isMoving = false;
@@ -49,8 +82,14 @@ public final class Projectile extends Renderable {
    @ObfuscatedName("t")
    double accelerationZ;
    @ObfuscatedName("c")
+   @ObfuscatedGetter(
+      intValue = 1617416595
+   )
    int yaw;
    @ObfuscatedName("p")
+   @ObfuscatedGetter(
+      intValue = -1125057587
+   )
    int pitch;
    @ObfuscatedName("d")
    @ObfuscatedSignature(
@@ -58,8 +97,14 @@ public final class Projectile extends Renderable {
    )
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("y")
+   @ObfuscatedGetter(
+      intValue = -1598140117
+   )
    int frame = 0;
    @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = 1307859615
+   )
    int frameCycle = 0;
 
    Projectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {

@@ -17,8 +17,14 @@ public class InvDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable InvDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("if")
+   @ObfuscatedGetter(
+      intValue = 780032889
+   )
    static int field1918;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -1028832281
+   )
    public int size = 0;
 
    @ObfuscatedName("v")

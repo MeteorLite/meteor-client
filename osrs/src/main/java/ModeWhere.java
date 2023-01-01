@@ -87,8 +87,14 @@ public enum ModeWhere implements class345 {
    )
    static GameBuild field4325;
    @ObfuscatedName("ix")
+   @ObfuscatedGetter(
+      intValue = -1693192727
+   )
    static int selectedItemWidget;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = -59463617
+   )
    final int id;
    @ObfuscatedName("n")
    final Set field4323 = new HashSet();

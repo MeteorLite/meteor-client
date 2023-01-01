@@ -9,6 +9,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nx")
 public class class365 implements Iterator {
    @ObfuscatedName("hq")
+   @ObfuscatedGetter(
+      intValue = -1083525607
+   )
    static int baseY;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -16,8 +19,14 @@ public class class365 implements Iterator {
    )
    class366 field4364;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -1835580561
+   )
    int field4365 = 0;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -541714235
+   )
    int field4366;
 
    @ObfuscatedSignature(

@@ -7,8 +7,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ay")
 public class class34 {
    @ObfuscatedName("te")
+   @ObfuscatedGetter(
+      intValue = -261570560
+   )
    static int cameraMoveToY;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -307686371
+   )
    public static int field205;
    @ObfuscatedName("ga")
    static SecureRandom secureRandom;
@@ -18,8 +24,14 @@ public class class34 {
    )
    static class451 HitSplatDefinition_cached;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 1855727059
+   )
    int field200;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -1617185935
+   )
    int field202;
 
    class34(int var1, int var2) {

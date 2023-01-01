@@ -22,6 +22,9 @@ public class Messages {
    )
    static final IterableDualNodeQueue Messages_queue = new IterableDualNodeQueue();
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1199730995
+   )
    static int Messages_count = 0;
    @ObfuscatedName("av")
    static FontMetrics loginScreenFontMetrics;

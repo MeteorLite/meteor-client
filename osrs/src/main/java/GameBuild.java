@@ -29,6 +29,9 @@ public class GameBuild {
    @ObfuscatedName("m")
    public final String name;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1115217905
+   )
    final int buildId;
 
    GameBuild(String var1, int var2) {

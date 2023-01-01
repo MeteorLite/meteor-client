@@ -5,16 +5,34 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bk")
 public class DynamicObject extends Renderable {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -2074471671
+   )
    int id;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1709661329
+   )
    int type;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -1920524297
+   )
    int orientation;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -14987683
+   )
    int plane;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1813409375
+   )
    int x;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1033732035
+   )
    int y;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -22,8 +40,14 @@ public class DynamicObject extends Renderable {
    )
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 1771160437
+   )
    int frame;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 672307685
+   )
    int cycleStart;
 
    @ObfuscatedSignature(

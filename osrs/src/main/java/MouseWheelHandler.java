@@ -10,6 +10,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("d")
 public final class MouseWheelHandler implements class166, MouseWheelListener {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 2129490121
+   )
    int rotation = 0;
 
    @ObfuscatedName("h")

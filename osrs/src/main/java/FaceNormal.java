@@ -7,10 +7,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hz")
 public class FaceNormal {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -1593342669
+   )
    int x;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -2131754663
+   )
    int y;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1522131961
+   )
    int z;
 
    @ObfuscatedName("ae")

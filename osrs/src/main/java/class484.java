@@ -5,30 +5,66 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("rd")
 public class class484 {
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -544764579
+   )
    int field5035;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 407056329
+   )
    int field5043;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 718401383
+   )
    int field5036;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 1169119765
+   )
    int field5037;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1800251423
+   )
    int field5033;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -2136683631
+   )
    int field5040;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 1280823113
+   )
    int field5042 = 0;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 1066251557
+   )
    int field5039 = 0;
    @ObfuscatedName("b")
    boolean field5034;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -491304047
+   )
    int field5038;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -888747591
+   )
    int field5044;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 1604343367
+   )
    int field5045;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = 587876815
+   )
    int field5046;
 
    @ObfuscatedName("h")

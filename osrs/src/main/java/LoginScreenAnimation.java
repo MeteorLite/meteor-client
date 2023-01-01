@@ -7,6 +7,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("co")
 public class LoginScreenAnimation {
    @ObfuscatedName("tn")
+   @ObfuscatedGetter(
+      intValue = -2012270183
+   )
    static int cameraLookAtAcceleration;
    @ObfuscatedName("qk")
    @ObfuscatedSignature(
@@ -26,6 +29,9 @@ public class LoginScreenAnimation {
    @ObfuscatedName("f")
    int[] field1273 = new int[256];
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -160908861
+   )
    int field1269 = 0;
    @ObfuscatedName("u")
    int[] field1282;
@@ -36,8 +42,14 @@ public class LoginScreenAnimation {
    @ObfuscatedName("g")
    int[] field1268;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = -1407572829
+   )
    int field1285 = 0;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = -1106031441
+   )
    int field1275 = 0;
    @ObfuscatedName("n")
    int[] field1276;
@@ -48,10 +60,19 @@ public class LoginScreenAnimation {
    @ObfuscatedName("s")
    int[] field1279;
    @ObfuscatedName("l")
+   @ObfuscatedGetter(
+      intValue = 1330592451
+   )
    int field1264 = 0;
    @ObfuscatedName("t")
+   @ObfuscatedGetter(
+      intValue = -609740368
+   )
    int field1281 = 0;
    @ObfuscatedName("c")
+   @ObfuscatedGetter(
+      intValue = 145472861
+   )
    int field1274 = 0;
 
    @ObfuscatedSignature(

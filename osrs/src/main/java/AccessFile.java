@@ -14,8 +14,14 @@ public final class AccessFile {
    @ObfuscatedName("h")
    RandomAccessFile file;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      longValue = 7743048531476061067L
+   )
    final long maxSize;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      longValue = 6501473835846586069L
+   )
    long offset;
 
    public AccessFile(File var1, String var2, long var3) throws IOException {

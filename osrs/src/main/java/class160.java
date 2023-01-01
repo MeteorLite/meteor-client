@@ -5,8 +5,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fc")
 public class class160 extends class136 {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1535255133
+   )
    int field1819;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      longValue = -7045304652335758083L
+   )
    long field1818;
    // $FF: synthetic field
    @ObfuscatedSignature(

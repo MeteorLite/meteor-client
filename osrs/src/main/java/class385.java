@@ -10,8 +10,14 @@ public final class class385 implements Comparable {
    @ObfuscatedName("e")
    Object field4497;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      longValue = -6635718008833307511L
+   )
    long field4496;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      longValue = 5181820872538493099L
+   )
    long field4499;
 
    class385(Object var1, Object var2) {

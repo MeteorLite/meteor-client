@@ -7,28 +7,58 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("pk")
 public class PlatformInfo extends Node {
    @ObfuscatedName("ar")
+   @ObfuscatedGetter(
+      intValue = 1696581137
+   )
    int field4700;
    @ObfuscatedName("at")
    boolean field4712;
    @ObfuscatedName("ay")
+   @ObfuscatedGetter(
+      intValue = -616314079
+   )
    int field4702;
    @ObfuscatedName("an")
+   @ObfuscatedGetter(
+      intValue = -1322171453
+   )
    int field4714;
    @ObfuscatedName("ab")
+   @ObfuscatedGetter(
+      intValue = 1721213915
+   )
    int field4704;
    @ObfuscatedName("al")
+   @ObfuscatedGetter(
+      intValue = -1060935769
+   )
    int field4705;
    @ObfuscatedName("ag")
+   @ObfuscatedGetter(
+      intValue = -1680914369
+   )
    int field4706;
    @ObfuscatedName("az")
    boolean field4719;
    @ObfuscatedName("ak")
+   @ObfuscatedGetter(
+      intValue = -1977940473
+   )
    int field4708;
    @ObfuscatedName("af")
+   @ObfuscatedGetter(
+      intValue = 1625606725
+   )
    int field4709;
    @ObfuscatedName("ax")
+   @ObfuscatedGetter(
+      intValue = 1936122295
+   )
    int field4710;
    @ObfuscatedName("ah")
+   @ObfuscatedGetter(
+      intValue = -325910601
+   )
    int field4724;
    @ObfuscatedName("aw")
    String field4717;
@@ -39,12 +69,24 @@ public class PlatformInfo extends Node {
    @ObfuscatedName("ap")
    String field4692;
    @ObfuscatedName("aa")
+   @ObfuscatedGetter(
+      intValue = 1556899685
+   )
    int field4716;
    @ObfuscatedName("ae")
+   @ObfuscatedGetter(
+      intValue = 730782471
+   )
    int field4701;
    @ObfuscatedName("ac")
+   @ObfuscatedGetter(
+      intValue = 966550467
+   )
    int field4720;
    @ObfuscatedName("bh")
+   @ObfuscatedGetter(
+      intValue = 1361935411
+   )
    int field4713;
    @ObfuscatedName("be")
    String field4703;
@@ -53,6 +95,9 @@ public class PlatformInfo extends Node {
    @ObfuscatedName("bo")
    int[] field4722 = new int[3];
    @ObfuscatedName("by")
+   @ObfuscatedGetter(
+      intValue = -315982999
+   )
    int field4723;
    @ObfuscatedName("bw")
    String field4707;

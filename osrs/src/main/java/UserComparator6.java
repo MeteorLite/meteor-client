@@ -7,6 +7,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dd")
 public class UserComparator6 extends AbstractUserComparator {
    @ObfuscatedName("vz")
+   @ObfuscatedGetter(
+      intValue = -421019103
+   )
    static int foundItemIndex;
    @ObfuscatedName("h")
    final boolean reversed;

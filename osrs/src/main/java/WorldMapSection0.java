@@ -12,32 +12,74 @@ public class WorldMapSection0 implements WorldMapSection {
    )
    static Archive field2932;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -775946595
+   )
    int oldZ;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -2093535297
+   )
    int newZ;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -800807313
+   )
    int oldX;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1297788611
+   )
    int oldY;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -579844915
+   )
    int newX;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1584822871
+   )
    int newY;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 606340351
+   )
    int oldChunkXLow;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 590623623
+   )
    int oldChunkYLow;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -1894538493
+   )
    int oldChunkXHigh;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -1241213671
+   )
    int oldChunkYHigh;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 676896973
+   )
    int newChunkXLow;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = 233278855
+   )
    int newChunkYLow;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 1590440195
+   )
    int newChunkXHigh;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = -305259083
+   )
    int newChunkYHigh;
 
    @ObfuscatedName("h")

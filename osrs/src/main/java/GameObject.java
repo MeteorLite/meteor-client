@@ -12,14 +12,29 @@ public final class GameObject {
    )
    static SpritePixels sceneMinimapSprite;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -1864133043
+   )
    int plane;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -1769154667
+   )
    int z;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -472121489
+   )
    int centerX;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 1527155529
+   )
    int centerY;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -835257591
+   )
    int orientation;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
@@ -27,20 +42,44 @@ public final class GameObject {
    )
    public Renderable renderable;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 1451034711
+   )
    int startX;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 1873413133
+   )
    int endX;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -1389612741
+   )
    int startY;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = 675535951
+   )
    int endY;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 1098759017
+   )
    int field2806;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = 187670921
+   )
    int lastDrawn;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      longValue = -7754761910240207891L
+   )
    public long tag = 0L;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = -799893141
+   )
    int flags = 0;
 
    @ObfuscatedName("x")

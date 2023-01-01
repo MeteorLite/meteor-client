@@ -18,6 +18,9 @@ public class class343 {
    @ObfuscatedName("x")
    int[] field4281 = new int[2048];
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -400630067
+   )
    int field4282 = 0;
 
    public class343() {

@@ -12,6 +12,9 @@ public class NewShit {
    )
    public static NetFileRequest NetCache_currentResponse;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      longValue = -9039616709688449403L
+   )
    public long field2018;
    @ObfuscatedName("e")
    int[] field2013;

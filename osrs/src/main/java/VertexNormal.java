@@ -7,12 +7,24 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hl")
 public class VertexNormal {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -1166515679
+   )
    int x;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -570873925
+   )
    int y;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -603264981
+   )
    int z;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1940343767
+   )
    int magnitude;
 
    VertexNormal() {

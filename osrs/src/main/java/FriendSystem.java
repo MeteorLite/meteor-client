@@ -20,6 +20,9 @@ public class FriendSystem {
    )
    public final IgnoreList ignoreList;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -337243131
+   )
    int field833 = 0;
 
    @ObfuscatedSignature(

@@ -15,10 +15,19 @@ public class class169 {
    @ObfuscatedName("m")
    public float[] field1873;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 720482137
+   )
    public int field1876;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -1649159583
+   )
    public int field1877;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -1446707269
+   )
    public int field1875;
    // $FF: synthetic field
    @ObfuscatedSignature(

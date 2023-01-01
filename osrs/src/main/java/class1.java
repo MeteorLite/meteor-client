@@ -12,6 +12,9 @@ public class class1 implements Callable {
    )
    static UrlRequest World_request;
    @ObfuscatedName("a")
+   @ObfuscatedGetter(
+      intValue = 735259681
+   )
    static int field2;
    @ObfuscatedName("h")
    @ObfuscatedSignature(

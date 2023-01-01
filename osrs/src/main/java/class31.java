@@ -7,10 +7,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("au")
 public class class31 {
    @ObfuscatedName("tz")
+   @ObfuscatedGetter(
+      intValue = 267846207
+   )
    static int cameraMoveToSpeed;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      longValue = -9171562425366214627L
+   )
    static long field180;
    @ObfuscatedName("fv")
+   @ObfuscatedGetter(
+      intValue = 460402933
+   )
    static int currentPort;
 
    static {

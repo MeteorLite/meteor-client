@@ -17,6 +17,9 @@ public class PacketWriter {
    )
    IterableNodeDeque packetBufferNodes = new IterableNodeDeque();
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -1512304017
+   )
    int bufferSize = 0;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -39,12 +42,21 @@ public class PacketWriter {
    )
    ServerPacket serverPacket = null;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 395481445
+   )
    int serverPacketLength = 0;
    @ObfuscatedName("u")
    boolean field1430 = true;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -562413973
+   )
    int field1420 = 0;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -1673559747
+   )
    int pendingWrites = 0;
    @ObfuscatedName("g")
    @ObfuscatedSignature(

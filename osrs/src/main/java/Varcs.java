@@ -22,6 +22,9 @@ public class Varcs {
    @ObfuscatedName("q")
    boolean unwrittenChanges = false;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      longValue = -3823334859755788839L
+   )
    long field1408;
 
    Varcs() {

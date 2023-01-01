@@ -72,9 +72,10 @@ class Hooks : Callbacks {
     override fun tick() {
         if (shouldProcessGameTick) {
             shouldProcessGameTick = false
+            pendingEvents.forEach { post(it.type, it.event) }
+            pendingEvents.clear()
             EventBus.post(Events.GAME_TICK, GAME_TICK)
-            val tick: Int = client.tickCount
-            client.tickCount = tick + 1
+            client.tickCount++
         }
 
         clientThread.invoke()
@@ -103,9 +104,6 @@ class Hooks : Callbacks {
         } else {
             shouldProcessGameTick = true
         }
-
-        pendingEvents.forEach { post(it.type, it.event) }
-        pendingEvents.clear()
     }
 
     override fun drawScene() {

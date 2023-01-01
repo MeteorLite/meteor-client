@@ -12,10 +12,19 @@ public class Coord {
    )
    static IndexedSprite[] modIconSprites;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -606144137
+   )
    public int plane;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 453228853
+   )
    public int x;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 141048333
+   )
    public int y;
 
    @ObfuscatedSignature(

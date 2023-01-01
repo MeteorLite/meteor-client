@@ -6,6 +6,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("eo")
 public class class134 extends class136 {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      longValue = -1817932913018406573L
+   )
    long field1642;
    @ObfuscatedName("e")
    String field1641;

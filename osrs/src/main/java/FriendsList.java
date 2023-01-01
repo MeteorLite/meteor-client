@@ -12,6 +12,9 @@ public class FriendsList extends UserList {
    )
    final LoginType loginType;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 906024881
+   )
    int field4506 = 1;
    @ObfuscatedName("m")
    @ObfuscatedSignature(

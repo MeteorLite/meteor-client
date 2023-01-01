@@ -82,50 +82,107 @@ public class WorldMap {
    )
    WorldMapArchiveLoader cacheLoader;
    @ObfuscatedName("p")
+   @ObfuscatedGetter(
+      intValue = 1773386225
+   )
    int centerTileX;
    @ObfuscatedName("d")
+   @ObfuscatedGetter(
+      intValue = 748703383
+   )
    int centerTileY;
    @ObfuscatedName("y")
+   @ObfuscatedGetter(
+      intValue = -1619468445
+   )
    int worldMapTargetX = -1;
    @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = -501054007
+   )
    int worldMapTargetY = -1;
    @ObfuscatedName("w")
    float zoom;
    @ObfuscatedName("as")
    float zoomTarget;
    @ObfuscatedName("ad")
+   @ObfuscatedGetter(
+      intValue = -1355078825
+   )
    int worldMapDisplayWidth = -1;
    @ObfuscatedName("ao")
+   @ObfuscatedGetter(
+      intValue = -755638967
+   )
    int worldMapDisplayHeight = -1;
    @ObfuscatedName("am")
+   @ObfuscatedGetter(
+      intValue = 1296170399
+   )
    int worldMapDisplayX = -1;
    @ObfuscatedName("av")
+   @ObfuscatedGetter(
+      intValue = -726353325
+   )
    int worldMapDisplayY = -1;
    @ObfuscatedName("au")
+   @ObfuscatedGetter(
+      intValue = 1724975033
+   )
    int maxFlashCount = 3;
    @ObfuscatedName("ar")
+   @ObfuscatedGetter(
+      intValue = 1777796537
+   )
    int cyclesPerFlash = 50;
    @ObfuscatedName("at")
    boolean perpetualFlash = false;
    @ObfuscatedName("ay")
    HashSet flashingElements = null;
    @ObfuscatedName("an")
+   @ObfuscatedGetter(
+      intValue = -573659203
+   )
    int flashCount = -1;
    @ObfuscatedName("ab")
+   @ObfuscatedGetter(
+      intValue = 1835981575
+   )
    int flashCycle = -1;
    @ObfuscatedName("al")
+   @ObfuscatedGetter(
+      intValue = -92688065
+   )
    int field4772 = -1;
    @ObfuscatedName("ag")
+   @ObfuscatedGetter(
+      intValue = -201245539
+   )
    int field4771 = -1;
    @ObfuscatedName("az")
+   @ObfuscatedGetter(
+      intValue = -1222606143
+   )
    int field4793 = -1;
    @ObfuscatedName("ak")
+   @ObfuscatedGetter(
+      intValue = 1330753451
+   )
    int field4773 = -1;
    @ObfuscatedName("af")
+   @ObfuscatedGetter(
+      longValue = 1000609109570499235L
+   )
    long field4774;
    @ObfuscatedName("ai")
+   @ObfuscatedGetter(
+      intValue = 2020869527
+   )
    int field4788;
    @ObfuscatedName("ax")
+   @ObfuscatedGetter(
+      intValue = -1001833691
+   )
    int field4776;
    @ObfuscatedName("ah")
    boolean field4777 = true;
@@ -140,6 +197,9 @@ public class WorldMap {
    @ObfuscatedName("ac")
    boolean elementsDisabled = false;
    @ObfuscatedName("bh")
+   @ObfuscatedGetter(
+      intValue = -1283663091
+   )
    int field4784 = 0;
    @ObfuscatedName("bf")
    final int[] menuOpcodes = new int[]{1008, 1009, 1010, 1011, 1012};
@@ -162,12 +222,24 @@ public class WorldMap {
    )
    SpritePixels sprite;
    @ObfuscatedName("bv")
+   @ObfuscatedGetter(
+      intValue = 157893557
+   )
    int cachedPixelsPerTile;
    @ObfuscatedName("bx")
+   @ObfuscatedGetter(
+      intValue = -957451687
+   )
    int minCachedTileX = -1;
    @ObfuscatedName("bg")
+   @ObfuscatedGetter(
+      intValue = 1345620925
+   )
    int minCachedTileY = -1;
    @ObfuscatedName("bz")
+   @ObfuscatedGetter(
+      intValue = -1786908065
+   )
    int field4779 = -1;
 
    static {

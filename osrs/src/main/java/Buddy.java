@@ -7,10 +7,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("oa")
 public class Buddy extends User {
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 1767210019
+   )
    public int world = -1;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1595280059
+   )
    public int int2;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -894638573
+   )
    public int rank;
 
    @ObfuscatedName("aj")

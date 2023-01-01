@@ -5,6 +5,9 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("rz")
 public class class475 {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -112517353
+   )
    public final int field4980;
    @ObfuscatedName("e")
    public Object field4981;

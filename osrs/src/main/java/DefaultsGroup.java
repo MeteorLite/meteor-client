@@ -17,6 +17,9 @@ public class DefaultsGroup {
    )
    static final DefaultsGroup field4578 = new DefaultsGroup(3);
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 107189111
+   )
    final int group;
 
    DefaultsGroup(int var1) {

@@ -15,6 +15,9 @@ public class FileSystem {
    @ObfuscatedName("v")
    static Hashtable FileSystem_cacheFiles = new Hashtable(16);
    @ObfuscatedName("ea")
+   @ObfuscatedGetter(
+      longValue = 5026500752660730289L
+   )
    static long field1866;
 
    @ObfuscatedName("ad")

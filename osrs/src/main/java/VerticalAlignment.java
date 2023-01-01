@@ -28,10 +28,19 @@ public enum VerticalAlignment implements class345 {
    )
    static Archive archive17;
    @ObfuscatedName("hm")
+   @ObfuscatedGetter(
+      longValue = 1002454956067767585L
+   )
    static long field2075;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -269075113
+   )
    public final int value;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1751694473
+   )
    final int id;
 
    VerticalAlignment(int var3, int var4) {

@@ -52,6 +52,9 @@ public class Language implements class345 {
    )
    public static final Language[] field4304;
    @ObfuscatedName("d")
+   @ObfuscatedGetter(
+      intValue = 1226653913
+   )
    public static int canvasHeight;
    @ObfuscatedName("ad")
    static boolean[] Widget_loadedInterfaces;
@@ -60,6 +63,9 @@ public class Language implements class345 {
    @ObfuscatedName("u")
    final String language;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = 1679709169
+   )
    final int id;
 
    static {

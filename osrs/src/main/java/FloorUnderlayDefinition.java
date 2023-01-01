@@ -17,14 +17,29 @@ public class FloorUnderlayDefinition extends DualNode {
    )
    static Archive archive4;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 96971943
+   )
    int rgb = 0;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 1260139413
+   )
    public int hue;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -565427519
+   )
    public int saturation;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 181988641
+   )
    public int lightness;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -1840693311
+   )
    public int hueMultiplier;
 
    @ObfuscatedName("v")

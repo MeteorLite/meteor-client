@@ -11,14 +11,29 @@ public class MilliClock extends Clock {
    @ObfuscatedName("h")
    long[] field1885 = new long[10];
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -581410869
+   )
    int field1886 = 256;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 715488613
+   )
    int field1890 = 1;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      longValue = -673545933242370399L
+   )
    long field1888 = Message.method1197();
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 1067993763
+   )
    int field1889 = 0;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1146826957
+   )
    int field1887;
 
    public MilliClock() {

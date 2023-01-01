@@ -32,6 +32,9 @@ public enum class313 implements class345 {
    field3724(4);
 
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -742495887
+   )
    final int field3725;
 
    class313(int var3) {

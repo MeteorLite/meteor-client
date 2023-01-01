@@ -7,8 +7,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cx")
 public class InterfaceParent extends Node {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 545250955
+   )
    int group;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -829260005
+   )
    int type;
    @ObfuscatedName("v")
    boolean field1067 = false;

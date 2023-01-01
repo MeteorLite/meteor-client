@@ -11,10 +11,19 @@ public class class154 extends class136 {
    )
    static LoginScreenAnimation field1782;
    @ObfuscatedName("hk")
+   @ObfuscatedGetter(
+      intValue = -854586489
+   )
    static int baseX;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1555819897
+   )
    int field1778;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 831952737
+   )
    int field1781;
    // $FF: synthetic field
    @ObfuscatedSignature(

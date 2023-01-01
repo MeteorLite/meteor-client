@@ -8,14 +8,29 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cu")
 public class HealthBarUpdate extends Node {
    @ObfuscatedName("iz")
+   @ObfuscatedGetter(
+      intValue = -902524381
+   )
    static int selectedItemId;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1203912281
+   )
    int cycle;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -395288459
+   )
    int health;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1291576245
+   )
    int health2;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -426163011
+   )
    int cycleOffset;
 
    HealthBarUpdate(int var1, int var2, int var3, int var4) {

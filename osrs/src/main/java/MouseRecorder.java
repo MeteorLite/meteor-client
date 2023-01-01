@@ -14,6 +14,9 @@ public class MouseRecorder implements Runnable {
    @ObfuscatedName("e")
    Object lock = new Object();
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1063919825
+   )
    int index = 0;
    @ObfuscatedName("x")
    int[] xs = new int[500];

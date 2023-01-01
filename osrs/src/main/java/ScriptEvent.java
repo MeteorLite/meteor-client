@@ -7,6 +7,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cb")
 public class ScriptEvent extends Node {
    @ObfuscatedName("vk")
+   @ObfuscatedGetter(
+      intValue = 876280679
+   )
    static int foundItemIdCount;
    @ObfuscatedName("h")
    Object[] args;
@@ -18,10 +21,19 @@ public class ScriptEvent extends Node {
    )
    Widget widget;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 1516520981
+   )
    int mouseX;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 318715241
+   )
    int mouseY;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -2003088619
+   )
    int opIndex;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -29,14 +41,26 @@ public class ScriptEvent extends Node {
    )
    Widget dragTarget;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -1106115125
+   )
    int keyTyped;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 887616203
+   )
    int keyPressed;
    @ObfuscatedName("b")
    String targetName;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 1236564413
+   )
    int field1084;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -646126757
+   )
    int type = 76;
 
    @ObfuscatedName("h")

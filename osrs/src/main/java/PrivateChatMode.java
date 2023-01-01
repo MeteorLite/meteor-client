@@ -21,6 +21,9 @@ public class PrivateChatMode {
    )
    static final PrivateChatMode field5048 = new PrivateChatMode(2);
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 1749548549
+   )
    public final int field5050;
 
    PrivateChatMode(int var1) {

@@ -11,6 +11,9 @@ public class class140 extends class136 {
    )
    static IndexedSprite worldSelectRightSprite;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 786830149
+   )
    int field1676;
    @ObfuscatedName("e")
    byte field1677;

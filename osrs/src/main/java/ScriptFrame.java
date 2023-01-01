@@ -14,6 +14,9 @@ public class ScriptFrame {
    )
    Script script;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1822027501
+   )
    int pc = -1;
    @ObfuscatedName("v")
    int[] intLocals;

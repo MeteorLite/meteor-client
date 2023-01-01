@@ -6,10 +6,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kb")
 public class class298 {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1940747343
+   )
    public int field3454;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1875649367
+   )
    public int field3456;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -10528687
+   )
    public int field3455;
 
    @ObfuscatedName("mp")

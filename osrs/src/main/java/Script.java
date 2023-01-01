@@ -5,6 +5,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bm")
 public class Script extends DualNode {
    @ObfuscatedName("tp")
+   @ObfuscatedGetter(
+      intValue = 621523353
+   )
    static int cameraMoveToHeight;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -20,12 +23,24 @@ public class Script extends DualNode {
    @ObfuscatedName("m")
    String[] stringOperands;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1144522069
+   )
    int localIntCount;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 506367355
+   )
    int localStringCount;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -1904250989
+   )
    int intArgumentCount;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 705152755
+   )
    int stringArgumentCount;
    @ObfuscatedName("b")
    @ObfuscatedSignature(

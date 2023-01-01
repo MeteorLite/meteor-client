@@ -5,6 +5,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kx")
 public class MusicPatchNode extends Node {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -1405159971
+   )
    int field3427;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -22,32 +25,74 @@ public class MusicPatchNode extends Node {
    )
    MusicPatchNode2 field3428;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -632852283
+   )
    int field3418;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 641391177
+   )
    int field3419;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -529495939
+   )
    int field3423;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -504007495
+   )
    int field3421;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 1627034491
+   )
    int field3422;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = 742573521
+   )
    int field3414;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 1904955935
+   )
    int field3424;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -2065414593
+   )
    int field3425;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = -272808679
+   )
    int field3420;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = -1342299511
+   )
    int field3416;
    @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = -1756880989
+   )
    int field3415;
    @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = -524220702
+   )
    int field3429;
    @ObfuscatedName("a")
+   @ObfuscatedGetter(
+      intValue = -894231501
+   )
    int field3430;
    @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = -146245059
+   )
    int field3431;
    @ObfuscatedName("l")
    @ObfuscatedSignature(
@@ -55,8 +100,14 @@ public class MusicPatchNode extends Node {
    )
    RawPcmStream stream;
    @ObfuscatedName("t")
+   @ObfuscatedGetter(
+      intValue = 1397627135
+   )
    int field3433;
    @ObfuscatedName("p")
+   @ObfuscatedGetter(
+      intValue = 1978134147
+   )
    int field3434;
 
    @ObfuscatedName("h")

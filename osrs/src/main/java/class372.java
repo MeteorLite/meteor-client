@@ -10,8 +10,14 @@ public class class372 {
    )
    class368 field4425;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -1332633145
+   )
    int field4422 = 0;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1950005133
+   )
    int field4423 = 0;
 
    @ObfuscatedSignature(

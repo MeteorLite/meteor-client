@@ -25,10 +25,19 @@ public class SpotAnimationDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels = new EvictingDualNodeHashTable(30);
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 1537555243
+   )
    int id;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 903909845
+   )
    int archive;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -295593061
+   )
    public int sequence = -1;
    @ObfuscatedName("r")
    short[] recolorFrom;
@@ -39,14 +48,29 @@ public class SpotAnimationDefinition extends DualNode {
    @ObfuscatedName("j")
    short[] retextureTo;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -289907207
+   )
    int widthScale = 128;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 1592669609
+   )
    int heightScale = 128;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = 919548227
+   )
    int orientation = 0;
    @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = 291323671
+   )
    int ambient = 0;
    @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = 1468773977
+   )
    int contrast = 0;
 
    @ObfuscatedName("v")

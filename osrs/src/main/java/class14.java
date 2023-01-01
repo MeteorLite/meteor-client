@@ -15,8 +15,14 @@ public class class14 {
    )
    static AbstractSocket field83;
    @ObfuscatedName("kn")
+   @ObfuscatedGetter(
+      intValue = -866172123
+   )
    static int oculusOrbFocalPointY;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -1464480991
+   )
    final int field81;
    @ObfuscatedName("e")
    final String field85;

@@ -10,8 +10,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dw")
 public class class109 extends UrlRequester {
    @ObfuscatedName("tc")
+   @ObfuscatedGetter(
+      intValue = -1571751296
+   )
    static int cameraLookAtX;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -903100173
+   )
    public static int musicTrackGroupId;
    @ObfuscatedName("g")
    @ObfuscatedSignature(

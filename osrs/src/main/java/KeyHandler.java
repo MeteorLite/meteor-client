@@ -26,6 +26,9 @@ public class KeyHandler implements KeyListener, FocusListener {
    @ObfuscatedName("m")
    boolean[] KeyHandler_pressedKeys = new boolean[112];
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1016027891
+   )
    volatile int KeyHandler_idleCycles = 0;
 
    @ObfuscatedName("h")

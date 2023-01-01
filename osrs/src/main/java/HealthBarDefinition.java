@@ -27,26 +27,59 @@ public class HealthBarDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("pj")
+   @ObfuscatedGetter(
+      intValue = 1053176985
+   )
    static int field1989;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 683600327
+   )
    public int field1983;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 1073329769
+   )
    public int int1 = 255;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 1259926695
+   )
    public int int2 = 255;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = 2123277021
+   )
    public int int3 = -1;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -1492750821
+   )
    public int field1976 = 1;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -280259539
+   )
    public int int5 = 70;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 1047498223
+   )
    int frontSpriteID = -1;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = 187372523
+   )
    int backSpriteID = -1;
    @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = -1356193103
+   )
    public int width = 30;
    @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = 72194099
+   )
    public int widthPadding = 0;
 
    @ObfuscatedName("e")

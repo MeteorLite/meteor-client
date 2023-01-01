@@ -22,6 +22,9 @@ public final class class384 {
    )
    final class366 field4491;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      longValue = 8393668599906735065L
+   )
    final long field4492;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
@@ -29,6 +32,9 @@ public final class class384 {
    )
    final class382 field4490;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -97881531
+   )
    final int field4494;
 
    @ObfuscatedSignature(

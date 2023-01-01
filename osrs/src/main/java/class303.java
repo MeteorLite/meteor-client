@@ -24,36 +24,81 @@ public class class303 {
    @ObfuscatedName("c")
    boolean field3489 = true;
    @ObfuscatedName("p")
+   @ObfuscatedGetter(
+      intValue = -1998851831
+   )
    int field3508 = 0;
    @ObfuscatedName("d")
    boolean field3496 = false;
    @ObfuscatedName("y")
+   @ObfuscatedGetter(
+      intValue = 155329521
+   )
    int field3497 = 0;
    @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = 397985193
+   )
    int field3498 = 0;
    @ObfuscatedName("w")
+   @ObfuscatedGetter(
+      intValue = -1343153257
+   )
    int field3499 = 0;
    @ObfuscatedName("as")
+   @ObfuscatedGetter(
+      intValue = -704819605
+   )
    int field3492 = 0;
    @ObfuscatedName("ad")
+   @ObfuscatedGetter(
+      intValue = 142706045
+   )
    int field3501 = 0;
    @ObfuscatedName("ao")
+   @ObfuscatedGetter(
+      intValue = 683297025
+   )
    int field3502 = 0;
    @ObfuscatedName("am")
+   @ObfuscatedGetter(
+      intValue = -171046757
+   )
    int field3503 = 0;
    @ObfuscatedName("av")
+   @ObfuscatedGetter(
+      intValue = 1245285575
+   )
    int field3500 = Integer.MAX_VALUE;
    @ObfuscatedName("au")
+   @ObfuscatedGetter(
+      intValue = 359621961
+   )
    int field3484 = Integer.MAX_VALUE;
    @ObfuscatedName("ar")
+   @ObfuscatedGetter(
+      intValue = 1943562183
+   )
    int field3486 = Integer.MAX_VALUE;
    @ObfuscatedName("at")
+   @ObfuscatedGetter(
+      intValue = 1762576791
+   )
    int field3507 = 0;
    @ObfuscatedName("ay")
+   @ObfuscatedGetter(
+      intValue = 281194267
+   )
    int field3506 = 0;
    @ObfuscatedName("an")
+   @ObfuscatedGetter(
+      intValue = 1564492109
+   )
    int field3485 = 0;
    @ObfuscatedName("ab")
+   @ObfuscatedGetter(
+      intValue = -312555077
+   )
    int field3482 = 0;
    @ObfuscatedName("al")
    @ObfuscatedSignature(

@@ -6,10 +6,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ek")
 public class class145 extends class136 {
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1959574939
+   )
    public static int idxCount;
    @ObfuscatedName("j")
    public static boolean musicTrackBoolean;
    @ObfuscatedName("jz")
+   @ObfuscatedGetter(
+      intValue = 402004555
+   )
    static int cameraX;
    @ObfuscatedName("h")
    String field1708;

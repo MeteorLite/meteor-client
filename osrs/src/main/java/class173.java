@@ -6,6 +6,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fv")
 public abstract class class173 {
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -389562639
+   )
    static int gameCyclesToDo;
    @ObfuscatedName("bv")
    @ObfuscatedSignature(

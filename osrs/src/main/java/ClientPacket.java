@@ -547,8 +547,14 @@ public class ClientPacket implements class274 {
    )
    public static final ClientPacket field3154 = new ClientPacket(107, 22);
    @ObfuscatedName("dl")
+   @ObfuscatedGetter(
+      intValue = 148030627
+   )
    final int id;
    @ObfuscatedName("dw")
+   @ObfuscatedGetter(
+      intValue = -1150175255
+   )
    final int length;
 
    ClientPacket(int var1, int var2) {

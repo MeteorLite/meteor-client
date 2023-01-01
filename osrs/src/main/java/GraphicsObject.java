@@ -5,16 +5,34 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bn")
 public class GraphicsObject extends Renderable {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1763916019
+   )
    int id;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -1296860225
+   )
    int cycleStart;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -1267714979
+   )
    int plane;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -983407105
+   )
    int y;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1470591223
+   )
    int x;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1313330391
+   )
    int z;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -22,8 +40,14 @@ public class GraphicsObject extends Renderable {
    )
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -1859823171
+   )
    int frame;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 2082705889
+   )
    int frameCycle;
    @ObfuscatedName("b")
    boolean isFinished;

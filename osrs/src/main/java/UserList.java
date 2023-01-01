@@ -10,8 +10,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("od")
 public abstract class UserList {
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -1701166139
+   )
    final int capacity;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -809601657
+   )
    int size = 0;
    @ObfuscatedName("j")
    @ObfuscatedSignature(

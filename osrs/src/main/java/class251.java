@@ -21,6 +21,9 @@ public class class251 {
    )
    static MidiPcmStream midiPcmStream;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 2091175605
+   )
    final int value;
 
    class251(int var1) {

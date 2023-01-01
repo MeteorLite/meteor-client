@@ -27,6 +27,9 @@ public class KitDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable KitDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 984840871
+   )
    public int bodypartID = -1;
    @ObfuscatedName("q")
    int[] models2;

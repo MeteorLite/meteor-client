@@ -7,18 +7,39 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ig")
 public class WorldMapSection1 implements WorldMapSection {
    @ObfuscatedName("bs")
+   @ObfuscatedGetter(
+      intValue = 897193583
+   )
    static int field2998;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1811972457
+   )
    int minPlane;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -707740511
+   )
    int planes;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 103357569
+   )
    int regionStartX;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 136845125
+   )
    int regionStartY;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -2099845231
+   )
    int regionEndX;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1628788577
+   )
    int regionEndY;
 
    @ObfuscatedName("h")

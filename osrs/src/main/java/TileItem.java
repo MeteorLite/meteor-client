@@ -12,10 +12,19 @@ public final class TileItem extends Renderable {
    )
    static PcmPlayer pcmPlayer0;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -1495440553
+   )
    int id;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1996619089
+   )
    int quantity;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1010430043
+   )
    int field1353 = 31;
 
    @ObfuscatedName("h")

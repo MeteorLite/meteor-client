@@ -5,14 +5,29 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("he")
 public final class Tile extends Node {
    @ObfuscatedName("tx")
+   @ObfuscatedGetter(
+      intValue = -325316609
+   )
    static int cameraMoveToAcceleration;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -850337333
+   )
    int plane;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1304974879
+   )
    int x;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 578479025
+   )
    int y;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 2133290123
+   )
    int originalPlane;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
@@ -45,6 +60,9 @@ public final class Tile extends Node {
    )
    ItemLayer itemLayer;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -1327449423
+   )
    int gameObjectsCount;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
@@ -54,8 +72,14 @@ public final class Tile extends Node {
    @ObfuscatedName("i")
    int[] gameObjectEdgeMasks = new int[5];
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = 1267903553
+   )
    int gameObjectsEdgeMask = 0;
    @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = 879913943
+   )
    int minPlane;
    @ObfuscatedName("k")
    boolean drawPrimary;
@@ -64,12 +88,24 @@ public final class Tile extends Node {
    @ObfuscatedName("s")
    boolean drawGameObjects;
    @ObfuscatedName("l")
+   @ObfuscatedGetter(
+      intValue = 820043389
+   )
    int drawGameObjectEdges;
    @ObfuscatedName("t")
+   @ObfuscatedGetter(
+      intValue = -683874913
+   )
    int field2477;
    @ObfuscatedName("c")
+   @ObfuscatedGetter(
+      intValue = -1337126443
+   )
    int field2470;
    @ObfuscatedName("p")
+   @ObfuscatedGetter(
+      intValue = 427630575
+   )
    int field2479;
    @ObfuscatedName("d")
    @ObfuscatedSignature(

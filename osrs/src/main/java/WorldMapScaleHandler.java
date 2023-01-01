@@ -12,6 +12,9 @@ public class WorldMapScaleHandler {
    )
    static Widget mousedOverWidgetIf1;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1077689315
+   )
    int pixelsPerTile;
    @ObfuscatedName("e")
    byte[][][] tileTemplates;

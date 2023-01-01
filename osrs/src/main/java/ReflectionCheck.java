@@ -13,8 +13,14 @@ public class ReflectionCheck extends Node {
    )
    static Scene scene;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1143257971
+   )
    int id;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 1361333621
+   )
    int size;
    @ObfuscatedName("v")
    int[] operations;

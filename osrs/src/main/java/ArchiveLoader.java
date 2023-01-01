@@ -12,8 +12,14 @@ public class ArchiveLoader {
    )
    final Archive archive;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1940986101
+   )
    final int groupCount;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 2076780085
+   )
    int loadedCount = 0;
 
    @ObfuscatedSignature(

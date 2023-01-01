@@ -8,12 +8,24 @@ public class class141 extends class136 {
    @ObfuscatedName("bb")
    static String otp;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -567167913
+   )
    int field1683;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 923571903
+   )
    int field1682;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -841112261
+   )
    int field1681;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 2108363067
+   )
    int field1680;
    // $FF: synthetic field
    @ObfuscatedSignature(

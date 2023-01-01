@@ -24,20 +24,38 @@ public class ClientPreferences {
    @ObfuscatedName("r")
    boolean displayFps = false;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 150827165
+   )
    int field1296;
    @ObfuscatedName("b")
    double brightness = 0.8D;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -631517997
+   )
    int musicVolume = 127;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = 1737283137
+   )
    int soundEffectsVolume = 127;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = -1250836455
+   )
    int areaSoundEffectsVolume = 127;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = -1676041029
+   )
    int field1300 = -1;
    @ObfuscatedName("n")
    String rememberedUsername = null;
    @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = -628738235
+   )
    int windowMode = 1;
    @ObfuscatedName("a")
    final Map parameters = new LinkedHashMap();

@@ -8,24 +8,54 @@ public class class241 implements WorldMapSection {
    @ObfuscatedName("ik")
    static byte[][] regionMapArchives;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1969178469
+   )
    int field2903;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 615846431
+   )
    int field2898;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -853915891
+   )
    int field2899;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -43926615
+   )
    int field2897;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 226314255
+   )
    int field2905;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -207940669
+   )
    int field2901;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 910146715
+   )
    int field2904;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 2086561209
+   )
    int field2900;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 1092240015
+   )
    int field2902;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -1048164915
+   )
    int field2906;
 
    @ObfuscatedName("h")

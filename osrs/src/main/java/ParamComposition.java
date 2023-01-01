@@ -21,6 +21,9 @@ public class ParamComposition extends DualNode {
    @ObfuscatedName("v")
    char type;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 818744259
+   )
    public int defaultInt;
    @ObfuscatedName("m")
    public String defaultStr;

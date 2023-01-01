@@ -17,8 +17,14 @@ public class Interpreter {
    @ObfuscatedName("b")
    static String[] Interpreter_stringStack = new String[1000];
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 54505361
+   )
    static int Interpreter_stringStackSize;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -1648484327
+   )
    static int Interpreter_frameDepth = 0;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
@@ -36,6 +42,9 @@ public class Interpreter {
    @ObfuscatedName("y")
    static ArrayList field867 = new ArrayList();
    @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = 478223063
+   )
    static int field874 = 0;
    @ObfuscatedName("ao")
    static final double field871 = Math.log(2.0D);

@@ -17,8 +17,14 @@ public abstract class AbstractWorldMapIcon {
    )
    public final Coord coord1;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -2136203537
+   )
    int screenX;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -108942395
+   )
    int screenY;
 
    @ObfuscatedSignature(

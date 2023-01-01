@@ -6,18 +6,33 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("es")
 public class class133 extends class136 {
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 486648423
+   )
    static int field1637;
    @ObfuscatedName("bg")
    static String field1635;
    @ObfuscatedName("id")
    static byte[][] regionLandArchives;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -22321723
+   )
    int field1638;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 958981063
+   )
    int field1632;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -402576261
+   )
    int field1633;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1759168031
+   )
    int field1631;
    // $FF: synthetic field
    @ObfuscatedSignature(

@@ -14,6 +14,9 @@ public class ClanChannelMember {
    @ObfuscatedName("h")
    public byte rank;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -1561957153
+   )
    public int world;
    @ObfuscatedName("v")
    @ObfuscatedSignature(

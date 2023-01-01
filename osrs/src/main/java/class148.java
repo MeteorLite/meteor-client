@@ -8,6 +8,9 @@ public class class148 extends class152 {
    @ObfuscatedName("h")
    String field1748;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -489906031
+   )
    int field1747;
    @ObfuscatedName("v")
    byte field1749;

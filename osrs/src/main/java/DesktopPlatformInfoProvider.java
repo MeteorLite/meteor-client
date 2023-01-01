@@ -7,10 +7,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("pq")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1178792055
+   )
    int field4690;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1656290877
+   )
    int field4686;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -682146187
+   )
    int field4689;
 
    @ObfuscatedName("h")

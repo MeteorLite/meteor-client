@@ -42,6 +42,9 @@ public class class9 implements class345 {
    )
    static Archive archive7;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1316615471
+   )
    int field45;
    @ObfuscatedName("f")
    String field37;

@@ -12,8 +12,14 @@ public class Skeleton extends Node {
    )
    static TextureProvider textureProvider;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 227763471
+   )
    int id;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 15717685
+   )
    int count;
    @ObfuscatedName("r")
    int[] transformTypes;

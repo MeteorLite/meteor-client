@@ -16,20 +16,44 @@ public abstract class AbstractWorldMapData {
    )
    static Font fontPlain12;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 232722432
+   )
    int regionXLow;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 2142212096
+   )
    int regionYLow;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 183398775
+   )
    int regionX;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -232473513
+   )
    int regionY;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 89984523
+   )
    int minPlane;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -2028062533
+   )
    int planes;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -1564355211
+   )
    int groupId = -1;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = -728019783
+   )
    int fileId = -1;
    @ObfuscatedName("i")
    short[][][] floorUnderlayIds;

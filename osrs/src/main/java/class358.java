@@ -8,6 +8,9 @@ public class class358 {
    @ObfuscatedName("h")
    public static final char[] cp1252AsciiExtension = new char[]{'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'};
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1844618131
+   )
    static int field4347;
    @ObfuscatedName("f")
    static byte[][][] field4344;
@@ -22,6 +25,9 @@ public class class358 {
    )
    static SpritePixels[] headIconHintSprites;
    @ObfuscatedName("oe")
+   @ObfuscatedGetter(
+      intValue = 1164204793
+   )
    static int selectedSpellWidget;
 
    @ObfuscatedName("au")

@@ -53,62 +53,146 @@ public class Widget extends Node {
    @ObfuscatedName("az")
    public boolean isIf3 = false;
    @ObfuscatedName("ak")
+   @ObfuscatedGetter(
+      intValue = 1023837327
+   )
    public int id = -1;
    @ObfuscatedName("af")
+   @ObfuscatedGetter(
+      intValue = -915599827
+   )
    public int childIndex = -1;
    @ObfuscatedName("ai")
+   @ObfuscatedGetter(
+      intValue = -1540152617
+   )
    public int type;
    @ObfuscatedName("ax")
+   @ObfuscatedGetter(
+      intValue = -822804071
+   )
    public int buttonType = 0;
    @ObfuscatedName("ah")
+   @ObfuscatedGetter(
+      intValue = -1064789039
+   )
    public int contentType = 0;
    @ObfuscatedName("aw")
+   @ObfuscatedGetter(
+      intValue = 867935181
+   )
    public int xAlignment = 0;
    @ObfuscatedName("aj")
+   @ObfuscatedGetter(
+      intValue = -1053685537
+   )
    public int yAlignment = 0;
    @ObfuscatedName("aq")
+   @ObfuscatedGetter(
+      intValue = 783027001
+   )
    public int widthAlignment = 0;
    @ObfuscatedName("ap")
+   @ObfuscatedGetter(
+      intValue = 774250311
+   )
    public int heightAlignment = 0;
    @ObfuscatedName("aa")
+   @ObfuscatedGetter(
+      intValue = 1569341613
+   )
    public int rawX = 0;
    @ObfuscatedName("ae")
+   @ObfuscatedGetter(
+      intValue = 1295682743
+   )
    public int rawY = 0;
    @ObfuscatedName("ac")
+   @ObfuscatedGetter(
+      intValue = 930045125
+   )
    public int rawWidth = 0;
    @ObfuscatedName("bh")
+   @ObfuscatedGetter(
+      intValue = -622646443
+   )
    public int rawHeight = 0;
    @ObfuscatedName("be")
+   @ObfuscatedGetter(
+      intValue = 2086303241
+   )
    public int x = 0;
    @ObfuscatedName("bf")
+   @ObfuscatedGetter(
+      intValue = 1365086685
+   )
    public int y = 0;
    @ObfuscatedName("bo")
+   @ObfuscatedGetter(
+      intValue = 1832001725
+   )
    public int width = 0;
    @ObfuscatedName("by")
+   @ObfuscatedGetter(
+      intValue = 882604251
+   )
    public int height = 0;
    @ObfuscatedName("bw")
+   @ObfuscatedGetter(
+      intValue = -1405484187
+   )
    public int field3661 = 1;
    @ObfuscatedName("bp")
+   @ObfuscatedGetter(
+      intValue = -289010725
+   )
    public int field3559 = 1;
    @ObfuscatedName("bc")
+   @ObfuscatedGetter(
+      intValue = 8537723
+   )
    public int parentId = -1;
    @ObfuscatedName("bl")
    public boolean isHidden = false;
    @ObfuscatedName("bv")
+   @ObfuscatedGetter(
+      intValue = -2078533729
+   )
    public int scrollX = 0;
    @ObfuscatedName("bx")
+   @ObfuscatedGetter(
+      intValue = 163430389
+   )
    public int scrollY = 0;
    @ObfuscatedName("bg")
+   @ObfuscatedGetter(
+      intValue = -1494857505
+   )
    public int scrollWidth = 0;
    @ObfuscatedName("bz")
+   @ObfuscatedGetter(
+      intValue = -319102043
+   )
    public int scrollHeight = 0;
    @ObfuscatedName("bi")
+   @ObfuscatedGetter(
+      intValue = 1891121533
+   )
    public int color = 0;
    @ObfuscatedName("br")
+   @ObfuscatedGetter(
+      intValue = -437343193
+   )
    public int color2 = 0;
    @ObfuscatedName("bq")
+   @ObfuscatedGetter(
+      intValue = -441956647
+   )
    public int mouseOverColor = 0;
    @ObfuscatedName("bn")
+   @ObfuscatedGetter(
+      intValue = 592749823
+   )
    public int mouseOverColor2 = 0;
    @ObfuscatedName("ba")
    public boolean fill = false;
@@ -118,82 +202,169 @@ public class Widget extends Node {
    )
    public FillMode fillMode;
    @ObfuscatedName("bt")
+   @ObfuscatedGetter(
+      intValue = 1450406977
+   )
    public int transparencyTop;
    @ObfuscatedName("bu")
+   @ObfuscatedGetter(
+      intValue = -1316132639
+   )
    public int transparencyBot;
    @ObfuscatedName("bj")
+   @ObfuscatedGetter(
+      intValue = 1717395815
+   )
    public int lineWid;
    @ObfuscatedName("bb")
    public boolean field3575;
    @ObfuscatedName("bm")
+   @ObfuscatedGetter(
+      intValue = 659533181
+   )
    public int spriteId2;
    @ObfuscatedName("bk")
+   @ObfuscatedGetter(
+      intValue = -1847696179
+   )
    public int spriteId;
    @ObfuscatedName("bd")
    public String field3578;
    @ObfuscatedName("cf")
+   @ObfuscatedGetter(
+      intValue = 416928349
+   )
    public int spriteAngle;
    @ObfuscatedName("cl")
    public boolean spriteTiling;
    @ObfuscatedName("cq")
+   @ObfuscatedGetter(
+      intValue = -1300355189
+   )
    public int outline;
    @ObfuscatedName("cc")
+   @ObfuscatedGetter(
+      intValue = -1319117017
+   )
    public int spriteShadow;
    @ObfuscatedName("cw")
    public boolean spriteFlipV;
    @ObfuscatedName("cx")
    public boolean spriteFlipH;
    @ObfuscatedName("cb")
+   @ObfuscatedGetter(
+      intValue = -824466597
+   )
    public int modelType;
    @ObfuscatedName("cs")
+   @ObfuscatedGetter(
+      intValue = -1902209067
+   )
    public int modelId;
    @ObfuscatedName("cy")
+   @ObfuscatedGetter(
+      intValue = -1452200045
+   )
    int modelType2;
    @ObfuscatedName("cp")
+   @ObfuscatedGetter(
+      intValue = 1448865917
+   )
    int modelId2;
    @ObfuscatedName("cj")
+   @ObfuscatedGetter(
+      intValue = 167495965
+   )
    public int sequenceId;
    @ObfuscatedName("cn")
+   @ObfuscatedGetter(
+      intValue = -1094018507
+   )
    public int sequenceId2;
    @ObfuscatedName("cm")
+   @ObfuscatedGetter(
+      intValue = 1865914977
+   )
    public int modelOffsetX;
    @ObfuscatedName("ct")
+   @ObfuscatedGetter(
+      intValue = -538253409
+   )
    public int modelOffsetY;
    @ObfuscatedName("cu")
+   @ObfuscatedGetter(
+      intValue = 413961515
+   )
    public int modelAngleX;
    @ObfuscatedName("co")
+   @ObfuscatedGetter(
+      intValue = -1558449129
+   )
    public int modelAngleY;
    @ObfuscatedName("ch")
+   @ObfuscatedGetter(
+      intValue = -2125848423
+   )
    public int modelAngleZ;
    @ObfuscatedName("ce")
+   @ObfuscatedGetter(
+      intValue = -1310127279
+   )
    public int modelZoom;
    @ObfuscatedName("cg")
+   @ObfuscatedGetter(
+      intValue = -1976334363
+   )
    public int modelRotation;
    @ObfuscatedName("ca")
+   @ObfuscatedGetter(
+      intValue = 1603764683
+   )
    public int field3598;
    @ObfuscatedName("cv")
    public boolean modelOrthog;
    @ObfuscatedName("cz")
    public boolean modelTransparency;
    @ObfuscatedName("cr")
+   @ObfuscatedGetter(
+      intValue = 459312063
+   )
    public int itemQuantityMode;
    @ObfuscatedName("cd")
+   @ObfuscatedGetter(
+      intValue = 1520551125
+   )
    public int fontId;
    @ObfuscatedName("ck")
    public String text;
    @ObfuscatedName("ci")
    public String text2;
    @ObfuscatedName("dh")
+   @ObfuscatedGetter(
+      intValue = 428775753
+   )
    public int textLineHeight;
    @ObfuscatedName("dn")
+   @ObfuscatedGetter(
+      intValue = 1127336945
+   )
    public int textXAlignment;
    @ObfuscatedName("da")
+   @ObfuscatedGetter(
+      intValue = 2127389397
+   )
    public int textYAlignment;
    @ObfuscatedName("de")
    public boolean textShadowed;
    @ObfuscatedName("dl")
+   @ObfuscatedGetter(
+      intValue = 1603100581
+   )
    public int paddingX;
    @ObfuscatedName("dw")
+   @ObfuscatedGetter(
+      intValue = 1637251583
+   )
    public int paddingY;
    @ObfuscatedName("dm")
    public int[] inventoryXOffsets;
@@ -209,6 +380,9 @@ public class Widget extends Node {
    )
    class163 field3615;
    @ObfuscatedName("df")
+   @ObfuscatedGetter(
+      intValue = -1290763787
+   )
    int field3597;
    @ObfuscatedName("dy")
    HashMap field3617;
@@ -220,6 +394,9 @@ public class Widget extends Node {
    )
    class301 field3619;
    @ObfuscatedName("dg")
+   @ObfuscatedGetter(
+      intValue = -149949271
+   )
    public int flags;
    @ObfuscatedName("dq")
    public boolean field3621;
@@ -241,8 +418,14 @@ public class Widget extends Node {
    )
    public Widget parent;
    @ObfuscatedName("es")
+   @ObfuscatedGetter(
+      intValue = 82868583
+   )
    public int dragZoneSize;
    @ObfuscatedName("eo")
+   @ObfuscatedGetter(
+      intValue = 1267822615
+   )
    public int dragThreshold;
    @ObfuscatedName("eh")
    public boolean isScrollBar;
@@ -331,6 +514,9 @@ public class Widget extends Node {
    @ObfuscatedName("fi")
    public int[] cs1ComparisonValues;
    @ObfuscatedName("fm")
+   @ObfuscatedGetter(
+      intValue = 1476120207
+   )
    public int mouseOverRedirect;
    @ObfuscatedName("fe")
    public String spellName;
@@ -341,12 +527,24 @@ public class Widget extends Node {
    @ObfuscatedName("gf")
    public int[] itemQuantities;
    @ObfuscatedName("go")
+   @ObfuscatedGetter(
+      intValue = 1983678461
+   )
    public int itemId;
    @ObfuscatedName("gj")
+   @ObfuscatedGetter(
+      intValue = 390571909
+   )
    public int itemQuantity;
    @ObfuscatedName("gp")
+   @ObfuscatedGetter(
+      intValue = -606599493
+   )
    public int modelFrame;
    @ObfuscatedName("gz")
+   @ObfuscatedGetter(
+      intValue = -736025567
+   )
    public int modelFrameCycle;
    @ObfuscatedName("gl")
    @ObfuscatedSignature(
@@ -358,16 +556,34 @@ public class Widget extends Node {
    @ObfuscatedName("gh")
    public boolean field3610;
    @ObfuscatedName("ge")
+   @ObfuscatedGetter(
+      intValue = 1448377925
+   )
    public int field3572;
    @ObfuscatedName("gu")
+   @ObfuscatedGetter(
+      intValue = 1149656689
+   )
    public int field3645;
    @ObfuscatedName("gv")
+   @ObfuscatedGetter(
+      intValue = 1463799561
+   )
    public int field3668;
    @ObfuscatedName("gd")
+   @ObfuscatedGetter(
+      intValue = 43126131
+   )
    public int field3637;
    @ObfuscatedName("gm")
+   @ObfuscatedGetter(
+      intValue = -1373070299
+   )
    public int rootIndex;
    @ObfuscatedName("gn")
+   @ObfuscatedGetter(
+      intValue = -1786479895
+   )
    public int cycle;
    @ObfuscatedName("gr")
    public int[] field3692;

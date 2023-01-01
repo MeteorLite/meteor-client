@@ -7,6 +7,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ht")
 public class TextureProvider implements TextureLoader {
    @ObfuscatedName("fx")
+   @ObfuscatedGetter(
+      intValue = -917771577
+   )
    static int field2643;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -19,12 +22,21 @@ public class TextureProvider implements TextureLoader {
    )
    NodeDeque deque = new NodeDeque();
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -36680881
+   )
    int capacity;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -2133855553
+   )
    int remaining = 0;
    @ObfuscatedName("m")
    double brightness = 1.0D;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1483135625
+   )
    int textureSize = 128;
    @ObfuscatedName("f")
    @ObfuscatedSignature(

@@ -5,46 +5,106 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ct")
 public abstract class Actor extends Renderable {
    @ObfuscatedName("av")
+   @ObfuscatedGetter(
+      intValue = -389894911
+   )
    int x;
    @ObfuscatedName("au")
+   @ObfuscatedGetter(
+      intValue = 65440413
+   )
    int y;
    @ObfuscatedName("ar")
+   @ObfuscatedGetter(
+      intValue = 1214343763
+   )
    int rotation;
    @ObfuscatedName("at")
    boolean isWalking = false;
    @ObfuscatedName("ay")
+   @ObfuscatedGetter(
+      intValue = 670600495
+   )
    int field1181 = 1;
    @ObfuscatedName("an")
+   @ObfuscatedGetter(
+      intValue = 627237213
+   )
    int playerCycle;
    @ObfuscatedName("ab")
+   @ObfuscatedGetter(
+      intValue = -345007929
+   )
    int idleSequence = -1;
    @ObfuscatedName("al")
+   @ObfuscatedGetter(
+      intValue = 285862749
+   )
    int turnLeftSequence = -1;
    @ObfuscatedName("ag")
+   @ObfuscatedGetter(
+      intValue = -1599221413
+   )
    int turnRightSequence = -1;
    @ObfuscatedName("az")
+   @ObfuscatedGetter(
+      intValue = 498947341
+   )
    int walkSequence = -1;
    @ObfuscatedName("ak")
+   @ObfuscatedGetter(
+      intValue = -1244346649
+   )
    int walkBackSequence = -1;
    @ObfuscatedName("af")
+   @ObfuscatedGetter(
+      intValue = -1074551991
+   )
    int walkLeftSequence = -1;
    @ObfuscatedName("ai")
+   @ObfuscatedGetter(
+      intValue = 635132903
+   )
    int walkRightSequence = -1;
    @ObfuscatedName("ax")
+   @ObfuscatedGetter(
+      intValue = 942099641
+   )
    int runSequence = -1;
    @ObfuscatedName("ah")
+   @ObfuscatedGetter(
+      intValue = -1991306379
+   )
    int field1191 = -1;
    @ObfuscatedName("aw")
+   @ObfuscatedGetter(
+      intValue = 1794639095
+   )
    int field1201 = -1;
    @ObfuscatedName("aj")
+   @ObfuscatedGetter(
+      intValue = -780518925
+   )
    int field1193 = -1;
    @ObfuscatedName("aq")
+   @ObfuscatedGetter(
+      intValue = -1001233629
+   )
    int field1194 = -1;
    @ObfuscatedName("ap")
+   @ObfuscatedGetter(
+      intValue = -1165960723
+   )
    int field1195 = -1;
    @ObfuscatedName("aa")
+   @ObfuscatedGetter(
+      intValue = 1684483195
+   )
    int field1226 = -1;
    @ObfuscatedName("ae")
+   @ObfuscatedGetter(
+      intValue = 496030663
+   )
    int field1197 = -1;
    @ObfuscatedName("ac")
    String overheadText = null;
@@ -53,10 +113,19 @@ public abstract class Actor extends Renderable {
    @ObfuscatedName("be")
    boolean showPublicPlayerChat = false;
    @ObfuscatedName("bf")
+   @ObfuscatedGetter(
+      intValue = 1917412835
+   )
    int overheadTextCyclesRemaining = 100;
    @ObfuscatedName("bo")
+   @ObfuscatedGetter(
+      intValue = -1708374603
+   )
    int overheadTextColor = 0;
    @ObfuscatedName("by")
+   @ObfuscatedGetter(
+      intValue = -1814648137
+   )
    int overheadTextEffect = 0;
    @ObfuscatedName("bp")
    byte hitSplatCount = 0;
@@ -76,62 +145,143 @@ public abstract class Actor extends Renderable {
    )
    IterableNodeDeque healthBars = new IterableNodeDeque();
    @ObfuscatedName("bi")
+   @ObfuscatedGetter(
+      intValue = 254868797
+   )
    int targetIndex = -1;
    @ObfuscatedName("br")
    boolean false0 = false;
    @ObfuscatedName("bq")
+   @ObfuscatedGetter(
+      intValue = -1743725497
+   )
    int movingOrientation = -1;
    @ObfuscatedName("bn")
    boolean instantTurn;
    @ObfuscatedName("ba")
+   @ObfuscatedGetter(
+      intValue = -23593053
+   )
    int movementSequence = -1;
    @ObfuscatedName("bs")
+   @ObfuscatedGetter(
+      intValue = 1618805973
+   )
    int movementFrame = 0;
    @ObfuscatedName("bt")
+   @ObfuscatedGetter(
+      intValue = 81322447
+   )
    int movementFrameCycle = 0;
    @ObfuscatedName("bu")
+   @ObfuscatedGetter(
+      intValue = 623693747
+   )
    int field1218 = 0;
    @ObfuscatedName("bj")
+   @ObfuscatedGetter(
+      intValue = 94737613
+   )
    int sequence = -1;
    @ObfuscatedName("bb")
+   @ObfuscatedGetter(
+      intValue = 1723796857
+   )
    int sequenceFrame = 0;
    @ObfuscatedName("bm")
+   @ObfuscatedGetter(
+      intValue = -1043036109
+   )
    int sequenceFrameCycle = 0;
    @ObfuscatedName("bk")
+   @ObfuscatedGetter(
+      intValue = -1398805233
+   )
    int sequenceDelay = 0;
    @ObfuscatedName("bd")
+   @ObfuscatedGetter(
+      intValue = 203372551
+   )
    int currentSequenceFrameIndex = 0;
    @ObfuscatedName("cf")
+   @ObfuscatedGetter(
+      intValue = 385930223
+   )
    int spotAnimation = -1;
    @ObfuscatedName("cl")
+   @ObfuscatedGetter(
+      intValue = 1092439411
+   )
    int spotAnimationFrame = 0;
    @ObfuscatedName("cq")
+   @ObfuscatedGetter(
+      intValue = -4845983
+   )
    int spotAnimFrameCycle = 0;
    @ObfuscatedName("cc")
+   @ObfuscatedGetter(
+      intValue = 1151499147
+   )
    int spotAnimationStartCycle;
    @ObfuscatedName("cw")
+   @ObfuscatedGetter(
+      intValue = 1672871789
+   )
    int spotAnimHeight;
    @ObfuscatedName("cx")
+   @ObfuscatedGetter(
+      intValue = 1740141433
+   )
    int exactMoveDeltaX1;
    @ObfuscatedName("cb")
+   @ObfuscatedGetter(
+      intValue = 17282343
+   )
    int exactMoveDeltaX2;
    @ObfuscatedName("cs")
+   @ObfuscatedGetter(
+      intValue = 1947883815
+   )
    int exactMoveDeltaY1;
    @ObfuscatedName("cy")
+   @ObfuscatedGetter(
+      intValue = -749405229
+   )
    int exactMoveDeltaY2;
    @ObfuscatedName("cp")
+   @ObfuscatedGetter(
+      intValue = -526209475
+   )
    int exactMoveArrive1Cycle;
    @ObfuscatedName("cj")
+   @ObfuscatedGetter(
+      intValue = -140925909
+   )
    int exactMoveArrive2Cycle;
    @ObfuscatedName("cn")
+   @ObfuscatedGetter(
+      intValue = 244421825
+   )
    int exactMoveDirection;
    @ObfuscatedName("cm")
+   @ObfuscatedGetter(
+      intValue = -5311601
+   )
    int npcCycle = 0;
    @ObfuscatedName("ct")
+   @ObfuscatedGetter(
+      intValue = 1571258463
+   )
    int defaultHeight = 200;
    @ObfuscatedName("cu")
+   @ObfuscatedGetter(
+      intValue = -1291773733
+   )
    int recolourStartCycle = -1;
    @ObfuscatedName("co")
+   @ObfuscatedGetter(
+      intValue = -1011438041
+   )
    int recolourEndCycle = -1;
    @ObfuscatedName("ch")
    byte recolourHue;
@@ -142,12 +292,24 @@ public abstract class Actor extends Renderable {
    @ObfuscatedName("ca")
    byte recolourAmount;
    @ObfuscatedName("cv")
+   @ObfuscatedGetter(
+      intValue = -947520985
+   )
    int orientation;
    @ObfuscatedName("cz")
+   @ObfuscatedGetter(
+      intValue = -306091521
+   )
    int field1245 = 0;
    @ObfuscatedName("cr")
+   @ObfuscatedGetter(
+      intValue = -1951063541
+   )
    int field1249 = 32;
    @ObfuscatedName("cd")
+   @ObfuscatedGetter(
+      intValue = 472227045
+   )
    int pathLength = 0;
    @ObfuscatedName("ck")
    int[] pathX = new int[10];
@@ -159,10 +321,19 @@ public abstract class Actor extends Renderable {
    )
    MoveSpeed[] pathTraversed = new MoveSpeed[10];
    @ObfuscatedName("dn")
+   @ObfuscatedGetter(
+      intValue = -346153835
+   )
    int field1239 = 0;
    @ObfuscatedName("da")
+   @ObfuscatedGetter(
+      intValue = 2136239977
+   )
    int field1252 = 0;
    @ObfuscatedName("de")
+   @ObfuscatedGetter(
+      intValue = 1485827703
+   )
    int combatLevelChange = -1;
 
    @ObfuscatedName("s")

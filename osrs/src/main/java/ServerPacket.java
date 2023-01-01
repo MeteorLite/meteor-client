@@ -582,8 +582,14 @@ public class ServerPacket {
    )
    public static final ServerPacket field3297 = new ServerPacket(114, 6);
    @ObfuscatedName("df")
+   @ObfuscatedGetter(
+      intValue = -170435115
+   )
    public final int id;
    @ObfuscatedName("dy")
+   @ObfuscatedGetter(
+      intValue = -1413935371
+   )
    public final int length;
 
    ServerPacket(int var1, int var2) {

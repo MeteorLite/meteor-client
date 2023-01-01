@@ -7,8 +7,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kv")
 public class SpriteMask extends DualNode {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1698600083
+   )
    public final int width;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 430835713
+   )
    public final int height;
    @ObfuscatedName("v")
    public final int[] xWidths;

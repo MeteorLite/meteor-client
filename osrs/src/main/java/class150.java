@@ -11,6 +11,9 @@ public class class150 extends class136 {
    )
    static IndexedSprite field1756;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1536120659
+   )
    int field1755;
    // $FF: synthetic field
    @ObfuscatedSignature(

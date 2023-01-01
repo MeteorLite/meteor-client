@@ -36,7 +36,6 @@ import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.rsapi.InjectGetter;
 import com.openosrs.injector.injectors.rsapi.InjectInvoke;
 import com.openosrs.injector.injectors.rsapi.InjectSetter;
-import com.openosrs.injector.injectors.rsapi.ObfuscatedGettersMapManager;
 import com.openosrs.injector.rsapi.RSApiClass;
 import com.openosrs.injector.rsapi.RSApiMethod;
 import java.util.ArrayList;
@@ -155,15 +154,7 @@ public class RSApiInjector extends AbstractInjector
 			}
 
 			final Field vanillaField = inject.toVanilla(deobField);
-			Number getter = null;
-			Number actual = ObfuscatedGettersMapManager.getNumber(vanillaField.getClassFile().getName() + "." + vanillaField.getName());
-			if (actual != null) {
-				if (vanillaField.getType().equals(Type.LONG)) {
-					getter = actual.longValue();
-				} else {
-					getter = actual.intValue();
-				}
-			}
+			final Number getter = DeobAnnotations.getObfuscatedGetter(deobField);
 
 			if (deobField.isStatic() != vanillaField.isStatic()) // Can this even happen
 			{

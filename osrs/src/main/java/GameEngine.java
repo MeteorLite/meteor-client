@@ -36,22 +36,40 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    )
    static GameEngine gameEngine = null;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = -1203794955
+   )
    static int GameEngine_redundantStartThreadCount = 0;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      longValue = 4122648005638566587L
+   )
    static long stopTimeMs = 0L;
    @ObfuscatedName("q")
    static boolean isKilled = false;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 1837674965
+   )
    static int cycleDurationMillis = 20;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -530252609
+   )
    static int fiveOrOne = 1;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 1522705797
+   )
    protected static int fps = 0;
    @ObfuscatedName("o")
    static long[] graphicsTickTimes = new long[32];
    @ObfuscatedName("k")
    static long[] clientTickTimes = new long[32];
    @ObfuscatedName("an")
+   @ObfuscatedGetter(
+      intValue = 2031488307
+   )
    static int field230 = 500;
    @ObfuscatedName("ah")
    static volatile boolean volatileFocus = true;
@@ -61,26 +79,56 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    )
    static KeyHandler keyHandler = new KeyHandler();
    @ObfuscatedName("ap")
+   @ObfuscatedGetter(
+      longValue = -4832067984480184411L
+   )
    static long garbageCollectorLastCollectionTime = -1L;
    @ObfuscatedName("aa")
+   @ObfuscatedGetter(
+      longValue = -1788910031421667657L
+   )
    static long garbageCollectorLastCheckTimeMs = -1L;
    @ObfuscatedName("f")
    boolean hasErrored = false;
    @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = 1978140097
+   )
    protected int contentWidth;
    @ObfuscatedName("l")
+   @ObfuscatedGetter(
+      intValue = 49859079
+   )
    protected int contentHeight;
    @ObfuscatedName("t")
+   @ObfuscatedGetter(
+      intValue = -185229721
+   )
    int canvasX = 0;
    @ObfuscatedName("c")
+   @ObfuscatedGetter(
+      intValue = 1564967965
+   )
    int canvasY = 0;
    @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = -428984103
+   )
    int field223;
    @ObfuscatedName("as")
+   @ObfuscatedGetter(
+      intValue = -917161143
+   )
    int field209;
    @ObfuscatedName("ad")
+   @ObfuscatedGetter(
+      intValue = 484486501
+   )
    int maxCanvasWidth;
    @ObfuscatedName("ao")
+   @ObfuscatedGetter(
+      intValue = 401178799
+   )
    int maxCanvasHeight;
    @ObfuscatedName("au")
    Frame frame;
@@ -93,6 +141,9 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedName("al")
    volatile boolean isCanvasInvalid = false;
    @ObfuscatedName("ag")
+   @ObfuscatedGetter(
+      longValue = -2560848732574539297L
+   )
    volatile long field233 = 0L;
    @ObfuscatedName("af")
    @ObfuscatedSignature(

@@ -21,8 +21,14 @@ public final class ArchiveDisk {
    )
    BufferedFile idxFile = null;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1490095751
+   )
    int archive;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -570825231
+   )
    int maxEntrySize = 65000;
 
    @ObfuscatedSignature(

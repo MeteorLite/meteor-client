@@ -31,6 +31,9 @@ public enum WorldMapSectionType implements class345 {
    WORLDMAPSECTIONTYPE3(1, (byte)3);
 
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1816718813
+   )
    final int type;
    @ObfuscatedName("q")
    final byte id;

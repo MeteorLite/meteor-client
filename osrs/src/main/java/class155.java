@@ -5,10 +5,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("el")
 public class class155 extends class136 {
    @ObfuscatedName("tg")
+   @ObfuscatedGetter(
+      intValue = 29638656
+   )
    static int cameraMoveToX;
    @ObfuscatedName("dh")
    static boolean field1785;
    @ObfuscatedName("fq")
+   @ObfuscatedGetter(
+      intValue = 1288182377
+   )
    static int field1788;
    @ObfuscatedName("lo")
    @ObfuscatedSignature(
@@ -16,6 +22,9 @@ public class class155 extends class136 {
    )
    static Player localPlayer;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 479857135
+   )
    int field1786;
    // $FF: synthetic field
    @ObfuscatedSignature(

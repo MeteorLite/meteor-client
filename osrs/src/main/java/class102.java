@@ -5,6 +5,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ck")
 final class class102 implements class297 {
    @ObfuscatedName("tk")
+   @ObfuscatedGetter(
+      intValue = 1621599055
+   )
    static int field1367;
    // $FF: synthetic field
    @ObfuscatedSignature(

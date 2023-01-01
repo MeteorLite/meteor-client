@@ -7,10 +7,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bv")
 public class Message extends DualNode {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1008799057
+   )
    int count;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = 111146775
+   )
    int cycle;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1608023953
+   )
    int type;
    @ObfuscatedName("x")
    String sender;

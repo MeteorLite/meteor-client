@@ -123,6 +123,9 @@ public enum WorldMapDecorationType implements class345 {
    field3749(22, 3);
 
    @ObfuscatedName("y")
+   @ObfuscatedGetter(
+      intValue = -1868950557
+   )
    public final int id;
 
    @ObfuscatedSignature(

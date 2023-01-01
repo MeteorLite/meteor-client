@@ -16,14 +16,29 @@ public class PlayerComposition {
    @ObfuscatedName("e")
    int[] bodyColors;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 735151423
+   )
    public int field3476 = -1;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 354323345
+   )
    public int field3474 = 0;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 14128873
+   )
    public int npcTransformId;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      longValue = -7383529453804590235L
+   )
    long hash;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      longValue = -5961177219730857421L
+   )
    long field3477;
    @ObfuscatedName("r")
    @ObfuscatedSignature(

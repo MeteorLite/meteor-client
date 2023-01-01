@@ -9,8 +9,14 @@ public class Decimator {
    @ObfuscatedName("c")
    public static String formattedOperatingSystemName;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 364790869
+   )
    int inputRate;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 126236859
+   )
    int outputRate;
    @ObfuscatedName("q")
    int[][] table;

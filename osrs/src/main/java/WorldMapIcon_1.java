@@ -12,6 +12,9 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
    )
    static AbstractSocket js5Socket;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = 1999558433
+   )
    final int objectDefId;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -19,6 +22,9 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
    )
    final WorldMapRegion region;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 2110951989
+   )
    int element;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -26,8 +32,14 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
    )
    WorldMapLabel label;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = 342751675
+   )
    int subWidth;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1976189839
+   )
    int subHeight;
 
    @ObfuscatedSignature(

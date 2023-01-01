@@ -18,6 +18,9 @@ public class ArchiveDiskActionHandler implements Runnable {
    )
    public static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1925260575
+   )
    static int field4173 = 0;
    @ObfuscatedName("x")
    static Object ArchiveDiskActionHandler_lock = new Object();

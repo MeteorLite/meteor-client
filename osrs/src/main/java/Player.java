@@ -16,27 +16,57 @@ public final class Player extends Actor {
    )
    PlayerComposition appearance;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 350410091
+   )
    int headIconPk = -1;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1022197567
+   )
    @Export("headIconPrayer")
    int headIconPrayer = -1;
    @ObfuscatedName("q")
    String[] actions = new String[3];
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = -1148721401
+   )
    int combatLevel;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -1210481355
+   )
    int skillLevel;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 1958672175
+   )
    int tileHeight;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = 2102416537
+   )
    int animationCycleStart;
    @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 1311880171
+   )
    int animationCycleEnd;
    @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      intValue = 521941447
+   )
    int field1131;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = -1198433051
+   )
    int tileHeight2;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = -1577608411
+   )
    int field1137;
    @ObfuscatedName("n")
    @ObfuscatedSignature(
@@ -44,22 +74,43 @@ public final class Player extends Actor {
    )
    Model attachedModel;
    @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = 153078199
+   )
    int minX;
    @ObfuscatedName("a")
+   @ObfuscatedGetter(
+      intValue = -377360991
+   )
    int minY;
    @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = 863829929
+   )
    int maxX;
    @ObfuscatedName("l")
+   @ObfuscatedGetter(
+      intValue = -396339561
+   )
    int maxY;
    @ObfuscatedName("t")
    boolean isUnanimated;
    @ObfuscatedName("c")
+   @ObfuscatedGetter(
+      intValue = -416492285
+   )
    int team;
    @ObfuscatedName("p")
    boolean isHidden;
    @ObfuscatedName("d")
+   @ObfuscatedGetter(
+      intValue = 942287759
+   )
    int plane;
    @ObfuscatedName("y")
+   @ObfuscatedGetter(
+      intValue = -205134613
+   )
    int index;
    @ObfuscatedName("z")
    @ObfuscatedSignature(
@@ -79,8 +130,14 @@ public final class Player extends Actor {
    @ObfuscatedName("ad")
    boolean field1133;
    @ObfuscatedName("ao")
+   @ObfuscatedGetter(
+      intValue = -749429563
+   )
    int tileX;
    @ObfuscatedName("am")
+   @ObfuscatedGetter(
+      intValue = -1775689415
+   )
    int tileY;
 
    Player() {

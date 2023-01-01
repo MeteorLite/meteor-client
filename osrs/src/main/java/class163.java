@@ -11,6 +11,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fk")
 public class class163 {
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -2091468897
+   )
    int field1831 = -1;
    @ObfuscatedName("b")
    String field1832;

@@ -32,8 +32,14 @@ public enum class124 implements class345 {
    field1531(4, 4);
 
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 324015279
+   )
    final int field1532;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 1800983085
+   )
    final int field1530;
 
    class124(int var3, int var4) {

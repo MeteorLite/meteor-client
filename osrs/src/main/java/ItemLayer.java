@@ -7,10 +7,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gy")
 public final class ItemLayer {
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      intValue = -550242183
+   )
    int z;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -733443873
+   )
    int x;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 659820055
+   )
    int y;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -28,8 +37,14 @@ public final class ItemLayer {
    )
    Renderable third;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      longValue = -8382761698159618857L
+   )
    long tag;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -999463859
+   )
    int height;
 
    @ObfuscatedName("h")

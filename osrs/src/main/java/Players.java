@@ -17,10 +17,16 @@ public class Players {
    )
    static Buffer[] field1372 = new Buffer[2048];
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -316088161
+   )
    static int Players_count = 0;
    @ObfuscatedName("f")
    static int[] Players_indices = new int[2048];
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 888769669
+   )
    static int Players_emptyIdxCount = 0;
    @ObfuscatedName("u")
    static int[] Players_emptyIndices = new int[2048];
@@ -31,6 +37,9 @@ public class Players {
    @ObfuscatedName("g")
    static int[] Players_targetIndices = new int[2048];
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 279882375
+   )
    static int Players_pendingUpdateCount = 0;
    @ObfuscatedName("o")
    static int[] Players_pendingUpdateIndices = new int[2048];

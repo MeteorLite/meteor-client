@@ -7,16 +7,28 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("rg")
 public final class IsaacCipher {
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1242271977
+   )
    int valuesRemaining;
    @ObfuscatedName("m")
    int[] results = new int[256];
    @ObfuscatedName("q")
    int[] mm = new int[256];
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 723513511
+   )
    int aa;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -995265903
+   )
    int bb;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -1974254379
+   )
    int cc;
 
    public IsaacCipher(int[] var1) {

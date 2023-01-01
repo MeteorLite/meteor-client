@@ -10,6 +10,9 @@ public class UserComparator8 extends AbstractUserComparator {
    )
    static PcmPlayer pcmPlayer1;
    @ObfuscatedName("fi")
+   @ObfuscatedGetter(
+      intValue = 1658638723
+   )
    static int field1461;
    @ObfuscatedName("h")
    final boolean reversed;

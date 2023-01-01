@@ -11,6 +11,9 @@ public class class299 {
    )
    static IndexedSprite field3457;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -88192509
+   )
    static int field3458;
 
    @ObfuscatedName("h")

@@ -23,8 +23,14 @@ public class FriendsChat extends UserList {
    @ObfuscatedName("q")
    public byte minKick;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 1090208209
+   )
    public int rank;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 1853458419
+   )
    int field4515 = 1;
 
    @ObfuscatedSignature(

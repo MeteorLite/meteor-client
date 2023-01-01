@@ -19,18 +19,33 @@ public class Archive extends AbstractArchive {
    )
    ArchiveDisk masterDisk;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = -175327191
+   )
    int index;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -1245590993
+   )
    volatile int field4189 = 0;
    @ObfuscatedName("b")
    boolean field4176 = false;
    @ObfuscatedName("j")
    volatile boolean[] validGroups;
    @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 117631983
+   )
    int indexCrc;
    @ObfuscatedName("o")
+   @ObfuscatedGetter(
+      intValue = 288216263
+   )
    int indexVersion;
    @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = 722015315
+   )
    int field4190 = -1;
    @ObfuscatedName("k")
    boolean field4191 = false;

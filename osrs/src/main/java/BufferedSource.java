@@ -14,12 +14,21 @@ public class BufferedSource implements Runnable {
    @ObfuscatedName("e")
    InputStream inputStream;
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1848700253
+   )
    int capacity;
    @ObfuscatedName("x")
    byte[] buffer;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      intValue = -1891508275
+   )
    int position = 0;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = -1884298899
+   )
    int limit = 0;
    @ObfuscatedName("f")
    IOException exception;

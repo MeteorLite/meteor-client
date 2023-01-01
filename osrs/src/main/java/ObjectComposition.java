@@ -37,6 +37,9 @@ public class ObjectComposition extends DualNode {
    )
    static ModelData[] field2158 = new ModelData[4];
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = 169329993
+   )
    public int id;
    @ObfuscatedName("b")
    int[] modelIds;
@@ -53,70 +56,142 @@ public class ObjectComposition extends DualNode {
    @ObfuscatedName("k")
    short[] retextureTo;
    @ObfuscatedName("a")
+   @ObfuscatedGetter(
+      intValue = -729722715
+   )
    public int sizeX = 1;
    @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = 1817261831
+   )
    public int sizeY = 1;
    @ObfuscatedName("l")
+   @ObfuscatedGetter(
+      intValue = 2042865249
+   )
    public int interactType = 2;
    @ObfuscatedName("t")
    public boolean boolean1 = true;
    @ObfuscatedName("c")
+   @ObfuscatedGetter(
+      intValue = -1335218033
+   )
    public int int1 = -1;
    @ObfuscatedName("p")
+   @ObfuscatedGetter(
+      intValue = 1645227776
+   )
    int clipType = -256;
    @ObfuscatedName("d")
    boolean nonFlatShading = false;
    @ObfuscatedName("y")
    public boolean modelClipped = false;
    @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = 1255396169
+   )
    public int animationId = -1;
    @ObfuscatedName("w")
+   @ObfuscatedGetter(
+      intValue = 1196023809
+   )
    public int int2 = 16;
    @ObfuscatedName("as")
+   @ObfuscatedGetter(
+      intValue = -424668761
+   )
    int ambient = 0;
    @ObfuscatedName("ad")
+   @ObfuscatedGetter(
+      intValue = 1809473659
+   )
    int contrast = 0;
    @ObfuscatedName("ao")
    public String[] actions = new String[5];
    @ObfuscatedName("am")
+   @ObfuscatedGetter(
+      intValue = 1128084973
+   )
    public int mapIconId = -1;
    @ObfuscatedName("av")
+   @ObfuscatedGetter(
+      intValue = -528274721
+   )
    public int mapSceneId = -1;
    @ObfuscatedName("au")
    boolean isRotated = false;
    @ObfuscatedName("ar")
    public boolean clipped = true;
    @ObfuscatedName("at")
+   @ObfuscatedGetter(
+      intValue = 588658835
+   )
    int modelSizeX = 128;
    @ObfuscatedName("ay")
+   @ObfuscatedGetter(
+      intValue = 1425199157
+   )
    int modelHeight = 128;
    @ObfuscatedName("an")
+   @ObfuscatedGetter(
+      intValue = 1670589841
+   )
    int modelSizeY = 128;
    @ObfuscatedName("ab")
+   @ObfuscatedGetter(
+      intValue = 1220901585
+   )
    int offsetX = 0;
    @ObfuscatedName("al")
+   @ObfuscatedGetter(
+      intValue = -1445641697
+   )
    int offsetHeight = 0;
    @ObfuscatedName("ag")
+   @ObfuscatedGetter(
+      intValue = 1646929951
+   )
    int offsetY = 0;
    @ObfuscatedName("az")
    public boolean boolean2 = false;
    @ObfuscatedName("ak")
    boolean isSolid = false;
    @ObfuscatedName("af")
+   @ObfuscatedGetter(
+      intValue = 188018083
+   )
    public int int3 = -1;
    @ObfuscatedName("ai")
    public int[] transforms;
    @ObfuscatedName("ax")
+   @ObfuscatedGetter(
+      intValue = -95041479
+   )
    int transformVarbit = -1;
    @ObfuscatedName("ah")
+   @ObfuscatedGetter(
+      intValue = -152229453
+   )
    int transformVarp = -1;
    @ObfuscatedName("aw")
+   @ObfuscatedGetter(
+      intValue = 318837113
+   )
    public int ambientSoundId = -1;
    @ObfuscatedName("aj")
+   @ObfuscatedGetter(
+      intValue = -69936869
+   )
    public int int7 = 0;
    @ObfuscatedName("aq")
+   @ObfuscatedGetter(
+      intValue = 918792525
+   )
    public int int5 = 0;
    @ObfuscatedName("ap")
+   @ObfuscatedGetter(
+      intValue = -460573197
+   )
    public int int6 = 0;
    @ObfuscatedName("aa")
    public int[] soundEffectIds;

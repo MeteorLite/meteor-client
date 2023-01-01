@@ -23,7 +23,6 @@ dependencies{
     implementation(project(":logger"))
     implementation(project(":cache"))
     implementation("javax.inject:javax.inject:1")
-    implementation(group = "com.google.code.gson", name = "gson", version = "_")
 
     implementation(group = "org.ow2.asm", name = "asm", version = "_")
     implementation(group = "org.ow2.asm", name = "asm-util", version = "_")

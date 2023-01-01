@@ -13,8 +13,14 @@ public final class class410 {
    )
    static class410[] field4609 = new class410[0];
    @ObfuscatedName("v")
+   @ObfuscatedGetter(
+      intValue = 1296378791
+   )
    static int field4615 = 100;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = 161940069
+   )
    static int field4608;
    @ObfuscatedName("q")
    @ObfuscatedSignature(

@@ -10,24 +10,51 @@ public class Timer {
    @ObfuscatedName("vx")
    static Iterator field4460;
    @ObfuscatedName("h")
+   @ObfuscatedGetter(
+      longValue = 617951219101868201L
+   )
    long field4458 = -1L;
    @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      longValue = -7191502108870423843L
+   )
    long field4456 = -1L;
    @ObfuscatedName("v")
    public boolean field4452 = false;
    @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      longValue = 9077131697962765351L
+   )
    long field4450 = 0L;
    @ObfuscatedName("m")
+   @ObfuscatedGetter(
+      longValue = -4812176588802340469L
+   )
    long field4454 = 0L;
    @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      longValue = 4276904843029533051L
+   )
    long field4455 = 0L;
    @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      intValue = 1102349833
+   )
    int field4453 = 0;
    @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      intValue = 887946609
+   )
    int field4457 = 0;
    @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -1762076025
+   )
    int field4451 = 0;
    @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = -1226330179
+   )
    int field4459 = 0;
 
    @ObfuscatedName("h")
