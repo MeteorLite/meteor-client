@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("lt")
 public class ArchiveDiskAction extends Node {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 11477361
-   )
    int type;
    @ObfuscatedName("e")
    public byte[] data;

@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kl")
 public class MusicPatch extends Node {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1806729323
-   )
    int field3401;
    @ObfuscatedName("e")
    @ObfuscatedSignature(

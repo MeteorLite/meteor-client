@@ -93,14 +93,8 @@ public enum PlayerType implements class345 {
    field4161(16, 52, false, false, true);
 
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = -1797425475
-   )
    final int id;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = 378599095
-   )
    public final int modIcon;
    @ObfuscatedName("t")
    public final boolean isPrivileged;

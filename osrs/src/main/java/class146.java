@@ -5,9 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ej")
 public class class146 extends class136 {
    @ObfuscatedName("ti")
-   @ObfuscatedGetter(
-      intValue = 574691456
-   )
    static int cameraLookAtY;
    @ObfuscatedName("fm")
    static String field1717;
@@ -17,9 +14,6 @@ public class class146 extends class136 {
    )
    static Font fontBold12;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1438657739
-   )
    int field1712;
    @ObfuscatedName("e")
    String field1719;

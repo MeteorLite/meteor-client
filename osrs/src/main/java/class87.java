@@ -39,9 +39,6 @@ public enum class87 implements class345 {
    field1118(5, 6);
 
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 316580569
-   )
    static int Interpreter_intStackSize;
    @ObfuscatedName("cw")
    @ObfuscatedSignature(
@@ -49,19 +46,10 @@ public enum class87 implements class345 {
    )
    static IndexedSprite[] worldSelectFlagSprites;
    @ObfuscatedName("py")
-   @ObfuscatedGetter(
-      intValue = 2101952525
-   )
    static int widgetDragDuration;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1055454903
-   )
    final int field1115;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 2102602089
-   )
    final int field1116;
 
    class87(int var3, int var4) {

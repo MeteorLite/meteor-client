@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hr")
 public abstract class Renderable extends DualNode {
    @ObfuscatedName("dl")
-   @ObfuscatedGetter(
-      intValue = 501367541
-   )
    public int height = 1000;
 
    @ObfuscatedName("e")

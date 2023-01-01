@@ -13,14 +13,8 @@ public class NetCache {
    )
    public static AbstractSocket NetCache_socket;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -38046757
-   )
    public static int NetCache_loadTime = 0;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      longValue = -7487830085444458825L
-   )
    public static long field4218;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -28,9 +22,6 @@ public class NetCache {
    )
    public static NodeHashTable NetCache_pendingPriorityWrites = new NodeHashTable(4096);
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -912683751
-   )
    public static int NetCache_pendingPriorityWritesCount = 0;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
@@ -38,9 +29,6 @@ public class NetCache {
    )
    public static NodeHashTable NetCache_pendingPriorityResponses = new NodeHashTable(32);
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1360562841
-   )
    public static int NetCache_pendingPriorityResponsesCount = 0;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
@@ -53,9 +41,6 @@ public class NetCache {
    )
    public static NodeHashTable NetCache_pendingWrites = new NodeHashTable(4096);
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 767219283
-   )
    public static int NetCache_pendingWritesCount = 0;
    @ObfuscatedName("j")
    @ObfuscatedSignature(
@@ -63,9 +48,6 @@ public class NetCache {
    )
    public static NodeHashTable NetCache_pendingResponses = new NodeHashTable(4096);
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -273303851
-   )
    public static int NetCache_pendingResponsesCount = 0;
    @ObfuscatedName("n")
    @ObfuscatedSignature(
@@ -73,9 +55,6 @@ public class NetCache {
    )
    public static Buffer NetCache_responseHeaderBuffer = new Buffer(8);
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 1267001511
-   )
    public static int field4216 = 0;
    @ObfuscatedName("l")
    static CRC32 NetCache_crc = new CRC32();
@@ -85,26 +64,14 @@ public class NetCache {
    )
    static Archive[] NetCache_archives = new Archive[256];
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 608271417
-   )
    static int field4236 = -1;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = -1995959275
-   )
    static int field4217 = 255;
    @ObfuscatedName("y")
    public static byte field4232 = 0;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = -436432309
-   )
    public static int NetCache_crcMismatches = 0;
    @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = -1247182669
-   )
    public static int NetCache_ioExceptions = 0;
 
    @ObfuscatedName("h")

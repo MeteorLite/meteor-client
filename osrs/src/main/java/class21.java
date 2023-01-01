@@ -16,14 +16,8 @@ public class class21 {
    )
    static Archive field123;
    @ObfuscatedName("ov")
-   @ObfuscatedGetter(
-      intValue = 429125907
-   )
    static int selectedSpellFlags;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1186998877
-   )
    final int field121;
    @ObfuscatedName("e")
    final String field122;

@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ha")
 public class Frames extends DualNode {
    @ObfuscatedName("td")
-   @ObfuscatedGetter(
-      intValue = -1844423635
-   )
    static int field2616;
    @ObfuscatedName("q")
    @ObfuscatedSignature(

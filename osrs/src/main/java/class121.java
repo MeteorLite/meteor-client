@@ -8,9 +8,6 @@ public class class121 {
    @ObfuscatedName("a")
    public static String[] cacheParentPaths;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1166574037
-   )
    int field1502;
    @ObfuscatedName("e")
    float field1497;

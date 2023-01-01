@@ -10,9 +10,6 @@ public abstract class class262 implements class264 {
    )
    static Font ItemDefinition_fontPlain11;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 390677413
-   )
    protected int field3022;
 
    @ObfuscatedSignature(

@@ -12,14 +12,8 @@ public class World {
    )
    static World[] World_worlds;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1789792685
-   )
    static int World_count = 0;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1216377021
-   )
    static int World_listCount = 0;
    @ObfuscatedName("r")
    static int[] World_sortOption2 = new int[]{1, 1, 1, 1};
@@ -31,33 +25,18 @@ public class World {
    )
    static SpritePixels[] headIconPkSprites;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -944957609
-   )
    int id;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -1208284293
-   )
    int properties;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = -512350001
-   )
    int population;
    @ObfuscatedName("o")
    String host;
    @ObfuscatedName("n")
    String activity;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 2095420555
-   )
    int location;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 1217896967
-   )
    int index;
 
    @ObfuscatedName("b")

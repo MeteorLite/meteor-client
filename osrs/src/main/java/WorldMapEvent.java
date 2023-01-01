@@ -11,9 +11,6 @@ public class WorldMapEvent {
    @ObfuscatedName("gb")
    static int[] field3020;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 778380961
-   )
    public int mapElement;
    @ObfuscatedName("e")
    @ObfuscatedSignature(

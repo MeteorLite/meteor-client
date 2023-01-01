@@ -7,24 +7,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ok")
 public class Bounds {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 600302737
-   )
    public int lowX;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 979622241
-   )
    public int lowY;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1664174563
-   )
    public int highX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1804459671
-   )
    public int highY;
 
    public Bounds(int var1, int var2, int var3, int var4) {

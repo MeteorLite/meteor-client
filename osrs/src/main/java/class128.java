@@ -5,9 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("di")
 public class class128 implements class120 {
    @ObfuscatedName("jp")
-   @ObfuscatedGetter(
-      intValue = 1444608091
-   )
    static int cameraYaw;
 
    @ObfuscatedName("in")

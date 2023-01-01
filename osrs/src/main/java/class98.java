@@ -10,24 +10,12 @@ public class class98 {
    )
    static IndexedSprite field1340;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -51905745
-   )
    int field1339;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -1761089197
-   )
    int field1332;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1499775775
-   )
    int field1334;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1572552819
-   )
    int field1335;
 
    class98(int var1, int var2, int var3, int var4) {

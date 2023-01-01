@@ -12,19 +12,10 @@ public final class FloorDecoration {
    )
    static IndexedSprite[] worldSelectArrows;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 133255249
-   )
    int z;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 804453261
-   )
    int x;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1531498091
-   )
    int y;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -32,14 +23,8 @@ public final class FloorDecoration {
    )
    public Renderable renderable;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      longValue = 4180672137059809271L
-   )
    public long tag;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1420887887
-   )
    int flags;
 
    @ObfuscatedName("hv")

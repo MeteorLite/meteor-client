@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dh")
 public class class104 {
    @ObfuscatedName("tb")
-   @ObfuscatedGetter(
-      intValue = 1403697419
-   )
    static int cameraLookAtHeight;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -84,9 +81,6 @@ public class class104 {
    @ObfuscatedName("ij")
    static int[][] xteaKeys;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = 2067595591
-   )
    int field1397;
 
    class104(int var1) {

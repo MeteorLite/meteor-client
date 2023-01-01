@@ -11,36 +11,18 @@ public final class SceneTilePaint {
    @ObfuscatedName("db")
    static boolean mouseCam;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 15870629
-   )
    int swColor;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -1110971815
-   )
    int seColor;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -489464065
-   )
    int neColor;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -542131165
-   )
    int nwColor;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -813926199
-   )
    int texture;
    @ObfuscatedName("q")
    boolean isFlat = true;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -235347683
-   )
    int rgb;
 
    SceneTilePaint(int var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {

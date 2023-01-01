@@ -7,9 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("aj")
 public class SoundCache {
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 1263171115
-   )
    static int field350;
    @ObfuscatedName("h")
    @ObfuscatedSignature(

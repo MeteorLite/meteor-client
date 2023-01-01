@@ -16,9 +16,6 @@ public class class213 {
    )
    class123[] field2510;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1879864783
-   )
    int field2515;
 
    @ObfuscatedSignature(

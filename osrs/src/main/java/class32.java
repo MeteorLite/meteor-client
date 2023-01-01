@@ -11,9 +11,6 @@ public class class32 {
    @ObfuscatedName("e")
    public static String field183 = "";
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1450599729
-   )
    static int field191;
    @ObfuscatedName("ib")
    @ObfuscatedSignature(

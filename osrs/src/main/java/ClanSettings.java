@@ -11,21 +11,12 @@ public class ClanSettings {
    @ObfuscatedName("v")
    boolean useNames;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      longValue = -8288892168294800129L
-   )
    long field1723;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -396642351
-   )
    int field1746 = 0;
    @ObfuscatedName("q")
    public String name = null;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 257754067
-   )
    int field1726 = 0;
    @ObfuscatedName("r")
    public boolean allowGuests;
@@ -38,9 +29,6 @@ public class ClanSettings {
    @ObfuscatedName("g")
    public byte field1731;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = -656738779
-   )
    public int memberCount;
    @ObfuscatedName("o")
    long[] memberHashes;
@@ -55,19 +43,10 @@ public class ClanSettings {
    @ObfuscatedName("l")
    public boolean[] field1724;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -494521313
-   )
    public int currentOwner = -1;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = -357116423
-   )
    public int field1740 = -1;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = -1174627911
-   )
    public int bannedMemberCount;
    @ObfuscatedName("d")
    long[] bannedMemberHashes;

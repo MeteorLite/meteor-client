@@ -6,24 +6,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nk")
 public class class374 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 377720323
-   )
    int field4427;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -502601723
-   )
    int field4426;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 771706783
-   )
    int field4428;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -2056477773
-   )
    int field4429;
 
    @ObfuscatedName("toString")

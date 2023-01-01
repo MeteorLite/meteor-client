@@ -10,9 +10,6 @@ public class Login {
    @ObfuscatedName("e")
    static boolean clearLoginScreen;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -994097247
-   )
    static int xPadding = 0;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -35,33 +32,18 @@ public class Login {
    )
    static IndexedSprite field927;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = -1802972375
-   )
    static int loginBoxX;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = -561151419
-   )
    static int Login_loadingPercent;
    @ObfuscatedName("z")
    static String Login_loadingText;
    @ObfuscatedName("ah")
-   @ObfuscatedGetter(
-      intValue = -1123765685
-   )
    static int field924;
    @ObfuscatedName("aq")
-   @ObfuscatedGetter(
-      intValue = 1782720957
-   )
    static int field928;
    @ObfuscatedName("ap")
    static String field929;
    @ObfuscatedName("ac")
-   @ObfuscatedGetter(
-      intValue = 860431235
-   )
    static int loginIndex;
    @ObfuscatedName("bh")
    static String Login_response0;
@@ -76,9 +58,6 @@ public class Login {
    @ObfuscatedName("bw")
    static String Login_password;
    @ObfuscatedName("bc")
-   @ObfuscatedGetter(
-      intValue = 1776085317
-   )
    static int field938;
    @ObfuscatedName("bl")
    static String[] field915;
@@ -89,36 +68,18 @@ public class Login {
    @ObfuscatedName("bm")
    static boolean field930;
    @ObfuscatedName("bk")
-   @ObfuscatedGetter(
-      intValue = -1156426449
-   )
    static int currentLoginField;
    @ObfuscatedName("cq")
    static boolean worldSelectOpen;
    @ObfuscatedName("cj")
-   @ObfuscatedGetter(
-      intValue = -1726708665
-   )
    static int hoveredWorldIndex;
    @ObfuscatedName("cn")
-   @ObfuscatedGetter(
-      intValue = -1039174001
-   )
    static int worldSelectPage;
    @ObfuscatedName("cm")
-   @ObfuscatedGetter(
-      intValue = -231318101
-   )
    static int worldSelectPagesCount;
    @ObfuscatedName("cu")
-   @ObfuscatedGetter(
-      longValue = -1294134283863075195L
-   )
    static long field937;
    @ObfuscatedName("co")
-   @ObfuscatedGetter(
-      longValue = 7897803412889482129L
-   )
    static long field950;
    @ObfuscatedName("ch")
    static String[] field934;

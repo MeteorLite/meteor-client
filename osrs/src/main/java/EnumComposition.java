@@ -20,14 +20,8 @@ public class EnumComposition extends DualNode {
    @ObfuscatedName("m")
    public String defaultStr = "null";
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1478484323
-   )
    public int defaultInt;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1015031679
-   )
    public int outputCount = 0;
    @ObfuscatedName("r")
    public int[] keys;

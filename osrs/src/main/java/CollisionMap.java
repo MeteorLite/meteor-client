@@ -7,29 +7,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gw")
 public class CollisionMap {
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 94760623
-   )
    public static int canvasWidth;
    @ObfuscatedName("at")
-   @ObfuscatedGetter(
-      intValue = 213236785
-   )
    int xInset = 0;
    @ObfuscatedName("ay")
-   @ObfuscatedGetter(
-      intValue = -1374720281
-   )
    int yInset = 0;
    @ObfuscatedName("an")
-   @ObfuscatedGetter(
-      intValue = -2137393315
-   )
    int xSize;
    @ObfuscatedName("ab")
-   @ObfuscatedGetter(
-      intValue = -1805233665
-   )
    int ySize;
    @ObfuscatedName("al")
    public int[][] flags;

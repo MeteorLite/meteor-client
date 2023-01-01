@@ -38,9 +38,6 @@ public class class10 {
    @ObfuscatedName("f")
    boolean field54 = false;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 315851455
-   )
    int field55 = 300000;
 
    @ObfuscatedSignature(

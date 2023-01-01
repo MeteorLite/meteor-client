@@ -16,9 +16,6 @@ public class DevicePcmPlayer extends PcmPlayer {
    @ObfuscatedName("e")
    SourceDataLine line;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1829305965
-   )
    int capacity2;
    @ObfuscatedName("x")
    byte[] byteSamples;

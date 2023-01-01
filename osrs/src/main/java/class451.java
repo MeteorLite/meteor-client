@@ -17,9 +17,6 @@ public class class451 extends class415 implements class264 {
    )
    final DemotingHashTable field4864 = new DemotingHashTable(64);
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1847422723
-   )
    final int field4862;
 
    @ObfuscatedSignature(

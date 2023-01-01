@@ -12,9 +12,6 @@ public class ChatChannel {
    )
    Message[] messages = new Message[100];
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1171646571
-   )
    int count;
 
    @ObfuscatedName("h")

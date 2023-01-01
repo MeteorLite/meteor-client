@@ -9,44 +9,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nf")
 public class ByteArrayPool {
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 165480711
-   )
    static int ByteArrayPool_smallCount = 0;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -458850417
-   )
    static int ByteArrayPool_mediumCount = 0;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 408344857
-   )
    static int ByteArrayPool_largeCount = 0;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1119030477
-   )
    static int field4437 = 0;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -559970069
-   )
    static int field4438 = 1000;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 700428281
-   )
    static int field4431 = 250;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 1503025801
-   )
    static int field4440 = 100;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 822016073
-   )
    static int field4439 = 50;
    @ObfuscatedName("i")
    static byte[][] ByteArrayPool_small = new byte[1000][];

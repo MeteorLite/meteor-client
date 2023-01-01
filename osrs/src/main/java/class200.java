@@ -9,19 +9,10 @@ public class class200 extends Node {
    @ObfuscatedName("dj")
    static boolean isLargePlayerInfo;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 494311763
-   )
    public int field2311;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 976799233
-   )
    public int field2310;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1685883689
-   )
    public int field2307;
    @ObfuscatedName("q")
    @ObfuscatedSignature(

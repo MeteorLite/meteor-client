@@ -12,9 +12,6 @@ public class NetFileRequest extends DualNode {
    )
    Archive archive;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -533106433
-   )
    int crc;
    @ObfuscatedName("v")
    byte padding;

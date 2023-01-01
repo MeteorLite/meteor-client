@@ -11,14 +11,8 @@ public final class class409 {
    )
    static class409[] field4601 = new class409[0];
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1552768481
-   )
    static int field4602 = 100;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1009623885
-   )
    static int field4604;
    @ObfuscatedName("x")
    float field4600;

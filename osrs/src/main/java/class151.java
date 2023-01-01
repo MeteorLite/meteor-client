@@ -16,16 +16,10 @@ public class class151 extends class136 {
    )
    static Font fontPlain11;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -1587606096227734853L
-   )
    long field1767;
    @ObfuscatedName("e")
    String field1760;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -976971951
-   )
    int field1761;
    // $FF: synthetic field
    @ObfuscatedSignature(

@@ -39,14 +39,8 @@ public enum class86 implements class345 {
    )
    static class166 mouseWheel;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1562440541
-   )
    final int field1099;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 2017152405
-   )
    final int field1103;
 
    class86(int var3, int var4) {

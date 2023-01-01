@@ -5,9 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("du")
 public class class125 {
    @ObfuscatedName("ir")
-   @ObfuscatedGetter(
-      intValue = 702458805
-   )
    static int field1560;
    @ObfuscatedName("h")
    boolean field1547;
@@ -53,21 +50,12 @@ public class class125 {
    @ObfuscatedName("a")
    boolean field1553 = true;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1591300609
-   )
    int field1556 = 0;
    @ObfuscatedName("l")
    float[] field1546;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -1053774151
-   )
    int field1542;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = -1911231087
-   )
    int field1555;
    @ObfuscatedName("p")
    float field1558;

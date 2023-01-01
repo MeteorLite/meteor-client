@@ -33,14 +33,8 @@ public enum AttackOption implements class345 {
    field1346(4);
 
    @ObfuscatedName("mf")
-   @ObfuscatedGetter(
-      intValue = 1102902677
-   )
    static int menuWidth;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1340490443
-   )
    final int id;
 
    AttackOption(int var3) {

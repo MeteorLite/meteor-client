@@ -6,9 +6,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("qz")
 public class class467 {
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1047217151
-   )
    public static int musicTrackVolume;
    @ObfuscatedName("h")
    int[] field4920 = new int[8];

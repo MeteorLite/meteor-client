@@ -10,24 +10,12 @@ public abstract class RouteStrategy {
    )
    public static AbstractRasterProvider rasterProvider;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -2015601201
-   )
    public int approxDestinationX;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 941706195
-   )
    public int approxDestinationY;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -20945427
-   )
    public int approxDestinationSizeX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -390996803
-   )
    public int approxDestinationSizeY;
 
    @ObfuscatedName("h")

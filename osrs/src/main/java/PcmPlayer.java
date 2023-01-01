@@ -10,9 +10,6 @@ public class PcmPlayer {
    @ObfuscatedName("vd")
    static List field333;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 519516550
-   )
    public static int field325;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
@@ -29,61 +26,28 @@ public class PcmPlayer {
    )
    PcmStream stream;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = -1650041923
-   )
    int field317 = 32;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      longValue = 244756660672843037L
-   )
    long timeMs = Message.method1197();
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = -492551753
-   )
    int capacity;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = -354348965
-   )
    int field320;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -1338328461
-   )
    int field312;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      longValue = -341542258888666809L
-   )
    long field322 = 0L;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 742475801
-   )
    int field323 = 0;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = -1012487413
-   )
    int field324 = 0;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = -1158064801
-   )
    int field329 = 0;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      longValue = 8623637060416294591L
-   )
    long field318 = 0L;
    @ObfuscatedName("w")
    boolean field327 = true;
    @ObfuscatedName("au")
-   @ObfuscatedGetter(
-      intValue = 2049685311
-   )
    int field328 = 0;
    @ObfuscatedName("ar")
    @ObfuscatedSignature(

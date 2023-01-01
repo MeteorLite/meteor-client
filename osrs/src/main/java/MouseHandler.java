@@ -12,9 +12,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ab")
 public class MouseHandler implements MouseListener, MouseMotionListener, FocusListener {
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -467089053
-   )
    public static int MouseHandler_y = 0;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
@@ -22,84 +19,36 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    )
    public static MouseHandler MouseHandler_instance = new MouseHandler();
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -666107829
-   )
    public static volatile int MouseHandler_idleCycles = 0;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1780151387
-   )
    public static volatile int MouseHandler_currentButtonVolatile = 0;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -178516955
-   )
    public static volatile int MouseHandler_xVolatile = -1;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1239267453
-   )
    public static volatile int MouseHandler_yVolatile = -1;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      longValue = 4716901357680916313L
-   )
    public static volatile long MouseHandler_lastMovedVolatile = -1L;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -1144336295
-   )
    public static int MouseHandler_currentButton = 0;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 1055725291
-   )
    public static int MouseHandler_x = 0;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      longValue = 1841814800481912317L
-   )
    public static long MouseHandler_millis = 0L;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1359580461
-   )
    public static volatile int MouseHandler_lastButtonVolatile = 0;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -1431798489
-   )
    public static volatile int MouseHandler_lastPressedXVolatile = 0;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = -231426227
-   )
    public static volatile int MouseHandler_lastPressedYVolatile = 0;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      longValue = -1319422683492569027L
-   )
    public static volatile long MouseHandler_lastPressedTimeMillisVolatile = 0L;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1573473759
-   )
    public static int MouseHandler_lastButton = 0;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = 1391909665
-   )
    public static int MouseHandler_lastPressedX = 0;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -255937079
-   )
    public static int MouseHandler_lastPressedY = 0;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      longValue = -3284909752288296989L
-   )
    public static long MouseHandler_lastPressedTimeMillis = 0L;
    @ObfuscatedName("ih")
    @ObfuscatedSignature(
@@ -107,9 +56,6 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    )
    static SpritePixels[] crossSprites;
    @ObfuscatedName("nb")
-   @ObfuscatedGetter(
-      intValue = -1112640559
-   )
    static int menuHeight;
    @ObfuscatedName("pr")
    @ObfuscatedSignature(

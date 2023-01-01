@@ -12,9 +12,6 @@ public class class170 extends class173 {
    )
    static Archive archive18;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 729229157
-   )
    int field1882;
    // $FF: synthetic field
    @ObfuscatedSignature(

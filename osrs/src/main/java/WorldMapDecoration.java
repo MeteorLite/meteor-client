@@ -7,19 +7,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("iz")
 public class WorldMapDecoration {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1056681405
-   )
    final int objectDefinitionId;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 141981565
-   )
    final int decoration;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1928545853
-   )
    final int rotation;
 
    WorldMapDecoration(int var1, int var2, int var3) {

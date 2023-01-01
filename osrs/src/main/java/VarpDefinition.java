@@ -12,9 +12,6 @@ public class VarpDefinition extends DualNode {
    )
    public static AbstractArchive VarpDefinition_archive;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1806135951
-   )
    public static int field1922;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -27,9 +24,6 @@ public class VarpDefinition extends DualNode {
    )
    static Archive archive14;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -609772131
-   )
    public int type = 0;
 
    @ObfuscatedName("e")

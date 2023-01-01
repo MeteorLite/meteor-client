@@ -17,51 +17,24 @@ public class FloorOverlayDefinition extends DualNode {
    )
    public static EvictingDualNodeHashTable FloorOverlayDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1182759391
-   )
    public int primaryRgb = 0;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1895167641
-   )
    public int texture = -1;
    @ObfuscatedName("m")
    public boolean hideUnderlay = true;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1072167613
-   )
    public int secondaryRgb = -1;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 246160419
-   )
    public int hue;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 569764261
-   )
    public int saturation;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -958370413
-   )
    public int lightness;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -549780663
-   )
    public int secondaryHue;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -628893625
-   )
    public int secondarySaturation;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -245050165
-   )
    public int secondaryLightness;
 
    @ObfuscatedName("h")

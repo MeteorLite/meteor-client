@@ -7,9 +7,6 @@ public final class class364 {
    @ObfuscatedName("h")
    final Object field4362;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -417894275
-   )
    int field4363;
 
    class364(Object var1, int var2) {

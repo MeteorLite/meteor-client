@@ -16,9 +16,6 @@ public class PacketBuffer extends Buffer {
    )
    IsaacCipher isaacCipher;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 546227263
-   )
    int bitIndex;
 
    public PacketBuffer(int var1) {

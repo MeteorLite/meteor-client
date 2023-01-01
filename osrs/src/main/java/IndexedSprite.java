@@ -12,9 +12,6 @@ public final class IndexedSprite extends Rasterizer2D {
    @ObfuscatedName("v")
    public int subWidth;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1903818609
-   )
    public int subHeight;
    @ObfuscatedName("m")
    public int xOffset;

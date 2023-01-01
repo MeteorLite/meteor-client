@@ -12,14 +12,8 @@ public class class368 {
    )
    static Widget dragInventoryWidget;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 1517241847
-   )
    int field4378 = Integer.MAX_VALUE;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -927573977
-   )
    int field4382 = 0;
    @ObfuscatedName("i")
    boolean field4383 = true;
@@ -33,14 +27,8 @@ public class class368 {
    @ObfuscatedName("k")
    ArrayList field4386 = new ArrayList();
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 2048111853
-   )
    int field4387 = 0;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1741771127
-   )
    int field4388 = 0;
 
    @ObfuscatedName("h")

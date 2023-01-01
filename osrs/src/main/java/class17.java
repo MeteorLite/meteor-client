@@ -14,9 +14,6 @@ class class17 implements SSLSession {
    @ObfuscatedName("ge")
    static String field102;
    @ObfuscatedName("hw")
-   @ObfuscatedGetter(
-      intValue = -1898843179
-   )
    static int field101;
    // $FF: synthetic field
    @ObfuscatedSignature(

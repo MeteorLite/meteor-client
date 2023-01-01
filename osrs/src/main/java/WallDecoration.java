@@ -7,44 +7,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hb")
 public final class WallDecoration {
    @ObfuscatedName("bz")
-   @ObfuscatedGetter(
-      intValue = 704722641
-   )
    static int field2799;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 13169171
-   )
    int z;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 195804449
-   )
    int x;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -878815741
-   )
    int y;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1962326121
-   )
    int orientation;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1777240723
-   )
    int orientation2;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1641152353
-   )
    int xOffset;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1040498041
-   )
    int yOffset;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
@@ -57,14 +33,8 @@ public final class WallDecoration {
    )
    public Renderable renderable2;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      longValue = -4565289188219368055L
-   )
    public long tag = 0L;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 1162489357
-   )
    int flags = 0;
 
    @ObfuscatedName("h")

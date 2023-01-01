@@ -19,16 +19,10 @@ public class class366 extends AbstractQueue {
    @ObfuscatedName("e")
    Map field4368;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1410749845
-   )
    int field4369;
    @ObfuscatedName("x")
    final Comparator field4371;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1565326987
-   )
    int field4372;
 
    public class366(int var1, Comparator var2) {

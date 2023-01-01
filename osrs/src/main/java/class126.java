@@ -41,24 +41,12 @@ public class class126 implements class345 {
    )
    static ClanSettings field1573;
    @ObfuscatedName("ba")
-   @ObfuscatedGetter(
-      intValue = -835148647
-   )
    static int field1569;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1612132921
-   )
    final int field1568;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 1023455411
-   )
    final int field1570;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1522114827
-   )
    final int field1571;
 
    class126(int var1, int var2, String var3, int var4) {

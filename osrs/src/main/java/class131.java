@@ -52,14 +52,8 @@ public enum class131 implements class345 {
    field1622(8, 8);
 
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 1178244865
-   )
    final int field1617;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -1485278965
-   )
    final int field1611;
 
    class131(int var3, int var4) {

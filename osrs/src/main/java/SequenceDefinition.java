@@ -36,21 +36,12 @@ public class SequenceDefinition extends DualNode {
    )
    public static EvictingDualNodeHashTable SequenceDefinition_cachedModel = new EvictingDualNodeHashTable(100);
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -407314397
-   )
    public int SequenceDefinition_cachedModelId = -1;
    @ObfuscatedName("u")
    public Map field2283;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 1363129383
-   )
    int field2299 = 0;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 882940487
-   )
    int field2285 = 0;
    @ObfuscatedName("g")
    public int[] frameIds;
@@ -61,9 +52,6 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedName("n")
    public int[] soundEffects;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 2135707529
-   )
    public int frameCount = -1;
    @ObfuscatedName("a")
    int[] field2291;
@@ -72,41 +60,20 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedName("l")
    public boolean field2281 = false;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -1831885199
-   )
    public int field2300 = 5;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = 1340317649
-   )
    public int shield = -1;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 1154134933
-   )
    public int weapon = -1;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = 1794667521
-   )
    public int field2301 = 99;
    @ObfuscatedName("y")
    public boolean field2298 = false;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = -1085888001
-   )
    public int field2290 = -1;
    @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = -746157259
-   )
    public int field2284 = -1;
    @ObfuscatedName("as")
-   @ObfuscatedGetter(
-      intValue = 1460955579
-   )
    public int field2276 = 2;
 
    @ObfuscatedName("v")
