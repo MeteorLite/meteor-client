@@ -642,6 +642,12 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
+    public int getVarpValue(VarPlayer varp) {
+        return getVarpValue(varp.getId());
+    }
+
+    @Inject
+    @Override
     public boolean isPrayerActive(Prayer prayer) {
         return getVarbitValue(prayer.getVarbit()) == 1;
     }

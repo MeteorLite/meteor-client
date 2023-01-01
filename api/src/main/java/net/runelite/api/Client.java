@@ -952,6 +952,8 @@ public interface Client extends GameEngine
 
 	int getVarpValue(int i);
 
+	int getVarpValue(VarPlayer varp);
+
 	/**
 	 * Sets the value of a given variable.
 	 *
