@@ -11,10 +11,12 @@ import meteor.api.items.Items
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.plugins.scriptcreator.script.api.Item
 import meteor.rs.ClientThread
 import meteor.util.HotkeyListener
+import meteor.util.WeaponMap
+import meteor.util.WeaponStyle
 import net.runelite.api.*
+import net.runelite.api.kit.KitType
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
@@ -28,8 +30,49 @@ class PvPKeys : Plugin() {
     private val keyManager = KeyManager
     val config = configuration<PvPKeysConfig>()
     var executor: ExecutorService? = null
+    private var lastEnemy: Player? = null
+    private var autoPrayEnabled = false
+
+    private fun activatePrayer(prayer: Prayer) {
+        if (prayer == null) {
+            return
+        }
+
+        //check if prayer is already active this tick
+        if (client.isPrayerActive(prayer)) {
+            return
+        }
+
+        var widgetInfo = prayer.widgetInfo ?: return
+        var prayerWidget = client.getWidget(widgetInfo) ?: return
+
+        if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
+            return
+        }
+        ClientThread.invoke {
+            client.invokeMenuAction("Activate", prayerWidget.name, 1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id)
+        }
+    }
+
+    private fun doAutoSwapPrayers() {
+        try {
+            if (lastEnemy == null) {
+                return
+            }
+            val lastEnemyAppearance: PlayerComposition = lastEnemy?.playerComposition ?: return
+            when (WeaponMap.StyleMap[lastEnemyAppearance.getEquipmentId(KitType.WEAPON)]) {
+                WeaponStyle.MELEE -> activatePrayer(Prayer.PROTECT_FROM_MELEE)
+                WeaponStyle.RANGE -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+                WeaponStyle.MAGIC -> activatePrayer(Prayer.PROTECT_FROM_MAGIC)
+                else -> {}
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     val meleeGear: MutableList<String>
-        get() = mutableListOf(*config.MeleeIDs()!! .split(",").toTypedArray())
+        get() = mutableListOf(*config.MeleeIDs()!!.split(",").toTypedArray())
 
     val mageGear: MutableList<String>
         get() = mutableListOf(*config.MageIDs()!!.split(",").toTypedArray())
@@ -38,9 +81,7 @@ class PvPKeys : Plugin() {
         get() = mutableListOf(*config.RangeIDs()!!.split(",").toTypedArray())
 
 
-
     override fun onStart() {
-
         keyManager.registerKeyListener(magepray, this.javaClass)
         keyManager.registerKeyListener(rangepray, this.javaClass)
         keyManager.registerKeyListener(meleepray, this.javaClass)
@@ -58,11 +99,14 @@ class PvPKeys : Plugin() {
         keyManager.registerKeyListener(rigour, this.javaClass)
         keyManager.registerKeyListener(piety, this.javaClass)
         keyManager.registerKeyListener(lasttarget, this.javaClass)
-
+        keyManager.registerKeyListener(ultimatestrength, this.javaClass)
+        keyManager.registerKeyListener(eagleye, this.javaClass)
+        keyManager.registerKeyListener(mysticmight, this.javaClass)
+        keyManager.registerKeyListener(incrediblereflexes, this.javaClass)
+        keyManager.registerKeyListener(toggleAutoprayer, this.javaClass)
     }
 
     override fun onStop() {
-
         keyManager.unregisterKeyListener(magepray)
         keyManager.unregisterKeyListener(rangepray)
         keyManager.unregisterKeyListener(meleepray)
@@ -80,47 +124,65 @@ class PvPKeys : Plugin() {
         keyManager.unregisterKeyListener(rigour)
         keyManager.unregisterKeyListener(piety)
         keyManager.unregisterKeyListener(lasttarget)
-
+        keyManager.unregisterKeyListener(ultimatestrength)
+        keyManager.unregisterKeyListener(eagleye)
+        keyManager.unregisterKeyListener(mysticmight)
+        keyManager.unregisterKeyListener(incrediblereflexes)
+        keyManager.unregisterKeyListener(toggleAutoprayer)
     }
 
-    private val magepray: HotkeyListener = object : HotkeyListener( { config.Magepray() }) {
+    private val toggleAutoprayer: HotkeyListener = object : HotkeyListener({ config.AutoPray() }) {
+        override fun hotkeyPressed() {
+            autoPrayEnabled = !autoPrayEnabled
+            client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Autoprayer ${if (autoPrayEnabled) "enabled" else "disabled"}", null)
+        }
+    }
+
+
+    private val magepray: HotkeyListener = object : HotkeyListener({ config.Magepray() }) {
         override fun hotkeyPressed() {
             Prayers.toggle(Prayer.PROTECT_FROM_MAGIC)
         }
     }
-    private val rangepray: HotkeyListener = object : HotkeyListener( { config.Rangepray() }) {
+
+    private val rangepray: HotkeyListener = object : HotkeyListener({ config.Rangepray() }) {
         override fun hotkeyPressed() {
             Prayers.toggle(Prayer.PROTECT_FROM_MISSILES)
         }
     }
-    private val meleepray: HotkeyListener = object : HotkeyListener( { config.Meleepray() }) {
+
+    private val meleepray: HotkeyListener = object : HotkeyListener({ config.Meleepray() }) {
         override fun hotkeyPressed() {
             Prayers.toggle(Prayer.PROTECT_FROM_MELEE)
         }
     }
-    private val smite: HotkeyListener = object : HotkeyListener( { config.Smite() }) {
+
+    private val smite: HotkeyListener = object : HotkeyListener({ config.Smite() }) {
         override fun hotkeyPressed() {
             Prayers.toggle(Prayer.SMITE)
         }
     }
-    private val brew: HotkeyListener = object : HotkeyListener( { config.Brew() }) {
+
+    private val brew: HotkeyListener = object : HotkeyListener({ config.Brew() }) {
         override fun hotkeyPressed() {
             if (Items.getFirst(6691, 6689, 6687, 6685) != null) {
                 Items.getFirst(6691, 6689, 6687, 6685)?.interact(0)
             }
         }
     }
-    private val restore: HotkeyListener = object : HotkeyListener( { config.Restore() }) {
+
+    private val restore: HotkeyListener = object : HotkeyListener({ config.Restore() }) {
         override fun hotkeyPressed() {
             Items.getFirst(3030, 3028, 3026, 3024)?.interact(0)
-
         }
     }
-    private val quickpray: HotkeyListener = object : HotkeyListener( { config.Quickpray() }) {
+
+    private val quickpray: HotkeyListener = object : HotkeyListener({ config.Quickpray() }) {
         override fun hotkeyPressed() {
             Prayers.toggleQuickPrayer(!Prayers.isQuickPrayerEnabled())
         }
     }
+
     private val magegear: HotkeyListener = object : HotkeyListener({ config.Magegear() }) {
         override fun hotkeyPressed() {
 
@@ -135,23 +197,23 @@ class PvPKeys : Plugin() {
     private val meleegear: HotkeyListener = object : HotkeyListener({ config.Meleegear() }) {
         override fun hotkeyPressed() {
             ClientThread.invokeLater {
-
                 meleeGear.forEach {
                     Items.getFirst(it)?.interact(2)
-
                 }
             }
         }
     }
+
     private val rangegear: HotkeyListener = object : HotkeyListener({ config.Rangegear() }) {
         override fun hotkeyPressed() {
             ClientThread.invokeLater {
                 rangeGear.forEach {
-                    Item first it interact 2
+                    Items.getFirst(it)?.interact(2)
                 }
             }
         }
     }
+
     private val icebarrage: HotkeyListener = object : HotkeyListener({ config.Icebarrage() }) {
         override fun hotkeyPressed() {
             Magic.selectSpell(Ancient.ICE_BARRAGE)
@@ -160,7 +222,8 @@ class PvPKeys : Plugin() {
             }
         }
     }
-    private val iceblitz: HotkeyListener = object : HotkeyListener( { config.Iceblitz() }) {
+
+    private val iceblitz: HotkeyListener = object : HotkeyListener({ config.Iceblitz() }) {
         override fun hotkeyPressed() {
             Magic.selectSpell(Ancient.ICE_BLITZ)
             if (target != null) {
@@ -168,7 +231,8 @@ class PvPKeys : Plugin() {
             }
         }
     }
-    private val bloodblitz: HotkeyListener = object : HotkeyListener( { config.Bloodblitz() }) {
+
+    private val bloodblitz: HotkeyListener = object : HotkeyListener({ config.Bloodblitz() }) {
         override fun hotkeyPressed() {
             Magic.selectSpell(Ancient.BLOOD_BLITZ)
             if (target != null) {
@@ -176,22 +240,50 @@ class PvPKeys : Plugin() {
             }
         }
     }
-    private val augury: HotkeyListener = object : HotkeyListener( { config.Augury() }) {
+
+    private val augury: HotkeyListener = object : HotkeyListener({ config.Augury() }) {
         override fun hotkeyPressed() {
             Prayers.toggle(Prayer.AUGURY)
         }
     }
-    private val rigour: HotkeyListener = object : HotkeyListener( { config.Rigour() }) {
+
+    private val rigour: HotkeyListener = object : HotkeyListener({ config.Rigour() }) {
         override fun hotkeyPressed() {
             Prayers.toggle(Prayer.RIGOUR)
         }
     }
-    private val piety: HotkeyListener = object : HotkeyListener( { config.Piety() }) {
+
+    private val piety: HotkeyListener = object : HotkeyListener({ config.Piety() }) {
         override fun hotkeyPressed() {
             Prayers.toggle(Prayer.PIETY)
         }
     }
-    private val lasttarget: HotkeyListener = object : HotkeyListener( { config.Lasttarget() }) {
+
+    private val eagleye: HotkeyListener = object : HotkeyListener({ config.Eagleyye() }) {
+        override fun hotkeyPressed() {
+            Prayers.toggle(Prayer.EAGLE_EYE)
+        }
+    }
+
+    private val incrediblereflexes: HotkeyListener = object : HotkeyListener({ config.Incrediblereflexes() }) {
+        override fun hotkeyPressed() {
+            Prayers.toggle(Prayer.INCREDIBLE_REFLEXES)
+        }
+    }
+
+    private val ultimatestrength: HotkeyListener = object : HotkeyListener({ config.Ultimatestrength() }) {
+        override fun hotkeyPressed() {
+            Prayers.toggle(Prayer.ULTIMATE_STRENGTH)
+        }
+    }
+
+    private val mysticmight: HotkeyListener = object : HotkeyListener({ config.Mysticmight() }) {
+        override fun hotkeyPressed() {
+            Prayers.toggle(Prayer.MYSTIC_MIGHT)
+        }
+    }
+
+    private val lasttarget: HotkeyListener = object : HotkeyListener({ config.Lasttarget() }) {
         override fun hotkeyPressed() {
             target as Player
             target!!.interact("Attack")
@@ -199,20 +291,15 @@ class PvPKeys : Plugin() {
     }
 
     override fun onClientTick(it: ClientTick) {
-        val gear = client.getWidget(WidgetInfo.EQUIPMENT)?.bounds
+        val gear = client.getWidget(WidgetInfo.EQUIPMENT.id)
         val mousePoint = client.mouseCanvasPosition
-        if (gear != null && gear.contains(mousePoint.x,mousePoint.y)) {
-                client.insertMenuItem(
-                    "<col=00FFFF>Copy Gear</col>",
-                    "",
-                    10000000,
-                    100000,
-                    0,
-                    0,
-                    false
-                )
+        if (gear != null) {
+            if (gear.bounds.contains(mousePoint.x, mousePoint.y)) client.insertMenuItem("<col=00FFFF>Copy Gear</col>", "", 10000000, 100000, 0, 0, false)
         }
-
+        if (client.gameState != GameState.LOGGED_IN || !autoPrayEnabled || lastEnemy?.interacting == null) {
+            return
+        }
+        doAutoSwapPrayers()
     }
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
@@ -231,9 +318,18 @@ class PvPKeys : Plugin() {
     }
 
     override fun onInteractingChanged(it: InteractingChanged) {
-        if (it.source === client.localPlayer) {
-            if (it.target != null) {
-                target = it.target
+        if (it.source != client.localPlayer || client.gameState != GameState.LOGGED_IN) {
+            return
+        }
+        if (it.target != null) {
+            target = it.target
+        }
+        val localPlayer = client.localPlayer
+        val players = client.players
+
+        for (player in players) {
+            if (localPlayer != null && player === localPlayer.interacting) {
+                lastEnemy = player
             }
         }
     }
