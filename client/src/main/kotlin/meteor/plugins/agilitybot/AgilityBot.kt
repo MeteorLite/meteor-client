@@ -39,7 +39,7 @@ class AgilityBot : Plugin() {
             return
         }
         val obs = if (obstacle.id != 0) Objects.getFirst(obstacle.id)
-        else Objects.getAll(obstacle.name)?.firstOrNull { it.hasAction(obstacle.action) == true }
+        else Objects.getAll(obstacle.name)?.firstOrNull { it.hasAction(obstacle.action) }
 
         if(Loots.exists("Mark of grace")){
             Loots.getFirst("Mark of grace")?.interact("Take")

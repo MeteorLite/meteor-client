@@ -109,7 +109,7 @@ interface TileItem : Renderable {
         }.collect(Collectors.toList())
     }
 
-    fun interact(action: String) {
+    infix fun interact(action: String) {
         if (getActions() == null) {
             return
         }

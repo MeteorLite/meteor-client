@@ -13,7 +13,20 @@ val majorRelease by rootProject.extra { "1.7" }
 val release by rootProject.extra { "2" }
 group = "meteor"
 version = "${majorRelease.split(".")[0]}.${majorRelease.split(".")[1]}.$release"
+publishing {
+    repositories {
+        mavenLocal()
+    }
 
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = rootProject.group.toString()
+            artifactId = project.name
+            version = rootProject.project.version.toString()
+            from(components["java"])
+        }
+    }
+}
 repositories {
     mavenLocal()
     maven {url = uri("https://androidx.dev/storage/compose-compiler/repository")}

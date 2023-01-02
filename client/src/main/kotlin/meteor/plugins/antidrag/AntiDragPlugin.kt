@@ -30,7 +30,7 @@ class AntiDragPlugin : Plugin() {
     private val keyManager = KeyManager
     private var toggleDrag = false
 
-    private val toggleListener: HotkeyListener = object : HotkeyListener(Supplier{config.key()} ) {
+    private val toggleListener: HotkeyListener = object : HotkeyListener({config.key()} ) {
         override fun hotkeyPressed() {
             toggleDrag = !toggleDrag
             if (toggleDrag) {
@@ -44,7 +44,7 @@ class AntiDragPlugin : Plugin() {
             }
         }
     }
-    private val holdListener: HotkeyListener = object : HotkeyListener(Supplier { config.key() }) {
+    private val holdListener: HotkeyListener = object : HotkeyListener({ config.key() }) {
         override fun hotkeyPressed() {
             if (config.overlay()) {
                 overlayManager.add(overlay)

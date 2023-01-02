@@ -76,7 +76,7 @@ class AutoClickerPlugin : Plugin() {
         }
     }
 
-    private val hotkeyListener: HotkeyListener = object : HotkeyListener(Supplier { config.toggle() }) {
+    private val hotkeyListener: HotkeyListener = object : HotkeyListener({ config.toggle() }) {
         override fun hotkeyPressed() {
             run = !run
             if (!run) {

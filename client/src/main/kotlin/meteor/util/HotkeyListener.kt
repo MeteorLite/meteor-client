@@ -24,15 +24,13 @@
  */
 package meteor.util
 
-import com.google.common.base.Supplier
-
+import kotlinx.coroutines.runBlocking
 import meteor.config.legacy.Keybind
 import meteor.config.legacy.Keybind.Companion.getModifierForKeyCode
 import meteor.input.KeyListener
-import meteor.rs.ClientThread
 import java.awt.event.KeyEvent
 
-open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener {
+open class HotkeyListener(private val keybind: suspend () -> Keybind) : KeyListener {
     private var isPressed = false
     private var isConsumingTyped = false
 
@@ -44,26 +42,26 @@ open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener 
     }
 
     override fun keyPressed(e: KeyEvent) {
+        runBlocking {
+                if (keybind().matches(e)) {
+                    val wasPressed = isPressed
+                    isPressed = true
+                    if (!wasPressed) {
 
-        ClientThread.invoke {
-            if (keybind.get().matches(e)) {
-                val wasPressed = isPressed
-                isPressed = true
-                if (!wasPressed) {
-                    hotkeyPressed()
+                        hotkeyPressed()
+                    }
+                    if (getModifierForKeyCode(e.keyCode) == null) {
+                        isConsumingTyped = true
+                        // Only consume non modifier keys
+                        e.consume()
+                    }
                 }
-                if (getModifierForKeyCode(e.keyCode) == null) {
-                    isConsumingTyped = true
-                    // Only consume non modifier keys
-                    e.consume()
-                }
-            }
         }
     }
 
     override fun keyReleased(e: KeyEvent) {
-        ClientThread.invoke {
-            if (keybind.get().matches(e)) {
+        runBlocking {
+            if (keybind().matches(e)) {
                 if (isPressed) {
                     hotkeyReleased()
                 }
@@ -71,6 +69,7 @@ open class HotkeyListener(private val keybind: Supplier<Keybind>) : KeyListener 
                 isConsumingTyped = false
             }
         }
+
     }
 
     protected open fun hotkeyPressed() {

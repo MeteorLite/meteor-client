@@ -131,7 +131,7 @@ fun plugins() {
                         }) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-                            modifier = Modifier.fillMaxWidth(0.70f).height(32.dp).background(background)
+                            modifier = Modifier.fillMaxWidth(0.55f).height(32.dp).background(background)
                         ) {
 
                             Text(

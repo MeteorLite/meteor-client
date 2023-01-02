@@ -1,10 +1,9 @@
 package meteor.plugins.pvpkeys
 
-import com.godaddy.android.colorpicker.HsvColor
-import meteor.config.legacy.ModifierlessKeybind
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
 import meteor.config.legacy.ConfigItem
+import meteor.config.legacy.ModifierlessKeybind
 import java.awt.event.KeyEvent
 
 @ConfigGroup("pvpkeys")
@@ -12,11 +11,6 @@ interface PvPKeysConfig : Config {
     @ConfigItem(keyName = "AutoPray", name = "Auto prayer vs player", description = "Hotkey to enable/disable auto prayer", position = 3)
     fun AutoPray(): ModifierlessKeybind {
         return ModifierlessKeybind(KeyEvent.VK_F, KeyEvent.KEY_PRESSED)
-    }
-
-    @ConfigItem(keyName = "color", name = "Color", description = "color shit")
-    fun color(): HsvColor {
-        return HsvColor.DEFAULT
     }
 
     @ConfigItem(keyName = "Magepray", name = "Toggle prot mage", description = "", position = 4)
