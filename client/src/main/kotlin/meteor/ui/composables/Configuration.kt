@@ -59,7 +59,7 @@ fun configPanel() {
 fun configs(){
     LazyColumn(
         horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
-        modifier = Modifier.width(300.dp).fillMaxHeight().background(background )
+        modifier = Modifier.width(300.dp).fillMaxHeight().background(background ).padding(start = 4.dp)
     ) {
         titleItems()
         sectionItems()

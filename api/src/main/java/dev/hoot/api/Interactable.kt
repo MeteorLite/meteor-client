@@ -3,8 +3,6 @@ package dev.hoot.api
 
 import dev.hoot.api.events.AutomatedMenu
 import net.runelite.api.Client
-import net.runelite.api.Point
-import java.util.*
 
 interface Interactable {
     companion object{
@@ -14,16 +12,16 @@ interface Interactable {
     val clickPoint: java.awt.Point
     fun getActionOpcode(action: Int): Int
     val rawActions: Array<String?>?
-    fun interact(predicate: (String)-> Boolean) {
-        val raw = rawActions
-        if (raw != null) {
-            for (i in raw.indices) {
-                if (raw[i]?.let { predicate(it) } == true) {
-                    interact(i)
-                    return
-                }
-            }
+    infix fun interact(actionPredicate: (String) -> Boolean) {
+        val actions = ArrayList<String>()
+        this.rawActions?.forEach {
+            if (it == null) actions.add("null") else actions.add(it)
         }
+        val index = actions.indexOfFirst(actionPredicate)
+        if (index == -1) {
+            return
+        }
+        interact(index)
     }
 
     infix fun interact(action: String) {
@@ -41,14 +39,13 @@ interface Interactable {
    infix fun interact(index: Int)
     fun interact(index: Int, opcode: Int)
     fun interact(identifier: Int, opcode: Int, param0: Int, param1: Int)
-    fun hasAction(vararg actions: String): Boolean? {
+    fun hasAction(vararg actions: String): Boolean {
         val raw = this.rawActions
-            return if (actions.isEmpty()) {
-                raw?.any { it: String? -> Objects.nonNull(it) }
-            } else actions.any {
-                actions.toList().contains(it)
-            }
-
+        return if (actions.isEmpty()) {
+            raw?.any { it: String? -> it != null } ?: false
+        } else actions.any {
+            raw?.contains(it) ?: false
+        }
     }
 
     fun getMenu(actionIndex: Int): AutomatedMenu?

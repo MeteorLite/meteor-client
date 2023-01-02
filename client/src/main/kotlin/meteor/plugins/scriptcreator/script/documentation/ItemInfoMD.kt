@@ -1,7 +1,6 @@
 package meteor.plugins.scriptcreator.script.documentation
 
 
-
 val itemInfoMD = """
 ## `Item` Api
 

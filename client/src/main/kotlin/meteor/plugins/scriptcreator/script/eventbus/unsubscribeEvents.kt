@@ -1,4 +1,5 @@
 package meteor.plugins.scriptcreator.script.eventbus
+
 fun unsubscribeScript() {
     onGameTick = {}
     onNpcLootReceived = {}

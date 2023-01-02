@@ -596,13 +596,13 @@ class GauntletExtendedPlugin : Plugin() {
         )
     }
     private val eat: HotkeyListener =
-        object : HotkeyListener(Supplier { config.eat() }) {
+        object : HotkeyListener({ config.eat() }) {
             override fun hotkeyPressed() {
                 Items.getFirst(ItemID.PADDLEFISH,ItemID.CRYSTAL_PADDLEFISH, ItemID.CORRUPTED_PADDLEFISH)?.eat()
             }
         }
     private val drink: HotkeyListener =
-        object : HotkeyListener(Supplier { config.drink() }) {
+        object : HotkeyListener({ config.drink() }) {
             override fun hotkeyPressed() {
                 Items.getFirst(
                     ItemID.EGNIOL_POTION_1,

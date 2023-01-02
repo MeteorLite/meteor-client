@@ -1,6 +1,11 @@
+
+
+
 plugins {
     kotlin("jvm")
     java
+    `maven-publish`
+
 }
 
 group = "org.meteorlite"
@@ -9,7 +14,20 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
+publishing {
+    repositories {
+        mavenLocal()
+    }
 
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = rootProject.group.toString()
+            artifactId = project.name
+            version = rootProject.project.version.toString()
+            from(components["java"])
+        }
+    }
+}
 dependencies {
     val coroutinesVersion = "1.6.4"
     /** Kotlin --------------------------------------------------------- */

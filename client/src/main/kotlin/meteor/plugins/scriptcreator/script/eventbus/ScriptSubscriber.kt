@@ -1,7 +1,7 @@
 package meteor.plugins.scriptcreator.script.eventbus
 
-import dev.hoot.api.events.MenuActionProcessed
 import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.events.MenuActionProcessed
 import dev.hoot.api.events.PacketSent
 import eventbus.Events
 import eventbus.events.*
@@ -11,7 +11,7 @@ import meteor.events.PlayerLootReceived
 import meteor.events.PluginChanged
 import meteor.plugins.Plugin
 
-open class ScriptSubscriber: Plugin() {
+open class ScriptSubscriber : Plugin() {
     open fun subscribeScript() {
 
         subscribeEvent<MenuShouldLeftClick>(Events.MENU_SHOULD_LEFT_CLICK) {
@@ -28,11 +28,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<BeforeRender>(Events.BEFORE_RENDER) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onBeforeRender(
-                it
-            )
-        } }
+        subscribeEvent<BeforeRender>(Events.BEFORE_RENDER) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onBeforeRender(
+                    it
+                )
+            }
+        }
         subscribeEvent<BeforeMenuRender>(Events.BEFORE_MENU_RENDER) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onBeforeMenuRender(
@@ -62,26 +64,34 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<ClanMemberLeft>(Events.CLAN_MEMBER_LEFT) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onClanMemberLeft(
-                it
-            )
-        } }
-        subscribeEvent<ClientLoaded>(Events.CLIENT_LOADED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onClientLoaded(
-                it
-            )
-        } }
-        subscribeEvent<ClientTick>(Events.CLIENT_TICK) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onClientTick(
-                it
-            )
-        } }
-        subscribeEvent<ConfigChanged>(Events.CONFIG_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onConfigChanged(
-                it
-            )
-        } }
+        subscribeEvent<ClanMemberLeft>(Events.CLAN_MEMBER_LEFT) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onClanMemberLeft(
+                    it
+                )
+            }
+        }
+        subscribeEvent<ClientLoaded>(Events.CLIENT_LOADED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onClientLoaded(
+                    it
+                )
+            }
+        }
+        subscribeEvent<ClientTick>(Events.CLIENT_TICK) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onClientTick(
+                    it
+                )
+            }
+        }
+        subscribeEvent<ConfigChanged>(Events.CONFIG_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onConfigChanged(
+                    it
+                )
+            }
+        }
         subscribeEvent<DecorativeObjectChanged>(Events.DECORATIVE_OBJECT_CHANGED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onDecorativeObjectChanged(
@@ -124,11 +134,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<FocusChanged>(Events.FOCUS_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onFocusChanged(
-                it
-            )
-        } }
+        subscribeEvent<FocusChanged>(Events.FOCUS_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onFocusChanged(
+                    it
+                )
+            }
+        }
         subscribeEvent<GameObjectChanged>(Events.GAME_OBJECT_CHANGED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onGameObjectChanged(
@@ -223,16 +235,20 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<ItemDespawned>(Events.ITEM_DESPAWNED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onItemDespawned(
-                it
-            )
-        } }
-        subscribeEvent<ItemObtained>(Events.ITEM_OBTAINED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onItemObtained(
-                it
-            )
-        } }
+        subscribeEvent<ItemDespawned>(Events.ITEM_DESPAWNED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onItemDespawned(
+                    it
+                )
+            }
+        }
+        subscribeEvent<ItemObtained>(Events.ITEM_OBTAINED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onItemObtained(
+                    it
+                )
+            }
+        }
         subscribeEvent<ItemQuantityChanged>(Events.ITEM_QUANTITY_CHANGED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onItemQuantityChanged(
@@ -240,11 +256,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<ItemSpawned>(Events.ITEM_SPAWNED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onItemSpawned(
-                it
-            )
-        } }
+        subscribeEvent<ItemSpawned>(Events.ITEM_SPAWNED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onItemSpawned(
+                    it
+                )
+            }
+        }
         subscribeEvent<LoginStateChanged>(Events.LOGIN_STATE_CHANGED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onLoginStateChanged(
@@ -259,11 +277,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<MenuEntryAdded>(Events.MENU_ENTRY_ADDED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onMenuEntryAdded(
-                it
-            )
-        } }
+        subscribeEvent<MenuEntryAdded>(Events.MENU_ENTRY_ADDED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onMenuEntryAdded(
+                    it
+                )
+            }
+        }
         subscribeEvent<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) {
             executeIfListening {
                 if (it.menuEntry != null)
@@ -277,16 +297,20 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<NpcChanged>(Events.NPC_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onNpcChanged(
-                it
-            )
-        } }
-        subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onNpcDespawned(
-                it
-            )
-        } }
+        subscribeEvent<NpcChanged>(Events.NPC_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onNpcChanged(
+                    it
+                )
+            }
+        }
+        subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onNpcDespawned(
+                    it
+                )
+            }
+        }
         subscribeEvent<NpcLootReceived>(Events.NPC_LOOT_RECEIVED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onNpcLootReceived(
@@ -294,16 +318,20 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onNpcSpawned(
-                it
-            )
-        } }
-        subscribeEvent<AutomatedMenu>(Events.AUTOMATED_MENU) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onInvokeMenuAction(
-                it
-            )
-        } }
+        subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onNpcSpawned(
+                    it
+                )
+            }
+        }
+        subscribeEvent<AutomatedMenu>(Events.AUTOMATED_MENU) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onInvokeMenuAction(
+                    it
+                )
+            }
+        }
         subscribeEvent<OverheadTextChanged>(Events.OVERHEAD_TEXT_CHANGED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onOverheadTextChanged(
@@ -339,11 +367,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<PlayerSpawned>(Events.PLAYER_SPAWNED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onPlayerSpawned(
-                it
-            )
-        } }
+        subscribeEvent<PlayerSpawned>(Events.PLAYER_SPAWNED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onPlayerSpawned(
+                    it
+                )
+            }
+        }
         subscribeEvent<PlayerLootReceived>(Events.PLAYER_LOOT_RECEIVED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onPlayerLootReceived(
@@ -393,11 +423,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<ScriptPreFired>(Events.SCRIPT_PRE_FIRED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onScriptPreFired(
-                it
-            )
-        } }
+        subscribeEvent<ScriptPreFired>(Events.SCRIPT_PRE_FIRED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onScriptPreFired(
+                    it
+                )
+            }
+        }
         subscribeEvent<SoundEffectPlayed>(Events.SOUND_EFFECT_PLAYED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onSoundEffectPlayed(
@@ -405,16 +437,20 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<StatChanged>(Events.STAT_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onStatChanged(
-                it
-            )
-        } }
-        subscribeEvent<VarbitChanged>(Events.VARBIT_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onVarbitChanged(
-                it
-            )
-        } }
+        subscribeEvent<StatChanged>(Events.STAT_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onStatChanged(
+                    it
+                )
+            }
+        }
+        subscribeEvent<VarbitChanged>(Events.VARBIT_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onVarbitChanged(
+                    it
+                )
+            }
+        }
         subscribeEvent<WallObjectChanged>(Events.WALL_OBJECT_CHANGED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onWallObjectChanged(
@@ -443,11 +479,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<WidgetLoaded>(Events.WIDGET_LOADED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onWidgetLoaded(
-                it
-            )
-        } }
+        subscribeEvent<WidgetLoaded>(Events.WIDGET_LOADED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onWidgetLoaded(
+                    it
+                )
+            }
+        }
         subscribeEvent<WidgetPositioned>(Events.WIDGET_POSITIONED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onWidgetPositioned(
@@ -455,31 +493,41 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<WidgetPressed>(Events.WIDGET_PRESSED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onWidgetPressed(
-                it
-            )
-        } }
-        subscribeEvent<WorldListLoad>(Events.WORLD_LIST_LOAD) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onWorldListLoad(
-                it
-            )
-        } }
-        subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onNPCSpawned(
-                it
-            )
-        } }
-        subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onNPCDespawned(
-                it
-            )
-        } }
-        subscribeEvent<PluginChanged>(Events.PLUGIN_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onPluginChanged(
-                it
-            )
-        } }
+        subscribeEvent<WidgetPressed>(Events.WIDGET_PRESSED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onWidgetPressed(
+                    it
+                )
+            }
+        }
+        subscribeEvent<WorldListLoad>(Events.WORLD_LIST_LOAD) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onWorldListLoad(
+                    it
+                )
+            }
+        }
+        subscribeEvent<NpcSpawned>(Events.NPC_SPAWNED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onNPCSpawned(
+                    it
+                )
+            }
+        }
+        subscribeEvent<NpcDespawned>(Events.NPC_DESPAWNED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onNPCDespawned(
+                    it
+                )
+            }
+        }
+        subscribeEvent<PluginChanged>(Events.PLUGIN_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onPluginChanged(
+                    it
+                )
+            }
+        }
         subscribeEvent<InfoBoxMenuClicked>(meteor.events.Events.INFO_BOX_MENU_CLICKED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onInfoBoxMenuClicked(
@@ -494,22 +542,28 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onPacketSent(
-                it
-            )
-        } }
+        subscribeEvent<PacketSent>(Events.PACKET_SENT) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onPacketSent(
+                    it
+                )
+            }
+        }
 
-        subscribeEvent<PostHealthBar>(Events.POST_HEALTHBAR) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onPostHealthBar(
-                it
-            )
-        } }
-        subscribeEvent<GraphicChanged>(Events.GRAPHIC_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onGraphicChanged(
-                it
-            )
-        } }
+        subscribeEvent<PostHealthBar>(Events.POST_HEALTHBAR) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onPostHealthBar(
+                    it
+                )
+            }
+        }
+        subscribeEvent<GraphicChanged>(Events.GRAPHIC_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onGraphicChanged(
+                    it
+                )
+            }
+        }
         subscribeEvent<ProjectileSpawned>(Events.PROJECTILE_SPAWNED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onProjectileSpawned(
@@ -517,11 +571,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<WorldChanged>(Events.WORLD_CHANGED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onWorldChanged(
-                it
-            )
-        } }
+        subscribeEvent<WorldChanged>(Events.WORLD_CHANGED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onWorldChanged(
+                    it
+                )
+            }
+        }
         subscribeEvent<GrandExchangeSearched>(Events.GRAND_EXCHANGE_SEARCHED) {
             executeIfListening {
                 meteor.plugins.scriptcreator.script.eventbus.onGrandExchangeSearched(
@@ -529,11 +585,13 @@ open class ScriptSubscriber: Plugin() {
                 )
             }
         }
-        subscribeEvent<CheatEntered>(Events.CHEAT_ENTERED) { executeIfListening {
-            meteor.plugins.scriptcreator.script.eventbus.onCheatEntered(
-                it
-            )
-        } }
+        subscribeEvent<CheatEntered>(Events.CHEAT_ENTERED) {
+            executeIfListening {
+                meteor.plugins.scriptcreator.script.eventbus.onCheatEntered(
+                    it
+                )
+            }
+        }
     }
 
 }

@@ -143,11 +143,11 @@ class EntityHiderPlugin : Plugin() {
                     val newList: List<String> = Text.fromCSV(it.newValue)
                     val removed: List<String> = oldList.stream().filter { s: String -> !newList.contains(s) }
                         .collect(
-                            Collectors.toCollection(Supplier { ArrayList() })
+                            Collectors.toCollection({ ArrayList() })
                         )
                     val added: List<String> = newList.stream().filter { s: String -> !oldList.contains(s) }
                         .collect(
-                            Collectors.toCollection(Supplier { ArrayList() })
+                            Collectors.toCollection({ ArrayList() })
                         )
                     removed.forEach(Consumer { s: String? -> client.removeHiddenNpcName(s) })
                     added.forEach(Consumer { s: String? -> client.addHiddenNpcName(s) })
