@@ -210,6 +210,11 @@ public class NpcIndicatorsPlugin extends Plugin
 	}
 
 	@Override
+	public void onMenuOptionClicked(MenuOptionClicked it) {
+		tag(it.getMenuEntry());
+	}
+
+	@Override
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
 		final MenuEntry menuEntry = event.getMenuEntry();
@@ -241,16 +246,14 @@ public class NpcIndicatorsPlugin extends Plugin
 					.setOption(highlights.stream().anyMatch(npcName::equalsIgnoreCase) ? UNTAG_ALL : TAG_ALL)
 					.setTarget(event.getTarget())
 					.setIdentifier(event.getIdentifier())
-					.setType(MenuAction.RUNELITE)
-					.onClick(this::tag);
+					.setType(MenuAction.RUNELITE);
 			}
 
 			client.createMenuEntry(-1)
 				.setOption(npcTags.contains(npc.getIndex()) ? UNTAG : TAG)
 				.setTarget(event.getTarget())
 				.setIdentifier(event.getIdentifier())
-				.setType(MenuAction.RUNELITE)
-				.onClick(this::tag);
+				.setType(MenuAction.RUNELITE);
 		}
 		else
 		{
@@ -279,10 +282,8 @@ public class NpcIndicatorsPlugin extends Plugin
 		final NPC[] cachedNPCs = client.getCachedNPCs();
 		final NPC npc = cachedNPCs[id];
 
-		if (npc == null || npc.getName() == null)
-		{
+		if (npc == null)
 			return;
-		}
 
 		if (entry.getOption().equals(TAG) || entry.getOption().equals(UNTAG))
 		{
@@ -658,7 +659,7 @@ public class NpcIndicatorsPlugin extends Plugin
 		{
 			return false;
 		}
-
+		System.out.println("Should render");
 		return true;
 	}
 }
