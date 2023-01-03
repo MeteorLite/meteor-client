@@ -231,7 +231,7 @@ public class Walker
 			return false;
 		}
 
-		if (!Movement.isRunEnabled() && (Game.getClient().getEnergy() >= Rand.nextInt(MIN_ENERGY, MAX_MIN_ENERGY) || (local.getHealthScale() > -1 && Game.getClient().getServerEnergy() > 0)))
+		if (!Movement.isRunEnabled() && (Game.getClient().getEnergy() >= Rand.nextInt(MIN_ENERGY, MAX_MIN_ENERGY) || (local.getHealthScale() > -1 && Game.getClient().getEnergy() > 0)))
 		{
 			Movement.toggleRun();
 			Time.sleepUntil(Movement::isRunEnabled, 2000);
