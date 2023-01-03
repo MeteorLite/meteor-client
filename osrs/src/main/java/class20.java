@@ -1,6 +1,6 @@
 import java.io.IOException;
 import java.util.concurrent.Callable;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -212,8 +212,8 @@ public class class20 implements Callable {
    )
    static void method72(SequenceDefinition var0, int var1, int var2, int var3) {
       if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method563() != 0) {
-         if (var0.field1793 != null && var0.field1793.containsKey(var1)) {
-            int var4 = (Integer)var0.field1793.get(var1);
+         if (var0.animMayaFrameSounds != null && var0.animMayaFrameSounds.containsKey(var1)) {
+            int var4 = (Integer)var0.animMayaFrameSounds.get(var1);
             if (var4 != 0) {
                int var7 = var4 >> 8;
                int var8 = var4 >> 4 & 7;

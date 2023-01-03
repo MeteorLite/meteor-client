@@ -1,6 +1,6 @@
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -16,7 +16,7 @@ public class MilliClock extends Clock {
    @ObfuscatedName("v")
    int field1448 = 1;
    @ObfuscatedName("x")
-   long field1446 = Message.method344();
+   long field1446 = Message.clockNow();
    @ObfuscatedName("m")
    int field1447 = 0;
    @ObfuscatedName("q")
@@ -51,7 +51,7 @@ public class MilliClock extends Clock {
       int var4 = this.field1448;
       this.field1444 = 300;
       this.field1448 = 1;
-      this.field1446 = Message.method344();
+      this.field1446 = Message.clockNow();
       if (this.field1443[this.field1445] == 0L) {
          this.field1444 = var3;
          this.field1448 = var4;

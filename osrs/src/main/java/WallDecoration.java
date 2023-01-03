@@ -1,5 +1,5 @@
 import java.io.IOException;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -8,7 +8,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("WallDecoration")
 public final class WallDecoration {
    @ObfuscatedName("bz")
-   static int field2226;
+   static int param14;
    @ObfuscatedName("h")
    int z;
    @ObfuscatedName("e")
@@ -44,7 +44,7 @@ public final class WallDecoration {
       garbageValue = "-1929783827"
    )
    public static boolean method1297() {
-      long var0 = Message.method344();
+      long var0 = Message.clockNow();
       int var2 = (int)(var0 - NetCache.field3468);
       NetCache.field3468 = var0;
       if (var2 > 200) {

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -7,7 +6,7 @@ public class class133 extends class136 {
    @ObfuscatedName("f")
    static int field1285;
    @ObfuscatedName("bg")
-   static String field1284;
+   static String param9;
    @ObfuscatedName("id")
    static byte[][] regionLandArchives;
    @ObfuscatedName("h")

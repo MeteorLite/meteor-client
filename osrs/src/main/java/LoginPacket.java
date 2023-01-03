@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -47,7 +46,7 @@ public class LoginPacket implements class274 {
    @ObfuscatedSignature(
       descriptor = "Llw;"
    )
-   static StudioGame field2681;
+   static StudioGame gameStudio;
    @ObfuscatedName("f")
    public final int id;
 

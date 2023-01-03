@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -56,7 +55,7 @@ public enum class124 implements class345 {
    )
    static void method694(boolean var0) {
       byte var1 = 0;
-      boolean var2 = StructComposition.clientPreferences.method542() >= Client.field356;
+      boolean var2 = StructComposition.clientPreferences.method542() >= Client.param21;
       if (!var2) {
          var1 = 12;
       } else if (BuddyRankComparator.client.method355() || BuddyRankComparator.client.method356()) {

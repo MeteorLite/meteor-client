@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -149,7 +148,7 @@ public enum class413 implements class345 {
                   } else {
                      PacketBufferNode var6 = class136.getPacketBufferNode(ClientPacket.field2499, Client.packetWriter.isaacCipher);
                      var6.packetBuffer.writeShort(1 + class13.stringCp1252NullTerminatedByteSize(var14) + class13.stringCp1252NullTerminatedByteSize(var5));
-                     var6.packetBuffer.method2370(var8);
+                     var6.packetBuffer.writeByteS(var8);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var5);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var14);
                      Client.packetWriter.addNode(var6);

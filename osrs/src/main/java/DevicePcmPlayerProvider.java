@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -58,9 +57,9 @@ public class DevicePcmPlayerProvider implements class51 {
                int var12 = class155.localPlayer.y - var10 >> 7;
                PacketBufferNode var13 = class136.getPacketBufferNode(ClientPacket.field2481, Client.packetWriter.isaacCipher);
                var13.packetBuffer.writeByte(18);
-               var13.packetBuffer.method2370(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
-               var13.packetBuffer.method2386(var11 + class154.baseX);
-               var13.packetBuffer.writeIntME(var12 + class365.baseY);
+               var13.packetBuffer.writeByteS(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+               var13.packetBuffer.writeShortLE(var11 + class154.baseX);
+               var13.packetBuffer.writeShortA(var12 + class365.baseY);
                var13.packetBuffer.writeByte(var4);
                var13.packetBuffer.writeByte(var5);
                var13.packetBuffer.writeShort(Client.camAngleY);
@@ -125,9 +124,9 @@ public class DevicePcmPlayerProvider implements class51 {
       TileItem var8;
       if (class276.field2548 == var0) {
          var2 = var1.readUnsignedByte();
-         var3 = var1.method2376();
+         var3 = var1.readUnsignedShortA();
          var4 = var1.readInt();
-         var5 = var1.method2371();
+         var5 = var1.readUnsignedByteA();
          var6 = (var5 >> 4 & 7) + InvDefinition.field1464;
          var7 = (var5 & 7) + class125.field1224;
          if (var6 >= 0 && var7 >= 0 && var6 < 104 && var7 < 104) {
@@ -144,12 +143,12 @@ public class DevicePcmPlayerProvider implements class51 {
          }
 
       } else if (class276.field2543 == var0) {
-         var2 = var1.method2376();
+         var2 = var1.readUnsignedShortA();
          var3 = var1.readUnsignedByte();
-         var4 = var1.method2396();
+         var4 = var1.readUnsignedByteC();
          var5 = (var4 >> 4 & 7) + InvDefinition.field1464;
          var6 = (var4 & 7) + class125.field1224;
-         var7 = var1.method2376();
+         var7 = var1.readUnsignedShortA();
          if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
             var5 = var5 * 128 + 64;
             var6 = var6 * 128 + 64;
@@ -161,12 +160,12 @@ public class DevicePcmPlayerProvider implements class51 {
          var2 = var1.readUnsignedByte();
          var3 = (var2 >> 4 & 7) + InvDefinition.field1464;
          var4 = (var2 & 7) + class125.field1224;
-         var1.method2377();
-         var5 = var1.method2394();
-         var1.method2333();
+         var1.readUnsignedShortLEA();
+         var5 = var1.readUnsignedByteS();
+         var1.readUnsignedShortLE();
          var6 = var1.readInt();
-         var1.method2396();
-         var1.method2396();
+         var1.readUnsignedByteC();
+         var1.readUnsignedByteC();
          var7 = var1.readUnsignedShort();
          if (var3 >= 0 && var4 >= 0 && var3 < 104 && var4 < 104) {
             var8 = new TileItem();
@@ -193,18 +192,18 @@ public class DevicePcmPlayerProvider implements class51 {
          int var41;
          int var42;
          if (class276.field2554 == var0) {
-            var2 = var1.method2394() * 4;
+            var2 = var1.readUnsignedByteS() * 4;
             var3 = var1.readUnsignedByte();
             var4 = (var3 >> 4 & 7) + InvDefinition.field1464;
             var5 = (var3 & 7) + class125.field1224;
-            var6 = var1.method2376();
-            var7 = var1.method2376();
-            var31 = var1.method2371() * 4;
-            var9 = var1.method2394();
+            var6 = var1.readUnsignedShortA();
+            var7 = var1.readUnsignedShortA();
+            var31 = var1.readUnsignedByteA() * 4;
+            var9 = var1.readUnsignedByteS();
             var10 = var1.readUnsignedByte();
             var39 = var1.readShort();
-            var12 = var1.method2376();
-            var13 = var1.method2395();
+            var12 = var1.readUnsignedShortA();
+            var13 = var1.readByteS();
             var14 = var1.readByte();
             var41 = var13 + var4;
             var42 = var14 + var5;
@@ -219,15 +218,15 @@ public class DevicePcmPlayerProvider implements class51 {
             }
 
          } else if (class276.field2541 == var0) {
-            var2 = var1.method2396();
+            var2 = var1.readUnsignedByteC();
             var3 = var2 >> 2;
             var4 = var2 & 3;
             var5 = Client.field424[var3];
-            var6 = var1.method2396();
+            var6 = var1.readUnsignedByteC();
             var7 = (var6 >> 4 & 7) + InvDefinition.field1464;
             var31 = (var6 & 7) + class125.field1224;
-            var9 = var1.method2396();
-            var10 = var1.method2333();
+            var9 = var1.readUnsignedByteC();
+            var10 = var1.readUnsignedShortLE();
             if (var7 >= 0 && var31 >= 0 && var7 < 104 && var31 < 104) {
                class11.updatePendingSpawn(class383.Client_plane, var7, var31, var5, var10, var3, var4, var9, 0, -1);
             }
@@ -235,7 +234,7 @@ public class DevicePcmPlayerProvider implements class51 {
          } else {
             NodeDeque var32;
             if (class276.field2552 == var0) {
-               var2 = var1.method2371();
+               var2 = var1.readUnsignedByteA();
                var3 = (var2 >> 4 & 7) + InvDefinition.field1464;
                var4 = (var2 & 7) + class125.field1224;
                var5 = var1.readUnsignedShort();
@@ -259,11 +258,11 @@ public class DevicePcmPlayerProvider implements class51 {
                }
 
             } else if (class276.field2549 == var0) {
-               var2 = var1.method2371();
+               var2 = var1.readUnsignedByteA();
                var3 = var2 >> 2;
                var4 = var2 & 3;
                var5 = Client.field424[var3];
-               var6 = var1.method2371();
+               var6 = var1.readUnsignedByteA();
                var7 = (var6 >> 4 & 7) + InvDefinition.field1464;
                var31 = (var6 & 7) + class125.field1224;
                if (var7 >= 0 && var31 >= 0 && var7 < 104 && var31 < 104) {
@@ -273,11 +272,11 @@ public class DevicePcmPlayerProvider implements class51 {
             } else {
                if (class276.field2542 == var0) {
                   var2 = var1.readUnsignedByte();
-                  var3 = var1.method2377();
-                  var4 = var1.method2396();
+                  var3 = var1.readUnsignedShortLEA();
+                  var4 = var1.readUnsignedByteC();
                   var5 = (var4 >> 4 & 7) + InvDefinition.field1464;
                   var6 = (var4 & 7) + class125.field1224;
-                  var7 = var1.method2371();
+                  var7 = var1.readUnsignedByteA();
                   var31 = var7 >> 4 & 15;
                   var9 = var7 & 7;
                   if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
@@ -294,18 +293,18 @@ public class DevicePcmPlayerProvider implements class51 {
                }
 
                if (class276.field2547 == var0) {
-                  var2 = var1.method2396();
-                  var3 = var1.method2333();
-                  var4 = var1.method2376();
+                  var2 = var1.readUnsignedByteC();
+                  var3 = var1.readUnsignedShortLE();
+                  var4 = var1.readUnsignedShortA();
                   var5 = var1.readUnsignedByte() * 4;
-                  var6 = var1.method2396();
+                  var6 = var1.readUnsignedByteC();
                   var7 = (var6 >> 4 & 7) + InvDefinition.field1464;
                   var31 = (var6 & 7) + class125.field1224;
                   var9 = var1.readUnsignedByte() * 4;
-                  var10 = var1.method2333();
-                  var39 = var1.method2396();
-                  byte var40 = var1.method2395();
-                  var13 = var1.method2401();
+                  var10 = var1.readUnsignedShortLE();
+                  var39 = var1.readUnsignedByteC();
+                  byte var40 = var1.readByteS();
+                  var13 = var1.readByteC();
                   var42 = var1.method2348();
                   var41 = var13 + var7;
                   var12 = var40 + var31;
@@ -320,12 +319,12 @@ public class DevicePcmPlayerProvider implements class51 {
                   }
 
                } else if (class276.field2551 == var0) {
-                  var2 = var1.method2376();
-                  var3 = var1.method2377();
-                  var4 = var1.method2394();
+                  var2 = var1.readUnsignedShortA();
+                  var3 = var1.readUnsignedShortLEA();
+                  var4 = var1.readUnsignedByteS();
                   var5 = (var4 >> 4 & 7) + InvDefinition.field1464;
                   var6 = (var4 & 7) + class125.field1224;
-                  var7 = var1.method2333();
+                  var7 = var1.readUnsignedShortLE();
                   if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                      NodeDeque var37 = Client.groundItems[class383.Client_plane][var5][var6];
                      if (var37 != null) {
@@ -342,21 +341,21 @@ public class DevicePcmPlayerProvider implements class51 {
 
                } else {
                   if (class276.field2550 == var0) {
-                     var2 = var1.method2371();
+                     var2 = var1.readUnsignedByteA();
                      var3 = var2 >> 2;
                      var4 = var2 & 3;
                      var5 = Client.field424[var3];
-                     var6 = var1.method2333();
-                     var7 = var1.method2376();
-                     var31 = var1.method2371();
+                     var6 = var1.readUnsignedShortLE();
+                     var7 = var1.readUnsignedShortA();
+                     var31 = var1.readUnsignedByteA();
                      var9 = (var31 >> 4 & 7) + InvDefinition.field1464;
                      var10 = (var31 & 7) + class125.field1224;
-                     byte var11 = var1.method2395();
-                     var12 = var1.method2333();
-                     var13 = var1.method2395();
+                     byte var11 = var1.readByteS();
+                     var12 = var1.readUnsignedShortLE();
+                     var13 = var1.readByteS();
                      var14 = var1.readByte();
-                     byte var34 = var1.method2401();
-                     int var16 = var1.method2376();
+                     byte var34 = var1.readByteC();
+                     int var16 = var1.readUnsignedShortA();
                      Player var17;
                      if (var16 == Client.localPlayerIndex) {
                         var17 = class155.localPlayer;
@@ -415,11 +414,11 @@ public class DevicePcmPlayerProvider implements class51 {
                   }
 
                   if (class276.field2553 == var0) {
-                     var2 = var1.method2396();
+                     var2 = var1.readUnsignedByteC();
                      var3 = (var2 >> 4 & 7) + InvDefinition.field1464;
                      var4 = (var2 & 7) + class125.field1224;
-                     var5 = var1.method2377();
-                     var6 = var1.method2371();
+                     var5 = var1.readUnsignedShortLEA();
+                     var6 = var1.readUnsignedByteA();
                      var7 = var6 >> 2;
                      var31 = var6 & 3;
                      var9 = Client.field424[var7];
@@ -476,9 +475,9 @@ public class DevicePcmPlayerProvider implements class51 {
                      }
 
                   } else if (class276.field2544 == var0) {
-                     var2 = var1.method2376();
+                     var2 = var1.readUnsignedShortA();
                      var1.readUnsignedShort();
-                     var3 = var1.method2371();
+                     var3 = var1.readUnsignedByteA();
                      var4 = (var3 >> 4 & 7) + InvDefinition.field1464;
                      var5 = (var3 & 7) + class125.field1224;
                      if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
@@ -500,11 +499,11 @@ public class DevicePcmPlayerProvider implements class51 {
                      }
 
                   } else if (class276.field2545 == var0) {
-                     var2 = var1.method2377();
-                     var3 = var1.method2396();
+                     var2 = var1.readUnsignedShortLEA();
+                     var3 = var1.readUnsignedByteC();
                      var4 = (var3 >> 4 & 7) + InvDefinition.field1464;
                      var5 = (var3 & 7) + class125.field1224;
-                     var6 = var1.method2394();
+                     var6 = var1.readUnsignedByteS();
                      if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
                         var32 = Client.groundItems[class383.Client_plane][var4][var5];
                         if (var32 != null) {

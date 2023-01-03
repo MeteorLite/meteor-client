@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -35,7 +34,7 @@ public class class9 implements class345 {
    )
    static SpritePixels rightTitleSprite;
    @ObfuscatedName("bx")
-   static String field23;
+   static String param17;
    @ObfuscatedName("er")
    @ObfuscatedSignature(
       descriptor = "Lln;"

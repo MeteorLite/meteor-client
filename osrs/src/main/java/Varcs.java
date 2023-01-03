@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -133,7 +133,7 @@ public class Varcs {
       garbageValue = "103"
    )
    AccessFile getPreferencesFile(boolean var1) {
-      return class87.getPreferencesFile("2", LoginPacket.field2681.name, var1);
+      return class87.getPreferencesFile("2", LoginPacket.gameStudio.name, var1);
    }
 
    @ObfuscatedName("u")
@@ -195,7 +195,7 @@ public class Varcs {
       }
 
       this.unwrittenChanges = false;
-      this.field1119 = Message.method344();
+      this.field1119 = Message.clockNow();
    }
 
    @ObfuscatedName("b")
@@ -296,7 +296,7 @@ public class Varcs {
       garbageValue = "1650356121"
    )
    void tryWrite() {
-      if (this.unwrittenChanges && this.field1119 < Message.method344() - 60000L) {
+      if (this.unwrittenChanges && this.field1119 < Message.clockNow() - 60000L) {
          this.write();
       }
 

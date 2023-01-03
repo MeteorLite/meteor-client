@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -82,7 +81,7 @@ public class class159 extends class152 {
    static final void method837(String var0, int var1) {
       PacketBufferNode var2 = class136.getPacketBufferNode(ClientPacket.field2473, Client.packetWriter.isaacCipher);
       var2.packetBuffer.writeByte(class13.stringCp1252NullTerminatedByteSize(var0) + 1);
-      var2.packetBuffer.method2368(var1);
+      var2.packetBuffer.writeByteA(var1);
       var2.packetBuffer.writeStringCp1252NullTerminated(var0);
       Client.packetWriter.addNode(var2);
    }

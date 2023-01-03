@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -133,7 +132,7 @@ public final class Tile extends Node {
       AccessFile var0 = null;
 
       try {
-         var0 = class87.getPreferencesFile("", LoginPacket.field2681.name, true);
+         var0 = class87.getPreferencesFile("", LoginPacket.gameStudio.name, true);
          Buffer var1 = StructComposition.clientPreferences.toBuffer();
          var0.write(var1.array, 0, var1.offset);
       } catch (Exception var3) {

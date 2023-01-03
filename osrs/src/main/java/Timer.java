@@ -1,5 +1,5 @@
 import java.util.Iterator;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -36,7 +36,7 @@ public class Timer {
       garbageValue = "-26308"
    )
    public void method2005() {
-      this.field3650 = Message.method344();
+      this.field3650 = Message.clockNow();
    }
 
    @ObfuscatedName("e")
@@ -46,7 +46,7 @@ public class Timer {
    )
    public void method2000() {
       if (-1L != this.field3650) {
-         this.field3646 = Message.method344() - this.field3650;
+         this.field3646 = Message.clockNow() - this.field3650;
          this.field3650 = -1L;
       }
 
@@ -58,7 +58,7 @@ public class Timer {
       garbageValue = "4"
    )
    public void method2001(int var1) {
-      this.field3648 = Message.method344();
+      this.field3648 = Message.clockNow();
       this.field3645 = var1;
    }
 
@@ -69,7 +69,7 @@ public class Timer {
    )
    public void method2002() {
       if (this.field3648 != -1L) {
-         this.field3642 = Message.method344() - this.field3648;
+         this.field3642 = Message.clockNow() - this.field3648;
          this.field3648 = -1L;
       }
 

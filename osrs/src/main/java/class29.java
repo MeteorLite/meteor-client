@@ -1,5 +1,5 @@
 import java.net.URL;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -20,7 +20,7 @@ public class class29 {
    static boolean loadWorlds() {
       try {
          if (class1.World_request == null) {
-            class1.World_request = TaskHandler.urlRequester.request(new URL(class9.field23));
+            class1.World_request = TaskHandler.urlRequester.request(new URL(class9.param17));
          } else if (class1.World_request.isDone()) {
             byte[] var0 = class1.World_request.getResponse();
             Buffer var1 = new Buffer(var0);

@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -209,10 +209,10 @@ public class ObjTypeCustomisation {
 
          if (Client.gameState != 5) {
             if (-1L == Login.field745) {
-               Login.field745 = Message.method344() + 1000L;
+               Login.field745 = Message.clockNow() + 1000L;
             }
 
-            long var36 = Message.method344();
+            long var36 = Message.clockNow();
             if (HitSplatDefinition.method999() && Login.field758 == -1L) {
                Login.field758 = var36;
                if (Login.field758 > Login.field745) {

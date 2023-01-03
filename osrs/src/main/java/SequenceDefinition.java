@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -38,7 +38,7 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedName("r")
    public int SequenceDefinition_cachedModelId = -1;
    @ObfuscatedName("u")
-   public Map field1793;
+   public Map animMayaFrameSounds;
    @ObfuscatedName("b")
    int field1808 = 0;
    @ObfuscatedName("j")
@@ -167,12 +167,12 @@ public class SequenceDefinition extends DualNode {
          this.SequenceDefinition_cachedModelId = var1.readInt();
       } else if (var2 == 15) {
          var3 = var1.readUnsignedShort();
-         this.field1793 = new HashMap();
+         this.animMayaFrameSounds = new HashMap();
 
          for(var4 = 0; var4 < var3; ++var4) {
             int var5 = var1.readUnsignedShort();
             int var6 = var1.readMedium();
-            this.field1793.put(var5, var6);
+            this.animMayaFrameSounds.put(var5, var6);
          }
       } else if (var2 == 16) {
          this.field1808 = var1.readUnsignedShort();

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -68,7 +67,7 @@ public abstract class class262 implements class264 {
    )
    static void resumePauseWidget(int var0, int var1) {
       PacketBufferNode var2 = class136.getPacketBufferNode(ClientPacket.field2525, Client.packetWriter.isaacCipher);
-      var2.packetBuffer.writeIntME(var1);
+      var2.packetBuffer.writeShortA(var1);
       var2.packetBuffer.writeInt(var0);
       Client.packetWriter.addNode(var2);
    }

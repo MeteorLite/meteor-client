@@ -214,7 +214,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("class423", "pn");
 		put("class424", "px");
 		put("class425", "py");
-		put("class430", "pp");
 		put("class440", "pg");
 		put("class444", "qn");
 		put("class445", "qc");
@@ -343,6 +342,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("LoginPacket", "jh");
 		put("LoginScreenAnimation", "co");
 		put("LoginType", "qi");
+		put("LongNode", "pp");
 		put("MenuAction", "bs");
 		put("Message", "bv");
 		put("Messages", "da");

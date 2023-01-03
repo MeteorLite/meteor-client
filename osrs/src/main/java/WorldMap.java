@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -275,7 +275,7 @@ public class WorldMap {
       garbageValue = "2093168395"
    )
    public void method2197(int var1, int var2, boolean var3, boolean var4) {
-      long var5 = Message.method344();
+      long var5 = Message.clockNow();
       this.method2198(var1, var2, var4, var5);
       if (!this.hasTarget() && (var4 || var3) && !class213.method1174()) {
          if (var4) {
@@ -317,9 +317,9 @@ public class WorldMap {
                var11 = this.mouseCoord.y;
                var12 = this.mouseCoord.plane;
                PacketBufferNode var13 = class136.getPacketBufferNode(ClientPacket.field2504, Client.packetWriter.isaacCipher);
-               var13.packetBuffer.method2386(var11);
-               var13.packetBuffer.method2368(var12);
-               var13.packetBuffer.writeIntME(var15);
+               var13.packetBuffer.writeShortLE(var11);
+               var13.packetBuffer.writeByteA(var12);
+               var13.packetBuffer.writeShortA(var15);
                var13.packetBuffer.method2383(0);
                Client.packetWriter.addNode(var13);
             } else {
@@ -400,7 +400,7 @@ public class WorldMap {
    final void setWorldMapPosition(int var1, int var2, boolean var3) {
       this.centerTileX = var1;
       this.centerTileY = var2;
-      Message.method344();
+      Message.clockNow();
       if (var3) {
          this.method2201();
       }
@@ -608,7 +608,7 @@ public class WorldMap {
 
          int var8 = (int)Math.ceil((double)((float)var3 / this.zoom));
          int var9 = (int)Math.ceil((double)((float)var4 / this.zoom));
-         AbstractWorldMapData.field2362 = Client.field360 >= 209;
+         AbstractWorldMapData.field2362 = Client.param25 >= 209;
          this.worldMapManager.drawTiles(this.centerTileX - var8 / 2, this.centerTileY - var9 / 2, var8 / 2 + this.centerTileX, var9 / 2 + this.centerTileY, var1, var2, var3 + var1, var2 + var4);
          if (!this.elementsDisabled) {
             boolean var10 = false;

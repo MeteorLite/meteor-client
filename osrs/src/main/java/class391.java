@@ -4,7 +4,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("oy")
 public class class391 extends Link {
    @ObfuscatedName("h")
-   public int field3684 = (int)(Message.method344() / 1000L);
+   public int field3684 = (int)(Message.clockNow() / 1000L);
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lrp;"

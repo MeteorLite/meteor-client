@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -69,7 +68,7 @@ public class FriendSystem {
    )
    final void processFriendUpdates() {
       for(class391 var1 = (class391)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (class391)this.friendsList.friendLoginUpdates.previous()) {
-         if ((long)var1.field3684 < Message.method344() / 1000L - 5L) {
+         if ((long)var1.field3684 < Message.clockNow() / 1000L - 5L) {
             if (var1.field3686 > 0) {
                KitDefinition.addGameMessage(5, "", var1.field3685 + " has logged in.");
             }

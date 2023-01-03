@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -262,7 +261,7 @@ public final class Player extends Actor {
          this.actions[var10] = var1.readStringCp1252NullTerminated();
       }
 
-      if (Client.field360 > 208) {
+      if (Client.param25 > 208) {
          var3 = var1.readUnsignedByte();
       }
 

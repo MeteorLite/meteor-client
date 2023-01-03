@@ -4,14 +4,14 @@ import javax.net.ssl.SSLPeerUnverifiedException;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSessionContext;
 import javax.security.cert.X509Certificate;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("s")
 class class17 implements SSLSession {
    @ObfuscatedName("ge")
-   static String field51;
+   static String param11;
    @ObfuscatedName("hw")
    static int field50;
    // $FF: synthetic field
