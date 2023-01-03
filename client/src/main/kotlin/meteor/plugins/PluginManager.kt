@@ -201,7 +201,7 @@ object PluginManager {
         init<InfoPanelPlugin>()
         init<InterfaceStylesPlugin>()
         init<InteractHighlightPlugin>()
-        //init<InventoryTagsPlugin>()
+        init<InventoryTagsPlugin>()
         init<ItemChargePlugin>()
         init<ItemPricesPlugin>()
         init<ItemStatPlugin>()

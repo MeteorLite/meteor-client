@@ -70,6 +70,10 @@ public abstract class RuneLiteMenuEntryMixin implements RSRuneLiteMenuEntry
 	{
 		int param1 = this.getParam1();
 		int param0 = this.getParam0();
+		if (param0 > 28) {
+			// We are passing itemID instead of slot. hacky, and I should be ashamed. should be.
+			return null;
+		}
 		Widget widget = client.getWidget(param1);
 		if (widget == null) {
 			return null;

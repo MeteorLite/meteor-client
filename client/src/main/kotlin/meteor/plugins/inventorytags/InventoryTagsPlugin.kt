@@ -27,6 +27,7 @@ package meteor.plugins.inventorytags
 import com.google.common.base.MoreObjects
 import com.google.common.collect.ImmutableList
 import eventbus.events.ConfigChanged
+import eventbus.events.MenuOptionClicked
 import meteor.config.ConfigManager
 import meteor.menus.MenuManager
 import meteor.menus.WidgetMenuOption
@@ -84,7 +85,41 @@ class InventoryTagsPlugin : Plugin() {
         }
     }
 
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        val menuEntry = it.menuEntry
+
+        when (menuEntry.option) {
+
+            MENU_REMOVE, MENU_SET -> {
+                var itemId = -1
+                if (menuEntry.param1 == WidgetInfo.INVENTORY.id) {
+                    itemId = menuEntry.param0
+                }
+                else if (it.menuEntry.isItemOp) {
+                    itemId = it.menuEntry.itemId
+                }
+                onClick(it.menuEntry, itemId)
+            }
+
+            FIXED_INVENTORY_TAB_SAVE.menuOption,
+            RESIZABLE_INVENTORY_TAB_SAVE.menuOption,
+            RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE.menuOption -> save(it.menuEntry)
+
+            FIXED_INVENTORY_TAB_CONFIGURE.menuOption,
+            RESIZABLE_INVENTORY_TAB_CONFIGURE.menuOption,
+            RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_CONFIGURE.menuOption -> configure(it.menuEntry)
+        }
+    }
+
     override fun onMenuOpened(it: MenuOpened) {
+        var vanillaEntry: MenuEntry? = null
+        for (menu in it.menuEntries) {
+            if (menu.param0 != 0) {
+                vanillaEntry = menu
+                break
+            }
+        }
+        vanillaEntry!!
         val firstEntry = it.firstEntry
         if (firstEntry == null || !editorMode) {
             return
@@ -106,14 +141,17 @@ class InventoryTagsPlugin : Plugin() {
             client.createMenuEntry(-1)
                 .setOption(if (groupName == group) MENU_REMOVE else MENU_SET)
                 .setTarget(prependColorTag(groupName, MoreObjects.firstNonNull(color, Color.WHITE)))
+                .setParam0(itemId)
+                .setParam1(WidgetInfo.INVENTORY.id)
                 .setType(MenuAction.RUNELITE)
-                .onClick { e: MenuEntry ->
-                    if (e.option == MENU_SET) {
-                        setTag(itemId, groupName)
-                    } else {
-                        unsetTag(itemId)
-                    }
-                }
+        }
+    }
+
+    fun onClick(menuEntry: MenuEntry, itemId: Int) {
+        if (menuEntry.option == MENU_SET) {
+            setTag(itemId, getSetGroup(menuEntry))
+        } else {
+            unsetTag(itemId)
         }
     }
 
@@ -141,29 +179,13 @@ class InventoryTagsPlugin : Plugin() {
     private fun refreshInventoryMenuOptions() {
         removeInventoryMenuOptions()
         if (editorMode) {
-            MenuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_SAVE) { menuEntry: MenuEntry -> save(menuEntry) }
-            MenuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_SAVE) { menuEntry: MenuEntry -> save(menuEntry) }
-            MenuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE) { menuEntry: MenuEntry ->
-                save(
-                    menuEntry
-                )
-            }
+            MenuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_SAVE) {}
+            MenuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_SAVE) {}
+            MenuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE) {}
         } else {
-            MenuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_CONFIGURE) { menuEntry: MenuEntry ->
-                configure(
-                    menuEntry
-                )
-            }
-            MenuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_CONFIGURE) { menuEntry: MenuEntry ->
-                configure(
-                    menuEntry
-                )
-            }
-            MenuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_CONFIGURE) { menuEntry: MenuEntry ->
-                configure(
-                    menuEntry
-                )
-            }
+            MenuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_CONFIGURE) {}
+            MenuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_CONFIGURE) {}
+            MenuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_CONFIGURE) {}
         }
     }
 
@@ -177,6 +199,22 @@ class InventoryTagsPlugin : Plugin() {
         refreshInventoryMenuOptions()
     }
 
+    fun getSetGroup(menuEntry: MenuEntry) : String
+    {
+        if (menuEntry.target.endsWith(SETNAME_GROUP_1))
+            return SETNAME_GROUP_1
+        if (menuEntry.target.endsWith(SETNAME_GROUP_2))
+            return SETNAME_GROUP_2
+        if (menuEntry.target.endsWith(SETNAME_GROUP_3))
+            return SETNAME_GROUP_3
+        if (menuEntry.target.endsWith(SETNAME_GROUP_4))
+            return SETNAME_GROUP_4
+        if (menuEntry.target.endsWith(SETNAME_GROUP_5))
+            return SETNAME_GROUP_5
+        if (menuEntry.target.endsWith(SETNAME_GROUP_6))
+            return SETNAME_GROUP_6
+        return ""
+    }
     companion object {
         private const val ITEM_KEY_PREFIX = "item_"
         private const val SETNAME_GROUP_1 = "Group 1"
