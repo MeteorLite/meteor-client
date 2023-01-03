@@ -4,7 +4,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.LinkedList;
 import java.util.concurrent.ScheduledExecutorService;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.Certificate;
@@ -80,11 +80,11 @@ class class11 implements TlsAuthentication {
          Client.pendingSpawns.addFirst(var10);
       }
 
-      var10.field922 = var4;
-      var10.field924 = var5;
-      var10.field923 = var6;
-      var10.delay = var8;
-      var10.hitpoints = var9;
+      var10.id = var4;
+      var10.objectType = var5;
+      var10.rotation = var6;
+      var10.startCycle = var8;
+      var10.endCycle = var9;
       var10.method509(var7);
    }
 }

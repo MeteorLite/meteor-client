@@ -1,6 +1,6 @@
 import java.util.Comparator;
 import java.util.Map.Entry;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -158,6 +158,6 @@ class class18 implements Comparator {
    )
    static final void method64(int var0) {
       var0 = Math.min(Math.max(var0, 0), 127);
-      StructComposition.clientPreferences.method545(var0);
+      StructComposition.clientPreferences.setAreaSoundEffectsVolume(var0);
    }
 }

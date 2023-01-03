@@ -1,5 +1,5 @@
 import java.io.IOException;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -49,14 +49,14 @@ public class UserComparator5 extends AbstractUserComparator {
    static void method666(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
       if (Login.clearLoginScreen) {
          if (var3 == 4) {
-            class12.method42(4);
+            class12.setLoginIndex(4);
          }
 
       } else {
          if (var3 == 0) {
             class124.method694(var2);
          } else {
-            class12.method42(var3);
+            class12.setLoginIndex(var3);
          }
 
          Rasterizer2D.Rasterizer2D_clear();
@@ -105,7 +105,7 @@ public class UserComparator5 extends AbstractUserComparator {
          class141.otp = "";
          Login.field738 = true;
          Login.worldSelectOpen = false;
-         if (!StructComposition.clientPreferences.method546()) {
+         if (!StructComposition.clientPreferences.getTitleMusicDisabled()) {
             Archive var12 = class162.archive6;
             var9 = var12.getGroupId("scape main");
             int var10 = var12.getFileId(var9, "");

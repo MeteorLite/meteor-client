@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Locale;
 import javax.imageio.ImageIO;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -158,8 +158,8 @@ public class Language implements class345 {
       Players.Players_count = 0;
 
       for(int var0 = 0; var0 < 2048; ++var0) {
-         Players.field1087[var0] = null;
-         Players.field1094[var0] = MoveSpeed.WALK;
+         Players.cachedAppearanceBuffer[var0] = null;
+         Players.playerMovementSpeeds[var0] = MoveSpeed.WALK;
       }
 
    }

@@ -5,7 +5,7 @@ import java.security.cert.Certificate;
 import javax.net.ssl.HandshakeCompletedListener;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocket;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
@@ -177,7 +177,7 @@ class class12 extends SSLSocket {
       descriptor = "(II)V",
       garbageValue = "872547282"
    )
-   static void method42(int var0) {
+   static void setLoginIndex(int var0) {
       if (var0 != Login.loginIndex) {
          Login.loginIndex = var0;
       }

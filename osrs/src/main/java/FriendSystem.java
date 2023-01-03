@@ -157,7 +157,7 @@ public class FriendSystem {
       garbageValue = "-922602942"
    )
    final boolean friendsListIsFull() {
-      return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.field537 != 1;
+      return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.isMembers != 1;
    }
 
    @ObfuscatedName("i")
@@ -202,7 +202,7 @@ public class FriendSystem {
       garbageValue = "42588260"
    )
    final boolean canAddIgnore() {
-      return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.field537 != 1;
+      return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.isMembers != 1;
    }
 
    @ObfuscatedName("a")

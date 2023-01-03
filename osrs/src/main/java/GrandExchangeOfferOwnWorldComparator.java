@@ -1,5 +1,5 @@
 import java.util.Comparator;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -54,7 +54,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       garbageValue = "-1399136251"
    )
    static LoginPacket[] method352() {
-      return new LoginPacket[]{LoginPacket.field2679, LoginPacket.field2683, LoginPacket.field2680, LoginPacket.field2684, LoginPacket.field2682, LoginPacket.field2687};
+      return new LoginPacket[]{LoginPacket.field2679, LoginPacket.field2683, LoginPacket.NEW_LOGIN_CONNECTION, LoginPacket.field2684, LoginPacket.RECONNECT_LOGIN_CONNECTION, LoginPacket.field2687};
    }
 
    @ObfuscatedName("e")

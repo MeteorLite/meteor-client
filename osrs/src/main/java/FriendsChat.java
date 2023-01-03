@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -232,7 +231,7 @@ public class FriendsChat extends UserList {
       garbageValue = "-79"
    )
    static void method2036(SequenceDefinition var0, int var1, int var2, int var3) {
-      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method563() != 0) {
+      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.getAreaSoundEffectsVolume() != 0) {
          if (var0.soundEffects != null && var1 < var0.soundEffects.length) {
             int var4 = var0.soundEffects[var1];
             if (var4 != 0) {

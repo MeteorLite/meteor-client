@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -12,12 +11,12 @@ public class Players {
    @ObfuscatedSignature(
       descriptor = "[Lgs;"
    )
-   static MoveSpeed[] field1094 = new MoveSpeed[2048];
+   static MoveSpeed[] playerMovementSpeeds = new MoveSpeed[2048];
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "[Lqy;"
    )
-   static Buffer[] field1087 = new Buffer[2048];
+   static Buffer[] cachedAppearanceBuffer = new Buffer[2048];
    @ObfuscatedName("q")
    static int Players_count = 0;
    @ObfuscatedName("f")

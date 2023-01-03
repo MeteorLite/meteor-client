@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -81,6 +80,6 @@ public class class154 extends class136 {
       garbageValue = "0"
    )
    static long method823() {
-      return Client.field482;
+      return Client.playerUUID;
    }
 }

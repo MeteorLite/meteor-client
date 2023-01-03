@@ -1,7 +1,7 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -223,7 +223,7 @@ public class class7 {
    )
    static final void method15(int var0) {
       var0 = Math.min(Math.max(var0, 0), 127);
-      StructComposition.clientPreferences.updateSoundEffectVolume(var0);
+      StructComposition.clientPreferences.setSoundEffectVolume(var0);
    }
 
    @ObfuscatedName("la")

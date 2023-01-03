@@ -480,9 +480,9 @@ public final class Tiles {
                Login.Login_loadingText = "Loading textures - " + "0%";
                Login.Login_loadingPercent = 90;
             } else {
-               Skeleton.textureProvider = new TextureProvider(Frames.field2062, ClientPreferences.archive8, 20, StructComposition.clientPreferences.method541(), Client.isLowDetail ? 64 : 128);
+               Skeleton.textureProvider = new TextureProvider(Frames.field2062, ClientPreferences.archive8, 20, StructComposition.clientPreferences.getBrightness(), Client.isLowDetail ? 64 : 128);
                Rasterizer3D.Rasterizer3D_setTextureLoader(Skeleton.textureProvider);
-               Rasterizer3D.Rasterizer3D_setBrightness(StructComposition.clientPreferences.method541());
+               Rasterizer3D.Rasterizer3D_setBrightness(StructComposition.clientPreferences.getBrightness());
                Client.titleLoadingStage = 100;
             }
          } else if (Client.titleLoadingStage == 100) {

@@ -19,12 +19,12 @@ public class LoginPacket implements class274 {
    @ObfuscatedSignature(
       descriptor = "Ljh;"
    )
-   public static final LoginPacket field2680 = new LoginPacket(16, -2);
+   public static final LoginPacket NEW_LOGIN_CONNECTION = new LoginPacket(16, -2);
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Ljh;"
    )
-   public static final LoginPacket field2682 = new LoginPacket(18, -2);
+   public static final LoginPacket RECONNECT_LOGIN_CONNECTION = new LoginPacket(18, -2);
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Ljh;"

@@ -13,7 +13,7 @@ class class17 implements SSLSession {
    @ObfuscatedName("ge")
    static String param11;
    @ObfuscatedName("hw")
-   static int field50;
+   static int timeOfPreviousKeyPress;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Li;"
@@ -180,7 +180,7 @@ class class17 implements SSLSession {
                   PendingSpawn var21 = null;
 
                   for(PendingSpawn var22 = (PendingSpawn)Client.pendingSpawns.last(); var22 != null; var22 = (PendingSpawn)Client.pendingSpawns.previous()) {
-                     if (var22.plane == class383.Client_plane && var15 == var22.x && var17 == var22.y && var19 == var22.field922) {
+                     if (var22.plane == class383.Client_plane && var15 == var22.x && var17 == var22.y && var19 == var22.id) {
                         var21 = var22;
                         break;
                      }

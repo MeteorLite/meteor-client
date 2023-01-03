@@ -167,7 +167,7 @@ public enum HorizontalAlignment implements class345 {
          byte[] var13 = new byte[var5];
          Buffer var7 = new Buffer(var13);
          var0.readBytesAReverse(var13, 0, var5);
-         Players.field1087[var1] = var7;
+         Players.cachedAppearanceBuffer[var1] = var7;
          var2.read(var7);
       }
 
@@ -263,7 +263,7 @@ public enum HorizontalAlignment implements class345 {
       }
 
       if ((var3 & 2048) != 0) {
-         MoveSpeed[] var16 = Players.field1094;
+         MoveSpeed[] var16 = Players.playerMovementSpeeds;
          MoveSpeed[] var17 = new MoveSpeed[]{MoveSpeed.CRAWL, MoveSpeed.STATIONARY, MoveSpeed.RUN, MoveSpeed.WALK};
          var16[var1] = (MoveSpeed)World.findEnumerated(var17, var0.readByte());
       }
@@ -277,7 +277,7 @@ public enum HorizontalAlignment implements class345 {
                MoveSpeed[] var20 = new MoveSpeed[]{MoveSpeed.CRAWL, MoveSpeed.STATIONARY, MoveSpeed.RUN, MoveSpeed.WALK};
                var22 = (MoveSpeed)World.findEnumerated(var20, var4);
             } else {
-               var22 = Players.field1094[var1];
+               var22 = Players.playerMovementSpeeds[var1];
             }
 
             var2.move(var2.tileX, var2.tileY, var22);

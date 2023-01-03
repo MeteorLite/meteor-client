@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -290,9 +289,9 @@ public class class130 extends DualNode {
                      var8 = 0;
                   }
 
-                  var2 = (var3 - var8) * StructComposition.clientPreferences.method563() / var3;
+                  var2 = (var3 - var8) * StructComposition.clientPreferences.getAreaSoundEffectsVolume() / var3;
                } else {
-                  var2 = StructComposition.clientPreferences.method544();
+                  var2 = StructComposition.clientPreferences.getSoundEffectsVolume();
                }
 
                if (var2 > 0) {
@@ -320,8 +319,8 @@ public class class130 extends DualNode {
       }
 
       if (Client.playingJingle && !class159.method838()) {
-         if (StructComposition.clientPreferences.method543() != 0 && Client.currentTrackGroupId != -1) {
-            class29.method115(class162.archive6, Client.currentTrackGroupId, 0, StructComposition.clientPreferences.method543(), false);
+         if (StructComposition.clientPreferences.getMusicVolume() != 0 && Client.currentTrackGroupId != -1) {
+            class29.method115(class162.archive6, Client.currentTrackGroupId, 0, StructComposition.clientPreferences.getMusicVolume(), false);
          }
 
          Client.playingJingle = false;

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -29,8 +28,8 @@ public class class280 {
       var2.pathY[0] = var6 - class365.baseY;
       var2.y = (var2.pathY[0] << 7) + (var2.transformedSize() << 6);
       class383.Client_plane = var2.plane = var4;
-      if (Players.field1087[var1] != null) {
-         var2.read(Players.field1087[var1]);
+      if (Players.cachedAppearanceBuffer[var1] != null) {
+         var2.read(Players.cachedAppearanceBuffer[var1]);
       }
 
       Players.Players_count = 0;

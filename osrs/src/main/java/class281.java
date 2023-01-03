@@ -1,7 +1,7 @@
 import java.io.File;
 import java.util.HashMap;
 import java.util.TimeZone;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jg")
@@ -68,8 +68,8 @@ public final class class281 {
       garbageValue = "283375352"
    )
    static final void method1528(int var0, int var1, boolean var2) {
-      if (!var2 || var0 != class17.field50 || MusicPatchNode2.field2707 != var1) {
-         class17.field50 = var0;
+      if (!var2 || var0 != class17.timeOfPreviousKeyPress || MusicPatchNode2.field2707 != var1) {
+         class17.timeOfPreviousKeyPress = var0;
          MusicPatchNode2.field2707 = var1;
          class140.updateGameState(25);
          SoundSystem.drawLoadingMessage("Loading - please wait.", true);

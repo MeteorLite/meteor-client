@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -110,7 +109,7 @@ public class class160 extends class136 {
                   var4.tileY = var7;
                } else {
                   var4.field894 = false;
-                  var4.move(var6, var7, Players.field1094[var1]);
+                  var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
                }
             } else {
                var4.resetPath(var6, var7);
@@ -174,7 +173,7 @@ public class class160 extends class136 {
                   var4.tileY = var7;
                } else {
                   var4.field894 = false;
-                  var4.move(var6, var7, Players.field1094[var1]);
+                  var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
                }
             } else {
                var4.resetPath(var6, var7);
@@ -209,7 +208,7 @@ public class class160 extends class136 {
                      var4.tileY = var11;
                   } else {
                      var4.field894 = false;
-                     var4.move(var10, var11, Players.field1094[var1]);
+                     var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
                   }
                } else {
                   var4.resetPath(var10, var11);
@@ -235,7 +234,7 @@ public class class160 extends class136 {
                      var4.tileY = var11;
                   } else {
                      var4.field894 = false;
-                     var4.move(var10, var11, Players.field1094[var1]);
+                     var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
                   }
                } else {
                   var4.resetPath(var10, var11);

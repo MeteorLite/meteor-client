@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -224,7 +223,7 @@ public class class273 {
       garbageValue = "-1263982193"
    )
    static final int method1517() {
-      float var0 = 200.0F * ((float)StructComposition.clientPreferences.method541() - 0.5F);
+      float var0 = 200.0F * ((float)StructComposition.clientPreferences.getBrightness() - 0.5F);
       return 100 - Math.round(var0);
    }
 }

@@ -1025,7 +1025,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
                   var5 = class133.regionLandArchives[var15];
                   if (var5 != null) {
                      Client.playPcmPlayers();
-                     class14.method48(var5, var3, var4, class17.field50 * 8 - 48, MusicPatchNode2.field2707 * 8 - 48, Client.collisionMaps);
+                     class14.method48(var5, var3, var4, class17.timeOfPreviousKeyPress * 8 - 48, MusicPatchNode2.field2707 * 8 - 48, Client.collisionMaps);
                   }
                }
 
@@ -1163,8 +1163,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
             }
 
             if (!Client.isInInstance) {
-               var3 = (class17.field50 - 6) / 8;
-               var4 = (class17.field50 + 6) / 8;
+               var3 = (class17.timeOfPreviousKeyPress - 6) / 8;
+               var4 = (class17.timeOfPreviousKeyPress + 6) / 8;
                var17 = (MusicPatchNode2.field2707 - 6) / 8;
                var6 = (MusicPatchNode2.field2707 + 6) / 8;
 

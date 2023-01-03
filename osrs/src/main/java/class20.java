@@ -211,7 +211,7 @@ public class class20 implements Callable {
       garbageValue = "-29230"
    )
    static void method72(SequenceDefinition var0, int var1, int var2, int var3) {
-      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method563() != 0) {
+      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.getAreaSoundEffectsVolume() != 0) {
          if (var0.animMayaFrameSounds != null && var0.animMayaFrameSounds.containsKey(var1)) {
             int var4 = (Integer)var0.animMayaFrameSounds.get(var1);
             if (var4 != 0) {

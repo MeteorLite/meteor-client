@@ -1,6 +1,6 @@
 import java.io.File;
 import java.util.Hashtable;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -46,6 +46,6 @@ public class FileSystem {
       Rasterizer3D.Rasterizer3D_setBrightness(var0);
       ((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(var0);
       ItemComposition.ItemDefinition_cachedSprites.clear();
-      StructComposition.clientPreferences.method561(var0);
+      StructComposition.clientPreferences.setBrightness(var0);
    }
 }

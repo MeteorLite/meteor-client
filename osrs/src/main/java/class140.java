@@ -113,7 +113,7 @@ public class class140 extends class136 {
          }
 
          if (var0 == 20 || var0 == 40 || var0 == 45 || var0 == 50) {
-            class37.method186(0);
+            class37.setLoginState(0);
             Client.field493 = 0;
             Client.field386 = 0;
             Client.timer.method2001(var0);

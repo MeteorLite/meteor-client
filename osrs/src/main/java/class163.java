@@ -407,7 +407,7 @@ public class class163 {
       garbageValue = "0"
    )
    static final int method865() {
-      if (StructComposition.clientPreferences.method535()) {
+      if (StructComposition.clientPreferences.getRoofsHidden()) {
          return class383.Client_plane;
       } else {
          int var0 = 3;

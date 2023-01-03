@@ -2,7 +2,7 @@ import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -186,7 +186,7 @@ public class SecureRandomFuture {
       garbageValue = "37"
    )
    static final int method444() {
-      if (StructComposition.clientPreferences.method535()) {
+      if (StructComposition.clientPreferences.getRoofsHidden()) {
          return class383.Client_plane;
       } else {
          int var0 = SpotAnimationDefinition.getTileHeight(class145.cameraX, ClanChannel.cameraZ, class383.Client_plane);

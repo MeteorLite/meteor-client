@@ -26,7 +26,7 @@ public class DevicePcmPlayerProvider implements class51 {
       garbageValue = "-98"
    )
    static void method84(int var0) {
-      class12.method42(14);
+      class12.setLoginIndex(14);
       Login.field732 = var0;
    }
 
@@ -281,7 +281,7 @@ public class DevicePcmPlayerProvider implements class51 {
                   var9 = var7 & 7;
                   if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                      var10 = var31 + 1;
-                     if (class155.localPlayer.pathX[0] >= var5 - var10 && class155.localPlayer.pathX[0] <= var5 + var10 && class155.localPlayer.pathY[0] >= var6 - var10 && class155.localPlayer.pathY[0] <= var10 + var6 && StructComposition.clientPreferences.method563() != 0 && var9 > 0 && Client.soundEffectCount < 50) {
+                     if (class155.localPlayer.pathX[0] >= var5 - var10 && class155.localPlayer.pathX[0] <= var5 + var10 && class155.localPlayer.pathY[0] >= var6 - var10 && class155.localPlayer.pathY[0] <= var10 + var6 && StructComposition.clientPreferences.getAreaSoundEffectsVolume() != 0 && var9 > 0 && Client.soundEffectCount < 50) {
                         Client.soundEffectIds[Client.soundEffectCount] = var3;
                         Client.queuedSoundEffectLoops[Client.soundEffectCount] = var9;
                         Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -45,9 +44,9 @@ public class class169 {
    static void playSong(int var0) {
       if (var0 == -1 && !Client.playingJingle) {
          class6.method14();
-      } else if (var0 != -1 && var0 != Client.currentTrackGroupId && StructComposition.clientPreferences.method543() != 0 && !Client.playingJingle) {
+      } else if (var0 != -1 && var0 != Client.currentTrackGroupId && StructComposition.clientPreferences.getMusicVolume() != 0 && !Client.playingJingle) {
          Archive var1 = class162.archive6;
-         int var2 = StructComposition.clientPreferences.method543();
+         int var2 = StructComposition.clientPreferences.getMusicVolume();
          class286.musicPlayerStatus = 1;
          class304.musicTrackArchive = var1;
          class109.musicTrackGroupId = var0;

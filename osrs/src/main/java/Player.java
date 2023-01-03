@@ -597,7 +597,7 @@ public final class Player extends Actor {
       garbageValue = "-113"
    )
    static void method503(String var0, String var1, String var2) {
-      class12.method42(7);
+      class12.setLoginIndex(7);
       TaskHandler.setLoginResponseString(var0, var1, var2);
    }
 

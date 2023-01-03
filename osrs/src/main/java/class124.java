@@ -62,7 +62,7 @@ public enum class124 implements class345 {
          var1 = 10;
       }
 
-      class12.method42(var1);
+      class12.setLoginIndex(var1);
       if (var0) {
          Login.Login_username = "";
          Login.Login_password = "";
