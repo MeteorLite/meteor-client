@@ -146,7 +146,7 @@
       },
       {
         "method": "method2386",
-        "argument": "worldX"
+        "argument": "param0"
       }
     ]
   },
@@ -519,7 +519,7 @@
       },
       {
         "method": "writeIntME",
-        "argument": "worldX"
+        "argument": "param0"
       },
       {
         "method": "writeIntME",
@@ -816,7 +816,7 @@
       },
       {
         "method": "method2386",
-        "argument": "worldX"
+        "argument": "param0"
       }
     ]
   },
@@ -1054,7 +1054,7 @@
       },
       {
         "method": "method2375",
-        "argument": "worldX"
+        "argument": "param0"
       },
       {
         "method": "writeIntME",
