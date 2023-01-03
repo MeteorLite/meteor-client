@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("df")
+@Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
    @ObfuscatedName("d")
    public static String userHomeDirectory;
@@ -59,7 +60,7 @@ public class UserComparator3 extends AbstractUserComparator {
       descriptor = "(B)V",
       garbageValue = "110"
    )
-   static void method2848() {
+   static void method670() {
       if (Client.renderSelf) {
          WorldMapAreaData.addPlayerToScene(class155.localPlayer, false);
       }

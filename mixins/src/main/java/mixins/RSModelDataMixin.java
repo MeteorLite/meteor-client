@@ -366,7 +366,7 @@ public abstract class RSModelDataMixin implements RSModelData
 			this.getVerticesZ()[var1] = -var2;
 		}
 
-		this.invalidate();
+		this.invalidate$api();
 
 		return this;
 	}
@@ -381,7 +381,7 @@ public abstract class RSModelDataMixin implements RSModelData
 			this.getVerticesZ()[var1] = -this.getVerticesZ()[var1];
 		}
 
-		this.invalidate();
+		this.invalidate$api();
 
 		return this;
 	}
@@ -397,7 +397,7 @@ public abstract class RSModelDataMixin implements RSModelData
 			this.getVerticesX()[var1] = -var2;
 		}
 
-		this.invalidate();
+		this.invalidate$api();
 
 		return this;
 	}
@@ -413,7 +413,7 @@ public abstract class RSModelDataMixin implements RSModelData
 			this.getVerticesZ()[i] = this.getVerticesZ()[i] * var3 / 128;
 		}
 
-		this.invalidate();
+		this.invalidate$api();
 
 		return this;
 	}
@@ -433,7 +433,7 @@ public abstract class RSModelDataMixin implements RSModelData
 			vertexZ[i] += var3;
 		}
 
-		this.invalidate();
+		this.invalidate$api();
 
 		return this;
 	}

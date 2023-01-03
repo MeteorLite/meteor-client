@@ -49,11 +49,11 @@ dependencies {
     implementation(project(":http"))
     implementation(project(":annotations"))
     implementation(project(":logger"))
+    implementation(files("./src/main/resources/injected-client.jar"))
     runtimeOnly(project(":scripts"))
-    runtimeOnly(files("./src/main/resources/injected-client.jar"))
 
     //Deob
-    runtimeOnly("org.bouncycastle:bcprov-jdk15on:1.70")
+    implementation(group = "org.bouncycastle", name = "bcprov-jdk15on", version = "1.64")
 
     //GPU
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
@@ -135,6 +135,7 @@ compose {
             }
             jvmArgs(
                 "-ea",
+                "-noverify",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-opens", "java.base/java.net=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",

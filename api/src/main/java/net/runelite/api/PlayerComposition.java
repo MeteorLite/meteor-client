@@ -78,7 +78,7 @@ public interface PlayerComposition
 	 * Update the cached hash value for player equipment
 	 * Used to cache the player models based on equipment.
 	 */
-	void setHash();
+	void setHash$api();
 
 	void setTransformedNpcId(int id);
 

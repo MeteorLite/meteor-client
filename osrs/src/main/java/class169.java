@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,26 +8,17 @@ public class class169 {
    @ObfuscatedSignature(
       descriptor = "Lqy;"
    )
-   static Buffer field1878;
+   static Buffer field1440;
    @ObfuscatedName("x")
-   public String field1872;
+   public String field1435;
    @ObfuscatedName("m")
-   public float[] field1873;
+   public float[] field1436;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 720482137
-   )
-   public int field1876;
+   public int field1438;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1649159583
-   )
-   public int field1877;
+   public int field1439;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1446707269
-   )
-   public int field1875;
+   public int field1437;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lfk;"
@@ -41,10 +31,10 @@ public class class169 {
    )
    class169(class163 var1) {
       this.this$0 = var1;
-      this.field1873 = new float[4];
-      this.field1876 = 1;
-      this.field1877 = 1;
-      this.field1875 = 0;
+      this.field1436 = new float[4];
+      this.field1438 = 1;
+      this.field1439 = 1;
+      this.field1437 = 0;
    }
 
    @ObfuscatedName("hx")
@@ -54,10 +44,10 @@ public class class169 {
    )
    static void playSong(int var0) {
       if (var0 == -1 && !Client.playingJingle) {
-         class6.method39();
-      } else if (var0 != -1 && var0 != Client.currentTrackGroupId && StructComposition.clientPreferences.method2425() != 0 && !Client.playingJingle) {
+         class6.method14();
+      } else if (var0 != -1 && var0 != Client.currentTrackGroupId && StructComposition.clientPreferences.method543() != 0 && !Client.playingJingle) {
          Archive var1 = class162.archive6;
-         int var2 = StructComposition.clientPreferences.method2425();
+         int var2 = StructComposition.clientPreferences.method543();
          class286.musicPlayerStatus = 1;
          class304.musicTrackArchive = var1;
          class109.musicTrackGroupId = var0;
@@ -76,8 +66,8 @@ public class class169 {
       garbageValue = "2119865006"
    )
    static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
-      int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width;
-      int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height;
+      int var3 = var1.scrollWidth != 0 ? var1.scrollWidth * 666858271 * -1494857505 : var1.width * 1832001725 * -170206571;
+      int var4 = var1.scrollHeight != 0 ? var1.scrollHeight * -319102043 * -969061331 : var1.height * 882604251 * 1399571283;
       ItemContainer.resizeInterface(var0, var1.id, var3, var4, var2);
       if (var1.children != null) {
          ItemContainer.resizeInterface(var1.children, var1.id, var3, var4, var2);
@@ -85,7 +75,7 @@ public class class169 {
 
       InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
       if (var5 != null) {
-         ByteArrayPool.method7319(var5.group, var3, var4, var2);
+         ByteArrayPool.method1996(var5.group, var3, var4, var2);
       }
 
       if (var1.contentType == 1337) {
@@ -99,7 +89,7 @@ public class class169 {
       descriptor = "(B)V",
       garbageValue = "66"
    )
-   static final void method3484() {
+   static final void method883() {
       for(int var0 = 0; var0 < Players.Players_count; ++var0) {
          Player var1 = Client.players[Players.Players_indices[var0]];
          var1.clearIsInFriendsChat();

@@ -26,7 +26,7 @@ public interface RSPlayerComposition extends PlayerComposition
 
 	@Import("setHash")
 	@Override
-	void setHash();
+	void setHash$api();
 
 	// Kris changes:
 	@Import("npcTransformId")

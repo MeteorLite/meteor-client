@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -23,7 +24,7 @@ public abstract class class136 extends Node {
       garbageValue = "107"
    )
    public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-      PacketBufferNode var2 = class109.method2781();
+      PacketBufferNode var2 = class109.method651();
       var2.clientPacket = var0;
       var2.clientPacketLength = var0.length;
       if (var2.clientPacketLength == -1) {
@@ -49,7 +50,7 @@ public abstract class class136 extends Node {
       descriptor = "(II)Z",
       garbageValue = "-2080647324"
    )
-   public static boolean method3075(int var0) {
+   public static boolean method740(int var0) {
       return (var0 >> 20 & 1) != 0;
    }
 
@@ -58,7 +59,7 @@ public abstract class class136 extends Node {
       descriptor = "(S)V",
       garbageValue = "6278"
    )
-   static void method3073() {
+   static void method738() {
       for(InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
          int var1 = var0.group;
          if (Players.loadInterface(var1)) {

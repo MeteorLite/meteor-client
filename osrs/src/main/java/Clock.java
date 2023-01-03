@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fz")
+@Implements("Clock")
 public abstract class Clock {
    @ObfuscatedName("r")
    static boolean ItemDefinition_inMembersWorld;
@@ -27,7 +28,7 @@ public abstract class Clock {
       descriptor = "(IIILgg;Lgw;Z[I[II)I",
       garbageValue = "1427210619"
    )
-   public static int method3520(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4, boolean var5, int[] var6, int[] var7) {
+   public static int method899(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4, boolean var5, int[] var6, int[] var7) {
       int var9;
       for(int var8 = 0; var8 < 128; ++var8) {
          for(var9 = 0; var9 < 128; ++var9) {
@@ -50,7 +51,7 @@ public abstract class Clock {
       int var31;
       int var33;
       if (var2 == 1) {
-         var28 = class456.method8411(var0, var1, var3, var4);
+         var28 = class456.method2306(var0, var1, var3, var4);
       } else if (var2 == 2) {
          var10 = var0;
          var11 = var1;
@@ -70,8 +71,8 @@ public abstract class Clock {
          boolean var29;
          while(true) {
             if (var33 == var17) {
-               class205.field2359 = var10;
-               class205.field2364 = var11;
+               class205.field1851 = var10;
+               class205.field1855 = var11;
                var29 = false;
                break;
             }
@@ -84,8 +85,8 @@ public abstract class Clock {
             var19 = var10 - var4.xInset;
             var20 = var11 - var4.yInset;
             if (var3.hasArrived(2, var10, var11, var4)) {
-               class205.field2359 = var10;
-               class205.field2364 = var11;
+               class205.field1851 = var10;
+               class205.field1855 = var11;
                var29 = true;
                break;
             }
@@ -158,13 +159,13 @@ public abstract class Clock {
 
          var28 = var29;
       } else {
-         var28 = class416.method7888(var0, var1, var2, var3, var4);
+         var28 = class416.method2162(var0, var1, var2, var3, var4);
       }
 
       var9 = var0 - 64;
       var10 = var1 - 64;
-      var11 = class205.field2359;
-      var30 = class205.field2364;
+      var11 = class205.field1851;
+      var30 = class205.field1855;
       if (!var28) {
          var31 = Integer.MAX_VALUE;
          var14 = Integer.MAX_VALUE;

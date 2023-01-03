@@ -1,9 +1,11 @@
 import java.util.Comparator;
-
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bg")
+@Implements("GrandExchangeOfferOwnWorldComparator")
 public class GrandExchangeOfferOwnWorldComparator implements Comparator {
    @ObfuscatedName("cc")
    @ObfuscatedSignature(
@@ -51,8 +53,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       descriptor = "(I)[Ljh;",
       garbageValue = "-1399136251"
    )
-   static LoginPacket[] method1224() {
-      return new LoginPacket[]{LoginPacket.field3300, LoginPacket.field3304, LoginPacket.field3301, LoginPacket.field3305, LoginPacket.field3303, LoginPacket.field3308};
+   static LoginPacket[] method352() {
+      return new LoginPacket[]{LoginPacket.field2679, LoginPacket.field2683, LoginPacket.field2680, LoginPacket.field2684, LoginPacket.field2682, LoginPacket.field2687};
    }
 
    @ObfuscatedName("e")
@@ -60,7 +62,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       descriptor = "(CB)Z",
       garbageValue = "1"
    )
-   public static final boolean method1212(char var0) {
+   public static final boolean method349(char var0) {
       return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
    }
 
@@ -69,7 +71,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "1356676967"
    )
-   static int method1223(int var0, Script var1, boolean var2) {
+   static int method351(int var0, Script var1, boolean var2) {
       Widget var3;
       if (var0 >= 2000) {
          var0 -= 1000;
@@ -127,7 +129,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       descriptor = "(I)V",
       garbageValue = "-1113873989"
    )
-   static final void method1219() {
+   static final void method350() {
       int var0 = VarcInt.menuX;
       int var1 = NPC.menuY;
       int var2 = AttackOption.menuWidth;
@@ -150,7 +152,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
             var9 = 16776960;
          }
 
-         class146.fontBold12.draw(class34.method491(var7), var0 + 3, var8, var9, 0);
+         class146.fontBold12.draw(class34.method143(var7), var0 + 3, var8, var9, 0);
       }
 
       var7 = VarcInt.menuX;
@@ -160,7 +162,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
       for(int var11 = 0; var11 < Client.rootWidgetCount; ++var11) {
          if (Client.rootWidgetWidths[var11] + Client.rootWidgetXs[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetHeights[var11] + Client.rootWidgetYs[var11] > var8 && Client.rootWidgetYs[var11] < var8 + var10) {
-            Client.field732[var11] = true;
+            Client.field577[var11] = true;
          }
       }
 

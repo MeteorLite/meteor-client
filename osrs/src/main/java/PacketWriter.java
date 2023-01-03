@@ -1,10 +1,11 @@
 import java.io.IOException;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("de")
+@Implements("PacketWriter")
 public class PacketWriter {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -17,9 +18,6 @@ public class PacketWriter {
    )
    IterableNodeDeque packetBufferNodes = new IterableNodeDeque();
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1512304017
-   )
    int bufferSize = 0;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -42,37 +40,28 @@ public class PacketWriter {
    )
    ServerPacket serverPacket = null;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 395481445
-   )
    int serverPacketLength = 0;
    @ObfuscatedName("u")
-   boolean field1430 = true;
+   boolean field1133 = true;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -562413973
-   )
-   int field1420 = 0;
+   int field1125 = 0;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -1673559747
-   )
    int pendingWrites = 0;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "Ljf;"
    )
-   ServerPacket field1431;
+   ServerPacket field1134;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Ljf;"
    )
-   ServerPacket field1432;
+   ServerPacket field1135;
    @ObfuscatedName("o")
    @ObfuscatedSignature(
       descriptor = "Ljf;"
    )
-   ServerPacket field1433;
+   ServerPacket field1136;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -168,10 +157,10 @@ public class PacketWriter {
       descriptor = "(Lly;Lly;ZII)V",
       garbageValue = "1924558705"
    )
-   public static void method2741(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
+   public static void method635(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
       NPCComposition.NpcDefinition_archive = var0;
-      class363.field4361 = var1;
-      GrandExchangeOfferUnitPriceComparator.field4275 = var2;
+      class363.field3575 = var1;
+      GrandExchangeOfferUnitPriceComparator.field3505 = var2;
       NPCComposition.defaultHeadIconArchive = var3;
    }
 
@@ -189,7 +178,7 @@ public class PacketWriter {
       descriptor = "(III)I",
       garbageValue = "1292831199"
    )
-   public static int method2729(int var0, int var1) {
+   public static int method633(int var0, int var1) {
       int var2;
       for(var2 = 0; var1 > 0; --var1) {
          var2 = var2 << 1 | var0 & 1;
@@ -204,7 +193,7 @@ public class PacketWriter {
       descriptor = "(II)Ljava/lang/String;",
       garbageValue = "1918112547"
    )
-   static final String method2742(int var0) {
+   static final String method636(int var0) {
       if (var0 < 100000) {
          return "<col=ffff00>" + var0 + "</col>";
       } else {

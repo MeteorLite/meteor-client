@@ -2,11 +2,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("it")
+@Implements("WorldMapArea")
 public class WorldMapArea {
    @ObfuscatedName("vl")
    @ObfuscatedSignature(
@@ -24,23 +24,14 @@ public class WorldMapArea {
    )
    static Varcs varcs;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -865162849
-   )
    int id = -1;
    @ObfuscatedName("e")
    String internalName;
    @ObfuscatedName("v")
    String externalName;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1725773199
-   )
    int backGroundColor = -1;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1625801673
-   )
    int zoom = -1;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
@@ -48,24 +39,12 @@ public class WorldMapArea {
    )
    Coord origin = null;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 693076639
-   )
    int regionLowX = Integer.MAX_VALUE;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1108302035
-   )
    int regionHighX = 0;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1503701713
-   )
    int regionLowY = Integer.MAX_VALUE;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -693504869
-   )
    int regionHighY = 0;
    @ObfuscatedName("j")
    boolean isMain = false;
@@ -363,7 +342,7 @@ public class WorldMapArea {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "2001824816"
    )
-   static int method4967(int var0, Script var1, boolean var2) {
+   static int method1349(int var0, Script var1, boolean var2) {
       Widget var3 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
       if (var0 == 1800) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = PacketWriter.Widget_unpackTargetMask(Clock.getWidgetFlags(var3));

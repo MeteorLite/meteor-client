@@ -6,6 +6,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dc")
+@Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
    @ObfuscatedName("h")
    final boolean reversed;
@@ -37,7 +38,7 @@ public class UserComparator7 extends AbstractUserComparator {
       descriptor = "(IIB)Z",
       garbageValue = "67"
    )
-   static boolean method2829(int var0, int var1) {
+   static boolean method665(int var0, int var1) {
       return var0 != 4 || var1 < 8;
    }
 
@@ -46,7 +47,7 @@ public class UserComparator7 extends AbstractUserComparator {
       descriptor = "(Ljava/io/File;Ljava/io/File;I)V",
       garbageValue = "797678294"
    )
-   static void method2828(File var0, File var1) {
+   static void method664(File var0, File var1) {
       try {
          AccessFile var2 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
          Buffer var3 = new Buffer(500);

@@ -170,7 +170,7 @@ public class TextureManager
 
 		// Set brightness to 1.0d to upload unmodified textures to GPU
 		double save = textureProvider.getBrightness();
-		textureProvider.setBrightness(1.0d);
+		textureProvider.setBrightness$api(1.0d);
 
 		pixelBuffer = BufferUtils.createIntBuffer(textureSize * textureSize);
 		vanillaImage = new BufferedImage(128, 128, BufferedImage.TYPE_INT_ARGB);
@@ -304,7 +304,7 @@ public class TextureManager
 		pixelBuffer = null;
 		vanillaImage = null;
 		scaledImage = null;
-		textureProvider.setBrightness(save);
+		textureProvider.setBrightness$api(save);
 		glActiveTexture(TEXTURE_UNIT_UI);
 
 		plugin.updateMaterialUniformBuffer(textureAnimations);

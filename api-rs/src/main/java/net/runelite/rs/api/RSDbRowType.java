@@ -8,5 +8,5 @@ public interface RSDbRowType
 	int getTableId();
 
 	@Import("getColumnType")
-	Object[] getColumnType(int var0);
+	Object[] getColumnType$api(int var0);
 }

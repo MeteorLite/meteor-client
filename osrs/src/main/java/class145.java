@@ -1,24 +1,17 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ek")
 public class class145 extends class136 {
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1959574939
-   )
    public static int idxCount;
    @ObfuscatedName("j")
    public static boolean musicTrackBoolean;
    @ObfuscatedName("jz")
-   @ObfuscatedGetter(
-      intValue = 402004555
-   )
    static int cameraX;
    @ObfuscatedName("h")
-   String field1708;
+   String field1327;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lem;"
@@ -38,7 +31,7 @@ public class class145 extends class136 {
       garbageValue = "1101327225"
    )
    void vmethod3254(Buffer var1) {
-      this.field1708 = var1.readStringCp1252NullTerminated();
+      this.field1327 = var1.readStringCp1252NullTerminated();
       var1.readInt();
    }
 
@@ -48,7 +41,7 @@ public class class145 extends class136 {
       garbageValue = "839088249"
    )
    void vmethod3248(ClanSettings var1) {
-      var1.name = this.field1708;
+      var1.name = this.field1327;
    }
 
    @ObfuscatedName("s")
@@ -56,7 +49,7 @@ public class class145 extends class136 {
       descriptor = "(II)I",
       garbageValue = "-1769477023"
    )
-   public static int method3149(int var0) {
+   public static int method773(int var0) {
       if (var0 > 0) {
          return 1;
       } else {

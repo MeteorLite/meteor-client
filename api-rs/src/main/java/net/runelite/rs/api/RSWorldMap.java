@@ -34,10 +34,10 @@ public interface RSWorldMap extends RenderOverview
 	int getWorldMapDisplayY();
 
 	@Import("setWorldMapPosition")
-	void setWorldMapPosition(int worldMapX, int worldMapY, boolean changedSurface);
+	void setWorldMapPosition$api(int worldMapX, int worldMapY, boolean changedSurface);
 
 	@Import("setWorldMapPositionTarget")
-	void setWorldMapPositionTarget(int worldPointX, int worldPointY);
+	void setWorldMapPositionTarget$api(int worldPointX, int worldPointY);
 
 	@Import("worldMapManager")
 	@Override

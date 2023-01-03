@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fq")
+@Implements("InvDefinition")
 public class InvDefinition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -17,14 +17,8 @@ public class InvDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable InvDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("if")
-   @ObfuscatedGetter(
-      intValue = 780032889
-   )
-   static int field1918;
+   static int field1464;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1028832281
-   )
    public int size = 0;
 
    @ObfuscatedName("v")

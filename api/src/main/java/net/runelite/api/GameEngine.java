@@ -52,7 +52,7 @@ public interface GameEngine
 	 */
 	boolean isClientThread();
 
-	void resizeCanvas();
+	void resizeCanvas$api();
 
 	void setReplaceCanvasNextFrame(boolean replace);
 }

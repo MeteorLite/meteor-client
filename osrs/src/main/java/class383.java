@@ -1,15 +1,11 @@
 import java.util.Comparator;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nt")
 class class383 implements Comparator {
    @ObfuscatedName("lv")
-   @ObfuscatedGetter(
-      intValue = -457974623
-   )
    static int Client_plane;
    // $FF: synthetic field
    @ObfuscatedSignature(
@@ -30,11 +26,11 @@ class class383 implements Comparator {
       descriptor = "(Lnz;Lnz;B)I",
       garbageValue = "0"
    )
-   int method7362(class385 var1, class385 var2) {
-      if (var1.field4496 > var2.field4496) {
+   int method2010(class385 var1, class385 var2) {
+      if (var1.field3667 > var2.field3667) {
          return 1;
       } else {
-         return var1.field4496 < var2.field4496 ? -1 : 0;
+         return var1.field3667 < var2.field3667 ? -1 : 0;
       }
    }
 
@@ -45,6 +41,6 @@ class class383 implements Comparator {
 
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
-      return this.method7362((class385)var1, (class385)var2);
+      return this.method2010((class385)var1, (class385)var2);
    }
 }

@@ -15,7 +15,7 @@ public class class37 {
       descriptor = "(I)Z",
       garbageValue = "-885227918"
    )
-   public static boolean method701() {
+   public static boolean method184() {
       try {
          if (class286.musicPlayerStatus == 2) {
             if (class286.musicTrack == null) {
@@ -77,9 +77,9 @@ public class class37 {
    @ObfuscatedName("ny")
    @ObfuscatedSignature(
       descriptor = "(IS)V",
-      garbageValue = "1537"
+      garbageValue = "14293"
    )
-   static void method709(int var0) {
+   static void method186(int var0) {
       if (var0 != Client.loginState) {
          Client.loginState = var0;
       }

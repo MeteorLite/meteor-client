@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pc")
+@Implements("WorldMapArchiveLoader")
 public class WorldMapArchiveLoader {
    @ObfuscatedName("m")
    String cacheName;
@@ -14,9 +14,6 @@ public class WorldMapArchiveLoader {
    )
    AbstractArchive archive;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -646591499
-   )
    int percentLoaded = 0;
    @ObfuscatedName("r")
    boolean loaded = false;
@@ -51,7 +48,7 @@ public class WorldMapArchiveLoader {
    )
    int load() {
       if (this.percentLoaded < 33) {
-         if (!this.archive.tryLoadFileByNames(WorldMapCacheName.field3005.name, this.cacheName)) {
+         if (!this.archive.tryLoadFileByNames(WorldMapCacheName.field2399.name, this.cacheName)) {
             return this.percentLoaded;
          }
 
@@ -59,7 +56,7 @@ public class WorldMapArchiveLoader {
       }
 
       if (this.percentLoaded == 33) {
-         if (this.archive.isValidFileName(WorldMapCacheName.field3009.name, this.cacheName) && !this.archive.tryLoadFileByNames(WorldMapCacheName.field3009.name, this.cacheName)) {
+         if (this.archive.isValidFileName(WorldMapCacheName.field2402.name, this.cacheName) && !this.archive.tryLoadFileByNames(WorldMapCacheName.field2402.name, this.cacheName)) {
             return this.percentLoaded;
          }
 
@@ -67,7 +64,7 @@ public class WorldMapArchiveLoader {
       }
 
       if (this.percentLoaded == 66) {
-         if (!this.archive.tryLoadFileByNames(this.cacheName, WorldMapCacheName.field3004.name)) {
+         if (!this.archive.tryLoadFileByNames(this.cacheName, WorldMapCacheName.field2398.name)) {
             return this.percentLoaded;
          }
 
@@ -101,14 +98,14 @@ public class WorldMapArchiveLoader {
       descriptor = "([FIFZFZ[FB)I",
       garbageValue = "4"
    )
-   public static int method7986(float[] var0, int var1, float var2, boolean var3, float var4, boolean var5, float[] var6) {
+   public static int method2193(float[] var0, int var1, float var2, boolean var3, float var4, boolean var5, float[] var6) {
       float var7 = 0.0F;
 
       for(int var8 = 0; var8 < var1 + 1; ++var8) {
          var7 += Math.abs(var0[var8]);
       }
 
-      float var24 = (Math.abs(var2) + Math.abs(var4)) * (float)(var1 + 1) * class122.field1506;
+      float var24 = (Math.abs(var2) + Math.abs(var4)) * (float)(var1 + 1) * class122.field1177;
       if (var7 <= var24) {
          return -1;
       } else {
@@ -128,9 +125,9 @@ public class WorldMapArchiveLoader {
             return var10;
          } else if (var1 == 1) {
             var6[0] = -var9[0] / var9[1];
-            boolean var22 = var3 ? var2 < var24 + var6[0] : var2 < var6[0] - var24;
-            boolean var23 = var5 ? var4 > var6[0] - var24 : var4 > var24 + var6[0];
-            var10 = var22 && var23 ? 1 : 0;
+            boolean var11 = var3 ? var2 < var24 + var6[0] : var2 < var6[0] - var24;
+            boolean var12 = var5 ? var4 > var6[0] - var24 : var4 > var24 + var6[0];
+            var10 = var11 && var12 ? 1 : 0;
             if (var10 > 0) {
                if (var3 && var6[0] < var2) {
                   var6[0] = var2;
@@ -141,15 +138,15 @@ public class WorldMapArchiveLoader {
 
             return var10;
          } else {
-            class412 var11 = new class412(var9, var1);
-            float[] var12 = new float[var1 + 1];
+            class412 var21 = new class412(var9, var1);
+            float[] var22 = new float[var1 + 1];
 
             for(int var13 = 1; var13 <= var1; ++var13) {
-               var12[var13 - 1] = (float)var13 * var9[var13];
+               var22[var13 - 1] = (float)var13 * var9[var13];
             }
 
-            float[] var21 = new float[var1 + 1];
-            int var14 = method7986(var12, var1 - 1, var2, false, var4, false, var21);
+            float[] var23 = new float[var1 + 1];
+            int var14 = method2193(var22, var1 - 1, var2, false, var4, false, var23);
             if (var14 == -1) {
                return 0;
             } else {
@@ -166,7 +163,7 @@ public class WorldMapArchiveLoader {
                   float var16;
                   if (var20 == 0) {
                      var16 = var2;
-                     var18 = SecureRandomFuture.method2120(var9, var1, var2);
+                     var18 = SecureRandomFuture.method446(var9, var1, var2);
                      if (Math.abs(var18) <= var24 && var3) {
                         var6[var10++] = var2;
                      }
@@ -179,10 +176,10 @@ public class WorldMapArchiveLoader {
                      var19 = var4;
                      var15 = false;
                   } else {
-                     var19 = var21[var20];
+                     var19 = var23[var20];
                   }
 
-                  var17 = SecureRandomFuture.method2120(var9, var1, var19);
+                  var17 = SecureRandomFuture.method446(var9, var1, var19);
                   if (var15) {
                      var15 = false;
                   } else if (Math.abs(var17) < var24) {
@@ -191,7 +188,7 @@ public class WorldMapArchiveLoader {
                         var15 = true;
                      }
                   } else if (var18 < 0.0F && var17 > 0.0F || var18 > 0.0F && var17 < 0.0F) {
-                     var6[var10++] = DefaultsGroup.method7714(var11, var16, var19, 0.0F);
+                     var6[var10++] = DefaultsGroup.method2112(var21, var16, var19, 0.0F);
                      if (var10 > 1 && var6[var10 - 2] >= var6[var10 - 1] - var24) {
                         var6[var10 - 2] = (var6[var10 - 1] + var6[var10 - 2]) * 0.5F;
                         --var10;

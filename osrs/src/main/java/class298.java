@@ -1,25 +1,15 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kb")
 public class class298 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1940747343
-   )
-   public int field3454;
+   public int field2800;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1875649367
-   )
-   public int field3456;
+   public int field2802;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -10528687
-   )
-   public int field3455;
+   public int field2801;
 
    @ObfuscatedName("mp")
    @ObfuscatedSignature(
@@ -32,8 +22,8 @@ public class class298 {
       int var3 = 0;
 
       for(int var4 = 0; var4 < ItemComposition.ItemDefinition_fileCount; ++var4) {
-         ItemComposition var9 = NPCComposition.ItemDefinition_get(var4);
-         if ((!var1 || var9.isTradable) && var9.noteTemplate == -1 && var9.name.toLowerCase().indexOf(var0) != -1) {
+         ItemComposition var5 = NPCComposition.ItemDefinition_get(var4);
+         if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
             if (var3 >= 250) {
                ScriptEvent.foundItemIdCount = -1;
                class19.foundItemIds = null;
@@ -59,8 +49,8 @@ public class class298 {
       ScriptEvent.foundItemIdCount = var3;
       String[] var8 = new String[ScriptEvent.foundItemIdCount];
 
-      for(int var5 = 0; var5 < ScriptEvent.foundItemIdCount; ++var5) {
-         var8[var5] = NPCComposition.ItemDefinition_get(var2[var5]).name;
+      for(int var9 = 0; var9 < ScriptEvent.foundItemIdCount; ++var9) {
+         var8[var9] = NPCComposition.ItemDefinition_get(var2[var9]).name;
       }
 
       short[] var10 = class19.foundItemIds;

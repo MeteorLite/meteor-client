@@ -4,11 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("u")
 public class class8 {
    @ObfuscatedName("h")
-   final int field30;
+   final int field14;
    @ObfuscatedName("e")
-   final int field29;
+   final int field13;
    @ObfuscatedName("v")
-   final String field31;
+   final String field15;
 
    @ObfuscatedSignature(
       descriptor = "(Lqy;)V"
@@ -18,18 +18,18 @@ public class class8 {
    }
 
    class8(int var1, int var2, String var3) {
-      this.field30 = var1;
-      this.field29 = var2;
-      this.field31 = var3;
+      this.field14 = var1;
+      this.field13 = var2;
+      this.field15 = var3;
    }
 
    @ObfuscatedName("h")
-   String method61() {
-      return Integer.toHexString(this.field30) + Integer.toHexString(this.field29) + this.field31;
+   String method23() {
+      return Integer.toHexString(this.field14) + Integer.toHexString(this.field13) + this.field15;
    }
 
    @ObfuscatedName("e")
-   int method62() {
-      return this.field29;
+   int method24() {
+      return this.field13;
    }
 }

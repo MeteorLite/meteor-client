@@ -3,6 +3,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("po")
+@Implements("ByteArrayNode")
 public class ByteArrayNode extends Node {
    @ObfuscatedName("h")
    public byte[] byteArray;

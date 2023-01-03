@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rr")
+@Implements("GZipDecompressor")
 public class GZipDecompressor {
    @ObfuscatedName("h")
    Inflater inflater;

@@ -10,11 +10,7 @@ package com.openosrs.injector;
 import com.google.common.hash.Hashing;
 import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injection.InjectTaskHandler;
-import com.openosrs.injector.injectors.CreateAnnotations;
-import com.openosrs.injector.injectors.InjectConstruct;
-import com.openosrs.injector.injectors.InterfaceInjector;
-import com.openosrs.injector.injectors.MixinInjector;
-import com.openosrs.injector.injectors.RSApiInjector;
+import com.openosrs.injector.injectors.*;
 import com.openosrs.injector.injectors.raw.*;
 import com.openosrs.injector.rsapi.RSApi;
 import com.openosrs.injector.transformers.InjectTransformer;
@@ -76,8 +72,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 		OptionSet options = parser.parse(args);
 		String oprsVer = "1.0-SNAPSHOT";
 
-		File vanillaFile = new File("./gamepack-210-nobouncy.jar");
-		injector.vanilla = load(vanillaFile);
+		injector.vanilla = load(
+				new File("../osrs/build/libs/osrs-" + oprsVer + ".jar"));
 		injector.deobfuscated = load(
 			new File("../osrs/build/libs/osrs-" + oprsVer + ".jar"));
 		injector.rsApi = new RSApi(Objects.requireNonNull(
@@ -97,20 +93,29 @@ public class Injector extends InjectData implements InjectTaskHandler
 		for (String s : report) {
 			log.warn(s);
 		}
-		save(injector.getVanilla(), injected, OutputMode.JAR, vanillaFile);
-		save(injector.getDeobfuscated(), new File("./deob-test.jar"), OutputMode.JAR, vanillaFile);
+		save(injector.getVanilla(), injected, OutputMode.JAR);
 	}
 
 	public void injectVanilla()
 	{
 		//log.debug("[DEBUG] Starting injection");
 
+		ClassFile reflection = null;
+
+		for (ClassFile cf : injector.vanilla)
+			if (cf.getName().endsWith("Reflection"))
+				reflection = cf;
+
+		injector.vanilla.removeClass(reflection);
+
 		transform(new Java8Ifier(this));
 
 		inject(new CreateAnnotations(this));
 
+		//Used during rev to create class uses in osrs/net/runelite/rs/
+		//inject(new CreateObfuscatedClassMap(this));
 
-		inject(new GraphicsObject(this));
+		//inject(new GraphicsObject(this));
 
 		inject(new CopyRuneLiteClasses(this));
 
@@ -155,6 +160,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		transform(new SourceChanger(this));
 
+		injector.vanilla.addClass(reflection);
 	}
 
 	private void inject(com.openosrs.injector.injectors.Injector injector)
@@ -196,7 +202,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 		log.debug("{} {}", name, transformer.getCompletionMsg());
 	}
 
-	private static void save(ClassGroup group, File output, OutputMode mode, File vanillaFile)
+	private static void save(ClassGroup group, File output, OutputMode mode)
 	{
 		if (output.exists())
 		{

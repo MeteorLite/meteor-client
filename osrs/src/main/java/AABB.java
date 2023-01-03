@@ -1,38 +1,22 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hf")
+@Implements("AABB")
 public class AABB {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -2055361545
-   )
    int xMid;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -1890114663
-   )
    int yMid;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1812849095
-   )
    int zMid;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 320710353
-   )
    int xMidOffset;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1128965299
-   )
    int yMidOffset;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 678945951
-   )
    int zMidOffset;
 
    AABB(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -71,7 +55,7 @@ public class AABB {
       descriptor = "(B)Lmq;",
       garbageValue = "-51"
    )
-   public static NodeDeque method4611() {
+   public static NodeDeque method1232() {
       return Client.scriptEvents;
    }
 }

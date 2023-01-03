@@ -36,6 +36,7 @@ import com.openosrs.injector.injection.InjectData;
 import com.openosrs.injector.injectors.rsapi.InjectGetter;
 import com.openosrs.injector.injectors.rsapi.InjectInvoke;
 import com.openosrs.injector.injectors.rsapi.InjectSetter;
+import com.openosrs.injector.injectors.rsapi.ObfuscatedGettersMapManager;
 import com.openosrs.injector.rsapi.RSApiClass;
 import com.openosrs.injector.rsapi.RSApiMethod;
 import java.util.ArrayList;
@@ -154,14 +155,14 @@ public class RSApiInjector extends AbstractInjector
 			}
 
 			final Field vanillaField = inject.toVanilla(deobField);
-			final Number getter = DeobAnnotations.getObfuscatedGetter(deobField);
+			Number getter = null;
 
 			if (deobField.isStatic() != vanillaField.isStatic()) // Can this even happen
 			{
 				throw new InjectException("Something went horribly wrong, and this should honestly never happen, but you never know. Btw it's the static-ness");
 			}
 
-			inject(matching, deobField, vanillaField, getter);
+			inject(matching, deobField, vanillaField, null);
 		}
 	}
 
@@ -240,9 +241,9 @@ public class RSApiInjector extends AbstractInjector
 			}*/
 
 			final Field vanillaField = inject.toVanilla(deobField);
-			final Number getter = DeobAnnotations.getObfuscatedGetter(deobField);
+			//final Number getter = DeobAnnotations.getObfuscatedGetter(deobField);
 
-			inject(matched, deobField, vanillaField, getter);
+			inject(matched, deobField, vanillaField, null);
 		}
 	}
 

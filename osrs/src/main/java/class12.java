@@ -13,7 +13,7 @@ import org.bouncycastle.crypto.tls.TlsClientProtocol;
 @ObfuscatedName("i")
 class class12 extends SSLSocket {
    @ObfuscatedName("h")
-   Certificate[] field69;
+   Certificate[] field38;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lk;"
@@ -116,13 +116,13 @@ class class12 extends SSLSocket {
    }
 
    @ObfuscatedName("h")
-   public static final void method157(long var0) {
+   public static final void method44(long var0) {
       if (var0 > 0L) {
          if (var0 % 10L == 0L) {
-            StructComposition.method3820(var0 - 1L);
-            StructComposition.method3820(1L);
+            StructComposition.method997(var0 - 1L);
+            StructComposition.method997(1L);
          } else {
-            StructComposition.method3820(var0);
+            StructComposition.method997(var0);
          }
 
       }
@@ -133,8 +133,8 @@ class class12 extends SSLSocket {
       descriptor = "(Ljava/lang/String;IB)Z",
       garbageValue = "-56"
    )
-   static boolean method115(String var0, int var1) {
-      return HealthBarUpdate.method2363(var0, var1, "openjs");
+   static boolean method41(String var0, int var1) {
+      return HealthBarUpdate.method517(var0, var1, "openjs");
    }
 
    @ObfuscatedName("x")
@@ -175,9 +175,9 @@ class class12 extends SSLSocket {
    @ObfuscatedName("t")
    @ObfuscatedSignature(
       descriptor = "(II)V",
-      garbageValue = "760477426"
+      garbageValue = "872547282"
    )
-   static void method155(int var0) {
+   static void method42(int var0) {
       if (var0 != Login.loginIndex) {
          Login.loginIndex = var0;
       }

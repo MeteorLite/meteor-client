@@ -1,7 +1,10 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hc")
+@Implements("Scene")
 public class Scene {
    @ObfuscatedName("h")
    public static boolean Scene_isLowDetail = true;
@@ -78,19 +81,19 @@ public class Scene {
    )
    static NodeDeque Scene_tilesDeque;
    @ObfuscatedName("aj")
-   static final int[] field2574;
+   static final int[] field2032;
    @ObfuscatedName("aq")
-   static final int[] field2575;
+   static final int[] field2033;
    @ObfuscatedName("ap")
-   static final int[] field2576;
+   static final int[] field2034;
    @ObfuscatedName("aa")
-   static final int[] field2577;
+   static final int[] field2035;
    @ObfuscatedName("ae")
-   static final int[] field2554;
+   static final int[] field2015;
    @ObfuscatedName("ac")
-   static final int[] field2579;
+   static final int[] field2036;
    @ObfuscatedName("bh")
-   static final int[] field2580;
+   static final int[] field2037;
    @ObfuscatedName("bc")
    static boolean[][][][] visibilityMap;
    @ObfuscatedName("bl")
@@ -130,7 +133,7 @@ public class Scene {
    )
    GameObject[] tempGameObjects = new GameObject[5000];
    @ObfuscatedName("b")
-   int[][][] field2537;
+   int[][][] field2000;
    @ObfuscatedName("bw")
    int[][] tileShape2D = new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1}, {0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1}};
    @ObfuscatedName("bp")
@@ -142,13 +145,13 @@ public class Scene {
       Scene_currentOccludersCount = 0;
       Scene_currentOccluders = new Occluder[500];
       Scene_tilesDeque = new NodeDeque();
-      field2574 = new int[]{19, 55, 38, 155, 255, 110, 137, 205, 76};
-      field2575 = new int[]{160, 192, 80, 96, 0, 144, 80, 48, 160};
-      field2576 = new int[]{76, 8, 137, 4, 0, 1, 38, 2, 19};
-      field2577 = new int[]{0, 0, 2, 0, 0, 2, 1, 1, 0};
-      field2554 = new int[]{2, 0, 0, 2, 0, 0, 0, 4, 4};
-      field2579 = new int[]{0, 4, 4, 8, 0, 0, 8, 0, 0};
-      field2580 = new int[]{1, 1, 0, 0, 0, 8, 0, 0, 8};
+      field2032 = new int[]{19, 55, 38, 155, 255, 110, 137, 205, 76};
+      field2033 = new int[]{160, 192, 80, 96, 0, 144, 80, 48, 160};
+      field2034 = new int[]{76, 8, 137, 4, 0, 1, 38, 2, 19};
+      field2035 = new int[]{0, 0, 2, 0, 0, 2, 1, 1, 0};
+      field2015 = new int[]{2, 0, 0, 2, 0, 0, 0, 4, 4};
+      field2036 = new int[]{0, 4, 4, 8, 0, 0, 8, 0, 0};
+      field2037 = new int[]{1, 1, 0, 0, 0, 8, 0, 0, 8};
       visibilityMap = new boolean[8][32][51][51];
    }
 
@@ -157,7 +160,7 @@ public class Scene {
       this.xSize = var2;
       this.ySize = var3;
       this.tiles = new Tile[var1][var2][var3];
-      this.field2537 = new int[var1][var2 + 1][var3 + 1];
+      this.field2000 = new int[var1][var2 + 1][var3 + 1];
       this.tileHeights = var4;
       this.clear();
    }
@@ -220,7 +223,7 @@ public class Scene {
             for(int var6 = 0; var6 < var5.gameObjectsCount; ++var6) {
                GameObject var7 = var5.gameObjects[var6];
                long var9 = var7.tag;
-               boolean var8 = Varps.method5806(var9) == 2;
+               boolean var8 = Varps.method1607(var9) == 2;
                if (var8 && var7.startX == var1 && var2 == var7.startY) {
                   --var7.plane;
                }
@@ -289,7 +292,7 @@ public class Scene {
       if (var5 != null) {
          FloorDecoration var9 = new FloorDecoration();
          var9.renderable = var5;
-         var9.x = var2 * -2013265920 + -1006632960;
+         var9.x = var2 * 128 + 64;
          var9.y = var3 * 128 + 64;
          var9.z = var4;
          var9.tag = var6;
@@ -397,7 +400,7 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(IIIIIILhr;IJI)Z"
    )
-   public boolean method4440(int var1, int var2, int var3, int var4, int var5, int var6, Renderable var7, int var8, long var9, int var11) {
+   public boolean method1186(int var1, int var2, int var3, int var4, int var5, int var6, Renderable var7, int var8, long var9, int var11) {
       if (var7 == null) {
          return true;
       } else {
@@ -465,8 +468,8 @@ public class Scene {
                return false;
             }
 
-            Tile var23 = this.tiles[var1][var15][var16];
-            if (var23 != null && var23.gameObjectsCount >= 5) {
+            Tile var17 = this.tiles[var1][var15][var16];
+            if (var17 != null && var17.gameObjectsCount >= 5) {
                return false;
             }
          }
@@ -487,7 +490,7 @@ public class Scene {
       var21.endY = var3 + var5 - 1;
 
       for(var16 = var2; var16 < var2 + var4; ++var16) {
-         for(int var17 = var3; var17 < var3 + var5; ++var17) {
+         for(int var22 = var3; var22 < var3 + var5; ++var22) {
             int var18 = 0;
             if (var16 > var2) {
                ++var18;
@@ -497,25 +500,25 @@ public class Scene {
                var18 += 4;
             }
 
-            if (var17 > var3) {
+            if (var22 > var3) {
                var18 += 8;
             }
 
-            if (var17 < var3 + var5 - 1) {
+            if (var22 < var3 + var5 - 1) {
                var18 += 2;
             }
 
             for(int var19 = var1; var19 >= 0; --var19) {
-               if (this.tiles[var19][var16][var17] == null) {
-                  this.tiles[var19][var16][var17] = new Tile(var19, var16, var17);
+               if (this.tiles[var19][var16][var22] == null) {
+                  this.tiles[var19][var16][var22] = new Tile(var19, var16, var22);
                }
             }
 
-            Tile var22 = this.tiles[var1][var16][var17];
-            var22.gameObjects[var22.gameObjectsCount] = var21;
-            var22.gameObjectEdgeMasks[var22.gameObjectsCount] = var18;
-            var22.gameObjectsEdgeMask |= var18;
-            ++var22.gameObjectsCount;
+            Tile var23 = this.tiles[var1][var16][var22];
+            var23.gameObjects[var23.gameObjectsCount] = var21;
+            var23.gameObjectEdgeMasks[var23.gameObjectsCount] = var18;
+            var23.gameObjectsEdgeMask |= var18;
+            ++var23.gameObjectsCount;
          }
       }
 
@@ -573,7 +576,7 @@ public class Scene {
    }
 
    @ObfuscatedName("a")
-   public void method4446(int var1, int var2, int var3, int var4) {
+   public void method1191(int var1, int var2, int var3, int var4) {
       Tile var5 = this.tiles[var1][var2][var3];
       if (var5 != null) {
          WallDecoration var6 = var5.wallDecoration;
@@ -607,7 +610,7 @@ public class Scene {
          for(int var5 = 0; var5 < var4.gameObjectsCount; ++var5) {
             GameObject var6 = var4.gameObjects[var5];
             long var8 = var6.tag;
-            boolean var7 = Varps.method5806(var8) == 2;
+            boolean var7 = Varps.method1607(var8) == 2;
             if (var7 && var2 == var6.startX && var3 == var6.startY) {
                this.removeGameObject(var6);
                return;
@@ -663,7 +666,7 @@ public class Scene {
          for(int var5 = 0; var5 < var4.gameObjectsCount; ++var5) {
             GameObject var6 = var4.gameObjects[var5];
             long var8 = var6.tag;
-            boolean var7 = Varps.method5806(var8) == 2;
+            boolean var7 = Varps.method1607(var8) == 2;
             if (var7 && var2 == var6.startX && var3 == var6.startY) {
                return var6;
             }
@@ -703,7 +706,7 @@ public class Scene {
          for(int var5 = 0; var5 < var4.gameObjectsCount; ++var5) {
             GameObject var6 = var4.gameObjects[var5];
             long var8 = var6.tag;
-            boolean var7 = Varps.method5806(var8) == 2;
+            boolean var7 = Varps.method1607(var8) == 2;
             if (var7 && var2 == var6.startX && var3 == var6.startY) {
                return var6.tag;
             }
@@ -742,7 +745,7 @@ public class Scene {
    }
 
    @ObfuscatedName("au")
-   public void method4461(int var1, int var2, int var3) {
+   public void method1199(int var1, int var2, int var3) {
       for(int var4 = 0; var4 < this.planes; ++var4) {
          for(int var5 = 0; var5 < this.xSize; ++var5) {
             for(int var6 = 0; var6 < this.ySize; ++var6) {
@@ -752,11 +755,11 @@ public class Scene {
                   ModelData var10;
                   if (var8 != null && var8.renderable1 instanceof ModelData) {
                      ModelData var9 = (ModelData)var8.renderable1;
-                     this.method4502(var9, var4, var5, var6, 1, 1);
+                     this.method1217(var9, var4, var5, var6, 1, 1);
                      if (var8.renderable2 instanceof ModelData) {
                         var10 = (ModelData)var8.renderable2;
-                        this.method4502(var10, var4, var5, var6, 1, 1);
-                        ModelData.method4222(var9, var10, 0, 0, 0, false);
+                        this.method1217(var10, var4, var5, var6, 1, 1);
+                        ModelData.method1126(var9, var10, 0, 0, 0, false);
                         var8.renderable2 = var10.toModel(var10.ambient, var10.contrast, var1, var2, var3);
                      }
 
@@ -767,7 +770,7 @@ public class Scene {
                      GameObject var14 = var7.gameObjects[var12];
                      if (var14 != null && var14.renderable instanceof ModelData) {
                         ModelData var11 = (ModelData)var14.renderable;
-                        this.method4502(var11, var4, var5, var6, var14.endX - var14.startX + 1, var14.endY - var14.startY + 1);
+                        this.method1217(var11, var4, var5, var6, var14.endX - var14.startX + 1, var14.endY - var14.startY + 1);
                         var14.renderable = var11.toModel(var11.ambient, var11.contrast, var1, var2, var3);
                      }
                   }
@@ -775,7 +778,7 @@ public class Scene {
                   FloorDecoration var13 = var7.floorDecoration;
                   if (var13 != null && var13.renderable instanceof ModelData) {
                      var10 = (ModelData)var13.renderable;
-                     this.method4462(var10, var4, var5, var6);
+                     this.method1200(var10, var4, var5, var6);
                      var13.renderable = var10.toModel(var10.ambient, var10.contrast, var1, var2, var3);
                   }
                }
@@ -789,14 +792,14 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(Lgi;III)V"
    )
-   void method4462(ModelData var1, int var2, int var3, int var4) {
+   void method1200(ModelData var1, int var2, int var3, int var4) {
       Tile var5;
       ModelData var6;
       if (var3 < this.xSize) {
          var5 = this.tiles[var2][var3 + 1][var4];
          if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
             var6 = (ModelData)var5.floorDecoration.renderable;
-            ModelData.method4222(var1, var6, 128, 0, 0, true);
+            ModelData.method1126(var1, var6, 128, 0, 0, true);
          }
       }
 
@@ -804,7 +807,7 @@ public class Scene {
          var5 = this.tiles[var2][var3][var4 + 1];
          if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
             var6 = (ModelData)var5.floorDecoration.renderable;
-            ModelData.method4222(var1, var6, 0, 0, 128, true);
+            ModelData.method1126(var1, var6, 0, 0, 128, true);
          }
       }
 
@@ -812,7 +815,7 @@ public class Scene {
          var5 = this.tiles[var2][var3 + 1][var4 + 1];
          if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
             var6 = (ModelData)var5.floorDecoration.renderable;
-            ModelData.method4222(var1, var6, 128, 0, 128, true);
+            ModelData.method1126(var1, var6, 128, 0, 128, true);
          }
       }
 
@@ -820,7 +823,7 @@ public class Scene {
          var5 = this.tiles[var2][var3 + 1][var4 - 1];
          if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
             var6 = (ModelData)var5.floorDecoration.renderable;
-            ModelData.method4222(var1, var6, 128, 0, -128, true);
+            ModelData.method1126(var1, var6, 128, 0, -128, true);
          }
       }
 
@@ -830,7 +833,7 @@ public class Scene {
    @ObfuscatedSignature(
       descriptor = "(Lgi;IIIII)V"
    )
-   void method4502(ModelData var1, int var2, int var3, int var4, int var5, int var6) {
+   void method1217(ModelData var1, int var2, int var3, int var4, int var5, int var6) {
       boolean var7 = true;
       int var8 = var3;
       int var9 = var3 + var5;
@@ -851,12 +854,12 @@ public class Scene {
                               ModelData var18;
                               if (var17.renderable1 instanceof ModelData) {
                                  var18 = (ModelData)var17.renderable1;
-                                 ModelData.method4222(var1, var18, (1 - var5) * 64 + (var13 - var3) * 128, var16, (var14 - var4) * 128 + (1 - var6) * 64, var7);
+                                 ModelData.method1126(var1, var18, (1 - var5) * 64 + (var13 - var3) * 128, var16, (var14 - var4) * 128 + (1 - var6) * 64, var7);
                               }
 
                               if (var17.renderable2 instanceof ModelData) {
                                  var18 = (ModelData)var17.renderable2;
-                                 ModelData.method4222(var1, var18, (1 - var5) * 64 + (var13 - var3) * 128, var16, (var14 - var4) * 128 + (1 - var6) * 64, var7);
+                                 ModelData.method1126(var1, var18, (1 - var5) * 64 + (var13 - var3) * 128, var16, (var14 - var4) * 128 + (1 - var6) * 64, var7);
                               }
                            }
 
@@ -866,7 +869,7 @@ public class Scene {
                                  ModelData var20 = (ModelData)var19.renderable;
                                  int var21 = var19.endX - var19.startX + 1;
                                  int var22 = var19.endY - var19.startY + 1;
-                                 ModelData.method4222(var1, var20, (var21 - var5) * 64 + (var19.startX - var3) * 128, var16, (var19.startY - var4) * 128 + (var22 - var6) * 64, var7);
+                                 ModelData.method1126(var1, var20, (var21 - var5) * 64 + (var19.startX - var3) * 128, var16, (var19.startY - var4) * 128 + (var22 - var6) * 64, var7);
                               }
                            }
                         }
@@ -889,24 +892,24 @@ public class Scene {
          SceneTilePaint var8 = var7.paint;
          int var10;
          if (var8 != null) {
-            int var18 = var8.rgb;
-            if (var18 != 0) {
+            int var9 = var8.rgb;
+            if (var9 != 0) {
                for(var10 = 0; var10 < 4; ++var10) {
-                  var1[var2] = var18;
-                  var1[var2 + 1] = var18;
-                  var1[var2 + 2] = var18;
-                  var1[var2 + 3] = var18;
+                  var1[var2] = var9;
+                  var1[var2 + 1] = var9;
+                  var1[var2 + 2] = var9;
+                  var1[var2 + 3] = var9;
                   var2 += var3;
                }
 
             }
          } else {
-            SceneTileModel var9 = var7.model;
-            if (var9 != null) {
-               var10 = var9.shape;
-               int var11 = var9.rotation;
-               int var12 = var9.underlayRgb;
-               int var13 = var9.overlayRgb;
+            SceneTileModel var18 = var7.model;
+            if (var18 != null) {
+               var10 = var18.shape;
+               int var11 = var18.rotation;
+               int var12 = var18.underlayRgb;
+               int var13 = var18.overlayRgb;
                int[] var14 = this.tileShape2D[var10];
                int[] var15 = this.tileRotation2D[var11];
                int var16 = 0;
@@ -1028,40 +1031,40 @@ public class Scene {
 
          for(var9 = Scene_cameraXTileMin; var9 < Scene_cameraXTileMax; ++var9) {
             for(var10 = Scene_cameraYTileMin; var10 < Scene_cameraYTileMax; ++var10) {
-               Tile var16 = var8[var9][var10];
-               if (var16 != null) {
-                  if (var16.minPlane <= var6 && (visibleTiles[var9 - Scene_cameraXTile + 25][var10 - Scene_cameraYTile + 25] || this.tileHeights[var7][var9][var10] - var2 >= 2000)) {
-                     var16.drawPrimary = true;
-                     var16.drawSecondary = true;
-                     if (var16.gameObjectsCount > 0) {
-                        var16.drawGameObjects = true;
+               Tile var11 = var8[var9][var10];
+               if (var11 != null) {
+                  if (var11.minPlane <= var6 && (visibleTiles[var9 - Scene_cameraXTile + 25][var10 - Scene_cameraYTile + 25] || this.tileHeights[var7][var9][var10] - var2 >= 2000)) {
+                     var11.drawPrimary = true;
+                     var11.drawSecondary = true;
+                     if (var11.gameObjectsCount > 0) {
+                        var11.drawGameObjects = true;
                      } else {
-                        var16.drawGameObjects = false;
+                        var11.drawGameObjects = false;
                      }
 
                      ++tileUpdateCount;
                   } else {
-                     var16.drawPrimary = false;
-                     var16.drawSecondary = false;
-                     var16.drawGameObjectEdges = 0;
+                     var11.drawPrimary = false;
+                     var11.drawSecondary = false;
+                     var11.drawGameObjectEdges = 0;
                   }
                }
             }
          }
       }
 
-      int var11;
       int var12;
       int var13;
       int var14;
       Tile var15;
+      int var16;
       for(var7 = this.minPlane; var7 < this.planes; ++var7) {
          var8 = this.tiles[var7];
 
          for(var9 = -25; var9 <= 0; ++var9) {
             var10 = var9 + Scene_cameraXTile;
-            var11 = Scene_cameraXTile - var9;
-            if (var10 >= Scene_cameraXTileMin || var11 < Scene_cameraXTileMax) {
+            var16 = Scene_cameraXTile - var9;
+            if (var10 >= Scene_cameraXTileMin || var16 < Scene_cameraXTileMax) {
                for(var12 = -25; var12 <= 0; ++var12) {
                   var13 = var12 + Scene_cameraYTile;
                   var14 = Scene_cameraYTile - var12;
@@ -1081,16 +1084,16 @@ public class Scene {
                      }
                   }
 
-                  if (var11 < Scene_cameraXTileMax) {
+                  if (var16 < Scene_cameraXTileMax) {
                      if (var13 >= Scene_cameraYTileMin) {
-                        var15 = var8[var11][var13];
+                        var15 = var8[var16][var13];
                         if (var15 != null && var15.drawPrimary) {
                            this.drawTile(var15, true);
                         }
                      }
 
                      if (var14 < Scene_cameraYTileMax) {
-                        var15 = var8[var11][var14];
+                        var15 = var8[var16][var14];
                         if (var15 != null && var15.drawPrimary) {
                            this.drawTile(var15, true);
                         }
@@ -1111,8 +1114,8 @@ public class Scene {
 
          for(var9 = -25; var9 <= 0; ++var9) {
             var10 = var9 + Scene_cameraXTile;
-            var11 = Scene_cameraXTile - var9;
-            if (var10 >= Scene_cameraXTileMin || var11 < Scene_cameraXTileMax) {
+            var16 = Scene_cameraXTile - var9;
+            if (var10 >= Scene_cameraXTileMin || var16 < Scene_cameraXTileMax) {
                for(var12 = -25; var12 <= 0; ++var12) {
                   var13 = var12 + Scene_cameraYTile;
                   var14 = Scene_cameraYTile - var12;
@@ -1132,16 +1135,16 @@ public class Scene {
                      }
                   }
 
-                  if (var11 < Scene_cameraXTileMax) {
+                  if (var16 < Scene_cameraXTileMax) {
                      if (var13 >= Scene_cameraYTileMin) {
-                        var15 = var8[var11][var13];
+                        var15 = var8[var16][var13];
                         if (var15 != null && var15.drawPrimary) {
                            this.drawTile(var15, false);
                         }
                      }
 
                      if (var14 < Scene_cameraYTileMax) {
-                        var15 = var8[var11][var14];
+                        var15 = var8[var16][var14];
                         if (var15 != null && var15.drawPrimary) {
                            this.drawTile(var15, false);
                         }
@@ -1255,16 +1258,16 @@ public class Scene {
                                  if (var3.linkedBelowTile != null) {
                                     var9 = var3.linkedBelowTile;
                                     if (var9.paint != null) {
-                                       if (!this.method4478(0, var4, var5)) {
+                                       if (!this.method1212(0, var4, var5)) {
                                           this.drawTileUnderlay(var9.paint, 0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                        }
-                                    } else if (var9.model != null && !this.method4478(0, var4, var5)) {
+                                    } else if (var9.model != null && !this.method1212(0, var4, var5)) {
                                        this.drawTileOverlay(var9.model, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                     }
 
                                     var10 = var9.boundaryObject;
                                     if (var10 != null) {
-                                       var10.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var10.x * 4096 - Scene_cameraX, var10.z - Scene_cameraY, var10.y * 4096 - Scene_cameraZ, var10.tag);
+                                       var10.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var10.x - Scene_cameraX, var10.z - Scene_cameraY, var10.y - Scene_cameraZ, var10.tag);
                                     }
 
                                     for(var11 = 0; var11 < var9.gameObjectsCount; ++var11) {
@@ -1277,13 +1280,13 @@ public class Scene {
 
                                  var20 = false;
                                  if (var3.paint != null) {
-                                    if (!this.method4478(var7, var4, var5)) {
+                                    if (!this.method1212(var7, var4, var5)) {
                                        var20 = true;
                                        if (var3.paint.neColor != 12345678 || checkClick && var6 <= Scene_selectedPlane) {
                                           this.drawTileUnderlay(var3.paint, var7, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                        }
                                     }
-                                 } else if (var3.model != null && !this.method4478(var7, var4, var5)) {
+                                 } else if (var3.model != null && !this.method1212(var7, var4, var5)) {
                                     var20 = true;
                                     this.drawTileOverlay(var3.model, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                  }
@@ -1305,49 +1308,49 @@ public class Scene {
                                        var21 += 6;
                                     }
 
-                                    var11 = field2574[var21];
-                                    var3.field2479 = field2576[var21];
+                                    var11 = field2032[var21];
+                                    var3.field1959 = field2034[var21];
                                  }
 
                                  if (var31 != null) {
-                                    if ((var31.orientationA & field2575[var21]) != 0) {
+                                    if ((var31.orientationA & field2033[var21]) != 0) {
                                        if (var31.orientationA == 16) {
                                           var3.drawGameObjectEdges = 3;
-                                          var3.field2477 = field2577[var21];
-                                          var3.field2470 = 3 - var3.field2477;
+                                          var3.field1957 = field2035[var21];
+                                          var3.field1950 = 3 - var3.field1957;
                                        } else if (var31.orientationA == 32) {
                                           var3.drawGameObjectEdges = 6;
-                                          var3.field2477 = field2554[var21];
-                                          var3.field2470 = 6 - var3.field2477;
+                                          var3.field1957 = field2015[var21];
+                                          var3.field1950 = 6 - var3.field1957;
                                        } else if (var31.orientationA == 64) {
                                           var3.drawGameObjectEdges = 12;
-                                          var3.field2477 = field2579[var21];
-                                          var3.field2470 = 12 - var3.field2477;
+                                          var3.field1957 = field2036[var21];
+                                          var3.field1950 = 12 - var3.field1957;
                                        } else {
                                           var3.drawGameObjectEdges = 9;
-                                          var3.field2477 = field2580[var21];
-                                          var3.field2470 = 9 - var3.field2477;
+                                          var3.field1957 = field2037[var21];
+                                          var3.field1950 = 9 - var3.field1957;
                                        }
                                     } else {
                                        var3.drawGameObjectEdges = 0;
                                     }
 
-                                    if ((var31.orientationA & var11) != 0 && !this.method4479(var7, var4, var5, var31.orientationA)) {
-                                       var31.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var31.x * 4096 - Scene_cameraX, var31.z - Scene_cameraY, var31.y * 4096 - Scene_cameraZ, var31.tag);
+                                    if ((var31.orientationA & var11) != 0 && !this.method1213(var7, var4, var5, var31.orientationA)) {
+                                       var31.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var31.x - Scene_cameraX, var31.z - Scene_cameraY, var31.y - Scene_cameraZ, var31.tag);
                                     }
 
-                                    if ((var31.orientationB & var11) != 0 && !this.method4479(var7, var4, var5, var31.orientationB)) {
-                                       var31.renderable2.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var31.x * 4096 - Scene_cameraX, var31.z - Scene_cameraY, var31.y * 4096 - Scene_cameraZ, var31.tag);
+                                    if ((var31.orientationB & var11) != 0 && !this.method1213(var7, var4, var5, var31.orientationB)) {
+                                       var31.renderable2.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var31.x - Scene_cameraX, var31.z - Scene_cameraY, var31.y - Scene_cameraZ, var31.tag);
                                     }
                                  }
 
-                                 if (var13 != null && !this.method4480(var7, var4, var5, var13.renderable1.height)) {
+                                 if (var13 != null && !this.method1214(var7, var4, var5, var13.renderable1.height)) {
                                     if ((var13.orientation & var11) != 0) {
-                                       var13.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var13.xOffset + (var13.x * 4096 - Scene_cameraX), var13.z - Scene_cameraY, var13.yOffset + (var13.y * 4096 - Scene_cameraZ), var13.tag);
+                                       var13.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var13.x - Scene_cameraX + var13.xOffset, var13.z - Scene_cameraY, var13.y - Scene_cameraZ + var13.yOffset, var13.tag);
                                     } else if (var13.orientation == 256) {
-                                       var14 = var13.x * 4096 - Scene_cameraX;
+                                       var14 = var13.x - Scene_cameraX;
                                        var15 = var13.z - Scene_cameraY;
-                                       var16 = var13.y * 4096 - Scene_cameraZ;
+                                       var16 = var13.y - Scene_cameraZ;
                                        var17 = var13.orientation2;
                                        if (var17 != 1 && var17 != 2) {
                                           var18 = var14;
@@ -1373,21 +1376,21 @@ public class Scene {
                                  if (var20) {
                                     FloorDecoration var22 = var3.floorDecoration;
                                     if (var22 != null) {
-                                       var22.renderable.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var22.x * 64 - Scene_cameraX, var22.z - Scene_cameraY, var22.y * 4096 - Scene_cameraZ, var22.tag);
+                                       var22.renderable.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var22.x - Scene_cameraX, var22.z - Scene_cameraY, var22.y - Scene_cameraZ, var22.tag);
                                     }
 
                                     ItemLayer var23 = var3.itemLayer;
                                     if (var23 != null && var23.height == 0) {
                                        if (var23.second != null) {
-                                          var23.second.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var23.x * 4096 - Scene_cameraX, var23.z - Scene_cameraY, var23.y * 4096 - Scene_cameraZ, var23.tag);
+                                          var23.second.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var23.x - Scene_cameraX, var23.z - Scene_cameraY, var23.y - Scene_cameraZ, var23.tag);
                                        }
 
                                        if (var23.third != null) {
-                                          var23.third.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var23.x * 4096 - Scene_cameraX, var23.z - Scene_cameraY, var23.y * 4096 - Scene_cameraZ, var23.tag);
+                                          var23.third.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var23.x - Scene_cameraX, var23.z - Scene_cameraY, var23.y - Scene_cameraZ, var23.tag);
                                        }
 
                                        if (var23.first != null) {
-                                          var23.first.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var23.x * 4096 - Scene_cameraX, var23.z - Scene_cameraY, var23.y * 4096 - Scene_cameraZ, var23.tag);
+                                          var23.first.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var23.x - Scene_cameraX, var23.z - Scene_cameraY, var23.y - Scene_cameraZ, var23.tag);
                                        }
                                     }
                                  }
@@ -1429,7 +1432,7 @@ public class Scene {
                                  var20 = true;
 
                                  for(var21 = 0; var21 < var3.gameObjectsCount; ++var21) {
-                                    if (var3.gameObjects[var21].lastDrawn != Scene_drawnCount && (var3.gameObjectEdgeMasks[var21] & var3.drawGameObjectEdges) == var3.field2477) {
+                                    if (var3.gameObjects[var21].lastDrawn != Scene_drawnCount && (var3.gameObjectEdgeMasks[var21] & var3.drawGameObjectEdges) == var3.field1957) {
                                        var20 = false;
                                        break;
                                     }
@@ -1437,8 +1440,8 @@ public class Scene {
 
                                  if (var20) {
                                     var10 = var3.boundaryObject;
-                                    if (!this.method4479(var7, var4, var5, var10.orientationA)) {
-                                       var10.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var10.x * 4096 - Scene_cameraX, var10.z - Scene_cameraY, var10.y * 4096 - Scene_cameraZ, var10.tag);
+                                    if (!this.method1213(var7, var4, var5, var10.orientationA)) {
+                                       var10.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var10.x - Scene_cameraX, var10.z - Scene_cameraY, var10.y - Scene_cameraZ, var10.tag);
                                     }
 
                                     var3.drawGameObjectEdges = 0;
@@ -1484,7 +1487,7 @@ public class Scene {
                                                    var16 += 2;
                                                 }
 
-                                                if ((var16 & var36.drawGameObjectEdges) == var3.field2470) {
+                                                if ((var16 & var36.drawGameObjectEdges) == var3.field1950) {
                                                    var3.drawGameObjects = true;
                                                    continue label563;
                                                 }
@@ -1502,9 +1505,9 @@ public class Scene {
                                        var15 = Scene_cameraYTile - var12.startY;
                                        var16 = var12.endY - Scene_cameraYTile;
                                        if (var16 > var15) {
-                                          var12.field2806 = var24 + var16;
+                                          var12.field2232 = var24 + var16;
                                        } else {
-                                          var12.field2806 = var24 + var15;
+                                          var12.field2232 = var24 + var15;
                                        }
                                     }
                                  }
@@ -1516,10 +1519,10 @@ public class Scene {
                                     for(var24 = 0; var24 < var21; ++var24) {
                                        GameObject var35 = gameObjects[var24];
                                        if (var35.lastDrawn != Scene_drawnCount) {
-                                          if (var35.field2806 > var11) {
-                                             var11 = var35.field2806;
+                                          if (var35.field2232 > var11) {
+                                             var11 = var35.field2232;
                                              var25 = var24;
-                                          } else if (var11 == var35.field2806) {
+                                          } else if (var11 == var35.field2232) {
                                              var15 = var35.centerX - Scene_cameraX;
                                              var16 = var35.centerY - Scene_cameraZ;
                                              var17 = gameObjects[var25].centerX - Scene_cameraX;
@@ -1537,7 +1540,7 @@ public class Scene {
 
                                     GameObject var33 = gameObjects[var25];
                                     var33.lastDrawn = Scene_drawnCount;
-                                    if (!this.method4481(var7, var33.startX, var33.endX, var33.startY, var33.endY, var33.renderable.height)) {
+                                    if (!this.method1215(var7, var33.startX, var33.endX, var33.startY, var33.endY, var33.renderable.height)) {
                                        var33.renderable.draw(var33.orientation, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var33.centerX - Scene_cameraX, var33.z - Scene_cameraY, var33.centerY - Scene_cameraZ, var33.tag);
                                     }
 
@@ -1597,27 +1600,27 @@ public class Scene {
          ItemLayer var32 = var3.itemLayer;
          if (var32 != null && var32.height != 0) {
             if (var32.second != null) {
-               var32.second.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var32.x * 4096 - Scene_cameraX, var32.z - Scene_cameraY - var32.height, var32.y * 4096 - Scene_cameraZ, var32.tag);
+               var32.second.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var32.x - Scene_cameraX, var32.z - Scene_cameraY - var32.height, var32.y - Scene_cameraZ, var32.tag);
             }
 
             if (var32.third != null) {
-               var32.third.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var32.x * 4096 - Scene_cameraX, var32.z - Scene_cameraY - var32.height, var32.y * 4096 - Scene_cameraZ, var32.tag);
+               var32.third.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var32.x - Scene_cameraX, var32.z - Scene_cameraY - var32.height, var32.y - Scene_cameraZ, var32.tag);
             }
 
             if (var32.first != null) {
-               var32.first.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var32.x * 4096 - Scene_cameraX, var32.z - Scene_cameraY - var32.height, var32.y * 4096 - Scene_cameraZ, var32.tag);
+               var32.first.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var32.x - Scene_cameraX, var32.z - Scene_cameraY - var32.height, var32.y - Scene_cameraZ, var32.tag);
             }
          }
 
-         if (var3.field2479 != 0) {
+         if (var3.field1959 != 0) {
             WallDecoration var29 = var3.wallDecoration;
-            if (var29 != null && !this.method4480(var7, var4, var5, var29.renderable1.height)) {
-               if ((var29.orientation & var3.field2479) != 0) {
-                  var29.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var29.xOffset + (var29.x * 4096 - Scene_cameraX), var29.z - Scene_cameraY, var29.yOffset + (var29.y * 4096 - Scene_cameraZ), var29.tag);
+            if (var29 != null && !this.method1214(var7, var4, var5, var29.renderable1.height)) {
+               if ((var29.orientation & var3.field1959) != 0) {
+                  var29.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var29.x - Scene_cameraX + var29.xOffset, var29.z - Scene_cameraY, var29.y - Scene_cameraZ + var29.yOffset, var29.tag);
                } else if (var29.orientation == 256) {
-                  var11 = var29.x * 4096 - Scene_cameraX;
+                  var11 = var29.x - Scene_cameraX;
                   var25 = var29.z - Scene_cameraY;
-                  var24 = var29.y * 4096 - Scene_cameraZ;
+                  var24 = var29.y - Scene_cameraZ;
                   var14 = var29.orientation2;
                   if (var14 != 1 && var14 != 2) {
                      var15 = var11;
@@ -1641,12 +1644,12 @@ public class Scene {
 
             BoundaryObject var27 = var3.boundaryObject;
             if (var27 != null) {
-               if ((var27.orientationB & var3.field2479) != 0 && !this.method4479(var7, var4, var5, var27.orientationB)) {
-                  var27.renderable2.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var27.x * 4096 - Scene_cameraX, var27.z - Scene_cameraY, var27.y * 4096 - Scene_cameraZ, var27.tag);
+               if ((var27.orientationB & var3.field1959) != 0 && !this.method1213(var7, var4, var5, var27.orientationB)) {
+                  var27.renderable2.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var27.x - Scene_cameraX, var27.z - Scene_cameraY, var27.y - Scene_cameraZ, var27.tag);
                }
 
-               if ((var27.orientationA & var3.field2479) != 0 && !this.method4479(var7, var4, var5, var27.orientationA)) {
-                  var27.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var27.x * 4096 - Scene_cameraX, var27.z - Scene_cameraY, var27.y * 4096 - Scene_cameraZ, var27.tag);
+               if ((var27.orientationA & var3.field1959) != 0 && !this.method1213(var7, var4, var5, var27.orientationA)) {
+                  var27.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var27.x - Scene_cameraX, var27.z - Scene_cameraY, var27.y - Scene_cameraZ, var27.tag);
                }
             }
          }
@@ -1744,9 +1747,9 @@ public class Scene {
                   Rasterizer3D.Rasterizer3D_alpha = 0;
                   int var30;
                   if ((var26 - var28) * (var25 - var29) - (var27 - var29) * (var24 - var28) > 0) {
-                     Rasterizer3D.field2502 = false;
+                     Rasterizer3D.field1977 = false;
                      if (var26 < 0 || var28 < 0 || var24 < 0 || var26 > Rasterizer3D.Rasterizer3D_clipWidth || var28 > Rasterizer3D.Rasterizer3D_clipWidth || var24 > Rasterizer3D.Rasterizer3D_clipWidth) {
-                        Rasterizer3D.field2502 = true;
+                        Rasterizer3D.field1977 = true;
                      }
 
                      if (checkClick && containsBounds(Scene_selectedScreenX, Scene_selectedScreenY, var27, var29, var25, var26, var28, var24)) {
@@ -1756,7 +1759,7 @@ public class Scene {
 
                      if (var1.texture == -1) {
                         if (var1.neColor != 12345678) {
-                           Rasterizer3D.method4340(var27, var29, var25, var26, var28, var24, var1.neColor, var1.nwColor, var1.seColor);
+                           Rasterizer3D.method1163(var27, var29, var25, var26, var28, var24, var1.neColor, var1.nwColor, var1.seColor);
                         }
                      } else if (!Scene_isLowDetail) {
                         if (var1.isFlat) {
@@ -1766,14 +1769,14 @@ public class Scene {
                         }
                      } else {
                         var30 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var1.texture);
-                        Rasterizer3D.method4340(var27, var29, var25, var26, var28, var24, method4447(var30, var1.neColor), method4447(var30, var1.nwColor), method4447(var30, var1.seColor));
+                        Rasterizer3D.method1163(var27, var29, var25, var26, var28, var24, method1192(var30, var1.neColor), method1192(var30, var1.nwColor), method1192(var30, var1.seColor));
                      }
                   }
 
                   if ((var22 - var24) * (var29 - var25) - (var23 - var25) * (var28 - var24) > 0) {
-                     Rasterizer3D.field2502 = false;
+                     Rasterizer3D.field1977 = false;
                      if (var22 < 0 || var24 < 0 || var28 < 0 || var22 > Rasterizer3D.Rasterizer3D_clipWidth || var24 > Rasterizer3D.Rasterizer3D_clipWidth || var28 > Rasterizer3D.Rasterizer3D_clipWidth) {
-                        Rasterizer3D.field2502 = true;
+                        Rasterizer3D.field1977 = true;
                      }
 
                      if (checkClick && containsBounds(Scene_selectedScreenX, Scene_selectedScreenY, var23, var25, var29, var22, var24, var28)) {
@@ -1783,13 +1786,13 @@ public class Scene {
 
                      if (var1.texture == -1) {
                         if (var1.swColor != 12345678) {
-                           Rasterizer3D.method4340(var23, var25, var29, var22, var24, var28, var1.swColor, var1.seColor, var1.nwColor);
+                           Rasterizer3D.method1163(var23, var25, var29, var22, var24, var28, var1.swColor, var1.seColor, var1.nwColor);
                         }
                      } else if (!Scene_isLowDetail) {
                         Rasterizer3D.drawTexturedTile(var23, var25, var29, var22, var24, var28, var1.swColor, var1.seColor, var1.nwColor, var10, var14, var9, var17, var18, var21, var12, var11, var15, var1.texture);
                      } else {
                         var30 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var1.texture);
-                        Rasterizer3D.method4340(var23, var25, var29, var22, var24, var28, method4447(var30, var1.swColor), method4447(var30, var1.seColor), method4447(var30, var1.nwColor));
+                        Rasterizer3D.method1163(var23, var25, var29, var22, var24, var28, method1192(var30, var1.swColor), method1192(var30, var1.seColor), method1192(var30, var1.nwColor));
                      }
                   }
 
@@ -1825,13 +1828,13 @@ public class Scene {
          }
 
          if (var1.triangleTextureId != null) {
-            SceneTileModel.field2653[var9] = var10;
-            SceneTileModel.field2657[var9] = var13;
-            SceneTileModel.field2664[var9] = var12;
+            SceneTileModel.field2098[var9] = var10;
+            SceneTileModel.field2102[var9] = var13;
+            SceneTileModel.field2109[var9] = var12;
          }
 
-         SceneTileModel.field2658[var9] = var10 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidX;
-         SceneTileModel.field2661[var9] = var13 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidY;
+         SceneTileModel.field2103[var9] = var10 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidX;
+         SceneTileModel.field2106[var9] = var13 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidY;
       }
 
       Rasterizer3D.Rasterizer3D_alpha = 0;
@@ -1841,16 +1844,16 @@ public class Scene {
          var10 = var1.faceX[var9];
          var11 = var1.faceY[var9];
          var12 = var1.faceZ[var9];
-         var13 = SceneTileModel.field2658[var10];
-         int var14 = SceneTileModel.field2658[var11];
-         int var15 = SceneTileModel.field2658[var12];
-         int var16 = SceneTileModel.field2661[var10];
-         int var17 = SceneTileModel.field2661[var11];
-         int var18 = SceneTileModel.field2661[var12];
+         var13 = SceneTileModel.field2103[var10];
+         int var14 = SceneTileModel.field2103[var11];
+         int var15 = SceneTileModel.field2103[var12];
+         int var16 = SceneTileModel.field2106[var10];
+         int var17 = SceneTileModel.field2106[var11];
+         int var18 = SceneTileModel.field2106[var12];
          if ((var13 - var14) * (var18 - var17) - (var16 - var17) * (var15 - var14) > 0) {
-            Rasterizer3D.field2502 = false;
+            Rasterizer3D.field1977 = false;
             if (var13 < 0 || var14 < 0 || var15 < 0 || var13 > Rasterizer3D.Rasterizer3D_clipWidth || var14 > Rasterizer3D.Rasterizer3D_clipWidth || var15 > Rasterizer3D.Rasterizer3D_clipWidth) {
-               Rasterizer3D.field2502 = true;
+               Rasterizer3D.field1977 = true;
             }
 
             if (checkClick && containsBounds(Scene_selectedScreenX, Scene_selectedScreenY, var16, var17, var18, var13, var14, var15)) {
@@ -1861,16 +1864,16 @@ public class Scene {
             if (var1.triangleTextureId != null && var1.triangleTextureId[var9] != -1) {
                if (!Scene_isLowDetail) {
                   if (var1.isFlat) {
-                     Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field2653[0], SceneTileModel.field2653[1], SceneTileModel.field2653[3], SceneTileModel.field2657[0], SceneTileModel.field2657[1], SceneTileModel.field2657[3], SceneTileModel.field2664[0], SceneTileModel.field2664[1], SceneTileModel.field2664[3], var1.triangleTextureId[var9]);
+                     Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field2098[0], SceneTileModel.field2098[1], SceneTileModel.field2098[3], SceneTileModel.field2102[0], SceneTileModel.field2102[1], SceneTileModel.field2102[3], SceneTileModel.field2109[0], SceneTileModel.field2109[1], SceneTileModel.field2109[3], var1.triangleTextureId[var9]);
                   } else {
-                     Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field2653[var10], SceneTileModel.field2653[var11], SceneTileModel.field2653[var12], SceneTileModel.field2657[var10], SceneTileModel.field2657[var11], SceneTileModel.field2657[var12], SceneTileModel.field2664[var10], SceneTileModel.field2664[var11], SceneTileModel.field2664[var12], var1.triangleTextureId[var9]);
+                     Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field2098[var10], SceneTileModel.field2098[var11], SceneTileModel.field2098[var12], SceneTileModel.field2102[var10], SceneTileModel.field2102[var11], SceneTileModel.field2102[var12], SceneTileModel.field2109[var10], SceneTileModel.field2109[var11], SceneTileModel.field2109[var12], var1.triangleTextureId[var9]);
                   }
                } else {
                   int var19 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var1.triangleTextureId[var9]);
-                  Rasterizer3D.method4340(var16, var17, var18, var13, var14, var15, method4447(var19, var1.triangleColorA[var9]), method4447(var19, var1.triangleColorB[var9]), method4447(var19, var1.triangleColorC[var9]));
+                  Rasterizer3D.method1163(var16, var17, var18, var13, var14, var15, method1192(var19, var1.triangleColorA[var9]), method1192(var19, var1.triangleColorB[var9]), method1192(var19, var1.triangleColorC[var9]));
                }
             } else if (var1.triangleColorA[var9] != 12345678) {
-               Rasterizer3D.method4340(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9]);
+               Rasterizer3D.method1163(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9]);
             }
          }
       }
@@ -1915,20 +1918,20 @@ public class Scene {
                if (var13) {
                   var9 = Scene_cameraX - var4.minX;
                   if (var9 > 32) {
-                     var4.field2621 = 1;
+                     var4.field2067 = 1;
                   } else {
                      if (var9 >= -32) {
                         continue;
                      }
 
-                     var4.field2621 = 2;
+                     var4.field2067 = 2;
                      var9 = -var9;
                   }
 
-                  var4.field2632 = (var4.minZ - Scene_cameraZ << 8) / var9;
-                  var4.field2633 = (var4.maxZ - Scene_cameraZ << 8) / var9;
-                  var4.field2634 = (var4.minY - Scene_cameraY << 8) / var9;
-                  var4.field2635 = (var4.maxY - Scene_cameraY << 8) / var9;
+                  var4.field2078 = (var4.minZ - Scene_cameraZ << 8) / var9;
+                  var4.field2079 = (var4.maxZ - Scene_cameraZ << 8) / var9;
+                  var4.field2080 = (var4.minY - Scene_cameraY << 8) / var9;
+                  var4.field2081 = (var4.maxY - Scene_cameraY << 8) / var9;
                   Scene_currentOccluders[Scene_currentOccludersCount++] = var4;
                }
             }
@@ -1957,20 +1960,20 @@ public class Scene {
                if (var13) {
                   var9 = Scene_cameraZ - var4.minZ;
                   if (var9 > 32) {
-                     var4.field2621 = 3;
+                     var4.field2067 = 3;
                   } else {
                      if (var9 >= -32) {
                         continue;
                      }
 
-                     var4.field2621 = 4;
+                     var4.field2067 = 4;
                      var9 = -var9;
                   }
 
-                  var4.field2630 = (var4.minX - Scene_cameraX << 8) / var9;
-                  var4.field2631 = (var4.maxX - Scene_cameraX << 8) / var9;
-                  var4.field2634 = (var4.minY - Scene_cameraY << 8) / var9;
-                  var4.field2635 = (var4.maxY - Scene_cameraY << 8) / var9;
+                  var4.field2076 = (var4.minX - Scene_cameraX << 8) / var9;
+                  var4.field2077 = (var4.maxX - Scene_cameraX << 8) / var9;
+                  var4.field2080 = (var4.minY - Scene_cameraY << 8) / var9;
+                  var4.field2081 = (var4.maxY - Scene_cameraY << 8) / var9;
                   Scene_currentOccluders[Scene_currentOccludersCount++] = var4;
                }
             }
@@ -2000,22 +2003,22 @@ public class Scene {
 
                   boolean var10 = false;
 
-                  label148:
+                  label145:
                   for(int var11 = var8; var11 <= var9; ++var11) {
                      for(int var12 = var6; var12 <= var7; ++var12) {
                         if (visibleTiles[var11][var12]) {
                            var10 = true;
-                           break label148;
+                           break label145;
                         }
                      }
                   }
 
                   if (var10) {
-                     var4.field2621 = 5;
-                     var4.field2630 = (var4.minX - Scene_cameraX << 8) / var5;
-                     var4.field2631 = (var4.maxX - Scene_cameraX << 8) / var5;
-                     var4.field2632 = (var4.minZ - Scene_cameraZ << 8) / var5;
-                     var4.field2633 = (var4.maxZ - Scene_cameraZ << 8) / var5;
+                     var4.field2067 = 5;
+                     var4.field2076 = (var4.minX - Scene_cameraX << 8) / var5;
+                     var4.field2077 = (var4.maxX - Scene_cameraX << 8) / var5;
+                     var4.field2078 = (var4.minZ - Scene_cameraZ << 8) / var5;
+                     var4.field2079 = (var4.maxZ - Scene_cameraZ << 8) / var5;
                      Scene_currentOccluders[Scene_currentOccludersCount++] = var4;
                   }
                }
@@ -2026,8 +2029,8 @@ public class Scene {
    }
 
    @ObfuscatedName("ap")
-   boolean method4478(int var1, int var2, int var3) {
-      int var4 = this.field2537[var1][var2][var3];
+   boolean method1212(int var1, int var2, int var3) {
+      int var4 = this.field2000[var1][var2][var3];
       if (var4 == -Scene_drawnCount) {
          return false;
       } else if (var4 == Scene_drawnCount) {
@@ -2035,19 +2038,19 @@ public class Scene {
       } else {
          int var5 = var2 << 7;
          int var6 = var3 << 7;
-         if (this.method4453(var5 + 1, this.tileHeights[var1][var2][var3], var6 + 1) && this.method4453(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3], var6 + 1) && this.method4453(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3 + 1], var6 + 128 - 1) && this.method4453(var5 + 1, this.tileHeights[var1][var2][var3 + 1], var6 + 128 - 1)) {
-            this.field2537[var1][var2][var3] = Scene_drawnCount;
+         if (this.method1196(var5 + 1, this.tileHeights[var1][var2][var3], var6 + 1) && this.method1196(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3], var6 + 1) && this.method1196(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3 + 1], var6 + 128 - 1) && this.method1196(var5 + 1, this.tileHeights[var1][var2][var3 + 1], var6 + 128 - 1)) {
+            this.field2000[var1][var2][var3] = Scene_drawnCount;
             return true;
          } else {
-            this.field2537[var1][var2][var3] = -Scene_drawnCount;
+            this.field2000[var1][var2][var3] = -Scene_drawnCount;
             return false;
          }
       }
    }
 
    @ObfuscatedName("aa")
-   boolean method4479(int var1, int var2, int var3, int var4) {
-      if (!this.method4478(var1, var2, var3)) {
+   boolean method1213(int var1, int var2, int var3, int var4) {
+      if (!this.method1212(var1, var2, var3)) {
          return false;
       } else {
          int var5 = var2 << 7;
@@ -2059,30 +2062,30 @@ public class Scene {
          if (var4 < 16) {
             if (var4 == 1) {
                if (var5 > Scene_cameraX) {
-                  if (!this.method4453(var5, var7, var6)) {
+                  if (!this.method1196(var5, var7, var6)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5, var7, var6 + 128)) {
+                  if (!this.method1196(var5, var7, var6 + 128)) {
                      return false;
                   }
                }
 
                if (var1 > 0) {
-                  if (!this.method4453(var5, var8, var6)) {
+                  if (!this.method1196(var5, var8, var6)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5, var8, var6 + 128)) {
+                  if (!this.method1196(var5, var8, var6 + 128)) {
                      return false;
                   }
                }
 
-               if (!this.method4453(var5, var9, var6)) {
+               if (!this.method1196(var5, var9, var6)) {
                   return false;
                }
 
-               if (!this.method4453(var5, var9, var6 + 128)) {
+               if (!this.method1196(var5, var9, var6 + 128)) {
                   return false;
                }
 
@@ -2091,30 +2094,30 @@ public class Scene {
 
             if (var4 == 2) {
                if (var6 < Scene_cameraZ) {
-                  if (!this.method4453(var5, var7, var6 + 128)) {
+                  if (!this.method1196(var5, var7, var6 + 128)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5 + 128, var7, var6 + 128)) {
+                  if (!this.method1196(var5 + 128, var7, var6 + 128)) {
                      return false;
                   }
                }
 
                if (var1 > 0) {
-                  if (!this.method4453(var5, var8, var6 + 128)) {
+                  if (!this.method1196(var5, var8, var6 + 128)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5 + 128, var8, var6 + 128)) {
+                  if (!this.method1196(var5 + 128, var8, var6 + 128)) {
                      return false;
                   }
                }
 
-               if (!this.method4453(var5, var9, var6 + 128)) {
+               if (!this.method1196(var5, var9, var6 + 128)) {
                   return false;
                }
 
-               if (!this.method4453(var5 + 128, var9, var6 + 128)) {
+               if (!this.method1196(var5 + 128, var9, var6 + 128)) {
                   return false;
                }
 
@@ -2123,30 +2126,30 @@ public class Scene {
 
             if (var4 == 4) {
                if (var5 < Scene_cameraX) {
-                  if (!this.method4453(var5 + 128, var7, var6)) {
+                  if (!this.method1196(var5 + 128, var7, var6)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5 + 128, var7, var6 + 128)) {
+                  if (!this.method1196(var5 + 128, var7, var6 + 128)) {
                      return false;
                   }
                }
 
                if (var1 > 0) {
-                  if (!this.method4453(var5 + 128, var8, var6)) {
+                  if (!this.method1196(var5 + 128, var8, var6)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5 + 128, var8, var6 + 128)) {
+                  if (!this.method1196(var5 + 128, var8, var6 + 128)) {
                      return false;
                   }
                }
 
-               if (!this.method4453(var5 + 128, var9, var6)) {
+               if (!this.method1196(var5 + 128, var9, var6)) {
                   return false;
                }
 
-               if (!this.method4453(var5 + 128, var9, var6 + 128)) {
+               if (!this.method1196(var5 + 128, var9, var6 + 128)) {
                   return false;
                }
 
@@ -2155,30 +2158,30 @@ public class Scene {
 
             if (var4 == 8) {
                if (var6 > Scene_cameraZ) {
-                  if (!this.method4453(var5, var7, var6)) {
+                  if (!this.method1196(var5, var7, var6)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5 + 128, var7, var6)) {
+                  if (!this.method1196(var5 + 128, var7, var6)) {
                      return false;
                   }
                }
 
                if (var1 > 0) {
-                  if (!this.method4453(var5, var8, var6)) {
+                  if (!this.method1196(var5, var8, var6)) {
                      return false;
                   }
 
-                  if (!this.method4453(var5 + 128, var8, var6)) {
+                  if (!this.method1196(var5 + 128, var8, var6)) {
                      return false;
                   }
                }
 
-               if (!this.method4453(var5, var9, var6)) {
+               if (!this.method1196(var5, var9, var6)) {
                   return false;
                }
 
-               if (!this.method4453(var5 + 128, var9, var6)) {
+               if (!this.method1196(var5 + 128, var9, var6)) {
                   return false;
                }
 
@@ -2186,16 +2189,16 @@ public class Scene {
             }
          }
 
-         if (!this.method4453(var5 + 64, var10, var6 + 64)) {
+         if (!this.method1196(var5 + 64, var10, var6 + 64)) {
             return false;
          } else if (var4 == 16) {
-            return this.method4453(var5, var9, var6 + 128);
+            return this.method1196(var5, var9, var6 + 128);
          } else if (var4 == 32) {
-            return this.method4453(var5 + 128, var9, var6 + 128);
+            return this.method1196(var5 + 128, var9, var6 + 128);
          } else if (var4 == 64) {
-            return this.method4453(var5 + 128, var9, var6);
+            return this.method1196(var5 + 128, var9, var6);
          } else if (var4 == 128) {
-            return this.method4453(var5, var9, var6);
+            return this.method1196(var5, var9, var6);
          } else {
             return true;
          }
@@ -2203,32 +2206,32 @@ public class Scene {
    }
 
    @ObfuscatedName("ae")
-   boolean method4480(int var1, int var2, int var3, int var4) {
-      if (!this.method4478(var1, var2, var3)) {
+   boolean method1214(int var1, int var2, int var3, int var4) {
+      if (!this.method1212(var1, var2, var3)) {
          return false;
       } else {
          int var5 = var2 << 7;
          int var6 = var3 << 7;
-         return this.method4453(var5 + 1, this.tileHeights[var1][var2][var3] - var4, var6 + 1) && this.method4453(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3] - var4, var6 + 1) && this.method4453(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3 + 1] - var4, var6 + 128 - 1) && this.method4453(var5 + 1, this.tileHeights[var1][var2][var3 + 1] - var4, var6 + 128 - 1);
+         return this.method1196(var5 + 1, this.tileHeights[var1][var2][var3] - var4, var6 + 1) && this.method1196(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3] - var4, var6 + 1) && this.method1196(var5 + 128 - 1, this.tileHeights[var1][var2 + 1][var3 + 1] - var4, var6 + 128 - 1) && this.method1196(var5 + 1, this.tileHeights[var1][var2][var3 + 1] - var4, var6 + 128 - 1);
       }
    }
 
    @ObfuscatedName("ac")
-   boolean method4481(int var1, int var2, int var3, int var4, int var5, int var6) {
+   boolean method1215(int var1, int var2, int var3, int var4, int var5, int var6) {
       int var7;
       int var8;
       if (var3 == var2 && var5 == var4) {
-         if (!this.method4478(var1, var2, var4)) {
+         if (!this.method1212(var1, var2, var4)) {
             return false;
          } else {
             var7 = var2 << 7;
             var8 = var4 << 7;
-            return this.method4453(var7 + 1, this.tileHeights[var1][var2][var4] - var6, var8 + 1) && this.method4453(var7 + 128 - 1, this.tileHeights[var1][var2 + 1][var4] - var6, var8 + 1) && this.method4453(var7 + 128 - 1, this.tileHeights[var1][var2 + 1][var4 + 1] - var6, var8 + 128 - 1) && this.method4453(var7 + 1, this.tileHeights[var1][var2][var4 + 1] - var6, var8 + 128 - 1);
+            return this.method1196(var7 + 1, this.tileHeights[var1][var2][var4] - var6, var8 + 1) && this.method1196(var7 + 128 - 1, this.tileHeights[var1][var2 + 1][var4] - var6, var8 + 1) && this.method1196(var7 + 128 - 1, this.tileHeights[var1][var2 + 1][var4 + 1] - var6, var8 + 128 - 1) && this.method1196(var7 + 1, this.tileHeights[var1][var2][var4 + 1] - var6, var8 + 128 - 1);
          }
       } else {
          for(var7 = var2; var7 <= var3; ++var7) {
             for(var8 = var4; var8 <= var5; ++var8) {
-               if (this.field2537[var1][var7][var8] == -Scene_drawnCount) {
+               if (this.field2000[var1][var7][var8] == -Scene_drawnCount) {
                   return false;
                }
             }
@@ -2237,17 +2240,17 @@ public class Scene {
          var7 = (var2 << 7) + 1;
          var8 = (var4 << 7) + 2;
          int var9 = this.tileHeights[var1][var2][var4] - var6;
-         if (!this.method4453(var7, var9, var8)) {
+         if (!this.method1196(var7, var9, var8)) {
             return false;
          } else {
             int var10 = (var3 << 7) - 1;
-            if (!this.method4453(var10, var9, var8)) {
+            if (!this.method1196(var10, var9, var8)) {
                return false;
             } else {
                int var11 = (var5 << 7) - 1;
-               if (!this.method4453(var7, var9, var11)) {
+               if (!this.method1196(var7, var9, var11)) {
                   return false;
-               } else if (!this.method4453(var10, var9, var11)) {
+               } else if (!this.method1196(var10, var9, var11)) {
                   return false;
                } else {
                   return true;
@@ -2258,7 +2261,7 @@ public class Scene {
    }
 
    @ObfuscatedName("bh")
-   boolean method4453(int var1, int var2, int var3) {
+   boolean method1196(int var1, int var2, int var3) {
       for(int var4 = 0; var4 < Scene_currentOccludersCount; ++var4) {
          Occluder var5 = Scene_currentOccluders[var4];
          int var6;
@@ -2266,57 +2269,57 @@ public class Scene {
          int var8;
          int var9;
          int var10;
-         if (var5.field2621 == 1) {
+         if (var5.field2067 == 1) {
             var6 = var5.minX - var1;
             if (var6 > 0) {
-               var7 = (var6 * var5.field2632 >> 8) + var5.minZ;
-               var8 = (var6 * var5.field2633 >> 8) + var5.maxZ;
-               var9 = (var6 * var5.field2634 >> 8) + var5.minY;
-               var10 = (var6 * var5.field2635 >> 8) + var5.maxY;
+               var7 = (var6 * var5.field2078 >> 8) + var5.minZ;
+               var8 = (var6 * var5.field2079 >> 8) + var5.maxZ;
+               var9 = (var6 * var5.field2080 >> 8) + var5.minY;
+               var10 = (var6 * var5.field2081 >> 8) + var5.maxY;
                if (var3 >= var7 && var3 <= var8 && var2 >= var9 && var2 <= var10) {
                   return true;
                }
             }
-         } else if (var5.field2621 == 2) {
+         } else if (var5.field2067 == 2) {
             var6 = var1 - var5.minX;
             if (var6 > 0) {
-               var7 = (var6 * var5.field2632 >> 8) + var5.minZ;
-               var8 = (var6 * var5.field2633 >> 8) + var5.maxZ;
-               var9 = (var6 * var5.field2634 >> 8) + var5.minY;
-               var10 = (var6 * var5.field2635 >> 8) + var5.maxY;
+               var7 = (var6 * var5.field2078 >> 8) + var5.minZ;
+               var8 = (var6 * var5.field2079 >> 8) + var5.maxZ;
+               var9 = (var6 * var5.field2080 >> 8) + var5.minY;
+               var10 = (var6 * var5.field2081 >> 8) + var5.maxY;
                if (var3 >= var7 && var3 <= var8 && var2 >= var9 && var2 <= var10) {
                   return true;
                }
             }
-         } else if (var5.field2621 == 3) {
+         } else if (var5.field2067 == 3) {
             var6 = var5.minZ - var3;
             if (var6 > 0) {
-               var7 = (var6 * var5.field2630 >> 8) + var5.minX;
-               var8 = (var6 * var5.field2631 >> 8) + var5.maxX;
-               var9 = (var6 * var5.field2634 >> 8) + var5.minY;
-               var10 = (var6 * var5.field2635 >> 8) + var5.maxY;
+               var7 = (var6 * var5.field2076 >> 8) + var5.minX;
+               var8 = (var6 * var5.field2077 >> 8) + var5.maxX;
+               var9 = (var6 * var5.field2080 >> 8) + var5.minY;
+               var10 = (var6 * var5.field2081 >> 8) + var5.maxY;
                if (var1 >= var7 && var1 <= var8 && var2 >= var9 && var2 <= var10) {
                   return true;
                }
             }
-         } else if (var5.field2621 == 4) {
+         } else if (var5.field2067 == 4) {
             var6 = var3 - var5.minZ;
             if (var6 > 0) {
-               var7 = (var6 * var5.field2630 >> 8) + var5.minX;
-               var8 = (var6 * var5.field2631 >> 8) + var5.maxX;
-               var9 = (var6 * var5.field2634 >> 8) + var5.minY;
-               var10 = (var6 * var5.field2635 >> 8) + var5.maxY;
+               var7 = (var6 * var5.field2076 >> 8) + var5.minX;
+               var8 = (var6 * var5.field2077 >> 8) + var5.maxX;
+               var9 = (var6 * var5.field2080 >> 8) + var5.minY;
+               var10 = (var6 * var5.field2081 >> 8) + var5.maxY;
                if (var1 >= var7 && var1 <= var8 && var2 >= var9 && var2 <= var10) {
                   return true;
                }
             }
-         } else if (var5.field2621 == 5) {
+         } else if (var5.field2067 == 5) {
             var6 = var2 - var5.minY;
             if (var6 > 0) {
-               var7 = (var6 * var5.field2630 >> 8) + var5.minX;
-               var8 = (var6 * var5.field2631 >> 8) + var5.maxX;
-               var9 = (var6 * var5.field2632 >> 8) + var5.minZ;
-               var10 = (var6 * var5.field2633 >> 8) + var5.maxZ;
+               var7 = (var6 * var5.field2076 >> 8) + var5.minX;
+               var8 = (var6 * var5.field2077 >> 8) + var5.maxX;
+               var9 = (var6 * var5.field2078 >> 8) + var5.minZ;
+               var10 = (var6 * var5.field2079 >> 8) + var5.maxZ;
                if (var1 >= var7 && var1 <= var8 && var3 >= var9 && var3 <= var10) {
                   return true;
                }
@@ -2376,7 +2379,7 @@ public class Scene {
                   boolean var14 = false;
 
                   for(int var15 = -var1; var15 <= var2; var15 += 128) {
-                     if (method4466(var12, var0[var8] + var15, var13)) {
+                     if (method1203(var12, var0[var8] + var15, var13)) {
                         var14 = true;
                         break;
                      }
@@ -2394,27 +2397,27 @@ public class Scene {
                for(var9 = -25; var9 < 25; ++var9) {
                   boolean var16 = false;
 
-                  label83:
+                  label76:
                   for(var11 = -1; var11 <= 1; ++var11) {
                      for(var12 = -1; var12 <= 1; ++var12) {
                         if (var5[var6][var7][var8 + var11 + 1 + 25][var9 + var12 + 1 + 25]) {
                            var16 = true;
-                           break label83;
+                           break label76;
                         }
 
                         if (var5[var6][(var7 + 1) % 31][var8 + var11 + 1 + 25][var9 + var12 + 1 + 25]) {
                            var16 = true;
-                           break label83;
+                           break label76;
                         }
 
                         if (var5[var6 + 1][var7][var8 + var11 + 1 + 25][var9 + var12 + 1 + 25]) {
                            var16 = true;
-                           break label83;
+                           break label76;
                         }
 
                         if (var5[var6 + 1][(var7 + 1) % 31][var8 + var11 + 1 + 25][var9 + var12 + 1 + 25]) {
                            var16 = true;
-                           break label83;
+                           break label76;
                         }
                      }
                   }
@@ -2428,7 +2431,7 @@ public class Scene {
    }
 
    @ObfuscatedName("ab")
-   static boolean method4466(int var0, int var1, int var2) {
+   static boolean method1203(int var0, int var1, int var2) {
       int var3 = var0 * Scene_cameraYawCosine + var2 * Scene_cameraYawSine >> 16;
       int var4 = var2 * Scene_cameraYawCosine - var0 * Scene_cameraYawSine >> 16;
       int var5 = var4 * Scene_cameraPitchCosine + Scene_cameraPitchSine * var1 >> 16;
@@ -2448,13 +2451,13 @@ public class Scene {
    }
 
    @ObfuscatedName("ak")
-   public static void method4470() {
+   public static void method1205() {
       Scene_selectedX = -1;
       viewportWalking = false;
    }
 
    @ObfuscatedName("aw")
-   static final int method4447(int var0, int var1) {
+   static final int method1192(int var0, int var1) {
       var1 = (var0 & 127) * var1 >> 7;
       if (var1 < 2) {
          var1 = 2;

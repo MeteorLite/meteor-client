@@ -8,7 +8,7 @@ public class class272 {
       descriptor = "(ILoi;Lln;I)V",
       garbageValue = "1655477466"
    )
-   static void method5476(int var0, ArchiveDisk var1, Archive var2) {
+   static void method1515(int var0, ArchiveDisk var1, Archive var2) {
       ArchiveDiskAction var3 = new ArchiveDiskAction();
       var3.type = 1;
       var3.key = (long)var0;
@@ -19,11 +19,11 @@ public class class272 {
          ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3);
       }
 
-      class154.method3300();
+      class154.method822();
    }
 
    @ObfuscatedName("m")
-   public static boolean method5474(long var0) {
+   public static boolean method1513(long var0) {
       return (int)(var0 >>> 16 & 1L) == 1;
    }
 
@@ -32,7 +32,7 @@ public class class272 {
       descriptor = "(II)V",
       garbageValue = "-677085282"
    )
-   static void method5475(int var0) {
+   static void method1514(int var0) {
       Client.oculusOrbState = var0;
    }
 }

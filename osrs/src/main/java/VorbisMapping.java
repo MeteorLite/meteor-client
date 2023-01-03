@@ -3,6 +3,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("ae")
+@Implements("VorbisMapping")
 public class VorbisMapping {
    @ObfuscatedName("h")
    int submaps;

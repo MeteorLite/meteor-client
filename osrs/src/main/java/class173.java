@@ -1,14 +1,10 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fv")
 public abstract class class173 {
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -389562639
-   )
    static int gameCyclesToDo;
    @ObfuscatedName("bv")
    @ObfuscatedSignature(
@@ -16,7 +12,7 @@ public abstract class class173 {
    )
    static Language clientLanguage;
    @ObfuscatedName("x")
-   String field1900;
+   String field1456;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lfk;"
@@ -29,7 +25,7 @@ public abstract class class173 {
    )
    class173(class163 var1, String var2) {
       this.this$0 = var1;
-      this.field1900 = var2;
+      this.field1456 = var2;
    }
 
    @ObfuscatedName("h")
@@ -62,7 +58,7 @@ public abstract class class173 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "-1768788528"
    )
-   public String method3503() {
-      return this.field1900;
+   public String method893() {
+      return this.field1456;
    }
 }

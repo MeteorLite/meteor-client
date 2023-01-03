@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jj")
+@Implements("DemotingHashTable")
 public final class DemotingHashTable {
    @ObfuscatedName("h")
    int capacity;
@@ -23,7 +24,7 @@ public final class DemotingHashTable {
    @ObfuscatedSignature(
       descriptor = "Ljq;"
    )
-   class265 field3029;
+   class265 field2421;
 
    public DemotingHashTable(int var1, int var2) {
       this.queue = new IterableDualNodeQueue();
@@ -92,7 +93,7 @@ public final class DemotingHashTable {
    }
 
    @ObfuscatedName("x")
-   public void method5418(Object var1, long var2) {
+   public void method1499(Object var1, long var2) {
       this.put(var1, var2, 1);
    }
 
@@ -115,8 +116,8 @@ public final class DemotingHashTable {
             }
 
             this.removeWrapper(var5);
-            if (this.field3029 != null) {
-               this.field3029.method5409(var5.get());
+            if (this.field2421 != null) {
+               this.field2421.method1495(var5.get());
             }
          }
 

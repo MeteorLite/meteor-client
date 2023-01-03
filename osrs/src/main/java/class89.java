@@ -27,8 +27,8 @@ public class class89 {
       descriptor = "(II)I",
       garbageValue = "22246148"
    )
-   public static int method2336(int var0) {
-      return ClanChannelMember.method3084(ViewportMouse.ViewportMouse_entityTags[var0]);
+   public static int method508(int var0) {
+      return ClanChannelMember.method744(ViewportMouse.ViewportMouse_entityTags[var0]);
    }
 
    @ObfuscatedName("kz")

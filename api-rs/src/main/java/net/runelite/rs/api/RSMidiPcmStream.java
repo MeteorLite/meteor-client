@@ -29,5 +29,5 @@ import net.runelite.mapping.Import;
 public interface RSMidiPcmStream
 {
 	@Import("setPcmStreamVolume")
-	void setPcmStreamVolume(int volume);
+	void setPcmStreamVolume$api(int volume);
 }

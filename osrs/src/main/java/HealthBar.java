@@ -4,12 +4,13 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ce")
+@Implements("HealthBar")
 public class HealthBar extends Node {
    @ObfuscatedName("ex")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   static Archive field1306;
+   static Archive field1045;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lfw;"
@@ -93,7 +94,7 @@ public class HealthBar extends Node {
       garbageValue = "-1047690816"
    )
    boolean isEmpty() {
-      return this.updates.method6774();
+      return this.updates.method1891();
    }
 
    @ObfuscatedName("h")
@@ -101,7 +102,7 @@ public class HealthBar extends Node {
       descriptor = "(Lly;I)V",
       garbageValue = "784434833"
    )
-   public static void method2528(AbstractArchive var0) {
+   public static void method572(AbstractArchive var0) {
       ParamComposition.ParamDefinition_archive = var0;
    }
 
@@ -110,7 +111,7 @@ public class HealthBar extends Node {
       descriptor = "(I)V",
       garbageValue = "-8692175"
    )
-   static void method2526() {
+   static void method571() {
       for(ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) {
          if (var0.obj != null) {
             var0.set();
@@ -124,7 +125,7 @@ public class HealthBar extends Node {
       descriptor = "(CII)Ljava/lang/String;",
       garbageValue = "1267412510"
    )
-   static String method2525(char var0, int var1) {
+   static String method570(char var0, int var1) {
       char[] var2 = new char[var1];
 
       for(int var3 = 0; var3 < var1; ++var3) {
@@ -141,19 +142,19 @@ public class HealthBar extends Node {
    )
    static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if (Players.loadInterface(var0)) {
-         MouseHandler.field268 = null;
+         MouseHandler.field151 = null;
          class34.drawInterface(class71.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
-         if (MouseHandler.field268 != null) {
-            class34.drawInterface(MouseHandler.field268, -1412584499, var1, var2, var3, var4, class142.field1691, HealthBarDefinition.field1989, var7);
-            MouseHandler.field268 = null;
+         if (MouseHandler.field151 != null) {
+            class34.drawInterface(MouseHandler.field151, -1412584499, var1, var2, var3, var4, class142.field1316, HealthBarDefinition.field1526, var7);
+            MouseHandler.field151 = null;
          }
 
       } else {
          if (var7 != -1) {
-            Client.field731[var7] = true;
+            Client.field576[var7] = true;
          } else {
             for(int var8 = 0; var8 < 100; ++var8) {
-               Client.field731[var8] = true;
+               Client.field576[var8] = true;
             }
          }
 

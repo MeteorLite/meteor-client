@@ -58,8 +58,10 @@ internal class InteractHighlightOverlay(
     }
 
     override fun render(graphics: Graphics2D): Dimension? {
-        renderMouseover()
-        renderTarget()
+        try {
+            renderMouseover()
+            renderTarget()
+        } catch (_: Exception) {}
         return null
     }
 

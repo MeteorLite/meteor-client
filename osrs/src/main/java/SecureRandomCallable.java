@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cl")
+@Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
    @ObfuscatedName("u")
    @ObfuscatedSignature(
@@ -14,7 +15,7 @@ public class SecureRandomCallable implements Callable {
 
    @ObfuscatedName("call")
    public Object call() {
-      return class69.method2031();
+      return class69.method429();
    }
 
    @ObfuscatedName("o")

@@ -8,9 +8,9 @@ public class class322 {
       descriptor = "(Ldu;FFFFFFFFI)V",
       garbageValue = "295803656"
    )
-   static void method6388(class125 var0, float var1, float var2, float var3, float var4, float var5, float var6, float var7, float var8) {
+   static void method1774(class125 var0, float var1, float var2, float var3, float var4, float var5, float var6, float var7, float var8) {
       if (var0 != null) {
-         var0.field1543 = var1;
+         var0.field1207 = var1;
          float var9 = var4 - var1;
          float var10 = var8 - var5;
          float var11 = var2 - var1;
@@ -28,10 +28,10 @@ public class class322 {
          float var14 = 1.0F / (var9 * var9);
          float var15 = var12 * var9;
          float var16 = var13 * var9;
-         var0.field1545 = (var16 + var15 - var10 - var10) * var14 / var9;
-         var0.field1559 = var14 * (var10 + var10 + var10 - var15 - var15 - var16);
-         var0.field1537 = var12;
-         var0.field1548 = var5;
+         var0.field1209 = (var16 + var15 - var10 - var10) * var14 / var9;
+         var0.field1223 = var14 * (var10 + var10 + var10 - var15 - var15 - var16);
+         var0.field1201 = var12;
+         var0.field1212 = var5;
       }
    }
 }

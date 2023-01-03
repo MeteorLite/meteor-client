@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("iw")
+@Implements("WorldMapSection")
 public interface WorldMapSection {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

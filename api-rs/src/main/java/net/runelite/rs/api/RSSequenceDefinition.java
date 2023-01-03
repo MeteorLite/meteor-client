@@ -26,7 +26,7 @@ public interface RSSequenceDefinition extends RSNode, SequenceDefinition, Animat
 	RSModel transformSpotAnimationModel(RSModel var1, int var2);
 
 	@Import("isCachedModelIdSet")
-	boolean isCachedModelIdSet();
+	boolean isCachedModelIdSet$api();
 
 	void setId(int id);
 }

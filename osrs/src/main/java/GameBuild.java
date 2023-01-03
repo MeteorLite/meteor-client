@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lz")
+@Implements("GameBuild")
 public class GameBuild {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -29,9 +29,6 @@ public class GameBuild {
    @ObfuscatedName("m")
    public final String name;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1115217905
-   )
    final int buildId;
 
    GameBuild(String var1, int var2) {

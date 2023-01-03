@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pw")
+@Implements("DualNode")
 public class DualNode extends Node {
    @ObfuscatedName("dw")
    public long keyDual;

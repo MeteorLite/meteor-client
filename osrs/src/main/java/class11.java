@@ -4,7 +4,6 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.LinkedList;
 import java.util.concurrent.ScheduledExecutorService;
-
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -45,7 +44,7 @@ class class11 implements TlsAuthentication {
             var3.add(var2.generateCertificate(new ByteArrayInputStream(var6.getEncoded())));
          }
 
-         this.this$2.this$1.field69 = (java.security.cert.Certificate[])((java.security.cert.Certificate[])var3.toArray(new java.security.cert.Certificate[0]));
+         this.this$2.this$1.field38 = (java.security.cert.Certificate[])((java.security.cert.Certificate[])var3.toArray(new java.security.cert.Certificate[0]));
       } catch (CertificateException var7) {
          throw new IOException(var7);
       }
@@ -77,15 +76,15 @@ class class11 implements TlsAuthentication {
          var10.type = var3;
          var10.x = var1;
          var10.y = var2;
-         UserComparator4.method2809(var10);
+         UserComparator4.method659(var10);
          Client.pendingSpawns.addFirst(var10);
       }
 
-      var10.field1167 = var4;
-      var10.field1169 = var5;
-      var10.field1168 = var6;
+      var10.field922 = var4;
+      var10.field924 = var5;
+      var10.field923 = var6;
       var10.delay = var8;
       var10.hitpoints = var9;
-      var10.method2338(var7);
+      var10.method509(var7);
    }
 }

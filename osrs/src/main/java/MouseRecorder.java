@@ -1,8 +1,10 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cs")
+@Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
    @ObfuscatedName("hv")
    @ObfuscatedSignature(
@@ -14,9 +16,6 @@ public class MouseRecorder implements Runnable {
    @ObfuscatedName("e")
    Object lock = new Object();
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1063919825
-   )
    int index = 0;
    @ObfuscatedName("x")
    int[] xs = new int[500];
@@ -27,7 +26,7 @@ public class MouseRecorder implements Runnable {
 
    @ObfuscatedName("run")
    public void run() {
-      for(; this.isRunning; class12.method157(50L)) {
+      for(; this.isRunning; class12.method44(50L)) {
          Object var1 = this.lock;
          synchronized(this.lock) {
             if (this.index < 500) {
@@ -44,7 +43,7 @@ public class MouseRecorder implements Runnable {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "(IB)Ljava/lang/String;",
-      garbageValue = "110"
+      garbageValue = "3"
    )
    static String colorStartTag(int var0) {
       return "<col=" + Integer.toHexString(var0) + ">";
@@ -55,7 +54,7 @@ public class MouseRecorder implements Runnable {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-732526221"
    )
-   static int method2264(int var0, Script var1, boolean var2) {
+   static int method476(int var0, Script var1, boolean var2) {
       Widget var3;
       if (var0 == 2700) {
          var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
@@ -85,14 +84,14 @@ public class MouseRecorder implements Runnable {
          return 1;
       } else if (var0 == 2707) {
          var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
-         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.method6172() ? 1 : 0;
+         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.method1727() ? 1 : 0;
          return 1;
       } else if (var0 == 2708) {
          var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
-         return class300.method5846(var3);
+         return class300.method1619(var3);
       } else if (var0 == 2709) {
          var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
-         return LoginScreenAnimation.method2380(var3);
+         return LoginScreenAnimation.method527(var3);
       } else {
          return 2;
       }
@@ -104,70 +103,70 @@ public class MouseRecorder implements Runnable {
       garbageValue = "-91"
    )
    static final void changeGameOptions(int var0) {
-      class136.method3073();
-      HealthBar.method2526();
+      class136.method738();
+      HealthBar.method571();
       int var1 = class109.VarpDefinition_get(var0).type;
       if (var1 != 0) {
          int var2 = Varps.Varps_main[var0];
          if (var1 == 1) {
             if (var2 == 1) {
-               FileSystem.method3480(0.9D);
+               FileSystem.method879(0.9D);
             }
 
             if (var2 == 2) {
-               FileSystem.method3480(0.8D);
+               FileSystem.method879(0.8D);
             }
 
             if (var2 == 3) {
-               FileSystem.method3480(0.7D);
+               FileSystem.method879(0.7D);
             }
 
             if (var2 == 4) {
-               FileSystem.method3480(0.6D);
+               FileSystem.method879(0.6D);
             }
          }
 
          if (var1 == 3) {
             if (var2 == 0) {
-               class299.method5834(255);
+               class299.method1613(255);
             }
 
             if (var2 == 1) {
-               class299.method5834(192);
+               class299.method1613(192);
             }
 
             if (var2 == 2) {
-               class299.method5834(128);
+               class299.method1613(128);
             }
 
             if (var2 == 3) {
-               class299.method5834(64);
+               class299.method1613(64);
             }
 
             if (var2 == 4) {
-               class299.method5834(0);
+               class299.method1613(0);
             }
          }
 
          if (var1 == 4) {
             if (var2 == 0) {
-               class7.method43(127);
+               class7.method15(127);
             }
 
             if (var2 == 1) {
-               class7.method43(96);
+               class7.method15(96);
             }
 
             if (var2 == 2) {
-               class7.method43(64);
+               class7.method15(64);
             }
 
             if (var2 == 3) {
-               class7.method43(32);
+               class7.method15(32);
             }
 
             if (var2 == 4) {
-               class7.method43(0);
+               class7.method15(0);
             }
          }
 
@@ -180,28 +179,28 @@ public class MouseRecorder implements Runnable {
          }
 
          if (var1 == 9) {
-            Client.field685 = var2;
+            Client.field530 = var2;
          }
 
          if (var1 == 10) {
             if (var2 == 0) {
-               class18.method270(127);
+               class18.method64(127);
             }
 
             if (var2 == 1) {
-               class18.method270(96);
+               class18.method64(96);
             }
 
             if (var2 == 2) {
-               class18.method270(64);
+               class18.method64(64);
             }
 
             if (var2 == 3) {
-               class18.method270(32);
+               class18.method64(32);
             }
 
             if (var2 == 4) {
-               class18.method270(0);
+               class18.method64(0);
             }
          }
 
@@ -211,7 +210,7 @@ public class MouseRecorder implements Runnable {
 
          AttackOption[] var3;
          if (var1 == 18) {
-            var3 = new AttackOption[]{AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_hidden, AttackOption.field1347, AttackOption.field1346};
+            var3 = new AttackOption[]{AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_hidden, AttackOption.field1075, AttackOption.field1074};
             Client.playerAttackOption = (AttackOption)World.findEnumerated(var3, var2);
             if (Client.playerAttackOption == null) {
                Client.playerAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
@@ -227,7 +226,7 @@ public class MouseRecorder implements Runnable {
          }
 
          if (var1 == 22) {
-            var3 = new AttackOption[]{AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_hidden, AttackOption.field1347, AttackOption.field1346};
+            var3 = new AttackOption[]{AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_hidden, AttackOption.field1075, AttackOption.field1074};
             Client.npcAttackOption = (AttackOption)World.findEnumerated(var3, var2);
             if (Client.npcAttackOption == null) {
                Client.npcAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;

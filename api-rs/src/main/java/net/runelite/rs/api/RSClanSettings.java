@@ -43,8 +43,8 @@ public interface RSClanSettings extends ClanSettings
 	byte[] getMemberRanks();
 
 	@Import("getSortedMembers")
-	int[] getSortedMembers();
+	int[] getSortedMembers$api();
 
 	@Import("getTitleGroupValue")
-	Integer getTitleGroupValue(int group);
+	Integer getTitleGroupValue$api(int group);
 }

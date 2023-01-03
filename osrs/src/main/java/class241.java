@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -8,55 +7,25 @@ public class class241 implements WorldMapSection {
    @ObfuscatedName("ik")
    static byte[][] regionMapArchives;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1969178469
-   )
-   int field2903;
+   int field2318;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 615846431
-   )
-   int field2898;
+   int field2313;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -853915891
-   )
-   int field2899;
+   int field2314;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -43926615
-   )
-   int field2897;
+   int field2312;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 226314255
-   )
-   int field2905;
+   int field2320;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -207940669
-   )
-   int field2901;
+   int field2316;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 910146715
-   )
-   int field2904;
+   int field2319;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 2086561209
-   )
-   int field2900;
+   int field2315;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1092240015
-   )
-   int field2902;
+   int field2317;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -1048164915
-   )
-   int field2906;
+   int field2321;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -64,20 +33,20 @@ public class class241 implements WorldMapSection {
       garbageValue = "86"
    )
    public void expandBounds(WorldMapArea var1) {
-      if (var1.regionLowX > this.field2905) {
-         var1.regionLowX = this.field2905;
+      if (var1.regionLowX > this.field2320) {
+         var1.regionLowX = this.field2320;
       }
 
-      if (var1.regionHighX < this.field2905) {
-         var1.regionHighX = this.field2905;
+      if (var1.regionHighX < this.field2320) {
+         var1.regionHighX = this.field2320;
       }
 
-      if (var1.regionLowY > this.field2901) {
-         var1.regionLowY = this.field2901;
+      if (var1.regionLowY > this.field2316) {
+         var1.regionLowY = this.field2316;
       }
 
-      if (var1.regionHighY < this.field2901) {
-         var1.regionHighY = this.field2901;
+      if (var1.regionHighY < this.field2316) {
+         var1.regionHighY = this.field2316;
       }
 
    }
@@ -88,8 +57,8 @@ public class class241 implements WorldMapSection {
       garbageValue = "986597458"
    )
    public boolean containsCoord(int var1, int var2, int var3) {
-      if (var1 >= this.field2903 && var1 < this.field2903 + this.field2898) {
-         return var2 >= (this.field2899 << 6) + (this.field2904 << 3) && var2 <= (this.field2899 << 6) + (this.field2904 << 3) + 7 && var3 >= (this.field2897 << 6) + (this.field2900 << 3) && var3 <= (this.field2897 << 6) + (this.field2900 << 3) + 7;
+      if (var1 >= this.field2318 && var1 < this.field2318 + this.field2313) {
+         return var2 >= (this.field2314 << 6) + (this.field2319 << 3) && var2 <= (this.field2314 << 6) + (this.field2319 << 3) + 7 && var3 >= (this.field2312 << 6) + (this.field2315 << 3) && var3 <= (this.field2312 << 6) + (this.field2315 << 3) + 7;
       } else {
          return false;
       }
@@ -101,7 +70,7 @@ public class class241 implements WorldMapSection {
       garbageValue = "-11823"
    )
    public boolean containsPosition(int var1, int var2) {
-      return var1 >= (this.field2905 << 6) + (this.field2902 << 3) && var1 <= (this.field2905 << 6) + (this.field2902 << 3) + 7 && var2 >= (this.field2901 << 6) + (this.field2906 << 3) && var2 <= (this.field2901 << 6) + (this.field2906 << 3) + 7;
+      return var1 >= (this.field2320 << 6) + (this.field2317 << 3) && var1 <= (this.field2320 << 6) + (this.field2317 << 3) + 7 && var2 >= (this.field2316 << 6) + (this.field2321 << 3) && var2 <= (this.field2316 << 6) + (this.field2321 << 3) + 7;
    }
 
    @ObfuscatedName("x")
@@ -113,7 +82,7 @@ public class class241 implements WorldMapSection {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
       } else {
-         int[] var4 = new int[]{this.field2905 * 64 - this.field2899 * 64 + var2 + (this.field2902 * 8 - this.field2904 * 8), var3 + (this.field2901 * 64 - this.field2897 * 64) + (this.field2906 * 8 - this.field2900 * 8)};
+         int[] var4 = new int[]{var2 + (this.field2320 * 64 - this.field2314 * 64) + (this.field2317 * 8 - this.field2319 * 8), var3 + (this.field2316 * 64 - this.field2312 * 64) + (this.field2321 * 8 - this.field2315 * 8)};
          return var4;
       }
    }
@@ -127,9 +96,9 @@ public class class241 implements WorldMapSection {
       if (!this.containsPosition(var1, var2)) {
          return null;
       } else {
-         int var3 = this.field2899 * 64 - this.field2905 * 64 + (this.field2904 * 8 - this.field2902 * 8) + var1;
-         int var4 = this.field2897 * 64 - this.field2901 * 64 + var2 + (this.field2900 * 8 - this.field2906 * 8);
-         return new Coord(this.field2903, var3, var4);
+         int var3 = this.field2314 * 64 - this.field2320 * 64 + (this.field2319 * 8 - this.field2317 * 8) + var1;
+         int var4 = var2 + (this.field2312 * 64 - this.field2316 * 64) + (this.field2315 * 8 - this.field2321 * 8);
+         return new Coord(this.field2318, var3, var4);
       }
    }
 
@@ -139,17 +108,17 @@ public class class241 implements WorldMapSection {
       garbageValue = "1737950913"
    )
    public void read(Buffer var1) {
-      this.field2903 = var1.readUnsignedByte();
-      this.field2898 = var1.readUnsignedByte();
-      this.field2899 = var1.readUnsignedShort();
-      this.field2904 = var1.readUnsignedByte();
-      this.field2897 = var1.readUnsignedShort();
-      this.field2900 = var1.readUnsignedByte();
-      this.field2905 = var1.readUnsignedShort();
-      this.field2902 = var1.readUnsignedByte();
-      this.field2901 = var1.readUnsignedShort();
-      this.field2906 = var1.readUnsignedByte();
-      this.method5169();
+      this.field2318 = var1.readUnsignedByte();
+      this.field2313 = var1.readUnsignedByte();
+      this.field2314 = var1.readUnsignedShort();
+      this.field2319 = var1.readUnsignedByte();
+      this.field2312 = var1.readUnsignedShort();
+      this.field2315 = var1.readUnsignedByte();
+      this.field2320 = var1.readUnsignedShort();
+      this.field2317 = var1.readUnsignedByte();
+      this.field2316 = var1.readUnsignedShort();
+      this.field2321 = var1.readUnsignedByte();
+      this.method1407();
    }
 
    @ObfuscatedName("f")
@@ -157,7 +126,7 @@ public class class241 implements WorldMapSection {
       descriptor = "(I)V",
       garbageValue = "556947124"
    )
-   void method5169() {
+   void method1407() {
    }
 
    @ObfuscatedName("x")
@@ -165,7 +134,7 @@ public class class241 implements WorldMapSection {
       descriptor = "(B)V",
       garbageValue = "-31"
    )
-   public static void method5186() {
+   public static void method1410() {
       if (NetCache.NetCache_socket != null) {
          NetCache.NetCache_socket.close();
       }

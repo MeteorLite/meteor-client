@@ -363,7 +363,7 @@ public interface RSWidget extends Widget
 
 	@Import("setAction")
 	@Override
-	void setAction(int idx, String action);
+	void setAction$api(int idx, String action);
 
 	@Import("isIf3")
 	@Override

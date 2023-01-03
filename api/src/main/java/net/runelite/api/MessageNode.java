@@ -120,7 +120,7 @@ public interface MessageNode extends Node
 	/**
 	 * Returns yes if the message is from a friend
 	 */
-	boolean isFromFriend();
+	boolean isFromFriend$api();
 
 	/**
 	 * Returns yes if the message is from a clanmate

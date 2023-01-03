@@ -1,45 +1,24 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ig")
+@Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
    @ObfuscatedName("bs")
-   @ObfuscatedGetter(
-      intValue = 897193583
-   )
-   static int field2998;
+   static int field2393;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1811972457
-   )
    int minPlane;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -707740511
-   )
    int planes;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 103357569
-   )
    int regionStartX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 136845125
-   )
    int regionStartY;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -2099845231
-   )
    int regionEndX;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1628788577
-   )
    int regionEndY;
 
    @ObfuscatedName("h")
@@ -97,7 +76,7 @@ public class WorldMapSection1 implements WorldMapSection {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
       } else {
-         int[] var4 = new int[]{this.regionEndX * 64 - this.regionStartX * 64 + var2, var3 + (this.regionEndY * 64 - this.regionStartY * 64)};
+         int[] var4 = new int[]{var2 + (this.regionEndX * 64 - this.regionStartX * 64), var3 + (this.regionEndY * 64 - this.regionStartY * 64)};
          return var4;
       }
    }
@@ -112,7 +91,7 @@ public class WorldMapSection1 implements WorldMapSection {
          return null;
       } else {
          int var3 = this.regionStartX * 64 - this.regionEndX * 64 + var1;
-         int var4 = this.regionStartY * 64 - this.regionEndY * 64 + var2;
+         int var4 = var2 + (this.regionStartY * 64 - this.regionEndY * 64);
          return new Coord(this.minPlane, var3, var4);
       }
    }
@@ -154,7 +133,7 @@ public class WorldMapSection1 implements WorldMapSection {
          World.World_worlds[var1] = var8;
 
          for(int var9 = var0; var9 < var1; ++var9) {
-            if (class143.method3134(World.World_worlds[var9], var8, var2, var3, var4, var5) <= 0) {
+            if (class143.method765(World.World_worlds[var9], var8, var2, var3, var4, var5) <= 0) {
                World var10 = World.World_worlds[var9];
                World.World_worlds[var9] = World.World_worlds[var7];
                World.World_worlds[var7++] = var10;

@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ly")
+@Implements("AbstractArchive")
 public abstract class AbstractArchive {
    @ObfuscatedName("am")
    @ObfuscatedSignature(
@@ -12,14 +12,8 @@ public abstract class AbstractArchive {
    )
    static GZipDecompressor gzipDecompressor = new GZipDecompressor();
    @ObfuscatedName("at")
-   @ObfuscatedGetter(
-      intValue = -373211487
-   )
-   static int field4213 = 0;
+   static int field3463 = 0;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = -195992711
-   )
    int groupCount;
    @ObfuscatedName("l")
    int[] groupIds;
@@ -50,9 +44,6 @@ public abstract class AbstractArchive {
    @ObfuscatedName("ao")
    Object[][] files;
    @ObfuscatedName("av")
-   @ObfuscatedGetter(
-      intValue = 1772103585
-   )
    public int hash;
    @ObfuscatedName("au")
    boolean releaseGroups;
@@ -95,7 +86,7 @@ public abstract class AbstractArchive {
       garbageValue = "-1924766663"
    )
    void decodeIndex(byte[] var1) {
-      this.hash = class343.method6673(var1, var1.length);
+      this.hash = class343.method1856(var1, var1.length);
       Buffer var2 = new Buffer(WorldMapCacheName.decompressBytes(var1));
       int var3 = var2.readUnsignedByte();
       if (var3 >= 5 && var3 <= 7) {
@@ -105,7 +96,7 @@ public abstract class AbstractArchive {
 
          int var4 = var2.readUnsignedByte();
          if (var3 >= 7) {
-            this.groupCount = var2.method8612();
+            this.groupCount = var2.method2387();
          } else {
             this.groupCount = var2.readUnsignedShort();
          }
@@ -116,7 +107,7 @@ public abstract class AbstractArchive {
          int var7;
          if (var3 >= 7) {
             for(var7 = 0; var7 < this.groupCount; ++var7) {
-               this.groupIds[var7] = var5 += var2.method8612();
+               this.groupIds[var7] = var5 += var2.method2387();
                if (this.groupIds[var7] > var6) {
                   var6 = this.groupIds[var7];
                }
@@ -172,7 +163,7 @@ public abstract class AbstractArchive {
                this.fileIds[var8] = new int[var9];
 
                for(var11 = 0; var11 < var9; ++var11) {
-                  var12 = this.fileIds[var8][var11] = var5 += var2.method8612();
+                  var12 = this.fileIds[var8][var11] = var5 += var2.method2387();
                   if (var12 > var10) {
                      var10 = var12;
                   }
@@ -248,7 +239,7 @@ public abstract class AbstractArchive {
             }
          }
 
-         byte[] var5 = Frames.method4623(this.files[var1][var2], false);
+         byte[] var5 = Frames.method1239(this.files[var1][var2], false);
          if (this.shallowFiles) {
             this.files[var1][var2] = null;
          }
@@ -284,7 +275,7 @@ public abstract class AbstractArchive {
       descriptor = "(II)Z",
       garbageValue = "578203362"
    )
-   public boolean method6505(int var1) {
+   public boolean method1817(int var1) {
       if (this.files.length == 1) {
          return this.tryLoadFile(0, var1);
       } else if (this.files[var1].length == 1) {
@@ -362,7 +353,7 @@ public abstract class AbstractArchive {
             }
          }
 
-         byte[] var4 = Frames.method4623(this.files[var1][var2], false);
+         byte[] var4 = Frames.method1239(this.files[var1][var2], false);
          return var4;
       } else {
          return null;
@@ -476,12 +467,12 @@ public abstract class AbstractArchive {
             return true;
          } else {
             byte[] var21;
-            if (var2 == null || var2[0] == 0 && var2[1] == 0 && var2[2] == 0 && var2[3] == 0) {
-               var21 = Frames.method4623(this.groups[var1], false);
-            } else {
-               var21 = Frames.method4623(this.groups[var1], true);
+            if (var2 != null && (var2[0] != 0 || var2[1] != 0 || var2[2] != 0 || var2[3] != 0)) {
+               var21 = Frames.method1239(this.groups[var1], true);
                Buffer var8 = new Buffer(var21);
                var8.xteaDecrypt(var2, 5, var8.array.length);
+            } else {
+               var21 = Frames.method1239(this.groups[var1], false);
             }
 
             byte[] var25 = WorldMapCacheName.decompressBytes(var21);
@@ -491,13 +482,13 @@ public abstract class AbstractArchive {
 
             int var10;
             if (var3 > 1) {
-               int var22 = var25.length;
-               --var22;
-               var10 = var25[var22] & 255;
-               var22 -= var10 * var3 * 4;
+               int var9 = var25.length;
+               --var9;
+               var10 = var25[var9] & 255;
+               var9 -= var10 * var3 * 4;
                Buffer var11 = new Buffer(var25);
                int[] var12 = new int[var3];
-               var11.offset = var22;
+               var11.offset = var9;
 
                int var14;
                int var15;
@@ -517,18 +508,18 @@ public abstract class AbstractArchive {
                   var12[var14] = 0;
                }
 
-               var11.offset = var22;
+               var11.offset = var9;
                var14 = 0;
 
                int var17;
                for(var15 = 0; var15 < var10; ++var15) {
-                  int var24 = 0;
+                  int var16 = 0;
 
                   for(var17 = 0; var17 < var3; ++var17) {
-                     var24 += var11.readInt();
-                     System.arraycopy(var25, var14, var23[var17], var12[var17], var24);
-                     var12[var17] += var24;
-                     var14 += var24;
+                     var16 += var11.readInt();
+                     System.arraycopy(var25, var14, var23[var17], var12[var17], var16);
+                     var12[var17] += var16;
+                     var14 += var16;
                   }
                }
 

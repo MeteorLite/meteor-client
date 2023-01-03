@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rc")
+@Implements("IntHashTable")
 public class IntHashTable {
    @ObfuscatedName("h")
    int[] array;

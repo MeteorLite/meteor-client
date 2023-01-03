@@ -1,9 +1,11 @@
 import java.util.Random;
-
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ne")
+@Implements("AbstractFont")
 public abstract class AbstractFont extends Rasterizer2D {
    @ObfuscatedName("b")
    @ObfuscatedSignature(
@@ -148,7 +150,7 @@ public abstract class AbstractFont extends Rasterizer2D {
             if (var13 != 32 && var13 != 160) {
                for(var8 = 0; var8 < 256; ++var8) {
                   if (var8 != 32 && var8 != 160) {
-                     this.kerning[var8 + (var13 << 8)] = (byte)method7186(var11, var12, var4, this.advances, var10, var13, var8);
+                     this.kerning[var8 + (var13 << 8)] = (byte)method1974(var11, var12, var4, this.advances, var10, var13, var8);
                   }
                }
             }
@@ -191,7 +193,7 @@ public abstract class AbstractFont extends Rasterizer2D {
                      if (!var7.equals("gt")) {
                         if (var7.startsWith("img=")) {
                            try {
-                              int var8 = class412.method7858(var7.substring(4));
+                              int var8 = class412.method2151(var7.substring(4));
                               var4 += AbstractFont_modIconSprites[var8].width;
                               var3 = -1;
                            } catch (Exception var10) {
@@ -274,7 +276,7 @@ public abstract class AbstractFont extends Rasterizer2D {
                      var11 = '>';
                   } else if (var16.startsWith("img=")) {
                      try {
-                        int var17 = class412.method7858(var16.substring(4));
+                        int var17 = class412.method2151(var16.substring(4));
                         var4 += AbstractFont_modIconSprites[var17].width;
                         var11 = 0;
                      } catch (Exception var20) {
@@ -353,7 +355,7 @@ public abstract class AbstractFont extends Rasterizer2D {
    @ObfuscatedSignature(
       descriptor = "(IILjava/lang/String;II)Lok;"
    )
-   public Bounds method7169(int var1, int var2, String var3, int var4, int var5) {
+   public Bounds method1964(int var1, int var2, String var3, int var4, int var5) {
       if (var3 != null && var3.length() >= var2 + var1) {
          int var6 = var4 - this.stringWidth(var3) / 2;
          var6 += this.stringWidth(var3.substring(0, var1));
@@ -463,20 +465,20 @@ public abstract class AbstractFont extends Rasterizer2D {
    @ObfuscatedSignature(
       descriptor = "(Lna;IIIII)Lpg;"
    )
-   public class440 method7166(class372 var1, int var2, int var3, int var4, int var5, int var6) {
-      if (!var1.method7251()) {
+   public class440 method1963(class372 var1, int var2, int var3, int var4, int var5, int var6) {
+      if (!var1.method1984()) {
          this.reset(var4, var5);
          var3 -= this.ascent;
 
-         for(int var7 = 0; var7 < var1.method7269(); ++var7) {
-            class370 var8 = var1.method7256(var7);
-            if (var6 != -1 && var8.field4397 > var6) {
-               return new class440(var8.field4398, var8.field4397);
+         for(int var7 = 0; var7 < var1.method1988(); ++var7) {
+            class370 var8 = var1.method1987(var7);
+            if (var6 != -1 && var8.field3598 > var6) {
+               return new class440(var8.field3599, var8.field3598);
             }
 
-            char var9 = var8.field4395;
+            char var9 = var8.field3597;
             if (var9 != '\n') {
-               if (var1.method7250(var7)) {
+               if (var1.method1983(var7)) {
                   var9 = '*';
                }
 
@@ -485,8 +487,8 @@ public abstract class AbstractFont extends Rasterizer2D {
                      var9 = ' ';
                   }
 
-                  int var10 = var2 + var8.field4398;
-                  int var11 = var3 + var8.field4397;
+                  int var10 = var2 + var8.field3599;
+                  int var11 = var3 + var8.field3598;
                   int var12 = this.widths[var9];
                   int var13 = this.heights[var9];
                   if (AbstractFont_shadow != -1) {
@@ -499,7 +501,7 @@ public abstract class AbstractFont extends Rasterizer2D {
          }
       }
 
-      return var1.method7255();
+      return var1.method1986();
    }
 
    @ObfuscatedName("t")
@@ -588,23 +590,23 @@ public abstract class AbstractFont extends Rasterizer2D {
    void decodeTag(String var1) {
       try {
          if (var1.startsWith("col=")) {
-            AbstractFont_color = WorldMapElement.method3568(var1.substring(4), 16);
+            AbstractFont_color = WorldMapElement.method920(var1.substring(4), 16);
          } else if (var1.equals("/col")) {
             AbstractFont_color = AbstractFont_previousColor;
          } else if (var1.startsWith("str=")) {
-            AbstractFont_strike = WorldMapElement.method3568(var1.substring(4), 16);
+            AbstractFont_strike = WorldMapElement.method920(var1.substring(4), 16);
          } else if (var1.equals("str")) {
             AbstractFont_strike = 8388608;
          } else if (var1.equals("/str")) {
             AbstractFont_strike = -1;
          } else if (var1.startsWith("u=")) {
-            AbstractFont_underline = WorldMapElement.method3568(var1.substring(2), 16);
+            AbstractFont_underline = WorldMapElement.method920(var1.substring(2), 16);
          } else if (var1.equals("u")) {
             AbstractFont_underline = 0;
          } else if (var1.equals("/u")) {
             AbstractFont_underline = -1;
          } else if (var1.startsWith("shad=")) {
-            AbstractFont_shadow = WorldMapElement.method3568(var1.substring(5), 16);
+            AbstractFont_shadow = WorldMapElement.method920(var1.substring(5), 16);
          } else if (var1.equals("shad")) {
             AbstractFont_shadow = 0;
          } else if (var1.equals("/shad")) {
@@ -662,7 +664,7 @@ public abstract class AbstractFont extends Rasterizer2D {
                      if (!var8.equals("gt")) {
                         if (var8.startsWith("img=")) {
                            try {
-                              var9 = class412.method7858(var8.substring(4));
+                              var9 = class412.method2151(var8.substring(4));
                               IndexedSprite var10 = AbstractFont_modIconSprites[var9];
                               var10.drawAt(var2, var3 + this.ascent - var10.height);
                               var2 += var10.width;
@@ -767,7 +769,7 @@ public abstract class AbstractFont extends Rasterizer2D {
                               }
 
                               ++var8;
-                              var14 = class412.method7858(var11.substring(4));
+                              var14 = class412.method2151(var11.substring(4));
                               IndexedSprite var15 = AbstractFont_modIconSprites[var14];
                               var15.drawAt(var12 + var2, var13 + (var3 + this.ascent - var15.height));
                               var2 += var15.width;
@@ -848,7 +850,7 @@ public abstract class AbstractFont extends Rasterizer2D {
    }
 
    @ObfuscatedName("q")
-   static int method7186(byte[][] var0, byte[][] var1, int[] var2, int[] var3, int[] var4, int var5, int var6) {
+   static int method1974(byte[][] var0, byte[][] var1, int[] var2, int[] var3, int[] var4, int var5, int var6) {
       int var7 = var2[var5];
       int var8 = var7 + var4[var5];
       int var9 = var2[var6];

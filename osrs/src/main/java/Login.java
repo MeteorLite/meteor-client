@@ -1,18 +1,15 @@
 import java.text.DecimalFormat;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bu")
+@Implements("Login")
 public class Login {
    @ObfuscatedName("e")
    static boolean clearLoginScreen;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -994097247
-   )
    static int xPadding = 0;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -28,40 +25,25 @@ public class Login {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   static IndexedSprite field949;
+   static IndexedSprite field757;
    @ObfuscatedName("k")
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   static IndexedSprite field927;
+   static IndexedSprite field735;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = -1802972375
-   )
    static int loginBoxX;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = -561151419
-   )
    static int Login_loadingPercent;
    @ObfuscatedName("z")
    static String Login_loadingText;
    @ObfuscatedName("ah")
-   @ObfuscatedGetter(
-      intValue = -1123765685
-   )
-   static int field924;
+   static int field732;
    @ObfuscatedName("aq")
-   @ObfuscatedGetter(
-      intValue = 1782720957
-   )
-   static int field928;
+   static int field736;
    @ObfuscatedName("ap")
-   static String field929;
+   static String field737;
    @ObfuscatedName("ac")
-   @ObfuscatedGetter(
-      intValue = 860431235
-   )
    static int loginIndex;
    @ObfuscatedName("bh")
    static String Login_response0;
@@ -76,63 +58,42 @@ public class Login {
    @ObfuscatedName("bw")
    static String Login_password;
    @ObfuscatedName("bc")
-   @ObfuscatedGetter(
-      intValue = 1776085317
-   )
-   static int field938;
+   static int field746;
    @ObfuscatedName("bl")
-   static String[] field915;
+   static String[] field727;
    @ObfuscatedName("bt")
-   static boolean field939;
+   static boolean field747;
    @ObfuscatedName("bu")
-   static boolean field955;
+   static boolean field762;
    @ObfuscatedName("bm")
-   static boolean field930;
+   static boolean field738;
    @ObfuscatedName("bk")
-   @ObfuscatedGetter(
-      intValue = -1156426449
-   )
    static int currentLoginField;
    @ObfuscatedName("cq")
    static boolean worldSelectOpen;
    @ObfuscatedName("cj")
-   @ObfuscatedGetter(
-      intValue = -1726708665
-   )
    static int hoveredWorldIndex;
    @ObfuscatedName("cn")
-   @ObfuscatedGetter(
-      intValue = -1039174001
-   )
    static int worldSelectPage;
    @ObfuscatedName("cm")
-   @ObfuscatedGetter(
-      intValue = -231318101
-   )
    static int worldSelectPagesCount;
    @ObfuscatedName("cu")
-   @ObfuscatedGetter(
-      longValue = -1294134283863075195L
-   )
-   static long field937;
+   static long field745;
    @ObfuscatedName("co")
-   @ObfuscatedGetter(
-      longValue = 7897803412889482129L
-   )
-   static long field950;
+   static long field758;
    @ObfuscatedName("ch")
-   static String[] field934;
+   static String[] field742;
    @ObfuscatedName("ce")
-   static String[] field932;
+   static String[] field740;
    @ObfuscatedName("cg")
-   static String[] field953;
+   static String[] field760;
 
    static {
       loginBoxX = xPadding + 202;
       Login_loadingPercent = 10;
       Login_loadingText = "";
-      field924 = -1;
-      field928 = 1;
+      field732 = -1;
+      field736 = 1;
       loginIndex = 0;
       Login_response0 = "";
       Login_response1 = "";
@@ -140,11 +101,11 @@ public class Login {
       Login_response3 = "";
       Login_username = "";
       Login_password = "";
-      field938 = 0;
-      field915 = new String[8];
-      field939 = false;
-      field955 = false;
-      field930 = true;
+      field746 = 0;
+      field727 = new String[8];
+      field747 = false;
+      field762 = false;
+      field738 = true;
       currentLoginField = 0;
       worldSelectOpen = false;
       hoveredWorldIndex = -1;
@@ -152,11 +113,11 @@ public class Login {
       worldSelectPagesCount = 0;
       new DecimalFormat("##0.00");
       new class128();
-      field937 = -1L;
-      field950 = -1L;
-      field934 = new String[]{"title.jpg"};
-      field932 = new String[]{"logo", "logo_deadman_mode", "logo_seasonal_mode", "titlebox", "titlebutton", "titlebutton_large", "play_now_text", "titlebutton_wide42,1", "runes", "title_mute", "options_radio_buttons,0", "options_radio_buttons,2", "options_radio_buttons,4", "options_radio_buttons,6", "sl_back", "sl_flags", "sl_arrows", "sl_stars", "sl_button"};
-      field953 = new String[]{"logo_speedrunning"};
+      field745 = -1L;
+      field758 = -1L;
+      field742 = new String[]{"title.jpg"};
+      field740 = new String[]{"logo", "logo_deadman_mode", "logo_seasonal_mode", "titlebox", "titlebutton", "titlebutton_large", "play_now_text", "titlebutton_wide42,1", "runes", "title_mute", "options_radio_buttons,0", "options_radio_buttons,2", "options_radio_buttons,4", "options_radio_buttons,6", "sl_back", "sl_flags", "sl_arrows", "sl_stars", "sl_button"};
+      field760 = new String[]{"logo_speedrunning"};
    }
 
    @ObfuscatedName("e")
@@ -164,7 +125,7 @@ public class Login {
       descriptor = "(III)V",
       garbageValue = "-1089740356"
    )
-   public static void method2065(int var0, int var1) {
+   public static void method432(int var0, int var1) {
       VarbitComposition var3 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
       VarbitComposition var2;
       if (var3 != null) {
@@ -197,7 +158,7 @@ public class Login {
       descriptor = "(II)Lew;",
       garbageValue = "-1889979389"
    )
-   public static class130 method2096(int var0) {
+   public static class130 method434(int var0) {
       class130 var1 = (class130)SequenceDefinition.SequenceDefinition_cachedModel.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -241,7 +202,7 @@ public class Login {
       descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;I)[F",
       garbageValue = "615126819"
    )
-   static float[] method2094(JSONObject var0, String var1) throws JSONException {
+   static float[] method433(JSONObject var0, String var1) throws JSONException {
       float[] var2 = new float[4];
 
       try {

@@ -8,6 +8,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lr")
+@Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
    @ObfuscatedName("e")
    public static Comparator GrandExchangeEvents_ageComparator = new GrandExchangeOfferAgeComparator();
@@ -86,7 +87,7 @@ public class GrandExchangeEvents {
       descriptor = "(IB)I",
       garbageValue = "82"
    )
-   static int method6569(int var0) {
-      return (int)((Math.log((double)var0) / Interpreter.field871 - 7.0D) * 256.0D);
+   static int method1827(int var0) {
+      return (int)((Math.log((double)var0) / Interpreter.field699 - 7.0D) * 256.0D);
    }
 }

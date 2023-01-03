@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cc")
+@Implements("ItemContainer")
 public class ItemContainer extends Node {
    @ObfuscatedName("vm")
    @ObfuscatedSignature(
@@ -39,8 +40,8 @@ public class ItemContainer extends Node {
       descriptor = "([Ljava/lang/String;[IB)V",
       garbageValue = "1"
    )
-   public static void method2237(String[] var0, int[] var1) {
-      WorldMapID.method5277(var0, var1, 0, var0.length - 1);
+   public static void method467(String[] var0, int[] var1) {
+      WorldMapID.method1449(var0, var1, 0, var0.length - 1);
    }
 
    @ObfuscatedName("ko")

@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nn")
+@Implements("Usernamed")
 public interface Usernamed {
    @ObfuscatedName("mw")
    @ObfuscatedSignature(

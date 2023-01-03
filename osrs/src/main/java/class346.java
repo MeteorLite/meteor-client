@@ -14,7 +14,7 @@ public class class346 {
       descriptor = "(Lly;Lly;ZLnv;I)V",
       garbageValue = "-2018074733"
    )
-   public static void method6684(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
+   public static void method1862(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
       ItemComposition.ItemDefinition_archive = var0;
       class306.ItemDefinition_modelArchive = var1;
       Clock.ItemDefinition_inMembersWorld = var2;
@@ -28,7 +28,7 @@ public class class346 {
       garbageValue = "-1098096483"
    )
    public static boolean isNumber(CharSequence var0) {
-      return class190.method3772(var0, 10, true);
+      return class190.method982(var0, 10, true);
    }
 
    @ObfuscatedName("bp")
@@ -36,11 +36,11 @@ public class class346 {
       descriptor = "(Lqr;B)Ljava/lang/Object;",
       garbageValue = "6"
    )
-   static Object method6683(class456 var0) {
+   static Object method1861(class456 var0) {
       if (var0 == null) {
          throw new IllegalStateException("popValueOfType() failure - null baseVarType");
       } else {
-         switch(var0.field4872) {
+         switch(var0.field3969) {
          case 0:
             return Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
          case 1:

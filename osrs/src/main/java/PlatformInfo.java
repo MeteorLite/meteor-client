@@ -1,136 +1,91 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pk")
+@Implements("PlatformInfo")
 public class PlatformInfo extends Node {
    @ObfuscatedName("ar")
-   @ObfuscatedGetter(
-      intValue = 1696581137
-   )
-   int field4700;
+   int field3821;
    @ObfuscatedName("at")
-   boolean field4712;
+   boolean field3832;
    @ObfuscatedName("ay")
-   @ObfuscatedGetter(
-      intValue = -616314079
-   )
-   int field4702;
+   int field3823;
    @ObfuscatedName("an")
-   @ObfuscatedGetter(
-      intValue = -1322171453
-   )
-   int field4714;
+   int field3834;
    @ObfuscatedName("ab")
-   @ObfuscatedGetter(
-      intValue = 1721213915
-   )
-   int field4704;
+   int field3825;
    @ObfuscatedName("al")
-   @ObfuscatedGetter(
-      intValue = -1060935769
-   )
-   int field4705;
+   int field3826;
    @ObfuscatedName("ag")
-   @ObfuscatedGetter(
-      intValue = -1680914369
-   )
-   int field4706;
+   int field3827;
    @ObfuscatedName("az")
-   boolean field4719;
+   boolean field3838;
    @ObfuscatedName("ak")
-   @ObfuscatedGetter(
-      intValue = -1977940473
-   )
-   int field4708;
+   int field3829;
    @ObfuscatedName("af")
-   @ObfuscatedGetter(
-      intValue = 1625606725
-   )
-   int field4709;
+   int field3830;
    @ObfuscatedName("ax")
-   @ObfuscatedGetter(
-      intValue = 1936122295
-   )
-   int field4710;
+   int field3831;
    @ObfuscatedName("ah")
-   @ObfuscatedGetter(
-      intValue = -325910601
-   )
-   int field4724;
+   int field3843;
    @ObfuscatedName("aw")
-   String field4717;
+   String field3836;
    @ObfuscatedName("aj")
-   String field4721;
+   String field3840;
    @ObfuscatedName("aq")
-   String field4694;
+   String field3820;
    @ObfuscatedName("ap")
-   String field4692;
+   String field3819;
    @ObfuscatedName("aa")
-   @ObfuscatedGetter(
-      intValue = 1556899685
-   )
-   int field4716;
+   int field3835;
    @ObfuscatedName("ae")
-   @ObfuscatedGetter(
-      intValue = 730782471
-   )
-   int field4701;
+   int field3822;
    @ObfuscatedName("ac")
-   @ObfuscatedGetter(
-      intValue = 966550467
-   )
-   int field4720;
+   int field3839;
    @ObfuscatedName("bh")
-   @ObfuscatedGetter(
-      intValue = 1361935411
-   )
-   int field4713;
+   int field3833;
    @ObfuscatedName("be")
-   String field4703;
+   String field3824;
    @ObfuscatedName("bf")
-   String field4718;
+   String field3837;
    @ObfuscatedName("bo")
-   int[] field4722 = new int[3];
+   int[] field3841 = new int[3];
    @ObfuscatedName("by")
-   @ObfuscatedGetter(
-      intValue = -315982999
-   )
-   int field4723;
+   int field3842;
    @ObfuscatedName("bw")
-   String field4707;
+   String field3828;
    @ObfuscatedName("bp")
-   String field4725;
+   String field3844;
 
    PlatformInfo(int var1, boolean var2, int var3, int var4, int var5, int var6, int var7, boolean var8, int var9, int var10, int var11, int var12, String var13, String var14, String var15, String var16, int var17, int var18, int var19, int var20, String var21, String var22, int[] var23, int var24, String var25, String var26) {
-      this.field4700 = var1;
-      this.field4712 = var2;
-      this.field4702 = var3;
-      this.field4714 = var4;
-      this.field4704 = var5;
-      this.field4705 = var6;
-      this.field4706 = var7;
-      this.field4719 = var8;
-      this.field4708 = var9;
-      this.field4709 = var10;
-      this.field4710 = var11;
-      this.field4724 = var12;
-      this.field4717 = var13;
-      this.field4721 = var14;
-      this.field4694 = var15;
-      this.field4692 = var16;
-      this.field4716 = var17;
-      this.field4701 = var18;
-      this.field4720 = var19;
-      this.field4713 = var20;
-      this.field4703 = var21;
-      this.field4718 = var22;
-      this.field4722 = var23;
-      this.field4723 = var24;
-      this.field4707 = var25;
-      this.field4725 = var26;
+      this.field3821 = var1;
+      this.field3832 = var2;
+      this.field3823 = var3;
+      this.field3834 = var4;
+      this.field3825 = var5;
+      this.field3826 = var6;
+      this.field3827 = var7;
+      this.field3838 = var8;
+      this.field3829 = var9;
+      this.field3830 = var10;
+      this.field3831 = var11;
+      this.field3843 = var12;
+      this.field3836 = var13;
+      this.field3840 = var14;
+      this.field3820 = var15;
+      this.field3819 = var16;
+      this.field3835 = var17;
+      this.field3822 = var18;
+      this.field3839 = var19;
+      this.field3833 = var20;
+      this.field3824 = var21;
+      this.field3837 = var22;
+      this.field3841 = var23;
+      this.field3842 = var24;
+      this.field3828 = var25;
+      this.field3844 = var26;
    }
 
    @ObfuscatedName("h")
@@ -140,36 +95,36 @@ public class PlatformInfo extends Node {
    )
    public void write(Buffer var1) {
       var1.writeByte(9);
-      var1.writeByte(this.field4700);
-      var1.writeByte(this.field4712 ? 1 : 0);
-      var1.writeShort(this.field4702);
-      var1.writeByte(this.field4714);
-      var1.writeByte(this.field4704);
-      var1.writeByte(this.field4705);
-      var1.writeByte(this.field4706);
-      var1.writeByte(this.field4719 ? 1 : 0);
-      var1.writeShort(this.field4708);
-      var1.writeByte(this.field4709);
-      var1.writeMedium(this.field4710);
-      var1.writeShort(this.field4724);
-      var1.writeStringCp1252NullCircumfixed(this.field4717);
-      var1.writeStringCp1252NullCircumfixed(this.field4721);
-      var1.writeStringCp1252NullCircumfixed(this.field4694);
-      var1.writeStringCp1252NullCircumfixed(this.field4692);
-      var1.writeByte(this.field4701);
-      var1.writeShort(this.field4716);
-      var1.writeStringCp1252NullCircumfixed(this.field4703);
-      var1.writeStringCp1252NullCircumfixed(this.field4718);
-      var1.writeByte(this.field4720);
-      var1.writeByte(this.field4713);
+      var1.writeByte(this.field3821);
+      var1.writeByte(this.field3832 ? 1 : 0);
+      var1.writeShort(this.field3823);
+      var1.writeByte(this.field3834);
+      var1.writeByte(this.field3825);
+      var1.writeByte(this.field3826);
+      var1.writeByte(this.field3827);
+      var1.writeByte(this.field3838 ? 1 : 0);
+      var1.writeShort(this.field3829);
+      var1.writeByte(this.field3830);
+      var1.writeMedium(this.field3831);
+      var1.writeShort(this.field3843);
+      var1.writeStringCp1252NullCircumfixed(this.field3836);
+      var1.writeStringCp1252NullCircumfixed(this.field3840);
+      var1.writeStringCp1252NullCircumfixed(this.field3820);
+      var1.writeStringCp1252NullCircumfixed(this.field3819);
+      var1.writeByte(this.field3822);
+      var1.writeShort(this.field3835);
+      var1.writeStringCp1252NullCircumfixed(this.field3824);
+      var1.writeStringCp1252NullCircumfixed(this.field3837);
+      var1.writeByte(this.field3839);
+      var1.writeByte(this.field3833);
 
-      for(int var2 = 0; var2 < this.field4722.length; ++var2) {
-         var1.writeInt(this.field4722[var2]);
+      for(int var2 = 0; var2 < this.field3841.length; ++var2) {
+         var1.writeInt(this.field3841[var2]);
       }
 
-      var1.writeInt(this.field4723);
-      var1.writeStringCp1252NullCircumfixed(this.field4707);
-      var1.writeStringCp1252NullCircumfixed(this.field4725);
+      var1.writeInt(this.field3842);
+      var1.writeStringCp1252NullCircumfixed(this.field3828);
+      var1.writeStringCp1252NullCircumfixed(this.field3844);
    }
 
    @ObfuscatedName("e")
@@ -179,14 +134,14 @@ public class PlatformInfo extends Node {
    )
    public int size() {
       byte var1 = 39;
-      int var2 = var1 + FaceNormal.method4618(this.field4717);
-      var2 += FaceNormal.method4618(this.field4721);
-      var2 += FaceNormal.method4618(this.field4694);
-      var2 += FaceNormal.method4618(this.field4692);
-      var2 += FaceNormal.method4618(this.field4703);
-      var2 += FaceNormal.method4618(this.field4718);
-      var2 += FaceNormal.method4618(this.field4707);
-      var2 += FaceNormal.method4618(this.field4725);
+      int var2 = var1 + FaceNormal.method1235(this.field3836);
+      var2 += FaceNormal.method1235(this.field3840);
+      var2 += FaceNormal.method1235(this.field3820);
+      var2 += FaceNormal.method1235(this.field3819);
+      var2 += FaceNormal.method1235(this.field3824);
+      var2 += FaceNormal.method1235(this.field3837);
+      var2 += FaceNormal.method1235(this.field3828);
+      var2 += FaceNormal.method1235(this.field3844);
       return var2;
    }
 }

@@ -1,159 +1,122 @@
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rd")
 public class class484 {
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -544764579
-   )
-   int field5035;
+   int field4092;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 407056329
-   )
-   int field5043;
+   int field4099;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 718401383
-   )
-   int field5036;
+   int field4093;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1169119765
-   )
-   int field5037;
+   int field4094;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1800251423
-   )
-   int field5033;
+   int field4090;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -2136683631
-   )
-   int field5040;
+   int field4097;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 1280823113
-   )
-   int field5042 = 0;
+   int field4098 = 0;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1066251557
-   )
-   int field5039 = 0;
+   int field4096 = 0;
    @ObfuscatedName("b")
-   boolean field5034;
+   boolean field4091;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -491304047
-   )
-   int field5038;
+   int field4095;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -888747591
-   )
-   int field5044;
+   int field4100;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = 1604343367
-   )
-   int field5045;
+   int field4101;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 587876815
-   )
-   int field5046;
+   int field4102;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "(IIIIIIIIIIZI)V",
       garbageValue = "1188082077"
    )
-   public void method9152(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, boolean var11) {
-      this.field5035 = var1;
-      this.field5043 = var2;
-      this.field5036 = var3;
-      this.field5037 = var4;
-      this.field5033 = var5;
-      this.field5040 = var6;
-      this.field5042 = var9;
-      this.field5039 = var10;
-      this.field5034 = var11;
+   public void method2500(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, boolean var11) {
+      this.field4092 = var1;
+      this.field4099 = var2;
+      this.field4093 = var3;
+      this.field4094 = var4;
+      this.field4090 = var5;
+      this.field4097 = var6;
+      this.field4098 = var9;
+      this.field4096 = var10;
+      this.field4091 = var11;
    }
 
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "(IIIII)V",
-      garbageValue = "-990498874"
+      garbageValue = "-2046878836"
    )
-   public void method9144(int var1, int var2, int var3, int var4) {
-      this.field5038 = var1;
-      this.field5044 = var2;
-      this.field5045 = var3;
-      this.field5046 = var4;
+   public void method2499(int var1, int var2, int var3, int var4) {
+      this.field4095 = var1;
+      this.field4100 = var2;
+      this.field4101 = var3;
+      this.field4102 = var4;
    }
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "(Lnu;Lnv;B)V",
-      garbageValue = "-5"
+      garbageValue = "28"
    )
-   public void method9143(class368 var1, Font var2) {
+   public void method2498(class368 var1, Font var2) {
       if (var2 != null) {
          int var3 = var2.ascent;
-         int var4 = Math.min(this.field5037, (int)(0.9F * (float)var3));
-         int var5 = this.field5035 - this.field5033;
-         int var6 = var3 + (this.field5043 - this.field5040);
-         Rasterizer2D.Rasterizer2D_setClip(this.field5035, this.field5043, this.field5036 + this.field5035, this.field5043 + this.field5037);
-         int var7 = this.field5039;
-         int var8 = this.field5042;
+         int var4 = Math.min(this.field4094, (int)(0.9F * (float)var3));
+         int var5 = this.field4092 - this.field4090;
+         int var6 = var3 + (this.field4099 - this.field4097);
+         Rasterizer2D.Rasterizer2D_setClip(this.field4092, this.field4099, this.field4093 + this.field4092, this.field4099 + this.field4094);
+         int var7 = this.field4096;
+         int var8 = this.field4098;
          if (var7 > var8) {
             int var9 = var7;
             var7 = var8;
             var8 = var9;
          }
 
-         class372 var19 = var1.method7092(0, var7);
-         class372 var10 = var1.method7092(var7, var8);
-         class372 var11 = var1.method7092(var8, var1.method7041());
-         class372 var12 = var1.method7092(0, this.field5042);
+         class372 var19 = var1.method1942(0, var7);
+         class372 var10 = var1.method1942(var7, var8);
+         class372 var11 = var1.method1942(var8, var1.method1921());
+         class372 var12 = var1.method1942(0, this.field4098);
          int var14;
          int var16;
-         if (!var10.method7251()) {
+         if (!var10.method1984()) {
             int var13 = var2.maxDescent + var2.maxAscent;
 
-            for(var14 = 0; var14 < var10.method7269(); ++var14) {
-               class370 var21 = var10.method7256(var14);
-               var16 = var5 + var21.field4398;
-               int var17 = var2.charWidth(var21.field4395);
-               int var18 = var6 + var21.field4397 - var3;
-               Rasterizer2D.Rasterizer2D_fillRectangle(var16, var18, var17, var13, this.field5046);
+            for(var14 = 0; var14 < var10.method1988(); ++var14) {
+               class370 var15 = var10.method1987(var14);
+               var16 = var5 + var15.field3599;
+               int var17 = var2.charWidth(var15.field3597);
+               int var18 = var6 + var15.field3598 - var3;
+               Rasterizer2D.Rasterizer2D_fillRectangle(var16, var18, var17, var13, this.field4102);
             }
          }
 
-         if (!var19.method7251()) {
-            var2.method7166(var19, var5, var6, this.field5038, this.field5044, -1);
+         if (!var19.method1984()) {
+            var2.method1963(var19, var5, var6, this.field4095, this.field4100, -1);
          }
 
-         if (!var10.method7251()) {
-            var2.method7166(var10, var5, var6, this.field5045, this.field5044, -1);
+         if (!var10.method1984()) {
+            var2.method1963(var10, var5, var6, this.field4101, this.field4100, -1);
          }
 
-         if (!var11.method7251()) {
-            var2.method7166(var11, var5, var6, this.field5038, this.field5044, -1);
+         if (!var11.method1984()) {
+            var2.method1963(var11, var5, var6, this.field4095, this.field4100, -1);
          }
 
-         if (this.field5034) {
-            class440 var20 = var12.method7255();
-            var14 = var5 + (Integer)var20.field4811;
-            int var15 = var6 + (Integer)var20.field4809;
-            var16 = var15 - var4;
-            Rasterizer2D.Rasterizer2D_drawLine(var14, var15, var14, var16, this.field5038);
-            if (this.field5044 != -1) {
-               Rasterizer2D.Rasterizer2D_drawLine(var14 + 1, var15 + 1, var14 + 1, var16 + 1, this.field5044);
+         if (this.field4091) {
+            class440 var20 = var12.method1986();
+            var14 = var5 + (Integer)var20.field3917;
+            int var21 = var6 + (Integer)var20.field3916;
+            var16 = var21 - var4;
+            Rasterizer2D.Rasterizer2D_drawLine(var14, var21, var14, var16, this.field4095);
+            if (this.field4100 != -1) {
+               Rasterizer2D.Rasterizer2D_drawLine(var14 + 1, var21 + 1, var14 + 1, var16 + 1, this.field4100);
             }
          }
 

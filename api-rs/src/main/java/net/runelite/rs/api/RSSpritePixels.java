@@ -7,7 +7,7 @@ public interface RSSpritePixels extends SpritePixels
 {
 	@Import("drawTransBgAt")
 	@Override
-	void drawAt(int x, int y);
+	void drawAt$api(int x, int y);
 
 	@Import("subHeight")
 	@Override
@@ -22,7 +22,7 @@ public interface RSSpritePixels extends SpritePixels
 	int[] getPixels();
 
 	@Import("setRaster")
-	void setRaster();
+	void setRaster$api();
 
 	@Import("width")
 	@Override

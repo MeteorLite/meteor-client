@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ah")
+@Implements("SoundEnvelope")
 public class SoundEnvelope {
    @ObfuscatedName("h")
    int segments = 2;

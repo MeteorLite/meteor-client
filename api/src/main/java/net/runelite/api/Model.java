@@ -24,9 +24,6 @@
  */
 package net.runelite.api;
 
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
 import java.util.HashMap;
 
 /**
@@ -51,7 +48,7 @@ public interface Model extends Mesh, Renderable
 
 	int getBottomY();
 
-	void calculateBoundsCylinder();
+	void calculateBoundsCylinder$api();
 
 	byte[] getFaceRenderPriorities();
 
@@ -64,7 +61,7 @@ public interface Model extends Mesh, Renderable
 	int getXYZMag();
 	boolean isClickable();
 	
-	void drawFace(int face);
+	void drawFace$api(int face);
 
 	int[] getVertexNormalsX();
 	int[] getVertexNormalsY();

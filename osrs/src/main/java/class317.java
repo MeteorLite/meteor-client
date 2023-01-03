@@ -9,7 +9,7 @@ public final class class317 {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "1457607137"
    )
-   static final void method6371(String var0) {
+   static final void method1768(String var0) {
       StringBuilder var10000 = (new StringBuilder()).append(var0);
       Object var10001 = null;
       String var1 = var10000.append(" is already on your ignore list").toString();

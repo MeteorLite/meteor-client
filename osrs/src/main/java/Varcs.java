@@ -5,12 +5,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @Deprecated
 @ObfuscatedName("dn")
+@Implements("Varcs")
 public class Varcs {
    @ObfuscatedName("v")
    boolean[] intsPersistence;
@@ -22,10 +22,7 @@ public class Varcs {
    @ObfuscatedName("q")
    boolean unwrittenChanges = false;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      longValue = -3823334859755788839L
-   )
-   long field1408;
+   long field1119;
 
    Varcs() {
       int var1 = HitSplatDefinition.archive2.getGroupFileCount(19);
@@ -34,12 +31,12 @@ public class Varcs {
 
       int var2;
       for(var2 = 0; var2 < var1; ++var2) {
-         VarcInt var3 = ApproximateRouteStrategy.method1210(var2);
+         VarcInt var3 = ApproximateRouteStrategy.method348(var2);
          this.intsPersistence[var2] = var3.persist;
       }
 
       var2 = 0;
-      if (HitSplatDefinition.archive2.method6448(15)) {
+      if (HitSplatDefinition.archive2.method1791(15)) {
          var2 = HitSplatDefinition.archive2.getGroupFileCount(15);
       }
 
@@ -136,7 +133,7 @@ public class Varcs {
       garbageValue = "103"
    )
    AccessFile getPreferencesFile(boolean var1) {
-      return class87.getPreferencesFile("2", LoginPacket.field3302.name, var1);
+      return class87.getPreferencesFile("2", LoginPacket.field2681.name, var1);
    }
 
    @ObfuscatedName("u")
@@ -179,9 +176,9 @@ public class Varcs {
             if (this.intsPersistence[var13]) {
                var23.writeShort(var13);
                Object var8 = var12.getValue();
-               class456 var9 = class456.method8394(var8.getClass());
-               var23.writeByte(var9.field4876);
-               class456.method8395(var8, var23);
+               class456 var9 = class456.method2299(var8.getClass());
+               var23.writeByte(var9.field3972);
+               class456.method2300(var8, var23);
             }
          }
 
@@ -198,7 +195,7 @@ public class Varcs {
       }
 
       this.unwrittenChanges = false;
-      this.field1408 = Message.method1197();
+      this.field1119 = Message.method344();
    }
 
    @ObfuscatedName("b")
@@ -209,7 +206,7 @@ public class Varcs {
    void read() {
       AccessFile var1 = this.getPreferencesFile(false);
 
-      label211: {
+      label226: {
          try {
             byte[] var2 = new byte[(int)var1.length()];
 
@@ -224,60 +221,60 @@ public class Varcs {
             Buffer var14 = new Buffer(var2);
             if (var14.array.length - var14.offset >= 1) {
                int var15 = var14.readUnsignedByte();
-               if (var15 < 0 || var15 > 2) {
-                  return;
-               }
+               if (var15 >= 0 && var15 <= 2) {
+                  int var7;
+                  int var8;
+                  int var9;
+                  int var16;
+                  if (var15 >= 2) {
+                     var16 = var14.readUnsignedShort();
+                     var7 = 0;
 
-               int var7;
-               int var8;
-               int var9;
-               int var16;
-               if (var15 >= 2) {
-                  var16 = var14.readUnsignedShort();
-                  var7 = 0;
+                     while(true) {
+                        if (var7 >= var16) {
+                           break label226;
+                        }
 
-                  while(true) {
-                     if (var7 >= var16) {
-                        break label211;
+                        var8 = var14.readUnsignedShort();
+                        var9 = var14.readUnsignedByte();
+                        class456 var10 = (class456)World.findEnumerated(class456.method2303(), var9);
+                        Object var11 = var10.method2301(var14);
+                        if (this.intsPersistence[var8]) {
+                           this.map.put(var8, var11);
+                        }
+
+                        ++var7;
+                     }
+                  } else {
+                     var16 = var14.readUnsignedShort();
+
+                     for(var7 = 0; var7 < var16; ++var7) {
+                        var8 = var14.readUnsignedShort();
+                        var9 = var14.readInt();
+                        if (this.intsPersistence[var8]) {
+                           this.map.put(var8, var9);
+                        }
                      }
 
-                     var8 = var14.readUnsignedShort();
-                     var9 = var14.readUnsignedByte();
-                     class456 var10 = (class456)World.findEnumerated(class456.method8407(), var9);
-                     Object var11 = var10.method8396(var14);
-                     if (this.intsPersistence[var8]) {
-                        this.map.put(var8, var11);
+                     var7 = var14.readUnsignedShort();
+                     var8 = 0;
+
+                     while(true) {
+                        if (var8 >= var7) {
+                           break label226;
+                        }
+
+                        var14.readUnsignedShort();
+                        var14.readStringCp1252NullTerminated();
+                        ++var8;
                      }
-
-                     ++var7;
-                  }
-               } else {
-                  var16 = var14.readUnsignedShort();
-
-                  for(var7 = 0; var7 < var16; ++var7) {
-                     var8 = var14.readUnsignedShort();
-                     var9 = var14.readInt();
-                     if (this.intsPersistence[var8]) {
-                        this.map.put(var8, var9);
-                     }
-                  }
-
-                  var7 = var14.readUnsignedShort();
-                  var8 = 0;
-
-                  while(true) {
-                     if (var8 >= var7) {
-                        break label211;
-                     }
-
-                     var14.readUnsignedShort();
-                     var14.readStringCp1252NullTerminated();
-                     ++var8;
                   }
                }
+
+               return;
             }
          } catch (Exception var25) {
-            break label211;
+            break label226;
          } finally {
             try {
                var1.close();
@@ -299,7 +296,7 @@ public class Varcs {
       garbageValue = "1650356121"
    )
    void tryWrite() {
-      if (this.unwrittenChanges && this.field1408 < Message.method1197() - 60000L) {
+      if (this.unwrittenChanges && this.field1119 < Message.method344() - 60000L) {
          this.write();
       }
 

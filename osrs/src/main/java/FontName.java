@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pt")
+@Implements("FontName")
 public class FontName {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -53,7 +54,7 @@ public class FontName {
       descriptor = "(I)[Lpt;",
       garbageValue = "1254065539"
    )
-   public static FontName[] method8203() {
+   public static FontName[] method2256() {
       return new FontName[]{FontName_plain12, FontName_verdana11, FontName_bold12, FontName_verdana15, FontName_verdana13, FontName_plain11};
    }
 
@@ -62,7 +63,7 @@ public class FontName {
       descriptor = "(I)V",
       garbageValue = "-2050351066"
    )
-   static void method8199() {
+   static void method2254() {
       if (Login.clearLoginScreen) {
          ModelData0.titleboxSprite = null;
          Frames.titlebuttonSprite = null;
@@ -77,9 +78,9 @@ public class FontName {
          class87.worldSelectFlagSprites = null;
          FloorDecoration.worldSelectArrows = null;
          class280.worldSelectStars = null;
-         class98.field1340 = null;
-         class154.field1782.method2381();
-         class384.method7370(2);
+         class98.field1070 = null;
+         class154.field1379.method528();
+         class384.method2011(2);
          if (NetCache.NetCache_socket != null) {
             try {
                Buffer var0 = new Buffer(4);
@@ -107,13 +108,13 @@ public class FontName {
       descriptor = "(ZI)V",
       garbageValue = "1513435469"
    )
-   static final void method8202(boolean var0) {
+   static final void method2255(boolean var0) {
       Client.playPcmPlayers();
       ++Client.packetWriter.pendingWrites;
       if (Client.packetWriter.pendingWrites >= 50 || var0) {
          Client.packetWriter.pendingWrites = 0;
          if (!Client.hadNetworkError && Client.packetWriter.getSocket() != null) {
-            PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field3129, Client.packetWriter.isaacCipher);
+            PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field2513, Client.packetWriter.isaacCipher);
             Client.packetWriter.addNode(var1);
 
             try {

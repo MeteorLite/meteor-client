@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pz")
+@Implements("Fonts")
 public class Fonts {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -47,7 +48,7 @@ public class Fonts {
             String var9 = var5.name;
             int var10 = var7.getGroupId(var9);
             int var11 = var7.getFileId(var10, "");
-            Font var6 = Timer.method7358(var7, var8, var10, var11);
+            Font var6 = Timer.method2007(var7, var8, var10, var11);
             if (var6 != null) {
                this.map.put(var5, var6);
                var2.put(var5, var6);

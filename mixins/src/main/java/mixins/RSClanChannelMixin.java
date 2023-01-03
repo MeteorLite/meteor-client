@@ -50,7 +50,7 @@ public abstract class RSClanChannelMixin implements RSClanChannel
 	{
 		name = name.replace(" ", "\u00A0");
 		List<ClanChannelMember> members = getMembers();
-		int[] sorted = getSortedMembers();
+		int[] sorted = getSortedMembers$api();
 
 		int i = 0;
 		int len = sorted.length - 1;

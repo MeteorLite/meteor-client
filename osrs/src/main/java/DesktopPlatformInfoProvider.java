@@ -1,26 +1,17 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pq")
+@Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1178792055
-   )
-   int field4690;
+   int field3818;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1656290877
-   )
-   int field4686;
+   int field3816;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -682146187
-   )
-   int field4689;
+   int field3817;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -132,11 +123,11 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
          var8 = 4;
       }
 
-      this.method7951(var5);
+      this.method2183(var5);
       boolean var9 = false;
       int var10 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1;
       int var11;
-      if (this.field4690 > 3) {
+      if (this.field3818 > 3) {
          var11 = Runtime.getRuntime().availableProcessors();
       } else {
          var11 = 0;
@@ -158,7 +149,7 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
       String var25 = "";
       String var26 = "";
       boolean var27 = false;
-      return new PlatformInfo(var1, var28, var7, var8, this.field4690, this.field4686, this.field4689, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "", "");
+      return new PlatformInfo(var1, var28, var7, var8, this.field3818, this.field3816, this.field3817, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "", "");
    }
 
    @ObfuscatedName("e")
@@ -166,11 +157,11 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "-636530103"
    )
-   void method7951(String var1) {
+   void method2183(String var1) {
       if (var1.startsWith("1.")) {
-         this.method7952(var1);
+         this.method2184(var1);
       } else {
-         this.method7957(var1);
+         this.method2185(var1);
       }
 
    }
@@ -180,14 +171,14 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "1173449193"
    )
-   void method7952(String var1) {
+   void method2184(String var1) {
       String[] var2 = var1.split("\\.");
 
       try {
-         this.field4690 = Integer.parseInt(var2[1]);
+         this.field3818 = Integer.parseInt(var2[1]);
          var2 = var2[2].split("_");
-         this.field4686 = Integer.parseInt(var2[0]);
-         this.field4689 = Integer.parseInt(var2[1]);
+         this.field3816 = Integer.parseInt(var2[0]);
+         this.field3817 = Integer.parseInt(var2[1]);
       } catch (Exception var4) {
          ;
       }
@@ -199,13 +190,13 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "492660934"
    )
-   void method7957(String var1) {
+   void method2185(String var1) {
       String[] var2 = var1.split("\\.");
 
       try {
-         this.field4690 = Integer.parseInt(var2[0]);
-         this.field4686 = Integer.parseInt(var2[1]);
-         this.field4689 = Integer.parseInt(var2[2]);
+         this.field3818 = Integer.parseInt(var2[0]);
+         this.field3816 = Integer.parseInt(var2[1]);
+         this.field3817 = Integer.parseInt(var2[2]);
       } catch (Exception var4) {
          ;
       }

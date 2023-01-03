@@ -5,9 +5,10 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mx")
+@Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
    @ObfuscatedName("x")
-   static boolean field4275;
+   static boolean field3505;
    @ObfuscatedName("c")
    @ObfuscatedSignature(
       descriptor = "Ljk;"
@@ -38,7 +39,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "843888430"
    )
-   static int method6641(int var0, Script var1, boolean var2) {
+   static int method1846(int var0, Script var1, boolean var2) {
       if (var0 == 3300) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.cycle;
          return 1;
@@ -49,7 +50,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
             class87.Interpreter_intStackSize -= 2;
             var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
             var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class18.method267(var3, var4);
+            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class18.method61(var3, var4);
             return 1;
          } else if (var0 == 3302) {
             class87.Interpreter_intStackSize -= 2;
@@ -61,7 +62,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
             class87.Interpreter_intStackSize -= 2;
             var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
             var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class200.method4095(var3, var4);
+            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class200.method1075(var3, var4);
             return 1;
          } else if (var0 == 3304) {
             var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
@@ -83,8 +84,8 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
             int var5;
             if (var0 == 3308) {
                var3 = class383.Client_plane;
-               var4 = class154.baseX * 64 + (class155.localPlayer.x >> 7);
-               var5 = class365.baseY * 64 + (class155.localPlayer.y >> 7);
+               var4 = (class155.localPlayer.x >> 7) + class154.baseX;
+               var5 = (class155.localPlayer.y >> 7) + class365.baseY;
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = (var4 << 14) + var5 + (var3 << 28);
                return 1;
             } else if (var0 == 3309) {
@@ -106,7 +107,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
                class87.Interpreter_intStackSize -= 2;
                var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize] + '耀';
                var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class18.method267(var3, var4);
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class18.method61(var3, var4);
                return 1;
             } else if (var0 == 3314) {
                class87.Interpreter_intStackSize -= 2;
@@ -118,7 +119,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
                class87.Interpreter_intStackSize -= 2;
                var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize] + '耀';
                var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class200.method4095(var3, var4);
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class200.method1075(var3, var4);
                return 1;
             } else if (var0 == 3316) {
                if (Client.staffModLevel >= 2) {
@@ -163,10 +164,10 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3;
                return 1;
             } else if (var0 == 3326) {
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.field520;
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.field365;
                return 1;
             } else if (var0 == 3327) {
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.field552;
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.field397;
                return 1;
             } else if (var0 == 3331) {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.runEnergy;
@@ -183,7 +184,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
       descriptor = "(B)V",
       garbageValue = "-49"
    )
-   static void method6640() {
+   static void method1845() {
       if (class155.localPlayer.x >> 7 == Client.destinationX && class155.localPlayer.y >> 7 == Client.destinationY) {
          Client.destinationX = 0;
       }

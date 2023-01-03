@@ -3,16 +3,13 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("d")
+@Implements("MouseWheelHandler")
 public final class MouseWheelHandler implements class166, MouseWheelListener {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 2129490121
-   )
    int rotation = 0;
 
    @ObfuscatedName("h")
@@ -29,7 +26,7 @@ public final class MouseWheelHandler implements class166, MouseWheelListener {
       descriptor = "(Ljava/awt/Component;I)V",
       garbageValue = "-809901769"
    )
-   void method310(Component var1) {
+   void method79(Component var1) {
       var1.removeMouseWheelListener(this);
    }
 

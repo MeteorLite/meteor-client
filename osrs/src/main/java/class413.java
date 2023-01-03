@@ -1,4 +1,4 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -8,37 +8,31 @@ public enum class413 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lom;"
    )
-   field4639(2, 1),
+   field3784(2, 1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lom;"
    )
-   field4635(0, 2),
+   field3780(0, 2),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lom;"
    )
-   field4636(1, 3),
+   field3781(1, 3),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lom;"
    )
-   field4637(3, 10);
+   field3782(3, 10);
 
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 2098058349
-   )
-   final int field4638;
+   final int field3783;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -654043531
-   )
-   final int field4640;
+   final int field3785;
 
    class413(int var3, int var4) {
-      this.field4638 = var3;
-      this.field4640 = var4;
+      this.field3783 = var3;
+      this.field3785 = var4;
    }
 
    @ObfuscatedName("e")
@@ -47,7 +41,7 @@ public enum class413 implements class345 {
       garbageValue = "96"
    )
    public int rsOrdinal() {
-      return this.field4640;
+      return this.field3785;
    }
 
    @ObfuscatedName("y")
@@ -55,109 +49,109 @@ public enum class413 implements class345 {
       descriptor = "(ILbm;ZB)I",
       garbageValue = "16"
    )
-   static int method7863(int var0, Script var1, boolean var2) {
-      String var7;
+   static int method2154(int var0, Script var1, boolean var2) {
+      String var3;
       if (var0 == 3100) {
-         var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-         KitDefinition.addGameMessage(0, "", var7);
+         var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+         KitDefinition.addGameMessage(0, "", var3);
          return 1;
       } else if (var0 == 3101) {
          class87.Interpreter_intStackSize -= 2;
          class262.performPlayerAnimation(class155.localPlayer, Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize], Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1]);
          return 1;
       } else if (var0 == 3103) {
-         if (!Interpreter.field868) {
-            Interpreter.field865 = true;
+         if (!Interpreter.field697) {
+            Interpreter.field694 = true;
          }
 
          return 1;
       } else {
-         int var16;
+         int var10;
          if (var0 == 3104) {
-            var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-            var16 = 0;
-            if (class346.isNumber(var7)) {
-               var16 = class412.method7858(var7);
+            var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+            var10 = 0;
+            if (class346.isNumber(var3)) {
+               var10 = class412.method2151(var3);
             }
 
-            PacketBufferNode var14 = class136.getPacketBufferNode(ClientPacket.field3077, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeInt(var16);
-            Client.packetWriter.addNode(var14);
+            PacketBufferNode var12 = class136.getPacketBufferNode(ClientPacket.field2461, Client.packetWriter.isaacCipher);
+            var12.packetBuffer.writeInt(var10);
+            Client.packetWriter.addNode(var12);
             return 1;
          } else {
-            PacketBufferNode var12;
+            PacketBufferNode var15;
             if (var0 == 3105) {
-               var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-               var12 = class136.getPacketBufferNode(ClientPacket.field3092, Client.packetWriter.isaacCipher);
-               var12.packetBuffer.writeByte(var7.length() + 1);
-               var12.packetBuffer.writeStringCp1252NullTerminated(var7);
-               Client.packetWriter.addNode(var12);
+               var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+               var15 = class136.getPacketBufferNode(ClientPacket.field2476, Client.packetWriter.isaacCipher);
+               var15.packetBuffer.writeByte(var3.length() + 1);
+               var15.packetBuffer.writeStringCp1252NullTerminated(var3);
+               Client.packetWriter.addNode(var15);
                return 1;
             } else if (var0 == 3106) {
-               var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-               var12 = class136.getPacketBufferNode(ClientPacket.field3125, Client.packetWriter.isaacCipher);
-               var12.packetBuffer.writeByte(var7.length() + 1);
-               var12.packetBuffer.writeStringCp1252NullTerminated(var7);
-               Client.packetWriter.addNode(var12);
+               var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+               var15 = class136.getPacketBufferNode(ClientPacket.field2509, Client.packetWriter.isaacCipher);
+               var15.packetBuffer.writeByte(var3.length() + 1);
+               var15.packetBuffer.writeStringCp1252NullTerminated(var3);
+               Client.packetWriter.addNode(var15);
                return 1;
             } else {
-               int var3;
-               String var11;
+               int var8;
+               String var14;
                if (var0 == 3107) {
-                  var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                  var11 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-                  PcmPlayer.method856(var3, var11);
+                  var8 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                  var14 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+                  PcmPlayer.method229(var8, var14);
                   return 1;
                } else if (var0 == 3108) {
                   class87.Interpreter_intStackSize -= 3;
-                  var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-                  var16 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+                  var8 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
+                  var10 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
                   int var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
-                  Widget var15 = ObjTypeCustomisation.getWidget(var9);
-                  class18.clickWidget(var15, var3, var16);
+                  Widget var13 = ObjTypeCustomisation.getWidget(var9);
+                  class18.clickWidget(var13, var8, var10);
                   return 1;
                } else if (var0 == 3109) {
                   class87.Interpreter_intStackSize -= 2;
-                  var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-                  var16 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-                  Widget var13 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
-                  class18.clickWidget(var13, var3, var16);
+                  var8 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
+                  var10 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+                  Widget var11 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
+                  class18.clickWidget(var11, var8, var10);
                   return 1;
                } else if (var0 == 3110) {
                   SceneTilePaint.mouseCam = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
                   return 1;
                } else if (var0 == 3111) {
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method2412() ? 1 : 0;
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method535() ? 1 : 0;
                   return 1;
                } else if (var0 == 3112) {
-                  StructComposition.clientPreferences.method2486(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1);
+                  StructComposition.clientPreferences.method562(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1);
                   return 1;
                } else if (var0 == 3113) {
-                  var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-                  boolean var8 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
-                  ModeWhere.openURL(var7, var8, false);
+                  var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+                  boolean var4 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
+                  ModeWhere.openURL(var3, var4, false);
                   return 1;
                } else if (var0 == 3115) {
-                  var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                  var12 = class136.getPacketBufferNode(ClientPacket.field3134, Client.packetWriter.isaacCipher);
-                  var12.packetBuffer.writeShort(var3);
-                  Client.packetWriter.addNode(var12);
+                  var8 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                  var15 = class136.getPacketBufferNode(ClientPacket.field2518, Client.packetWriter.isaacCipher);
+                  var15.packetBuffer.writeShort(var8);
+                  Client.packetWriter.addNode(var15);
                   return 1;
                } else if (var0 == 3116) {
-                  var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                  var8 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
                   Interpreter.Interpreter_stringStackSize -= 2;
-                  var11 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
+                  var14 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
                   String var5 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-                  if (var11.length() > 500) {
+                  if (var14.length() > 500) {
                      return 1;
                   } else if (var5.length() > 500) {
                      return 1;
                   } else {
-                     PacketBufferNode var6 = class136.getPacketBufferNode(ClientPacket.field3115, Client.packetWriter.isaacCipher);
-                     var6.packetBuffer.writeShort(1 + class13.stringCp1252NullTerminatedByteSize(var11) + class13.stringCp1252NullTerminatedByteSize(var5));
-                     var6.packetBuffer.method8580(var3);
+                     PacketBufferNode var6 = class136.getPacketBufferNode(ClientPacket.field2499, Client.packetWriter.isaacCipher);
+                     var6.packetBuffer.writeShort(1 + class13.stringCp1252NullTerminatedByteSize(var14) + class13.stringCp1252NullTerminatedByteSize(var5));
+                     var6.packetBuffer.method2370(var8);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var5);
-                     var6.packetBuffer.writeStringCp1252NullTerminated(var11);
+                     var6.packetBuffer.writeStringCp1252NullTerminated(var14);
                      Client.packetWriter.addNode(var6);
                      return 1;
                   }
@@ -241,37 +235,37 @@ public enum class413 implements class345 {
                   class87.Interpreter_intStackSize -= 2;
                   return 1;
                } else if (var0 == 3136) {
-                  Client.field791 = 3;
-                  Client.field683 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                  Client.field636 = 3;
+                  Client.field528 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
                   return 1;
                } else if (var0 == 3137) {
-                  Client.field791 = 2;
-                  Client.field683 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                  Client.field636 = 2;
+                  Client.field528 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
                   return 1;
                } else if (var0 == 3138) {
-                  Client.field791 = 0;
+                  Client.field636 = 0;
                   return 1;
                } else if (var0 == 3139) {
-                  Client.field791 = 1;
+                  Client.field636 = 1;
                   return 1;
                } else if (var0 == 3140) {
-                  Client.field791 = 3;
-                  Client.field683 = var2 ? class190.scriptDotWidget.id : class360.scriptActiveWidget.id;
+                  Client.field636 = 3;
+                  Client.field528 = var2 ? class190.scriptDotWidget.id * 1023837327 * -353756561 : class360.scriptActiveWidget.id * 1023837327 * -353756561;
                   return 1;
                } else {
-                  boolean var10;
+                  boolean var16;
                   if (var0 == 3141) {
-                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
-                     StructComposition.clientPreferences.method2461(var10);
+                     var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
+                     StructComposition.clientPreferences.method558(var16);
                      return 1;
                   } else if (var0 == 3142) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method2413() ? 1 : 0;
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method536() ? 1 : 0;
                      return 1;
                   } else if (var0 == 3143) {
-                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
-                     Client.Login_isUsernameRemembered = var10;
-                     if (!var10) {
-                        StructComposition.clientPreferences.method2429("");
+                     var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
+                     Client.Login_isUsernameRemembered = var16;
+                     if (!var16) {
+                        StructComposition.clientPreferences.method547("");
                      }
 
                      return 1;
@@ -281,11 +275,11 @@ public enum class413 implements class345 {
                   } else if (var0 == 3145) {
                      return 1;
                   } else if (var0 == 3146) {
-                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
-                     StructComposition.clientPreferences.method2448(!var10);
+                     var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
+                     StructComposition.clientPreferences.method556(!var16);
                      return 1;
                   } else if (var0 == 3147) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method2428() ? 0 : 1;
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method546() ? 0 : 1;
                      return 1;
                   } else if (var0 == 3148) {
                      return 1;
@@ -305,7 +299,7 @@ public enum class413 implements class345 {
                      Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Login.Login_loadingPercent;
                      return 1;
                   } else if (var0 == 3154) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = GraphicsObject.method2021();
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = GraphicsObject.method420();
                      return 1;
                   } else if (var0 == 3155) {
                      --Interpreter.Interpreter_stringStackSize;
@@ -398,16 +392,16 @@ public enum class413 implements class345 {
                      --Interpreter.Interpreter_stringStackSize;
                      return 1;
                   } else if (var0 == 3181) {
-                     class14.method170(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+                     class14.method49(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
                      return 1;
                   } else if (var0 == 3182) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class273.method5478();
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class273.method1517();
                      return 1;
                   } else if (var0 == 3189) {
-                     var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     SequenceDefinition var4 = AABB.SequenceDefinition_get(var3);
-                     if (var4.isCachedModelIdSet()) {
-                        Login.method2096(var4.SequenceDefinition_cachedModelId);
+                     var8 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     SequenceDefinition var7 = AABB.SequenceDefinition_get(var8);
+                     if (var7.isCachedModelIdSet()) {
+                        Login.method434(var7.SequenceDefinition_cachedModelId);
                      }
 
                      return 1;
@@ -425,30 +419,30 @@ public enum class413 implements class345 {
       descriptor = "(Lkd;I)V",
       garbageValue = "-458709619"
    )
-   static final void method7860(Widget var0) {
+   static final void method2152(Widget var0) {
       int var1 = var0.contentType;
       if (var1 == 324) {
-         if (Client.field792 == -1) {
-            Client.field792 = var0.spriteId2;
-            Client.field793 = var0.spriteId;
+         if (Client.field637 == -1) {
+            Client.field637 = var0.spriteId2;
+            Client.field638 = var0.spriteId;
          }
 
-         if (Client.playerAppearance.field3474 == 1) {
-            var0.spriteId2 = Client.field792;
+         if (Client.playerAppearance.field2818 == 1) {
+            var0.spriteId2 = Client.field637;
          } else {
-            var0.spriteId2 = Client.field793;
+            var0.spriteId2 = Client.field638;
          }
 
       } else if (var1 == 325) {
-         if (Client.field792 == -1) {
-            Client.field792 = var0.spriteId2;
-            Client.field793 = var0.spriteId;
+         if (Client.field637 == -1) {
+            Client.field637 = var0.spriteId2;
+            Client.field638 = var0.spriteId;
          }
 
-         if (Client.playerAppearance.field3474 == 1) {
-            var0.spriteId2 = Client.field793;
+         if (Client.playerAppearance.field2818 == 1) {
+            var0.spriteId2 = Client.field638;
          } else {
-            var0.spriteId2 = Client.field792;
+            var0.spriteId2 = Client.field637;
          }
 
       } else if (var1 == 327) {

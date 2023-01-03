@@ -1,9 +1,9 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("ra")
+@Implements("IndexedSprite")
 public final class IndexedSprite extends Rasterizer2D {
    @ObfuscatedName("h")
    public byte[] pixels;
@@ -12,9 +12,6 @@ public final class IndexedSprite extends Rasterizer2D {
    @ObfuscatedName("v")
    public int subWidth;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1903818609
-   )
    public int subHeight;
    @ObfuscatedName("m")
    public int xOffset;
@@ -27,11 +24,11 @@ public final class IndexedSprite extends Rasterizer2D {
 
    @ObfuscatedName("h")
    public void normalize() {
-      if (this.subWidth != this.width || this.subHeight * 694949360 != this.height) {
+      if (this.subWidth != this.width || this.subHeight != this.height) {
          byte[] var1 = new byte[this.width * this.height];
          int var2 = 0;
 
-         for(int var3 = 0; var3 < this.subHeight * 694949360; ++var3) {
+         for(int var3 = 0; var3 < this.subHeight; ++var3) {
             for(int var4 = 0; var4 < this.subWidth; ++var4) {
                var1[var4 + (var3 + this.yOffset) * this.width + this.xOffset] = this.pixels[var2++];
             }
@@ -39,7 +36,7 @@ public final class IndexedSprite extends Rasterizer2D {
 
          this.pixels = var1;
          this.subWidth = this.width;
-         this.subHeight = this.height * -1903818609;
+         this.subHeight = this.height;
          this.xOffset = 0;
          this.yOffset = 0;
       }
@@ -83,7 +80,7 @@ public final class IndexedSprite extends Rasterizer2D {
       var2 += this.yOffset;
       int var3 = var1 + var2 * Rasterizer2D.Rasterizer2D_width;
       int var4 = 0;
-      int var5 = this.subHeight * 694949360;
+      int var5 = this.subHeight;
       int var6 = this.subWidth;
       int var7 = Rasterizer2D.Rasterizer2D_width - var6;
       int var8 = 0;
@@ -123,9 +120,9 @@ public final class IndexedSprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("m")
-   public void method8993(int var1, int var2, int var3, int var4) {
+   public void method2459(int var1, int var2, int var3, int var4) {
       int var5 = this.subWidth;
-      int var6 = this.subHeight * 694949360;
+      int var6 = this.subHeight;
       int var7 = 0;
       int var8 = 0;
       int var9 = this.width;

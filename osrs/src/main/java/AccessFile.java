@@ -5,23 +5,17 @@ import java.io.RandomAccessFile;
 import java.io.SyncFailedException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qq")
+@Implements("AccessFile")
 public final class AccessFile {
    @ObfuscatedName("h")
    RandomAccessFile file;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      longValue = 7743048531476061067L
-   )
    final long maxSize;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      longValue = 6501473835846586069L
-   )
    long offset;
 
    public AccessFile(File var1, String var2, long var3) throws IOException {
@@ -123,6 +117,7 @@ public final class AccessFile {
    @ObfuscatedName("finalize")
    protected void finalize() throws Throwable {
       if (this.file != null) {
+         System.out.println("");
          this.close();
       }
 
@@ -133,7 +128,7 @@ public final class AccessFile {
       descriptor = "(II)I",
       garbageValue = "309145420"
    )
-   public static int method8302(int var0) {
+   public static int method2278(int var0) {
       --var0;
       var0 |= var0 >>> 1;
       var0 |= var0 >>> 2;

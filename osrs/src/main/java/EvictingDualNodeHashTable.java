@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jv")
+@Implements("EvictingDualNodeHashTable")
 public final class EvictingDualNodeHashTable {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

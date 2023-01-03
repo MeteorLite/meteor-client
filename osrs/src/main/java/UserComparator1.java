@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rl")
+@Implements("UserComparator1")
 public class UserComparator1 implements Comparator {
    @ObfuscatedName("h")
    final boolean reversed;

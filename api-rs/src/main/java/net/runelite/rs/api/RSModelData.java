@@ -94,7 +94,7 @@ public interface RSModelData extends RSRenderable, ModelData
 	short getContrast();
 
 	@Import("invalidate")
-	void invalidate();
+	void invalidate$api();
 
 	@Import("copyModelData")
 	RSModelData shallowCopy();

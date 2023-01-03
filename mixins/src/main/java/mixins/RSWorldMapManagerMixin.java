@@ -26,7 +26,7 @@ public abstract class RSWorldMapManagerMixin implements RSWorldMapManager
 	 */
 	@Replace("getPixelsPerTile")
 	@Override
-	public float getPixelsPerTile(int graphicsDiff, int worldDiff)
+	public float getPixelsPerTile$api(int graphicsDiff, int worldDiff)
 	{
 		return client.getRenderOverview().getWorldMapZoom();
 	}

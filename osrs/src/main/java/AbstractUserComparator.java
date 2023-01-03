@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("os")
+@Implements("AbstractUserComparator")
 public abstract class AbstractUserComparator implements Comparator {
    @ObfuscatedName("e")
    Comparator nextComparator;

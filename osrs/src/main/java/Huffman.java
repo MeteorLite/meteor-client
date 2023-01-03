@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kq")
+@Implements("Huffman")
 public class Huffman {
    @ObfuscatedName("h")
    int[] masks;
@@ -294,6 +295,6 @@ public class Huffman {
       garbageValue = "4529"
    )
    public static String intToString(int var0, boolean var1) {
-      return var1 && var0 >= 0 ? Widget.method6300(var0, 10, var1) : Integer.toString(var0);
+      return var1 && var0 >= 0 ? Widget.method1750(var0, 10, var1) : Integer.toString(var0);
    }
 }

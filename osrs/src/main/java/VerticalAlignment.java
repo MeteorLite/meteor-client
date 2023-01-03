@@ -1,16 +1,16 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gl")
+@Implements("VerticalAlignment")
 public enum VerticalAlignment implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lgl;"
    )
-   field2073(0, 0),
+   field1598(0, 0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lgl;"
@@ -20,7 +20,7 @@ public enum VerticalAlignment implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lgl;"
    )
-   field2072(1, 2);
+   field1597(1, 2);
 
    @ObfuscatedName("fc")
    @ObfuscatedSignature(
@@ -28,19 +28,10 @@ public enum VerticalAlignment implements class345 {
    )
    static Archive archive17;
    @ObfuscatedName("hm")
-   @ObfuscatedGetter(
-      longValue = 1002454956067767585L
-   )
-   static long field2075;
+   static long field1600;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -269075113
-   )
    public final int value;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1751694473
-   )
    final int id;
 
    VerticalAlignment(int var3, int var4) {
@@ -62,7 +53,7 @@ public enum VerticalAlignment implements class345 {
       descriptor = "(Lrx;IIII)V",
       garbageValue = "-1925002094"
    )
-   static void method3726(SpritePixels var0, int var1, int var2, int var3) {
+   static void method968(SpritePixels var0, int var1, int var2, int var3) {
       DemotingHashTable var4 = WorldMapRegion.WorldMapRegion_cachedSprites;
       long var6 = (long)(var3 << 16 | var1 << 8 | var2);
       var4.put(var0, var6, var0.pixels.length * 4);

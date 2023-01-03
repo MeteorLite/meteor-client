@@ -1,36 +1,23 @@
 import java.applet.Applet;
 import java.net.URL;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
 @ObfuscatedName("cu")
+@Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
    @ObfuscatedName("iz")
-   @ObfuscatedGetter(
-      intValue = -902524381
-   )
    static int selectedItemId;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1203912281
-   )
    int cycle;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -395288459
-   )
    int health;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1291576245
-   )
    int health2;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -426163011
-   )
    int cycleOffset;
 
    HealthBarUpdate(int var1, int var2, int var3, int var4) {
@@ -58,17 +45,17 @@ public class HealthBarUpdate extends Node {
       garbageValue = "0"
    )
    public static DbRowType getDbRowType(int var0) {
-      DbRowType var1 = (DbRowType) DbRowType.DBRowType_cache.get((long)var0);
+      DbRowType var1 = (DbRowType)DbRowType.DBRowType_cache.get((long)var0);
       if (var1 != null) {
          return var1;
       } else {
-         byte[] var2 = DbRowType.field4889.takeFile(38, var0);
+         byte[] var2 = DbRowType.field3979.takeFile(38, var0);
          var1 = new DbRowType();
          if (var2 != null) {
-            var1.method8456(new Buffer(var2));
+            var1.method2318(new Buffer(var2));
          }
 
-         var1.method8459();
+         var1.method2319();
          DbRowType.DBRowType_cache.put(var1, (long)var0);
          return var1;
       }
@@ -79,10 +66,10 @@ public class HealthBarUpdate extends Node {
       descriptor = "(Ljava/lang/String;ILjava/lang/String;I)Z",
       garbageValue = "-1242120679"
    )
-   static boolean method2363(String var0, int var1, String var2) {
+   static boolean method517(String var0, int var1, String var2) {
       if (var1 == 0) {
          try {
-            if (!class32.field183.startsWith("win")) {
+            if (!class32.field87.startsWith("win")) {
                throw new Exception();
             } else if (!var0.startsWith("http://") && !var0.startsWith("https://")) {
                throw new Exception();
@@ -103,8 +90,8 @@ public class HealthBarUpdate extends Node {
          }
       } else if (var1 == 1) {
          try {
-            Applet var7 = class32.field182;
-            Object[] var5 = new Object[]{(new URL(class32.field182.getCodeBase(), var0)).toString()};
+            Applet var7 = class32.field86;
+            Object[] var5 = new Object[]{(new URL(class32.field86.getCodeBase(), var0)).toString()};
             Object var3 = null;
             return var3 != null;
          } catch (Throwable var9) {
@@ -112,20 +99,20 @@ public class HealthBarUpdate extends Node {
          }
       } else if (var1 == 2) {
          try {
-            class32.field182.getAppletContext().showDocument(new URL(class32.field182.getCodeBase(), var0), "_blank");
+            class32.field86.getAppletContext().showDocument(new URL(class32.field86.getCodeBase(), var0), "_blank");
             return true;
          } catch (Exception var10) {
             return false;
          }
       } else if (var1 == 3) {
          try {
-            class27.method390(class32.field182, "loggedout");
+            class27.method102(class32.field86, "loggedout");
          } catch (Throwable var12) {
             ;
          }
 
          try {
-            class32.field182.getAppletContext().showDocument(new URL(class32.field182.getCodeBase(), var0), "_top");
+            class32.field86.getAppletContext().showDocument(new URL(class32.field86.getCodeBase(), var0), "_top");
             return true;
          } catch (Exception var11) {
             return false;
@@ -140,7 +127,7 @@ public class HealthBarUpdate extends Node {
       descriptor = "(ILbm;ZB)I",
       garbageValue = "59"
    )
-   static int method2368(int var0, Script var1, boolean var2) {
+   static int method520(int var0, Script var1, boolean var2) {
       return 2;
    }
 }

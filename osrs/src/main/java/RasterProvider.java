@@ -15,6 +15,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("at")
+@Implements("RasterProvider")
 public final class RasterProvider extends AbstractRasterProvider {
    @ObfuscatedName("h")
    Component component;

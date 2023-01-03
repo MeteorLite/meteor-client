@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gd")
+@Implements("StructComposition")
 public class StructComposition extends DualNode {
    @ObfuscatedName("vs")
    @ObfuscatedSignature(
@@ -23,7 +24,7 @@ public class StructComposition extends DualNode {
    @ObfuscatedName("f")
    public static int[] SpriteBuffer_spriteHeights;
    @ObfuscatedName("u")
-   static int[] field2122;
+   static int[] field1639;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lql;"
@@ -72,7 +73,7 @@ public class StructComposition extends DualNode {
       garbageValue = "76"
    )
    public int getIntParam(int var1, int var2) {
-      return UserComparator8.method2819(this.params, var1, var2);
+      return UserComparator8.method661(this.params, var1, var2);
    }
 
    @ObfuscatedName("q")
@@ -98,7 +99,7 @@ public class StructComposition extends DualNode {
    }
 
    @ObfuscatedName("e")
-   static final void method3820(long var0) {
+   static final void method997(long var0) {
       try {
          Thread.sleep(var0);
       } catch (InterruptedException var3) {
@@ -112,7 +113,7 @@ public class StructComposition extends DualNode {
       descriptor = "([BILjava/lang/CharSequence;I)I",
       garbageValue = "1948411725"
    )
-   public static int method3810(byte[] var0, int var1, CharSequence var2) {
+   public static int method995(byte[] var0, int var1, CharSequence var2) {
       int var3 = var2.length();
       int var4 = var1;
 

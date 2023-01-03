@@ -51,5 +51,5 @@ public interface RSNodeDeque extends Deque
 	RSNode removeLast();
 
 	@Import("clear")
-	void clear();
+	void clear$api();
 }

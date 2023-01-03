@@ -2,11 +2,11 @@ import java.io.EOFException;
 import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oi")
+@Implements("ArchiveDisk")
 public final class ArchiveDisk {
    @ObfuscatedName("h")
    static byte[] ArchiveDisk_buffer = new byte[520];
@@ -21,14 +21,8 @@ public final class ArchiveDisk {
    )
    BufferedFile idxFile = null;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1490095751
-   )
    int archive;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -570825231
-   )
    int maxEntrySize = 65000;
 
    @ObfuscatedSignature(
@@ -68,9 +62,8 @@ public final class ArchiveDisk {
                } else {
                   byte[] var5 = new byte[var3];
                   int var6 = 0;
-                  int var7 = 0;
 
-                  while(var6 < var3) {
+                  for(int var7 = 0; var6 < var3; ++var7) {
                      if (var4 == 0) {
                         var10000 = null;
                         return (byte[])var10000;
@@ -107,25 +100,23 @@ public final class ArchiveDisk {
                         var12 = ArchiveDisk_buffer[7] & 255;
                      }
 
-                     if (var9 == var1 && var10 == var7 && var12 == this.archive) {
-                        if (var11 >= 0 && (long)var11 <= this.datFile.length() / 520L) {
-                           int var14 = var8 + var13;
-
-                           for(int var15 = var13; var15 < var14; ++var15) {
-                              var5[var6++] = ArchiveDisk_buffer[var15];
-                           }
-
-                           var4 = var11;
-                           ++var7;
-                           continue;
-                        }
-
+                     if (var9 != var1 || var10 != var7 || var12 != this.archive) {
                         var10000 = null;
                         return (byte[])var10000;
                      }
 
-                     var10000 = null;
-                     return (byte[])var10000;
+                     if (var11 < 0 || (long)var11 > this.datFile.length() / 520L) {
+                        var10000 = null;
+                        return (byte[])var10000;
+                     }
+
+                     int var14 = var8 + var13;
+
+                     for(int var15 = var13; var15 < var14; ++var15) {
+                        var5[var6++] = ArchiveDisk_buffer[var15];
+                     }
+
+                     var4 = var11;
                   }
 
                   byte[] var20 = var5;

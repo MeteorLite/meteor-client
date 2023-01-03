@@ -5,36 +5,36 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("oc")
 public class class411 {
    @ObfuscatedName("h")
-   float field4624;
+   float field3774;
    @ObfuscatedName("e")
-   float field4617;
+   float field3767;
    @ObfuscatedName("v")
-   float field4618;
+   float field3768;
    @ObfuscatedName("x")
-   float field4625;
+   float field3775;
    @ObfuscatedName("m")
-   float field4620;
+   float field3770;
    @ObfuscatedName("q")
-   float field4621;
+   float field3771;
    @ObfuscatedName("f")
-   float field4622;
+   float field3772;
    @ObfuscatedName("r")
-   float field4623;
+   float field3773;
    @ObfuscatedName("u")
-   float field4616;
+   float field3766;
    @ObfuscatedName("b")
-   float field4627;
+   float field3777;
    @ObfuscatedName("j")
-   float field4626;
+   float field3776;
    @ObfuscatedName("g")
-   float field4619;
+   float field3769;
 
    static {
       new class411();
    }
 
    class411() {
-      this.method7837();
+      this.method2147();
    }
 
    @ObfuscatedName("h")
@@ -42,19 +42,19 @@ public class class411 {
       descriptor = "(B)V",
       garbageValue = "55"
    )
-   void method7837() {
-      this.field4619 = 0.0F;
-      this.field4626 = 0.0F;
-      this.field4627 = 0.0F;
-      this.field4623 = 0.0F;
-      this.field4622 = 0.0F;
-      this.field4621 = 0.0F;
-      this.field4625 = 0.0F;
-      this.field4618 = 0.0F;
-      this.field4617 = 0.0F;
-      this.field4616 = 1.0F;
-      this.field4620 = 1.0F;
-      this.field4624 = 1.0F;
+   void method2147() {
+      this.field3769 = 0.0F;
+      this.field3776 = 0.0F;
+      this.field3777 = 0.0F;
+      this.field3773 = 0.0F;
+      this.field3772 = 0.0F;
+      this.field3771 = 0.0F;
+      this.field3775 = 0.0F;
+      this.field3768 = 0.0F;
+      this.field3767 = 0.0F;
+      this.field3766 = 1.0F;
+      this.field3770 = 1.0F;
+      this.field3774 = 1.0F;
    }
 
    @ObfuscatedName("e")
@@ -62,21 +62,21 @@ public class class411 {
       descriptor = "(FB)V",
       garbageValue = "117"
    )
-   void method7835(float var1) {
+   void method2145(float var1) {
       float var2 = (float)Math.cos((double)var1);
       float var3 = (float)Math.sin((double)var1);
-      float var4 = this.field4617;
-      float var5 = this.field4620;
-      float var6 = this.field4623;
-      float var7 = this.field4626;
-      this.field4617 = var4 * var2 - var3 * this.field4618;
-      this.field4618 = var2 * this.field4618 + var4 * var3;
-      this.field4620 = var2 * var5 - var3 * this.field4621;
-      this.field4621 = var5 * var3 + this.field4621 * var2;
-      this.field4623 = var2 * var6 - this.field4616 * var3;
-      this.field4616 = var6 * var3 + this.field4616 * var2;
-      this.field4626 = var7 * var2 - var3 * this.field4619;
-      this.field4619 = var2 * this.field4619 + var3 * var7;
+      float var4 = this.field3767;
+      float var5 = this.field3770;
+      float var6 = this.field3773;
+      float var7 = this.field3776;
+      this.field3767 = var4 * var2 - var3 * this.field3768;
+      this.field3768 = var2 * this.field3768 + var4 * var3;
+      this.field3770 = var2 * var5 - var3 * this.field3771;
+      this.field3771 = var5 * var3 + this.field3771 * var2;
+      this.field3773 = var2 * var6 - this.field3766 * var3;
+      this.field3766 = var6 * var3 + this.field3766 * var2;
+      this.field3776 = var7 * var2 - var3 * this.field3769;
+      this.field3769 = var2 * this.field3769 + var3 * var7;
    }
 
    @ObfuscatedName("v")
@@ -84,21 +84,21 @@ public class class411 {
       descriptor = "(FB)V",
       garbageValue = "-45"
    )
-   void method7836(float var1) {
+   void method2146(float var1) {
       float var2 = (float)Math.cos((double)var1);
       float var3 = (float)Math.sin((double)var1);
-      float var4 = this.field4624;
-      float var5 = this.field4625;
-      float var6 = this.field4622;
-      float var7 = this.field4627;
-      this.field4624 = var3 * this.field4618 + var4 * var2;
-      this.field4618 = var2 * this.field4618 - var4 * var3;
-      this.field4625 = var3 * this.field4621 + var2 * var5;
-      this.field4621 = this.field4621 * var2 - var5 * var3;
-      this.field4622 = var3 * this.field4616 + var6 * var2;
-      this.field4616 = var2 * this.field4616 - var3 * var6;
-      this.field4627 = this.field4619 * var3 + var7 * var2;
-      this.field4619 = this.field4619 * var2 - var7 * var3;
+      float var4 = this.field3774;
+      float var5 = this.field3775;
+      float var6 = this.field3772;
+      float var7 = this.field3777;
+      this.field3774 = var3 * this.field3768 + var4 * var2;
+      this.field3768 = var2 * this.field3768 - var4 * var3;
+      this.field3775 = var3 * this.field3771 + var2 * var5;
+      this.field3771 = this.field3771 * var2 - var5 * var3;
+      this.field3772 = var3 * this.field3766 + var6 * var2;
+      this.field3766 = var2 * this.field3766 - var3 * var6;
+      this.field3777 = this.field3769 * var3 + var7 * var2;
+      this.field3769 = this.field3769 * var2 - var7 * var3;
    }
 
    @ObfuscatedName("x")
@@ -106,21 +106,21 @@ public class class411 {
       descriptor = "(FI)V",
       garbageValue = "-1457477658"
    )
-   void method7840(float var1) {
+   void method2149(float var1) {
       float var2 = (float)Math.cos((double)var1);
       float var3 = (float)Math.sin((double)var1);
-      float var4 = this.field4624;
-      float var5 = this.field4625;
-      float var6 = this.field4622;
-      float var7 = this.field4627;
-      this.field4624 = var4 * var2 - var3 * this.field4617;
-      this.field4617 = var4 * var3 + this.field4617 * var2;
-      this.field4625 = var5 * var2 - var3 * this.field4620;
-      this.field4620 = var5 * var3 + this.field4620 * var2;
-      this.field4622 = var6 * var2 - this.field4623 * var3;
-      this.field4623 = var2 * this.field4623 + var3 * var6;
-      this.field4627 = var2 * var7 - this.field4626 * var3;
-      this.field4626 = var7 * var3 + this.field4626 * var2;
+      float var4 = this.field3774;
+      float var5 = this.field3775;
+      float var6 = this.field3772;
+      float var7 = this.field3777;
+      this.field3774 = var4 * var2 - var3 * this.field3767;
+      this.field3767 = var4 * var3 + this.field3767 * var2;
+      this.field3775 = var5 * var2 - var3 * this.field3770;
+      this.field3770 = var5 * var3 + this.field3770 * var2;
+      this.field3772 = var6 * var2 - this.field3773 * var3;
+      this.field3773 = var2 * this.field3773 + var3 * var6;
+      this.field3777 = var2 * var7 - this.field3776 * var3;
+      this.field3776 = var7 * var3 + this.field3776 * var2;
    }
 
    @ObfuscatedName("m")
@@ -128,14 +128,14 @@ public class class411 {
       descriptor = "(FFFB)V",
       garbageValue = "11"
    )
-   void method7838(float var1, float var2, float var3) {
-      this.field4627 += var1;
-      this.field4626 += var2;
-      this.field4619 += var3;
+   void method2148(float var1, float var2, float var3) {
+      this.field3777 += var1;
+      this.field3776 += var2;
+      this.field3769 += var3;
    }
 
    @ObfuscatedName("toString")
    public String toString() {
-      return this.field4624 + "," + this.field4625 + "," + this.field4622 + "," + this.field4627 + "\n" + this.field4617 + "," + this.field4620 + "," + this.field4623 + "," + this.field4626 + "\n" + this.field4618 + "," + this.field4621 + "," + this.field4616 + "," + this.field4619;
+      return this.field3774 + "," + this.field3775 + "," + this.field3772 + "," + this.field3777 + "\n" + this.field3767 + "," + this.field3770 + "," + this.field3773 + "," + this.field3776 + "\n" + this.field3768 + "," + this.field3771 + "," + this.field3766 + "," + this.field3769;
    }
 }

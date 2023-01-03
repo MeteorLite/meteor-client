@@ -34,7 +34,7 @@ public interface RSClanChannelMember extends ClanChannelMember
 
 	@Import("world")
 	@Override
-	int getWorld();
+	int getWorld$api();
 
 	@Import("username")
 	RSUsername getUsername();

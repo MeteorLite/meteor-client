@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("md")
+@Implements("DualNodeDeque")
 public final class DualNodeDeque {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

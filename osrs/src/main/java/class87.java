@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -11,37 +10,34 @@ public enum class87 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1114(0, -1),
+   field875(0, -1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1110(1, 2),
+   field872(1, 2),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1120(2, 3),
+   field881(2, 3),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1112(3, 4),
+   field873(3, 4),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1113(4, 5),
+   field874(4, 5),
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1118(5, 6);
+   field879(5, 6);
 
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 316580569
-   )
    static int Interpreter_intStackSize;
    @ObfuscatedName("cw")
    @ObfuscatedSignature(
@@ -49,24 +45,15 @@ public enum class87 implements class345 {
    )
    static IndexedSprite[] worldSelectFlagSprites;
    @ObfuscatedName("py")
-   @ObfuscatedGetter(
-      intValue = 2101952525
-   )
    static int widgetDragDuration;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1055454903
-   )
-   final int field1115;
+   final int field876;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 2102602089
-   )
-   final int field1116;
+   final int field877;
 
    class87(int var3, int var4) {
-      this.field1115 = var3;
-      this.field1116 = var4;
+      this.field876 = var3;
+      this.field877 = var4;
    }
 
    @ObfuscatedName("e")
@@ -75,7 +62,7 @@ public enum class87 implements class345 {
       garbageValue = "96"
    )
    public int rsOrdinal() {
-      return this.field1116;
+      return this.field877;
    }
 
    @ObfuscatedName("h")

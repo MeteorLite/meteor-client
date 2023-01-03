@@ -2,34 +2,25 @@ import java.io.IOException;
 import java.io.OutputStream;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ox")
+@Implements("BufferedSink")
 public class BufferedSink implements Runnable {
    @ObfuscatedName("sn")
-   static boolean field4572;
+   static boolean field3726;
    @ObfuscatedName("h")
    Thread thread;
    @ObfuscatedName("e")
    OutputStream outputStream;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1635330273
-   )
    int capacity;
    @ObfuscatedName("x")
    byte[] buffer;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1327837741
-   )
    int position = 0;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 237091967
-   )
    int limit = 0;
    @ObfuscatedName("f")
    IOException exception;

@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -14,31 +13,25 @@ public class class21 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   static Archive field123;
+   static Archive field63;
    @ObfuscatedName("ov")
-   @ObfuscatedGetter(
-      intValue = 429125907
-   )
    static int selectedSpellFlags;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1186998877
-   )
-   final int field121;
+   final int field61;
    @ObfuscatedName("e")
-   final String field122;
+   final String field62;
 
    class21(String var1) {
-      this.field121 = 400;
-      this.field122 = "";
+      this.field61 = 400;
+      this.field62 = "";
    }
 
    class21(HttpURLConnection var1) throws IOException {
-      this.field121 = var1.getResponseCode();
+      this.field61 = var1.getResponseCode();
       var1.getResponseMessage();
       var1.getHeaderFields();
       StringBuilder var2 = new StringBuilder();
-      InputStream var3 = this.field121 >= 300 ? var1.getErrorStream() : var1.getInputStream();
+      InputStream var3 = this.field61 >= 300 ? var1.getErrorStream() : var1.getInputStream();
       if (var3 != null) {
          InputStreamReader var4 = new InputStreamReader(var3);
          BufferedReader var5 = new BufferedReader(var4);
@@ -51,16 +44,16 @@ public class class21 {
          var3.close();
       }
 
-      this.field122 = var2.toString();
+      this.field62 = var2.toString();
    }
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "(I)I",
-      garbageValue = "-2139924065"
+      garbageValue = "-1934403737"
    )
-   public int method297() {
-      return this.field121;
+   public int method74() {
+      return this.field61;
    }
 
    @ObfuscatedName("e")
@@ -68,8 +61,8 @@ public class class21 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "-309548900"
    )
-   public String method298() {
-      return this.field122;
+   public String method75() {
+      return this.field62;
    }
 
    @ObfuscatedName("e")
@@ -77,7 +70,7 @@ public class class21 {
       descriptor = "(IB)Lgh;",
       garbageValue = "96"
    )
-   public static FloorUnderlayDefinition method304(int var0) {
+   public static FloorUnderlayDefinition method76(int var0) {
       FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;

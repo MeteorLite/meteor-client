@@ -1,19 +1,13 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fc")
 public class class160 extends class136 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1535255133
-   )
-   int field1819;
+   int field1403;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      longValue = -7045304652335758083L
-   )
-   long field1818;
+   long field1402;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lem;"
@@ -33,8 +27,8 @@ public class class160 extends class136 {
       garbageValue = "1101327225"
    )
    void vmethod3254(Buffer var1) {
-      this.field1819 = var1.readInt();
-      this.field1818 = var1.readLong();
+      this.field1403 = var1.readInt();
+      this.field1402 = var1.readLong();
    }
 
    @ObfuscatedName("e")
@@ -43,7 +37,7 @@ public class class160 extends class136 {
       garbageValue = "839088249"
    )
    void vmethod3248(ClanSettings var1) {
-      var1.method3181(this.field1819, this.field1818);
+      var1.method791(this.field1403, this.field1402);
    }
 
    @ObfuscatedName("m")
@@ -61,11 +55,11 @@ public class class160 extends class136 {
       Player var4 = Client.players[var1];
       if (var3 == 0) {
          if (var2) {
-            var4.field1133 = false;
+            var4.field894 = false;
          } else if (Client.localPlayerIndex == var1) {
             throw new RuntimeException();
          } else {
-            Players.Players_regions[var1] = (var4.plane << 28) + (class154.baseX * 64 + var4.pathX[0] >> 13 << 14) + (class365.baseY * 64 + var4.pathY[0] >> 13);
+            Players.Players_regions[var1] = (var4.plane << 28) + (class154.baseX + var4.pathX[0] >> 13 << 14) + (class365.baseY + var4.pathY[0] >> 13);
             if (var4.movingOrientation != -1) {
                Players.Players_orientations[var1] = var4.movingOrientation;
             } else {
@@ -109,16 +103,18 @@ public class class160 extends class136 {
                ++var7;
             }
 
-            if (Client.localPlayerIndex == var1 && (var4.x < 1536 || var4.y < 1536 || var4.x >= 11776 || var4.y >= 11776)) {
-               var4.resetPath(var6, var7);
-               var4.field1133 = false;
-            } else if (var2) {
-               var4.field1133 = true;
-               var4.tileX = var6;
-               var4.tileY = var7;
+            if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
+               if (var2) {
+                  var4.field894 = true;
+                  var4.tileX = var6;
+                  var4.tileY = var7;
+               } else {
+                  var4.field894 = false;
+                  var4.move(var6, var7, Players.field1094[var1]);
+               }
             } else {
-               var4.field1133 = false;
-               var4.move(var6, var7, Players.field1379[var1]);
+               var4.resetPath(var6, var7);
+               var4.field894 = false;
             }
 
          } else if (var3 == 2) {
@@ -171,16 +167,18 @@ public class class160 extends class136 {
                var7 += 2;
             }
 
-            if (Client.localPlayerIndex == var1 && (var4.x < 1536 || var4.y < 1536 || var4.x >= 11776 || var4.y >= 11776)) {
-               var4.resetPath(var6, var7);
-               var4.field1133 = false;
-            } else if (var2) {
-               var4.field1133 = true;
-               var4.tileX = var6;
-               var4.tileY = var7;
+            if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
+               if (var2) {
+                  var4.field894 = true;
+                  var4.tileX = var6;
+                  var4.tileY = var7;
+               } else {
+                  var4.field894 = false;
+                  var4.move(var6, var7, Players.field1094[var1]);
+               }
             } else {
-               var4.field1133 = false;
-               var4.move(var6, var7, Players.field1379[var1]);
+               var4.resetPath(var6, var7);
+               var4.field894 = false;
             }
 
          } else {
@@ -206,16 +204,16 @@ public class class160 extends class136 {
                var11 = var9 + var4.pathY[0];
                if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
                   if (var2) {
-                     var4.field1133 = true;
+                     var4.field894 = true;
                      var4.tileX = var10;
                      var4.tileY = var11;
                   } else {
-                     var4.field1133 = false;
-                     var4.move(var10, var11, Players.field1379[var1]);
+                     var4.field894 = false;
+                     var4.move(var10, var11, Players.field1094[var1]);
                   }
                } else {
                   var4.resetPath(var10, var11);
-                  var4.field1133 = false;
+                  var4.field894 = false;
                }
 
                var4.plane = (byte)(var7 + var4.plane & 3);
@@ -228,18 +226,20 @@ public class class160 extends class136 {
                var7 = var6 >> 28;
                var8 = var6 >> 14 & 16383;
                var9 = var6 & 16383;
-               var10 = (class154.baseX * 64 + var8 + var4.pathX[0] & 16383) - class154.baseX * 64;
-               var11 = (class365.baseY * 64 + var9 + var4.pathY[0] & 16383) - class365.baseY * 64;
-               if (Client.localPlayerIndex == var1 && (var4.x < 1536 || var4.y < 1536 || var4.x >= 11776 || var4.y >= 11776)) {
-                  var4.resetPath(var10, var11);
-                  var4.field1133 = false;
-               } else if (var2) {
-                  var4.field1133 = true;
-                  var4.tileX = var10;
-                  var4.tileY = var11;
+               var10 = (var8 + class154.baseX + var4.pathX[0] & 16383) - class154.baseX;
+               var11 = (var9 + class365.baseY + var4.pathY[0] & 16383) - class365.baseY;
+               if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
+                  if (var2) {
+                     var4.field894 = true;
+                     var4.tileX = var10;
+                     var4.tileY = var11;
+                  } else {
+                     var4.field894 = false;
+                     var4.move(var10, var11, Players.field1094[var1]);
+                  }
                } else {
-                  var4.field1133 = false;
-                  var4.move(var10, var11, Players.field1379[var1]);
+                  var4.resetPath(var10, var11);
+                  var4.field894 = false;
                }
 
                var4.plane = (byte)(var7 + var4.plane & 3);

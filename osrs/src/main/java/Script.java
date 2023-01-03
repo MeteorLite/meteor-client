@@ -1,13 +1,12 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bm")
+@Implements("Script")
 public class Script extends DualNode {
    @ObfuscatedName("tp")
-   @ObfuscatedGetter(
-      intValue = 621523353
-   )
    static int cameraMoveToHeight;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -15,7 +14,7 @@ public class Script extends DualNode {
    )
    static EvictingDualNodeHashTable Script_cached = new EvictingDualNodeHashTable(128);
    @ObfuscatedName("e")
-   String field990;
+   String field792;
    @ObfuscatedName("v")
    int[] opcodes;
    @ObfuscatedName("x")
@@ -23,24 +22,12 @@ public class Script extends DualNode {
    @ObfuscatedName("m")
    String[] stringOperands;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1144522069
-   )
    int localIntCount;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 506367355
-   )
    int localStringCount;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1904250989
-   )
    int intArgumentCount;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 705152755
-   )
    int stringArgumentCount;
    @ObfuscatedName("b")
    @ObfuscatedSignature(

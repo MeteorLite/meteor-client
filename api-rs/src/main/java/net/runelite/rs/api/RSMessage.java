@@ -38,7 +38,7 @@ public interface RSMessage extends MessageNode
 
 	@Import("isFromFriend")
 	@Override
-	boolean isFromFriend();
+	boolean isFromFriend$api();
 
 	@Import("senderUsername")
 	RSUsername getSenderUsername();

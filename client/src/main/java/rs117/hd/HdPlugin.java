@@ -517,7 +517,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 				client.setGpu(true);
 				textureManager.startUp();
 				// force rebuild of main buffer provider to enable alpha channel
-				client.resizeCanvas();
+				client.resizeCanvas$api();
 
 				lastCanvasWidth = lastCanvasHeight = 0;
 				lastStretchedCanvasWidth = lastStretchedCanvasHeight = 0;
@@ -604,7 +604,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 			modelBufferUnordered = null;
 
 			// force main buffer provider rebuild to turn off alpha channel
-			client.resizeCanvas();
+			client.resizeCanvas$api();
 		});
 	}
 
@@ -2310,7 +2310,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 	 */
 	private boolean isVisible(Model model, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z)
 	{
-		model.calculateBoundsCylinder();
+		model.calculateBoundsCylinder$api();
 
 		final int XYZMag = model.getXYZMag();
 		final int bottomY = model.getBottomY();
@@ -2383,7 +2383,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		// Model may be in the scene buffer
 		if (model.getSceneId() == sceneUploader.sceneId)
 		{
-			model.calculateBoundsCylinder();
+			model.calculateBoundsCylinder$api();
 
 			if (!isVisible(model, pitchSin, pitchCos, yawSin, yawCos, x, y, z))
 			{
@@ -2424,7 +2424,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 				renderable.setModelHeight(model.getModelHeight());
 			}
 
-			model.calculateBoundsCylinder();
+			model.calculateBoundsCylinder$api();
 
 			if (!isVisible(model, pitchSin, pitchCos, yawSin, yawCos, x, y, z))
 			{

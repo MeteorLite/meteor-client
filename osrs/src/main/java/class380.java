@@ -7,5 +7,5 @@ public class class380 {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   static Widget field4470;
+   static Widget field3655;
 }

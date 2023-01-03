@@ -46,7 +46,7 @@ public class class82 {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "1832001725"
    )
-   static int method2248(int var0, Script var1, boolean var2) {
+   static int method469(int var0, Script var1, boolean var2) {
       int var3;
       if (var0 == 5504) {
          class87.Interpreter_intStackSize -= 2;

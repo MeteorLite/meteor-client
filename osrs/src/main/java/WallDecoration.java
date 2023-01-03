@@ -1,50 +1,27 @@
 import java.io.IOException;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hb")
+@Implements("WallDecoration")
 public final class WallDecoration {
    @ObfuscatedName("bz")
-   @ObfuscatedGetter(
-      intValue = 704722641
-   )
-   static int field2799;
+   static int field2226;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 13169171
-   )
    int z;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 195804449
-   )
    int x;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -878815741
-   )
    int y;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1962326121
-   )
    int orientation;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1777240723
-   )
    int orientation2;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1641152353
-   )
    int xOffset;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1040498041
-   )
    int yOffset;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
@@ -57,14 +34,8 @@ public final class WallDecoration {
    )
    public Renderable renderable2;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      longValue = -4565289188219368055L
-   )
    public long tag = 0L;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 1162489357
-   )
    int flags = 0;
 
    @ObfuscatedName("h")
@@ -72,10 +43,10 @@ public final class WallDecoration {
       descriptor = "(I)Z",
       garbageValue = "-1929783827"
    )
-   public static boolean method4830() {
-      long var0 = Message.method1197();
-      int var2 = (int)(var0 - NetCache.field4218);
-      NetCache.field4218 = var0;
+   public static boolean method1297() {
+      long var0 = Message.method344();
+      int var2 = (int)(var0 - NetCache.field3468);
+      NetCache.field3468 = var0;
       if (var2 > 200) {
          var2 = 200;
       }
@@ -129,7 +100,7 @@ public final class WallDecoration {
                   byte var5 = 0;
                   if (NewShit.NetCache_currentResponse == null) {
                      var5 = 8;
-                  } else if (NetCache.field4216 == 0) {
+                  } else if (NetCache.field3466 == 0) {
                      var5 = 1;
                   }
 
@@ -144,9 +115,9 @@ public final class WallDecoration {
                      }
 
                      NetCache.NetCache_socket.read(NetCache.NetCache_responseHeaderBuffer.array, NetCache.NetCache_responseHeaderBuffer.offset, var6);
-                     if (NetCache.field4232 != 0) {
+                     if (NetCache.field3481 != 0) {
                         for(var7 = 0; var7 < var6; ++var7) {
-                           NetCache.NetCache_responseHeaderBuffer.array[NetCache.NetCache_responseHeaderBuffer.offset + var7] ^= NetCache.field4232;
+                           NetCache.NetCache_responseHeaderBuffer.array[NetCache.NetCache_responseHeaderBuffer.offset + var7] ^= NetCache.field3481;
                         }
                      }
 
@@ -163,10 +134,10 @@ public final class WallDecoration {
                         var10 = NetCache.NetCache_responseHeaderBuffer.readInt();
                         long var11 = (long)(var8 + (var7 << 16));
                         NetFileRequest var13 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var11);
-                        class157.field1804 = true;
+                        class157.field1395 = true;
                         if (var13 == null) {
                            var13 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var11);
-                           class157.field1804 = false;
+                           class157.field1395 = false;
                         }
 
                         if (var13 == null) {
@@ -178,11 +149,11 @@ public final class WallDecoration {
                         ModeWhere.NetCache_responseArchiveBuffer = new Buffer(var10 + var14 + NewShit.NetCache_currentResponse.padding);
                         ModeWhere.NetCache_responseArchiveBuffer.writeByte(var9);
                         ModeWhere.NetCache_responseArchiveBuffer.writeInt(var10);
-                        NetCache.field4216 = 8;
+                        NetCache.field3466 = 8;
                         NetCache.NetCache_responseHeaderBuffer.offset = 0;
-                     } else if (NetCache.field4216 == 0) {
+                     } else if (NetCache.field3466 == 0) {
                         if (NetCache.NetCache_responseHeaderBuffer.array[0] == -1) {
-                           NetCache.field4216 = 1;
+                           NetCache.field3466 = 1;
                            NetCache.NetCache_responseHeaderBuffer.offset = 0;
                         } else {
                            NewShit.NetCache_currentResponse = null;
@@ -190,7 +161,7 @@ public final class WallDecoration {
                      }
                   } else {
                      var6 = ModeWhere.NetCache_responseArchiveBuffer.array.length - NewShit.NetCache_currentResponse.padding;
-                     var7 = 512 - NetCache.field4216;
+                     var7 = 512 - NetCache.field3466;
                      if (var7 > var6 - ModeWhere.NetCache_responseArchiveBuffer.offset) {
                         var7 = var6 - ModeWhere.NetCache_responseArchiveBuffer.offset;
                      }
@@ -200,31 +171,31 @@ public final class WallDecoration {
                      }
 
                      NetCache.NetCache_socket.read(ModeWhere.NetCache_responseArchiveBuffer.array, ModeWhere.NetCache_responseArchiveBuffer.offset, var7);
-                     if (NetCache.field4232 != 0) {
+                     if (NetCache.field3481 != 0) {
                         for(var8 = 0; var8 < var7; ++var8) {
-                           ModeWhere.NetCache_responseArchiveBuffer.array[ModeWhere.NetCache_responseArchiveBuffer.offset + var8] ^= NetCache.field4232;
+                           ModeWhere.NetCache_responseArchiveBuffer.array[ModeWhere.NetCache_responseArchiveBuffer.offset + var8] ^= NetCache.field3481;
                         }
                      }
 
                      ModeWhere.NetCache_responseArchiveBuffer.offset += var7;
-                     NetCache.field4216 += var7;
+                     NetCache.field3466 += var7;
                      if (var6 == ModeWhere.NetCache_responseArchiveBuffer.offset) {
                         if (NewShit.NetCache_currentResponse.key == 16711935L) {
-                           class169.field1878 = ModeWhere.NetCache_responseArchiveBuffer;
+                           class169.field1440 = ModeWhere.NetCache_responseArchiveBuffer;
 
                            for(var8 = 0; var8 < 256; ++var8) {
                               Archive var17 = NetCache.NetCache_archives[var8];
                               if (var17 != null) {
-                                 class169.field1878.offset = var8 * 8 + 5;
-                                 if (class169.field1878.offset >= class169.field1878.array.length) {
-                                    if (!var17.field4191) {
+                                 class169.field1440.offset = var8 * 8 + 5;
+                                 if (class169.field1440.offset >= class169.field1440.array.length) {
+                                    if (!var17.field3445) {
                                        throw new RuntimeException("");
                                     }
 
-                                    var17.method6419();
+                                    var17.method1785();
                                  } else {
-                                    var10 = class169.field1878.readInt();
-                                    int var18 = class169.field1878.readInt();
+                                    var10 = class169.field1440.readInt();
+                                    int var18 = class169.field1440.readInt();
                                     var17.loadIndex(var10, var18);
                                  }
                               }
@@ -242,31 +213,31 @@ public final class WallDecoration {
 
                               ++NetCache.NetCache_crcMismatches;
                               NetCache.NetCache_socket = null;
-                              NetCache.field4232 = (byte)((int)(Math.random() * 255.0D + 1.0D));
+                              NetCache.field3481 = (byte)((int)(Math.random() * 255.0D + 1.0D));
                               return false;
                            }
 
                            NetCache.NetCache_crcMismatches = 0;
                            NetCache.NetCache_ioExceptions = 0;
-                           NewShit.NetCache_currentResponse.archive.write((int)(NewShit.NetCache_currentResponse.key & 65535L), ModeWhere.NetCache_responseArchiveBuffer.array, 16711680L == (NewShit.NetCache_currentResponse.key & 16711680L), class157.field1804);
+                           NewShit.NetCache_currentResponse.archive.write((int)(NewShit.NetCache_currentResponse.key & 65535L), ModeWhere.NetCache_responseArchiveBuffer.array, 16711680L == (NewShit.NetCache_currentResponse.key & 16711680L), class157.field1395);
                         }
 
                         NewShit.NetCache_currentResponse.remove();
-                        if (class157.field1804) {
+                        if (class157.field1395) {
                            --NetCache.NetCache_pendingPriorityResponsesCount;
                         } else {
                            --NetCache.NetCache_pendingResponsesCount;
                         }
 
-                        NetCache.field4216 = 0;
+                        NetCache.field3466 = 0;
                         NewShit.NetCache_currentResponse = null;
                         ModeWhere.NetCache_responseArchiveBuffer = null;
                      } else {
-                        if (NetCache.field4216 != 512) {
+                        if (NetCache.field3466 != 512) {
                            break;
                         }
 
-                        NetCache.field4216 = 0;
+                        NetCache.field3466 = 0;
                      }
                   }
                }
@@ -325,8 +296,8 @@ public final class WallDecoration {
             var10 = var1.charAt(var6++);
          }
 
-         var7 = WorldMapIcon_1.method4872(var9);
-         var8 = WorldMapIcon_1.method4872(var10);
+         var7 = WorldMapIcon_1.method1316(var9);
+         var8 = WorldMapIcon_1.method1316(var10);
          var9 = class168.standardizeChar(var9, var2);
          var10 = class168.standardizeChar(var10, var2);
          if (var10 != var9 && Character.toUpperCase(var9) != Character.toUpperCase(var10)) {
@@ -388,64 +359,66 @@ public final class WallDecoration {
 
       for(int var6 = 0; var6 < var5; ++var6) {
          char var7 = var0.charAt(var6 + var1);
-         if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) {
-            var3[var6 + var4] = (byte)var7;
-         } else if (var7 == 8364) {
-            var3[var6 + var4] = -128;
-         } else if (var7 == 8218) {
-            var3[var6 + var4] = -126;
-         } else if (var7 == 402) {
-            var3[var6 + var4] = -125;
-         } else if (var7 == 8222) {
-            var3[var6 + var4] = -124;
-         } else if (var7 == 8230) {
-            var3[var6 + var4] = -123;
-         } else if (var7 == 8224) {
-            var3[var6 + var4] = -122;
-         } else if (var7 == 8225) {
-            var3[var6 + var4] = -121;
-         } else if (var7 == 710) {
-            var3[var6 + var4] = -120;
-         } else if (var7 == 8240) {
-            var3[var6 + var4] = -119;
-         } else if (var7 == 352) {
-            var3[var6 + var4] = -118;
-         } else if (var7 == 8249) {
-            var3[var6 + var4] = -117;
-         } else if (var7 == 338) {
-            var3[var6 + var4] = -116;
-         } else if (var7 == 381) {
-            var3[var6 + var4] = -114;
-         } else if (var7 == 8216) {
-            var3[var6 + var4] = -111;
-         } else if (var7 == 8217) {
-            var3[var6 + var4] = -110;
-         } else if (var7 == 8220) {
-            var3[var6 + var4] = -109;
-         } else if (var7 == 8221) {
-            var3[var6 + var4] = -108;
-         } else if (var7 == 8226) {
-            var3[var6 + var4] = -107;
-         } else if (var7 == 8211) {
-            var3[var6 + var4] = -106;
-         } else if (var7 == 8212) {
-            var3[var6 + var4] = -105;
-         } else if (var7 == 732) {
-            var3[var6 + var4] = -104;
-         } else if (var7 == 8482) {
-            var3[var6 + var4] = -103;
-         } else if (var7 == 353) {
-            var3[var6 + var4] = -102;
-         } else if (var7 == 8250) {
-            var3[var6 + var4] = -101;
-         } else if (var7 == 339) {
-            var3[var6 + var4] = -100;
-         } else if (var7 == 382) {
-            var3[var6 + var4] = -98;
-         } else if (var7 == 376) {
-            var3[var6 + var4] = -97;
+         if ((var7 <= 0 || var7 >= 128) && (var7 < 160 || var7 > 255)) {
+            if (var7 == 8364) {
+               var3[var6 + var4] = -128;
+            } else if (var7 == 8218) {
+               var3[var6 + var4] = -126;
+            } else if (var7 == 402) {
+               var3[var6 + var4] = -125;
+            } else if (var7 == 8222) {
+               var3[var6 + var4] = -124;
+            } else if (var7 == 8230) {
+               var3[var6 + var4] = -123;
+            } else if (var7 == 8224) {
+               var3[var6 + var4] = -122;
+            } else if (var7 == 8225) {
+               var3[var6 + var4] = -121;
+            } else if (var7 == 710) {
+               var3[var6 + var4] = -120;
+            } else if (var7 == 8240) {
+               var3[var6 + var4] = -119;
+            } else if (var7 == 352) {
+               var3[var6 + var4] = -118;
+            } else if (var7 == 8249) {
+               var3[var6 + var4] = -117;
+            } else if (var7 == 338) {
+               var3[var6 + var4] = -116;
+            } else if (var7 == 381) {
+               var3[var6 + var4] = -114;
+            } else if (var7 == 8216) {
+               var3[var6 + var4] = -111;
+            } else if (var7 == 8217) {
+               var3[var6 + var4] = -110;
+            } else if (var7 == 8220) {
+               var3[var6 + var4] = -109;
+            } else if (var7 == 8221) {
+               var3[var6 + var4] = -108;
+            } else if (var7 == 8226) {
+               var3[var6 + var4] = -107;
+            } else if (var7 == 8211) {
+               var3[var6 + var4] = -106;
+            } else if (var7 == 8212) {
+               var3[var6 + var4] = -105;
+            } else if (var7 == 732) {
+               var3[var6 + var4] = -104;
+            } else if (var7 == 8482) {
+               var3[var6 + var4] = -103;
+            } else if (var7 == 353) {
+               var3[var6 + var4] = -102;
+            } else if (var7 == 8250) {
+               var3[var6 + var4] = -101;
+            } else if (var7 == 339) {
+               var3[var6 + var4] = -100;
+            } else if (var7 == 382) {
+               var3[var6 + var4] = -98;
+            } else if (var7 == 376) {
+               var3[var6 + var4] = -97;
+            } else {
+               var3[var6 + var4] = 63;
+            }
          } else {
-            var3[var6 + var4] = 63;
+            var3[var6 + var4] = (byte)var7;
          }
       }
 
@@ -457,7 +430,7 @@ public final class WallDecoration {
       descriptor = "(I)V",
       garbageValue = "65280"
    )
-   public static void method4828() {
+   public static void method1295() {
       HealthBarDefinition.HealthBarDefinition_cached.clear();
       HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
    }
@@ -467,7 +440,7 @@ public final class WallDecoration {
       descriptor = "(ILbm;ZB)I",
       garbageValue = "84"
    )
-   static int method4827(int var0, Script var1, boolean var2) {
+   static int method1294(int var0, Script var1, boolean var2) {
       if (var0 == 5630) {
          Client.logoutTimer = 250;
          return 1;

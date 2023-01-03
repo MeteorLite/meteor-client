@@ -96,7 +96,7 @@ object ChatboxTextMenuInput :
             optWidget.xTextAlignment = WidgetTextAlignment.CENTER
             optWidget.yTextAlignment = WidgetTextAlignment.CENTER
             optWidget.widthMode = WidgetSizeMode.MINUS
-            optWidget.setAction(0, "Continue")
+            optWidget.`setAction$api`(0, "Continue")
             optWidget.setOnOpListener(JavaScriptCallback { callback(option) })
             optWidget.setOnMouseOverListener(JavaScriptCallback { optWidget.textColor = 0xFFFFFF })
             optWidget.setOnMouseLeaveListener(JavaScriptCallback { optWidget.textColor = 0 })

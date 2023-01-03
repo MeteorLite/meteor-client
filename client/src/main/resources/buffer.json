@@ -57,43 +57,43 @@
   },
   {
     "method": "writeByteAdd",
-    "deobName": "method8578"
+    "deobName": "method2368"
   },
   {
     "method": "writeByteNeg",
-    "deobName": "method8579"
+    "deobName": "method2369"
   },
   {
     "method": "writeByteSub",
-    "deobName": "method8580"
+    "deobName": "method2370"
   },
   {
     "method": "readUByteAdd",
-    "deobName": "method8581"
+    "deobName": "method2371"
   },
   {
     "method": "readUByteNeg",
-    "deobName": "method8702"
+    "deobName": "method2396"
   },
   {
     "method": "readUByteSub",
-    "deobName": "method8699"
+    "deobName": "method2394"
   },
   {
     "method": "readByteAdd",
-    "deobName": "method8584"
+    "deobName": "method2372"
   },
   {
     "method": "readByteNeg",
-    "deobName": "method8718"
+    "deobName": "method2401"
   },
   {
     "method": "readByteSub",
-    "deobName": "method8701"
+    "deobName": "method2395"
   },
   {
     "method": "writeShortLE",
-    "deobName": "method8607"
+    "deobName": "method2386"
   },
   {
     "method": "writeShortAdd",
@@ -101,42 +101,42 @@
   },
   {
     "method": "writeShortAddLE",
-    "deobName": "method8589"
+    "deobName": "method2375"
   },
   {
     "method": "readUShortLE",
-    "deobName": "method8530"
+    "deobName": "method2333"
   },
   {
     "method": "readUShortAdd",
-    "deobName": "method8591"
+    "deobName": "method2376"
   },
   {
     "method": "readShortAddLE",
-    "deobName": "method8592"
+    "deobName": "method2377"
   },
   {
     "method": "writeIntLE",
-    "deobName": "method8599"
+    "deobName": "method2381"
   },
   {
     "method": "writeIntIME",
-    "deobName": "method8600"
+    "deobName": "method2382"
   },
   {
     "method": "writeIntME",
-    "deobName": "method8601"
+    "deobName": "method2383"
   },
   {
     "method": "readIntLE",
-    "deobName": "method8760"
+    "deobName": "method2405"
   },
   {
     "method": "readIntIME",
-    "deobName": "method8585"
+    "deobName": "method2373"
   },
   {
     "method": "readIntME",
-    "deobName": "method8604"
+    "deobName": "method2384"
   }
 ]

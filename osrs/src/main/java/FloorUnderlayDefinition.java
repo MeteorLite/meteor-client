@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gh")
+@Implements("FloorUnderlayDefinition")
 public class FloorUnderlayDefinition extends DualNode {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -17,29 +17,14 @@ public class FloorUnderlayDefinition extends DualNode {
    )
    static Archive archive4;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 96971943
-   )
    int rgb = 0;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1260139413
-   )
    public int hue;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -565427519
-   )
    public int saturation;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 181988641
-   )
    public int lightness;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1840693311
-   )
    public int hueMultiplier;
 
    @ObfuscatedName("v")
@@ -160,7 +145,7 @@ public class FloorUnderlayDefinition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "-1437452921"
    )
-   static final boolean method3767() {
+   static final boolean method981() {
       return Client.isMenuOpen;
    }
 }

@@ -40,7 +40,7 @@ public abstract class RSLinkDequeMixin implements RSLinkDeque
 
 		if (var1.getNext() != null)
 		{
-			var1.remove();
+			var1.remove$api();
 		}
 
 		var1.setNext(this.getSentinel());
@@ -51,7 +51,7 @@ public abstract class RSLinkDequeMixin implements RSLinkDeque
 
 	@Inject
 	@Override
-	public void clear()
+	public void clear$api()
 	{
 		while (true)
 		{
@@ -62,7 +62,7 @@ public abstract class RSLinkDequeMixin implements RSLinkDeque
 				return;
 			}
 
-			rsLink.remove();
+			rsLink.remove$api();
 		}
 	}
 }

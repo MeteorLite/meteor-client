@@ -1,15 +1,11 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("eh")
 public class class135 extends class136 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -240984025
-   )
-   int field1645;
+   int field1290;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lem;"
@@ -21,7 +17,7 @@ public class class135 extends class136 {
    )
    class135(class139 var1) {
       this.this$0 = var1;
-      this.field1645 = -1;
+      this.field1290 = -1;
    }
 
    @ObfuscatedName("h")
@@ -30,7 +26,7 @@ public class class135 extends class136 {
       garbageValue = "1101327225"
    )
    void vmethod3254(Buffer var1) {
-      this.field1645 = var1.readUnsignedShort();
+      this.field1290 = var1.readUnsignedShort();
    }
 
    @ObfuscatedName("e")
@@ -39,7 +35,7 @@ public class class135 extends class136 {
       garbageValue = "839088249"
    )
    void vmethod3248(ClanSettings var1) {
-      var1.method3171(this.field1645);
+      var1.method783(this.field1290);
    }
 
    @ObfuscatedName("h")
@@ -47,7 +43,7 @@ public class class135 extends class136 {
       descriptor = "(I)[Llz;",
       garbageValue = "-1508281250"
    )
-   static GameBuild[] method3065() {
+   static GameBuild[] method735() {
       return new GameBuild[]{GameBuild.RC, GameBuild.WIP, GameBuild.BUILDLIVE, GameBuild.LIVE};
    }
 }

@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ng")
+@Implements("FriendsList")
 public class FriendsList extends UserList {
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -12,10 +12,7 @@ public class FriendsList extends UserList {
    )
    final LoginType loginType;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 906024881
-   )
-   int field4506 = 1;
+   int field3674 = 1;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lma;"
@@ -104,11 +101,11 @@ public class FriendsList extends UserList {
                      boolean var14 = true;
 
                      for(class391 var13 = (class391)this.friendLoginUpdates.last(); var13 != null; var13 = (class391)this.friendLoginUpdates.previous()) {
-                        if (var13.field4521.equals(var4)) {
-                           if (var6 != 0 && var13.field4522 == 0) {
+                        if (var13.field3685.equals(var4)) {
+                           if (var6 != 0 && var13.field3686 == 0) {
                               var13.remove();
                               var14 = false;
-                           } else if (var6 == 0 && var13.field4522 != 0) {
+                           } else if (var6 == 0 && var13.field3686 != 0) {
                               var13.remove();
                               var14 = false;
                            }
@@ -128,7 +125,7 @@ public class FriendsList extends UserList {
                }
 
                if (var6 != var11.world) {
-                  var11.int2 = ++this.field4506 - 1;
+                  var11.int2 = ++this.field3674 - 1;
                   if (var11.world == -1 && var6 == 0) {
                      var11.int2 = -(var11.int2 * -388257165) * 1595280059;
                   }
@@ -137,8 +134,8 @@ public class FriendsList extends UserList {
                }
 
                var11.rank = var7;
-               var11.field4519 = var9;
-               var11.field4518 = var10;
+               var11.field3683 = var9;
+               var11.field3682 = var10;
                continue;
             }
 

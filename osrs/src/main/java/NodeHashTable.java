@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qp")
+@Implements("NodeHashTable")
 public final class NodeHashTable {
    @ObfuscatedName("h")
    int size;

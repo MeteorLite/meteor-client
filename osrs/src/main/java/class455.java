@@ -10,7 +10,7 @@ final class class455 implements class452 {
       garbageValue = "-1165050397"
    )
    public void vmethod8274(Object var1, Buffer var2) {
-      this.method8381((Long)var1, var2);
+      this.method2296((Long)var1, var2);
    }
 
    @ObfuscatedName("e")
@@ -27,7 +27,7 @@ final class class455 implements class452 {
       descriptor = "(Ljava/lang/Long;Lqy;B)V",
       garbageValue = "1"
    )
-   void method8381(Long var1, Buffer var2) {
+   void method2296(Long var1, Buffer var2) {
       var2.writeLong(var1);
    }
 }

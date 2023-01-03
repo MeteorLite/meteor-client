@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oh")
+@Implements("TriBool")
 public class TriBool {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -21,5 +22,5 @@ public class TriBool {
    )
    public static final TriBool TriBool_false = new TriBool();
    @ObfuscatedName("j")
-   public static short[][] field4548;
+   public static short[][] field3706;
 }

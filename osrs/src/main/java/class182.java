@@ -9,8 +9,8 @@ public class class182 {
       descriptor = "(B)[Ldz;",
       garbageValue = "2"
    )
-   static class127[] method3636() {
-      return new class127[]{class127.field1589, class127.field1592, class127.field1577, class127.field1581, class127.field1579, class127.field1580, class127.field1576, class127.field1582, class127.field1583, class127.field1584, class127.field1585, class127.field1586, class127.field1587, class127.field1578, class127.field1588, class127.field1590, class127.field1591};
+   static class127[] method940() {
+      return new class127[]{class127.field1250, class127.field1253, class127.field1238, class127.field1242, class127.field1240, class127.field1241, class127.field1237, class127.field1243, class127.field1244, class127.field1245, class127.field1246, class127.field1247, class127.field1248, class127.field1239, class127.field1249, class127.field1251, class127.field1252};
    }
 
    @ObfuscatedName("h")
@@ -18,7 +18,7 @@ public class class182 {
       descriptor = "(Lly;I)V",
       garbageValue = "1199371061"
    )
-   public static void method3627(AbstractArchive var0) {
+   public static void method936(AbstractArchive var0) {
       VarbitComposition.VarbitDefinition_archive = var0;
    }
 
@@ -27,11 +27,11 @@ public class class182 {
       descriptor = "(B)V",
       garbageValue = "44"
    )
-   public static void method3634() {
+   public static void method938() {
       Object var0 = ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock;
       synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
-         if (ArchiveDiskActionHandler.field4173 != 0) {
-            ArchiveDiskActionHandler.field4173 = 1;
+         if (ArchiveDiskActionHandler.field3432 != 0) {
+            ArchiveDiskActionHandler.field3432 = 1;
 
             try {
                ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock.wait();
@@ -48,7 +48,7 @@ public class class182 {
       descriptor = "(IIB)I",
       garbageValue = "-48"
    )
-   static final int method3635(int var0, int var1) {
+   static final int method939(int var0, int var1) {
       if (var0 == -1) {
          return 12345678;
       } else {
@@ -81,7 +81,7 @@ public class class182 {
          var8 = var7 >> 6 & 3;
          var9 = var7 & 31;
          var10 = var3;
-         boolean var11 = 0L != var5 && !class272.method5474(var5);
+         boolean var11 = 0L != var5 && !class272.method1513(var5);
          if (var11) {
             var10 = var4;
          }
@@ -94,7 +94,7 @@ public class class182 {
             IndexedSprite var16 = class32.mapSceneSprites[var15.mapSceneId];
             if (var16 != null) {
                int var17 = (var15.sizeX * 4 - var16.subWidth) / 2;
-               int var18 = (var15.sizeY * 4 - var16.subHeight * 694949360) / 2;
+               int var18 = (var15.sizeY * 4 - var16.subHeight) / 2;
                var16.drawAt(var17 + var1 * 4 + 48, (104 - var2 - var15.sizeY) * 4 + var18 + 48);
             }
          } else {
@@ -171,12 +171,12 @@ public class class182 {
             IndexedSprite var26 = class32.mapSceneSprites[var19.mapSceneId];
             if (var26 != null) {
                var13 = (var19.sizeX * 4 - var26.subWidth) / 2;
-               var14 = (var19.sizeY * 4 - var26.subHeight * 694949360) / 2;
+               var14 = (var19.sizeY * 4 - var26.subHeight) / 2;
                var26.drawAt(var1 * 4 + var13 + 48, (104 - var2 - var19.sizeY) * 4 + var14 + 48);
             }
          } else if (var9 == 9) {
             int var20 = 15658734;
-            boolean var27 = var5 != 0L && !class272.method5474(var5);
+            boolean var27 = var5 != 0L && !class272.method1513(var5);
             if (var27) {
                var20 = 15597568;
             }
@@ -205,7 +205,7 @@ public class class182 {
             IndexedSprite var24 = class32.mapSceneSprites[var23.mapSceneId];
             if (var24 != null) {
                var10 = (var23.sizeX * 4 - var24.subWidth) / 2;
-               int var25 = (var23.sizeY * 4 - var24.subHeight * 694949360) / 2;
+               int var25 = (var23.sizeY * 4 - var24.subHeight) / 2;
                var24.drawAt(var10 + var1 * 4 + 48, var25 + (104 - var2 - var23.sizeY) * 4 + 48);
             }
          }

@@ -29,5 +29,5 @@ import net.runelite.mapping.Import;
 public interface RSRawPcmStream
 {
 	@Import("setNumLoops")
-	void setNumLoops(int numLoops);
+	void setNumLoops$api(int numLoops);
 }

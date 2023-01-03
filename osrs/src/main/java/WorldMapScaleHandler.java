@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ih")
+@Implements("WorldMapScaleHandler")
 public class WorldMapScaleHandler {
    @ObfuscatedName("nt")
    @ObfuscatedSignature(
@@ -12,9 +12,6 @@ public class WorldMapScaleHandler {
    )
    static Widget mousedOverWidgetIf1;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1077689315
-   )
    int pixelsPerTile;
    @ObfuscatedName("e")
    byte[][][] tileTemplates;
@@ -28,10 +25,10 @@ public class WorldMapScaleHandler {
       descriptor = "(IIIIIIIII)V",
       garbageValue = "744717933"
    )
-   void method5368(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+   void method1478(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       if (var7 != 0 && this.pixelsPerTile != 0 && this.tileTemplates != null) {
-         var8 = this.method5369(var8, var7);
-         var7 = this.method5395(var7);
+         var8 = this.method1479(var8, var7);
+         var7 = this.method1486(var7);
          Rasterizer2D.Rasterizer2D_drawGradientPixels(var1, var2, var5, var6, var3, var4, this.tileTemplates[var7 - 1][var8], this.pixelsPerTile);
       }
    }
@@ -41,7 +38,7 @@ public class WorldMapScaleHandler {
       descriptor = "(III)I",
       garbageValue = "-1830475597"
    )
-   int method5369(int var1, int var2) {
+   int method1479(int var1, int var2) {
       if (var2 == 9) {
          var1 = var1 + 1 & 3;
       }
@@ -62,7 +59,7 @@ public class WorldMapScaleHandler {
       descriptor = "(II)I",
       garbageValue = "1701036761"
    )
-   int method5395(int var1) {
+   int method1486(int var1) {
       if (var1 != 9 && var1 != 10) {
          return var1 == 11 ? 8 : var1;
       } else {

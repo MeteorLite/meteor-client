@@ -1,25 +1,20 @@
 import java.util.Date;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gz")
+@Implements("NPCComposition")
 public class NPCComposition extends DualNode {
    @ObfuscatedName("tq")
-   @ObfuscatedGetter(
-      intValue = 1158456013
-   )
-   static int field2067;
+   static int field1594;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
    static AbstractArchive NpcDefinition_archive;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 646794717
-   )
    static int defaultHeadIconArchive;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
@@ -32,96 +27,45 @@ public class NPCComposition extends DualNode {
    )
    static EvictingDualNodeHashTable NpcDefinition_cachedModels = new EvictingDualNodeHashTable(50);
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -109388973
-   )
    public int id;
    @ObfuscatedName("u")
    public String name = "null";
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -1021399127
-   )
    public int size = 1;
    @ObfuscatedName("j")
    int[] models;
    @ObfuscatedName("g")
-   int[] field2026;
+   int[] field1554;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = -499537861
-   )
    public int idleSequence = -1;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 274326889
-   )
    public int turnLeftSequence = -1;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -634834111
-   )
    public int turnRightSequence = -1;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 1587887915
-   )
    public int walkSequence = -1;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 1430199505
-   )
    public int walkBackSequence = -1;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1601988001
-   )
    public int walkLeftSequence = -1;
    @ObfuscatedName("l")
-   @ObfuscatedGetter(
-      intValue = 1871825673
-   )
    public int walkRightSequence = -1;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = -2080788827
-   )
-   public int field2035 = -1;
+   public int field1563 = -1;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = 752796561
-   )
-   public int field2038 = -1;
+   public int field1566 = -1;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 1054411661
-   )
-   public int field2039 = -1;
+   public int field1567 = -1;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = 875795671
-   )
-   public int field2040 = -1;
+   public int field1568 = -1;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = 903143861
-   )
-   public int field2041 = -1;
+   public int field1569 = -1;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = 1152150225
-   )
-   public int field2042 = -1;
+   public int field1570 = -1;
    @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = -1129939695
-   )
-   public int field2043 = -1;
+   public int field1571 = -1;
    @ObfuscatedName("as")
-   @ObfuscatedGetter(
-      intValue = -2023873033
-   )
-   public int field2044 = -1;
+   public int field1572 = -1;
    @ObfuscatedName("ad")
    short[] recolorFrom;
    @ObfuscatedName("ao")
@@ -135,48 +79,24 @@ public class NPCComposition extends DualNode {
    @ObfuscatedName("ar")
    public boolean drawMapDot = true;
    @ObfuscatedName("at")
-   @ObfuscatedGetter(
-      intValue = -917269397
-   )
    public int combatLevel = -1;
    @ObfuscatedName("ay")
-   @ObfuscatedGetter(
-      intValue = -124469981
-   )
    int widthScale = 128;
    @ObfuscatedName("an")
-   @ObfuscatedGetter(
-      intValue = -1404076757
-   )
    int heightScale = 128;
    @ObfuscatedName("ab")
    public boolean isVisible = false;
    @ObfuscatedName("al")
-   @ObfuscatedGetter(
-      intValue = 408004249
-   )
    int ambient = 0;
    @ObfuscatedName("ag")
-   @ObfuscatedGetter(
-      intValue = -182569543
-   )
    int contrast = 0;
    @ObfuscatedName("az")
-   @ObfuscatedGetter(
-      intValue = -478636009
-   )
    public int rotation = 32;
    @ObfuscatedName("ak")
    public int[] transforms;
    @ObfuscatedName("af")
-   @ObfuscatedGetter(
-      intValue = 1750524771
-   )
    int transformVarbit = -1;
    @ObfuscatedName("ai")
-   @ObfuscatedGetter(
-      intValue = -2035410821
-   )
    int transformVarp = -1;
    @ObfuscatedName("ax")
    public boolean isInteractable = true;
@@ -185,9 +105,9 @@ public class NPCComposition extends DualNode {
    @ObfuscatedName("aw")
    public boolean isFollower = false;
    @ObfuscatedName("aj")
-   public int[] headIconArchiveIds = null;
+   int[] headIconArchiveIds = null;
    @ObfuscatedName("aq")
-   public short[] headIconSpriteIndexes = null;
+   short[] headIconSpriteIndexes = null;
    @ObfuscatedName("ap")
    @ObfuscatedSignature(
       descriptor = "Lql;"
@@ -277,10 +197,10 @@ public class NPCComposition extends DualNode {
          }
       } else if (var2 == 60) {
          var3 = var1.readUnsignedByte();
-         this.field2026 = new int[var3];
+         this.field1554 = new int[var3];
 
          for(var4 = 0; var4 < var3; ++var4) {
-            this.field2026[var4] = var1.readUnsignedShort();
+            this.field1554[var4] = var1.readUnsignedShort();
          }
       } else if (var2 == 93) {
          this.drawMapDot = false;
@@ -299,7 +219,7 @@ public class NPCComposition extends DualNode {
       } else {
          int var5;
          if (var2 == 102) {
-            if (GrandExchangeOfferUnitPriceComparator.field4275) {
+            if (GrandExchangeOfferUnitPriceComparator.field3505) {
                this.headIconArchiveIds = new int[1];
                this.headIconSpriteIndexes = new short[1];
                this.headIconArchiveIds[0] = defaultHeadIconArchive;
@@ -320,8 +240,8 @@ public class NPCComposition extends DualNode {
                      this.headIconArchiveIds[var6] = -1;
                      this.headIconSpriteIndexes[var6] = -1;
                   } else {
-                     this.headIconArchiveIds[var6] = var1.method8568();
-                     this.headIconSpriteIndexes[var6] = (short)var1.method8781();
+                     this.headIconArchiveIds[var6] = var1.method2362();
+                     this.headIconSpriteIndexes[var6] = (short)var1.method2407();
                   }
                }
             }
@@ -335,19 +255,19 @@ public class NPCComposition extends DualNode {
             } else if (var2 == 111) {
                this.isFollower = true;
             } else if (var2 == 114) {
-               this.field2035 = var1.readUnsignedShort();
+               this.field1563 = var1.readUnsignedShort();
             } else if (var2 == 115) {
-               this.field2035 = var1.readUnsignedShort();
-               this.field2038 = var1.readUnsignedShort();
-               this.field2039 = var1.readUnsignedShort();
-               this.field2040 = var1.readUnsignedShort();
+               this.field1563 = var1.readUnsignedShort();
+               this.field1566 = var1.readUnsignedShort();
+               this.field1567 = var1.readUnsignedShort();
+               this.field1568 = var1.readUnsignedShort();
             } else if (var2 == 116) {
-               this.field2041 = var1.readUnsignedShort();
+               this.field1569 = var1.readUnsignedShort();
             } else if (var2 == 117) {
-               this.field2041 = var1.readUnsignedShort();
-               this.field2042 = var1.readUnsignedShort();
-               this.field2043 = var1.readUnsignedShort();
-               this.field2044 = var1.readUnsignedShort();
+               this.field1569 = var1.readUnsignedShort();
+               this.field1570 = var1.readUnsignedShort();
+               this.field1571 = var1.readUnsignedShort();
+               this.field1572 = var1.readUnsignedShort();
             } else if (var2 == 249) {
                this.params = DynamicObject.readStringIntParameters(var1, this.params);
             }
@@ -391,43 +311,43 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lga;ILga;ILgp;B)Lhh;",
       garbageValue = "115"
    )
-   public final Model method3723(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4, NewShit var5) {
+   public final Model method966(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4, NewShit var5) {
       if (this.transforms != null) {
-         NPCComposition var10 = this.transform();
-         return var10 == null ? null : var10.method3723(var1, var2, var3, var4, var5);
+         NPCComposition var6 = this.transform();
+         return var6 == null ? null : var6.method966(var1, var2, var3, var4, var5);
       } else {
-         long var6 = (long)this.id;
+         long var10 = (long)this.id;
          if (var5 != null) {
-            var6 |= var5.field2018 << 16;
+            var10 |= var5.field1546 << 16;
          }
 
-         Model var8 = (Model)NpcDefinition_cachedModels.get(var6);
+         Model var8 = (Model)NpcDefinition_cachedModels.get(var10);
          if (var8 == null) {
-            ModelData var9 = this.method3669(this.models, var5);
+            ModelData var9 = this.method955(this.models, var5);
             if (var9 == null) {
                return null;
             }
 
             var8 = var9.toModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
-            NpcDefinition_cachedModels.put(var8, var6);
+            NpcDefinition_cachedModels.put(var8, var10);
          }
 
-         Model var11;
+         Model var12;
          if (var1 != null && var3 != null) {
-            var11 = var1.applyTransformations(var8, var2, var3, var4);
+            var12 = var1.applyTransformations(var8, var2, var3, var4);
          } else if (var1 != null) {
-            var11 = var1.transformActorModel(var8, var2);
+            var12 = var1.transformActorModel(var8, var2);
          } else if (var3 != null) {
-            var11 = var3.transformActorModel(var8, var4);
+            var12 = var3.transformActorModel(var8, var4);
          } else {
-            var11 = var8.toSharedSequenceModel(true);
+            var12 = var8.toSharedSequenceModel(true);
          }
 
          if (this.widthScale != 128 || this.heightScale != 128) {
-            var11.scale(this.widthScale, this.heightScale, this.widthScale);
+            var12.scale(this.widthScale, this.heightScale, this.widthScale);
          }
 
-         return var11;
+         return var12;
       }
    }
 
@@ -436,12 +356,12 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lgp;I)Lgi;",
       garbageValue = "1744013797"
    )
-   public final ModelData method3666(NewShit var1) {
+   public final ModelData method953(NewShit var1) {
       if (this.transforms != null) {
          NPCComposition var2 = this.transform();
-         return var2 == null ? null : var2.method3666(var1);
+         return var2 == null ? null : var2.method953(var1);
       } else {
-         return this.method3669(this.field2026, var1);
+         return this.method955(this.field1554, var1);
       }
    }
 
@@ -450,10 +370,10 @@ public class NPCComposition extends DualNode {
       descriptor = "([ILgp;I)Lgi;",
       garbageValue = "951395147"
    )
-   ModelData method3669(int[] var1, NewShit var2) {
+   ModelData method955(int[] var1, NewShit var2) {
       int[] var3 = var1;
-      if (var2 != null && var2.field2013 != null) {
-         var3 = var2.field2013;
+      if (var2 != null && var2.field1542 != null) {
+         var3 = var2.field1542;
       }
 
       if (var3 == null) {
@@ -462,7 +382,7 @@ public class NPCComposition extends DualNode {
          boolean var4 = false;
 
          for(int var5 = 0; var5 < var3.length; ++var5) {
-            if (var3[var5] != -1 && !class363.field4361.tryLoadFile(var3[var5], 0)) {
+            if (var3[var5] != -1 && !class363.field3575.tryLoadFile(var3[var5], 0)) {
                var4 = true;
             }
          }
@@ -473,7 +393,7 @@ public class NPCComposition extends DualNode {
             ModelData[] var9 = new ModelData[var3.length];
 
             for(int var6 = 0; var6 < var3.length; ++var6) {
-               var9[var6] = ModelData.ModelData_get(class363.field4361, var3[var6], 0);
+               var9[var6] = ModelData.ModelData_get(class363.field3575, var3[var6], 0);
             }
 
             ModelData var10;
@@ -490,8 +410,8 @@ public class NPCComposition extends DualNode {
             int var8;
             if (this.recolorFrom != null) {
                var7 = this.recolorTo;
-               if (var2 != null && var2.field2015 != null) {
-                  var7 = var2.field2015;
+               if (var2 != null && var2.field1543 != null) {
+                  var7 = var2.field1543;
                }
 
                for(var8 = 0; var8 < this.recolorFrom.length; ++var8) {
@@ -501,8 +421,8 @@ public class NPCComposition extends DualNode {
 
             if (this.retextureFrom != null) {
                var7 = this.retextureTo;
-               if (var2 != null && var2.field2016 != null) {
-                  var7 = var2.field2016;
+               if (var2 != null && var2.field1544 != null) {
+                  var7 = var2.field1544;
                }
 
                for(var8 = 0; var8 < this.retextureFrom.length; ++var8) {
@@ -568,7 +488,7 @@ public class NPCComposition extends DualNode {
       garbageValue = "-1577076717"
    )
    public int getIntParam(int var1, int var2) {
-      return UserComparator8.method2819(this.params, var1, var2);
+      return UserComparator8.method661(this.params, var1, var2);
    }
 
    @ObfuscatedName("g")
@@ -598,7 +518,7 @@ public class NPCComposition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "-700368633"
    )
-   public boolean method3672() {
+   public boolean method958() {
       return this.headIconArchiveIds != null && this.headIconSpriteIndexes != null;
    }
 
@@ -607,7 +527,7 @@ public class NPCComposition extends DualNode {
       descriptor = "(I)[I",
       garbageValue = "-1876307033"
    )
-   public int[] method3678() {
+   public int[] method961() {
       return this.headIconArchiveIds;
    }
 
@@ -616,7 +536,7 @@ public class NPCComposition extends DualNode {
       descriptor = "(II)I",
       garbageValue = "803471346"
    )
-   public int method3663(int var1) {
+   public int method952(int var1) {
       return this.headIconArchiveIds != null && var1 < this.headIconArchiveIds.length ? this.headIconArchiveIds[var1] : -1;
    }
 
@@ -625,7 +545,7 @@ public class NPCComposition extends DualNode {
       descriptor = "(I)[S",
       garbageValue = "-44005875"
    )
-   public short[] method3715() {
+   public short[] method964() {
       return this.headIconSpriteIndexes;
    }
 
@@ -634,7 +554,7 @@ public class NPCComposition extends DualNode {
       descriptor = "(II)S",
       garbageValue = "257867612"
    )
-   public short method3673(int var1) {
+   public short method959(int var1) {
       return this.headIconSpriteIndexes != null && var1 < this.headIconSpriteIndexes.length ? this.headIconSpriteIndexes[var1] : -1;
    }
 
@@ -713,26 +633,26 @@ public class NPCComposition extends DualNode {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-771473401"
    )
-   static int method3725(int var0, Script var1, boolean var2) {
+   static int method967(int var0, Script var1, boolean var2) {
       String var3;
-      int var10;
+      int var4;
       if (var0 == 4100) {
          var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-         var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-         Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var10;
+         var4 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+         Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var4;
          return 1;
       } else {
-         String var4;
+         String var9;
          if (var0 == 4101) {
             Interpreter.Interpreter_stringStackSize -= 2;
             var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-            var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-            Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var4;
+            var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+            Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var9;
             return 1;
          } else if (var0 == 4102) {
             var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-            var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-            Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + Huffman.intToString(var10, true);
+            var4 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+            Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + Huffman.intToString(var4, true);
             return 1;
          } else if (var0 == 4103) {
             var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -740,11 +660,11 @@ public class NPCComposition extends DualNode {
             return 1;
          } else {
             int var6;
-            int var11;
+            int var10;
             if (var0 == 4104) {
-               var11 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               long var14 = ((long)var11 + 11745L) * 86400000L;
-               Interpreter.Interpreter_calendar.setTime(new Date(var14));
+               var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+               long var11 = ((long)var10 + 11745L) * 86400000L;
+               Interpreter.Interpreter_calendar.setTime(new Date(var11));
                var6 = Interpreter.Interpreter_calendar.get(5);
                int var17 = Interpreter.Interpreter_calendar.get(2);
                int var8 = Interpreter.Interpreter_calendar.get(1);
@@ -752,43 +672,43 @@ public class NPCComposition extends DualNode {
                return 1;
             } else if (var0 != 4105) {
                if (var0 == 4106) {
-                  var11 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = Integer.toString(var11);
+                  var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = Integer.toString(var10);
                   return 1;
                } else if (var0 == 4107) {
                   Interpreter.Interpreter_stringStackSize -= 2;
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class145.method3149(WallDecoration.compareStrings(Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1], class173.clientLanguage));
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class145.method773(WallDecoration.compareStrings(Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1], class173.clientLanguage));
                   return 1;
                } else {
-                  int var9;
-                  byte[] var12;
-                  Font var13;
+                  int var5;
+                  byte[] var13;
+                  Font var14;
                   if (var0 == 4108) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
                      class87.Interpreter_intStackSize -= 2;
-                     var10 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-                     var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-                     var12 = class358.archive13.takeFile(var9, 0);
-                     var13 = new Font(var12);
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var13.lineCount(var3, var10);
+                     var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
+                     var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+                     var13 = class358.archive13.takeFile(var5, 0);
+                     var14 = new Font(var13);
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var14.lineCount(var3, var4);
                      return 1;
                   } else if (var0 == 4109) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
                      class87.Interpreter_intStackSize -= 2;
-                     var10 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-                     var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-                     var12 = class358.archive13.takeFile(var9, 0);
-                     var13 = new Font(var12);
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var13.lineWidth(var3, var10);
+                     var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
+                     var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+                     var13 = class358.archive13.takeFile(var5, 0);
+                     var14 = new Font(var13);
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var14.lineWidth(var3, var4);
                      return 1;
                   } else if (var0 == 4110) {
                      Interpreter.Interpreter_stringStackSize -= 2;
                      var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-                     var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+                     var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
                      if (Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1) {
                         Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
                      } else {
-                        Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4;
+                        Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
                      }
 
                      return 1;
@@ -798,24 +718,24 @@ public class NPCComposition extends DualNode {
                      return 1;
                   } else if (var0 == 4112) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + (char)var10;
+                     var4 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + (char)var4;
                      return 1;
                   } else if (var0 == 4113) {
-                     var11 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class148.isCharPrintable((char)var11) ? 1 : 0;
+                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class148.isCharPrintable((char)var10) ? 1 : 0;
                      return 1;
                   } else if (var0 == 4114) {
-                     var11 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ObjectComposition.isAlphaNumeric((char)var11) ? 1 : 0;
+                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ObjectComposition.isAlphaNumeric((char)var10) ? 1 : 0;
                      return 1;
                   } else if (var0 == 4115) {
-                     var11 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ViewportMouse.isCharAlphabetic((char)var11) ? 1 : 0;
+                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ViewportMouse.isCharAlphabetic((char)var10) ? 1 : 0;
                      return 1;
                   } else if (var0 == 4116) {
-                     var11 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = WorldMapLabelSize.isDigit((char)var11) ? 1 : 0;
+                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = WorldMapLabelSize.isDigit((char)var10) ? 1 : 0;
                      return 1;
                   } else if (var0 == 4117) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -829,39 +749,39 @@ public class NPCComposition extends DualNode {
                   } else if (var0 == 4118) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
                      class87.Interpreter_intStackSize -= 2;
-                     var10 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-                     var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-                     Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.substring(var10, var9);
+                     var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
+                     var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+                     Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.substring(var4, var5);
                      return 1;
                   } else if (var0 == 4119) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-                     StringBuilder var16 = new StringBuilder(var3.length());
-                     boolean var18 = false;
+                     StringBuilder var18 = new StringBuilder(var3.length());
+                     boolean var16 = false;
 
                      for(var6 = 0; var6 < var3.length(); ++var6) {
                         char var7 = var3.charAt(var6);
                         if (var7 == '<') {
-                           var18 = true;
+                           var16 = true;
                         } else if (var7 == '>') {
-                           var18 = false;
-                        } else if (!var18) {
-                           var16.append(var7);
+                           var16 = false;
+                        } else if (!var16) {
+                           var18.append(var7);
                         }
                      }
 
-                     Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var16.toString();
+                     Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var18.toString();
                      return 1;
                   } else if (var0 == 4120) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-                     var10 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.indexOf(var10);
+                     var4 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.indexOf(var4);
                      return 1;
                   } else if (var0 == 4121) {
                      Interpreter.Interpreter_stringStackSize -= 2;
                      var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-                     var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-                     var9 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.indexOf(var4, var9);
+                     var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+                     var5 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.indexOf(var9, var5);
                      return 1;
                   } else if (var0 == 4122) {
                      var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -870,22 +790,22 @@ public class NPCComposition extends DualNode {
                   } else if (var0 == 4123) {
                      Interpreter.Interpreter_stringStackSize -= 3;
                      var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-                     var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-                     String var5 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 2];
+                     var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+                     String var15 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 2];
                      if (class155.localPlayer.appearance == null) {
-                        Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5;
+                        Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var15;
                         return 1;
                      } else {
-                        switch(class155.localPlayer.appearance.field3476) {
+                        switch(class155.localPlayer.appearance.field2820) {
                         case 0:
                            Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
                            break;
                         case 1:
-                           Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4;
+                           Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
                            break;
                         case 2:
                         default:
-                           Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5;
+                           Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var15;
                         }
 
                         return 1;
@@ -897,9 +817,9 @@ public class NPCComposition extends DualNode {
             } else {
                Interpreter.Interpreter_stringStackSize -= 2;
                var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-               var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-               if (class155.localPlayer.appearance != null && class155.localPlayer.appearance.field3474 != 0) {
-                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4;
+               var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+               if (class155.localPlayer.appearance != null && class155.localPlayer.appearance.field2818 != 0) {
+                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
                } else {
                   Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
                }

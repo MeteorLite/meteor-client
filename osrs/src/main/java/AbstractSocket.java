@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ou")
+@Implements("AbstractSocket")
 public abstract class AbstractSocket {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

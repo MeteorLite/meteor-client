@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dk")
+@Implements("UserComparator5")
 public class UserComparator5 extends AbstractUserComparator {
    @ObfuscatedName("fk")
    @ObfuscatedSignature(
@@ -45,22 +46,22 @@ public class UserComparator5 extends AbstractUserComparator {
       descriptor = "(Lly;Lly;ZII)V",
       garbageValue = "176810660"
    )
-   static void method2830(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
+   static void method666(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
       if (Login.clearLoginScreen) {
          if (var3 == 4) {
-            class12.method155(4);
+            class12.method42(4);
          }
 
       } else {
          if (var3 == 0) {
-            class124.method2939(var2);
+            class124.method694(var2);
          } else {
-            class12.method155(var3);
+            class12.method42(var3);
          }
 
          Rasterizer2D.Rasterizer2D_clear();
          byte[] var4 = var0.takeFileByNames("title.jpg", "");
-         SecureRandomCallable.leftTitleSprite = Language.method6693(var4);
+         SecureRandomCallable.leftTitleSprite = Language.method1865(var4);
          class9.rightTitleSprite = SecureRandomCallable.leftTitleSprite.mirrorHorizontally();
          int var5 = Client.worldProperties;
          if ((var5 & 536870912) != 0) {
@@ -75,36 +76,36 @@ public class UserComparator5 extends AbstractUserComparator {
 
          ModelData0.titleboxSprite = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", "");
          Frames.titlebuttonSprite = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", "");
-         class299.field3457 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_large", "");
-         class150.field1756 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "play_now_text", "");
+         class299.field2803 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_large", "");
+         class150.field1367 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "play_now_text", "");
          Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_wide42,1", "");
          int var7 = var1.getGroupId("runes");
          int var8 = var1.getFileId(var7, "");
-         IndexedSprite[] var6 = AbstractWorldMapData.method5238(var1, var7, var8);
+         IndexedSprite[] var6 = AbstractWorldMapData.method1431(var1, var7, var8);
          Login.runesSprite = var6;
          var8 = var1.getGroupId("title_mute");
          int var9 = var1.getFileId(var8, "");
-         IndexedSprite[] var11 = AbstractWorldMapData.method5238(var1, var8, var9);
+         IndexedSprite[] var11 = AbstractWorldMapData.method1431(var1, var8, var9);
          class109.title_muteSprite = var11;
          WorldMapLabel.options_buttons_0Sprite = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", "");
-         Login.field949 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", "");
+         Login.field757 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", "");
          class89.options_buttons_2Sprite = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", "");
-         Login.field927 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
-         class126.field1569 = WorldMapLabel.options_buttons_0Sprite.subWidth;
-         WorldMapSection1.field2998 = WorldMapLabel.options_buttons_0Sprite.subHeight * 694949360;
-         class154.field1782 = new LoginScreenAnimation(Login.runesSprite);
+         Login.field735 = Projectile.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
+         class126.field1232 = WorldMapLabel.options_buttons_0Sprite.subWidth;
+         WorldMapSection1.field2393 = WorldMapLabel.options_buttons_0Sprite.subHeight;
+         class154.field1379 = new LoginScreenAnimation(Login.runesSprite);
          if (var2) {
             Login.Login_username = "";
             Login.Login_password = "";
-            Login.field915 = new String[8];
-            Login.field938 = 0;
+            Login.field727 = new String[8];
+            Login.field746 = 0;
          }
 
-         class143.field1697 = 0;
+         class143.field1321 = 0;
          class141.otp = "";
-         Login.field930 = true;
+         Login.field738 = true;
          Login.worldSelectOpen = false;
-         if (!StructComposition.clientPreferences.method2428()) {
+         if (!StructComposition.clientPreferences.method546()) {
             Archive var12 = class162.archive6;
             var9 = var12.getGroupId("scape main");
             int var10 = var12.getFileId(var9, "");
@@ -116,7 +117,7 @@ public class UserComparator5 extends AbstractUserComparator {
             class145.musicTrackBoolean = false;
             class286.pcmSampleLength = 2;
          } else {
-            class384.method7370(2);
+            class384.method2011(2);
          }
 
          if (NetCache.NetCache_socket != null) {

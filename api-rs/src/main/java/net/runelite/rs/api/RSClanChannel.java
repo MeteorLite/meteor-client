@@ -40,5 +40,5 @@ public interface RSClanChannel extends ClanChannel
 	List<ClanChannelMember> getMembers();
 
 	@Import("getSortedMembers")
-	int[] getSortedMembers();
+	int[] getSortedMembers$api();
 }

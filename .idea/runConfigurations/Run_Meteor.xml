@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Meteor" type="GradleRunConfiguration" factoryName="Gradle" singleton="false">
+  <configuration default="false" name="Run Meteor" type="GradleRunConfiguration" factoryName="Gradle" singleton="true">
     <selectedOptions>
       <option name="external.system.vm.parameters.fragment" />
     </selectedOptions>
@@ -16,7 +16,7 @@
           <option value="client:run" />
         </list>
       </option>
-      <option name="vmOptions" value="-Xmx2048m" />
+      <option name="vmOptions" value="-ea -Xmx2048m " />
     </ExternalSystemSettings>
     <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>

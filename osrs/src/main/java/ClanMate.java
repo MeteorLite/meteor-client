@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("og")
+@Implements("ClanMate")
 public class ClanMate extends Buddy {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

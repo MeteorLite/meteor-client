@@ -1,5 +1,4 @@
 import java.io.IOException;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,26 +8,20 @@ public class class319 {
    @ObfuscatedSignature(
       descriptor = "Lls;"
    )
-   static final class319 field3786 = new class319(51, 27, 800, 0, 16, 16);
+   static final class319 field3063 = new class319(51, 27, 800, 0, 16, 16);
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lls;"
    )
-   static final class319 field3782 = new class319(25, 28, 800, 656, 40, 40);
+   static final class319 field3060 = new class319(25, 28, 800, 656, 40, 40);
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1826887281
-   )
-   final int field3783;
+   final int field3061;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1882364867
-   )
-   final int field3784;
+   final int field3062;
 
    class319(int var1, int var2, int var3, int var4, int var5, int var6) {
-      this.field3783 = var5;
-      this.field3784 = var6;
+      this.field3061 = var5;
+      this.field3062 = var6;
    }
 
    @ObfuscatedName("v")
@@ -36,12 +29,12 @@ public class class319 {
       descriptor = "(S)Lch;",
       garbageValue = "-20617"
    )
-   static ClientPreferences method6375() {
+   static ClientPreferences method1771() {
       AccessFile var0 = null;
       ClientPreferences var1 = new ClientPreferences();
 
       try {
-         var0 = class87.getPreferencesFile("", LoginPacket.field3302.name, false);
+         var0 = class87.getPreferencesFile("", LoginPacket.field2681.name, false);
          byte[] var2 = new byte[(int)var0.length()];
 
          int var4;
@@ -73,7 +66,7 @@ public class class319 {
       descriptor = "(I)V",
       garbageValue = "-1520113956"
    )
-   static void method6378() {
+   static void method1772() {
       Messages.Messages_channels.clear();
       Messages.Messages_hashTable.clear();
       Messages.Messages_queue.clear();

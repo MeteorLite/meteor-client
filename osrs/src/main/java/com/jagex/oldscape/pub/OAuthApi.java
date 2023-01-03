@@ -3,11 +3,11 @@ package com.jagex.oldscape.pub;
 import net.runelite.mapping.Implements;
 
 public interface OAuthApi {
-   void setOtlTokenRequester(OtlTokenRequester var1);
+   default void setOtlTokenRequester(OtlTokenRequester var1) {};
 
-   void setRefreshTokenRequester(RefreshAccessTokenRequester var1);
+   default void setRefreshTokenRequester(RefreshAccessTokenRequester var1) {};
 
-   long getAccountHash();
+   default long getAccountHash() {return -1;}
 
-   boolean isOnLoginScreen();
+   default boolean isOnLoginScreen() {return false;}
 }

@@ -38,5 +38,5 @@ public interface Deque<T> extends Iterable<T>
 	/**
 	 * clear the deque
 	 */
-	void clear();
+	void clear$api();
 }

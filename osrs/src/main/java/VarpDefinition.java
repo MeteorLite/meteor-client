@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fi")
+@Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -12,10 +12,7 @@ public class VarpDefinition extends DualNode {
    )
    public static AbstractArchive VarpDefinition_archive;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1806135951
-   )
-   public static int field1922;
+   public static int field1468;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
@@ -27,9 +24,6 @@ public class VarpDefinition extends DualNode {
    )
    static Archive archive14;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -609772131
-   )
    public int type = 0;
 
    @ObfuscatedName("e")
@@ -91,7 +85,7 @@ public class VarpDefinition extends DualNode {
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "(Lln;IIIBZB)V",
-      garbageValue = "-66"
+      garbageValue = "-44"
    )
    static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
       long var6 = (long)((var1 << 16) + var2);
@@ -210,7 +204,7 @@ public class VarpDefinition extends DualNode {
       descriptor = "(II)V",
       garbageValue = "1192039174"
    )
-   static void method3547(int var0) {
+   static void method909(int var0) {
       for(IntegerNode var1 = (IntegerNode)Client.widgetFlags.first(); var1 != null; var1 = (IntegerNode)Client.widgetFlags.next()) {
          if ((var1.key >> 48 & 65535L) == (long)var0) {
             var1.remove();

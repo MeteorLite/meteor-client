@@ -42,7 +42,6 @@ import net.runelite.api.model.Jarvis;
 import net.runelite.api.model.Triangle;
 import net.runelite.api.model.Vertex;
 import net.runelite.rs.api.*;
-import org.jetbrains.annotations.NotNull;
 
 @Mixin(RSModel.class)
 public abstract class RSModelMixin implements RSModel
@@ -264,7 +263,7 @@ public abstract class RSModelMixin implements RSModel
 				client.setAnimOffsetZ(0);
 
 				interpolateFrames(skeleton, frame, nextFrame, interval, intervalCount);
-				resetBounds();
+				resetBounds$api();
 			}
 		}
 	}

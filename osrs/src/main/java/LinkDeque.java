@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ma")
+@Implements("LinkDeque")
 public class LinkDeque {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

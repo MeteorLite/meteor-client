@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bp")
+@Implements("Instrument")
 public class Instrument {
    @ObfuscatedName("s")
    static int[] Instrument_samples;
@@ -378,6 +379,6 @@ public class Instrument {
       this.offset = var1.readUnsignedShort();
       this.filter = new AudioFilter();
       this.filterEnvelope = new SoundEnvelope();
-      this.filter.method1144(var1, this.filterEnvelope);
+      this.filter.method323(var1, this.filterEnvelope);
    }
 }

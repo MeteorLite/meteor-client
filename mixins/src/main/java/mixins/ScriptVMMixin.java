@@ -34,6 +34,7 @@ import eventbus.events.ScriptPostFired;
 import eventbus.events.ScriptPreFired;
 import net.runelite.api.*;
 import net.runelite.api.mixins.*;
+import net.runelite.api.packets.PacketBuffer;
 import net.runelite.api.widgets.JavaScriptCallback;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSScript;
@@ -47,8 +48,8 @@ import static net.runelite.cache.script.RuneLiteOpcodes.RUNELITE_EXECUTE;
 @Mixin(RSClient.class)
 public abstract class ScriptVMMixin implements RSClient
 {
-	@Shadow("client")
-	private static RSClient client;
+    @Shadow("client")
+    private static RSClient client;
 
 	@Inject
 	private static RSScript currentScript;
@@ -134,7 +135,7 @@ public abstract class ScriptVMMixin implements RSClient
 				}
 				ScriptCallbackEvent event = new ScriptCallbackEvent(currentScript, stringOp);
 				client.getCallbacks().post(Events.SCRIPT_CALLBACK, event);
-				return true;
+				return false;
 			case INVOKE:
 				int scriptId = currentScript.getIntOperands()[currentScriptPC];
 				client.getCallbacks().post(Events.SCRIPT_PRE_FIRED, new ScriptPreFired(scriptId, null));
@@ -159,10 +160,13 @@ public abstract class ScriptVMMixin implements RSClient
 
 	@Inject
 	public static int currentQuestRow = -1;
-
 	@Copy("runScript")
+	static void rs$runScript(RSScriptEvent event, int maxExecutionTime, int var2) {
+
+	}
+
 	@Replace("runScript")
-	static void copy$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
+	static void rl$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
 		Object[] arguments = event.getArguments();
 		assert arguments != null && arguments.length > 0;
@@ -182,7 +186,7 @@ public abstract class ScriptVMMixin implements RSClient
 			try
 			{
 				rootScriptEvent = event;
-				copy$runScript(event, maxExecutionTime, var2);
+				rs$runScript(event, maxExecutionTime, var2);
 			}
 			finally
 			{
@@ -202,16 +206,17 @@ public abstract class ScriptVMMixin implements RSClient
 	@Override
 	public void runScriptEvent(RSScriptEvent event)
 	{
+		Object[] args = event.getArguments();
+		int scriptId = (int) args[0];
+
 		assert isClientThread() : "runScriptEvent must be called on client thread";
-		assert currentScript == null : "scripts are not reentrant";
+		//assert currentScript == null : "scripts are not reentrant";
 		runScript(event, 5000000, 0);
 		boolean assertionsEnabled = false;
 		assert assertionsEnabled = true;
 
-		Object[] args = event.getArguments();
 		if (assertionsEnabled && args[0] instanceof Integer)
 		{
-			int scriptId = (int) args[0];
 			RSScript script = (RSScript) client.getScriptCache().get(scriptId);
 
 			if (script != null)

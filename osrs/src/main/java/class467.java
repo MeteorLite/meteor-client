@@ -1,34 +1,30 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qz")
 public class class467 {
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1047217151
-   )
    public static int musicTrackVolume;
    @ObfuscatedName("h")
-   int[] field4920 = new int[8];
+   int[] field3996 = new int[8];
    @ObfuscatedName("e")
-   short[] field4918 = new short[8];
+   short[] field3995 = new short[8];
 
    @ObfuscatedSignature(
       descriptor = "(Lgz;)V"
    )
    public class467(NPCComposition var1) {
       int var2 = 0;
-      if (var1.method3672()) {
-         var2 = var1.method3678().length;
-         System.arraycopy(var1.method3678(), 0, this.field4920, 0, var2);
-         System.arraycopy(var1.method3715(), 0, this.field4918, 0, var2);
+      if (var1.method958()) {
+         var2 = var1.method961().length;
+         System.arraycopy(var1.method961(), 0, this.field3996, 0, var2);
+         System.arraycopy(var1.method964(), 0, this.field3995, 0, var2);
       }
 
       for(int var3 = var2; var3 < 8; ++var3) {
-         this.field4920[var3] = -1;
-         this.field4918[var3] = -1;
+         this.field3996[var3] = -1;
+         this.field3995[var3] = -1;
       }
 
    }
@@ -38,8 +34,8 @@ public class class467 {
       descriptor = "(I)[I",
       garbageValue = "2005193688"
    )
-   public int[] method8797() {
-      return this.field4920;
+   public int[] method2408() {
+      return this.field3996;
    }
 
    @ObfuscatedName("e")
@@ -47,8 +43,8 @@ public class class467 {
       descriptor = "(I)[S",
       garbageValue = "1232945994"
    )
-   public short[] method8799() {
-      return this.field4918;
+   public short[] method2409() {
+      return this.field3995;
    }
 
    @ObfuscatedName("v")
@@ -56,9 +52,9 @@ public class class467 {
       descriptor = "(IISI)V",
       garbageValue = "727886744"
    )
-   public void method8800(int var1, int var2, short var3) {
-      this.field4920[var1] = var2;
-      this.field4918[var1] = var3;
+   public void method2410(int var1, int var2, short var3) {
+      this.field3996[var1] = var2;
+      this.field3995[var1] = var3;
    }
 
    @ObfuscatedName("x")
@@ -66,9 +62,9 @@ public class class467 {
       descriptor = "([I[SI)V",
       garbageValue = "-371112886"
    )
-   public void method8801(int[] var1, short[] var2) {
-      this.field4920 = var1;
-      this.field4918 = var2;
+   public void method2411(int[] var1, short[] var2) {
+      this.field3996 = var1;
+      this.field3995 = var2;
    }
 
    @ObfuscatedName("h")
@@ -76,8 +72,8 @@ public class class467 {
       descriptor = "(ILjava/lang/String;Lmb;II)Ljx;",
       garbageValue = "79142033"
    )
-   public static PacketBufferNode method8803(int var0, String var1, Language var2, int var3) {
-      PacketBufferNode var4 = class136.getPacketBufferNode(ClientPacket.field3065, Client.packetWriter.isaacCipher);
+   public static PacketBufferNode method2412(int var0, String var1, Language var2, int var3) {
+      PacketBufferNode var4 = class136.getPacketBufferNode(ClientPacket.field2449, Client.packetWriter.isaacCipher);
       var4.packetBuffer.writeByte(0);
       int var5 = var4.packetBuffer.offset;
       var4.packetBuffer.writeByte(var0);
@@ -197,12 +193,12 @@ public class class467 {
 
       var4.packetBuffer.writeByte(var7);
       var4.packetBuffer.writeByte(var8);
-      BufferedSource.method7683(var4.packetBuffer, var1);
-      if (var0 == class313.field3722.rsOrdinal()) {
+      BufferedSource.method2105(var4.packetBuffer, var1);
+      if (var0 == class313.field3030.rsOrdinal()) {
          var4.packetBuffer.writeByte(var3);
       }
 
-      var4.packetBuffer.method8622(var4.packetBuffer.offset - var5);
+      var4.packetBuffer.method2388(var4.packetBuffer.offset - var5);
       return var4;
    }
 }

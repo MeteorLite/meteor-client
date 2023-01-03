@@ -60,7 +60,7 @@ public interface RSScene extends Scene
 	void removeGameObject(GameObject gameObject);
 
 	@Import("removeGameObject")
-	void removeGameObject(int plane, int x, int y);
+	void removeGameObject$api(int plane, int x, int y);
 
 	void removeWallObject(WallObject wallObject);
 
@@ -87,5 +87,5 @@ public interface RSScene extends Scene
 	void setTileShapes(byte[][][] tileShapes);
 
 	@Import("menuOpen")
-	void menuOpen(int selectedPlane, int screenX, int screenY, boolean viewportWalking);
+	void menuOpen$api(int selectedPlane, int screenX, int screenY, boolean viewportWalking);
 }

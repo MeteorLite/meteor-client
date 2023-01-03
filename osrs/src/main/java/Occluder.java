@@ -1,111 +1,57 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hv")
+@Implements("Occluder")
 public final class Occluder {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1514606591
-   )
    int minTileX;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -1843218791
-   )
    int maxTileX;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -250574197
-   )
    int minTileY;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -839589963
-   )
    int maxTileY;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -845662039
-   )
    int type;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 227042381
-   )
    int minX;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -201172581
-   )
    int maxX;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -754335941
-   )
    int minZ;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 253383223
-   )
    int maxZ;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 554630705
-   )
    int minY;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 1377372931
-   )
    int maxY;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 1764147967
-   )
-   int field2621;
+   int field2067;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = -1535206503
-   )
-   int field2630;
+   int field2076;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -961493963
-   )
-   int field2631;
+   int field2077;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -2087575951
-   )
-   int field2632;
+   int field2078;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 619321753
-   )
-   int field2633;
+   int field2079;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = -1441193489
-   )
-   int field2634;
+   int field2080;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = -1410345339
-   )
-   int field2635;
+   int field2081;
 
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "(B)V",
       garbageValue = "8"
    )
-   public static void method4627() {
+   public static void method1241() {
       try {
          if (class286.musicPlayerStatus == 1) {
-            int var0 = class251.midiPcmStream.method5650();
+            int var0 = class251.midiPcmStream.method1568();
             if (var0 > 0 && class251.midiPcmStream.isReady()) {
                var0 -= class286.pcmSampleLength;
                if (var0 < 0) {

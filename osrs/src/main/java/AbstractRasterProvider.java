@@ -1,27 +1,18 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rm")
+@Implements("AbstractRasterProvider")
 public abstract class AbstractRasterProvider {
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -564851849
-   )
-   static int field4993;
+   static int field4059;
    @ObfuscatedName("v")
    public int[] pixels;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1390359179
-   )
    public int width;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -763025729
-   )
    public int height;
 
    @ObfuscatedName("e")

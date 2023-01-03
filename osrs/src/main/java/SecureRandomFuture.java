@@ -8,6 +8,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bb")
+@Implements("SecureRandomFuture")
 public class SecureRandomFuture {
    @ObfuscatedName("bp")
    @ObfuscatedSignature(
@@ -62,7 +63,7 @@ public class SecureRandomFuture {
       descriptor = "([FIFI)F",
       garbageValue = "-1005552085"
    )
-   static float method2120(float[] var0, int var1, float var2) {
+   static float method446(float[] var0, int var1, float var2) {
       float var3 = var0[var1];
 
       for(int var4 = var1 - 1; var4 >= 0; --var4) {
@@ -77,105 +78,105 @@ public class SecureRandomFuture {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-2142160663"
    )
-   static int method2119(int var0, Script var1, boolean var2) {
+   static int method445(int var0, Script var1, boolean var2) {
       if (var0 < 1000) {
-         return UserComparator8.method2820(var0, var1, var2);
+         return UserComparator8.method662(var0, var1, var2);
       } else if (var0 < 1100) {
-         return WorldMapData_1.method5162(var0, var1, var2);
+         return WorldMapData_1.method1402(var0, var1, var2);
       } else if (var0 < 1200) {
-         return NPC.method2530(var0, var1, var2);
+         return NPC.method573(var0, var1, var2);
       } else if (var0 < 1300) {
-         return GrandExchangeOfferOwnWorldComparator.method1223(var0, var1, var2);
+         return GrandExchangeOfferOwnWorldComparator.method351(var0, var1, var2);
       } else if (var0 < 1400) {
-         return class32.method466(var0, var1, var2);
+         return class32.method130(var0, var1, var2);
       } else if (var0 < 1500) {
-         return MusicPatchNode.method5788(var0, var1, var2);
+         return MusicPatchNode.method1604(var0, var1, var2);
       } else if (var0 < 1600) {
-         return class71.method2033(var0, var1, var2);
+         return class71.method431(var0, var1, var2);
       } else if (var0 < 1700) {
-         return class343.method6671(var0, var1, var2);
+         return class343.method1854(var0, var1, var2);
       } else if (var0 < 1800) {
-         return MusicPatchPcmStream.method5751(var0, var1, var2);
+         return MusicPatchPcmStream.method1593(var0, var1, var2);
       } else if (var0 < 1900) {
-         return WorldMapArea.method4967(var0, var1, var2);
+         return WorldMapArea.method1349(var0, var1, var2);
       } else if (var0 < 2000) {
-         return class365.method7000(var0, var1, var2);
+         return class365.method1912(var0, var1, var2);
       } else if (var0 < 2100) {
-         return WorldMapData_1.method5162(var0, var1, var2);
+         return WorldMapData_1.method1402(var0, var1, var2);
       } else if (var0 < 2200) {
-         return NPC.method2530(var0, var1, var2);
+         return NPC.method573(var0, var1, var2);
       } else if (var0 < 2300) {
-         return GrandExchangeOfferOwnWorldComparator.method1223(var0, var1, var2);
+         return GrandExchangeOfferOwnWorldComparator.method351(var0, var1, var2);
       } else if (var0 < 2400) {
-         return class32.method466(var0, var1, var2);
+         return class32.method130(var0, var1, var2);
       } else if (var0 < 2500) {
-         return MusicPatchNode.method5788(var0, var1, var2);
+         return MusicPatchNode.method1604(var0, var1, var2);
       } else if (var0 < 2600) {
-         return class14.method172(var0, var1, var2);
+         return class14.method51(var0, var1, var2);
       } else if (var0 < 2700) {
-         return class7.method54(var0, var1, var2);
+         return class7.method19(var0, var1, var2);
       } else if (var0 < 2800) {
-         return MouseRecorder.method2264(var0, var1, var2);
+         return MouseRecorder.method476(var0, var1, var2);
       } else if (var0 < 2900) {
-         return WorldMapSection2.method4905(var0, var1, var2);
+         return WorldMapSection2.method1327(var0, var1, var2);
       } else if (var0 < 3000) {
-         return class365.method7000(var0, var1, var2);
+         return class365.method1912(var0, var1, var2);
       } else if (var0 < 3200) {
-         return class413.method7863(var0, var1, var2);
+         return class413.method2154(var0, var1, var2);
       } else if (var0 < 3300) {
-         return Client.method1742(var0, var1, var2);
+         return Client.method382(var0, var1, var2);
       } else if (var0 < 3400) {
-         return GrandExchangeOfferUnitPriceComparator.method6641(var0, var1, var2);
+         return GrandExchangeOfferUnitPriceComparator.method1846(var0, var1, var2);
       } else if (var0 < 3500) {
-         return SoundCache.method893(var0, var1, var2);
+         return SoundCache.method244(var0, var1, var2);
       } else if (var0 < 3600) {
-         return FileSystem.method3479(var0, var1, var2);
+         return FileSystem.method878(var0, var1, var2);
       } else if (var0 < 3700) {
-         return WorldMapCacheName.method5339(var0, var1, var2);
+         return WorldMapCacheName.method1468(var0, var1, var2);
       } else if (var0 < 3800) {
-         return class20.method292(var0, var1, var2);
+         return class20.method71(var0, var1, var2);
       } else if (var0 < 3900) {
-         return SceneTilePaint.method4807(var0, var1, var2);
+         return SceneTilePaint.method1285(var0, var1, var2);
       } else if (var0 < 4000) {
-         return class358.method6920(var0, var1, var2);
+         return class358.method1909(var0, var1, var2);
       } else if (var0 < 4100) {
-         return ParamComposition.method3803(var0, var1, var2);
+         return ParamComposition.method991(var0, var1, var2);
       } else if (var0 < 4200) {
-         return NPCComposition.method3725(var0, var1, var2);
+         return NPCComposition.method967(var0, var1, var2);
       } else if (var0 < 4300) {
-         return class20.method294(var0, var1, var2);
+         return class20.method73(var0, var1, var2);
       } else if (var0 < 5100) {
-         return class144.method3143(var0, var1, var2);
+         return class144.method770(var0, var1, var2);
       } else if (var0 < 5400) {
-         return class282.method5508(var0, var1, var2);
+         return class282.method1534(var0, var1, var2);
       } else if (var0 < 5600) {
-         return class82.method2248(var0, var1, var2);
+         return class82.method469(var0, var1, var2);
       } else if (var0 < 5700) {
-         return WallDecoration.method4827(var0, var1, var2);
+         return WallDecoration.method1294(var0, var1, var2);
       } else if (var0 < 6300) {
-         return class10.method100(var0, var1, var2);
+         return class10.method39(var0, var1, var2);
       } else if (var0 < 6600) {
-         return class141.method3107(var0, var1, var2);
+         return class141.method755(var0, var1, var2);
       } else if (var0 < 6700) {
-         return class126.method2986(var0, var1, var2);
+         return class126.method710(var0, var1, var2);
       } else if (var0 < 6800) {
-         return KeyHandler.method378(var0, var1, var2);
+         return KeyHandler.method98(var0, var1, var2);
       } else if (var0 < 6900) {
-         return Message.method1200(var0, var1, var2);
+         return Message.method345(var0, var1, var2);
       } else if (var0 < 7000) {
-         return class300.method5844(var0, var1, var2);
+         return class300.method1617(var0, var1, var2);
       } else if (var0 < 7100) {
-         return class168.method3481(var0, var1, var2);
+         return class168.method880(var0, var1, var2);
       } else if (var0 < 7200) {
-         return Player.method2334(var0, var1, var2);
+         return Player.method506(var0, var1, var2);
       } else if (var0 < 7300) {
-         return class199.method4091(var0, var1, var2);
+         return class199.method1071(var0, var1, var2);
       } else if (var0 < 7500) {
-         return WorldMapLabelSize.method4852(var0, var1, var2);
+         return WorldMapLabelSize.method1306(var0, var1, var2);
       } else if (var0 < 7600) {
-         return class417.method7903(var0, var1, var2);
+         return class417.method2167(var0, var1, var2);
       } else {
-         return var0 < 7700 ? HealthBarUpdate.method2368(var0, var1, var2) : 2;
+         return var0 < 7700 ? HealthBarUpdate.method520(var0, var1, var2) : 2;
       }
    }
 
@@ -184,8 +185,8 @@ public class SecureRandomFuture {
       descriptor = "(B)I",
       garbageValue = "37"
    )
-   static final int method2118() {
-      if (StructComposition.clientPreferences.method2412()) {
+   static final int method444() {
+      if (StructComposition.clientPreferences.method535()) {
          return class383.Client_plane;
       } else {
          int var0 = SpotAnimationDefinition.getTileHeight(class145.cameraX, ClanChannel.cameraZ, class383.Client_plane);

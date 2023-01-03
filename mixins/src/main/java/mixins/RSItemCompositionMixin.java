@@ -67,7 +67,7 @@ public abstract class RSItemCompositionMixin implements RSItemComposition
 
 	@Inject
 	@MethodHook(value = "post", end = true)
-	public void post()
+	public void post$end()
 	{
 		final PostItemComposition event = new PostItemComposition(this);
 		client.getCallbacks().post(Events.POST_ITEM_COMPOSITION, event);

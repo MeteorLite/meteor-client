@@ -1,16 +1,13 @@
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lx")
+@Implements("GrandExchangeOfferTotalQuantityComparator")
 final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1715620411
-   )
    public static int SpriteBuffer_spriteWidth;
 
    @ObfuscatedName("h")
@@ -38,14 +35,14 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
       garbageValue = "137593594"
    )
    static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
-      if (var0.field3622 == null) {
+      if (var0.field2946 == null) {
          throw new RuntimeException();
       } else {
-         if (var0.field3692 == null) {
-            var0.field3692 = new int[var0.field3622.length];
+         if (var0.field3013 == null) {
+            var0.field3013 = new int[var0.field2946.length];
          }
 
-         var0.field3692[var1] = Integer.MAX_VALUE;
+         var0.field3013[var1] = Integer.MAX_VALUE;
       }
    }
 }

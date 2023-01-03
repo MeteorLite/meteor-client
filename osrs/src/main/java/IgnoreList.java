@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nj")
+@Implements("IgnoreList")
 public class IgnoreList extends UserList {
    @ObfuscatedName("v")
    @ObfuscatedSignature(

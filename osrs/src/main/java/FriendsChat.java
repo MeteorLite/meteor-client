@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nc")
+@Implements("FriendsChat")
 public class FriendsChat extends UserList {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -23,15 +23,9 @@ public class FriendsChat extends UserList {
    @ObfuscatedName("q")
    public byte minKick;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1090208209
-   )
    public int rank;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 1853458419
-   )
-   int field4515 = 1;
+   int field3680 = 1;
 
    @ObfuscatedSignature(
       descriptor = "(Lqi;Lnn;)V"
@@ -65,8 +59,8 @@ public class FriendsChat extends UserList {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "1741537614"
    )
-   final void method7434(String var1) {
-      String var3 = ModeWhere.base37DecodeLong(class32.method461(var1));
+   final void method2028(String var1) {
+      String var3 = ModeWhere.base37DecodeLong(class32.method128(var1));
       if (var3 == null) {
          var3 = "";
       }
@@ -79,8 +73,8 @@ public class FriendsChat extends UserList {
       descriptor = "(Ljava/lang/String;B)V",
       garbageValue = "1"
    )
-   final void method7435(String var1) {
-      String var3 = ModeWhere.base37DecodeLong(class32.method461(var1));
+   final void method2029(String var1) {
+      String var3 = ModeWhere.base37DecodeLong(class32.method128(var1));
       if (var3 == null) {
          var3 = "";
       }
@@ -93,8 +87,8 @@ public class FriendsChat extends UserList {
       descriptor = "(Lqy;II)V",
       garbageValue = "-1010256811"
    )
-   public final void method7444(Buffer var1, int var2) {
-      this.method7435(var1.readStringCp1252NullTerminated());
+   public final void method2034(Buffer var1, int var2) {
+      this.method2029(var1.readStringCp1252NullTerminated());
       long var3 = var1.readLong();
       long var6 = var3;
       String var5;
@@ -123,7 +117,7 @@ public class FriendsChat extends UserList {
          var5 = null;
       }
 
-      this.method7434(var5);
+      this.method2028(var5);
       this.minKick = var1.readByte();
       short var14;
       if (var2 == 1) {
@@ -134,7 +128,7 @@ public class FriendsChat extends UserList {
             throw new IllegalArgumentException("Invalid friend chat full update version: " + var2);
          }
 
-         var8 = var1.method8781();
+         var8 = var1.method2407();
          var14 = -1;
       }
 
@@ -145,7 +139,7 @@ public class FriendsChat extends UserList {
          for(int var15 = 0; var15 < var10; ++var15) {
             ClanMate var16 = (ClanMate)this.addLastNoPreviousUsername(new Username(var1.readStringCp1252NullTerminated(), this.loginType));
             int var13 = var1.readUnsignedShort();
-            var16.set(var13, ++this.field4515 - 1);
+            var16.set(var13, ++this.field3680 - 1);
             var16.rank = var1.readByte();
             var1.readStringCp1252NullTerminated();
             this.isLocalPlayer(var16);
@@ -159,7 +153,7 @@ public class FriendsChat extends UserList {
       descriptor = "(Lqy;B)V",
       garbageValue = "109"
    )
-   public final void method7437(Buffer var1) {
+   public final void method2031(Buffer var1) {
       Username var2 = new Username(var1.readStringCp1252NullTerminated(), this.loginType);
       int var3 = var1.readUnsignedShort();
       byte var4 = var1.readByte();
@@ -189,7 +183,7 @@ public class FriendsChat extends UserList {
             var6 = (ClanMate)this.addLastNoPreviousUsername(var2);
          }
 
-         var6.set(var3, ++this.field4515 - 1);
+         var6.set(var3, ++this.field3680 - 1);
          var6.rank = var4;
          this.isLocalPlayer(var6);
       }
@@ -237,8 +231,8 @@ public class FriendsChat extends UserList {
       descriptor = "(Lga;IIIB)V",
       garbageValue = "-79"
    )
-   static void method7459(SequenceDefinition var0, int var1, int var2, int var3) {
-      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method2506() != 0) {
+   static void method2036(SequenceDefinition var0, int var1, int var2, int var3) {
+      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method563() != 0) {
          if (var0.soundEffects != null && var1 < var0.soundEffects.length) {
             int var4 = var0.soundEffects[var1];
             if (var4 != 0) {
@@ -265,7 +259,7 @@ public class FriendsChat extends UserList {
       garbageValue = "1514396714"
    )
    static void addCancelMenuEntry() {
-      WorldMapSectionType.method5230();
+      WorldMapSectionType.method1426();
       Client.menuActions[0] = "Cancel";
       Client.menuTargets[0] = "";
       Client.menuOpcodes[0] = 1006;

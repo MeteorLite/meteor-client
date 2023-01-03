@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gu")
+@Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -17,28 +17,19 @@ public class VarbitComposition extends DualNode {
    )
    public static EvictingDualNodeHashTable VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("q")
-   static final int[] field2112 = new int[32];
+   static final int[] field1631 = new int[32];
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1633221379
-   )
    public int baseVar;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -270804781
-   )
    public int startBit;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1549035405
-   )
    public int endBit;
 
    static {
       int var0 = 2;
 
       for(int var1 = 0; var1 < 32; ++var1) {
-         field2112[var1] = var0 - 1;
+         field1631[var1] = var0 - 1;
          var0 += var0;
       }
 
@@ -100,7 +91,7 @@ public class VarbitComposition extends DualNode {
       descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
       garbageValue = "235490030"
    )
-   public static String method3779(String var0) {
+   public static String method985(String var0) {
       int var1 = var0.length();
       char[] var2 = new char[var1];
       byte var3 = 2;

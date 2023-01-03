@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -12,51 +11,33 @@ public class class201 implements class30 {
    )
    static SpritePixels compass;
    @ObfuscatedName("h")
-   char[] field2327 = new char[128];
+   char[] field1832 = new char[128];
    @ObfuscatedName("e")
-   int[] field2316 = new int[128];
+   int[] field1821 = new int[128];
    @ObfuscatedName("v")
-   public int[] field2323 = new int[128];
+   public int[] field1828 = new int[128];
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1561579701
-   )
-   public int field2326 = 0;
+   public int field1831 = 0;
    @ObfuscatedName("m")
-   int[] field2319 = new int[128];
+   int[] field1824 = new int[128];
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 784206767
-   )
-   int field2320 = 0;
+   int field1825 = 0;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -791064279
-   )
-   int field2321 = 0;
+   int field1826 = 0;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1539729439
-   )
-   int field2322 = 0;
+   int field1827 = 0;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1119474005
-   )
-   int field2317 = 0;
+   int field1822 = 0;
    @ObfuscatedName("b")
-   boolean[] field2324 = new boolean[112];
+   boolean[] field1829 = new boolean[112];
    @ObfuscatedName("j")
-   boolean[] field2325 = new boolean[112];
+   boolean[] field1830 = new boolean[112];
    @ObfuscatedName("g")
-   boolean[] field2318 = new boolean[112];
+   boolean[] field1823 = new boolean[112];
    @ObfuscatedName("i")
-   public char field2315;
+   public char field1820;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1152900247
-   )
-   public int field2328;
+   public int field1833;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -64,11 +45,11 @@ public class class201 implements class30 {
       garbageValue = "1119176744"
    )
    public boolean vmethod3949(int var1) {
-      this.method4101(var1);
-      this.field2324[var1] = true;
-      this.field2325[var1] = true;
-      this.field2318[var1] = false;
-      this.field2323[++this.field2326 - 1] = var1;
+      this.method1079(var1);
+      this.field1829[var1] = true;
+      this.field1830[var1] = true;
+      this.field1823[var1] = false;
+      this.field1828[++this.field1831 - 1] = var1;
       return true;
    }
 
@@ -78,10 +59,10 @@ public class class201 implements class30 {
       garbageValue = "-916991313"
    )
    public boolean vmethod3989(int var1) {
-      this.field2324[var1] = false;
-      this.field2325[var1] = false;
-      this.field2318[var1] = true;
-      this.field2319[++this.field2320 - 1] = var1;
+      this.field1829[var1] = false;
+      this.field1830[var1] = false;
+      this.field1823[var1] = true;
+      this.field1824[++this.field1825 - 1] = var1;
       return true;
    }
 
@@ -91,11 +72,11 @@ public class class201 implements class30 {
       garbageValue = "-258182"
    )
    public boolean vmethod3951(char var1) {
-      int var2 = this.field2322 + 1 & 127;
-      if (var2 != this.field2321) {
-         this.field2316[this.field2322] = -1;
-         this.field2327[this.field2322] = var1;
-         this.field2322 = var2;
+      int var2 = this.field1827 + 1 & 127;
+      if (var2 != this.field1826) {
+         this.field1821[this.field1827] = -1;
+         this.field1832[this.field1827] = var1;
+         this.field1827 = var2;
       }
 
       return false;
@@ -115,12 +96,12 @@ public class class201 implements class30 {
       descriptor = "(IB)V",
       garbageValue = "41"
    )
-   void method4101(int var1) {
-      int var2 = this.field2322 + 1 & 127;
-      if (var2 != this.field2321) {
-         this.field2316[this.field2322] = var1;
-         this.field2327[this.field2322] = 0;
-         this.field2322 = var2;
+   void method1079(int var1) {
+      int var2 = this.field1827 + 1 & 127;
+      if (var2 != this.field1826) {
+         this.field1821[this.field1827] = var1;
+         this.field1832[this.field1827] = 0;
+         this.field1827 = var2;
       }
 
    }
@@ -130,13 +111,13 @@ public class class201 implements class30 {
       descriptor = "(B)V",
       garbageValue = "-45"
    )
-   public void method4103() {
-      this.field2321 = this.field2317;
-      this.field2317 = this.field2322;
-      this.field2326 = 0;
-      this.field2320 = 0;
-      Arrays.fill(this.field2325, false);
-      Arrays.fill(this.field2318, false);
+   public void method1081() {
+      this.field1826 = this.field1822;
+      this.field1822 = this.field1827;
+      this.field1831 = 0;
+      this.field1825 = 0;
+      Arrays.fill(this.field1830, false);
+      Arrays.fill(this.field1823, false);
    }
 
    @ObfuscatedName("l")
@@ -144,13 +125,13 @@ public class class201 implements class30 {
       descriptor = "(B)Z",
       garbageValue = "7"
    )
-   public final boolean method4114() {
-      if (this.field2317 == this.field2321) {
+   public final boolean method1087() {
+      if (this.field1822 == this.field1826) {
          return false;
       } else {
-         this.field2328 = this.field2316[this.field2321];
-         this.field2315 = this.field2327[this.field2321];
-         this.field2321 = this.field2321 + 1 & 127;
+         this.field1833 = this.field1821[this.field1826];
+         this.field1820 = this.field1832[this.field1826];
+         this.field1826 = this.field1826 + 1 & 127;
          return true;
       }
    }
@@ -160,8 +141,8 @@ public class class201 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "903181500"
    )
-   public boolean method4136(int var1) {
-      return var1 >= 0 && var1 < 112 ? this.field2325[var1] : false;
+   public boolean method1088(int var1) {
+      return var1 >= 0 && var1 < 112 ? this.field1830[var1] : false;
    }
 
    @ObfuscatedName("c")
@@ -170,7 +151,7 @@ public class class201 implements class30 {
       garbageValue = "0"
    )
    public boolean getKeyPressed(int var1) {
-      return var1 >= 0 && var1 < 112 ? this.field2324[var1] : false;
+      return var1 >= 0 && var1 < 112 ? this.field1829[var1] : false;
    }
 
    @ObfuscatedName("p")
@@ -178,8 +159,8 @@ public class class201 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "1557864328"
    )
-   public boolean method4104(int var1) {
-      return var1 >= 0 && var1 < 112 ? this.field2318[var1] : false;
+   public boolean method1082(int var1) {
+      return var1 >= 0 && var1 < 112 ? this.field1823[var1] : false;
    }
 
    @ObfuscatedName("d")
@@ -187,11 +168,11 @@ public class class201 implements class30 {
       descriptor = "(B)[I",
       garbageValue = "5"
    )
-   public int[] method4108() {
-      int[] var1 = new int[this.field2326];
+   public int[] method1084() {
+      int[] var1 = new int[this.field1831];
 
-      for(int var2 = 0; var2 < this.field2326; ++var2) {
-         var1[var2] = this.field2323[var2];
+      for(int var2 = 0; var2 < this.field1831; ++var2) {
+         var1[var2] = this.field1828[var2];
       }
 
       return var1;
@@ -202,18 +183,18 @@ public class class201 implements class30 {
       descriptor = "(I)[I",
       garbageValue = "-2137693462"
    )
-   public int[] method4109() {
-      int[] var1 = new int[this.field2320];
+   public int[] method1085() {
+      int[] var1 = new int[this.field1825];
 
-      for(int var2 = 0; var2 < this.field2320; ++var2) {
-         var1[var2] = this.field2319[var2];
+      for(int var2 = 0; var2 < this.field1825; ++var2) {
+         var1[var2] = this.field1824[var2];
       }
 
       return var1;
    }
 
    @ObfuscatedName("h")
-   public static final int method4112(double var0, double var2, double var4) {
+   public static final int method1086(double var0, double var2, double var4) {
       double var6 = var4;
       double var8 = var4;
       double var10 = var4;

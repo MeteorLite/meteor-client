@@ -1,8 +1,10 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ii")
+@Implements("WorldMapLabel")
 public class WorldMapLabel {
    @ObfuscatedName("i")
    @ObfuscatedSignature(
@@ -12,14 +14,8 @@ public class WorldMapLabel {
    @ObfuscatedName("h")
    String text;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1395351999
-   )
    int width;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1987376379
-   )
    int height;
    @ObfuscatedName("x")
    @ObfuscatedSignature(

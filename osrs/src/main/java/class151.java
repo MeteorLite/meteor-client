@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,24 +8,18 @@ public class class151 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lok;"
    )
-   static Bounds field1763;
+   static Bounds field1370;
    @ObfuscatedName("ht")
    @ObfuscatedSignature(
       descriptor = "Lnv;"
    )
    static Font fontPlain11;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -1587606096227734853L
-   )
-   long field1767;
+   long field1372;
    @ObfuscatedName("e")
-   String field1760;
+   String field1368;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -976971951
-   )
-   int field1761;
+   int field1369;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lem;"
@@ -38,9 +31,9 @@ public class class151 extends class136 {
    )
    class151(class139 var1) {
       this.this$0 = var1;
-      this.field1767 = -1L;
-      this.field1760 = null;
-      this.field1761 = 0;
+      this.field1372 = -1L;
+      this.field1368 = null;
+      this.field1369 = 0;
    }
 
    @ObfuscatedName("h")
@@ -51,11 +44,11 @@ public class class151 extends class136 {
    void vmethod3254(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
-         this.field1767 = var1.readLong();
+         this.field1372 = var1.readLong();
       }
 
-      this.field1760 = var1.readStringCp1252NullTerminatedOrNull();
-      this.field1761 = var1.readUnsignedShort();
+      this.field1368 = var1.readStringCp1252NullTerminatedOrNull();
+      this.field1369 = var1.readUnsignedShort();
    }
 
    @ObfuscatedName("e")
@@ -64,7 +57,7 @@ public class class151 extends class136 {
       garbageValue = "839088249"
    )
    void vmethod3248(ClanSettings var1) {
-      var1.method3210(this.field1767, this.field1760, this.field1761);
+      var1.method797(this.field1372, this.field1368, this.field1369);
    }
 
    @ObfuscatedName("h")
@@ -72,6 +65,6 @@ public class class151 extends class136 {
       descriptor = "(Lly;B)V",
       garbageValue = "116"
    )
-   public static void method3273(AbstractArchive var0) {
+   public static void method812(AbstractArchive var0) {
    }
 }

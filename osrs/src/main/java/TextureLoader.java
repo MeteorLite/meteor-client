@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hw")
+@Implements("TextureLoader")
 public interface TextureLoader {
    @ObfuscatedName("v")
    @ObfuscatedSignature(

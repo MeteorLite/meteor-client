@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("aa")
+@Implements("PcmStream")
 public abstract class PcmStream extends Node {
    @ObfuscatedName("k")
    @ObfuscatedSignature(
@@ -11,7 +12,7 @@ public abstract class PcmStream extends Node {
    )
    PcmStream after;
    @ObfuscatedName("a")
-   int field383;
+   int field249;
    @ObfuscatedName("s")
    @ObfuscatedSignature(
       descriptor = "Lbc;"

@@ -1,24 +1,20 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("rz")
 public class class475 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -112517353
-   )
-   public final int field4980;
+   public final int field4047;
    @ObfuscatedName("e")
-   public Object field4981;
+   public Object field4048;
 
    public class475(int var1) {
-      this.field4980 = var1;
+      this.field4047 = var1;
    }
 
    public class475(int var1, Object var2) {
-      this.field4980 = var1;
-      this.field4981 = var2;
+      this.field4047 = var1;
+      this.field4048 = var2;
    }
 
    @ObfuscatedName("equals")
@@ -27,12 +23,12 @@ public class class475 {
          return false;
       } else {
          class475 var2 = (class475)var1;
-         if (var2.field4981 == null && this.field4981 != null) {
+         if (var2.field4048 == null && this.field4048 != null) {
             return false;
-         } else if (this.field4981 == null && var2.field4981 != null) {
+         } else if (this.field4048 == null && var2.field4048 != null) {
             return false;
          } else {
-            return var2.field4980 == this.field4980 && var2.field4981.equals(this.field4981);
+            return var2.field4047 == this.field4047 && var2.field4048.equals(this.field4048);
          }
       }
    }

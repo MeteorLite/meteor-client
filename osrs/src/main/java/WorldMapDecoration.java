@@ -1,25 +1,16 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("iz")
+@Implements("WorldMapDecoration")
 public class WorldMapDecoration {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1056681405
-   )
    final int objectDefinitionId;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 141981565
-   )
    final int decoration;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1928545853
-   )
    final int rotation;
 
    WorldMapDecoration(int var1, int var2, int var3) {
@@ -33,7 +24,7 @@ public class WorldMapDecoration {
       descriptor = "(Lly;Lly;Lly;Lka;I)Z",
       garbageValue = "1603100581"
    )
-   public static boolean method5269(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
+   public static boolean method1442(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
       class286.musicPatchesArchive = var0;
       class286.musicSamplesArchive = var1;
       class286.soundEffectsArchive = var2;

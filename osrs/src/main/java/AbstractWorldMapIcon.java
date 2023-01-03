@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ix")
+@Implements("AbstractWorldMapIcon")
 public abstract class AbstractWorldMapIcon {
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -17,14 +17,8 @@ public abstract class AbstractWorldMapIcon {
    )
    public final Coord coord1;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -2136203537
-   )
    int screenX;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -108942395
-   )
    int screenY;
 
    @ObfuscatedSignature(
@@ -124,11 +118,10 @@ public abstract class AbstractWorldMapIcon {
 
             return false;
          case 1:
-            if (var2 >= this.screenY && var2 < var5 + this.screenY) {
-               break;
+            if (var2 < this.screenY || var2 >= var5 + this.screenY) {
+               return false;
             }
-
-            return false;
+            break;
          case 2:
             if (var2 < this.screenY - var5 / 2 || var2 > var5 / 2 + this.screenY) {
                return false;

@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,36 +8,33 @@ public enum class313 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Llc;"
    )
-   field3720(0),
+   field3028(0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Llc;"
    )
-   field3721(1),
+   field3029(1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Llc;"
    )
-   field3723(2),
+   field3031(2),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Llc;"
    )
-   field3722(3),
+   field3030(3),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Llc;"
    )
-   field3724(4);
+   field3032(4);
 
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -742495887
-   )
-   final int field3725;
+   final int field3033;
 
    class313(int var3) {
-      this.field3725 = var3;
+      this.field3033 = var3;
    }
 
    @ObfuscatedName("e")
@@ -47,7 +43,7 @@ public enum class313 implements class345 {
       garbageValue = "96"
    )
    public int rsOrdinal() {
-      return this.field3725;
+      return this.field3033;
    }
 
    @ObfuscatedName("u")

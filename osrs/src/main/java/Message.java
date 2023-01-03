@@ -1,25 +1,16 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bv")
+@Implements("Message")
 public class Message extends DualNode {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1008799057
-   )
    int count;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 111146775
-   )
    int cycle;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1608023953
-   )
    int type;
    @ObfuscatedName("x")
    String sender;
@@ -136,7 +127,7 @@ public class Message extends DualNode {
    )
    final void fillSenderUsername() {
       if (this.sender != null) {
-         this.senderUsername = new Username(class282.method5507(this.sender), SecureRandomFuture.loginType);
+         this.senderUsername = new Username(class282.method1533(this.sender), SecureRandomFuture.loginType);
       } else {
          this.senderUsername = null;
       }
@@ -148,14 +139,14 @@ public class Message extends DualNode {
       descriptor = "(B)J",
       garbageValue = "-16"
    )
-   public static final synchronized long method1197() {
+   public static final synchronized long method344() {
       long var0 = System.currentTimeMillis();
-      if (var0 < class31.field180) {
-         class282.field3327 += class31.field180 - var0;
+      if (var0 < class31.field84) {
+         class282.field2695 += class31.field84 - var0;
       }
 
-      class31.field180 = var0;
-      return class282.field3327 + var0;
+      class31.field84 = var0;
+      return class282.field2695 + var0;
    }
 
    @ObfuscatedName("aw")
@@ -163,7 +154,7 @@ public class Message extends DualNode {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "153233392"
    )
-   static int method1200(int var0, Script var1, boolean var2) {
+   static int method345(int var0, Script var1, boolean var2) {
       if (var0 == 6809) {
          int var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
          ObjectComposition var4 = VarpDefinition.getObjectDefinition(var3);

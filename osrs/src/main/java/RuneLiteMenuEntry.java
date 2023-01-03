@@ -10,7 +10,7 @@ import net.runelite.rs.api.RSNPC;
 
 public class RuneLiteMenuEntry implements MenuEntry
 {
-	private static RSClient client;
+	public static RSClient client;
 
 	public Consumer consumer;
 	public int idx;

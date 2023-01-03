@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mq")
+@Implements("NodeDeque")
 public class NodeDeque {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

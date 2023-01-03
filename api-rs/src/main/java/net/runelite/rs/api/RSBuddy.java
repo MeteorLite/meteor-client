@@ -7,7 +7,7 @@ public interface RSBuddy extends ChatPlayer, RSUser
 {
 	@Import("getWorld")
 	@Override
-	int getWorld();
+	int getWorld$api();
 
 	@Import("rank")
 	int getRSRank();

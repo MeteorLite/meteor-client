@@ -1,16 +1,13 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fa")
 public class class158 extends class136 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -3634695712178554237L
-   )
-   long field1812;
+   long field1397;
    @ObfuscatedName("e")
-   String field1808;
+   String field1396;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lem;"
@@ -22,8 +19,8 @@ public class class158 extends class136 {
    )
    class158(class139 var1) {
       this.this$0 = var1;
-      this.field1812 = -1L;
-      this.field1808 = null;
+      this.field1397 = -1L;
+      this.field1396 = null;
    }
 
    @ObfuscatedName("h")
@@ -34,10 +31,10 @@ public class class158 extends class136 {
    void vmethod3254(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
-         this.field1812 = var1.readLong();
+         this.field1397 = var1.readLong();
       }
 
-      this.field1808 = var1.readStringCp1252NullTerminatedOrNull();
+      this.field1396 = var1.readStringCp1252NullTerminatedOrNull();
    }
 
    @ObfuscatedName("e")
@@ -46,7 +43,7 @@ public class class158 extends class136 {
       garbageValue = "839088249"
    )
    void vmethod3248(ClanSettings var1) {
-      var1.method3174(this.field1812, this.field1808);
+      var1.method785(this.field1397, this.field1396);
    }
 
    @ObfuscatedName("hr")
@@ -54,7 +51,7 @@ public class class158 extends class136 {
       descriptor = "(IIB)V",
       garbageValue = "120"
    )
-   static final void method3335(int var0, int var1) {
+   static final void method834(int var0, int var1) {
       if (var0 < 128) {
          var0 = 128;
       }

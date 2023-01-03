@@ -1,44 +1,30 @@
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.Reflection;
 
 @ObfuscatedName("fy")
+@Implements("MilliClock")
 public class MilliClock extends Clock {
    @ObfuscatedName("h")
-   long[] field1885 = new long[10];
+   long[] field1443 = new long[10];
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -581410869
-   )
-   int field1886 = 256;
+   int field1444 = 256;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 715488613
-   )
-   int field1890 = 1;
+   int field1448 = 1;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      longValue = -673545933242370399L
-   )
-   long field1888 = Message.method1197();
+   long field1446 = Message.method344();
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1067993763
-   )
-   int field1889 = 0;
+   int field1447 = 0;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1146826957
-   )
-   int field1887;
+   int field1445;
 
    public MilliClock() {
       for(int var1 = 0; var1 < 10; ++var1) {
-         this.field1885[var1] = this.field1888;
+         this.field1443[var1] = this.field1446;
       }
 
    }
@@ -50,7 +36,7 @@ public class MilliClock extends Clock {
    )
    public void mark() {
       for(int var1 = 0; var1 < 10; ++var1) {
-         this.field1885[var1] = 0L;
+         this.field1443[var1] = 0L;
       }
 
    }
@@ -61,53 +47,53 @@ public class MilliClock extends Clock {
       garbageValue = "1532577739"
    )
    public int wait(int var1, int var2) {
-      int var3 = this.field1886;
-      int var4 = this.field1890;
-      this.field1886 = 300;
-      this.field1890 = 1;
-      this.field1888 = Message.method1197();
-      if (this.field1885[this.field1887] == 0L) {
-         this.field1886 = var3;
-         this.field1890 = var4;
-      } else if (this.field1888 > this.field1885[this.field1887]) {
-         this.field1886 = (int)((long)(var1 * 2560) / (this.field1888 - this.field1885[this.field1887]));
+      int var3 = this.field1444;
+      int var4 = this.field1448;
+      this.field1444 = 300;
+      this.field1448 = 1;
+      this.field1446 = Message.method344();
+      if (this.field1443[this.field1445] == 0L) {
+         this.field1444 = var3;
+         this.field1448 = var4;
+      } else if (this.field1446 > this.field1443[this.field1445]) {
+         this.field1444 = (int)((long)(var1 * 2560) / (this.field1446 - this.field1443[this.field1445]));
       }
 
-      if (this.field1886 < 25) {
-         this.field1886 = 25;
+      if (this.field1444 < 25) {
+         this.field1444 = 25;
       }
 
-      if (this.field1886 > 256) {
-         this.field1886 = 256;
-         this.field1890 = (int)((long)var1 - (this.field1888 - this.field1885[this.field1887]) / 10L);
+      if (this.field1444 > 256) {
+         this.field1444 = 256;
+         this.field1448 = (int)((long)var1 - (this.field1446 - this.field1443[this.field1445]) / 10L);
       }
 
-      if (this.field1890 > var1) {
-         this.field1890 = var1;
+      if (this.field1448 > var1) {
+         this.field1448 = var1;
       }
 
-      this.field1885[this.field1887] = this.field1888;
-      this.field1887 = (this.field1887 + 1) % 10;
+      this.field1443[this.field1445] = this.field1446;
+      this.field1445 = (this.field1445 + 1) % 10;
       int var5;
-      if (this.field1890 > 1) {
+      if (this.field1448 > 1) {
          for(var5 = 0; var5 < 10; ++var5) {
-            if (this.field1885[var5] != 0L) {
-               this.field1885[var5] += (long)this.field1890;
+            if (this.field1443[var5] != 0L) {
+               this.field1443[var5] += (long)this.field1448;
             }
          }
       }
 
-      if (this.field1890 < var2) {
-         this.field1890 = var2;
+      if (this.field1448 < var2) {
+         this.field1448 = var2;
       }
 
-      class12.method157((long)this.field1890);
+      class12.method44((long)this.field1448);
 
-      for(var5 = 0; this.field1889 < 256; this.field1889 += this.field1886) {
+      for(var5 = 0; this.field1447 < 256; this.field1447 += this.field1444) {
          ++var5;
       }
 
-      this.field1889 &= 255;
+      this.field1447 &= 255;
       return var5;
    }
 

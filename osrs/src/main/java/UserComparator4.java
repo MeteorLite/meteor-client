@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dv")
+@Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
    @ObfuscatedName("h")
    final boolean reversed;
@@ -37,7 +38,7 @@ public class UserComparator4 implements Comparator {
       descriptor = "(Lcm;B)V",
       garbageValue = "0"
    )
-   static final void method2809(PendingSpawn var0) {
+   static final void method659(PendingSpawn var0) {
       long var1 = 0L;
       int var3 = -1;
       int var4 = 0;
@@ -66,7 +67,7 @@ public class UserComparator4 implements Comparator {
       }
 
       var0.objectId = var3;
-      var0.field1166 = var4;
-      var0.field1175 = var5;
+      var0.field921 = var4;
+      var0.field928 = var5;
    }
 }

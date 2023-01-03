@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ky")
+@Implements("Coord")
 public class Coord {
    @ObfuscatedName("ju")
    @ObfuscatedSignature(
@@ -12,19 +12,10 @@ public class Coord {
    )
    static IndexedSprite[] modIconSprites;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -606144137
-   )
    public int plane;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 453228853
-   )
    public int x;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 141048333
-   )
    public int y;
 
    @ObfuscatedSignature(
@@ -59,7 +50,7 @@ public class Coord {
       garbageValue = "15"
    )
    public int packed() {
-      return class140.method3104(this.plane, this.x, this.y);
+      return class140.method753(this.plane, this.x, this.y);
    }
 
    @ObfuscatedName("v")

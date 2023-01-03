@@ -2,6 +2,7 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
+@Implements("JSONException")
 @ObfuscatedName("org/json/JSONException")
 public class JSONException extends Exception {
    @ObfuscatedName("cause")

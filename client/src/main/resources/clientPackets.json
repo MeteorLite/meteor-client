@@ -2,18 +2,18 @@
   "0": {
     "name": "OPPLAYERT",
     "size": 11,
-    "deobname": "field3096",
+    "deobname": "field2480",
     "structure": [
       {
         "method": "writeShort",
         "argument": "id"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "selectedSpellChildIndex"
       },
       {
@@ -21,7 +21,7 @@
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "selectedSpellItemId"
       }
     ]
@@ -29,7 +29,7 @@
   "1": {
     "name": "EVENT_KEYBOARD",
     "size": -2,
-    "deobname": "field3048",
+    "deobname": "field2432",
     "structure": [
       {
         "method": "writeMedium",
@@ -44,44 +44,44 @@
   "2": {
     "name": "OPHELDT",
     "size": 14,
-    "deobname": "field3049",
+    "deobname": "field2433",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "itemId"
       },
       {
-        "method": "method8600",
+        "method": "method2382",
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param0"
       },
       {
-        "method": "method8599",
+        "method": "method2381",
         "argument": "param1"
       }
     ]
   },
   "3": {
-    "name": "field3050",
+    "name": "field2434",
     "size": 13,
     "deobname": "",
     "structure": []
   },
   "4": {
-    "name": "field3051",
+    "name": "field2435",
     "size": 10,
     "deobname": "",
     "structure": []
   },
   "5": {
-    "name": "field3052",
+    "name": "field2436",
     "size": 7,
     "deobname": "",
     "structure": []
@@ -89,7 +89,7 @@
   "6": {
     "name": "OPLOCU",
     "size": 15,
-    "deobname": "field3061",
+    "deobname": "field2445",
     "structure": [
       {
         "method": "writeShort",
@@ -100,11 +100,11 @@
         "argument": "param1"
       },
       {
-        "method": "method8579",
+        "method": "method2369",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "selectedItemSlot"
       },
       {
@@ -112,17 +112,17 @@
         "argument": "selectedItemWidget"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "selectedItemId"
       },
       {
         "method": "writeIntME",
-        "argument": "param0"
+        "argument": "worldX"
       }
     ]
   },
   "7": {
-    "name": "field3054",
+    "name": "field2438",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -130,46 +130,46 @@
   "8": {
     "name": "OPOBJ4",
     "size": 7,
-    "deobname": "field3071",
+    "deobname": "field2455",
     "structure": [
       {
         "method": "writeShort",
         "argument": "id"
       },
       {
-        "method": "method8579",
+        "method": "method2369",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param1"
       },
       {
-        "method": "method8607",
-        "argument": "param0"
+        "method": "method2386",
+        "argument": "worldX"
       }
     ]
   },
   "9": {
-    "name": "field3141",
+    "name": "field2525",
     "size": 6,
     "deobname": "",
     "structure": []
   },
   "10": {
-    "name": "field3057",
+    "name": "field2441",
     "size": 5,
     "deobname": "",
     "structure": []
   },
   "11": {
-    "name": "field3058",
+    "name": "field2442",
     "size": 9,
-    "deobname": "field3058",
+    "deobname": "field2442",
     "structure": []
   },
   "12": {
-    "name": "field3109",
+    "name": "field2493",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -177,7 +177,7 @@
   "13": {
     "name": "IF_BUTTON1",
     "size": 8,
-    "deobname": "field3060",
+    "deobname": "field2444",
     "structure": [
       {
         "method": "Int",
@@ -196,18 +196,18 @@
   "14": {
     "name": "OPNPCT",
     "size": 11,
-    "deobname": "field3053",
+    "deobname": "field2437",
     "structure": [
       {
         "method": "writeIntME",
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       },
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "selectedSpellWidget"
       },
       {
@@ -215,7 +215,7 @@
         "argument": "selectedSpellItemId"
       },
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       }
     ]
@@ -223,10 +223,10 @@
   "15": {
     "name": "IF_BUTTONT",
     "size": 16,
-    "deobname": "field3153",
+    "deobname": "field2537",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "selectedSpellItemId"
       },
       {
@@ -234,19 +234,19 @@
         "argument": "widgetId"
       },
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "slot"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "itemId"
       }
     ]
@@ -254,10 +254,10 @@
   "16": {
     "name": "OPLOC1",
     "size": 7,
-    "deobname": "field3110",
+    "deobname": "field2494",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "param1"
       },
       {
@@ -265,19 +265,19 @@
         "argument": "shiftPressed"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       },
       {
-        "method": "method8607",
-        "argument": "param0"
+        "method": "method2386",
+        "argument": "worldX"
       }
     ]
   },
   "17": {
     "name": "OPLOCT",
     "size": 15,
-    "deobname": "field3064",
+    "deobname": "field2448",
     "structure": [
       {
         "method": "writeShort",
@@ -288,19 +288,19 @@
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method8589",
-        "argument": "param0"
+        "method": "method2375",
+        "argument": "worldX"
       },
       {
         "method": "writeShort",
         "argument": "id"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       },
       {
@@ -310,7 +310,7 @@
     ]
   },
   "18": {
-    "name": "field3065",
+    "name": "field2449",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -318,10 +318,10 @@
   "19": {
     "name": "OPPLAYER6",
     "size": 3,
-    "deobname": "field3066",
+    "deobname": "field2450",
     "structure": [
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       },
       {
@@ -333,14 +333,14 @@
   "20": {
     "name": "OPNPC5",
     "size": 3,
-    "deobname": "field3067",
+    "deobname": "field2451",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       },
       {
-        "method": "method8579",
+        "method": "method2369",
         "argument": "shiftPressed"
       }
     ]
@@ -348,10 +348,10 @@
   "21": {
     "name": "OPNPC2",
     "size": 3,
-    "deobname": "field3068",
+    "deobname": "field2452",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       },
       {
@@ -361,7 +361,7 @@
     ]
   },
   "22": {
-    "name": "field3092",
+    "name": "field2476",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -369,7 +369,7 @@
   "23": {
     "name": "IF_BUTTON3",
     "size": 8,
-    "deobname": "field3070",
+    "deobname": "field2454",
     "structure": [
       {
         "method": "Int",
@@ -388,18 +388,18 @@
   "24": {
     "name": "IF1_BUTTON4",
     "size": 8,
-    "deobname": "field3056",
+    "deobname": "field2440",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "param0"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "itemId"
       },
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "param1"
       }
     ]
@@ -407,7 +407,7 @@
   "25": {
     "name": "IF_BUTTON5",
     "size": 8,
-    "deobname": "field3072",
+    "deobname": "field2456",
     "structure": [
       {
         "method": "Int",
@@ -424,7 +424,7 @@
     ]
   },
   "26": {
-    "name": "field3073",
+    "name": "field2457",
     "size": 0,
     "deobname": "",
     "structure": []
@@ -432,7 +432,7 @@
   "27": {
     "name": "IF_BUTTON8",
     "size": 8,
-    "deobname": "field3074",
+    "deobname": "field2458",
     "structure": [
       {
         "method": "Int",
@@ -449,7 +449,7 @@
     ]
   },
   "28": {
-    "name": "field3075",
+    "name": "field2459",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -457,7 +457,7 @@
   "29": {
     "name": "IF_BUTTON10",
     "size": 8,
-    "deobname": "field3081",
+    "deobname": "field2465",
     "structure": [
       {
         "method": "Int",
@@ -474,13 +474,13 @@
     ]
   },
   "30": {
-    "name": "field3077",
+    "name": "field2461",
     "size": 4,
     "deobname": "",
     "structure": []
   },
   "31": {
-    "name": "field3078",
+    "name": "field2462",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -488,7 +488,7 @@
   "32": {
     "name": "IF_BUTTON7",
     "size": 8,
-    "deobname": "field3079",
+    "deobname": "field2463",
     "structure": [
       {
         "method": "Int",
@@ -507,19 +507,19 @@
   "33": {
     "name": "OPOBJ3",
     "size": 7,
-    "deobname": "field3080",
+    "deobname": "field2464",
     "structure": [
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param1"
       },
       {
         "method": "writeIntME",
-        "argument": "param0"
+        "argument": "worldX"
       },
       {
         "method": "writeIntME",
@@ -530,7 +530,7 @@
   "34": {
     "name": "OPNPC3",
     "size": 3,
-    "deobname": "field3140",
+    "deobname": "field2524",
     "structure": [
       {
         "method": "writeIntME",
@@ -545,18 +545,18 @@
   "35": {
     "name": "OPNPCU",
     "size": 11,
-    "deobname": "field3082",
+    "deobname": "field2466",
     "structure": [
       {
-        "method": "method8600",
+        "method": "method2382",
         "argument": "selectedItemWidget"
       },
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       },
       {
@@ -572,14 +572,14 @@
   "36": {
     "name": "OPLOC4",
     "size": 7,
-    "deobname": "field3112",
+    "deobname": "field2496",
     "structure": [
       {
         "method": "writeIntME",
-        "argument": "param0"
+        "argument": "worldX"
       },
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       },
       {
@@ -593,13 +593,13 @@
     ]
   },
   "37": {
-    "name": "field3084",
+    "name": "field2468",
     "size": -1,
     "deobname": "",
     "structure": []
   },
   "38": {
-    "name": "field3085",
+    "name": "field2469",
     "size": 3,
     "deobname": "",
     "structure": []
@@ -607,20 +607,20 @@
   "39": {
     "name": "OPPLAYER7",
     "size": 3,
-    "deobname": "field3105",
+    "deobname": "field2489",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       },
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       }
     ]
   },
   "40": {
-    "name": "field3087",
+    "name": "field2471",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -628,26 +628,26 @@
   "41": {
     "name": "OPPLAYER5",
     "size": 3,
-    "deobname": "field3088",
+    "deobname": "field2472",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "id"
       },
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       }
     ]
   },
   "42": {
-    "name": "field3089",
+    "name": "field2473",
     "size": -1,
     "deobname": "",
     "structure": []
   },
   "43": {
-    "name": "field3055",
+    "name": "field2439",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -655,7 +655,7 @@
   "44": {
     "name": "OPPLAYER1",
     "size": 3,
-    "deobname": "field3091",
+    "deobname": "field2475",
     "structure": [
       {
         "method": "writeByte",
@@ -670,18 +670,18 @@
   "45": {
     "name": "OPOBJU",
     "size": 15,
-    "deobname": "field3069",
+    "deobname": "field2453",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "id"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "param1"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "selectedItemSlot"
       },
       {
@@ -689,12 +689,12 @@
         "argument": "selectedItemId"
       },
       {
-        "method": "method8599",
+        "method": "method2381",
         "argument": "selectedItemWidget"
       },
       {
         "method": "writeIntME",
-        "argument": "param0"
+        "argument": "worldX"
       },
       {
         "method": "writeByte",
@@ -705,7 +705,7 @@
   "46": {
     "name": "OPHELD3",
     "size": 8,
-    "deobname": "field3093",
+    "deobname": "field2477",
     "structure": [
       {
         "method": "writeInt",
@@ -724,14 +724,14 @@
   "47": {
     "name": "OPPLAYER4",
     "size": 3,
-    "deobname": "field3047",
+    "deobname": "field2431",
     "structure": [
       {
         "method": "writeShort",
         "argument": "id"
       },
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       }
     ]
@@ -739,14 +739,14 @@
   "48": {
     "name": "OPHELD1",
     "size": 8,
-    "deobname": "field3095",
+    "deobname": "field2479",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "param0"
       },
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "param1"
       },
       {
@@ -756,18 +756,18 @@
     ]
   },
   "49": {
-    "name": "field3127",
+    "name": "field2511",
     "size": 2,
-    "deobname": "field3127",
+    "deobname": "field2511",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "itemId"
       }
     ]
   },
   "50": {
-    "name": "field3097",
+    "name": "field2481",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -775,7 +775,7 @@
   "51": {
     "name": "IF_BUTTON6",
     "size": 8,
-    "deobname": "field3098",
+    "deobname": "field2482",
     "structure": [
       {
         "method": "Int",
@@ -792,7 +792,7 @@
     ]
   },
   "52": {
-    "name": "field3118",
+    "name": "field2502",
     "size": -2,
     "deobname": "",
     "structure": []
@@ -800,41 +800,41 @@
   "53": {
     "name": "OPOBJ2",
     "size": 7,
-    "deobname": "field3100",
+    "deobname": "field2484",
     "structure": [
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "id"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param1"
       },
       {
-        "method": "method8607",
-        "argument": "param0"
+        "method": "method2386",
+        "argument": "worldX"
       }
     ]
   },
   "54": {
     "name": "OPHELD2",
     "size": 8,
-    "deobname": "field3101",
+    "deobname": "field2485",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "itemId"
       },
       {
-        "method": "method8599",
+        "method": "method2381",
         "argument": "param1"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "param0"
       }
     ]
@@ -842,10 +842,10 @@
   "55": {
     "name": "OPNPC4",
     "size": 3,
-    "deobname": "field3102",
+    "deobname": "field2486",
     "structure": [
       {
-        "method": "method8579",
+        "method": "method2369",
         "argument": "shiftPressed"
       },
       {
@@ -857,10 +857,10 @@
   "56": {
     "name": "OPHELD4",
     "size": 8,
-    "deobname": "field3122",
+    "deobname": "field2506",
     "structure": [
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "param1"
       },
       {
@@ -868,7 +868,7 @@
         "argument": "param0"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "itemId"
       }
     ]
@@ -876,10 +876,10 @@
   "57": {
     "name": "OPHELD5",
     "size": 8,
-    "deobname": "field3104",
+    "deobname": "field2488",
     "structure": [
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "param1"
       },
       {
@@ -895,7 +895,7 @@
   "58": {
     "name": "EVENT_MOUSE_CLICK",
     "size": 6,
-    "deobname": "field3114",
+    "deobname": "field2498",
     "structure": [
       {
         "method": "writeShort",
@@ -914,14 +914,14 @@
   "59": {
     "name": "OPLOC2",
     "size": 7,
-    "deobname": "field3106",
+    "deobname": "field2490",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "id"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       },
       {
@@ -930,35 +930,35 @@
       },
       {
         "method": "writeIntME",
-        "argument": "param0"
+        "argument": "worldX"
       }
     ]
   },
   "60": {
     "name": "OPLOC6",
     "size": 2,
-    "deobname": "field3151",
+    "deobname": "field2535",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       }
     ]
   },
   "61": {
-    "name": "field3108",
+    "name": "field2492",
     "size": 4,
     "deobname": "",
     "structure": []
   },
   "62": {
-    "name": "field3120",
+    "name": "field2504",
     "size": 9,
-    "deobname": "field3120",
+    "deobname": "field2504",
     "structure": []
   },
   "63": {
-    "name": "field3063",
+    "name": "field2447",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -966,7 +966,7 @@
   "64": {
     "name": "IF1_BUTTON5",
     "size": 8,
-    "deobname": "field3111",
+    "deobname": "field2495",
     "structure": [
       {
         "method": "writeShort",
@@ -977,7 +977,7 @@
         "argument": "param0"
       },
       {
-        "method": "method8599",
+        "method": "method2381",
         "argument": "param1"
       }
     ]
@@ -985,7 +985,7 @@
   "65": {
     "name": "BUTTON_CLICK",
     "size": 4,
-    "deobname": "field3133",
+    "deobname": "field2517",
     "structure": [
       {
         "method": "writeInt",
@@ -994,7 +994,7 @@
     ]
   },
   "66": {
-    "name": "field3113",
+    "name": "field2497",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -1002,7 +1002,7 @@
   "67": {
     "name": "IF_BUTTON9",
     "size": 8,
-    "deobname": "field3076",
+    "deobname": "field2460",
     "structure": [
       {
         "method": "Int",
@@ -1019,7 +1019,7 @@
     ]
   },
   "68": {
-    "name": "field3115",
+    "name": "field2499",
     "size": -2,
     "deobname": "",
     "structure": []
@@ -1027,14 +1027,14 @@
   "69": {
     "name": "IF1_BUTTON3",
     "size": 8,
-    "deobname": "field3116",
+    "deobname": "field2500",
     "structure": [
       {
-        "method": "method8600",
+        "method": "method2382",
         "argument": "param1"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param0"
       },
       {
@@ -1046,15 +1046,15 @@
   "70": {
     "name": "OPOBJ1",
     "size": 7,
-    "deobname": "field3117",
+    "deobname": "field2501",
     "structure": [
       {
         "method": "writeByte",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8589",
-        "argument": "param0"
+        "method": "method2375",
+        "argument": "worldX"
       },
       {
         "method": "writeIntME",
@@ -1067,7 +1067,7 @@
     ]
   },
   "71": {
-    "name": "field3090",
+    "name": "field2474",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -1075,22 +1075,22 @@
   "72": {
     "name": "OPLOC5",
     "size": 7,
-    "deobname": "field3119",
+    "deobname": "field2503",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param1"
       },
       {
         "method": "writeShort",
-        "argument": "param0"
+        "argument": "worldX"
       },
       {
         "method": "writeIntME",
         "argument": "id"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       }
     ]
@@ -1098,26 +1098,26 @@
   "73": {
     "name": "OPPLAYER8",
     "size": 3,
-    "deobname": "field3138",
+    "deobname": "field2522",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       }
     ]
   },
   "74": {
-    "name": "field3121",
+    "name": "field2505",
     "size": -1,
-    "deobname": "field3121",
+    "deobname": "field2505",
     "structure": []
   },
   "75": {
-    "name": "field3099",
+    "name": "field2483",
     "size": 0,
     "deobname": "",
     "structure": []
@@ -1125,46 +1125,46 @@
   "76": {
     "name": "OPLOC5",
     "size": 7,
-    "deobname": "field3123",
+    "deobname": "field2507",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param1"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "id"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8607",
-        "argument": "param0"
+        "method": "method2386",
+        "argument": "worldX"
       }
     ]
   },
   "77": {
-    "name": "field3124",
+    "name": "field2508",
     "size": 0,
-    "deobname": "field3124",
+    "deobname": "field2508",
     "structure": []
   },
   "78": {
-    "name": "field3125",
+    "name": "field2509",
     "size": -1,
     "deobname": "",
     "structure": []
   },
   "79": {
-    "name": "field3134",
+    "name": "field2518",
     "size": 2,
     "deobname": "",
     "structure": []
   },
   "80": {
-    "name": "field3130",
+    "name": "field2514",
     "size": 4,
     "deobname": "",
     "structure": []
@@ -1172,7 +1172,7 @@
   "81": {
     "name": "IF_BUTTON4",
     "size": 8,
-    "deobname": "field3128",
+    "deobname": "field2512",
     "structure": [
       {
         "method": "Int",
@@ -1189,7 +1189,7 @@
     ]
   },
   "82": {
-    "name": "field3107",
+    "name": "field2491",
     "size": 0,
     "deobname": "",
     "structure": []
@@ -1197,22 +1197,22 @@
   "83": {
     "name": "OPPLAYERU",
     "size": 11,
-    "deobname": "field3086",
+    "deobname": "field2470",
     "structure": [
       {
-        "method": "method8580",
+        "method": "method2370",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "selectedItemWidget"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "selectedItemSlot"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "selectedItemId"
       },
       {
@@ -1224,14 +1224,14 @@
   "84": {
     "name": "OPHELDU",
     "size": 16,
-    "deobname": "field3131",
+    "deobname": "field2515",
     "structure": [
       {
-        "method": "method8601",
+        "method": "method2383",
         "argument": "param1"
       },
       {
-        "method": "method8599",
+        "method": "method2381",
         "argument": "selectedItemWidget"
       },
       {
@@ -1239,11 +1239,11 @@
         "argument": "itemId"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "selectedItemSlot"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "param0"
       },
       {
@@ -1255,18 +1255,18 @@
   "85": {
     "name": "OPOBJ6",
     "size": 6,
-    "deobname": "field3132",
+    "deobname": "field2516",
     "structure": [
       {
         "method": "writeIntME",
-        "argument": "param0"
+        "argument": "worldX"
       },
       {
         "method": "writeShort",
         "argument": "param1"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       }
     ]
@@ -1274,7 +1274,7 @@
   "86": {
     "name": "IF1_BUTTON2",
     "size": 8,
-    "deobname": "field3139",
+    "deobname": "field2523",
     "structure": [
       {
         "method": "writeShort",
@@ -1285,7 +1285,7 @@
         "argument": "param1"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "itemId"
       }
     ]
@@ -1293,43 +1293,43 @@
   "87": {
     "name": "OPPLAYER3",
     "size": 3,
-    "deobname": "field3094",
+    "deobname": "field2478",
     "structure": [
       {
         "method": "writeByte",
         "argument": "shiftPressed"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "id"
       }
     ]
   },
   "88": {
-    "name": "field3135",
+    "name": "field2519",
     "size": 1,
-    "deobname": "field3135",
+    "deobname": "field2519",
     "structure": []
   },
   "89": {
     "name": "OPLOC3",
     "size": 7,
-    "deobname": "field3062",
+    "deobname": "field2446",
     "structure": [
       {
         "method": "writeIntME",
-        "argument": "param0"
+        "argument": "worldX"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "id"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "param1"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       }
     ]
@@ -1337,14 +1337,14 @@
   "90": {
     "name": "OPNPC1",
     "size": 3,
-    "deobname": "field3137",
+    "deobname": "field2521",
     "structure": [
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "id"
       },
       {
-        "method": "method8578",
+        "method": "method2368",
         "argument": "shiftPressed"
       }
     ]
@@ -1352,7 +1352,7 @@
   "91": {
     "name": "IF1_BUTTON1",
     "size": 8,
-    "deobname": "field3059",
+    "deobname": "field2443",
     "structure": [
       {
         "method": "writeInt",
@@ -1363,7 +1363,7 @@
         "argument": "itemId"
       },
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "param0"
       }
     ]
@@ -1371,7 +1371,7 @@
   "92": {
     "name": "MOVE_GAMECLICK",
     "size": -1,
-    "deobname": "field3083",
+    "deobname": "field2467",
     "structure": [
       {
         "method": "writeByte",
@@ -1392,19 +1392,19 @@
     ]
   },
   "93": {
-    "name": "field3129",
+    "name": "field2513",
     "size": 0,
-    "deobname": "field3129",
+    "deobname": "field2513",
     "structure": []
   },
   "94": {
     "name": "REFLECTION_CHECK_REPLY",
     "size": -1,
-    "deobname": "field3136",
+    "deobname": "field2520",
     "structure": []
   },
   "95": {
-    "name": "field3142",
+    "name": "field2526",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -1412,7 +1412,7 @@
   "96": {
     "name": "LOGIN_STATISTICS",
     "size": -1,
-    "deobname": "field3143",
+    "deobname": "field2527",
     "structure": [
       {
         "method": "writeShort",
@@ -1435,7 +1435,7 @@
   "97": {
     "name": "IF_BUTTON2",
     "size": 8,
-    "deobname": "field3144",
+    "deobname": "field2528",
     "structure": [
       {
         "method": "Int",
@@ -1452,13 +1452,13 @@
     ]
   },
   "98": {
-    "name": "field3145",
+    "name": "field2529",
     "size": -1,
     "deobname": "",
     "structure": []
   },
   "99": {
-    "name": "field3146",
+    "name": "field2530",
     "size": 2,
     "deobname": "",
     "structure": []
@@ -1466,7 +1466,7 @@
   "100": {
     "name": "OPPLAYER2",
     "size": 3,
-    "deobname": "field3147",
+    "deobname": "field2531",
     "structure": [
       {
         "method": "writeIntME",
@@ -1479,19 +1479,19 @@
     ]
   },
   "101": {
-    "name": "field3148",
+    "name": "field2532",
     "size": -1,
     "deobname": "",
     "structure": []
   },
   "102": {
-    "name": "field3149",
+    "name": "field2533",
     "size": 4,
-    "deobname": "field3149",
+    "deobname": "field2533",
     "structure": []
   },
   "103": {
-    "name": "field3150",
+    "name": "field2534",
     "size": -1,
     "deobname": "",
     "structure": []
@@ -1499,10 +1499,10 @@
   "104": {
     "name": "OPNPC6",
     "size": 2,
-    "deobname": "field3103",
+    "deobname": "field2487",
     "structure": [
       {
-        "method": "method8589",
+        "method": "method2375",
         "argument": "shiftPressed"
       }
     ]
@@ -1510,18 +1510,18 @@
   "105": {
     "name": "OPOBJT",
     "size": 15,
-    "deobname": "field3152",
+    "deobname": "field2536",
     "structure": [
       {
-        "method": "method8589",
-        "argument": "param0"
+        "method": "method2375",
+        "argument": "worldX"
       },
       {
-        "method": "method8607",
+        "method": "method2386",
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method8600",
+        "method": "method2382",
         "argument": "selectedSpellWidget"
       },
       {
@@ -1533,7 +1533,7 @@
         "argument": "param1"
       },
       {
-        "method": "method8579",
+        "method": "method2369",
         "argument": "shiftPressed"
       },
       {
@@ -1543,15 +1543,15 @@
     ]
   },
   "106": {
-    "name": "field3126",
+    "name": "field2510",
     "size": 16,
     "deobname": "",
     "structure": []
   },
   "107": {
-    "name": "field3154",
+    "name": "field2538",
     "size": 22,
-    "deobname": "field3154",
+    "deobname": "field2538",
     "structure": []
   }
 }

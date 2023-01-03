@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ir")
+@Implements("WorldMapSprite")
 public final class WorldMapSprite {
    @ObfuscatedName("e")
    final int[] tileColors;
@@ -30,7 +31,7 @@ public final class WorldMapSprite {
       descriptor = "(IB)I",
       garbageValue = "118"
    )
-   public static int method5272(int var0) {
-      return Varps.method5806(ViewportMouse.ViewportMouse_entityTags[var0]);
+   public static int method1444(int var0) {
+      return Varps.method1607(ViewportMouse.ViewportMouse_entityTags[var0]);
    }
 }

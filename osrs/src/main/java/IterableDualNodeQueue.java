@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mm")
+@Implements("IterableDualNodeQueue")
 public class IterableDualNodeQueue implements Iterable {
    @ObfuscatedName("h")
    @ObfuscatedSignature(

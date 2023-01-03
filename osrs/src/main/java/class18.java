@@ -30,13 +30,13 @@ class class18 implements Comparator {
       descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;B)I",
       garbageValue = "-60"
    )
-   int method257(Entry var1, Entry var2) {
+   int method58(Entry var1, Entry var2) {
       return ((Float)var2.getValue()).compareTo((Float)var1.getValue());
    }
 
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
-      return this.method257((Entry)var1, (Entry)var2);
+      return this.method58((Entry)var1, (Entry)var2);
    }
 
    @ObfuscatedName("equals")
@@ -49,7 +49,7 @@ class class18 implements Comparator {
       descriptor = "(IIIB)I",
       garbageValue = "42"
    )
-   public static int method266(int var0, int var1, int var2) {
+   public static int method60(int var0, int var1, int var2) {
       var2 &= 3;
       if (var2 == 0) {
          return var1;
@@ -65,7 +65,7 @@ class class18 implements Comparator {
       descriptor = "(III)I",
       garbageValue = "801580605"
    )
-   static int method267(int var0, int var1) {
+   static int method61(int var0, int var1) {
       ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var2 == null) {
          return -1;
@@ -79,7 +79,7 @@ class class18 implements Comparator {
       descriptor = "(IB)I",
       garbageValue = "1"
    )
-   public static int method269(int var0) {
+   public static int method63(int var0) {
       return var0 != 0 && var0 != 1 ? -1 : 0;
    }
 
@@ -89,32 +89,32 @@ class class18 implements Comparator {
       garbageValue = "120"
    )
    static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
-      if (var0.field3622 == null) {
+      if (var0.field2946 == null) {
          if (var2 == null) {
             return;
          }
 
-         var0.field3622 = new byte[11][];
-         var0.field3623 = new byte[11][];
-         var0.field3630 = new int[11];
-         var0.field3625 = new int[11];
+         var0.field2946 = new byte[11][];
+         var0.field2947 = new byte[11][];
+         var0.field2954 = new int[11];
+         var0.field2949 = new int[11];
       }
 
-      var0.field3622[var1] = var2;
+      var0.field2946[var1] = var2;
       if (var2 != null) {
-         var0.field3621 = true;
+         var0.field2945 = true;
       } else {
-         var0.field3621 = false;
+         var0.field2945 = false;
 
-         for(int var4 = 0; var4 < var0.field3622.length; ++var4) {
-            if (var0.field3622[var4] != null) {
-               var0.field3621 = true;
+         for(int var4 = 0; var4 < var0.field2946.length; ++var4) {
+            if (var0.field2946[var4] != null) {
+               var0.field2945 = true;
                break;
             }
          }
       }
 
-      var0.field3623[var1] = var3;
+      var0.field2947[var1] = var3;
    }
 
    @ObfuscatedName("gh")
@@ -122,10 +122,10 @@ class class18 implements Comparator {
       descriptor = "(Lln;Ljava/lang/String;I)V",
       garbageValue = "-156913966"
    )
-   static void method263(Archive var0, String var1) {
+   static void method59(Archive var0, String var1) {
       ArchiveLoader var2 = new ArchiveLoader(var0, var1);
       Client.archiveLoaders.add(var2);
-      Client.field804 += var2.groupCount;
+      Client.field649 += var2.groupCount;
    }
 
    @ObfuscatedName("lg")
@@ -135,16 +135,16 @@ class class18 implements Comparator {
    )
    static final void clickWidget(Widget var0, int var1, int var2) {
       if (Client.clickedWidget == null && !Client.isMenuOpen) {
-         if (var0 != null && class306.method6317(var0) != null) {
+         if (var0 != null && class306.method1753(var0) != null) {
             Client.clickedWidget = var0;
-            Client.clickedWidgetParent = class306.method6317(var0);
+            Client.clickedWidgetParent = class306.method1753(var0);
             Client.widgetClickX = var1;
             Client.widgetClickY = var2;
             class87.widgetDragDuration = 0;
             Client.isDraggingWidget = false;
             int var3 = Client.menuOptionsCount - 1;
             if (var3 != -1) {
-               ReflectionCheck.method711(var3);
+               ReflectionCheck.method187(var3);
             }
 
          }
@@ -156,8 +156,8 @@ class class18 implements Comparator {
       descriptor = "(II)V",
       garbageValue = "-53673761"
    )
-   static final void method270(int var0) {
+   static final void method64(int var0) {
       var0 = Math.min(Math.max(var0, 0), 127);
-      StructComposition.clientPreferences.method2427(var0);
+      StructComposition.clientPreferences.method545(var0);
    }
 }

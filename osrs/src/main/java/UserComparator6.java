@@ -1,15 +1,12 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dd")
+@Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
    @ObfuscatedName("vz")
-   @ObfuscatedGetter(
-      intValue = -421019103
-   )
    static int foundItemIndex;
    @ObfuscatedName("h")
    final boolean reversed;
@@ -44,7 +41,7 @@ public class UserComparator6 extends AbstractUserComparator {
    static void changeWorld(World var0) {
       if (var0.isMembersOnly() != Client.isMembersWorld) {
          Client.isMembersWorld = var0.isMembersOnly();
-         class344.method6675(var0.isMembersOnly());
+         class344.method1858(var0.isMembersOnly());
       }
 
       if (var0.properties != Client.worldProperties) {

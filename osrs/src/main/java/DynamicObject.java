@@ -1,38 +1,22 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bk")
+@Implements("DynamicObject")
 public class DynamicObject extends Renderable {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -2074471671
-   )
    int id;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1709661329
-   )
    int type;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1920524297
-   )
    int orientation;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -14987683
-   )
    int plane;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1813409375
-   )
    int x;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1033732035
-   )
    int y;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -40,14 +24,8 @@ public class DynamicObject extends Renderable {
    )
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 1771160437
-   )
    int frame;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 672307685
-   )
    int cycleStart;
 
    @ObfuscatedSignature(
@@ -64,7 +42,7 @@ public class DynamicObject extends Renderable {
          this.sequenceDefinition = AABB.SequenceDefinition_get(var7);
          this.frame = 0;
          this.cycleStart = Client.cycle - 1;
-         if (this.sequenceDefinition.field2276 == 0 && var9 != null && var9 instanceof DynamicObject) {
+         if (this.sequenceDefinition.field1786 == 0 && var9 != null && var9 instanceof DynamicObject) {
             DynamicObject var10 = (DynamicObject)var9;
             if (this.sequenceDefinition == var10.sequenceDefinition) {
                this.frame = var10.frame;
@@ -78,7 +56,7 @@ public class DynamicObject extends Renderable {
                this.frame = (int)(Math.random() * (double)this.sequenceDefinition.frameIds.length);
                this.cycleStart -= (int)(Math.random() * (double)this.sequenceDefinition.frameLengths[this.frame]);
             } else {
-               this.frame = (int)(Math.random() * (double)this.sequenceDefinition.method4024());
+               this.frame = (int)(Math.random() * (double)this.sequenceDefinition.method1056());
             }
          }
       }
@@ -99,7 +77,7 @@ public class DynamicObject extends Renderable {
          }
 
          if (this.sequenceDefinition.isCachedModelIdSet()) {
-            var2 = this.sequenceDefinition.method4024();
+            var2 = this.sequenceDefinition.method1056();
             this.frame += var1;
             var1 = 0;
             if (this.frame >= var2) {
@@ -109,11 +87,11 @@ public class DynamicObject extends Renderable {
                }
             }
          } else {
-            label81: {
+            label69: {
                do {
                   do {
                      if (var1 <= this.sequenceDefinition.frameLengths[this.frame]) {
-                        break label81;
+                        break label69;
                      }
 
                      var1 -= this.sequenceDefinition.frameLengths[this.frame];
@@ -168,7 +146,7 @@ public class DynamicObject extends Renderable {
       int var2 = var0.readUnsignedByte();
       int var3;
       if (var1 == null) {
-         var3 = AccessFile.method8302(var2);
+         var3 = AccessFile.method2278(var2);
          var1 = new IterableNodeHashTable(var3);
       }
 
@@ -193,7 +171,7 @@ public class DynamicObject extends Renderable {
       descriptor = "(IB)V",
       garbageValue = "-59"
    )
-   static void method2139(int var0) {
+   static void method452(int var0) {
       ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var1 != null) {
          var1.remove();
@@ -205,7 +183,7 @@ public class DynamicObject extends Renderable {
       descriptor = "(II)I",
       garbageValue = "1835636041"
    )
-   static int method2141(int var0) {
+   static int method454(int var0) {
       Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
       if (var1 == null) {
          return -1;
@@ -217,9 +195,9 @@ public class DynamicObject extends Renderable {
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "(ILkd;IIIII[FB)Lkd;",
-      garbageValue = "42"
+      garbageValue = "84"
    )
-   static Widget method2137(int var0, Widget var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
+   static Widget method451(int var0, Widget var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
       Widget var8 = new Widget();
       var8.type = var0;
       var8.parentId = var1.id;

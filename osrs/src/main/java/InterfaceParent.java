@@ -1,34 +1,28 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cx")
+@Implements("InterfaceParent")
 public class InterfaceParent extends Node {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 545250955
-   )
    int group;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -829260005
-   )
    int type;
    @ObfuscatedName("v")
-   boolean field1067 = false;
+   boolean field840 = false;
 
    @ObfuscatedName("gw")
    @ObfuscatedSignature(
       descriptor = "(ZB)V",
       garbageValue = "30"
    )
-   static final void method2251(boolean var0) {
+   static final void method472(boolean var0) {
       if (var0) {
-         Client.field540 = Login.field930 ? class132.field1629 : class132.field1626;
+         Client.field385 = Login.field738 ? class132.field1280 : class132.field1277;
       } else {
-         Client.field540 = StructComposition.clientPreferences.method2436(Login.Login_username) ? class132.field1624 : class132.field1625;
+         Client.field385 = StructComposition.clientPreferences.method553(Login.Login_username) ? class132.field1275 : class132.field1276;
       }
 
    }
@@ -46,8 +40,8 @@ public class InterfaceParent extends Node {
       int var6;
       int var7;
       if (!Client.isInInstance) {
-         var2 = var1.method8530();
-         var3 = var1.method8592();
+         var2 = var1.method2333();
+         var3 = var1.method2377();
          int var4 = var1.readUnsignedShort();
          class104.xteaKeys = new int[var4][4];
 
@@ -74,11 +68,11 @@ public class InterfaceParent extends Node {
             }
          }
 
-         class281.method5499(var2, var3, true);
+         class281.method1528(var2, var3, true);
       } else {
-         var2 = var1.method8592();
-         var3 = var1.method8592();
-         boolean var15 = var1.method8581() == 1;
+         var2 = var1.method2377();
+         var3 = var1.method2377();
+         boolean var15 = var1.method2371() == 1;
          var5 = var1.readUnsignedShort();
          var1.importIndex();
 
@@ -143,7 +137,7 @@ public class InterfaceParent extends Node {
             }
          }
 
-         class281.method5499(var2, var3, !var15);
+         class281.method1528(var2, var3, !var15);
       }
 
    }

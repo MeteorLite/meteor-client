@@ -166,7 +166,7 @@ public abstract class SoundEffectMixin implements RSClient
 
 		RSRawSound rawAudioNode = soundEffect.toRawAudioNode().applyResampler(getSoundEffectResampler());
 		RSRawPcmStream rawPcmStream = createRawPcmStream(rawAudioNode, 100, volume);
-		rawPcmStream.setNumLoops(1);
+		rawPcmStream.setNumLoops$api(1);
 
 		getSoundEffectAudioQueue().addSubStream((RSPcmStream) rawPcmStream);
 	}

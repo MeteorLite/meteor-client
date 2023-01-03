@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fl")
+@Implements("Task")
 public class Task {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -14,9 +14,6 @@ public class Task {
    @ObfuscatedName("x")
    public volatile int status = 0;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1101971137
-   )
    int type;
    @ObfuscatedName("q")
    public int intArgument;

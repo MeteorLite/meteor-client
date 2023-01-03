@@ -1,25 +1,16 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oa")
+@Implements("Buddy")
 public class Buddy extends User {
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1767210019
-   )
    public int world = -1;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1595280059
-   )
    public int int2;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -894638573
-   )
    public int rank;
 
    @ObfuscatedName("aj")
@@ -55,7 +46,7 @@ public class Buddy extends User {
       descriptor = "(IIIIIII)V",
       garbageValue = "-1992575835"
    )
-   static final void method7626(int var0, int var1, int var2, int var3, int var4, int var5) {
+   static final void method2086(int var0, int var1, int var2, int var3, int var4, int var5) {
       int var6 = var2 - var0;
       int var7 = var3 - var1;
       int var8 = var6 >= 0 ? var6 : -var6;
@@ -88,10 +79,10 @@ public class Buddy extends User {
          int var22 = var1 - var16;
          int var23 = var7 + var1 - var16;
          int var24 = var15 + var7 + var1;
-         Rasterizer3D.method4321(var17, var18, var19);
-         Rasterizer3D.method4326(var21, var22, var23, var17, var18, var19, var4);
-         Rasterizer3D.method4321(var17, var19, var20);
-         Rasterizer3D.method4326(var21, var23, var24, var17, var19, var20, var4);
+         Rasterizer3D.method1148(var17, var18, var19);
+         Rasterizer3D.method1152(var21, var22, var23, var17, var18, var19, var4);
+         Rasterizer3D.method1148(var17, var19, var20);
+         Rasterizer3D.method1152(var21, var23, var24, var17, var19, var20, var4);
       }
    }
 }

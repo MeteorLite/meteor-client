@@ -1,27 +1,23 @@
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oy")
 public class class391 extends Link {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -934585325
-   )
-   public int field4520 = (int)(Message.method1197() / 1000L);
+   public int field3684 = (int)(Message.method344() / 1000L);
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lrp;"
    )
-   public Username field4521;
+   public Username field3685;
    @ObfuscatedName("v")
-   public short field4522;
+   public short field3686;
 
    @ObfuscatedSignature(
       descriptor = "(Lrp;I)V"
    )
    class391(Username var1, int var2) {
-      this.field4521 = var1;
-      this.field4522 = (short)var2;
+      this.field3685 = var1;
+      this.field3686 = (short)var2;
    }
 }

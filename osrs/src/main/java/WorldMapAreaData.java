@@ -1,11 +1,13 @@
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("il")
+@Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
    @ObfuscatedName("i")
    HashSet worldMapData0Set;
@@ -65,7 +67,7 @@ public class WorldMapAreaData extends WorldMapArea {
       int var3 = var1.readUnsignedShort();
 
       for(int var4 = 0; var4 < var3; ++var4) {
-         int var5 = var1.method8568();
+         int var5 = var1.method2362();
          Coord var6 = new Coord(var1.readInt());
          boolean var7 = var1.readUnsignedByte() == 1;
          if (var2 || !var7) {

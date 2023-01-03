@@ -1,67 +1,35 @@
 import java.lang.management.GarbageCollectorMXBean;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bj")
+@Implements("Projectile")
 public final class Projectile extends Renderable {
    @ObfuscatedName("aq")
    static GarbageCollectorMXBean garbageCollector;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1523052687
-   )
    int id;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1947725359
-   )
    int plane;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 879345441
-   )
    int sourceX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 140840657
-   )
    int sourceY;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -519343155
-   )
    int sourceZ;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1010896295
-   )
    int endHeight;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1612153409
-   )
    int cycleStart;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 1384648045
-   )
    int cycleEnd;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1239204449
-   )
    int slope;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -1545090087
-   )
    int startHeight;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 1220656091
-   )
    int targetIndex;
    @ObfuscatedName("g")
    boolean isMoving = false;
@@ -82,14 +50,8 @@ public final class Projectile extends Renderable {
    @ObfuscatedName("t")
    double accelerationZ;
    @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = 1617416595
-   )
    int yaw;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = -1125057587
-   )
    int pitch;
    @ObfuscatedName("d")
    @ObfuscatedSignature(
@@ -97,14 +59,8 @@ public final class Projectile extends Renderable {
    )
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = -1598140117
-   )
    int frame = 0;
    @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = 1307859615
-   )
    int frameCycle = 0;
 
    Projectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
@@ -207,7 +163,7 @@ public final class Projectile extends Renderable {
             }
          } else {
             this.frame += var1;
-            int var2 = this.sequenceDefinition.method4024();
+            int var2 = this.sequenceDefinition.method1056();
             if (this.frame >= var2) {
                this.frame = var2 - this.sequenceDefinition.frameCount;
             }
@@ -243,7 +199,7 @@ public final class Projectile extends Renderable {
          var8.xOffset = class481.SpriteBuffer_xOffsets[0];
          var8.yOffset = class414.SpriteBuffer_yOffsets[0];
          var8.subWidth = class11.SpriteBuffer_spriteWidths[0];
-         var8.subHeight = StructComposition.SpriteBuffer_spriteHeights[0] * -1903818609;
+         var8.subHeight = StructComposition.SpriteBuffer_spriteHeights[0];
          var8.palette = WorldMapEvent.SpriteBuffer_spritePalette;
          var8.pixels = FloorDecoration.SpriteBuffer_pixels[0];
          class481.SpriteBuffer_xOffsets = null;
@@ -263,7 +219,7 @@ public final class Projectile extends Renderable {
       descriptor = "(IB)I",
       garbageValue = "-2"
    )
-   public static int method2105(int var0) {
+   public static int method439(int var0) {
       return Occluder.Entity_unpackID(ViewportMouse.ViewportMouse_entityTags[var0]);
    }
 
@@ -274,21 +230,21 @@ public final class Projectile extends Renderable {
    )
    static final void drawEntities(int var0, int var1, int var2, int var3) {
       ++Client.viewportDrawCount;
-      GrandExchangeOfferUnitPriceComparator.method6640();
-      UserComparator3.method2848();
+      GrandExchangeOfferUnitPriceComparator.method1845();
+      UserComparator3.method670();
       if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) {
          WorldMapAreaData.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false);
       }
 
       DevicePcmPlayerProvider.addNpcsToScene(true);
-      class281.method5504();
+      class281.method1531();
       DevicePcmPlayerProvider.addNpcsToScene(false);
-      class31.method454();
+      class31.method125();
 
       for(GraphicsObject var4 = (GraphicsObject)Client.graphicsObjects.last(); var4 != null; var4 = (GraphicsObject)Client.graphicsObjects.previous()) {
          if (var4.plane == class383.Client_plane && !var4.isFinished) {
             if (Client.cycle >= var4.cycleStart) {
-               var4.advance(Client.field563);
+               var4.advance(Client.field408);
                if (var4.isFinished) {
                   var4.remove();
                } else {
@@ -308,8 +264,8 @@ public final class Projectile extends Renderable {
       Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
       Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();
       int var35 = Client.camAngleX;
-      if (Client.field604 / 256 > var35) {
-         var35 = Client.field604 / 256;
+      if (Client.field449 / 256 > var35) {
+         var35 = Client.field449 / 256;
       }
 
       if (Client.cameraShaking[4] && Client.cameraMoveIntensity[4] + 128 > var35) {
@@ -318,7 +274,7 @@ public final class Projectile extends Renderable {
 
       int var5 = Client.camAngleY & 2047;
       int var6 = class29.oculusOrbFocalPointX;
-      int var7 = ApproximateRouteStrategy.field498;
+      int var7 = ApproximateRouteStrategy.field347;
       int var8 = class14.oculusOrbFocalPointY;
       int var9 = var35 * 3 + 600;
       int var12 = var3 - 334;
@@ -355,11 +311,11 @@ public final class Projectile extends Renderable {
       }
 
       if (Client.isCameraLocked) {
-         class102.field1367 = var6 - var14;
-         Frames.field2616 = var7 - var15;
-         MusicPatchNode2.field3342 = var8 - var16;
-         NPCComposition.field2067 = var35;
-         class101.field1365 = var5;
+         class102.field1084 = var6 - var14;
+         Frames.field2063 = var7 - var15;
+         MusicPatchNode2.field2708 = var8 - var16;
+         NPCComposition.field1594 = var35;
+         class101.field1083 = var5;
       } else {
          class145.cameraX = var6 - var14;
          class414.cameraY = var7 - var15;
@@ -370,20 +326,20 @@ public final class Projectile extends Renderable {
 
       if (Client.oculusOrbState == 1 && Client.staffModLevel >= 2 && Client.cycle % 50 == 0 && (class29.oculusOrbFocalPointX >> 7 != class155.localPlayer.x >> 7 || class14.oculusOrbFocalPointY >> 7 != class155.localPlayer.y >> 7)) {
          var17 = class155.localPlayer.plane;
-         var18 = class154.baseX * 64 + (class29.oculusOrbFocalPointX >> 7);
-         var19 = class365.baseY * 64 + (class14.oculusOrbFocalPointY >> 7);
-         PacketBufferNode var20 = class136.getPacketBufferNode(ClientPacket.field3120, Client.packetWriter.isaacCipher);
-         var20.packetBuffer.method8607(var19);
-         var20.packetBuffer.method8578(var17);
+         var18 = (class29.oculusOrbFocalPointX >> 7) + class154.baseX;
+         var19 = (class14.oculusOrbFocalPointY >> 7) + class365.baseY;
+         PacketBufferNode var20 = class136.getPacketBufferNode(ClientPacket.field2504, Client.packetWriter.isaacCipher);
+         var20.packetBuffer.method2386(var19);
+         var20.packetBuffer.method2368(var17);
          var20.packetBuffer.writeIntME(var18);
-         var20.packetBuffer.method8601(Client.field789);
+         var20.packetBuffer.method2383(Client.field634);
          Client.packetWriter.addNode(var20);
       }
 
       if (!Client.isCameraLocked) {
-         var11 = class163.method3424();
+         var11 = class163.method865();
       } else {
-         var11 = SecureRandomFuture.method2118();
+         var11 = SecureRandomFuture.method444();
       }
 
       var12 = class145.cameraX;
@@ -440,7 +396,7 @@ public final class Projectile extends Renderable {
          ViewportMouse.ViewportMouse_entityCount = 0;
          ViewportMouse.ViewportMouse_false0 = false;
       } else {
-         class17.method252();
+         class17.method56();
       }
 
       Client.playPcmPlayers();
@@ -461,24 +417,24 @@ public final class Projectile extends Renderable {
 
       int var25;
       for(var25 = 0; var25 < var23 + Client.npcCount; ++var25) {
-         Object var38;
+         Object var26;
          if (var25 < var23) {
-            var38 = Client.players[var24[var25]];
+            var26 = Client.players[var24[var25]];
             if (var24[var25] == Client.combatTargetPlayerIndex) {
                var40 = true;
                var21 = var25;
                continue;
             }
 
-            if (var38 == class155.localPlayer) {
+            if (var26 == class155.localPlayer) {
                var22 = var25;
                continue;
             }
          } else {
-            var38 = Client.npcs[Client.npcIndices[var25 - var23]];
+            var26 = Client.npcs[Client.npcIndices[var25 - var23]];
          }
 
-         class128.drawActor2d((Actor)var38, var25, var0, var1, var2, var3);
+         class128.drawActor2d((Actor)var26, var25, var0, var1, var2, var3);
       }
 
       if (Client.renderSelf && var22 != -1) {
@@ -490,7 +446,7 @@ public final class Projectile extends Renderable {
       }
 
       for(var25 = 0; var25 < Client.overheadTextCount; ++var25) {
-         int var26 = Client.overheadTextXs[var25];
+         int var37 = Client.overheadTextXs[var25];
          int var27 = Client.overheadTextYs[var25];
          int var28 = Client.overheadTextXOffsets[var25];
          int var29 = Client.overheadTextAscents[var25];
@@ -499,9 +455,9 @@ public final class Projectile extends Renderable {
          while(var30) {
             var30 = false;
 
-            for(int var37 = 0; var37 < var25; ++var37) {
-               if (var27 + 2 > Client.overheadTextYs[var37] - Client.overheadTextAscents[var37] && var27 - var29 < Client.overheadTextYs[var37] + 2 && var26 - var28 < Client.overheadTextXOffsets[var37] + Client.overheadTextXs[var37] && var28 + var26 > Client.overheadTextXs[var37] - Client.overheadTextXOffsets[var37] && Client.overheadTextYs[var37] - Client.overheadTextAscents[var37] < var27) {
-                  var27 = Client.overheadTextYs[var37] - Client.overheadTextAscents[var37];
+            for(int var31 = 0; var31 < var25; ++var31) {
+               if (var27 + 2 > Client.overheadTextYs[var31] - Client.overheadTextAscents[var31] && var27 - var29 < Client.overheadTextYs[var31] + 2 && var37 - var28 < Client.overheadTextXOffsets[var31] + Client.overheadTextXs[var31] && var28 + var37 > Client.overheadTextXs[var31] - Client.overheadTextXOffsets[var31] && Client.overheadTextYs[var31] - Client.overheadTextAscents[var31] < var27) {
+                  var27 = Client.overheadTextYs[var31] - Client.overheadTextAscents[var31];
                   var30 = true;
                }
             }
@@ -509,11 +465,11 @@ public final class Projectile extends Renderable {
 
          Client.viewportTempX = Client.overheadTextXs[var25];
          Client.viewportTempY = Client.overheadTextYs[var25] = var27;
-         String var31 = Client.overheadText[var25];
+         String var38 = Client.overheadText[var25];
          if (Client.chatEffects == 0) {
             int var32 = 16776960;
             if (Client.overheadTextColors[var25] < 6) {
-               var32 = Client.field741[Client.overheadTextColors[var25]];
+               var32 = Client.field586[Client.overheadTextColors[var25]];
             }
 
             if (Client.overheadTextColors[var25] == 6) {
@@ -563,25 +519,25 @@ public final class Projectile extends Renderable {
             }
 
             if (Client.overheadTextEffects[var25] == 0) {
-               class146.fontBold12.drawCentered(var31, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0);
+               class146.fontBold12.drawCentered(var38, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0);
             }
 
             if (Client.overheadTextEffects[var25] == 1) {
-               class146.fontBold12.drawCenteredWave(var31, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0, Client.viewportDrawCount);
+               class146.fontBold12.drawCenteredWave(var38, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0, Client.viewportDrawCount);
             }
 
             if (Client.overheadTextEffects[var25] == 2) {
-               class146.fontBold12.drawCenteredWave2(var31, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0, Client.viewportDrawCount);
+               class146.fontBold12.drawCenteredWave2(var38, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0, Client.viewportDrawCount);
             }
 
             if (Client.overheadTextEffects[var25] == 3) {
-               class146.fontBold12.drawCenteredShake(var31, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var25]);
+               class146.fontBold12.drawCenteredShake(var38, var0 + Client.viewportTempX, Client.viewportTempY + var1, var32, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var25]);
             }
 
             if (Client.overheadTextEffects[var25] == 4) {
-               var33 = (150 - Client.overheadTextCyclesRemaining[var25]) * (class146.fontBold12.stringWidth(var31) + 100) / 150;
+               var33 = (150 - Client.overheadTextCyclesRemaining[var25]) * (class146.fontBold12.stringWidth(var38) + 100) / 150;
                Rasterizer2D.Rasterizer2D_expandClip(var0 + Client.viewportTempX - 50, var1, var0 + Client.viewportTempX + 50, var3 + var1);
-               class146.fontBold12.draw(var31, var0 + Client.viewportTempX + 50 - var33, Client.viewportTempY + var1, var32, 0);
+               class146.fontBold12.draw(var38, var0 + Client.viewportTempX + 50 - var33, Client.viewportTempY + var1, var32, 0);
                Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
             }
 
@@ -595,17 +551,17 @@ public final class Projectile extends Renderable {
                }
 
                Rasterizer2D.Rasterizer2D_expandClip(var0, Client.viewportTempY + var1 - class146.fontBold12.ascent - 1, var0 + var2, Client.viewportTempY + var1 + 5);
-               class146.fontBold12.drawCentered(var31, var0 + Client.viewportTempX, var34 + Client.viewportTempY + var1, var32, 0);
+               class146.fontBold12.drawCentered(var38, var0 + Client.viewportTempX, var34 + Client.viewportTempY + var1, var32, 0);
                Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
             }
          } else {
-            class146.fontBold12.drawCentered(var31, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0);
+            class146.fontBold12.drawCentered(var38, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0);
          }
       }
 
-      RouteStrategy.method4180(var0, var1);
-      ((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).animate(Client.field563);
-      CollisionMap.method4176();
+      RouteStrategy.method1103(var0, var1);
+      ((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).animate(Client.field408);
+      CollisionMap.method1100();
       class145.cameraX = var12;
       class414.cameraY = var13;
       ClanChannel.cameraZ = var14;

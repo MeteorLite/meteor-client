@@ -1,85 +1,43 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ia")
+@Implements("WorldMapSection0")
 public class WorldMapSection0 implements WorldMapSection {
    @ObfuscatedName("ek")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   static Archive field2932;
+   static Archive field2342;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -775946595
-   )
    int oldZ;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -2093535297
-   )
    int newZ;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -800807313
-   )
    int oldX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1297788611
-   )
    int oldY;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -579844915
-   )
    int newX;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1584822871
-   )
    int newY;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 606340351
-   )
    int oldChunkXLow;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 590623623
-   )
    int oldChunkYLow;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1894538493
-   )
    int oldChunkXHigh;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -1241213671
-   )
    int oldChunkYHigh;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 676896973
-   )
    int newChunkXLow;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 233278855
-   )
    int newChunkYLow;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = 1590440195
-   )
    int newChunkXHigh;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -305259083
-   )
    int newChunkYHigh;
 
    @ObfuscatedName("h")
@@ -137,7 +95,7 @@ public class WorldMapSection0 implements WorldMapSection {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
       } else {
-         int[] var4 = new int[]{this.newX * 64 - this.oldX * 64 + var2 + (this.newChunkXLow * 8 - this.oldChunkXLow * 8), var3 + (this.newY * 64 - this.oldY * 64) + (this.newChunkYLow * 8 - this.oldChunkYLow * 8)};
+         int[] var4 = new int[]{var2 + (this.newX * 64 - this.oldX * 64) + (this.newChunkXLow * 8 - this.oldChunkXLow * 8), var3 + (this.newY * 64 - this.oldY * 64) + (this.newChunkYLow * 8 - this.oldChunkYLow * 8)};
          return var4;
       }
    }
@@ -152,7 +110,7 @@ public class WorldMapSection0 implements WorldMapSection {
          return null;
       } else {
          int var3 = this.oldX * 64 - this.newX * 64 + (this.oldChunkXLow * 8 - this.newChunkXLow * 8) + var1;
-         int var4 = this.oldY * 64 - this.newY * 64 + var2 + (this.oldChunkYLow * 8 - this.newChunkYLow * 8);
+         int var4 = var2 + (this.oldY * 64 - this.newY * 64) + (this.oldChunkYLow * 8 - this.newChunkYLow * 8);
          return new Coord(this.oldZ, var3, var4);
       }
    }
@@ -193,7 +151,7 @@ public class WorldMapSection0 implements WorldMapSection {
       descriptor = "(I)V",
       garbageValue = "-408404102"
    )
-   static void method5228() {
+   static void method1424() {
       if (class29.loadWorlds()) {
          Login.worldSelectOpen = true;
          Login.worldSelectPage = 0;

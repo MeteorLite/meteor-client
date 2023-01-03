@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lw")
+@Implements("StudioGame")
 public enum StudioGame implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -40,9 +40,6 @@ public enum StudioGame implements class345 {
    @ObfuscatedName("f")
    public final String name;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1618416039
-   )
    final int id;
 
    StudioGame(String var3, String var4, int var5) {

@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ql")
+@Implements("IterableNodeHashTable")
 public final class IterableNodeHashTable implements Iterable {
    @ObfuscatedName("h")
    int size;

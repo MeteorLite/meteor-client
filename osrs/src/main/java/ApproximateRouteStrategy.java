@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bx")
+@Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
    @ObfuscatedName("so")
    @ObfuscatedSignature(
@@ -12,10 +12,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
    )
    static PcmStreamMixer pcmStreamMixer;
    @ObfuscatedName("jy")
-   @ObfuscatedGetter(
-      intValue = -1206385217
-   )
-   static int field498;
+   static int field347;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -31,7 +28,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
       descriptor = "(II)Lfe;",
       garbageValue = "-1070341750"
    )
-   public static VarcInt method1210(int var0) {
+   public static VarcInt method348(int var0) {
       VarcInt var1 = (VarcInt)VarcInt.VarcInt_cached.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -39,7 +36,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
          byte[] var2 = VarcInt.VarcInt_archive.takeFile(19, var0);
          var1 = new VarcInt();
          if (var2 != null) {
-            var1.method3573(new Buffer(var2));
+            var1.method922(new Buffer(var2));
          }
 
          VarcInt.VarcInt_cached.put(var1, (long)var0);

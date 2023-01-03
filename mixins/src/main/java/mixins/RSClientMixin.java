@@ -891,6 +891,9 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     public static void swapMenuEntries(int var0) {
+        if (var0 == -1)
+            return;
+
         RSRuneLiteMenuEntry var1 = rl$menuEntries[var0];
         RSRuneLiteMenuEntry var2 = rl$menuEntries[var0 + 1];
 
@@ -967,7 +970,7 @@ public abstract class RSClientMixin implements RSClient {
 
         RSProjectile projectile = client.newProjectile(id, plane, startX, startY, startZ, startCycle, endCycle, slope,
                 startHeight, targetIndex, endHeight);
-        projectile.setDestination(targetX, targetY,
+        projectile.setDestination$api(targetX, targetY,
                 Perspective.getTileHeight(client, new LocalPoint(targetX, targetY), client.getPlane()),
                 startCycle + client.getGameCycle());
 
@@ -1304,7 +1307,7 @@ public abstract class RSClientMixin implements RSClient {
 
         if (baseVarData == null) {
             RSArchive configs = client.getIndexConfig();
-            int count = configs.getGroupFileCount(VARBIT_GROUP_ID);
+            int count = configs.getGroupFileCount$api(VARBIT_GROUP_ID);
             int[] ids = configs.getFileIds(VARBIT_GROUP_ID);
 
             baseVarData = new int[ids.length];
@@ -1588,7 +1591,7 @@ public abstract class RSClientMixin implements RSClient {
         copy$openMenu(x, y);
 
         client.getScene()
-                .menuOpen(client.getPlane(), x - client.getViewportXOffset(), y - client.getViewportYOffset(), false);
+                .menuOpen$api(client.getPlane(), x - client.getViewportXOffset(), y - client.getViewportYOffset(), false);
     }
 
     @Copy("addWidgetItemMenuItem")
@@ -1902,39 +1905,39 @@ public abstract class RSClientMixin implements RSClient {
     @Inject
     static boolean shouldHideAttackOptionFor(RSPlayer p) {
         if (client.getSpellSelected()) {
-            return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isFriendsChatMember())) && !unhiddenCasts.contains(
+            return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isFriendsChatMember$api())) && !unhiddenCasts.contains(
                     client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
         }
 
-        return ((hideFriendAttackOptions && p.isFriended()) || (hideClanmateAttackOptions && p.isFriendsChatMember()));
+        return ((hideFriendAttackOptions && p.isFriended()) || (hideClanmateAttackOptions && p.isFriendsChatMember$api()));
     }
 
     @Inject
     @Override
     public void addFriend(String friend) {
         RSFriendSystem friendSystem = getFriendManager();
-        friendSystem.addFriend(friend);
+        friendSystem.addFriend$api(friend);
     }
 
     @Inject
     @Override
     public void removeFriend(String friend) {
         RSFriendSystem friendSystem = getFriendManager();
-        friendSystem.removeFriend(friend);
+        friendSystem.removeFriend$api(friend);
     }
 
     @Inject
     @Override
     public void addIgnore(String friend) {
         RSFriendSystem friendSystem = getFriendManager();
-        friendSystem.addIgnore(friend);
+        friendSystem.addIgnore$api(friend);
     }
 
     @Inject
     @Override
     public void removeIgnore(String friend) {
         RSFriendSystem friendSystem = getFriendManager();
-        friendSystem.removeIgnore(friend);
+        friendSystem.removeIgnore$api(friend);
     }
 
     @Inject
@@ -2180,7 +2183,7 @@ public abstract class RSClientMixin implements RSClient {
         client.getPreferences().setMusicVolume(volume);
         client.setMusicTrackVolume(volume);
         if (client.getMidiPcmStream() != null) {
-            client.getMidiPcmStream().setPcmStreamVolume(volume);
+            client.getMidiPcmStream().setPcmStreamVolume$api(volume);
         }
     }
 
@@ -2419,7 +2422,7 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @MethodHook("doCycle")
-    protected final void doCycle() {
+    protected final void doCycle$pre() {
         client.getCallbacks().tick();
     }
 
@@ -2524,7 +2527,7 @@ public abstract class RSClientMixin implements RSClient {
                 var1.decode(var3, var0);
             }
 
-            var1.postDecode();
+            var1.postDecode$api();
             client.getFloorOverlayDefinitionCache().put((RSDualNode) var1, (long) var0);
         }
 
@@ -3030,7 +3033,7 @@ public abstract class RSClientMixin implements RSClient {
     @Inject
     @Override
     public int getKeyboardIdleTicks() {
-        return getKeyHandler().getIdleCycles();
+        return getKeyHandler().getIdleCycles$api();
     }
 
     @Inject
@@ -3205,7 +3208,7 @@ public abstract class RSClientMixin implements RSClient {
         RSDbRowType dbRowType = client.getDbRowType(rowID);
         RSDbTableType dbTableType = client.getDbTableType(dbRowType.getTableId());
 
-        Object[] columnType = dbRowType.getColumnType(column);
+        Object[] columnType = dbRowType.getColumnType$api(column);
         int[] type = dbTableType.getTypes()[column];
 
         if (columnType == null)
@@ -3232,5 +3235,11 @@ public abstract class RSClientMixin implements RSClient {
                 return columnType[tupleIndex * type.length + fieldIndex];
             }
         }
+    }
+
+    @Inject
+    @Override
+    public int getEnergy() {
+        return getServerEnergy() / 100;
     }
 }

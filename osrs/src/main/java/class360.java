@@ -15,7 +15,7 @@ public final class class360 {
       descriptor = "(I)Lrx;",
       garbageValue = "-529833233"
    )
-   static SpritePixels method6967() {
+   static SpritePixels method1910() {
       SpritePixels var0 = new SpritePixels();
       var0.width = GrandExchangeOfferTotalQuantityComparator.SpriteBuffer_spriteWidth;
       var0.height = class481.SpriteBuffer_spriteHeight;

@@ -3,21 +3,15 @@ import java.util.Comparator;
 import java.util.HashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("od")
+@Implements("UserList")
 public abstract class UserList {
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1701166139
-   )
    final int capacity;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -809601657
-   )
    int size = 0;
    @ObfuscatedName("j")
    @ObfuscatedSignature(
@@ -258,7 +252,7 @@ public abstract class UserList {
    @ObfuscatedName("aa")
    @ObfuscatedSignature(
       descriptor = "(Lov;I)V",
-      garbageValue = "734290139"
+      garbageValue = "1346887416"
    )
    final void mapPut(User var1) {
       this.usernamesMap.put(var1.username, var1);
@@ -312,7 +306,7 @@ public abstract class UserList {
       descriptor = "(CI)C",
       garbageValue = "-852063188"
    )
-   public static char method7589(char var0) {
+   public static char method2075(char var0) {
       switch(var0) {
       case ' ':
       case '-':

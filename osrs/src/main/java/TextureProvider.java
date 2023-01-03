@@ -1,16 +1,13 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ht")
+@Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
    @ObfuscatedName("fx")
-   @ObfuscatedGetter(
-      intValue = -917771577
-   )
-   static int field2643;
+   static int field2089;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "[Lhx;"
@@ -22,21 +19,12 @@ public class TextureProvider implements TextureLoader {
    )
    NodeDeque deque = new NodeDeque();
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -36680881
-   )
    int capacity;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -2133855553
-   )
    int remaining = 0;
    @ObfuscatedName("m")
    double brightness = 1.0D;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1483135625
-   )
    int textureSize = 128;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -82,7 +70,7 @@ public class TextureProvider implements TextureLoader {
 
             for(int var7 = 0; var7 < var6.length; ++var7) {
                int var8 = var6[var7];
-               if (this.archive.method6505(var8)) {
+               if (this.archive.method1817(var8)) {
                   ++var2;
                }
             }
@@ -149,7 +137,7 @@ public class TextureProvider implements TextureLoader {
       garbageValue = "-1786884574"
    )
    public boolean vmethod4645(int var1) {
-      return this.textures[var1].field2442;
+      return this.textures[var1].field1923;
    }
 
    @ObfuscatedName("q")

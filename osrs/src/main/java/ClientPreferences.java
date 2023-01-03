@@ -4,11 +4,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ch")
+@Implements("ClientPreferences")
 public class ClientPreferences {
    @ObfuscatedName("eg")
    @ObfuscatedSignature(
@@ -24,44 +24,26 @@ public class ClientPreferences {
    @ObfuscatedName("r")
    boolean displayFps = false;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 150827165
-   )
-   int field1296;
+   int field1036;
    @ObfuscatedName("b")
    double brightness = 0.8D;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -631517997
-   )
    int musicVolume = 127;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 1737283137
-   )
    int soundEffectsVolume = 127;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = -1250836455
-   )
    int areaSoundEffectsVolume = 127;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1676041029
-   )
-   int field1300 = -1;
+   int field1040 = -1;
    @ObfuscatedName("n")
    String rememberedUsername = null;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = -628738235
-   )
    int windowMode = 1;
    @ObfuscatedName("a")
    final Map parameters = new LinkedHashMap();
 
    ClientPreferences() {
-      this.method2409(true);
+      this.method533(true);
    }
 
    @ObfuscatedSignature(
@@ -109,7 +91,7 @@ public class ClientPreferences {
             }
 
             if (var2 > 7) {
-               this.field1300 = var1.readUnsignedByte();
+               this.field1040 = var1.readUnsignedByte();
             }
 
             if (var2 > 8) {
@@ -117,13 +99,13 @@ public class ClientPreferences {
             }
 
             if (var2 > 9) {
-               this.field1296 = var1.readInt();
+               this.field1036 = var1.readInt();
             }
          } else {
-            this.method2409(true);
+            this.method533(true);
          }
       } else {
-         this.method2409(true);
+         this.method533(true);
       }
 
    }
@@ -133,7 +115,7 @@ public class ClientPreferences {
       descriptor = "(ZB)V",
       garbageValue = "1"
    )
-   void method2409(boolean var1) {
+   void method533(boolean var1) {
    }
 
    @ObfuscatedName("e")
@@ -162,9 +144,9 @@ public class ClientPreferences {
       var1.writeByte(this.musicVolume);
       var1.writeByte(this.soundEffectsVolume);
       var1.writeByte(this.areaSoundEffectsVolume);
-      var1.writeByte(this.field1300);
+      var1.writeByte(this.field1040);
       var1.writeByte(this.displayFps ? 1 : 0);
-      var1.writeInt(this.field1296);
+      var1.writeInt(this.field1036);
       return var1;
    }
 
@@ -173,7 +155,7 @@ public class ClientPreferences {
       descriptor = "(ZI)V",
       garbageValue = "533129640"
    )
-   void method2486(boolean var1) {
+   void method562(boolean var1) {
       this.roofsHidden = var1;
       Tile.savePreferences();
    }
@@ -183,7 +165,7 @@ public class ClientPreferences {
       descriptor = "(I)Z",
       garbageValue = "105464922"
    )
-   boolean method2412() {
+   boolean method535() {
       return this.roofsHidden;
    }
 
@@ -192,7 +174,7 @@ public class ClientPreferences {
       descriptor = "(ZB)V",
       garbageValue = "64"
    )
-   void method2461(boolean var1) {
+   void method558(boolean var1) {
       this.hideUsername = var1;
       Tile.savePreferences();
    }
@@ -202,7 +184,7 @@ public class ClientPreferences {
       descriptor = "(I)Z",
       garbageValue = "-1900607558"
    )
-   boolean method2413() {
+   boolean method536() {
       return this.hideUsername;
    }
 
@@ -211,7 +193,7 @@ public class ClientPreferences {
       descriptor = "(ZB)V",
       garbageValue = "7"
    )
-   void method2448(boolean var1) {
+   void method556(boolean var1) {
       this.titleMusicDisabled = var1;
       Tile.savePreferences();
    }
@@ -221,7 +203,7 @@ public class ClientPreferences {
       descriptor = "(B)Z",
       garbageValue = "39"
    )
-   boolean method2428() {
+   boolean method546() {
       return this.titleMusicDisabled;
    }
 
@@ -230,7 +212,7 @@ public class ClientPreferences {
       descriptor = "(ZS)V",
       garbageValue = "8323"
    )
-   void method2470(boolean var1) {
+   void method559(boolean var1) {
       this.displayFps = var1;
       Tile.savePreferences();
    }
@@ -240,8 +222,8 @@ public class ClientPreferences {
       descriptor = "(I)V",
       garbageValue = "141048333"
    )
-   void method2433() {
-      this.method2470(!this.displayFps);
+   void method550() {
+      this.method559(!this.displayFps);
    }
 
    @ObfuscatedName("i")
@@ -249,7 +231,7 @@ public class ClientPreferences {
       descriptor = "(I)Z",
       garbageValue = "1316033707"
    )
-   boolean method2419() {
+   boolean method538() {
       return this.displayFps;
    }
 
@@ -258,8 +240,8 @@ public class ClientPreferences {
       descriptor = "(IB)V",
       garbageValue = "54"
    )
-   void method2420(int var1) {
-      this.field1296 = var1;
+   void method539(int var1) {
+      this.field1036 = var1;
       Tile.savePreferences();
    }
 
@@ -268,12 +250,12 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1786491107"
    )
-   int method2421() {
-      return this.field1296;
+   int method540() {
+      return this.field1036;
    }
 
    @ObfuscatedName("k")
-   void method2475(double var1) {
+   void method561(double var1) {
       this.brightness = var1;
       Tile.savePreferences();
    }
@@ -283,7 +265,7 @@ public class ClientPreferences {
       descriptor = "(I)D",
       garbageValue = "2073863373"
    )
-   double method2422() {
+   double method541() {
       return this.brightness;
    }
 
@@ -292,7 +274,7 @@ public class ClientPreferences {
       descriptor = "(IS)V",
       garbageValue = "18863"
    )
-   void method2414(int var1) {
+   void method537(int var1) {
       this.musicVolume = var1;
       Tile.savePreferences();
    }
@@ -302,7 +284,7 @@ public class ClientPreferences {
       descriptor = "(S)I",
       garbageValue = "-5026"
    )
-   int method2425() {
+   int method543() {
       return this.musicVolume;
    }
 
@@ -321,7 +303,7 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1444608091"
    )
-   int method2426() {
+   int method544() {
       return this.soundEffectsVolume;
    }
 
@@ -330,7 +312,7 @@ public class ClientPreferences {
       descriptor = "(II)V",
       garbageValue = "-315220076"
    )
-   void method2427(int var1) {
+   void method545(int var1) {
       this.areaSoundEffectsVolume = var1;
       Tile.savePreferences();
    }
@@ -340,16 +322,16 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1615345308"
    )
-   int method2506() {
+   int method563() {
       return this.areaSoundEffectsVolume;
    }
 
    @ObfuscatedName("y")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "1040224572"
+      garbageValue = "-2011496208"
    )
-   void method2429(String var1) {
+   void method547(String var1) {
       this.rememberedUsername = var1;
       Tile.savePreferences();
    }
@@ -359,7 +341,7 @@ public class ClientPreferences {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "-10"
    )
-   String method2430() {
+   String method548() {
       return this.rememberedUsername;
    }
 
@@ -368,8 +350,8 @@ public class ClientPreferences {
       descriptor = "(II)V",
       garbageValue = "-1027292403"
    )
-   void method2431(int var1) {
-      this.field1300 = var1;
+   void method549(int var1) {
+      this.field1040 = var1;
       Tile.savePreferences();
    }
 
@@ -378,8 +360,8 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1999692147"
    )
-   int method2424() {
-      return this.field1300;
+   int method542() {
+      return this.field1040;
    }
 
    @ObfuscatedName("ad")
@@ -387,7 +369,7 @@ public class ClientPreferences {
       descriptor = "(IS)V",
       garbageValue = "-9009"
    )
-   void method2460(int var1) {
+   void method557(int var1) {
       this.windowMode = var1;
       Tile.savePreferences();
    }
@@ -397,7 +379,7 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1455962060"
    )
-   int method2434() {
+   int method551() {
       return this.windowMode;
    }
 
@@ -406,8 +388,8 @@ public class ClientPreferences {
       descriptor = "(Ljava/lang/String;II)V",
       garbageValue = "8447783"
    )
-   void method2435(String var1, int var2) {
-      int var3 = this.method2438(var1);
+   void method552(String var1, int var2) {
+      int var3 = this.method555(var1);
       if (this.parameters.size() >= 10 && !this.parameters.containsKey(var3)) {
          Iterator var4 = this.parameters.entrySet().iterator();
          var4.next();
@@ -423,8 +405,8 @@ public class ClientPreferences {
       descriptor = "(Ljava/lang/String;I)Z",
       garbageValue = "-2059825929"
    )
-   boolean method2436(String var1) {
-      int var2 = this.method2438(var1);
+   boolean method553(String var1) {
+      int var2 = this.method555(var1);
       return this.parameters.containsKey(var2);
    }
 
@@ -433,17 +415,17 @@ public class ClientPreferences {
       descriptor = "(Ljava/lang/String;I)I",
       garbageValue = "-2095892809"
    )
-   int method2437(String var1) {
-      int var2 = this.method2438(var1);
+   int method554(String var1) {
+      int var2 = this.method555(var1);
       return !this.parameters.containsKey(var2) ? 0 : (Integer)this.parameters.get(var2);
    }
 
    @ObfuscatedName("ar")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;B)I",
-      garbageValue = "41"
+      garbageValue = "114"
    )
-   int method2438(String var1) {
+   int method555(String var1) {
       String var3 = var1.toLowerCase();
       int var4 = var3.length();
       int var5 = 0;
@@ -474,7 +456,7 @@ public class ClientPreferences {
       descriptor = "(Lct;II)V",
       garbageValue = "-935643958"
    )
-   static final void method2513(Actor var0, int var1) {
+   static final void method564(Actor var0, int var1) {
       ScriptFrame.worldToScreen(var0.x, var0.y, var1);
    }
 }

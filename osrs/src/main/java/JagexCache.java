@@ -6,6 +6,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fg")
+@Implements("JagexCache")
 public class JagexCache {
    @ObfuscatedName("x")
    static File JagexCache_locationFile;
@@ -40,7 +41,7 @@ public class JagexCache {
    }
 
    @ObfuscatedName("h")
-   public static String method3467(long var0) {
+   public static String method875(long var0) {
       Calendar.Calendar_calendar.setTime(new Date(var0));
       int var2 = Calendar.Calendar_calendar.get(7);
       int var3 = Calendar.Calendar_calendar.get(5);

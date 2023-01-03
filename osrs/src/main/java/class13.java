@@ -3,7 +3,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Hashtable;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.DefaultTlsClient;
@@ -12,10 +11,7 @@ import org.bouncycastle.crypto.tls.TlsAuthentication;
 @ObfuscatedName("o")
 class class13 extends DefaultTlsClient {
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = 1791205419
-   )
-   static int field78;
+   static int field39;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Li;"

@@ -1,32 +1,31 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gp")
+@Implements("NewShit")
 public class NewShit {
    @ObfuscatedName("g")
-   public static short[] field2017;
+   public static short[] field1545;
    @ObfuscatedName("o")
    @ObfuscatedSignature(
       descriptor = "Lld;"
    )
    public static NetFileRequest NetCache_currentResponse;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -9039616709688449403L
-   )
-   public long field2018;
+   public long field1546;
    @ObfuscatedName("e")
-   int[] field2013;
+   int[] field1542;
    @ObfuscatedName("v")
-   short[] field2015;
+   short[] field1543;
    @ObfuscatedName("x")
-   short[] field2016;
+   short[] field1544;
 
    public NewShit(long var1, int[] var3, short[] var4, short[] var5) {
-      this.field2018 = var1;
-      this.field2013 = var3;
-      this.field2015 = var4;
-      this.field2016 = var5;
+      this.field1546 = var1;
+      this.field1542 = var3;
+      this.field1543 = var4;
+      this.field1544 = var5;
    }
 }

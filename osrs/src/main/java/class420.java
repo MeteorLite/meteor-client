@@ -1,4 +1,4 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -8,22 +8,19 @@ public class class420 {
    @ObfuscatedSignature(
       descriptor = "Lph;"
    )
-   public static final class420 field4652 = new class420("application/json");
+   public static final class420 field3792 = new class420("application/json");
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lph;"
    )
-   static final class420 field4653 = new class420("text/plain");
+   static final class420 field3793 = new class420("text/plain");
    @ObfuscatedName("fz")
-   @ObfuscatedGetter(
-      intValue = -405163687
-   )
-   static int field4655;
+   static int field3795;
    @ObfuscatedName("v")
-   String field4654;
+   String field3794;
 
    class420(String var1) {
-      this.field4654 = var1;
+      this.field3794 = var1;
    }
 
    @ObfuscatedName("h")
@@ -31,8 +28,8 @@ public class class420 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "-1073877249"
    )
-   public String method7905() {
-      return this.field4654;
+   public String method2169() {
+      return this.field3794;
    }
 
    @ObfuscatedName("v")
@@ -151,7 +148,7 @@ public class class420 {
       descriptor = "(I)V",
       garbageValue = "-1926979042"
    )
-   public static void method7904() {
+   public static void method2168() {
       DbRowType.DBRowType_cache.clear();
    }
 }

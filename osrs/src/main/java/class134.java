@@ -1,17 +1,13 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("eo")
 public class class134 extends class136 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -1817932913018406573L
-   )
-   long field1642;
+   long field1289;
    @ObfuscatedName("e")
-   String field1641;
+   String field1288;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lem;"
@@ -23,8 +19,8 @@ public class class134 extends class136 {
    )
    class134(class139 var1) {
       this.this$0 = var1;
-      this.field1642 = -1L;
-      this.field1641 = null;
+      this.field1289 = -1L;
+      this.field1288 = null;
    }
 
    @ObfuscatedName("h")
@@ -35,10 +31,10 @@ public class class134 extends class136 {
    void vmethod3254(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
-         this.field1642 = var1.readLong();
+         this.field1289 = var1.readLong();
       }
 
-      this.field1641 = var1.readStringCp1252NullTerminatedOrNull();
+      this.field1288 = var1.readStringCp1252NullTerminatedOrNull();
    }
 
    @ObfuscatedName("e")
@@ -47,7 +43,7 @@ public class class134 extends class136 {
       garbageValue = "839088249"
    )
    void vmethod3248(ClanSettings var1) {
-      var1.method3210(this.field1642, this.field1641, 0);
+      var1.method797(this.field1289, this.field1288, 0);
    }
 
    @ObfuscatedName("h")
@@ -55,9 +51,9 @@ public class class134 extends class136 {
       descriptor = "(Lly;Lly;I)I",
       garbageValue = "-197424852"
    )
-   static int method3051(AbstractArchive var0, AbstractArchive var1) {
+   static int method731(AbstractArchive var0, AbstractArchive var1) {
       int var2 = 0;
-      String[] var3 = Login.field934;
+      String[] var3 = Login.field742;
 
       int var4;
       String var5;
@@ -68,7 +64,7 @@ public class class134 extends class136 {
          }
       }
 
-      var3 = Login.field932;
+      var3 = Login.field740;
 
       for(var4 = 0; var4 < var3.length; ++var4) {
          var5 = var3[var4];
@@ -77,7 +73,7 @@ public class class134 extends class136 {
          }
       }
 
-      var3 = Login.field953;
+      var3 = Login.field760;
 
       for(var4 = 0; var4 < var3.length; ++var4) {
          var5 = var3[var4];

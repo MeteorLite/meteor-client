@@ -25,8 +25,8 @@ public abstract class class152 extends Node {
    )
    static final void doCheat(String var0) {
       if (var0.equalsIgnoreCase("toggleroof")) {
-         StructComposition.clientPreferences.method2486(!StructComposition.clientPreferences.method2412());
-         if (StructComposition.clientPreferences.method2412()) {
+         StructComposition.clientPreferences.method562(!StructComposition.clientPreferences.method535());
+         if (StructComposition.clientPreferences.method535()) {
             KitDefinition.addGameMessage(99, "", "Roofs are now all hidden");
          } else {
             KitDefinition.addGameMessage(99, "", "Roofs will only be removed selectively");
@@ -34,7 +34,7 @@ public abstract class class152 extends Node {
       }
 
       if (var0.equalsIgnoreCase("displayfps")) {
-         StructComposition.clientPreferences.method2433();
+         StructComposition.clientPreferences.method550();
       }
 
       if (var0.equalsIgnoreCase("renderself")) {
@@ -55,11 +55,11 @@ public abstract class class152 extends Node {
          }
 
          if (var0.equalsIgnoreCase("fpson")) {
-            StructComposition.clientPreferences.method2470(true);
+            StructComposition.clientPreferences.method559(true);
          }
 
          if (var0.equalsIgnoreCase("fpsoff")) {
-            StructComposition.clientPreferences.method2470(false);
+            StructComposition.clientPreferences.method559(false);
          }
 
          if (var0.equalsIgnoreCase("gc")) {
@@ -67,11 +67,11 @@ public abstract class class152 extends Node {
          }
 
          if (var0.equalsIgnoreCase("clientdrop")) {
-            FaceNormal.method4619();
+            FaceNormal.method1236();
          }
       }
 
-      PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field3084, Client.packetWriter.isaacCipher);
+      PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field2468, Client.packetWriter.isaacCipher);
       var1.packetBuffer.writeByte(var0.length() + 1);
       var1.packetBuffer.writeStringCp1252NullTerminated(var0);
       Client.packetWriter.addNode(var1);

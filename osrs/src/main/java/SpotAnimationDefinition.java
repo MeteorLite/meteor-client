@@ -1,8 +1,10 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gq")
+@Implements("SpotAnimationDefinition")
 public class SpotAnimationDefinition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -25,19 +27,10 @@ public class SpotAnimationDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels = new EvictingDualNodeHashTable(30);
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1537555243
-   )
    int id;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 903909845
-   )
    int archive;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -295593061
-   )
    public int sequence = -1;
    @ObfuscatedName("r")
    short[] recolorFrom;
@@ -48,29 +41,14 @@ public class SpotAnimationDefinition extends DualNode {
    @ObfuscatedName("j")
    short[] retextureTo;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -289907207
-   )
    int widthScale = 128;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = 1592669609
-   )
    int heightScale = 128;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 919548227
-   )
    int orientation = 0;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = 291323671
-   )
    int ambient = 0;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 1468773977
-   )
    int contrast = 0;
 
    @ObfuscatedName("v")
@@ -201,14 +179,14 @@ public class SpotAnimationDefinition extends DualNode {
       descriptor = "(I)Lop;",
       garbageValue = "-1315664177"
    )
-   public static class409 method3751() {
-      class409[] var0 = class409.field4601;
-      synchronized(class409.field4601) {
-         if (class409.field4604 == 0) {
+   public static class409 method976() {
+      class409[] var0 = class409.field3754;
+      synchronized(class409.field3754) {
+         if (class409.field3757 == 0) {
             return new class409();
          } else {
-            class409.field4601[--class409.field4604].method7763();
-            return class409.field4601[class409.field4604];
+            class409.field3754[--class409.field3757].method2126();
+            return class409.field3754[class409.field3757];
          }
       }
    }
@@ -218,25 +196,25 @@ public class SpotAnimationDefinition extends DualNode {
       descriptor = "(I)V",
       garbageValue = "-891167706"
    )
-   static void method3743() {
-      StructComposition.field2122 = new int[2000];
+   static void method974() {
+      StructComposition.field1639 = new int[2000];
       int var0 = 0;
       int var1 = 240;
 
       int var3;
       for(byte var2 = 12; var0 < 16; var1 -= var2) {
-         var3 = class201.method4112((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.425F * (float)var0 / 16.0F + 0.075F));
-         StructComposition.field2122[var0] = var3;
+         var3 = class201.method1086((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.425F * (float)var0 / 16.0F + 0.075F));
+         StructComposition.field1639[var0] = var3;
          ++var0;
       }
 
       var1 = 48;
 
-      for(int var5 = var1 / 6; var0 < StructComposition.field2122.length; var1 -= var5) {
+      for(int var5 = var1 / 6; var0 < StructComposition.field1639.length; var1 -= var5) {
          var3 = var0 * 2;
 
-         for(int var4 = class201.method4112((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < StructComposition.field2122.length; ++var0) {
-            StructComposition.field2122[var0] = var4;
+         for(int var4 = class201.method1086((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < StructComposition.field1639.length; ++var0) {
+            StructComposition.field1639[var0] = var4;
          }
       }
 
@@ -247,8 +225,8 @@ public class SpotAnimationDefinition extends DualNode {
       descriptor = "(B)[Ljn;",
       garbageValue = "113"
    )
-   public static class276[] method3732() {
-      return new class276[]{class276.field3170, class276.field3158, class276.field3159, class276.field3171, class276.field3161, class276.field3166, class276.field3168, class276.field3164, class276.field3165, class276.field3157, class276.field3167, class276.field3160, class276.field3169, class276.field3163};
+   public static class276[] method971() {
+      return new class276[]{class276.field2553, class276.field2542, class276.field2543, class276.field2554, class276.field2545, class276.field2549, class276.field2551, class276.field2547, class276.field2548, class276.field2541, class276.field2550, class276.field2544, class276.field2552, class276.field2546};
    }
 
    @ObfuscatedName("ii")

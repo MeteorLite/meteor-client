@@ -3,78 +3,79 @@ import java.awt.Desktop.Action;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mr")
+@Implements("ModeWhere")
 public enum ModeWhere implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4327("", 0, new class344[]{class344.field4289}),
+   field3545("", 0, new class344[]{class344.field3514}),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4309("", 1, new class344[]{class344.field4287, class344.field4289}),
+   field3528("", 1, new class344[]{class344.field3512, class344.field3514}),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4311("", 2, new class344[]{class344.field4287, class344.field4288, class344.field4289}),
+   field3530("", 2, new class344[]{class344.field3512, class344.field3513, class344.field3514}),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4310("", 3, new class344[]{class344.field4287}),
+   field3529("", 3, new class344[]{class344.field3512}),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4313("", 4),
+   field3532("", 4),
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4314("", 5, new class344[]{class344.field4287, class344.field4289}),
+   field3533("", 5, new class344[]{class344.field3512, class344.field3514}),
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4324("", 6, new class344[]{class344.field4289}),
+   field3542("", 6, new class344[]{class344.field3514}),
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4316("", 8, new class344[]{class344.field4287, class344.field4289}),
+   field3535("", 8, new class344[]{class344.field3512, class344.field3514}),
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4317("", 9, new class344[]{class344.field4287, class344.field4288}),
+   field3536("", 9, new class344[]{class344.field3512, class344.field3513}),
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4318("", 10, new class344[]{class344.field4287}),
+   field3537("", 10, new class344[]{class344.field3512}),
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4319("", 11, new class344[]{class344.field4287}),
+   field3538("", 11, new class344[]{class344.field3512}),
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4326("", 12, new class344[]{class344.field4287, class344.field4289}),
+   field3544("", 12, new class344[]{class344.field3512, class344.field3514}),
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Lmr;"
    )
-   field4315("", 13, new class344[]{class344.field4287});
+   field3534("", 13, new class344[]{class344.field3512});
 
    @ObfuscatedName("k")
    @ObfuscatedSignature(
@@ -85,19 +86,13 @@ public enum ModeWhere implements class345 {
    @ObfuscatedSignature(
       descriptor = "Llz;"
    )
-   static GameBuild field4325;
+   static GameBuild field3543;
    @ObfuscatedName("ix")
-   @ObfuscatedGetter(
-      intValue = -1693192727
-   )
    static int selectedItemWidget;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -59463617
-   )
    final int id;
    @ObfuscatedName("n")
-   final Set field4323 = new HashSet();
+   final Set field3541 = new HashSet();
 
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;I[Lmk;)V"
@@ -108,7 +103,7 @@ public enum ModeWhere implements class345 {
 
       for(int var7 = 0; var7 < var6.length; ++var7) {
          class344 var8 = var6[var7];
-         this.field4323.add(var8);
+         this.field3541.add(var8);
       }
 
    }
@@ -142,15 +137,15 @@ public enum ModeWhere implements class345 {
             }
          }
 
-         if (class32.field183.startsWith("win")) {
-            class12.method115(var0, 0);
-         } else if (class32.field183.startsWith("mac")) {
-            HealthBarUpdate.method2363(var0, 1, "openjs");
+         if (class32.field87.startsWith("win")) {
+            class12.method41(var0, 0);
+         } else if (class32.field87.startsWith("mac")) {
+            HealthBarUpdate.method517(var0, 1, "openjs");
          } else {
-            class12.method115(var0, 2);
+            class12.method41(var0, 2);
          }
       } else {
-         class12.method115(var0, 3);
+         class12.method41(var0, 3);
       }
 
    }
@@ -194,52 +189,52 @@ public enum ModeWhere implements class345 {
       descriptor = "(I)V",
       garbageValue = "742396295"
    )
-   static final void method6699() {
-      class154.method3299();
+   static final void method1868() {
+      class154.method821();
       FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear();
-      ScriptFrame.method1173();
+      ScriptFrame.method334();
       ObjectComposition.ObjectDefinition_cached.clear();
       ObjectComposition.ObjectDefinition_cachedModelData.clear();
       ObjectComposition.ObjectDefinition_cachedEntities.clear();
       ObjectComposition.ObjectDefinition_cachedModels.clear();
-      class369.method7151();
+      class369.method1952();
       ItemComposition.ItemDefinition_cached.clear();
       ItemComposition.ItemDefinition_cachedModels.clear();
       ItemComposition.ItemDefinition_cachedSprites.clear();
       SequenceDefinition.SequenceDefinition_cached.clear();
       SequenceDefinition.SequenceDefinition_cachedFrames.clear();
       SequenceDefinition.SequenceDefinition_cachedModel.clear();
-      class149.method3257();
+      class149.method806();
       VarbitComposition.VarbitDefinition_cached.clear();
-      ScriptFrame.method1174();
-      class137.HitSplatDefinition_cachedSprites.method8344();
-      class34.HitSplatDefinition_cached.method8344();
-      HorizontalAlignment.method3658();
-      WallDecoration.method4828();
-      class273.method5480();
-      class143.method3127();
+      ScriptFrame.method335();
+      class137.HitSplatDefinition_cachedSprites.method2287();
+      class34.HitSplatDefinition_cached.method2287();
+      HorizontalAlignment.method948();
+      WallDecoration.method1295();
+      class273.method1519();
+      class143.method762();
       WorldMapElement.WorldMapElement_cachedSprites.clear();
       DbTableType.DBTableType_cache.clear();
-      class420.method7904();
+      class420.method2168();
       Client.Widget_cachedModels.clear();
       Client.Widget_cachedFonts.clear();
-      class34.method489();
-      HorizontalAlignment.method3653();
+      class34.method141();
+      HorizontalAlignment.method946();
       ((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
       Script.Script_cached.clear();
-      Client.archive5.method7387();
-      HealthBar.field1306.clearFiles();
+      Client.archive5.method2017();
+      HealthBar.field1045.clearFiles();
       class9.archive7.clearFiles();
       FloorUnderlayDefinition.archive4.clearFiles();
-      WorldMapSection0.field2932.clearFiles();
+      WorldMapSection0.field2342.clearFiles();
       class4.archive9.clearFiles();
       class162.archive6.clearFiles();
       class301.archive11.clearFiles();
       ClientPreferences.archive8.clearFiles();
-      Frames.field2615.clearFiles();
+      Frames.field2062.clearFiles();
       ClanChannelMember.archive10.clearFiles();
-      class21.field123.clearFiles();
+      class21.field63.clearFiles();
       class71.archive12.clearFiles();
-      Ignored.field4539.clearFiles();
+      Ignored.field3698.clearFiles();
    }
 }

@@ -1,6 +1,5 @@
 import java.util.HashMap;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -14,17 +13,14 @@ public class class343 {
    )
    Bounds bounds = new Bounds(0, 0);
    @ObfuscatedName("v")
-   int[] field4280 = new int[2048];
+   int[] field3508 = new int[2048];
    @ObfuscatedName("x")
-   int[] field4281 = new int[2048];
+   int[] field3509 = new int[2048];
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -400630067
-   )
-   int field4282 = 0;
+   int field3510 = 0;
 
    public class343() {
-      SpotAnimationDefinition.method3743();
+      SpotAnimationDefinition.method974();
    }
 
    @ObfuscatedName("e")
@@ -32,7 +28,7 @@ public class class343 {
       descriptor = "(IB)V",
       garbageValue = "39"
    )
-   void method6650(int var1) {
+   void method1847(int var1) {
       int var2 = var1 * 2 + 1;
       double var4 = (double)((float)var1 / 3.0F);
       int var6 = var1 * 2 + 1;
@@ -40,7 +36,7 @@ public class class343 {
       int var8 = -var1;
 
       for(int var9 = 0; var8 <= var1; ++var9) {
-         var7[var9] = class318.method6372((double)var8, 0.0D, var4);
+         var7[var9] = class318.method1769((double)var8, 0.0D, var4);
          ++var8;
       }
 
@@ -67,9 +63,9 @@ public class class343 {
       descriptor = "(II)Lrx;",
       garbageValue = "2123615497"
    )
-   SpritePixels method6651(int var1) {
+   SpritePixels method1848(int var1) {
       if (!this.spriteMap.containsKey(var1)) {
-         this.method6650(var1);
+         this.method1847(var1);
       }
 
       return (SpritePixels)this.spriteMap.get(var1);
@@ -80,11 +76,11 @@ public class class343 {
       descriptor = "(III)V",
       garbageValue = "1766411929"
    )
-   public final void method6652(int var1, int var2) {
-      if (this.field4282 < this.field4280.length) {
-         this.field4280[this.field4282] = var1;
-         this.field4281[this.field4282] = var2;
-         ++this.field4282;
+   public final void method1849(int var1, int var2) {
+      if (this.field3510 < this.field3508.length) {
+         this.field3508[this.field3510] = var1;
+         this.field3509[this.field3510] = var2;
+         ++this.field3510;
       }
    }
 
@@ -93,8 +89,8 @@ public class class343 {
       descriptor = "(I)V",
       garbageValue = "210500293"
    )
-   public final void method6663() {
-      this.field4282 = 0;
+   public final void method1852() {
+      this.field3510 = 0;
    }
 
    @ObfuscatedName("q")
@@ -102,9 +98,9 @@ public class class343 {
       descriptor = "(IILrx;FI)V",
       garbageValue = "-1098117017"
    )
-   public final void method6668(int var1, int var2, SpritePixels var3, float var4) {
+   public final void method1853(int var1, int var2, SpritePixels var3, float var4) {
       int var5 = (int)(var4 * 18.0F);
-      SpritePixels var6 = this.method6651(var5);
+      SpritePixels var6 = this.method1848(var5);
       int var7 = var5 * 2 + 1;
       Bounds var8 = new Bounds(0, 0, var3.subWidth, var3.subHeight);
       Bounds var9 = new Bounds(0, 0);
@@ -114,14 +110,14 @@ public class class343 {
       int var10;
       int var11;
       int var12;
-      for(var10 = 0; var10 < this.field4282; ++var10) {
-         var11 = this.field4280[var10];
-         var12 = this.field4281[var10];
+      for(var10 = 0; var10 < this.field3510; ++var10) {
+         var11 = this.field3508[var10];
+         var12 = this.field3509[var10];
          int var13 = (int)(var4 * (float)(var11 - var1)) - var5;
          int var14 = (int)((float)var3.subHeight - var4 * (float)(var12 - var2)) - var5;
          this.bounds.setLow(var13, var14);
-         this.bounds.method7736(var8, var9);
-         this.method6655(var6, var3, var9);
+         this.bounds.method2121(var8, var9);
+         this.method1850(var6, var3, var9);
       }
 
       System.nanoTime();
@@ -135,11 +131,11 @@ public class class343 {
             if (var11 <= 0) {
                var3.pixels[var10] = -16777216;
             } else {
-               if (var11 > StructComposition.field2122.length) {
-                  var11 = StructComposition.field2122.length;
+               if (var11 > StructComposition.field1639.length) {
+                  var11 = StructComposition.field1639.length;
                }
 
-               var12 = StructComposition.field2122[var11 - 1];
+               var12 = StructComposition.field1639[var11 - 1];
                var3.pixels[var10] = -16777216 | var12;
             }
          }
@@ -153,7 +149,7 @@ public class class343 {
       descriptor = "(Lrx;Lrx;Lok;I)V",
       garbageValue = "-533727054"
    )
-   void method6655(SpritePixels var1, SpritePixels var2, Bounds var3) {
+   void method1850(SpritePixels var1, SpritePixels var2, Bounds var3) {
       if (var3.highX != 0 && var3.highY != 0) {
          int var4 = 0;
          int var5 = 0;
@@ -186,11 +182,11 @@ public class class343 {
       descriptor = "(II)Ldj;",
       garbageValue = "-1969198767"
    )
-   static class126 method6662(int var0) {
-      class126[] var1 = new class126[]{class126.field1565, class126.field1563, class126.field1567, class126.field1564, class126.field1566, class126.field1562};
+   static class126 method1851(int var0) {
+      class126[] var1 = new class126[]{class126.field1228, class126.field1226, class126.field1230, class126.field1227, class126.field1229, class126.field1225};
       class126 var2 = (class126)World.findEnumerated(var1, var0);
       if (var2 == null) {
-         var2 = class126.field1565;
+         var2 = class126.field1228;
       }
 
       return var2;
@@ -202,19 +198,19 @@ public class class343 {
       garbageValue = "979622241"
    )
    static void Login_promptCredentials(boolean var0) {
-      if (!BuddyRankComparator.client.method1230() && !BuddyRankComparator.client.method1231()) {
+      if (!BuddyRankComparator.client.method355() && !BuddyRankComparator.client.method356()) {
          Login.Login_response1 = "";
          Login.Login_response2 = "Enter your username/email & password.";
          Login.Login_response3 = "";
-         class12.method155(2);
+         class12.method42(2);
          if (var0) {
             Login.Login_password = "";
          }
 
-         GameObject.method4831();
-         SoundSystem.method873();
+         GameObject.method1298();
+         SoundSystem.method237();
       } else {
-         class12.method155(10);
+         class12.method42(10);
       }
    }
 
@@ -223,7 +219,7 @@ public class class343 {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-66353745"
    )
-   static int method6671(int var0, Script var1, boolean var2) {
+   static int method1854(int var0, Script var1, boolean var2) {
       Widget var3 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
       if (var0 == 1600) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3.scrollX;
@@ -235,9 +231,9 @@ public class class343 {
          class303 var7;
          if (var0 == 1602) {
             if (var3.type == 12) {
-               var7 = var3.method6167();
+               var7 = var3.method1724();
                if (var7 != null) {
-                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.method6004().method7091();
+                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.method1696().method1941();
                   return 1;
                }
             }
@@ -283,87 +279,87 @@ public class class343 {
          } else {
             class298 var4;
             if (var0 == 1617) {
-               var4 = var3.method6293();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4 != null ? var4.field3454 : 0;
+               var4 = var3.method1748();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4 != null ? var4.field2800 * 1940747343 * 2140480175 : 0;
             }
 
             if (var0 == 1618) {
-               var4 = var3.method6293();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4 != null ? var4.field3456 : 0;
+               var4 = var3.method1748();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4 != null ? var4.field2802 * 50034791 * 1875649367 : 0;
                return 1;
             } else if (var0 == 1619) {
-               var7 = var3.method6167();
-               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7 != null ? var7.method5893().method7091() : "";
+               var7 = var3.method1724();
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1647().method1941() : "";
                return 1;
             } else if (var0 == 1620) {
-               var4 = var3.method6293();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4 != null ? var4.field3455 : 0;
+               var4 = var3.method1748();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4 != null ? var4.field2801 * -37162831 * -10528687 : 0;
                return 1;
             } else if (var0 == 1621) {
-               var7 = var3.method6167();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method5939() : 0;
+               var7 = var3.method1724();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1682() : 0;
                return 1;
             } else if (var0 == 1622) {
-               var7 = var3.method6167();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method5940() : 0;
+               var7 = var3.method1724();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1683() : 0;
                return 1;
             } else if (var0 == 1623) {
-               var7 = var3.method6167();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method6111() : 0;
+               var7 = var3.method1724();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1708() : 0;
                return 1;
             } else if (var0 == 1624) {
-               var7 = var3.method6167();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null && var7.method5963() ? 1 : 0;
+               var7 = var3.method1724();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null && var7.method1694() ? 1 : 0;
                return 1;
             } else if (var0 != 1625) {
                if (var0 == 1626) {
-                  var7 = var3.method6167();
-                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7 != null ? var7.method5930().method7272() : "";
+                  var7 = var3.method1724();
+                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1676().method1990() : "";
                   return 1;
                } else if (var0 == 1627) {
-                  var7 = var3.method6167();
-                  int var5 = var7 != null ? var7.method5913() : 0;
-                  int var6 = var7 != null ? var7.method5934() : 0;
+                  var7 = var3.method1724();
+                  int var5 = var7 != null ? var7.method1663() : 0;
+                  int var6 = var7 != null ? var7.method1678() : 0;
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Math.min(var5, var6);
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Math.max(var5, var6);
                   return 1;
                } else if (var0 == 1628) {
-                  var7 = var3.method6167();
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method5934() : 0;
+                  var7 = var3.method1724();
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1678() : 0;
                   return 1;
                } else if (var0 == 1629) {
-                  var7 = var3.method6167();
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method6054() : 0;
+                  var7 = var3.method1724();
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1704() : 0;
                   return 1;
                } else if (var0 == 1630) {
-                  var7 = var3.method6167();
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method5942() : 0;
+                  var7 = var3.method1724();
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1685() : 0;
                   return 1;
                } else if (var0 == 1631) {
-                  var7 = var3.method6167();
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method5944() : 0;
+                  var7 = var3.method1724();
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1686() : 0;
                   return 1;
                } else if (var0 == 1632) {
-                  var7 = var3.method6167();
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method6024() : 0;
+                  var7 = var3.method1724();
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null ? var7.method1698() : 0;
                   return 1;
                } else {
                   class28 var8;
                   if (var0 == 1633) {
-                     var8 = var3.method6187();
-                     Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = var8 != null ? var8.method393(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]) : 0;
+                     var8 = var3.method1737();
+                     Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = var8 != null ? var8.method103(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]) : 0;
                      return 1;
                   } else if (var0 == 1634) {
-                     var8 = var3.method6187();
-                     Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = var8 != null ? var8.method396((char)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]) : 0;
+                     var8 = var3.method1737();
+                     Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = var8 != null ? var8.method105((char)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]) : 0;
                      return 1;
                   } else {
                      return 2;
                   }
                }
             } else {
-               var7 = var3.method6167();
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null && var7.method5878() ? 1 : 0;
+               var7 = var3.method1724();
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7 != null && var7.method1633() ? 1 : 0;
                return 1;
             }
          }
@@ -375,7 +371,7 @@ public class class343 {
       descriptor = "([BII)I",
       garbageValue = "-791901458"
    )
-   public static int method6673(byte[] var0, int var1) {
+   public static int method1856(byte[] var0, int var1) {
       int var3 = -1;
 
       for(int var4 = 0; var4 < var1; ++var4) {

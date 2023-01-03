@@ -1,14 +1,16 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qm")
+@Implements("DbRowType")
 public class DbRowType extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   static AbstractArchive field4889;
+   static AbstractArchive field3979;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
@@ -17,11 +19,8 @@ public class DbRowType extends DualNode {
    @ObfuscatedName("v")
    Object[][] columnTypes;
    @ObfuscatedName("x")
-   int[][] field4892;
+   int[][] field3982;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 2001738031
-   )
    public int tableId = -1;
 
    @ObfuscatedName("v")
@@ -29,14 +28,14 @@ public class DbRowType extends DualNode {
       descriptor = "(Lqy;I)V",
       garbageValue = "-1689842467"
    )
-   void method8456(Buffer var1) {
+   void method2318(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
             return;
          }
 
-         this.method8460(var1, var2);
+         this.method2320(var1, var2);
       }
    }
 
@@ -54,12 +53,12 @@ public class DbRowType extends DualNode {
       descriptor = "(Lqy;IB)V",
       garbageValue = "-14"
    )
-   void method8460(Buffer var1, int var2) {
+   void method2320(Buffer var1, int var2) {
       if (var2 == 3) {
          int var3 = var1.readUnsignedByte();
          if (this.columnTypes == null) {
             this.columnTypes = new Object[var3][];
-            this.field4892 = new int[var3][];
+            this.field3982 = new int[var3][];
          }
 
          for(int var4 = var1.readUnsignedByte(); var4 != 255; var4 = var1.readUnsignedByte()) {
@@ -77,16 +76,16 @@ public class DbRowType extends DualNode {
             for(int var12 = 0; var12 < var10; ++var12) {
                for(int var13 = 0; var13 < var6.length; ++var13) {
                   int var14 = var13 + var6.length * var12;
-                  class456 var15 = class9.method82(var6[var13]);
-                  var11[var14] = var15.method8396(var1);
+                  class456 var15 = class9.method33(var6[var13]);
+                  var11[var14] = var15.method2301(var1);
                }
             }
 
             var16[var4] = var11;
-            this.field4892[var4] = var6;
+            this.field3982[var4] = var6;
          }
       } else if (var2 == 4) {
-         this.tableId = var1.method8570();
+         this.tableId = var1.method2363();
       }
 
    }
@@ -96,6 +95,6 @@ public class DbRowType extends DualNode {
       descriptor = "(I)V",
       garbageValue = "1976644812"
    )
-   void method8459() {
+   void method2319() {
    }
 }

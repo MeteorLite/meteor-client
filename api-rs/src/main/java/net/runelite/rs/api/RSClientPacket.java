@@ -13,251 +13,251 @@ int getId();
 @Override
 int getLength();
 
-@Import("field3096")
+@Import("field2480")
 @Override
 RSClientPacket OPPLAYERT();
 
-@Import("field3048")
+@Import("field2432")
 @Override
 RSClientPacket EVENT_KEYBOARD();
 
-@Import("field3049")
+@Import("field2433")
 @Override
 RSClientPacket OPHELDT();
 
-@Import("field3061")
+@Import("field2445")
 @Override
 RSClientPacket OPLOCU();
 
-@Import("field3071")
+@Import("field2455")
 @Override
 RSClientPacket OPOBJ4();
 
-@Import("field3060")
+@Import("field2444")
 @Override
 RSClientPacket IF_BUTTON1();
 
-@Import("field3053")
+@Import("field2437")
 @Override
 RSClientPacket OPNPCT();
 
-@Import("field3153")
+@Import("field2537")
 @Override
 RSClientPacket IF_BUTTONT();
 
-@Import("field3110")
+@Import("field2494")
 @Override
 RSClientPacket OPLOC1();
 
-@Import("field3064")
+@Import("field2448")
 @Override
 RSClientPacket OPLOCT();
 
-@Import("field3066")
+@Import("field2450")
 @Override
 RSClientPacket OPPLAYER6();
 
-@Import("field3067")
+@Import("field2451")
 @Override
 RSClientPacket OPNPC5();
 
-@Import("field3068")
+@Import("field2452")
 @Override
 RSClientPacket OPNPC2();
 
-@Import("field3070")
+@Import("field2454")
 @Override
 RSClientPacket IF_BUTTON3();
 
-@Import("field3056")
+@Import("field2440")
 @Override
 RSClientPacket IF1_BUTTON4();
 
-@Import("field3072")
+@Import("field2456")
 @Override
 RSClientPacket IF_BUTTON5();
 
-@Import("field3074")
+@Import("field2458")
 @Override
 RSClientPacket IF_BUTTON8();
 
-@Import("field3081")
+@Import("field2465")
 @Override
 RSClientPacket IF_BUTTON10();
 
-@Import("field3079")
+@Import("field2463")
 @Override
 RSClientPacket IF_BUTTON7();
 
-@Import("field3080")
+@Import("field2464")
 @Override
 RSClientPacket OPOBJ3();
 
-@Import("field3140")
+@Import("field2524")
 @Override
 RSClientPacket OPNPC3();
 
-@Import("field3082")
+@Import("field2466")
 @Override
 RSClientPacket OPNPCU();
 
-@Import("field3112")
+@Import("field2496")
 @Override
 RSClientPacket OPLOC4();
 
-@Import("field3105")
+@Import("field2489")
 @Override
 RSClientPacket OPPLAYER7();
 
-@Import("field3088")
+@Import("field2472")
 @Override
 RSClientPacket OPPLAYER5();
 
-@Import("field3091")
+@Import("field2475")
 @Override
 RSClientPacket OPPLAYER1();
 
-@Import("field3069")
+@Import("field2453")
 @Override
 RSClientPacket OPOBJU();
 
-@Import("field3093")
+@Import("field2477")
 @Override
 RSClientPacket OPHELD3();
 
-@Import("field3047")
+@Import("field2431")
 @Override
 RSClientPacket OPPLAYER4();
 
-@Import("field3095")
+@Import("field2479")
 @Override
 RSClientPacket OPHELD1();
 
-@Import("field3098")
+@Import("field2482")
 @Override
 RSClientPacket IF_BUTTON6();
 
-@Import("field3100")
+@Import("field2484")
 @Override
 RSClientPacket OPOBJ2();
 
-@Import("field3101")
+@Import("field2485")
 @Override
 RSClientPacket OPHELD2();
 
-@Import("field3102")
+@Import("field2486")
 @Override
 RSClientPacket OPNPC4();
 
-@Import("field3122")
+@Import("field2506")
 @Override
 RSClientPacket OPHELD4();
 
-@Import("field3104")
+@Import("field2488")
 @Override
 RSClientPacket OPHELD5();
 
-@Import("field3114")
+@Import("field2498")
 @Override
 RSClientPacket EVENT_MOUSE_CLICK();
 
-@Import("field3106")
+@Import("field2490")
 @Override
 RSClientPacket OPLOC2();
 
-@Import("field3151")
+@Import("field2535")
 @Override
 RSClientPacket OPLOC6();
 
-@Import("field3111")
+@Import("field2495")
 @Override
 RSClientPacket IF1_BUTTON5();
 
-@Import("field3133")
+@Import("field2517")
 @Override
 RSClientPacket BUTTON_CLICK();
 
-@Import("field3076")
+@Import("field2460")
 @Override
 RSClientPacket IF_BUTTON9();
 
-@Import("field3116")
+@Import("field2500")
 @Override
 RSClientPacket IF1_BUTTON3();
 
-@Import("field3117")
+@Import("field2501")
 @Override
 RSClientPacket OPOBJ1();
 
-@Import("field3119")
+@Import("field2503")
 @Override
 RSClientPacket OPLOC5();
 
-@Import("field3138")
+@Import("field2522")
 @Override
 RSClientPacket OPPLAYER8();
 
-@Import("field3128")
+@Import("field2512")
 @Override
 RSClientPacket IF_BUTTON4();
 
-@Import("field3086")
+@Import("field2470")
 @Override
 RSClientPacket OPPLAYERU();
 
-@Import("field3131")
+@Import("field2515")
 @Override
 RSClientPacket OPHELDU();
 
-@Import("field3132")
+@Import("field2516")
 @Override
 RSClientPacket OPOBJ6();
 
-@Import("field3139")
+@Import("field2523")
 @Override
 RSClientPacket IF1_BUTTON2();
 
-@Import("field3094")
+@Import("field2478")
 @Override
 RSClientPacket OPPLAYER3();
 
-@Import("field3062")
+@Import("field2446")
 @Override
 RSClientPacket OPLOC3();
 
-@Import("field3137")
+@Import("field2521")
 @Override
 RSClientPacket OPNPC1();
 
-@Import("field3059")
+@Import("field2443")
 @Override
 RSClientPacket IF1_BUTTON1();
 
-@Import("field3083")
+@Import("field2467")
 @Override
 RSClientPacket MOVE_GAMECLICK();
 
-@Import("field3136")
+@Import("field2520")
 @Override
 RSClientPacket REFLECTION_CHECK_REPLY();
 
-@Import("field3143")
+@Import("field2527")
 @Override
 RSClientPacket LOGIN_STATISTICS();
 
-@Import("field3144")
+@Import("field2528")
 @Override
 RSClientPacket IF_BUTTON2();
 
-@Import("field3147")
+@Import("field2531")
 @Override
 RSClientPacket OPPLAYER2();
 
-@Import("field3103")
+@Import("field2487")
 @Override
 RSClientPacket OPNPC6();
 
-@Import("field3152")
+@Import("field2536")
 @Override
 RSClientPacket OPOBJT();
 

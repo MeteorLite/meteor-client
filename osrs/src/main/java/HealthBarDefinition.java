@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fw")
+@Implements("HealthBarDefinition")
 public class HealthBarDefinition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -15,7 +15,7 @@ public class HealthBarDefinition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   static AbstractArchive field1975;
+   static AbstractArchive field1513;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
@@ -27,59 +27,26 @@ public class HealthBarDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("pj")
-   @ObfuscatedGetter(
-      intValue = 1053176985
-   )
-   static int field1989;
+   static int field1526;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 683600327
-   )
-   public int field1983;
+   public int field1520;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 1073329769
-   )
    public int int1 = 255;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1259926695
-   )
    public int int2 = 255;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 2123277021
-   )
    public int int3 = -1;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -1492750821
-   )
-   public int field1976 = 1;
+   public int field1514 = 1;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -280259539
-   )
    public int int5 = 70;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = 1047498223
-   )
    int frontSpriteID = -1;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 187372523
-   )
    int backSpriteID = -1;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -1356193103
-   )
    public int width = 30;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = 72194099
-   )
    public int widthPadding = 0;
 
    @ObfuscatedName("e")
@@ -117,9 +84,9 @@ public class HealthBarDefinition extends DualNode {
       } else if (var2 == 6) {
          var1.readUnsignedByte();
       } else if (var2 == 7) {
-         this.frontSpriteID = var1.method8568();
+         this.frontSpriteID = var1.method2362();
       } else if (var2 == 8) {
-         this.backSpriteID = var1.method8568();
+         this.backSpriteID = var1.method2362();
       } else if (var2 == 11) {
          this.int3 = var1.readUnsignedShort();
       } else if (var2 == 14) {
@@ -143,7 +110,7 @@ public class HealthBarDefinition extends DualNode {
          if (var1 != null) {
             return var1;
          } else {
-            var1 = class125.SpriteBuffer_getSprite(field1975, this.frontSpriteID, 0);
+            var1 = class125.SpriteBuffer_getSprite(field1513, this.frontSpriteID, 0);
             if (var1 != null) {
                HealthBarDefinition_cachedSprites.put(var1, (long)this.frontSpriteID);
             }
@@ -166,7 +133,7 @@ public class HealthBarDefinition extends DualNode {
          if (var1 != null) {
             return var1;
          } else {
-            var1 = class125.SpriteBuffer_getSprite(field1975, this.backSpriteID, 0);
+            var1 = class125.SpriteBuffer_getSprite(field1513, this.backSpriteID, 0);
             if (var1 != null) {
                HealthBarDefinition_cachedSprites.put(var1, (long)this.backSpriteID);
             }
@@ -179,9 +146,9 @@ public class HealthBarDefinition extends DualNode {
    @ObfuscatedName("ky")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Lkd;I)Ljava/lang/String;",
-      garbageValue = "1353163423"
+      garbageValue = "1993394092"
    )
-   static String method3622(String var0, Widget var1) {
+   static String method935(String var0, Widget var1) {
       if (var0.indexOf("%") != -1) {
          for(int var2 = 1; var2 <= 5; ++var2) {
             while(true) {
@@ -191,7 +158,7 @@ public class HealthBarDefinition extends DualNode {
                }
 
                String var4 = var0.substring(0, var3);
-               int var6 = GraphicsObject.method2025(var1, var2 - 1);
+               int var6 = GraphicsObject.method423(var1, var2 - 1);
                String var5;
                if (var6 < 999999999) {
                   var5 = Integer.toString(var6);

@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,21 +8,18 @@ public class class251 {
    @ObfuscatedSignature(
       descriptor = "Lis;"
    )
-   static final class251 field2976 = new class251(0);
+   static final class251 field2379 = new class251(0);
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lis;"
    )
-   static final class251 field2977 = new class251(1);
+   static final class251 field2380 = new class251(1);
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lka;"
    )
    static MidiPcmStream midiPcmStream;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 2091175605
-   )
    final int value;
 
    class251(int var1) {
@@ -35,7 +31,7 @@ public class class251 {
       descriptor = "(IIB)Z",
       garbageValue = "85"
    )
-   public static boolean method5275(int var0, int var1) {
+   public static boolean method1447(int var0, int var1) {
       return (var0 >> var1 + 1 & 1) != 0;
    }
 }

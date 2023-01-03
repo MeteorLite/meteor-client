@@ -6,6 +6,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ot")
+@Implements("BufferedNetSocket")
 public class BufferedNetSocket extends AbstractSocket {
    @ObfuscatedName("cy")
    @ObfuscatedSignature(

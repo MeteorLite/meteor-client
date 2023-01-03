@@ -4,6 +4,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("jt")
+@Implements("SoftWrapper")
 public class SoftWrapper extends Wrapper {
    @ObfuscatedName("h")
    SoftReference ref;

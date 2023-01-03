@@ -14,6 +14,6 @@ public interface RSFloorOverlayDefinition
 	void decode(RSBuffer var1, int var2);
 
 	@Import("postDecode")
-	void postDecode();
+	void postDecode$api();
 
 }

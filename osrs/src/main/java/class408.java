@@ -5,11 +5,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ow")
 public class class408 {
    @ObfuscatedName("h")
-   float field4598;
+   float field3751;
    @ObfuscatedName("e")
-   float field4599;
+   float field3752;
    @ObfuscatedName("v")
-   float field4597;
+   float field3750;
 
    static {
       new class408(0.0F, 0.0F, 0.0F);
@@ -20,9 +20,9 @@ public class class408 {
    }
 
    class408(float var1, float var2, float var3) {
-      this.field4598 = var1;
-      this.field4599 = var2;
-      this.field4597 = var3;
+      this.field3751 = var1;
+      this.field3752 = var2;
+      this.field3750 = var3;
    }
 
    @ObfuscatedName("h")
@@ -30,12 +30,12 @@ public class class408 {
       descriptor = "(B)F",
       garbageValue = "83"
    )
-   final float method7751() {
-      return (float)Math.sqrt((double)(this.field4598 * this.field4598 + this.field4599 * this.field4599 + this.field4597 * this.field4597));
+   final float method2122() {
+      return (float)Math.sqrt((double)(this.field3751 * this.field3751 + this.field3752 * this.field3752 + this.field3750 * this.field3750));
    }
 
    @ObfuscatedName("toString")
    public String toString() {
-      return this.field4598 + ", " + this.field4599 + ", " + this.field4597;
+      return this.field3751 + ", " + this.field3752 + ", " + this.field3750;
    }
 }

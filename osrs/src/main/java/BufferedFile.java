@@ -2,11 +2,11 @@ import java.io.EOFException;
 import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qa")
+@Implements("BufferedFile")
 public class BufferedFile {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -16,46 +16,22 @@ public class BufferedFile {
    @ObfuscatedName("v")
    byte[] readBuffer;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      longValue = -8662436868366738919L
-   )
    long readBufferOffset = -1L;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1522331795
-   )
    int readBufferLength;
    @ObfuscatedName("q")
    byte[] writeBuffer;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      longValue = 5223695817979309917L
-   )
    long writeBufferOffset = -1L;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 867329301
-   )
    int writeBufferLength = 0;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      longValue = 4577130331233333203L
-   )
    long offset;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      longValue = 3172925242996134987L
-   )
    long fileLength;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      longValue = -8538905937257022769L
-   )
    long length;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      longValue = 3845638228514904955L
-   )
    long fileOffset;
 
    @ObfuscatedSignature(
@@ -100,7 +76,7 @@ public class BufferedFile {
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "([BB)V",
-      garbageValue = "19"
+      garbageValue = "87"
    )
    public void readFully(byte[] var1) throws IOException {
       this.read(var1, 0, var1.length);
@@ -330,7 +306,7 @@ public class BufferedFile {
          }
 
          this.accessFile.write(this.writeBuffer, 0, this.writeBufferLength);
-         this.fileOffset += 867329301L * (long)(this.writeBufferLength * -950746563);
+         this.fileOffset += (long)this.writeBufferLength;
          if (this.fileOffset > this.fileLength) {
             this.fileLength = this.fileOffset;
          }

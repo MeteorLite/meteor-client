@@ -1,15 +1,12 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lt")
+@Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 11477361
-   )
    int type;
    @ObfuscatedName("e")
    public byte[] data;
@@ -52,22 +49,22 @@ public class ArchiveDiskAction extends Node {
          if (Client.players[var1] != null) {
             throw new RuntimeException();
          } else {
-            Player var11 = Client.players[var1] = new Player();
-            var11.index = var1;
-            if (Players.field1372[var1] != null) {
-               var11.read(Players.field1372[var1]);
+            Player var6 = Client.players[var1] = new Player();
+            var6.index = var1;
+            if (Players.field1087[var1] != null) {
+               var6.read(Players.field1087[var1]);
             }
 
-            var11.orientation = Players.Players_orientations[var1];
-            var11.targetIndex = Players.Players_targetIndices[var1];
+            var6.orientation = Players.Players_orientations[var1];
+            var6.targetIndex = Players.Players_targetIndices[var1];
             var7 = Players.Players_regions[var1];
             var8 = var7 >> 28;
             var9 = var7 >> 14 & 255;
             var10 = var7 & 255;
-            var11.pathTraversed[0] = Players.field1379[var1];
-            var11.plane = (byte)var8;
-            var11.resetPath((var9 << 13) + var3 - class154.baseX * 64, (var10 << 13) + var4 - class365.baseY * 64);
-            var11.field1133 = false;
+            var6.pathTraversed[0] = Players.field1094[var1];
+            var6.plane = (byte)var8;
+            var6.resetPath((var9 << 13) + var3 - class154.baseX, (var10 << 13) + var4 - class365.baseY);
+            var6.field894 = false;
             return true;
          }
       } else if (var2 == 1) {
@@ -77,15 +74,15 @@ public class ArchiveDiskAction extends Node {
          return false;
       } else {
          int var5;
-         int var6;
+         int var11;
          if (var2 == 2) {
             var3 = var0.readBits(5);
             var4 = var3 >> 3;
             var5 = var3 & 7;
-            var6 = Players.Players_regions[var1];
-            var7 = (var6 >> 28) + var4 & 3;
-            var8 = var6 >> 14 & 255;
-            var9 = var6 & 255;
+            var11 = Players.Players_regions[var1];
+            var7 = (var11 >> 28) + var4 & 3;
+            var8 = var11 >> 14 & 255;
+            var9 = var11 & 255;
             if (var5 == 0) {
                --var8;
                --var9;
@@ -128,11 +125,11 @@ public class ArchiveDiskAction extends Node {
             var3 = var0.readBits(18);
             var4 = var3 >> 16;
             var5 = var3 >> 8 & 255;
-            var6 = var3 & 255;
+            var11 = var3 & 255;
             var7 = Players.Players_regions[var1];
             var8 = (var7 >> 28) + var4 & 3;
             var9 = var5 + (var7 >> 14) & 255;
-            var10 = var6 + var7 & 255;
+            var10 = var11 + var7 & 255;
             Players.Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28);
             return false;
          }

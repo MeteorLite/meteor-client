@@ -1,30 +1,23 @@
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ed")
 public class class153 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = 1391048387397571219L
-   )
-   long field1775;
+   long field1375;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      longValue = 5035941996955199509L
-   )
-   long field1771 = -1L;
+   long field1373 = -1L;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   IterableNodeDeque field1772 = new IterableNodeDeque();
+   IterableNodeDeque field1374 = new IterableNodeDeque();
 
    @ObfuscatedSignature(
       descriptor = "(Lqy;)V"
    )
    public class153(Buffer var1) {
-      this.method3291(var1);
+      this.method818(var1);
    }
 
    @ObfuscatedName("h")
@@ -32,9 +25,9 @@ public class class153 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1859728941"
    )
-   void method3291(Buffer var1) {
-      this.field1775 = var1.readLong();
-      this.field1771 = var1.readLong();
+   void method818(Buffer var1) {
+      this.field1375 = var1.readLong();
+      this.field1373 = var1.readLong();
 
       for(int var2 = var1.readUnsignedByte(); var2 != 0; var2 = var1.readUnsignedByte()) {
          Object var3;
@@ -55,7 +48,7 @@ public class class153 {
          }
 
          ((class152)var3).vmethod3238(var1);
-         this.field1772.addFirst((Node)var3);
+         this.field1374.addFirst((Node)var3);
       }
 
    }
@@ -65,13 +58,13 @@ public class class153 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1429912683"
    )
-   public void method3284(ClanChannel var1) {
-      if (var1.key == this.field1775 && this.field1771 == var1.field1794) {
-         for(class152 var2 = (class152)this.field1772.last(); var2 != null; var2 = (class152)this.field1772.previous()) {
+   public void method816(ClanChannel var1) {
+      if (var1.key == this.field1375 && this.field1373 == var1.field1388) {
+         for(class152 var2 = (class152)this.field1374.last(); var2 != null; var2 = (class152)this.field1374.previous()) {
             var2.vmethod3239(var1);
          }
 
-         ++var1.field1794;
+         ++var1.field1388;
       } else {
          throw new RuntimeException("");
       }
@@ -82,7 +75,7 @@ public class class153 {
       descriptor = "(Lqy;I)Ljava/lang/String;",
       garbageValue = "-1511389929"
    )
-   public static String method3285(Buffer var0) {
+   public static String method817(Buffer var0) {
       String var1;
       try {
          int var2 = var0.readUShortSmart();

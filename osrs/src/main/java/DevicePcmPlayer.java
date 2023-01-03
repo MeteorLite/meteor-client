@@ -5,20 +5,17 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.DataLine.Info;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("w")
+@Implements("DevicePcmPlayer")
 public class DevicePcmPlayer extends PcmPlayer {
    @ObfuscatedName("h")
    AudioFormat format;
    @ObfuscatedName("e")
    SourceDataLine line;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1829305965
-   )
    int capacity2;
    @ObfuscatedName("x")
    byte[] byteSamples;
@@ -29,7 +26,7 @@ public class DevicePcmPlayer extends PcmPlayer {
       garbageValue = "-1022018312"
    )
    protected void init() {
-      this.format = new AudioFormat((float)(PcmPlayer.field325 * 22050), 16, class286.PcmPlayer_stereo ? 2 : 1, true, false);
+      this.format = new AudioFormat((float)PcmPlayer.field198, 16, class286.PcmPlayer_stereo ? 2 : 1, true, false);
       this.byteSamples = new byte[256 << (class286.PcmPlayer_stereo ? 2 : 1)];
    }
 
@@ -46,8 +43,8 @@ public class DevicePcmPlayer extends PcmPlayer {
          this.line.start();
          this.capacity2 = var1;
       } catch (LineUnavailableException var3) {
-         if (class233.method4850(var1) != 1) {
-            this.open(AccessFile.method8302(var1));
+         if (class233.method1304(var1) != 1) {
+            this.open(AccessFile.method2278(var1));
          } else {
             this.line = null;
             throw var3;

@@ -8,6 +8,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fp")
+@Implements("TaskHandler")
 public class TaskHandler implements Runnable {
    @ObfuscatedName("h")
    public static String javaVendor;
@@ -164,7 +165,7 @@ public class TaskHandler implements Runnable {
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "1336568457"
+      garbageValue = "2090340706"
    )
    static void setLoginResponseString(String var0, String var1, String var2) {
       Login.Login_response1 = var0;
@@ -177,8 +178,8 @@ public class TaskHandler implements Runnable {
       descriptor = "(Ljava/lang/CharSequence;B)Ljava/lang/String;",
       garbageValue = "81"
    )
-   public static String method3447(CharSequence var0) {
-      return HealthBar.method2525('*', var0.length());
+   public static String method873(CharSequence var0) {
+      return HealthBar.method570('*', var0.length());
    }
 
    @ObfuscatedName("mf")
@@ -186,7 +187,7 @@ public class TaskHandler implements Runnable {
       descriptor = "(I)Z",
       garbageValue = "-2117100344"
    )
-   public static boolean method3443() {
+   public static boolean method871() {
       return Client.staffModLevel >= 2;
    }
 }

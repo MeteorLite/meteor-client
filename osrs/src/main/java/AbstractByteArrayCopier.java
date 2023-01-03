@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kw")
+@Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
    @ObfuscatedName("m")
    static Thread ArchiveDiskActionHandler_thread;

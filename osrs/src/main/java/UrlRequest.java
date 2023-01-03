@@ -1,10 +1,11 @@
 import java.net.URL;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dm")
+@Implements("UrlRequest")
 public class UrlRequest {
    @ObfuscatedName("g")
    @ObfuscatedSignature(
@@ -12,9 +13,6 @@ public class UrlRequest {
    )
    static Clock clock;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = -59160263
-   )
    static int loginBoxCenter;
    @ObfuscatedName("h")
    final URL url;
@@ -50,7 +48,7 @@ public class UrlRequest {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "65026205"
    )
-   public String method2788() {
+   public String method655() {
       return this.url.toString();
    }
 
@@ -60,6 +58,6 @@ public class UrlRequest {
       garbageValue = "-97"
    )
    public static FillMode[] FillMode_values() {
-      return new FillMode[]{FillMode.field4997, FillMode.SOLID, FillMode.field4998};
+      return new FillMode[]{FillMode.field4062, FillMode.SOLID, FillMode.field4063};
    }
 }

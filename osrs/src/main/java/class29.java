@@ -1,22 +1,15 @@
 import java.net.URL;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("am")
 public class class29 {
    @ObfuscatedName("bp")
-   @ObfuscatedGetter(
-      intValue = -55139539
-   )
-   static int field172;
+   static int field81;
    @ObfuscatedName("cy")
    static int[] KeyHandler_keyCodes = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, 85, 80, 84, -1, 91, -1, -1, -1, 81, 82, 86, -1, -1, -1, -1, -1, -1, -1, -1, 13, -1, -1, -1, -1, 83, 104, 105, 103, 102, 96, 98, 97, 99, -1, -1, -1, -1, -1, -1, -1, 25, 16, 17, 18, 19, 20, 21, 22, 23, 24, -1, -1, -1, -1, -1, -1, -1, 48, 68, 66, 50, 34, 51, 52, 53, 39, 54, 55, 56, 70, 69, 40, 41, 32, 35, 49, 36, 38, 67, 33, 65, 37, 64, -1, -1, -1, -1, -1, 228, 231, 227, 233, 224, 219, 225, 230, 226, 232, 89, 87, -1, 88, 229, 90, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, -1, -1, -1, 101, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 100, -1, 87, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
    @ObfuscatedName("js")
-   @ObfuscatedGetter(
-      intValue = 1655404347
-   )
    static int oculusOrbFocalPointX;
 
    @ObfuscatedName("h")
@@ -27,7 +20,7 @@ public class class29 {
    static boolean loadWorlds() {
       try {
          if (class1.World_request == null) {
-            class1.World_request = TaskHandler.urlRequester.request(new URL(class9.field41));
+            class1.World_request = TaskHandler.urlRequester.request(new URL(class9.field23));
          } else if (class1.World_request.isDone()) {
             byte[] var0 = class1.World_request.getResponse();
             Buffer var1 = new Buffer(var0);
@@ -63,7 +56,7 @@ public class class29 {
       descriptor = "(Lly;IIIZB)V",
       garbageValue = "1"
    )
-   public static void method426(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
+   public static void method115(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
       class286.musicPlayerStatus = 1;
       class304.musicTrackArchive = var0;
       class109.musicTrackGroupId = var1;
@@ -90,19 +83,19 @@ public class class29 {
          if (var8 == -1) {
             var5 = null;
          } else {
-            label59: {
+            label47: {
                byte[] var9 = class71.archive12.takeFileFlat(var8);
                if (var9 != null) {
                   if (var9.length <= 1) {
                      var5 = null;
-                     break label59;
+                     break label47;
                   }
 
                   var6 = FriendSystem.newScript(var9);
                   if (var6 != null) {
                      Script.Script_cached.put(var6, (long)(var3 << 16));
                      var5 = var6;
-                     break label59;
+                     break label47;
                   }
                }
 
@@ -153,7 +146,7 @@ public class class29 {
       descriptor = "(I)V",
       garbageValue = "1517575560"
    )
-   protected static final void method430() {
+   protected static final void method117() {
       UrlRequest.clock.mark();
 
       int var0;
@@ -173,14 +166,14 @@ public class class29 {
       descriptor = "(B)V",
       garbageValue = "1"
    )
-   static final void method429() {
-      if (BufferedSink.field4572) {
+   static final void method116() {
+      if (BufferedSink.field3726) {
          for(int var0 = 0; var0 < Players.Players_count; ++var0) {
             Player var1 = Client.players[Players.Players_indices[var0]];
-            var1.method2294();
+            var1.method492();
          }
 
-         BufferedSink.field4572 = false;
+         BufferedSink.field3726 = false;
       }
 
    }

@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fj")
+@Implements("KitDefinition")
 public class KitDefinition extends DualNode {
    @ObfuscatedName("vy")
    @ObfuscatedSignature(
@@ -27,9 +27,6 @@ public class KitDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable KitDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 984840871
-   )
    public int bodypartID = -1;
    @ObfuscatedName("q")
    int[] models2;
@@ -172,7 +169,7 @@ public class KitDefinition extends DualNode {
       descriptor = "(B)Z",
       garbageValue = "7"
    )
-   public boolean method3589() {
+   public boolean method926() {
       boolean var1 = true;
 
       for(int var2 = 0; var2 < 5; ++var2) {

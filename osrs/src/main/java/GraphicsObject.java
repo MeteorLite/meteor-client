@@ -1,38 +1,22 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bn")
+@Implements("GraphicsObject")
 public class GraphicsObject extends Renderable {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1763916019
-   )
    int id;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -1296860225
-   )
    int cycleStart;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1267714979
-   )
    int plane;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -983407105
-   )
    int y;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1470591223
-   )
    int x;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1313330391
-   )
    int z;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -40,14 +24,8 @@ public class GraphicsObject extends Renderable {
    )
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1859823171
-   )
    int frame;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 2082705889
-   )
    int frameCycle;
    @ObfuscatedName("b")
    boolean isFinished;
@@ -91,7 +69,7 @@ public class GraphicsObject extends Renderable {
             }
          } else {
             this.frame += var1;
-            if (this.frame >= this.sequenceDefinition.method4024()) {
+            if (this.frame >= this.sequenceDefinition.method1056()) {
                this.isFinished = true;
             }
          }
@@ -121,8 +99,8 @@ public class GraphicsObject extends Renderable {
       descriptor = "(I)[Lom;",
       garbageValue = "-2061778903"
    )
-   static class413[] method2028() {
-      return new class413[]{class413.field4637, class413.field4636, class413.field4635, class413.field4639};
+   static class413[] method426() {
+      return new class413[]{class413.field3782, class413.field3781, class413.field3780, class413.field3784};
    }
 
    @ObfuscatedName("c")
@@ -130,7 +108,7 @@ public class GraphicsObject extends Renderable {
       descriptor = "(I)I",
       garbageValue = "44034066"
    )
-   static int method2024() {
+   static int method422() {
       return Login.loginIndex;
    }
 
@@ -139,7 +117,7 @@ public class GraphicsObject extends Renderable {
       descriptor = "(B)I",
       garbageValue = "51"
    )
-   static int method2021() {
+   static int method420() {
       if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
          int var0 = 0;
 
@@ -147,7 +125,7 @@ public class GraphicsObject extends Renderable {
             var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount;
          }
 
-         return var0 * 10000 / Client.field804;
+         return var0 * 10000 / Client.field649;
       } else {
          return 10000;
       }
@@ -158,7 +136,7 @@ public class GraphicsObject extends Renderable {
       descriptor = "(I)Z",
       garbageValue = "-1124455620"
    )
-   static boolean method2026() {
+   static boolean method424() {
       return (Client.drawPlayerNames & 8) != 0;
    }
 
@@ -167,7 +145,7 @@ public class GraphicsObject extends Renderable {
       descriptor = "(Lkd;II)I",
       garbageValue = "-1546792935"
    )
-   static final int method2025(Widget var0, int var1) {
+   static final int method423(Widget var0, int var1) {
       if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) {
          try {
             int[] var2 = var0.cs1Instructions[var1];
@@ -284,11 +262,11 @@ public class GraphicsObject extends Renderable {
                }
 
                if (var6 == 18) {
-                  var7 = class154.baseX * 64 + (class155.localPlayer.x >> 7);
+                  var7 = (class155.localPlayer.x >> 7) + class154.baseX;
                }
 
                if (var6 == 19) {
-                  var7 = class365.baseY * 64 + (class155.localPlayer.y >> 7);
+                  var7 = (class155.localPlayer.y >> 7) + class365.baseY;
                }
 
                if (var6 == 20) {

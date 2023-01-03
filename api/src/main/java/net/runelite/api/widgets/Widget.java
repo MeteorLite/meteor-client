@@ -659,7 +659,7 @@ public interface Widget extends Interactable, Identifiable
 	 * @param index  The index of the menu
 	 * @param action The verb to be displayed next to the widget's name in the context menu
 	 */
-	void setAction(int index, String action);
+	void setAction$api(int index, String action);
 
 	/**
 	 * Sets a script to be ran when the a menu action is clicked.

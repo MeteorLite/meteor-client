@@ -2,11 +2,11 @@ import java.io.File;
 import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fe")
+@Implements("VarcInt")
 public class VarcInt extends DualNode {
    @ObfuscatedName("sk")
    @ObfuscatedSignature(
@@ -27,11 +27,8 @@ public class VarcInt extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lfn;"
    )
-   static ClanChannel field1956;
+   static ClanChannel field1497;
    @ObfuscatedName("mh")
-   @ObfuscatedGetter(
-      intValue = -1028390641
-   )
    static int menuX;
    @ObfuscatedName("v")
    public boolean persist = false;
@@ -41,14 +38,14 @@ public class VarcInt extends DualNode {
       descriptor = "(Lqy;I)V",
       garbageValue = "-1121101967"
    )
-   void method3573(Buffer var1) {
+   void method922(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
             return;
          }
 
-         this.method3574(var1, var2);
+         this.method923(var1, var2);
       }
    }
 
@@ -57,7 +54,7 @@ public class VarcInt extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "511684289"
    )
-   void method3574(Buffer var1, int var2) {
+   void method923(Buffer var1, int var2) {
       if (var2 == 2) {
          this.persist = true;
       }
@@ -69,7 +66,7 @@ public class VarcInt extends DualNode {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;II)Ljava/io/File;",
       garbageValue = "2144931745"
    )
-   public static File method3572(String var0, String var1, int var2) {
+   public static File method921(String var0, String var1, int var2) {
       String var3 = var2 == 0 ? "" : "" + var2;
       JagexCache.JagexCache_locationFile = new File(UserComparator3.userHomeDirectory, "jagex_cl_" + var0 + "_" + var1 + var3 + ".dat");
       String var4 = null;
@@ -126,7 +123,7 @@ public class VarcInt extends DualNode {
 
          if (var4 != null) {
             var22 = new File(var4, "test.dat");
-            if (!WorldMapLabelSize.method4858(var22, true)) {
+            if (!WorldMapLabelSize.method1307(var22, true)) {
                var4 = null;
             }
          }
@@ -137,7 +134,7 @@ public class VarcInt extends DualNode {
          for(int var15 = 0; var15 < class89.cacheSubPaths.length; ++var15) {
             for(int var16 = 0; var16 < class121.cacheParentPaths.length; ++var16) {
                File var17 = new File(class121.cacheParentPaths[var16] + class89.cacheSubPaths[var15] + File.separatorChar + var0 + File.separatorChar);
-               if (var17.exists() && WorldMapLabelSize.method4858(new File(var17, "test.dat"), true)) {
+               if (var17.exists() && WorldMapLabelSize.method1307(new File(var17, "test.dat"), true)) {
                   var4 = var17.toString();
                   var6 = true;
                   break label124;
@@ -175,7 +172,7 @@ public class VarcInt extends DualNode {
       }
 
       if (var6) {
-         UserComparator7.method2828(new File(var4), (File)null);
+         UserComparator7.method664(new File(var4), (File)null);
       }
 
       return new File(var4);

@@ -8,7 +8,7 @@ public class class323 {
       descriptor = "(Lqx;I)I",
       garbageValue = "-853854318"
    )
-   static int method6389(PacketBuffer var0) {
+   static int method1775(PacketBuffer var0) {
       int var1 = var0.readBits(2);
       int var2;
       if (var1 == 0) {

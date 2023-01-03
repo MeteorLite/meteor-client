@@ -1,10 +1,10 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cq")
+@Implements("ArchiveLoader")
 public class ArchiveLoader {
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -12,14 +12,8 @@ public class ArchiveLoader {
    )
    final Archive archive;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1940986101
-   )
    final int groupCount;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 2076780085
-   )
    int loadedCount = 0;
 
    @ObfuscatedSignature(
@@ -39,7 +33,7 @@ public class ArchiveLoader {
       this.loadedCount = 0;
 
       for(int var1 = 0; var1 < this.groupCount; ++var1) {
-         if (!this.archive.method6448(var1) || this.archive.method6424(var1)) {
+         if (!this.archive.method1791(var1) || this.archive.method1788(var1)) {
             ++this.loadedCount;
          }
       }
@@ -65,7 +59,7 @@ public class ArchiveLoader {
       descriptor = "([BII)V",
       garbageValue = "1191186738"
    )
-   static void method2222(byte[] var0, int var1) {
+   static void method463(byte[] var0, int var1) {
       if (Client.randomDatData == null) {
          Client.randomDatData = new byte[24];
       }

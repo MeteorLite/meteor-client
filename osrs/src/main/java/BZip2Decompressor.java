@@ -4,6 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rq")
+@Implements("BZip2Decompressor")
 public final class BZip2Decompressor {
    @ObfuscatedName("r")
    @ObfuscatedSignature(
@@ -23,7 +24,7 @@ public final class BZip2Decompressor {
          BZip2Decompressor_state.bsLive = 0;
          BZip2Decompressor_state.bsBuff = 0;
          BZip2Decompressor_state.nextBit_unused = 0;
-         BZip2Decompressor_state.field4936 = 0;
+         BZip2Decompressor_state.field4012 = 0;
          BZip2Decompressor_decompress(BZip2Decompressor_state);
          var1 -= BZip2Decompressor_state.outputLength;
          BZip2Decompressor_state.inputArray = null;
@@ -36,30 +37,30 @@ public final class BZip2Decompressor {
    @ObfuscatedSignature(
       descriptor = "(Lrf;)V"
    )
-   static void method8812(BZip2State var0) {
+   static void method2415(BZip2State var0) {
       byte var2 = var0.out_char;
       int var3 = var0.su_rNToGo;
       int var4 = var0.nblocks_used;
       int var5 = var0.su_ch2;
       int[] var6 = BZip2State.BZip2Decompressor_block;
-      int var7 = var0.field4940;
+      int var7 = var0.field4016;
       byte[] var8 = var0.outputArray;
       int var9 = var0.next_out;
       int var10 = var0.outputLength;
-      int var12 = var0.field4959 + 1;
+      int var12 = var0.field4035 + 1;
 
-      label70:
+      label62:
       while(true) {
          if (var3 > 0) {
             while(true) {
                if (var10 == 0) {
-                  break label70;
+                  break label62;
                }
 
                if (var3 == 1) {
                   if (var10 == 0) {
                      var3 = 1;
-                     break label70;
+                     break label62;
                   }
 
                   var8[var9] = var2;
@@ -85,7 +86,7 @@ public final class BZip2Decompressor {
                var5 = var1;
                if (var10 == 0) {
                   var3 = 1;
-                  break label70;
+                  break label62;
                }
 
                var8[var9] = var2;
@@ -124,12 +125,12 @@ public final class BZip2Decompressor {
                         }
                      }
                   }
-                  continue label70;
+                  continue label62;
                }
 
                if (var10 == 0) {
                   var3 = 1;
-                  break label70;
+                  break label62;
                }
 
                var8[var9] = var2;
@@ -142,9 +143,9 @@ public final class BZip2Decompressor {
          break;
       }
 
-      int var13 = var0.field4936;
-      var0.field4936 += var10 - var10;
-      if (var0.field4936 < var13) {
+      int var13 = var0.field4012;
+      var0.field4012 += var10 - var10;
+      if (var0.field4012 < var13) {
          ;
       }
 
@@ -153,7 +154,7 @@ public final class BZip2Decompressor {
       var0.nblocks_used = var4;
       var0.su_ch2 = var5;
       BZip2State.BZip2Decompressor_block = var6;
-      var0.field4940 = var7;
+      var0.field4016 = var7;
       var0.outputArray = var8;
       var0.next_out = var9;
       var0.outputLength = var10;
@@ -186,9 +187,9 @@ public final class BZip2Decompressor {
       int[] var23 = null;
       int[] var24 = null;
       int[] var25 = null;
-      var0.blockSize100k = 1410065408;
+      var0.blockSize100k = 2039955545;
       if (BZip2State.BZip2Decompressor_block == null) {
-         BZip2State.BZip2Decompressor_block = new int[var0.blockSize100k * 100000];
+         BZip2State.BZip2Decompressor_block = new int[var0.blockSize100k * 881977248];
       }
 
       boolean var26 = true;
@@ -509,15 +510,15 @@ public final class BZip2Decompressor {
                   ++var0.cftab[var1 & 255];
                }
 
-               var0.field4940 = BZip2State.BZip2Decompressor_block[var0.originalPointer] >> 8;
+               var0.field4016 = BZip2State.BZip2Decompressor_block[var0.originalPointer] >> 8;
                var0.nblocks_used = 0;
-               var0.field4940 = BZip2State.BZip2Decompressor_block[var0.field4940];
-               var0.su_ch2 = (byte)(var0.field4940 & 255);
-               var0.field4940 >>= 8;
+               var0.field4016 = BZip2State.BZip2Decompressor_block[var0.field4016];
+               var0.su_ch2 = (byte)(var0.field4016 & 255);
+               var0.field4016 >>= 8;
                ++var0.nblocks_used;
-               var0.field4959 = var47;
-               method8812(var0);
-               if (var0.field4959 + 1 == var0.nblocks_used && var0.su_rNToGo == 0) {
+               var0.field4035 = var47;
+               method2415(var0);
+               if (var0.field4035 + 1 == var0.nblocks_used && var0.su_rNToGo == 0) {
                   var26 = true;
                   break;
                }

@@ -4,12 +4,13 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Locale;
 import javax.imageio.ImageIO;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mb")
+@Implements("Language")
 public class Language implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -20,7 +21,7 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   static final Language field4302;
+   static final Language field3524;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lmb;"
@@ -30,12 +31,12 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   static final Language field4296;
+   static final Language field3518;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   static final Language field4297;
+   static final Language field3519;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lmb;"
@@ -45,48 +46,38 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   static final Language field4294;
+   static final Language field3516;
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "[Lmb;"
    )
-   public static final Language[] field4304;
+   public static final Language[] field3526;
    @ObfuscatedName("d")
-   @ObfuscatedGetter(
-      intValue = 1226653913
-   )
    public static int canvasHeight;
    @ObfuscatedName("ad")
    static boolean[] Widget_loadedInterfaces;
    @ObfuscatedName("r")
-   final String field4300;
+   final String field3522;
    @ObfuscatedName("u")
    final String language;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 1679709169
-   )
    final int id;
 
    static {
-      Language_EN = new Language("EN", "en", "English", ModeWhere.field4327, 0, "GB");
-      field4302 = new Language("DE", "de", "German", ModeWhere.field4327, 1, "DE");
-      Language_FR = new Language("FR", "fr", "French", ModeWhere.field4327, 2, "FR");
-      field4296 = new Language("PT", "pt", "Portuguese", ModeWhere.field4327, 3, "BR");
-      field4297 = new Language("NL", "nl", "Dutch", ModeWhere.field4310, 4, "NL");
-      Language_ES = new Language("ES", "es", "Spanish", ModeWhere.field4310, 5, "ES");
-      field4294 = new Language("ES_MX", "es-mx", "Spanish (Latin American)", ModeWhere.field4327, 6, "MX");
-      Language[] var0 = new Language[]{field4302, Language_ES, Language_FR, field4297, field4294, field4296, Language_EN};
-      field4304 = new Language[var0.length];
+      Language_EN = new Language("EN", "en", "English", ModeWhere.field3545, 0, "GB");
+      field3524 = new Language("DE", "de", "German", ModeWhere.field3545, 1, "DE");
+      Language_FR = new Language("FR", "fr", "French", ModeWhere.field3545, 2, "FR");
+      field3518 = new Language("PT", "pt", "Portuguese", ModeWhere.field3545, 3, "BR");
+      field3519 = new Language("NL", "nl", "Dutch", ModeWhere.field3529, 4, "NL");
+      Language_ES = new Language("ES", "es", "Spanish", ModeWhere.field3529, 5, "ES");
+      field3516 = new Language("ES_MX", "es-mx", "Spanish (Latin American)", ModeWhere.field3545, 6, "MX");
+      Language[] var0 = new Language[]{field3524, Language_ES, Language_FR, field3519, field3516, field3518, Language_EN};
+      field3526 = new Language[var0.length];
       Language[] var2 = var0;
 
       for(int var3 = 0; var3 < var2.length; ++var3) {
          Language var4 = var2[var3];
-         if (field4304[var4.id] != null) {
-            throw new IllegalStateException();
-         }
-
-         field4304[var4.id] = var4;
+         field3526[var4.id] = var4;
       }
 
    }
@@ -95,7 +86,7 @@ public class Language implements class345 {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lmr;ILjava/lang/String;)V"
    )
    Language(String var1, String var2, String var3, ModeWhere var4, int var5, String var6) {
-      this.field4300 = var1;
+      this.field3522 = var1;
       this.language = var2;
       this.id = var5;
       if (var6 != null) {
@@ -134,7 +125,7 @@ public class Language implements class345 {
       descriptor = "([BB)Lrx;",
       garbageValue = "0"
    )
-   public static final SpritePixels method6693(byte[] var0) {
+   public static final SpritePixels method1865(byte[] var0) {
       BufferedImage var1 = null;
 
       try {
@@ -163,12 +154,12 @@ public class Language implements class345 {
       descriptor = "(I)V",
       garbageValue = "-669760622"
    )
-   static void method6695() {
+   static void method1866() {
       Players.Players_count = 0;
 
       for(int var0 = 0; var0 < 2048; ++var0) {
-         Players.field1372[var0] = null;
-         Players.field1379[var0] = MoveSpeed.WALK;
+         Players.field1087[var0] = null;
+         Players.field1094[var0] = MoveSpeed.WALK;
       }
 
    }

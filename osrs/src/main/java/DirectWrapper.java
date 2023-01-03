@@ -3,6 +3,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("ji")
+@Implements("DirectWrapper")
 public class DirectWrapper extends Wrapper {
    @ObfuscatedName("h")
    Object obj;

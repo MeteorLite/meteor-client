@@ -8,13 +8,13 @@ public class class338 {
       descriptor = "(Lly;II)Lkl;",
       garbageValue = "450082500"
    )
-   static MusicPatch method6604(AbstractArchive var0, int var1) {
+   static MusicPatch method1833(AbstractArchive var0, int var1) {
       byte[] var2 = var0.takeFileFlat(var1);
       return var2 == null ? null : new MusicPatch(var2);
    }
 
    @ObfuscatedName("b")
-   static final void method6605(long var0) {
+   static final void method1834(long var0) {
       ViewportMouse.ViewportMouse_entityTags[++ViewportMouse.ViewportMouse_entityCount - 1] = var0;
    }
 }

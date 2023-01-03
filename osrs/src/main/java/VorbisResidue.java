@@ -3,6 +3,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("aq")
+@Implements("VorbisResidue")
 public class VorbisResidue {
    @ObfuscatedName("h")
    int residueType = VorbisSample.readBits(16);
@@ -43,7 +44,7 @@ public class VorbisResidue {
    }
 
    @ObfuscatedName("h")
-   void method895(float[] var1, int var2, boolean var3) {
+   void method246(float[] var1, int var2, boolean var3) {
       int var4;
       for(var4 = 0; var4 < var2; ++var4) {
          var1[var4] = 0.0F;
@@ -62,7 +63,7 @@ public class VorbisResidue {
                int var10;
                int var11;
                if (var8 == 0) {
-                  var10 = VorbisSample.VorbisSample_codebooks[this.classbook].method1080();
+                  var10 = VorbisSample.VorbisSample_codebooks[this.classbook].method302();
 
                   for(var11 = var4 - 1; var11 >= 0; --var11) {
                      if (var9 + var11 < var6) {
@@ -83,21 +84,21 @@ public class VorbisResidue {
                      if (this.residueType == 0) {
                         var15 = this.partitionSize / var14.dimensions;
 
-                        for(int var19 = 0; var19 < var15; ++var19) {
-                           float[] var20 = var14.method1081();
+                        for(int var16 = 0; var16 < var15; ++var16) {
+                           float[] var17 = var14.method303();
 
                            for(int var18 = 0; var18 < var14.dimensions; ++var18) {
-                              var1[var13 + var19 + var18 * var15] += var20[var18];
+                              var1[var13 + var16 + var18 * var15] += var17[var18];
                            }
                         }
                      } else {
                         var15 = 0;
 
                         while(var15 < this.partitionSize) {
-                           float[] var16 = var14.method1081();
+                           float[] var19 = var14.method303();
 
-                           for(int var17 = 0; var17 < var14.dimensions; ++var17) {
-                              var1[var13 + var15] += var16[var17];
+                           for(int var20 = 0; var20 < var14.dimensions; ++var20) {
+                              var1[var13 + var15] += var19[var20];
                               ++var15;
                            }
                         }

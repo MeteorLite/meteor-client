@@ -5,6 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pi")
+@Implements("IterableNodeHashTableIterator")
 public class IterableNodeHashTableIterator implements Iterator {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
