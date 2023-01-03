@@ -10,16 +10,13 @@ public class class20 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Lep;"
    )
-   @Export("guestClanSettings")
    static ClanSettings guestClanSettings;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Lac;"
    )
-   @Export("pcmPlayerProvider")
    public static class51 pcmPlayerProvider;
    @ObfuscatedName("am")
-   @Export("fontHelvetica13")
    static java.awt.Font fontHelvetica13;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -30,7 +27,6 @@ public class class20 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Ln;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class14 this$0;
 
@@ -42,7 +38,6 @@ public class class20 implements Callable {
       this.field60 = var2;
    }
 
-   @Export("call")
    @ObfuscatedName("call")
    public Object call() throws Exception {
       try {

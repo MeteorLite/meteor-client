@@ -7,34 +7,25 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("DynamicObject")
 public class DynamicObject extends Renderable {
    @ObfuscatedName("h")
-   @Export("id")
    int id;
    @ObfuscatedName("e")
-   @Export("type")
    int type;
    @ObfuscatedName("v")
-   @Export("orientation")
    int orientation;
    @ObfuscatedName("x")
-   @Export("plane")
    int plane;
    @ObfuscatedName("m")
-   @Export("x")
    int x;
    @ObfuscatedName("q")
-   @Export("y")
    int y;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lga;"
    )
-   @Export("sequenceDefinition")
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
-   @Export("frame")
    int frame;
    @ObfuscatedName("u")
-   @Export("cycleStart")
    int cycleStart;
 
    @ObfuscatedSignature(
@@ -77,7 +68,6 @@ public class DynamicObject extends Renderable {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       int var2;
       if (this.sequenceDefinition != null) {
@@ -152,7 +142,6 @@ public class DynamicObject extends Renderable {
       descriptor = "(Lqy;Lql;I)Lql;",
       garbageValue = "-1322672693"
    )
-   @Export("readStringIntParameters")
    static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
       int var2 = var0.readUnsignedByte();
       int var3;

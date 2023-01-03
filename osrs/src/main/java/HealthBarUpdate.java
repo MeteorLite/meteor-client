@@ -10,19 +10,14 @@ import netscape.javascript.JSObject;
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
    @ObfuscatedName("iz")
-   @Export("selectedItemId")
    static int selectedItemId;
    @ObfuscatedName("h")
-   @Export("cycle")
    int cycle;
    @ObfuscatedName("e")
-   @Export("health")
    int health;
    @ObfuscatedName("v")
-   @Export("health2")
    int health2;
    @ObfuscatedName("x")
-   @Export("cycleOffset")
    int cycleOffset;
 
    HealthBarUpdate(int var1, int var2, int var3, int var4) {
@@ -37,7 +32,6 @@ public class HealthBarUpdate extends Node {
       descriptor = "(IIIII)V",
       garbageValue = "839931958"
    )
-   @Export("set")
    void set(int var1, int var2, int var3, int var4) {
       this.cycle = var1;
       this.health = var2;
@@ -50,7 +44,6 @@ public class HealthBarUpdate extends Node {
       descriptor = "(IB)Lqm;",
       garbageValue = "0"
    )
-   @Export("getDbRowType")
    public static DbRowType getDbRowType(int var0) {
       DbRowType var1 = (DbRowType)DbRowType.DBRowType_cache.get((long)var0);
       if (var1 != null) {

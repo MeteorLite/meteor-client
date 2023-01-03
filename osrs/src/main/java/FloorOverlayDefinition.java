@@ -10,43 +10,31 @@ public class FloorOverlayDefinition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("FloorOverlayDefinition_archive")
    public static AbstractArchive FloorOverlayDefinition_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("FloorOverlayDefinition_cached")
    public static EvictingDualNodeHashTable FloorOverlayDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
-   @Export("primaryRgb")
    public int primaryRgb = 0;
    @ObfuscatedName("x")
-   @Export("texture")
    public int texture = -1;
    @ObfuscatedName("m")
-   @Export("hideUnderlay")
    public boolean hideUnderlay = true;
    @ObfuscatedName("q")
-   @Export("secondaryRgb")
    public int secondaryRgb = -1;
    @ObfuscatedName("f")
-   @Export("hue")
    public int hue;
    @ObfuscatedName("r")
-   @Export("saturation")
    public int saturation;
    @ObfuscatedName("u")
-   @Export("lightness")
    public int lightness;
    @ObfuscatedName("b")
-   @Export("secondaryHue")
    public int secondaryHue;
    @ObfuscatedName("j")
-   @Export("secondarySaturation")
    public int secondarySaturation;
    @ObfuscatedName("g")
-   @Export("secondaryLightness")
    public int secondaryLightness;
 
    @ObfuscatedName("h")
@@ -54,7 +42,6 @@ public class FloorOverlayDefinition extends DualNode {
       descriptor = "(I)V",
       garbageValue = "263415737"
    )
-   @Export("postDecode")
    public void postDecode() {
       if (this.secondaryRgb != -1) {
          this.setHsl(this.secondaryRgb);
@@ -71,7 +58,6 @@ public class FloorOverlayDefinition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "1064972776"
    )
-   @Export("decode")
    public void decode(Buffer var1, int var2) {
       while(true) {
          int var3 = var1.readUnsignedByte();
@@ -88,7 +74,6 @@ public class FloorOverlayDefinition extends DualNode {
       descriptor = "(Lqy;III)V",
       garbageValue = "-1744958281"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2, int var3) {
       if (var2 == 1) {
          this.primaryRgb = var1.readMedium();
@@ -109,7 +94,6 @@ public class FloorOverlayDefinition extends DualNode {
       descriptor = "(II)V",
       garbageValue = "596293894"
    )
-   @Export("setHsl")
    void setHsl(int var1) {
       double var2 = (double)(var1 >> 16 & 255) / 256.0D;
       double var4 = (double)(var1 >> 8 & 255) / 256.0D;

@@ -10,29 +10,24 @@ public enum MoveSpeed implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lgs;"
    )
-   @Export("STATIONARY")
    STATIONARY((byte)-1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
    )
-   @Export("CRAWL")
    CRAWL((byte)0),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
    )
-   @Export("WALK")
    WALK((byte)1),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
    )
-   @Export("RUN")
    RUN((byte)2);
 
    @ObfuscatedName("m")
-   @Export("speed")
    public byte speed;
 
    MoveSpeed(byte var3) {
@@ -44,7 +39,6 @@ public enum MoveSpeed implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.speed;
    }

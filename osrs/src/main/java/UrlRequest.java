@@ -11,19 +11,14 @@ public class UrlRequest {
    @ObfuscatedSignature(
       descriptor = "Lfz;"
    )
-   @Export("clock")
    static Clock clock;
    @ObfuscatedName("d")
-   @Export("loginBoxCenter")
    static int loginBoxCenter;
    @ObfuscatedName("h")
-   @Export("url")
    final URL url;
    @ObfuscatedName("e")
-   @Export("isDone0")
    volatile boolean isDone0;
    @ObfuscatedName("v")
-   @Export("response0")
    volatile byte[] response0;
 
    UrlRequest(URL var1) {
@@ -35,7 +30,6 @@ public class UrlRequest {
       descriptor = "(I)Z",
       garbageValue = "-1999146756"
    )
-   @Export("isDone")
    public boolean isDone() {
       return this.isDone0;
    }
@@ -45,7 +39,6 @@ public class UrlRequest {
       descriptor = "(I)[B",
       garbageValue = "-1235886388"
    )
-   @Export("getResponse")
    public byte[] getResponse() {
       return this.response0;
    }
@@ -64,7 +57,6 @@ public class UrlRequest {
       descriptor = "(B)[Lrv;",
       garbageValue = "-97"
    )
-   @Export("FillMode_values")
    public static FillMode[] FillMode_values() {
       return new FillMode[]{FillMode.field4062, FillMode.SOLID, FillMode.field4063};
    }

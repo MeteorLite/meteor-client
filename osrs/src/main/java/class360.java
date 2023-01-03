@@ -8,7 +8,6 @@ public final class class360 {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("scriptActiveWidget")
    static Widget scriptActiveWidget;
 
    @ObfuscatedName("r")

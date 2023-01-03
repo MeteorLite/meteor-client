@@ -11,6 +11,5 @@ public interface PlatformInfoProvider {
       descriptor = "(B)Lpk;",
       garbageValue = "-45"
    )
-   @Export("get")
    PlatformInfo get();
 }

@@ -23,7 +23,6 @@ public class class169 {
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class163 this$0;
 
@@ -43,7 +42,6 @@ public class class169 {
       descriptor = "(IB)V",
       garbageValue = "0"
    )
-   @Export("playSong")
    static void playSong(int var0) {
       if (var0 == -1 && !Client.playingJingle) {
          class6.method14();
@@ -67,7 +65,6 @@ public class class169 {
       descriptor = "([Lkd;Lkd;ZI)V",
       garbageValue = "2119865006"
    )
-   @Export("revalidateWidgetScroll")
    static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
       int var3 = var1.scrollWidth != 0 ? var1.scrollWidth * 666858271 * -1494857505 : var1.width * 1832001725 * -170206571;
       int var4 = var1.scrollHeight != 0 ? var1.scrollHeight * -319102043 * -969061331 : var1.height * 882604251 * 1399571283;

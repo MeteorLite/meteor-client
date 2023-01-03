@@ -10,7 +10,6 @@ public class LoginType {
    @ObfuscatedSignature(
       descriptor = "Lqi;"
    )
-   @Export("oldscape")
    public static final LoginType oldscape = new LoginType(7, 0, "", "");
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -74,7 +73,6 @@ public class LoginType {
       this.field3944 = var4;
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       return this.field3944;

@@ -7,13 +7,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("pf")
 public class class422 implements class421 {
    @ObfuscatedName("h")
-   @Export("RunException_applet")
    public static Applet RunException_applet;
    @ObfuscatedName("ao")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("Widget_archive")
    static AbstractArchive Widget_archive;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -34,7 +32,6 @@ public class class422 implements class421 {
       descriptor = "(B)[B",
       garbageValue = "0"
    )
-   @Export("vmethod7797")
    public byte[] vmethod7797() throws UnsupportedEncodingException {
       return this.field3797 == null ? new byte[0] : this.field3797.toString().getBytes("UTF-8");
    }

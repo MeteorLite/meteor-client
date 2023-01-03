@@ -8,16 +8,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Buffer")
 public class Buffer extends Node {
    @ObfuscatedName("b")
-   @Export("crc32Table")
    static int[] crc32Table = new int[256];
    @ObfuscatedName("g")
-   @Export("crc64Table")
    static long[] crc64Table;
    @ObfuscatedName("r")
-   @Export("array")
    public byte[] array;
    @ObfuscatedName("u")
-   @Export("offset")
    public int offset;
 
    static {
@@ -73,7 +69,6 @@ public class Buffer extends Node {
       descriptor = "(I)V",
       garbageValue = "573816263"
    )
-   @Export("releaseArray")
    public void releaseArray() {
       if (this.array != null) {
          class200.ByteArrayPool_release(this.array);
@@ -87,7 +82,6 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "-1292622298"
    )
-   @Export("writeByte")
    public void writeByte(int var1) {
       this.array[++this.offset - 1] = (byte)var1;
    }
@@ -97,7 +91,6 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "-1503881310"
    )
-   @Export("writeShort")
    public void writeShort(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
       this.array[++this.offset - 1] = (byte)var1;
@@ -108,7 +101,6 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "-13"
    )
-   @Export("writeMedium")
    public void writeMedium(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 >> 16);
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
@@ -120,7 +112,6 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "72"
    )
-   @Export("writeInt")
    public void writeInt(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 >> 24);
       this.array[++this.offset - 1] = (byte)(var1 >> 16);
@@ -129,7 +120,6 @@ public class Buffer extends Node {
    }
 
    @ObfuscatedName("aw")
-   @Export("writeLongMedium")
    public void writeLongMedium(long var1) {
       this.array[++this.offset - 1] = (byte)((int)(var1 >> 40));
       this.array[++this.offset - 1] = (byte)((int)(var1 >> 32));
@@ -140,7 +130,6 @@ public class Buffer extends Node {
    }
 
    @ObfuscatedName("aj")
-   @Export("writeLong")
    public void writeLong(long var1) {
       this.array[++this.offset - 1] = (byte)((int)(var1 >> 56));
       this.array[++this.offset - 1] = (byte)((int)(var1 >> 48));
@@ -157,7 +146,6 @@ public class Buffer extends Node {
       descriptor = "(ZI)V",
       garbageValue = "1237672989"
    )
-   @Export("writeBoolean")
    public void writeBoolean(boolean var1) {
       this.writeByte(var1 ? 1 : 0);
    }
@@ -167,7 +155,6 @@ public class Buffer extends Node {
       descriptor = "(Ljava/lang/String;B)V",
       garbageValue = "72"
    )
-   @Export("writeStringCp1252NullTerminated")
    public void writeStringCp1252NullTerminated(String var1) {
       int var2 = var1.indexOf(0);
       if (var2 >= 0) {
@@ -183,7 +170,6 @@ public class Buffer extends Node {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "1568672467"
    )
-   @Export("writeStringCp1252NullCircumfixed")
    public void writeStringCp1252NullCircumfixed(String var1) {
       int var2 = var1.indexOf(0);
       if (var2 >= 0) {
@@ -200,7 +186,6 @@ public class Buffer extends Node {
       descriptor = "(Ljava/lang/CharSequence;B)V",
       garbageValue = "-26"
    )
-   @Export("writeCESU8")
    public void writeCESU8(CharSequence var1) {
       int var2 = SoundSystem.method235(var1);
       this.array[++this.offset - 1] = 0;
@@ -213,7 +198,6 @@ public class Buffer extends Node {
       descriptor = "([BIIB)V",
       garbageValue = "1"
    )
-   @Export("writeBytes")
    public void writeBytes(byte[] var1, int var2, int var3) {
       for(int var4 = var2; var4 < var3 + var2; ++var4) {
          this.array[++this.offset - 1] = var1[var4];
@@ -235,7 +219,6 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "1"
    )
-   @Export("writeLengthInt")
    public void writeLengthInt(int var1) {
       if (var1 < 0) {
          throw new IllegalArgumentException();
@@ -252,7 +235,6 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "-895290179"
    )
-   @Export("writeLengthShort")
    public void writeLengthShort(int var1) {
       if (var1 >= 0 && var1 <= 65535) {
          this.array[this.offset - var1 - 2] = (byte)(var1 >> 8);
@@ -280,7 +262,6 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "-7"
    )
-   @Export("writeSmartByteShort")
    public void writeSmartByteShort(int var1) {
       if (var1 >= 0 && var1 < 128) {
          this.writeByte(var1);
@@ -296,7 +277,6 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "-922347408"
    )
-   @Export("writeVarInt")
    public void writeVarInt(int var1) {
       if ((var1 & -128) != 0) {
          if ((var1 & -16384) != 0) {
@@ -322,7 +302,6 @@ public class Buffer extends Node {
       descriptor = "(B)I",
       garbageValue = "-94"
    )
-   @Export("readUnsignedByte")
    public int readUnsignedByte() {
       return this.array[++this.offset - 1] & 255;
    }
@@ -332,7 +311,6 @@ public class Buffer extends Node {
       descriptor = "(I)B",
       garbageValue = "735489288"
    )
-   @Export("readByte")
    public byte readByte() {
       return this.array[++this.offset - 1];
    }
@@ -342,7 +320,6 @@ public class Buffer extends Node {
       descriptor = "(B)I",
       garbageValue = "-60"
    )
-   @Export("readUnsignedShort")
    public int readUnsignedShort() {
       this.offset += 2;
       return (this.array[this.offset - 1] & 255) + ((this.array[this.offset - 2] & 255) << 8);
@@ -353,7 +330,6 @@ public class Buffer extends Node {
       descriptor = "(I)I",
       garbageValue = "596046446"
    )
-   @Export("readShort")
    public int readShort() {
       this.offset += 2;
       int var1 = (this.array[this.offset - 1] & 255) + ((this.array[this.offset - 2] & 255) << 8);
@@ -369,7 +345,6 @@ public class Buffer extends Node {
       descriptor = "(I)I",
       garbageValue = "1852332361"
    )
-   @Export("readMedium")
    public int readMedium() {
       this.offset += 3;
       return ((this.array[this.offset - 3] & 255) << 16) + (this.array[this.offset - 1] & 255) + ((this.array[this.offset - 2] & 255) << 8);
@@ -380,7 +355,6 @@ public class Buffer extends Node {
       descriptor = "(B)I",
       garbageValue = "-74"
    )
-   @Export("readInt")
    public int readInt() {
       this.offset += 4;
       return ((this.array[this.offset - 3] & 255) << 16) + (this.array[this.offset - 1] & 255) + ((this.array[this.offset - 2] & 255) << 8) + ((this.array[this.offset - 4] & 255) << 24);
@@ -391,7 +365,6 @@ public class Buffer extends Node {
       descriptor = "(B)J",
       garbageValue = "-107"
    )
-   @Export("readLong")
    public long readLong() {
       long var1 = (long)this.readInt() & 4294967295L;
       long var3 = (long)this.readInt() & 4294967295L;
@@ -412,7 +385,6 @@ public class Buffer extends Node {
       descriptor = "(I)Z",
       garbageValue = "-86010976"
    )
-   @Export("readBoolean")
    public boolean readBoolean() {
       return (this.readUnsignedByte() & 1) == 1;
    }
@@ -422,7 +394,6 @@ public class Buffer extends Node {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "-1953129170"
    )
-   @Export("readStringCp1252NullTerminatedOrNull")
    public String readStringCp1252NullTerminatedOrNull() {
       if (this.array[this.offset] == 0) {
          ++this.offset;
@@ -437,7 +408,6 @@ public class Buffer extends Node {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "262864078"
    )
-   @Export("readStringCp1252NullTerminated")
    public String readStringCp1252NullTerminated() {
       int var1 = this.offset;
 
@@ -454,7 +424,6 @@ public class Buffer extends Node {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "757017761"
    )
-   @Export("readStringCp1252NullCircumfixed")
    public String readStringCp1252NullCircumfixed() {
       byte var1 = this.array[++this.offset - 1];
       if (var1 != 0) {
@@ -476,7 +445,6 @@ public class Buffer extends Node {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "1702398552"
    )
-   @Export("readCESU8")
    public String readCESU8() {
       byte var1 = this.array[++this.offset - 1];
       if (var1 != 0) {
@@ -549,7 +517,6 @@ public class Buffer extends Node {
       descriptor = "([BIII)V",
       garbageValue = "-496207451"
    )
-   @Export("readBytes")
    public void readBytes(byte[] var1, int var2, int var3) {
       for(int var4 = var2; var4 < var3 + var2; ++var4) {
          var1[var4] = this.array[++this.offset - 1];
@@ -562,7 +529,6 @@ public class Buffer extends Node {
       descriptor = "(B)I",
       garbageValue = "-62"
    )
-   @Export("readShortSmart")
    public int readShortSmart() {
       int var1 = this.array[this.offset] & 255;
       return var1 < 128 ? this.readUnsignedByte() - 64 : this.readUnsignedShort() - '쀀';
@@ -573,7 +539,6 @@ public class Buffer extends Node {
       descriptor = "(I)I",
       garbageValue = "-435736148"
    )
-   @Export("readUShortSmart")
    public int readUShortSmart() {
       int var1 = this.array[this.offset] & 255;
       return var1 < 128 ? this.readUnsignedByte() : this.readUnsignedShort() - '耀';
@@ -634,7 +599,6 @@ public class Buffer extends Node {
       descriptor = "(I)I",
       garbageValue = "160426579"
    )
-   @Export("readVarInt")
    public int readVarInt() {
       byte var1 = this.array[++this.offset - 1];
 
@@ -670,7 +634,6 @@ public class Buffer extends Node {
       descriptor = "([II)V",
       garbageValue = "304198063"
    )
-   @Export("xteaEncryptAll")
    public void xteaEncryptAll(int[] var1) {
       int var2 = this.offset / 8;
       this.offset = 0;
@@ -698,7 +661,6 @@ public class Buffer extends Node {
       descriptor = "([IB)V",
       garbageValue = "123"
    )
-   @Export("xteaDecryptAll")
    public void xteaDecryptAll(int[] var1) {
       int var2 = this.offset / 8;
       this.offset = 0;
@@ -726,7 +688,6 @@ public class Buffer extends Node {
       descriptor = "([IIII)V",
       garbageValue = "-1799839706"
    )
-   @Export("xteaEncrypt")
    public void xteaEncrypt(int[] var1, int var2, int var3) {
       int var4 = this.offset;
       this.offset = var2;
@@ -756,7 +717,6 @@ public class Buffer extends Node {
       descriptor = "([IIII)V",
       garbageValue = "-243016668"
    )
-   @Export("xteaDecrypt")
    public void xteaDecrypt(int[] var1, int var2, int var3) {
       int var4 = this.offset;
       this.offset = var2;
@@ -786,7 +746,6 @@ public class Buffer extends Node {
       descriptor = "(Ljava/math/BigInteger;Ljava/math/BigInteger;I)V",
       garbageValue = "-2111367221"
    )
-   @Export("encryptRsa")
    public void encryptRsa(BigInteger var1, BigInteger var2) {
       int var3 = this.offset;
       this.offset = 0;
@@ -805,7 +764,6 @@ public class Buffer extends Node {
       descriptor = "(IB)I",
       garbageValue = "-66"
    )
-   @Export("writeCrc")
    public int writeCrc(int var1) {
       int var2 = Timer.method2006(this.array, var1, this.offset);
       this.writeInt(var2);
@@ -817,7 +775,6 @@ public class Buffer extends Node {
       descriptor = "(I)Z",
       garbageValue = "-1993986697"
    )
-   @Export("checkCrc")
    public boolean checkCrc() {
       this.offset -= 4;
       byte[] var2 = this.array;
@@ -930,7 +887,6 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "13"
    )
-   @Export("writeIntME")
    public void writeIntME(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
       this.array[++this.offset - 1] = (byte)(var1 + 128);

@@ -11,7 +11,6 @@ class class450 implements Iterator {
    @ObfuscatedSignature(
       descriptor = "Lqk;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class451 this$0;
 
@@ -22,19 +21,16 @@ class class450 implements Iterator {
       this.this$0 = var1;
    }
 
-   @Export("hasNext")
    @ObfuscatedName("hasNext")
    public boolean hasNext() {
       return this.field3961 < this.this$0.method2156();
    }
 
-   @Export("remove")
    @ObfuscatedName("remove")
    public void remove() {
       throw new UnsupportedOperationException();
    }
 
-   @Export("next")
    @ObfuscatedName("next")
    public Object next() {
       int var1 = ++this.field3961 - 1;

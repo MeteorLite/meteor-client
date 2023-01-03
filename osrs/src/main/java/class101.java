@@ -7,13 +7,11 @@ final class class101 implements class297 {
    @ObfuscatedName("tt")
    static int field1083;
    @ObfuscatedName("ng")
-   @Export("selectedItemSlot")
    static int selectedItemSlot;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("val$cc")
    @ObfuscatedName("val$cc")
    final Widget val$cc;
 
@@ -29,7 +27,6 @@ final class class101 implements class297 {
       descriptor = "(I)V",
       garbageValue = "-1798262930"
    )
-   @Export("vmethod5708")
    public void vmethod5708() {
       if (this.val$cc != null && this.val$cc.method1735().field2812 != null) {
          ScriptEvent var1 = new ScriptEvent();
@@ -45,7 +42,6 @@ final class class101 implements class297 {
       descriptor = "(II)V",
       garbageValue = "1255396169"
    )
-   @Export("setWindowedMode")
    static void setWindowedMode(int var0) {
       Client.field584 = 0L;
       if (var0 >= 2) {

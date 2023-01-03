@@ -547,10 +547,8 @@ public class ClientPacket implements class274 {
    )
    public static final ClientPacket field2538 = new ClientPacket(107, 22);
    @ObfuscatedName("dl")
-   @Export("id")
    final int id;
    @ObfuscatedName("dw")
-   @Export("length")
    final int length;
 
    ClientPacket(int var1, int var2) {
@@ -563,7 +561,6 @@ public class ClientPacket implements class274 {
       descriptor = "([BIII)Ljava/lang/String;",
       garbageValue = "-457974623"
    )
-   @Export("decodeStringCp1252")
    public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
       char[] var3 = new char[var2];
       int var4 = 0;

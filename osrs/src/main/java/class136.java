@@ -9,7 +9,6 @@ public abstract class class136 extends Node {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    abstract void vmethod3254(Buffer var1);
 
    @ObfuscatedName("e")
@@ -17,7 +16,6 @@ public abstract class class136 extends Node {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    abstract void vmethod3248(ClanSettings var1);
 
    @ObfuscatedName("e")
@@ -25,7 +23,6 @@ public abstract class class136 extends Node {
       descriptor = "(Ljp;Lrg;B)Ljx;",
       garbageValue = "107"
    )
-   @Export("getPacketBufferNode")
    public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
       PacketBufferNode var2 = class109.method651();
       var2.clientPacket = var0;

@@ -14,7 +14,6 @@ public class class14 {
    )
    static AbstractSocket field42;
    @ObfuscatedName("kn")
-   @Export("oculusOrbFocalPointY")
    static int oculusOrbFocalPointY;
    @ObfuscatedName("h")
    final int field40;

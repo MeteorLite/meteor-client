@@ -7,7 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("UserComparator10")
 public class UserComparator10 extends AbstractUserComparator {
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public UserComparator10(boolean var1) {
@@ -19,7 +18,6 @@ public class UserComparator10 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;I)I",
       garbageValue = "-1617310498"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (Client.worldId == var1.world && var2.world == Client.worldId) {
          return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
@@ -28,7 +26,6 @@ public class UserComparator10 extends AbstractUserComparator {
       }
    }
 
-   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
@@ -48,7 +45,6 @@ public class UserComparator10 extends AbstractUserComparator {
       descriptor = "([Lkd;II)V",
       garbageValue = "1689586583"
    )
-   @Export("drawModelComponents")
    static final void drawModelComponents(Widget[] var0, int var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          Widget var3 = var0[var2];

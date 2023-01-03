@@ -12,31 +12,24 @@ public class TextureProvider implements TextureLoader {
    @ObfuscatedSignature(
       descriptor = "[Lhx;"
    )
-   @Export("textures")
    Texture[] textures;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("deque")
    NodeDeque deque = new NodeDeque();
    @ObfuscatedName("v")
-   @Export("capacity")
    int capacity;
    @ObfuscatedName("x")
-   @Export("remaining")
    int remaining = 0;
    @ObfuscatedName("m")
-   @Export("brightness")
    double brightness = 1.0D;
    @ObfuscatedName("q")
-   @Export("textureSize")
    int textureSize = 128;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("archive")
    AbstractArchive archive;
 
    @ObfuscatedSignature(
@@ -64,7 +57,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(B)I",
       garbageValue = "8"
    )
-   @Export("getLoadedPercentage")
    public int getLoadedPercentage() {
       int var1 = 0;
       int var2 = 0;
@@ -93,7 +85,6 @@ public class TextureProvider implements TextureLoader {
    }
 
    @ObfuscatedName("e")
-   @Export("setBrightness")
    public void setBrightness(double var1) {
       this.brightness = var1;
       this.clear();
@@ -104,7 +95,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(II)[I",
       garbageValue = "-1617640500"
    )
-   @Export("getTexturePixels")
    public int[] getTexturePixels(int var1) {
       Texture var2 = this.textures[var1];
       if (var2 != null) {
@@ -137,7 +127,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(IB)I",
       garbageValue = "56"
    )
-   @Export("getAverageTextureRGB")
    public int getAverageTextureRGB(int var1) {
       return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
    }
@@ -147,7 +136,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(II)Z",
       garbageValue = "-1786884574"
    )
-   @Export("vmethod4645")
    public boolean vmethod4645(int var1) {
       return this.textures[var1].field1923;
    }
@@ -157,7 +145,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(II)Z",
       garbageValue = "1897971532"
    )
-   @Export("isLowDetail")
    public boolean isLowDetail(int var1) {
       return this.textureSize == 64;
    }
@@ -167,7 +154,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(I)V",
       garbageValue = "-1905328822"
    )
-   @Export("clear")
    public void clear() {
       for(int var1 = 0; var1 < this.textures.length; ++var1) {
          if (this.textures[var1] != null) {
@@ -184,7 +170,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(IB)V",
       garbageValue = "16"
    )
-   @Export("animate")
    public void animate(int var1) {
       for(int var2 = 0; var2 < this.textures.length; ++var2) {
          Texture var3 = this.textures[var2];
@@ -201,7 +186,6 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(I)Z",
       garbageValue = "-1849782424"
    )
-   @Export("getTapToDrop")
    static boolean getTapToDrop() {
       return Client.tapToDrop;
    }

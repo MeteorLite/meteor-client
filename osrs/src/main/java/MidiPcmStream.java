@@ -10,7 +10,6 @@ public class MidiPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
-   @Export("musicPatches")
    NodeHashTable musicPatches = new NodeHashTable(128);
    @ObfuscatedName("e")
    int field2724 = 256;
@@ -60,15 +59,12 @@ public class MidiPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "Lkm;"
    )
-   @Export("midiFile")
    MidiFileReader midiFile = new MidiFileReader();
    @ObfuscatedName("ao")
    boolean field2717;
    @ObfuscatedName("am")
-   @Export("track")
    int track;
    @ObfuscatedName("av")
-   @Export("trackLength")
    int trackLength;
    @ObfuscatedName("au")
    long field2741;
@@ -78,7 +74,6 @@ public class MidiPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "Lkg;"
    )
-   @Export("patchStream")
    MusicPatchPcmStream patchStream = new MusicPatchPcmStream(this);
 
    public MidiPcmStream() {
@@ -90,7 +85,6 @@ public class MidiPcmStream extends PcmStream {
       descriptor = "(IB)V",
       garbageValue = "9"
    )
-   @Export("setPcmStreamVolume")
    synchronized void setPcmStreamVolume(int var1) {
       this.field2724 = var1;
    }
@@ -109,7 +103,6 @@ public class MidiPcmStream extends PcmStream {
       descriptor = "(Lkc;Lly;Laj;II)Z",
       garbageValue = "-1248465768"
    )
-   @Export("loadMusicTrack")
    synchronized boolean loadMusicTrack(MusicTrack var1, AbstractArchive var2, SoundCache var3, int var4) {
       var1.method1600();
       boolean var5 = true;
@@ -148,7 +141,6 @@ public class MidiPcmStream extends PcmStream {
       descriptor = "(B)V",
       garbageValue = "1"
    )
-   @Export("clearAll")
    synchronized void clearAll() {
       for(MusicPatch var1 = (MusicPatch)this.musicPatches.first(); var1 != null; var1 = (MusicPatch)this.musicPatches.next()) {
          var1.clear();
@@ -161,7 +153,6 @@ public class MidiPcmStream extends PcmStream {
       descriptor = "(S)V",
       garbageValue = "16022"
    )
-   @Export("removeAll")
    synchronized void removeAll() {
       for(MusicPatch var1 = (MusicPatch)this.musicPatches.first(); var1 != null; var1 = (MusicPatch)this.musicPatches.next()) {
          var1.remove();
@@ -173,7 +164,6 @@ public class MidiPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "()Laa;"
    )
-   @Export("firstSubStream")
    protected synchronized PcmStream firstSubStream() {
       return this.patchStream;
    }
@@ -182,7 +172,6 @@ public class MidiPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "()Laa;"
    )
-   @Export("nextSubStream")
    protected synchronized PcmStream nextSubStream() {
       return null;
    }
@@ -193,7 +182,6 @@ public class MidiPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("u")
-   @Export("fill")
    protected synchronized void fill(int[] var1, int var2, int var3) {
       if (this.midiFile.isReady()) {
          int var4 = this.midiFile.division * this.field2732 / PcmPlayer.field198;
@@ -222,7 +210,6 @@ public class MidiPcmStream extends PcmStream {
       descriptor = "(Lkc;ZI)V",
       garbageValue = "951999290"
    )
-   @Export("setMusicTrack")
    synchronized void setMusicTrack(MusicTrack var1, boolean var2) {
       this.clear();
       this.midiFile.parse(var1.midi);
@@ -242,7 +229,6 @@ public class MidiPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("j")
-   @Export("skip")
    protected synchronized void skip(int var1) {
       if (this.midiFile.isReady()) {
          int var2 = this.midiFile.division * this.field2732 / PcmPlayer.field198;
@@ -270,7 +256,6 @@ public class MidiPcmStream extends PcmStream {
       descriptor = "(B)V",
       garbageValue = "20"
    )
-   @Export("clear")
    synchronized void clear() {
       this.midiFile.clear();
       this.method1571();
@@ -281,7 +266,6 @@ public class MidiPcmStream extends PcmStream {
       descriptor = "(B)Z",
       garbageValue = "32"
    )
-   @Export("isReady")
    synchronized boolean isReady() {
       return this.midiFile.isReady();
    }

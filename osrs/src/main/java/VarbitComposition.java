@@ -10,24 +10,19 @@ public class VarbitComposition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("VarbitDefinition_archive")
    public static AbstractArchive VarbitDefinition_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("VarbitDefinition_cached")
    public static EvictingDualNodeHashTable VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("q")
    static final int[] field1631 = new int[32];
    @ObfuscatedName("v")
-   @Export("baseVar")
    public int baseVar;
    @ObfuscatedName("x")
-   @Export("startBit")
    public int startBit;
    @ObfuscatedName("m")
-   @Export("endBit")
    public int endBit;
 
    static {
@@ -45,7 +40,6 @@ public class VarbitComposition extends DualNode {
       descriptor = "(Lqy;I)V",
       garbageValue = "2093010759"
    )
-   @Export("decode")
    public void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -62,7 +56,6 @@ public class VarbitComposition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "1158300194"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.baseVar = var1.readUnsignedShort();
@@ -77,7 +70,6 @@ public class VarbitComposition extends DualNode {
       descriptor = "(IB)Lbm;",
       garbageValue = "-42"
    )
-   @Export("getScript")
    static Script getScript(int var0) {
       Script var1 = (Script)Script.Script_cached.get((long)var0);
       if (var1 != null) {

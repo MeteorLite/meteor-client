@@ -14,7 +14,6 @@ public final class Font extends AbstractFont {
    }
 
    @ObfuscatedName("h")
-   @Export("drawGlyph")
    final void drawGlyph(byte[] var1, int var2, int var3, int var4, int var5, int var6) {
       int var7 = var3 * Rasterizer2D.Rasterizer2D_width + var2;
       int var8 = Rasterizer2D.Rasterizer2D_width - var4;
@@ -56,7 +55,6 @@ public final class Font extends AbstractFont {
    }
 
    @ObfuscatedName("e")
-   @Export("drawGlyphAlpha")
    final void drawGlyphAlpha(byte[] var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       int var8 = var3 * Rasterizer2D.Rasterizer2D_width + var2;
       int var9 = Rasterizer2D.Rasterizer2D_width - var4;

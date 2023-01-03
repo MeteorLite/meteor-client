@@ -12,7 +12,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("JSONArray")
 @ObfuscatedName("org/json/JSONArray")
 public class JSONArray {
-   @Export("myArrayList")
    @ObfuscatedName("myArrayList")
    ArrayList myArrayList;
 
@@ -145,7 +144,6 @@ public class JSONArray {
       return this;
    }
 
-   @Export("getBoolean")
    @ObfuscatedName("getBoolean")
    public boolean getBoolean(int var1) throws JSONException {
       Object var2 = this.method2512(var1);
@@ -158,21 +156,18 @@ public class JSONArray {
       }
    }
 
-   @Export("getLong")
    @ObfuscatedName("getLong")
    public long getLong(int var1) throws JSONException {
       Object var2 = this.method2512(var1);
       return var2 instanceof Number ? ((Number)var2).longValue() : (long)this.getDouble(var1);
    }
 
-   @Export("getInt")
    @ObfuscatedName("getInt")
    public int getInt(int var1) throws JSONException {
       Object var2 = this.method2512(var1);
       return var2 instanceof Number ? ((Number)var2).intValue() : (int)this.getDouble(var1);
    }
 
-   @Export("getDouble")
    @ObfuscatedName("getDouble")
    public double getDouble(int var1) throws JSONException {
       Object var2 = this.method2512(var1);
@@ -184,13 +179,11 @@ public class JSONArray {
       }
    }
 
-   @Export("length")
    @ObfuscatedName("length")
    public int length() {
       return this.myArrayList.size();
    }
 
-   @Export("join")
    @ObfuscatedName("join")
    public String join(String var1) throws JSONException {
       int var2 = this.length();
@@ -207,7 +200,6 @@ public class JSONArray {
       return var3.toString();
    }
 
-   @Export("optDouble")
    @ObfuscatedName("optDouble")
    public double optDouble(int var1, double var2) {
       try {
@@ -217,7 +209,6 @@ public class JSONArray {
       }
    }
 
-   @Export("getJSONObject")
    @ObfuscatedName("getJSONObject")
    @ObfuscatedSignature(
       descriptor = "(I)Lorg/json/JSONObject;"
@@ -231,7 +222,6 @@ public class JSONArray {
       }
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    String toString(int var1, int var2) throws JSONException {
       int var3 = this.length();
@@ -270,7 +260,6 @@ public class JSONArray {
       }
    }
 
-   @Export("write")
    @ObfuscatedName("write")
    public Writer write(Writer var1) throws JSONException {
       try {
@@ -302,7 +291,6 @@ public class JSONArray {
       }
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       try {
@@ -312,7 +300,6 @@ public class JSONArray {
       }
    }
 
-   @Export("optBoolean")
    @ObfuscatedName("optBoolean")
    public boolean optBoolean(int var1, boolean var2) {
       try {
@@ -322,7 +309,6 @@ public class JSONArray {
       }
    }
 
-   @Export("optLong")
    @ObfuscatedName("optLong")
    public long optLong(int var1, long var2) {
       try {
@@ -332,13 +318,11 @@ public class JSONArray {
       }
    }
 
-   @Export("getString")
    @ObfuscatedName("getString")
    public String getString(int var1) throws JSONException {
       return this.method2512(var1).toString();
    }
 
-   @Export("optInt")
    @ObfuscatedName("optInt")
    public int optInt(int var1, int var2) {
       try {
@@ -348,7 +332,6 @@ public class JSONArray {
       }
    }
 
-   @Export("optString")
    @ObfuscatedName("optString")
    public String optString(int var1, String var2) {
       Object var3 = this.method2511(var1);

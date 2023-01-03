@@ -18,15 +18,12 @@ class class12 extends SSLSocket {
    @ObfuscatedSignature(
       descriptor = "Lk;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class15 this$0;
    // $FF: synthetic field
-   @Export("val$tlsClientProtocol")
    @ObfuscatedName("val$tlsClientProtocol")
    final TlsClientProtocol val$tlsClientProtocol;
    // $FF: synthetic field
-   @Export("val$host")
    @ObfuscatedName("val$host")
    final String val$host;
 
@@ -50,7 +47,6 @@ class class12 extends SSLSocket {
       return this.val$tlsClientProtocol.getOutputStream();
    }
 
-   @Export("close")
    @ObfuscatedName("close")
    public synchronized void close() throws IOException {
       this.val$tlsClientProtocol.close();
@@ -68,7 +64,6 @@ class class12 extends SSLSocket {
       return null;
    }
 
-   @Export("getSession")
    @ObfuscatedName("getSession")
    public SSLSession getSession() {
       return new class17(this);
@@ -92,7 +87,6 @@ class class12 extends SSLSocket {
    public void setEnabledCipherSuites(String[] var1) {
    }
 
-   @Export("startHandshake")
    @ObfuscatedName("startHandshake")
    public void startHandshake() throws IOException {
       this.val$tlsClientProtocol.connect(new class13(this));
@@ -148,7 +142,6 @@ class class12 extends SSLSocket {
       descriptor = "(IIIIB)V",
       garbageValue = "90"
    )
-   @Export("itemContainerSetItem")
    static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
       ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var4 == null) {

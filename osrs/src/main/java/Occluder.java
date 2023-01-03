@@ -7,37 +7,26 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Occluder")
 public final class Occluder {
    @ObfuscatedName("h")
-   @Export("minTileX")
    int minTileX;
    @ObfuscatedName("e")
-   @Export("maxTileX")
    int maxTileX;
    @ObfuscatedName("v")
-   @Export("minTileY")
    int minTileY;
    @ObfuscatedName("x")
-   @Export("maxTileY")
    int maxTileY;
    @ObfuscatedName("m")
-   @Export("type")
    int type;
    @ObfuscatedName("q")
-   @Export("minX")
    int minX;
    @ObfuscatedName("f")
-   @Export("maxX")
    int maxX;
    @ObfuscatedName("r")
-   @Export("minZ")
    int minZ;
    @ObfuscatedName("u")
-   @Export("maxZ")
    int maxZ;
    @ObfuscatedName("b")
-   @Export("minY")
    int minY;
    @ObfuscatedName("j")
-   @Export("maxY")
    int maxY;
    @ObfuscatedName("g")
    int field2067;
@@ -96,7 +85,6 @@ public final class Occluder {
    }
 
    @ObfuscatedName("f")
-   @Export("Entity_unpackID")
    public static int Entity_unpackID(long var0) {
       return (int)(var0 >>> 17 & 4294967295L);
    }

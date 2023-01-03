@@ -9,7 +9,6 @@ final class JSONObject$Null {
    JSONObject$Null() {
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return var1 == null || this == var1;

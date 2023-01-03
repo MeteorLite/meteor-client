@@ -13,17 +13,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Varcs")
 public class Varcs {
    @ObfuscatedName("v")
-   @Export("intsPersistence")
    boolean[] intsPersistence;
    @ObfuscatedName("x")
-   @Export("map")
    Map map;
    /** @deprecated */
    @ObfuscatedName("m")
-   @Export("strings")
    String[] strings;
    @ObfuscatedName("q")
-   @Export("unwrittenChanges")
    boolean unwrittenChanges = false;
    @ObfuscatedName("f")
    long field1119;
@@ -53,7 +49,6 @@ public class Varcs {
       descriptor = "(III)V",
       garbageValue = "1759334485"
    )
-   @Export("setInt")
    void setInt(int var1, int var2) {
       this.map.put(var1, var2);
       if (this.intsPersistence[var1]) {
@@ -67,7 +62,6 @@ public class Varcs {
       descriptor = "(II)I",
       garbageValue = "-1675199100"
    )
-   @Export("getInt")
    int getInt(int var1) {
       Object var2 = this.map.get(var1);
       return var2 instanceof Integer ? (Integer)var2 : -1;
@@ -78,7 +72,6 @@ public class Varcs {
       descriptor = "(ILjava/lang/String;I)V",
       garbageValue = "311729783"
    )
-   @Export("setString")
    void setString(int var1, String var2) {
       this.map.put(var1, var2);
    }
@@ -88,7 +81,6 @@ public class Varcs {
       descriptor = "(IB)Ljava/lang/String;",
       garbageValue = "-35"
    )
-   @Export("getString")
    String getString(int var1) {
       Object var2 = this.map.get(var1);
       return var2 instanceof String ? (String)var2 : "";
@@ -101,7 +93,6 @@ public class Varcs {
       descriptor = "(ILjava/lang/String;I)V",
       garbageValue = "1222873973"
    )
-   @Export("setStringOld")
    void setStringOld(int var1, String var2) {
       this.strings[var1] = var2;
    }
@@ -113,7 +104,6 @@ public class Varcs {
       descriptor = "(II)Ljava/lang/String;",
       garbageValue = "1059760137"
    )
-   @Export("getStringOld")
    String getStringOld(int var1) {
       return this.strings[var1];
    }
@@ -123,7 +113,6 @@ public class Varcs {
       descriptor = "(I)V",
       garbageValue = "-1016231396"
    )
-   @Export("clearTransient")
    void clearTransient() {
       int var1;
       for(var1 = 0; var1 < this.intsPersistence.length; ++var1) {
@@ -143,7 +132,6 @@ public class Varcs {
       descriptor = "(ZB)Lqq;",
       garbageValue = "103"
    )
-   @Export("getPreferencesFile")
    AccessFile getPreferencesFile(boolean var1) {
       return class87.getPreferencesFile("2", LoginPacket.field2681.name, var1);
    }
@@ -153,7 +141,6 @@ public class Varcs {
       descriptor = "(I)V",
       garbageValue = "-2001062355"
    )
-   @Export("write")
    void write() {
       AccessFile var1 = this.getPreferencesFile(true);
 
@@ -216,7 +203,6 @@ public class Varcs {
       descriptor = "(I)V",
       garbageValue = "88987164"
    )
-   @Export("read")
    void read() {
       AccessFile var1 = this.getPreferencesFile(false);
 
@@ -309,7 +295,6 @@ public class Varcs {
       descriptor = "(I)V",
       garbageValue = "1650356121"
    )
-   @Export("tryWrite")
    void tryWrite() {
       if (this.unwrittenChanges && this.field1119 < Message.method344() - 60000L) {
          this.write();
@@ -322,7 +307,6 @@ public class Varcs {
       descriptor = "(I)Z",
       garbageValue = "-2005809582"
    )
-   @Export("hasUnwrittenChanges")
    boolean hasUnwrittenChanges() {
       return this.unwrittenChanges;
    }

@@ -15,27 +15,21 @@ public class PcmPlayer {
    @ObfuscatedSignature(
       descriptor = "Law;"
    )
-   @Export("soundSystem")
    static SoundSystem soundSystem;
    @ObfuscatedName("j")
-   @Export("Tiles_saturation")
    static int[] Tiles_saturation;
    @ObfuscatedName("o")
-   @Export("samples")
    protected int[] samples;
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "Laa;"
    )
-   @Export("stream")
    PcmStream stream;
    @ObfuscatedName("k")
    int field190 = 32;
    @ObfuscatedName("a")
-   @Export("timeMs")
    long timeMs = Message.method344();
    @ObfuscatedName("s")
-   @Export("capacity")
    int capacity;
    @ObfuscatedName("l")
    int field193;
@@ -71,7 +65,6 @@ public class PcmPlayer {
       descriptor = "(I)V",
       garbageValue = "-1022018312"
    )
-   @Export("init")
    protected void init() throws Exception {
    }
 
@@ -80,7 +73,6 @@ public class PcmPlayer {
       descriptor = "(IB)V",
       garbageValue = "-95"
    )
-   @Export("open")
    protected void open(int var1) throws Exception {
    }
 
@@ -89,13 +81,11 @@ public class PcmPlayer {
       descriptor = "(B)I",
       garbageValue = "116"
    )
-   @Export("position")
    protected int position() throws Exception {
       return this.capacity;
    }
 
    @ObfuscatedName("x")
-   @Export("write")
    protected void write() throws Exception {
    }
 
@@ -104,7 +94,6 @@ public class PcmPlayer {
       descriptor = "(B)V",
       garbageValue = "-126"
    )
-   @Export("close")
    protected void close() {
    }
 
@@ -113,7 +102,6 @@ public class PcmPlayer {
       descriptor = "(I)V",
       garbageValue = "1458227244"
    )
-   @Export("discard")
    protected void discard() throws Exception {
    }
 
@@ -122,7 +110,6 @@ public class PcmPlayer {
       descriptor = "(Laa;I)V",
       garbageValue = "-2127499053"
    )
-   @Export("setStream")
    public final synchronized void setStream(PcmStream var1) {
       this.stream = var1;
    }
@@ -132,7 +119,6 @@ public class PcmPlayer {
       descriptor = "(I)V",
       garbageValue = "-431761037"
    )
-   @Export("run")
    public final synchronized void run() {
       if (this.samples != null) {
          long var1 = Message.method344();
@@ -234,7 +220,6 @@ public class PcmPlayer {
       descriptor = "(B)V",
       garbageValue = "-54"
    )
-   @Export("tryDiscard")
    public final synchronized void tryDiscard() {
       this.field200 = true;
 
@@ -252,7 +237,6 @@ public class PcmPlayer {
       descriptor = "(I)V",
       garbageValue = "1880345802"
    )
-   @Export("shutdown")
    public final synchronized void shutdown() {
       if (soundSystem != null) {
          boolean var1 = true;
@@ -283,7 +267,6 @@ public class PcmPlayer {
       descriptor = "(II)V",
       garbageValue = "434161889"
    )
-   @Export("skip")
    final void skip(int var1) {
       this.field201 -= var1;
       if (this.field201 < 0) {
@@ -297,7 +280,6 @@ public class PcmPlayer {
    }
 
    @ObfuscatedName("an")
-   @Export("fill")
    final void fill(int[] var1, int var2) {
       int var3 = var2;
       if (class286.PcmPlayer_stereo) {

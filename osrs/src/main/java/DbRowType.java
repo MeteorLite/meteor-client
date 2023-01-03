@@ -15,15 +15,12 @@ public class DbRowType extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("DBRowType_cache")
    static EvictingDualNodeHashTable DBRowType_cache = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
-   @Export("columnTypes")
    Object[][] columnTypes;
    @ObfuscatedName("x")
    int[][] field3982;
    @ObfuscatedName("m")
-   @Export("tableId")
    public int tableId = -1;
 
    @ObfuscatedName("v")
@@ -47,7 +44,6 @@ public class DbRowType extends DualNode {
       descriptor = "(II)[Ljava/lang/Object;",
       garbageValue = "-1711583640"
    )
-   @Export("getColumnType")
    public Object[] getColumnType(int var1) {
       return this.columnTypes == null ? null : this.columnTypes[var1];
    }

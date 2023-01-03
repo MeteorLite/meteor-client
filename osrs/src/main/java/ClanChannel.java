@@ -10,25 +10,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("ClanChannel")
 public class ClanChannel extends Node {
    @ObfuscatedName("fy")
-   @Export("worldPort")
    static int worldPort;
    @ObfuscatedName("jw")
-   @Export("cameraZ")
    static int cameraZ;
    @ObfuscatedName("h")
    boolean field1393;
    @ObfuscatedName("e")
    boolean field1385 = true;
    @ObfuscatedName("v")
-   @Export("members")
    public List members;
    @ObfuscatedName("x")
-   @Export("sortedMembers")
    int[] sortedMembers;
    @ObfuscatedName("m")
    long field1388;
    @ObfuscatedName("q")
-   @Export("name")
    public String name = null;
    @ObfuscatedName("f")
    public byte field1390;
@@ -51,7 +46,6 @@ public class ClanChannel extends Node {
       descriptor = "(I)[I",
       garbageValue = "-1521514395"
    )
-   @Export("getSortedMembers")
    public int[] getSortedMembers() {
       if (this.sortedMembers == null) {
          String[] var1 = new String[this.members.size()];
@@ -72,7 +66,6 @@ public class ClanChannel extends Node {
       descriptor = "(Lee;I)V",
       garbageValue = "-2049218043"
    )
-   @Export("addMember")
    void addMember(ClanChannelMember var1) {
       this.members.add(var1);
       this.sortedMembers = null;
@@ -83,7 +76,6 @@ public class ClanChannel extends Node {
       descriptor = "(II)V",
       garbageValue = "1798196264"
    )
-   @Export("removeMember")
    void removeMember(int var1) {
       this.members.remove(var1);
       this.sortedMembers = null;

@@ -30,7 +30,6 @@ public class class69 {
       descriptor = "(Lkd;B)V",
       garbageValue = "55"
    )
-   @Export("invalidateWidget")
    public static void invalidateWidget(Widget var0) {
       if (var0 != null && var0.cycle == Client.field653) {
          Client.field576[var0.rootIndex] = true;
@@ -43,7 +42,6 @@ public class class69 {
       descriptor = "(IB)V",
       garbageValue = "1"
    )
-   @Export("Widget_resetModelFrames")
    static final void Widget_resetModelFrames(int var0) {
       if (Players.loadInterface(var0)) {
          Widget[] var1 = class71.Widget_interfaceComponents[var0];

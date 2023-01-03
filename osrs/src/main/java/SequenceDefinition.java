@@ -14,34 +14,28 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("SequenceDefinition_archive")
    static AbstractArchive SequenceDefinition_archive;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("SequenceDefinition_animationsArchive")
    static AbstractArchive SequenceDefinition_animationsArchive;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("SequenceDefinition_cached")
    public static EvictingDualNodeHashTable SequenceDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("SequenceDefinition_cachedFrames")
    public static EvictingDualNodeHashTable SequenceDefinition_cachedFrames = new EvictingDualNodeHashTable(100);
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("SequenceDefinition_cachedModel")
    public static EvictingDualNodeHashTable SequenceDefinition_cachedModel = new EvictingDualNodeHashTable(100);
    @ObfuscatedName("r")
-   @Export("SequenceDefinition_cachedModelId")
    public int SequenceDefinition_cachedModelId = -1;
    @ObfuscatedName("u")
    public Map field1793;
@@ -50,19 +44,14 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedName("j")
    int field1795 = 0;
    @ObfuscatedName("g")
-   @Export("frameIds")
    public int[] frameIds;
    @ObfuscatedName("i")
-   @Export("chatFrameIds")
    int[] chatFrameIds;
    @ObfuscatedName("o")
-   @Export("frameLengths")
    public int[] frameLengths;
    @ObfuscatedName("n")
-   @Export("soundEffects")
    public int[] soundEffects;
    @ObfuscatedName("k")
-   @Export("frameCount")
    public int frameCount = -1;
    @ObfuscatedName("a")
    int[] field1800;
@@ -73,10 +62,8 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedName("t")
    public int field1809 = 5;
    @ObfuscatedName("c")
-   @Export("shield")
    public int shield = -1;
    @ObfuscatedName("p")
-   @Export("weapon")
    public int weapon = -1;
    @ObfuscatedName("d")
    public int field1810 = 99;
@@ -94,7 +81,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(Lqy;I)V",
       garbageValue = "-2110484685"
    )
-   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -111,7 +97,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "80993823"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       int var3;
       int var4;
@@ -213,7 +198,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(I)V",
       garbageValue = "746372140"
    )
-   @Export("postDecode")
    void postDecode() {
       if (this.field1799 == -1) {
          if (this.field1800 == null && this.field1801 == null) {
@@ -238,7 +222,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(Lhh;II)Lhh;",
       garbageValue = "-292484261"
    )
-   @Export("transformActorModel")
    public Model transformActorModel(Model var1, int var2) {
       Model var4;
       if (!this.isCachedModelIdSet()) {
@@ -269,7 +252,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(Lhh;III)Lhh;",
       garbageValue = "1558211812"
    )
-   @Export("transformObjectModel")
    Model transformObjectModel(Model var1, int var2, int var3) {
       Model var5;
       if (!this.isCachedModelIdSet()) {
@@ -334,7 +316,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(Lhh;II)Lhh;",
       garbageValue = "-168718404"
    )
-   @Export("transformSpotAnimationModel")
    Model transformSpotAnimationModel(Model var1, int var2) {
       Model var4;
       if (!this.isCachedModelIdSet()) {
@@ -365,7 +346,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(Lhh;ILga;IB)Lhh;",
       garbageValue = "28"
    )
-   @Export("applyTransformations")
    public Model applyTransformations(Model var1, int var2, SequenceDefinition var3, int var4) {
       if (field1811 && !this.isCachedModelIdSet() && !var3.isCachedModelIdSet()) {
          return this.method1058(var1, var2, var3, var4);
@@ -476,7 +456,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(Lhh;II)Lhh;",
       garbageValue = "128420513"
    )
-   @Export("transformWidgetModel")
    public Model transformWidgetModel(Model var1, int var2) {
       if (!this.isCachedModelIdSet()) {
          int var3 = this.frameIds[var2];
@@ -515,7 +494,6 @@ public class SequenceDefinition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "-2138183529"
    )
-   @Export("isCachedModelIdSet")
    public boolean isCachedModelIdSet() {
       return this.SequenceDefinition_cachedModelId >= 0;
    }

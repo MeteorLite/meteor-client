@@ -20,10 +20,8 @@ public class WorldMapID {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("hoveredItemContainer")
    static Widget hoveredItemContainer;
    @ObfuscatedName("v")
-   @Export("value")
    final int value;
 
    WorldMapID(int var1) {

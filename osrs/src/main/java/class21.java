@@ -15,7 +15,6 @@ public class class21 {
    )
    static Archive field63;
    @ObfuscatedName("ov")
-   @Export("selectedSpellFlags")
    static int selectedSpellFlags;
    @ObfuscatedName("h")
    final int field61;

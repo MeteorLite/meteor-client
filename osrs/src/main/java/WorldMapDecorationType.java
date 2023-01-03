@@ -123,7 +123,6 @@ public enum WorldMapDecorationType implements class345 {
    field3055(22, 3);
 
    @ObfuscatedName("y")
-   @Export("id")
    public final int id;
 
    @ObfuscatedSignature(
@@ -139,7 +138,6 @@ public enum WorldMapDecorationType implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

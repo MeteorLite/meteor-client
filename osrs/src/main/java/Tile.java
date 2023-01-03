@@ -7,85 +7,65 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Tile")
 public final class Tile extends Node {
    @ObfuscatedName("tx")
-   @Export("cameraMoveToAcceleration")
    static int cameraMoveToAcceleration;
    @ObfuscatedName("h")
-   @Export("plane")
    int plane;
    @ObfuscatedName("e")
-   @Export("x")
    int x;
    @ObfuscatedName("v")
-   @Export("y")
    int y;
    @ObfuscatedName("x")
-   @Export("originalPlane")
    int originalPlane;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lhj;"
    )
-   @Export("paint")
    SceneTilePaint paint;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lhy;"
    )
-   @Export("model")
    SceneTileModel model;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lhq;"
    )
-   @Export("boundaryObject")
    BoundaryObject boundaryObject;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lhb;"
    )
-   @Export("wallDecoration")
    WallDecoration wallDecoration;
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Lhs;"
    )
-   @Export("floorDecoration")
    FloorDecoration floorDecoration;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Lgy;"
    )
-   @Export("itemLayer")
    ItemLayer itemLayer;
    @ObfuscatedName("j")
-   @Export("gameObjectsCount")
    int gameObjectsCount;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "[Lhp;"
    )
-   @Export("gameObjects")
    GameObject[] gameObjects = new GameObject[5];
    @ObfuscatedName("i")
-   @Export("gameObjectEdgeMasks")
    int[] gameObjectEdgeMasks = new int[5];
    @ObfuscatedName("o")
-   @Export("gameObjectsEdgeMask")
    int gameObjectsEdgeMask = 0;
    @ObfuscatedName("n")
-   @Export("minPlane")
    int minPlane;
    @ObfuscatedName("k")
-   @Export("drawPrimary")
    boolean drawPrimary;
    @ObfuscatedName("a")
-   @Export("drawSecondary")
    boolean drawSecondary;
    @ObfuscatedName("s")
-   @Export("drawGameObjects")
    boolean drawGameObjects;
    @ObfuscatedName("l")
-   @Export("drawGameObjectEdges")
    int drawGameObjectEdges;
    @ObfuscatedName("t")
    int field1957;
@@ -97,7 +77,6 @@ public final class Tile extends Node {
    @ObfuscatedSignature(
       descriptor = "Lhe;"
    )
-   @Export("linkedBelowTile")
    Tile linkedBelowTile;
 
    Tile(int var1, int var2, int var3) {
@@ -150,7 +129,6 @@ public final class Tile extends Node {
       descriptor = "(I)V",
       garbageValue = "1595440207"
    )
-   @Export("savePreferences")
    static void savePreferences() {
       AccessFile var0 = null;
 

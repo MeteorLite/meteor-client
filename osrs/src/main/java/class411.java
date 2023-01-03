@@ -134,7 +134,6 @@ public class class411 {
       this.field3769 += var3;
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       return this.field3774 + "," + this.field3775 + "," + this.field3772 + "," + this.field3777 + "\n" + this.field3767 + "," + this.field3770 + "," + this.field3773 + "," + this.field3776 + "\n" + this.field3768 + "," + this.field3771 + "," + this.field3766 + "," + this.field3769;

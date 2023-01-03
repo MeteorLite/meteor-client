@@ -10,19 +10,14 @@ public class Skeleton extends Node {
    @ObfuscatedSignature(
       descriptor = "Lht;"
    )
-   @Export("textureProvider")
    static TextureProvider textureProvider;
    @ObfuscatedName("q")
-   @Export("id")
    int id;
    @ObfuscatedName("f")
-   @Export("count")
    int count;
    @ObfuscatedName("r")
-   @Export("transformTypes")
    int[] transformTypes;
    @ObfuscatedName("u")
-   @Export("labels")
    int[][] labels;
    @ObfuscatedName("b")
    @ObfuscatedSignature(

@@ -5,10 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("or")
 public abstract class class415 extends class262 implements class474 {
    @ObfuscatedName("tv")
-   @Export("cameraLookAtSpeed")
    static int cameraLookAtSpeed;
    @ObfuscatedName("m")
-   @Export("Interpreter_stringLocals")
    static String[] Interpreter_stringLocals;
 
    @ObfuscatedSignature(
@@ -23,7 +21,6 @@ public abstract class class415 extends class262 implements class474 {
       descriptor = "(II)Lpv;",
       garbageValue = "307947551"
    )
-   @Export("vmethod8207")
    protected abstract class417 vmethod8207(int var1);
 
    @ObfuscatedName("e")
@@ -40,7 +37,6 @@ public abstract class class415 extends class262 implements class474 {
       descriptor = "(II)Ljava/lang/Object;",
       garbageValue = "816156929"
    )
-   @Export("vmethod8697")
    public Object vmethod8697(int var1) {
       class417 var2 = this.vmethod8207(var1);
       return var2 != null && var2.method2165() ? var2.method2166() : null;

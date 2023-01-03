@@ -13,7 +13,6 @@ public class class440 {
       this.field3916 = var2;
    }
 
-   @Export("hashCode")
    @ObfuscatedName("hashCode")
    public int hashCode() {
       int var1 = 0;
@@ -28,7 +27,6 @@ public class class440 {
       return var1;
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (var1 != null && var1 instanceof class440) {
@@ -55,7 +53,6 @@ public class class440 {
       }
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       return this.field3917 + ", " + this.field3916;

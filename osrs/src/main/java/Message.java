@@ -7,40 +7,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Message")
 public class Message extends DualNode {
    @ObfuscatedName("h")
-   @Export("count")
    int count;
    @ObfuscatedName("e")
-   @Export("cycle")
    int cycle;
    @ObfuscatedName("v")
-   @Export("type")
    int type;
    @ObfuscatedName("x")
-   @Export("sender")
    String sender;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lrp;"
    )
-   @Export("senderUsername")
    Username senderUsername;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Loh;"
    )
-   @Export("isFromFriend0")
    TriBool isFromFriend0;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Loh;"
    )
-   @Export("isFromIgnored0")
    TriBool isFromIgnored0;
    @ObfuscatedName("r")
-   @Export("prefix")
    String prefix;
    @ObfuscatedName("u")
-   @Export("text")
    String text;
 
    Message(int var1, String var2, String var3, String var4) {
@@ -54,7 +45,6 @@ public class Message extends DualNode {
       descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
       garbageValue = "1359807045"
    )
-   @Export("set")
    void set(int var1, String var2, String var3, String var4) {
       int var5 = ++Messages.Messages_count - 1;
       this.count = var5;
@@ -73,7 +63,6 @@ public class Message extends DualNode {
       descriptor = "(B)V",
       garbageValue = "0"
    )
-   @Export("clearIsFromFriend")
    void clearIsFromFriend() {
       this.isFromFriend0 = TriBool.TriBool_unknown;
    }
@@ -83,7 +72,6 @@ public class Message extends DualNode {
       descriptor = "(B)Z",
       garbageValue = "-22"
    )
-   @Export("isFromFriend")
    final boolean isFromFriend() {
       if (this.isFromFriend0 == TriBool.TriBool_unknown) {
          this.fillIsFromFriend();
@@ -97,7 +85,6 @@ public class Message extends DualNode {
       descriptor = "(I)V",
       garbageValue = "189401523"
    )
-   @Export("fillIsFromFriend")
    void fillIsFromFriend() {
       this.isFromFriend0 = DefaultsGroup.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
@@ -107,7 +94,6 @@ public class Message extends DualNode {
       descriptor = "(B)V",
       garbageValue = "-59"
    )
-   @Export("clearIsFromIgnored")
    void clearIsFromIgnored() {
       this.isFromIgnored0 = TriBool.TriBool_unknown;
    }
@@ -117,7 +103,6 @@ public class Message extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "-394319082"
    )
-   @Export("isFromIgnored")
    final boolean isFromIgnored() {
       if (this.isFromIgnored0 == TriBool.TriBool_unknown) {
          this.fillIsFromIgnored();
@@ -131,7 +116,6 @@ public class Message extends DualNode {
       descriptor = "(B)V",
       garbageValue = "95"
    )
-   @Export("fillIsFromIgnored")
    void fillIsFromIgnored() {
       this.isFromIgnored0 = DefaultsGroup.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
@@ -141,7 +125,6 @@ public class Message extends DualNode {
       descriptor = "(I)V",
       garbageValue = "-1260943209"
    )
-   @Export("fillSenderUsername")
    final void fillSenderUsername() {
       if (this.sender != null) {
          this.senderUsername = new Username(class282.method1533(this.sender), SecureRandomFuture.loginType);
@@ -187,7 +170,6 @@ public class Message extends DualNode {
       descriptor = "(B)I",
       garbageValue = "-37"
    )
-   @Export("getWindowedMode")
    static int getWindowedMode() {
       return Client.isResizable ? 2 : 1;
    }

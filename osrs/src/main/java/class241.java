@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("id")
 public class class241 implements WorldMapSection {
    @ObfuscatedName("ik")
-   @Export("regionMapArchives")
    static byte[][] regionMapArchives;
    @ObfuscatedName("h")
    int field2318;
@@ -33,7 +32,6 @@ public class class241 implements WorldMapSection {
       descriptor = "(Lit;B)V",
       garbageValue = "86"
    )
-   @Export("expandBounds")
    public void expandBounds(WorldMapArea var1) {
       if (var1.regionLowX > this.field2320) {
          var1.regionLowX = this.field2320;
@@ -58,7 +56,6 @@ public class class241 implements WorldMapSection {
       descriptor = "(IIII)Z",
       garbageValue = "986597458"
    )
-   @Export("containsCoord")
    public boolean containsCoord(int var1, int var2, int var3) {
       if (var1 >= this.field2318 && var1 < this.field2318 + this.field2313) {
          return var2 >= (this.field2314 << 6) + (this.field2319 << 3) && var2 <= (this.field2314 << 6) + (this.field2319 << 3) + 7 && var3 >= (this.field2312 << 6) + (this.field2315 << 3) && var3 <= (this.field2312 << 6) + (this.field2315 << 3) + 7;
@@ -72,7 +69,6 @@ public class class241 implements WorldMapSection {
       descriptor = "(IIS)Z",
       garbageValue = "-11823"
    )
-   @Export("containsPosition")
    public boolean containsPosition(int var1, int var2) {
       return var1 >= (this.field2320 << 6) + (this.field2317 << 3) && var1 <= (this.field2320 << 6) + (this.field2317 << 3) + 7 && var2 >= (this.field2316 << 6) + (this.field2321 << 3) && var2 <= (this.field2316 << 6) + (this.field2321 << 3) + 7;
    }
@@ -82,7 +78,6 @@ public class class241 implements WorldMapSection {
       descriptor = "(IIIB)[I",
       garbageValue = "-52"
    )
-   @Export("getBorderTileLengths")
    public int[] getBorderTileLengths(int var1, int var2, int var3) {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
@@ -97,7 +92,6 @@ public class class241 implements WorldMapSection {
       descriptor = "(III)Lky;",
       garbageValue = "1584933614"
    )
-   @Export("coord")
    public Coord coord(int var1, int var2) {
       if (!this.containsPosition(var1, var2)) {
          return null;
@@ -113,7 +107,6 @@ public class class241 implements WorldMapSection {
       descriptor = "(Lqy;I)V",
       garbageValue = "1737950913"
    )
-   @Export("read")
    public void read(Buffer var1) {
       this.field2318 = var1.readUnsignedByte();
       this.field2313 = var1.readUnsignedByte();

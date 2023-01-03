@@ -10,13 +10,11 @@ public class LinkDeque {
    @ObfuscatedSignature(
       descriptor = "Lpr;"
    )
-   @Export("sentinel")
    Link sentinel = new Link();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lpr;"
    )
-   @Export("current")
    Link current;
 
    public LinkDeque() {
@@ -28,7 +26,6 @@ public class LinkDeque {
    @ObfuscatedSignature(
       descriptor = "(Lpr;)V"
    )
-   @Export("addFirst")
    public void addFirst(Link var1) {
       if (var1.next != null) {
          var1.remove();
@@ -44,7 +41,6 @@ public class LinkDeque {
    @ObfuscatedSignature(
       descriptor = "()Lpr;"
    )
-   @Export("last")
    public Link last() {
       Link var1 = this.sentinel.previous;
       if (var1 == this.sentinel) {
@@ -60,7 +56,6 @@ public class LinkDeque {
    @ObfuscatedSignature(
       descriptor = "()Lpr;"
    )
-   @Export("previous")
    public Link previous() {
       Link var1 = this.current;
       if (var1 == this.sentinel) {

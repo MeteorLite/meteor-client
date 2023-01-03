@@ -10,19 +10,15 @@ public class ClanChannelMember {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive10")
    static Archive archive10;
    @ObfuscatedName("h")
-   @Export("rank")
    public byte rank;
    @ObfuscatedName("e")
-   @Export("world")
    public int world;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lrp;"
    )
-   @Export("username")
    public Username username;
 
    @ObfuscatedName("e")

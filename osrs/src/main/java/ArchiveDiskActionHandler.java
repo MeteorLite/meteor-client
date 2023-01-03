@@ -11,21 +11,17 @@ public class ArchiveDiskActionHandler implements Runnable {
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("ArchiveDiskActionHandler_requestQueue")
    public static NodeDeque ArchiveDiskActionHandler_requestQueue = new NodeDeque();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("ArchiveDiskActionHandler_responseQueue")
    public static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
    @ObfuscatedName("v")
    static int field3432 = 0;
    @ObfuscatedName("x")
-   @Export("ArchiveDiskActionHandler_lock")
    static Object ArchiveDiskActionHandler_lock = new Object();
 
-   @Export("run")
    @ObfuscatedName("run")
    public void run() {
       try {

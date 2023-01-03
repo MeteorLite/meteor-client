@@ -10,7 +10,6 @@ public class ApproximateRouteStrategy extends RouteStrategy {
    @ObfuscatedSignature(
       descriptor = "Laz;"
    )
-   @Export("pcmStreamMixer")
    static PcmStreamMixer pcmStreamMixer;
    @ObfuscatedName("jy")
    static int field347;
@@ -20,7 +19,6 @@ public class ApproximateRouteStrategy extends RouteStrategy {
       descriptor = "(IIILgw;I)Z",
       garbageValue = "1813316312"
    )
-   @Export("hasArrived")
    protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
       return var2 == super.approxDestinationX && var3 == super.approxDestinationY;
    }

@@ -114,7 +114,6 @@ public class class366 extends AbstractQueue {
       this.field3586[var1].field3577 = var1;
    }
 
-   @Export("remove")
    @ObfuscatedName("remove")
    public boolean remove(Object var1) {
       class364 var2 = (class364)this.field3582.remove(var1);
@@ -141,19 +140,16 @@ public class class366 extends AbstractQueue {
       }
    }
 
-   @Export("peek")
    @ObfuscatedName("peek")
    public Object peek() {
       return this.field3583 == 0 ? null : this.field3586[0].field3576;
    }
 
-   @Export("size")
    @ObfuscatedName("size")
    public int size() {
       return this.field3583;
    }
 
-   @Export("poll")
    @ObfuscatedName("poll")
    public Object poll() {
       if (this.field3583 == 0) {
@@ -176,13 +172,11 @@ public class class366 extends AbstractQueue {
       }
    }
 
-   @Export("contains")
    @ObfuscatedName("contains")
    public boolean contains(Object var1) {
       return this.field3582.containsKey(var1);
    }
 
-   @Export("toArray")
    @ObfuscatedName("toArray")
    public Object[] toArray() {
       Object[] var1 = super.toArray();
@@ -195,13 +189,11 @@ public class class366 extends AbstractQueue {
       return var1;
    }
 
-   @Export("iterator")
    @ObfuscatedName("iterator")
    public Iterator iterator() {
       return new class365(this);
    }
 
-   @Export("offer")
    @ObfuscatedName("offer")
    public boolean offer(Object var1) {
       if (this.field3582.containsKey(var1)) {

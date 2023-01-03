@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("di")
 public class class128 implements class120 {
    @ObfuscatedName("jp")
-   @Export("cameraYaw")
    static int cameraYaw;
 
    @ObfuscatedName("in")
@@ -13,7 +12,6 @@ public class class128 implements class120 {
       descriptor = "(Lct;IIIIIB)V",
       garbageValue = "0"
    )
-   @Export("drawActor2d")
    static final void drawActor2d(Actor var0, int var1, int var2, int var3, int var4, int var5) {
       if (var0 != null && var0.isVisible()) {
          if (var0 instanceof NPC) {

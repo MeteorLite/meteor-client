@@ -11,50 +11,41 @@ public class PacketWriter {
    @ObfuscatedSignature(
       descriptor = "Lou;"
    )
-   @Export("socket")
    AbstractSocket socket;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   @Export("packetBufferNodes")
    IterableNodeDeque packetBufferNodes = new IterableNodeDeque();
    @ObfuscatedName("v")
-   @Export("bufferSize")
    int bufferSize = 0;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lqy;"
    )
-   @Export("buffer")
    Buffer buffer = new Buffer(5000);
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lrg;"
    )
-   @Export("isaacCipher")
    public IsaacCipher isaacCipher;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lqx;"
    )
-   @Export("packetBuffer")
    PacketBuffer packetBuffer = new PacketBuffer(40000);
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Ljf;"
    )
-   @Export("serverPacket")
    ServerPacket serverPacket = null;
    @ObfuscatedName("r")
-   @Export("serverPacketLength")
    int serverPacketLength = 0;
    @ObfuscatedName("u")
    boolean field1133 = true;
    @ObfuscatedName("b")
    int field1125 = 0;
    @ObfuscatedName("j")
-   @Export("pendingWrites")
    int pendingWrites = 0;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
@@ -77,7 +68,6 @@ public class PacketWriter {
       descriptor = "(I)V",
       garbageValue = "1102121791"
    )
-   @Export("clearBuffer")
    final void clearBuffer() {
       this.packetBufferNodes.rsClear();
       this.bufferSize = 0;
@@ -88,7 +78,6 @@ public class PacketWriter {
       descriptor = "(I)V",
       garbageValue = "1736028032"
    )
-   @Export("flush")
    final void flush() throws IOException {
       if (this.socket != null && this.bufferSize > 0) {
          this.buffer.offset = 0;
@@ -116,7 +105,6 @@ public class PacketWriter {
       descriptor = "(Ljx;S)V",
       garbageValue = "21536"
    )
-   @Export("addNode")
    public final void addNode(PacketBufferNode var1) {
       this.packetBufferNodes.addFirst(var1);
       var1.index = var1.packetBuffer.offset;
@@ -129,7 +117,6 @@ public class PacketWriter {
       descriptor = "(Lou;B)V",
       garbageValue = "41"
    )
-   @Export("setSocket")
    void setSocket(AbstractSocket var1) {
       this.socket = var1;
    }
@@ -139,7 +126,6 @@ public class PacketWriter {
       descriptor = "(I)V",
       garbageValue = "-1012692446"
    )
-   @Export("close")
    void close() {
       if (this.socket != null) {
          this.socket.close();
@@ -153,7 +139,6 @@ public class PacketWriter {
       descriptor = "(I)V",
       garbageValue = "-1728539133"
    )
-   @Export("removeSocket")
    void removeSocket() {
       this.socket = null;
    }
@@ -163,7 +148,6 @@ public class PacketWriter {
       descriptor = "(B)Lou;",
       garbageValue = "121"
    )
-   @Export("getSocket")
    AbstractSocket getSocket() {
       return this.socket;
    }
@@ -185,7 +169,6 @@ public class PacketWriter {
       descriptor = "(II)I",
       garbageValue = "315974479"
    )
-   @Export("Widget_unpackTargetMask")
    public static int Widget_unpackTargetMask(int var0) {
       return var0 >> 11 & 63;
    }

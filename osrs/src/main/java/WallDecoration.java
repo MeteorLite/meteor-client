@@ -10,43 +10,32 @@ public final class WallDecoration {
    @ObfuscatedName("bz")
    static int field2226;
    @ObfuscatedName("h")
-   @Export("z")
    int z;
    @ObfuscatedName("e")
-   @Export("x")
    int x;
    @ObfuscatedName("v")
-   @Export("y")
    int y;
    @ObfuscatedName("x")
-   @Export("orientation")
    int orientation;
    @ObfuscatedName("m")
-   @Export("orientation2")
    int orientation2;
    @ObfuscatedName("q")
-   @Export("xOffset")
    int xOffset;
    @ObfuscatedName("f")
-   @Export("yOffset")
    int yOffset;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable1")
    public Renderable renderable1;
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable2")
    public Renderable renderable2;
    @ObfuscatedName("b")
-   @Export("tag")
    public long tag = 0L;
    @ObfuscatedName("j")
-   @Export("flags")
    int flags = 0;
 
    @ObfuscatedName("h")
@@ -274,7 +263,6 @@ public final class WallDecoration {
       descriptor = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lmb;I)I",
       garbageValue = "643814592"
    )
-   @Export("compareStrings")
    public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {
       int var3 = var0.length();
       int var4 = var1.length();
@@ -366,7 +354,6 @@ public final class WallDecoration {
       descriptor = "(Ljava/lang/CharSequence;II[BIB)I",
       garbageValue = "-81"
    )
-   @Export("encodeStringCp1252")
    public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
       int var5 = var2 - var1;
 

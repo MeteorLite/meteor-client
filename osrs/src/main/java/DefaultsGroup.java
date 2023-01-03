@@ -10,7 +10,6 @@ public class DefaultsGroup {
    @ObfuscatedSignature(
       descriptor = "Lbi;"
    )
-   @Export("friendSystem")
    public static FriendSystem friendSystem;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -18,7 +17,6 @@ public class DefaultsGroup {
    )
    static final DefaultsGroup field3732 = new DefaultsGroup(3);
    @ObfuscatedName("e")
-   @Export("group")
    final int group;
 
    DefaultsGroup(int var1) {

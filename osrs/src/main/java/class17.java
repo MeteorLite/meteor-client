@@ -18,7 +18,6 @@ class class17 implements SSLSession {
    @ObfuscatedSignature(
       descriptor = "Li;"
    )
-   @Export("this$1")
    @ObfuscatedName("this$1")
    final class12 this$1;
 
@@ -37,7 +36,6 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
-   @Export("getValue")
    @ObfuscatedName("getValue")
    public Object getValue(String var1) {
       throw new UnsupportedOperationException();
@@ -63,7 +61,6 @@ class class17 implements SSLSession {
       return 0;
    }
 
-   @Export("getPeerPrincipal")
    @ObfuscatedName("getPeerPrincipal")
    public Principal getPeerPrincipal() throws SSLPeerUnverifiedException {
       return null;
@@ -81,7 +78,6 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
-   @Export("putValue")
    @ObfuscatedName("putValue")
    public void putValue(String var1, Object var2) {
       throw new UnsupportedOperationException();
@@ -91,25 +87,21 @@ class class17 implements SSLSession {
       return this.this$1.field38;
    }
 
-   @Export("removeValue")
    @ObfuscatedName("removeValue")
    public void removeValue(String var1) {
       throw new UnsupportedOperationException();
    }
 
-   @Export("getId")
    @ObfuscatedName("getId")
    public byte[] getId() {
       throw new UnsupportedOperationException();
    }
 
-   @Export("invalidate")
    @ObfuscatedName("invalidate")
    public void invalidate() {
       throw new UnsupportedOperationException();
    }
 
-   @Export("isValid")
    @ObfuscatedName("isValid")
    public boolean isValid() {
       throw new UnsupportedOperationException();
@@ -142,7 +134,6 @@ class class17 implements SSLSession {
       descriptor = "(IIIII)V",
       garbageValue = "-1377085208"
    )
-   @Export("addSceneMenuOptions")
    static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
       if (Client.isItemSelected == 0 && !Client.isSpellSelected) {
          ObjectSound.insertMenuItemNoShift("Walk here", "", 23, 0, var0 - var2, var1 - var3);

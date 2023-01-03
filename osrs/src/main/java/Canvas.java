@@ -10,7 +10,6 @@ public final class Canvas extends java.awt.Canvas {
    @ObfuscatedName("r")
    static byte[][][] field68;
    @ObfuscatedName("h")
-   @Export("component")
    Component component;
 
    Canvas(Component var1) {

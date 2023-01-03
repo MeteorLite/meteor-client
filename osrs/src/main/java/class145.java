@@ -5,13 +5,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ek")
 public class class145 extends class136 {
    @ObfuscatedName("q")
-   @Export("idxCount")
    public static int idxCount;
    @ObfuscatedName("j")
-   @Export("musicTrackBoolean")
    public static boolean musicTrackBoolean;
    @ObfuscatedName("jz")
-   @Export("cameraX")
    static int cameraX;
    @ObfuscatedName("h")
    String field1327;
@@ -33,7 +30,6 @@ public class class145 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1327 = var1.readStringCp1252NullTerminated();
       var1.readInt();
@@ -44,7 +40,6 @@ public class class145 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.name = this.field1327;
    }

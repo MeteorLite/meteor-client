@@ -12,19 +12,16 @@ public class VarcInt extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lfn;"
    )
-   @Export("guestClanChannel")
    static ClanChannel guestClanChannel;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("VarcInt_archive")
    public static AbstractArchive VarcInt_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("VarcInt_cached")
    static EvictingDualNodeHashTable VarcInt_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("a")
    @ObfuscatedSignature(
@@ -32,10 +29,8 @@ public class VarcInt extends DualNode {
    )
    static ClanChannel field1497;
    @ObfuscatedName("mh")
-   @Export("menuX")
    static int menuX;
    @ObfuscatedName("v")
-   @Export("persist")
    public boolean persist = false;
 
    @ObfuscatedName("e")

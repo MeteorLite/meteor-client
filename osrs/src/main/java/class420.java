@@ -37,7 +37,6 @@ public class class420 {
       descriptor = "([Lbz;II[I[IB)V",
       garbageValue = "1"
    )
-   @Export("sortWorlds")
    static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
       if (var1 < var2) {
          int var5 = var1 - 1;

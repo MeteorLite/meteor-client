@@ -20,7 +20,6 @@ public abstract class class417 implements class261 {
       descriptor = "(Lqy;II)V",
       garbageValue = "1487404426"
    )
-   @Export("vmethod7769")
    abstract void vmethod7769(Buffer var1, int var2);
 
    @ObfuscatedName("x")

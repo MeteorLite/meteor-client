@@ -17,7 +17,6 @@ public class class299 {
       descriptor = "(CI)B",
       garbageValue = "25865183"
    )
-   @Export("charToByteCp1252")
    public static byte charToByteCp1252(char var0) {
       byte var1;
       if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {

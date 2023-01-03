@@ -9,7 +9,6 @@ public class class1 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Ldm;"
    )
-   @Export("World_request")
    static UrlRequest World_request;
    @ObfuscatedName("a")
    static int field2;
@@ -27,7 +26,6 @@ public class class1 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Lr;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class7 this$0;
 
@@ -40,7 +38,6 @@ public class class1 implements Callable {
       this.field1 = var3;
    }
 
-   @Export("call")
    @ObfuscatedName("call")
    public Object call() {
       return this.field1.vmethod12(this.field3);
@@ -63,7 +60,6 @@ public class class1 implements Callable {
       descriptor = "(IIII)V",
       garbageValue = "1539382446"
    )
-   @Export("queueSoundEffect")
    static void queueSoundEffect(int var0, int var1, int var2) {
       if (StructComposition.clientPreferences.method544() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
          Client.soundEffectIds[Client.soundEffectCount] = var0;

@@ -68,7 +68,6 @@ public class class182 {
       descriptor = "(IIIIII)V",
       garbageValue = "-1549035405"
    )
-   @Export("drawObject")
    static final void drawObject(int var0, int var1, int var2, int var3, int var4) {
       long var5 = ReflectionCheck.scene.getBoundaryObjectTag(var0, var1, var2);
       int var7;

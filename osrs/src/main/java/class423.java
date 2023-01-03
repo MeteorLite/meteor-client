@@ -21,7 +21,6 @@ public class class423 implements class421 {
       descriptor = "(B)[B",
       garbageValue = "0"
    )
-   @Export("vmethod7797")
    public byte[] vmethod7797() throws UnsupportedEncodingException {
       return this.method2177().getBytes("UTF-8");
    }

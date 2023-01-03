@@ -16,6 +16,5 @@ public class class304 {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("musicTrackArchive")
    public static AbstractArchive musicTrackArchive;
 }

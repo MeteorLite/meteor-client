@@ -8,35 +8,28 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Archive")
 public class Archive extends AbstractArchive {
    @ObfuscatedName("g")
-   @Export("Archive_crc")
    static CRC32 Archive_crc = new CRC32();
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Loi;"
    )
-   @Export("archiveDisk")
    ArchiveDisk archiveDisk;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Loi;"
    )
-   @Export("masterDisk")
    ArchiveDisk masterDisk;
    @ObfuscatedName("r")
-   @Export("index")
    int index;
    @ObfuscatedName("u")
    volatile int field3443 = 0;
    @ObfuscatedName("b")
    boolean field3435 = false;
    @ObfuscatedName("j")
-   @Export("validGroups")
    volatile boolean[] validGroups;
    @ObfuscatedName("i")
-   @Export("indexCrc")
    int indexCrc;
    @ObfuscatedName("o")
-   @Export("indexVersion")
    int indexVersion;
    @ObfuscatedName("n")
    int field3444 = -1;
@@ -70,7 +63,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(I)I",
       garbageValue = "-1416460864"
    )
-   @Export("percentage")
    public int percentage() {
       if (this.field3443 == 1 || this.field3445 && this.field3443 == 2) {
          return 100;
@@ -100,7 +92,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(IB)V",
       garbageValue = "-25"
    )
-   @Export("loadRegionFromGroup")
    void loadRegionFromGroup(int var1) {
       int var2 = this.index;
       long var3 = (long)((var2 << 16) + var1);
@@ -116,7 +107,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(IB)V",
       garbageValue = "1"
    )
-   @Export("loadGroup")
    void loadGroup(int var1) {
       if (this.archiveDisk != null && this.validGroups != null && this.validGroups[var1]) {
          ArchiveDisk var2 = this.archiveDisk;
@@ -164,7 +154,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(III)V",
       garbageValue = "-1668172401"
    )
-   @Export("loadIndex")
    void loadIndex(int var1, int var2) {
       this.indexCrc = var1;
       this.indexVersion = var2;
@@ -199,7 +188,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(I[BZZI)V",
       garbageValue = "908824441"
    )
-   @Export("write")
    void write(int var1, byte[] var2, boolean var3, boolean var4) {
       if (var3) {
          if (this.field3443 == 1) {
@@ -267,7 +255,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(Loi;I[BZI)V",
       garbageValue = "-2092582059"
    )
-   @Export("load")
    public void load(ArchiveDisk var1, int var2, byte[] var3, boolean var4) {
       int var5;
       if (var1 == this.masterDisk) {
@@ -351,7 +338,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(I)V",
       garbageValue = "1655264850"
    )
-   @Export("loadAllLocal")
    void loadAllLocal() {
       this.validGroups = new boolean[super.groups.length];
 
@@ -384,7 +370,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(II)I",
       garbageValue = "266817"
    )
-   @Export("groupLoadPercent")
    int groupLoadPercent(int var1) {
       if (super.groups[var1] != null) {
          return 100;
@@ -427,7 +412,6 @@ public class Archive extends AbstractArchive {
       descriptor = "(B)I",
       garbageValue = "-21"
    )
-   @Export("loadPercent")
    public int loadPercent() {
       int var1 = 0;
       int var2 = 0;

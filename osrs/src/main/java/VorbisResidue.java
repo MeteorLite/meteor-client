@@ -6,25 +6,18 @@ import net.runelite.mapping.ObfuscatedName;
 @Implements("VorbisResidue")
 public class VorbisResidue {
    @ObfuscatedName("h")
-   @Export("residueType")
    int residueType = VorbisSample.readBits(16);
    @ObfuscatedName("e")
-   @Export("begin")
    int begin = VorbisSample.readBits(24);
    @ObfuscatedName("v")
-   @Export("end")
    int end = VorbisSample.readBits(24);
    @ObfuscatedName("x")
-   @Export("partitionSize")
    int partitionSize = VorbisSample.readBits(24) + 1;
    @ObfuscatedName("m")
-   @Export("classifications")
    int classifications = VorbisSample.readBits(6) + 1;
    @ObfuscatedName("q")
-   @Export("classbook")
    int classbook = VorbisSample.readBits(8);
    @ObfuscatedName("f")
-   @Export("cascade")
    int[] cascade;
 
    VorbisResidue() {

@@ -10,37 +10,31 @@ public enum PlayerType implements class345 {
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_normal")
    PlayerType_normal(0, -1, true, false, true),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_playerModerator")
    PlayerType_playerModerator(1, 0, true, true, true),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_jagexModerator")
    PlayerType_jagexModerator(2, 1, true, true, false),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_ironman")
    PlayerType_ironman(3, 2, false, false, true),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_ultimateIronman")
    PlayerType_ultimateIronman(4, 3, false, false, true),
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Llq;"
    )
-   @Export("PlayerType_hardcoreIronman")
    PlayerType_hardcoreIronman(5, 10, false, false, true),
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -99,16 +93,12 @@ public enum PlayerType implements class345 {
    field3422(16, 52, false, false, true);
 
    @ObfuscatedName("s")
-   @Export("id")
    final int id;
    @ObfuscatedName("l")
-   @Export("modIcon")
    public final int modIcon;
    @ObfuscatedName("t")
-   @Export("isPrivileged")
    public final boolean isPrivileged;
    @ObfuscatedName("c")
-   @Export("isUser")
    public final boolean isUser;
 
    PlayerType(int var3, int var4, boolean var5, boolean var6, boolean var7) {
@@ -123,7 +113,6 @@ public enum PlayerType implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

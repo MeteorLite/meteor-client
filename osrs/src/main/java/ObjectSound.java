@@ -10,22 +10,16 @@ public final class ObjectSound extends Node {
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("objectSounds")
    static NodeDeque objectSounds = new NodeDeque();
    @ObfuscatedName("e")
-   @Export("plane")
    int plane;
    @ObfuscatedName("v")
-   @Export("x")
    int x;
    @ObfuscatedName("x")
-   @Export("y")
    int y;
    @ObfuscatedName("m")
-   @Export("maxX")
    int maxX;
    @ObfuscatedName("q")
-   @Export("maxY")
    int maxY;
    @ObfuscatedName("f")
    int field680;
@@ -33,23 +27,19 @@ public final class ObjectSound extends Node {
    @ObfuscatedSignature(
       descriptor = "Lgn;"
    )
-   @Export("obj")
    ObjectComposition obj;
    @ObfuscatedName("u")
-   @Export("soundEffectId")
    int soundEffectId;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Lap;"
    )
-   @Export("stream1")
    RawPcmStream stream1;
    @ObfuscatedName("j")
    int field675;
    @ObfuscatedName("g")
    int field672;
    @ObfuscatedName("i")
-   @Export("soundEffectIds")
    int[] soundEffectIds;
    @ObfuscatedName("o")
    int field683;
@@ -57,7 +47,6 @@ public final class ObjectSound extends Node {
    @ObfuscatedSignature(
       descriptor = "Lap;"
    )
-   @Export("stream2")
    RawPcmStream stream2;
 
    @ObfuscatedName("v")
@@ -65,7 +54,6 @@ public final class ObjectSound extends Node {
       descriptor = "(I)V",
       garbageValue = "-1596084359"
    )
-   @Export("set")
    void set() {
       int var1 = this.soundEffectId;
       ObjectComposition var2 = this.obj.transform();
@@ -119,7 +107,6 @@ public final class ObjectSound extends Node {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
       garbageValue = "11"
    )
-   @Export("insertMenuItemNoShift")
    public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
       class37.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
    }

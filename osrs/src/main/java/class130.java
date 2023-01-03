@@ -229,7 +229,6 @@ public class class130 extends DualNode {
       descriptor = "(IIB)Lbv;",
       garbageValue = "21"
    )
-   @Export("Messages_getByChannelAndID")
    static Message Messages_getByChannelAndID(int var0, int var1) {
       ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
       return var2.getMessage(var1);

@@ -8,7 +8,6 @@ public class class0 implements class3 {
    @ObfuscatedSignature(
       descriptor = "(Lqy;)Lqy;"
    )
-   @Export("vmethod12")
    public Buffer vmethod12(Buffer var1) {
       Buffer var2 = new Buffer(100);
       this.method1(var1, var2);

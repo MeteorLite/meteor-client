@@ -11,7 +11,6 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   @Export("deque")
    IterableNodeDeque deque;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -22,7 +21,6 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
    @ObfuscatedSignature(
       descriptor = "Lpl;"
    )
-   @Export("last")
    Node last = null;
 
    @ObfuscatedSignature(
@@ -36,20 +34,17 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
    @ObfuscatedSignature(
       descriptor = "(Lmv;)V"
    )
-   @Export("setDeque")
    void setDeque(IterableNodeDeque var1) {
       this.deque = var1;
       this.start();
    }
 
    @ObfuscatedName("e")
-   @Export("start")
    void start() {
       this.field3550 = this.deque != null ? this.deque.sentinel.previous : null;
       this.last = null;
    }
 
-   @Export("remove")
    @ObfuscatedName("remove")
    public void remove() {
       if (this.last == null) {
@@ -60,13 +55,11 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
       }
    }
 
-   @Export("hasNext")
    @ObfuscatedName("hasNext")
    public boolean hasNext() {
       return this.deque.sentinel != this.field3550 && this.field3550 != null;
    }
 
-   @Export("next")
    @ObfuscatedName("next")
    public Object next() {
       Node var1 = this.field3550;

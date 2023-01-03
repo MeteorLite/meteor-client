@@ -16,7 +16,6 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("Language_EN")
    public static final Language Language_EN;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -27,7 +26,6 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("Language_FR")
    public static final Language Language_FR;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -43,7 +41,6 @@ public class Language implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("Language_ES")
    public static final Language Language_ES;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
@@ -56,18 +53,14 @@ public class Language implements class345 {
    )
    public static final Language[] field3526;
    @ObfuscatedName("d")
-   @Export("canvasHeight")
    public static int canvasHeight;
    @ObfuscatedName("ad")
-   @Export("Widget_loadedInterfaces")
    static boolean[] Widget_loadedInterfaces;
    @ObfuscatedName("r")
    final String field3522;
    @ObfuscatedName("u")
-   @Export("language")
    final String language;
    @ObfuscatedName("b")
-   @Export("id")
    final int id;
 
    static {
@@ -109,7 +102,6 @@ public class Language implements class345 {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "0"
    )
-   @Export("getLanguage")
    String getLanguage() {
       return this.language;
    }
@@ -119,12 +111,10 @@ public class Language implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       return this.getLanguage().toLowerCase(Locale.ENGLISH);

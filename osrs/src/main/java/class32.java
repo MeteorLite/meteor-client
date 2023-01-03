@@ -15,7 +15,6 @@ public class class32 {
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("mapSceneSprites")
    static IndexedSprite[] mapSceneSprites;
 
    @ObfuscatedName("h")
@@ -218,7 +217,6 @@ public class class32 {
       descriptor = "(II)V",
       garbageValue = "2039942165"
    )
-   @Export("getLoginError")
    static void getLoginError(int var0) {
       int var1 = GraphicsObject.method422();
       if (var0 == -3) {
@@ -355,7 +353,6 @@ public class class32 {
       descriptor = "(IIIII)V",
       garbageValue = "-941365461"
    )
-   @Export("selectSpell")
    static void selectSpell(int var0, int var1, int var2, int var3) {
       Widget var4 = AttackOption.getWidgetChild(var0, var1);
       if (var4 != null && var4.onTargetEnter != null) {

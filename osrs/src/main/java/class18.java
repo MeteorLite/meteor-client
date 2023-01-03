@@ -10,13 +10,11 @@ class class18 implements Comparator {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("HitSplatDefinition_archive")
    public static AbstractArchive HitSplatDefinition_archive;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lj;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class10 this$0;
 
@@ -36,13 +34,11 @@ class class18 implements Comparator {
       return ((Float)var2.getValue()).compareTo((Float)var1.getValue());
    }
 
-   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.method58((Entry)var1, (Entry)var2);
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
@@ -92,7 +88,6 @@ class class18 implements Comparator {
       descriptor = "(Lkd;I[B[BB)V",
       garbageValue = "120"
    )
-   @Export("Widget_setKey")
    static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
       if (var0.field2946 == null) {
          if (var2 == null) {
@@ -138,7 +133,6 @@ class class18 implements Comparator {
       descriptor = "(Lkd;III)V",
       garbageValue = "-1041605206"
    )
-   @Export("clickWidget")
    static final void clickWidget(Widget var0, int var1, int var2) {
       if (Client.clickedWidget == null && !Client.isMenuOpen) {
          if (var0 != null && class306.method1753(var0) != null) {

@@ -9,7 +9,6 @@ public class class133 extends class136 {
    @ObfuscatedName("bg")
    static String field1284;
    @ObfuscatedName("id")
-   @Export("regionLandArchives")
    static byte[][] regionLandArchives;
    @ObfuscatedName("h")
    int field1286;
@@ -38,7 +37,6 @@ public class class133 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1286 = var1.readUnsignedShort();
       this.field1282 = var1.readInt();
@@ -51,7 +49,6 @@ public class class133 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method788(this.field1286, this.field1282, this.field1283, this.field1281);
    }

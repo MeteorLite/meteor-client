@@ -9,7 +9,6 @@ public class class381 {
       descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
       garbageValue = "-331744467"
    )
-   @Export("addChatMessage")
    static void addChatMessage(int var0, String var1, String var2, String var3) {
       ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
       if (var4 == null) {

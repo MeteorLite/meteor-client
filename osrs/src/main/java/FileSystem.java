@@ -9,13 +9,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("FileSystem")
 public class FileSystem {
    @ObfuscatedName("h")
-   @Export("FileSystem_hasPermissions")
    static boolean FileSystem_hasPermissions = false;
    @ObfuscatedName("e")
-   @Export("FileSystem_cacheDir")
    static File FileSystem_cacheDir;
    @ObfuscatedName("v")
-   @Export("FileSystem_cacheFiles")
    static Hashtable FileSystem_cacheFiles = new Hashtable(16);
    @ObfuscatedName("ea")
    static long field1432;

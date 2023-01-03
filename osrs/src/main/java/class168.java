@@ -15,7 +15,6 @@ public class class168 {
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class163 this$0;
 
@@ -32,7 +31,6 @@ public class class168 {
       descriptor = "(CLmb;I)C",
       garbageValue = "2057420121"
    )
-   @Export("standardizeChar")
    static char standardizeChar(char var0, Language var1) {
       if (var0 >= 192 && var0 <= 255) {
          if (var0 >= 192 && var0 <= 198) {

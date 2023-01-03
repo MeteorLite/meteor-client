@@ -7,29 +7,23 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("PlayerComposition")
 public class PlayerComposition {
    @ObfuscatedName("o")
-   @Export("equipmentIndices")
    static final int[] equipmentIndices = new int[]{8, 11, 4, 6, 9, 7, 10};
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("PlayerAppearance_cachedModels")
    static EvictingDualNodeHashTable PlayerAppearance_cachedModels = new EvictingDualNodeHashTable(260);
    @ObfuscatedName("h")
-   @Export("equipment")
    int[] equipment;
    @ObfuscatedName("e")
-   @Export("bodyColors")
    int[] bodyColors;
    @ObfuscatedName("v")
    public int field2820 = -1;
    @ObfuscatedName("x")
    public int field2818 = 0;
    @ObfuscatedName("m")
-   @Export("npcTransformId")
    public int npcTransformId;
    @ObfuscatedName("q")
-   @Export("hash")
    long hash;
    @ObfuscatedName("f")
    long field2821;
@@ -37,10 +31,8 @@ public class PlayerComposition {
    @ObfuscatedSignature(
       descriptor = "[Lfx;"
    )
-   @Export("customisations")
    ObjTypeCustomisation[] customisations;
    @ObfuscatedName("u")
-   @Export("isFemale")
    boolean isFemale = false;
 
    @ObfuscatedName("h")
@@ -87,7 +79,6 @@ public class PlayerComposition {
       descriptor = "(IZB)V",
       garbageValue = "-11"
    )
-   @Export("changeAppearance")
    public void changeAppearance(int var1, boolean var2) {
       if (var1 != 1 || this.field2818 != 1) {
          int var3 = this.equipment[equipmentIndices[var1]];
@@ -160,7 +151,6 @@ public class PlayerComposition {
       descriptor = "(Lqy;B)V",
       garbageValue = "11"
    )
-   @Export("write")
    public void write(Buffer var1) {
       var1.writeByte(this.field2818);
 
@@ -185,7 +175,6 @@ public class PlayerComposition {
       descriptor = "(S)V",
       garbageValue = "-19775"
    )
-   @Export("setHash")
    void setHash() {
       long var1 = this.hash;
       int var3 = this.equipment[5];
@@ -230,7 +219,6 @@ public class PlayerComposition {
       descriptor = "(Lga;ILga;II)Lhh;",
       garbageValue = "1815127134"
    )
-   @Export("getModel")
    public Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
       if (this.npcTransformId != -1) {
          return class129.getNpcDefinition(this.npcTransformId).method966(var1, var2, var3, var4, (NewShit)null);
@@ -360,7 +348,6 @@ public class PlayerComposition {
       descriptor = "(B)Lgi;",
       garbageValue = "83"
    )
-   @Export("getModelData")
    ModelData getModelData() {
       if (this.npcTransformId != -1) {
          return class129.getNpcDefinition(this.npcTransformId).method953((NewShit)null);
@@ -426,7 +413,6 @@ public class PlayerComposition {
       descriptor = "(I)I",
       garbageValue = "1407340254"
    )
-   @Export("getChatHeadId")
    public int getChatHeadId() {
       return this.npcTransformId == -1 ? (this.equipment[0] << 15) + this.equipment[1] + (this.equipment[11] << 5) + (this.equipment[8] << 10) + (this.bodyColors[0] << 25) + (this.bodyColors[4] << 20) : 305419896 + class129.getNpcDefinition(this.npcTransformId).id;
    }
@@ -436,7 +422,6 @@ public class PlayerComposition {
       descriptor = "(I)Lbz;",
       garbageValue = "-397803252"
    )
-   @Export("worldListStart")
    static World worldListStart() {
       World.World_listCount = 0;
       return UserComparator9.getNextWorldListWorld();
@@ -447,7 +432,6 @@ public class PlayerComposition {
       descriptor = "(II)V",
       garbageValue = "1666244801"
    )
-   @Export("forceDisconnect")
    static final void forceDisconnect(int var0) {
       Player.logOut();
       switch(var0) {

@@ -8,7 +8,6 @@ public class class140 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("worldSelectRightSprite")
    static IndexedSprite worldSelectRightSprite;
    @ObfuscatedName("h")
    int field1304;
@@ -33,7 +32,6 @@ public class class140 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1304 = var1.readUnsignedShort();
       this.field1305 = var1.readByte();
@@ -44,7 +42,6 @@ public class class140 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method786(this.field1304, this.field1305);
    }
@@ -106,7 +103,6 @@ public class class140 extends class136 {
       descriptor = "(II)V",
       garbageValue = "1425199157"
    )
-   @Export("updateGameState")
    static void updateGameState(int var0) {
       if (var0 != Client.gameState) {
          if (Client.gameState == 30) {

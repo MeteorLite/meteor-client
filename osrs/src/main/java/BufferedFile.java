@@ -12,37 +12,26 @@ public class BufferedFile {
    @ObfuscatedSignature(
       descriptor = "Lqq;"
    )
-   @Export("accessFile")
    AccessFile accessFile;
    @ObfuscatedName("v")
-   @Export("readBuffer")
    byte[] readBuffer;
    @ObfuscatedName("x")
-   @Export("readBufferOffset")
    long readBufferOffset = -1L;
    @ObfuscatedName("m")
-   @Export("readBufferLength")
    int readBufferLength;
    @ObfuscatedName("q")
-   @Export("writeBuffer")
    byte[] writeBuffer;
    @ObfuscatedName("f")
-   @Export("writeBufferOffset")
    long writeBufferOffset = -1L;
    @ObfuscatedName("r")
-   @Export("writeBufferLength")
    int writeBufferLength = 0;
    @ObfuscatedName("u")
-   @Export("offset")
    long offset;
    @ObfuscatedName("b")
-   @Export("fileLength")
    long fileLength;
    @ObfuscatedName("j")
-   @Export("length")
    long length;
    @ObfuscatedName("g")
-   @Export("fileOffset")
    long fileOffset;
 
    @ObfuscatedSignature(
@@ -61,14 +50,12 @@ public class BufferedFile {
       descriptor = "(I)V",
       garbageValue = "814193914"
    )
-   @Export("close")
    public void close() throws IOException {
       this.flush();
       this.accessFile.close();
    }
 
    @ObfuscatedName("e")
-   @Export("seek")
    public void seek(long var1) throws IOException {
       if (var1 < 0L) {
          throw new IOException("");
@@ -82,7 +69,6 @@ public class BufferedFile {
       descriptor = "(B)J",
       garbageValue = "-97"
    )
-   @Export("length")
    public long length() {
       return this.length;
    }
@@ -92,7 +78,6 @@ public class BufferedFile {
       descriptor = "([BB)V",
       garbageValue = "87"
    )
-   @Export("readFully")
    public void readFully(byte[] var1) throws IOException {
       this.read(var1, 0, var1.length);
    }
@@ -102,7 +87,6 @@ public class BufferedFile {
       descriptor = "([BIII)V",
       garbageValue = "259660321"
    )
-   @Export("read")
    public void read(byte[] var1, int var2, int var3) throws IOException {
       try {
          if (var3 + var2 > var1.length) {
@@ -208,7 +192,6 @@ public class BufferedFile {
       descriptor = "(I)V",
       garbageValue = "-1961664067"
    )
-   @Export("load")
    void load() throws IOException {
       this.readBufferLength = 0;
       if (this.fileOffset != this.offset) {
@@ -238,7 +221,6 @@ public class BufferedFile {
       descriptor = "([BIII)V",
       garbageValue = "-1899323399"
    )
-   @Export("write")
    public void write(byte[] var1, int var2, int var3) throws IOException {
       try {
          if ((long)var3 + this.offset > this.length) {
@@ -316,7 +298,6 @@ public class BufferedFile {
       descriptor = "(I)V",
       garbageValue = "723816740"
    )
-   @Export("flush")
    void flush() throws IOException {
       if (this.writeBufferOffset != -1L) {
          if (this.writeBufferOffset != this.fileOffset) {

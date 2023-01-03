@@ -8,7 +8,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nx")
 public class class365 implements Iterator {
    @ObfuscatedName("hq")
-   @Export("baseY")
    static int baseY;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
@@ -28,13 +27,11 @@ public class class365 implements Iterator {
       this.field3578 = var1;
    }
 
-   @Export("hasNext")
    @ObfuscatedName("hasNext")
    public boolean hasNext() {
       return this.field3579 < this.field3578.field3583;
    }
 
-   @Export("next")
    @ObfuscatedName("next")
    public Object next() {
       if (this.field3578.field3585 != this.field3580) {
@@ -48,7 +45,6 @@ public class class365 implements Iterator {
       }
    }
 
-   @Export("remove")
    @ObfuscatedName("remove")
    public void remove() {
       throw new UnsupportedOperationException();

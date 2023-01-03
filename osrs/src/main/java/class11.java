@@ -15,16 +15,13 @@ import org.bouncycastle.crypto.tls.TlsCredentials;
 @ObfuscatedName("g")
 class class11 implements TlsAuthentication {
    @ObfuscatedName("q")
-   @Export("SpriteBuffer_spriteWidths")
    public static int[] SpriteBuffer_spriteWidths;
    @ObfuscatedName("r")
-   @Export("soundSystemExecutor")
    static ScheduledExecutorService soundSystemExecutor;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lo;"
    )
-   @Export("this$2")
    @ObfuscatedName("this$2")
    final class13 this$2;
 
@@ -35,7 +32,6 @@ class class11 implements TlsAuthentication {
       this.this$2 = var1;
    }
 
-   @Export("notifyServerCertificate")
    @ObfuscatedName("notifyServerCertificate")
    public void notifyServerCertificate(Certificate var1) throws IOException {
       try {
@@ -54,7 +50,6 @@ class class11 implements TlsAuthentication {
       }
    }
 
-   @Export("getClientCredentials")
    @ObfuscatedName("getClientCredentials")
    public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
       return null;
@@ -65,7 +60,6 @@ class class11 implements TlsAuthentication {
       descriptor = "(IIIIIIIIIII)V",
       garbageValue = "-507085025"
    )
-   @Export("updatePendingSpawn")
    static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
       PendingSpawn var10 = null;
 

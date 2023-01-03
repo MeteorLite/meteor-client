@@ -18,10 +18,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("RasterProvider")
 public final class RasterProvider extends AbstractRasterProvider {
    @ObfuscatedName("h")
-   @Export("component")
    Component component;
    @ObfuscatedName("e")
-   @Export("image")
    Image image;
 
    RasterProvider(int var1, int var2, Component var3) {
@@ -41,7 +39,6 @@ public final class RasterProvider extends AbstractRasterProvider {
       descriptor = "(Ljava/awt/Component;I)V",
       garbageValue = "1952392859"
    )
-   @Export("setComponent")
    final void setComponent(Component var1) {
       this.component = var1;
    }
@@ -51,7 +48,6 @@ public final class RasterProvider extends AbstractRasterProvider {
       descriptor = "(IIB)V",
       garbageValue = "72"
    )
-   @Export("drawFull")
    public final void drawFull(int var1, int var2) {
       this.drawFull0(this.component.getGraphics(), var1, var2);
    }
@@ -61,7 +57,6 @@ public final class RasterProvider extends AbstractRasterProvider {
       descriptor = "(IIIIB)V",
       garbageValue = "-115"
    )
-   @Export("draw")
    public final void draw(int var1, int var2, int var3, int var4) {
       this.draw0(this.component.getGraphics(), var1, var2, var3, var4);
    }
@@ -71,7 +66,6 @@ public final class RasterProvider extends AbstractRasterProvider {
       descriptor = "(Ljava/awt/Graphics;IIB)V",
       garbageValue = "106"
    )
-   @Export("drawFull0")
    final void drawFull0(Graphics var1, int var2, int var3) {
       try {
          var1.drawImage(this.image, var2, var3, this.component);
@@ -86,7 +80,6 @@ public final class RasterProvider extends AbstractRasterProvider {
       descriptor = "(Ljava/awt/Graphics;IIIIS)V",
       garbageValue = "20146"
    )
-   @Export("draw0")
    final void draw0(Graphics var1, int var2, int var3, int var4, int var5) {
       try {
          Shape var6 = var1.getClip();

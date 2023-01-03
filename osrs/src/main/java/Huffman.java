@@ -7,13 +7,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Huffman")
 public class Huffman {
    @ObfuscatedName("h")
-   @Export("masks")
    int[] masks;
    @ObfuscatedName("e")
-   @Export("bits")
    byte[] bits;
    @ObfuscatedName("v")
-   @Export("keys")
    int[] keys;
 
    public Huffman(byte[] var1) {
@@ -104,7 +101,6 @@ public class Huffman {
       descriptor = "([BII[BIB)I",
       garbageValue = "62"
    )
-   @Export("compress")
    int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
       int var6 = 0;
       int var7 = var5 << 3;
@@ -155,7 +151,6 @@ public class Huffman {
       descriptor = "([BI[BIII)I",
       garbageValue = "-1684264908"
    )
-   @Export("decompress")
    int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
       if (var5 == 0) {
          return 0;
@@ -299,7 +294,6 @@ public class Huffman {
       descriptor = "(IZS)Ljava/lang/String;",
       garbageValue = "4529"
    )
-   @Export("intToString")
    public static String intToString(int var0, boolean var1) {
       return var1 && var0 >= 0 ? Widget.method1750(var0, 10, var1) : Integer.toString(var0);
    }

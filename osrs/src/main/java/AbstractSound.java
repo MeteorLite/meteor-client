@@ -6,6 +6,5 @@ import net.runelite.mapping.ObfuscatedName;
 @Implements("AbstractSound")
 public abstract class AbstractSound extends Node {
    @ObfuscatedName("q")
-   @Export("position")
    int position;
 }

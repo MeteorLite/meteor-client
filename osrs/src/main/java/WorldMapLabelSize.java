@@ -14,19 +14,16 @@ public class WorldMapLabelSize {
    @ObfuscatedSignature(
       descriptor = "Liq;"
    )
-   @Export("WorldMapLabelSize_small")
    public static final WorldMapLabelSize WorldMapLabelSize_small = new WorldMapLabelSize(2, 0, 4);
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Liq;"
    )
-   @Export("WorldMapLabelSize_medium")
    public static final WorldMapLabelSize WorldMapLabelSize_medium = new WorldMapLabelSize(0, 1, 2);
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Liq;"
    )
-   @Export("WorldMapLabelSize_large")
    public static final WorldMapLabelSize WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
    @ObfuscatedName("x")
    final int field2248;
@@ -87,7 +84,6 @@ public class WorldMapLabelSize {
       descriptor = "(CI)Z",
       garbageValue = "1850317115"
    )
-   @Export("isDigit")
    public static boolean isDigit(char var0) {
       return var0 >= '0' && var0 <= '9';
    }

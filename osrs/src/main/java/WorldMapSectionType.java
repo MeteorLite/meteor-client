@@ -13,32 +13,26 @@ public enum WorldMapSectionType implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
-   @Export("WORLDMAPSECTIONTYPE0")
    WORLDMAPSECTIONTYPE0(2, (byte)0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
-   @Export("WORLDMAPSECTIONTYPE1")
    WORLDMAPSECTIONTYPE1(3, (byte)1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
-   @Export("WORLDMAPSECTIONTYPE2")
    WORLDMAPSECTIONTYPE2(0, (byte)2),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
-   @Export("WORLDMAPSECTIONTYPE3")
    WORLDMAPSECTIONTYPE3(1, (byte)3);
 
    @ObfuscatedName("m")
-   @Export("type")
    final int type;
    @ObfuscatedName("q")
-   @Export("id")
    final byte id;
 
    WorldMapSectionType(int var3, byte var4) {
@@ -51,7 +45,6 @@ public enum WorldMapSectionType implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

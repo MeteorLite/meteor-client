@@ -15,7 +15,6 @@ public enum VerticalAlignment implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lgl;"
    )
-   @Export("VerticalAlignment_centered")
    VerticalAlignment_centered(2, 1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -27,15 +26,12 @@ public enum VerticalAlignment implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive17")
    static Archive archive17;
    @ObfuscatedName("hm")
    static long field1600;
    @ObfuscatedName("x")
-   @Export("value")
    public final int value;
    @ObfuscatedName("m")
-   @Export("id")
    final int id;
 
    VerticalAlignment(int var3, int var4) {
@@ -48,7 +44,6 @@ public enum VerticalAlignment implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

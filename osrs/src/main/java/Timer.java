@@ -101,7 +101,6 @@ public class Timer {
       descriptor = "(Lqy;B)V",
       garbageValue = "-113"
    )
-   @Export("write")
    public void write(Buffer var1) {
       long var2 = this.field3646;
       var2 /= 10L;

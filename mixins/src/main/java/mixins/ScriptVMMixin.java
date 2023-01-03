@@ -83,18 +83,19 @@ public abstract class ScriptVMMixin implements RSClient
 	@Inject
 	static boolean vmExecuteOpcode(int opcode)
 	{
-		int intStackSize = client.getIntStackSize();
-		int stringStackSize = client.getStringStackSize();
 		switch (opcode)
 		{
 			case RUNELITE_EXECUTE:
 				assert currentScript.getInstructions()[currentScriptPC] == RUNELITE_EXECUTE;
 
+				int stringStackSize = client.getStringStackSize();
 				String stringOp = client.getStringStack()[--stringStackSize];
 				client.setStringStackSize(stringStackSize);
 
 				if ("debug".equals(stringOp))
 				{
+					int intStackSize = client.getIntStackSize();
+
 					String fmt = client.getStringStack()[--stringStackSize];
 					StringBuffer out = new StringBuffer();
 					Matcher m = Pattern.compile("%(.)").matcher(fmt);
@@ -105,13 +106,9 @@ public abstract class ScriptVMMixin implements RSClient
 						{
 							case 'i':
 							case 'd':
-								if (intStackSize == 0)
-									return false;
 								out.append(client.getIntStack()[--intStackSize]);
 								break;
 							case 's':
-								if (stringStackSize == 0)
-									return false;
 								out.append(client.getStringStack()[--stringStackSize]);
 								break;
 							default:
@@ -124,10 +121,11 @@ public abstract class ScriptVMMixin implements RSClient
 
 					client.setStringStackSize(stringStackSize);
 					client.setIntStackSize(intStackSize);
-					return false;
+					return true;
 				}
 				else if ("mes".equals(stringOp))
 				{
+					int intStackSize = client.getIntStackSize();
 					int messageType = client.getIntStack()[--intStackSize];
 					String message = client.getStringStack()[--stringStackSize];
 					client.setStringStackSize(stringStackSize);
@@ -147,8 +145,7 @@ public abstract class ScriptVMMixin implements RSClient
 				return false;
 			case CAM_FORCEANGLE:
 				int[] intStack = client.getIntStack();
-				if (intStackSize == 0)
-					return false;
+				int intStackSize = client.getIntStackSize();
 				int var4 = intStack[intStackSize - 1];
 				int var3 = intStack[intStackSize - 2];
 				if (!client.isCameraLocked())

@@ -6,13 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nt")
 class class383 implements Comparator {
    @ObfuscatedName("lv")
-   @Export("Client_plane")
    static int Client_plane;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lni;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class384 this$0;
 
@@ -36,13 +34,11 @@ class class383 implements Comparator {
       }
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 
-   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.method2010((class385)var1, (class385)var2);

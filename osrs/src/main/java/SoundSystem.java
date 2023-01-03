@@ -10,16 +10,13 @@ public class SoundSystem implements Runnable {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("ObjectDefinition_modelsArchive")
    static AbstractArchive ObjectDefinition_modelsArchive;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "[Lax;"
    )
-   @Export("players")
    volatile PcmPlayer[] players = new PcmPlayer[2];
 
-   @Export("run")
    @ObfuscatedName("run")
    public void run() {
       try {
@@ -86,7 +83,6 @@ public class SoundSystem implements Runnable {
       descriptor = "(Ljava/lang/String;ZI)V",
       garbageValue = "-582152447"
    )
-   @Export("drawLoadingMessage")
    static final void drawLoadingMessage(String var0, boolean var1) {
       if (Client.showLoadingMessages) {
          byte var2 = 4;

@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedName;
 @Implements("ByteArrayNode")
 public class ByteArrayNode extends Node {
    @ObfuscatedName("h")
-   @Export("byteArray")
    public byte[] byteArray;
 
    public ByteArrayNode(byte[] var1) {

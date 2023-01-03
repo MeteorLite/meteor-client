@@ -7,24 +7,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
    @ObfuscatedName("r")
-   @Export("SpriteBuffer_spritePalette")
    public static int[] SpriteBuffer_spritePalette;
    @ObfuscatedName("gb")
    static int[] field2413;
    @ObfuscatedName("h")
-   @Export("mapElement")
    public int mapElement;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lky;"
    )
-   @Export("coord1")
    public Coord coord1;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lky;"
    )
-   @Export("coord2")
    public Coord coord2;
 
    @ObfuscatedSignature(

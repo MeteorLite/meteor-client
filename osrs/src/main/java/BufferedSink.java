@@ -11,28 +11,20 @@ public class BufferedSink implements Runnable {
    @ObfuscatedName("sn")
    static boolean field3726;
    @ObfuscatedName("h")
-   @Export("thread")
    Thread thread;
    @ObfuscatedName("e")
-   @Export("outputStream")
    OutputStream outputStream;
    @ObfuscatedName("v")
-   @Export("capacity")
    int capacity;
    @ObfuscatedName("x")
-   @Export("buffer")
    byte[] buffer;
    @ObfuscatedName("m")
-   @Export("position")
    int position = 0;
    @ObfuscatedName("q")
-   @Export("limit")
    int limit = 0;
    @ObfuscatedName("f")
-   @Export("exception")
    IOException exception;
    @ObfuscatedName("r")
-   @Export("closed")
    boolean closed;
 
    BufferedSink(OutputStream var1, int var2) {
@@ -49,7 +41,6 @@ public class BufferedSink implements Runnable {
       descriptor = "(I)Z",
       garbageValue = "293737573"
    )
-   @Export("isClosed")
    boolean isClosed() {
       if (this.closed) {
          try {
@@ -74,7 +65,6 @@ public class BufferedSink implements Runnable {
       descriptor = "([BIII)V",
       garbageValue = "-1609180160"
    )
-   @Export("write")
    void write(byte[] var1, int var2, int var3) throws IOException {
       if (var3 >= 0 && var2 >= 0 && var3 + var2 <= var1.length) {
          synchronized(this) {
@@ -114,7 +104,6 @@ public class BufferedSink implements Runnable {
       descriptor = "(B)V",
       garbageValue = "112"
    )
-   @Export("close")
    void close() {
       synchronized(this) {
          this.closed = true;
@@ -129,7 +118,6 @@ public class BufferedSink implements Runnable {
 
    }
 
-   @Export("run")
    @ObfuscatedName("run")
    public void run() {
       do {

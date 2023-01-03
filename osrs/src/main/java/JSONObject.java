@@ -16,7 +16,6 @@ import net.runelite.rs.Reflection;
 @Implements("JSONObject")
 @ObfuscatedName("org/json/JSONObject")
 public class JSONObject {
-   @Export("NULL")
    @ObfuscatedName("NULL")
    public static final Object NULL = new JSONObject$Null();
    @ObfuscatedName("map")
@@ -133,7 +132,6 @@ public class JSONObject {
       }
    }
 
-   @Export("getBoolean")
    @ObfuscatedName("getBoolean")
    public boolean getBoolean(String var1) throws JSONException {
       Object var2 = this.method2508(var1);
@@ -146,33 +144,28 @@ public class JSONObject {
       }
    }
 
-   @Export("getLong")
    @ObfuscatedName("getLong")
    public long getLong(String var1) throws JSONException {
       Object var2 = this.method2508(var1);
       return var2 instanceof Number ? ((Number)var2).longValue() : (long)this.getDouble(var1);
    }
 
-   @Export("keys")
    @ObfuscatedName("keys")
    public Iterator keys() {
       return this.field4118.keySet().iterator();
    }
 
-   @Export("getInt")
    @ObfuscatedName("getInt")
    public int getInt(String var1) throws JSONException {
       Object var2 = this.method2508(var1);
       return var2 instanceof Number ? ((Number)var2).intValue() : (int)this.getDouble(var1);
    }
 
-   @Export("length")
    @ObfuscatedName("length")
    public int length() {
       return this.field4118.size();
    }
 
-   @Export("getJSONArray")
    @ObfuscatedName("getJSONArray")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;)Lorg/json/JSONArray;"
@@ -186,13 +179,11 @@ public class JSONObject {
       }
    }
 
-   @Export("remove")
    @ObfuscatedName("remove")
    public Object remove(String var1) {
       return this.field4118.remove(var1);
    }
 
-   @Export("populateInternalMap")
    @ObfuscatedName("populateInternalMap")
    void populateInternalMap(Object var1, boolean var2) {
       Class var3 = var1.getClass();
@@ -244,13 +235,11 @@ public class JSONObject {
 
    }
 
-   @Export("sortedKeys")
    @ObfuscatedName("sortedKeys")
    public Iterator sortedKeys() {
       return (new TreeSet(this.field4118.keySet())).iterator();
    }
 
-   @Export("getDouble")
    @ObfuscatedName("getDouble")
    public double getDouble(String var1) throws JSONException {
       Object var2 = this.method2508(var1);
@@ -262,7 +251,6 @@ public class JSONObject {
       }
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    String toString(int var1, int var2) throws JSONException {
       int var4 = this.length();
@@ -314,7 +302,6 @@ public class JSONObject {
       }
    }
 
-   @Export("write")
    @ObfuscatedName("write")
    public Writer write(Writer var1) throws JSONException {
       try {
@@ -347,13 +334,11 @@ public class JSONObject {
       }
    }
 
-   @Export("getString")
    @ObfuscatedName("getString")
    public String getString(String var1) throws JSONException {
       return this.method2508(var1).toString();
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       try {
@@ -378,7 +363,6 @@ public class JSONObject {
       }
    }
 
-   @Export("getJSONObject")
    @ObfuscatedName("getJSONObject")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;)Lorg/json/JSONObject;"
@@ -392,7 +376,6 @@ public class JSONObject {
       }
    }
 
-   @Export("putOnce")
    @ObfuscatedName("putOnce")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;"
@@ -409,13 +392,11 @@ public class JSONObject {
       return this;
    }
 
-   @Export("isStandardProperty")
    @ObfuscatedName("isStandardProperty")
    boolean isStandardProperty(Class var1) {
       return var1.isPrimitive() || var1.isAssignableFrom(Byte.class) || var1.isAssignableFrom(Short.class) || var1.isAssignableFrom(Integer.class) || var1.isAssignableFrom(Long.class) || var1.isAssignableFrom(Float.class) || var1.isAssignableFrom(Double.class) || var1.isAssignableFrom(Character.class) || var1.isAssignableFrom(String.class) || var1.isAssignableFrom(Boolean.class);
    }
 
-   @Export("optBoolean")
    @ObfuscatedName("optBoolean")
    public boolean optBoolean(String var1, boolean var2) {
       try {
@@ -425,7 +406,6 @@ public class JSONObject {
       }
    }
 
-   @Export("optDouble")
    @ObfuscatedName("optDouble")
    public double optDouble(String var1, double var2) {
       try {
@@ -436,7 +416,6 @@ public class JSONObject {
       }
    }
 
-   @Export("optInt")
    @ObfuscatedName("optInt")
    public int optInt(String var1, int var2) {
       try {
@@ -446,7 +425,6 @@ public class JSONObject {
       }
    }
 
-   @Export("optLong")
    @ObfuscatedName("optLong")
    public long optLong(String var1, long var2) {
       try {
@@ -456,14 +434,12 @@ public class JSONObject {
       }
    }
 
-   @Export("optString")
    @ObfuscatedName("optString")
    public String optString(String var1, String var2) {
       Object var3 = this.method2509(var1);
       return var3 != null ? var3.toString() : var2;
    }
 
-   @Export("putOpt")
    @ObfuscatedName("putOpt")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;"
@@ -476,7 +452,6 @@ public class JSONObject {
       return this;
    }
 
-   @Export("getNames")
    @ObfuscatedName("getNames")
    @ObfuscatedSignature(
       descriptor = "(Lorg/json/JSONObject;)[Ljava/lang/String;"
@@ -497,7 +472,6 @@ public class JSONObject {
       }
    }
 
-   @Export("testValidity")
    @ObfuscatedName("testValidity")
    static void testValidity(Object var0) throws JSONException {
       if (var0 != null) {
@@ -512,7 +486,6 @@ public class JSONObject {
 
    }
 
-   @Export("numberToString")
    @ObfuscatedName("numberToString")
    public static String numberToString(Number var0) throws JSONException {
       if (var0 == null) {
@@ -534,7 +507,6 @@ public class JSONObject {
       }
    }
 
-   @Export("quote")
    @ObfuscatedName("quote")
    public static String quote(String var0) {
       if (var0 != null && var0.length() != 0) {
@@ -591,7 +563,6 @@ public class JSONObject {
       }
    }
 
-   @Export("valueToString")
    @ObfuscatedName("valueToString")
    static String valueToString(Object var0, int var1, int var2) throws JSONException {
       if (var0 != null && !var0.equals((Object)null)) {
@@ -626,7 +597,6 @@ public class JSONObject {
       }
    }
 
-   @Export("valueToString")
    @ObfuscatedName("valueToString")
    static String valueToString(Object var0) throws JSONException {
       if (var0 != null && !var0.equals((Object)null)) {
@@ -661,7 +631,6 @@ public class JSONObject {
       }
    }
 
-   @Export("stringToValue")
    @ObfuscatedName("stringToValue")
    public static Object stringToValue(String var0) {
       if (var0.equals("")) {

@@ -11,10 +11,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("worldSelectBackSprites")
    static SpritePixels[] worldSelectBackSprites;
    @ObfuscatedName("h")
-   @Export("filterWorlds")
    boolean filterWorlds;
 
    @ObfuscatedName("h")
@@ -22,7 +20,6 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       descriptor = "(Lmg;Lmg;B)I",
       garbageValue = "-94"
    )
-   @Export("compare_bridged")
    int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
       if (var2.world == var1.world) {
          return 0;
@@ -41,13 +38,11 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       }
    }
 
-   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);

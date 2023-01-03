@@ -27,7 +27,6 @@ public class class324 {
       descriptor = "(IB)Lfq;",
       garbageValue = "-13"
    )
-   @Export("getInvDefinition")
    public static InvDefinition getInvDefinition(int var0) {
       InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
       if (var1 != null) {

@@ -9,16 +9,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dw")
 public class class109 extends UrlRequester {
    @ObfuscatedName("tc")
-   @Export("cameraLookAtX")
    static int cameraLookAtX;
    @ObfuscatedName("f")
-   @Export("musicTrackGroupId")
    public static int musicTrackGroupId;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("title_muteSprite")
    static IndexedSprite[] title_muteSprite;
    @ObfuscatedName("m")
    final boolean field1146;
@@ -33,7 +30,6 @@ public class class109 extends UrlRequester {
       descriptor = "(Ldm;I)V",
       garbageValue = "756674113"
    )
-   @Export("vmethod2700")
    void vmethod2700(UrlRequest var1) throws IOException {
       URLConnection var2 = null;
 
@@ -112,7 +108,6 @@ public class class109 extends UrlRequester {
       descriptor = "(II)Lfi;",
       garbageValue = "-388064227"
    )
-   @Export("VarpDefinition_get")
    public static VarpDefinition VarpDefinition_get(int var0) {
       VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -134,7 +129,6 @@ public class class109 extends UrlRequester {
       descriptor = "(Lbz;Lbz;IZI)I",
       garbageValue = "1199021579"
    )
-   @Export("compareWorlds")
    static int compareWorlds(World var0, World var1, int var2, boolean var3) {
       if (var2 == 1) {
          int var4 = var0.population;

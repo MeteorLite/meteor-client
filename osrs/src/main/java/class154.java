@@ -10,7 +10,6 @@ public class class154 extends class136 {
    )
    static LoginScreenAnimation field1379;
    @ObfuscatedName("hk")
-   @Export("baseX")
    static int baseX;
    @ObfuscatedName("h")
    int field1376;
@@ -34,7 +33,6 @@ public class class154 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1376 = var1.readInt();
       this.field1378 = var1.readInt();
@@ -45,7 +43,6 @@ public class class154 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method789(this.field1376, this.field1378);
    }

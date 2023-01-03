@@ -25,7 +25,6 @@ public class class135 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1290 = var1.readUnsignedShort();
    }
@@ -35,7 +34,6 @@ public class class135 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method783(this.field1290);
    }

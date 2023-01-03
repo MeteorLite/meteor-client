@@ -6,13 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ms")
 public class class343 {
    @ObfuscatedName("h")
-   @Export("spriteMap")
    final HashMap spriteMap = new HashMap();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lok;"
    )
-   @Export("bounds")
    Bounds bounds = new Bounds(0, 0);
    @ObfuscatedName("v")
    int[] field3508 = new int[2048];
@@ -199,7 +197,6 @@ public class class343 {
       descriptor = "(ZI)V",
       garbageValue = "979622241"
    )
-   @Export("Login_promptCredentials")
    static void Login_promptCredentials(boolean var0) {
       if (!BuddyRankComparator.client.method355() && !BuddyRankComparator.client.method356()) {
          Login.Login_response1 = "";

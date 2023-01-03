@@ -7,37 +7,27 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("GraphicsObject")
 public class GraphicsObject extends Renderable {
    @ObfuscatedName("h")
-   @Export("id")
    int id;
    @ObfuscatedName("e")
-   @Export("cycleStart")
    int cycleStart;
    @ObfuscatedName("v")
-   @Export("plane")
    int plane;
    @ObfuscatedName("x")
-   @Export("y")
    int y;
    @ObfuscatedName("m")
-   @Export("x")
    int x;
    @ObfuscatedName("q")
-   @Export("z")
    int z;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lga;"
    )
-   @Export("sequenceDefinition")
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("r")
-   @Export("frame")
    int frame;
    @ObfuscatedName("u")
-   @Export("frameCycle")
    int frameCycle;
    @ObfuscatedName("b")
-   @Export("isFinished")
    boolean isFinished;
 
    GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
@@ -65,7 +55,6 @@ public class GraphicsObject extends Renderable {
       descriptor = "(II)V",
       garbageValue = "110882397"
    )
-   @Export("advance")
    final void advance(int var1) {
       if (!this.isFinished) {
          this.frameCycle += var1;
@@ -93,7 +82,6 @@ public class GraphicsObject extends Renderable {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       SpotAnimationDefinition var1 = ClanSettings.SpotAnimationDefinition_get(this.id);
       Model var2;

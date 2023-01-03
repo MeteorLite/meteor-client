@@ -7,10 +7,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
    @ObfuscatedName("h")
-   @Export("group")
    int group;
    @ObfuscatedName("e")
-   @Export("type")
    int type;
    @ObfuscatedName("v")
    boolean field840 = false;
@@ -34,7 +32,6 @@ public class InterfaceParent extends Node {
       descriptor = "(ZLqx;I)V",
       garbageValue = "-560600334"
    )
-   @Export("loadRegions")
    static final void loadRegions(boolean var0, PacketBuffer var1) {
       Client.isInInstance = var0;
       int var2;

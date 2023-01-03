@@ -10,12 +10,10 @@ public class UserComparator8 extends AbstractUserComparator {
    @ObfuscatedSignature(
       descriptor = "Lax;"
    )
-   @Export("pcmPlayer1")
    static PcmPlayer pcmPlayer1;
    @ObfuscatedName("fi")
    static int field1154;
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public UserComparator8(boolean var1) {
@@ -27,7 +25,6 @@ public class UserComparator8 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;B)I",
       garbageValue = "81"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (Client.worldId == var1.world) {
          if (var2.world != Client.worldId) {
@@ -40,7 +37,6 @@ public class UserComparator8 extends AbstractUserComparator {
       return this.compareUser(var1, var2);
    }
 
-   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);

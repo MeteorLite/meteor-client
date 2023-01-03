@@ -10,22 +10,16 @@ public final class PendingSpawn extends Node {
    @ObfuscatedSignature(
       descriptor = "Lbs;"
    )
-   @Export("tempMenuAction")
    static MenuAction tempMenuAction;
    @ObfuscatedName("h")
-   @Export("plane")
    int plane;
    @ObfuscatedName("e")
-   @Export("type")
    int type;
    @ObfuscatedName("v")
-   @Export("x")
    int x;
    @ObfuscatedName("x")
-   @Export("y")
    int y;
    @ObfuscatedName("m")
-   @Export("objectId")
    int objectId;
    @ObfuscatedName("q")
    int field928;
@@ -40,10 +34,8 @@ public final class PendingSpawn extends Node {
    @ObfuscatedName("g")
    int field920 = 31;
    @ObfuscatedName("i")
-   @Export("delay")
    int delay = 0;
    @ObfuscatedName("o")
-   @Export("hitpoints")
    int hitpoints = -1;
 
    @ObfuscatedName("h")

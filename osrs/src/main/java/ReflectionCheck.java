@@ -12,30 +12,22 @@ public class ReflectionCheck extends Node {
    @ObfuscatedSignature(
       descriptor = "Lhc;"
    )
-   @Export("scene")
    static Scene scene;
    @ObfuscatedName("h")
-   @Export("id")
    int id;
    @ObfuscatedName("e")
-   @Export("size")
    int size;
    @ObfuscatedName("v")
-   @Export("operations")
    int[] operations;
    @ObfuscatedName("x")
-   @Export("creationErrors")
    int[] creationErrors;
    @ObfuscatedName("m")
-   @Export("arguments")
    byte[][][] arguments;
    @ObfuscatedName("q")
    Field[] fields;
    @ObfuscatedName("f")
-   @Export("intReplaceValues")
    int[] intReplaceValues;
    @ObfuscatedName("r")
-   @Export("methods")
    Method[] methods;
 
    @ObfuscatedName("jw")
@@ -57,7 +49,6 @@ public class ReflectionCheck extends Node {
       descriptor = "(Lcg;IIIB)V",
       garbageValue = "-3"
    )
-   @Export("addNpcToMenu")
    static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
       NPCComposition var4 = var0.definition;
       if (Client.menuOptionsCount < 400) {
@@ -187,7 +178,6 @@ public class ReflectionCheck extends Node {
       descriptor = "(Ljava/lang/String;S)V",
       garbageValue = "10506"
    )
-   @Export("clanKickUser")
    static final void clanKickUser(String var0) {
       if (class281.friendsChat != null) {
          PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field2474, Client.packetWriter.isaacCipher);

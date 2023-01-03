@@ -11,19 +11,15 @@ public final class NPC extends Actor {
    @ObfuscatedName("u")
    static int field1053 = 1;
    @ObfuscatedName("i")
-   @Export("Tiles_hueMultiplier")
    static int[] Tiles_hueMultiplier;
    @ObfuscatedName("mw")
-   @Export("menuY")
    static int menuY;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lgz;"
    )
-   @Export("definition")
    NPCComposition definition;
    @ObfuscatedName("e")
-   @Export("nameChange")
    String nameChange = "";
    @ObfuscatedName("x")
    int field1048 = 31;
@@ -57,7 +53,6 @@ public final class NPC extends Actor {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       if (this.definition == null) {
          return null;
@@ -147,7 +142,6 @@ public final class NPC extends Actor {
       descriptor = "(ILgs;B)V",
       garbageValue = "-17"
    )
-   @Export("move")
    final void move(int var1, MoveSpeed var2) {
       int var3 = super.pathX[0];
       int var4 = super.pathY[0];
@@ -331,7 +325,6 @@ public final class NPC extends Actor {
       descriptor = "(I)Z",
       garbageValue = "-2124571860"
    )
-   @Export("isVisible")
    final boolean isVisible() {
       return this.definition != null;
    }

@@ -10,13 +10,10 @@ public class WorldMapScaleHandler {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("mousedOverWidgetIf1")
    static Widget mousedOverWidgetIf1;
    @ObfuscatedName("h")
-   @Export("pixelsPerTile")
    int pixelsPerTile;
    @ObfuscatedName("e")
-   @Export("tileTemplates")
    byte[][][] tileTemplates;
 
    WorldMapScaleHandler(int var1) {
@@ -75,7 +72,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "1640833319"
    )
-   @Export("init")
    void init() {
       if (this.tileTemplates == null) {
          this.tileTemplates = new byte[8][4][];
@@ -95,7 +91,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "408672170"
    )
-   @Export("init0")
    void init0() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       int var2 = 0;
@@ -162,7 +157,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "-763406203"
    )
-   @Export("init1")
    void init1() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       int var2 = 0;
@@ -233,7 +227,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "2025599610"
    )
-   @Export("init2")
    void init2() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       int var2 = 0;
@@ -300,7 +293,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "2134142049"
    )
-   @Export("init3")
    void init3() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       int var2 = 0;
@@ -367,7 +359,6 @@ public class WorldMapScaleHandler {
       descriptor = "(B)V",
       garbageValue = "16"
    )
-   @Export("init4")
    void init4() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       int var2 = 0;
@@ -434,7 +425,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "-1618697148"
    )
-   @Export("init5")
    void init5() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       boolean var2 = false;
@@ -503,7 +493,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "-1697937567"
    )
-   @Export("init6")
    void init6() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       boolean var2 = false;
@@ -572,7 +561,6 @@ public class WorldMapScaleHandler {
       descriptor = "(I)V",
       garbageValue = "-1123547765"
    )
-   @Export("init7")
    void init7() {
       byte[] var1 = new byte[this.pixelsPerTile * this.pixelsPerTile];
       boolean var2 = false;

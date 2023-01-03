@@ -33,7 +33,6 @@ public class class9 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   @Export("rightTitleSprite")
    static SpritePixels rightTitleSprite;
    @ObfuscatedName("bx")
    static String field23;
@@ -41,7 +40,6 @@ public class class9 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive7")
    static Archive archive7;
    @ObfuscatedName("q")
    int field26;
@@ -73,7 +71,6 @@ public class class9 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.field26;
    }
@@ -117,7 +114,6 @@ public class class9 implements class345 {
       descriptor = "(IIB)V",
       garbageValue = "6"
    )
-   @Export("changeWorldSelectSorting")
    static void changeWorldSelectSorting(int var0, int var1) {
       int[] var2 = new int[4];
       int[] var3 = new int[4];
@@ -143,7 +139,6 @@ public class class9 implements class345 {
       descriptor = "(Lkd;IIIB)V",
       garbageValue = "0"
    )
-   @Export("Widget_setKeyRate")
    static final void Widget_setKeyRate(Widget var0, int var1, int var2, int var3) {
       if (var0.field2954 == null) {
          throw new RuntimeException();
@@ -355,7 +350,6 @@ public class class9 implements class345 {
       descriptor = "(Lcx;ZB)V",
       garbageValue = "93"
    )
-   @Export("closeInterface")
    static final void closeInterface(InterfaceParent var0, boolean var1) {
       int var2 = var0.group;
       int var3 = (int)var0.key;

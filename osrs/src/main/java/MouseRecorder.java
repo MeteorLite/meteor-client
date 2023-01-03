@@ -10,28 +10,20 @@ public class MouseRecorder implements Runnable {
    @ObfuscatedSignature(
       descriptor = "Lpz;"
    )
-   @Export("WorldMapElement_fonts")
    static Fonts WorldMapElement_fonts;
    @ObfuscatedName("h")
-   @Export("isRunning")
    boolean isRunning = true;
    @ObfuscatedName("e")
-   @Export("lock")
    Object lock = new Object();
    @ObfuscatedName("v")
-   @Export("index")
    int index = 0;
    @ObfuscatedName("x")
-   @Export("xs")
    int[] xs = new int[500];
    @ObfuscatedName("m")
-   @Export("ys")
    int[] ys = new int[500];
    @ObfuscatedName("q")
-   @Export("millis")
    long[] millis = new long[500];
 
-   @Export("run")
    @ObfuscatedName("run")
    public void run() {
       for(; this.isRunning; class12.method44(50L)) {
@@ -53,7 +45,6 @@ public class MouseRecorder implements Runnable {
       descriptor = "(IB)Ljava/lang/String;",
       garbageValue = "3"
    )
-   @Export("colorStartTag")
    static String colorStartTag(int var0) {
       return "<col=" + Integer.toHexString(var0) + ">";
    }
@@ -111,7 +102,6 @@ public class MouseRecorder implements Runnable {
       descriptor = "(IB)V",
       garbageValue = "-91"
    )
-   @Export("changeGameOptions")
    static final void changeGameOptions(int var0) {
       class136.method738();
       HealthBar.method571();

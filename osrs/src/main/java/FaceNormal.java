@@ -7,13 +7,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("FaceNormal")
 public class FaceNormal {
    @ObfuscatedName("h")
-   @Export("x")
    int x;
    @ObfuscatedName("e")
-   @Export("y")
    int y;
    @ObfuscatedName("v")
-   @Export("z")
    int z;
 
    @ObfuscatedName("ae")

@@ -8,7 +8,6 @@ public enum FillMode implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lrv;"
    )
-   @Export("SOLID")
    SOLID(0, 0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -22,7 +21,6 @@ public enum FillMode implements class345 {
    field4062(2, 2);
 
    @ObfuscatedName("p")
-   @Export("operatingSystemName")
    public static String operatingSystemName;
    @ObfuscatedName("x")
    public final int field4060;
@@ -39,7 +37,6 @@ public enum FillMode implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.field4064;
    }

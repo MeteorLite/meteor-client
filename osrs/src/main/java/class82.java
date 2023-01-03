@@ -9,7 +9,6 @@ public class class82 {
       descriptor = "([Ljava/lang/String;[SIIB)V",
       garbageValue = "-111"
    )
-   @Export("sortItemsByName")
    public static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
       if (var2 < var3) {
          int var4 = (var3 + var2) / 2;

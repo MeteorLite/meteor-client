@@ -90,7 +90,6 @@ public class class276 {
       descriptor = "(I)I",
       garbageValue = "2126981871"
    )
-   @Export("getGcDuration")
    protected static int getGcDuration() {
       int var0 = 0;
       if (Projectile.garbageCollector == null || !Projectile.garbageCollector.isValid()) {

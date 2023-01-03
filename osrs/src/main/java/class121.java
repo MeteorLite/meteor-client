@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dq")
 public class class121 {
    @ObfuscatedName("a")
-   @Export("cacheParentPaths")
    public static String[] cacheParentPaths;
    @ObfuscatedName("h")
    int field1174;

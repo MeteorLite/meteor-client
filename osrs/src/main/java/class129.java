@@ -9,7 +9,6 @@ public class class129 {
       descriptor = "(IB)Lgz;",
       garbageValue = "27"
    )
-   @Export("getNpcDefinition")
    public static NPCComposition getNpcDefinition(int var0) {
       NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
       if (var1 != null) {

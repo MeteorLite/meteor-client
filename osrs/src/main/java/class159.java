@@ -30,7 +30,6 @@ public class class159 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   @Export("vmethod3238")
    void vmethod3238(Buffer var1) {
       this.field1399 = var1.readStringCp1252NullTerminatedOrNull();
       if (this.field1399 != null) {
@@ -46,7 +45,6 @@ public class class159 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   @Export("vmethod3239")
    void vmethod3239(ClanChannel var1) {
       var1.name = this.field1399;
       if (this.field1399 != null) {

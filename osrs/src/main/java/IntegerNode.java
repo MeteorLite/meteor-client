@@ -6,7 +6,6 @@ import net.runelite.mapping.ObfuscatedName;
 @Implements("IntegerNode")
 public class IntegerNode extends Node {
    @ObfuscatedName("h")
-   @Export("integer")
    public int integer;
 
    public IntegerNode(int var1) {

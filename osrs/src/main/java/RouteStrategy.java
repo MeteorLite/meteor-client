@@ -10,19 +10,14 @@ public abstract class RouteStrategy {
    @ObfuscatedSignature(
       descriptor = "Lrm;"
    )
-   @Export("rasterProvider")
    public static AbstractRasterProvider rasterProvider;
    @ObfuscatedName("h")
-   @Export("approxDestinationX")
    public int approxDestinationX;
    @ObfuscatedName("e")
-   @Export("approxDestinationY")
    public int approxDestinationY;
    @ObfuscatedName("v")
-   @Export("approxDestinationSizeX")
    public int approxDestinationSizeX;
    @ObfuscatedName("x")
-   @Export("approxDestinationSizeY")
    public int approxDestinationSizeY;
 
    @ObfuscatedName("h")
@@ -30,7 +25,6 @@ public abstract class RouteStrategy {
       descriptor = "(IIILgw;I)Z",
       garbageValue = "1813316312"
    )
-   @Export("hasArrived")
    protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
 
    @ObfuscatedName("h")

@@ -6,12 +6,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("au")
 public class class31 {
    @ObfuscatedName("tz")
-   @Export("cameraMoveToSpeed")
    static int cameraMoveToSpeed;
    @ObfuscatedName("h")
    static long field84;
    @ObfuscatedName("fv")
-   @Export("currentPort")
    static int currentPort;
 
    static {
@@ -23,7 +21,6 @@ public class class31 {
       descriptor = "(IB)V",
       garbageValue = "1"
    )
-   @Export("runWidgetOnLoadListener")
    static void runWidgetOnLoadListener(int var0) {
       if (var0 != -1) {
          if (Players.loadInterface(var0)) {

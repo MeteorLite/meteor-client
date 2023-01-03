@@ -12,25 +12,21 @@ public class SoundCache {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("soundEffectIndex")
    AbstractArchive soundEffectIndex;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("musicSampleIndex")
    AbstractArchive musicSampleIndex;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
-   @Export("musicSamples")
    NodeHashTable musicSamples = new NodeHashTable(256);
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
-   @Export("rawSounds")
    NodeHashTable rawSounds = new NodeHashTable(256);
 
    @ObfuscatedSignature(
@@ -46,7 +42,6 @@ public class SoundCache {
       descriptor = "(II[IB)Laf;",
       garbageValue = "1"
    )
-   @Export("getSoundEffect0")
    RawSound getSoundEffect0(int var1, int var2, int[] var3) {
       int var4 = var2 ^ (var1 << 4 & '\uffff' | var1 >>> 12);
       var4 |= var1 << 16;
@@ -77,7 +72,6 @@ public class SoundCache {
       descriptor = "(II[II)Laf;",
       garbageValue = "-1966397833"
    )
-   @Export("getMusicSample0")
    RawSound getMusicSample0(int var1, int var2, int[] var3) {
       int var4 = var2 ^ (var1 << 4 & '\uffff' | var1 >>> 12);
       var4 |= var1 << 16;
@@ -114,7 +108,6 @@ public class SoundCache {
       descriptor = "(I[II)Laf;",
       garbageValue = "112511764"
    )
-   @Export("getSoundEffect")
    public RawSound getSoundEffect(int var1, int[] var2) {
       if (this.soundEffectIndex.getGroupCount() == 1) {
          return this.getSoundEffect0(0, var1, var2);
@@ -130,7 +123,6 @@ public class SoundCache {
       descriptor = "(I[II)Laf;",
       garbageValue = "1767210019"
    )
-   @Export("getMusicSample")
    public RawSound getMusicSample(int var1, int[] var2) {
       if (this.musicSampleIndex.getGroupCount() == 1) {
          return this.getMusicSample0(0, var1, var2);
@@ -237,7 +229,6 @@ public class SoundCache {
       descriptor = "(Lkd;IIII)V",
       garbageValue = "-1447783720"
    )
-   @Export("drawCompass")
    static final void drawCompass(Widget var0, int var1, int var2, int var3) {
       SpriteMask var4 = var0.getSpriteMask(false);
       if (var4 != null) {

@@ -10,7 +10,6 @@ public class class306 {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("ItemDefinition_modelArchive")
    static AbstractArchive ItemDefinition_modelArchive;
 
    @ObfuscatedName("e")
@@ -18,7 +17,6 @@ public class class306 {
       descriptor = "(Ljava/lang/String;I)Ljava/io/File;",
       garbageValue = "-1827228593"
    )
-   @Export("getFile")
    public static File getFile(String var0) {
       if (!FileSystem.FileSystem_hasPermissions) {
          throw new RuntimeException("");

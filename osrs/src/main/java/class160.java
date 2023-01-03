@@ -26,7 +26,6 @@ public class class160 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1403 = var1.readInt();
       this.field1402 = var1.readLong();
@@ -37,7 +36,6 @@ public class class160 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method791(this.field1403, this.field1402);
    }
@@ -47,7 +45,6 @@ public class class160 extends class136 {
       descriptor = "(Lqx;II)V",
       garbageValue = "784609466"
    )
-   @Export("readPlayerUpdate")
    static void readPlayerUpdate(PacketBuffer var0, int var1) {
       boolean var2 = var0.readBits(1) == 1;
       if (var2) {

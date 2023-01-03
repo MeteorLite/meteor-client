@@ -8,22 +8,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Login")
 public class Login {
    @ObfuscatedName("e")
-   @Export("clearLoginScreen")
    static boolean clearLoginScreen;
    @ObfuscatedName("v")
-   @Export("xPadding")
    static int xPadding = 0;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("runesSprite")
    static IndexedSprite[] runesSprite;
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("logoSprite")
    static IndexedSprite logoSprite;
    @ObfuscatedName("o")
    @ObfuscatedSignature(
@@ -36,13 +32,10 @@ public class Login {
    )
    static IndexedSprite field735;
    @ObfuscatedName("p")
-   @Export("loginBoxX")
    static int loginBoxX;
    @ObfuscatedName("y")
-   @Export("Login_loadingPercent")
    static int Login_loadingPercent;
    @ObfuscatedName("z")
-   @Export("Login_loadingText")
    static String Login_loadingText;
    @ObfuscatedName("ah")
    static int field732;
@@ -51,25 +44,18 @@ public class Login {
    @ObfuscatedName("ap")
    static String field737;
    @ObfuscatedName("ac")
-   @Export("loginIndex")
    static int loginIndex;
    @ObfuscatedName("bh")
-   @Export("Login_response0")
    static String Login_response0;
    @ObfuscatedName("be")
-   @Export("Login_response1")
    static String Login_response1;
    @ObfuscatedName("bf")
-   @Export("Login_response2")
    static String Login_response2;
    @ObfuscatedName("bo")
-   @Export("Login_response3")
    static String Login_response3;
    @ObfuscatedName("by")
-   @Export("Login_username")
    static String Login_username;
    @ObfuscatedName("bw")
-   @Export("Login_password")
    static String Login_password;
    @ObfuscatedName("bc")
    static int field746;
@@ -82,19 +68,14 @@ public class Login {
    @ObfuscatedName("bm")
    static boolean field738;
    @ObfuscatedName("bk")
-   @Export("currentLoginField")
    static int currentLoginField;
    @ObfuscatedName("cq")
-   @Export("worldSelectOpen")
    static boolean worldSelectOpen;
    @ObfuscatedName("cj")
-   @Export("hoveredWorldIndex")
    static int hoveredWorldIndex;
    @ObfuscatedName("cn")
-   @Export("worldSelectPage")
    static int worldSelectPage;
    @ObfuscatedName("cm")
-   @Export("worldSelectPagesCount")
    static int worldSelectPagesCount;
    @ObfuscatedName("cu")
    static long field745;

@@ -8,85 +8,59 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Projectile")
 public final class Projectile extends Renderable {
    @ObfuscatedName("aq")
-   @Export("garbageCollector")
    static GarbageCollectorMXBean garbageCollector;
    @ObfuscatedName("h")
-   @Export("id")
    int id;
    @ObfuscatedName("e")
-   @Export("plane")
    int plane;
    @ObfuscatedName("v")
-   @Export("sourceX")
    int sourceX;
    @ObfuscatedName("x")
-   @Export("sourceY")
    int sourceY;
    @ObfuscatedName("m")
-   @Export("sourceZ")
    int sourceZ;
    @ObfuscatedName("q")
-   @Export("endHeight")
    int endHeight;
    @ObfuscatedName("f")
-   @Export("cycleStart")
    int cycleStart;
    @ObfuscatedName("r")
-   @Export("cycleEnd")
    int cycleEnd;
    @ObfuscatedName("u")
-   @Export("slope")
    int slope;
    @ObfuscatedName("b")
-   @Export("startHeight")
    int startHeight;
    @ObfuscatedName("j")
-   @Export("targetIndex")
    int targetIndex;
    @ObfuscatedName("g")
-   @Export("isMoving")
    boolean isMoving = false;
    @ObfuscatedName("i")
-   @Export("x")
    double x;
    @ObfuscatedName("o")
-   @Export("y")
    double y;
    @ObfuscatedName("n")
-   @Export("z")
    double z;
    @ObfuscatedName("k")
-   @Export("speedX")
    double speedX;
    @ObfuscatedName("a")
-   @Export("speedY")
    double speedY;
    @ObfuscatedName("s")
-   @Export("speed")
    double speed;
    @ObfuscatedName("l")
-   @Export("speedZ")
    double speedZ;
    @ObfuscatedName("t")
-   @Export("accelerationZ")
    double accelerationZ;
    @ObfuscatedName("c")
-   @Export("yaw")
    int yaw;
    @ObfuscatedName("p")
-   @Export("pitch")
    int pitch;
    @ObfuscatedName("d")
    @ObfuscatedSignature(
       descriptor = "Lga;"
    )
-   @Export("sequenceDefinition")
    SequenceDefinition sequenceDefinition;
    @ObfuscatedName("y")
-   @Export("frame")
    int frame = 0;
    @ObfuscatedName("z")
-   @Export("frameCycle")
    int frameCycle = 0;
 
    Projectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
@@ -116,7 +90,6 @@ public final class Projectile extends Renderable {
       descriptor = "(IIIII)V",
       garbageValue = "1027863856"
    )
-   @Export("setDestination")
    final void setDestination(int var1, int var2, int var3, int var4) {
       double var5;
       if (!this.isMoving) {
@@ -144,7 +117,6 @@ public final class Projectile extends Renderable {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       SpotAnimationDefinition var1 = ClanSettings.SpotAnimationDefinition_get(this.id);
       Model var2 = var1.getModel(this.frame);
@@ -161,7 +133,6 @@ public final class Projectile extends Renderable {
       descriptor = "(II)V",
       garbageValue = "2050320762"
    )
-   @Export("advance")
    final void advance(int var1) {
       this.isMoving = true;
       this.x += (double)var1 * this.speedX;
@@ -206,7 +177,6 @@ public final class Projectile extends Renderable {
       descriptor = "(Lly;Ljava/lang/String;Ljava/lang/String;I)Lra;",
       garbageValue = "-1993204368"
    )
-   @Export("SpriteBuffer_getIndexedSpriteByName")
    public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
       int var3 = var0.getGroupId(var1);
       int var4 = var0.getFileId(var3, var2);
@@ -258,7 +228,6 @@ public final class Projectile extends Renderable {
       descriptor = "(IIIII)V",
       garbageValue = "2029958408"
    )
-   @Export("drawEntities")
    static final void drawEntities(int var0, int var1, int var2, int var3) {
       ++Client.viewportDrawCount;
       GrandExchangeOfferUnitPriceComparator.method1845();

@@ -29,7 +29,6 @@ public class class148 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   @Export("vmethod3238")
    void vmethod3238(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
@@ -47,7 +46,6 @@ public class class148 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   @Export("vmethod3239")
    void vmethod3239(ClanChannel var1) {
       ClanChannelMember var2 = new ClanChannelMember();
       var2.username = new Username(this.field1360);
@@ -61,7 +59,6 @@ public class class148 extends class152 {
       descriptor = "(CI)Z",
       garbageValue = "2023912721"
    )
-   @Export("isCharPrintable")
    public static boolean isCharPrintable(char var0) {
       if (var0 >= ' ' && var0 <= '~') {
          return true;

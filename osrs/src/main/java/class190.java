@@ -8,7 +8,6 @@ public class class190 extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("scriptDotWidget")
    static Widget scriptDotWidget;
 
    static {

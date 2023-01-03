@@ -7,22 +7,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("ClanSettings")
 public class ClanSettings {
    @ObfuscatedName("e")
-   @Export("useHashes")
    boolean useHashes;
    @ObfuscatedName("v")
-   @Export("useNames")
    boolean useNames;
    @ObfuscatedName("x")
    long field1337;
    @ObfuscatedName("m")
    int field1358 = 0;
    @ObfuscatedName("q")
-   @Export("name")
    public String name = null;
    @ObfuscatedName("f")
    int field1340 = 0;
    @ObfuscatedName("r")
-   @Export("allowGuests")
    public boolean allowGuests;
    @ObfuscatedName("u")
    public byte field1342;
@@ -33,16 +29,12 @@ public class ClanSettings {
    @ObfuscatedName("g")
    public byte field1344;
    @ObfuscatedName("i")
-   @Export("memberCount")
    public int memberCount;
    @ObfuscatedName("o")
-   @Export("memberHashes")
    long[] memberHashes;
    @ObfuscatedName("n")
-   @Export("memberRanks")
    public byte[] memberRanks;
    @ObfuscatedName("k")
-   @Export("sortedMembers")
    int[] sortedMembers;
    @ObfuscatedName("a")
    int[] field1348;
@@ -51,27 +43,21 @@ public class ClanSettings {
    @ObfuscatedName("l")
    public boolean[] field1338;
    @ObfuscatedName("t")
-   @Export("currentOwner")
    public int currentOwner = -1;
    @ObfuscatedName("c")
    public int field1352 = -1;
    @ObfuscatedName("p")
-   @Export("bannedMemberCount")
    public int bannedMemberCount;
    @ObfuscatedName("d")
-   @Export("bannedMemberHashes")
    long[] bannedMemberHashes;
    @ObfuscatedName("y")
-   @Export("memberNames")
    public String[] memberNames;
    @ObfuscatedName("z")
-   @Export("bannedMemberNames")
    public String[] bannedMemberNames;
    @ObfuscatedName("w")
    @ObfuscatedSignature(
       descriptor = "Lql;"
    )
-   @Export("parameters")
    IterableNodeHashTable parameters;
 
    @ObfuscatedSignature(
@@ -187,7 +173,6 @@ public class ClanSettings {
       descriptor = "(II)Ljava/lang/Integer;",
       garbageValue = "-58327923"
    )
-   @Export("getTitleGroupValue")
    public Integer getTitleGroupValue(int var1) {
       if (this.parameters == null) {
          return null;
@@ -202,7 +187,6 @@ public class ClanSettings {
       descriptor = "(I)[I",
       garbageValue = "-32279624"
    )
-   @Export("getSortedMembers")
    public int[] getSortedMembers() {
       if (this.sortedMembers == null) {
          String[] var1 = new String[this.memberCount];
@@ -307,7 +291,6 @@ public class ClanSettings {
       descriptor = "(B)V",
       garbageValue = "54"
    )
-   @Export("updateOwner")
    void updateOwner() {
       if (this.memberCount == 0) {
          this.currentOwner = -1;
@@ -746,7 +729,6 @@ public class ClanSettings {
       descriptor = "(II)Lgq;",
       garbageValue = "1606755457"
    )
-   @Export("SpotAnimationDefinition_get")
    public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
       SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
       if (var1 != null) {

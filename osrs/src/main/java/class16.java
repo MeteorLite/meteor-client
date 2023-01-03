@@ -14,7 +14,6 @@ public class class16 implements ThreadFactory {
    @ObfuscatedSignature(
       descriptor = "Ln;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class14 this$0;
 
@@ -28,7 +27,6 @@ public class class16 implements ThreadFactory {
       this.field49 = var2 != null ? var2.getThreadGroup() : Thread.currentThread().getThreadGroup();
    }
 
-   @Export("newThread")
    @ObfuscatedName("newThread")
    public Thread newThread(Runnable var1) {
       Thread var2 = new Thread(this.field49, var1, this.this$0.field44 + "-rest-request-" + this.field48.getAndIncrement(), 0L);
@@ -60,7 +58,6 @@ public class class16 implements ThreadFactory {
       descriptor = "(IIB)V",
       garbageValue = "108"
    )
-   @Export("playJingle")
    static void playJingle(int var0, int var1) {
       if (StructComposition.clientPreferences.method543() != 0 && var0 != -1) {
          class29.method115(class21.field63, var0, 0, StructComposition.clientPreferences.method543(), false);

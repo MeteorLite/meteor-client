@@ -15,7 +15,6 @@ public enum HorizontalAlignment implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lgj;"
    )
-   @Export("HorizontalAlignment_centered")
    HorizontalAlignment_centered(1, 1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
@@ -24,10 +23,8 @@ public enum HorizontalAlignment implements class345 {
    field1540(0, 2);
 
    @ObfuscatedName("x")
-   @Export("value")
    public final int value;
    @ObfuscatedName("m")
-   @Export("id")
    final int id;
 
    HorizontalAlignment(int var3, int var4) {
@@ -40,7 +37,6 @@ public enum HorizontalAlignment implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

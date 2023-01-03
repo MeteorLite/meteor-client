@@ -10,6 +10,5 @@ public interface class421 {
       descriptor = "(B)[B",
       garbageValue = "0"
    )
-   @Export("vmethod7797")
    byte[] vmethod7797() throws UnsupportedEncodingException;
 }

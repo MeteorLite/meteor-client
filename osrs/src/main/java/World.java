@@ -10,46 +10,33 @@ public class World {
    @ObfuscatedSignature(
       descriptor = "[Lbz;"
    )
-   @Export("World_worlds")
    static World[] World_worlds;
    @ObfuscatedName("q")
-   @Export("World_count")
    static int World_count = 0;
    @ObfuscatedName("f")
-   @Export("World_listCount")
    static int World_listCount = 0;
    @ObfuscatedName("r")
-   @Export("World_sortOption2")
    static int[] World_sortOption2 = new int[]{1, 1, 1, 1};
    @ObfuscatedName("u")
-   @Export("World_sortOption1")
    static int[] World_sortOption1 = new int[]{0, 1, 2, 3};
    @ObfuscatedName("ig")
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("headIconPkSprites")
    static SpritePixels[] headIconPkSprites;
    @ObfuscatedName("j")
-   @Export("id")
    int id;
    @ObfuscatedName("g")
-   @Export("properties")
    int properties;
    @ObfuscatedName("i")
-   @Export("population")
    int population;
    @ObfuscatedName("o")
-   @Export("host")
    String host;
    @ObfuscatedName("n")
-   @Export("activity")
    String activity;
    @ObfuscatedName("k")
-   @Export("location")
    int location;
    @ObfuscatedName("a")
-   @Export("index")
    int index;
 
    @ObfuscatedName("b")
@@ -57,7 +44,6 @@ public class World {
       descriptor = "(I)Z",
       garbageValue = "475623933"
    )
-   @Export("isMembersOnly")
    boolean isMembersOnly() {
       return (1 & this.properties) != 0;
    }
@@ -76,7 +62,6 @@ public class World {
       descriptor = "(B)Z",
       garbageValue = "80"
    )
-   @Export("isPvp")
    boolean isPvp() {
       return (4 & this.properties) != 0;
    }
@@ -95,7 +80,6 @@ public class World {
       descriptor = "(I)Z",
       garbageValue = "-1842559739"
    )
-   @Export("isDeadman")
    boolean isDeadman() {
       return (536870912 & this.properties) != 0;
    }
@@ -105,7 +89,6 @@ public class World {
       descriptor = "(I)Z",
       garbageValue = "1891731193"
    )
-   @Export("isBeta")
    boolean isBeta() {
       return (33554432 & this.properties) != 0;
    }
@@ -142,7 +125,6 @@ public class World {
       descriptor = "([Lme;II)Lme;",
       garbageValue = "64778385"
    )
-   @Export("findEnumerated")
    public static class345 findEnumerated(class345[] var0, int var1) {
       class345[] var2 = var0;
 

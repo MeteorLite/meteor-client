@@ -65,7 +65,6 @@ public enum class131 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.field1263;
    }

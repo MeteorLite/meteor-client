@@ -10,13 +10,10 @@ public final class TileItem extends Renderable {
    @ObfuscatedSignature(
       descriptor = "Lax;"
    )
-   @Export("pcmPlayer0")
    static PcmPlayer pcmPlayer0;
    @ObfuscatedName("h")
-   @Export("id")
    int id;
    @ObfuscatedName("e")
-   @Export("quantity")
    int quantity;
    @ObfuscatedName("x")
    int field1079 = 31;
@@ -35,7 +32,6 @@ public final class TileItem extends Renderable {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       return NPCComposition.ItemDefinition_get(this.id).getModel(this.quantity);
    }

@@ -34,7 +34,6 @@ public class class143 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1322 = var1.readUnsignedByte() == 1;
       this.field1320 = var1.readByte();
@@ -48,7 +47,6 @@ public class class143 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.allowGuests = this.field1322;
       var1.field1342 = this.field1320;
@@ -109,7 +107,6 @@ public class class143 extends class136 {
       descriptor = "(IIIIZI)V",
       garbageValue = "-750872756"
    )
-   @Export("setViewportShape")
    static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
       if (var2 < 1) {
          var2 = 1;

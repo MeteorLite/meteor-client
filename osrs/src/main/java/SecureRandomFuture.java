@@ -14,13 +14,10 @@ public class SecureRandomFuture {
    @ObfuscatedSignature(
       descriptor = "Lqi;"
    )
-   @Export("loginType")
    static LoginType loginType;
    @ObfuscatedName("h")
-   @Export("executor")
    ExecutorService executor = Executors.newSingleThreadExecutor();
    @ObfuscatedName("e")
-   @Export("future")
    Future future;
 
    SecureRandomFuture() {
@@ -32,7 +29,6 @@ public class SecureRandomFuture {
       descriptor = "(B)V",
       garbageValue = "120"
    )
-   @Export("shutdown")
    void shutdown() {
       this.executor.shutdown();
       this.executor = null;
@@ -43,7 +39,6 @@ public class SecureRandomFuture {
       descriptor = "(I)Z",
       garbageValue = "-1647109690"
    )
-   @Export("isDone")
    boolean isDone() {
       return this.future.isDone();
    }
@@ -53,7 +48,6 @@ public class SecureRandomFuture {
       descriptor = "(I)Ljava/security/SecureRandom;",
       garbageValue = "1657619269"
    )
-   @Export("get")
    SecureRandom get() {
       try {
          return (SecureRandom)this.future.get();

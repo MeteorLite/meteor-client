@@ -25,7 +25,6 @@ class class13 extends DefaultTlsClient {
       this.this$1 = var1;
    }
 
-   @Export("getClientExtensions")
    @ObfuscatedName("getClientExtensions")
    public Hashtable getClientExtensions() throws IOException {
       Hashtable var1 = super.getClientExtensions();
@@ -45,7 +44,6 @@ class class13 extends DefaultTlsClient {
       return var1;
    }
 
-   @Export("getAuthentication")
    @ObfuscatedName("getAuthentication")
    public TlsAuthentication getAuthentication() throws IOException {
       return new class11(this);
@@ -56,7 +54,6 @@ class class13 extends DefaultTlsClient {
       descriptor = "(Ljava/lang/String;I)I",
       garbageValue = "-339253147"
    )
-   @Export("stringCp1252NullTerminatedByteSize")
    public static int stringCp1252NullTerminatedByteSize(String var0) {
       return var0.length() + 1;
    }

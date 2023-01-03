@@ -7,34 +7,26 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("FloorDecoration")
 public final class FloorDecoration {
    @ObfuscatedName("u")
-   @Export("SpriteBuffer_pixels")
    public static byte[][] SpriteBuffer_pixels;
    @ObfuscatedName("cx")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("worldSelectArrows")
    static IndexedSprite[] worldSelectArrows;
    @ObfuscatedName("h")
-   @Export("z")
    int z;
    @ObfuscatedName("e")
-   @Export("x")
    int x;
    @ObfuscatedName("v")
-   @Export("y")
    int y;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable")
    public Renderable renderable;
    @ObfuscatedName("m")
-   @Export("tag")
    public long tag;
    @ObfuscatedName("q")
-   @Export("flags")
    int flags;
 
    @ObfuscatedName("hv")
@@ -42,7 +34,6 @@ public final class FloorDecoration {
       descriptor = "(Lct;IB)V",
       garbageValue = "13"
    )
-   @Export("updateActorSequence")
    static final void updateActorSequence(Actor var0, int var1) {
       SequenceDefinition var3;
       int var4;

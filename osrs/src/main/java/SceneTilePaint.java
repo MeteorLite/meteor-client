@@ -7,31 +7,22 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
    @ObfuscatedName("l")
-   @Export("ByteArrayPool_arrays")
    public static byte[][][] ByteArrayPool_arrays;
    @ObfuscatedName("db")
-   @Export("mouseCam")
    static boolean mouseCam;
    @ObfuscatedName("h")
-   @Export("swColor")
    int swColor;
    @ObfuscatedName("e")
-   @Export("seColor")
    int seColor;
    @ObfuscatedName("v")
-   @Export("neColor")
    int neColor;
    @ObfuscatedName("x")
-   @Export("nwColor")
    int nwColor;
    @ObfuscatedName("m")
-   @Export("texture")
    int texture;
    @ObfuscatedName("q")
-   @Export("isFlat")
    boolean isFlat = true;
    @ObfuscatedName("f")
-   @Export("rgb")
    int rgb;
 
    SceneTilePaint(int var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {

@@ -10,49 +10,38 @@ public class WorldMapElement extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("WorldMapElement_archive")
    public static AbstractArchive WorldMapElement_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "[Lfm;"
    )
-   @Export("WorldMapElement_cached")
    public static WorldMapElement[] WorldMapElement_cached;
    @ObfuscatedName("v")
-   @Export("WorldMapElement_count")
    public static int WorldMapElement_count;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("WorldMapElement_cachedSprites")
    public static EvictingDualNodeHashTable WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(256);
    @ObfuscatedName("m")
-   @Export("objectId")
    public final int objectId;
    @ObfuscatedName("q")
-   @Export("sprite1")
    public int sprite1 = -1;
    @ObfuscatedName("f")
-   @Export("sprite2")
    int sprite2 = -1;
    @ObfuscatedName("r")
-   @Export("name")
    public String name;
    @ObfuscatedName("u")
    public int field1491;
    @ObfuscatedName("b")
-   @Export("textSize")
    public int textSize = 0;
    @ObfuscatedName("g")
    public boolean field1481 = true;
    @ObfuscatedName("i")
    public boolean field1485 = false;
    @ObfuscatedName("o")
-   @Export("menuActions")
    public String[] menuActions = new String[5];
    @ObfuscatedName("n")
-   @Export("menuTargetName")
    public String menuTargetName;
    @ObfuscatedName("k")
    int[] field1478;
@@ -68,20 +57,17 @@ public class WorldMapElement extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lgj;"
    )
-   @Export("horizontalAlignment")
    public HorizontalAlignment horizontalAlignment;
    @ObfuscatedName("p")
    @ObfuscatedSignature(
       descriptor = "Lgl;"
    )
-   @Export("verticalAlignment")
    public VerticalAlignment verticalAlignment;
    @ObfuscatedName("d")
    int[] field1475;
    @ObfuscatedName("y")
    byte[] field1492;
    @ObfuscatedName("z")
-   @Export("category")
    public int category;
 
    public WorldMapElement(int var1) {
@@ -96,7 +82,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "2"
    )
-   @Export("decode")
    public void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -113,7 +98,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(Lqy;IB)V",
       garbageValue = "1"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.sprite1 = var1.method2362();
@@ -228,7 +212,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(ZI)Lrx;",
       garbageValue = "-36987014"
    )
-   @Export("getSpriteBool")
    public SpritePixels getSpriteBool(boolean var1) {
       int var2 = this.sprite1 * -211487071 * 2084334945;
       return this.getSprite(var2);
@@ -239,7 +222,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(II)Lrx;",
       garbageValue = "-2019258857"
    )
-   @Export("getSprite")
    SpritePixels getSprite(int var1) {
       if (var1 < 0) {
          return null;
@@ -263,7 +245,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(B)I",
       garbageValue = "-125"
    )
-   @Export("getObjectId")
    public int getObjectId() {
       return this.objectId;
    }
@@ -273,7 +254,6 @@ public class WorldMapElement extends DualNode {
       descriptor = "(Lcb;B)V",
       garbageValue = "31"
    )
-   @Export("runScriptEvent")
    public static void runScriptEvent(ScriptEvent var0) {
       class125.runScript(var0, 500000, 475000);
    }

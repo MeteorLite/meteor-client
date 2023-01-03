@@ -10,7 +10,6 @@ public class FriendsList extends UserList {
    @ObfuscatedSignature(
       descriptor = "Lqi;"
    )
-   @Export("loginType")
    final LoginType loginType;
    @ObfuscatedName("x")
    int field3674 = 1;
@@ -18,7 +17,6 @@ public class FriendsList extends UserList {
    @ObfuscatedSignature(
       descriptor = "Lma;"
    )
-   @Export("friendLoginUpdates")
    public LinkDeque friendLoginUpdates = new LinkDeque();
 
    @ObfuscatedSignature(
@@ -34,7 +32,6 @@ public class FriendsList extends UserList {
       descriptor = "(B)Lov;",
       garbageValue = "47"
    )
-   @Export("newInstance")
    User newInstance() {
       return new Friend();
    }
@@ -44,7 +41,6 @@ public class FriendsList extends UserList {
       descriptor = "(II)[Lov;",
       garbageValue = "1710517567"
    )
-   @Export("newTypedArray")
    User[] newTypedArray(int var1) {
       return new Friend[var1];
    }
@@ -54,7 +50,6 @@ public class FriendsList extends UserList {
       descriptor = "(Lrp;ZS)Z",
       garbageValue = "2000"
    )
-   @Export("isFriended")
    public boolean isFriended(Username var1, boolean var2) {
       Friend var3 = (Friend)this.getByUsername(var1);
       if (var3 == null) {
@@ -69,7 +64,6 @@ public class FriendsList extends UserList {
       descriptor = "(Lqy;IB)V",
       garbageValue = "110"
    )
-   @Export("read")
    public void read(Buffer var1, int var2) {
       while(true) {
          if (var1.offset < var2) {

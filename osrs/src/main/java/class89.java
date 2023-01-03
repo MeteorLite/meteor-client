@@ -8,22 +8,18 @@ public class class89 {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("options_buttons_2Sprite")
    static IndexedSprite options_buttons_2Sprite;
    @ObfuscatedName("s")
-   @Export("cacheSubPaths")
    public static String[] cacheSubPaths;
    @ObfuscatedName("fn")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive15")
    static Archive archive15;
    @ObfuscatedName("je")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("scrollBarSprites")
    static IndexedSprite[] scrollBarSprites;
 
    @ObfuscatedName("h")
@@ -40,7 +36,6 @@ public class class89 {
       descriptor = "(Lkd;IIB)V",
       garbageValue = "84"
    )
-   @Export("alignWidgetPosition")
    static void alignWidgetPosition(Widget var0, int var1, int var2) {
       if (var0.xAlignment == 0) {
          var0.x = var0.rawX;

@@ -11,7 +11,6 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       descriptor = "(Lqy;I)V",
       garbageValue = "106235772"
    )
-   @Export("init")
    void init(Buffer var1) {
       int var2 = var1.readUnsignedByte();
       if (var2 != WorldMapID.field2385.value) {
@@ -33,7 +32,6 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       descriptor = "(Lqy;I)V",
       garbageValue = "1703912011"
    )
-   @Export("readGeography")
    void readGeography(Buffer var1) {
       super.planes = Math.min(super.planes, 4);
       super.floorUnderlayIds = new short[1][64][64];
@@ -60,13 +58,11 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       }
    }
 
-   @Export("hashCode")
    @ObfuscatedName("hashCode")
    public int hashCode() {
       return super.regionX | super.regionY << 8;
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof WorldMapData_0)) {
@@ -82,7 +78,6 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       descriptor = "(IIIIILjava/lang/String;Ljava/lang/String;III)V",
       garbageValue = "649826417"
    )
-   @Export("menuAction")
    static final void menuAction(int var0, int var1, int var2, int var3, int var4, String var5, String var6, int var7, int var8) {
       if (var2 >= 2000) {
          var2 -= 2000;

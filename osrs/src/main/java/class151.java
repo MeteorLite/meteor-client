@@ -13,7 +13,6 @@ public class class151 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lnv;"
    )
-   @Export("fontPlain11")
    static Font fontPlain11;
    @ObfuscatedName("h")
    long field1372;
@@ -42,7 +41,6 @@ public class class151 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
@@ -58,7 +56,6 @@ public class class151 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method797(this.field1372, this.field1368, this.field1369);
    }

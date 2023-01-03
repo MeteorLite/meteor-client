@@ -7,7 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
    @ObfuscatedName("m")
-   @Export("ArchiveDiskActionHandler_thread")
    static Thread ArchiveDiskActionHandler_thread;
 
    @ObfuscatedName("v")
@@ -15,7 +14,6 @@ public abstract class AbstractByteArrayCopier {
       descriptor = "(B)[B",
       garbageValue = "-108"
    )
-   @Export("get")
    abstract byte[] get();
 
    @ObfuscatedName("x")
@@ -23,6 +21,5 @@ public abstract class AbstractByteArrayCopier {
       descriptor = "([BI)V",
       garbageValue = "-878200260"
    )
-   @Export("set")
    public abstract void set(byte[] var1);
 }

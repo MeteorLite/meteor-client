@@ -7,16 +7,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("SpriteMask")
 public class SpriteMask extends DualNode {
    @ObfuscatedName("h")
-   @Export("width")
    public final int width;
    @ObfuscatedName("e")
-   @Export("height")
    public final int height;
    @ObfuscatedName("v")
-   @Export("xWidths")
    public final int[] xWidths;
    @ObfuscatedName("x")
-   @Export("xStarts")
    public final int[] xStarts;
 
    SpriteMask(int var1, int var2, int[] var3, int[] var4, int var5) {
@@ -31,7 +27,6 @@ public class SpriteMask extends DualNode {
       descriptor = "(III)Z",
       garbageValue = "-203203339"
    )
-   @Export("contains")
    public boolean contains(int var1, int var2) {
       if (var2 >= 0 && var2 < this.xStarts.length) {
          int var3 = this.xStarts[var2];

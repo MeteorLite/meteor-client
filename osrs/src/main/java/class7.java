@@ -231,7 +231,6 @@ public class class7 {
       descriptor = "(IIII)Lcx;",
       garbageValue = "-413394938"
    )
-   @Export("ifOpenSub")
    static final InterfaceParent ifOpenSub(int var0, int var1, int var2) {
       InterfaceParent var3 = new InterfaceParent();
       var3.group = var1;
@@ -259,7 +258,6 @@ public class class7 {
       descriptor = "(I)V",
       garbageValue = "1774309040"
    )
-   @Export("Clan_leaveChat")
    static final void Clan_leaveChat() {
       PacketBufferNode var0 = class136.getPacketBufferNode(ClientPacket.field2529, Client.packetWriter.isaacCipher);
       var0.packetBuffer.writeByte(0);

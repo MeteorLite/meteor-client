@@ -17,7 +17,6 @@ public class class475 {
       this.field4048 = var2;
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof class475)) {
@@ -34,7 +33,6 @@ public class class475 {
       }
    }
 
-   @Export("hashCode")
    @ObfuscatedName("hashCode")
    public int hashCode() {
       return super.hashCode();

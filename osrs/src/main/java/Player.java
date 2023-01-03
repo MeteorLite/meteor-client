@@ -10,42 +10,31 @@ public final class Player extends Actor {
    @ObfuscatedSignature(
       descriptor = "Lrp;"
    )
-   @Export("username")
    Username username;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lko;"
    )
-   @Export("appearance")
    PlayerComposition appearance;
    @ObfuscatedName("v")
-   @Export("headIconPk")
    int headIconPk = -1;
    @ObfuscatedName("x")
-   @Export("headIconPrayer")
    int headIconPrayer = -1;
    @ObfuscatedName("q")
-   @Export("actions")
    String[] actions = new String[3];
    @ObfuscatedName("f")
-   @Export("combatLevel")
    int combatLevel;
    @ObfuscatedName("r")
-   @Export("skillLevel")
    int skillLevel;
    @ObfuscatedName("u")
-   @Export("tileHeight")
    int tileHeight;
    @ObfuscatedName("b")
-   @Export("animationCycleStart")
    int animationCycleStart;
    @ObfuscatedName("j")
-   @Export("animationCycleEnd")
    int animationCycleEnd;
    @ObfuscatedName("g")
    int field892;
    @ObfuscatedName("i")
-   @Export("tileHeight2")
    int tileHeight2;
    @ObfuscatedName("o")
    int field898;
@@ -53,60 +42,45 @@ public final class Player extends Actor {
    @ObfuscatedSignature(
       descriptor = "Lhh;"
    )
-   @Export("attachedModel")
    Model attachedModel;
    @ObfuscatedName("k")
-   @Export("minX")
    int minX;
    @ObfuscatedName("a")
-   @Export("minY")
    int minY;
    @ObfuscatedName("s")
-   @Export("maxX")
    int maxX;
    @ObfuscatedName("l")
-   @Export("maxY")
    int maxY;
    @ObfuscatedName("t")
-   @Export("isUnanimated")
    boolean isUnanimated;
    @ObfuscatedName("c")
-   @Export("team")
    int team;
    @ObfuscatedName("p")
-   @Export("isHidden")
    boolean isHidden;
    @ObfuscatedName("d")
-   @Export("plane")
    int plane;
    @ObfuscatedName("y")
-   @Export("index")
    int index;
    @ObfuscatedName("z")
    @ObfuscatedSignature(
       descriptor = "Loh;"
    )
-   @Export("isFriendTriBool")
    TriBool isFriendTriBool;
    @ObfuscatedName("w")
    @ObfuscatedSignature(
       descriptor = "Loh;"
    )
-   @Export("isInFriendsChat")
    TriBool isInFriendsChat;
    @ObfuscatedName("as")
    @ObfuscatedSignature(
       descriptor = "Loh;"
    )
-   @Export("isInClanChat")
    TriBool isInClanChat;
    @ObfuscatedName("ad")
    boolean field894;
    @ObfuscatedName("ao")
-   @Export("tileX")
    int tileX;
    @ObfuscatedName("am")
-   @Export("tileY")
    int tileY;
 
    Player() {
@@ -132,7 +106,6 @@ public final class Player extends Actor {
       descriptor = "(Lqy;B)V",
       garbageValue = "-126"
    )
-   @Export("read")
    final void read(Buffer var1) {
       var1.offset = 0;
       int var2 = var1.readUnsignedByte();
@@ -305,7 +278,6 @@ public final class Player extends Actor {
       descriptor = "(I)Lhh;",
       garbageValue = "-1279733976"
    )
-   @Export("getModel")
    protected final Model getModel() {
       if (this.appearance == null) {
          return null;
@@ -387,7 +359,6 @@ public final class Player extends Actor {
       descriptor = "(I)Z",
       garbageValue = "1926444781"
    )
-   @Export("isFriend")
    boolean isFriend() {
       if (this.isFriendTriBool == TriBool.TriBool_unknown) {
          this.checkIsFriend();
@@ -401,7 +372,6 @@ public final class Player extends Actor {
       descriptor = "(I)V",
       garbageValue = "2039939693"
    )
-   @Export("clearIsFriend")
    void clearIsFriend() {
       this.isFriendTriBool = TriBool.TriBool_unknown;
    }
@@ -411,7 +381,6 @@ public final class Player extends Actor {
       descriptor = "(I)V",
       garbageValue = "1595665678"
    )
-   @Export("checkIsFriend")
    void checkIsFriend() {
       this.isFriendTriBool = DefaultsGroup.friendSystem.isFriendAndHasWorld(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
@@ -421,7 +390,6 @@ public final class Player extends Actor {
       descriptor = "(I)Z",
       garbageValue = "-2081819034"
    )
-   @Export("isFriendsChatMember")
    boolean isFriendsChatMember() {
       if (this.isInFriendsChat == TriBool.TriBool_unknown) {
          this.updateIsInFriendsChat();
@@ -435,7 +403,6 @@ public final class Player extends Actor {
       descriptor = "(I)V",
       garbageValue = "-569605526"
    )
-   @Export("clearIsInFriendsChat")
    void clearIsInFriendsChat() {
       this.isInFriendsChat = TriBool.TriBool_unknown;
    }
@@ -445,7 +412,6 @@ public final class Player extends Actor {
       descriptor = "(I)V",
       garbageValue = "-347308341"
    )
-   @Export("updateIsInFriendsChat")
    void updateIsInFriendsChat() {
       this.isInFriendsChat = class281.friendsChat != null && class281.friendsChat.contains(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
@@ -455,7 +421,6 @@ public final class Player extends Actor {
       descriptor = "(I)V",
       garbageValue = "-1510805877"
    )
-   @Export("updateIsInClanChat")
    void updateIsInClanChat() {
       for(int var1 = 0; var1 < 4; ++var1) {
          if (Client.currentClanSettings[var1] != null && Client.currentClanSettings[var1].method778(this.username.getName()) != -1 && var1 != 2) {
@@ -481,7 +446,6 @@ public final class Player extends Actor {
       descriptor = "(I)Z",
       garbageValue = "-1874201876"
    )
-   @Export("isClanMember")
    boolean isClanMember() {
       if (this.isInClanChat == TriBool.TriBool_unknown) {
          this.updateIsInClanChat();
@@ -495,7 +459,6 @@ public final class Player extends Actor {
       descriptor = "(B)I",
       garbageValue = "-97"
    )
-   @Export("transformedSize")
    int transformedSize() {
       return this.appearance != null && this.appearance.npcTransformId != -1 ? class129.getNpcDefinition(this.appearance.npcTransformId).size : 1;
    }
@@ -505,7 +468,6 @@ public final class Player extends Actor {
       descriptor = "(IILgs;B)V",
       garbageValue = "72"
    )
-   @Export("move")
    final void move(int var1, int var2, MoveSpeed var3) {
       if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).field1794 == 1) {
          super.sequence = -1;
@@ -545,7 +507,6 @@ public final class Player extends Actor {
       descriptor = "(IIB)V",
       garbageValue = "1"
    )
-   @Export("resetPath")
    void resetPath(int var1, int var2) {
       super.pathLength = 0;
       super.field1004 = 0;
@@ -583,7 +544,6 @@ public final class Player extends Actor {
       descriptor = "(I)Z",
       garbageValue = "-2124571860"
    )
-   @Export("isVisible")
    final boolean isVisible() {
       return this.appearance != null;
    }
@@ -602,7 +562,6 @@ public final class Player extends Actor {
       descriptor = "(IB)I",
       garbageValue = "127"
    )
-   @Export("iLog")
    public static int iLog(int var0) {
       int var1 = 0;
       if (var0 < 0 || var0 >= 65536) {
@@ -662,7 +621,6 @@ public final class Player extends Actor {
       descriptor = "(I)V",
       garbageValue = "-2090346069"
    )
-   @Export("logOut")
    static final void logOut() {
       Client.packetWriter.close();
       ModeWhere.method1868();
@@ -686,7 +644,6 @@ public final class Player extends Actor {
       descriptor = "(Lkd;IIZI)V",
       garbageValue = "-1694823923"
    )
-   @Export("alignWidgetSize")
    static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
       int var4 = var0.width;
       int var5 = var0.height;
@@ -736,7 +693,6 @@ public final class Player extends Actor {
       descriptor = "(Lkd;IIII)V",
       garbageValue = "1708267953"
    )
-   @Export("drawMinimap")
    static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
       Client.playPcmPlayers();
       SpriteMask var4 = var0.getSpriteMask(false);

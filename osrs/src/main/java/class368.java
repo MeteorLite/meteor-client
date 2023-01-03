@@ -9,7 +9,6 @@ public class class368 {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   @Export("dragInventoryWidget")
    static Widget dragInventoryWidget;
    @ObfuscatedName("j")
    int field3587 = Integer.MAX_VALUE;

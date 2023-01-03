@@ -7,19 +7,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
    @ObfuscatedName("h")
-   @Export("element")
    final int element;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lii;"
    )
-   @Export("label")
    final WorldMapLabel label;
    @ObfuscatedName("v")
-   @Export("subWidth")
    final int subWidth;
    @ObfuscatedName("x")
-   @Export("subHeight")
    final int subHeight;
 
    @ObfuscatedSignature(
@@ -46,7 +42,6 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "2098413555"
    )
-   @Export("getElement")
    public int getElement() {
       return this.element;
    }
@@ -56,7 +51,6 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)Lii;",
       garbageValue = "849546905"
    )
-   @Export("getLabel")
    WorldMapLabel getLabel() {
       return this.label;
    }
@@ -66,7 +60,6 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "-520723785"
    )
-   @Export("getSubWidth")
    int getSubWidth() {
       return this.subWidth;
    }
@@ -76,7 +69,6 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "1290081241"
    )
-   @Export("getSubHeight")
    int getSubHeight() {
       return this.subHeight;
    }

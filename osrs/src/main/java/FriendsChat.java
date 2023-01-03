@@ -10,25 +10,19 @@ public class FriendsChat extends UserList {
    @ObfuscatedSignature(
       descriptor = "Lqi;"
    )
-   @Export("loginType")
    final LoginType loginType;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lnn;"
    )
-   @Export("localUser")
    final Usernamed localUser;
    @ObfuscatedName("x")
-   @Export("name")
    public String name = null;
    @ObfuscatedName("m")
-   @Export("owner")
    public String owner = null;
    @ObfuscatedName("q")
-   @Export("minKick")
    public byte minKick;
    @ObfuscatedName("f")
-   @Export("rank")
    public int rank;
    @ObfuscatedName("r")
    int field3680 = 1;
@@ -47,7 +41,6 @@ public class FriendsChat extends UserList {
       descriptor = "(B)Lov;",
       garbageValue = "47"
    )
-   @Export("newInstance")
    User newInstance() {
       return new ClanMate();
    }
@@ -57,7 +50,6 @@ public class FriendsChat extends UserList {
       descriptor = "(II)[Lov;",
       garbageValue = "1710517567"
    )
-   @Export("newTypedArray")
    User[] newTypedArray(int var1) {
       return new ClanMate[var1];
    }
@@ -203,7 +195,6 @@ public class FriendsChat extends UserList {
       descriptor = "(I)V",
       garbageValue = "-1056288552"
    )
-   @Export("clearFriends")
    public final void clearFriends() {
       for(int var1 = 0; var1 < this.getSize(); ++var1) {
          ((ClanMate)this.get(var1)).clearIsFriend();
@@ -216,7 +207,6 @@ public class FriendsChat extends UserList {
       descriptor = "(B)V",
       garbageValue = "-87"
    )
-   @Export("invalidateIgnoreds")
    public final void invalidateIgnoreds() {
       for(int var1 = 0; var1 < this.getSize(); ++var1) {
          ((ClanMate)this.get(var1)).clearIsIgnored();
@@ -229,7 +219,6 @@ public class FriendsChat extends UserList {
       descriptor = "(Log;I)V",
       garbageValue = "1952671001"
    )
-   @Export("isLocalPlayer")
    final void isLocalPlayer(ClanMate var1) {
       if (var1.getUsername().equals(this.localUser.username())) {
          this.rank = var1.rank;
@@ -269,7 +258,6 @@ public class FriendsChat extends UserList {
       descriptor = "(I)V",
       garbageValue = "1514396714"
    )
-   @Export("addCancelMenuEntry")
    static void addCancelMenuEntry() {
       WorldMapSectionType.method1426();
       Client.menuActions[0] = "Cancel";

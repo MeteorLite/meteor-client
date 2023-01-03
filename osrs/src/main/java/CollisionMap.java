@@ -7,22 +7,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("CollisionMap")
 public class CollisionMap {
    @ObfuscatedName("p")
-   @Export("canvasWidth")
    public static int canvasWidth;
    @ObfuscatedName("at")
-   @Export("xInset")
    int xInset = 0;
    @ObfuscatedName("ay")
-   @Export("yInset")
    int yInset = 0;
    @ObfuscatedName("an")
-   @Export("xSize")
    int xSize;
    @ObfuscatedName("ab")
-   @Export("ySize")
    int ySize;
    @ObfuscatedName("al")
-   @Export("flags")
    public int[][] flags;
 
    public CollisionMap(int var1, int var2) {
@@ -37,7 +31,6 @@ public class CollisionMap {
       descriptor = "(I)V",
       garbageValue = "744825171"
    )
-   @Export("clear")
    public void clear() {
       for(int var1 = 0; var1 < this.xSize; ++var1) {
          for(int var2 = 0; var2 < this.ySize; ++var2) {
@@ -208,7 +201,6 @@ public class CollisionMap {
       descriptor = "(IIIIZI)V",
       garbageValue = "606945134"
    )
-   @Export("addGameObject")
    public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
       int var6 = 256;
       if (var5) {
@@ -235,7 +227,6 @@ public class CollisionMap {
       descriptor = "(IIB)V",
       garbageValue = "83"
    )
-   @Export("setBlockedByFloor")
    public void setBlockedByFloor(int var1, int var2) {
       var1 -= this.xInset;
       var2 -= this.yInset;
@@ -247,7 +238,6 @@ public class CollisionMap {
       descriptor = "(III)V",
       garbageValue = "352173417"
    )
-   @Export("setBlockedByFloorDec")
    public void setBlockedByFloorDec(int var1, int var2) {
       var1 -= this.xInset;
       var2 -= this.yInset;
@@ -259,7 +249,6 @@ public class CollisionMap {
       descriptor = "(IIIB)V",
       garbageValue = "5"
    )
-   @Export("setFlag")
    void setFlag(int var1, int var2, int var3) {
       this.flags[var1][var2] |= var3;
    }
@@ -421,7 +410,6 @@ public class CollisionMap {
       descriptor = "(IIIIIZB)V",
       garbageValue = "-21"
    )
-   @Export("setFlagOffNonSquare")
    public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
       int var7 = 256;
       if (var6) {
@@ -454,7 +442,6 @@ public class CollisionMap {
       descriptor = "(IIII)V",
       garbageValue = "-294771175"
    )
-   @Export("setFlagOff")
    void setFlagOff(int var1, int var2, int var3) {
       this.flags[var1][var2] &= ~var3;
    }

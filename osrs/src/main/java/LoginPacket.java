@@ -42,7 +42,6 @@ public class LoginPacket implements class274 {
    )
    static final LoginPacket[] field2686 = new LoginPacket[32];
    @ObfuscatedName("k")
-   @Export("cacheGamebuild")
    public static int cacheGamebuild;
    @ObfuscatedName("bw")
    @ObfuscatedSignature(
@@ -50,7 +49,6 @@ public class LoginPacket implements class274 {
    )
    static StudioGame field2681;
    @ObfuscatedName("f")
-   @Export("id")
    public final int id;
 
    static {

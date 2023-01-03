@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ex")
 public class class141 extends class136 {
    @ObfuscatedName("bb")
-   @Export("otp")
    static String otp;
    @ObfuscatedName("h")
    int field1310;
@@ -33,7 +32,6 @@ public class class141 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1310 = var1.readInt();
       this.field1307 = var1.readInt();
@@ -46,7 +44,6 @@ public class class141 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method790(this.field1310, this.field1307, this.field1309, this.field1308);
    }

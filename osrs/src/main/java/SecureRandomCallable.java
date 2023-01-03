@@ -11,10 +11,8 @@ public class SecureRandomCallable implements Callable {
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   @Export("leftTitleSprite")
    static SpritePixels leftTitleSprite;
 
-   @Export("call")
    @ObfuscatedName("call")
    public Object call() {
       return class69.method429();
@@ -25,7 +23,6 @@ public class SecureRandomCallable implements Callable {
       descriptor = "(IB)Lha;",
       garbageValue = "6"
    )
-   @Export("getFrames")
    static Frames getFrames(int var0) {
       Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
       if (var1 != null) {

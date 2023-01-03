@@ -5,13 +5,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fv")
 public abstract class class173 {
    @ObfuscatedName("r")
-   @Export("gameCyclesToDo")
    static int gameCyclesToDo;
    @ObfuscatedName("bv")
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
-   @Export("clientLanguage")
    static Language clientLanguage;
    @ObfuscatedName("x")
    String field1456;
@@ -19,7 +17,6 @@ public abstract class class173 {
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class163 this$0;
 
@@ -36,7 +33,6 @@ public abstract class class173 {
       descriptor = "(B)I",
       garbageValue = "16"
    )
-   @Export("vmethod3379")
    public abstract int vmethod3379();
 
    @ObfuscatedName("e")
@@ -44,7 +40,6 @@ public abstract class class173 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "380048809"
    )
-   @Export("vmethod3380")
    public String vmethod3380() {
       return null;
    }
@@ -54,7 +49,6 @@ public abstract class class173 {
       descriptor = "(I)I",
       garbageValue = "-736426895"
    )
-   @Export("vmethod3378")
    public int vmethod3378() {
       return -1;
    }

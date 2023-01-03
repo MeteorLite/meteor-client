@@ -12,13 +12,11 @@ public class MusicPatchNode extends Node {
    @ObfuscatedSignature(
       descriptor = "Lkl;"
    )
-   @Export("patch")
    MusicPatch patch;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Laf;"
    )
-   @Export("rawSound")
    RawSound rawSound;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
@@ -57,7 +55,6 @@ public class MusicPatchNode extends Node {
    @ObfuscatedSignature(
       descriptor = "Lap;"
    )
-   @Export("stream")
    RawPcmStream stream;
    @ObfuscatedName("t")
    int field2786;
@@ -218,7 +215,6 @@ public class MusicPatchNode extends Node {
       descriptor = "(IZZZZI)Lln;",
       garbageValue = "243666843"
    )
-   @Export("newArchive")
    static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
       ArchiveDisk var5 = null;
       if (JagexCache.JagexCache_dat2File != null) {

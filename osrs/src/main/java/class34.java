@@ -8,18 +8,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ay")
 public class class34 {
    @ObfuscatedName("te")
-   @Export("cameraMoveToY")
    static int cameraMoveToY;
    @ObfuscatedName("u")
    public static int field95;
    @ObfuscatedName("ga")
-   @Export("secureRandom")
    static SecureRandom secureRandom;
    @ObfuscatedName("qv")
    @ObfuscatedSignature(
       descriptor = "Lqk;"
    )
-   @Export("HitSplatDefinition_cached")
    static class451 HitSplatDefinition_cached;
    @ObfuscatedName("f")
    int field92;
@@ -106,7 +103,6 @@ public class class34 {
       descriptor = "([Lkd;IIIIIIIIB)V",
       garbageValue = "-10"
    )
-   @Export("drawInterface")
    static final void drawInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5);
       Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();

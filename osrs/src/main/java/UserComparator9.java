@@ -7,7 +7,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public UserComparator9(boolean var1) {
@@ -19,7 +18,6 @@ public class UserComparator9 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;I)I",
       garbageValue = "1712293259"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (Client.worldId == var1.world && var2.world == Client.worldId) {
          return this.reversed ? var1.getUsername().compareToTyped(var2.getUsername()) : var2.getUsername().compareToTyped(var1.getUsername());
@@ -28,7 +26,6 @@ public class UserComparator9 extends AbstractUserComparator {
       }
    }
 
-   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
@@ -39,7 +36,6 @@ public class UserComparator9 extends AbstractUserComparator {
       descriptor = "(I)Lbz;",
       garbageValue = "1979079946"
    )
-   @Export("getNextWorldListWorld")
    static World getNextWorldListWorld() {
       return World.World_listCount < World.World_count ? World.World_worlds[++World.World_listCount - 1] : null;
    }

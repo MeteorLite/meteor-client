@@ -10,7 +10,6 @@ public class PcmStreamMixer extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
-   @Export("subStreams")
    NodeDeque subStreams = new NodeDeque();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
@@ -26,7 +25,6 @@ public class PcmStreamMixer extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "(Laa;)V"
    )
-   @Export("addSubStream")
    public final synchronized void addSubStream(PcmStream var1) {
       this.subStreams.addLast(var1);
    }
@@ -35,7 +33,6 @@ public class PcmStreamMixer extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "(Laa;)V"
    )
-   @Export("removeSubStream")
    public final synchronized void removeSubStream(PcmStream var1) {
       var1.remove();
    }
@@ -86,7 +83,6 @@ public class PcmStreamMixer extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "()Laa;"
    )
-   @Export("firstSubStream")
    protected PcmStream firstSubStream() {
       return (PcmStream)this.subStreams.last();
    }
@@ -95,19 +91,16 @@ public class PcmStreamMixer extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "()Laa;"
    )
-   @Export("nextSubStream")
    protected PcmStream nextSubStream() {
       return (PcmStream)this.subStreams.previous();
    }
 
    @ObfuscatedName("r")
-   @Export("vmethod5648")
    protected int vmethod5648() {
       return 0;
    }
 
    @ObfuscatedName("u")
-   @Export("fill")
    public final synchronized void fill(int[] var1, int var2, int var3) {
       do {
          if (this.field165 < 0) {
@@ -143,7 +136,6 @@ public class PcmStreamMixer extends PcmStream {
    }
 
    @ObfuscatedName("b")
-   @Export("updateSubStreams")
    void updateSubStreams(int[] var1, int var2, int var3) {
       for(PcmStream var4 = (PcmStream)this.subStreams.last(); var4 != null; var4 = (PcmStream)this.subStreams.previous()) {
          var4.update(var1, var2, var3);
@@ -152,7 +144,6 @@ public class PcmStreamMixer extends PcmStream {
    }
 
    @ObfuscatedName("j")
-   @Export("skip")
    public final synchronized void skip(int var1) {
       do {
          if (this.field165 < 0) {
@@ -187,7 +178,6 @@ public class PcmStreamMixer extends PcmStream {
    }
 
    @ObfuscatedName("g")
-   @Export("skipSubStreams")
    void skipSubStreams(int var1) {
       for(PcmStream var2 = (PcmStream)this.subStreams.last(); var2 != null; var2 = (PcmStream)this.subStreams.previous()) {
          var2.skip(var1);

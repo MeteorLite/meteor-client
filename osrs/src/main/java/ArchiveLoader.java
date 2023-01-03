@@ -10,13 +10,10 @@ public class ArchiveLoader {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive")
    final Archive archive;
    @ObfuscatedName("v")
-   @Export("groupCount")
    final int groupCount;
    @ObfuscatedName("x")
-   @Export("loadedCount")
    int loadedCount = 0;
 
    @ObfuscatedSignature(
@@ -32,7 +29,6 @@ public class ArchiveLoader {
       descriptor = "(B)Z",
       garbageValue = "3"
    )
-   @Export("isLoaded")
    boolean isLoaded() {
       this.loadedCount = 0;
 
@@ -50,7 +46,6 @@ public class ArchiveLoader {
       descriptor = "(Lkd;I)Ljava/lang/String;",
       garbageValue = "764446077"
    )
-   @Export("Widget_getSpellActionName")
    static String Widget_getSpellActionName(Widget var0) {
       if (PacketWriter.Widget_unpackTargetMask(Clock.getWidgetFlags(var0)) == 0) {
          return null;

@@ -16,7 +16,6 @@ public class Friend extends Buddy {
       descriptor = "(Loe;I)I",
       garbageValue = "-1480790073"
    )
-   @Export("compareToFriend")
    int compareToFriend(Friend var1) {
       if (super.world == Client.worldId && Client.worldId != var1.world) {
          return -1;
@@ -44,7 +43,6 @@ public class Friend extends Buddy {
       descriptor = "(Lov;I)I",
       garbageValue = "-1893146393"
    )
-   @Export("compareTo_user")
    public int compareTo_user(User var1) {
       return this.compareToFriend((Friend)var1);
    }
@@ -59,7 +57,6 @@ public class Friend extends Buddy {
       descriptor = "(Ljava/lang/String;B)V",
       garbageValue = "2"
    )
-   @Export("Clan_joinChat")
    static final void Clan_joinChat(String var0) {
       if (!var0.equals("")) {
          PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field2529, Client.packetWriter.isaacCipher);

@@ -31,7 +31,6 @@ public class class149 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   @Export("vmethod3238")
    void vmethod3238(Buffer var1) {
       var1.readUnsignedByte();
       this.field1363 = var1.readUnsignedShort();
@@ -47,7 +46,6 @@ public class class149 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   @Export("vmethod3239")
    void vmethod3239(ClanChannel var1) {
       ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1363);
       var2.rank = this.field1362;
@@ -60,7 +58,6 @@ public class class149 extends class152 {
       descriptor = "(I)[Llq;",
       garbageValue = "-1628551002"
    )
-   @Export("PlayerType_values")
    public static PlayerType[] PlayerType_values() {
       return new PlayerType[]{PlayerType.PlayerType_hardcoreIronman, PlayerType.field3416, PlayerType.PlayerType_ironman, PlayerType.field3410, PlayerType.field3422, PlayerType.PlayerType_jagexModerator, PlayerType.field3418, PlayerType.field3417, PlayerType.PlayerType_normal, PlayerType.field3414, PlayerType.field3406, PlayerType.field3415, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ultimateIronman, PlayerType.field3419, PlayerType.field3420, PlayerType.field3421};
    }
@@ -70,7 +67,6 @@ public class class149 extends class152 {
       descriptor = "(II)Lgv;",
       garbageValue = "-640568434"
    )
-   @Export("getParamDefinition")
    public static ParamComposition getParamDefinition(int var0) {
       ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
       if (var1 != null) {

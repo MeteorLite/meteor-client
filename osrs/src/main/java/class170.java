@@ -9,7 +9,6 @@ public class class170 extends class173 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive18")
    static Archive archive18;
    @ObfuscatedName("h")
    int field1442;
@@ -42,7 +41,6 @@ public class class170 extends class173 {
       descriptor = "(I)I",
       garbageValue = "-736426895"
    )
-   @Export("vmethod3378")
    public int vmethod3378() {
       return this.field1442;
    }

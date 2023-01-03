@@ -13,7 +13,6 @@ public class class374 {
    @ObfuscatedName("x")
    int field3628;
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       boolean var1 = true;
@@ -78,7 +77,6 @@ public class class374 {
       descriptor = "(IIII)I",
       garbageValue = "1210470674"
    )
-   @Export("hslToRgb")
    static final int hslToRgb(int var0, int var1, int var2) {
       if (var2 > 179) {
          var1 /= 2;

@@ -11,10 +11,8 @@ public class UserComparator5 extends AbstractUserComparator {
    @ObfuscatedSignature(
       descriptor = "Lon;"
    )
-   @Export("spriteIds")
    static GraphicsDefaults spriteIds;
    @ObfuscatedName("h")
-   @Export("reversed")
    final boolean reversed;
 
    public UserComparator5(boolean var1) {
@@ -26,7 +24,6 @@ public class UserComparator5 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;I)I",
       garbageValue = "-1440387042"
    )
-   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (var1.world != 0) {
          if (var2.world == 0) {
@@ -39,7 +36,6 @@ public class UserComparator5 extends AbstractUserComparator {
       return this.compareUser(var1, var2);
    }
 
-   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);

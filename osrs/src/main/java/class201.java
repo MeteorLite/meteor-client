@@ -9,7 +9,6 @@ public class class201 implements class30 {
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   @Export("compass")
    static SpritePixels compass;
    @ObfuscatedName("h")
    char[] field1832 = new char[128];
@@ -45,7 +44,6 @@ public class class201 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "1119176744"
    )
-   @Export("vmethod3949")
    public boolean vmethod3949(int var1) {
       this.method1079(var1);
       this.field1829[var1] = true;
@@ -60,7 +58,6 @@ public class class201 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "-916991313"
    )
-   @Export("vmethod3989")
    public boolean vmethod3989(int var1) {
       this.field1829[var1] = false;
       this.field1830[var1] = false;
@@ -74,7 +71,6 @@ public class class201 implements class30 {
       descriptor = "(CI)Z",
       garbageValue = "-258182"
    )
-   @Export("vmethod3951")
    public boolean vmethod3951(char var1) {
       int var2 = this.field1827 + 1 & 127;
       if (var2 != this.field1826) {
@@ -91,7 +87,6 @@ public class class201 implements class30 {
       descriptor = "(ZI)Z",
       garbageValue = "333814410"
    )
-   @Export("vmethod3953")
    public boolean vmethod3953(boolean var1) {
       return false;
    }
@@ -155,7 +150,6 @@ public class class201 implements class30 {
       descriptor = "(IB)Z",
       garbageValue = "0"
    )
-   @Export("getKeyPressed")
    public boolean getKeyPressed(int var1) {
       return var1 >= 0 && var1 < 112 ? this.field1829[var1] : false;
    }

@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ej")
 public class class146 extends class136 {
    @ObfuscatedName("ti")
-   @Export("cameraLookAtY")
    static int cameraLookAtY;
    @ObfuscatedName("fm")
    static String field1331;
@@ -13,7 +12,6 @@ public class class146 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lnv;"
    )
-   @Export("fontBold12")
    static Font fontBold12;
    @ObfuscatedName("h")
    int field1329;
@@ -37,7 +35,6 @@ public class class146 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
-   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
       this.field1329 = var1.readInt();
       this.field1333 = var1.readStringCp1252NullTerminated();
@@ -48,7 +45,6 @@ public class class146 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
-   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
       var1.method792(this.field1329, this.field1333);
    }
@@ -58,7 +54,6 @@ public class class146 extends class136 {
       descriptor = "(II)Lqs;",
       garbageValue = "1183914569"
    )
-   @Export("getDbTableType")
    public static DbTableType getDbTableType(int var0) {
       DbTableType var1 = (DbTableType)DbTableType.DBTableType_cache.get((long)var0);
       if (var1 != null) {

@@ -13,57 +13,42 @@ public class NPCComposition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("NpcDefinition_archive")
    static AbstractArchive NpcDefinition_archive;
    @ObfuscatedName("m")
-   @Export("defaultHeadIconArchive")
    static int defaultHeadIconArchive;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("NpcDefinition_cached")
    static EvictingDualNodeHashTable NpcDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("NpcDefinition_cachedModels")
    static EvictingDualNodeHashTable NpcDefinition_cachedModels = new EvictingDualNodeHashTable(50);
    @ObfuscatedName("r")
-   @Export("id")
    public int id;
    @ObfuscatedName("u")
-   @Export("name")
    public String name = "null";
    @ObfuscatedName("b")
-   @Export("size")
    public int size = 1;
    @ObfuscatedName("j")
-   @Export("models")
    int[] models;
    @ObfuscatedName("g")
    int[] field1554;
    @ObfuscatedName("i")
-   @Export("idleSequence")
    public int idleSequence = -1;
    @ObfuscatedName("o")
-   @Export("turnLeftSequence")
    public int turnLeftSequence = -1;
    @ObfuscatedName("n")
-   @Export("turnRightSequence")
    public int turnRightSequence = -1;
    @ObfuscatedName("k")
-   @Export("walkSequence")
    public int walkSequence = -1;
    @ObfuscatedName("a")
-   @Export("walkBackSequence")
    public int walkBackSequence = -1;
    @ObfuscatedName("s")
-   @Export("walkLeftSequence")
    public int walkLeftSequence = -1;
    @ObfuscatedName("l")
-   @Export("walkRightSequence")
    public int walkRightSequence = -1;
    @ObfuscatedName("t")
    public int field1563 = -1;
@@ -82,73 +67,51 @@ public class NPCComposition extends DualNode {
    @ObfuscatedName("as")
    public int field1572 = -1;
    @ObfuscatedName("ad")
-   @Export("recolorFrom")
    short[] recolorFrom;
    @ObfuscatedName("ao")
-   @Export("recolorTo")
    public short[] recolorTo;
    @ObfuscatedName("am")
-   @Export("retextureFrom")
    short[] retextureFrom;
    @ObfuscatedName("av")
-   @Export("retextureTo")
    public short[] retextureTo;
    @ObfuscatedName("au")
-   @Export("actions")
    public String[] actions = new String[5];
    @ObfuscatedName("ar")
-   @Export("drawMapDot")
    public boolean drawMapDot = true;
    @ObfuscatedName("at")
-   @Export("combatLevel")
    public int combatLevel = -1;
    @ObfuscatedName("ay")
-   @Export("widthScale")
    int widthScale = 128;
    @ObfuscatedName("an")
-   @Export("heightScale")
    int heightScale = 128;
    @ObfuscatedName("ab")
-   @Export("isVisible")
    public boolean isVisible = false;
    @ObfuscatedName("al")
-   @Export("ambient")
    int ambient = 0;
    @ObfuscatedName("ag")
-   @Export("contrast")
    int contrast = 0;
    @ObfuscatedName("az")
-   @Export("rotation")
    public int rotation = 32;
    @ObfuscatedName("ak")
-   @Export("transforms")
    public int[] transforms;
    @ObfuscatedName("af")
-   @Export("transformVarbit")
    int transformVarbit = -1;
    @ObfuscatedName("ai")
-   @Export("transformVarp")
    int transformVarp = -1;
    @ObfuscatedName("ax")
-   @Export("isInteractable")
    public boolean isInteractable = true;
    @ObfuscatedName("ah")
-   @Export("isClickable")
    public boolean isClickable = true;
    @ObfuscatedName("aw")
-   @Export("isFollower")
    public boolean isFollower = false;
    @ObfuscatedName("aj")
-   @Export("headIconArchiveIds")
    int[] headIconArchiveIds = null;
    @ObfuscatedName("aq")
-   @Export("headIconSpriteIndexes")
    short[] headIconSpriteIndexes = null;
    @ObfuscatedName("ap")
    @ObfuscatedSignature(
       descriptor = "Lql;"
    )
-   @Export("params")
    IterableNodeHashTable params;
 
    @ObfuscatedName("v")
@@ -156,7 +119,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(B)V",
       garbageValue = "-60"
    )
-   @Export("postDecode")
    void postDecode() {
    }
 
@@ -165,7 +127,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "0"
    )
-   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -182,7 +143,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "-1000073156"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       int var3;
       int var4;
@@ -480,7 +440,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(I)Lgz;",
       garbageValue = "-549841481"
    )
-   @Export("transform")
    public final NPCComposition transform() {
       int var1 = -1;
       if (this.transformVarbit != -1) {
@@ -504,7 +463,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "2130957543"
    )
-   @Export("transformIsVisible")
    public boolean transformIsVisible() {
       if (this.transforms == null) {
          return true;
@@ -529,7 +487,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(III)I",
       garbageValue = "-1577076717"
    )
-   @Export("getIntParam")
    public int getIntParam(int var1, int var2) {
       return UserComparator8.method661(this.params, var1, var2);
    }
@@ -539,7 +496,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(ILjava/lang/String;B)Ljava/lang/String;",
       garbageValue = "100"
    )
-   @Export("getStringParam")
    public String getStringParam(int var1, String var2) {
       IterableNodeHashTable var4 = this.params;
       String var3;
@@ -607,7 +563,6 @@ public class NPCComposition extends DualNode {
       descriptor = "(II)Lgr;",
       garbageValue = "-664337463"
    )
-   @Export("ItemDefinition_get")
    public static ItemComposition ItemDefinition_get(int var0) {
       ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
       if (var1 != null) {

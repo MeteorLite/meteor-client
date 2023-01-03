@@ -7,27 +7,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Tiles")
 public final class Tiles {
    @ObfuscatedName("h")
-   @Export("Tiles_heights")
    static int[][][] Tiles_heights = new int[4][105][105];
    @ObfuscatedName("e")
-   @Export("Tiles_renderFlags")
    static byte[][][] Tiles_renderFlags = new byte[4][104][104];
    @ObfuscatedName("v")
-   @Export("Tiles_minPlane")
    static int Tiles_minPlane = 99;
    @ObfuscatedName("x")
-   @Export("Tiles_underlays")
    static short[][][] Tiles_underlays;
    @ObfuscatedName("q")
-   @Export("Tiles_shapes")
    static byte[][][] Tiles_shapes;
    @ObfuscatedName("u")
    static int[][] field819;
    @ObfuscatedName("b")
-   @Export("Tiles_hue")
    static int[] Tiles_hue;
    @ObfuscatedName("g")
-   @Export("Tiles_lightness")
    static int[] Tiles_lightness;
    @ObfuscatedName("l")
    static final int[] field821 = new int[]{1, 2, 4, 8};
@@ -42,10 +35,8 @@ public final class Tiles {
    @ObfuscatedName("y")
    static final int[] field814 = new int[]{-1, -1, 1, 1};
    @ObfuscatedName("z")
-   @Export("rndHue")
    static int rndHue = (int)(Math.random() * 17.0D) - 8;
    @ObfuscatedName("w")
-   @Export("rndLightness")
    static int rndLightness = (int)(Math.random() * 33.0D) - 16;
 
    @ObfuscatedName("r")
@@ -186,7 +177,6 @@ public final class Tiles {
       descriptor = "(I)V",
       garbageValue = "648133530"
    )
-   @Export("load")
    static void load() {
       int var0;
       if (Client.titleLoadingStage == 0) {

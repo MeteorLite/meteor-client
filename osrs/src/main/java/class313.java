@@ -42,7 +42,6 @@ public enum class313 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.field3033;
    }
@@ -52,7 +51,6 @@ public enum class313 implements class345 {
       descriptor = "(II)I",
       garbageValue = "1788675438"
    )
-   @Export("Messages_getLastChatID")
    static int Messages_getLastChatID(int var0) {
       Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
       if (var1 == null) {

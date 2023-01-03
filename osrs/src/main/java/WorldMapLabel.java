@@ -10,22 +10,17 @@ public class WorldMapLabel {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("options_buttons_0Sprite")
    static IndexedSprite options_buttons_0Sprite;
    @ObfuscatedName("h")
-   @Export("text")
    String text;
    @ObfuscatedName("e")
-   @Export("width")
    int width;
    @ObfuscatedName("v")
-   @Export("height")
    int height;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Liq;"
    )
-   @Export("size")
    WorldMapLabelSize size;
 
    @ObfuscatedSignature(
@@ -43,7 +38,6 @@ public class WorldMapLabel {
       descriptor = "(CLmb;B)I",
       garbageValue = "50"
    )
-   @Export("lowercaseChar")
    static int lowercaseChar(char var0, Language var1) {
       int var2 = var0 << 4;
       if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) {
@@ -63,7 +57,6 @@ public class WorldMapLabel {
       descriptor = "([Lkd;II)V",
       garbageValue = "1544392799"
    )
-   @Export("runComponentCloseListeners")
    static final void runComponentCloseListeners(Widget[] var0, int var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          Widget var3 = var0[var2];

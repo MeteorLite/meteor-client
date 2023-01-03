@@ -28,7 +28,6 @@ public class class445 implements class444 {
       descriptor = "(IB)I",
       garbageValue = "110"
    )
-   @Export("vmethod8144")
    public int vmethod8144(int var1) {
       if (this.field3932 != null) {
          class475 var2 = (class475)this.field3932.get(var1);
@@ -45,7 +44,6 @@ public class class445 implements class444 {
       descriptor = "(ILjava/lang/Object;I)V",
       garbageValue = "-1944779147"
    )
-   @Export("vmethod8143")
    public void vmethod8143(int var1, Object var2) {
       if (this.field3932 == null) {
          this.field3932 = new HashMap();
@@ -61,7 +59,6 @@ public class class445 implements class444 {
 
    }
 
-   @Export("iterator")
    @ObfuscatedName("iterator")
    public Iterator iterator() {
       return this.field3932 == null ? Collections.emptyList().iterator() : this.field3932.values().iterator();

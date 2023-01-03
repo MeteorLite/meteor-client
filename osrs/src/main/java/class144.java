@@ -8,7 +8,6 @@ public class class144 extends class152 {
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("mapMarkerSprites")
    static SpritePixels[] mapMarkerSprites;
    @ObfuscatedName("h")
    int field1324;
@@ -31,7 +30,6 @@ public class class144 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   @Export("vmethod3238")
    void vmethod3238(Buffer var1) {
       this.field1324 = var1.readUnsignedShort();
       var1.readUnsignedByte();
@@ -47,7 +45,6 @@ public class class144 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   @Export("vmethod3239")
    void vmethod3239(ClanChannel var1) {
       var1.removeMember(this.field1324);
    }
@@ -293,7 +290,6 @@ public class class144 extends class152 {
       descriptor = "([Lkd;IIIIIIII)V",
       garbageValue = "-1314248659"
    )
-   @Export("updateInterface")
    static final void updateInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       for(int var8 = 0; var8 < var0.length; ++var8) {
          Widget var9 = var0[var8];

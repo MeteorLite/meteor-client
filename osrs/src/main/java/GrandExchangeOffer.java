@@ -7,22 +7,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
    @ObfuscatedName("h")
-   @Export("state")
    byte state;
    @ObfuscatedName("e")
-   @Export("id")
    public int id;
    @ObfuscatedName("v")
-   @Export("unitPrice")
    public int unitPrice;
    @ObfuscatedName("x")
-   @Export("totalQuantity")
    public int totalQuantity;
    @ObfuscatedName("m")
-   @Export("currentQuantity")
    public int currentQuantity;
    @ObfuscatedName("q")
-   @Export("currentPrice")
    public int currentPrice;
 
    public GrandExchangeOffer() {
@@ -46,7 +40,6 @@ public class GrandExchangeOffer {
       descriptor = "(B)I",
       garbageValue = "1"
    )
-   @Export("status")
    public int status() {
       return this.state & 7;
    }
@@ -56,7 +49,6 @@ public class GrandExchangeOffer {
       descriptor = "(I)I",
       garbageValue = "-1498486537"
    )
-   @Export("type")
    public int type() {
       return (this.state & 8) == 8 ? 1 : 0;
    }

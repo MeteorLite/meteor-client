@@ -20,7 +20,6 @@ public class class199 implements class30 {
       descriptor = "(II)Z",
       garbageValue = "1119176744"
    )
-   @Export("vmethod3949")
    public boolean vmethod3949(int var1) {
       if (this.field1813 == null) {
          return false;
@@ -72,7 +71,6 @@ public class class199 implements class30 {
       descriptor = "(CI)Z",
       garbageValue = "-258182"
    )
-   @Export("vmethod3951")
    public boolean vmethod3951(char var1) {
       if (this.field1813 == null) {
          return false;
@@ -102,7 +100,6 @@ public class class199 implements class30 {
       descriptor = "(ZI)Z",
       garbageValue = "333814410"
    )
-   @Export("vmethod3953")
    public boolean vmethod3953(boolean var1) {
       return false;
    }
@@ -314,7 +311,6 @@ public class class199 implements class30 {
       descriptor = "(Lnv;Lnv;Lnv;I)V",
       garbageValue = "-672132656"
    )
-   @Export("drawTitle")
    static void drawTitle(Font var0, Font var1, Font var2) {
       Login.xPadding = (CollisionMap.canvasWidth - 765) / 2;
       Login.loginBoxX = Login.xPadding + 202;

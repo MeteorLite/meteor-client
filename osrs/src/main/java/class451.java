@@ -32,7 +32,6 @@ public class class451 extends class415 implements class264 {
       descriptor = "(II)Lpv;",
       garbageValue = "307947551"
    )
-   @Export("vmethod8207")
    protected class417 vmethod8207(int var1) {
       DemotingHashTable var3 = this.field3964;
       synchronized(this.field3964) {
@@ -73,7 +72,6 @@ public class class451 extends class415 implements class264 {
       }
    }
 
-   @Export("iterator")
    @ObfuscatedName("iterator")
    public Iterator iterator() {
       return new class450(this);

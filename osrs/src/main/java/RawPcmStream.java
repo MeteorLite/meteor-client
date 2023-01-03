@@ -21,13 +21,10 @@ public class RawPcmStream extends PcmStream {
    @ObfuscatedName("f")
    int field237;
    @ObfuscatedName("r")
-   @Export("numLoops")
    int numLoops;
    @ObfuscatedName("u")
-   @Export("start")
    int start;
    @ObfuscatedName("b")
-   @Export("end")
    int end;
    @ObfuscatedName("j")
    boolean field241;
@@ -81,7 +78,6 @@ public class RawPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "()Laa;"
    )
-   @Export("firstSubStream")
    protected PcmStream firstSubStream() {
       return null;
    }
@@ -90,19 +86,16 @@ public class RawPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "()Laa;"
    )
-   @Export("nextSubStream")
    protected PcmStream nextSubStream() {
       return null;
    }
 
    @ObfuscatedName("r")
-   @Export("vmethod5648")
    protected int vmethod5648() {
       return this.field245 == 0 && this.field242 == 0 ? 0 : 1;
    }
 
    @ObfuscatedName("u")
-   @Export("fill")
    public synchronized void fill(int[] var1, int var2, int var3) {
       if (this.field245 == 0 && this.field242 == 0) {
          this.skip(var3);
@@ -284,13 +277,11 @@ public class RawPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("b")
-   @Export("setNumLoops")
    public synchronized void setNumLoops(int var1) {
       this.numLoops = var1;
    }
 
    @ObfuscatedName("j")
-   @Export("skip")
    public synchronized void skip(int var1) {
       if (this.field242 > 0) {
          if (var1 >= this.field242) {
@@ -704,7 +695,6 @@ public class RawPcmStream extends PcmStream {
    }
 
    @ObfuscatedName("af")
-   @Export("vmethod1019")
    int vmethod1019() {
       int var1 = this.field235 * 3 >> 6;
       var1 = (var1 ^ var1 >> 31) + (var1 >>> 31);
@@ -850,7 +840,6 @@ public class RawPcmStream extends PcmStream {
    @ObfuscatedSignature(
       descriptor = "(Laf;II)Lap;"
    )
-   @Export("createRawPcmStream")
    public static RawPcmStream createRawPcmStream(RawSound var0, int var1, int var2) {
       return var0.samples != null && var0.samples.length != 0 ? new RawPcmStream(var0, (int)((long)var0.sampleRate * 256L * (long)var1 / (long)(PcmPlayer.field198 * 100)), var2 << 6) : null;
    }

@@ -7,15 +7,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("GraphicsDefaults")
 public class GraphicsDefaults {
    @ObfuscatedName("h")
-   @Export("compass")
    public int compass = -1;
    @ObfuscatedName("e")
    public int field3741 = -1;
    @ObfuscatedName("v")
-   @Export("mapScenes")
    public int mapScenes = -1;
    @ObfuscatedName("x")
-   @Export("headIconsPk")
    public int headIconsPk = -1;
    @ObfuscatedName("m")
    public int field3738 = -1;
@@ -37,7 +34,6 @@ public class GraphicsDefaults {
       descriptor = "(Lly;B)V",
       garbageValue = "8"
    )
-   @Export("decode")
    public void decode(AbstractArchive var1) {
       byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3732.group);
       Buffer var3 = new Buffer(var2);

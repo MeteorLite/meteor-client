@@ -18,7 +18,6 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
       descriptor = "(B)Lpk;",
       garbageValue = "-45"
    )
-   @Export("get")
    public PlatformInfo get() {
       byte var1;
       if (Decimator.formattedOperatingSystemName.startsWith("win")) {

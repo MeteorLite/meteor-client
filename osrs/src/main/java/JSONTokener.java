@@ -10,16 +10,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("JSONTokener")
 @ObfuscatedName("org/json/JSONTokener")
 public class JSONTokener {
-   @Export("useLastChar")
    @ObfuscatedName("useLastChar")
    boolean useLastChar;
-   @Export("reader")
    @ObfuscatedName("reader")
    Reader reader;
-   @Export("index")
    @ObfuscatedName("index")
    int index;
-   @Export("lastChar")
    @ObfuscatedName("lastChar")
    char lastChar;
 
@@ -33,7 +29,6 @@ public class JSONTokener {
       this.index = 0;
    }
 
-   @Export("nextClean")
    @ObfuscatedName("nextClean")
    public char nextClean() throws JSONException {
       char var1;
@@ -44,7 +39,6 @@ public class JSONTokener {
       return var1;
    }
 
-   @Export("next")
    @ObfuscatedName("next")
    public char next() throws JSONException {
       if (this.useLastChar) {
@@ -73,7 +67,6 @@ public class JSONTokener {
       }
    }
 
-   @Export("nextTo")
    @ObfuscatedName("nextString")
    public String nextTo(char var1) throws JSONException {
       StringBuffer var3 = new StringBuffer();
@@ -139,13 +132,11 @@ public class JSONTokener {
       }
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       return " at character " + this.index;
    }
 
-   @Export("back")
    @ObfuscatedName("back")
    public void back() throws JSONException {
       if (!this.useLastChar && this.index > 0) {
@@ -156,7 +147,6 @@ public class JSONTokener {
       }
    }
 
-   @Export("syntaxError")
    @ObfuscatedName("syntaxError")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;)Lorg/json/JSONException;"
@@ -165,7 +155,6 @@ public class JSONTokener {
       return new JSONException(var1 + this.toString());
    }
 
-   @Export("next")
    @ObfuscatedName("next")
    public String next(int var1) throws JSONException {
       if (var1 == 0) {
@@ -198,7 +187,6 @@ public class JSONTokener {
       }
    }
 
-   @Export("nextValue")
    @ObfuscatedName("nextValue")
    public Object nextValue() throws JSONException {
       char var1 = this.nextClean();

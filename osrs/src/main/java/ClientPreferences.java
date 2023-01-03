@@ -14,44 +14,32 @@ public class ClientPreferences {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive8")
    static Archive archive8;
    @ObfuscatedName("m")
-   @Export("roofsHidden")
    boolean roofsHidden;
    @ObfuscatedName("q")
-   @Export("hideUsername")
    boolean hideUsername = false;
    @ObfuscatedName("f")
-   @Export("titleMusicDisabled")
    boolean titleMusicDisabled;
    @ObfuscatedName("r")
-   @Export("displayFps")
    boolean displayFps = false;
    @ObfuscatedName("u")
    int field1036;
    @ObfuscatedName("b")
-   @Export("brightness")
    double brightness = 0.8D;
    @ObfuscatedName("j")
-   @Export("musicVolume")
    int musicVolume = 127;
    @ObfuscatedName("g")
-   @Export("soundEffectsVolume")
    int soundEffectsVolume = 127;
    @ObfuscatedName("i")
-   @Export("areaSoundEffectsVolume")
    int areaSoundEffectsVolume = 127;
    @ObfuscatedName("o")
    int field1040 = -1;
    @ObfuscatedName("n")
-   @Export("rememberedUsername")
    String rememberedUsername = null;
    @ObfuscatedName("k")
-   @Export("windowMode")
    int windowMode = 1;
    @ObfuscatedName("a")
-   @Export("parameters")
    final Map parameters = new LinkedHashMap();
 
    ClientPreferences() {
@@ -135,7 +123,6 @@ public class ClientPreferences {
       descriptor = "(I)Lqy;",
       garbageValue = "-1732648006"
    )
-   @Export("toBuffer")
    Buffer toBuffer() {
       Buffer var1 = new Buffer(417, true);
       var1.writeByte(10);
@@ -306,7 +293,6 @@ public class ClientPreferences {
       descriptor = "(IB)V",
       garbageValue = "-25"
    )
-   @Export("updateSoundEffectVolume")
    void updateSoundEffectVolume(int var1) {
       this.soundEffectsVolume = var1;
       Tile.savePreferences();
@@ -456,7 +442,6 @@ public class ClientPreferences {
       descriptor = "(III)I",
       garbageValue = "1700481860"
    )
-   @Export("ItemContainer_getCount")
    static int ItemContainer_getCount(int var0, int var1) {
       ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var2 == null) {

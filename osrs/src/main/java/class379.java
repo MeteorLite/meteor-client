@@ -10,6 +10,5 @@ public class class379 {
    )
    static Bounds field3654;
    @ObfuscatedName("ie")
-   @Export("regionLandArchiveIds")
    static int[] regionLandArchiveIds;
 }

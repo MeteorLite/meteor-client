@@ -38,16 +38,13 @@ public enum class87 implements class345 {
    field879(5, 6);
 
    @ObfuscatedName("u")
-   @Export("Interpreter_intStackSize")
    static int Interpreter_intStackSize;
    @ObfuscatedName("cw")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("worldSelectFlagSprites")
    static IndexedSprite[] worldSelectFlagSprites;
    @ObfuscatedName("py")
-   @Export("widgetDragDuration")
    static int widgetDragDuration;
    @ObfuscatedName("f")
    final int field876;
@@ -64,7 +61,6 @@ public enum class87 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.field877;
    }
@@ -74,7 +70,6 @@ public enum class87 implements class345 {
       descriptor = "(IB)Z",
       garbageValue = "62"
    )
-   @Export("isWorldMapEvent")
    public static boolean isWorldMapEvent(int var0) {
       return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
    }
@@ -84,7 +79,6 @@ public enum class87 implements class345 {
       descriptor = "(II)Lgo;",
       garbageValue = "1583039728"
    )
-   @Export("getEnum")
    public static EnumComposition getEnum(int var0) {
       EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -106,7 +100,6 @@ public enum class87 implements class345 {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;ZI)Lqq;",
       garbageValue = "-147527750"
    )
-   @Export("getPreferencesFile")
    public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
       File var3 = new File(class281.cacheDir, "preferences" + var0 + ".dat");
       if (var3.exists()) {

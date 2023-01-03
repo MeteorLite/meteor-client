@@ -93,7 +93,6 @@ public class PlatformInfo extends Node {
       descriptor = "(Lqy;B)V",
       garbageValue = "0"
    )
-   @Export("write")
    public void write(Buffer var1) {
       var1.writeByte(9);
       var1.writeByte(this.field3821);
@@ -133,7 +132,6 @@ public class PlatformInfo extends Node {
       descriptor = "(I)I",
       garbageValue = "316580569"
    )
-   @Export("size")
    public int size() {
       byte var1 = 39;
       int var2 = var1 + FaceNormal.method1235(this.field3836);

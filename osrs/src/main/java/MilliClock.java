@@ -34,7 +34,6 @@ public class MilliClock extends Clock {
       descriptor = "(I)V",
       garbageValue = "118747683"
    )
-   @Export("mark")
    public void mark() {
       for(int var1 = 0; var1 < 10; ++var1) {
          this.field1443[var1] = 0L;
@@ -47,7 +46,6 @@ public class MilliClock extends Clock {
       descriptor = "(III)I",
       garbageValue = "1532577739"
    )
-   @Export("wait")
    public int wait(int var1, int var2) {
       int var3 = this.field1444;
       int var4 = this.field1448;
@@ -104,7 +102,6 @@ public class MilliClock extends Clock {
       descriptor = "(Lqy;II)V",
       garbageValue = "-1714610192"
    )
-   @Export("readReflectionCheck")
    public static void readReflectionCheck(Buffer var0, int var1) {
       ReflectionCheck var2 = new ReflectionCheck();
       var2.size = var0.readUnsignedByte();
@@ -219,7 +216,6 @@ public class MilliClock extends Clock {
       descriptor = "(Ljava/lang/String;S)Ljava/lang/Class;",
       garbageValue = "-21331"
    )
-   @Export("loadClassFromDescriptor")
    static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
       if (var0.equals("B")) {
          return Byte.TYPE;

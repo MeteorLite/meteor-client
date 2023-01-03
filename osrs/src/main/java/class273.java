@@ -33,7 +33,6 @@ public class class273 {
       descriptor = "(Lkd;IIB)V",
       garbageValue = "-128"
    )
-   @Export("Widget_addToMenu")
    static final void Widget_addToMenu(Widget var0, int var1, int var2) {
       if (var0.buttonType == 1) {
          ScriptFrame.method333(var0.buttonText, "", 24, 0, 0, var0.id, var0.itemId);

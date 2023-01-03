@@ -12,7 +12,6 @@ public class MusicPatch extends Node {
    @ObfuscatedSignature(
       descriptor = "[Laf;"
    )
-   @Export("rawSounds")
    RawSound[] rawSounds = new RawSound[128];
    @ObfuscatedName("v")
    short[] field2754 = new short[128];
@@ -511,7 +510,6 @@ public class MusicPatch extends Node {
       descriptor = "(I)V",
       garbageValue = "-638414665"
    )
-   @Export("clear")
    void clear() {
       this.field2759 = null;
    }

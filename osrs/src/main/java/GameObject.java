@@ -10,51 +10,37 @@ public final class GameObject {
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   @Export("sceneMinimapSprite")
    static SpritePixels sceneMinimapSprite;
    @ObfuscatedName("h")
-   @Export("plane")
    int plane;
    @ObfuscatedName("e")
-   @Export("z")
    int z;
    @ObfuscatedName("v")
-   @Export("centerX")
    int centerX;
    @ObfuscatedName("x")
-   @Export("centerY")
    int centerY;
    @ObfuscatedName("m")
-   @Export("orientation")
    int orientation;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lhr;"
    )
-   @Export("renderable")
    public Renderable renderable;
    @ObfuscatedName("f")
-   @Export("startX")
    int startX;
    @ObfuscatedName("r")
-   @Export("endX")
    int endX;
    @ObfuscatedName("u")
-   @Export("startY")
    int startY;
    @ObfuscatedName("b")
-   @Export("endY")
    int endY;
    @ObfuscatedName("j")
    int field2232;
    @ObfuscatedName("g")
-   @Export("lastDrawn")
    int lastDrawn;
    @ObfuscatedName("i")
-   @Export("tag")
    public long tag = 0L;
    @ObfuscatedName("o")
-   @Export("flags")
    int flags = 0;
 
    @ObfuscatedName("x")

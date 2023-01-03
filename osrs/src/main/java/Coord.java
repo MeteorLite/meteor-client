@@ -10,16 +10,12 @@ public class Coord {
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
-   @Export("modIconSprites")
    static IndexedSprite[] modIconSprites;
    @ObfuscatedName("h")
-   @Export("plane")
    public int plane;
    @ObfuscatedName("e")
-   @Export("x")
    public int x;
    @ObfuscatedName("v")
-   @Export("y")
    public int y;
 
    @ObfuscatedSignature(
@@ -53,7 +49,6 @@ public class Coord {
       descriptor = "(B)I",
       garbageValue = "15"
    )
-   @Export("packed")
    public int packed() {
       return class140.method753(this.plane, this.x, this.y);
    }
@@ -63,7 +58,6 @@ public class Coord {
       descriptor = "(Lky;I)Z",
       garbageValue = "-2001881010"
    )
-   @Export("equalsCoord")
    boolean equalsCoord(Coord var1) {
       if (this.plane != var1.plane) {
          return false;
@@ -79,24 +73,20 @@ public class Coord {
       descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
       garbageValue = "4"
    )
-   @Export("toString")
    String toString(String var1) {
       return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
    }
 
-   @Export("hashCode")
    @ObfuscatedName("hashCode")
    public int hashCode() {
       return this.packed();
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       return this.toString(",");
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (this == var1) {

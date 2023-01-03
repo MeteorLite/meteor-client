@@ -10,120 +10,85 @@ public class ItemComposition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   @Export("ItemDefinition_archive")
    static AbstractArchive ItemDefinition_archive;
    @ObfuscatedName("u")
-   @Export("ItemDefinition_fileCount")
    public static int ItemDefinition_fileCount;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("ItemDefinition_cached")
    public static EvictingDualNodeHashTable ItemDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("ItemDefinition_cachedModels")
    public static EvictingDualNodeHashTable ItemDefinition_cachedModels = new EvictingDualNodeHashTable(50);
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
-   @Export("ItemDefinition_cachedSprites")
    public static EvictingDualNodeHashTable ItemDefinition_cachedSprites = new EvictingDualNodeHashTable(200);
    @ObfuscatedName("o")
-   @Export("id")
    public int id;
    @ObfuscatedName("n")
-   @Export("model")
    int model;
    @ObfuscatedName("k")
-   @Export("name")
    public String name = "null";
    @ObfuscatedName("a")
-   @Export("recolorFrom")
    public short[] recolorFrom;
    @ObfuscatedName("s")
-   @Export("recolorTo")
    public short[] recolorTo;
    @ObfuscatedName("l")
-   @Export("retextureFrom")
    public short[] retextureFrom;
    @ObfuscatedName("t")
-   @Export("retextureTo")
    public short[] retextureTo;
    @ObfuscatedName("c")
-   @Export("zoom2d")
    public int zoom2d = 2000;
    @ObfuscatedName("p")
-   @Export("xan2d")
    public int xan2d = 0;
    @ObfuscatedName("d")
-   @Export("yan2d")
    public int yan2d = 0;
    @ObfuscatedName("y")
-   @Export("zan2d")
    public int zan2d = 0;
    @ObfuscatedName("z")
-   @Export("offsetX2d")
    public int offsetX2d = 0;
    @ObfuscatedName("w")
-   @Export("offsetY2d")
    public int offsetY2d = 0;
    @ObfuscatedName("as")
-   @Export("isStackable")
    public int isStackable = 0;
    @ObfuscatedName("ad")
-   @Export("price")
    public int price = 1;
    @ObfuscatedName("ao")
-   @Export("maleModel")
    public int maleModel = -1;
    @ObfuscatedName("am")
-   @Export("maleModel1")
    public int maleModel1 = -1;
    @ObfuscatedName("av")
-   @Export("maleModel2")
    public int maleModel2 = -1;
    @ObfuscatedName("au")
-   @Export("isMembersOnly")
    public boolean isMembersOnly = false;
    @ObfuscatedName("ar")
-   @Export("groundActions")
    public String[] groundActions = new String[]{null, null, "Take", null, null};
    @ObfuscatedName("at")
-   @Export("inventoryActions")
    public String[] inventoryActions = new String[]{null, null, null, null, "Drop"};
    @ObfuscatedName("an")
-   @Export("shiftClickIndex")
    int shiftClickIndex = -2;
    @ObfuscatedName("ab")
-   @Export("femaleModel")
    int femaleModel = -1;
    @ObfuscatedName("al")
-   @Export("femaleModel1")
    int femaleModel1 = -1;
    @ObfuscatedName("ag")
-   @Export("femaleOffset")
    int femaleOffset = 0;
    @ObfuscatedName("az")
-   @Export("maleHeadModel")
    int maleHeadModel = -1;
    @ObfuscatedName("ak")
-   @Export("maleHeadModel2")
    int maleHeadModel2 = -1;
    @ObfuscatedName("af")
    int field1718 = 0;
    @ObfuscatedName("ai")
-   @Export("femaleModel2")
    int femaleModel2 = -1;
    @ObfuscatedName("ax")
-   @Export("femaleHeadModel")
    int femaleHeadModel = -1;
    @ObfuscatedName("ah")
-   @Export("femaleHeadModel2")
    int femaleHeadModel2 = -1;
    @ObfuscatedName("aw")
    int field1755 = -1;
@@ -132,32 +97,24 @@ public class ItemComposition extends DualNode {
    @ObfuscatedName("aq")
    int field1757 = -1;
    @ObfuscatedName("ap")
-   @Export("countobj")
    int[] countobj;
    @ObfuscatedName("aa")
-   @Export("countco")
    int[] countco;
    @ObfuscatedName("ae")
-   @Export("note")
    public int note = -1;
    @ObfuscatedName("ac")
-   @Export("noteTemplate")
    public int noteTemplate = -1;
    @ObfuscatedName("bh")
-   @Export("resizeX")
    int resizeX = 128;
    @ObfuscatedName("be")
-   @Export("resizeY")
    int resizeY = 128;
    @ObfuscatedName("bf")
-   @Export("resizeZ")
    int resizeZ = 128;
    @ObfuscatedName("bo")
    public int field1722 = 0;
    @ObfuscatedName("by")
    public int field1734 = 0;
    @ObfuscatedName("bw")
-   @Export("team")
    public int team = 0;
    @ObfuscatedName("bp")
    public int field1736 = 0;
@@ -165,22 +122,16 @@ public class ItemComposition extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lql;"
    )
-   @Export("params")
    IterableNodeHashTable params;
    @ObfuscatedName("bl")
-   @Export("isTradable")
    public boolean isTradable = false;
    @ObfuscatedName("bv")
-   @Export("unnotedId")
    int unnotedId = -1;
    @ObfuscatedName("bx")
-   @Export("notedId")
    int notedId = -1;
    @ObfuscatedName("bg")
-   @Export("placeholder")
    public int placeholder = -1;
    @ObfuscatedName("bz")
-   @Export("placeholderTemplate")
    public int placeholderTemplate = -1;
 
    @ObfuscatedName("v")
@@ -188,7 +139,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(I)V",
       garbageValue = "564451612"
    )
-   @Export("post")
    void post() {
       if (this.isStackable == 1) {
          this.field1736 = 0;
@@ -201,7 +151,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(Lqy;I)V",
       garbageValue = "-843301513"
    )
-   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -218,7 +167,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "-538153010"
    )
-   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.model = var1.readUnsignedShort();
@@ -358,7 +306,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(Lgr;Lgr;B)V",
       garbageValue = "4"
    )
-   @Export("genCert")
    void genCert(ItemComposition var1, ItemComposition var2) {
       this.model = var1.model;
       this.zoom2d = var1.zoom2d;
@@ -382,7 +329,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(Lgr;Lgr;I)V",
       garbageValue = "-177814985"
    )
-   @Export("genBought")
    void genBought(ItemComposition var1, ItemComposition var2) {
       this.model = var1.model;
       this.zoom2d = var1.zoom2d;
@@ -430,7 +376,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(Lgr;Lgr;B)V",
       garbageValue = "39"
    )
-   @Export("genPlaceholder")
    void genPlaceholder(ItemComposition var1, ItemComposition var2) {
       this.model = var1.model;
       this.zoom2d = var1.zoom2d;
@@ -455,7 +400,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(IB)Lgi;",
       garbageValue = "41"
    )
-   @Export("getModelData")
    public final ModelData getModelData(int var1) {
       int var3;
       if (this.countobj != null && var1 > 1) {
@@ -501,7 +445,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(II)Lhh;",
       garbageValue = "-1531762399"
    )
-   @Export("getModel")
    public final Model getModel(int var1) {
       if (this.countobj != null && var1 > 1) {
          int var2 = -1;
@@ -555,7 +498,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(II)Lgr;",
       garbageValue = "-542069787"
    )
-   @Export("getCountObj")
    public ItemComposition getCountObj(int var1) {
       if (this.countobj != null && var1 > 1) {
          int var2 = -1;
@@ -739,7 +681,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(III)I",
       garbageValue = "38849497"
    )
-   @Export("getIntParam")
    public int getIntParam(int var1, int var2) {
       return UserComparator8.method661(this.params, var1, var2);
    }
@@ -749,7 +690,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
       garbageValue = "-1588376559"
    )
-   @Export("getStringParam")
    public String getStringParam(int var1, String var2) {
       IterableNodeHashTable var4 = this.params;
       String var3;
@@ -772,7 +712,6 @@ public class ItemComposition extends DualNode {
       descriptor = "(B)I",
       garbageValue = "0"
    )
-   @Export("getShiftClickIndex")
    public int getShiftClickIndex() {
       if (this.shiftClickIndex != -1 && this.inventoryActions != null) {
          if (this.shiftClickIndex >= 0) {

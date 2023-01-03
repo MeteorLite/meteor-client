@@ -9,7 +9,6 @@ public abstract class class152 extends Node {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
-   @Export("vmethod3238")
    abstract void vmethod3238(Buffer var1);
 
    @ObfuscatedName("e")
@@ -17,7 +16,6 @@ public abstract class class152 extends Node {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
-   @Export("vmethod3239")
    abstract void vmethod3239(ClanChannel var1);
 
    @ObfuscatedName("hn")
@@ -25,7 +23,6 @@ public abstract class class152 extends Node {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "-1882870143"
    )
-   @Export("doCheat")
    static final void doCheat(String var0) {
       if (var0.equalsIgnoreCase("toggleroof")) {
          StructComposition.clientPreferences.method562(!StructComposition.clientPreferences.method535());

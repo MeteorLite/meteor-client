@@ -20,10 +20,8 @@ public class ModelData0 {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   @Export("titleboxSprite")
    static IndexedSprite titleboxSprite;
    @ObfuscatedName("s")
-   @Export("ByteArrayPool_altSizeArrayCounts")
    public static int[] ByteArrayPool_altSizeArrayCounts;
 
    @ObfuscatedName("h")
@@ -31,7 +29,6 @@ public class ModelData0 {
       descriptor = "(Lqx;B)V",
       garbageValue = "0"
    )
-   @Export("performReflectionCheck")
    public static void performReflectionCheck(PacketBuffer var0) {
       ReflectionCheck var1 = (ReflectionCheck)class37.reflectionChecks.last();
       if (var1 != null) {
@@ -131,7 +128,6 @@ public class ModelData0 {
       descriptor = "(IIIILjava/lang/String;I)V",
       garbageValue = "49295"
    )
-   @Export("widgetDefaultMenuAction")
    static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
       Widget var5 = AttackOption.getWidgetChild(var1, var2);
       if (var5 != null) {

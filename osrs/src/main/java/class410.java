@@ -24,7 +24,6 @@ public final class class410 {
    @ObfuscatedSignature(
       descriptor = "[Lrx;"
    )
-   @Export("headIconPrayerSprites")
    static SpritePixels[] headIconPrayerSprites;
    @ObfuscatedName("m")
    public float[] field3763 = new float[16];
@@ -398,7 +397,6 @@ public final class class410 {
       return var1;
    }
 
-   @Export("hashCode")
    @ObfuscatedName("hashCode")
    public int hashCode() {
       boolean var1 = true;
@@ -407,7 +405,6 @@ public final class class410 {
       return var3;
    }
 
-   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof class410)) {
@@ -425,7 +422,6 @@ public final class class410 {
       }
    }
 
-   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       StringBuilder var1 = new StringBuilder();

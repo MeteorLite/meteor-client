@@ -8,7 +8,6 @@ public class class37 {
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   @Export("reflectionChecks")
    public static IterableNodeDeque reflectionChecks = new IterableNodeDeque();
 
    @ObfuscatedName("r")
@@ -58,7 +57,6 @@ public class class37 {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZI)V",
       garbageValue = "-2077316645"
    )
-   @Export("insertMenuItem")
    static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
       if (!Client.isMenuOpen) {
          if (Client.menuOptionsCount < 500) {

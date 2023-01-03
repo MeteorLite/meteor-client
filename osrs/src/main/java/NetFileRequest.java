@@ -10,12 +10,9 @@ public class NetFileRequest extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive")
    Archive archive;
    @ObfuscatedName("e")
-   @Export("crc")
    int crc;
    @ObfuscatedName("v")
-   @Export("padding")
    byte padding;
 }

@@ -11,22 +11,18 @@ public class IterableNodeHashTableIterator implements Iterator {
    @ObfuscatedSignature(
       descriptor = "Lql;"
    )
-   @Export("hashTable")
    IterableNodeHashTable hashTable;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lpl;"
    )
-   @Export("head")
    Node head;
    @ObfuscatedName("v")
-   @Export("index")
    int index;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lpl;"
    )
-   @Export("last")
    Node last = null;
 
    @ObfuscatedSignature(
@@ -38,14 +34,12 @@ public class IterableNodeHashTableIterator implements Iterator {
    }
 
    @ObfuscatedName("h")
-   @Export("start")
    void start() {
       this.head = this.hashTable.buckets[0].previous;
       this.index = 1;
       this.last = null;
    }
 
-   @Export("hasNext")
    @ObfuscatedName("hasNext")
    public boolean hasNext() {
       if (this.hashTable.buckets[this.index - 1] != this.head) {
@@ -64,7 +58,6 @@ public class IterableNodeHashTableIterator implements Iterator {
       }
    }
 
-   @Export("remove")
    @ObfuscatedName("remove")
    public void remove() {
       if (this.last == null) {
@@ -75,7 +68,6 @@ public class IterableNodeHashTableIterator implements Iterator {
       }
    }
 
-   @Export("next")
    @ObfuscatedName("next")
    public Object next() {
       Node var1;

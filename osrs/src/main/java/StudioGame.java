@@ -10,44 +10,36 @@ public enum StudioGame implements class345 {
    @ObfuscatedSignature(
       descriptor = "Llw;"
    )
-   @Export("runescape")
    runescape("runescape", "RuneScape", 0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Llw;"
    )
-   @Export("stellardawn")
    stellardawn("stellardawn", "Stellar Dawn", 1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Llw;"
    )
-   @Export("game3")
    game3("game3", "Game 3", 2),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Llw;"
    )
-   @Export("game4")
    game4("game4", "Game 4", 3),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Llw;"
    )
-   @Export("game5")
    game5("game5", "Game 5", 4),
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Llw;"
    )
-   @Export("oldscape")
    oldscape("oldscape", "RuneScape 2007", 5);
 
    @ObfuscatedName("f")
-   @Export("name")
    public final String name;
    @ObfuscatedName("r")
-   @Export("id")
    final int id;
 
    StudioGame(String var3, String var4, int var5) {
@@ -60,7 +52,6 @@ public enum StudioGame implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
-   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }

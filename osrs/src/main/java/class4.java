@@ -8,7 +8,6 @@ public final class class4 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
-   @Export("archive9")
    static Archive archive9;
 
    @ObfuscatedName("j")
