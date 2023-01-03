@@ -370,7 +370,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedName("ke")
    public static int field634;
    @ObfuscatedName("kv")
-   static boolean field374;
+   static boolean oculusOrbOnLocalPlayer;
    @ObfuscatedName("ks")
    static int packetIndicator;
    @ObfuscatedName("ky")
@@ -838,7 +838,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       oculusOrbNormalSpeed = 12;
       oculusOrbSlowedSpeed = 6;
       field634 = 0;
-      field374 = false;
+      oculusOrbOnLocalPlayer = false;
       packetIndicator = 0;
       emitPackets = false;
       field449 = 0;
@@ -3466,7 +3466,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   var26 = AbstractFont.escapeBrackets(class153.method817(var3));
                   var16 = var74 >= 0 ? 41 : 44;
                   if (var60.modIcon != -1) {
-                     class381.addChatMessage(var16, class456.method2305(var60.modIcon) + var21, var26, var69.name);
+                     class381.addChatMessage(var16, class456.addImageTag(var60.modIcon) + var21, var26, var69.name);
                   } else {
                      class381.addChatMessage(var16, var21, var26, var69.name);
                   }
@@ -3680,7 +3680,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   }
 
                   if (var32.modIcon != -1) {
-                     KitDefinition.addGameMessage(var83, class456.method2305(var32.modIcon) + var49, var35);
+                     KitDefinition.addGameMessage(var83, class456.addImageTag(var32.modIcon) + var49, var35);
                   } else {
                      KitDefinition.addGameMessage(var83, var49, var35);
                   }
@@ -4166,7 +4166,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                var5 = var3.readUnsignedShort();
                var27 = var3.readUnsignedShort();
                var86 = ObjTypeCustomisation.getWidget(var20);
-               var86.field2922 = var27 + (var5 << 16);
+               var86.rotationKey = var27 + (var5 << 16);
                var1.serverPacket = null;
                return true;
             }
@@ -4411,7 +4411,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
                   var26 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.method817(var3)));
                   if (var93.modIcon != -1) {
-                     class381.addChatMessage(9, class456.method2305(var93.modIcon) + var49, var26, ModeWhere.base37DecodeLong(var28));
+                     class381.addChatMessage(9, class456.addImageTag(var93.modIcon) + var49, var26, ModeWhere.base37DecodeLong(var28));
                   } else {
                      class381.addChatMessage(9, var49, var26, ModeWhere.base37DecodeLong(var28));
                   }

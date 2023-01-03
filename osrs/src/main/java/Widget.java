@@ -171,7 +171,7 @@ public class Widget extends Node {
    @ObfuscatedName("cg")
    public int modelRotation;
    @ObfuscatedName("ca")
-   public int field2922;
+   public int rotationKey;
    @ObfuscatedName("cv")
    public boolean modelOrthog;
    @ObfuscatedName("cz")
@@ -410,7 +410,7 @@ public class Widget extends Node {
       this.modelAngleZ = 0;
       this.modelZoom = 100;
       this.modelRotation = 0;
-      this.field2922 = 0;
+      this.rotationKey = 0;
       this.modelOrthog = false;
       this.modelTransparency = false;
       this.itemQuantityMode = 2;

@@ -208,7 +208,7 @@ public enum HorizontalAlignment implements class345 {
                }
 
                if (var19.modIcon != -1) {
-                  KitDefinition.addGameMessage(var12, class456.method2305(var19.modIcon) + var2.username.getName(), var11);
+                  KitDefinition.addGameMessage(var12, class456.addImageTag(var19.modIcon) + var2.username.getName(), var11);
                } else {
                   KitDefinition.addGameMessage(var12, var2.username.getName(), var11);
                }

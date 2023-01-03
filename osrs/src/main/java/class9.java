@@ -213,7 +213,7 @@ public class class9 implements class345 {
 
          ApproximateRouteStrategy.field347 = SpotAnimationDefinition.getTileHeight(class155.localPlayer.x, class155.localPlayer.y, class383.Client_plane) - Client.camFollowHeight;
       } else if (Client.oculusOrbState == 1) {
-         if (Client.field374 && class155.localPlayer != null) {
+         if (Client.oculusOrbOnLocalPlayer && class155.localPlayer != null) {
             var0 = class155.localPlayer.pathX[0];
             var1 = class155.localPlayer.pathY[0];
             if (var0 >= 0 && var1 >= 0 && var0 < 104 && var1 < 104) {
@@ -224,7 +224,7 @@ public class class9 implements class345 {
                }
 
                class14.oculusOrbFocalPointY = class155.localPlayer.y;
-               Client.field374 = false;
+               Client.oculusOrbOnLocalPlayer = false;
             }
          }
 

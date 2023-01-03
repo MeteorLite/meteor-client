@@ -67,14 +67,14 @@ public class FriendSystem {
       garbageValue = "1832627577"
    )
    final void processFriendUpdates() {
-      for(class391 var1 = (class391)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (class391)this.friendsList.friendLoginUpdates.previous()) {
+      for(FriendLoginUpdate var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.previous()) {
          if ((long)var1.field3684 < Message.clockNow() / 1000L - 5L) {
-            if (var1.field3686 > 0) {
-               KitDefinition.addGameMessage(5, "", var1.field3685 + " has logged in.");
+            if (var1.worldId > 0) {
+               KitDefinition.addGameMessage(5, "", var1.friendUsername + " has logged in.");
             }
 
-            if (var1.field3686 == 0) {
-               KitDefinition.addGameMessage(5, "", var1.field3685 + " has logged out.");
+            if (var1.worldId == 0) {
+               KitDefinition.addGameMessage(5, "", var1.friendUsername + " has logged out.");
             }
 
             var1.remove();

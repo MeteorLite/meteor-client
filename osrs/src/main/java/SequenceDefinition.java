@@ -58,7 +58,7 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedName("s")
    boolean[] field1801;
    @ObfuscatedName("l")
-   public boolean field1791 = false;
+   public boolean stretches = false;
    @ObfuscatedName("t")
    public int field1809 = 5;
    @ObfuscatedName("c")
@@ -70,7 +70,7 @@ public class SequenceDefinition extends DualNode {
    @ObfuscatedName("y")
    public boolean field1807 = false;
    @ObfuscatedName("z")
-   public int field1799 = -1;
+   public int precedenceAnimating = -1;
    @ObfuscatedName("w")
    public int field1794 = -1;
    @ObfuscatedName("as")
@@ -129,7 +129,7 @@ public class SequenceDefinition extends DualNode {
 
          this.field1800[var3] = 9999999;
       } else if (var2 == 4) {
-         this.field1791 = true;
+         this.stretches = true;
       } else if (var2 == 5) {
          this.field1809 = var1.readUnsignedByte();
       } else if (var2 == 6) {
@@ -140,7 +140,7 @@ public class SequenceDefinition extends DualNode {
          this.field1810 = var1.readUnsignedByte();
          this.field1807 = true;
       } else if (var2 == 9) {
-         this.field1799 = var1.readUnsignedByte();
+         this.precedenceAnimating = var1.readUnsignedByte();
       } else if (var2 == 10) {
          this.field1794 = var1.readUnsignedByte();
       } else if (var2 == 11) {
@@ -199,11 +199,11 @@ public class SequenceDefinition extends DualNode {
       garbageValue = "746372140"
    )
    void postDecode() {
-      if (this.field1799 == -1) {
+      if (this.precedenceAnimating == -1) {
          if (this.field1800 == null && this.field1801 == null) {
-            this.field1799 = 0;
+            this.precedenceAnimating = 0;
          } else {
-            this.field1799 = 2;
+            this.precedenceAnimating = 2;
          }
       }
 

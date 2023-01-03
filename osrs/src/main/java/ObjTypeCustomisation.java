@@ -29,12 +29,12 @@ public class ObjTypeCustomisation {
 
    public ObjTypeCustomisation(int var1) {
       ItemComposition var2 = NPCComposition.ItemDefinition_get(var1);
-      if (var2.method1040()) {
+      if (var2.hasRecolor()) {
          this.recol = new short[var2.recolorTo.length];
          System.arraycopy(var2.recolorTo, 0, this.recol, 0, this.recol.length);
       }
 
-      if (var2.method1038()) {
+      if (var2.hasRetexture()) {
          this.retex = new short[var2.retextureTo.length];
          System.arraycopy(var2.retextureTo, 0, this.retex, 0, this.retex.length);
       }

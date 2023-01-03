@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -73,7 +72,7 @@ public class class456 implements class345 {
       descriptor = "(IB)Ljava/lang/String;",
       garbageValue = "-107"
    )
-   static String method2305(int var0) {
+   static String addImageTag(int var0) {
       return "<img=" + var0 + ">";
    }
 

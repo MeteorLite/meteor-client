@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -729,7 +728,7 @@ public class ItemComposition extends DualNode {
       descriptor = "(B)Z",
       garbageValue = "20"
    )
-   boolean method1040() {
+   boolean hasRecolor() {
       return this.recolorTo != null;
    }
 
@@ -738,7 +737,7 @@ public class ItemComposition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "1445987628"
    )
-   boolean method1038() {
+   boolean hasRetexture() {
       return this.retextureTo != null;
    }
 

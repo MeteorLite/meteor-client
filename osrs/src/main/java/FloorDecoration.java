@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -79,7 +78,7 @@ public final class FloorDecoration {
                label498: {
                   if (var0.sequence != -1 && var0.sequenceDelay == 0) {
                      var12 = AABB.SequenceDefinition_get(var0.sequence);
-                     if (var0.field1004 > 0 && var12.field1799 == 0) {
+                     if (var0.field1004 > 0 && var12.precedenceAnimating == 0) {
                         ++var0.field991;
                         break label498;
                      }
@@ -369,7 +368,7 @@ public final class FloorDecoration {
 
       if (var0.sequence != -1 && var0.sequenceDelay <= 1) {
          var12 = AABB.SequenceDefinition_get(var0.sequence);
-         if (var12.field1799 == 1 && var0.field1004 > 0 && var0.exactMoveArrive1Cycle <= Client.cycle && var0.exactMoveArrive2Cycle < Client.cycle) {
+         if (var12.precedenceAnimating == 1 && var0.field1004 > 0 && var0.exactMoveArrive1Cycle <= Client.cycle && var0.exactMoveArrive2Cycle < Client.cycle) {
             var0.sequenceDelay = 1;
             return;
          }
@@ -399,7 +398,7 @@ public final class FloorDecoration {
                }
             }
 
-            var0.isWalking = var12.field1791;
+            var0.isWalking = var12.stretches;
          } else if (var12.isCachedModelIdSet()) {
             ++var0.sequenceFrame;
             var11 = var12.method1056();
