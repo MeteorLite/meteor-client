@@ -34,5 +34,5 @@ public interface WorldMapManager
 	 *
 	 * @return true if the map is loaded, false otherwise
 	 */
-	boolean isLoaded();
+	boolean isLoaded$api();
 }

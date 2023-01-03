@@ -8,5 +8,6 @@ public class class271 {
    @ObfuscatedSignature(
       descriptor = "Lcs;"
    )
+   @Export("mouseRecorder")
    static MouseRecorder mouseRecorder;
 }

@@ -10,10 +10,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("pn")
 public class class423 implements class421 {
    @ObfuscatedName("e")
-   final Map field4660;
+   final Map field3799;
 
    public class423(Map var1) {
-      this.field4660 = var1;
+      this.field3799 = var1;
    }
 
    @ObfuscatedName("h")
@@ -21,8 +21,9 @@ public class class423 implements class421 {
       descriptor = "(B)[B",
       garbageValue = "0"
    )
+   @Export("vmethod7797")
    public byte[] vmethod7797() throws UnsupportedEncodingException {
-      return this.method7925().getBytes("UTF-8");
+      return this.method2177().getBytes("UTF-8");
    }
 
    @ObfuscatedName("v")
@@ -30,9 +31,9 @@ public class class423 implements class421 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "1995090155"
    )
-   public String method7925() throws UnsupportedEncodingException {
+   public String method2177() throws UnsupportedEncodingException {
       StringBuilder var1 = new StringBuilder();
-      Iterator var2 = this.field4660.entrySet().iterator();
+      Iterator var2 = this.field3799.entrySet().iterator();
 
       while(var2.hasNext()) {
          Entry var3 = (Entry)var2.next();

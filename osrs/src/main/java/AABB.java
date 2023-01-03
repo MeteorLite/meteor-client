@@ -1,38 +1,28 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hf")
+@Implements("AABB")
 public class AABB {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -2055361545
-   )
+   @Export("xMid")
    int xMid;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -1890114663
-   )
+   @Export("yMid")
    int yMid;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1812849095
-   )
+   @Export("zMid")
    int zMid;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 320710353
-   )
+   @Export("xMidOffset")
    int xMidOffset;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1128965299
-   )
+   @Export("yMidOffset")
    int yMidOffset;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 678945951
-   )
+   @Export("zMidOffset")
    int zMidOffset;
 
    AABB(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -49,6 +39,7 @@ public class AABB {
       descriptor = "(II)Lga;",
       garbageValue = "-1342591919"
    )
+   @Export("SequenceDefinition_get")
    public static SequenceDefinition SequenceDefinition_get(int var0) {
       SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -71,7 +62,7 @@ public class AABB {
       descriptor = "(B)Lmq;",
       garbageValue = "-51"
    )
-   public static NodeDeque method4611() {
+   public static NodeDeque method1232() {
       return Client.scriptEvents;
    }
 }

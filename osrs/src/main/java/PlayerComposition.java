@@ -1,51 +1,46 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ko")
+@Implements("PlayerComposition")
 public class PlayerComposition {
    @ObfuscatedName("o")
+   @Export("equipmentIndices")
    static final int[] equipmentIndices = new int[]{8, 11, 4, 6, 9, 7, 10};
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
+   @Export("PlayerAppearance_cachedModels")
    static EvictingDualNodeHashTable PlayerAppearance_cachedModels = new EvictingDualNodeHashTable(260);
    @ObfuscatedName("h")
+   @Export("equipment")
    int[] equipment;
    @ObfuscatedName("e")
+   @Export("bodyColors")
    int[] bodyColors;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 735151423
-   )
-   public int field3476 = -1;
+   public int field2820 = -1;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 354323345
-   )
-   public int field3474 = 0;
+   public int field2818 = 0;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 14128873
-   )
+   @Export("npcTransformId")
    public int npcTransformId;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      longValue = -7383529453804590235L
-   )
+   @Export("hash")
    long hash;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      longValue = -5961177219730857421L
-   )
-   long field3477;
+   long field2821;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "[Lfx;"
    )
+   @Export("customisations")
    ObjTypeCustomisation[] customisations;
    @ObfuscatedName("u")
+   @Export("isFemale")
    boolean isFemale = false;
 
    @ObfuscatedName("h")
@@ -53,11 +48,11 @@ public class PlayerComposition {
       descriptor = "([I[Lfx;Z[IIIII)V",
       garbageValue = "-1317748076"
    )
-   public void method5867(int[] var1, ObjTypeCustomisation[] var2, boolean var3, int[] var4, int var5, int var6, int var7) {
+   public void method1629(int[] var1, ObjTypeCustomisation[] var2, boolean var3, int[] var4, int var5, int var6, int var7) {
       this.customisations = var2;
       this.isFemale = var3;
-      this.field3476 = var7;
-      this.method5850(var1, var4, var5, var6);
+      this.field2820 = var7;
+      this.method1622(var1, var4, var5, var6);
    }
 
    @ObfuscatedName("e")
@@ -65,7 +60,7 @@ public class PlayerComposition {
       descriptor = "([I[IIIB)V",
       garbageValue = "53"
    )
-   public void method5850(int[] var1, int[] var2, int var3, int var4) {
+   public void method1622(int[] var1, int[] var2, int var3, int var4) {
       if (var1 == null) {
          var1 = new int[12];
 
@@ -82,7 +77,7 @@ public class PlayerComposition {
 
       this.equipment = var1;
       this.bodyColors = var2;
-      this.field3474 = var3;
+      this.field2818 = var3;
       this.npcTransformId = var4;
       this.setHash();
    }
@@ -92,8 +87,9 @@ public class PlayerComposition {
       descriptor = "(IZB)V",
       garbageValue = "-11"
    )
+   @Export("changeAppearance")
    public void changeAppearance(int var1, boolean var2) {
-      if (var1 != 1 || this.field3474 != 1) {
+      if (var1 != 1 || this.field2818 != 1) {
          int var3 = this.equipment[equipmentIndices[var1]];
          if (var3 != 0) {
             var3 -= 256;
@@ -113,7 +109,7 @@ public class PlayerComposition {
                }
 
                var4 = AbstractSocket.KitDefinition_get(var3);
-            } while(var4 == null || var4.nonSelectable || var4.bodypartID != (this.field3474 == 1 ? 7 : 0) + var1);
+            } while(var4 == null || var4.nonSelectable || var4.bodypartID != (this.field2818 == 1 ? 7 : 0) + var1);
 
             this.equipment[equipmentIndices[var1]] = var3 + 256;
             this.setHash();
@@ -126,22 +122,22 @@ public class PlayerComposition {
       descriptor = "(IZI)V",
       garbageValue = "906587072"
    )
-   public void method5852(int var1, boolean var2) {
+   public void method1623(int var1, boolean var2) {
       int var3 = this.bodyColors[var1];
       if (!var2) {
          do {
             --var3;
             if (var3 < 0) {
-               var3 = TriBool.field4548[var1].length - 1;
+               var3 = TriBool.field3706[var1].length - 1;
             }
-         } while(!UserComparator7.method2829(var1, var3));
+         } while(!UserComparator7.method665(var1, var3));
       } else {
          do {
             ++var3;
-            if (var3 >= TriBool.field4548[var1].length) {
+            if (var3 >= TriBool.field3706[var1].length) {
                var3 = 0;
             }
-         } while(!UserComparator7.method2829(var1, var3));
+         } while(!UserComparator7.method665(var1, var3));
       }
 
       this.bodyColors[var1] = var3;
@@ -153,9 +149,9 @@ public class PlayerComposition {
       descriptor = "(II)V",
       garbageValue = "-1044750621"
    )
-   public void method5853(int var1) {
-      if (this.field3474 != var1) {
-         this.method5850((int[])null, this.bodyColors, var1, -1);
+   public void method1624(int var1) {
+      if (this.field2818 != var1) {
+         this.method1622((int[])null, this.bodyColors, var1, -1);
       }
    }
 
@@ -164,8 +160,9 @@ public class PlayerComposition {
       descriptor = "(Lqy;B)V",
       garbageValue = "11"
    )
+   @Export("write")
    public void write(Buffer var1) {
-      var1.writeByte(this.field3474);
+      var1.writeByte(this.field2818);
 
       int var2;
       for(var2 = 0; var2 < 7; ++var2) {
@@ -188,6 +185,7 @@ public class PlayerComposition {
       descriptor = "(S)V",
       garbageValue = "-19775"
    )
+   @Export("setHash")
    void setHash() {
       long var1 = this.hash;
       int var3 = this.equipment[5];
@@ -218,7 +216,7 @@ public class PlayerComposition {
       }
 
       this.hash <<= 1;
-      this.hash += (long)(this.field3474 * 590976369) * 354323345L;
+      this.hash += (long)this.field2818;
       this.equipment[5] = var3;
       this.equipment[9] = var4;
       if (var1 != 0L && var1 != this.hash || this.isFemale) {
@@ -232,9 +230,10 @@ public class PlayerComposition {
       descriptor = "(Lga;ILga;II)Lhh;",
       garbageValue = "1815127134"
    )
+   @Export("getModel")
    public Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
       if (this.npcTransformId != -1) {
-         return class129.getNpcDefinition(this.npcTransformId).method3723(var1, var2, var3, var4, (NewShit)null);
+         return class129.getNpcDefinition(this.npcTransformId).method966(var1, var2, var3, var4, (NewShit)null);
       } else {
          long var5 = this.hash;
          int[] var7 = this.equipment;
@@ -267,14 +266,14 @@ public class PlayerComposition {
                   var9 = true;
                }
 
-               if (var11 >= 512 && !NPCComposition.ItemDefinition_get(var11 - 512).method3933(this.field3474)) {
+               if (var11 >= 512 && !NPCComposition.ItemDefinition_get(var11 - 512).method1032(this.field2818)) {
                   var9 = true;
                }
             }
 
             if (var9) {
-               if (-1L != this.field3477) {
-                  var18 = (Model)PlayerAppearance_cachedModels.get(this.field3477);
+               if (-1L != this.field2821) {
+                  var18 = (Model)PlayerAppearance_cachedModels.get(this.field2821);
                }
 
                if (var18 == null) {
@@ -298,7 +297,7 @@ public class PlayerComposition {
 
                   if (var13 >= 512) {
                      ItemComposition var22 = NPCComposition.ItemDefinition_get(var13 - 512);
-                     ModelData var15 = var22.method3934(this.field3474);
+                     ModelData var15 = var22.method1033(this.field2818);
                      if (var15 != null) {
                         if (this.customisations != null) {
                            ObjTypeCustomisation var16 = this.customisations[var12];
@@ -326,18 +325,18 @@ public class PlayerComposition {
                ModelData var20 = new ModelData(var19, var11);
 
                for(var13 = 0; var13 < 5; ++var13) {
-                  if (this.bodyColors[var13] < TriBool.field4548[var13].length) {
-                     var20.recolor(class86.field1104[var13], TriBool.field4548[var13][this.bodyColors[var13]]);
+                  if (this.bodyColors[var13] < TriBool.field3706[var13].length) {
+                     var20.recolor(class86.field869[var13], TriBool.field3706[var13][this.bodyColors[var13]]);
                   }
 
-                  if (this.bodyColors[var13] < Varps.field3445[var13].length) {
-                     var20.recolor(NewShit.field2017[var13], Varps.field3445[var13][this.bodyColors[var13]]);
+                  if (this.bodyColors[var13] < Varps.field2794[var13].length) {
+                     var20.recolor(NewShit.field1545[var13], Varps.field2794[var13][this.bodyColors[var13]]);
                   }
                }
 
                var18 = var20.toModel(64, 850, -30, -50, -30);
                PlayerAppearance_cachedModels.put(var18, var5);
-               this.field3477 = var5;
+               this.field2821 = var5;
             }
          }
 
@@ -361,20 +360,21 @@ public class PlayerComposition {
       descriptor = "(B)Lgi;",
       garbageValue = "83"
    )
+   @Export("getModelData")
    ModelData getModelData() {
       if (this.npcTransformId != -1) {
-         return class129.getNpcDefinition(this.npcTransformId).method3666((NewShit)null);
+         return class129.getNpcDefinition(this.npcTransformId).method953((NewShit)null);
       } else {
          boolean var1 = false;
 
          int var3;
          for(int var2 = 0; var2 < 12; ++var2) {
             var3 = this.equipment[var2];
-            if (var3 >= 256 && var3 < 512 && !AbstractSocket.KitDefinition_get(var3 - 256).method3589()) {
+            if (var3 >= 256 && var3 < 512 && !AbstractSocket.KitDefinition_get(var3 - 256).method926()) {
                var1 = true;
             }
 
-            if (var3 >= 512 && !NPCComposition.ItemDefinition_get(var3 - 512).method3935(this.field3474)) {
+            if (var3 >= 512 && !NPCComposition.ItemDefinition_get(var3 - 512).method1034(this.field2818)) {
                var1 = true;
             }
          }
@@ -397,7 +397,7 @@ public class PlayerComposition {
                }
 
                if (var5 >= 512) {
-                  var6 = NPCComposition.ItemDefinition_get(var5 - 512).method3936(this.field3474);
+                  var6 = NPCComposition.ItemDefinition_get(var5 - 512).method1035(this.field2818);
                   if (var6 != null) {
                      var7[var3++] = var6;
                   }
@@ -407,12 +407,12 @@ public class PlayerComposition {
             ModelData var8 = new ModelData(var7, var3);
 
             for(var5 = 0; var5 < 5; ++var5) {
-               if (this.bodyColors[var5] < TriBool.field4548[var5].length) {
-                  var8.recolor(class86.field1104[var5], TriBool.field4548[var5][this.bodyColors[var5]]);
+               if (this.bodyColors[var5] < TriBool.field3706[var5].length) {
+                  var8.recolor(class86.field869[var5], TriBool.field3706[var5][this.bodyColors[var5]]);
                }
 
-               if (this.bodyColors[var5] < Varps.field3445[var5].length) {
-                  var8.recolor(NewShit.field2017[var5], Varps.field3445[var5][this.bodyColors[var5]]);
+               if (this.bodyColors[var5] < Varps.field2794[var5].length) {
+                  var8.recolor(NewShit.field1545[var5], Varps.field2794[var5][this.bodyColors[var5]]);
                }
             }
 
@@ -426,6 +426,7 @@ public class PlayerComposition {
       descriptor = "(I)I",
       garbageValue = "1407340254"
    )
+   @Export("getChatHeadId")
    public int getChatHeadId() {
       return this.npcTransformId == -1 ? (this.equipment[0] << 15) + this.equipment[1] + (this.equipment[11] << 5) + (this.equipment[8] << 10) + (this.bodyColors[0] << 25) + (this.bodyColors[4] << 20) : 305419896 + class129.getNpcDefinition(this.npcTransformId).id;
    }
@@ -435,6 +436,7 @@ public class PlayerComposition {
       descriptor = "(I)Lbz;",
       garbageValue = "-397803252"
    )
+   @Export("worldListStart")
    static World worldListStart() {
       World.World_listCount = 0;
       return UserComparator9.getNextWorldListWorld();
@@ -445,14 +447,15 @@ public class PlayerComposition {
       descriptor = "(II)V",
       garbageValue = "1666244801"
    )
+   @Export("forceDisconnect")
    static final void forceDisconnect(int var0) {
       Player.logOut();
       switch(var0) {
       case 1:
-         class376.method7327();
+         class376.method1998();
          break;
       case 2:
-         class12.method155(24);
+         class12.method42(24);
          TaskHandler.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
       }
 

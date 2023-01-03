@@ -5,43 +5,52 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pt")
+@Implements("FontName")
 public class FontName {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
+   @Export("FontName_plain11")
    public static final FontName FontName_plain11 = new FontName("p11_full");
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
+   @Export("FontName_plain12")
    public static final FontName FontName_plain12 = new FontName("p12_full");
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
+   @Export("FontName_bold12")
    public static final FontName FontName_bold12 = new FontName("b12_full");
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
+   @Export("FontName_verdana11")
    public static final FontName FontName_verdana11 = new FontName("verdana_11pt_regular");
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
+   @Export("FontName_verdana13")
    public static final FontName FontName_verdana13 = new FontName("verdana_13pt_regular");
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lpt;"
    )
+   @Export("FontName_verdana15")
    public static final FontName FontName_verdana15 = new FontName("verdana_15pt_regular");
    @ObfuscatedName("fb")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
+   @Export("archive19")
    static Archive archive19;
    @ObfuscatedName("f")
+   @Export("name")
    String name;
 
    FontName(String var1) {
@@ -53,7 +62,7 @@ public class FontName {
       descriptor = "(I)[Lpt;",
       garbageValue = "1254065539"
    )
-   public static FontName[] method8203() {
+   public static FontName[] method2256() {
       return new FontName[]{FontName_plain12, FontName_verdana11, FontName_bold12, FontName_verdana15, FontName_verdana13, FontName_plain11};
    }
 
@@ -62,7 +71,7 @@ public class FontName {
       descriptor = "(I)V",
       garbageValue = "-2050351066"
    )
-   static void method8199() {
+   static void method2254() {
       if (Login.clearLoginScreen) {
          ModelData0.titleboxSprite = null;
          Frames.titlebuttonSprite = null;
@@ -77,9 +86,9 @@ public class FontName {
          class87.worldSelectFlagSprites = null;
          FloorDecoration.worldSelectArrows = null;
          class280.worldSelectStars = null;
-         class98.field1340 = null;
-         class154.field1782.method2381();
-         class384.method7370(2);
+         class98.field1070 = null;
+         class154.field1379.method528();
+         class384.method2011(2);
          if (NetCache.NetCache_socket != null) {
             try {
                Buffer var0 = new Buffer(4);
@@ -107,13 +116,13 @@ public class FontName {
       descriptor = "(ZI)V",
       garbageValue = "1513435469"
    )
-   static final void method8202(boolean var0) {
+   static final void method2255(boolean var0) {
       Client.playPcmPlayers();
       ++Client.packetWriter.pendingWrites;
       if (Client.packetWriter.pendingWrites >= 50 || var0) {
          Client.packetWriter.pendingWrites = 0;
          if (!Client.hadNetworkError && Client.packetWriter.getSocket() != null) {
-            PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field3129, Client.packetWriter.isaacCipher);
+            PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field2513, Client.packetWriter.isaacCipher);
             Client.packetWriter.addNode(var1);
 
             try {
@@ -131,6 +140,7 @@ public class FontName {
       descriptor = "(II)Ljava/lang/String;",
       garbageValue = "-1334048221"
    )
+   @Export("formatItemStacks")
    static final String formatItemStacks(int var0) {
       String var1 = Integer.toString(var0);
 

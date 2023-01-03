@@ -108,7 +108,7 @@ public class Deob
 
 		run(group, new UnusedClass());
 
-		runMath(group);
+		//runMath(group);
 
 		run(group, new ExprArgOrder());
 

@@ -77,7 +77,7 @@ public interface Scene
 	 * @param x
 	 * @param y
 	 */
-	void removeGameObject(int plane, int x, int y);
+	void removeGameObject$api(int plane, int x, int y);
 
 	/**
 	 * Remove a game object from the scene

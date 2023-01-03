@@ -54,15 +54,15 @@ public interface RSPlayer extends RSActor, Player
 
 	@Import("isFriendsChatMember")
 	@Override
-	boolean isFriendsChatMember();
+	boolean isFriendsChatMember$api();
 
 	@Import("isClanMember")
 	@Override
-	boolean isClanMember();
+	boolean isClanMember$api();
 
 	@Import("isFriend")
 	@Override
-	boolean isFriend();
+	boolean isFriend$api();
 
 	boolean isFriended();
 

@@ -9,21 +9,21 @@ public class class300 {
    @ObfuscatedSignature(
       descriptor = "Ldm;"
    )
-   UrlRequest field3461;
+   UrlRequest field2806;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
-   SpritePixels field3460;
+   SpritePixels field2805;
 
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Ldl;)V"
    )
    class300(String var1, UrlRequester var2) {
       try {
-         this.field3461 = var2.request(new URL(var1));
+         this.field2806 = var2.request(new URL(var1));
       } catch (MalformedURLException var4) {
-         this.field3461 = null;
+         this.field2806 = null;
       }
 
    }
@@ -32,7 +32,7 @@ public class class300 {
       descriptor = "(Ldm;)V"
    )
    class300(UrlRequest var1) {
-      this.field3461 = var1;
+      this.field2806 = var1;
    }
 
    @ObfuscatedName("h")
@@ -40,16 +40,16 @@ public class class300 {
       descriptor = "(I)Lrx;",
       garbageValue = "-1221653843"
    )
-   SpritePixels method5840() {
-      if (this.field3460 == null && this.field3461 != null && this.field3461.isDone()) {
-         if (this.field3461.getResponse() != null) {
-            this.field3460 = Language.method6693(this.field3461.getResponse());
+   SpritePixels method1615() {
+      if (this.field2805 == null && this.field2806 != null && this.field2806.isDone()) {
+         if (this.field2806.getResponse() != null) {
+            this.field2805 = Language.method1865(this.field2806.getResponse());
          }
 
-         this.field3461 = null;
+         this.field2806 = null;
       }
 
-      return this.field3460;
+      return this.field2805;
    }
 
    @ObfuscatedName("h")
@@ -57,7 +57,7 @@ public class class300 {
       descriptor = "(IB)I",
       garbageValue = "-32"
    )
-   public static int method5847(int var0) {
+   public static int method1620(int var0) {
       return var0 >>> 12;
    }
 
@@ -66,36 +66,36 @@ public class class300 {
       descriptor = "(Lln;II)V",
       garbageValue = "1706135077"
    )
-   static void method5845(Archive var0, int var1) {
-      if (var0.field4191) {
-         if (var1 <= NetCache.field4236) {
+   static void method1618(Archive var0, int var1) {
+      if (var0.field3445) {
+         if (var1 <= NetCache.field3485) {
             throw new RuntimeException("");
          }
 
-         if (var1 < NetCache.field4217) {
-            NetCache.field4217 = var1;
+         if (var1 < NetCache.field3467) {
+            NetCache.field3467 = var1;
          }
       } else {
-         if (var1 >= NetCache.field4217) {
+         if (var1 >= NetCache.field3467) {
             throw new RuntimeException("");
          }
 
-         if (var1 > NetCache.field4236) {
-            NetCache.field4236 = var1;
+         if (var1 > NetCache.field3485) {
+            NetCache.field3485 = var1;
          }
       }
 
-      if (class169.field1878 != null) {
-         class169.field1878.offset = var1 * 8 + 5;
-         if (class169.field1878.offset >= class169.field1878.array.length) {
-            if (!var0.field4191) {
+      if (class169.field1440 != null) {
+         class169.field1440.offset = var1 * 8 + 5;
+         if (class169.field1440.offset >= class169.field1440.array.length) {
+            if (!var0.field3445) {
                throw new RuntimeException("");
             }
 
-            var0.method6419();
+            var0.method1785();
          } else {
-            int var2 = class169.field1878.readInt();
-            int var3 = class169.field1878.readInt();
+            int var2 = class169.field1440.readInt();
+            int var3 = class169.field1440.readInt();
             var0.loadIndex(var2, var3);
          }
 
@@ -110,7 +110,7 @@ public class class300 {
       descriptor = "(Lqx;I)V",
       garbageValue = "-2117327604"
    )
-   static final void method5841(PacketBuffer var0) {
+   static final void method1616(PacketBuffer var0) {
       for(int var1 = 0; var1 < Players.Players_pendingUpdateCount; ++var1) {
          int var2 = Players.Players_pendingUpdateIndices[var1];
          Player var3 = Client.players[var2];
@@ -119,7 +119,7 @@ public class class300 {
             var4 += var0.readUnsignedByte() << 8;
          }
 
-         HorizontalAlignment.method3660(var0, var2, var3, var4);
+         HorizontalAlignment.method950(var0, var2, var3, var4);
       }
 
    }
@@ -129,14 +129,14 @@ public class class300 {
       descriptor = "(Lkd;I)I",
       garbageValue = "1828008662"
    )
-   static int method5846(Widget var0) {
+   static int method1619(Widget var0) {
       if (var0.type != 11) {
          --Interpreter.Interpreter_stringStackSize;
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = -1;
          return 1;
       } else {
          String var1 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var0.method6173(var1);
+         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var0.method1728(var1);
          return 1;
       }
    }
@@ -146,7 +146,7 @@ public class class300 {
       descriptor = "(ILbm;ZB)I",
       garbageValue = "7"
    )
-   static int method5844(int var0, Script var1, boolean var2) {
+   static int method1617(int var0, Script var1, boolean var2) {
       return 2;
    }
 }

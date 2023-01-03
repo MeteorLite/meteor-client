@@ -1,30 +1,25 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("io")
+@Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 633921905
-   )
+   @Export("element")
    final int element;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lii;"
    )
+   @Export("label")
    final WorldMapLabel label;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -426824137
-   )
+   @Export("subWidth")
    final int subWidth;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1331062125
-   )
+   @Export("subHeight")
    final int subHeight;
 
    @ObfuscatedSignature(
@@ -51,6 +46,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "2098413555"
    )
+   @Export("getElement")
    public int getElement() {
       return this.element;
    }
@@ -60,6 +56,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)Lii;",
       garbageValue = "849546905"
    )
+   @Export("getLabel")
    WorldMapLabel getLabel() {
       return this.label;
    }
@@ -69,6 +66,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "-520723785"
    )
+   @Export("getSubWidth")
    int getSubWidth() {
       return this.subWidth;
    }
@@ -78,6 +76,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)I",
       garbageValue = "1290081241"
    )
+   @Export("getSubHeight")
    int getSubHeight() {
       return this.subHeight;
    }
@@ -87,8 +86,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(I)[Lls;",
       garbageValue = "-210588352"
    )
-   static class319[] method5201() {
-      return new class319[]{class319.field3786, class319.field3782};
+   static class319[] method1416() {
+      return new class319[]{class319.field3063, class319.field3060};
    }
 
    @ObfuscatedName("a")
@@ -96,7 +95,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
       descriptor = "(III)I",
       garbageValue = "-1930263759"
    )
-   static final int method5188(int var0, int var1) {
+   static final int method1411(int var0, int var1) {
       int var2 = var0 + var1 * 57;
       var2 ^= var2 << 13;
       int var3 = (var2 * var2 * 15731 + 789221) * var2 + 1376312589 & Integer.MAX_VALUE;

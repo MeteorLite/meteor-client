@@ -1,26 +1,38 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gs")
+@Implements("MoveSpeed")
 public enum MoveSpeed implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   ) STATIONARY((byte)-1),
+   )
+   @Export("STATIONARY")
+   STATIONARY((byte)-1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   ) CRAWL((byte)0),
+   )
+   @Export("CRAWL")
+   CRAWL((byte)0),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   ) WALK((byte)1),
+   )
+   @Export("WALK")
+   WALK((byte)1),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lgs;"
-   ) RUN((byte)2);
+   )
+   @Export("RUN")
+   RUN((byte)2);
 
    @ObfuscatedName("m")
+   @Export("speed")
    public byte speed;
 
    MoveSpeed(byte var3) {
@@ -32,6 +44,7 @@ public enum MoveSpeed implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.speed;
    }
@@ -41,11 +54,11 @@ public enum MoveSpeed implements class345 {
       descriptor = "(I)V",
       garbageValue = "-1945373310"
    )
-   static final void method4182() {
+   static final void method1105() {
       for(PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
          if (var0.hitpoints == -1) {
             var0.delay = 0;
-            UserComparator4.method2809(var0);
+            UserComparator4.method659(var0);
          } else {
             var0.remove();
          }

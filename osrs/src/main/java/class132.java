@@ -5,7 +5,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URL;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -15,41 +14,36 @@ public enum class132 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Let;"
    )
-   field1624(2, 0),
+   field1275(2, 0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Let;"
    )
-   field1629(4, 1),
+   field1280(4, 1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Let;"
    )
-   field1625(0, 2),
+   field1276(0, 2),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Let;"
    )
-   field1626(3, 3),
+   field1277(3, 3),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Let;"
    )
-   field1628(1, 4);
+   field1279(1, 4);
 
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 2018184127
-   )
-   public final int field1627;
+   public final int field1278;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1796142361
-   )
+   @Export("id")
    final int id;
 
    class132(int var3, int var4) {
-      this.field1627 = var3;
+      this.field1278 = var3;
       this.id = var4;
    }
 
@@ -58,6 +52,7 @@ public enum class132 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
@@ -67,6 +62,7 @@ public enum class132 implements class345 {
       descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
       garbageValue = "1018084003"
    )
+   @Export("RunException_sendStackTrace")
    public static void RunException_sendStackTrace(String var0, Throwable var1) {
       if (var1 != null) {
          var1.printStackTrace();
@@ -78,7 +74,7 @@ public enum class132 implements class345 {
                String var5;
                if (var1 instanceof RunException) {
                   RunException var6 = (RunException)var1;
-                  var5 = var6.message + " | ";
+                  var5 = var6.field4116 + " | ";
                   var4 = var6.throwable;
                } else {
                   var5 = "";
@@ -132,6 +128,7 @@ public enum class132 implements class345 {
                var2 = var2 + var0;
             }
 
+            System.out.println("Error: " + var2);
             var2 = var2.replace(':', '.');
             var2 = var2.replace('@', '_');
             var2 = var2.replace('&', '_');
@@ -140,7 +137,7 @@ public enum class132 implements class345 {
                return;
             }
 
-            URL var3 = new URL(class422.RunException_applet.getCodeBase(), "clienterror.ws?cv=" + RunException.RunException_revision + "&cs=" + RunException.field5065 + "&u=" + RunException.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + RunException.clientType + "&e=" + var2);
+            URL var3 = new URL(class422.RunException_applet.getCodeBase(), "clienterror.ws?cv=" + RunException.RunException_revision + "&cs=" + RunException.field4112 + "&u=" + RunException.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + RunException.clientType + "&e=" + var2);
             DataInputStream var17 = new DataInputStream(var3.openStream());
             var17.read();
             var17.close();

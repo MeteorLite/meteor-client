@@ -107,7 +107,7 @@ class ObjectHiderPlugin : Plugin() {
                                     )
                                 )
                             ) {
-                                scene.removeGameObject(z, x, y)
+                                scene.`removeGameObject$api`(z, x, y)
                             }
                         }
                     }

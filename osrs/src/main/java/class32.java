@@ -1,24 +1,21 @@
 import java.applet.Applet;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ar")
 public class class32 {
    @ObfuscatedName("h")
-   public static Applet field182 = null;
+   public static Applet field86 = null;
    @ObfuscatedName("e")
-   public static String field183 = "";
+   public static String field87 = "";
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1450599729
-   )
-   static int field191;
+   static int field89;
    @ObfuscatedName("ib")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
+   @Export("mapSceneSprites")
    static IndexedSprite[] mapSceneSprites;
 
    @ObfuscatedName("h")
@@ -26,7 +23,7 @@ public class class32 {
       descriptor = "(Ljava/lang/CharSequence;I)J",
       garbageValue = "567247801"
    )
-   public static long method461(CharSequence var0) {
+   public static long method128(CharSequence var0) {
       long var1 = 0L;
       int var3 = var0.length();
 
@@ -58,7 +55,7 @@ public class class32 {
       descriptor = "(II)V",
       garbageValue = "115056037"
    )
-   public static void method468(int var0) {
+   public static void method131(int var0) {
       if (class286.musicPlayerStatus != 0) {
          class467.musicTrackVolume = var0;
       } else {
@@ -72,7 +69,7 @@ public class class32 {
       descriptor = "(I)V",
       garbageValue = "-1648061781"
    )
-   static void method459() {
+   static void method127() {
       ItemContainer.itemContainers = new NodeHashTable(32);
    }
 
@@ -81,7 +78,7 @@ public class class32 {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-316408933"
    )
-   static int method466(int var0, Script var1, boolean var2) {
+   static int method130(int var0, Script var1, boolean var2) {
       boolean var3 = true;
       Widget var4;
       if (var0 >= 2000) {
@@ -136,15 +133,15 @@ public class class32 {
             return 1;
          } else {
             int var7;
-            byte[] var8;
+            byte[] var9;
             if (var0 != 1350) {
                byte var5;
                if (var0 == 1351) {
                   class87.Interpreter_intStackSize -= 2;
                   var5 = 10;
-                  var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize]};
-                  byte[] var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1]};
-                  class18.Widget_setKey(var4, var5, var8, var9);
+                  var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize]};
+                  byte[] var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1]};
+                  class18.Widget_setKey(var4, var5, var9, var10);
                   return 1;
                } else if (var0 == 1352) {
                   class87.Interpreter_intStackSize -= 3;
@@ -180,8 +177,8 @@ public class class32 {
                   return 2;
                }
             } else {
-               byte[] var10 = null;
-               var8 = null;
+               byte[] var8 = null;
+               var9 = null;
                if (var3) {
                   class87.Interpreter_intStackSize -= 10;
 
@@ -190,23 +187,23 @@ public class class32 {
                   }
 
                   if (var7 > 0) {
-                     var10 = new byte[var7 / 2];
                      var8 = new byte[var7 / 2];
+                     var9 = new byte[var7 / 2];
 
                      for(var7 -= 2; var7 >= 0; var7 -= 2) {
-                        var10[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + class87.Interpreter_intStackSize];
-                        var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + class87.Interpreter_intStackSize + 1];
+                        var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + class87.Interpreter_intStackSize];
+                        var9[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + class87.Interpreter_intStackSize + 1];
                      }
                   }
                } else {
                   class87.Interpreter_intStackSize -= 2;
-                  var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize]};
-                  var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1]};
+                  var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize]};
+                  var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1]};
                }
 
                var7 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] - 1;
                if (var7 >= 0 && var7 <= 9) {
-                  class18.Widget_setKey(var4, var7, var10, var8);
+                  class18.Widget_setKey(var4, var7, var8, var9);
                   return 1;
                } else {
                   throw new RuntimeException();
@@ -219,10 +216,11 @@ public class class32 {
    @ObfuscatedName("gr")
    @ObfuscatedSignature(
       descriptor = "(II)V",
-      garbageValue = "2002926472"
+      garbageValue = "2039942165"
    )
+   @Export("getLoginError")
    static void getLoginError(int var0) {
-      int var1 = GraphicsObject.method2024();
+      int var1 = GraphicsObject.method422();
       if (var0 == -3) {
          TaskHandler.setLoginResponseString("Connection timed out.", "Please try using a different world.", "");
       } else if (var0 == -2) {
@@ -230,12 +228,12 @@ public class class32 {
       } else if (var0 == -1) {
          TaskHandler.setLoginResponseString("No response from server.", "Please try using a different world.", "");
       } else if (var0 == 3) {
-         class12.method155(3);
-         Login.field928 = 1;
+         class12.method42(3);
+         Login.field736 = 1;
       } else if (var0 == 4) {
-         DevicePcmPlayerProvider.method320(0);
+         DevicePcmPlayerProvider.method84(0);
       } else if (var0 == 5) {
-         Login.field928 = 2;
+         Login.field736 = 2;
          TaskHandler.setLoginResponseString("Either your account is still logged in, or the last", "world you were using has become unavailable.", "Please try again later.");
       } else if (var0 != 68 && (Client.onMobile || var0 != 6)) {
          if (var0 == 7) {
@@ -259,7 +257,7 @@ public class class32 {
          } else if (var0 == 17) {
             TaskHandler.setLoginResponseString("To access this free world, log into a", "members world and move your character", "to a non-members area.");
          } else if (var0 == 18) {
-            DevicePcmPlayerProvider.method320(1);
+            DevicePcmPlayerProvider.method84(1);
          } else if (var0 == 19) {
             TaskHandler.setLoginResponseString("This world is running a closed Beta.", "Sorry invited players only.", "Please use a different world.");
          } else if (var0 == 20) {
@@ -279,13 +277,13 @@ public class class32 {
          } else if (var0 == 31) {
             TaskHandler.setLoginResponseString("Your account must have a displayname set", "in order to play the game.  Please set it", "via the website, or the main game.");
          } else if (var0 == 32) {
-            DevicePcmPlayerProvider.method320(2);
+            DevicePcmPlayerProvider.method84(2);
          } else if (var0 == 37) {
             TaskHandler.setLoginResponseString("Your account is currently inaccessible.", "Please try again in a few minutes.", "");
          } else if (var0 == 38) {
             TaskHandler.setLoginResponseString("You need to vote to play!", "Visit runescape.com and vote,", "and then come back here!");
          } else if (var0 == 55) {
-            class12.method155(8);
+            class12.method42(8);
          } else {
             if (var0 == 56) {
                TaskHandler.setLoginResponseString("Enter the 6-digit code generated by your", "authenticator app.", "");
@@ -301,40 +299,40 @@ public class class32 {
 
             if (var0 == 61) {
                TaskHandler.setLoginResponseString("", "Please enter your date of birth (DD/MM/YYYY)", "");
-               class12.method155(7);
+               class12.method42(7);
             } else {
                if (var0 == 62) {
                   class140.updateGameState(10);
-                  class12.method155(9);
+                  class12.method42(9);
                   TaskHandler.setLoginResponseString("Login attempt timed out.", "Please try again.", "");
                   return;
                }
 
                if (var0 == 63) {
                   class140.updateGameState(10);
-                  class12.method155(9);
+                  class12.method42(9);
                   TaskHandler.setLoginResponseString("You were signed out.", "Please sign in again.", "");
                   return;
                }
 
                if (var0 == 65 || var0 == 67) {
                   class140.updateGameState(10);
-                  class12.method155(9);
+                  class12.method42(9);
                   TaskHandler.setLoginResponseString("Failed to login.", "Please try again.", "");
                   return;
                }
 
                if (var0 == 71) {
                   class140.updateGameState(10);
-                  class12.method155(7);
+                  class12.method42(7);
                   TaskHandler.setLoginResponseString("There was a problem updating your DOB.", "Please try again later. If the problem ", "persists, please contact Jagex Support.");
                } else if (var0 == 73) {
                   class140.updateGameState(10);
-                  class12.method155(6);
+                  class12.method42(6);
                   TaskHandler.setLoginResponseString("Your date of birth information is waiting", "to be reviewed by our staff.", "It will be processed shortly.");
                } else if (var0 == 72) {
                   class140.updateGameState(10);
-                  class12.method155(26);
+                  class12.method42(26);
                } else {
                   TaskHandler.setLoginResponseString("Unexpected server response", "Please try using a different world.", "");
                }
@@ -345,9 +343,9 @@ public class class32 {
       }
 
       class140.updateGameState(10);
-      boolean var2 = var1 != GraphicsObject.method2024();
-      if (!var2 && Client.field640.method8841()) {
-         class12.method155(9);
+      boolean var2 = var1 != GraphicsObject.method422();
+      if (!var2 && Client.field485.method2423()) {
+         class12.method42(9);
       }
 
    }
@@ -357,6 +355,7 @@ public class class32 {
       descriptor = "(IIIII)V",
       garbageValue = "-941365461"
    )
+   @Export("selectSpell")
    static void selectSpell(int var0, int var1, int var2, int var3) {
       Widget var4 = AttackOption.getWidgetChild(var0, var1);
       if (var4 != null && var4.onTargetEnter != null) {

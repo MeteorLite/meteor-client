@@ -8,7 +8,8 @@ public class class379 {
    @ObfuscatedSignature(
       descriptor = "Lok;"
    )
-   static Bounds field4467;
+   static Bounds field3654;
    @ObfuscatedName("ie")
+   @Export("regionLandArchiveIds")
    static int[] regionLandArchiveIds;
 }

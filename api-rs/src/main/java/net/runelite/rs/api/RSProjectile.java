@@ -109,5 +109,5 @@ public interface RSProjectile extends RSRenderable, Projectile
 	double getVelocityZ();
 
 	@Import("setDestination")
-	void setDestination(int targetX, int targetY, int targetZ, int cycle);
+	void setDestination$api(int targetX, int targetY, int targetZ, int cycle);
 }

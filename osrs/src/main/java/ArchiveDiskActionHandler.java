@@ -1,30 +1,31 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @Deprecated
 @ObfuscatedName("lf")
+@Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
+   @Export("ArchiveDiskActionHandler_requestQueue")
    public static NodeDeque ArchiveDiskActionHandler_requestQueue = new NodeDeque();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
+   @Export("ArchiveDiskActionHandler_responseQueue")
    public static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1925260575
-   )
-   static int field4173 = 0;
+   static int field3432 = 0;
    @ObfuscatedName("x")
+   @Export("ArchiveDiskActionHandler_lock")
    static Object ArchiveDiskActionHandler_lock = new Object();
 
+   @Export("run")
    @ObfuscatedName("run")
    public void run() {
       try {
@@ -53,25 +54,25 @@ public class ArchiveDiskActionHandler implements Runnable {
 
                var14 = ArchiveDiskActionHandler_lock;
                synchronized(ArchiveDiskActionHandler_lock) {
-                  if (field4173 <= 1) {
-                     field4173 = 0;
+                  if (field3432 <= 1) {
+                     field3432 = 0;
                      ArchiveDiskActionHandler_lock.notifyAll();
                      return;
                   }
 
-                  field4173 = 600;
+                  field3432 = 600;
                }
             } else {
-               class12.method157(100L);
+               class12.method44(100L);
                var14 = ArchiveDiskActionHandler_lock;
                synchronized(ArchiveDiskActionHandler_lock) {
-                  if (field4173 <= 1) {
-                     field4173 = 0;
+                  if (field3432 <= 1) {
+                     field3432 = 0;
                      ArchiveDiskActionHandler_lock.notifyAll();
                      return;
                   }
 
-                  --field4173;
+                  --field3432;
                }
             }
          }

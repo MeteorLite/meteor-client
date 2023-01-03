@@ -38,7 +38,7 @@ public class ClearColorBuffer extends AbstractInjector
 		 */
 		final Execution exec = new Execution(inject.getVanilla());
 
-		final net.runelite.asm.pool.Method clearBuffer = inject.getVanilla().findClass("client").findMethod("clearColorBuffer").getPoolMethod();
+		final net.runelite.asm.pool.Method clearBuffer = inject.getVanilla().findClass("Client").findMethod("clearColorBuffer").getPoolMethod();
 		final net.runelite.asm.pool.Method fillRectPool = InjectUtil.findMethod(inject, "Rasterizer2D_fillRectangle", "Rasterizer2D", null).getPoolMethod();
 		final Method drawEntities = InjectUtil.findMethod(inject, "drawEntities"); // XXX: should prob be called drawViewport?
 

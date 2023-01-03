@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,12 +8,9 @@ public class class150 extends class136 {
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
-   static IndexedSprite field1756;
+   static IndexedSprite field1367;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1536120659
-   )
-   int field1755;
+   int field1366;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lem;"
@@ -26,7 +22,7 @@ public class class150 extends class136 {
    )
    class150(class139 var1) {
       this.this$0 = var1;
-      this.field1755 = -1;
+      this.field1366 = -1;
    }
 
    @ObfuscatedName("h")
@@ -34,8 +30,9 @@ public class class150 extends class136 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1101327225"
    )
+   @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
-      this.field1755 = var1.readUnsignedShort();
+      this.field1366 = var1.readUnsignedShort();
    }
 
    @ObfuscatedName("e")
@@ -43,8 +40,9 @@ public class class150 extends class136 {
       descriptor = "(Lep;I)V",
       garbageValue = "839088249"
    )
+   @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
-      var1.method3189(this.field1755);
+      var1.method795(this.field1366);
    }
 
    @ObfuscatedName("h")
@@ -52,7 +50,7 @@ public class class150 extends class136 {
       descriptor = "(IB)Z",
       garbageValue = "48"
    )
-   public static boolean method3261(int var0) {
-      return var0 == WorldMapDecorationType.field3749.id;
+   public static boolean method809(int var0) {
+      return var0 == WorldMapDecorationType.field3055.id;
    }
 }

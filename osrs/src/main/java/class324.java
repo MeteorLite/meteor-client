@@ -7,16 +7,16 @@ public class class324 {
    static {
       int var0 = 0;
       int var1 = 0;
-      class319[] var2 = WorldMapIcon_0.method5201();
+      class319[] var2 = WorldMapIcon_0.method1416();
 
       for(int var3 = 0; var3 < var2.length; ++var3) {
          class319 var4 = var2[var3];
-         if (var4.field3783 > var0) {
-            var0 = var4.field3783;
+         if (var4.field3061 > var0) {
+            var0 = var4.field3061;
          }
 
-         if (var4.field3784 > var1) {
-            var1 = var4.field3784;
+         if (var4.field3062 > var1) {
+            var1 = var4.field3062;
          }
       }
 
@@ -27,6 +27,7 @@ public class class324 {
       descriptor = "(IB)Lfq;",
       garbageValue = "-13"
    )
+   @Export("getInvDefinition")
    public static InvDefinition getInvDefinition(int var0) {
       InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
       if (var1 != null) {

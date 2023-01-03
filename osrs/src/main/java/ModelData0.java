@@ -7,19 +7,23 @@ import java.io.StreamCorruptedException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.Reflection;
 
 @ObfuscatedName("hk")
+@Implements("ModelData0")
 public class ModelData0 {
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lra;"
    )
+   @Export("titleboxSprite")
    static IndexedSprite titleboxSprite;
    @ObfuscatedName("s")
+   @Export("ByteArrayPool_altSizeArrayCounts")
    public static int[] ByteArrayPool_altSizeArrayCounts;
 
    @ObfuscatedName("h")
@@ -27,6 +31,7 @@ public class ModelData0 {
       descriptor = "(Lqx;B)V",
       garbageValue = "0"
    )
+   @Export("performReflectionCheck")
    public static void performReflectionCheck(PacketBuffer var0) {
       ReflectionCheck var1 = (ReflectionCheck)class37.reflectionChecks.last();
       if (var1 != null) {
@@ -126,6 +131,7 @@ public class ModelData0 {
       descriptor = "(IIIILjava/lang/String;I)V",
       garbageValue = "49295"
    )
+   @Export("widgetDefaultMenuAction")
    static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
       Widget var5 = AttackOption.getWidgetChild(var1, var2);
       if (var5 != null) {
@@ -140,14 +146,14 @@ public class ModelData0 {
 
          boolean var8 = true;
          if (var5.contentType > 0) {
-            var8 = NPC.method2583(var5);
+            var8 = NPC.method592(var5);
          }
 
          if (var8) {
-            if (class251.method5275(Clock.getWidgetFlags(var5), var0 - 1)) {
+            if (class251.method1447(Clock.getWidgetFlags(var5), var0 - 1)) {
                PacketBufferNode var7;
                if (var0 == 1) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3060, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2444, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -155,7 +161,7 @@ public class ModelData0 {
                }
 
                if (var0 == 2) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3144, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2528, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -163,7 +169,7 @@ public class ModelData0 {
                }
 
                if (var0 == 3) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3070, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2454, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -171,7 +177,7 @@ public class ModelData0 {
                }
 
                if (var0 == 4) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3128, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2512, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -179,7 +185,7 @@ public class ModelData0 {
                }
 
                if (var0 == 5) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3072, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2456, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -187,7 +193,7 @@ public class ModelData0 {
                }
 
                if (var0 == 6) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3098, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2482, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -195,7 +201,7 @@ public class ModelData0 {
                }
 
                if (var0 == 7) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3079, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2463, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -203,7 +209,7 @@ public class ModelData0 {
                }
 
                if (var0 == 8) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3074, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2458, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -211,7 +217,7 @@ public class ModelData0 {
                }
 
                if (var0 == 9) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3076, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2460, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);
@@ -219,7 +225,7 @@ public class ModelData0 {
                }
 
                if (var0 == 10) {
-                  var7 = class136.getPacketBufferNode(ClientPacket.field3081, Client.packetWriter.isaacCipher);
+                  var7 = class136.getPacketBufferNode(ClientPacket.field2465, Client.packetWriter.isaacCipher);
                   var7.packetBuffer.writeInt(var1);
                   var7.packetBuffer.writeShort(var2);
                   var7.packetBuffer.writeShort(var3);

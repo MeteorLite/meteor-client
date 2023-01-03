@@ -5,23 +5,20 @@ import java.io.RandomAccessFile;
 import java.io.SyncFailedException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qq")
+@Implements("AccessFile")
 public final class AccessFile {
    @ObfuscatedName("h")
+   @Export("file")
    RandomAccessFile file;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      longValue = 7743048531476061067L
-   )
+   @Export("maxSize")
    final long maxSize;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      longValue = 6501473835846586069L
-   )
+   @Export("offset")
    long offset;
 
    public AccessFile(File var1, String var2, long var3) throws IOException {
@@ -46,6 +43,7 @@ public final class AccessFile {
    }
 
    @ObfuscatedName("h")
+   @Export("seek")
    final void seek(long var1) throws IOException {
       this.file.seek(var1);
       this.offset = var1;
@@ -56,6 +54,7 @@ public final class AccessFile {
       descriptor = "([BIII)V",
       garbageValue = "-1805233665"
    )
+   @Export("write")
    public final void write(byte[] var1, int var2, int var3) throws IOException {
       if ((long)var3 + this.offset > this.maxSize) {
          this.file.seek(this.maxSize);
@@ -72,6 +71,7 @@ public final class AccessFile {
       descriptor = "(I)V",
       garbageValue = "1956576895"
    )
+   @Export("close")
    public final void close() throws IOException {
       this.closeSync(false);
    }
@@ -81,6 +81,7 @@ public final class AccessFile {
       descriptor = "(ZB)V",
       garbageValue = "-81"
    )
+   @Export("closeSync")
    public final void closeSync(boolean var1) throws IOException {
       if (this.file != null) {
          if (var1) {
@@ -102,6 +103,7 @@ public final class AccessFile {
       descriptor = "(I)J",
       garbageValue = "-2132615122"
    )
+   @Export("length")
    public final long length() throws IOException {
       return this.file.length();
    }
@@ -111,6 +113,7 @@ public final class AccessFile {
       descriptor = "([BIII)I",
       garbageValue = "1181782400"
    )
+   @Export("read")
    public final int read(byte[] var1, int var2, int var3) throws IOException {
       int var4 = this.file.read(var1, var2, var3);
       if (var4 > 0) {
@@ -120,9 +123,11 @@ public final class AccessFile {
       return var4;
    }
 
+   @Export("finalize")
    @ObfuscatedName("finalize")
    protected void finalize() throws Throwable {
       if (this.file != null) {
+         System.out.println("");
          this.close();
       }
 
@@ -133,7 +138,7 @@ public final class AccessFile {
       descriptor = "(II)I",
       garbageValue = "309145420"
    )
-   public static int method8302(int var0) {
+   public static int method2278(int var0) {
       --var0;
       var0 |= var0 >>> 1;
       var0 |= var0 >>> 2;

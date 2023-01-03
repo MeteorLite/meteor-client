@@ -123,7 +123,7 @@ object ChatboxItemSearch : ChatboxTextInput() {
             item.itemQuantity = 10000
             item.itemQuantityMode = ItemQuantityMode.NEVER
             item.borderType = 1
-            item.setAction(0, tooltipText)
+            item.`setAction$api`(0, tooltipText)
             item.setHasListener(true)
             if (index == idx) {
                 item.opacity = HOVERED_OPACITY

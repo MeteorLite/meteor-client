@@ -8,7 +8,7 @@ public class class318 {
    }
 
    @ObfuscatedName("h")
-   public static double method6372(double var0, double var2, double var4) {
+   public static double method1769(double var0, double var2, double var4) {
       double var8 = (var0 - var2) / var4;
       double var6 = Math.exp(-var8 * var8 / 2.0D) / Math.sqrt(6.283185307179586D);
       return var6 / var4;
@@ -19,7 +19,7 @@ public class class318 {
       descriptor = "(Ljava/lang/CharSequence;IZB)I",
       garbageValue = "30"
    )
-   static int method6373(CharSequence var0, int var1, boolean var2) {
+   static int method1770(CharSequence var0, int var1, boolean var2) {
       if (var1 >= 2 && var1 <= 36) {
          boolean var3 = false;
          boolean var4 = false;

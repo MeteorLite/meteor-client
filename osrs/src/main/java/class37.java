@@ -8,6 +8,7 @@ public class class37 {
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
+   @Export("reflectionChecks")
    public static IterableNodeDeque reflectionChecks = new IterableNodeDeque();
 
    @ObfuscatedName("r")
@@ -15,7 +16,7 @@ public class class37 {
       descriptor = "(I)Z",
       garbageValue = "-885227918"
    )
-   public static boolean method701() {
+   public static boolean method184() {
       try {
          if (class286.musicPlayerStatus == 2) {
             if (class286.musicTrack == null) {
@@ -57,6 +58,7 @@ public class class37 {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZI)V",
       garbageValue = "-2077316645"
    )
+   @Export("insertMenuItem")
    static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
       if (!Client.isMenuOpen) {
          if (Client.menuOptionsCount < 500) {
@@ -77,9 +79,9 @@ public class class37 {
    @ObfuscatedName("ny")
    @ObfuscatedSignature(
       descriptor = "(IS)V",
-      garbageValue = "1537"
+      garbageValue = "14293"
    )
-   static void method709(int var0) {
+   static void method186(int var0) {
       if (var0 != Client.loginState) {
          Client.loginState = var0;
       }

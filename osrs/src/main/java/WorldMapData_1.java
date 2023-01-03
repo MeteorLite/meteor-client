@@ -1,28 +1,22 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ij")
+@Implements("WorldMapData_1")
 public class WorldMapData_1 extends AbstractWorldMapData {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 673523519
-   )
+   @Export("chunkXLow")
    int chunkXLow;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1046620565
-   )
+   @Export("chunkYLow")
    int chunkYLow;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1891808843
-   )
+   @Export("chunkX")
    int chunkX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1231900861
-   )
+   @Export("chunkY")
    int chunkY;
 
    @ObfuscatedName("h")
@@ -30,23 +24,24 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(Lqy;B)V",
       garbageValue = "16"
    )
+   @Export("init")
    void init(Buffer var1) {
       int var2 = var1.readUnsignedByte();
-      if (var2 != WorldMapID.field2983.value) {
+      if (var2 != WorldMapID.field2384.value) {
          throw new IllegalStateException("");
       } else {
          super.minPlane = var1.readUnsignedByte();
          super.planes = var1.readUnsignedByte();
-         super.regionXLow = var1.readUnsignedShort() * 4096;
-         super.regionYLow = var1.readUnsignedShort() * 4096;
+         super.regionXLow = var1.readUnsignedShort();
+         super.regionYLow = var1.readUnsignedShort();
          this.chunkXLow = var1.readUnsignedByte();
          this.chunkYLow = var1.readUnsignedByte();
          super.regionX = var1.readUnsignedShort();
          super.regionY = var1.readUnsignedShort();
          this.chunkX = var1.readUnsignedByte();
          this.chunkY = var1.readUnsignedByte();
-         super.groupId = var1.method8568();
-         super.fileId = var1.method8568();
+         super.groupId = var1.method2362();
+         super.fileId = var1.method2362();
       }
    }
 
@@ -55,15 +50,16 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(Lqy;I)V",
       garbageValue = "1703912011"
    )
+   @Export("readGeography")
    void readGeography(Buffer var1) {
       super.planes = Math.min(super.planes, 4);
       super.floorUnderlayIds = new short[1][64][64];
       super.floorOverlayIds = new short[super.planes][64][64];
-      super.field2950 = new byte[super.planes][64][64];
-      super.field2951 = new byte[super.planes][64][64];
+      super.field2359 = new byte[super.planes][64][64];
+      super.field2360 = new byte[super.planes][64][64];
       super.decorations = new WorldMapDecoration[super.planes][64][64][];
       int var2 = var1.readUnsignedByte();
-      if (var2 != class251.field2977.value) {
+      if (var2 != class251.field2380.value) {
          throw new IllegalStateException("");
       } else {
          int var3 = var1.readUnsignedByte();
@@ -88,6 +84,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "-1726020547"
    )
+   @Export("getChunkXLow")
    int getChunkXLow() {
       return this.chunkXLow;
    }
@@ -97,6 +94,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "660980173"
    )
+   @Export("getChunkYLow")
    int getChunkYLow() {
       return this.chunkYLow;
    }
@@ -106,6 +104,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "-1808236663"
    )
+   @Export("getChunkX")
    int getChunkX() {
       return this.chunkX;
    }
@@ -115,10 +114,12 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(I)I",
       garbageValue = "-1429277578"
    )
+   @Export("getChunkY")
    int getChunkY() {
       return this.chunkY;
    }
 
+   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       if (!(var1 instanceof WorldMapData_1)) {
@@ -142,7 +143,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
       descriptor = "(ILbm;ZB)I",
       garbageValue = "-55"
    )
-   static int method5162(int var0, Script var1, boolean var2) {
+   static int method1402(int var0, Script var1, boolean var2) {
       int var3 = -1;
       Widget var4;
       if (var0 >= 2000) {

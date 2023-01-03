@@ -88,11 +88,6 @@ public class InjectSetter
 			ins.add(checkCast);
 		}
 
-		if (getter != null)
-		{
-			InjectUtil.injectObfuscatedSetter(getter, instructions, ins::add);
-		}
-
 		if (field.isStatic())
 		{
 			ins.add(new PutStatic(instructions, field));

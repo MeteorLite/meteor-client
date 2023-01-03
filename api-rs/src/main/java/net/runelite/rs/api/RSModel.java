@@ -30,7 +30,6 @@ import java.util.HashMap;
 import net.runelite.api.AABB;
 import net.runelite.api.Model;
 import net.runelite.mapping.Import;
-import org.jetbrains.annotations.NotNull;
 
 public interface RSModel extends RSRenderable, Model
 {
@@ -98,14 +97,14 @@ public interface RSModel extends RSRenderable, Model
 
 	@Import("calculateBoundsCylinder")
 	@Override
-	void calculateBoundsCylinder();
+	void calculateBoundsCylinder$api();
 
 	@Import("calculateBoundingBox")
 	@Override
 	void calculateExtreme(int orientation);
 
 	@Import("resetBounds")
-	void resetBounds();
+	void resetBounds$api();
 
 	@Import("toSharedSequenceModel")
 	RSModel toSharedModel(boolean b);
@@ -150,7 +149,7 @@ public interface RSModel extends RSRenderable, Model
 	
 	@Import("drawFace")
 	@Override
-	void drawFace(int face);
+	void drawFace$api(int face);
 
 	void interpolateFrames(RSFrames frames, int frameId, RSFrames nextFrames, int nextFrameId, int interval, int intervalCount);
 

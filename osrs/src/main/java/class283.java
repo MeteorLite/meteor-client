@@ -8,5 +8,6 @@ public class class283 {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
+   @Export("FloorUnderlayDefinition_archive")
    static AbstractArchive FloorUnderlayDefinition_archive;
 }

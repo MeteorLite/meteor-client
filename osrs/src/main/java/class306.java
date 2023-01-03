@@ -1,6 +1,6 @@
 import java.io.File;
 import java.io.RandomAccessFile;
-
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -10,6 +10,7 @@ public class class306 {
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
+   @Export("ItemDefinition_modelArchive")
    static AbstractArchive ItemDefinition_modelArchive;
 
    @ObfuscatedName("e")
@@ -17,6 +18,7 @@ public class class306 {
       descriptor = "(Ljava/lang/String;I)Ljava/io/File;",
       garbageValue = "-1827228593"
    )
+   @Export("getFile")
    public static File getFile(String var0) {
       if (!FileSystem.FileSystem_hasPermissions) {
          throw new RuntimeException("");
@@ -63,7 +65,7 @@ public class class306 {
       descriptor = "(Lkd;I)Lkd;",
       garbageValue = "61354082"
    )
-   static Widget method6317(Widget var0) {
+   static Widget method1753(Widget var0) {
       Widget var2 = var0;
       int var4 = Clock.getWidgetFlags(var0);
       int var3 = var4 >> 17 & 7;

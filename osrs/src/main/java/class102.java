@@ -1,18 +1,16 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ck")
 final class class102 implements class297 {
    @ObfuscatedName("tk")
-   @ObfuscatedGetter(
-      intValue = 1621599055
-   )
-   static int field1367;
+   static int field1084;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
+   @Export("val$cc")
    @ObfuscatedName("val$cc")
    final Widget val$cc;
 
@@ -28,12 +26,13 @@ final class class102 implements class297 {
       descriptor = "(I)V",
       garbageValue = "-1798262930"
    )
+   @Export("vmethod5708")
    public void vmethod5708() {
-      if (this.val$cc != null && this.val$cc.method6185().field3469 != null) {
+      if (this.val$cc != null && this.val$cc.method1735().field2813 != null) {
          ScriptEvent var1 = new ScriptEvent();
-         var1.method2255(this.val$cc);
-         var1.setArgs(this.val$cc.method6185().field3469);
-         AABB.method4611().addFirst(var1);
+         var1.method475(this.val$cc);
+         var1.setArgs(this.val$cc.method1735().field2813);
+         AABB.method1232().addFirst(var1);
       }
 
    }
@@ -43,12 +42,12 @@ final class class102 implements class297 {
       descriptor = "(Ldu;FB)F",
       garbageValue = "89"
    )
-   static float method2625(class125 var0, float var1) {
+   static float method610(class125 var0, float var1) {
       if (var0 == null) {
          return 0.0F;
       } else {
-         float var2 = var1 - var0.field1543;
-         return (var0.field1537 + var2 * (var0.field1545 * var2 + var0.field1559)) * var2 + var0.field1548;
+         float var2 = var1 - var0.field1207;
+         return (var0.field1201 + var2 * (var0.field1209 * var2 + var0.field1223)) * var2 + var0.field1212;
       }
    }
 }

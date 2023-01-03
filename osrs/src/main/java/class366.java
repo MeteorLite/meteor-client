@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -15,27 +14,21 @@ public class class366 extends AbstractQueue {
    @ObfuscatedSignature(
       descriptor = "[Lnb;"
    )
-   class364[] field4373;
+   class364[] field3586;
    @ObfuscatedName("e")
-   Map field4368;
+   Map field3582;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1410749845
-   )
-   int field4369;
+   int field3583;
    @ObfuscatedName("x")
-   final Comparator field4371;
+   final Comparator field3584;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1565326987
-   )
-   int field4372;
+   int field3585;
 
    public class366(int var1, Comparator var2) {
-      this.field4372 = 0;
-      this.field4373 = new class364[var1];
-      this.field4368 = new HashMap();
-      this.field4371 = var2;
+      this.field3585 = 0;
+      this.field3586 = new class364[var1];
+      this.field3582 = new HashMap();
+      this.field3584 = var2;
    }
 
    public class366(int var1) {
@@ -47,9 +40,9 @@ public class class366 extends AbstractQueue {
       descriptor = "(I)V",
       garbageValue = "-417662224"
    )
-   void method7014() {
-      int var1 = (this.field4373.length << 1) + 1;
-      this.field4373 = (class364[])((class364[])Arrays.copyOf(this.field4373, var1));
+   void method1915() {
+      int var1 = (this.field3586.length << 1) + 1;
+      this.field3586 = (class364[])((class364[])Arrays.copyOf(this.field3586, var1));
    }
 
    @ObfuscatedName("e")
@@ -57,26 +50,26 @@ public class class366 extends AbstractQueue {
       descriptor = "(IB)V",
       garbageValue = "-77"
    )
-   void method7006(int var1) {
+   void method1913(int var1) {
       class364 var2;
       int var3;
-      for(var2 = this.field4373[var1]; var1 > 0; var1 = var3) {
+      for(var2 = this.field3586[var1]; var1 > 0; var1 = var3) {
          var3 = var1 - 1 >>> 1;
-         class364 var4 = this.field4373[var3];
-         if (this.field4371 != null) {
-            if (this.field4371.compare(var2.field4362, var4.field4362) >= 0) {
+         class364 var4 = this.field3586[var3];
+         if (this.field3584 != null) {
+            if (this.field3584.compare(var2.field3576, var4.field3576) >= 0) {
                break;
             }
-         } else if (((Comparable)var2.field4362).compareTo(var4.field4362) >= 0) {
+         } else if (((Comparable)var2.field3576).compareTo(var4.field3576) >= 0) {
             break;
          }
 
-         this.field4373[var1] = var4;
-         this.field4373[var1].field4363 = var1;
+         this.field3586[var1] = var4;
+         this.field3586[var1].field3577 = var1;
       }
 
-      this.field4373[var1] = var2;
-      this.field4373[var1].field4363 = var1;
+      this.field3586[var1] = var2;
+      this.field3586[var1].field3577 = var1;
    }
 
    @ObfuscatedName("v")
@@ -84,62 +77,63 @@ public class class366 extends AbstractQueue {
       descriptor = "(IB)V",
       garbageValue = "0"
    )
-   void method7007(int var1) {
-      class364 var2 = this.field4373[var1];
+   void method1914(int var1) {
+      class364 var2 = this.field3586[var1];
 
       int var8;
-      for(int var3 = this.field4369 >>> 1; var1 < var3; var1 = var8) {
+      for(int var3 = this.field3583 >>> 1; var1 < var3; var1 = var8) {
          int var4 = (var1 << 1) + 1;
-         class364 var5 = this.field4373[var4];
+         class364 var5 = this.field3586[var4];
          int var6 = (var1 << 1) + 2;
-         class364 var7 = this.field4373[var6];
-         if (this.field4371 != null) {
-            if (var6 < this.field4369 && this.field4371.compare(var5.field4362, var7.field4362) > 0) {
+         class364 var7 = this.field3586[var6];
+         if (this.field3584 != null) {
+            if (var6 < this.field3583 && this.field3584.compare(var5.field3576, var7.field3576) > 0) {
                var8 = var6;
             } else {
                var8 = var4;
             }
-         } else if (var6 < this.field4369 && ((Comparable)var5.field4362).compareTo(var7.field4362) > 0) {
+         } else if (var6 < this.field3583 && ((Comparable)var5.field3576).compareTo(var7.field3576) > 0) {
             var8 = var6;
          } else {
             var8 = var4;
          }
 
-         if (this.field4371 != null) {
-            if (this.field4371.compare(var2.field4362, this.field4373[var8].field4362) <= 0) {
+         if (this.field3584 != null) {
+            if (this.field3584.compare(var2.field3576, this.field3586[var8].field3576) <= 0) {
                break;
             }
-         } else if (((Comparable)var2.field4362).compareTo(this.field4373[var8].field4362) <= 0) {
+         } else if (((Comparable)var2.field3576).compareTo(this.field3586[var8].field3576) <= 0) {
             break;
          }
 
-         this.field4373[var1] = this.field4373[var8];
-         this.field4373[var1].field4363 = var1;
+         this.field3586[var1] = this.field3586[var8];
+         this.field3586[var1].field3577 = var1;
       }
 
-      this.field4373[var1] = var2;
-      this.field4373[var1].field4363 = var1;
+      this.field3586[var1] = var2;
+      this.field3586[var1].field3577 = var1;
    }
 
+   @Export("remove")
    @ObfuscatedName("remove")
    public boolean remove(Object var1) {
-      class364 var2 = (class364)this.field4368.remove(var1);
+      class364 var2 = (class364)this.field3582.remove(var1);
       if (var2 == null) {
          return false;
       } else {
-         ++this.field4372;
-         --this.field4369;
-         if (this.field4369 == var2.field4363) {
-            this.field4373[this.field4369] = null;
+         ++this.field3585;
+         --this.field3583;
+         if (this.field3583 == var2.field3577) {
+            this.field3586[this.field3583] = null;
             return true;
          } else {
-            class364 var3 = this.field4373[this.field4369];
-            this.field4373[this.field4369] = null;
-            this.field4373[var2.field4363] = var3;
-            this.field4373[var2.field4363].field4363 = var2.field4363;
-            this.method7007(var2.field4363);
-            if (var3 == this.field4373[var2.field4363]) {
-               this.method7006(var2.field4363);
+            class364 var3 = this.field3586[this.field3583];
+            this.field3586[this.field3583] = null;
+            this.field3586[var2.field3577] = var3;
+            this.field3586[var2.field3577].field3577 = var2.field3577;
+            this.method1914(var2.field3577);
+            if (var3 == this.field3586[var2.field3577]) {
+               this.method1913(var2.field3577);
             }
 
             return true;
@@ -147,48 +141,53 @@ public class class366 extends AbstractQueue {
       }
    }
 
+   @Export("peek")
    @ObfuscatedName("peek")
    public Object peek() {
-      return this.field4369 == 0 ? null : this.field4373[0].field4362;
+      return this.field3583 == 0 ? null : this.field3586[0].field3576;
    }
 
+   @Export("size")
    @ObfuscatedName("size")
    public int size() {
-      return this.field4369;
+      return this.field3583;
    }
 
+   @Export("poll")
    @ObfuscatedName("poll")
    public Object poll() {
-      if (this.field4369 == 0) {
+      if (this.field3583 == 0) {
          return null;
       } else {
-         ++this.field4372;
-         Object var1 = this.field4373[0].field4362;
-         this.field4368.remove(var1);
-         --this.field4369;
-         if (this.field4369 == 0) {
-            this.field4373[this.field4369] = null;
+         ++this.field3585;
+         Object var1 = this.field3586[0].field3576;
+         this.field3582.remove(var1);
+         --this.field3583;
+         if (this.field3583 == 0) {
+            this.field3586[this.field3583] = null;
          } else {
-            this.field4373[0] = this.field4373[this.field4369];
-            this.field4373[0].field4363 = 0;
-            this.field4373[this.field4369] = null;
-            this.method7007(0);
+            this.field3586[0] = this.field3586[this.field3583];
+            this.field3586[0].field3577 = 0;
+            this.field3586[this.field3583] = null;
+            this.method1914(0);
          }
 
          return var1;
       }
    }
 
+   @Export("contains")
    @ObfuscatedName("contains")
    public boolean contains(Object var1) {
-      return this.field4368.containsKey(var1);
+      return this.field3582.containsKey(var1);
    }
 
+   @Export("toArray")
    @ObfuscatedName("toArray")
    public Object[] toArray() {
       Object[] var1 = super.toArray();
-      if (this.field4371 != null) {
-         Arrays.sort(var1, this.field4371);
+      if (this.field3584 != null) {
+         Arrays.sort(var1, this.field3584);
       } else {
          Arrays.sort(var1);
       }
@@ -196,30 +195,32 @@ public class class366 extends AbstractQueue {
       return var1;
    }
 
+   @Export("iterator")
    @ObfuscatedName("iterator")
    public Iterator iterator() {
       return new class365(this);
    }
 
+   @Export("offer")
    @ObfuscatedName("offer")
    public boolean offer(Object var1) {
-      if (this.field4368.containsKey(var1)) {
+      if (this.field3582.containsKey(var1)) {
          throw new IllegalArgumentException("");
       } else {
-         ++this.field4372;
-         int var2 = this.field4369;
-         if (var2 >= this.field4373.length) {
-            this.method7014();
+         ++this.field3585;
+         int var2 = this.field3583;
+         if (var2 >= this.field3586.length) {
+            this.method1915();
          }
 
-         ++this.field4369;
+         ++this.field3583;
          if (var2 == 0) {
-            this.field4373[0] = new class364(var1, 0);
-            this.field4368.put(var1, this.field4373[0]);
+            this.field3586[0] = new class364(var1, 0);
+            this.field3582.put(var1, this.field3586[0]);
          } else {
-            this.field4373[var2] = new class364(var1, var2);
-            this.field4368.put(var1, this.field4373[var2]);
-            this.method7006(var2);
+            this.field3586[var2] = new class364(var1, var2);
+            this.field3582.put(var1, this.field3586[var2]);
+            this.method1913(var2);
          }
 
          return true;

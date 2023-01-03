@@ -1,6 +1,5 @@
 import java.util.concurrent.Callable;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -10,17 +9,15 @@ public class class1 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Ldm;"
    )
+   @Export("World_request")
    static UrlRequest World_request;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 735259681
-   )
    static int field2;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lqy;"
    )
-   final Buffer field5;
+   final Buffer field3;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lx;"
@@ -30,6 +27,7 @@ public class class1 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Lr;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
    final class7 this$0;
 
@@ -38,13 +36,14 @@ public class class1 implements Callable {
    )
    class1(class7 var1, Buffer var2, class3 var3) {
       this.this$0 = var1;
-      this.field5 = var2;
+      this.field3 = var2;
       this.field1 = var3;
    }
 
+   @Export("call")
    @ObfuscatedName("call")
    public Object call() {
-      return this.field1.vmethod12(this.field5);
+      return this.field1.vmethod12(this.field3);
    }
 
    @ObfuscatedName("u")
@@ -52,7 +51,7 @@ public class class1 implements Callable {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "-2058763970"
    )
-   static final void method10(String var0) {
+   static final void method3(String var0) {
       StringBuilder var10000 = (new StringBuilder()).append(var0);
       Object var10001 = null;
       String var1 = var10000.append(" is already on your friend list").toString();
@@ -64,8 +63,9 @@ public class class1 implements Callable {
       descriptor = "(IIII)V",
       garbageValue = "1539382446"
    )
+   @Export("queueSoundEffect")
    static void queueSoundEffect(int var0, int var1, int var2) {
-      if (StructComposition.clientPreferences.method2426() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
+      if (StructComposition.clientPreferences.method544() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
          Client.soundEffectIds[Client.soundEffectCount] = var0;
          Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;
          Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;
@@ -81,9 +81,9 @@ public class class1 implements Callable {
       descriptor = "(Lqx;B)V",
       garbageValue = "0"
    )
-   static final void method7(PacketBuffer var0) {
-      for(int var1 = 0; var1 < Client.field564; ++var1) {
-         int var2 = Client.field565[var1];
+   static final void method2(PacketBuffer var0) {
+      for(int var1 = 0; var1 < Client.field409; ++var1) {
+         int var2 = Client.field410[var1];
          NPC var3 = Client.npcs[var2];
          int var4 = var0.readUnsignedByte();
          int var5;
@@ -98,37 +98,37 @@ public class class1 implements Callable {
          }
 
          if ((var4 & 131072) != 0) {
-            var5 = var0.method8760();
-            var3.turnLeftSequence = (var5 & 1) != 0 ? var0.method8592() : var3.definition.turnLeftSequence;
-            var3.turnRightSequence = (var5 & 2) != 0 ? var0.readUnsignedShort() : var3.definition.turnRightSequence;
-            var3.walkSequence = (var5 & 4) != 0 ? var0.readUnsignedShort() : var3.definition.walkSequence;
-            var3.walkBackSequence = (var5 & 8) != 0 ? var0.readUnsignedShort() : var3.definition.walkBackSequence;
-            var3.walkLeftSequence = (var5 & 16) != 0 ? var0.readUnsignedShort() : var3.definition.walkLeftSequence;
-            var3.walkRightSequence = (var5 & 32) != 0 ? var0.method8530() : var3.definition.walkRightSequence;
-            var3.runSequence = (var5 & 64) != 0 ? var0.method8591() : var3.definition.field2035;
-            var3.field1191 = (var5 & 128) != 0 ? var0.method8530() : var3.definition.field2038;
-            var3.field1201 = (var5 & 256) != 0 ? var0.method8530() : var3.definition.field2039;
-            var3.field1193 = (var5 & 512) != 0 ? var0.method8592() : var3.definition.field2040;
-            var3.field1194 = (var5 & 1024) != 0 ? var0.method8591() : var3.definition.field2041;
-            var3.field1195 = (var5 & 2048) != 0 ? var0.method8530() : var3.definition.field2042;
-            var3.field1226 = (var5 & 4096) != 0 ? var0.method8530() : var3.definition.field2043;
-            var3.field1197 = (var5 & 8192) != 0 ? var0.method8591() : var3.definition.field2044;
-            var3.idleSequence = (var5 & 16384) != 0 ? var0.method8530() : var3.definition.idleSequence;
+            var5 = var0.method2405();
+            var3.turnLeftSequence = (var5 & 1) != 0 ? var0.method2377() : var3.definition.turnLeftSequence * 274326889 * 2133129945;
+            var3.turnRightSequence = (var5 & 2) != 0 ? var0.readUnsignedShort() : var3.definition.turnRightSequence * -634834111 * -398107455;
+            var3.walkSequence = (var5 & 4) != 0 ? var0.readUnsignedShort() : var3.definition.walkSequence * 1055098755 * 1587887915;
+            var3.walkBackSequence = (var5 & 8) != 0 ? var0.readUnsignedShort() : var3.definition.walkBackSequence * 1430199505 * -501040079;
+            var3.walkLeftSequence = (var5 & 16) != 0 ? var0.readUnsignedShort() : var3.definition.walkLeftSequence * 1601988001 * 141606497;
+            var3.walkRightSequence = (var5 & 32) != 0 ? var0.method2333() : var3.definition.walkRightSequence * 1871825673 * 253702969;
+            var3.runSequence = (var5 & 64) != 0 ? var0.method2376() : var3.definition.field1563 * 154044717 * -2080788827;
+            var3.field943 = (var5 & 128) != 0 ? var0.method2333() : var3.definition.field1566 * 1788894577 * 752796561;
+            var3.field953 = (var5 & 256) != 0 ? var0.method2333() : var3.definition.field1567 * 1054411661 * 1998925637;
+            var3.field945 = (var5 & 512) != 0 ? var0.method2377() : var3.definition.field1568 * -500654361 * 875795671;
+            var3.field946 = (var5 & 1024) != 0 ? var0.method2376() : var3.definition.field1569 * 903143861 * -1829256035;
+            var3.field947 = (var5 & 2048) != 0 ? var0.method2333() : var3.definition.field1570 * -630313423 * 1152150225;
+            var3.field978 = (var5 & 4096) != 0 ? var0.method2333() : var3.definition.field1571 * -1129939695 * -63171599;
+            var3.field949 = (var5 & 8192) != 0 ? var0.method2376() : var3.definition.field1572 * -2023873033 * -1710216249;
+            var3.idleSequence = (var5 & 16384) != 0 ? var0.method2333() : var3.definition.idleSequence * -499537861 * -171249421;
          }
 
          if ((var4 & 4) != 0) {
-            var3.definition = class129.getNpcDefinition(var0.method8530());
-            GameObject.method4832(var3);
-            var3.method2541();
+            var3.definition = class129.getNpcDefinition(var0.method2333());
+            GameObject.method1299(var3);
+            var3.method581();
          }
 
          if ((var4 & 1024) != 0) {
-            var3.recolourStartCycle = Client.cycle + var0.method8592();
-            var3.recolourEndCycle = Client.cycle + var0.method8592();
-            var3.recolourHue = var0.method8718();
+            var3.recolourStartCycle = Client.cycle + var0.method2377();
+            var3.recolourEndCycle = Client.cycle + var0.method2377();
+            var3.recolourHue = var0.method2401();
             var3.recolourSaturation = var0.readByte();
-            var3.recolourLuminance = var0.method8718();
-            var3.recolourAmount = (byte)var0.method8581();
+            var3.recolourLuminance = var0.method2401();
+            var3.recolourAmount = (byte)var0.method2371();
          }
 
          int[] var6;
@@ -140,17 +140,17 @@ public class class1 implements Callable {
          short[] var14;
          long var15;
          if ((var4 & 512) != 0) {
-            var5 = var0.method8581();
+            var5 = var0.method2371();
             if ((var5 & 1) == 1) {
-               var3.method2567();
+               var3.method587();
             } else {
                var6 = null;
                if ((var5 & 2) == 2) {
-                  var7 = var0.method8699();
+                  var7 = var0.method2394();
                   var6 = new int[var7];
 
                   for(var8 = 0; var8 < var7; ++var8) {
-                     var9 = var0.method8530();
+                     var9 = var0.method2333();
                      var9 = var9 == 65535 ? -1 : var9;
                      var6[var8] = var9;
                   }
@@ -166,7 +166,7 @@ public class class1 implements Callable {
                   var13 = new short[var8];
 
                   for(var9 = 0; var9 < var8; ++var9) {
-                     var13[var9] = (short)var0.method8592();
+                     var13[var9] = (short)var0.method2377();
                   }
                }
 
@@ -180,29 +180,29 @@ public class class1 implements Callable {
                   var14 = new short[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var14[var10] = (short)var0.method8530();
+                     var14[var10] = (short)var0.method2333();
                   }
                }
 
-               var15 = (long)(++NPC.field1315 - 1);
-               var3.method2544(new NewShit(var15, var6, var13, var14));
+               var15 = (long)(++NPC.field1051 - 1);
+               var3.method584(new NewShit(var15, var6, var13, var14));
             }
          }
 
          if ((var4 & 8192) != 0) {
-            var3.combatLevelChange = var0.method8585();
+            var3.combatLevelChange = var0.method2373();
          }
 
          int var17;
          if ((var4 & 32) != 0) {
-            var5 = var0.method8591();
+            var5 = var0.method2376();
             if (var5 == 65535) {
                var5 = -1;
             }
 
             var17 = var0.readUnsignedByte();
             if (var5 == var3.sequence && var5 != -1) {
-               var7 = AABB.SequenceDefinition_get(var5).field2276;
+               var7 = AABB.SequenceDefinition_get(var5).field1786;
                if (var7 == 1) {
                   var3.sequenceFrame = 0;
                   var3.sequenceFrameCycle = 0;
@@ -213,18 +213,18 @@ public class class1 implements Callable {
                if (var7 == 2) {
                   var3.currentSequenceFrameIndex = 0;
                }
-            } else if (var5 == -1 || var3.sequence == -1 || AABB.SequenceDefinition_get(var5).field2300 >= AABB.SequenceDefinition_get(var3.sequence).field2300) {
+            } else if (var5 == -1 || var3.sequence == -1 || AABB.SequenceDefinition_get(var5).field1809 >= AABB.SequenceDefinition_get(var3.sequence).field1809) {
                var3.sequence = var5;
                var3.sequenceFrame = 0;
                var3.sequenceFrameCycle = 0;
                var3.sequenceDelay = var17;
                var3.currentSequenceFrameIndex = 0;
-               var3.field1252 = var3.pathLength;
+               var3.field1004 = var3.pathLength;
             }
          }
 
          if ((var4 & 16) != 0) {
-            var5 = var0.method8702();
+            var5 = var0.method2396();
             int var11;
             if (var5 > 0) {
                for(var17 = 0; var17 < var5; ++var17) {
@@ -255,8 +255,8 @@ public class class1 implements Callable {
                   var9 = var0.readUShortSmart();
                   if (var9 != 32767) {
                      var10 = var0.readUShortSmart();
-                     var11 = var0.method8702();
-                     int var12 = var9 > 0 ? var0.method8581() : var11;
+                     var11 = var0.method2396();
+                     int var12 = var9 > 0 ? var0.method2371() : var11;
                      var3.addHealthBar(var8, Client.cycle, var9, var10, var11, var12);
                   } else {
                      var3.removeHealthBar(var8);
@@ -271,34 +271,34 @@ public class class1 implements Callable {
          }
 
          if ((var4 & 4096) != 0) {
-            var3.method2531(var0.readUnsignedByte());
+            var3.method574(var0.readUnsignedByte());
          }
 
          if ((var4 & 256) != 0) {
-            var3.method2573(var0.readStringCp1252NullTerminated());
+            var3.method590(var0.readStringCp1252NullTerminated());
          }
 
          if ((var4 & 8) != 0) {
             var5 = var0.readUnsignedShort();
             var17 = var0.readUnsignedShort();
             var3.instantTurn = var0.readUnsignedByte() == 1;
-            var7 = var3.x - (var5 - class154.baseX * 64 - class154.baseX * 64) * 64;
-            var8 = var3.y - (var17 - class365.baseY * 64 - class365.baseY * 64) * 64;
+            var7 = var3.x - (var5 - class154.baseX - class154.baseX) * 64;
+            var8 = var3.y - (var17 - class365.baseY - class365.baseY) * 64;
             if (var7 != 0 || var8 != 0) {
                var3.movingOrientation = (int)(Math.atan2((double)var7, (double)var8) * 325.949D) & 2047;
             }
          }
 
          if ((var4 & '耀') != 0) {
-            var3.exactMoveDeltaX1 = var0.method8718();
+            var3.exactMoveDeltaX1 = var0.method2401();
             var3.exactMoveDeltaY1 = var0.readByte();
-            var3.exactMoveDeltaX2 = var0.method8718();
-            var3.exactMoveDeltaY2 = var0.method8701();
+            var3.exactMoveDeltaX2 = var0.method2401();
+            var3.exactMoveDeltaY2 = var0.method2395();
             var3.exactMoveArrive1Cycle = var0.readUnsignedShort() + Client.cycle;
-            var3.exactMoveArrive2Cycle = var0.method8530() + Client.cycle;
+            var3.exactMoveArrive2Cycle = var0.method2333() + Client.cycle;
             var3.exactMoveDirection = var0.readUnsignedShort();
             var3.pathLength = 1;
-            var3.field1252 = 0;
+            var3.field1004 = 0;
             var3.exactMoveDeltaX1 += var3.pathX[0];
             var3.exactMoveDeltaY1 += var3.pathY[0];
             var3.exactMoveDeltaX2 += var3.pathX[0];
@@ -306,9 +306,9 @@ public class class1 implements Callable {
          }
 
          if ((var4 & 16384) != 0) {
-            var5 = var0.method8699();
+            var5 = var0.method2394();
             if ((var5 & 1) == 1) {
-               var3.method2560();
+               var3.method586();
             } else {
                var6 = null;
                if ((var5 & 2) == 2) {
@@ -316,7 +316,7 @@ public class class1 implements Callable {
                   var6 = new int[var7];
 
                   for(var8 = 0; var8 < var7; ++var8) {
-                     var9 = var0.method8591();
+                     var9 = var0.method2376();
                      var9 = var9 == 65535 ? -1 : var9;
                      var6[var8] = var9;
                   }
@@ -332,7 +332,7 @@ public class class1 implements Callable {
                   var13 = new short[var8];
 
                   for(var9 = 0; var9 < var8; ++var9) {
-                     var13[var9] = (short)var0.method8530();
+                     var13[var9] = (short)var0.method2333();
                   }
                }
 
@@ -346,19 +346,19 @@ public class class1 implements Callable {
                   var14 = new short[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var14[var10] = (short)var0.method8591();
+                     var14[var10] = (short)var0.method2376();
                   }
                }
 
-               var15 = (long)(++NPC.field1317 - 1);
-               var3.method2542(new NewShit(var15, var6, var13, var14));
+               var15 = (long)(++NPC.field1053 - 1);
+               var3.method582(new NewShit(var15, var6, var13, var14));
             }
          }
 
          if ((var4 & 64) != 0) {
             var3.targetIndex = var0.readUnsignedShort();
-            if (ParamComposition.field2121) {
-               var3.targetIndex += var0.method8699() << 16;
+            if (ParamComposition.field1638) {
+               var3.targetIndex += var0.method2394() << 16;
                var5 = 16777215;
             } else {
                var5 = 65535;
@@ -371,7 +371,7 @@ public class class1 implements Callable {
 
          if ((var4 & 2) != 0) {
             var3.spotAnimation = var0.readUnsignedShort();
-            var5 = var0.method8585();
+            var5 = var0.method2373();
             var3.spotAnimHeight = var5 >> 16;
             var3.spotAnimationStartCycle = (var5 & '\uffff') + Client.cycle;
             var3.spotAnimationFrame = 0;
@@ -386,21 +386,21 @@ public class class1 implements Callable {
          }
 
          if ((var4 & 65536) != 0) {
-            var5 = var0.method8699();
+            var5 = var0.method2394();
             var6 = new int[8];
             var13 = new short[8];
 
             for(var8 = 0; var8 < 8; ++var8) {
                if ((var5 & 1 << var8) != 0) {
-                  var6[var8] = var0.method8568();
-                  var13[var8] = (short)var0.method8781();
+                  var6[var8] = var0.method2362();
+                  var13[var8] = (short)var0.method2407();
                } else {
                   var6[var8] = -1;
                   var13[var8] = -1;
                }
             }
 
-            var3.method2540(var6, var13);
+            var3.method580(var6, var13);
          }
       }
 

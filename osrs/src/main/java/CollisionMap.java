@@ -1,37 +1,28 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gw")
+@Implements("CollisionMap")
 public class CollisionMap {
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 94760623
-   )
+   @Export("canvasWidth")
    public static int canvasWidth;
    @ObfuscatedName("at")
-   @ObfuscatedGetter(
-      intValue = 213236785
-   )
+   @Export("xInset")
    int xInset = 0;
    @ObfuscatedName("ay")
-   @ObfuscatedGetter(
-      intValue = -1374720281
-   )
+   @Export("yInset")
    int yInset = 0;
    @ObfuscatedName("an")
-   @ObfuscatedGetter(
-      intValue = -2137393315
-   )
+   @Export("xSize")
    int xSize;
    @ObfuscatedName("ab")
-   @ObfuscatedGetter(
-      intValue = -1805233665
-   )
+   @Export("ySize")
    int ySize;
    @ObfuscatedName("al")
+   @Export("flags")
    public int[][] flags;
 
    public CollisionMap(int var1, int var2) {
@@ -46,6 +37,7 @@ public class CollisionMap {
       descriptor = "(I)V",
       garbageValue = "744825171"
    )
+   @Export("clear")
    public void clear() {
       for(int var1 = 0; var1 < this.xSize; ++var1) {
          for(int var2 = 0; var2 < this.ySize; ++var2) {
@@ -64,7 +56,7 @@ public class CollisionMap {
       descriptor = "(IIIIZI)V",
       garbageValue = "1746124243"
    )
-   public void method4142(int var1, int var2, int var3, int var4, boolean var5) {
+   public void method1091(int var1, int var2, int var3, int var4, boolean var5) {
       var1 -= this.xInset;
       var2 -= this.yInset;
       if (var3 == 0) {
@@ -216,6 +208,7 @@ public class CollisionMap {
       descriptor = "(IIIIZI)V",
       garbageValue = "606945134"
    )
+   @Export("addGameObject")
    public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
       int var6 = 256;
       if (var5) {
@@ -242,6 +235,7 @@ public class CollisionMap {
       descriptor = "(IIB)V",
       garbageValue = "83"
    )
+   @Export("setBlockedByFloor")
    public void setBlockedByFloor(int var1, int var2) {
       var1 -= this.xInset;
       var2 -= this.yInset;
@@ -253,6 +247,7 @@ public class CollisionMap {
       descriptor = "(III)V",
       garbageValue = "352173417"
    )
+   @Export("setBlockedByFloorDec")
    public void setBlockedByFloorDec(int var1, int var2) {
       var1 -= this.xInset;
       var2 -= this.yInset;
@@ -264,6 +259,7 @@ public class CollisionMap {
       descriptor = "(IIIB)V",
       garbageValue = "5"
    )
+   @Export("setFlag")
    void setFlag(int var1, int var2, int var3) {
       this.flags[var1][var2] |= var3;
    }
@@ -273,7 +269,7 @@ public class CollisionMap {
       descriptor = "(IIIIZB)V",
       garbageValue = "10"
    )
-   public void method4147(int var1, int var2, int var3, int var4, boolean var5) {
+   public void method1094(int var1, int var2, int var3, int var4, boolean var5) {
       var1 -= this.xInset;
       var2 -= this.yInset;
       if (var3 == 0) {
@@ -425,6 +421,7 @@ public class CollisionMap {
       descriptor = "(IIIIIZB)V",
       garbageValue = "-21"
    )
+   @Export("setFlagOffNonSquare")
    public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
       int var7 = 256;
       if (var6) {
@@ -457,6 +454,7 @@ public class CollisionMap {
       descriptor = "(IIII)V",
       garbageValue = "-294771175"
    )
+   @Export("setFlagOff")
    void setFlagOff(int var1, int var2, int var3) {
       this.flags[var1][var2] &= ~var3;
    }
@@ -466,7 +464,7 @@ public class CollisionMap {
       descriptor = "(III)V",
       garbageValue = "649174852"
    )
-   public void method4174(int var1, int var2) {
+   public void method1099(int var1, int var2) {
       var1 -= this.xInset;
       var2 -= this.yInset;
       this.flags[var1][var2] &= -262145;
@@ -477,20 +475,20 @@ public class CollisionMap {
       descriptor = "(B)V",
       garbageValue = "-76"
    )
-   static final void method4176() {
-      Client.field691 = 0;
-      int var0 = class154.baseX * 64 + (class155.localPlayer.x >> 7);
-      int var1 = class365.baseY * 64 + (class155.localPlayer.y >> 7);
+   static final void method1100() {
+      Client.field536 = 0;
+      int var0 = (class155.localPlayer.x >> 7) + class154.baseX;
+      int var1 = (class155.localPlayer.y >> 7) + class365.baseY;
       if (var0 >= 3053 && var0 <= 3156 && var1 >= 3056 && var1 <= 3136) {
-         Client.field691 = 1;
+         Client.field536 = 1;
       }
 
       if (var0 >= 3072 && var0 <= 3118 && var1 >= 9492 && var1 <= 9535) {
-         Client.field691 = 1;
+         Client.field536 = 1;
       }
 
-      if (Client.field691 == 1 && var0 >= 3139 && var0 <= 3199 && var1 >= 3008 && var1 <= 3062) {
-         Client.field691 = 0;
+      if (Client.field536 == 1 && var0 >= 3139 && var0 <= 3199 && var1 >= 3008 && var1 <= 3062) {
+         Client.field536 = 0;
       }
 
    }
@@ -500,9 +498,9 @@ public class CollisionMap {
       descriptor = "(I)V",
       garbageValue = "339045513"
    )
-   static void method4157() {
+   static void method1096() {
       if (Client.oculusOrbState == 1) {
-         Client.field529 = true;
+         Client.field374 = true;
       }
 
    }

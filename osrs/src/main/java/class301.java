@@ -8,28 +8,29 @@ public class class301 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
+   @Export("archive11")
    static Archive archive11;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lki;"
    )
-   public class303 field3466 = new class303();
+   public class303 field2810 = new class303();
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   class298 field3464 = new class298();
+   class298 field2808 = new class298();
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lao;"
    )
-   class28 field3463 = new class28();
+   class28 field2807 = new class28();
    @ObfuscatedName("x")
-   public Object[] field3469;
+   public Object[] field2813;
    @ObfuscatedName("m")
-   public Object[] field3467;
+   public Object[] field2811;
    @ObfuscatedName("q")
-   public Object[] field3468;
+   public Object[] field2812;
    @ObfuscatedName("f")
-   public Object[] field3465;
+   public Object[] field2809;
 }

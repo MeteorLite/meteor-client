@@ -5,23 +5,20 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSessionContext;
 import javax.security.cert.X509Certificate;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("s")
 class class17 implements SSLSession {
    @ObfuscatedName("ge")
-   static String field102;
+   static String field51;
    @ObfuscatedName("hw")
-   @ObfuscatedGetter(
-      intValue = -1898843179
-   )
-   static int field101;
+   static int field50;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Li;"
    )
+   @Export("this$1")
    @ObfuscatedName("this$1")
    final class12 this$1;
 
@@ -40,6 +37,7 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
+   @Export("getValue")
    @ObfuscatedName("getValue")
    public Object getValue(String var1) {
       throw new UnsupportedOperationException();
@@ -65,6 +63,7 @@ class class17 implements SSLSession {
       return 0;
    }
 
+   @Export("getPeerPrincipal")
    @ObfuscatedName("getPeerPrincipal")
    public Principal getPeerPrincipal() throws SSLPeerUnverifiedException {
       return null;
@@ -82,30 +81,35 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
+   @Export("putValue")
    @ObfuscatedName("putValue")
    public void putValue(String var1, Object var2) {
       throw new UnsupportedOperationException();
    }
 
    public Certificate[] getPeerCertificates() throws SSLPeerUnverifiedException {
-      return this.this$1.field69;
+      return this.this$1.field38;
    }
 
+   @Export("removeValue")
    @ObfuscatedName("removeValue")
    public void removeValue(String var1) {
       throw new UnsupportedOperationException();
    }
 
+   @Export("getId")
    @ObfuscatedName("getId")
    public byte[] getId() {
       throw new UnsupportedOperationException();
    }
 
+   @Export("invalidate")
    @ObfuscatedName("invalidate")
    public void invalidate() {
       throw new UnsupportedOperationException();
    }
 
+   @Export("isValid")
    @ObfuscatedName("isValid")
    public boolean isValid() {
       throw new UnsupportedOperationException();
@@ -128,7 +132,7 @@ class class17 implements SSLSession {
       descriptor = "(S)V",
       garbageValue = "-9821"
    )
-   public static final void method252() {
+   public static final void method56() {
       ViewportMouse.ViewportMouse_isInViewport = false;
       ViewportMouse.ViewportMouse_entityCount = 0;
    }
@@ -138,6 +142,7 @@ class class17 implements SSLSession {
       descriptor = "(IIIII)V",
       garbageValue = "-1377085208"
    )
+   @Export("addSceneMenuOptions")
    static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
       if (Client.isItemSelected == 0 && !Client.isSpellSelected) {
          ObjectSound.insertMenuItemNoShift("Walk here", "", 23, 0, var0 - var2, var1 - var3);
@@ -151,7 +156,7 @@ class class17 implements SSLSession {
          int var10 = ViewportMouse.ViewportMouse_entityCount;
          if (var8 >= var10) {
             if (-1L != var4) {
-               var8 = ClanChannelMember.method3084(var4);
+               var8 = ClanChannelMember.method744(var4);
                int var9 = (int)(var4 >>> 7 & 127L);
                Player var11 = Client.players[Client.combatTargetPlayerIndex];
                ServerPacket.addPlayerToMenu(var11, Client.combatTargetPlayerIndex, var8, var9);
@@ -162,14 +167,14 @@ class class17 implements SSLSession {
 
          long var26 = ViewportMouse.ViewportMouse_entityTags[var8];
          if (var6 != var26) {
-            label373: {
+            label309: {
                var6 = var26;
-               int var15 = class89.method2336(var8);
+               int var15 = class89.method508(var8);
                long var18 = ViewportMouse.ViewportMouse_entityTags[var8];
                int var17 = (int)(var18 >>> 7 & 127L);
                var17 = var17;
-               int var28 = WorldMapSprite.method5272(var8);
-               int var19 = Projectile.method2105(var8);
+               int var28 = WorldMapSprite.method1444(var8);
+               int var19 = Projectile.method439(var8);
                int var23;
                if (var28 == 2 && ReflectionCheck.scene.getObjectFlags(class383.Client_plane, var15, var17, var26) >= 0) {
                   ObjectComposition var20 = VarpDefinition.getObjectDefinition(var19);
@@ -178,13 +183,13 @@ class class17 implements SSLSession {
                   }
 
                   if (var20 == null) {
-                     break label373;
+                     break label309;
                   }
 
                   PendingSpawn var21 = null;
 
                   for(PendingSpawn var22 = (PendingSpawn)Client.pendingSpawns.last(); var22 != null; var22 = (PendingSpawn)Client.pendingSpawns.previous()) {
-                     if (var22.plane == class383.Client_plane && var15 == var22.x && var17 == var22.y && var19 == var22.field1167) {
+                     if (var22.plane == class383.Client_plane && var15 == var22.x && var17 == var22.y && var19 == var22.field922) {
                         var21 = var22;
                         break;
                      }
@@ -200,7 +205,7 @@ class class17 implements SSLSession {
                      String[] var36 = var20.actions;
                      if (var36 != null) {
                         for(var23 = 4; var23 >= 0; --var23) {
-                           if ((var21 == null || var21.method2341(var23)) && var36[var23] != null) {
+                           if ((var21 == null || var21.method510(var23)) && var36[var23] != null) {
                               short var24 = 0;
                               if (var23 == 0) {
                                  var24 = 3;
@@ -238,7 +243,7 @@ class class17 implements SSLSession {
                if (var28 == 1) {
                   NPC var32 = Client.npcs[var19];
                   if (var32 == null) {
-                     break label373;
+                     break label309;
                   }
 
                   if (var32.definition.size == 1 && (var32.x & 127) == 64 && (var32.y & 127) == 64) {
@@ -266,7 +271,7 @@ class class17 implements SSLSession {
                if (var28 == 0) {
                   Player var33 = Client.players[var19];
                   if (var33 == null) {
-                     break label373;
+                     break label309;
                   }
 
                   if ((var33.x & 127) == 64 && (var33.y & 127) == 64) {
@@ -310,7 +315,7 @@ class class17 implements SSLSession {
                            String[] var31 = var39.groundActions;
 
                            for(int var40 = 4; var40 >= 0; --var40) {
-                              if (var35.method2613(var40)) {
+                              if (var35.method604(var40)) {
                                  if (var31 != null && var31[var40] != null) {
                                     byte var25 = 0;
                                     if (var40 == 0) {

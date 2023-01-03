@@ -5,8 +5,10 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("os")
+@Implements("AbstractUserComparator")
 public abstract class AbstractUserComparator implements Comparator {
    @ObfuscatedName("e")
+   @Export("nextComparator")
    Comparator nextComparator;
 
    @ObfuscatedName("b")
@@ -14,6 +16,7 @@ public abstract class AbstractUserComparator implements Comparator {
       descriptor = "(Ljava/util/Comparator;I)V",
       garbageValue = "651309965"
    )
+   @Export("addComparator")
    final void addComparator(Comparator var1) {
       if (this.nextComparator == null) {
          this.nextComparator = var1;
@@ -28,10 +31,12 @@ public abstract class AbstractUserComparator implements Comparator {
       descriptor = "(Lov;Lov;I)I",
       garbageValue = "-1782434193"
    )
+   @Export("compareUser")
    protected final int compareUser(User var1, User var2) {
       return this.nextComparator == null ? 0 : this.nextComparator.compare(var1, var2);
    }
 
+   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);

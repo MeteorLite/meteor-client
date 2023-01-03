@@ -8,9 +8,9 @@ public class class253 {
       descriptor = "(I)V",
       garbageValue = "-597857379"
    )
-   static final void method5283() {
-      if (class383.Client_plane != Client.field619) {
-         Client.field619 = class383.Client_plane;
+   static final void method1450() {
+      if (class383.Client_plane != Client.field464) {
+         Client.field464 = class383.Client_plane;
          int var0 = class383.Client_plane;
          int[] var1 = GameObject.sceneMinimapSprite.pixels;
          int var2 = var1.length;
@@ -63,7 +63,7 @@ public class class253 {
                if (var7 != 0L) {
                   int var9 = Occluder.Entity_unpackID(var7);
                   int var10 = VarpDefinition.getObjectDefinition(var9).mapIconId;
-                  if (var10 >= 0 && JagexCache.WorldMapElement_get(var10).field1940) {
+                  if (var10 >= 0 && JagexCache.WorldMapElement_get(var10).field1485) {
                      Client.mapIcons[Client.mapIconCount] = JagexCache.WorldMapElement_get(var10).getSpriteBool(false);
                      Client.mapIconXs[Client.mapIconCount] = var5;
                      Client.mapIconYs[Client.mapIconCount] = var6;

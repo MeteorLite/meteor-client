@@ -34,7 +34,7 @@ public interface TextureProvider
 	 * .9 is the darkest value available in the standard options
 	 * .6 is the brightest value
 	 */
-	void setBrightness(double brightness);
+	void setBrightness$api(double brightness);
 
 	/**
 	 * Get all textures

@@ -33,7 +33,6 @@ import static net.runelite.api.Constants.ROOF_FLAG_POSITION;
 
 import eventbus.Events;
 import eventbus.events.GetDynamicObjectForAnimationEvent;
-import meteor.Event;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -128,7 +127,7 @@ public abstract class RSSceneMixin implements RSScene
 
 		if (!menuOpen && !checkClick)
 		{
-			client.getScene().menuOpen(client.getPlane(), client.getMouseX() - client.getViewportXOffset(), client.getMouseY() - client.getViewportYOffset(), false);
+			client.getScene().menuOpen$api(client.getPlane(), client.getMouseX() - client.getViewportXOffset(), client.getMouseY() - client.getViewportYOffset(), false);
 		}
 
 		if (!isGpu && skyboxColor != 0)
@@ -1297,7 +1296,7 @@ public abstract class RSSceneMixin implements RSScene
 		}
 		else
 		{
-			renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
+			renderable.draw$api(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
 		}
 	}
 

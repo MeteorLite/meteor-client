@@ -1,46 +1,46 @@
 import java.awt.Component;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cz")
+@Implements("AttackOption")
 public enum AttackOption implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
+   @Export("AttackOption_dependsOnCombatLevels")
    AttackOption_dependsOnCombatLevels(0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
+   @Export("AttackOption_alwaysRightClick")
    AttackOption_alwaysRightClick(1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
-   field1347(2),
+   field1075(2),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
+   @Export("AttackOption_hidden")
    AttackOption_hidden(3),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lcz;"
    )
-   field1346(4);
+   field1074(4);
 
    @ObfuscatedName("mf")
-   @ObfuscatedGetter(
-      intValue = 1102902677
-   )
+   @Export("menuWidth")
    static int menuWidth;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1340490443
-   )
+   @Export("id")
    final int id;
 
    AttackOption(int var3) {
@@ -52,6 +52,7 @@ public enum AttackOption implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
@@ -61,7 +62,7 @@ public enum AttackOption implements class345 {
       descriptor = "(Ljava/awt/Component;B)V",
       garbageValue = "0"
    )
-   static void method2603(Component var0) {
+   static void method598(Component var0) {
       var0.removeMouseListener(MouseHandler.MouseHandler_instance);
       var0.removeMouseMotionListener(MouseHandler.MouseHandler_instance);
       var0.removeFocusListener(MouseHandler.MouseHandler_instance);
@@ -73,6 +74,7 @@ public enum AttackOption implements class345 {
       descriptor = "(III)Lkd;",
       garbageValue = "-1318941452"
    )
+   @Export("getWidgetChild")
    public static Widget getWidgetChild(int var0, int var1) {
       Widget var2 = ObjTypeCustomisation.getWidget(var0);
       if (var1 == -1) {
@@ -87,7 +89,7 @@ public enum AttackOption implements class345 {
       descriptor = "(IB)I",
       garbageValue = "82"
    )
-   static int method2610(int var0) {
+   static int method602(int var0) {
       return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
    }
 
@@ -96,12 +98,12 @@ public enum AttackOption implements class345 {
       descriptor = "(ILky;ZB)V",
       garbageValue = "2"
    )
-   static void method2608(int var0, Coord var1, boolean var2) {
+   static void method600(int var0, Coord var1, boolean var2) {
       WorldMapArea var3 = Client.getWorldMap().getMapArea(var0);
       int var4 = class155.localPlayer.plane;
-      int var5 = class154.baseX * 64 + (class155.localPlayer.x >> 7);
-      int var6 = class365.baseY * 64 + (class155.localPlayer.y >> 7);
+      int var5 = (class155.localPlayer.x >> 7) + class154.baseX;
+      int var6 = (class155.localPlayer.y >> 7) + class365.baseY;
       Coord var7 = new Coord(var4, var5, var6);
-      Client.getWorldMap().method8046(var3, var7, var1, var2);
+      Client.getWorldMap().method2238(var3, var7, var1, var2);
    }
 }

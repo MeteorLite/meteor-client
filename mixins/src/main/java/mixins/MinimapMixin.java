@@ -97,7 +97,7 @@ public abstract class MinimapMixin implements RSClient
 
 			int color1 = (238 + (int) (Math.random() * 20.0D) - 10 << 16) + (238 + (int) (Math.random() * 20.0D) - 10 << 8) + (238 + (int) (Math.random() * 20.0D) - 10);
 			int color2 = 238 + (int) (Math.random() * 20.0D) - 10 << 16;
-			ourSprite.setRaster();
+			ourSprite.setRaster$api();
 
 			for (int y = 1; y < SCENE_SIZE - 1; ++y)
 			{

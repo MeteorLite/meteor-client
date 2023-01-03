@@ -1,25 +1,24 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oo")
+@Implements("DefaultsGroup")
 public class DefaultsGroup {
    @ObfuscatedName("uw")
    @ObfuscatedSignature(
       descriptor = "Lbi;"
    )
+   @Export("friendSystem")
    public static FriendSystem friendSystem;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Loo;"
    )
-   static final DefaultsGroup field4578 = new DefaultsGroup(3);
+   static final DefaultsGroup field3732 = new DefaultsGroup(3);
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 107189111
-   )
+   @Export("group")
    final int group;
 
    DefaultsGroup(int var1) {
@@ -31,13 +30,13 @@ public class DefaultsGroup {
       descriptor = "(Loz;FFFI)F",
       garbageValue = "-2105001824"
    )
-   static float method7714(class412 var0, float var1, float var2, float var3) {
-      float var4 = SecureRandomFuture.method2120(var0.field4630, var0.field4632, var1);
-      if (Math.abs(var4) < class122.field1506) {
+   static float method2112(class412 var0, float var1, float var2, float var3) {
+      float var4 = SecureRandomFuture.method446(var0.field3778, var0.field3779, var1);
+      if (Math.abs(var4) < class122.field1177) {
          return var1;
       } else {
-         float var5 = SecureRandomFuture.method2120(var0.field4630, var0.field4632, var2);
-         if (Math.abs(var5) < class122.field1506) {
+         float var5 = SecureRandomFuture.method446(var0.field3778, var0.field3779, var2);
+         if (Math.abs(var5) < class122.field1177) {
             return var2;
          } else {
             float var6 = 0.0F;
@@ -66,7 +65,7 @@ public class DefaultsGroup {
                   var13 = var4;
                }
 
-               float var16 = class122.field1507 * Math.abs(var2) + var3 * 0.5F;
+               float var16 = class122.field1178 * Math.abs(var2) + var3 * 0.5F;
                float var17 = 0.5F * (var6 - var2);
                boolean var18 = Math.abs(var17) > var16 && 0.0F != var5;
                if (var18) {
@@ -113,7 +112,7 @@ public class DefaultsGroup {
                      var2 -= var16;
                   }
 
-                  var5 = SecureRandomFuture.method2120(var0.field4630, var0.field4632, var2);
+                  var5 = SecureRandomFuture.method446(var0.field3778, var0.field3779, var2);
                   if ((double)(var5 * (var13 / Math.abs(var13))) > 0.0D) {
                      var14 = true;
                      var15 = true;

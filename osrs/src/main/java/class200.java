@@ -1,42 +1,33 @@
 import java.util.Date;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gt")
 public class class200 extends Node {
    @ObfuscatedName("dj")
+   @Export("isLargePlayerInfo")
    static boolean isLargePlayerInfo;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 494311763
-   )
-   public int field2311;
+   public int field1817;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 976799233
-   )
-   public int field2310;
+   public int field1816;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1685883689
-   )
-   public int field2307;
+   public int field1815;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
-   public Widget field2312;
+   public Widget field1818;
 
    @ObfuscatedSignature(
       descriptor = "(IIILkd;)V"
    )
    public class200(int var1, int var2, int var3, Widget var4) {
-      this.field2307 = var1;
-      this.field2311 = var2;
-      this.field2310 = var3;
-      this.field2312 = var4;
+      this.field1815 = var1;
+      this.field1817 = var2;
+      this.field1816 = var3;
+      this.field1818 = var4;
    }
 
    @ObfuscatedName("v")
@@ -44,15 +35,16 @@ public class class200 extends Node {
       descriptor = "([BI)V",
       garbageValue = "1133722447"
    )
+   @Export("ByteArrayPool_release")
    public static synchronized void ByteArrayPool_release(byte[] var0) {
-      if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4438) {
+      if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field3634) {
          ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
-      } else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field4431) {
+      } else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field3629) {
          ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
-      } else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field4440) {
+      } else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field3636) {
          ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
-      } else if (var0.length == 30000 && ByteArrayPool.field4437 < ByteArrayPool.field4439) {
-         ByteArrayPool.field4445[++ByteArrayPool.field4437 - 1] = var0;
+      } else if (var0.length == 30000 && ByteArrayPool.field3633 < ByteArrayPool.field3635) {
+         ByteArrayPool.field3640[++ByteArrayPool.field3633 - 1] = var0;
       } else {
          if (SceneTilePaint.ByteArrayPool_arrays != null) {
             for(int var1 = 0; var1 < Frames.ByteArrayPool_alternativeSizes.length; ++var1) {
@@ -71,7 +63,7 @@ public class class200 extends Node {
       descriptor = "(III)I",
       garbageValue = "586283553"
    )
-   static int method4095(int var0, int var1) {
+   static int method1075(int var0, int var1) {
       ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var2 == null) {
          return 0;
@@ -95,7 +87,7 @@ public class class200 extends Node {
       descriptor = "(I)Ljava/util/Date;",
       garbageValue = "-232656998"
    )
-   static Date method4093() {
+   static Date method1073() {
       java.util.Calendar var0 = java.util.Calendar.getInstance();
       var0.set(2, 0);
       var0.set(5, 1);
@@ -108,6 +100,7 @@ public class class200 extends Node {
       descriptor = "(IIIIIZB)Lrx;",
       garbageValue = "0"
    )
+   @Export("getItemSprite")
    public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
       if (var1 == -1) {
          var4 = 0;
@@ -170,8 +163,8 @@ public class class200 extends Node {
          Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32);
          Rasterizer2D.Rasterizer2D_clear();
          Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();
-         Rasterizer3D.method4395(16, 16);
-         Rasterizer3D.field2495 = false;
+         Rasterizer3D.method1167(16, 16);
+         Rasterizer3D.field1970 = false;
          if (var9.placeholderTemplate != -1) {
             var20.drawTransBgAt(0, 0);
          }
@@ -186,7 +179,7 @@ public class class200 extends Node {
          int var17 = var16 * Rasterizer3D.Rasterizer3D_sine[var9.xan2d] >> 16;
          int var18 = var16 * Rasterizer3D.Rasterizer3D_cosine[var9.xan2d] >> 16;
          var19.calculateBoundsCylinder();
-         var19.method4682(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var19.height / 2 + var17 + var9.offsetY2d, var18 + var9.offsetY2d);
+         var19.method1265(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var19.height / 2 + var17 + var9.offsetY2d, var18 + var9.offsetY2d);
          if (var9.notedId != -1) {
             var20.drawTransBgAt(0, 0);
          }
@@ -209,7 +202,7 @@ public class class200 extends Node {
          }
 
          if (var4 == 1 || var4 == 2 && var9.isStackable == 1) {
-            class262.ItemDefinition_fontPlain11.draw(PacketWriter.method2742(var1), 0, 9, 16776960, 1);
+            class262.ItemDefinition_fontPlain11.draw(PacketWriter.method636(var1), 0, 9, 16776960, 1);
          }
 
          if (!var5) {
@@ -219,7 +212,7 @@ public class class200 extends Node {
          Rasterizer2D.Rasterizer2D_replace(var12, var13, var14);
          Rasterizer2D.Rasterizer2D_setClipArray(var15);
          Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();
-         Rasterizer3D.field2495 = true;
+         Rasterizer3D.field1970 = true;
          return var8;
       }
    }

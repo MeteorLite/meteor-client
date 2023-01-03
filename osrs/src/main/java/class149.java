@@ -1,24 +1,17 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("eg")
 public class class149 extends class152 {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 2108480025
-   )
-   int field1752;
+   int field1363;
    @ObfuscatedName("e")
-   byte field1751;
+   byte field1362;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = 1188392547
-   )
-   int field1753;
+   int field1364;
    @ObfuscatedName("x")
-   String field1754;
+   String field1365;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Led;"
@@ -30,7 +23,7 @@ public class class149 extends class152 {
    )
    class149(class153 var1) {
       this.this$0 = var1;
-      this.field1752 = -1;
+      this.field1363 = -1;
    }
 
    @ObfuscatedName("h")
@@ -38,13 +31,14 @@ public class class149 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
+   @Export("vmethod3238")
    void vmethod3238(Buffer var1) {
       var1.readUnsignedByte();
-      this.field1752 = var1.readUnsignedShort();
-      this.field1751 = var1.readByte();
-      this.field1753 = var1.readUnsignedShort();
+      this.field1363 = var1.readUnsignedShort();
+      this.field1362 = var1.readByte();
+      this.field1364 = var1.readUnsignedShort();
       var1.readLong();
-      this.field1754 = var1.readStringCp1252NullTerminated();
+      this.field1365 = var1.readStringCp1252NullTerminated();
       var1.readUnsignedByte();
    }
 
@@ -53,11 +47,12 @@ public class class149 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
+   @Export("vmethod3239")
    void vmethod3239(ClanChannel var1) {
-      ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1752);
-      var2.rank = this.field1751;
-      var2.world = this.field1753;
-      var2.username = new Username(this.field1754);
+      ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1363);
+      var2.rank = this.field1362;
+      var2.world = this.field1364;
+      var2.username = new Username(this.field1365);
    }
 
    @ObfuscatedName("h")
@@ -65,8 +60,9 @@ public class class149 extends class152 {
       descriptor = "(I)[Llq;",
       garbageValue = "-1628551002"
    )
+   @Export("PlayerType_values")
    public static PlayerType[] PlayerType_values() {
-      return new PlayerType[]{PlayerType.PlayerType_hardcoreIronman, PlayerType.field4155, PlayerType.PlayerType_ironman, PlayerType.field4149, PlayerType.field4161, PlayerType.PlayerType_jagexModerator, PlayerType.field4157, PlayerType.field4156, PlayerType.PlayerType_normal, PlayerType.field4153, PlayerType.field4145, PlayerType.field4154, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ultimateIronman, PlayerType.field4158, PlayerType.field4159, PlayerType.field4160};
+      return new PlayerType[]{PlayerType.PlayerType_hardcoreIronman, PlayerType.field3416, PlayerType.PlayerType_ironman, PlayerType.field3410, PlayerType.field3422, PlayerType.PlayerType_jagexModerator, PlayerType.field3418, PlayerType.field3417, PlayerType.PlayerType_normal, PlayerType.field3414, PlayerType.field3406, PlayerType.field3415, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ultimateIronman, PlayerType.field3419, PlayerType.field3420, PlayerType.field3421};
    }
 
    @ObfuscatedName("e")
@@ -74,6 +70,7 @@ public class class149 extends class152 {
       descriptor = "(II)Lgv;",
       garbageValue = "-640568434"
    )
+   @Export("getParamDefinition")
    public static ParamComposition getParamDefinition(int var0) {
       ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -96,7 +93,7 @@ public class class149 extends class152 {
       descriptor = "(B)V",
       garbageValue = "2"
    )
-   public static void method3257() {
+   public static void method806() {
       SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
       SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
    }

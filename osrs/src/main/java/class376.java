@@ -8,8 +8,8 @@ public class class376 {
       descriptor = "(I)V",
       garbageValue = "1624169529"
    )
-   static void method7327() {
-      class12.method155(24);
+   static void method1998() {
+      class12.method42(24);
       TaskHandler.setLoginResponseString("", "You were disconnected from the server.", "");
    }
 }

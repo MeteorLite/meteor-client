@@ -10,23 +10,27 @@ public class class20 implements Callable {
    @ObfuscatedSignature(
       descriptor = "Lep;"
    )
+   @Export("guestClanSettings")
    static ClanSettings guestClanSettings;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Lac;"
    )
+   @Export("pcmPlayerProvider")
    public static class51 pcmPlayerProvider;
    @ObfuscatedName("am")
+   @Export("fontHelvetica13")
    static java.awt.Font fontHelvetica13;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lj;"
    )
-   final class10 field117;
+   final class10 field60;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Ln;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
    final class14 this$0;
 
@@ -35,20 +39,21 @@ public class class20 implements Callable {
    )
    class20(class14 var1, class10 var2) {
       this.this$0 = var1;
-      this.field117 = var2;
+      this.field60 = var2;
    }
 
+   @Export("call")
    @ObfuscatedName("call")
    public Object call() throws Exception {
       try {
-         while(this.field117.method88()) {
-            class12.method157(10L);
+         while(this.field60.method37()) {
+            class12.method44(10L);
          }
       } catch (IOException var2) {
          return new class21("Error servicing REST query: " + var2.getMessage());
       }
 
-      return this.field117.method89();
+      return this.field60.method38();
    }
 
    @ObfuscatedName("am")
@@ -56,7 +61,7 @@ public class class20 implements Callable {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-779759676"
    )
-   static int method292(int var0, Script var1, boolean var2) {
+   static int method71(int var0, Script var1, boolean var2) {
       return 2;
    }
 
@@ -65,22 +70,22 @@ public class class20 implements Callable {
       descriptor = "(ILbm;ZB)I",
       garbageValue = "114"
    )
-   static int method294(int var0, Script var1, boolean var2) {
+   static int method73(int var0, Script var1, boolean var2) {
       int var3;
       if (var0 == 4200) {
          var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
          Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = NPCComposition.ItemDefinition_get(var3).name;
          return 1;
       } else {
+         int var4;
          ItemComposition var5;
-         int var6;
          if (var0 == 4201) {
             class87.Interpreter_intStackSize -= 2;
             var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-            var6 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+            var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
             var5 = NPCComposition.ItemDefinition_get(var3);
-            if (var6 >= 1 && var6 <= 5 && var5.groundActions[var6 - 1] != null) {
-               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.groundActions[var6 - 1];
+            if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
             } else {
                Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
             }
@@ -89,10 +94,10 @@ public class class20 implements Callable {
          } else if (var0 == 4202) {
             class87.Interpreter_intStackSize -= 2;
             var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-            var6 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+            var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
             var5 = NPCComposition.ItemDefinition_get(var3);
-            if (var6 >= 1 && var6 <= 5 && var5.inventoryActions[var6 - 1] != null) {
-               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.inventoryActions[var6 - 1];
+            if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
             } else {
                Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
             }
@@ -107,12 +112,12 @@ public class class20 implements Callable {
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = NPCComposition.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
             return 1;
          } else {
-            ItemComposition var4;
+            ItemComposition var6;
             if (var0 == 4205) {
                var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               var4 = NPCComposition.ItemDefinition_get(var3);
-               if (var4.noteTemplate == -1 && var4.note >= 0) {
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4.note;
+               var6 = NPCComposition.ItemDefinition_get(var3);
+               if (var6.noteTemplate == -1 && var6.note >= 0) {
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var6.note;
                } else {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3;
                }
@@ -120,9 +125,9 @@ public class class20 implements Callable {
                return 1;
             } else if (var0 == 4206) {
                var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               var4 = NPCComposition.ItemDefinition_get(var3);
-               if (var4.noteTemplate >= 0 && var4.note >= 0) {
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4.note;
+               var6 = NPCComposition.ItemDefinition_get(var3);
+               if (var6.noteTemplate >= 0 && var6.note >= 0) {
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var6.note;
                } else {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3;
                }
@@ -134,9 +139,9 @@ public class class20 implements Callable {
                return 1;
             } else if (var0 == 4208) {
                var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               var4 = NPCComposition.ItemDefinition_get(var3);
-               if (var4.placeholderTemplate == -1 && var4.placeholder >= 0) {
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4.placeholder;
+               var6 = NPCComposition.ItemDefinition_get(var3);
+               if (var6.placeholderTemplate == -1 && var6.placeholder >= 0) {
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var6.placeholder;
                } else {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3;
                }
@@ -144,9 +149,9 @@ public class class20 implements Callable {
                return 1;
             } else if (var0 == 4209) {
                var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               var4 = NPCComposition.ItemDefinition_get(var3);
-               if (var4.placeholderTemplate >= 0 && var4.placeholder >= 0) {
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4.placeholder;
+               var6 = NPCComposition.ItemDefinition_get(var3);
+               if (var6.placeholderTemplate >= 0 && var6.placeholder >= 0) {
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var6.placeholder;
                } else {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3;
                }
@@ -154,8 +159,8 @@ public class class20 implements Callable {
                return 1;
             } else if (var0 == 4210) {
                String var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-               var6 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               class298.findItemDefinitions(var7, var6 == 1);
+               var4 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
+               class298.findItemDefinitions(var7, var4 == 1);
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ScriptEvent.foundItemIdCount;
                return 1;
             } else if (var0 != 4211) {
@@ -164,11 +169,11 @@ public class class20 implements Callable {
                   return 1;
                } else if (var0 == 4213) {
                   var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                  var6 = NPCComposition.ItemDefinition_get(var3).getShiftClickIndex();
-                  if (var6 == -1) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var6;
+                  var4 = NPCComposition.ItemDefinition_get(var3).getShiftClickIndex();
+                  if (var4 == -1) {
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4;
                   } else {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var6 + 1;
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4 + 1;
                   }
 
                   return 1;
@@ -186,8 +191,8 @@ public class class20 implements Callable {
                   return 1;
                } else if (var0 == 4217) {
                   var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-                  var4 = NPCComposition.ItemDefinition_get(var3);
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4.field2224;
+                  var6 = NPCComposition.ItemDefinition_get(var3);
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var6.field1736;
                   return 1;
                } else {
                   return 2;
@@ -210,10 +215,10 @@ public class class20 implements Callable {
       descriptor = "(Lga;IIIS)V",
       garbageValue = "-29230"
    )
-   static void method293(SequenceDefinition var0, int var1, int var2, int var3) {
-      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method2506() != 0) {
-         if (var0.field2283 != null && var0.field2283.containsKey(var1)) {
-            int var4 = (Integer)var0.field2283.get(var1);
+   static void method72(SequenceDefinition var0, int var1, int var2, int var3) {
+      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method563() != 0) {
+         if (var0.field1793 != null && var0.field1793.containsKey(var1)) {
+            int var4 = (Integer)var0.field1793.get(var1);
             if (var4 != 0) {
                int var7 = var4 >> 8;
                int var8 = var4 >> 4 & 7;

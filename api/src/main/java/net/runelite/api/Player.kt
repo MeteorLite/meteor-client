@@ -70,21 +70,21 @@ interface Player : Actor {
      *
      * @return true if the player is a friends chat member, false otherwise
      */
-    val isFriendsChatMember: Boolean
+    val `isFriendsChatMember$api`: Boolean
 
     /**
      * Checks whether this player is a friend of the local player.
      *
      * @return true if the player is a friend, false otherwise
      */
-    val isFriend: Boolean
+    val `isFriend$api`: Boolean
 
     /**
      * Checks whether the player is a member of the same clan as the local player.
      *
      * @return
      */
-    val isClanMember: Boolean
+    val `isClanMember$api`: Boolean
 
     /**
      * Gets the displayed overhead icon of the player.

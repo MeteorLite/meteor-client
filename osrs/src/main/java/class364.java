@@ -1,20 +1,16 @@
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nb")
 public final class class364 {
    @ObfuscatedName("h")
-   final Object field4362;
+   final Object field3576;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -417894275
-   )
-   int field4363;
+   int field3577;
 
    class364(Object var1, int var2) {
-      this.field4362 = var1;
-      this.field4363 = var2;
+      this.field3576 = var1;
+      this.field3577 = var2;
    }
 
    @ObfuscatedName("h")
@@ -22,7 +18,7 @@ public final class class364 {
       descriptor = "(II)Lgm;",
       garbageValue = "-1598389394"
    )
-   public static HitSplatDefinition method6987(int var0) {
+   public static HitSplatDefinition method1911(int var0) {
       HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;

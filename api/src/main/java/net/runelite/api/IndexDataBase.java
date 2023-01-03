@@ -43,13 +43,13 @@ public interface IndexDataBase
 	 * the methods bellow are usefull for reading byte data from the cache
 	 */
 
-	int getGroupCount();
+	int getGroupCount$api();
 
 	byte[] getConfigData(int archiveId, int fileId);
 
 	int[][] getFileIds();
 
-	int getGroupFileCount(int groupId);
+	int getGroupFileCount$api(int groupId);
 
 	int[] getFileCounts();
 

@@ -63,7 +63,7 @@ public abstract class RSClanSettingsMixin implements RSClanSettings
 	{
 		name = name.replace(" ", "\u00A0").toLowerCase();
 		String[] memberNames = getMemberNames();
-		int[] sorted = getSortedMembers();
+		int[] sorted = getSortedMembers$api();
 
 		int i = 0;
 		int len = sorted.length - 1;
@@ -197,7 +197,7 @@ public abstract class RSClanSettingsMixin implements RSClanSettings
 	@Inject
 	private int getTitle(int group, int sub1, int sub2)
 	{
-		Integer oParam = getTitleGroupValue(group);
+		Integer oParam = getTitleGroupValue$api(group);
 		int param = oParam == null ? -1 : oParam;
 		int offset = 31 - sub2;
 		return (param << offset) >>> (sub1 + offset);

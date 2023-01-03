@@ -1,34 +1,28 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rg")
+@Implements("IsaacCipher")
 public final class IsaacCipher {
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1242271977
-   )
+   @Export("valuesRemaining")
    int valuesRemaining;
    @ObfuscatedName("m")
+   @Export("results")
    int[] results = new int[256];
    @ObfuscatedName("q")
+   @Export("mm")
    int[] mm = new int[256];
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 723513511
-   )
+   @Export("aa")
    int aa;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -995265903
-   )
+   @Export("bb")
    int bb;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -1974254379
-   )
+   @Export("cc")
    int cc;
 
    public IsaacCipher(int[] var1) {
@@ -36,7 +30,7 @@ public final class IsaacCipher {
          this.results[var2] = var1[var2];
       }
 
-      this.method9134();
+      this.method2497();
    }
 
    @ObfuscatedName("h")
@@ -44,6 +38,7 @@ public final class IsaacCipher {
       descriptor = "(B)I",
       garbageValue = "-1"
    )
+   @Export("nextInt")
    public final int nextInt() {
       if (this.valuesRemaining == 0) {
          this.generateMoreResults();
@@ -58,7 +53,7 @@ public final class IsaacCipher {
       descriptor = "(I)I",
       garbageValue = "-309498745"
    )
-   public final int method9129() {
+   public final int method2496() {
       if (this.valuesRemaining == 0) {
          this.generateMoreResults();
          this.valuesRemaining = 256;
@@ -72,6 +67,7 @@ public final class IsaacCipher {
       descriptor = "(B)V",
       garbageValue = "1"
    )
+   @Export("generateMoreResults")
    final void generateMoreResults() {
       this.bb += ++this.cc;
 
@@ -102,7 +98,7 @@ public final class IsaacCipher {
       descriptor = "(I)V",
       garbageValue = "92563897"
    )
-   final void method9134() {
+   final void method2497() {
       int var9 = -1640531527;
       int var8 = -1640531527;
       int var7 = -1640531527;

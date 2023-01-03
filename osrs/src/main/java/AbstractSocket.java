@@ -5,12 +5,14 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ou")
+@Implements("AbstractSocket")
 public abstract class AbstractSocket {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "(II)Z",
       garbageValue = "-1050513320"
    )
+   @Export("isAvailable")
    public abstract boolean isAvailable(int var1) throws IOException;
 
    @ObfuscatedName("e")
@@ -18,6 +20,7 @@ public abstract class AbstractSocket {
       descriptor = "(B)I",
       garbageValue = "-16"
    )
+   @Export("available")
    public abstract int available() throws IOException;
 
    @ObfuscatedName("v")
@@ -25,6 +28,7 @@ public abstract class AbstractSocket {
       descriptor = "(I)I",
       garbageValue = "1910038551"
    )
+   @Export("readUnsignedByte")
    public abstract int readUnsignedByte() throws IOException;
 
    @ObfuscatedName("x")
@@ -32,6 +36,7 @@ public abstract class AbstractSocket {
       descriptor = "([BIII)I",
       garbageValue = "2022338375"
    )
+   @Export("read")
    public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
    @ObfuscatedName("m")
@@ -39,6 +44,7 @@ public abstract class AbstractSocket {
       descriptor = "([BIIB)V",
       garbageValue = "43"
    )
+   @Export("write")
    public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
    @ObfuscatedName("q")
@@ -46,6 +52,7 @@ public abstract class AbstractSocket {
       descriptor = "(I)V",
       garbageValue = "985050188"
    )
+   @Export("close")
    public abstract void close();
 
    @ObfuscatedName("h")
@@ -53,6 +60,7 @@ public abstract class AbstractSocket {
       descriptor = "(II)Lfj;",
       garbageValue = "1371636425"
    )
+   @Export("KitDefinition_get")
    public static KitDefinition KitDefinition_get(int var0) {
       KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
       if (var1 != null) {

@@ -27,7 +27,6 @@
  */
 package meteor.plugins.fairyring
 
-import com.google.common.base.Strings
 import eventbus.events.GameTick
 import eventbus.events.VarbitChanged
 import eventbus.events.WidgetLoaded
@@ -74,7 +73,7 @@ class FairyRingPlugin : Plugin() {
                 searchBtn?.originalX = 11
                 searchBtn?.originalY = 11
                 searchBtn?.setHasListener(true)
-                searchBtn?.setAction(1, MENU_OPEN)
+                searchBtn?.`setAction$api`(1, MENU_OPEN)
                 searchBtn?.setOnOpListener(JavaScriptCallback { e: ScriptEvent -> menuOpen(e) })
                 searchBtn?.name = "Search"
                 searchBtn?.revalidate()
@@ -125,7 +124,7 @@ class FairyRingPlugin : Plugin() {
 
     private fun openSearch() {
         updateFilter("")
-        searchBtn?.setAction(1, MENU_CLOSE)
+        searchBtn?.`setAction$api`(1, MENU_CLOSE)
         searchBtn?.setOnOpListener(JavaScriptCallback { e: ScriptEvent? -> menuClose(e!!) })
         searchInput = chatboxPanelManager.openTextInput("Filter fairy rings")
             .onChanged { s: String? -> clientThread.invokeLater { updateFilter(s!!) } }
@@ -133,7 +132,7 @@ class FairyRingPlugin : Plugin() {
             .onClose {
                 clientThread.invokeLater { updateFilter("") }
                 searchBtn?.setOnOpListener(JavaScriptCallback { e: ScriptEvent? -> menuOpen(e!!) })
-                searchBtn?.setAction(1, MENU_OPEN)
+                searchBtn?.`setAction$api`(1, MENU_OPEN)
             }
             .build()
     }

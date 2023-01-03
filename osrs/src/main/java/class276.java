@@ -11,72 +11,72 @@ public class class276 {
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3170 = new class276(4);
+   public static final class276 field2553 = new class276(4);
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3158 = new class276(5);
+   public static final class276 field2542 = new class276(5);
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3159 = new class276(6);
+   public static final class276 field2543 = new class276(6);
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3171 = new class276(15);
+   public static final class276 field2554 = new class276(15);
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3161 = new class276(4);
+   public static final class276 field2545 = new class276(4);
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3166 = new class276(2);
+   public static final class276 field2549 = new class276(2);
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3168 = new class276(7);
+   public static final class276 field2551 = new class276(7);
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3164 = new class276(16);
+   public static final class276 field2547 = new class276(16);
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3165 = new class276(8);
+   public static final class276 field2548 = new class276(8);
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3157 = new class276(5);
+   public static final class276 field2541 = new class276(5);
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3167 = new class276(14);
+   public static final class276 field2550 = new class276(14);
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3160 = new class276(5);
+   public static final class276 field2544 = new class276(5);
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3169 = new class276(7);
+   public static final class276 field2552 = new class276(7);
    @ObfuscatedName("o")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field3163 = new class276(14);
+   public static final class276 field2546 = new class276(14);
 
    @ObfuscatedSignature(
       descriptor = "(I)V",
@@ -90,6 +90,7 @@ public class class276 {
       descriptor = "(I)I",
       garbageValue = "2126981871"
    )
+   @Export("getGcDuration")
    protected static int getGcDuration() {
       int var0 = 0;
       if (Projectile.garbageCollector == null || !Projectile.garbageCollector.isValid()) {
@@ -110,7 +111,7 @@ public class class276 {
       }
 
       if (Projectile.garbageCollector != null) {
-         long var9 = Message.method1197();
+         long var9 = Message.method344();
          long var3 = Projectile.garbageCollector.getCollectionTime();
          if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
             long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
@@ -132,7 +133,7 @@ public class class276 {
       descriptor = "(Lbs;IIB)V",
       garbageValue = "-92"
    )
-   static final void method5485(MenuAction var0, int var1, int var2) {
+   static final void method1522(MenuAction var0, int var1, int var2) {
       if (var0 != null) {
          WorldMapData_0.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.itemId, var0.action, var0.target, var1, var2);
       }

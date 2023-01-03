@@ -44,7 +44,7 @@ import net.runelite.asm.signature.Signature;
 public class RasterizerAlpha extends AbstractInjector
 {
 	private static final net.runelite.asm.pool.Method DRAWALPHA = new net.runelite.asm.pool.Method(
-			new Class("client"),
+			new Class("Client"),
 			"drawAlpha",
 			new Signature("([IIII)V")
 	);

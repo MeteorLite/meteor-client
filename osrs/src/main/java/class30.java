@@ -9,6 +9,7 @@ public interface class30 {
       descriptor = "(II)Z",
       garbageValue = "1119176744"
    )
+   @Export("vmethod3949")
    boolean vmethod3949(int var1);
 
    @ObfuscatedName("e")
@@ -16,6 +17,7 @@ public interface class30 {
       descriptor = "(II)Z",
       garbageValue = "-916991313"
    )
+   @Export("vmethod3989")
    boolean vmethod3989(int var1);
 
    @ObfuscatedName("v")
@@ -23,6 +25,7 @@ public interface class30 {
       descriptor = "(CI)Z",
       garbageValue = "-258182"
    )
+   @Export("vmethod3951")
    boolean vmethod3951(char var1);
 
    @ObfuscatedName("x")
@@ -30,5 +33,6 @@ public interface class30 {
       descriptor = "(ZI)Z",
       garbageValue = "333814410"
    )
+   @Export("vmethod3953")
    boolean vmethod3953(boolean var1);
 }

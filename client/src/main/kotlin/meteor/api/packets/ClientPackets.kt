@@ -363,15 +363,15 @@ object ClientPackets {
             value
 
         when (getBufferEncoderName(methodCall.method)) {
-            "writeByte" -> packetBuffer.writeByte(finalValue as Int)
+            "writeByte" -> packetBuffer.`writeByte$api`(finalValue as Int)
             "writeByteAdd" -> packetBuffer.writeByteAdd(finalValue as Int)
             "writeByteNeg" -> packetBuffer.writeByteNeg(finalValue as Int)
             "writeByteSub" -> packetBuffer.writeByteSub(finalValue as Int)
-            "writeInt" -> packetBuffer.writeInt(finalValue as Int)
+            "writeInt" -> packetBuffer.`writeInt$api`(finalValue as Int)
             "writeIntIME" -> packetBuffer.writeIntIME(finalValue as Int)
             "writeIntLE" -> packetBuffer.writeIntLE(finalValue as Int)
-            "writeIntME" -> packetBuffer.writeIntME(finalValue as Int)
-            "writeShort" -> packetBuffer.writeShort(finalValue as Int)
+            "writeIntME" -> packetBuffer.`writeIntME$api`(finalValue as Int)
+            "writeShort" -> packetBuffer.`writeShort$api`(finalValue as Int)
             "writeShortLE" -> packetBuffer.writeShortLE(finalValue as Int)
             "writeShortAdd" -> packetBuffer.writeShortAdd(finalValue as Int)
             "writeShortAddLE" -> packetBuffer.writeShortAddLE(finalValue as Int)

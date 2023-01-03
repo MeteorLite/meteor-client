@@ -5,8 +5,10 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dv")
+@Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
    @ObfuscatedName("h")
+   @Export("reversed")
    final boolean reversed;
 
    public UserComparator4(boolean var1) {
@@ -18,15 +20,18 @@ public class UserComparator4 implements Comparator {
       descriptor = "(Loa;Loa;I)I",
       garbageValue = "1724042479"
    )
+   @Export("compare_bridged")
    int compare_bridged(Buddy var1, Buddy var2) {
       return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
    }
 
+   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compare_bridged((Buddy)var1, (Buddy)var2);
    }
 
+   @Export("equals")
    @ObfuscatedName("equals")
    public boolean equals(Object var1) {
       return super.equals(var1);
@@ -37,7 +42,7 @@ public class UserComparator4 implements Comparator {
       descriptor = "(Lcm;B)V",
       garbageValue = "0"
    )
-   static final void method2809(PendingSpawn var0) {
+   static final void method659(PendingSpawn var0) {
       long var1 = 0L;
       int var3 = -1;
       int var4 = 0;
@@ -66,7 +71,7 @@ public class UserComparator4 implements Comparator {
       }
 
       var0.objectId = var3;
-      var0.field1166 = var4;
-      var0.field1175 = var5;
+      var0.field921 = var4;
+      var0.field928 = var5;
    }
 }

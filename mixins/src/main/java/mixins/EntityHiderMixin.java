@@ -171,17 +171,17 @@ public abstract class EntityHiderMixin implements RSScene
 				return false;
 			}
 
-			if (player.isFriend())
+			if (player.isFriend$api())
 			{
 				return !hideFriends;
 			}
 
-			if (player.isFriendsChatMember())
+			if (player.isFriendsChatMember$api())
 			{
 				return !hideClanMates;
 			}
 
-			if (player.isClanMember())
+			if (player.isClanMember$api())
 			{
 				return !hideClanChatMembers;
 			}

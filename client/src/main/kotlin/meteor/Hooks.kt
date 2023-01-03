@@ -72,10 +72,9 @@ class Hooks : Callbacks {
     override fun tick() {
         if (shouldProcessGameTick) {
             shouldProcessGameTick = false
-            pendingEvents.forEach { post(it.type, it.event) }
-            pendingEvents.clear()
             EventBus.post(Events.GAME_TICK, GAME_TICK)
-            client.tickCount++
+            val tick: Int = client.tickCount
+            client.tickCount = tick + 1
         }
 
         clientThread.invoke()
@@ -104,6 +103,9 @@ class Hooks : Callbacks {
         } else {
             shouldProcessGameTick = true
         }
+
+        pendingEvents.forEach { post(it.type, it.event) }
+        pendingEvents.clear()
     }
 
     override fun drawScene() {
@@ -336,7 +338,7 @@ class Hooks : Callbacks {
                 drawCallbacks
                     .draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
             } else {
-                renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
+                renderable.`draw$api`(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash)
             }
         }
 

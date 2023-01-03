@@ -8,29 +8,37 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fp")
+@Implements("TaskHandler")
 public class TaskHandler implements Runnable {
    @ObfuscatedName("h")
+   @Export("javaVendor")
    public static String javaVendor;
    @ObfuscatedName("e")
+   @Export("javaVersion")
    public static String javaVersion;
    @ObfuscatedName("ha")
    @ObfuscatedSignature(
       descriptor = "Ldl;"
    )
+   @Export("urlRequester")
    static UrlRequester urlRequester;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lfl;"
    )
+   @Export("current")
    Task current = null;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lfl;"
    )
+   @Export("task")
    Task task = null;
    @ObfuscatedName("m")
+   @Export("thread")
    Thread thread;
    @ObfuscatedName("q")
+   @Export("isClosed")
    boolean isClosed = false;
 
    public TaskHandler() {
@@ -56,6 +64,7 @@ public class TaskHandler implements Runnable {
       descriptor = "(I)V",
       garbageValue = "898320509"
    )
+   @Export("close")
    public final void close() {
       synchronized(this) {
          this.isClosed = true;
@@ -75,6 +84,7 @@ public class TaskHandler implements Runnable {
       descriptor = "(IIILjava/lang/Object;B)Lfl;",
       garbageValue = "-5"
    )
+   @Export("newTask")
    final Task newTask(int var1, int var2, int var3, Object var4) {
       Task var5 = new Task();
       var5.type = var1;
@@ -98,6 +108,7 @@ public class TaskHandler implements Runnable {
       descriptor = "(Ljava/lang/String;IB)Lfl;",
       garbageValue = "1"
    )
+   @Export("newSocketTask")
    public final Task newSocketTask(String var1, int var2) {
       return this.newTask(1, var2, 0, var1);
    }
@@ -107,10 +118,12 @@ public class TaskHandler implements Runnable {
       descriptor = "(Ljava/lang/Runnable;IS)Lfl;",
       garbageValue = "228"
    )
+   @Export("newThreadTask")
    public final Task newThreadTask(Runnable var1, int var2) {
       return this.newTask(2, var2, 0, var1);
    }
 
+   @Export("run")
    @ObfuscatedName("run")
    public final void run() {
       while(true) {
@@ -164,8 +177,9 @@ public class TaskHandler implements Runnable {
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "1336568457"
+      garbageValue = "2090340706"
    )
+   @Export("setLoginResponseString")
    static void setLoginResponseString(String var0, String var1, String var2) {
       Login.Login_response1 = var0;
       Login.Login_response2 = var1;
@@ -177,8 +191,8 @@ public class TaskHandler implements Runnable {
       descriptor = "(Ljava/lang/CharSequence;B)Ljava/lang/String;",
       garbageValue = "81"
    )
-   public static String method3447(CharSequence var0) {
-      return HealthBar.method2525('*', var0.length());
+   public static String method873(CharSequence var0) {
+      return HealthBar.method570('*', var0.length());
    }
 
    @ObfuscatedName("mf")
@@ -186,7 +200,7 @@ public class TaskHandler implements Runnable {
       descriptor = "(I)Z",
       garbageValue = "-2117100344"
    )
-   public static boolean method3443() {
+   public static boolean method871() {
       return Client.staffModLevel >= 2;
    }
 }

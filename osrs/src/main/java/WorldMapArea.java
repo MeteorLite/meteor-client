@@ -2,74 +2,68 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("it")
+@Implements("WorldMapArea")
 public class WorldMapArea {
    @ObfuscatedName("vl")
    @ObfuscatedSignature(
       descriptor = "Loi;"
    )
+   @Export("masterDisk")
    static ArchiveDisk masterDisk;
    @ObfuscatedName("fo")
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
+   @Export("archive20")
    static Archive archive20;
    @ObfuscatedName("qq")
    @ObfuscatedSignature(
       descriptor = "Ldn;"
    )
+   @Export("varcs")
    static Varcs varcs;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -865162849
-   )
+   @Export("id")
    int id = -1;
    @ObfuscatedName("e")
+   @Export("internalName")
    String internalName;
    @ObfuscatedName("v")
+   @Export("externalName")
    String externalName;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1725773199
-   )
+   @Export("backGroundColor")
    int backGroundColor = -1;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 1625801673
-   )
+   @Export("zoom")
    int zoom = -1;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lky;"
    )
+   @Export("origin")
    Coord origin = null;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 693076639
-   )
+   @Export("regionLowX")
    int regionLowX = Integer.MAX_VALUE;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -1108302035
-   )
+   @Export("regionHighX")
    int regionHighX = 0;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1503701713
-   )
+   @Export("regionLowY")
    int regionLowY = Integer.MAX_VALUE;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = -693504869
-   )
+   @Export("regionHighY")
    int regionHighY = 0;
    @ObfuscatedName("j")
+   @Export("isMain")
    boolean isMain = false;
    @ObfuscatedName("g")
+   @Export("sections")
    LinkedList sections;
 
    @ObfuscatedName("h")
@@ -77,6 +71,7 @@ public class WorldMapArea {
       descriptor = "(Lqy;IB)V",
       garbageValue = "21"
    )
+   @Export("read")
    public void read(Buffer var1, int var2) {
       this.id = var2;
       this.internalName = var1.readStringCp1252NullTerminated();
@@ -101,6 +96,7 @@ public class WorldMapArea {
       descriptor = "(Lqy;I)Liw;",
       garbageValue = "-1065259744"
    )
+   @Export("readWorldMapSection")
    WorldMapSection readWorldMapSection(Buffer var1) {
       int var2 = var1.readUnsignedByte();
       WorldMapSectionType[] var3 = new WorldMapSectionType[]{WorldMapSectionType.WORLDMAPSECTIONTYPE3, WorldMapSectionType.WORLDMAPSECTIONTYPE2, WorldMapSectionType.WORLDMAPSECTIONTYPE0, WorldMapSectionType.WORLDMAPSECTIONTYPE1};
@@ -132,6 +128,7 @@ public class WorldMapArea {
       descriptor = "(IIIB)Z",
       garbageValue = "-11"
    )
+   @Export("containsCoord")
    public boolean containsCoord(int var1, int var2, int var3) {
       Iterator var4 = this.sections.iterator();
 
@@ -152,6 +149,7 @@ public class WorldMapArea {
       descriptor = "(III)Z",
       garbageValue = "-2133245025"
    )
+   @Export("containsPosition")
    public boolean containsPosition(int var1, int var2) {
       int var3 = var1 / 64;
       int var4 = var2 / 64;
@@ -182,6 +180,7 @@ public class WorldMapArea {
       descriptor = "(IIII)[I",
       garbageValue = "665654493"
    )
+   @Export("position")
    public int[] position(int var1, int var2, int var3) {
       Iterator var4 = this.sections.iterator();
 
@@ -202,6 +201,7 @@ public class WorldMapArea {
       descriptor = "(IIB)Lky;",
       garbageValue = "-62"
    )
+   @Export("coord")
    public Coord coord(int var1, int var2) {
       Iterator var3 = this.sections.iterator();
 
@@ -222,6 +222,7 @@ public class WorldMapArea {
       descriptor = "(I)V",
       garbageValue = "1766044231"
    )
+   @Export("setBounds")
    void setBounds() {
       Iterator var1 = this.sections.iterator();
 
@@ -237,6 +238,7 @@ public class WorldMapArea {
       descriptor = "(I)I",
       garbageValue = "-1762068654"
    )
+   @Export("getId")
    public int getId() {
       return this.id;
    }
@@ -246,6 +248,7 @@ public class WorldMapArea {
       descriptor = "(I)Z",
       garbageValue = "1931437723"
    )
+   @Export("getIsMain")
    public boolean getIsMain() {
       return this.isMain;
    }
@@ -255,6 +258,7 @@ public class WorldMapArea {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "1626339354"
    )
+   @Export("getInternalName")
    public String getInternalName() {
       return this.internalName;
    }
@@ -264,6 +268,7 @@ public class WorldMapArea {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "18"
    )
+   @Export("getExternalName")
    public String getExternalName() {
       return this.externalName;
    }
@@ -273,6 +278,7 @@ public class WorldMapArea {
       descriptor = "(B)I",
       garbageValue = "-53"
    )
+   @Export("getBackGroundColor")
    int getBackGroundColor() {
       return this.backGroundColor;
    }
@@ -282,6 +288,7 @@ public class WorldMapArea {
       descriptor = "(I)I",
       garbageValue = "1068603162"
    )
+   @Export("getZoom")
    public int getZoom() {
       return this.zoom;
    }
@@ -291,6 +298,7 @@ public class WorldMapArea {
       descriptor = "(B)I",
       garbageValue = "74"
    )
+   @Export("getRegionLowX")
    public int getRegionLowX() {
       return this.regionLowX;
    }
@@ -300,6 +308,7 @@ public class WorldMapArea {
       descriptor = "(B)I",
       garbageValue = "12"
    )
+   @Export("getRegionHighX")
    public int getRegionHighX() {
       return this.regionHighX;
    }
@@ -309,6 +318,7 @@ public class WorldMapArea {
       descriptor = "(I)I",
       garbageValue = "-492908106"
    )
+   @Export("getRegionLowY")
    public int getRegionLowY() {
       return this.regionLowY;
    }
@@ -318,6 +328,7 @@ public class WorldMapArea {
       descriptor = "(I)I",
       garbageValue = "-322384936"
    )
+   @Export("getRegionHighY")
    public int getRegionHighY() {
       return this.regionHighY;
    }
@@ -327,6 +338,7 @@ public class WorldMapArea {
       descriptor = "(I)I",
       garbageValue = "469004825"
    )
+   @Export("getOriginX")
    public int getOriginX() {
       return this.origin.x;
    }
@@ -336,6 +348,7 @@ public class WorldMapArea {
       descriptor = "(B)I",
       garbageValue = "-97"
    )
+   @Export("getOriginPlane")
    public int getOriginPlane() {
       return this.origin.plane;
    }
@@ -345,6 +358,7 @@ public class WorldMapArea {
       descriptor = "(B)I",
       garbageValue = "105"
    )
+   @Export("getOriginY")
    public int getOriginY() {
       return this.origin.y;
    }
@@ -354,6 +368,7 @@ public class WorldMapArea {
       descriptor = "(I)Lky;",
       garbageValue = "1494718405"
    )
+   @Export("getOrigin")
    public Coord getOrigin() {
       return new Coord(this.origin);
    }
@@ -363,7 +378,7 @@ public class WorldMapArea {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "2001824816"
    )
-   static int method4967(int var0, Script var1, boolean var2) {
+   static int method1349(int var0, Script var1, boolean var2) {
       Widget var3 = var2 ? class190.scriptDotWidget : class360.scriptActiveWidget;
       if (var0 == 1800) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = PacketWriter.Widget_unpackTargetMask(Clock.getWidgetFlags(var3));

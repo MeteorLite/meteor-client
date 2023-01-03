@@ -64,6 +64,6 @@ public abstract class RSClanChannelMemberMixin implements RSClanChannelMember
 	@Inject
 	public String getName()
 	{
-		return getUsername().getName();
+		return getUsername().getName$api();
 	}
 }

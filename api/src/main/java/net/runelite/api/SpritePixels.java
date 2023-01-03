@@ -40,7 +40,7 @@ public interface SpritePixels
 	 * @param x the x-axis coordinate
 	 * @param y the y-axis coordinate
 	 */
-	void drawAt(int x, int y);
+	void drawAt$api(int x, int y);
 
 	/**
 	 * Gets the width of the sprite image in pixels.

@@ -8,13 +8,14 @@ public class class168 {
    @ObfuscatedSignature(
       descriptor = "Ldm;"
    )
-   public UrlRequest field1867;
+   public UrlRequest field1433;
    @ObfuscatedName("e")
-   public float[] field1868;
+   public float[] field1434;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
    final class163 this$0;
 
@@ -23,7 +24,7 @@ public class class168 {
    )
    class168(class163 var1) {
       this.this$0 = var1;
-      this.field1868 = new float[4];
+      this.field1434 = new float[4];
    }
 
    @ObfuscatedName("e")
@@ -31,6 +32,7 @@ public class class168 {
       descriptor = "(CLmb;I)C",
       garbageValue = "2057420121"
    )
+   @Export("standardizeChar")
    static char standardizeChar(char var0, Language var1) {
       if (var0 >= 192 && var0 <= 255) {
          if (var0 >= 192 && var0 <= 198) {
@@ -106,10 +108,8 @@ public class class168 {
          return 'O';
       } else if (var0 == 339) {
          return 'o';
-      } else if (var0 == 376) {
-         return 'Y';
       } else {
-         return var0;
+         return var0 == 376 ? 'Y' : var0;
       }
    }
 
@@ -118,7 +118,7 @@ public class class168 {
       descriptor = "(S)I",
       garbageValue = "-2191"
    )
-   protected static final int method3482() {
+   protected static final int method881() {
       return GameEngine.keyHandler.getIdleCycles();
    }
 
@@ -127,7 +127,7 @@ public class class168 {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-601866686"
    )
-   static int method3481(int var0, Script var1, boolean var2) {
+   static int method880(int var0, Script var1, boolean var2) {
       return 2;
    }
 }

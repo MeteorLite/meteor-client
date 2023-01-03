@@ -1,35 +1,34 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hn")
+@Implements("Skeleton")
 public class Skeleton extends Node {
    @ObfuscatedName("lf")
    @ObfuscatedSignature(
       descriptor = "Lht;"
    )
+   @Export("textureProvider")
    static TextureProvider textureProvider;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 227763471
-   )
+   @Export("id")
    int id;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 15717685
-   )
+   @Export("count")
    int count;
    @ObfuscatedName("r")
+   @Export("transformTypes")
    int[] transformTypes;
    @ObfuscatedName("u")
+   @Export("labels")
    int[][] labels;
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Lhi;"
    )
-   class213 field2525;
+   class213 field1990;
 
    public Skeleton(int var1, byte[] var2) {
       this.id = var1;
@@ -56,7 +55,7 @@ public class Skeleton extends Node {
       if (var3.offset < var3.array.length) {
          var4 = var3.readUnsignedShort();
          if (var4 > 0) {
-            this.field2525 = new class213(var3, var4);
+            this.field1990 = new class213(var3, var4);
          }
       }
 
@@ -67,7 +66,7 @@ public class Skeleton extends Node {
       descriptor = "(I)I",
       garbageValue = "-2112065673"
    )
-   public int method4426() {
+   public int method1176() {
       return this.count;
    }
 
@@ -76,8 +75,8 @@ public class Skeleton extends Node {
       descriptor = "(I)Lhi;",
       garbageValue = "736109074"
    )
-   public class213 method4422() {
-      return this.field2525;
+   public class213 method1175() {
+      return this.field1990;
    }
 
    @ObfuscatedName("j")
@@ -85,7 +84,7 @@ public class Skeleton extends Node {
       descriptor = "(B)V",
       garbageValue = "81"
    )
-   static final void method4428() {
+   static final void method1177() {
       Object var10000 = null;
       String var0 = "You can't add yourself to your own friend list";
       KitDefinition.addGameMessage(30, "", var0);

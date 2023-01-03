@@ -298,7 +298,7 @@ public abstract class RSSequenceDefinitionMixin implements RSSequenceDefinition
 	{
 		RSSequenceDefinition sequenceDefinition = copy$sequenceDefinitionGet(var0);
 
-		if (sequenceDefinition.getFrameIDs() == null && !sequenceDefinition.isCachedModelIdSet())
+		if (sequenceDefinition.getFrameIDs() == null && !sequenceDefinition.isCachedModelIdSet$api())
 		{
 			return null;
 		}

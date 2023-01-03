@@ -1,124 +1,78 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kx")
+@Implements("MusicPatchNode")
 public class MusicPatchNode extends Node {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1405159971
-   )
-   int field3427;
+   int field2780;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lkl;"
    )
+   @Export("patch")
    MusicPatch patch;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Laf;"
    )
+   @Export("rawSound")
    RawSound rawSound;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Ljy;"
    )
-   MusicPatchNode2 field3428;
+   MusicPatchNode2 field2781;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -632852283
-   )
-   int field3418;
+   int field2771;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 641391177
-   )
-   int field3419;
+   int field2772;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -529495939
-   )
-   int field3423;
+   int field2776;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -504007495
-   )
-   int field3421;
+   int field2774;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 1627034491
-   )
-   int field3422;
+   int field2775;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 742573521
-   )
-   int field3414;
+   int field2767;
    @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = 1904955935
-   )
-   int field3424;
+   int field2777;
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -2065414593
-   )
-   int field3425;
+   int field2778;
    @ObfuscatedName("i")
-   @ObfuscatedGetter(
-      intValue = -272808679
-   )
-   int field3420;
+   int field2773;
    @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1342299511
-   )
-   int field3416;
+   int field2769;
    @ObfuscatedName("n")
-   @ObfuscatedGetter(
-      intValue = -1756880989
-   )
-   int field3415;
+   int field2768;
    @ObfuscatedName("k")
-   @ObfuscatedGetter(
-      intValue = -524220702
-   )
-   int field3429;
+   int field2782;
    @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = -894231501
-   )
-   int field3430;
+   int field2783;
    @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = -146245059
-   )
-   int field3431;
+   int field2784;
    @ObfuscatedName("l")
    @ObfuscatedSignature(
       descriptor = "Lap;"
    )
+   @Export("stream")
    RawPcmStream stream;
    @ObfuscatedName("t")
-   @ObfuscatedGetter(
-      intValue = 1397627135
-   )
-   int field3433;
+   int field2786;
    @ObfuscatedName("p")
-   @ObfuscatedGetter(
-      intValue = 1978134147
-   )
-   int field3434;
+   int field2787;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "(I)V",
       garbageValue = "1866464890"
    )
-   void method5787() {
+   void method1603() {
       this.patch = null;
       this.rawSound = null;
-      this.field3428 = null;
+      this.field2781 = null;
       this.stream = null;
    }
 
@@ -127,7 +81,7 @@ public class MusicPatchNode extends Node {
       descriptor = "(ILbm;ZS)I",
       garbageValue = "11174"
    )
-   static int method5788(int var0, Script var1, boolean var2) {
+   static int method1604(int var0, Script var1, boolean var2) {
       Widget var3;
       if (var0 >= 2000) {
          var0 -= 1000;
@@ -221,36 +175,36 @@ public class MusicPatchNode extends Node {
       } else if (var0 == 1425) {
          var3.onStockTransmit = var9;
       } else if (var0 == 1426) {
-         var3.field3567 = var9;
+         var3.field2891 = var9;
       } else if (var0 == 1427) {
          var3.onResize = var9;
       } else if (var0 == 1428) {
-         var3.field3553 = var9;
+         var3.field2878 = var9;
       } else if (var0 == 1429) {
-         var3.field3663 = var9;
+         var3.field2985 = var9;
       } else if (var0 == 1430) {
-         var3.field3658 = var9;
+         var3.field2980 = var9;
       } else if (var0 == 1431) {
-         var3.field3653 = var9;
+         var3.field2975 = var9;
       } else if (var0 == 1434) {
-         var3.field3670 = var9;
+         var3.field2992 = var9;
       } else if (var0 == 1435) {
-         var3.field3654 = var9;
+         var3.field2976 = var9;
       } else {
          if (var0 < 1436 || var0 > 1439) {
             return 2;
          }
 
-         class301 var8 = var3.method6185();
+         class301 var8 = var3.method1735();
          if (var8 != null) {
             if (var0 == 1436) {
-               var8.field3467 = var9;
+               var8.field2811 = var9;
             } else if (var0 == 1437) {
-               var8.field3468 = var9;
+               var8.field2812 = var9;
             } else if (var0 == 1438) {
-               var8.field3465 = var9;
+               var8.field2809 = var9;
             } else if (var0 == 1439) {
-               var8.field3469 = var9;
+               var8.field2813 = var9;
             }
          }
       }
@@ -264,6 +218,7 @@ public class MusicPatchNode extends Node {
       descriptor = "(IZZZZI)Lln;",
       garbageValue = "243666843"
    )
+   @Export("newArchive")
    static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
       ArchiveDisk var5 = null;
       if (JagexCache.JagexCache_dat2File != null) {

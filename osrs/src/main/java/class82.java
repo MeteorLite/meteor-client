@@ -9,6 +9,7 @@ public class class82 {
       descriptor = "([Ljava/lang/String;[SIIB)V",
       garbageValue = "-111"
    )
+   @Export("sortItemsByName")
    public static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
       if (var2 < var3) {
          int var4 = (var3 + var2) / 2;
@@ -46,7 +47,7 @@ public class class82 {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "1832001725"
    )
-   static int method2248(int var0, Script var1, boolean var2) {
+   static int method469(int var0, Script var1, boolean var2) {
       int var3;
       if (var0 == 5504) {
          class87.Interpreter_intStackSize -= 2;

@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,31 +8,28 @@ public enum class326 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lle;"
    )
-   field4143(-1),
+   field3404(-1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lle;"
    )
-   field4140(0),
+   field3401(0),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lle;"
    )
-   field4144(1),
+   field3405(1),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lle;"
    )
-   field4141(2);
+   field3402(2);
 
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 526450303
-   )
-   final int field4142;
+   final int field3403;
 
    class326(int var3) {
-      this.field4142 = var3;
+      this.field3403 = var3;
    }
 
    @ObfuscatedName("e")
@@ -41,8 +37,9 @@ public enum class326 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
-      return this.field4142;
+      return this.field3403;
    }
 
    @ObfuscatedName("h")
@@ -50,14 +47,14 @@ public enum class326 implements class345 {
       descriptor = "(B)Loj;",
       garbageValue = "1"
    )
-   public static class410 method6395() {
-      class410[] var0 = class410.field4609;
-      synchronized(class410.field4609) {
-         if (class410.field4608 == 0) {
+   public static class410 method1778() {
+      class410[] var0 = class410.field3761;
+      synchronized(class410.field3761) {
+         if (class410.field3760 == 0) {
             return new class410();
          } else {
-            class410.field4609[--class410.field4608].method7782();
-            return class410.field4609[class410.field4608];
+            class410.field3761[--class410.field3760].method2131();
+            return class410.field3761[class410.field3760];
          }
       }
    }

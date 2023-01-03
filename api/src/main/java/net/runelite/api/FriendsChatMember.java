@@ -34,7 +34,7 @@ public interface FriendsChatMember extends ChatPlayer
 	 *
 	 * @return the world
 	 */
-	int getWorld();
+	int getWorld$api();
 
 	/**
 	 * Gets the rank of the friends chat member.

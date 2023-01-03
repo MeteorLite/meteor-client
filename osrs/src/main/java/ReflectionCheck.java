@@ -1,38 +1,41 @@
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ag")
+@Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
    @ObfuscatedName("io")
    @ObfuscatedSignature(
       descriptor = "Lhc;"
    )
+   @Export("scene")
    static Scene scene;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 1143257971
-   )
+   @Export("id")
    int id;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 1361333621
-   )
+   @Export("size")
    int size;
    @ObfuscatedName("v")
+   @Export("operations")
    int[] operations;
    @ObfuscatedName("x")
+   @Export("creationErrors")
    int[] creationErrors;
    @ObfuscatedName("m")
+   @Export("arguments")
    byte[][][] arguments;
    @ObfuscatedName("q")
    Field[] fields;
    @ObfuscatedName("f")
+   @Export("intReplaceValues")
    int[] intReplaceValues;
    @ObfuscatedName("r")
+   @Export("methods")
    Method[] methods;
 
    @ObfuscatedName("jw")
@@ -40,10 +43,10 @@ public class ReflectionCheck extends Node {
       descriptor = "(IIIII)V",
       garbageValue = "65850729"
    )
-   static final void method714(int var0, int var1, int var2, int var3) {
+   static final void method190(int var0, int var1, int var2, int var3) {
       for(int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
          if (Client.rootWidgetXs[var4] + Client.rootWidgetWidths[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetYs[var4] + Client.rootWidgetHeights[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
-            Client.field731[var4] = true;
+            Client.field576[var4] = true;
          }
       }
 
@@ -52,8 +55,9 @@ public class ReflectionCheck extends Node {
    @ObfuscatedName("kg")
    @ObfuscatedSignature(
       descriptor = "(Lcg;IIIB)V",
-      garbageValue = "-113"
+      garbageValue = "-3"
    )
+   @Export("addNpcToMenu")
    static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
       NPCComposition var4 = var0.definition;
       if (Client.menuOptionsCount < 400) {
@@ -64,11 +68,11 @@ public class ReflectionCheck extends Node {
          if (var4 != null) {
             if (var4.isInteractable) {
                if (!var4.isFollower || Client.followerIndex == var1) {
-                  String var5 = var0.method2535();
+                  String var5 = var0.method577();
                   int var6;
                   if (var4.combatLevel != 0 && var0.combatLevelChange != 0) {
-                     var6 = var0.combatLevelChange != -1 ? var0.combatLevelChange : var4.combatLevel;
-                     var5 = var5 + class125.method2971(var6, class155.localPlayer.combatLevel) + " " + " (" + "level-" + var6 + ")";
+                     var6 = var0.combatLevelChange != -1 ? var0.combatLevelChange * -1702343865 * 1485827703 : var4.combatLevel * 1479178307 * -917269397;
+                     var5 = var5 + class125.method706(var6, class155.localPlayer.combatLevel) + " " + " (" + "level-" + var6 + ")";
                   }
 
                   if (var4.isFollower && Client.followerOpsLowPriority) {
@@ -88,7 +92,7 @@ public class ReflectionCheck extends Node {
                      int var9;
                      if (var7 != null) {
                         for(var8 = 4; var8 >= 0; --var8) {
-                           if (var0.method2576(var8) && var7[var8] != null && !var7[var8].equalsIgnoreCase("Attack")) {
+                           if (var0.method591(var8) && var7[var8] != null && !var7[var8].equalsIgnoreCase("Attack")) {
                               var9 = 0;
                               if (var8 == 0) {
                                  var9 = var6 + 9;
@@ -117,7 +121,7 @@ public class ReflectionCheck extends Node {
 
                      if (var7 != null) {
                         for(var8 = 4; var8 >= 0; --var8) {
-                           if (var0.method2576(var8) && var7[var8] != null && var7[var8].equalsIgnoreCase("Attack")) {
+                           if (var0.method591(var8) && var7[var8] != null && var7[var8].equalsIgnoreCase("Attack")) {
                               short var10 = 0;
                               if (AttackOption.AttackOption_hidden != Client.npcAttackOption) {
                                  if (AttackOption.AttackOption_alwaysRightClick == Client.npcAttackOption || Client.npcAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var4.combatLevel > class155.localPlayer.combatLevel) {
@@ -167,7 +171,7 @@ public class ReflectionCheck extends Node {
       descriptor = "(II)V",
       garbageValue = "1865520604"
    )
-   static void method711(int var0) {
+   static void method187(int var0) {
       PendingSpawn.tempMenuAction = new MenuAction();
       PendingSpawn.tempMenuAction.param0 = Client.menuArguments1[var0];
       PendingSpawn.tempMenuAction.param1 = Client.menuArguments2[var0];
@@ -183,9 +187,10 @@ public class ReflectionCheck extends Node {
       descriptor = "(Ljava/lang/String;S)V",
       garbageValue = "10506"
    )
+   @Export("clanKickUser")
    static final void clanKickUser(String var0) {
       if (class281.friendsChat != null) {
-         PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field3090, Client.packetWriter.isaacCipher);
+         PacketBufferNode var1 = class136.getPacketBufferNode(ClientPacket.field2474, Client.packetWriter.isaacCipher);
          var1.packetBuffer.writeByte(class13.stringCp1252NullTerminatedByteSize(var0));
          var1.packetBuffer.writeStringCp1252NullTerminated(var0);
          Client.packetWriter.addNode(var1);

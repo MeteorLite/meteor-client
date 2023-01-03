@@ -1,47 +1,42 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ht")
+@Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
    @ObfuscatedName("fx")
-   @ObfuscatedGetter(
-      intValue = -917771577
-   )
-   static int field2643;
+   static int field2089;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "[Lhx;"
    )
+   @Export("textures")
    Texture[] textures;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
+   @Export("deque")
    NodeDeque deque = new NodeDeque();
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -36680881
-   )
+   @Export("capacity")
    int capacity;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -2133855553
-   )
+   @Export("remaining")
    int remaining = 0;
    @ObfuscatedName("m")
+   @Export("brightness")
    double brightness = 1.0D;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = -1483135625
-   )
+   @Export("textureSize")
    int textureSize = 128;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
+   @Export("archive")
    AbstractArchive archive;
 
    @ObfuscatedSignature(
@@ -69,6 +64,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(B)I",
       garbageValue = "8"
    )
+   @Export("getLoadedPercentage")
    public int getLoadedPercentage() {
       int var1 = 0;
       int var2 = 0;
@@ -82,7 +78,7 @@ public class TextureProvider implements TextureLoader {
 
             for(int var7 = 0; var7 < var6.length; ++var7) {
                int var8 = var6[var7];
-               if (this.archive.method6505(var8)) {
+               if (this.archive.method1817(var8)) {
                   ++var2;
                }
             }
@@ -97,6 +93,7 @@ public class TextureProvider implements TextureLoader {
    }
 
    @ObfuscatedName("e")
+   @Export("setBrightness")
    public void setBrightness(double var1) {
       this.brightness = var1;
       this.clear();
@@ -107,6 +104,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(II)[I",
       garbageValue = "-1617640500"
    )
+   @Export("getTexturePixels")
    public int[] getTexturePixels(int var1) {
       Texture var2 = this.textures[var1];
       if (var2 != null) {
@@ -139,6 +137,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(IB)I",
       garbageValue = "56"
    )
+   @Export("getAverageTextureRGB")
    public int getAverageTextureRGB(int var1) {
       return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
    }
@@ -148,8 +147,9 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(II)Z",
       garbageValue = "-1786884574"
    )
+   @Export("vmethod4645")
    public boolean vmethod4645(int var1) {
-      return this.textures[var1].field2442;
+      return this.textures[var1].field1923;
    }
 
    @ObfuscatedName("q")
@@ -157,6 +157,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(II)Z",
       garbageValue = "1897971532"
    )
+   @Export("isLowDetail")
    public boolean isLowDetail(int var1) {
       return this.textureSize == 64;
    }
@@ -166,6 +167,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(I)V",
       garbageValue = "-1905328822"
    )
+   @Export("clear")
    public void clear() {
       for(int var1 = 0; var1 < this.textures.length; ++var1) {
          if (this.textures[var1] != null) {
@@ -182,6 +184,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(IB)V",
       garbageValue = "16"
    )
+   @Export("animate")
    public void animate(int var1) {
       for(int var2 = 0; var2 < this.textures.length; ++var2) {
          Texture var3 = this.textures[var2];
@@ -198,6 +201,7 @@ public class TextureProvider implements TextureLoader {
       descriptor = "(I)Z",
       garbageValue = "-1849782424"
    )
+   @Export("getTapToDrop")
    static boolean getTapToDrop() {
       return Client.tapToDrop;
    }

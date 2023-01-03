@@ -11,7 +11,7 @@ public interface RSTextureProvider extends TextureProvider
 
 	@Import("setBrightness")
 	@Override
-	void setBrightness(double brightness);
+	void setBrightness$api(double brightness);
 
 	@Import("capacity")
 	void setMaxSize(int maxSize);

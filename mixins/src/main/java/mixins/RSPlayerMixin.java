@@ -79,7 +79,7 @@ public abstract class RSPlayerMixin implements RSPlayer
 			return null;
 		}
 
-		String name = rsName.getName();
+		String name = rsName.getName$api();
 
 		if (name == null)
 		{
@@ -256,7 +256,7 @@ public abstract class RSPlayerMixin implements RSPlayer
 	@Inject
 	public boolean isFriended()
 	{
-		return isFriend() || friended;
+		return isFriend$api() || friended;
 	}
 
 	@Inject

@@ -8,16 +8,22 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lr")
+@Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
    @ObfuscatedName("e")
+   @Export("GrandExchangeEvents_ageComparator")
    public static Comparator GrandExchangeEvents_ageComparator = new GrandExchangeOfferAgeComparator();
    @ObfuscatedName("v")
+   @Export("GrandExchangeEvents_priceComparator")
    public static Comparator GrandExchangeEvents_priceComparator;
    @ObfuscatedName("x")
+   @Export("GrandExchangeEvents_nameComparator")
    public static Comparator GrandExchangeEvents_nameComparator;
    @ObfuscatedName("m")
+   @Export("GrandExchangeEvents_quantityComparator")
    public static Comparator GrandExchangeEvents_quantityComparator;
    @ObfuscatedName("h")
+   @Export("events")
    public final List events;
 
    static {
@@ -55,6 +61,7 @@ public class GrandExchangeEvents {
       descriptor = "(Ljava/util/Comparator;ZI)V",
       garbageValue = "1698148596"
    )
+   @Export("sort")
    public void sort(Comparator var1, boolean var2) {
       if (var2) {
          Collections.sort(this.events, var1);
@@ -69,6 +76,7 @@ public class GrandExchangeEvents {
       descriptor = "(Laa;B)V",
       garbageValue = "-67"
    )
+   @Export("PcmStream_disable")
    static final void PcmStream_disable(PcmStream var0) {
       var0.active = false;
       if (var0.sound != null) {
@@ -86,7 +94,7 @@ public class GrandExchangeEvents {
       descriptor = "(IB)I",
       garbageValue = "82"
    )
-   static int method6569(int var0) {
-      return (int)((Math.log((double)var0) / Interpreter.field871 - 7.0D) * 256.0D);
+   static int method1827(int var0) {
+      return (int)((Math.log((double)var0) / Interpreter.field699 - 7.0D) * 256.0D);
    }
 }

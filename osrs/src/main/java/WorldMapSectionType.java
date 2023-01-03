@@ -3,39 +3,42 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("im")
+@Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
+   @Export("WORLDMAPSECTIONTYPE0")
    WORLDMAPSECTIONTYPE0(2, (byte)0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
+   @Export("WORLDMAPSECTIONTYPE1")
    WORLDMAPSECTIONTYPE1(3, (byte)1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
+   @Export("WORLDMAPSECTIONTYPE2")
    WORLDMAPSECTIONTYPE2(0, (byte)2),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lim;"
    )
+   @Export("WORLDMAPSECTIONTYPE3")
    WORLDMAPSECTIONTYPE3(1, (byte)3);
 
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -1816718813
-   )
+   @Export("type")
    final int type;
    @ObfuscatedName("q")
+   @Export("id")
    final byte id;
 
    WorldMapSectionType(int var3, byte var4) {
@@ -48,6 +51,7 @@ public enum WorldMapSectionType implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
@@ -57,7 +61,7 @@ public enum WorldMapSectionType implements class345 {
       descriptor = "(Lly;Lly;I)V",
       garbageValue = "-414015759"
    )
-   public static void method5233(AbstractArchive var0, AbstractArchive var1) {
+   public static void method1427(AbstractArchive var0, AbstractArchive var1) {
       SpotAnimationDefinition.SpotAnimationDefinition_archive = var0;
       SpotAnimationDefinition.SpotAnimationDefinition_modelArchive = var1;
    }
@@ -67,7 +71,7 @@ public enum WorldMapSectionType implements class345 {
       descriptor = "(I)V",
       garbageValue = "934969929"
    )
-   public static void method5237() {
+   public static void method1430() {
       try {
          File var0 = new File(UserComparator3.userHomeDirectory, "random.dat");
          int var2;
@@ -106,7 +110,7 @@ public enum WorldMapSectionType implements class345 {
       descriptor = "(III)I",
       garbageValue = "1437663571"
    )
-   static final int method5234(int var0, int var1) {
+   static final int method1428(int var0, int var1) {
       if (var0 == -2) {
          return 12345678;
       } else if (var0 == -1) {
@@ -134,7 +138,7 @@ public enum WorldMapSectionType implements class345 {
       descriptor = "(I)V",
       garbageValue = "-632900931"
    )
-   static void method5230() {
+   static void method1426() {
       Client.menuOptionsCount = 0;
       Client.isMenuOpen = false;
    }
@@ -144,10 +148,10 @@ public enum WorldMapSectionType implements class345 {
       descriptor = "(I)V",
       garbageValue = "-1176729619"
    )
-   static final void method5236() {
-      PacketBufferNode var0 = class136.getPacketBufferNode(ClientPacket.field3099, Client.packetWriter.isaacCipher);
+   static final void method1429() {
+      PacketBufferNode var0 = class136.getPacketBufferNode(ClientPacket.field2483, Client.packetWriter.isaacCipher);
       Client.packetWriter.addNode(var0);
-      Interpreter.field868 = true;
+      Interpreter.field697 = true;
 
       for(InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) {
          if (var1.type == 0 || var1.type == 3) {
@@ -160,6 +164,6 @@ public enum WorldMapSectionType implements class345 {
          Client.meslayerContinueWidget = null;
       }
 
-      Interpreter.field868 = false;
+      Interpreter.field697 = false;
    }
 }

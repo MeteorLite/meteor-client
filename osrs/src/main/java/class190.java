@@ -8,6 +8,7 @@ public class class190 extends DualNode {
    @ObfuscatedSignature(
       descriptor = "Lkd;"
    )
+   @Export("scriptDotWidget")
    static Widget scriptDotWidget;
 
    static {
@@ -19,7 +20,7 @@ public class class190 extends DualNode {
       descriptor = "(Ljava/lang/CharSequence;IZI)Z",
       garbageValue = "-1246263736"
    )
-   static boolean method3772(CharSequence var0, int var1, boolean var2) {
+   static boolean method982(CharSequence var0, int var1, boolean var2) {
       if (var1 >= 2 && var1 <= 36) {
          boolean var3 = false;
          boolean var4 = false;

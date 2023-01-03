@@ -1,80 +1,59 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("iu")
+@Implements("WorldMapSection2")
 public class WorldMapSection2 implements WorldMapSection {
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = -1092602777
-   )
+   @Export("minPlane")
    int minPlane;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -939702515
-   )
+   @Export("planes")
    int planes;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1065150765
-   )
+   @Export("regionStartX")
    int regionStartX;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 346902175
-   )
+   @Export("regionStartY")
    int regionStartY;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 337769061
-   )
+   @Export("regionEndX")
    int regionEndX;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1809147725
-   )
+   @Export("regionEndY")
    int regionEndY;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -651808565
-   )
-   int field2845;
+   int field2263;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -957154991
-   )
-   int field2844;
+   int field2262;
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -394773385
-   )
-   int field2841;
+   int field2259;
    @ObfuscatedName("b")
-   @ObfuscatedGetter(
-      intValue = 403564879
-   )
-   int field2848;
+   int field2266;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "(Lit;B)V",
       garbageValue = "86"
    )
+   @Export("expandBounds")
    public void expandBounds(WorldMapArea var1) {
-      if (var1.regionLowX > this.field2845) {
-         var1.regionLowX = this.field2845;
+      if (var1.regionLowX > this.field2263) {
+         var1.regionLowX = this.field2263;
       }
 
-      if (var1.regionHighX < this.field2841) {
-         var1.regionHighX = this.field2841;
+      if (var1.regionHighX < this.field2259) {
+         var1.regionHighX = this.field2259;
       }
 
-      if (var1.regionLowY > this.field2844) {
-         var1.regionLowY = this.field2844;
+      if (var1.regionLowY > this.field2262) {
+         var1.regionLowY = this.field2262;
       }
 
-      if (var1.regionHighY < this.field2848) {
-         var1.regionHighY = this.field2848;
+      if (var1.regionHighY < this.field2266) {
+         var1.regionHighY = this.field2266;
       }
 
    }
@@ -84,6 +63,7 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(IIII)Z",
       garbageValue = "986597458"
    )
+   @Export("containsCoord")
    public boolean containsCoord(int var1, int var2, int var3) {
       if (var1 >= this.minPlane && var1 < this.planes + this.minPlane) {
          return var2 >> 6 >= this.regionStartX && var2 >> 6 <= this.regionEndX && var3 >> 6 >= this.regionStartY && var3 >> 6 <= this.regionEndY;
@@ -97,8 +77,9 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(IIS)Z",
       garbageValue = "-11823"
    )
+   @Export("containsPosition")
    public boolean containsPosition(int var1, int var2) {
-      return var1 >> 6 >= this.field2845 && var1 >> 6 <= this.field2841 && var2 >> 6 >= this.field2844 && var2 >> 6 <= this.field2848;
+      return var1 >> 6 >= this.field2263 && var1 >> 6 <= this.field2259 && var2 >> 6 >= this.field2262 && var2 >> 6 <= this.field2266;
    }
 
    @ObfuscatedName("x")
@@ -106,11 +87,12 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(IIIB)[I",
       garbageValue = "-52"
    )
+   @Export("getBorderTileLengths")
    public int[] getBorderTileLengths(int var1, int var2, int var3) {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
       } else {
-         int[] var4 = new int[]{this.field2845 * 64 - this.regionStartX * 64 + var2, var3 + (this.field2844 * 64 - this.regionStartY * 64)};
+         int[] var4 = new int[]{var2 + (this.field2263 * 64 - this.regionStartX * 64), var3 + (this.field2262 * 64 - this.regionStartY * 64)};
          return var4;
       }
    }
@@ -120,12 +102,13 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(III)Lky;",
       garbageValue = "1584933614"
    )
+   @Export("coord")
    public Coord coord(int var1, int var2) {
       if (!this.containsPosition(var1, var2)) {
          return null;
       } else {
-         int var3 = this.regionStartX * 64 - this.field2845 * 64 + var1;
-         int var4 = this.regionStartY * 64 - this.field2844 * 64 + var2;
+         int var3 = this.regionStartX * 64 - this.field2263 * 64 + var1;
+         int var4 = var2 + (this.regionStartY * 64 - this.field2262 * 64);
          return new Coord(this.minPlane, var3, var4);
       }
    }
@@ -135,6 +118,7 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(Lqy;I)V",
       garbageValue = "1737950913"
    )
+   @Export("read")
    public void read(Buffer var1) {
       this.minPlane = var1.readUnsignedByte();
       this.planes = var1.readUnsignedByte();
@@ -142,10 +126,10 @@ public class WorldMapSection2 implements WorldMapSection {
       this.regionStartY = var1.readUnsignedShort();
       this.regionEndX = var1.readUnsignedShort();
       this.regionEndY = var1.readUnsignedShort();
-      this.field2845 = var1.readUnsignedShort();
-      this.field2844 = var1.readUnsignedShort();
-      this.field2841 = var1.readUnsignedShort();
-      this.field2848 = var1.readUnsignedShort();
+      this.field2263 = var1.readUnsignedShort();
+      this.field2262 = var1.readUnsignedShort();
+      this.field2259 = var1.readUnsignedShort();
+      this.field2266 = var1.readUnsignedShort();
       this.postRead();
    }
 
@@ -154,6 +138,7 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(B)V",
       garbageValue = "1"
    )
+   @Export("postRead")
    void postRead() {
    }
 
@@ -162,7 +147,7 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(II)Z",
       garbageValue = "1114752689"
    )
-   public static boolean method4907(int var0) {
+   public static boolean method1328(int var0) {
       return (var0 >> 30 & 1) != 0;
    }
 
@@ -171,7 +156,7 @@ public class WorldMapSection2 implements WorldMapSection {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-1887108041"
    )
-   static int method4905(int var0, Script var1, boolean var2) {
+   static int method1327(int var0, Script var1, boolean var2) {
       Widget var3 = ObjTypeCustomisation.getWidget(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
       if (var0 == 2800) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = PacketWriter.Widget_unpackTargetMask(Clock.getWidgetFlags(var3));

@@ -4,13 +4,16 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kc")
+@Implements("MusicTrack")
 public class MusicTrack extends Node {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
+   @Export("table")
    NodeHashTable table;
    @ObfuscatedName("e")
+   @Export("midi")
    byte[] midi;
 
    @ObfuscatedSignature(
@@ -193,7 +196,7 @@ public class MusicTrack extends Node {
       int[] var59 = new int[128];
       var28 = 0;
 
-      label243:
+      label223:
       for(int var60 = 0; var60 < var2; ++var60) {
          var51.writeInt(1297379947);
          var51.offset += 4;
@@ -215,7 +218,7 @@ public class MusicTrack extends Node {
                   var51.writeByte(47);
                   var51.writeByte(0);
                   var51.writeLengthInt(var51.offset - var61);
-                  continue label243;
+                  continue label223;
                }
 
                if (var64 == 23) {
@@ -333,7 +336,7 @@ public class MusicTrack extends Node {
    }
 
    @ObfuscatedName("e")
-   void method5777() {
+   void method1600() {
       if (this.table == null) {
          this.table = new NodeHashTable(16);
          int[] var1 = new int[16];
@@ -350,7 +353,7 @@ public class MusicTrack extends Node {
             var4.markTrackPosition(var6);
          }
 
-         label56:
+         label52:
          do {
             while(true) {
                var6 = var4.getPrioritizedTrack();
@@ -362,7 +365,7 @@ public class MusicTrack extends Node {
                   if (var8 == 1) {
                      var4.setTrackDone();
                      var4.markTrackPosition(var6);
-                     continue label56;
+                     continue label52;
                   }
 
                   int var9 = var8 & 240;
@@ -414,6 +417,7 @@ public class MusicTrack extends Node {
    }
 
    @ObfuscatedName("v")
+   @Export("clear")
    void clear() {
       this.table = null;
    }
@@ -422,6 +426,7 @@ public class MusicTrack extends Node {
    @ObfuscatedSignature(
       descriptor = "(Lly;II)Lkc;"
    )
+   @Export("readTrack")
    static MusicTrack readTrack(AbstractArchive var0, int var1, int var2) {
       byte[] var3 = var0.takeFile(var1, var2);
       return var3 == null ? null : new MusicTrack(new Buffer(var3));

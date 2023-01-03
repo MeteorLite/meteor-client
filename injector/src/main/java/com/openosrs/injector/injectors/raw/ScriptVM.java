@@ -42,7 +42,6 @@ import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
-import net.runelite.asm.Type;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.Label;
@@ -53,7 +52,6 @@ import net.runelite.asm.attributes.code.instructions.GetField;
 import net.runelite.asm.attributes.code.instructions.IALoad;
 import net.runelite.asm.attributes.code.instructions.IInc;
 import net.runelite.asm.attributes.code.instructions.ILoad;
-import net.runelite.asm.attributes.code.instructions.IMul;
 import net.runelite.asm.attributes.code.instructions.IStore;
 import net.runelite.asm.attributes.code.instructions.IfNe;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
@@ -104,12 +102,12 @@ public class ScriptVM extends AbstractInjector
 		 */
 		final ClassFile deobScript = inject.getDeobfuscated().findClass("Script");
 
-		final String scriptObName = InjectUtil.getObfuscatedName(deobScript);
+		final String scriptObName = deobScript.getName();
 
 		final Field scriptInstructions = InjectUtil.findField(inject, "opcodes", "Script");
 		final Field scriptStatePC = InjectUtil.findField(inject, "pc", "ScriptFrame");
 
-		final ClassFile vanillaClient = vanilla.findClass("client");
+		final ClassFile vanillaClient = vanilla.findClass("Client");
 
 		// Next 4 should be injected by mixins, so don't need fail fast
 		final Method runScript = vanillaClient.findStaticMethod("copy$runScript");
@@ -135,6 +133,7 @@ public class ScriptVM extends AbstractInjector
 		ALoad localInstructionLoad = null;
 
 		MethodContext methodContext = pcontext.get();
+
 		for (InstructionContext instrCtx : methodContext.getInstructionContexts())
 		{
 			Instruction instr = instrCtx.getInstruction();
@@ -152,34 +151,25 @@ public class ScriptVM extends AbstractInjector
 
 				// Find AStores that store the instructions
 				InstructionContext pusherCtx = storedVarCtx.getPushed();
-				if (pusherCtx.getInstruction() instanceof GetField)
+				if (pusherCtx.getInstruction() instanceof GetField getField)
 				{
-					GetField getField = (GetField) pusherCtx.getInstruction();
 					if (getField.getMyField().equals(scriptInstructions))
 					{
 						instructionArrayLocalVar = store.getVariableIndex();
 					}
 				}
 			}
-
 			// Find the local that invokedFromPc is set from
-			if (instr instanceof PutField)
+			if (instr instanceof PutField put)
 			{
-				PutField put = (PutField) instr;
 				if (put.getMyField() == scriptStatePC)
 				{
-					StackContext pc = instrCtx.getPops().get(0);
-					assert Type.INT.equals(pc.getType()) : pc.getType();
-
-					InstructionContext mulctx = pc.pushed;
-					assert mulctx.getInstruction() instanceof IMul;
-
-					pcLocalVar = mulctx.getPops().stream()
-						.map(StackContext::getPushed)
-						.filter(i -> i.getInstruction() instanceof ILoad)
-						.map(i -> ((ILoad) i.getInstruction()).getVariableIndex())
-						.findFirst()
-						.orElse(null);
+					pcLocalVar = instrCtx.getPops().stream()
+							.map(StackContext::getPushed)
+							.filter(i -> i.getInstruction() instanceof ILoad)
+							.map(i -> ((ILoad) i.getInstruction()).getVariableIndex())
+							.findFirst()
+							.orElse(null);
 				}
 			}
 		}
@@ -211,7 +201,7 @@ public class ScriptVM extends AbstractInjector
 							.map(InstructionContext::getInstruction)
 							.filter(i -> i instanceof IStore)
 							.findFirst()
-							.orElse(null);
+							.orElseThrow(null);
 						if (istore != null)
 						{
 							currentOpcodeStore = istore;

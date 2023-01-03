@@ -10,7 +10,7 @@ public class class27 {
       descriptor = "(Ljava/applet/Applet;Ljava/lang/String;I)V",
       garbageValue = "-1268166694"
    )
-   public static void method389(Applet var0, String var1) throws Throwable {
+   public static void method101(Applet var0, String var1) throws Throwable {
       //JSObject.getWindow(var0).eval(var1);
    }
 
@@ -19,7 +19,7 @@ public class class27 {
       descriptor = "(Ljava/applet/Applet;Ljava/lang/String;B)Ljava/lang/Object;",
       garbageValue = "121"
    )
-   public static Object method390(Applet var0, String var1) throws Throwable {
+   public static Object method102(Applet var0, String var1) throws Throwable {
       return null;
    }
 }

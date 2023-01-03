@@ -4,16 +4,19 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ov")
+@Implements("User")
 public class User implements Comparable {
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lrp;"
    )
+   @Export("username")
    Username username;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lrp;"
    )
+   @Export("previousUsername")
    Username previousUsername;
 
    @ObfuscatedName("e")
@@ -21,6 +24,7 @@ public class User implements Comparable {
       descriptor = "(Lov;I)I",
       garbageValue = "-1893146393"
    )
+   @Export("compareTo_user")
    public int compareTo_user(User var1) {
       return this.username.compareToTyped(var1.username);
    }
@@ -30,6 +34,7 @@ public class User implements Comparable {
       descriptor = "(I)Lrp;",
       garbageValue = "-1902661490"
    )
+   @Export("getUsername")
    public Username getUsername() {
       return this.username;
    }
@@ -39,6 +44,7 @@ public class User implements Comparable {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "3"
    )
+   @Export("getName")
    public String getName() {
       return this.username == null ? "" : this.username.getName();
    }
@@ -48,6 +54,7 @@ public class User implements Comparable {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "-54"
    )
+   @Export("getPreviousName")
    public String getPreviousName() {
       return this.previousUsername == null ? "" : this.previousUsername.getName();
    }
@@ -57,6 +64,7 @@ public class User implements Comparable {
       descriptor = "(Lrp;Lrp;I)V",
       garbageValue = "-1276649572"
    )
+   @Export("set")
    void set(Username var1, Username var2) {
       if (var1 == null) {
          throw new NullPointerException();
@@ -66,6 +74,7 @@ public class User implements Comparable {
       }
    }
 
+   @Export("compareTo")
    @ObfuscatedName("compareTo")
    public int compareTo(Object var1) {
       return this.compareTo_user((User)var1);

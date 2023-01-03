@@ -4,18 +4,22 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("aw")
+@Implements("SoundSystem")
 public class SoundSystem implements Runnable {
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
+   @Export("ObjectDefinition_modelsArchive")
    static AbstractArchive ObjectDefinition_modelsArchive;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "[Lax;"
    )
+   @Export("players")
    volatile PcmPlayer[] players = new PcmPlayer[2];
 
+   @Export("run")
    @ObfuscatedName("run")
    public void run() {
       try {
@@ -36,7 +40,7 @@ public class SoundSystem implements Runnable {
       descriptor = "(Ljava/lang/CharSequence;I)I",
       garbageValue = "-1679315151"
    )
-   public static int method868(CharSequence var0) {
+   public static int method235(CharSequence var0) {
       int var1 = var0.length();
       int var2 = 0;
 
@@ -59,8 +63,8 @@ public class SoundSystem implements Runnable {
       descriptor = "(II)I",
       garbageValue = "1973060883"
    )
-   public static int method874(int var0) {
-      return class424.field4665[var0 & 16383];
+   public static int method238(int var0) {
+      return class424.field3801[var0 & 16383];
    }
 
    @ObfuscatedName("q")
@@ -68,7 +72,7 @@ public class SoundSystem implements Runnable {
       descriptor = "(I)V",
       garbageValue = "-41465820"
    )
-   static void method873() {
+   static void method237() {
       if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
          Login.currentLoginField = 1;
       } else {
@@ -82,6 +86,7 @@ public class SoundSystem implements Runnable {
       descriptor = "(Ljava/lang/String;ZI)V",
       garbageValue = "-582152447"
    )
+   @Export("drawLoadingMessage")
    static final void drawLoadingMessage(String var0, boolean var1) {
       if (Client.showLoadingMessages) {
          byte var2 = 4;
@@ -92,7 +97,7 @@ public class SoundSystem implements Runnable {
          Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var6 + var2 + var2, 0);
          Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var2 + var6 + var2, 16777215);
          AbstractWorldMapData.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0);
-         ReflectionCheck.method714(var3 - var2, var4 - var2, var5 + var2 + var2, var6 + var2 + var2);
+         ReflectionCheck.method190(var3 - var2, var4 - var2, var5 + var2 + var2, var6 + var2 + var2);
          if (var1) {
             RouteStrategy.rasterProvider.drawFull(0, 0);
          } else {
@@ -103,7 +108,7 @@ public class SoundSystem implements Runnable {
 
             for(int var11 = 0; var11 < Client.rootWidgetCount; ++var11) {
                if (Client.rootWidgetXs[var11] + Client.rootWidgetWidths[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetHeights[var11] + Client.rootWidgetYs[var11] > var8 && Client.rootWidgetYs[var11] < var8 + var10) {
-                  Client.field732[var11] = true;
+                  Client.field577[var11] = true;
                }
             }
          }
@@ -116,14 +121,14 @@ public class SoundSystem implements Runnable {
       descriptor = "(Lkd;IIIIIII)V",
       garbageValue = "-1110773016"
    )
-   static final void method867(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-      if (Client.field689) {
+   static final void method234(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+      if (Client.field534) {
          Client.alternativeScrollbarWidth = 32;
       } else {
          Client.alternativeScrollbarWidth = 0;
       }
 
-      Client.field689 = false;
+      Client.field534 = false;
       int var7;
       if (MouseHandler.MouseHandler_currentButton == 1 || !SceneTilePaint.mouseCam && MouseHandler.MouseHandler_currentButton == 4) {
          if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
@@ -142,7 +147,7 @@ public class SoundSystem implements Runnable {
             int var9 = var3 - 32 - var7;
             var0.scrollY = var8 * (var4 - var3) / var9;
             class69.invalidateWidget(var0);
-            Client.field689 = true;
+            Client.field534 = true;
          }
       }
 

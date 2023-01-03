@@ -5,21 +5,25 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mo")
+@Implements("IterableDualNodeQueueIterator")
 public class IterableDualNodeQueueIterator implements Iterator {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lmm;"
    )
+   @Export("queue")
    IterableDualNodeQueue queue;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lpw;"
    )
+   @Export("head")
    DualNode head;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lpw;"
    )
+   @Export("last")
    DualNode last = null;
 
    @ObfuscatedSignature(
@@ -31,6 +35,7 @@ public class IterableDualNodeQueueIterator implements Iterator {
       this.last = null;
    }
 
+   @Export("next")
    @ObfuscatedName("next")
    public Object next() {
       DualNode var1 = this.head;
@@ -45,11 +50,13 @@ public class IterableDualNodeQueueIterator implements Iterator {
       return var1;
    }
 
+   @Export("hasNext")
    @ObfuscatedName("hasNext")
    public boolean hasNext() {
       return this.queue.sentinel != this.head;
    }
 
+   @Export("remove")
    @ObfuscatedName("remove")
    public void remove() {
       if (this.last == null) {

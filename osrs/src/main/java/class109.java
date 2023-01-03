@@ -2,34 +2,30 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
 import javax.net.ssl.HttpsURLConnection;
-
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dw")
 public class class109 extends UrlRequester {
    @ObfuscatedName("tc")
-   @ObfuscatedGetter(
-      intValue = -1571751296
-   )
+   @Export("cameraLookAtX")
    static int cameraLookAtX;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -903100173
-   )
+   @Export("musicTrackGroupId")
    public static int musicTrackGroupId;
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
+   @Export("title_muteSprite")
    static IndexedSprite[] title_muteSprite;
    @ObfuscatedName("m")
-   final boolean field1447;
+   final boolean field1146;
 
    public class109(boolean var1, int var2) {
       super(var2);
-      this.field1447 = var1;
+      this.field1146 = var1;
    }
 
    @ObfuscatedName("h")
@@ -37,28 +33,26 @@ public class class109 extends UrlRequester {
       descriptor = "(Ldm;I)V",
       garbageValue = "756674113"
    )
+   @Export("vmethod2700")
    void vmethod2700(UrlRequest var1) throws IOException {
       URLConnection var2 = null;
 
       try {
-         try {
-            String var3 = var1.url.getProtocol();
-            if (var3.equals("http")) {
-               var2 = this.method2777(var1);
-            } else {
-               if (!var3.equals("https")) {
-                  var1.isDone0 = true;
-                  return;
-               }
-
-               var2 = this.method2775(var1);
+         String var3 = var1.url.getProtocol();
+         if (var3.equals("http")) {
+            var2 = this.method649(var1);
+         } else {
+            if (!var3.equals("https")) {
+               var1.isDone0 = true;
+               return;
             }
 
-            this.method2754(var2, var1);
-         } catch (IOException var7) {
-            ;
+            var2 = this.method648(var1);
          }
 
+         this.method642(var2, var1);
+      } catch (IOException var7) {
+         ;
       } finally {
          var1.isDone0 = true;
          if (var2 != null) {
@@ -70,6 +64,7 @@ public class class109 extends UrlRequester {
          }
 
       }
+
    }
 
    @ObfuscatedName("c")
@@ -77,9 +72,9 @@ public class class109 extends UrlRequester {
       descriptor = "(Ldm;B)Ljava/net/URLConnection;",
       garbageValue = "-106"
    )
-   URLConnection method2777(UrlRequest var1) throws IOException {
+   URLConnection method649(UrlRequest var1) throws IOException {
       URLConnection var2 = var1.url.openConnection();
-      this.method2747(var2);
+      this.method639(var2);
       return var2;
    }
 
@@ -88,18 +83,18 @@ public class class109 extends UrlRequester {
       descriptor = "(Ldm;B)Ljava/net/URLConnection;",
       garbageValue = "54"
    )
-   URLConnection method2775(UrlRequest var1) throws IOException {
+   URLConnection method648(UrlRequest var1) throws IOException {
       HttpsURLConnection var2 = (HttpsURLConnection)var1.url.openConnection();
-      if (!this.field1447) {
-         if (class15.field90 == null) {
-            class15.field90 = new class15();
+      if (!this.field1146) {
+         if (class15.field47 == null) {
+            class15.field47 = new class15();
          }
 
-         class15 var4 = class15.field90;
+         class15 var4 = class15.field47;
          var2.setSSLSocketFactory(var4);
       }
 
-      this.method2747(var2);
+      this.method639(var2);
       return var2;
    }
 
@@ -108,7 +103,7 @@ public class class109 extends UrlRequester {
       descriptor = "(B)Ljx;",
       garbageValue = "65"
    )
-   public static PacketBufferNode method2781() {
+   public static PacketBufferNode method651() {
       return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
    }
 
@@ -117,6 +112,7 @@ public class class109 extends UrlRequester {
       descriptor = "(II)Lfi;",
       garbageValue = "-388064227"
    )
+   @Export("VarpDefinition_get")
    public static VarpDefinition VarpDefinition_get(int var0) {
       VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -138,6 +134,7 @@ public class class109 extends UrlRequester {
       descriptor = "(Lbz;Lbz;IZI)I",
       garbageValue = "1199021579"
    )
+   @Export("compareWorlds")
    static int compareWorlds(World var0, World var1, int var2, boolean var3) {
       if (var2 == 1) {
          int var4 = var0.population;
@@ -168,9 +165,9 @@ public class class109 extends UrlRequester {
             return var0.activity.compareTo(var1.activity);
          }
       } else if (var2 == 4) {
-         return var0.method1748() ? (var1.method1748() ? 0 : 1) : (var1.method1748() ? -1 : 0);
+         return var0.method386() ? (var1.method386() ? 0 : 1) : (var1.method386() ? -1 : 0);
       } else if (var2 == 5) {
-         return var0.method1785() ? (var1.method1785() ? 0 : 1) : (var1.method1785() ? -1 : 0);
+         return var0.method389() ? (var1.method389() ? 0 : 1) : (var1.method389() ? -1 : 0);
       } else if (var2 == 6) {
          return var0.isPvp() ? (var1.isPvp() ? 0 : 1) : (var1.isPvp() ? -1 : 0);
       } else if (var2 == 7) {
@@ -185,7 +182,7 @@ public class class109 extends UrlRequester {
       descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
       garbageValue = "-182594335"
    )
-   public static String method2782(String var0) {
+   public static String method652(String var0) {
       StringBuilder var1 = new StringBuilder(var0.length());
       int var2 = 0;
       int var3 = -1;

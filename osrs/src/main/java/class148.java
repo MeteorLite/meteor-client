@@ -1,19 +1,15 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("en")
 public class class148 extends class152 {
    @ObfuscatedName("h")
-   String field1748;
+   String field1360;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -489906031
-   )
-   int field1747;
+   int field1359;
    @ObfuscatedName("v")
-   byte field1749;
+   byte field1361;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Led;"
@@ -25,7 +21,7 @@ public class class148 extends class152 {
    )
    class148(class153 var1) {
       this.this$0 = var1;
-      this.field1748 = null;
+      this.field1360 = null;
    }
 
    @ObfuscatedName("h")
@@ -33,15 +29,16 @@ public class class148 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
+   @Export("vmethod3238")
    void vmethod3238(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
          var1.readLong();
       }
 
-      this.field1748 = var1.readStringCp1252NullTerminatedOrNull();
-      this.field1747 = var1.readUnsignedShort();
-      this.field1749 = var1.readByte();
+      this.field1360 = var1.readStringCp1252NullTerminatedOrNull();
+      this.field1359 = var1.readUnsignedShort();
+      this.field1361 = var1.readByte();
       var1.readLong();
    }
 
@@ -50,11 +47,12 @@ public class class148 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
+   @Export("vmethod3239")
    void vmethod3239(ClanChannel var1) {
       ClanChannelMember var2 = new ClanChannelMember();
-      var2.username = new Username(this.field1748);
-      var2.world = this.field1747;
-      var2.rank = this.field1749;
+      var2.username = new Username(this.field1360);
+      var2.world = this.field1359;
+      var2.rank = this.field1361;
       var1.addMember(var2);
    }
 
@@ -63,6 +61,7 @@ public class class148 extends class152 {
       descriptor = "(CI)Z",
       garbageValue = "2023912721"
    )
+   @Export("isCharPrintable")
    public static boolean isCharPrintable(char var0) {
       if (var0 >= ' ' && var0 <= '~') {
          return true;

@@ -1,26 +1,25 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fv")
 public abstract class class173 {
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = -389562639
-   )
+   @Export("gameCyclesToDo")
    static int gameCyclesToDo;
    @ObfuscatedName("bv")
    @ObfuscatedSignature(
       descriptor = "Lmb;"
    )
+   @Export("clientLanguage")
    static Language clientLanguage;
    @ObfuscatedName("x")
-   String field1900;
+   String field1456;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lfk;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
    final class163 this$0;
 
@@ -29,7 +28,7 @@ public abstract class class173 {
    )
    class173(class163 var1, String var2) {
       this.this$0 = var1;
-      this.field1900 = var2;
+      this.field1456 = var2;
    }
 
    @ObfuscatedName("h")
@@ -37,6 +36,7 @@ public abstract class class173 {
       descriptor = "(B)I",
       garbageValue = "16"
    )
+   @Export("vmethod3379")
    public abstract int vmethod3379();
 
    @ObfuscatedName("e")
@@ -44,6 +44,7 @@ public abstract class class173 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "380048809"
    )
+   @Export("vmethod3380")
    public String vmethod3380() {
       return null;
    }
@@ -53,6 +54,7 @@ public abstract class class173 {
       descriptor = "(I)I",
       garbageValue = "-736426895"
    )
+   @Export("vmethod3378")
    public int vmethod3378() {
       return -1;
    }
@@ -62,7 +64,7 @@ public abstract class class173 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "-1768788528"
    )
-   public String method3503() {
-      return this.field1900;
+   public String method893() {
+      return this.field1456;
    }
 }

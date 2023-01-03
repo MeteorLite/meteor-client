@@ -20,7 +20,7 @@ public abstract class RSUserMixin implements RSUser
 	@Inject
 	public String getName()
 	{
-		return getRsName().getName();
+		return getRsName().getName$api();
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public abstract class RSUserMixin implements RSUser
 	public String getPrevName()
 	{
 		RSUsername prevName = getRsPrevName();
-		return prevName == null ? null : prevName.getName();
+		return prevName == null ? null : prevName.getName$api();
 	}
 
 	@FieldHook("previousUsername")

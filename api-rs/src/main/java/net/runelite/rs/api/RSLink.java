@@ -20,5 +20,5 @@ public interface RSLink
 	void setNext(RSLink var1);
 
 	@Import("remove")
-	void remove();
+	void remove$api();
 }

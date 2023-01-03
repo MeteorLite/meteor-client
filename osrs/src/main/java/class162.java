@@ -8,9 +8,10 @@ public class class162 extends class173 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
+   @Export("archive6")
    static Archive archive6;
    @ObfuscatedName("h")
-   String field1823;
+   String field1405;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lfk;"
@@ -23,7 +24,7 @@ public class class162 extends class173 {
    class162(class163 var1, String var2, String var3) {
       super(var1, var2);
       this.this$0 = var1;
-      this.field1823 = var3;
+      this.field1405 = var3;
    }
 
    @ObfuscatedName("h")
@@ -31,6 +32,7 @@ public class class162 extends class173 {
       descriptor = "(B)I",
       garbageValue = "16"
    )
+   @Export("vmethod3379")
    public int vmethod3379() {
       return 1;
    }
@@ -40,7 +42,8 @@ public class class162 extends class173 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "380048809"
    )
+   @Export("vmethod3380")
    public String vmethod3380() {
-      return this.field1823;
+      return this.field1405;
    }
 }

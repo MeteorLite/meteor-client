@@ -1,21 +1,27 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qs")
+@Implements("DbTableType")
 public class DbTableType extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
-   static AbstractArchive field4882;
+   static AbstractArchive field3975;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
+   @Export("DBTableType_cache")
    public static EvictingDualNodeHashTable DBTableType_cache = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("v")
+   @Export("types")
    public int[][] types;
    @ObfuscatedName("x")
+   @Export("defaultValues")
    public Object[][] defaultValues;
 
    @ObfuscatedName("v")
@@ -23,14 +29,14 @@ public class DbTableType extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "98"
    )
-   void method8431(Buffer var1) {
+   void method2311(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
             return;
          }
 
-         this.method8440(var1, var2);
+         this.method2314(var1, var2);
       }
    }
 
@@ -39,7 +45,7 @@ public class DbTableType extends DualNode {
       descriptor = "(Lqy;IB)V",
       garbageValue = "1"
    )
-   void method8440(Buffer var1, int var2) {
+   void method2314(Buffer var1, int var2) {
       if (var2 == 1) {
          int var3 = var1.readUnsignedByte();
          if (this.types == null) {
@@ -68,8 +74,8 @@ public class DbTableType extends DualNode {
                for(int var13 = 0; var13 < var11; ++var13) {
                   for(int var14 = 0; var14 < var7.length; ++var14) {
                      int var15 = var14 + var7.length * var13;
-                     class456 var16 = class9.method82(var7[var14]);
-                     var12[var15] = var16.method8396(var1);
+                     class456 var16 = class9.method33(var7[var14]);
+                     var12[var15] = var16.method2301(var1);
                   }
                }
 
@@ -85,7 +91,7 @@ public class DbTableType extends DualNode {
       descriptor = "(I)V",
       garbageValue = "783882667"
    )
-   void method8433() {
+   void method2312() {
    }
 
    @ObfuscatedName("h")
@@ -93,7 +99,7 @@ public class DbTableType extends DualNode {
       descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
       garbageValue = "-770809944"
    )
-   public static String method8435(CharSequence var0) {
+   public static String method2313(CharSequence var0) {
       int var1 = var0.length();
       StringBuilder var2 = new StringBuilder(var1);
 
@@ -132,7 +138,7 @@ public class DbTableType extends DualNode {
       descriptor = "(IS)I",
       garbageValue = "3912"
    )
-   public static int method8447(int var0) {
-      return var0 >>> 4 & class462.field4898;
+   public static int method2315(int var0) {
+      return var0 >>> 4 & class462.field3985;
    }
 }

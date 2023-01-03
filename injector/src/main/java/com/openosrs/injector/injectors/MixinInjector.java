@@ -498,8 +498,8 @@ public class MixinInjector extends AbstractInjector
 							+ (deobMethod.isStatic() ? "static" : "non-static"));
 					}
 
-					String obReplacedName = InjectUtil.getObfuscatedName(deobMethod);
-					Signature obMethoddescriptor = deobMethod.getObfuscatedSignature();
+					String obReplacedName = deobMethod.getName();
+					Signature obMethoddescriptor = deobMethod.getDescriptor();
 
 					// Find the vanilla class where the method to copy is in
 					ClassFile obCf = inject.toVanilla(deobMethod.getClassFile());

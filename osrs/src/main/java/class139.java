@@ -1,38 +1,33 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("em")
 public class class139 {
    @ObfuscatedName("fu")
+   @Export("worldHost")
    static String worldHost;
    @ObfuscatedName("iv")
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
+   @Export("redHintArrowSprite")
    static SpritePixels redHintArrowSprite;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      longValue = -2412790718351732385L
-   )
-   long field1674;
+   long field1302;
    @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = 911939033
-   )
-   int field1668 = -1;
+   int field1300 = -1;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lmv;"
    )
-   IterableNodeDeque field1669 = new IterableNodeDeque();
+   IterableNodeDeque field1301 = new IterableNodeDeque();
 
    @ObfuscatedSignature(
       descriptor = "(Lqy;)V"
    )
    public class139(Buffer var1) {
-      this.method3093(var1);
+      this.method746(var1);
    }
 
    @ObfuscatedName("h")
@@ -40,9 +35,9 @@ public class class139 {
       descriptor = "(Lqy;I)V",
       garbageValue = "1937502404"
    )
-   void method3093(Buffer var1) {
-      this.field1674 = var1.readLong();
-      this.field1668 = var1.readInt();
+   void method746(Buffer var1) {
+      this.field1302 = var1.readLong();
+      this.field1300 = var1.readInt();
 
       for(int var2 = var1.readUnsignedByte(); var2 != 0; var2 = var1.readUnsignedByte()) {
          Object var3;
@@ -83,7 +78,7 @@ public class class139 {
          }
 
          ((class136)var3).vmethod3254(var1);
-         this.field1669.addFirst((Node)var3);
+         this.field1301.addFirst((Node)var3);
       }
 
    }
@@ -93,13 +88,13 @@ public class class139 {
       descriptor = "(Lep;I)V",
       garbageValue = "-1399392797"
    )
-   public void method3094(ClanSettings var1) {
-      if (this.field1674 == var1.field1723 && this.field1668 == var1.field1746) {
-         for(class136 var2 = (class136)this.field1669.last(); var2 != null; var2 = (class136)this.field1669.previous()) {
+   public void method747(ClanSettings var1) {
+      if (this.field1302 == var1.field1337 && this.field1300 == var1.field1358) {
+         for(class136 var2 = (class136)this.field1301.last(); var2 != null; var2 = (class136)this.field1301.previous()) {
             var2.vmethod3248(var1);
          }
 
-         ++var1.field1746;
+         ++var1.field1358;
       } else {
          throw new RuntimeException("");
       }
@@ -110,12 +105,12 @@ public class class139 {
       descriptor = "([BIILhc;[Lgw;B)V",
       garbageValue = "115"
    )
-   static final void method3087(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
+   static final void method745(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
       Buffer var5 = new Buffer(var0);
       int var6 = -1;
 
       while(true) {
-         int var7 = var5.method8732();
+         int var7 = var5.method2403();
          if (var7 == 0) {
             return;
          }

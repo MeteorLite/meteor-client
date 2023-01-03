@@ -9,5 +9,6 @@ public interface class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    int rsOrdinal();
 }

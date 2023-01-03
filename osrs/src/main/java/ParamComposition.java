@@ -1,33 +1,36 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gv")
+@Implements("ParamComposition")
 public class ParamComposition extends DualNode {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
+   @Export("ParamDefinition_archive")
    static AbstractArchive ParamDefinition_archive;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljv;"
    )
+   @Export("ParamDefinition_cached")
    static EvictingDualNodeHashTable ParamDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("du")
-   static boolean field2121;
+   static boolean field1638;
    @ObfuscatedName("v")
+   @Export("type")
    char type;
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 818744259
-   )
+   @Export("defaultInt")
    public int defaultInt;
    @ObfuscatedName("m")
+   @Export("defaultStr")
    public String defaultStr;
    @ObfuscatedName("q")
+   @Export("autoDisable")
    boolean autoDisable = true;
 
    @ObfuscatedName("v")
@@ -35,6 +38,7 @@ public class ParamComposition extends DualNode {
       descriptor = "(B)V",
       garbageValue = "-35"
    )
+   @Export("postDecode")
    void postDecode() {
    }
 
@@ -43,6 +47,7 @@ public class ParamComposition extends DualNode {
       descriptor = "(Lqy;B)V",
       garbageValue = "125"
    )
+   @Export("decode")
    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
@@ -59,6 +64,7 @@ public class ParamComposition extends DualNode {
       descriptor = "(Lqy;II)V",
       garbageValue = "1176853720"
    )
+   @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          byte var4 = var1.readByte();
@@ -93,6 +99,7 @@ public class ParamComposition extends DualNode {
       descriptor = "(I)Z",
       garbageValue = "1916237971"
    )
+   @Export("isString")
    public boolean isString() {
       return this.type == 's';
    }
@@ -102,7 +109,7 @@ public class ParamComposition extends DualNode {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-114129637"
    )
-   static int method3803(int var0, Script var1, boolean var2) {
+   static int method991(int var0, Script var1, boolean var2) {
       int var3;
       int var4;
       if (var0 == 4000) {
@@ -241,7 +248,7 @@ public class ParamComposition extends DualNode {
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = (int)(var9 * var13 / var11);
             return 1;
          } else if (var0 == 4025) {
-            var3 = class233.method4850(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
+            var3 = class233.method1304(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize]);
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3;
             return 1;
          } else if (var0 == 4026) {
@@ -255,14 +262,14 @@ public class ParamComposition extends DualNode {
             var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
             var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
             var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
-            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = WorldMapEvent.method5405(var3, var4, var5);
+            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = WorldMapEvent.method1491(var3, var4, var5);
             return 1;
          } else if (var0 == 4028) {
             class87.Interpreter_intStackSize -= 3;
             var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
             var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
             var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
-            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class159.method3346(var3, var4, var5);
+            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class159.method839(var3, var4, var5);
             return 1;
          } else if (var0 == 4029) {
             class87.Interpreter_intStackSize -= 3;
@@ -278,8 +285,8 @@ public class ParamComposition extends DualNode {
             var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
             var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
             var6 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 3];
-            var3 = class159.method3346(var3, var5, var6);
-            var7 = Actor.method2362(var6 - var5 + 1);
+            var3 = class159.method839(var3, var5, var6);
+            var7 = Actor.method516(var6 - var5 + 1);
             if (var4 > var7) {
                var4 = var7;
             }
@@ -287,16 +294,16 @@ public class ParamComposition extends DualNode {
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3 | var4 << var5;
             return 1;
          } else if (var0 == 4032) {
-            Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = class163.method3416(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]);
+            Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = class163.method863(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]);
             return 1;
          } else if (var0 == 4033) {
-            Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = SoundSystem.method874(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]);
+            Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1] = SoundSystem.method238(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize - 1]);
             return 1;
          } else if (var0 == 4034) {
             class87.Interpreter_intStackSize -= 2;
             var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
             var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-            var5 = Ignored.method7614(var3, var4);
+            var5 = Ignored.method2081(var3, var4);
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var5;
             return 1;
          } else if (var0 == 4035) {

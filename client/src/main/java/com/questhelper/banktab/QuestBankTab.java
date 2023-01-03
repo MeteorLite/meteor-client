@@ -651,7 +651,7 @@ public class QuestBankTab extends EventSubscriber
 
 	private void addTabActions(Widget w)
 	{
-		w.setAction(1, "Details");
+		w.setAction$api(1, "Details");
 
 		w.setOnOpListener((JavaScriptCallback) this::handleFakeItemClick);
 	}

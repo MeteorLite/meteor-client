@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,49 +8,44 @@ public enum class86 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lcy;"
    )
-   field1106(0, -1),
+   field870(0, -1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lcy;"
    )
-   field1098(1, 1),
+   field863(1, 1),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lcy;"
    )
-   field1097(2, 7),
+   field862(2, 7),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lcy;"
    )
-   field1100(3, 8),
+   field865(3, 8),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lcy;"
    )
-   field1101(4, 9);
+   field866(4, 9);
 
    @ObfuscatedName("b")
-   public static short[] field1104;
+   public static short[] field869;
    @ObfuscatedName("qu")
    @ObfuscatedSignature(
       descriptor = "Lff;"
    )
+   @Export("mouseWheel")
    static class166 mouseWheel;
    @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1562440541
-   )
-   final int field1099;
+   final int field864;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 2017152405
-   )
-   final int field1103;
+   final int field868;
 
    class86(int var3, int var4) {
-      this.field1099 = var3;
-      this.field1103 = var4;
+      this.field864 = var3;
+      this.field868 = var4;
    }
 
    @ObfuscatedName("e")
@@ -59,7 +53,8 @@ public enum class86 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
-      return this.field1103;
+      return this.field868;
    }
 }

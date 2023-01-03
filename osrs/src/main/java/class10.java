@@ -11,59 +11,55 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.net.ssl.HttpsURLConnection;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("j")
 public class class10 {
    @ObfuscatedName("h")
-   HttpsURLConnection field53;
+   HttpsURLConnection field32;
    @ObfuscatedName("e")
-   final Map field49;
+   final Map field29;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lpu;"
    )
-   class421 field50;
+   class421 field30;
    @ObfuscatedName("x")
-   Map field57;
+   Map field35;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lb;"
    )
-   final class9 field48;
+   final class9 field28;
    @ObfuscatedName("q")
-   boolean field51 = false;
+   boolean field31 = false;
    @ObfuscatedName("f")
-   boolean field54 = false;
+   boolean field33 = false;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 315851455
-   )
-   int field55 = 300000;
+   int field34 = 300000;
 
    @ObfuscatedSignature(
       descriptor = "(Ljava/net/URL;Lb;Z)V"
    )
    public class10(URL var1, class9 var2, boolean var3) throws IOException {
-      if (!var2.method69()) {
-         throw new UnsupportedEncodingException("Unsupported request method used " + var2.method70());
+      if (!var2.method25()) {
+         throw new UnsupportedEncodingException("Unsupported request method used " + var2.method26());
       } else {
-         this.field53 = (HttpsURLConnection)var1.openConnection();
+         this.field32 = (HttpsURLConnection)var1.openConnection();
          if (!var3) {
-            HttpsURLConnection var4 = this.field53;
-            if (class15.field90 == null) {
-               class15.field90 = new class15();
+            HttpsURLConnection var4 = this.field32;
+            if (class15.field47 == null) {
+               class15.field47 = new class15();
             }
 
-            class15 var5 = class15.field90;
+            class15 var5 = class15.field47;
             var4.setSSLSocketFactory(var5);
          }
 
-         this.field48 = var2;
-         this.field49 = new HashMap();
-         this.field57 = new HashMap();
+         this.field28 = var2;
+         this.field29 = new HashMap();
+         this.field35 = new HashMap();
       }
    }
 
@@ -72,9 +68,9 @@ public class class10 {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;I)V",
       garbageValue = "-825590030"
    )
-   public void method86(String var1, String var2) {
-      if (!this.field51) {
-         this.field49.put(var1, var2);
+   public void method35(String var1, String var2) {
+      if (!this.field31) {
+         this.field29.put(var1, var2);
       }
    }
 
@@ -83,8 +79,8 @@ public class class10 {
       descriptor = "(I)Ljava/lang/String;",
       garbageValue = "-953268261"
    )
-   String method84() {
-      ArrayList var1 = new ArrayList(this.field57.entrySet());
+   String method34() {
+      ArrayList var1 = new ArrayList(this.field35.entrySet());
       Collections.sort(var1, new class18(this));
       StringBuilder var2 = new StringBuilder();
       Iterator var3 = var1.iterator();
@@ -95,7 +91,7 @@ public class class10 {
             var2.append(",");
          }
 
-         var2.append(((class420)var4.getKey()).method7905());
+         var2.append(((class420)var4.getKey()).method2169());
          float var5 = (Float)var4.getValue();
          if (var5 < 1.0F) {
             String var6 = Float.toString(var5).substring(0, 4);
@@ -111,27 +107,27 @@ public class class10 {
       descriptor = "(I)V",
       garbageValue = "-1499670769"
    )
-   void method87() throws ProtocolException {
-      if (!this.field51) {
-         this.field53.setRequestMethod(this.field48.method70());
-         if (!this.field57.isEmpty()) {
-            this.field49.put("Accept", this.method84());
+   void method36() throws ProtocolException {
+      if (!this.field31) {
+         this.field32.setRequestMethod(this.field28.method26());
+         if (!this.field35.isEmpty()) {
+            this.field29.put("Accept", this.method34());
          }
 
-         Iterator var1 = this.field49.entrySet().iterator();
+         Iterator var1 = this.field29.entrySet().iterator();
 
          while(var1.hasNext()) {
             Entry var2 = (Entry)var1.next();
-            this.field53.setRequestProperty((String)var2.getKey(), (String)var2.getValue());
+            this.field32.setRequestProperty((String)var2.getKey(), (String)var2.getValue());
          }
 
-         if (this.field48.method71() && this.field50 != null) {
-            this.field53.setDoOutput(true);
+         if (this.field28.method27() && this.field30 != null) {
+            this.field32.setDoOutput(true);
             ByteArrayOutputStream var13 = new ByteArrayOutputStream();
 
             try {
-               var13.write(this.field50.vmethod7797());
-               var13.writeTo(this.field53.getOutputStream());
+               var13.write(this.field30.vmethod7797());
+               var13.writeTo(this.field32.getOutputStream());
             } catch (IOException var11) {
                var11.printStackTrace();
             } finally {
@@ -146,9 +142,9 @@ public class class10 {
             }
          }
 
-         this.field53.setConnectTimeout(this.field55);
-         this.field53.setInstanceFollowRedirects(this.field54);
-         this.field51 = true;
+         this.field32.setConnectTimeout(this.field34);
+         this.field32.setInstanceFollowRedirects(this.field33);
+         this.field31 = true;
       }
    }
 
@@ -157,13 +153,13 @@ public class class10 {
       descriptor = "(I)Z",
       garbageValue = "71873329"
    )
-   boolean method88() throws IOException, SocketTimeoutException {
-      if (!this.field51) {
-         this.method87();
+   boolean method37() throws IOException, SocketTimeoutException {
+      if (!this.field31) {
+         this.method36();
       }
 
-      this.field53.connect();
-      return this.field53.getResponseCode() == -1;
+      this.field32.connect();
+      return this.field32.getResponseCode() == -1;
    }
 
    @ObfuscatedName("m")
@@ -171,13 +167,13 @@ public class class10 {
       descriptor = "(B)Lp;",
       garbageValue = "39"
    )
-   class21 method89() {
+   class21 method38() {
       try {
-         if (!this.field51 || this.field53.getResponseCode() == -1) {
+         if (!this.field31 || this.field32.getResponseCode() == -1) {
             return new class21("No REST response has been received yet.");
          }
       } catch (IOException var10) {
-         this.field53.disconnect();
+         this.field32.disconnect();
          return new class21("Error decoding REST response code: " + var10.getMessage());
       }
 
@@ -185,12 +181,12 @@ public class class10 {
 
       class21 var3;
       try {
-         var1 = new class21(this.field53);
+         var1 = new class21(this.field32);
          return var1;
       } catch (IOException var8) {
          var3 = new class21("Error decoding REST response: " + var8.getMessage());
       } finally {
-         this.field53.disconnect();
+         this.field32.disconnect();
       }
 
       return var3;
@@ -201,17 +197,17 @@ public class class10 {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-609690388"
    )
-   static int method100(int var0, Script var1, boolean var2) {
+   static int method39(int var0, Script var1, boolean var2) {
       if (var0 == 6200) {
          class87.Interpreter_intStackSize -= 2;
-         Client.field778 = (short)AttackOption.method2610(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize]);
-         if (Client.field778 <= 0) {
-            Client.field778 = 256;
+         Client.field623 = (short)AttackOption.method602(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize]);
+         if (Client.field623 <= 0) {
+            Client.field623 = 256;
          }
 
-         Client.field550 = (short)AttackOption.method2610(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1]);
-         if (Client.field550 <= 0) {
-            Client.field550 = 256;
+         Client.field395 = (short)AttackOption.method602(Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1]);
+         if (Client.field395 <= 0) {
+            Client.field395 = 256;
          }
 
          return 1;
@@ -230,28 +226,28 @@ public class class10 {
          return 1;
       } else if (var0 == 6202) {
          class87.Interpreter_intStackSize -= 4;
-         Client.field690 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-         if (Client.field690 <= 0) {
-            Client.field690 = 1;
+         Client.field535 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
+         if (Client.field535 <= 0) {
+            Client.field535 = 1;
          }
 
-         Client.field783 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-         if (Client.field783 <= 0) {
-            Client.field783 = 32767;
-         } else if (Client.field783 < Client.field690) {
-            Client.field783 = Client.field690;
+         Client.field628 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+         if (Client.field628 <= 0) {
+            Client.field628 = 32767;
+         } else if (Client.field628 < Client.field535) {
+            Client.field628 = Client.field535;
          }
 
-         Client.field784 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
-         if (Client.field784 <= 0) {
-            Client.field784 = 1;
+         Client.field629 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
+         if (Client.field629 <= 0) {
+            Client.field629 = 1;
          }
 
-         Client.field510 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 3];
-         if (Client.field510 <= 0) {
-            Client.field510 = 32767;
-         } else if (Client.field510 < Client.field784) {
-            Client.field510 = Client.field784;
+         Client.field355 = (short)Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 3];
+         if (Client.field355 <= 0) {
+            Client.field355 = 32767;
+         } else if (Client.field355 < Client.field629) {
+            Client.field355 = Client.field629;
          }
 
          return 1;
@@ -271,8 +267,8 @@ public class class10 {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.zoomWidth;
          return 1;
       } else if (var0 == 6205) {
-         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = GrandExchangeEvents.method6569(Client.field778);
-         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = GrandExchangeEvents.method6569(Client.field550);
+         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = GrandExchangeEvents.method1827(Client.field623);
+         Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = GrandExchangeEvents.method1827(Client.field395);
          return 1;
       } else if (var0 == 6220) {
          Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = 0;

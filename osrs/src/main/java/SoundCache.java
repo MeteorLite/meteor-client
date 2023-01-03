@@ -1,35 +1,36 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("aj")
+@Implements("SoundCache")
 public class SoundCache {
    @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = 1263171115
-   )
-   static int field350;
+   static int field219;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
+   @Export("soundEffectIndex")
    AbstractArchive soundEffectIndex;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lly;"
    )
+   @Export("musicSampleIndex")
    AbstractArchive musicSampleIndex;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
+   @Export("musicSamples")
    NodeHashTable musicSamples = new NodeHashTable(256);
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lqp;"
    )
+   @Export("rawSounds")
    NodeHashTable rawSounds = new NodeHashTable(256);
 
    @ObfuscatedSignature(
@@ -45,6 +46,7 @@ public class SoundCache {
       descriptor = "(II[IB)Laf;",
       garbageValue = "1"
    )
+   @Export("getSoundEffect0")
    RawSound getSoundEffect0(int var1, int var2, int[] var3) {
       int var4 = var2 ^ (var1 << 4 & '\uffff' | var1 >>> 12);
       var4 |= var1 << 16;
@@ -75,6 +77,7 @@ public class SoundCache {
       descriptor = "(II[II)Laf;",
       garbageValue = "-1966397833"
    )
+   @Export("getMusicSample0")
    RawSound getMusicSample0(int var1, int var2, int[] var3) {
       int var4 = var2 ^ (var1 << 4 & '\uffff' | var1 >>> 12);
       var4 |= var1 << 16;
@@ -111,6 +114,7 @@ public class SoundCache {
       descriptor = "(I[II)Laf;",
       garbageValue = "112511764"
    )
+   @Export("getSoundEffect")
    public RawSound getSoundEffect(int var1, int[] var2) {
       if (this.soundEffectIndex.getGroupCount() == 1) {
          return this.getSoundEffect0(0, var1, var2);
@@ -126,6 +130,7 @@ public class SoundCache {
       descriptor = "(I[II)Laf;",
       garbageValue = "1767210019"
    )
+   @Export("getMusicSample")
    public RawSound getMusicSample(int var1, int[] var2) {
       if (this.musicSampleIndex.getGroupCount() == 1) {
          return this.getMusicSample0(0, var1, var2);
@@ -141,37 +146,37 @@ public class SoundCache {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "-390039727"
    )
-   static int method893(int var0, Script var1, boolean var2) {
+   static int method244(int var0, Script var1, boolean var2) {
       int var3;
+      int var4;
       int var6;
-      int var9;
       if (var0 == 3400) {
          class87.Interpreter_intStackSize -= 2;
          var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-         var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-         EnumComposition var10 = class87.getEnum(var3);
-         if (var10.outputType != 's') {
+         var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+         EnumComposition var5 = class87.getEnum(var3);
+         if (var5.outputType != 's') {
             ;
          }
 
-         for(var6 = 0; var6 < var10.outputCount; ++var6) {
-            if (var9 == var10.keys[var6]) {
-               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var10.strVals[var6];
-               var10 = null;
+         for(var6 = 0; var6 < var5.outputCount; ++var6) {
+            if (var4 == var5.keys[var6]) {
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.strVals[var6];
+               var5 = null;
                break;
             }
          }
 
-         if (var10 != null) {
-            Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var10.defaultStr;
+         if (var5 != null) {
+            Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.defaultStr;
          }
 
          return 1;
       } else if (var0 != 3408) {
          if (var0 == 3411) {
             var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-            EnumComposition var4 = class87.getEnum(var3);
-            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var4.size();
+            EnumComposition var10 = class87.getEnum(var3);
+            Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var10.size();
             return 1;
          } else {
             return 2;
@@ -179,14 +184,14 @@ public class SoundCache {
       } else {
          class87.Interpreter_intStackSize -= 4;
          var3 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize];
-         var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
-         int var5 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
+         var4 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 1];
+         int var9 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
          var6 = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 3];
-         EnumComposition var7 = class87.getEnum(var5);
-         if (var3 == var7.inputType && var9 == var7.outputType) {
+         EnumComposition var7 = class87.getEnum(var9);
+         if (var3 == var7.inputType && var4 == var7.outputType) {
             for(int var8 = 0; var8 < var7.outputCount; ++var8) {
                if (var6 == var7.keys[var8]) {
-                  if (var9 == 115) {
+                  if (var4 == 115) {
                      Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.strVals[var8];
                   } else {
                      Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7.intVals[var8];
@@ -198,7 +203,7 @@ public class SoundCache {
             }
 
             if (var7 != null) {
-               if (var9 == 115) {
+               if (var4 == 115) {
                   Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.defaultStr;
                } else {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var7.defaultInt;
@@ -207,7 +212,7 @@ public class SoundCache {
 
             return 1;
          } else {
-            if (var9 == 115) {
+            if (var4 == 115) {
                Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "null";
             } else {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = 0;
@@ -223,7 +228,7 @@ public class SoundCache {
       descriptor = "(B)Z",
       garbageValue = "-1"
    )
-   static boolean method890() {
+   static boolean method243() {
       return (Client.drawPlayerNames & 1) != 0;
    }
 
@@ -232,6 +237,7 @@ public class SoundCache {
       descriptor = "(Lkd;IIII)V",
       garbageValue = "-1447783720"
    )
+   @Export("drawCompass")
    static final void drawCompass(Widget var0, int var1, int var2, int var3) {
       SpriteMask var4 = var0.getSpriteMask(false);
       if (var4 != null) {

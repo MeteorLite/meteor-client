@@ -1,131 +1,129 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ll")
+@Implements("WorldMapDecorationType")
 public enum WorldMapDecorationType implements class345 {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3727(0, 0),
+   field3034(0, 0),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3728(1, 0),
+   field3035(1, 0),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3729(2, 0),
+   field3036(2, 0),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3736(3, 0),
+   field3042(3, 0),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3742(9, 2),
+   field3048(9, 2),
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3730(4, 1),
+   field3037(4, 1),
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3733(5, 1),
+   field3039(5, 1),
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3734(6, 1),
+   field3040(6, 1),
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3735(7, 1),
+   field3041(7, 1),
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3732(8, 1),
+   field3038(8, 1),
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3737(12, 2),
+   field3043(12, 2),
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3738(13, 2),
+   field3044(13, 2),
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3739(14, 2),
+   field3045(14, 2),
    @ObfuscatedName("o")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3740(15, 2),
+   field3046(15, 2),
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3741(16, 2),
+   field3047(16, 2),
    @ObfuscatedName("k")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3743(17, 2),
+   field3049(17, 2),
    @ObfuscatedName("a")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3751(18, 2),
+   field3057(18, 2),
    @ObfuscatedName("s")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3744(19, 2),
+   field3050(19, 2),
    @ObfuscatedName("l")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3745(20, 2),
+   field3051(20, 2),
    @ObfuscatedName("t")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3746(21, 2),
+   field3052(21, 2),
    @ObfuscatedName("c")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3747(10, 2),
+   field3053(10, 2),
    @ObfuscatedName("p")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3748(11, 2),
+   field3054(11, 2),
    @ObfuscatedName("d")
    @ObfuscatedSignature(
       descriptor = "Lll;"
    )
-   field3749(22, 3);
+   field3055(22, 3);
 
    @ObfuscatedName("y")
-   @ObfuscatedGetter(
-      intValue = -1868950557
-   )
+   @Export("id")
    public final int id;
 
    @ObfuscatedSignature(
@@ -141,6 +139,7 @@ public enum WorldMapDecorationType implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
@@ -150,7 +149,7 @@ public enum WorldMapDecorationType implements class345 {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "224580717"
    )
-   static final void method6362(String var0) {
+   static final void method1765(String var0) {
       StringBuilder var10000 = new StringBuilder();
       Object var10001 = null;
       var10000 = var10000.append("Please remove ").append(var0);

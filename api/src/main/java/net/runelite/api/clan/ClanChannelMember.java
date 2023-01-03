@@ -50,5 +50,5 @@ public interface ClanChannelMember extends ChatPlayer
 	 * The world the member is on
 	 * @return
 	 */
-	int getWorld();
+	int getWorld$api();
 }

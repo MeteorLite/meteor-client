@@ -13,6 +13,7 @@ public class class416 extends class417 {
       descriptor = "(Lqy;II)V",
       garbageValue = "1487404426"
    )
+   @Export("vmethod7769")
    void vmethod7769(Buffer var1, int var2) {
    }
 
@@ -21,7 +22,7 @@ public class class416 extends class417 {
       descriptor = "(IIILgg;Lgw;I)Z",
       garbageValue = "1679424971"
    )
-   static final boolean method7888(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4) {
+   static final boolean method2162(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4) {
       int var5 = var0;
       int var6 = var1;
       byte var7 = 64;
@@ -38,7 +39,7 @@ public class class416 extends class417 {
       int[][] var13 = var4.flags;
 
       while(true) {
-         label306:
+         label265:
          while(true) {
             int var14;
             int var15;
@@ -49,11 +50,11 @@ public class class416 extends class417 {
             do {
                do {
                   do {
-                     label283:
+                     label242:
                      do {
                         if (var12 == var20) {
-                           class205.field2359 = var5;
-                           class205.field2364 = var6;
+                           class205.field1851 = var5;
+                           class205.field1855 = var6;
                            return false;
                         }
 
@@ -65,8 +66,8 @@ public class class416 extends class417 {
                         var14 = var5 - var4.xInset;
                         var15 = var6 - var4.yInset;
                         if (var3.hasArrived(var2, var5, var6, var4)) {
-                           class205.field2359 = var5;
-                           class205.field2364 = var6;
+                           class205.field1851 = var5;
+                           class205.field1855 = var6;
                            return true;
                         }
 
@@ -200,7 +201,7 @@ public class class416 extends class417 {
                         if (var18 > 0 && var19 < 128 - var2 && class205.directions[var18 - 1][var19 + 1] == 0 && (var13[var14 - 1][var15 + var2] & 19136824) == 0) {
                            for(var17 = 1; var17 < var2; ++var17) {
                               if ((var13[var14 - 1][var17 + var15] & 19136830) != 0 || (var13[var17 + (var14 - 1)][var15 + var2] & 19137016) != 0) {
-                                 continue label283;
+                                 continue label242;
                               }
                            }
 
@@ -217,7 +218,7 @@ public class class416 extends class417 {
 
             for(var17 = 1; var17 < var2; ++var17) {
                if ((var13[var17 + var14][var15 + var2] & 19137016) != 0 || (var13[var14 + var2][var15 + var17] & 19136995) != 0) {
-                  continue label306;
+                  continue label265;
                }
             }
 
@@ -235,6 +236,7 @@ public class class416 extends class417 {
       descriptor = "(IZIZI)V",
       garbageValue = "1915202354"
    )
+   @Export("sortWorldList")
    static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
       if (World.World_worlds != null) {
          WorldMapSection1.doWorldSorting(0, World.World_worlds.length - 1, var0, var1, var2, var3);

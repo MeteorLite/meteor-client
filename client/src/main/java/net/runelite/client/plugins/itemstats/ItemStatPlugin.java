@@ -188,7 +188,7 @@ public class ItemStatPlugin extends Plugin
 		closeButton.setOriginalHeight(16);
 		closeButton.setOriginalWidth(16);
 		closeButton.setSpriteId(SpriteID.BOTTOM_LINE_MODE_WINDOW_CLOSE_BUTTON_SMALL);
-		closeButton.setAction(0, "Close");
+		closeButton.setAction$api(0, "Close");
 		closeButton.setOnMouseOverListener((JavaScriptCallback) (ev) ->
 		{
 			closeButton.setSpriteId(SpriteID.BOTTOM_LINE_MODE_WINDOW_CLOSE_BUTTON_SMALL_HOVERED);

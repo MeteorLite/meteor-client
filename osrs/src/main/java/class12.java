@@ -13,17 +13,20 @@ import org.bouncycastle.crypto.tls.TlsClientProtocol;
 @ObfuscatedName("i")
 class class12 extends SSLSocket {
    @ObfuscatedName("h")
-   Certificate[] field69;
+   Certificate[] field38;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lk;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
    final class15 this$0;
    // $FF: synthetic field
+   @Export("val$tlsClientProtocol")
    @ObfuscatedName("val$tlsClientProtocol")
    final TlsClientProtocol val$tlsClientProtocol;
    // $FF: synthetic field
+   @Export("val$host")
    @ObfuscatedName("val$host")
    final String val$host;
 
@@ -47,6 +50,7 @@ class class12 extends SSLSocket {
       return this.val$tlsClientProtocol.getOutputStream();
    }
 
+   @Export("close")
    @ObfuscatedName("close")
    public synchronized void close() throws IOException {
       this.val$tlsClientProtocol.close();
@@ -64,6 +68,7 @@ class class12 extends SSLSocket {
       return null;
    }
 
+   @Export("getSession")
    @ObfuscatedName("getSession")
    public SSLSession getSession() {
       return new class17(this);
@@ -87,6 +92,7 @@ class class12 extends SSLSocket {
    public void setEnabledCipherSuites(String[] var1) {
    }
 
+   @Export("startHandshake")
    @ObfuscatedName("startHandshake")
    public void startHandshake() throws IOException {
       this.val$tlsClientProtocol.connect(new class13(this));
@@ -116,13 +122,13 @@ class class12 extends SSLSocket {
    }
 
    @ObfuscatedName("h")
-   public static final void method157(long var0) {
+   public static final void method44(long var0) {
       if (var0 > 0L) {
          if (var0 % 10L == 0L) {
-            StructComposition.method3820(var0 - 1L);
-            StructComposition.method3820(1L);
+            StructComposition.method997(var0 - 1L);
+            StructComposition.method997(1L);
          } else {
-            StructComposition.method3820(var0);
+            StructComposition.method997(var0);
          }
 
       }
@@ -133,8 +139,8 @@ class class12 extends SSLSocket {
       descriptor = "(Ljava/lang/String;IB)Z",
       garbageValue = "-56"
    )
-   static boolean method115(String var0, int var1) {
-      return HealthBarUpdate.method2363(var0, var1, "openjs");
+   static boolean method41(String var0, int var1) {
+      return HealthBarUpdate.method517(var0, var1, "openjs");
    }
 
    @ObfuscatedName("x")
@@ -142,6 +148,7 @@ class class12 extends SSLSocket {
       descriptor = "(IIIIB)V",
       garbageValue = "90"
    )
+   @Export("itemContainerSetItem")
    static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
       ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var4 == null) {
@@ -175,9 +182,9 @@ class class12 extends SSLSocket {
    @ObfuscatedName("t")
    @ObfuscatedSignature(
       descriptor = "(II)V",
-      garbageValue = "760477426"
+      garbageValue = "872547282"
    )
-   static void method155(int var0) {
+   static void method42(int var0) {
       if (var0 != Login.loginIndex) {
          Login.loginIndex = var0;
       }

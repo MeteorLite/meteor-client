@@ -1,29 +1,19 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("er")
 public class class142 extends class152 {
    @ObfuscatedName("pw")
-   @ObfuscatedGetter(
-      intValue = -1273089953
-   )
-   static int field1691;
+   static int field1316;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 778268445
-   )
-   int field1687;
+   int field1312;
    @ObfuscatedName("e")
-   byte field1690;
+   byte field1315;
    @ObfuscatedName("v")
-   @ObfuscatedGetter(
-      intValue = -1782561811
-   )
-   int field1689;
+   int field1314;
    @ObfuscatedName("x")
-   String field1688;
+   String field1313;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Led;"
@@ -35,7 +25,7 @@ public class class142 extends class152 {
    )
    class142(class153 var1) {
       this.this$0 = var1;
-      this.field1687 = -1;
+      this.field1312 = -1;
    }
 
    @ObfuscatedName("h")
@@ -43,12 +33,13 @@ public class class142 extends class152 {
       descriptor = "(Lqy;I)V",
       garbageValue = "468341515"
    )
+   @Export("vmethod3238")
    void vmethod3238(Buffer var1) {
-      this.field1687 = var1.readUnsignedShort();
-      this.field1690 = var1.readByte();
-      this.field1689 = var1.readUnsignedShort();
+      this.field1312 = var1.readUnsignedShort();
+      this.field1315 = var1.readByte();
+      this.field1314 = var1.readUnsignedShort();
       var1.readLong();
-      this.field1688 = var1.readStringCp1252NullTerminated();
+      this.field1313 = var1.readStringCp1252NullTerminated();
    }
 
    @ObfuscatedName("e")
@@ -56,10 +47,11 @@ public class class142 extends class152 {
       descriptor = "(Lfn;I)V",
       garbageValue = "1227548281"
    )
+   @Export("vmethod3239")
    void vmethod3239(ClanChannel var1) {
-      ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1687);
-      var2.rank = this.field1690;
-      var2.world = this.field1689;
-      var2.username = new Username(this.field1688);
+      ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1312);
+      var2.rank = this.field1315;
+      var2.world = this.field1314;
+      var2.username = new Username(this.field1313);
    }
 }

@@ -5,86 +5,112 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bp")
+@Implements("Instrument")
 public class Instrument {
    @ObfuscatedName("s")
+   @Export("Instrument_samples")
    static int[] Instrument_samples;
    @ObfuscatedName("l")
+   @Export("Instrument_noise")
    static int[] Instrument_noise = new int['耀'];
    @ObfuscatedName("t")
+   @Export("Instrument_sine")
    static int[] Instrument_sine;
    @ObfuscatedName("p")
+   @Export("Instrument_phases")
    static int[] Instrument_phases;
    @ObfuscatedName("d")
+   @Export("Instrument_delays")
    static int[] Instrument_delays;
    @ObfuscatedName("y")
+   @Export("Instrument_volumeSteps")
    static int[] Instrument_volumeSteps;
    @ObfuscatedName("z")
+   @Export("Instrument_pitchSteps")
    static int[] Instrument_pitchSteps;
    @ObfuscatedName("w")
+   @Export("Instrument_pitchBaseSteps")
    static int[] Instrument_pitchBaseSteps;
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("pitch")
    SoundEnvelope pitch;
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("volume")
    SoundEnvelope volume;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("pitchModifier")
    SoundEnvelope pitchModifier;
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("pitchModifierAmplitude")
    SoundEnvelope pitchModifierAmplitude;
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("volumeMultiplier")
    SoundEnvelope volumeMultiplier;
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("volumeMultiplierAmplitude")
    SoundEnvelope volumeMultiplierAmplitude;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("release")
    SoundEnvelope release;
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("attack")
    SoundEnvelope attack;
    @ObfuscatedName("u")
+   @Export("oscillatorVolume")
    int[] oscillatorVolume = new int[]{0, 0, 0, 0, 0};
    @ObfuscatedName("b")
+   @Export("oscillatorPitch")
    int[] oscillatorPitch = new int[]{0, 0, 0, 0, 0};
    @ObfuscatedName("j")
+   @Export("oscillatorDelays")
    int[] oscillatorDelays = new int[]{0, 0, 0, 0, 0};
    @ObfuscatedName("g")
+   @Export("delayTime")
    int delayTime = 0;
    @ObfuscatedName("i")
+   @Export("delayDecay")
    int delayDecay = 100;
    @ObfuscatedName("o")
    @ObfuscatedSignature(
       descriptor = "Lbw;"
    )
+   @Export("filter")
    AudioFilter filter;
    @ObfuscatedName("n")
    @ObfuscatedSignature(
       descriptor = "Lah;"
    )
+   @Export("filterEnvelope")
    SoundEnvelope filterEnvelope;
    @ObfuscatedName("k")
+   @Export("duration")
    int duration = 500;
    @ObfuscatedName("a")
+   @Export("offset")
    int offset = 0;
 
    static {
@@ -110,6 +136,7 @@ public class Instrument {
    }
 
    @ObfuscatedName("h")
+   @Export("synthesize")
    final int[] synthesize(int var1, int var2) {
       class373.clearIntArray(Instrument_samples, 0, var1);
       if (var2 < 10) {
@@ -313,6 +340,7 @@ public class Instrument {
    }
 
    @ObfuscatedName("e")
+   @Export("evaluateWave")
    final int evaluateWave(int var1, int var2, int var3) {
       if (var3 == 1) {
          return (var1 & 32767) < 16384 ? var2 : -var2;
@@ -329,6 +357,7 @@ public class Instrument {
    @ObfuscatedSignature(
       descriptor = "(Lqy;)V"
    )
+   @Export("decode")
    final void decode(Buffer var1) {
       this.pitch = new SoundEnvelope();
       this.pitch.decode(var1);
@@ -378,6 +407,6 @@ public class Instrument {
       this.offset = var1.readUnsignedShort();
       this.filter = new AudioFilter();
       this.filterEnvelope = new SoundEnvelope();
-      this.filter.method1144(var1, this.filterEnvelope);
+      this.filter.method323(var1, this.filterEnvelope);
    }
 }

@@ -1,6 +1,5 @@
 import java.io.File;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -10,12 +9,10 @@ public class class170 extends class173 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
+   @Export("archive18")
    static Archive archive18;
    @ObfuscatedName("h")
-   @ObfuscatedGetter(
-      intValue = 729229157
-   )
-   int field1882;
+   int field1442;
    // $FF: synthetic field
    @ObfuscatedSignature(
       descriptor = "Lfk;"
@@ -28,7 +25,7 @@ public class class170 extends class173 {
    class170(class163 var1, String var2, int var3) {
       super(var1, var2);
       this.this$0 = var1;
-      this.field1882 = var3;
+      this.field1442 = var3;
    }
 
    @ObfuscatedName("h")
@@ -45,8 +42,9 @@ public class class170 extends class173 {
       descriptor = "(I)I",
       garbageValue = "-736426895"
    )
+   @Export("vmethod3378")
    public int vmethod3378() {
-      return this.field1882;
+      return this.field1442;
    }
 
    @ObfuscatedName("h")
@@ -54,7 +52,7 @@ public class class170 extends class173 {
       descriptor = "(Ljava/io/File;I)V",
       garbageValue = "-2004232315"
    )
-   public static void method3487(File var0) {
+   public static void method886(File var0) {
       FileSystem.FileSystem_cacheDir = var0;
       if (!FileSystem.FileSystem_cacheDir.exists()) {
          throw new RuntimeException("");

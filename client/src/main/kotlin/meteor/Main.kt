@@ -1,15 +1,17 @@
 package meteor
 
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.DpSize
-import androidx.compose.ui.window.*
-
+import androidx.compose.ui.window.ApplicationScope
+import androidx.compose.ui.window.FrameWindowScope
+import androidx.compose.ui.window.Window
+import androidx.compose.ui.window.application
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dev.hoot.api.game.GameThread
 import eventbus.Events
 import meteor.api.loot.Interact
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
-import meteor.plugins.meteor.MeteorConfig
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.FontManager
 import meteor.game.ItemManager
@@ -21,11 +23,11 @@ import meteor.hiscore.HiscoreManager
 import meteor.menus.MenuManager
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
+import meteor.plugins.meteor.MeteorConfig
 import meteor.plugins.xptracker.XpTrackerService
 import meteor.rs.Applet
 import meteor.rs.AppletConfiguration
 import meteor.session.SessionManager
-import meteor.ui.composables.preferences.outPut
 import meteor.ui.composables.ui.windowContent
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.OverlayRenderer
@@ -45,16 +47,13 @@ import net.runelite.client.chat.ChatMessageManager
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
-import org.apache.commons.io.output.TeeOutputStream
 import org.apache.commons.lang3.time.StopWatch
 import org.jetbrains.skiko.OS
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
 import org.rationalityfrontline.kevent.KEVENT
-import java.io.ByteArrayOutputStream
-import java.io.PrintStream
-import java.nio.charset.Charset
+import java.io.InputStreamReader
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess

@@ -8,14 +8,15 @@ public final class class4 {
    @ObfuscatedSignature(
       descriptor = "Lln;"
    )
+   @Export("archive9")
    static Archive archive9;
 
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "(CS)Z",
-      garbageValue = "12575"
+      garbageValue = "25106"
    )
-   static boolean method22(char var0) {
+   static boolean method7(char var0) {
       return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"ï¿½$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1;
    }
 
@@ -24,7 +25,7 @@ public final class class4 {
       descriptor = "(B)V",
       garbageValue = "15"
    )
-   static final void method21() {
+   static final void method6() {
       Object var10000 = null;
       String var0 = "You can't add yourself to your own ignore list";
       KitDefinition.addGameMessage(30, "", var0);

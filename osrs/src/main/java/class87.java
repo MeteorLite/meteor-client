@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -11,62 +10,53 @@ public enum class87 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1114(0, -1),
+   field875(0, -1),
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1110(1, 2),
+   field872(1, 2),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1120(2, 3),
+   field881(2, 3),
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1112(3, 4),
+   field873(3, 4),
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1113(4, 5),
+   field874(4, 5),
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Lcp;"
    )
-   field1118(5, 6);
+   field879(5, 6);
 
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 316580569
-   )
+   @Export("Interpreter_intStackSize")
    static int Interpreter_intStackSize;
    @ObfuscatedName("cw")
    @ObfuscatedSignature(
       descriptor = "[Lra;"
    )
+   @Export("worldSelectFlagSprites")
    static IndexedSprite[] worldSelectFlagSprites;
    @ObfuscatedName("py")
-   @ObfuscatedGetter(
-      intValue = 2101952525
-   )
+   @Export("widgetDragDuration")
    static int widgetDragDuration;
    @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1055454903
-   )
-   final int field1115;
+   final int field876;
    @ObfuscatedName("r")
-   @ObfuscatedGetter(
-      intValue = 2102602089
-   )
-   final int field1116;
+   final int field877;
 
    class87(int var3, int var4) {
-      this.field1115 = var3;
-      this.field1116 = var4;
+      this.field876 = var3;
+      this.field877 = var4;
    }
 
    @ObfuscatedName("e")
@@ -74,8 +64,9 @@ public enum class87 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
-      return this.field1116;
+      return this.field877;
    }
 
    @ObfuscatedName("h")
@@ -83,6 +74,7 @@ public enum class87 implements class345 {
       descriptor = "(IB)Z",
       garbageValue = "62"
    )
+   @Export("isWorldMapEvent")
    public static boolean isWorldMapEvent(int var0) {
       return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
    }
@@ -92,6 +84,7 @@ public enum class87 implements class345 {
       descriptor = "(II)Lgo;",
       garbageValue = "1583039728"
    )
+   @Export("getEnum")
    public static EnumComposition getEnum(int var0) {
       EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0);
       if (var1 != null) {
@@ -113,6 +106,7 @@ public enum class87 implements class345 {
       descriptor = "(Ljava/lang/String;Ljava/lang/String;ZI)Lqq;",
       garbageValue = "-147527750"
    )
+   @Export("getPreferencesFile")
    public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
       File var3 = new File(class281.cacheDir, "preferences" + var0 + ".dat");
       if (var3.exists()) {

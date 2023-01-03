@@ -7,7 +7,7 @@ import net.runelite.mapping.Import;
 
 public interface RSKeyHandler extends KeyListener, FocusListener, KeyFocusListener {
   @Import("KeyHandler_idleCycles")
-  int getIdleCycles();
+  int getIdleCycles$api();
 
   @Import("KeyHandler_idleCycles")
   void setIdleCycles(int i);

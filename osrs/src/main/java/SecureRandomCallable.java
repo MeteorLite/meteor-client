@@ -5,16 +5,19 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cl")
+@Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Lrx;"
    )
+   @Export("leftTitleSprite")
    static SpritePixels leftTitleSprite;
 
+   @Export("call")
    @ObfuscatedName("call")
    public Object call() {
-      return class69.method2031();
+      return class69.method429();
    }
 
    @ObfuscatedName("o")
@@ -22,6 +25,7 @@ public class SecureRandomCallable implements Callable {
       descriptor = "(IB)Lha;",
       garbageValue = "6"
    )
+   @Export("getFrames")
    static Frames getFrames(int var0) {
       Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
       if (var1 != null) {

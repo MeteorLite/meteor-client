@@ -23,7 +23,7 @@ public abstract class RSWorldMapMixin implements RSWorldMap
 	@Inject
 	public void setWorldMapPositionTarget(WorldPoint worldPoint)
 	{
-		setWorldMapPositionTarget(worldPoint.getX(), worldPoint.getY());
+		setWorldMapPositionTarget$api(worldPoint.getX(), worldPoint.getY());
 	}
 
 }

@@ -1,9 +1,13 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dx")
+@Implements("UserComparator10")
 public class UserComparator10 extends AbstractUserComparator {
    @ObfuscatedName("h")
+   @Export("reversed")
    final boolean reversed;
 
    public UserComparator10(boolean var1) {
@@ -15,6 +19,7 @@ public class UserComparator10 extends AbstractUserComparator {
       descriptor = "(Loa;Loa;I)I",
       garbageValue = "-1617310498"
    )
+   @Export("compareBuddy")
    int compareBuddy(Buddy var1, Buddy var2) {
       if (Client.worldId == var1.world && var2.world == Client.worldId) {
          return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
@@ -23,6 +28,7 @@ public class UserComparator10 extends AbstractUserComparator {
       }
    }
 
+   @Export("compare")
    @ObfuscatedName("compare")
    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
@@ -33,7 +39,7 @@ public class UserComparator10 extends AbstractUserComparator {
       descriptor = "(IB)Z",
       garbageValue = "1"
    )
-   public static boolean method2867(int var0) {
+   public static boolean method675(int var0) {
       return (var0 >> 31 & 1) != 0;
    }
 
@@ -42,6 +48,7 @@ public class UserComparator10 extends AbstractUserComparator {
       descriptor = "([Lkd;II)V",
       garbageValue = "1689586583"
    )
+   @Export("drawModelComponents")
    static final void drawModelComponents(Widget[] var0, int var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          Widget var3 = var0[var2];
@@ -78,7 +85,7 @@ public class UserComparator10 extends AbstractUserComparator {
                   if (var5 != -1) {
                      SequenceDefinition var6 = AABB.SequenceDefinition_get(var5);
                      if (!var6.isCachedModelIdSet()) {
-                        for(var3.modelFrameCycle += Client.field563; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; class69.invalidateWidget(var3)) {
+                        for(var3.modelFrameCycle += Client.field408; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; class69.invalidateWidget(var3)) {
                            var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame];
                            ++var3.modelFrame;
                            if (var3.modelFrame >= var6.frameIds.length) {
@@ -89,8 +96,8 @@ public class UserComparator10 extends AbstractUserComparator {
                            }
                         }
                      } else {
-                        var3.modelFrame += Client.field563;
-                        int var7 = var6.method4024();
+                        var3.modelFrame += Client.field408;
+                        int var7 = var6.method1056();
                         if (var3.modelFrame >= var7) {
                            var3.modelFrame -= var6.frameCount;
                            if (var3.modelFrame < 0 || var3.modelFrame >= var7) {
@@ -103,11 +110,11 @@ public class UserComparator10 extends AbstractUserComparator {
                   }
                }
 
-               if (var3.field3598 != 0 && !var3.isIf3) {
-                  int var9 = var3.field3598 >> 16;
-                  var5 = var3.field3598 << 16 >> 16;
-                  var9 *= Client.field563;
-                  var5 *= Client.field563;
+               if (var3.field2922 != 0 && !var3.isIf3) {
+                  int var9 = var3.field2922 >> 16;
+                  var5 = var3.field2922 << 16 >> 16;
+                  var9 *= Client.field408;
+                  var5 *= Client.field408;
                   var3.modelAngleX = var9 + var3.modelAngleX & 2047;
                   var3.modelAngleY = var5 + var3.modelAngleY & 2047;
                   class69.invalidateWidget(var3);

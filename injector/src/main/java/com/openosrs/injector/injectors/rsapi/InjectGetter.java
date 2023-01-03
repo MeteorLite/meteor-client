@@ -76,11 +76,6 @@ public class InjectGetter
 			ins.add(new GetField(instructions, field.getPoolField()));
 		}
 
-		if (getter != null)
-		{
-			InjectUtil.injectObfuscatedGetter(getter, instructions, ins::add);
-		}
-
 		ins.add(InjectUtil.createReturnForType(instructions, field.getType()));
 
 		targetClass.addMethod(method);

@@ -4,33 +4,35 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ic")
+@Implements("WorldMapCacheName")
 public class WorldMapCacheName {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Lic;"
    )
-   public static final WorldMapCacheName field3010 = new WorldMapCacheName("details");
+   public static final WorldMapCacheName field2403 = new WorldMapCacheName("details");
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lic;"
    )
-   public static final WorldMapCacheName field3005 = new WorldMapCacheName("compositemap");
+   public static final WorldMapCacheName field2399 = new WorldMapCacheName("compositemap");
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lic;"
    )
-   public static final WorldMapCacheName field3009 = new WorldMapCacheName("compositetexture");
+   public static final WorldMapCacheName field2402 = new WorldMapCacheName("compositetexture");
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Lic;"
    )
-   static final WorldMapCacheName field3007 = new WorldMapCacheName("area");
+   static final WorldMapCacheName field2400 = new WorldMapCacheName("area");
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Lic;"
    )
-   public static final WorldMapCacheName field3004 = new WorldMapCacheName("labels");
+   public static final WorldMapCacheName field2398 = new WorldMapCacheName("labels");
    @ObfuscatedName("q")
+   @Export("name")
    public final String name;
 
    WorldMapCacheName(String var1) {
@@ -42,11 +44,11 @@ public class WorldMapCacheName {
       descriptor = "(ILbm;ZI)I",
       garbageValue = "1974028758"
    )
-   static int method5339(int var0, Script var1, boolean var2) {
+   static int method1468(int var0, Script var1, boolean var2) {
       if (var0 == 3600) {
-         if (DefaultsGroup.friendSystem.field833 == 0) {
+         if (DefaultsGroup.friendSystem.field670 == 0) {
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = -2;
-         } else if (DefaultsGroup.friendSystem.field833 == 1) {
+         } else if (DefaultsGroup.friendSystem.field670 == 1) {
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = -1;
          } else {
             Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = DefaultsGroup.friendSystem.friendsList.getSize();
@@ -57,7 +59,7 @@ public class WorldMapCacheName {
          int var3;
          if (var0 == 3601) {
             var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-            if (DefaultsGroup.friendSystem.method1827() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.friendsList.getSize()) {
+            if (DefaultsGroup.friendSystem.method407() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.friendsList.getSize()) {
                Friend var8 = (Friend)DefaultsGroup.friendSystem.friendsList.get(var3);
                Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var8.getName();
                Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var8.getPreviousName();
@@ -69,7 +71,7 @@ public class WorldMapCacheName {
             return 1;
          } else if (var0 == 3602) {
             var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-            if (DefaultsGroup.friendSystem.method1827() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.friendsList.getSize()) {
+            if (DefaultsGroup.friendSystem.method407() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.friendsList.getSize()) {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ((Buddy)DefaultsGroup.friendSystem.friendsList.get(var3)).world;
             } else {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = 0;
@@ -78,7 +80,7 @@ public class WorldMapCacheName {
             return 1;
          } else if (var0 == 3603) {
             var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-            if (DefaultsGroup.friendSystem.method1827() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.friendsList.getSize()) {
+            if (DefaultsGroup.friendSystem.method407() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.friendsList.getSize()) {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = ((Buddy)DefaultsGroup.friendSystem.friendsList.get(var3)).rank;
             } else {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = 0;
@@ -90,7 +92,7 @@ public class WorldMapCacheName {
             if (var0 == 3604) {
                var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
                int var6 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               class159.method3339(var5, var6);
+               class159.method837(var5, var6);
                return 1;
             } else if (var0 == 3605) {
                var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -110,7 +112,7 @@ public class WorldMapCacheName {
                return 1;
             } else if (var0 == 3609) {
                var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-               var5 = class282.method5507(var5);
+               var5 = class282.method1533(var5);
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = DefaultsGroup.friendSystem.isFriended(new Username(var5, SecureRandomFuture.loginType), false) ? 1 : 0;
                return 1;
             } else if (var0 == 3611) {
@@ -164,7 +166,7 @@ public class WorldMapCacheName {
                ReflectionCheck.clanKickUser(var5);
                return 1;
             } else if (var0 == 3618) {
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class281.friendsChat != null ? class281.friendsChat.rank : 0;
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = class281.friendsChat != null ? class281.friendsChat.rank * -249776335 * 1090208209 : 0;
                return 1;
             } else if (var0 == 3619) {
                var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -174,7 +176,7 @@ public class WorldMapCacheName {
                class7.Clan_leaveChat();
                return 1;
             } else if (var0 == 3621) {
-               if (!DefaultsGroup.friendSystem.method1827()) {
+               if (!DefaultsGroup.friendSystem.method407()) {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = -1;
                } else {
                   Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = DefaultsGroup.friendSystem.ignoreList.getSize();
@@ -183,7 +185,7 @@ public class WorldMapCacheName {
                return 1;
             } else if (var0 == 3622) {
                var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
-               if (DefaultsGroup.friendSystem.method1827() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.ignoreList.getSize()) {
+               if (DefaultsGroup.friendSystem.method407() && var3 >= 0 && var3 < DefaultsGroup.friendSystem.ignoreList.getSize()) {
                   Ignored var4 = (Ignored)DefaultsGroup.friendSystem.ignoreList.get(var3);
                   Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4.getName();
                   Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4.getPreviousName();
@@ -195,7 +197,7 @@ public class WorldMapCacheName {
                return 1;
             } else if (var0 == 3623) {
                var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-               var5 = class282.method5507(var5);
+               var5 = class282.method1533(var5);
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = DefaultsGroup.friendSystem.isIgnored(new Username(var5, SecureRandomFuture.loginType)) ? 1 : 0;
                return 1;
             } else if (var0 == 3624) {
@@ -403,30 +405,33 @@ public class WorldMapCacheName {
       descriptor = "([BI)[B",
       garbageValue = "-606090063"
    )
+   @Export("decompressBytes")
    static final byte[] decompressBytes(byte[] var0) {
       Buffer var1 = new Buffer(var0);
       int var2 = var1.readUnsignedByte();
       int var3 = var1.readInt();
-      if (var3 < 0 || AbstractArchive.field4213 != 0 && var3 > AbstractArchive.field4213) {
-         throw new RuntimeException();
-      } else if (var2 == 0) {
-         byte[] var6 = new byte[var3];
-         var1.readBytes(var6, 0, var3);
-         return var6;
-      } else {
-         int var4 = var1.readInt();
-         if (var4 >= 0 && (AbstractArchive.field4213 == 0 || var4 <= AbstractArchive.field4213)) {
-            byte[] var5 = new byte[var4];
-            if (var2 == 1) {
-               BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
-            } else {
-               AbstractArchive.gzipDecompressor.decompress(var1, var5);
-            }
-
-            return var5;
+      if (var3 >= 0 && (AbstractArchive.field3463 == 0 || var3 <= AbstractArchive.field3463)) {
+         if (var2 == 0) {
+            byte[] var4 = new byte[var3];
+            var1.readBytes(var4, 0, var3);
+            return var4;
          } else {
-            throw new RuntimeException();
+            int var6 = var1.readInt();
+            if (var6 < 0 || AbstractArchive.field3463 != 0 && var6 > AbstractArchive.field3463) {
+               throw new RuntimeException();
+            } else {
+               byte[] var5 = new byte[var6];
+               if (var2 == 1) {
+                  BZip2Decompressor.BZip2Decompressor_decompress(var5, var6, var0, var3, 9);
+               } else {
+                  AbstractArchive.gzipDecompressor.decompress(var1, var5);
+               }
+
+               return var5;
+            }
          }
+      } else {
+         throw new RuntimeException();
       }
    }
 }

@@ -3,5 +3,5 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("jq")
 public interface class265 {
    @ObfuscatedName("h")
-   void method5409(Object var1);
+   void method1495(Object var1);
 }

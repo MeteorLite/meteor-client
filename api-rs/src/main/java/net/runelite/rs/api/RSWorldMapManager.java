@@ -7,7 +7,7 @@ public interface RSWorldMapManager extends WorldMapManager
 {
 	@Import("isLoaded")
 	@Override
-	boolean isLoaded();
+	boolean isLoaded$api();
 
 	@Import("tileX")
 	int getSurfaceOffsetX();
@@ -16,5 +16,5 @@ public interface RSWorldMapManager extends WorldMapManager
 	int getSurfaceOffsetY();
 
 	@Import("getPixelsPerTile")
-	float getPixelsPerTile(int graphicsDiff, int worldDiff);
+	float getPixelsPerTile$api(int graphicsDiff, int worldDiff);
 }

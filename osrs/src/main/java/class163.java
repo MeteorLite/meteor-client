@@ -4,59 +4,55 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fk")
 public class class163 {
    @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -2091468897
-   )
-   int field1831 = -1;
+   int field1409 = -1;
    @ObfuscatedName("b")
-   String field1832;
+   String field1410;
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Ldm;"
    )
-   UrlRequest field1834;
+   UrlRequest field1412;
    @ObfuscatedName("g")
-   String field1827 = null;
+   String field1407 = null;
    @ObfuscatedName("i")
-   float[] field1828 = new float[4];
+   float[] field1408 = new float[4];
    @ObfuscatedName("o")
-   ArrayList field1836 = new ArrayList();
+   ArrayList field1413 = new ArrayList();
    @ObfuscatedName("n")
-   ArrayList field1837 = new ArrayList();
+   ArrayList field1414 = new ArrayList();
    @ObfuscatedName("k")
-   ArrayList field1833 = new ArrayList();
+   ArrayList field1411 = new ArrayList();
    @ObfuscatedName("a")
-   Map field1839 = new HashMap();
+   Map field1415 = new HashMap();
    @ObfuscatedName("s")
-   Map field1840 = new HashMap();
+   Map field1416 = new HashMap();
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Ldl;I)Z",
       garbageValue = "-1909822883"
    )
-   public boolean method3370(String var1, UrlRequester var2) {
+   public boolean method847(String var1, UrlRequester var2) {
       if (var1 != null && !var1.isEmpty()) {
          if (var2 == null) {
             return false;
          } else {
-            this.method3385();
+            this.method859();
 
             try {
-               this.field1832 = var1;
-               this.field1834 = var2.request(new URL(this.field1832));
-               this.field1831 = 0;
+               this.field1410 = var1;
+               this.field1412 = var2.request(new URL(this.field1410));
+               this.field1409 = 0;
                return true;
             } catch (MalformedURLException var4) {
-               this.method3385();
-               this.field1831 = 100;
+               this.method859();
+               this.field1409 = 100;
                return false;
             }
          }
@@ -70,13 +66,13 @@ public class class163 {
       descriptor = "(Ldl;S)V",
       garbageValue = "19356"
    )
-   public void method3371(UrlRequester var1) {
-      switch(this.field1831) {
+   public void method848(UrlRequester var1) {
+      switch(this.field1409) {
       case 0:
-         this.method3380(var1);
+         this.method855(var1);
          break;
       case 1:
-         this.method3381();
+         this.method856();
          break;
       default:
          return;
@@ -89,8 +85,8 @@ public class class163 {
       descriptor = "(I)I",
       garbageValue = "-917073960"
    )
-   public int method3372() {
-      return this.field1831;
+   public int method849() {
+      return this.field1409;
    }
 
    @ObfuscatedName("x")
@@ -98,8 +94,8 @@ public class class163 {
       descriptor = "(Ljava/lang/String;I)I",
       garbageValue = "-1951981064"
    )
-   public int method3373(String var1) {
-      return this.field1839.containsKey(var1) ? (Integer)this.field1839.get(var1) : -1;
+   public int method850(String var1) {
+      return this.field1415.containsKey(var1) ? (Integer)this.field1415.get(var1) : -1;
    }
 
    @ObfuscatedName("m")
@@ -107,8 +103,8 @@ public class class163 {
       descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
       garbageValue = "1849655025"
    )
-   public String method3374(String var1) {
-      return (String)((String)(this.field1840.containsKey(var1) ? this.field1840.get(var1) : null));
+   public String method851(String var1) {
+      return (String)((String)(this.field1416.containsKey(var1) ? this.field1416.get(var1) : null));
    }
 
    @ObfuscatedName("q")
@@ -116,8 +112,8 @@ public class class163 {
       descriptor = "(B)Ljava/util/ArrayList;",
       garbageValue = "24"
    )
-   public ArrayList method3383() {
-      return this.field1837;
+   public ArrayList method858() {
+      return this.field1414;
    }
 
    @ObfuscatedName("f")
@@ -125,8 +121,8 @@ public class class163 {
       descriptor = "(B)Ljava/util/ArrayList;",
       garbageValue = "22"
    )
-   public ArrayList method3376() {
-      return this.field1833;
+   public ArrayList method852() {
+      return this.field1411;
    }
 
    @ObfuscatedName("r")
@@ -134,8 +130,8 @@ public class class163 {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "0"
    )
-   public String method3377() {
-      return this.field1827;
+   public String method853() {
+      return this.field1407;
    }
 
    @ObfuscatedName("u")
@@ -143,8 +139,8 @@ public class class163 {
       descriptor = "(I)Ljava/util/ArrayList;",
       garbageValue = "1542942466"
    )
-   public ArrayList method3378() {
-      return this.field1836;
+   public ArrayList method854() {
+      return this.field1413;
    }
 
    @ObfuscatedName("b")
@@ -152,18 +148,18 @@ public class class163 {
       descriptor = "(I)V",
       garbageValue = "2085605669"
    )
-   void method3385() {
-      this.field1834 = null;
-      this.field1827 = null;
-      this.field1828[0] = 0.0F;
-      this.field1828[1] = 0.0F;
-      this.field1828[2] = 1.0F;
-      this.field1828[3] = 1.0F;
-      this.field1836.clear();
-      this.field1837.clear();
-      this.field1833.clear();
-      this.field1839.clear();
-      this.field1840.clear();
+   void method859() {
+      this.field1412 = null;
+      this.field1407 = null;
+      this.field1408[0] = 0.0F;
+      this.field1408[1] = 0.0F;
+      this.field1408[2] = 1.0F;
+      this.field1408[3] = 1.0F;
+      this.field1413.clear();
+      this.field1414.clear();
+      this.field1411.clear();
+      this.field1415.clear();
+      this.field1416.clear();
    }
 
    @ObfuscatedName("j")
@@ -171,56 +167,56 @@ public class class163 {
       descriptor = "(Ldl;B)V",
       garbageValue = "-109"
    )
-   void method3380(UrlRequester var1) {
-      if (this.field1834 != null && this.field1834.isDone()) {
-         byte[] var2 = this.field1834.getResponse();
+   void method855(UrlRequester var1) {
+      if (this.field1412 != null && this.field1412.isDone()) {
+         byte[] var2 = this.field1412.getResponse();
          if (var2 == null) {
-            this.method3385();
-            this.field1831 = 100;
+            this.method859();
+            this.field1409 = 100;
          } else {
             JSONObject var3;
             try {
                class422 var4 = new class422(var2);
-               var3 = var4.method7917();
+               var3 = var4.method2173();
                var3 = var3.getJSONObject("message");
             } catch (Exception var9) {
-               this.method3385();
-               this.field1831 = 102;
+               this.method859();
+               this.field1409 = 102;
                return;
             }
 
             try {
-               this.method3382(var3.getJSONArray("images"), var1);
+               this.method857(var3.getJSONArray("images"), var1);
             } catch (Exception var8) {
-               this.field1837.clear();
+               this.field1414.clear();
             }
 
             try {
-               this.method3413(var3.getJSONArray("labels"));
+               this.method861(var3.getJSONArray("labels"));
             } catch (Exception var7) {
-               this.field1833.clear();
+               this.field1411.clear();
             }
 
             try {
-               this.method3414(var3.getJSONObject("behaviour"));
+               this.method862(var3.getJSONObject("behaviour"));
             } catch (Exception var6) {
-               this.field1827 = null;
-               this.field1828[0] = 0.0F;
-               this.field1828[1] = 0.0F;
-               this.field1828[2] = 1.0F;
-               this.field1828[3] = 1.0F;
-               this.field1836.clear();
+               this.field1407 = null;
+               this.field1408[0] = 0.0F;
+               this.field1408[1] = 0.0F;
+               this.field1408[2] = 1.0F;
+               this.field1408[3] = 1.0F;
+               this.field1413.clear();
             }
 
             try {
-               this.method3396(var3.getJSONObject("meta"));
+               this.method860(var3.getJSONObject("meta"));
             } catch (Exception var5) {
-               this.field1839.clear();
-               this.field1840.clear();
+               this.field1415.clear();
+               this.field1416.clear();
             }
 
-            this.field1831 = this.field1837.size() > 0 ? 1 : 2;
-            this.field1834 = null;
+            this.field1409 = this.field1414.size() > 0 ? 1 : 2;
+            this.field1412 = null;
          }
       }
    }
@@ -230,32 +226,32 @@ public class class163 {
       descriptor = "(B)V",
       garbageValue = "24"
    )
-   void method3381() {
-      Iterator var1 = this.field1837.iterator();
+   void method856() {
+      Iterator var1 = this.field1414.iterator();
 
       class168 var2;
       do {
          if (!var1.hasNext()) {
-            var1 = this.field1837.iterator();
+            var1 = this.field1414.iterator();
 
             while(var1.hasNext()) {
                var2 = (class168)var1.next();
-               if (var2.field1867 != null) {
-                  byte[] var3 = var2.field1867.getResponse();
+               if (var2.field1433 != null) {
+                  byte[] var3 = var2.field1433.getResponse();
                   if (var3 != null && var3.length > 0) {
-                     this.field1831 = 2;
+                     this.field1409 = 2;
                      return;
                   }
                }
             }
 
-            this.method3385();
-            this.field1831 = 101;
+            this.method859();
+            this.field1409 = 101;
             return;
          }
 
          var2 = (class168)var1.next();
-      } while(var2.field1867 == null || var2.field1867.isDone());
+      } while(var2.field1433 == null || var2.field1433.isDone());
 
    }
 
@@ -264,15 +260,15 @@ public class class163 {
       descriptor = "(Lorg/json/JSONArray;Ldl;I)V",
       garbageValue = "-1559555099"
    )
-   void method3382(JSONArray var1, UrlRequester var2) throws JSONException {
+   void method857(JSONArray var1, UrlRequester var2) throws JSONException {
       if (var1 != null) {
          for(int var3 = 0; var3 < var1.length(); ++var3) {
             try {
                JSONObject var4 = var1.getJSONObject(var3);
                class168 var5 = new class168(this);
-               var5.field1867 = var2.request(new URL(var4.getString("src")));
-               var5.field1868 = Login.method2094(var4, "placement");
-               this.field1837.add(var5);
+               var5.field1433 = var2.request(new URL(var4.getString("src")));
+               var5.field1434 = Login.method433(var4, "placement");
+               this.field1414.add(var5);
             } catch (MalformedURLException var6) {
                ;
             }
@@ -286,12 +282,12 @@ public class class163 {
       descriptor = "(Lorg/json/JSONArray;B)V",
       garbageValue = "68"
    )
-   void method3413(JSONArray var1) throws JSONException {
+   void method861(JSONArray var1) throws JSONException {
       if (var1 != null) {
          for(int var2 = 0; var2 < var1.length(); ++var2) {
             JSONObject var3 = var1.getJSONObject(var2);
             class169 var4 = new class169(this);
-            var4.field1872 = var3.getString("text");
+            var4.field1435 = var3.getString("text");
             String var7 = var3.getString("align_x");
             byte var6;
             if (var7.equals("centre")) {
@@ -302,11 +298,11 @@ public class class163 {
                var6 = 2;
             }
 
-            var4.field1876 = var6;
-            var4.field1877 = class144.method3145(var3.getString("align_y"));
-            var4.field1875 = var3.getInt("font");
-            var4.field1873 = Login.method2094(var3, "placement");
-            this.field1833.add(var4);
+            var4.field1438 = var6;
+            var4.field1439 = class144.method771(var3.getString("align_y"));
+            var4.field1437 = var3.getInt("font");
+            var4.field1436 = Login.method433(var3, "placement");
+            this.field1411.add(var4);
          }
 
       }
@@ -317,26 +313,26 @@ public class class163 {
       descriptor = "(Lorg/json/JSONObject;B)V",
       garbageValue = "-7"
    )
-   void method3414(JSONObject var1) throws JSONException {
+   void method862(JSONObject var1) throws JSONException {
       if (var1 != null) {
-         this.field1828 = Login.method2094(var1, "clickbounds");
-         this.field1827 = var1.getString("endpoint");
+         this.field1408 = Login.method433(var1, "clickbounds");
+         this.field1407 = var1.getString("endpoint");
          String[] var2 = JSONObject.getNames(var1);
 
          for(int var3 = 0; var3 < var1.length(); ++var3) {
             if (!var2[var3].equals("clickbounds") && !var2[var3].equals("endpoint")) {
                try {
                   int var4 = var1.getInt(var2[var3]);
-                  this.field1836.add(new class170(this, var2[var3], var4));
+                  this.field1413.add(new class170(this, var2[var3], var4));
                } catch (Exception var8) {
                   try {
                      String var5 = var1.getString(var2[var3]);
                      if (var5.equals("true")) {
-                        this.field1836.add(new class170(this, var2[var3], 1));
+                        this.field1413.add(new class170(this, var2[var3], 1));
                      } else if (var5.equals("false")) {
-                        this.field1836.add(new class170(this, var2[var3], 0));
+                        this.field1413.add(new class170(this, var2[var3], 0));
                      } else {
-                        this.field1836.add(new class162(this, var2[var3], var5));
+                        this.field1413.add(new class162(this, var2[var3], var5));
                      }
                   } catch (Exception var7) {
                      ;
@@ -353,22 +349,22 @@ public class class163 {
       descriptor = "(Lorg/json/JSONObject;S)V",
       garbageValue = "16256"
    )
-   void method3396(JSONObject var1) throws JSONException {
+   void method860(JSONObject var1) throws JSONException {
       String[] var2 = JSONObject.getNames(var1);
 
       for(int var3 = 0; var3 < var1.length(); ++var3) {
          try {
             int var4 = var1.getInt(var2[var3]);
-            this.field1839.put(var2[var3], var4);
+            this.field1415.put(var2[var3], var4);
          } catch (Exception var8) {
             try {
                String var5 = var1.getString(var2[var3]);
                if (var5.equals("true")) {
-                  this.field1839.put(var2[var3], 1);
+                  this.field1415.put(var2[var3], 1);
                } else if (var5.equals("false")) {
-                  this.field1839.put(var2[var3], 0);
+                  this.field1415.put(var2[var3], 0);
                } else {
-                  this.field1840.put(var2[var3], var5);
+                  this.field1416.put(var2[var3], var5);
                }
             } catch (Exception var7) {
                ;
@@ -383,8 +379,8 @@ public class class163 {
       descriptor = "(I)[Lcp;",
       garbageValue = "1657766333"
    )
-   static class87[] method3425() {
-      return new class87[]{class87.field1110, class87.field1112, class87.field1113, class87.field1114, class87.field1118, class87.field1120};
+   static class87[] method866() {
+      return new class87[]{class87.field872, class87.field873, class87.field874, class87.field875, class87.field879, class87.field881};
    }
 
    @ObfuscatedName("e")
@@ -392,8 +388,8 @@ public class class163 {
       descriptor = "(II)I",
       garbageValue = "-175884700"
    )
-   public static int method3416(int var0) {
-      return class424.field4664[var0 & 16383];
+   public static int method863(int var0) {
+      return class424.field3800[var0 & 16383];
    }
 
    @ObfuscatedName("v")
@@ -401,8 +397,8 @@ public class class163 {
       descriptor = "(II)I",
       garbageValue = "-1919350476"
    )
-   public static int method3422(int var0) {
-      return (var0 & class462.field4896) - 1;
+   public static int method864(int var0) {
+      return (var0 & class462.field3984) - 1;
    }
 
    @ObfuscatedName("iy")
@@ -410,8 +406,8 @@ public class class163 {
       descriptor = "(B)I",
       garbageValue = "0"
    )
-   static final int method3424() {
-      if (StructComposition.clientPreferences.method2412()) {
+   static final int method865() {
+      if (StructComposition.clientPreferences.method535()) {
          return class383.Client_plane;
       } else {
          int var0 = 3;

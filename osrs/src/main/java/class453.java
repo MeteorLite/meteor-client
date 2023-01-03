@@ -9,8 +9,9 @@ final class class453 implements class452 {
       descriptor = "(Ljava/lang/Object;Lqy;I)V",
       garbageValue = "-1165050397"
    )
+   @Export("vmethod8274")
    public void vmethod8274(Object var1, Buffer var2) {
-      this.method8367((Integer)var1, var2);
+      this.method2293((Integer)var1, var2);
    }
 
    @ObfuscatedName("e")
@@ -18,6 +19,7 @@ final class class453 implements class452 {
       descriptor = "(Lqy;I)Ljava/lang/Object;",
       garbageValue = "1911852841"
    )
+   @Export("vmethod8273")
    public Object vmethod8273(Buffer var1) {
       return var1.readInt();
    }
@@ -27,7 +29,7 @@ final class class453 implements class452 {
       descriptor = "(Ljava/lang/Integer;Lqy;I)V",
       garbageValue = "-1706069282"
    )
-   void method8367(Integer var1, Buffer var2) {
+   void method2293(Integer var1, Buffer var2) {
       var2.writeInt(var1);
    }
 }

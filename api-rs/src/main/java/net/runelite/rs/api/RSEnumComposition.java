@@ -7,7 +7,7 @@ public interface RSEnumComposition extends EnumComposition, RSDualNode
 {
 	@Import("size")
 	@Override
-	int size();
+	int size$api();
 
 	@Import("keys")
 	@Override

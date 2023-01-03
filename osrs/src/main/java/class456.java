@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -9,43 +8,37 @@ public class class456 implements class345 {
    @ObfuscatedSignature(
       descriptor = "Lqr;"
    )
-   public static final class456 field4874 = new class456(0, 0, Integer.class, new class453());
+   public static final class456 field3970 = new class456(0, 0, Integer.class, new class453());
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Lqr;"
    )
-   public static final class456 field4870 = new class456(2, 1, Long.class, new class455());
+   public static final class456 field3967 = new class456(2, 1, Long.class, new class455());
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Lqr;"
    )
-   public static final class456 field4871 = new class456(1, 2, String.class, new class457());
+   public static final class456 field3968 = new class456(1, 2, String.class, new class457());
    @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = -1157568029
-   )
-   public final int field4872;
+   public final int field3969;
    @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = 984459831
-   )
-   public final int field4876;
+   public final int field3972;
    @ObfuscatedName("q")
-   public final Class field4875;
+   public final Class field3971;
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Lqu;"
    )
-   final class452 field4869;
+   final class452 field3966;
 
    @ObfuscatedSignature(
       descriptor = "(IILjava/lang/Class;Lqu;)V"
    )
    class456(int var1, int var2, Class var3, class452 var4) {
-      this.field4872 = var1;
-      this.field4876 = var2;
-      this.field4875 = var3;
-      this.field4869 = var4;
+      this.field3969 = var1;
+      this.field3972 = var2;
+      this.field3971 = var3;
+      this.field3966 = var4;
    }
 
    @ObfuscatedName("e")
@@ -53,8 +46,9 @@ public class class456 implements class345 {
       descriptor = "(B)I",
       garbageValue = "96"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
-      return this.field4876;
+      return this.field3972;
    }
 
    @ObfuscatedName("u")
@@ -62,8 +56,8 @@ public class class456 implements class345 {
       descriptor = "(Lqy;I)Ljava/lang/Object;",
       garbageValue = "-667358219"
    )
-   public Object method8396(Buffer var1) {
-      return this.field4869.vmethod8273(var1);
+   public Object method2301(Buffer var1) {
+      return this.field3966.vmethod8273(var1);
    }
 
    @ObfuscatedName("h")
@@ -71,8 +65,8 @@ public class class456 implements class345 {
       descriptor = "(S)[Lqr;",
       garbageValue = "155"
    )
-   public static class456[] method8407() {
-      return new class456[]{field4874, field4870, field4871};
+   public static class456[] method2303() {
+      return new class456[]{field3970, field3967, field3968};
    }
 
    @ObfuscatedName("h")
@@ -80,7 +74,7 @@ public class class456 implements class345 {
       descriptor = "(IB)Ljava/lang/String;",
       garbageValue = "-107"
    )
-   static String method8410(int var0) {
+   static String method2305(int var0) {
       return "<img=" + var0 + ">";
    }
 
@@ -89,7 +83,7 @@ public class class456 implements class345 {
       descriptor = "(IILgg;Lgw;I)Z",
       garbageValue = "-2047038701"
    )
-   static final boolean method8411(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
+   static final boolean method2306(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
       int var4 = var0;
       int var5 = var1;
       byte var6 = 64;
@@ -115,8 +109,8 @@ public class class456 implements class345 {
          int var13 = var4 - var3.xInset;
          int var14 = var5 - var3.yInset;
          if (var2.hasArrived(1, var4, var5, var3)) {
-            class205.field2359 = var4;
-            class205.field2364 = var5;
+            class205.field1851 = var4;
+            class205.field1855 = var5;
             return true;
          }
 
@@ -186,8 +180,8 @@ public class class456 implements class345 {
          }
       }
 
-      class205.field2359 = var4;
-      class205.field2364 = var5;
+      class205.field1851 = var4;
+      class205.field1855 = var5;
       return false;
    }
 
@@ -196,12 +190,12 @@ public class class456 implements class345 {
       descriptor = "(Ljava/lang/Class;B)Lqr;",
       garbageValue = "56"
    )
-   public static class456 method8394(Class var0) {
-      class456[] var1 = method8407();
+   public static class456 method2299(Class var0) {
+      class456[] var1 = method2303();
 
       for(int var2 = 0; var2 < var1.length; ++var2) {
          class456 var3 = var1[var2];
-         if (var3.field4875 == var0) {
+         if (var3.field3971 == var0) {
             return var3;
          }
       }
@@ -214,8 +208,8 @@ public class class456 implements class345 {
       descriptor = "(Ljava/lang/Object;Lqy;I)V",
       garbageValue = "383102179"
    )
-   public static void method8395(Object var0, Buffer var1) {
-      class452 var2 = method8408(var0.getClass());
+   public static void method2300(Object var0, Buffer var1) {
+      class452 var2 = method2304(var0.getClass());
       var2.vmethod8274(var0, var1);
    }
 
@@ -224,12 +218,12 @@ public class class456 implements class345 {
       descriptor = "(Ljava/lang/Class;B)Lqu;",
       garbageValue = "-2"
    )
-   static class452 method8408(Class var0) {
-      class456 var1 = method8394(var0);
+   static class452 method2304(Class var0) {
+      class456 var1 = method2299(var0);
       if (var1 == null) {
          throw new IllegalArgumentException();
       } else {
-         return var1.field4869;
+         return var1.field3966;
       }
    }
 }

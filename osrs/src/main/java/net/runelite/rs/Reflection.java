@@ -1,77 +1,30 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package net.runelite.rs;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.*;
 import java.math.BigInteger;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Predicate;
+
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 public class Reflection {
-	private static final boolean PRINT_DEBUG_MESSAGES = true;
+	public static final boolean PRINT_DEBUG_MESSAGES = false;
+
+
 
 	private static Map<String, Class<?>> classes = new HashMap<>();
-	static 
-	{
-		try {
-			Enumeration<URL> systemResources = ClassLoader.getSystemResources("");
-			while (systemResources.hasMoreElements()) {
-				URL url = systemResources.nextElement();
-				Path path;
-				try {
-					path = new File(url.toURI()).toPath();
-				} catch (URISyntaxException e) {
-					path = new File(url.getPath()).toPath();
-				}
-				Files.walk(path).filter(Files::isRegularFile).forEach(( f) -> {
-					String className = f.getName(f.getNameCount() - 1).toString().replace(".class", "");
-					try {
-						Class<?> clazz = Class.forName(className);
-						ObfuscatedName obfuscatedName = clazz.getAnnotation(ObfuscatedName.class);
-						if (obfuscatedName != null) {
-							classes.put(obfuscatedName.value(), clazz);
-						}
-					} catch (ClassNotFoundException ignore) {
-					}
-				});
-			} 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+	static {
+		ObfuscatedClassMap.INSTANCE.forEach((deobClassName, obfuscatedClassName) -> {
+			try {
+				classes.put(obfuscatedClassName, Class.forName(deobClassName));
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 
 	public static Class<?> findClass(String name) throws ClassNotFoundException {
