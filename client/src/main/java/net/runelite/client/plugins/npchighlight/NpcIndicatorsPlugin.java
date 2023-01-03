@@ -659,7 +659,6 @@ public class NpcIndicatorsPlugin extends Plugin
 		{
 			return false;
 		}
-		System.out.println("Should render");
 		return true;
 	}
 }
