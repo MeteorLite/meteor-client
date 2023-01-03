@@ -28,11 +28,11 @@ object Objects {
     }
 
     fun getFirst(id: Int): TileObject? {
-        return getAll(id)?.firstOrNull()
+        return getAll(id)?.minByOrNull { it.distanceTo(Main.client.localPlayer) }
     }
 
     fun getFirst(name: String): TileObject? {
-        return getAll(name)?.firstOrNull()
+        return getAll(name)?.minByOrNull { it.distanceTo(Main.client.localPlayer) }
     }
 
     private fun getTileObjects(tile: Tile?): List<TileObject> {

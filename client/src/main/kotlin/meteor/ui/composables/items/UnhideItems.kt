@@ -63,7 +63,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
                                 hiddenEnum.type?.enumConstants?.forEach { ec->
                                     DropdownMenuItem(onClick = {
                                         expanded = false
-                                        configStr = ec.toString()
+                                        configStr = ec.toString().split("_").joinToString(" ") { it.capitalize() }
                                         ConfigManager.setConfiguration(
                                             descriptor.group.value,
                                             hiddenEnum.key(),
@@ -78,7 +78,7 @@ fun unhideEnum(config : ConfigItemDescriptor){
                                         }
 
                                     }, content = {
-                                        Text(text = ec.toString(), color = uiColor.value, fontSize = 14.sp)
+                                        Text(text = ec.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, fontSize = 14.sp)
                                     })
                                 }
                             }

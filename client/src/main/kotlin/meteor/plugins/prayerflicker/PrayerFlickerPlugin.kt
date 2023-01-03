@@ -1,5 +1,6 @@
 package meteor.plugins.prayerflicker
 
+import com.google.common.base.Supplier
 import dev.hoot.api.game.Game
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Prayers
@@ -8,20 +9,26 @@ import eventbus.events.ClientTick
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
 import meteor.api.packets.ClientPackets
+import meteor.config.legacy.Keybind
+import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.util.ColorUtil.wrapWithColorTag
+import meteor.util.HotkeyListener
 import net.runelite.api.GameState
 import net.runelite.api.MenuAction
 import net.runelite.api.Varbits
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Color
 
+
 @PluginDescriptor(name = "Prayer Flicker", description = "prayer flicker for quick prayers", enabledByDefault = false)
 class PrayerFlickerPlugin : Plugin() {
 
     var toggle = false
+    val config = configuration<PrayerFlickerConfig>()
+
 
     private val quickPrayerWidgetID = WidgetInfo.MINIMAP_QUICK_PRAYER_ORB
 
@@ -32,10 +39,24 @@ class PrayerFlickerPlugin : Plugin() {
                 ClientPackets.queueClickPacket(0, 0)
     }
 
+    override fun onStart() {
+        KeyManager.registerKeyListener(hotkeyListener, this.javaClass)
+    }
+
     override fun onStop() {
+        KeyManager.unregisterKeyListener(hotkeyListener)
         toggle = false
     }
 
+    private val hotkeyListener: HotkeyListener = object : HotkeyListener({ config.toggle() }) {
+        override fun hotkeyPressed() {
+            toggle = !toggle
+
+            if (!toggle){
+                toggleFlicker(false)
+            }
+        }
+    }
     override fun onGameTick(it: GameTick) {
         if(Game.getState() == GameState.LOGGED_IN && client.localPlayer != null)
         if (Prayers.getPoints() == 0){
