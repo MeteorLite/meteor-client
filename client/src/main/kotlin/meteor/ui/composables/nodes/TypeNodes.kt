@@ -116,17 +116,17 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
             MaterialTheme(colors = darkThemeColors) {
                 Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
 
-                    Text(configStr, color = uiColor.value, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(surface))
+                    Text(configStr.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(surface))
 
                     DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }, modifier = Modifier.width(300.dp).padding(horizontal = 5.dp)) {
                         configItemDescriptor.type?.enumConstants?.forEach {
                             DropdownMenuItem(onClick = {
                                 expanded = false
-                                configStr = it.toString()
+                                configStr = it.toString().split("_").joinToString(" ") { it.capitalize() }
                                 ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
                                 //println(it.toString())
                             }, content = {
-                                Text(text = it.toString(), color = uiColor.value, fontSize = 14.sp)
+                                Text(text = it.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, fontSize = 14.sp)
                             })
                         }
                     }

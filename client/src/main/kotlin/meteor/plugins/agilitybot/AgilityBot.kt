@@ -33,11 +33,7 @@ class AgilityBot : Plugin() {
             return
         }
         val local = client.localPlayer!!
-        val obstacle = course?.getNext(local)
-        if (obstacle == null) {
-            log.error("No obstacle detected")
-            return
-        }
+        val obstacle = course?.getNext(local) ?: return
         val obs = if (obstacle.id != 0) Objects.getFirst(obstacle.id)
         else Objects.getAll(obstacle.name)?.firstOrNull { it.hasAction(obstacle.action) }
 
