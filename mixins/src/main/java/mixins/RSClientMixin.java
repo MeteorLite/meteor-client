@@ -3236,4 +3236,10 @@ public abstract class RSClientMixin implements RSClient {
             }
         }
     }
+
+    @Inject
+    @Override
+    public int getEnergy() {
+        return getServerEnergy() / 100;
+    }
 }

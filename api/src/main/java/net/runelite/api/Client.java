@@ -650,10 +650,12 @@ public interface Client extends GameEngine
 	Widget createWidget();
 
 	/**
-	 * Gets the current run energy of the logged in player.
+	 * Gets the current run energy of the logged in player. (server side scales to 10,000)
 	 *
 	 * @return the run energy
 	 */
+	int getServerEnergy();
+
 	int getEnergy();
 
 	/**

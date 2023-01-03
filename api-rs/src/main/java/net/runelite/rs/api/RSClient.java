@@ -112,7 +112,7 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("runEnergy")
 	@Override
-	int getEnergy();
+	int getServerEnergy();
 
 	@Import("weight")
 	@Override
