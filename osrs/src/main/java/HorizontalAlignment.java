@@ -65,7 +65,7 @@ public enum HorizontalAlignment implements class345 {
          var2.exactMoveArrive1Cycle = var0.readUnsignedShortLE() + Client.cycle;
          var2.exactMoveArrive2Cycle = var0.readUnsignedShortA() + Client.cycle;
          var2.exactMoveDirection = var0.readUnsignedShort();
-         if (var2.field894) {
+         if (var2.hasMovementPending) {
             var2.exactMoveDeltaX1 += var2.tileX;
             var2.exactMoveDeltaY1 += var2.tileY;
             var2.exactMoveDeltaX2 += var2.tileX;
@@ -194,7 +194,7 @@ public enum HorizontalAlignment implements class345 {
                Players.field1097.offset = 0;
                var0.readBytesAReverse(Players.field1097.array, 0, var8);
                Players.field1097.offset = 0;
-               String var11 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.method817(Players.field1097)));
+               String var11 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.readString(Players.field1097)));
                var2.overheadText = var11.trim();
                var2.overheadTextColor = var5 >> 8;
                var2.overheadTextEffect = var5 & 255;
@@ -268,7 +268,7 @@ public enum HorizontalAlignment implements class345 {
          var16[var1] = (MoveSpeed)World.findEnumerated(var17, var0.readByte());
       }
 
-      if (var2.field894) {
+      if (var2.hasMovementPending) {
          if (var4 == 127) {
             var2.resetPath(var2.tileX, var2.tileY);
          } else {

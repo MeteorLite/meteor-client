@@ -3463,7 +3463,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                if (!var68) {
                   crossWorldMessageIds[crossWorldMessageIdsIndex] = var11;
                   crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
-                  var26 = AbstractFont.escapeBrackets(class153.method817(var3));
+                  var26 = AbstractFont.escapeBrackets(class153.readString(var3));
                   var16 = var74 >= 0 ? 41 : 44;
                   if (var60.modIcon != -1) {
                      class381.addChatMessage(var16, class456.addImageTag(var60.modIcon) + var21, var26, var69.name);
@@ -3671,7 +3671,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                if (!var64 && field536 == 0) {
                   crossWorldMessageIds[crossWorldMessageIdsIndex] = var33;
                   crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
-                  var35 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.method817(var3)));
+                  var35 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.readString(var3)));
                   byte var83;
                   if (var32.isPrivileged) {
                      var83 = 7;
@@ -4361,7 +4361,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                var39 = npcs[var20];
                if (var39 != null) {
                   if (var5 == var39.sequence && var5 != -1) {
-                     var8 = AABB.SequenceDefinition_get(var5).field1786;
+                     var8 = AABB.SequenceDefinition_get(var5).replyMode;
                      if (var8 == 1) {
                         var39.sequenceFrame = 0;
                         var39.sequenceFrameCycle = 0;
@@ -4370,7 +4370,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                      } else if (var8 == 2) {
                         var39.currentSequenceFrameIndex = 0;
                      }
-                  } else if (var5 == -1 || var39.sequence == -1 || AABB.SequenceDefinition_get(var5).field1809 >= AABB.SequenceDefinition_get(var39.sequence).field1809) {
+                  } else if (var5 == -1 || var39.sequence == -1 || AABB.SequenceDefinition_get(var5).forcedPriority >= AABB.SequenceDefinition_get(var39.sequence).forcedPriority) {
                      var39.sequence = var5;
                      var39.sequenceFrame = 0;
                      var39.sequenceFrameCycle = 0;
@@ -4409,7 +4409,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                if (!var82 && field536 == 0) {
                   crossWorldMessageIds[crossWorldMessageIdsIndex] = var44;
                   crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
-                  var26 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.method817(var3)));
+                  var26 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.readString(var3)));
                   if (var93.modIcon != -1) {
                      class381.addChatMessage(9, class456.addImageTag(var93.modIcon) + var49, var26, ModeWhere.base37DecodeLong(var28));
                   } else {
@@ -4578,7 +4578,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
             if (ServerPacket.field2583 == var1.serverPacket) {
                var49 = var3.readStringCp1252NullTerminated();
-               var21 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.method817(var3)));
+               var21 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.readString(var3)));
                KitDefinition.addGameMessage(6, var49, var21);
                var1.serverPacket = null;
                return true;
@@ -4943,7 +4943,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                if (!var37) {
                   crossWorldMessageIds[crossWorldMessageIdsIndex] = var41;
                   crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
-                  var35 = class153.method817(var3);
+                  var35 = class153.readString(var3);
                   var36 = var74 >= 0 ? 43 : 46;
                   class381.addChatMessage(var36, "", var35, var46.name);
                }

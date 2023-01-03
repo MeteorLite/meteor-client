@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -46,7 +45,7 @@ public final class SceneTilePaint {
 
       for(int var3 = 0; var3 < var2.length; ++var3) {
          PrivateChatMode var4 = var2[var3];
-         if (var0 == var4.field4105) {
+         if (var0 == var4.id) {
             return var4;
          }
       }

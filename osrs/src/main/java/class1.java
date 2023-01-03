@@ -198,7 +198,7 @@ public class class1 implements Callable {
 
             var17 = var0.readUnsignedByte();
             if (var5 == var3.sequence && var5 != -1) {
-               var7 = AABB.SequenceDefinition_get(var5).field1786;
+               var7 = AABB.SequenceDefinition_get(var5).replyMode;
                if (var7 == 1) {
                   var3.sequenceFrame = 0;
                   var3.sequenceFrameCycle = 0;
@@ -209,7 +209,7 @@ public class class1 implements Callable {
                if (var7 == 2) {
                   var3.currentSequenceFrameIndex = 0;
                }
-            } else if (var5 == -1 || var3.sequence == -1 || AABB.SequenceDefinition_get(var5).field1809 >= AABB.SequenceDefinition_get(var3.sequence).field1809) {
+            } else if (var5 == -1 || var3.sequence == -1 || AABB.SequenceDefinition_get(var5).forcedPriority >= AABB.SequenceDefinition_get(var3.sequence).forcedPriority) {
                var3.sequence = var5;
                var3.sequenceFrame = 0;
                var3.sequenceFrameCycle = 0;

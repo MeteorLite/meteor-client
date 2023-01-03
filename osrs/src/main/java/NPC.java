@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -181,7 +180,7 @@ public final class NPC extends Actor {
          --var4;
       }
 
-      if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).field1794 == 1) {
+      if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).priority == 1) {
          super.sequence = -1;
       }
 
@@ -206,7 +205,7 @@ public final class NPC extends Actor {
       garbageValue = "-468996840"
    )
    final void method576(int var1, int var2, boolean var3) {
-      if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).field1794 == 1) {
+      if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).priority == 1) {
          super.sequence = -1;
       }
 

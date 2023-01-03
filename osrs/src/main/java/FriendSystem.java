@@ -273,15 +273,15 @@ public class FriendSystem {
       int var4;
       for(var2 = 0; var2 < Players.Players_count; ++var2) {
          var3 = Players.Players_indices[var2];
-         if ((Players.field1086[var3] & 1) == 0) {
+         if ((Players.activityFlags[var3] & 1) == 0) {
             if (var1 > 0) {
                --var1;
-               Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+               Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
             } else {
                var4 = var0.readBits(1);
                if (var4 == 0) {
                   var1 = class323.method1775(var0);
-                  Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                  Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                } else {
                   class160.readPlayerUpdate(var0, var3);
                }
@@ -297,15 +297,15 @@ public class FriendSystem {
 
          for(var2 = 0; var2 < Players.Players_count; ++var2) {
             var3 = Players.Players_indices[var2];
-            if ((Players.field1086[var3] & 1) != 0) {
+            if ((Players.activityFlags[var3] & 1) != 0) {
                if (var1 > 0) {
                   --var1;
-                  Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                  Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                } else {
                   var4 = var0.readBits(1);
                   if (var4 == 0) {
                      var1 = class323.method1775(var0);
-                     Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                     Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                   } else {
                      class160.readPlayerUpdate(var0, var3);
                   }
@@ -321,17 +321,17 @@ public class FriendSystem {
 
             for(var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
                var3 = Players.Players_emptyIndices[var2];
-               if ((Players.field1086[var3] & 1) != 0) {
+               if ((Players.activityFlags[var3] & 1) != 0) {
                   if (var1 > 0) {
                      --var1;
-                     Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                     Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                   } else {
                      var4 = var0.readBits(1);
                      if (var4 == 0) {
                         var1 = class323.method1775(var0);
-                        Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                        Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                      } else if (ArchiveDiskAction.updateExternalPlayer(var0, var3)) {
-                        Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                        Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                      }
                   }
                }
@@ -345,17 +345,17 @@ public class FriendSystem {
 
                for(var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
                   var3 = Players.Players_emptyIndices[var2];
-                  if ((Players.field1086[var3] & 1) == 0) {
+                  if ((Players.activityFlags[var3] & 1) == 0) {
                      if (var1 > 0) {
                         --var1;
-                        Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                        Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                      } else {
                         var4 = var0.readBits(1);
                         if (var4 == 0) {
                            var1 = class323.method1775(var0);
-                           Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                           Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                         } else if (ArchiveDiskAction.updateExternalPlayer(var0, var3)) {
-                           Players.field1086[var3] = (byte)(Players.field1086[var3] | 2);
+                           Players.activityFlags[var3] = (byte)(Players.activityFlags[var3] | 2);
                         }
                      }
                   }
@@ -369,7 +369,7 @@ public class FriendSystem {
                   Players.Players_emptyIdxCount = 0;
 
                   for(var2 = 1; var2 < 2048; ++var2) {
-                     Players.field1086[var2] = (byte)(Players.field1086[var2] >> 1);
+                     Players.activityFlags[var2] = (byte)(Players.activityFlags[var2] >> 1);
                      Player var5 = Client.players[var2];
                      if (var5 != null) {
                         Players.Players_indices[++Players.Players_count - 1] = var2;

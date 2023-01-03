@@ -54,7 +54,7 @@ public class class160 extends class136 {
       Player var4 = Client.players[var1];
       if (var3 == 0) {
          if (var2) {
-            var4.field894 = false;
+            var4.hasMovementPending = false;
          } else if (Client.localPlayerIndex == var1) {
             throw new RuntimeException();
          } else {
@@ -104,16 +104,16 @@ public class class160 extends class136 {
 
             if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
                if (var2) {
-                  var4.field894 = true;
+                  var4.hasMovementPending = true;
                   var4.tileX = var6;
                   var4.tileY = var7;
                } else {
-                  var4.field894 = false;
+                  var4.hasMovementPending = false;
                   var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
                }
             } else {
                var4.resetPath(var6, var7);
-               var4.field894 = false;
+               var4.hasMovementPending = false;
             }
 
          } else if (var3 == 2) {
@@ -168,16 +168,16 @@ public class class160 extends class136 {
 
             if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
                if (var2) {
-                  var4.field894 = true;
+                  var4.hasMovementPending = true;
                   var4.tileX = var6;
                   var4.tileY = var7;
                } else {
-                  var4.field894 = false;
+                  var4.hasMovementPending = false;
                   var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
                }
             } else {
                var4.resetPath(var6, var7);
-               var4.field894 = false;
+               var4.hasMovementPending = false;
             }
 
          } else {
@@ -203,16 +203,16 @@ public class class160 extends class136 {
                var11 = var9 + var4.pathY[0];
                if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
                   if (var2) {
-                     var4.field894 = true;
+                     var4.hasMovementPending = true;
                      var4.tileX = var10;
                      var4.tileY = var11;
                   } else {
-                     var4.field894 = false;
+                     var4.hasMovementPending = false;
                      var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
                   }
                } else {
                   var4.resetPath(var10, var11);
-                  var4.field894 = false;
+                  var4.hasMovementPending = false;
                }
 
                var4.plane = (byte)(var7 + var4.plane & 3);
@@ -229,16 +229,16 @@ public class class160 extends class136 {
                var11 = (var9 + class365.baseY + var4.pathY[0] & 16383) - class365.baseY;
                if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
                   if (var2) {
-                     var4.field894 = true;
+                     var4.hasMovementPending = true;
                      var4.tileX = var10;
                      var4.tileY = var11;
                   } else {
-                     var4.field894 = false;
+                     var4.hasMovementPending = false;
                      var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
                   }
                } else {
                   var4.resetPath(var10, var11);
-                  var4.field894 = false;
+                  var4.hasMovementPending = false;
                }
 
                var4.plane = (byte)(var7 + var4.plane & 3);

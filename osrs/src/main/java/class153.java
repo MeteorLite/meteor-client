@@ -75,7 +75,7 @@ public class class153 {
       descriptor = "(Lqy;I)Ljava/lang/String;",
       garbageValue = "-1511389929"
    )
-   public static String method817(Buffer var0) {
+   public static String readString(Buffer var0) {
       String var1;
       try {
          int var2 = var0.readUShortSmart();

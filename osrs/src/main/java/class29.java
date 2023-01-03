@@ -170,7 +170,7 @@ public class class29 {
       if (BufferedSink.field3726) {
          for(int var0 = 0; var0 < Players.Players_count; ++var0) {
             Player var1 = Client.players[Players.Players_indices[var0]];
-            var1.method492();
+            var1.clearIsInClanChat();
          }
 
          BufferedSink.field3726 = false;

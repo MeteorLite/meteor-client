@@ -83,7 +83,7 @@ public final class FloorDecoration {
                         break label498;
                      }
 
-                     if (var0.field1004 <= 0 && var12.field1794 == 0) {
+                     if (var0.field1004 <= 0 && var12.priority == 0) {
                         ++var0.field991;
                         break label498;
                      }
@@ -287,7 +287,7 @@ public final class FloorDecoration {
                         ++var0.field970;
                      }
 
-                     if (var0.movementFrame < 0 || var0.movementFrame >= var12.frameIds.length || var12.field1807 && var0.field970 >= var12.field1810) {
+                     if (var0.movementFrame < 0 || var0.movementFrame >= var12.frameIds.length || var12.field1807 && var0.field970 >= var12.iterations) {
                         var0.movementFrameCycle = 0;
                         var0.movementFrame = 0;
                         var0.field970 = 0;
@@ -311,7 +311,7 @@ public final class FloorDecoration {
                         ++var0.field970;
                      }
 
-                     if (var0.movementFrame < 0 || var0.movementFrame >= var11 || var12.field1807 && var0.field970 >= var12.field1810) {
+                     if (var0.movementFrame < 0 || var0.movementFrame >= var11 || var12.field1807 && var0.field970 >= var12.iterations) {
                         var0.movementFrame = 0;
                         var0.movementFrameCycle = 0;
                         var0.field970 = 0;
@@ -389,7 +389,7 @@ public final class FloorDecoration {
             if (var0.sequenceFrame >= var12.frameIds.length) {
                var0.sequenceFrame -= var12.frameCount;
                ++var0.currentSequenceFrameIndex;
-               if (var0.currentSequenceFrameIndex >= var12.field1810) {
+               if (var0.currentSequenceFrameIndex >= var12.iterations) {
                   var0.sequence = -1;
                } else if (var0.sequenceFrame >= 0 && var0.sequenceFrame < var12.frameIds.length) {
                   FriendsChat.method2036(var12, var0.sequenceFrame, var0.x, var0.y);
@@ -407,7 +407,7 @@ public final class FloorDecoration {
             } else {
                var0.sequenceFrame -= var12.frameCount;
                ++var0.currentSequenceFrameIndex;
-               if (var0.currentSequenceFrameIndex >= var12.field1810) {
+               if (var0.currentSequenceFrameIndex >= var12.iterations) {
                   var0.sequence = -1;
                } else if (var0.sequenceFrame >= 0 && var0.sequenceFrame < var11) {
                   class20.method72(var12, var0.sequenceFrame, var0.x, var0.y);

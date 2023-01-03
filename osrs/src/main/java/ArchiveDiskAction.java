@@ -63,7 +63,7 @@ public class ArchiveDiskAction extends Node {
             var6.pathTraversed[0] = Players.playerMovementSpeeds[var1];
             var6.plane = (byte)var8;
             var6.resetPath((var9 << 13) + var3 - class154.baseX, (var10 << 13) + var4 - class365.baseY);
-            var6.field894 = false;
+            var6.hasMovementPending = false;
             return true;
          }
       } else if (var2 == 1) {

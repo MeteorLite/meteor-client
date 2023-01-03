@@ -34,7 +34,7 @@ public class class280 {
 
       Players.Players_count = 0;
       Players.Players_indices[++Players.Players_count - 1] = var1;
-      Players.field1086[var1] = 0;
+      Players.activityFlags[var1] = 0;
       Players.Players_emptyIdxCount = 0;
 
       for(int var7 = 1; var7 < 2048; ++var7) {
@@ -47,7 +47,7 @@ public class class280 {
             Players.Players_orientations[var7] = 0;
             Players.Players_targetIndices[var7] = -1;
             Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var7;
-            Players.field1086[var7] = 0;
+            Players.activityFlags[var7] = 0;
          }
       }
 

@@ -28,7 +28,7 @@ public final class Projectile extends Renderable {
    @ObfuscatedName("u")
    int slope;
    @ObfuscatedName("b")
-   int startHeight;
+   int targetDistance;
    @ObfuscatedName("j")
    int targetIndex;
    @ObfuscatedName("g")
@@ -72,7 +72,7 @@ public final class Projectile extends Renderable {
       this.cycleStart = var6;
       this.cycleEnd = var7;
       this.slope = var8;
-      this.startHeight = var9;
+      this.targetDistance = var9;
       this.targetIndex = var10;
       this.endHeight = var11;
       this.isMoving = false;
@@ -96,8 +96,8 @@ public final class Projectile extends Renderable {
          var5 = (double)(var1 - this.sourceX);
          double var7 = (double)(var2 - this.sourceY);
          double var9 = Math.sqrt(var7 * var7 + var5 * var5);
-         this.x = (double)this.sourceX + var5 * (double)this.startHeight / var9;
-         this.y = (double)this.sourceY + (double)this.startHeight * var7 / var9;
+         this.x = (double)this.sourceX + var5 * (double)this.targetDistance / var9;
+         this.y = (double)this.sourceY + (double)this.targetDistance * var7 / var9;
          this.z = (double)this.sourceZ;
       }
 

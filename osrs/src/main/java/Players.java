@@ -6,7 +6,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Players")
 public class Players {
    @ObfuscatedName("v")
-   static byte[] field1086 = new byte[2048];
+   static byte[] activityFlags = new byte[2048];
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "[Lgs;"

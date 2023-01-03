@@ -38,7 +38,7 @@ public abstract class class262 implements class264 {
    )
    static void performPlayerAnimation(Player var0, int var1, int var2) {
       if (var0.sequence == var1 && var1 != -1) {
-         int var3 = AABB.SequenceDefinition_get(var1).field1786;
+         int var3 = AABB.SequenceDefinition_get(var1).replyMode;
          if (var3 == 1) {
             var0.sequenceFrame = 0;
             var0.sequenceFrameCycle = 0;
@@ -49,7 +49,7 @@ public abstract class class262 implements class264 {
          if (var3 == 2) {
             var0.currentSequenceFrameIndex = 0;
          }
-      } else if (var1 == -1 || var0.sequence == -1 || AABB.SequenceDefinition_get(var1).field1809 >= AABB.SequenceDefinition_get(var0.sequence).field1809) {
+      } else if (var1 == -1 || var0.sequence == -1 || AABB.SequenceDefinition_get(var1).forcedPriority >= AABB.SequenceDefinition_get(var0.sequence).forcedPriority) {
          var0.sequence = var1;
          var0.sequenceFrame = 0;
          var0.sequenceFrameCycle = 0;
