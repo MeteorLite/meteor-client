@@ -57,67 +57,67 @@
   },
   {
     "method": "writeByteAdd",
-    "deobName": "method2368"
+    "deobName": "writeByteA"
   },
   {
     "method": "writeByteNeg",
-    "deobName": "method2369"
+    "deobName": "writeByteC"
   },
   {
     "method": "writeByteSub",
-    "deobName": "method2370"
+    "deobName": "writeByteS"
   },
   {
     "method": "readUByteAdd",
-    "deobName": "method2371"
+    "deobName": "readUnsignedByteA"
   },
   {
     "method": "readUByteNeg",
-    "deobName": "method2396"
+    "deobName": "readUnsignedByteC"
   },
   {
     "method": "readUByteSub",
-    "deobName": "method2394"
+    "deobName": "readUnsignedByteS"
   },
   {
     "method": "readByteAdd",
-    "deobName": "method2372"
+    "deobName": "readByteA"
   },
   {
     "method": "readByteNeg",
-    "deobName": "method2401"
+    "deobName": "readByteC"
   },
   {
     "method": "readByteSub",
-    "deobName": "method2395"
+    "deobName": "readByteS"
   },
   {
     "method": "writeShortLE",
-    "deobName": "method2386"
+    "deobName": "writeShortLE"
   },
   {
     "method": "writeShortAdd",
-    "deobName": "writeIntME"
+    "deobName": "writeShortA"
   },
   {
     "method": "writeShortAddLE",
-    "deobName": "method2375"
+    "deobName": "writeShortLEA"
   },
   {
     "method": "readUShortLE",
-    "deobName": "method2333"
+    "deobName": "readUnsignedShortLE"
   },
   {
     "method": "readUShortAdd",
-    "deobName": "method2376"
+    "deobName": "readUnsignedShortA"
   },
   {
     "method": "readShortAddLE",
-    "deobName": "method2377"
+    "deobName": "readUnsignedShortLEA"
   },
   {
     "method": "writeIntLE",
-    "deobName": "method2381"
+    "deobName": "writeIntLE"
   },
   {
     "method": "writeIntIME",
@@ -129,7 +129,7 @@
   },
   {
     "method": "readIntLE",
-    "deobName": "method2405"
+    "deobName": "readIntLE"
   },
   {
     "method": "readIntIME",
