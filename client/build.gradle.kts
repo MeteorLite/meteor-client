@@ -139,7 +139,9 @@ compose {
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-opens", "java.base/java.net=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
-                "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED"
+                "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED",
+                "--add-opens", "java.desktop/java.awt=ALL-UNNAMED",
+                "--add-opens", "java.desktop/java.awt.color=ALL-UNNAMED",
             )
         }
     }

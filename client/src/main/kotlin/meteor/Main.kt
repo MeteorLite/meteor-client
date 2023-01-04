@@ -7,8 +7,10 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
+import eventbus.events.MenuOptionClicked
 import meteor.api.loot.Interact
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
@@ -156,6 +158,13 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         Player.client = client
         KEVENT.subscribe<Interact>(Events.INTERACT) {
             GameThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
+        }
+        KEVENT.subscribe<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) {
+            for (menuEntry in AutomatedMenu.onClicks.keys) {
+                if (it.data.menuEntry == menuEntry) {
+                    AutomatedMenu.onClicks[menuEntry]?.accept(menuEntry)
+                }
+            }
         }
     }
 

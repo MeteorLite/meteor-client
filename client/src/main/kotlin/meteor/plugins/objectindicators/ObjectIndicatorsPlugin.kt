@@ -115,6 +115,12 @@ class ObjectIndicatorsPlugin : Plugin() {
         }
     }
 
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if (it.menuEntry.option == MARK || it.menuEntry.option == UNMARK) {
+            markObject(it.menuEntry)
+        }
+    }
+
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
         if (it.opcode != MenuAction.EXAMINE_OBJECT.id || !client.isKeyPressed(KeyCode.KC_SHIFT)) {
             return
@@ -130,11 +136,6 @@ class ObjectIndicatorsPlugin : Plugin() {
             .setParam1(it.param1)
             .setIdentifier(it.identifier)
             .setType(MenuAction.RUNELITE)
-            .onClick { entry: MenuEntry? ->
-                if (entry != null) {
-                    this.markObject(entry)
-                }
-            }
     }
 
     private fun markObject(entry: MenuEntry) {

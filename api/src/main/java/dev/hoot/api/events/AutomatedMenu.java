@@ -7,6 +7,7 @@ import net.runelite.api.Client;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 
+import java.util.HashMap;
 import java.util.function.Consumer;
 
 @Getter
@@ -91,16 +92,21 @@ public class AutomatedMenu
 		return toEntry(client, idx, option, target, null);
 	}
 
+	public static HashMap<MenuEntry, Consumer<MenuEntry>> onClicks = new HashMap<>();
+
 	public MenuEntry toEntry(Client client, int idx, String option, String target, Consumer<MenuEntry> consumer)
 	{
-		return client.createMenuEntry(idx)
+		MenuEntry menuEntry = client.createMenuEntry(idx)
 				.setOption(option)
 				.setTarget(target)
 				.setIdentifier(identifier)
 				.setType(opcode)
 				.setParam0(param0)
-				.setParam1(param1)
-				.onClick(consumer);
+				.setParam1(param1);
+		if (consumer != null) {
+			onClicks.put(menuEntry, consumer);
+		}
+		return menuEntry;
 	}
 
 	public MenuEntry toEntry(Client client)
