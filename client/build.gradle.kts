@@ -100,6 +100,7 @@ dependencies {
     implementation("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")
     implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
     implementation("br.com.devsrsouza.compose.icons.jetbrains:tabler-icons:1.0.0")
+    implementation("br.com.devsrsouza.compose.icons.jetbrains:line-awesome:1.0.0")
 
     //script creator
     implementation(kotlin("stdlib-jdk8:1.8.0-RC2"))

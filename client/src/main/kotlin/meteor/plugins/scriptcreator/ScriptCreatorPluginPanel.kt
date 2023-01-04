@@ -10,7 +10,6 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
@@ -28,13 +27,13 @@ import com.wakaztahir.codeeditor.prettify.PrettifyParser
 import com.wakaztahir.codeeditor.theme.CodeTheme
 import com.wakaztahir.codeeditor.theme.SyntaxColors
 import com.wakaztahir.codeeditor.utils.parseCodeAsAnnotatedString
+import compose.icons.LineAwesomeIcons
 import compose.icons.Octicons
-import compose.icons.octicons.FileDirectory16
+import compose.icons.lineawesomeicons.Save
 import compose.icons.octicons.Play24
 import compose.icons.octicons.Question24
 import compose.icons.octicons.Stop24
 import dev.hoot.api.commons.FileUtil
-import meteor.plugins.scriptcreator.script.api.Npc
 import meteor.plugins.scriptcreator.script.documentation.*
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.*
@@ -63,11 +62,11 @@ class ScriptCreatorPluginPanel : PluginPanel() {
             ) {
 
                 Spacer(Modifier.height(5.dp))
-                Text("Load", color = intColor, fontSize = 12.sp, letterSpacing = 3.sp)
+                Text("Load", color = uiColor.value, fontSize = 12.sp, letterSpacing = 3.sp)
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
-                        tint = intColor,
-                        imageVector = Octicons.FileDirectory16,
+                        tint = uiColor.value,
+                        imageVector = LineAwesomeIcons.Save,
                         contentDescription = "",
                         modifier = Modifier.clickable {
                             when {
@@ -86,9 +85,6 @@ class ScriptCreatorPluginPanel : PluginPanel() {
 
                         }.size(40.dp, 30.dp)
                     )
-
-
-                    Text("Save", color = Color.Black, fontSize = 8.sp)
                 }
             }
 
@@ -165,7 +161,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
-                    tint = Color.Blue,
+                    tint = Color.Yellow,
                     imageVector = Octicons.Question24,
                     contentDescription = "",
                     modifier = Modifier.clickable {
@@ -213,7 +209,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
             }
         }
         Spacer(modifier = Modifier.height(4.dp))
-        Divider(Modifier.width(500.dp), color = intColor, thickness = 4.dp, startIndent = 3.dp)
+        Divider(Modifier.width(500.dp), color = uiColor.value, thickness = 4.dp, startIndent = 3.dp)
         Spacer(Modifier.height(4.dp))
     }
 

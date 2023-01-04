@@ -1,7 +1,9 @@
 package meteor.plugins.notes
 
 import compose.icons.Octicons
+import compose.icons.TablerIcons
 import compose.icons.octicons.Note24
+import compose.icons.tablericons.Notes
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.PluginPanel
@@ -19,7 +21,7 @@ class NotesPlugin : Plugin() {
 
     private var notesButton = ToolbarButton(
         "Notes",
-        Octicons.Note24,
+        TablerIcons.Notes,
         iconColor = uiColor.value,
         description = "Notes",
         position = 98,

@@ -1,12 +1,7 @@
 package meteor.plugins.hiscore
 
-import compose.icons.Octicons
 import compose.icons.TablerIcons
-import compose.icons.octicons.Graph16
-import compose.icons.octicons.People16
-import compose.icons.octicons.People24
 import compose.icons.tablericons.Trophy
-import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
 import meteor.config.ConfigManager
 import meteor.hiscore.HiscoreClient

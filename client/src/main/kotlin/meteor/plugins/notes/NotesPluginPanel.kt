@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.darkThemeColors
+import meteor.ui.composables.preferences.uiColor
 
 import meteor.util.FontUtil
 
@@ -62,12 +63,12 @@ class NotesPluginPanel : PluginPanel() {
                         label = {
                             Text(
                                 "Notes",
-                                style = TextStyle(color = Color.Cyan, fontSize = 14.sp)
+                                style = TextStyle(color = uiColor.value, fontSize = 14.sp)
                             )
                         },
                         maxLines = 120,
                         textStyle = TextStyle(
-                            color = Color.Cyan,
+                            color = uiColor.value,
                             fontSize = 14.sp,
                             textDirection = TextDirection.Ltr,
                             fontFamily = FontUtil.righteous
