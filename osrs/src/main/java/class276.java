@@ -1,7 +1,7 @@
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
 import java.util.Iterator;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -110,7 +110,7 @@ public class class276 {
       }
 
       if (Projectile.garbageCollector != null) {
-         long var9 = Message.method344();
+         long var9 = Message.clockNow();
          long var3 = Projectile.garbageCollector.getCollectionTime();
          if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
             long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;

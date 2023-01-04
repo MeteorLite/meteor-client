@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -15,7 +14,7 @@ public class class420 {
    )
    static final class420 field3793 = new class420("text/plain");
    @ObfuscatedName("fz")
-   static int field3795;
+   static int playerUUIDLength;
    @ObfuscatedName("v")
    String field3794;
 

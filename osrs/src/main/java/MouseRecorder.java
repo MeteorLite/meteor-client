@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -103,7 +102,7 @@ public class MouseRecorder implements Runnable {
       garbageValue = "-91"
    )
    static final void changeGameOptions(int var0) {
-      class136.method738();
+      class136.process();
       HealthBar.method571();
       int var1 = class109.VarpDefinition_get(var0).type;
       if (var1 != 0) {

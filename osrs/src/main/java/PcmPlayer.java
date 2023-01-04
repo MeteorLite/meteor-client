@@ -1,5 +1,5 @@
 import java.util.List;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -28,7 +28,7 @@ public class PcmPlayer {
    @ObfuscatedName("k")
    int field190 = 32;
    @ObfuscatedName("a")
-   long timeMs = Message.method344();
+   long timeMs = Message.clockNow();
    @ObfuscatedName("s")
    int capacity;
    @ObfuscatedName("l")
@@ -121,7 +121,7 @@ public class PcmPlayer {
    )
    public final synchronized void run() {
       if (this.samples != null) {
-         long var1 = Message.method344();
+         long var1 = Message.clockNow();
 
          try {
             if (0L != this.field195) {
@@ -227,7 +227,7 @@ public class PcmPlayer {
          this.discard();
       } catch (Exception var2) {
          this.close();
-         this.field195 = Message.method344() + 2000L;
+         this.field195 = Message.clockNow() + 2000L;
       }
 
    }
@@ -389,7 +389,7 @@ public class PcmPlayer {
          this.stream.fill(var1, 0, var2);
       }
 
-      this.timeMs = Message.method344();
+      this.timeMs = Message.clockNow();
    }
 
    @ObfuscatedName("al")
@@ -433,17 +433,17 @@ public class PcmPlayer {
             } else if (var0 == 4) {
                var8 = class136.getPacketBufferNode(ClientPacket.field2431, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeShort(var3[var6]);
-               var8.packetBuffer.method2370(0);
+               var8.packetBuffer.writeByteS(0);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 6) {
                var8 = class136.getPacketBufferNode(ClientPacket.field2450, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.method2370(0);
+               var8.packetBuffer.writeByteS(0);
                var8.packetBuffer.writeShort(var3[var6]);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 7) {
                var8 = class136.getPacketBufferNode(ClientPacket.field2489, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.method2375(var3[var6]);
-               var8.packetBuffer.method2370(0);
+               var8.packetBuffer.writeShortLEA(var3[var6]);
+               var8.packetBuffer.writeByteS(0);
                Client.packetWriter.addNode(var8);
             }
 

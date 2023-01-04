@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -59,7 +58,7 @@ public abstract class class136 extends Node {
       descriptor = "(S)V",
       garbageValue = "6278"
    )
-   static void method738() {
+   static void process() {
       for(InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
          int var1 = var0.group;
          if (Players.loadInterface(var1)) {

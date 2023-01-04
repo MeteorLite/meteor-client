@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -114,7 +113,7 @@ public class class140 extends class136 {
          }
 
          if (var0 == 20 || var0 == 40 || var0 == 45 || var0 == 50) {
-            class37.method186(0);
+            class37.setLoginState(0);
             Client.field493 = 0;
             Client.field386 = 0;
             Client.timer.method2001(var0);
@@ -149,7 +148,7 @@ public class class140 extends class136 {
                FontName.method2254();
             }
          } else {
-            boolean var1 = StructComposition.clientPreferences.method542() >= Client.field356;
+            boolean var1 = StructComposition.clientPreferences.method542() >= Client.param21;
             int var2 = var1 ? 0 : 12;
             UserComparator5.method666(ClanChannelMember.archive10, ClientPreferences.archive8, true, var2);
          }

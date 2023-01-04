@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -106,9 +105,9 @@ public class UserComparator10 extends AbstractUserComparator {
                   }
                }
 
-               if (var3.field2922 != 0 && !var3.isIf3) {
-                  int var9 = var3.field2922 >> 16;
-                  var5 = var3.field2922 << 16 >> 16;
+               if (var3.rotationKey != 0 && !var3.isIf3) {
+                  int var9 = var3.rotationKey >> 16;
+                  var5 = var3.rotationKey << 16 >> 16;
                   var9 *= Client.field408;
                   var5 *= Client.field408;
                   var3.modelAngleX = var9 + var3.modelAngleX & 2047;

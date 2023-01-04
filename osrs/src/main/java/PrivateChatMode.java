@@ -21,9 +21,9 @@ public class PrivateChatMode {
    )
    static final PrivateChatMode field4104 = new PrivateChatMode(2);
    @ObfuscatedName("x")
-   public final int field4105;
+   public final int id;
 
    PrivateChatMode(int var1) {
-      this.field4105 = var1;
+      this.id = var1;
    }
 }

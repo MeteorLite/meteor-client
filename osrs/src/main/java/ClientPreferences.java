@@ -2,7 +2,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -155,7 +155,7 @@ public class ClientPreferences {
       descriptor = "(ZI)V",
       garbageValue = "533129640"
    )
-   void method562(boolean var1) {
+   void setRoofsHidden(boolean var1) {
       this.roofsHidden = var1;
       Tile.savePreferences();
    }
@@ -165,7 +165,7 @@ public class ClientPreferences {
       descriptor = "(I)Z",
       garbageValue = "105464922"
    )
-   boolean method535() {
+   boolean getRoofsHidden() {
       return this.roofsHidden;
    }
 
@@ -174,7 +174,7 @@ public class ClientPreferences {
       descriptor = "(ZB)V",
       garbageValue = "64"
    )
-   void method558(boolean var1) {
+   void setIsUsernameHidden(boolean var1) {
       this.hideUsername = var1;
       Tile.savePreferences();
    }
@@ -184,7 +184,7 @@ public class ClientPreferences {
       descriptor = "(I)Z",
       garbageValue = "-1900607558"
    )
-   boolean method536() {
+   boolean getIsUsernameHidden() {
       return this.hideUsername;
    }
 
@@ -193,7 +193,7 @@ public class ClientPreferences {
       descriptor = "(ZB)V",
       garbageValue = "7"
    )
-   void method556(boolean var1) {
+   void getTitleMusicDisabled(boolean var1) {
       this.titleMusicDisabled = var1;
       Tile.savePreferences();
    }
@@ -203,7 +203,7 @@ public class ClientPreferences {
       descriptor = "(B)Z",
       garbageValue = "39"
    )
-   boolean method546() {
+   boolean getTitleMusicDisabled() {
       return this.titleMusicDisabled;
    }
 
@@ -255,7 +255,7 @@ public class ClientPreferences {
    }
 
    @ObfuscatedName("k")
-   void method561(double var1) {
+   void setBrightness(double var1) {
       this.brightness = var1;
       Tile.savePreferences();
    }
@@ -265,7 +265,7 @@ public class ClientPreferences {
       descriptor = "(I)D",
       garbageValue = "2073863373"
    )
-   double method541() {
+   double getBrightness() {
       return this.brightness;
    }
 
@@ -274,7 +274,7 @@ public class ClientPreferences {
       descriptor = "(IS)V",
       garbageValue = "18863"
    )
-   void method537(int var1) {
+   void setCurrentMusicVolume(int var1) {
       this.musicVolume = var1;
       Tile.savePreferences();
    }
@@ -284,7 +284,7 @@ public class ClientPreferences {
       descriptor = "(S)I",
       garbageValue = "-5026"
    )
-   int method543() {
+   int getCurrentMusicVolume() {
       return this.musicVolume;
    }
 
@@ -293,7 +293,7 @@ public class ClientPreferences {
       descriptor = "(IB)V",
       garbageValue = "-25"
    )
-   void updateSoundEffectVolume(int var1) {
+   void setCurrentSoundEffectVolume(int var1) {
       this.soundEffectsVolume = var1;
       Tile.savePreferences();
    }
@@ -303,7 +303,7 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1444608091"
    )
-   int method544() {
+   int getCurrentSoundEffectsVolume() {
       return this.soundEffectsVolume;
    }
 
@@ -312,7 +312,7 @@ public class ClientPreferences {
       descriptor = "(II)V",
       garbageValue = "-315220076"
    )
-   void method545(int var1) {
+   void setAreaSoundEffectsVolume(int var1) {
       this.areaSoundEffectsVolume = var1;
       Tile.savePreferences();
    }
@@ -322,7 +322,7 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1615345308"
    )
-   int method563() {
+   int getAreaSoundEffectsVolume() {
       return this.areaSoundEffectsVolume;
    }
 
@@ -331,7 +331,7 @@ public class ClientPreferences {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "-2011496208"
    )
-   void method547(String var1) {
+   void setUsernameToRemember(String var1) {
       this.rememberedUsername = var1;
       Tile.savePreferences();
    }
@@ -341,7 +341,7 @@ public class ClientPreferences {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "-10"
    )
-   String method548() {
+   String getUsernameToRemember() {
       return this.rememberedUsername;
    }
 

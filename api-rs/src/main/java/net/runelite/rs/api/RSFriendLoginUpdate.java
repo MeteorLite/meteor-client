@@ -5,9 +5,9 @@ import net.runelite.mapping.Import;
 
 public interface RSFriendLoginUpdate extends PendingLogin
 {
-	@Import("username")
+	@Import("friendUsername")
 	RSUsername getRsName();
 
-	@Import("world")
+	@Import("worldId")
 	short getWorld();
 }

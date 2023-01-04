@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -121,10 +120,10 @@ public enum class413 implements class345 {
                   SceneTilePaint.mouseCam = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
                   return 1;
                } else if (var0 == 3111) {
-                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method535() ? 1 : 0;
+                  Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.getRoofsHidden() ? 1 : 0;
                   return 1;
                } else if (var0 == 3112) {
-                  StructComposition.clientPreferences.method562(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1);
+                  StructComposition.clientPreferences.setRoofsHidden(Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1);
                   return 1;
                } else if (var0 == 3113) {
                   var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -149,7 +148,7 @@ public enum class413 implements class345 {
                   } else {
                      PacketBufferNode var6 = class136.getPacketBufferNode(ClientPacket.field2499, Client.packetWriter.isaacCipher);
                      var6.packetBuffer.writeShort(1 + class13.stringCp1252NullTerminatedByteSize(var14) + class13.stringCp1252NullTerminatedByteSize(var5));
-                     var6.packetBuffer.method2370(var8);
+                     var6.packetBuffer.writeByteS(var8);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var5);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var14);
                      Client.packetWriter.addNode(var6);
@@ -256,16 +255,16 @@ public enum class413 implements class345 {
                   boolean var16;
                   if (var0 == 3141) {
                      var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
-                     StructComposition.clientPreferences.method558(var16);
+                     StructComposition.clientPreferences.setIsUsernameHidden(var16);
                      return 1;
                   } else if (var0 == 3142) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method536() ? 1 : 0;
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.getIsUsernameHidden() ? 1 : 0;
                      return 1;
                   } else if (var0 == 3143) {
                      var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
                      Client.Login_isUsernameRemembered = var16;
                      if (!var16) {
-                        StructComposition.clientPreferences.method547("");
+                        StructComposition.clientPreferences.setUsernameToRemember("");
                      }
 
                      return 1;
@@ -276,10 +275,10 @@ public enum class413 implements class345 {
                      return 1;
                   } else if (var0 == 3146) {
                      var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
-                     StructComposition.clientPreferences.method556(!var16);
+                     StructComposition.clientPreferences.getTitleMusicDisabled(!var16);
                      return 1;
                   } else if (var0 == 3147) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.method546() ? 0 : 1;
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.getTitleMusicDisabled() ? 0 : 1;
                      return 1;
                   } else if (var0 == 3148) {
                      return 1;

@@ -194,7 +194,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("class383", "nt");
 		put("class384", "ni");
 		put("class385", "nz");
-		put("class391", "oy");
 		put("class4", "m");
 		put("class408", "ow");
 		put("class409", "op");
@@ -214,7 +213,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("class423", "pn");
 		put("class424", "px");
 		put("class425", "py");
-		put("class430", "pp");
 		put("class440", "pg");
 		put("class444", "qn");
 		put("class445", "qc");
@@ -286,6 +284,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("Friend", "oe");
 		put("FriendsChat", "nc");
 		put("FriendsList", "ng");
+		put("FriendLoginUpdate", "oy");
 		put("FriendSystem", "bi");
 		put("GameBuild", "lz");
 		put("GameEngine", "an");
@@ -343,6 +342,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("LoginPacket", "jh");
 		put("LoginScreenAnimation", "co");
 		put("LoginType", "qi");
+		put("LongNode", "pp");
 		put("MenuAction", "bs");
 		put("Message", "bv");
 		put("Messages", "da");

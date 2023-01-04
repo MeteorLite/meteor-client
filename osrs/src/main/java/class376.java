@@ -9,7 +9,7 @@ public class class376 {
       garbageValue = "1624169529"
    )
    static void method1998() {
-      class12.method42(24);
+      class12.setLoginIndex(24);
       TaskHandler.setLoginResponseString("", "You were disconnected from the server.", "");
    }
 }

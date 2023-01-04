@@ -2651,7 +2651,7 @@ public interface Client extends GameEngine
 
 	int getMinimapState();
 
-	long getUserRegistrationId();
+	long getTimeOfPreviousKeyPress();
 
 	void setQuestState(Quest quest, QuestState questState);
 

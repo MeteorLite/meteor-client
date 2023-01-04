@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -343,7 +342,7 @@ public final class Tiles {
                KitDefinition.KitDefinition_modelsArchive = var2;
                class71.KitDefinition_fileCount = KitDefinition.KitDefinition_archive.getGroupFileCount(3);
                UrlRequester.method645(HitSplatDefinition.archive2, class301.archive11, Client.isLowDetail);
-               PacketWriter.method635(HitSplatDefinition.archive2, class301.archive11, Client.field360 <= 209, UserComparator5.spriteIds.field3738);
+               PacketWriter.method635(HitSplatDefinition.archive2, class301.archive11, Client.param25 <= 209, UserComparator5.spriteIds.field3738);
                Archive var15 = HitSplatDefinition.archive2;
                StructComposition.StructDefinition_archive = var15;
                class346.method1862(HitSplatDefinition.archive2, class301.archive11, Client.isMembersWorld, class151.fontPlain11);
@@ -362,8 +361,8 @@ public final class Tiles {
                HealthBar.method572(HitSplatDefinition.archive2);
                Ignored.method2080(HitSplatDefinition.archive2);
                class458.method2310(HitSplatDefinition.archive2);
-               class137.HitSplatDefinition_cachedSprites = new class451(LoginPacket.field2681, 54, class173.clientLanguage, HitSplatDefinition.archive2);
-               class34.HitSplatDefinition_cached = new class451(LoginPacket.field2681, 47, class173.clientLanguage, HitSplatDefinition.archive2);
+               class137.HitSplatDefinition_cachedSprites = new class451(LoginPacket.gameStudio, 54, class173.clientLanguage, HitSplatDefinition.archive2);
+               class34.HitSplatDefinition_cached = new class451(LoginPacket.gameStudio, 47, class173.clientLanguage, HitSplatDefinition.archive2);
                WorldMapArea.varcs = new Varcs();
                Archive var6 = HitSplatDefinition.archive2;
                Archive var7 = ClientPreferences.archive8;
@@ -481,9 +480,9 @@ public final class Tiles {
                Login.Login_loadingText = "Loading textures - " + "0%";
                Login.Login_loadingPercent = 90;
             } else {
-               Skeleton.textureProvider = new TextureProvider(Frames.field2062, ClientPreferences.archive8, 20, StructComposition.clientPreferences.method541(), Client.isLowDetail ? 64 : 128);
+               Skeleton.textureProvider = new TextureProvider(Frames.field2062, ClientPreferences.archive8, 20, StructComposition.clientPreferences.getBrightness(), Client.isLowDetail ? 64 : 128);
                Rasterizer3D.Rasterizer3D_setTextureLoader(Skeleton.textureProvider);
-               Rasterizer3D.Rasterizer3D_setBrightness(StructComposition.clientPreferences.method541());
+               Rasterizer3D.Rasterizer3D_setBrightness(StructComposition.clientPreferences.getBrightness());
                Client.titleLoadingStage = 100;
             }
          } else if (Client.titleLoadingStage == 100) {

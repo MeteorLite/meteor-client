@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -29,12 +29,12 @@ public class ObjTypeCustomisation {
 
    public ObjTypeCustomisation(int var1) {
       ItemComposition var2 = NPCComposition.ItemDefinition_get(var1);
-      if (var2.method1040()) {
+      if (var2.hasRecolor()) {
          this.recol = new short[var2.recolorTo.length];
          System.arraycopy(var2.recolorTo, 0, this.recol, 0, this.recol.length);
       }
 
-      if (var2.method1038()) {
+      if (var2.hasRetexture()) {
          this.retex = new short[var2.retextureTo.length];
          System.arraycopy(var2.retextureTo, 0, this.retex, 0, this.retex.length);
       }
@@ -196,8 +196,8 @@ public class ObjTypeCustomisation {
 
       } else {
          if ((MouseHandler.MouseHandler_lastButton == 1 || !SceneTilePaint.mouseCam && MouseHandler.MouseHandler_lastButton == 4) && MouseHandler.MouseHandler_lastPressedX >= Login.xPadding + 765 - 50 && MouseHandler.MouseHandler_lastPressedY >= 453) {
-            StructComposition.clientPreferences.method556(!StructComposition.clientPreferences.method546());
-            if (!StructComposition.clientPreferences.method546()) {
+            StructComposition.clientPreferences.getTitleMusicDisabled(!StructComposition.clientPreferences.getTitleMusicDisabled());
+            if (!StructComposition.clientPreferences.getTitleMusicDisabled()) {
                Archive var2 = class162.archive6;
                int var35 = var2.getGroupId("scape main");
                var4 = var2.getFileId(var35, "");
@@ -209,10 +209,10 @@ public class ObjTypeCustomisation {
 
          if (Client.gameState != 5) {
             if (-1L == Login.field745) {
-               Login.field745 = Message.method344() + 1000L;
+               Login.field745 = Message.clockNow() + 1000L;
             }
 
-            long var36 = Message.method344();
+            long var36 = Message.clockNow();
             if (HitSplatDefinition.method999() && Login.field758 == -1L) {
                Login.field758 = var36;
                if (Login.field758 > Login.field745) {
@@ -276,7 +276,7 @@ public class ObjTypeCustomisation {
                         Login.Login_response1 = "This is a <col=00ffff>Beta<col=ffffff> world.";
                         Login.Login_response2 = "Your normal account will not be affected.";
                         Login.Login_response3 = "";
-                        class12.method42(1);
+                        class12.setLoginIndex(1);
                         SoundSystem.method237();
                      } else if ((Client.worldProperties & 4) != 0) {
                         if ((Client.worldProperties & 1024) != 0) {
@@ -290,14 +290,14 @@ public class ObjTypeCustomisation {
                         }
 
                         Login.Login_response0 = "Warning!";
-                        class12.method42(1);
+                        class12.setLoginIndex(1);
                         SoundSystem.method237();
                      } else if ((Client.worldProperties & 1024) != 0) {
                         Login.Login_response1 = "This is a <col=ffff00>High Risk<col=ffffff> world.";
                         Login.Login_response2 = "The Protect Item prayer will";
                         Login.Login_response3 = "not work on this world.";
                         Login.Login_response0 = "Warning!";
-                        class12.method42(1);
+                        class12.setLoginIndex(1);
                         SoundSystem.method237();
                      } else {
                         class343.Login_promptCredentials(false);
@@ -317,7 +317,7 @@ public class ObjTypeCustomisation {
 
                            var9 = UrlRequest.loginBoxCenter + 80;
                            if (var4 == 1 && var81 >= var9 - 75 && var81 <= var9 + 75 && var82 >= var10 - 20 && var82 <= var10 + 20) {
-                              class12.method42(0);
+                              class12.setLoginIndex(0);
                            }
                            break;
                         }
@@ -325,7 +325,7 @@ public class ObjTypeCustomisation {
                         if (var8.field1833 == 84) {
                            class343.Login_promptCredentials(false);
                         } else if (var8.field1833 == 13) {
-                           class12.method42(0);
+                           class12.setLoginIndex(0);
                         }
                      }
                   } else {
@@ -352,7 +352,7 @@ public class ObjTypeCustomisation {
                               switch(Login.field736) {
                               case 1:
                                  TaskHandler.setLoginResponseString("Please enter your username.", "If you created your account after November", "2010, this will be the creation email address.");
-                                 class12.method42(5);
+                                 class12.setLoginIndex(5);
                                  return;
                               case 2:
                                  ModeWhere.openURL("https://support.runescape.com/hc/en-gb", true, false);
@@ -382,7 +382,7 @@ public class ObjTypeCustomisation {
 
                         var86 = Login.loginBoxX + 180 + 80;
                         if (var4 == 1 && var81 >= var86 - 75 && var81 <= var86 + 75 && var82 >= var87 - 20 && var82 <= var87 + 20) {
-                           class12.method42(0);
+                           class12.setLoginIndex(0);
                            Login.Login_username = "";
                            Login.Login_password = "";
                            class143.field1321 = 0;
@@ -395,8 +395,8 @@ public class ObjTypeCustomisation {
                         Login.field747 = var81 >= var86 && var81 < var86 + class126.field1232 && var82 >= var87 && var82 < var87 + WorldMapSection1.field2393;
                         if (var4 == 1 && Login.field747) {
                            Client.Login_isUsernameRemembered = !Client.Login_isUsernameRemembered;
-                           if (!Client.Login_isUsernameRemembered && StructComposition.clientPreferences.method548() != null) {
-                              StructComposition.clientPreferences.method547((String)null);
+                           if (!Client.Login_isUsernameRemembered && StructComposition.clientPreferences.getUsernameToRemember() != null) {
+                              StructComposition.clientPreferences.setUsernameToRemember((String)null);
                            }
                         }
 
@@ -404,10 +404,10 @@ public class ObjTypeCustomisation {
                         var87 = 277;
                         Login.field762 = var81 >= var86 && var81 < var86 + class126.field1232 && var82 >= var87 && var82 < var87 + WorldMapSection1.field2393;
                         if (var4 == 1 && Login.field762) {
-                           StructComposition.clientPreferences.method558(!StructComposition.clientPreferences.method536());
-                           if (!StructComposition.clientPreferences.method536()) {
+                           StructComposition.clientPreferences.setIsUsernameHidden(!StructComposition.clientPreferences.getIsUsernameHidden());
+                           if (!StructComposition.clientPreferences.getIsUsernameHidden()) {
                               Login.Login_username = "";
-                              StructComposition.clientPreferences.method547((String)null);
+                              StructComposition.clientPreferences.setUsernameToRemember((String)null);
                               SoundSystem.method237();
                            }
                         }
@@ -443,7 +443,7 @@ public class ObjTypeCustomisation {
                                                 Login.Login_username = Login.Login_username + var8.field1820;
                                              }
                                           } else {
-                                             class12.method42(0);
+                                             class12.setLoginIndex(0);
                                              Login.Login_username = "";
                                              Login.Login_password = "";
                                              class143.field1321 = 0;
@@ -498,7 +498,7 @@ public class ObjTypeCustomisation {
 
                               for(int var94 = 0; var94 < var99; ++var94) {
                                  if (!ObjectSound.method415(var93.charAt(var94)) || !class4.method7(var93.charAt(var94))) {
-                                    class12.method42(3);
+                                    class12.setLoginIndex(3);
                                     return;
                                  }
                               }
@@ -521,7 +521,7 @@ public class ObjTypeCustomisation {
                         var10 = 326;
                         if (var4 == 1 && var81 >= var9 - 75 && var81 <= var9 + 75 && var82 >= var10 - 20 && var82 <= var10 + 20) {
                            TaskHandler.setLoginResponseString("Please enter your username.", "If you created your account after November", "2010, this will be the creation email address.");
-                           class12.method42(5);
+                           class12.setLoginIndex(5);
                            return;
                         }
                      } else {
@@ -554,7 +554,7 @@ public class ObjTypeCustomisation {
 
                            var9 = Login.loginBoxX + 180 + 80;
                            if (var4 == 1 && var81 >= var9 - 75 && var81 <= var9 + 75 && var82 >= var10 - 20 && var82 <= var10 + 20) {
-                              class12.method42(0);
+                              class12.setLoginIndex(0);
                               Login.Login_username = "";
                               Login.Login_password = "";
                               class143.field1321 = 0;
@@ -572,7 +572,7 @@ public class ObjTypeCustomisation {
                               }
 
                               if (var8.field1833 == 13) {
-                                 class12.method42(0);
+                                 class12.setLoginIndex(0);
                                  Login.Login_username = "";
                                  Login.Login_password = "";
                                  class143.field1321 = 0;
@@ -805,7 +805,7 @@ public class ObjTypeCustomisation {
                                     switch(var88) {
                                     case 2:
                                        TaskHandler.setLoginResponseString(Strings.field3357, Strings.field3358, Strings.field3094);
-                                       class12.method42(6);
+                                       class12.setLoginIndex(6);
                                        break;
                                     case 3:
                                        TaskHandler.setLoginResponseString("", "Error connecting to server.", "");
@@ -1053,7 +1053,7 @@ public class ObjTypeCustomisation {
                                           switch(var90) {
                                           case 2:
                                              TaskHandler.setLoginResponseString(Strings.field3357, Strings.field3358, Strings.field3094);
-                                             class12.method42(6);
+                                             class12.setLoginIndex(6);
                                              break;
                                           case 3:
                                              TaskHandler.setLoginResponseString("", "Error connecting to server.", "");
@@ -1292,7 +1292,7 @@ public class ObjTypeCustomisation {
                                     if (var4 == 1 && var81 >= var9 - 75 && var81 <= var9 + 75 && var82 >= var10 - 20 && var82 <= var10 + 20) {
                                        ModeWhere.openURL(ScriptFrame.method330("secure", true) + "m=dob/set_dob.ws", true, false);
                                        TaskHandler.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)");
-                                       class12.method42(6);
+                                       class12.setLoginIndex(6);
                                        return;
                                     }
 
@@ -1307,7 +1307,7 @@ public class ObjTypeCustomisation {
                                  if (var4 == 1 && var81 >= var9 - 75 && var81 <= var9 + 75 && var82 >= var10 - 20 && var82 <= var10 + 20) {
                                     ModeWhere.openURL("https://www.jagex.com/terms/privacy", true, false);
                                     TaskHandler.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)");
-                                    class12.method42(6);
+                                    class12.setLoginIndex(6);
                                     return;
                                  }
 
@@ -1386,7 +1386,7 @@ public class ObjTypeCustomisation {
                                  if (var4 == 1 && var81 >= var86 - 75 && var81 <= var86 + 75 && var82 >= var87 - 20 && var82 <= var87 + 20) {
                                     ModeWhere.openURL(var67, true, false);
                                     TaskHandler.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)");
-                                    class12.method42(6);
+                                    class12.setLoginIndex(6);
                                     return;
                                  }
 
@@ -1407,7 +1407,7 @@ public class ObjTypeCustomisation {
                                  if (var4 == 1 && var81 >= var9 - 75 && var81 <= var9 + 75 && var82 >= var10 - 20 && var82 <= var10 + 20) {
                                     ModeWhere.openURL(ScriptFrame.method330("secure", true) + "m=dob/set_dob.ws", true, false);
                                     TaskHandler.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)");
-                                    class12.method42(6);
+                                    class12.setLoginIndex(6);
                                     return;
                                  }
 

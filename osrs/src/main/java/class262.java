@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -39,7 +38,7 @@ public abstract class class262 implements class264 {
    )
    static void performPlayerAnimation(Player var0, int var1, int var2) {
       if (var0.sequence == var1 && var1 != -1) {
-         int var3 = AABB.SequenceDefinition_get(var1).field1786;
+         int var3 = AABB.SequenceDefinition_get(var1).replyMode;
          if (var3 == 1) {
             var0.sequenceFrame = 0;
             var0.sequenceFrameCycle = 0;
@@ -50,7 +49,7 @@ public abstract class class262 implements class264 {
          if (var3 == 2) {
             var0.currentSequenceFrameIndex = 0;
          }
-      } else if (var1 == -1 || var0.sequence == -1 || AABB.SequenceDefinition_get(var1).field1809 >= AABB.SequenceDefinition_get(var0.sequence).field1809) {
+      } else if (var1 == -1 || var0.sequence == -1 || AABB.SequenceDefinition_get(var1).forcedPriority >= AABB.SequenceDefinition_get(var0.sequence).forcedPriority) {
          var0.sequence = var1;
          var0.sequenceFrame = 0;
          var0.sequenceFrameCycle = 0;
@@ -68,7 +67,7 @@ public abstract class class262 implements class264 {
    )
    static void resumePauseWidget(int var0, int var1) {
       PacketBufferNode var2 = class136.getPacketBufferNode(ClientPacket.field2525, Client.packetWriter.isaacCipher);
-      var2.packetBuffer.writeIntME(var1);
+      var2.packetBuffer.writeShortA(var1);
       var2.packetBuffer.writeInt(var0);
       Client.packetWriter.addNode(var2);
    }

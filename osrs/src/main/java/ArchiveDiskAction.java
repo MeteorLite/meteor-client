@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -51,8 +50,8 @@ public class ArchiveDiskAction extends Node {
          } else {
             Player var6 = Client.players[var1] = new Player();
             var6.index = var1;
-            if (Players.field1087[var1] != null) {
-               var6.read(Players.field1087[var1]);
+            if (Players.cachedAppearanceBuffer[var1] != null) {
+               var6.read(Players.cachedAppearanceBuffer[var1]);
             }
 
             var6.orientation = Players.Players_orientations[var1];
@@ -61,10 +60,10 @@ public class ArchiveDiskAction extends Node {
             var8 = var7 >> 28;
             var9 = var7 >> 14 & 255;
             var10 = var7 & 255;
-            var6.pathTraversed[0] = Players.field1094[var1];
+            var6.pathTraversed[0] = Players.playerMovementSpeeds[var1];
             var6.plane = (byte)var8;
             var6.resetPath((var9 << 13) + var3 - class154.baseX, (var10 << 13) + var4 - class365.baseY);
-            var6.field894 = false;
+            var6.hasMovementPending = false;
             return true;
          }
       } else if (var2 == 1) {

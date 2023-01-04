@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -42,7 +41,7 @@ public class DynamicObject extends Renderable {
          this.sequenceDefinition = AABB.SequenceDefinition_get(var7);
          this.frame = 0;
          this.cycleStart = Client.cycle - 1;
-         if (this.sequenceDefinition.field1786 == 0 && var9 != null && var9 instanceof DynamicObject) {
+         if (this.sequenceDefinition.replyMode == 0 && var9 != null && var9 instanceof DynamicObject) {
             DynamicObject var10 = (DynamicObject)var9;
             if (this.sequenceDefinition == var10.sequenceDefinition) {
                this.frame = var10.frame;

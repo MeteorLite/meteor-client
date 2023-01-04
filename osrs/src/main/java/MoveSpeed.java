@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -50,8 +49,8 @@ public enum MoveSpeed implements class345 {
    )
    static final void method1105() {
       for(PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
-         if (var0.hitpoints == -1) {
-            var0.delay = 0;
+         if (var0.endCycle == -1) {
+            var0.startCycle = 0;
             UserComparator4.method659(var0);
          } else {
             var0.remove();

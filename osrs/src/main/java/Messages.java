@@ -1,7 +1,7 @@
 import java.awt.FontMetrics;
 import java.util.HashMap;
 import java.util.Map;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -47,7 +47,7 @@ public class Messages {
          Tiles.Tiles_renderFlags[var1][var2][var3] = 0;
 
          while(true) {
-            var8 = Client.field360 < 209 ? var0.readUnsignedByte() : var0.readUnsignedShort();
+            var8 = Client.param25 < 209 ? var0.readUnsignedByte() : var0.readUnsignedShort();
             if (var8 == 0) {
                if (var1 == 0) {
                   int[] var9 = Tiles.Tiles_heights[0][var2];
@@ -83,7 +83,7 @@ public class Messages {
             }
 
             if (var8 <= 49) {
-               class490.Tiles_overlays[var1][var2][var3] = Client.field360 < 209 ? (short)var0.readByte() : (short)var0.readShort();
+               class490.Tiles_overlays[var1][var2][var3] = Client.param25 < 209 ? (short)var0.readByte() : (short)var0.readShort();
                Tiles.Tiles_shapes[var1][var2][var3] = (byte)((var8 - 2) / 4);
                class358.field3562[var1][var2][var3] = (byte)(var8 - 2 + var6 & 3);
             } else if (var8 <= 81) {
@@ -94,7 +94,7 @@ public class Messages {
          }
       } else {
          while(true) {
-            var8 = Client.field360 < 209 ? var0.readUnsignedByte() : var0.readUnsignedShort();
+            var8 = Client.param25 < 209 ? var0.readUnsignedByte() : var0.readUnsignedShort();
             if (var8 == 0) {
                break;
             }
@@ -105,7 +105,7 @@ public class Messages {
             }
 
             if (var8 <= 49) {
-               if (Client.field360 < 209) {
+               if (Client.param25 < 209) {
                   var0.readByte();
                } else {
                   var0.readShort();

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -228,7 +227,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
             for(var12 = 0; var12 < 104; ++var12) {
                var13 = var11 + 5;
                if (var13 >= 0 && var13 < 104) {
-                  var14 = Client.field360 < 209 ? (int)class374.method1993(8) : (int)class374.method1993(15);
+                  var14 = Client.param25 < 209 ? (int)class374.method1993(8) : (int)class374.method1993(15);
                   var15 = Tiles.Tiles_underlays[var2][var13][var12] & var14;
                   if (var15 > 0) {
                      FloorUnderlayDefinition var46 = class21.method76(var15 - 1);
@@ -242,7 +241,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
                var14 = var11 - 5;
                if (var14 >= 0 && var14 < 104) {
-                  var15 = Client.field360 < 209 ? (int)class374.method1993(8) : (int)class374.method1993(15);
+                  var15 = Client.param25 < 209 ? (int)class374.method1993(8) : (int)class374.method1993(15);
                   var16 = Tiles.Tiles_underlays[var2][var14][var12] & var15;
                   if (var16 > 0) {
                      FloorUnderlayDefinition var47 = class21.method76(var16 - 1);
@@ -286,7 +285,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
                         Tiles.Tiles_minPlane = var2;
                      }
 
-                     var20 = Client.field360 < 209 ? (int)class374.method1993(8) : (int)class374.method1993(15);
+                     var20 = Client.param25 < 209 ? (int)class374.method1993(8) : (int)class374.method1993(15);
                      int var21 = Tiles.Tiles_underlays[var2][var11][var17] & var20;
                      int var22 = class490.Tiles_overlays[var2][var11][var17] & var20;
                      if (var21 > 0 || var22 > 0) {

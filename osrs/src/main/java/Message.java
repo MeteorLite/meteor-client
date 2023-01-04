@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -139,7 +138,7 @@ public class Message extends DualNode {
       descriptor = "(B)J",
       garbageValue = "-16"
    )
-   public static final synchronized long method344() {
+   public static final synchronized long clockNow() {
       long var0 = System.currentTimeMillis();
       if (var0 < class31.field84) {
          class282.field2695 += class31.field84 - var0;

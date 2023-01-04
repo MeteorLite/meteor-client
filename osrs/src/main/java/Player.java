@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -77,7 +76,7 @@ public final class Player extends Actor {
    )
    TriBool isInClanChat;
    @ObfuscatedName("ad")
-   boolean field894;
+   boolean hasMovementPending;
    @ObfuscatedName("ao")
    int tileX;
    @ObfuscatedName("am")
@@ -98,7 +97,7 @@ public final class Player extends Actor {
       this.isFriendTriBool = TriBool.TriBool_unknown;
       this.isInFriendsChat = TriBool.TriBool_unknown;
       this.isInClanChat = TriBool.TriBool_unknown;
-      this.field894 = false;
+      this.hasMovementPending = false;
    }
 
    @ObfuscatedName("h")
@@ -190,7 +189,7 @@ public final class Player extends Actor {
       this.username = new Username(var1.readStringCp1252NullTerminated(), SecureRandomFuture.loginType);
       this.clearIsFriend();
       this.clearIsInFriendsChat();
-      this.method492();
+      this.clearIsInClanChat();
       if (this == class155.localPlayer) {
          RunException.localPlayerName = this.username.getName();
       }
@@ -262,7 +261,7 @@ public final class Player extends Actor {
          this.actions[var10] = var1.readStringCp1252NullTerminated();
       }
 
-      if (Client.field360 > 208) {
+      if (Client.param25 > 208) {
          var3 = var1.readUnsignedByte();
       }
 
@@ -437,7 +436,7 @@ public final class Player extends Actor {
       descriptor = "(B)V",
       garbageValue = "4"
    )
-   void method492() {
+   void clearIsInClanChat() {
       this.isInClanChat = TriBool.TriBool_unknown;
    }
 
@@ -469,7 +468,7 @@ public final class Player extends Actor {
       garbageValue = "72"
    )
    final void move(int var1, int var2, MoveSpeed var3) {
-      if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).field1794 == 1) {
+      if (super.sequence != -1 && AABB.SequenceDefinition_get(super.sequence).priority == 1) {
          super.sequence = -1;
       }
 
@@ -598,7 +597,7 @@ public final class Player extends Actor {
       garbageValue = "-113"
    )
    static void method503(String var0, String var1, String var2) {
-      class12.method42(7);
+      class12.setLoginIndex(7);
       TaskHandler.setLoginResponseString(var0, var1, var2);
    }
 

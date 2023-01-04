@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -100,12 +99,12 @@ public class FriendsList extends UserList {
                   if (var6 != var11.world) {
                      boolean var14 = true;
 
-                     for(class391 var13 = (class391)this.friendLoginUpdates.last(); var13 != null; var13 = (class391)this.friendLoginUpdates.previous()) {
-                        if (var13.field3685.equals(var4)) {
-                           if (var6 != 0 && var13.field3686 == 0) {
+                     for(FriendLoginUpdate var13 = (FriendLoginUpdate)this.friendLoginUpdates.last(); var13 != null; var13 = (FriendLoginUpdate)this.friendLoginUpdates.previous()) {
+                        if (var13.friendUsername.equals(var4)) {
+                           if (var6 != 0 && var13.worldId == 0) {
                               var13.remove();
                               var14 = false;
-                           } else if (var6 == 0 && var13.field3686 != 0) {
+                           } else if (var6 == 0 && var13.worldId != 0) {
                               var13.remove();
                               var14 = false;
                            }
@@ -113,7 +112,7 @@ public class FriendsList extends UserList {
                      }
 
                      if (var14) {
-                        this.friendLoginUpdates.addFirst(new class391(var4, var6));
+                        this.friendLoginUpdates.addFirst(new FriendLoginUpdate(var4, var6));
                      }
                   }
                } else {

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -82,7 +81,7 @@ public class class144 extends class152 {
          Client.tradeChatMode = Interpreter.Interpreter_intStack[class87.Interpreter_intStackSize + 2];
          PacketBufferNode var11 = class136.getPacketBufferNode(ClientPacket.field2469, Client.packetWriter.isaacCipher);
          var11.packetBuffer.writeByte(Client.publicChatMode);
-         var11.packetBuffer.writeByte(LoginScreenAnimation.privateChatMode.field4105);
+         var11.packetBuffer.writeByte(LoginScreenAnimation.privateChatMode.id);
          var11.packetBuffer.writeByte(Client.tradeChatMode);
          Client.packetWriter.addNode(var11);
          return 1;
@@ -154,7 +153,7 @@ public class class144 extends class152 {
                   if (LoginScreenAnimation.privateChatMode == null) {
                      Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = -1;
                   } else {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = LoginScreenAnimation.privateChatMode.field4105;
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = LoginScreenAnimation.privateChatMode.id;
                   }
 
                   return 1;

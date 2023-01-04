@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -139,7 +138,7 @@ public class class358 {
                } else if (var0 == 3923) {
                   var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize];
                   var11 = (GrandExchangeEvent)ItemContainer.grandExchangeEvents.events.get(var3);
-                  long var5 = Message.method344() - WorldMapLabelSize.field2243 - var11.age;
+                  long var5 = Message.clockNow() - WorldMapLabelSize.field2243 - var11.age;
                   int var7 = (int)(var5 / 3600000L);
                   int var8 = (int)((var5 - (long)(var7 * 3600000)) / 60000L);
                   int var9 = (int)((var5 - (long)(var7 * 3600000) - (long)(var8 * '\uea60')) / 1000L);

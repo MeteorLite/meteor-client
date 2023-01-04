@@ -3,7 +3,7 @@ import java.awt.Desktop.Action;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -86,7 +86,7 @@ public enum ModeWhere implements class345 {
    @ObfuscatedSignature(
       descriptor = "Llz;"
    )
-   static GameBuild field3543;
+   static GameBuild param7;
    @ObfuscatedName("ix")
    static int selectedItemWidget;
    @ObfuscatedName("o")

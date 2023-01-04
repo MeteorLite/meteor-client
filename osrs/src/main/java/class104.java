@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -96,7 +96,7 @@ public class class104 {
       class271.mouseRecorder.index = 0;
       PacketBuffer.hasFocus = true;
       Client.hadFocus = true;
-      Client.userRegistrationId = -1L;
+      Client.timeOfPreviousKeyPress = -1L;
       class37.reflectionChecks = new IterableNodeDeque();
       Client.packetWriter.clearBuffer();
       Client.packetWriter.packetBuffer.offset = 0;

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -59,14 +58,14 @@ public enum HorizontalAlignment implements class345 {
    static final void method950(PacketBuffer var0, int var1, Player var2, int var3) {
       byte var4 = MoveSpeed.STATIONARY.speed;
       if ((var3 & 8192) != 0) {
-         var2.exactMoveDeltaX1 = var0.method2395();
+         var2.exactMoveDeltaX1 = var0.readByteS();
          var2.exactMoveDeltaY1 = var0.readByte();
-         var2.exactMoveDeltaX2 = var0.method2395();
-         var2.exactMoveDeltaY2 = var0.method2372();
-         var2.exactMoveArrive1Cycle = var0.method2333() + Client.cycle;
-         var2.exactMoveArrive2Cycle = var0.method2376() + Client.cycle;
+         var2.exactMoveDeltaX2 = var0.readByteS();
+         var2.exactMoveDeltaY2 = var0.readByteA();
+         var2.exactMoveArrive1Cycle = var0.readUnsignedShortLE() + Client.cycle;
+         var2.exactMoveArrive2Cycle = var0.readUnsignedShortA() + Client.cycle;
          var2.exactMoveDirection = var0.readUnsignedShort();
-         if (var2.field894) {
+         if (var2.hasMovementPending) {
             var2.exactMoveDeltaX1 += var2.tileX;
             var2.exactMoveDeltaY1 += var2.tileY;
             var2.exactMoveDeltaX2 += var2.tileX;
@@ -117,7 +116,7 @@ public enum HorizontalAlignment implements class345 {
 
       int var6;
       if ((var3 & 8) != 0) {
-         var5 = var0.method2376();
+         var5 = var0.readUnsignedShortA();
          if (var5 == 65535) {
             var5 = -1;
          }
@@ -133,7 +132,7 @@ public enum HorizontalAlignment implements class345 {
       }
 
       if ((var3 & 16) != 0) {
-         var2.targetIndex = var0.method2377();
+         var2.targetIndex = var0.readUnsignedShortLEA();
          if (class200.isLargePlayerInfo) {
             var2.targetIndex += var0.readUnsignedByte() << 16;
             var5 = 16777215;
@@ -147,16 +146,16 @@ public enum HorizontalAlignment implements class345 {
       }
 
       if ((var3 & 16384) != 0) {
-         var2.recolourStartCycle = Client.cycle + var0.method2376();
-         var2.recolourEndCycle = Client.cycle + var0.method2333();
-         var2.recolourHue = var0.method2401();
-         var2.recolourSaturation = var0.method2401();
+         var2.recolourStartCycle = Client.cycle + var0.readUnsignedShortA();
+         var2.recolourEndCycle = Client.cycle + var0.readUnsignedShortLE();
+         var2.recolourHue = var0.readByteC();
+         var2.recolourSaturation = var0.readByteC();
          var2.recolourLuminance = var0.readByte();
-         var2.recolourAmount = (byte)var0.method2371();
+         var2.recolourAmount = (byte)var0.readUnsignedByteA();
       }
 
       if ((var3 & 128) != 0) {
-         var2.movingOrientation = var0.method2377();
+         var2.movingOrientation = var0.readUnsignedShortLEA();
          if (var2.pathLength == 0) {
             var2.orientation = var2.movingOrientation;
             var2.movingOrientation = -1;
@@ -164,11 +163,11 @@ public enum HorizontalAlignment implements class345 {
       }
 
       if ((var3 & 4) != 0) {
-         var5 = var0.method2394();
+         var5 = var0.readUnsignedByteS();
          byte[] var13 = new byte[var5];
          Buffer var7 = new Buffer(var13);
-         var0.method2385(var13, 0, var5);
-         Players.field1087[var1] = var7;
+         var0.readBytesAReverse(var13, 0, var5);
+         Players.cachedAppearanceBuffer[var1] = var7;
          var2.read(var7);
       }
 
@@ -180,10 +179,10 @@ public enum HorizontalAlignment implements class345 {
       int var9;
       int var12;
       if ((var3 & 2) != 0) {
-         var5 = var0.method2377();
-         PlayerType var19 = (PlayerType)World.findEnumerated(class149.PlayerType_values(), var0.method2394());
-         boolean var14 = var0.method2394() == 1;
-         var8 = var0.method2371();
+         var5 = var0.readUnsignedShortLEA();
+         PlayerType var19 = (PlayerType)World.findEnumerated(class149.PlayerType_values(), var0.readUnsignedByteS());
+         boolean var14 = var0.readUnsignedByteS() == 1;
+         var8 = var0.readUnsignedByteA();
          var9 = var0.offset;
          if (var2.username != null && var2.appearance != null) {
             boolean var10 = false;
@@ -193,9 +192,9 @@ public enum HorizontalAlignment implements class345 {
 
             if (!var10 && Client.field536 == 0 && !var2.isHidden) {
                Players.field1097.offset = 0;
-               var0.method2385(Players.field1097.array, 0, var8);
+               var0.readBytesAReverse(Players.field1097.array, 0, var8);
                Players.field1097.offset = 0;
-               String var11 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.method817(Players.field1097)));
+               String var11 = AbstractFont.escapeBrackets(VarbitComposition.method985(class153.readString(Players.field1097)));
                var2.overheadText = var11.trim();
                var2.overheadTextColor = var5 >> 8;
                var2.overheadTextEffect = var5 & 255;
@@ -209,7 +208,7 @@ public enum HorizontalAlignment implements class345 {
                }
 
                if (var19.modIcon != -1) {
-                  KitDefinition.addGameMessage(var12, class456.method2305(var19.modIcon) + var2.username.getName(), var11);
+                  KitDefinition.addGameMessage(var12, class456.addImageTag(var19.modIcon) + var2.username.getName(), var11);
                } else {
                   KitDefinition.addGameMessage(var12, var2.username.getName(), var11);
                }
@@ -246,14 +245,14 @@ public enum HorizontalAlignment implements class345 {
             }
          }
 
-         var6 = var0.method2394();
+         var6 = var0.readUnsignedByteS();
          if (var6 > 0) {
             for(var21 = 0; var21 < var6; ++var21) {
                var8 = var0.readUShortSmart();
                var9 = var0.readUShortSmart();
                if (var9 != 32767) {
                   var18 = var0.readUShortSmart();
-                  var15 = var0.method2371();
+                  var15 = var0.readUnsignedByteA();
                   var12 = var9 > 0 ? var0.readUnsignedByte() : var15;
                   var2.addHealthBar(var8, Client.cycle, var9, var18, var15, var12);
                } else {
@@ -264,12 +263,12 @@ public enum HorizontalAlignment implements class345 {
       }
 
       if ((var3 & 2048) != 0) {
-         MoveSpeed[] var16 = Players.field1094;
+         MoveSpeed[] var16 = Players.playerMovementSpeeds;
          MoveSpeed[] var17 = new MoveSpeed[]{MoveSpeed.CRAWL, MoveSpeed.STATIONARY, MoveSpeed.RUN, MoveSpeed.WALK};
          var16[var1] = (MoveSpeed)World.findEnumerated(var17, var0.readByte());
       }
 
-      if (var2.field894) {
+      if (var2.hasMovementPending) {
          if (var4 == 127) {
             var2.resetPath(var2.tileX, var2.tileY);
          } else {
@@ -278,7 +277,7 @@ public enum HorizontalAlignment implements class345 {
                MoveSpeed[] var20 = new MoveSpeed[]{MoveSpeed.CRAWL, MoveSpeed.STATIONARY, MoveSpeed.RUN, MoveSpeed.WALK};
                var22 = (MoveSpeed)World.findEnumerated(var20, var4);
             } else {
-               var22 = Players.field1094[var1];
+               var22 = Players.playerMovementSpeeds[var1];
             }
 
             var2.move(var2.tileX, var2.tileY, var22);

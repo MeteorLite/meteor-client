@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -17,7 +17,7 @@ public class class201 implements class30 {
    @ObfuscatedName("v")
    public int[] field1828 = new int[128];
    @ObfuscatedName("x")
-   public int field1831 = 0;
+   public int pressedKeysCount = 0;
    @ObfuscatedName("m")
    int[] field1824 = new int[128];
    @ObfuscatedName("q")
@@ -49,7 +49,7 @@ public class class201 implements class30 {
       this.field1829[var1] = true;
       this.field1830[var1] = true;
       this.field1823[var1] = false;
-      this.field1828[++this.field1831 - 1] = var1;
+      this.field1828[++this.pressedKeysCount - 1] = var1;
       return true;
    }
 
@@ -114,7 +114,7 @@ public class class201 implements class30 {
    public void method1081() {
       this.field1826 = this.field1822;
       this.field1822 = this.field1827;
-      this.field1831 = 0;
+      this.pressedKeysCount = 0;
       this.field1825 = 0;
       Arrays.fill(this.field1830, false);
       Arrays.fill(this.field1823, false);
@@ -169,9 +169,9 @@ public class class201 implements class30 {
       garbageValue = "5"
    )
    public int[] method1084() {
-      int[] var1 = new int[this.field1831];
+      int[] var1 = new int[this.pressedKeysCount];
 
-      for(int var2 = 0; var2 < this.field1831; ++var2) {
+      for(int var2 = 0; var2 < this.pressedKeysCount; ++var2) {
          var1[var2] = this.field1828[var2];
       }
 

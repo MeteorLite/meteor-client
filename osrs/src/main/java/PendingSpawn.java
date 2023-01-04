@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -26,17 +25,17 @@ public final class PendingSpawn extends Node {
    @ObfuscatedName("f")
    int field921;
    @ObfuscatedName("r")
-   int field922;
+   int id;
    @ObfuscatedName("u")
-   int field923;
+   int rotation;
    @ObfuscatedName("b")
-   int field924;
+   int objectType;
    @ObfuscatedName("g")
    int field920 = 31;
    @ObfuscatedName("i")
-   int delay = 0;
+   int startCycle = 0;
    @ObfuscatedName("o")
-   int hitpoints = -1;
+   int endCycle = -1;
 
    @ObfuscatedName("h")
    @ObfuscatedSignature(

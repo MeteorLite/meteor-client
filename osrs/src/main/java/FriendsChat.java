@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -25,7 +24,7 @@ public class FriendsChat extends UserList {
    @ObfuscatedName("f")
    public int rank;
    @ObfuscatedName("r")
-   int field3680 = 1;
+   int memberCount = 1;
 
    @ObfuscatedSignature(
       descriptor = "(Lqi;Lnn;)V"
@@ -139,7 +138,7 @@ public class FriendsChat extends UserList {
          for(int var15 = 0; var15 < var10; ++var15) {
             ClanMate var16 = (ClanMate)this.addLastNoPreviousUsername(new Username(var1.readStringCp1252NullTerminated(), this.loginType));
             int var13 = var1.readUnsignedShort();
-            var16.set(var13, ++this.field3680 - 1);
+            var16.set(var13, ++this.memberCount - 1);
             var16.rank = var1.readByte();
             var1.readStringCp1252NullTerminated();
             this.isLocalPlayer(var16);
@@ -183,7 +182,7 @@ public class FriendsChat extends UserList {
             var6 = (ClanMate)this.addLastNoPreviousUsername(var2);
          }
 
-         var6.set(var3, ++this.field3680 - 1);
+         var6.set(var3, ++this.memberCount - 1);
          var6.rank = var4;
          this.isLocalPlayer(var6);
       }
@@ -232,7 +231,7 @@ public class FriendsChat extends UserList {
       garbageValue = "-79"
    )
    static void method2036(SequenceDefinition var0, int var1, int var2, int var3) {
-      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.method563() != 0) {
+      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.getAreaSoundEffectsVolume() != 0) {
          if (var0.soundEffects != null && var1 < var0.soundEffects.length) {
             int var4 = var0.soundEffects[var1];
             if (var4 != 0) {

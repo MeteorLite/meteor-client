@@ -1,5 +1,5 @@
 import java.lang.management.GarbageCollectorMXBean;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -329,9 +329,9 @@ public final class Projectile extends Renderable {
          var18 = (class29.oculusOrbFocalPointX >> 7) + class154.baseX;
          var19 = (class14.oculusOrbFocalPointY >> 7) + class365.baseY;
          PacketBufferNode var20 = class136.getPacketBufferNode(ClientPacket.field2504, Client.packetWriter.isaacCipher);
-         var20.packetBuffer.method2386(var19);
-         var20.packetBuffer.method2368(var17);
-         var20.packetBuffer.writeIntME(var18);
+         var20.packetBuffer.writeShortLE(var19);
+         var20.packetBuffer.writeByteA(var17);
+         var20.packetBuffer.writeShortA(var18);
          var20.packetBuffer.method2383(Client.field634);
          Client.packetWriter.addNode(var20);
       }

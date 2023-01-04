@@ -1,5 +1,5 @@
 import java.awt.datatransfer.Clipboard;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -623,7 +623,7 @@ public class class199 implements class30 {
             if (Login.loginIndex != 4 && Login.loginIndex != 10) {
                var0.draw("Login: ", Login.loginBoxX + 180 - 110, var42, 16777215, 0);
                var43 = 200;
-               var26 = StructComposition.clientPreferences.method536() ? TaskHandler.method873(Login.Login_username) : Login.Login_username;
+               var26 = StructComposition.clientPreferences.getIsUsernameHidden() ? TaskHandler.method873(Login.Login_username) : Login.Login_username;
 
                for(var27 = var26; var0.stringWidth(var27) > var43; var27 = var27.substring(0, var27.length() - 1)) {
                   ;
@@ -682,7 +682,7 @@ public class class199 implements class30 {
                var42 += 7;
                var0.draw("Login: ", UrlRequest.loginBoxCenter - 110, var42, 16777215, 0);
                var43 = 200;
-               var26 = StructComposition.clientPreferences.method536() ? TaskHandler.method873(Login.Login_username) : Login.Login_username;
+               var26 = StructComposition.clientPreferences.getIsUsernameHidden() ? TaskHandler.method873(Login.Login_username) : Login.Login_username;
 
                for(var27 = var26; var0.stringWidth(var27) > var43; var27 = var27.substring(1)) {
                   ;
@@ -704,7 +704,7 @@ public class class199 implements class30 {
                var8 = var8 + var29.subWidth + 5;
                var1.draw("Remember username", var8, var41 + 13, 16776960, 0);
                var8 = UrlRequest.loginBoxCenter + 24;
-               var29 = class143.method764(StructComposition.clientPreferences.method536(), Login.field762);
+               var29 = class143.method764(StructComposition.clientPreferences.getIsUsernameHidden(), Login.field762);
                var29.drawAt(var8, var41);
                var8 = var8 + var29.subWidth + 5;
                var1.draw("Hide username", var8, var41 + 13, 16776960, 0);
@@ -791,7 +791,7 @@ public class class199 implements class30 {
                   var42 += 14;
                   var0.draw("Username/email: ", Login.loginBoxX + 180 - 145, var42, 16777215, 0);
                   var43 = 174;
-                  var26 = StructComposition.clientPreferences.method536() ? TaskHandler.method873(Login.Login_username) : Login.Login_username;
+                  var26 = StructComposition.clientPreferences.getIsUsernameHidden() ? TaskHandler.method873(Login.Login_username) : Login.Login_username;
 
                   for(var27 = var26; var0.stringWidth(var27) > var43; var27 = var27.substring(1)) {
                      ;
@@ -1003,7 +1003,7 @@ public class class199 implements class30 {
             Rasterizer2D.Rasterizer2D_setClipArray(var3);
          }
 
-         class109.title_muteSprite[StructComposition.clientPreferences.method546() ? 1 : 0].drawAt(Login.xPadding + 765 - 40, 463);
+         class109.title_muteSprite[StructComposition.clientPreferences.getTitleMusicDisabled() ? 1 : 0].drawAt(Login.xPadding + 765 - 40, 463);
          if (Client.gameState > 5 && class173.clientLanguage == Language.Language_EN) {
             if (class98.field1070 != null) {
                var42 = Login.xPadding + 5;

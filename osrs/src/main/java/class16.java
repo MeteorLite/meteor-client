@@ -1,6 +1,6 @@
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -59,8 +59,8 @@ public class class16 implements ThreadFactory {
       garbageValue = "108"
    )
    static void playJingle(int var0, int var1) {
-      if (StructComposition.clientPreferences.method543() != 0 && var0 != -1) {
-         class29.method115(class21.field63, var0, 0, StructComposition.clientPreferences.method543(), false);
+      if (StructComposition.clientPreferences.getCurrentMusicVolume() != 0 && var0 != -1) {
+         class29.method115(class21.field63, var0, 0, StructComposition.clientPreferences.getCurrentMusicVolume(), false);
          Client.playingJingle = true;
       }
 

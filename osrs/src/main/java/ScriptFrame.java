@@ -1,6 +1,6 @@
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -204,11 +204,11 @@ public class ScriptFrame {
       }
 
       String var3 = "";
-      if (class133.field1284 != null) {
-         var3 = "/p=" + class133.field1284;
+      if (class133.param9 != null) {
+         var3 = "/p=" + class133.param9;
       }
 
       String var4 = "runescape.com";
-      return var2 + var0 + "." + var4 + "/l=" + class173.clientLanguage + "/a=" + WallDecoration.field2226 + var3 + "/";
+      return var2 + var0 + "." + var4 + "/l=" + class173.clientLanguage + "/a=" + WallDecoration.param14 + var3 + "/";
    }
 }

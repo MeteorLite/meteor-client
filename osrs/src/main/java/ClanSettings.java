@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -517,13 +516,13 @@ public class ClanSettings {
       if (this.parameters != null) {
          Node var4 = this.parameters.get((long)var1);
          if (var4 != null) {
-            if (var4 instanceof class430) {
-               class430 var5 = (class430)var4;
-               if (var2 == var5.field3811) {
+            if (var4 instanceof LongNode) {
+               LongNode var5 = (LongNode)var4;
+               if (var2 == var5.longValue) {
                   return false;
                }
 
-               var5.field3811 = var2;
+               var5.longValue = var2;
                return true;
             }
 
@@ -533,7 +532,7 @@ public class ClanSettings {
          this.parameters = new IterableNodeHashTable(4);
       }
 
-      this.parameters.put(new class430(var2), (long)var1);
+      this.parameters.put(new LongNode(var2), (long)var1);
       return true;
    }
 
@@ -710,7 +709,7 @@ public class ClanSettings {
                      this.parameters.put(new IntegerNode(var8), (long)var6);
                   } else if (var7 == 1) {
                      long var10 = var1.readLong();
-                     this.parameters.put(new class430(var10), (long)var6);
+                     this.parameters.put(new LongNode(var10), (long)var6);
                   } else if (var7 == 2) {
                      String var12 = var1.readStringCp1252NullTerminated();
                      this.parameters.put(new ObjectNode(var12), (long)var6);

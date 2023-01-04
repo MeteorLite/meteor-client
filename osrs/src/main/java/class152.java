@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -25,8 +24,8 @@ public abstract class class152 extends Node {
    )
    static final void doCheat(String var0) {
       if (var0.equalsIgnoreCase("toggleroof")) {
-         StructComposition.clientPreferences.method562(!StructComposition.clientPreferences.method535());
-         if (StructComposition.clientPreferences.method535()) {
+         StructComposition.clientPreferences.setRoofsHidden(!StructComposition.clientPreferences.getRoofsHidden());
+         if (StructComposition.clientPreferences.getRoofsHidden()) {
             KitDefinition.addGameMessage(99, "", "Roofs are now all hidden");
          } else {
             KitDefinition.addGameMessage(99, "", "Roofs will only be removed selectively");

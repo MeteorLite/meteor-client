@@ -18,7 +18,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.ImageObserver;
 import java.net.URL;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -455,7 +455,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
 
       this.isCanvasInvalid = false;
-      this.field121 = Message.method344();
+      this.field121 = Message.clockNow();
    }
 
    @ObfuscatedName("ad")
@@ -495,7 +495,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       garbageValue = "-42"
    )
    void clientTick() {
-      long var1 = Message.method344();
+      long var1 = Message.clockNow();
       long var3 = clientTickTimes[class1.field2];
       clientTickTimes[class1.field2] = var1;
       class1.field2 = class1.field2 + 1 & 31;
@@ -517,7 +517,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    )
    void graphicsTick() {
       Container var1 = this.container();
-      long var2 = Message.method344();
+      long var2 = Message.clockNow();
       long var4 = graphicsTickTimes[AbstractRasterProvider.field4059];
       graphicsTickTimes[AbstractRasterProvider.field4059] = var2;
       AbstractRasterProvider.field4059 = AbstractRasterProvider.field4059 + 1 & 31;
@@ -775,7 +775,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedName("destroy")
    public final void destroy() {
       if (this == gameEngine && !isKilled) {
-         stopTimeMs = Message.method344();
+         stopTimeMs = Message.clockNow();
          class12.method44(5000L);
          this.kill();
       }
@@ -785,7 +785,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    public final synchronized void paint(Graphics var1) {
       if (this == gameEngine && !isKilled) {
          this.fullRedraw = true;
-         if (Message.method344() - this.field121 > 1000L) {
+         if (Message.clockNow() - this.field121 > 1000L) {
             Rectangle var2 = var1.getClipBounds();
             if (var2 == null || var2.width >= CollisionMap.canvasWidth && var2.height >= Language.canvasHeight) {
                this.isCanvasInvalid = true;
@@ -798,7 +798,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
    @ObfuscatedName("stop")
    public final void stop() {
       if (this == gameEngine && !isKilled) {
-         stopTimeMs = Message.method344() + 4000L;
+         stopTimeMs = Message.clockNow() + 4000L;
       }
    }
 
@@ -862,7 +862,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
          UrlRequest.clock = (Clock)var8;
 
-         while(0L == stopTimeMs || Message.method344() < stopTimeMs) {
+         while(0L == stopTimeMs || Message.clockNow() < stopTimeMs) {
             class173.gameCyclesToDo = UrlRequest.clock.wait(cycleDurationMillis, fiveOrOne);
 
             for(int var5 = 0; var5 < class173.gameCyclesToDo; ++var5) {
@@ -1025,7 +1025,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
                   var5 = class133.regionLandArchives[var15];
                   if (var5 != null) {
                      Client.playPcmPlayers();
-                     class14.method48(var5, var3, var4, class17.field50 * 8 - 48, MusicPatchNode2.field2707 * 8 - 48, Client.collisionMaps);
+                     class14.method48(var5, var3, var4, class17.timeOfPreviousKeyPress * 8 - 48, MusicPatchNode2.field2707 * 8 - 48, Client.collisionMaps);
                   }
                }
 
@@ -1163,8 +1163,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
             }
 
             if (!Client.isInInstance) {
-               var3 = (class17.field50 - 6) / 8;
-               var4 = (class17.field50 + 6) / 8;
+               var3 = (class17.timeOfPreviousKeyPress - 6) / 8;
+               var4 = (class17.timeOfPreviousKeyPress + 6) / 8;
                var17 = (MusicPatchNode2.field2707 - 6) / 8;
                var6 = (MusicPatchNode2.field2707 + 6) / 8;
 

@@ -1,5 +1,5 @@
 import java.util.HashMap;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -202,7 +202,7 @@ public class class343 {
          Login.Login_response1 = "";
          Login.Login_response2 = "Enter your username/email & password.";
          Login.Login_response3 = "";
-         class12.method42(2);
+         class12.setLoginIndex(2);
          if (var0) {
             Login.Login_password = "";
          }
@@ -210,7 +210,7 @@ public class class343 {
          GameObject.method1298();
          SoundSystem.method237();
       } else {
-         class12.method42(10);
+         class12.setLoginIndex(10);
       }
    }
 

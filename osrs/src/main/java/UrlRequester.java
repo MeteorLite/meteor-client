@@ -4,7 +4,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.LinkedList;
 import java.util.Queue;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -563,7 +563,7 @@ public abstract class UrlRequester implements Runnable {
       garbageValue = "0"
    )
    static void method640(String var0) {
-      class133.field1284 = var0;
+      class133.param9 = var0;
 
       try {
          String var1 = BuddyRankComparator.client.getParameter(Integer.toString(18));
@@ -572,7 +572,7 @@ public abstract class UrlRequester implements Runnable {
          if (var0.length() == 0) {
             var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
          } else {
-            var3 = var3 + "; Expires=" + JagexCache.method875(Message.method344() + 94608000000L) + "; Max-Age=" + 94608000L;
+            var3 = var3 + "; Expires=" + JagexCache.method875(Message.clockNow() + 94608000000L) + "; Max-Age=" + 94608000L;
          }
 
          class27.method101(BuddyRankComparator.client, "document.cookie=\"" + var3 + "\"");

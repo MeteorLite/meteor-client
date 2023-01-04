@@ -1,5 +1,5 @@
 import java.util.Comparator;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -164,10 +164,10 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = var3;
                return 1;
             } else if (var0 == 3326) {
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.field365;
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.lastMouseRecordX;
                return 1;
             } else if (var0 == 3327) {
-               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.field397;
+               Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.lastMouseRecordY;
                return 1;
             } else if (var0 == 3331) {
                Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = Client.runEnergy;

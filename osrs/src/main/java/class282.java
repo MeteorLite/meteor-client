@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -109,7 +108,7 @@ public final class class282 {
 
       for(int var2 = 0; var2 < var1.length; ++var2) {
          PlayerType var3 = var1[var2];
-         if (var3.modIcon != -1 && var0.startsWith(class456.method2305(var3.modIcon))) {
+         if (var3.modIcon != -1 && var0.startsWith(class456.addImageTag(var3.modIcon))) {
             var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
             break;
          }

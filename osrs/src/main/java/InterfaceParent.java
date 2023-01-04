@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -40,8 +39,8 @@ public class InterfaceParent extends Node {
       int var6;
       int var7;
       if (!Client.isInInstance) {
-         var2 = var1.method2333();
-         var3 = var1.method2377();
+         var2 = var1.readUnsignedShortLE();
+         var3 = var1.readUnsignedShortLEA();
          int var4 = var1.readUnsignedShort();
          class104.xteaKeys = new int[var4][4];
 
@@ -70,9 +69,9 @@ public class InterfaceParent extends Node {
 
          class281.method1528(var2, var3, true);
       } else {
-         var2 = var1.method2377();
-         var3 = var1.method2377();
-         boolean var15 = var1.method2371() == 1;
+         var2 = var1.readUnsignedShortLEA();
+         var3 = var1.readUnsignedShortLEA();
+         boolean var15 = var1.readUnsignedByteA() == 1;
          var5 = var1.readUnsignedShort();
          var1.importIndex();
 

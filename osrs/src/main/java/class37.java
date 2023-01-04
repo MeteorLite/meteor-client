@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -79,7 +78,7 @@ public class class37 {
       descriptor = "(IS)V",
       garbageValue = "14293"
    )
-   static void method186(int var0) {
+   static void setLoginState(int var0) {
       if (var0 != Client.loginState) {
          Client.loginState = var0;
       }

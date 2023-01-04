@@ -3,7 +3,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -142,7 +142,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
          MouseHandler_idleCycles = 0;
          MouseHandler_lastPressedXVolatile = var1.getX();
          MouseHandler_lastPressedYVolatile = var1.getY();
-         MouseHandler_lastPressedTimeMillisVolatile = Message.method344();
+         MouseHandler_lastPressedTimeMillisVolatile = Message.clockNow();
          MouseHandler_lastButtonVolatile = this.getButton(var1);
          if (MouseHandler_lastButtonVolatile != 0) {
             MouseHandler_currentButtonVolatile = MouseHandler_lastButtonVolatile;

@@ -34,7 +34,7 @@ public class class319 {
       ClientPreferences var1 = new ClientPreferences();
 
       try {
-         var0 = class87.getPreferencesFile("", LoginPacket.field2681.name, false);
+         var0 = class87.getPreferencesFile("", LoginPacket.gameStudio.name, false);
          byte[] var2 = new byte[(int)var0.length()];
 
          int var4;

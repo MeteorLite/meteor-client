@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -439,7 +438,7 @@ public class PlayerComposition {
          class376.method1998();
          break;
       case 2:
-         class12.method42(24);
+         class12.setLoginIndex(24);
          TaskHandler.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
       }
 
