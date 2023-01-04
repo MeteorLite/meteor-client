@@ -10,7 +10,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -120,7 +122,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                 Spacer(Modifier.height(4.dp))
                 BasicTextField(
                     textStyle = TextStyle(
-                        color = intColor,
+                        color = secondColor.value,
                         fontSize = 17.sp,
                         fontWeight = FontWeight.Normal,
                         letterSpacing = 1.sp,

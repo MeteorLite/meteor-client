@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 import compose.icons.Octicons
 import compose.icons.octicons.Plug16
 import meteor.ui.composables.PluginPanel
-import meteor.ui.composables.preferences.intColor
+import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import okhttp3.Request
@@ -31,8 +31,8 @@ class ExternalManagerPanel : PluginPanel() {
         val textfieldColors = TextFieldDefaults.textFieldColors(textColor = uiColor.value,
             unfocusedLabelColor = uiColor.value,
             unfocusedIndicatorColor = uiColor.value,
-            focusedIndicatorColor = uiColor.value,
-            focusedLabelColor = uiColor.value,
+            focusedIndicatorColor = secondColor.value,
+            focusedLabelColor = secondColor.value,
             cursorColor = uiColor.value)
 
         LazyColumn( modifier = Modifier.width(300.dp).fillMaxHeight(),
@@ -109,7 +109,7 @@ class ExternalManagerPanel : PluginPanel() {
 
                     Row {
                         Text(text = "Name:", color = uiColor.value)
-                        Text(text = pluginName, color = intColor)
+                        Text(text = pluginName, color = secondColor.value)
                     }
                     Row {
                         Text(text = "Version:", color = uiColor.value)
@@ -117,13 +117,13 @@ class ExternalManagerPanel : PluginPanel() {
                         val release = releases?.getJSONObject(0)
                         val version = release?.getString("version")
                         if (version != null) {
-                            Text(text = version, color = intColor)
+                            Text(text = version, color = secondColor.value)
                         }
                     }
                     Row {
                         if (plugin != null) {
                             Text(text = "Details:", color = uiColor.value)
-                            Text(text = plugin.getString("description"), color = intColor)
+                            Text(text = plugin.getString("description"), color = secondColor.value)
                         }
                     }
 
@@ -141,7 +141,7 @@ class ExternalManagerPanel : PluginPanel() {
                             val jar = File("$savePath/$fileName")
                             loadAndInitJar(jar)
                         }) {
-                        Text(text = "Download", color = intColor)
+                        Text(text = "Download", color = secondColor.value)
                     }
 
                 }

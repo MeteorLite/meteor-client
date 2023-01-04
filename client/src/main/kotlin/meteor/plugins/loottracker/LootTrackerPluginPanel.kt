@@ -58,7 +58,7 @@ class LootTrackerPluginPanel:PluginPanel() {
                             if (it.key == map.key) {
                                 Text(
                                     it.value!!.sum().toString() + " gp",
-                                    style = TextStyle(color = intColor, fontSize = 15.sp),
+                                    style = TextStyle(color = secondColor.value, fontSize = 15.sp),
 
                                 )
                             }

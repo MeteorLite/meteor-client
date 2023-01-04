@@ -16,16 +16,25 @@ interface MeteorConfig : Config {
         name = "MeteorColor",
         keyName = "MeteorColor",
         description = "",
-        position = 0,
+        position = 2,
     )
     fun uiColor(): Color {
         return Color.CYAN
     }
     @ConfigItem(
+        name = "SecondaryColor",
+        keyName = "Secondary Color",
+        description = "",
+        position = 3,
+    )
+    fun secondColor(): Color {
+        return Color(156, 217, 209)
+    }
+    @ConfigItem(
         name = "Light theme/Dark theme",
         keyName = "Light theme/Dark theme",
         description = "",
-        position = 0,
+        position = 1,
     )
     fun theme(): Boolean {
         return true
@@ -46,7 +55,7 @@ interface MeteorConfig : Config {
         name = "toolbar width",
         keyName = "toolbar width",
         description = "",
-        position = 0,
+        position = 4,
     )
     fun toolbarWidth(): Int {
         return 45
@@ -56,7 +65,7 @@ interface MeteorConfig : Config {
         name = "toolbar placement",
         keyName = "toolbar placement",
         description = "",
-        position = 2
+        position = 7
     )
     fun toolbarPlacement(): LayoutDirection {
         return LayoutDirection.Rtl
@@ -67,7 +76,7 @@ interface MeteorConfig : Config {
         name = "Plugin list Text Size",
         keyName = "Plugin list Text Size",
         description = "Slide this to change the plugin list text size",
-        position = 0,
+        position = 5,
     )
     fun pluginListTextSize(): Int {
         return 14
@@ -78,7 +87,7 @@ interface MeteorConfig : Config {
         name = "Plugin List Spacer",
         keyName = "Plugin list Spacer",
         description = "",
-        position = 0,
+        position = 6,
     )
     fun pluginSpaceBetween(): Int {
         return 7

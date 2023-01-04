@@ -73,7 +73,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             )
                             Text(
                                 text = client.getRealSkillLevel(skill).toString(),
-                                style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Left, color = intColor, letterSpacing = 2.sp),
+                                style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Left, color = secondColor.value, letterSpacing = 2.sp),
                                 textAlign = TextAlign.Left,
                             )
                         }
@@ -103,7 +103,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                                 )
                                 Text(
                                     text = ("${(client.getRealSkillLevel(skill) + 1)}:").toString(),
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = intColor, letterSpacing = 2.sp),
+                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = secondColor.value, letterSpacing = 2.sp),
                                     textAlign = TextAlign.Right,
                                 )
                             }
@@ -123,7 +123,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             startExp.forEach {
                                 if (it.first == skill) Text(
                                     text = it.second.toString(),
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = intColor, letterSpacing = 2.sp),
+                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = secondColor.value, letterSpacing = 2.sp),
                                     textAlign = TextAlign.Center,
                                 )
                             }
@@ -131,33 +131,33 @@ class XpTrackerPluginPanel : PluginPanel() {
                             expMap.forEach {
                                 if (it.value == client.getSkillExperience(skill)) Text(
                                     text = it.value.toString(),
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = intColor, letterSpacing = 2.sp),
+                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = secondColor.value, letterSpacing = 2.sp),
                                     textAlign = TextAlign.Center,
                                 )
                             }
                             startExp.forEach {
                                 if (it.first == skill) Text(
                                     text = (client.getSkillExperience(skill) - it.second).toString(),
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = intColor, letterSpacing = 2.sp),
+                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = secondColor.value, letterSpacing = 2.sp),
                                     textAlign = TextAlign.Center,
                                 )
                             }
                             Text(
                                 text = (getXpForLevel((client.getRealSkillLevel(skill) + 1)) - client.getSkillExperience(skill)).toString(),
-                                style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = intColor, letterSpacing = 2.sp),
+                                style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = secondColor.value, letterSpacing = 2.sp),
                                 textAlign = TextAlign.Center,
                             )
                             expHrMap.forEach {
                                 if (it.key == skill) Text(
                                     text = if (it.value > 0) it.value.toString() else "-/-",
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, letterSpacing = 2.sp, color = intColor),
+                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, letterSpacing = 2.sp, color = secondColor.value),
                                     textAlign = TextAlign.Center,
                                 )
                             }
                             actionsHrMap.forEach {
                                 if (it.key == skill) Text(
                                     text = it.value.toString(),
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, letterSpacing = 2.sp, color = intColor),
+                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, letterSpacing = 2.sp, color = secondColor.value),
                                     textAlign = TextAlign.Center,
                                 )
                             }
@@ -182,7 +182,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             Box {
                                 Text(
                                     text = if (client.getRealSkillLevel(skill) > 98) "100%" else "$progress%",
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = if (progress >= 50) Color.Black else intColor, letterSpacing = 2.sp),
+                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = if (progress >= 50) Color.Black else secondColor.value, letterSpacing = 2.sp),
                                     textAlign = TextAlign.Center,
                                 )
                             }

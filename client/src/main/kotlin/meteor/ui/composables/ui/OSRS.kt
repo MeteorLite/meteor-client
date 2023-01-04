@@ -23,8 +23,8 @@ import kotlinx.coroutines.launch
 import meteor.Main
 import meteor.rs.Applet
 import meteor.ui.composables.preferences.consoleOpen
-import meteor.ui.composables.preferences.intColor
 import meteor.ui.composables.preferences.outPut
+import meteor.ui.composables.preferences.secondColor
 import java.awt.BorderLayout
 import javax.swing.JPanel
 
@@ -95,7 +95,7 @@ fun OSRSPanel() {
 
                                 maxLines = 3000,
                                 textStyle = TextStyle(
-                                    color = intColor,
+                                    color = secondColor.value,
                                     fontSize = 14.sp,
                                     textDirection = TextDirection.Ltr,
                                     letterSpacing = 2.sp

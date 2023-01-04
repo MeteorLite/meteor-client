@@ -30,7 +30,6 @@ var result: HiscoreResult? = null
 var consoleOpen = mutableStateOf(Main.meteorConfig.console())
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var searchValue = mutableStateOf("")
-var intColor = Color(156, 217, 209)
 var lastButtonClicked : ToolbarButton? = null
 lateinit var descriptor: ConfigDescriptor
 lateinit var lastPlugin: Plugin
@@ -40,6 +39,8 @@ val darkLightMode
     get() = mutableStateOf(Main.meteorConfig.theme())
 val uiColor
     get() = mutableStateOf(Color(Main.meteorConfig.uiColor().rgb))
+val secondColor
+    get() = mutableStateOf(Color(Main.meteorConfig.secondColor().rgb))
 val surface: Color
     get() = if (darkLightMode.value) darkThemeColors.surface
     else lightThemeColors.surface
