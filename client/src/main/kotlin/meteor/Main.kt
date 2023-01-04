@@ -110,7 +110,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
         Window(
             onCloseRequest = Main::exitApplication,
             title = "Meteor",
-            icon = painterResource("Meteor_icon.png"),
+            icon = painterResource("Meteor_icon.svg"),
             undecorated = meteorConfig.fullscreen(),
            // state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
             content = {

@@ -63,7 +63,7 @@ fun searchBar(
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Medium
             ),
-            colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = uiColor.value, unfocusedBorderColor = uiColor.value, cursorColor = intColor),
+            colors = TextFieldDefaults.outlinedTextFieldColors(focusedBorderColor = uiColor.value, unfocusedBorderColor = uiColor.value, cursorColor = uiColor.value),
             modifier = Modifier.fillMaxWidth().height(60.dp).scale(0.93f),
             shape = RoundedCornerShape(10.dp),
             label = {

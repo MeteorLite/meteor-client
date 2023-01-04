@@ -1,12 +1,8 @@
 package meteor.plugins.infopanel
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,15 +12,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.formdev.flatlaf.extras.FlatSVGIcon.ColorFilter
-import compose.icons.LineAwesomeIcons
-import compose.icons.Octicons
-import compose.icons.lineawesomeicons.Discord
-import compose.icons.lineawesomeicons.Github
-import compose.icons.octicons.MarkGithub16
 import meteor.Main.client
 import meteor.ui.composables.PluginPanel
-import meteor.ui.composables.preferences.intColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 
