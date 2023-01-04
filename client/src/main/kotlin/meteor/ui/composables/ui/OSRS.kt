@@ -26,6 +26,7 @@ import meteor.ui.composables.preferences.consoleOpen
 import meteor.ui.composables.preferences.outPut
 import meteor.ui.composables.preferences.secondColor
 import java.awt.BorderLayout
+import java.awt.Dimension
 import javax.swing.JPanel
 
 
@@ -52,6 +53,8 @@ fun OSRSPanel() {
                     modifier = Modifier.fillParentMaxWidth().fillParentMaxHeight(if (consoleOpen.value) 0.75f else 1f),
                     factory = {
                         JPanel().apply {
+                            minimumSize = Dimension(765, 503)
+                            size = Dimension()
                             layout = BorderLayout()
                             if (!loaded) {
                                 applet = Applet.applet
