@@ -81,6 +81,7 @@ dependencies {
     annotationProcessor(group= "org.projectlombok", name= "lombok", version= "_")
 
     //Util
+    implementation(group = "org.json", name = "json", version = "20220924")
     implementation(project(":eventbus"))
     implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")

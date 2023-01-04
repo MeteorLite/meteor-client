@@ -1,5 +1,6 @@
 package meteor.plugins.scriptcreator.script.api
 
+import dev.hoot.api.commons.Time
 import dev.hoot.api.game.Game
 import java.awt.event.KeyEvent
 
@@ -70,14 +71,27 @@ object Key {
      *
      * @param c the character to type
      */
-    infix fun type(c: Char) {
+   infix  fun type(c: Char) {
         val canvas = Game.getClient().canvas
         val time = System.currentTimeMillis()
         val keyCode = KeyEvent.getExtendedKeyCodeForChar(c.code)
         val pressed = KeyEvent(canvas, KeyEvent.KEY_PRESSED, time, 0, keyCode, c, KeyEvent.KEY_LOCATION_STANDARD)
         val typed = KeyEvent(canvas, KeyEvent.KEY_TYPED, time, 0, 0, c, KeyEvent.KEY_LOCATION_UNKNOWN)
-
+        canvas.dispatchEvent(pressed)
+        canvas.dispatchEvent(typed)
+        Time.sleep(10)
+        val released = KeyEvent(
+            canvas,
+            KeyEvent.KEY_RELEASED,
+            System.currentTimeMillis(),
+            0,
+            keyCode,
+            c,
+            KeyEvent.KEY_LOCATION_STANDARD
+        )
+        canvas.dispatchEvent(released)
     }
+
 
     /**
      * Simulates pressing the Enter key by typing it.
