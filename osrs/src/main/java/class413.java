@@ -255,16 +255,16 @@ public enum class413 implements class345 {
                   boolean var16;
                   if (var0 == 3141) {
                      var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
-                     StructComposition.clientPreferences.setHideUsername(var16);
+                     StructComposition.clientPreferences.setIsUsernameHidden(var16);
                      return 1;
                   } else if (var0 == 3142) {
-                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.getHideUsername() ? 1 : 0;
+                     Interpreter.Interpreter_intStack[++class87.Interpreter_intStackSize - 1] = StructComposition.clientPreferences.getIsUsernameHidden() ? 1 : 0;
                      return 1;
                   } else if (var0 == 3143) {
                      var16 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1;
                      Client.Login_isUsernameRemembered = var16;
                      if (!var16) {
-                        StructComposition.clientPreferences.setRememberedUsername("");
+                        StructComposition.clientPreferences.setUsernameToRemember("");
                      }
 
                      return 1;

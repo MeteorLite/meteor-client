@@ -291,7 +291,7 @@ public class class130 extends DualNode {
 
                   var2 = (var3 - var8) * StructComposition.clientPreferences.getAreaSoundEffectsVolume() / var3;
                } else {
-                  var2 = StructComposition.clientPreferences.getSoundEffectsVolume();
+                  var2 = StructComposition.clientPreferences.getCurrentSoundEffectsVolume();
                }
 
                if (var2 > 0) {
@@ -319,8 +319,8 @@ public class class130 extends DualNode {
       }
 
       if (Client.playingJingle && !class159.method838()) {
-         if (StructComposition.clientPreferences.getMusicVolume() != 0 && Client.currentTrackGroupId != -1) {
-            class29.method115(class162.archive6, Client.currentTrackGroupId, 0, StructComposition.clientPreferences.getMusicVolume(), false);
+         if (StructComposition.clientPreferences.getCurrentMusicVolume() != 0 && Client.currentTrackGroupId != -1) {
+            class29.method115(class162.archive6, Client.currentTrackGroupId, 0, StructComposition.clientPreferences.getCurrentMusicVolume(), false);
          }
 
          Client.playingJingle = false;

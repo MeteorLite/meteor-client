@@ -59,8 +59,8 @@ public class class16 implements ThreadFactory {
       garbageValue = "108"
    )
    static void playJingle(int var0, int var1) {
-      if (StructComposition.clientPreferences.getMusicVolume() != 0 && var0 != -1) {
-         class29.method115(class21.field63, var0, 0, StructComposition.clientPreferences.getMusicVolume(), false);
+      if (StructComposition.clientPreferences.getCurrentMusicVolume() != 0 && var0 != -1) {
+         class29.method115(class21.field63, var0, 0, StructComposition.clientPreferences.getCurrentMusicVolume(), false);
          Client.playingJingle = true;
       }
 

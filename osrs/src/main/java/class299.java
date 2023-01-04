@@ -90,8 +90,8 @@ public class class299 {
    )
    static final void method1613(int var0) {
       var0 = Math.min(Math.max(var0, 0), 255);
-      if (var0 != StructComposition.clientPreferences.getMusicVolume()) {
-         if (StructComposition.clientPreferences.getMusicVolume() == 0 && Client.currentTrackGroupId != -1) {
+      if (var0 != StructComposition.clientPreferences.getCurrentMusicVolume()) {
+         if (StructComposition.clientPreferences.getCurrentMusicVolume() == 0 && Client.currentTrackGroupId != -1) {
             class29.method115(class162.archive6, Client.currentTrackGroupId, 0, var0, false);
             Client.playingJingle = false;
          } else if (var0 == 0) {
@@ -101,7 +101,7 @@ public class class299 {
             class32.method131(var0);
          }
 
-         StructComposition.clientPreferences.setMusicVolume(var0);
+         StructComposition.clientPreferences.setCurrentMusicVolume(var0);
       }
 
    }

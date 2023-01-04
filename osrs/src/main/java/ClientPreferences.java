@@ -174,7 +174,7 @@ public class ClientPreferences {
       descriptor = "(ZB)V",
       garbageValue = "64"
    )
-   void setHideUsername(boolean var1) {
+   void setIsUsernameHidden(boolean var1) {
       this.hideUsername = var1;
       Tile.savePreferences();
    }
@@ -184,7 +184,7 @@ public class ClientPreferences {
       descriptor = "(I)Z",
       garbageValue = "-1900607558"
    )
-   boolean getHideUsername() {
+   boolean getIsUsernameHidden() {
       return this.hideUsername;
    }
 
@@ -274,7 +274,7 @@ public class ClientPreferences {
       descriptor = "(IS)V",
       garbageValue = "18863"
    )
-   void setMusicVolume(int var1) {
+   void setCurrentMusicVolume(int var1) {
       this.musicVolume = var1;
       Tile.savePreferences();
    }
@@ -284,7 +284,7 @@ public class ClientPreferences {
       descriptor = "(S)I",
       garbageValue = "-5026"
    )
-   int getMusicVolume() {
+   int getCurrentMusicVolume() {
       return this.musicVolume;
    }
 
@@ -293,7 +293,7 @@ public class ClientPreferences {
       descriptor = "(IB)V",
       garbageValue = "-25"
    )
-   void setSoundEffectVolume(int var1) {
+   void setCurrentSoundEffectVolume(int var1) {
       this.soundEffectsVolume = var1;
       Tile.savePreferences();
    }
@@ -303,7 +303,7 @@ public class ClientPreferences {
       descriptor = "(I)I",
       garbageValue = "1444608091"
    )
-   int getSoundEffectsVolume() {
+   int getCurrentSoundEffectsVolume() {
       return this.soundEffectsVolume;
    }
 
@@ -331,7 +331,7 @@ public class ClientPreferences {
       descriptor = "(Ljava/lang/String;I)V",
       garbageValue = "-2011496208"
    )
-   void setRememberedUsername(String var1) {
+   void setUsernameToRemember(String var1) {
       this.rememberedUsername = var1;
       Tile.savePreferences();
    }
@@ -341,7 +341,7 @@ public class ClientPreferences {
       descriptor = "(B)Ljava/lang/String;",
       garbageValue = "-10"
    )
-   String method548() {
+   String getUsernameToRemember() {
       return this.rememberedUsername;
    }
 

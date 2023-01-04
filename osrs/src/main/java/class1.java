@@ -61,7 +61,7 @@ public class class1 implements Callable {
       garbageValue = "1539382446"
    )
    static void queueSoundEffect(int var0, int var1, int var2) {
-      if (StructComposition.clientPreferences.getSoundEffectsVolume() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
+      if (StructComposition.clientPreferences.getCurrentSoundEffectsVolume() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
          Client.soundEffectIds[Client.soundEffectCount] = var0;
          Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;
          Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;

@@ -2140,9 +2140,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                }
 
                if (Login_isUsernameRemembered) {
-                  StructComposition.clientPreferences.setRememberedUsername(Login.Login_username);
+                  StructComposition.clientPreferences.setUsernameToRemember(Login.Login_username);
                } else {
-                  StructComposition.clientPreferences.setRememberedUsername((String)null);
+                  StructComposition.clientPreferences.setUsernameToRemember((String)null);
                }
 
                Tile.savePreferences();
@@ -5799,7 +5799,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                if (var4 == class86.field870) {
                   switch(var3.field876) {
                   case 1:
-                     var5 = StructComposition.clientPreferences.getHideUsername() ? 1 : 0;
+                     var5 = StructComposition.clientPreferences.getIsUsernameHidden() ? 1 : 0;
                      break;
                   case 2:
                      var5 = StructComposition.clientPreferences.getTitleMusicDisabled() ? 1 : 0;
@@ -5823,11 +5823,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                      var5 = StructComposition.clientPreferences.getRoofsHidden() ? 1 : 0;
                      break;
                   case 2:
-                     var6 = StructComposition.clientPreferences.getMusicVolume();
+                     var6 = StructComposition.clientPreferences.getCurrentMusicVolume();
                      var5 = Math.round((float)(var6 * 100) / 255.0F);
                      break;
                   case 3:
-                     var6 = StructComposition.clientPreferences.getSoundEffectsVolume();
+                     var6 = StructComposition.clientPreferences.getCurrentSoundEffectsVolume();
                      var5 = Math.round((float)(var6 * 100) / 127.0F);
                      break;
                   case 4:
@@ -5885,7 +5885,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             if (var4 == class86.field870) {
                switch(var3.field876) {
                case 1:
-                  StructComposition.clientPreferences.setHideUsername(var5 == 1);
+                  StructComposition.clientPreferences.setIsUsernameHidden(var5 == 1);
                   break;
                case 2:
                   StructComposition.clientPreferences.getTitleMusicDisabled(var5 == 1);

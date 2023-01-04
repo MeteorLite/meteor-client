@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -50,8 +49,8 @@ public final class GameObject {
    )
    static void method1298() {
       if (Login.Login_username == null || Login.Login_username.length() <= 0) {
-         if (StructComposition.clientPreferences.method548() != null) {
-            Login.Login_username = StructComposition.clientPreferences.method548();
+         if (StructComposition.clientPreferences.getUsernameToRemember() != null) {
+            Login.Login_username = StructComposition.clientPreferences.getUsernameToRemember();
             Client.Login_isUsernameRemembered = true;
          } else {
             Client.Login_isUsernameRemembered = false;

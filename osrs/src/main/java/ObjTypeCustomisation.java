@@ -395,8 +395,8 @@ public class ObjTypeCustomisation {
                         Login.field747 = var81 >= var86 && var81 < var86 + class126.field1232 && var82 >= var87 && var82 < var87 + WorldMapSection1.field2393;
                         if (var4 == 1 && Login.field747) {
                            Client.Login_isUsernameRemembered = !Client.Login_isUsernameRemembered;
-                           if (!Client.Login_isUsernameRemembered && StructComposition.clientPreferences.method548() != null) {
-                              StructComposition.clientPreferences.setRememberedUsername((String)null);
+                           if (!Client.Login_isUsernameRemembered && StructComposition.clientPreferences.getUsernameToRemember() != null) {
+                              StructComposition.clientPreferences.setUsernameToRemember((String)null);
                            }
                         }
 
@@ -404,10 +404,10 @@ public class ObjTypeCustomisation {
                         var87 = 277;
                         Login.field762 = var81 >= var86 && var81 < var86 + class126.field1232 && var82 >= var87 && var82 < var87 + WorldMapSection1.field2393;
                         if (var4 == 1 && Login.field762) {
-                           StructComposition.clientPreferences.setHideUsername(!StructComposition.clientPreferences.getHideUsername());
-                           if (!StructComposition.clientPreferences.getHideUsername()) {
+                           StructComposition.clientPreferences.setIsUsernameHidden(!StructComposition.clientPreferences.getIsUsernameHidden());
+                           if (!StructComposition.clientPreferences.getIsUsernameHidden()) {
                               Login.Login_username = "";
-                              StructComposition.clientPreferences.setRememberedUsername((String)null);
+                              StructComposition.clientPreferences.setUsernameToRemember((String)null);
                               SoundSystem.method237();
                            }
                         }

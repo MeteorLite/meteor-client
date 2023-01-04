@@ -44,9 +44,9 @@ public class class169 {
    static void playSong(int var0) {
       if (var0 == -1 && !Client.playingJingle) {
          class6.method14();
-      } else if (var0 != -1 && var0 != Client.currentTrackGroupId && StructComposition.clientPreferences.getMusicVolume() != 0 && !Client.playingJingle) {
+      } else if (var0 != -1 && var0 != Client.currentTrackGroupId && StructComposition.clientPreferences.getCurrentMusicVolume() != 0 && !Client.playingJingle) {
          Archive var1 = class162.archive6;
-         int var2 = StructComposition.clientPreferences.getMusicVolume();
+         int var2 = StructComposition.clientPreferences.getCurrentMusicVolume();
          class286.musicPlayerStatus = 1;
          class304.musicTrackArchive = var1;
          class109.musicTrackGroupId = var0;
