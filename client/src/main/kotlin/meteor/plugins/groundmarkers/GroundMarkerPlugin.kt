@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken
 import eventbus.events.ConfigChanged
 import eventbus.events.GameStateChanged
 import eventbus.events.MenuEntryAdded
+import eventbus.events.MenuOptionClicked
 import meteor.Logger
 import meteor.config.ConfigManager
 import meteor.game.chatbox.ChatboxPanelManager
@@ -136,6 +137,19 @@ class GroundMarkerPlugin : Plugin() {
         loadPoints()
     }
 
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if (it.menuEntry.option == UNMARK || it.menuEntry.option == MARK) {
+            val target = client.selectedSceneTile
+            if (target != null) {
+                markTile(target.localLocation)
+            }
+        }
+        if (it.menuEntry.option == LABEL) {
+            val target = client.selectedSceneTile
+            target?.let { labelTile(it) }
+        }
+    }
+
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
 
         val hotKeyPressed = client.isKeyPressed(KeyCode.KC_SHIFT)
@@ -165,22 +179,12 @@ class GroundMarkerPlugin : Plugin() {
                     .setOption(menuOption)
                     .setTarget(it.target)
                     .setType(MenuAction.RUNELITE)
-                    .onClick {
-                        val target = client.selectedSceneTile
-                        if (target != null) {
-                            markTile(target.localLocation)
-                        }
-                    }
 
                 if (exists) {
                     client.createMenuEntry(-2)
                         .setOption(LABEL)
                         .setTarget(it.target)
                         .setType(MenuAction.RUNELITE)
-                        .onClick {
-                            val target = client.selectedSceneTile
-                            target?.let { labelTile(it) }
-                        }
                 }
             }
 
