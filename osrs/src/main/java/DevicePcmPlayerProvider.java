@@ -127,8 +127,8 @@ public class DevicePcmPlayerProvider implements class51 {
          var3 = var1.readUnsignedShortA();
          var4 = var1.readInt();
          var5 = var1.readUnsignedByteA();
-         var6 = (var5 >> 4 & 7) + InvDefinition.field1464;
-         var7 = (var5 & 7) + class125.field1224;
+         var6 = (var5 >> 4 & 7) + InvDefinition.regionChunkX;
+         var7 = (var5 & 7) + class125.regionChunkY;
          if (var6 >= 0 && var7 >= 0 && var6 < 104 && var7 < 104) {
             var8 = new TileItem();
             var8.id = var3;
@@ -146,8 +146,8 @@ public class DevicePcmPlayerProvider implements class51 {
          var2 = var1.readUnsignedShortA();
          var3 = var1.readUnsignedByte();
          var4 = var1.readUnsignedByteC();
-         var5 = (var4 >> 4 & 7) + InvDefinition.field1464;
-         var6 = (var4 & 7) + class125.field1224;
+         var5 = (var4 >> 4 & 7) + InvDefinition.regionChunkX;
+         var6 = (var4 & 7) + class125.regionChunkY;
          var7 = var1.readUnsignedShortA();
          if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
             var5 = var5 * 128 + 64;
@@ -158,8 +158,8 @@ public class DevicePcmPlayerProvider implements class51 {
 
       } else if (class276.field2546 == var0) {
          var2 = var1.readUnsignedByte();
-         var3 = (var2 >> 4 & 7) + InvDefinition.field1464;
-         var4 = (var2 & 7) + class125.field1224;
+         var3 = (var2 >> 4 & 7) + InvDefinition.regionChunkX;
+         var4 = (var2 & 7) + class125.regionChunkY;
          var1.readUnsignedShortLEA();
          var5 = var1.readUnsignedByteS();
          var1.readUnsignedShortLE();
@@ -194,8 +194,8 @@ public class DevicePcmPlayerProvider implements class51 {
          if (class276.field2554 == var0) {
             var2 = var1.readUnsignedByteS() * 4;
             var3 = var1.readUnsignedByte();
-            var4 = (var3 >> 4 & 7) + InvDefinition.field1464;
-            var5 = (var3 & 7) + class125.field1224;
+            var4 = (var3 >> 4 & 7) + InvDefinition.regionChunkX;
+            var5 = (var3 & 7) + class125.regionChunkY;
             var6 = var1.readUnsignedShortA();
             var7 = var1.readUnsignedShortA();
             var31 = var1.readUnsignedByteA() * 4;
@@ -221,10 +221,10 @@ public class DevicePcmPlayerProvider implements class51 {
             var2 = var1.readUnsignedByteC();
             var3 = var2 >> 2;
             var4 = var2 & 3;
-            var5 = Client.field424[var3];
+            var5 = Client.OBJECT_TYPE_TO_STUB_TYPE[var3];
             var6 = var1.readUnsignedByteC();
-            var7 = (var6 >> 4 & 7) + InvDefinition.field1464;
-            var31 = (var6 & 7) + class125.field1224;
+            var7 = (var6 >> 4 & 7) + InvDefinition.regionChunkX;
+            var31 = (var6 & 7) + class125.regionChunkY;
             var9 = var1.readUnsignedByteC();
             var10 = var1.readUnsignedShortLE();
             if (var7 >= 0 && var31 >= 0 && var7 < 104 && var31 < 104) {
@@ -235,8 +235,8 @@ public class DevicePcmPlayerProvider implements class51 {
             NodeDeque var32;
             if (class276.field2552 == var0) {
                var2 = var1.readUnsignedByteA();
-               var3 = (var2 >> 4 & 7) + InvDefinition.field1464;
-               var4 = (var2 & 7) + class125.field1224;
+               var3 = (var2 >> 4 & 7) + InvDefinition.regionChunkX;
+               var4 = (var2 & 7) + class125.regionChunkY;
                var5 = var1.readUnsignedShort();
                var6 = var1.method2373();
                if (var3 >= 0 && var4 >= 0 && var3 < 104 && var4 < 104) {
@@ -261,10 +261,10 @@ public class DevicePcmPlayerProvider implements class51 {
                var2 = var1.readUnsignedByteA();
                var3 = var2 >> 2;
                var4 = var2 & 3;
-               var5 = Client.field424[var3];
+               var5 = Client.OBJECT_TYPE_TO_STUB_TYPE[var3];
                var6 = var1.readUnsignedByteA();
-               var7 = (var6 >> 4 & 7) + InvDefinition.field1464;
-               var31 = (var6 & 7) + class125.field1224;
+               var7 = (var6 >> 4 & 7) + InvDefinition.regionChunkX;
+               var31 = (var6 & 7) + class125.regionChunkY;
                if (var7 >= 0 && var31 >= 0 && var7 < 104 && var31 < 104) {
                   class11.updatePendingSpawn(class383.Client_plane, var7, var31, var5, -1, var3, var4, 31, 0, -1);
                }
@@ -274,8 +274,8 @@ public class DevicePcmPlayerProvider implements class51 {
                   var2 = var1.readUnsignedByte();
                   var3 = var1.readUnsignedShortLEA();
                   var4 = var1.readUnsignedByteC();
-                  var5 = (var4 >> 4 & 7) + InvDefinition.field1464;
-                  var6 = (var4 & 7) + class125.field1224;
+                  var5 = (var4 >> 4 & 7) + InvDefinition.regionChunkX;
+                  var6 = (var4 & 7) + class125.regionChunkY;
                   var7 = var1.readUnsignedByteA();
                   var31 = var7 >> 4 & 15;
                   var9 = var7 & 7;
@@ -298,8 +298,8 @@ public class DevicePcmPlayerProvider implements class51 {
                   var4 = var1.readUnsignedShortA();
                   var5 = var1.readUnsignedByte() * 4;
                   var6 = var1.readUnsignedByteC();
-                  var7 = (var6 >> 4 & 7) + InvDefinition.field1464;
-                  var31 = (var6 & 7) + class125.field1224;
+                  var7 = (var6 >> 4 & 7) + InvDefinition.regionChunkX;
+                  var31 = (var6 & 7) + class125.regionChunkY;
                   var9 = var1.readUnsignedByte() * 4;
                   var10 = var1.readUnsignedShortLE();
                   var39 = var1.readUnsignedByteC();
@@ -322,8 +322,8 @@ public class DevicePcmPlayerProvider implements class51 {
                   var2 = var1.readUnsignedShortA();
                   var3 = var1.readUnsignedShortLEA();
                   var4 = var1.readUnsignedByteS();
-                  var5 = (var4 >> 4 & 7) + InvDefinition.field1464;
-                  var6 = (var4 & 7) + class125.field1224;
+                  var5 = (var4 >> 4 & 7) + InvDefinition.regionChunkX;
+                  var6 = (var4 & 7) + class125.regionChunkY;
                   var7 = var1.readUnsignedShortLE();
                   if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                      NodeDeque var37 = Client.groundItems[class383.Client_plane][var5][var6];
@@ -344,12 +344,12 @@ public class DevicePcmPlayerProvider implements class51 {
                      var2 = var1.readUnsignedByteA();
                      var3 = var2 >> 2;
                      var4 = var2 & 3;
-                     var5 = Client.field424[var3];
+                     var5 = Client.OBJECT_TYPE_TO_STUB_TYPE[var3];
                      var6 = var1.readUnsignedShortLE();
                      var7 = var1.readUnsignedShortA();
                      var31 = var1.readUnsignedByteA();
-                     var9 = (var31 >> 4 & 7) + InvDefinition.field1464;
-                     var10 = (var31 & 7) + class125.field1224;
+                     var9 = (var31 >> 4 & 7) + InvDefinition.regionChunkX;
+                     var10 = (var31 & 7) + class125.regionChunkY;
                      byte var11 = var1.readByteS();
                      var12 = var1.readUnsignedShortLE();
                      var13 = var1.readByteS();
@@ -415,13 +415,13 @@ public class DevicePcmPlayerProvider implements class51 {
 
                   if (class276.field2553 == var0) {
                      var2 = var1.readUnsignedByteC();
-                     var3 = (var2 >> 4 & 7) + InvDefinition.field1464;
-                     var4 = (var2 & 7) + class125.field1224;
+                     var3 = (var2 >> 4 & 7) + InvDefinition.regionChunkX;
+                     var4 = (var2 & 7) + class125.regionChunkY;
                      var5 = var1.readUnsignedShortLEA();
                      var6 = var1.readUnsignedByteA();
                      var7 = var6 >> 2;
                      var31 = var6 & 3;
-                     var9 = Client.field424[var7];
+                     var9 = Client.OBJECT_TYPE_TO_STUB_TYPE[var7];
                      if (var3 >= 0 && var4 >= 0 && var3 < 103 && var4 < 103) {
                         if (var9 == 0) {
                            BoundaryObject var35 = ReflectionCheck.scene.getWallObject(class383.Client_plane, var3, var4);
@@ -478,8 +478,8 @@ public class DevicePcmPlayerProvider implements class51 {
                      var2 = var1.readUnsignedShortA();
                      var1.readUnsignedShort();
                      var3 = var1.readUnsignedByteA();
-                     var4 = (var3 >> 4 & 7) + InvDefinition.field1464;
-                     var5 = (var3 & 7) + class125.field1224;
+                     var4 = (var3 >> 4 & 7) + InvDefinition.regionChunkX;
+                     var5 = (var3 & 7) + class125.regionChunkY;
                      if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
                         NodeDeque var36 = Client.groundItems[class383.Client_plane][var4][var5];
                         if (var36 != null) {
@@ -501,8 +501,8 @@ public class DevicePcmPlayerProvider implements class51 {
                   } else if (class276.field2545 == var0) {
                      var2 = var1.readUnsignedShortLEA();
                      var3 = var1.readUnsignedByteC();
-                     var4 = (var3 >> 4 & 7) + InvDefinition.field1464;
-                     var5 = (var3 & 7) + class125.field1224;
+                     var4 = (var3 >> 4 & 7) + InvDefinition.regionChunkX;
+                     var5 = (var3 & 7) + class125.regionChunkY;
                      var6 = var1.readUnsignedByteS();
                      if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
                         var32 = Client.groundItems[class383.Client_plane][var4][var5];

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -17,7 +16,7 @@ public class InvDefinition extends DualNode {
    )
    static EvictingDualNodeHashTable InvDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("if")
-   static int field1464;
+   static int regionChunkX;
    @ObfuscatedName("v")
    public int size = 0;
 

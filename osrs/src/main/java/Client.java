@@ -246,7 +246,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedName("ee")
    static int js5ConnectState;
    @ObfuscatedName("em")
-   static int field382;
+   static int js5Cycles;
    @ObfuscatedName("fr")
    static int js5Errors;
    @ObfuscatedName("fp")
@@ -326,7 +326,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
    @ObfuscatedName("im")
    static int[][][] instanceChunkTemplates;
    @ObfuscatedName("in")
-   static final int[] field424;
+   static final int[] OBJECT_TYPE_TO_STUB_TYPE;
    @ObfuscatedName("ii")
    static int field408;
    @ObfuscatedName("jm")
@@ -774,7 +774,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       npcAttackOption = AttackOption.AttackOption_hidden;
       titleLoadingStage = 0;
       js5ConnectState = 0;
-      field382 = 0;
+      js5Cycles = 0;
       js5Errors = 0;
       loginState = 0;
       field493 = 0;
@@ -816,7 +816,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       collisionMaps = new CollisionMap[4];
       isInInstance = false;
       instanceChunkTemplates = new int[4][13][13];
-      field424 = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
+      OBJECT_TYPE_TO_STUB_TYPE = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
       field408 = 0;
       field564 = 2301979;
       field496 = 5063219;
@@ -1439,11 +1439,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                return;
             }
 
-            field382 = 3000;
+            js5Cycles = 3000;
             NetCache.NetCache_ioExceptions = 3;
          }
 
-         if (--field382 + 1 <= 0) {
+         if (--js5Cycles + 1 <= 0) {
             try {
                if (js5ConnectState == 0) {
                   class357.js5SocketTask = class242.taskHandler.newSocketTask(class139.worldHost, class31.currentPort);
@@ -1605,14 +1605,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                this.error("js5connect");
                class140.updateGameState(1000);
             } else {
-               field382 = 3000;
+               js5Cycles = 3000;
             }
          }
       } else if (gameState <= 5) {
          this.error("js5connect_full");
          class140.updateGameState(1000);
       } else {
-         field382 = 3000;
+         js5Cycles = 3000;
       }
 
    }
@@ -3366,8 +3366,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
             int var20;
             if (ServerPacket.field2625 == var1.serverPacket) {
-               InvDefinition.field1464 = var3.readUnsignedByte();
-               class125.field1224 = var3.readUnsignedByteS();
+               InvDefinition.regionChunkX = var3.readUnsignedByte();
+               class125.regionChunkY = var3.readUnsignedByteS();
 
                while(var3.offset < var1.serverPacketLength) {
                   var20 = var3.readUnsignedByte();
@@ -4079,7 +4079,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                var9 = var3.readUnsignedByteC();
                var38 = var9 >> 2;
                var84 = var9 & 3;
-               var12 = field424[var38];
+               var12 = OBJECT_TYPE_TO_STUB_TYPE[var38];
                var13 = var3.readUnsignedShortLE();
                if (var7 >= 0 && var8 >= 0 && var7 < 103 && var8 < 103) {
                   if (var12 == 0) {
@@ -4321,11 +4321,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2615 == var1.serverPacket) {
-               class125.field1224 = var3.readUnsignedByteA();
-               InvDefinition.field1464 = var3.readUnsignedByteS();
+               class125.regionChunkY = var3.readUnsignedByteA();
+               InvDefinition.regionChunkX = var3.readUnsignedByteS();
 
-               for(var20 = InvDefinition.field1464; var20 < InvDefinition.field1464 + 8; ++var20) {
-                  for(var5 = class125.field1224; var5 < class125.field1224 + 8; ++var5) {
+               for(var20 = InvDefinition.regionChunkX; var20 < InvDefinition.regionChunkX + 8; ++var20) {
+                  for(var5 = class125.regionChunkY; var5 < class125.regionChunkY + 8; ++var5) {
                      if (groundItems[class383.Client_plane][var20][var5] != null) {
                         groundItems[class383.Client_plane][var20][var5] = null;
                         class358.updateItemPile(var20, var5);
@@ -4334,7 +4334,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                }
 
                for(PendingSpawn var50 = (PendingSpawn)pendingSpawns.last(); var50 != null; var50 = (PendingSpawn)pendingSpawns.previous()) {
-                  if (var50.x >= InvDefinition.field1464 && var50.x < InvDefinition.field1464 + 8 && var50.y >= class125.field1224 && var50.y < class125.field1224 + 8 && var50.plane == class383.Client_plane) {
+                  if (var50.x >= InvDefinition.regionChunkX && var50.x < InvDefinition.regionChunkX + 8 && var50.y >= class125.regionChunkY && var50.y < class125.regionChunkY + 8 && var50.plane == class383.Client_plane) {
                      var50.endCycle = 0;
                   }
                }
@@ -4772,8 +4772,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2666 == var1.serverPacket) {
-               class125.field1224 = var3.readUnsignedByteS();
-               InvDefinition.field1464 = var3.readUnsignedByteS();
+               class125.regionChunkY = var3.readUnsignedByteS();
+               InvDefinition.regionChunkX = var3.readUnsignedByteS();
                var1.serverPacket = null;
                return true;
             }

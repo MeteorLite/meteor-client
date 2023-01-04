@@ -1,11 +1,10 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("du")
 public class class125 {
    @ObfuscatedName("ir")
-   static int field1224;
+   static int regionChunkY;
    @ObfuscatedName("h")
    boolean field1211;
    @ObfuscatedName("e")
