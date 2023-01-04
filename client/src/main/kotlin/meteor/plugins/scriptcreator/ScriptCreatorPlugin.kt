@@ -1,7 +1,9 @@
 package meteor.plugins.scriptcreator
 
 import compose.icons.Octicons
+import compose.icons.TablerIcons
 import compose.icons.octicons.Code16
+import compose.icons.tablericons.BrandTabler
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.scriptcreator.script.eventbus.ScriptSubscriber
 import meteor.plugins.scriptcreator.script.eventbus.unsubscribeScript
@@ -34,7 +36,7 @@ class ScriptCreatorPlugin : ScriptSubscriber() {
 
     private var consoleButton = ToolbarButton(
         "Console",
-        Octicons.Code16,
+        TablerIcons.BrandTabler,
         iconColor = uiColor.value,
         description = "Create custom kotlin scripts",
         onClick = {

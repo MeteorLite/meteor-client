@@ -38,12 +38,14 @@ class XpTrackerPluginPanel : PluginPanel() {
         if (expHrKeys.isEmpty()) {
             Column(Modifier.background(surface, RoundedCornerShape(8.dp)).fillMaxHeight().width(300.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
-                    text = "Exp trackers",
+                    text = "XP Tracker",
+                    color = uiColor.value,
                     style = TextStyle(fontSize = 18.sp, textAlign = TextAlign.Center, color = Color.White, letterSpacing = 2.sp),
                     textAlign = TextAlign.Center,
                 )
                 Text(
                     text = "You have not gained experience yet.",
+                    color = uiColor.value,
                     style = TextStyle(fontSize = 12.sp, textAlign = TextAlign.Center, color = Color.Gray, letterSpacing = 2.sp),
                     textAlign = TextAlign.Center,
                 )

@@ -5,8 +5,8 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
-import compose.icons.Octicons
-import compose.icons.octicons.Plug24
+import compose.icons.LineAwesomeIcons
+import compose.icons.lineawesomeicons.PlugSolid
 import meteor.Main
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.hiscore.HiscoreResult
@@ -48,7 +48,7 @@ val background: Color
     else lightThemeColors.background
 
 val darkThemeColors = darkColors(
-    primary = Color.Cyan,
+    primary = uiColor.value,
     primaryVariant = Color(0xFF3E2723),
     secondary = Color.Cyan,
     background = Color(0xFF191919),
@@ -85,7 +85,7 @@ fun setOpenValues(openValue: Boolean) {
 val pluginListButton = addButton(
     ToolbarButton(
         "Plugins",
-        Octicons.Plug24,
+        LineAwesomeIcons.PlugSolid,
         iconColor = uiColor.value,
         description = "Opens Plugins list",
         onClick = {

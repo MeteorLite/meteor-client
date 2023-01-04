@@ -6,6 +6,7 @@ import compose.icons.Octicons
 import compose.icons.TablerIcons
 import compose.icons.octicons.Briefcase24
 import compose.icons.octicons.Database24
+import compose.icons.tablericons.Coin
 import compose.icons.tablericons.ReportMoney
 import dev.hoot.api.commons.FileUtil
 import dev.hoot.api.game.Game
@@ -40,7 +41,7 @@ class LootTrackerPlugin: Plugin() {
 
     private var lootTrackerButton = ToolbarButton(
         "LootTracker",
-        TablerIcons.ReportMoney,
+        TablerIcons.Coin,
         iconColor = uiColor.value,
         description = "Loot Tracker",
         position = 2,

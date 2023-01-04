@@ -2924,9 +2924,6 @@ public abstract class RSClientMixin implements RSClient {
         DialogOption dialogOption = DialogOption.of(widgetUid, menuIndex);
         if (dialogOption != null) {
             client.getCallbacks().post(Events.DIALOG_PROCESSED, new DialogProcessed(dialogOption));
-        } else {
-            client.getLogger().debug("Unknown or unmapped dialog option for widgetUid: {} and menuIndex {}", widgetUid,
-                    menuIndex);
         }
     }
 

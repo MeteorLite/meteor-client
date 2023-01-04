@@ -1,7 +1,9 @@
 package meteor.plugins.infopanel
 
 import compose.icons.Octicons
+import compose.icons.TablerIcons
 import compose.icons.octicons.Info16
+import compose.icons.tablericons.InfoCircle
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.PluginPanel
@@ -19,7 +21,7 @@ class InfoPanelPlugin : Plugin() {
 
     private val infoPanelButton = ToolbarButton(
         "Info Panel",
-        Octicons.Info16,
+        TablerIcons.InfoCircle,
         iconColor = uiColor.value,
         description = "Info",
         onClick = {
