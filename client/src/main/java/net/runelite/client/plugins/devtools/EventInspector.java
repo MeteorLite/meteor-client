@@ -47,7 +47,6 @@ import static net.runelite.api.GameState.LOGGED_IN;
 @Slf4j
 public class EventInspector extends EventInspectorSubscriber {
 
-    private final static int MAX_LOG_ENTRIES = 1000;
     private static final int VARBITS_ARCHIVE_ID = 14;
     private final Client client;
     private final ProjectileTracker projectileTracker;
@@ -177,9 +176,11 @@ public class EventInspector extends EventInspectorSubscriber {
     private final JCheckBox rsCoordFormat = new JCheckBox("RS Coordinate Format", false);
     private final JCheckBox translateCoordsInInstance = new JCheckBox("Translate Instance Coords");
     private final JSlider intervalSlider;
+    private final JSlider maxLogEntriesSlider;
 
     private int maxEventDistance = 104;
     private int writeInterval = 100;
+    private int maxLogEntries = 1_000;
 
     private File outputFile;
     private int scrollSpeed = 15;
@@ -202,9 +203,12 @@ public class EventInspector extends EventInspectorSubscriber {
         final JScrollPane trackerScroller = new JScrollPane(trackerWrapper);
         trackerScroller.setPreferredSize(new Dimension(1400, 300));
 
+        trackerScroller.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        trackerScroller.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
+        trackerScroller.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         trackerScroller.getHorizontalScrollBar().setUnitIncrement(scrollSpeed);
+
         final JScrollBar vertical = trackerScroller.getVerticalScrollBar();
-        vertical.setUnitIncrement(scrollSpeed);
         vertical.addAdjustmentListener(new AdjustmentListener() {
             int lastMaximum = actualMax();
 
@@ -242,13 +246,13 @@ public class EventInspector extends EventInspectorSubscriber {
 
 
         final JPanel sliderPanel = new JPanel(new BorderLayout());
-        sliderPanel.setPreferredSize(new Dimension(250, 30));
+        sliderPanel.setPreferredSize(new Dimension(230, 30));
         /* Manual spacing for string, cba messing around with layouts. */
         final JLabel distanceLabel = new JLabel("  Distance  ∞");
         sliderPanel.add(distanceLabel, BorderLayout.WEST);
         final JSlider slider = new JSlider(0, 15, 15);
         slider.setUI(new SliderUI(slider));
-        slider.setPreferredSize(new Dimension(150, 30));
+        slider.setPreferredSize(new Dimension(100, 30));
         sliderPanel.add(slider, BorderLayout.EAST);
         slider.addChangeListener(e -> {
             distanceLabel.setText("  Distance  " + (slider.getValue() == 15 ? "∞" : slider.getValue()));
@@ -256,17 +260,16 @@ public class EventInspector extends EventInspectorSubscriber {
             if (maxEventDistance == 15) maxEventDistance = 104;
             writeSettingsFile();
         });
-
         trackerOpts.add(sliderPanel);
 
         final JPanel intervalSliderPanel = new JPanel(new BorderLayout());
-        intervalSliderPanel.setPreferredSize(new Dimension(250, 30));
+        intervalSliderPanel.setPreferredSize(new Dimension(230, 30));
         /* Manual spacing for string, cba messing around with layouts. */
         final JLabel intervalLabel = new JLabel("  Interval  " + writeInterval);
         intervalSliderPanel.add(intervalLabel, BorderLayout.WEST);
         intervalSlider = new JSlider(0, 99, 99);
         intervalSlider.setUI(new SliderUI(intervalSlider));
-        intervalSlider.setPreferredSize(new Dimension(150, 30));
+        intervalSlider.setPreferredSize(new Dimension(100, 30));
         intervalSliderPanel.add(intervalSlider, BorderLayout.EAST);
         intervalSlider.addChangeListener(e -> {
             writeInterval = intervalSlider.getValue() + 1;
@@ -275,8 +278,25 @@ public class EventInspector extends EventInspectorSubscriber {
         });
         intervalSliderPanel.setToolTipText("<html>The interval slider defines how frequently, in server ticks(0.6 seconds each),<br>" + "the logs will be " +
                 "written to the file</html>.");
-
         trackerOpts.add(intervalSliderPanel);
+
+        final JPanel maxLogEntriesPanel = new JPanel(new BorderLayout());
+        maxLogEntriesPanel.setPreferredSize(new Dimension(230, 30));
+        /* Manual spacing for string, cba messing around with layouts. */
+        final JLabel maxLogEntriesLabel = new JLabel("  Max Logs  " + maxLogEntries);
+        maxLogEntriesPanel.add(maxLogEntriesLabel, BorderLayout.WEST);
+        maxLogEntriesSlider = new JSlider(-1, 10_000, 1_000);
+        maxLogEntriesSlider.setUI(new SliderUI(maxLogEntriesSlider));
+        maxLogEntriesSlider.setPreferredSize(new Dimension(100, 30));
+        maxLogEntriesPanel.add(maxLogEntriesSlider, BorderLayout.EAST);
+        maxLogEntriesSlider.addChangeListener(e -> {
+            maxLogEntries = maxLogEntriesSlider.getValue();
+            maxLogEntriesLabel.setText("  Max Logs  " + maxLogEntries);
+            writeSettingsFile();
+        });
+        maxLogEntriesPanel.setToolTipText("<html>The maximum log entries slider defines the maximum number of logs you would like to show.<br>" +
+                "Set to -1 for no limit.</html>.");
+        trackerOpts.add(maxLogEntriesPanel);
 
         final JPanel enableButtonPanel = new JPanel(new GridLayout());
 
@@ -313,7 +333,7 @@ public class EventInspector extends EventInspectorSubscriber {
         final JButton openLogs = new JButton("Open Logs");
         openLogs.addActionListener(e -> {
             try {
-                Path path = Paths.get(System.getProperty("user.home"), ".runelite", "event-inspector-logs");
+                Path path = Paths.get(Configuration.INSTANCE.getMETEOR_DIR() + "/event-inspector-logs/");
                 Desktop.getDesktop().open(path.toFile());
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -331,8 +351,11 @@ public class EventInspector extends EventInspectorSubscriber {
         }
 
         final JScrollPane scrollPane = new JScrollPane(trackerOpts);
+
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
         add(scrollPane, BorderLayout.EAST);
 
         pack();
@@ -554,6 +577,7 @@ public class EventInspector extends EventInspectorSubscriber {
             labelPanel.setLayout(new BorderLayout());
             JTextField prefixLabel = new JTextField(prefix);
             prefixLabel.setEditable(false);
+            prefixLabel.setCaretPosition(0);
             prefixLabel.setBackground(null);
             prefixLabel.setToolTipText(prefix);
             prefixLabel.setBorder(
@@ -562,12 +586,15 @@ public class EventInspector extends EventInspectorSubscriber {
                             BorderFactory.createEmptyBorder(0, 5, 0, 0)
                     )
             );
+            prefixLabel.setPreferredSize(new Dimension(rsCoordFormat.isSelected() ? 850 : 650, 14));
+            prefixLabel.setMaximumSize(new Dimension(rsCoordFormat.isSelected() ? 850 : 650, 14));
+
             JTextField textLabel = new JTextField(text);
             textLabel.setEditable(false);
+            textLabel.setCaretPosition(0);
             textLabel.setBackground(null);
             textLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
-            prefixLabel.setPreferredSize(new Dimension(rsCoordFormat.isSelected() ? 600 : 400, 14));
-            prefixLabel.setMaximumSize(new Dimension(rsCoordFormat.isSelected() ? 600 : 400, 14));
+
             labelPanel.add(prefixLabel, BorderLayout.WEST);
             labelPanel.add(textLabel);
             tracker.add(labelPanel);
@@ -941,7 +968,7 @@ public class EventInspector extends EventInspectorSubscriber {
             dirty = false;
             SwingUtilities.invokeLater(() -> {
                 // Cull very old stuff
-                while (tracker.getComponentCount() > MAX_LOG_ENTRIES) {
+                while (maxLogEntries > 0 && tracker.getComponentCount() > maxLogEntries) {
                     tracker.remove(0);
                 }
 
@@ -2088,7 +2115,7 @@ public class EventInspector extends EventInspectorSubscriber {
             }
             return ("Npc(" + (actor.getName() + ", idx: " + ((NPC) actor).getIndex() + ", " + name + ", " + coordinateString + ")"));
         }
-        return ("Unknown(" + coordinateString + ")");
+        return ("UnknownActor(" + coordinateString + ")");
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -2122,6 +2149,8 @@ public class EventInspector extends EventInspectorSubscriber {
                 writer.newLine();
                 writer.write("interval=" + writeInterval);
                 writer.newLine();
+                writer.write("maxLogEntries=" + maxLogEntries);
+                writer.newLine();
                 writer.flush();
                 writer.close();
             }
@@ -2149,6 +2178,9 @@ public class EventInspector extends EventInspectorSubscriber {
                             continue;
                         case "interval":
                             writeInterval = Integer.parseInt(split[1]);
+                            continue;
+                        case "maxLogEntries":
+                            maxLogEntries = Integer.parseInt(split[1]);
                             continue;
                     }
                     boolean value = Boolean.parseBoolean(split[1]);
@@ -2183,6 +2215,9 @@ public class EventInspector extends EventInspectorSubscriber {
                 });
                 if (intervalSlider != null) {
                     intervalSlider.setValue(writeInterval);
+                }
+                if (maxLogEntriesSlider != null) {
+                    maxLogEntriesSlider.setValue(maxLogEntries);
                 }
             }
         } catch (Exception e) {
