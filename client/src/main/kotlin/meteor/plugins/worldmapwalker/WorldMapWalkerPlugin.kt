@@ -7,6 +7,7 @@ import dev.hoot.api.utils.CoordUtils.worldMapToWorldPoint
 import dev.hoot.api.widgets.Widgets
 import eventbus.events.GameTick
 import eventbus.events.MenuEntryAdded
+import eventbus.events.MenuOptionClicked
 import meteor.Logger
 import meteor.Main
 import meteor.plugins.Plugin
@@ -57,6 +58,15 @@ class WorldMapWalkerPlugin : Plugin() {
         )
     }
 
+    override fun onMenuOptionClicked(it: MenuOptionClicked) {
+        if (it.menuEntry.option == "<col=00ff00>Clear destination")
+            mapPoint = null
+        else if (it.menuEntry.option == "<col=00ff00>Walk to")
+            setWorldMapPoint(
+                lastMapMenuLocation
+            )
+    }
+
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
         if (mapPoint != null) {
             Game.getClient()
@@ -64,10 +74,6 @@ class WorldMapWalkerPlugin : Plugin() {
                 .setOption("<col=00ff00>Clear destination")
                 .setTarget(it.target)
                 .setType(MenuAction.RUNELITE)
-                .onClick {
-                    mapPoint = null
-                    log.debug("Cleared destination")
-                }
         }
         val worldMap = Widgets.get(WidgetInfo.WORLD_MAP_VIEW) ?: return
         val mouse = Game.getClient().mouseCanvasPosition
@@ -79,11 +85,6 @@ class WorldMapWalkerPlugin : Plugin() {
             .setOption("<col=00ff00>Walk to")
             .setTarget(it.target)
             .setType(MenuAction.RUNELITE)
-            .onClick {
-                setWorldMapPoint(
-                    lastMapMenuLocation
-                )
-            }
     }
 
     private fun setWorldMapPoint(wp: WorldPoint?) {
