@@ -75,7 +75,7 @@ class ToolbarButton(
 
             }) {
             Box(
-                modifier = Modifier.padding(vertical = 5.dp).clip(RoundedCornerShape(size = 7.dp)).background(mutableStateOf(background).value).width(35.dp)
+                modifier = Modifier.padding(vertical = 3.dp).clip(RoundedCornerShape(size = 7.dp)).background(mutableStateOf(background).value).width(35.dp)
                     .height(35.dp),
                 contentAlignment = alignment,
             ) {

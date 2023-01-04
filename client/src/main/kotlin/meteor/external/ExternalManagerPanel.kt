@@ -28,9 +28,9 @@ class ExternalManagerPanel : PluginPanel() {
     @Composable
     override fun Content() {
 
-        val textfieldColors = TextFieldDefaults.textFieldColors(textColor = intColor,
-            unfocusedLabelColor = intColor,
-            unfocusedIndicatorColor = intColor,
+        val textfieldColors = TextFieldDefaults.textFieldColors(textColor = uiColor.value,
+            unfocusedLabelColor = uiColor.value,
+            unfocusedIndicatorColor = uiColor.value,
             focusedIndicatorColor = uiColor.value,
             focusedLabelColor = uiColor.value,
             cursorColor = uiColor.value)
@@ -89,7 +89,7 @@ class ExternalManagerPanel : PluginPanel() {
                     ) {
                         Icon(imageVector = Octicons.Plug16, contentDescription = "", tint = uiColor.value)
                         Spacer(modifier = Modifier.width(5.dp))
-                        Text(text = "Find Plugins", color = intColor, fontSize = 20.sp)
+                        Text(text = "Find Plugins", color = uiColor.value, fontSize = 20.sp)
                     }
                 }
                 Spacer(Modifier.height(4.dp))

@@ -20,7 +20,8 @@ open class PluginPanel : EventSubscriber() {
         val mod = Modifier.background(darkThemeColors.background).fillMaxHeight()
 
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-            Column(modifier = mod, verticalArrangement = Arrangement.SpaceEvenly, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(modifier = mod)
+            {
                 MaterialTheme(colors = darkThemeColors) {
                     Header()
                     Content()
