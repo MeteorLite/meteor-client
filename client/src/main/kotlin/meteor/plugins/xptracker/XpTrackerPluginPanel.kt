@@ -36,7 +36,7 @@ class XpTrackerPluginPanel : PluginPanel() {
     override fun Content() {
         val expHrKeys = expHrMap.filter { it.value > 0 }.keys.toList()
         if (expHrKeys.isEmpty()) {
-            Column(Modifier.background(surface, RoundedCornerShape(8.dp)).fillMaxHeight().width(300.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(Modifier.background(surface).fillMaxHeight().width(300.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
                     text = "XP Tracker",
                     color = uiColor.value,

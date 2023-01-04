@@ -29,7 +29,7 @@ fun ToolbarPanel() {
     return Column(modifier = Modifier.width(width.value.dp).background(background )) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(.5f).background(surface)
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(.9f).background(surface)
         ) {
             MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
                 topToolbar.sortedBy { it.position }.forEach { it.CreateComponent() }

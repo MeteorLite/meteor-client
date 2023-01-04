@@ -83,7 +83,7 @@ class XpTrackerPlugin : Plugin() {
         TablerIcons.ChartBar,
         iconColor = uiColor.value,
         description = "Xp tracker",
-        position = 1,
+        position = 2,
         onClick = {
             onClick()
         },

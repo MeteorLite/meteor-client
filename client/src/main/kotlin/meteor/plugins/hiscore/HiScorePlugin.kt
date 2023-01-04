@@ -28,7 +28,7 @@ class HiScorePlugin : Plugin() {
         TablerIcons.Trophy,
         iconColor = uiColor.value,
         description = "Player Hiscores",
-        position = 3,
+        position = 4,
         onClick = {
             onClick()
         },

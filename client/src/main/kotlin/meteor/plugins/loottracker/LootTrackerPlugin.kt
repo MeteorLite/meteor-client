@@ -44,7 +44,7 @@ class LootTrackerPlugin: Plugin() {
         TablerIcons.Coin,
         iconColor = uiColor.value,
         description = "Loot Tracker",
-        position = 2,
+        position = 3,
         onClick = {
             onClick()
         },

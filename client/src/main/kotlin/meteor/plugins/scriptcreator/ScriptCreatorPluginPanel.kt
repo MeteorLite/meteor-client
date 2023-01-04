@@ -27,9 +27,8 @@ import com.wakaztahir.codeeditor.prettify.PrettifyParser
 import com.wakaztahir.codeeditor.theme.CodeTheme
 import com.wakaztahir.codeeditor.theme.SyntaxColors
 import com.wakaztahir.codeeditor.utils.parseCodeAsAnnotatedString
-import compose.icons.LineAwesomeIcons
 import compose.icons.Octicons
-import compose.icons.lineawesomeicons.Save
+import compose.icons.octicons.FileDirectory16
 import compose.icons.octicons.Play24
 import compose.icons.octicons.Question24
 import compose.icons.octicons.Stop24
@@ -66,11 +65,10 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                 Box(contentAlignment = Alignment.Center) {
                     Icon(
                         tint = uiColor.value,
-                        imageVector = LineAwesomeIcons.Save,
+                        imageVector = Octicons.FileDirectory16,
                         contentDescription = "",
                         modifier = Modifier.clickable {
                             when {
-
                                 !FileUtil.exists(plugin, savedScript.value) -> {
                                     FileUtil.serialize(
                                         ScriptCreatorPlugin(),
@@ -78,13 +76,10 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                                         codeState.value
                                     )
                                 }
-
                             }
-
-
-
                         }.size(40.dp, 30.dp)
                     )
+                    Text("Save", color = Color.Black, fontSize = 10.sp)
                 }
             }
 
@@ -309,7 +304,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                             fontSize = config.fontSize() .sp,
                             modifier = Modifier.offset(y = with(density) { top.toDp() }),
                             text = index.toString(),
-                            color = intColor
+                            color = uiColor.value
 
                         )
                     }
