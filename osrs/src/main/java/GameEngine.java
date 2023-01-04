@@ -179,7 +179,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(Ljava/lang/String;S)V",
       garbageValue = "26091"
    )
-   protected void method148(String var1) {
+   protected void copyToClipboard(String var1) {
       this.clipboard.setContents(new StringSelection(var1), (ClipboardOwner)null);
    }
 
@@ -188,7 +188,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       descriptor = "(B)Ljava/awt/datatransfer/Clipboard;",
       garbageValue = "10"
    )
-   public Clipboard method149() {
+   public Clipboard getClipboard() {
       return this.clipboard;
    }
 

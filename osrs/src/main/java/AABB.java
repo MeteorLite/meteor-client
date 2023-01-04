@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -55,7 +54,7 @@ public class AABB {
       descriptor = "(B)Lmq;",
       garbageValue = "-51"
    )
-   public static NodeDeque method1232() {
+   public static NodeDeque getScriptEvents() {
       return Client.scriptEvents;
    }
 }

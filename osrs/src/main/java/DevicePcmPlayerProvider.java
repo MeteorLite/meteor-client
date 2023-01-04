@@ -113,7 +113,7 @@ public class DevicePcmPlayerProvider implements class51 {
       descriptor = "(Ljn;I)V",
       garbageValue = "2022149498"
    )
-   static final void method80(class276 var0) {
+   static final void processZoneOperation(ZoneOperation var0) {
       PacketBuffer var1 = Client.packetWriter.packetBuffer;
       int var2;
       int var3;
@@ -122,7 +122,7 @@ public class DevicePcmPlayerProvider implements class51 {
       int var6;
       int var7;
       TileItem var8;
-      if (class276.field2548 == var0) {
+      if (ZoneOperation.field2548 == var0) {
          var2 = var1.readUnsignedByte();
          var3 = var1.readUnsignedShortA();
          var4 = var1.readInt();
@@ -142,7 +142,7 @@ public class DevicePcmPlayerProvider implements class51 {
             class358.updateItemPile(var6, var7);
          }
 
-      } else if (class276.field2543 == var0) {
+      } else if (ZoneOperation.field2543 == var0) {
          var2 = var1.readUnsignedShortA();
          var3 = var1.readUnsignedByte();
          var4 = var1.readUnsignedByteC();
@@ -156,7 +156,7 @@ public class DevicePcmPlayerProvider implements class51 {
             Client.graphicsObjects.addFirst(var38);
          }
 
-      } else if (class276.field2546 == var0) {
+      } else if (ZoneOperation.field2546 == var0) {
          var2 = var1.readUnsignedByte();
          var3 = (var2 >> 4 & 7) + InvDefinition.regionChunkX;
          var4 = (var2 & 7) + class125.regionChunkY;
@@ -191,7 +191,7 @@ public class DevicePcmPlayerProvider implements class51 {
          int var39;
          int var41;
          int var42;
-         if (class276.field2554 == var0) {
+         if (ZoneOperation.field2554 == var0) {
             var2 = var1.readUnsignedByteS() * 4;
             var3 = var1.readUnsignedByte();
             var4 = (var3 >> 4 & 7) + InvDefinition.regionChunkX;
@@ -217,7 +217,7 @@ public class DevicePcmPlayerProvider implements class51 {
                Client.projectiles.addFirst(var15);
             }
 
-         } else if (class276.field2541 == var0) {
+         } else if (ZoneOperation.field2541 == var0) {
             var2 = var1.readUnsignedByteC();
             var3 = var2 >> 2;
             var4 = var2 & 3;
@@ -233,7 +233,7 @@ public class DevicePcmPlayerProvider implements class51 {
 
          } else {
             NodeDeque var32;
-            if (class276.field2552 == var0) {
+            if (ZoneOperation.field2552 == var0) {
                var2 = var1.readUnsignedByteA();
                var3 = (var2 >> 4 & 7) + InvDefinition.regionChunkX;
                var4 = (var2 & 7) + class125.regionChunkY;
@@ -257,7 +257,7 @@ public class DevicePcmPlayerProvider implements class51 {
                   }
                }
 
-            } else if (class276.field2549 == var0) {
+            } else if (ZoneOperation.field2549 == var0) {
                var2 = var1.readUnsignedByteA();
                var3 = var2 >> 2;
                var4 = var2 & 3;
@@ -270,7 +270,7 @@ public class DevicePcmPlayerProvider implements class51 {
                }
 
             } else {
-               if (class276.field2542 == var0) {
+               if (ZoneOperation.field2542 == var0) {
                   var2 = var1.readUnsignedByte();
                   var3 = var1.readUnsignedShortLEA();
                   var4 = var1.readUnsignedByteC();
@@ -292,7 +292,7 @@ public class DevicePcmPlayerProvider implements class51 {
                   }
                }
 
-               if (class276.field2547 == var0) {
+               if (ZoneOperation.field2547 == var0) {
                   var2 = var1.readUnsignedByteC();
                   var3 = var1.readUnsignedShortLE();
                   var4 = var1.readUnsignedShortA();
@@ -318,7 +318,7 @@ public class DevicePcmPlayerProvider implements class51 {
                      Client.projectiles.addFirst(var15);
                   }
 
-               } else if (class276.field2551 == var0) {
+               } else if (ZoneOperation.field2551 == var0) {
                   var2 = var1.readUnsignedShortA();
                   var3 = var1.readUnsignedShortLEA();
                   var4 = var1.readUnsignedByteS();
@@ -340,7 +340,7 @@ public class DevicePcmPlayerProvider implements class51 {
                   }
 
                } else {
-                  if (class276.field2550 == var0) {
+                  if (ZoneOperation.field2550 == var0) {
                      var2 = var1.readUnsignedByteA();
                      var3 = var2 >> 2;
                      var4 = var2 & 3;
@@ -391,7 +391,7 @@ public class DevicePcmPlayerProvider implements class51 {
                            var17.attachedModel = var29;
                            var17.field892 = var19 * 64 + var9 * 128;
                            var17.field898 = var20 * 64 + var10 * 128;
-                           var17.tileHeight2 = var26;
+                           var17.baseTileHeight = var26;
                            byte var30;
                            if (var14 > var11) {
                               var30 = var14;
@@ -413,7 +413,7 @@ public class DevicePcmPlayerProvider implements class51 {
                      }
                   }
 
-                  if (class276.field2553 == var0) {
+                  if (ZoneOperation.field2553 == var0) {
                      var2 = var1.readUnsignedByteC();
                      var3 = (var2 >> 4 & 7) + InvDefinition.regionChunkX;
                      var4 = (var2 & 7) + class125.regionChunkY;
@@ -474,7 +474,7 @@ public class DevicePcmPlayerProvider implements class51 {
                         }
                      }
 
-                  } else if (class276.field2544 == var0) {
+                  } else if (ZoneOperation.field2544 == var0) {
                      var2 = var1.readUnsignedShortA();
                      var1.readUnsignedShort();
                      var3 = var1.readUnsignedByteA();
@@ -498,7 +498,7 @@ public class DevicePcmPlayerProvider implements class51 {
                         }
                      }
 
-                  } else if (class276.field2545 == var0) {
+                  } else if (ZoneOperation.field2545 == var0) {
                      var2 = var1.readUnsignedShortLEA();
                      var3 = var1.readUnsignedByteC();
                      var4 = (var3 >> 4 & 7) + InvDefinition.regionChunkX;

@@ -132,7 +132,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("class272", "jb");
 		put("class273", "jw");
 		put("class274", "jr");
-		put("class276", "jn");
 		put("class28", "ao");
 		put("class280", "jo");
 		put("class281", "jg");
@@ -495,5 +494,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		put("WorldMapSectionType", "im");
 		put("WorldMapSprite", "ir");
 		put("Wrapper", "jd");
+		put("ZoneOperation", "jn");
     }
 }

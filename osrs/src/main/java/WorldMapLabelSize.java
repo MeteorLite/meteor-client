@@ -1,6 +1,6 @@
 import java.io.File;
 import java.io.RandomAccessFile;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -109,7 +109,7 @@ public class WorldMapLabelSize {
       garbageValue = "228437568"
    )
    static void method1310(int var0, int var1) {
-      class276.method1522(PendingSpawn.tempMenuAction, var0, var1);
+      ZoneOperation.method1522(PendingSpawn.tempMenuAction, var0, var1);
       PendingSpawn.tempMenuAction = null;
    }
 }

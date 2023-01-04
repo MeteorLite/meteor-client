@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -225,8 +224,8 @@ public class SpotAnimationDefinition extends DualNode {
       descriptor = "(B)[Ljn;",
       garbageValue = "113"
    )
-   public static class276[] method971() {
-      return new class276[]{class276.field2553, class276.field2542, class276.field2543, class276.field2554, class276.field2545, class276.field2549, class276.field2551, class276.field2547, class276.field2548, class276.field2541, class276.field2550, class276.field2544, class276.field2552, class276.field2546};
+   public static ZoneOperation[] getZoneOperations() {
+      return new ZoneOperation[]{ZoneOperation.field2553, ZoneOperation.field2542, ZoneOperation.field2543, ZoneOperation.field2554, ZoneOperation.field2545, ZoneOperation.field2549, ZoneOperation.field2551, ZoneOperation.field2547, ZoneOperation.field2548, ZoneOperation.field2541, ZoneOperation.field2550, ZoneOperation.field2544, ZoneOperation.field2552, ZoneOperation.field2546};
    }
 
    @ObfuscatedName("ii")
