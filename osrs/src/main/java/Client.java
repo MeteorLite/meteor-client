@@ -3335,13 +3335,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             var1.field1135 = var1.field1134;
             var1.field1134 = var1.serverPacket;
             if (ServerPacket.field2587 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2554);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2554);
                var1.serverPacket = null;
                return true;
             }
 
             if (ServerPacket.field2572 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2551);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2551);
                var1.serverPacket = null;
                return true;
             }
@@ -3371,8 +3371,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
                while(var3.offset < var1.serverPacketLength) {
                   var20 = var3.readUnsignedByte();
-                  class276 var79 = SpotAnimationDefinition.method971()[var20];
-                  DevicePcmPlayerProvider.method80(var79);
+                  ZoneOperation var79 = SpotAnimationDefinition.getZoneOperations()[var20];
+                  DevicePcmPlayerProvider.processZoneOperation(var79);
                }
 
                var1.serverPacket = null;
@@ -3633,7 +3633,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2600 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2544);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2544);
                var1.serverPacket = null;
                return true;
             }
@@ -3892,7 +3892,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2663 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2547);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2547);
                var1.serverPacket = null;
                return true;
             }
@@ -4065,7 +4065,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2602 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2541);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2541);
                var1.serverPacket = null;
                return true;
             }
@@ -4176,7 +4176,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2671 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2552);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2552);
                var1.serverPacket = null;
                return true;
             }
@@ -4309,13 +4309,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2573 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2549);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2549);
                var1.serverPacket = null;
                return true;
             }
 
             if (ServerPacket.field2605 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2550);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2550);
                var1.serverPacket = null;
                return true;
             }
@@ -4444,7 +4444,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2603 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2543);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2543);
                var1.serverPacket = null;
                return true;
             }
@@ -4540,7 +4540,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             if (ServerPacket.field2629 == var1.serverPacket) {
                var20 = var3.readInt();
                var5 = var3.readInt();
-               var27 = class276.getGcDuration();
+               var27 = ZoneOperation.getGcDuration();
                PacketBufferNode var88 = class136.getPacketBufferNode(ClientPacket.field2435, packetWriter.isaacCipher);
                var88.packetBuffer.method2383(var20);
                var88.packetBuffer.writeIntLE(var5);
@@ -4571,7 +4571,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2592 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2553);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2553);
                var1.serverPacket = null;
                return true;
             }
@@ -4707,7 +4707,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2601 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2545);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2545);
                var1.serverPacket = null;
                return true;
             }
@@ -4766,7 +4766,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2672 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2546);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2546);
                var1.serverPacket = null;
                return true;
             }
@@ -4877,7 +4877,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2614 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2548);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2548);
                var1.serverPacket = null;
                return true;
             }
@@ -5129,7 +5129,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             if (ServerPacket.field2565 == var1.serverPacket) {
-               DevicePcmPlayerProvider.method80(class276.field2542);
+               DevicePcmPlayerProvider.processZoneOperation(ZoneOperation.field2542);
                var1.serverPacket = null;
                return true;
             }

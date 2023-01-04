@@ -6,83 +6,83 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jn")
-public class class276 {
+public class ZoneOperation {
    @ObfuscatedName("h")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2553 = new class276(4);
+   public static final ZoneOperation field2553 = new ZoneOperation(4);
    @ObfuscatedName("e")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2542 = new class276(5);
+   public static final ZoneOperation field2542 = new ZoneOperation(5);
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2543 = new class276(6);
+   public static final ZoneOperation field2543 = new ZoneOperation(6);
    @ObfuscatedName("x")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2554 = new class276(15);
+   public static final ZoneOperation field2554 = new ZoneOperation(15);
    @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2545 = new class276(4);
+   public static final ZoneOperation field2545 = new ZoneOperation(4);
    @ObfuscatedName("q")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2549 = new class276(2);
+   public static final ZoneOperation field2549 = new ZoneOperation(2);
    @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2551 = new class276(7);
+   public static final ZoneOperation field2551 = new ZoneOperation(7);
    @ObfuscatedName("r")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2547 = new class276(16);
+   public static final ZoneOperation field2547 = new ZoneOperation(16);
    @ObfuscatedName("u")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2548 = new class276(8);
+   public static final ZoneOperation field2548 = new ZoneOperation(8);
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2541 = new class276(5);
+   public static final ZoneOperation field2541 = new ZoneOperation(5);
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2550 = new class276(14);
+   public static final ZoneOperation field2550 = new ZoneOperation(14);
    @ObfuscatedName("g")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2544 = new class276(5);
+   public static final ZoneOperation field2544 = new ZoneOperation(5);
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2552 = new class276(7);
+   public static final ZoneOperation field2552 = new ZoneOperation(7);
    @ObfuscatedName("o")
    @ObfuscatedSignature(
       descriptor = "Ljn;"
    )
-   public static final class276 field2546 = new class276(14);
+   public static final ZoneOperation field2546 = new ZoneOperation(14);
 
    @ObfuscatedSignature(
       descriptor = "(I)V",
       garbageValue = "4"
    )
-   class276(int var1) {
+   ZoneOperation(int var1) {
    }
 
    @ObfuscatedName("ah")

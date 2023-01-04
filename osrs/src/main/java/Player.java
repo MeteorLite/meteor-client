@@ -34,7 +34,7 @@ public final class Player extends Actor {
    @ObfuscatedName("g")
    int field892;
    @ObfuscatedName("i")
-   int tileHeight2;
+   int baseTileHeight;
    @ObfuscatedName("o")
    int field898;
    @ObfuscatedName("n")
@@ -308,7 +308,7 @@ public final class Player extends Actor {
 
                if (Client.cycle >= this.animationCycleStart && Client.cycle < this.animationCycleEnd) {
                   var5 = this.attachedModel;
-                  var5.offsetBy(this.field892 - super.x, this.tileHeight2 - this.tileHeight, this.field898 - super.y);
+                  var5.offsetBy(this.field892 - super.x, this.baseTileHeight - this.tileHeight, this.field898 - super.y);
                   if (super.orientation == 512) {
                      var5.rotateY90Ccw();
                      var5.rotateY90Ccw();
@@ -333,7 +333,7 @@ public final class Player extends Actor {
                      var5.rotateY90Ccw();
                   }
 
-                  var5.offsetBy(super.x - this.field892, this.tileHeight - this.tileHeight2, super.y - this.field898);
+                  var5.offsetBy(super.x - this.field892, this.tileHeight - this.baseTileHeight, super.y - this.field898);
                }
             }
 
