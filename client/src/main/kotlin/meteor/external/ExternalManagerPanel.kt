@@ -1,0 +1,152 @@
+package meteor.external
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import compose.icons.Octicons
+import compose.icons.octicons.Plug16
+import meteor.ui.composables.PluginPanel
+import meteor.ui.composables.preferences.intColor
+import meteor.ui.composables.preferences.surface
+import meteor.ui.composables.preferences.uiColor
+import okhttp3.Request
+import org.json.JSONArray
+import java.io.File
+
+
+class ExternalManagerPanel : PluginPanel() {
+
+    @Composable
+    override fun Content() {
+
+        val textfieldColors = TextFieldDefaults.textFieldColors(textColor = intColor,
+            unfocusedLabelColor = intColor,
+            unfocusedIndicatorColor = intColor,
+            focusedIndicatorColor = uiColor.value,
+            focusedLabelColor = uiColor.value,
+            cursorColor = uiColor.value)
+
+        LazyColumn( modifier = Modifier.width(300.dp).fillMaxHeight(),
+            horizontalAlignment =  Alignment.CenterHorizontally,
+            verticalArrangement =  Arrangement.spacedBy(5.dp)) {
+            item{
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                    Text("External manager", color = uiColor.value, letterSpacing = 3.sp, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                }
+                OutlinedTextField(
+                    colors = textfieldColors,
+                    label = { Text("Repository Owner") },
+                    value = repositoryOwner.value,
+                    onValueChange = { repositoryOwner.value = it })
+
+                OutlinedTextField(
+                    colors = textfieldColors,
+                    label = { Text("Repository") },
+                    value = repository.value,
+                    onValueChange = { repository.value = it })
+
+                Row(horizontalArrangement = Arrangement.SpaceAround,
+                    verticalAlignment = Alignment.CenterVertically) {
+                    Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = surface),
+                        onClick = {
+                            try {
+                                val request = Request.Builder()
+                                    .url("https://raw.github.com/${repositoryOwner.value}/${repository.value}/main/plugins.json")
+                                    .build()
+
+                                val response = http.newCall(request).execute()
+                                body = response.body
+                                jsonString = body?.string()
+                                jsonArray = JSONArray(jsonString)
+                                for (i in 0 until jsonArray!!.length()) {
+                                    val plugin = jsonArray?.getJSONObject(i)
+                                    plugin?.getString("name")?.let {
+                                        pluginNames.add(it)
+                                        pluginNamesState.value = pluginNames
+                                    }
+                                }
+                                val firstPlugin = jsonArray?.getJSONObject(0)
+                                val url = firstPlugin?.getString("projectUrl")
+                                if (url != null) {
+                                    projectUrl.value = url
+                                }
+                            } catch (e: Exception) {
+                                projectUrl.value = ""
+                                pluginNamesState.value.clear()
+
+                            }
+                        }
+                    ) {
+                        Icon(imageVector = Octicons.Plug16, contentDescription = "", tint = uiColor.value)
+                        Spacer(modifier = Modifier.width(5.dp))
+                        Text(text = "Find Plugins", color = intColor, fontSize = 20.sp)
+                    }
+                }
+                Spacer(Modifier.height(4.dp))
+                Divider(color = uiColor.value, modifier = Modifier.fillMaxWidth(0.95f), thickness = 5.dp, startIndent = 5.dp)
+                Spacer(Modifier.height(4.dp))
+                if (projectUrl.value != "") {
+                    Row(horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically) {
+                        openSupport(projectUrl.value)
+                    }
+                }
+
+            }
+            items(items = pluginNamesState.value) { pluginName ->
+                val plugin = findJsonValue(pluginName)
+
+                Column(modifier = Modifier.background(surface, RoundedCornerShape(5.dp)).fillParentMaxWidth(0.9f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+
+                    Row {
+                        Text(text = "Name:", color = uiColor.value)
+                        Text(text = pluginName, color = intColor)
+                    }
+                    Row {
+                        Text(text = "Version:", color = uiColor.value)
+                        val releases = plugin?.getJSONArray("releases")
+                        val release = releases?.getJSONObject(0)
+                        val version = release?.getString("version")
+                        if (version != null) {
+                            Text(text = version, color = intColor)
+                        }
+                    }
+                    Row {
+                        if (plugin != null) {
+                            Text(text = "Details:", color = uiColor.value)
+                            Text(text = plugin.getString("description"), color = intColor)
+                        }
+                    }
+
+                    Button(colors = ButtonDefaults.buttonColors(backgroundColor = surface),
+                        onClick = {
+                            val releases = plugin?.getJSONArray("releases")
+                            val release = releases?.getJSONObject(0)
+                            val url = release?.getString("url")
+                            val savePath = "${System.getProperty("user.home")}/.meteor/externalplugins"
+                            val fileName = "${plugin?.getString("name")}.jar"
+                            val hash = release?.getString("sha512sum")
+                            if (hash != null && url != null) {
+                                downloadFile(url, savePath, fileName, hash)
+                            }
+                            val jar = File("$savePath/$fileName")
+                            loadAndInitJar(jar)
+                        }) {
+                        Text(text = "Download", color = intColor)
+                    }
+
+                }
+            }
+
+        }
+    }
+}
