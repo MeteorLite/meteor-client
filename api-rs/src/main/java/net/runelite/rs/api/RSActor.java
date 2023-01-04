@@ -98,6 +98,14 @@ public interface RSActor extends RSRenderable, Actor
 	@Override
 	void setGraphic(int id);
 
+	@Import("spotAnimHeight")
+	@Override
+	int getGraphicHeight();
+
+	@Import("spotAnimHeight")
+	@Override
+	void setGraphicHeight(int height);
+
 	@Import("spotAnimationFrame")
 	int getSpotAnimFrame();
 
