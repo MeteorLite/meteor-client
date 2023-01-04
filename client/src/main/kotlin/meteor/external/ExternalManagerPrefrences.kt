@@ -18,7 +18,7 @@ import meteor.plugins.PluginManager.getManifest
 import meteor.plugins.PluginManager.plugins
 import meteor.plugins.PluginManager.runningMap
 import meteor.plugins.PluginManager.start
-import meteor.ui.composables.preferences.intColor
+import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -123,6 +123,6 @@ fun openSupport(support: String) {
         modifier = Modifier.height(33.dp).width(275.dp)
     ) {
 
-        Text("Support: $support", color = intColor)
+        Text("Support: $support", color = secondColor.value)
     }
 }
