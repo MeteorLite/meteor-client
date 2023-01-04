@@ -82,10 +82,10 @@ import static net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperConfi
 import static net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperConfig.RadasBlessingMode;
 
 @PluginDescriptor(
-	name = "Menu Entry Swapper",
-	description = "Change the default option that is displayed when hovering over objects",
-	tags = {"npcs", "inventory", "items", "objects"},
-	enabledByDefault = true
+		name = "Menu Entry Swapper",
+		description = "Change the default option that is displayed when hovering over objects",
+		tags = {"npcs", "inventory", "items", "objects"},
+		enabledByDefault = true
 )
 @Slf4j
 public class MenuEntrySwapperPlugin extends Plugin
@@ -102,34 +102,34 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private static final String UI_SHIFT_KEY_PREFIX = "ui_shift_";
 
 	private static final List<MenuAction> NPC_MENU_TYPES = ImmutableList.of(
-		MenuAction.NPC_FIRST_OPTION,
-		MenuAction.NPC_SECOND_OPTION,
-		MenuAction.NPC_THIRD_OPTION,
-		MenuAction.NPC_FOURTH_OPTION,
-		MenuAction.NPC_FIFTH_OPTION
+			MenuAction.NPC_FIRST_OPTION,
+			MenuAction.NPC_SECOND_OPTION,
+			MenuAction.NPC_THIRD_OPTION,
+			MenuAction.NPC_FOURTH_OPTION,
+			MenuAction.NPC_FIFTH_OPTION
 	);
 
 	private static final List<MenuAction> OBJECT_MENU_TYPES = ImmutableList.of(
-		MenuAction.GAME_OBJECT_FIRST_OPTION,
-		MenuAction.GAME_OBJECT_SECOND_OPTION,
-		MenuAction.GAME_OBJECT_THIRD_OPTION,
-		MenuAction.GAME_OBJECT_FOURTH_OPTION
-		// GAME_OBJECT_FIFTH_OPTION gets sorted underneath Walk here after we swap, so it doesn't work
+			MenuAction.GAME_OBJECT_FIRST_OPTION,
+			MenuAction.GAME_OBJECT_SECOND_OPTION,
+			MenuAction.GAME_OBJECT_THIRD_OPTION,
+			MenuAction.GAME_OBJECT_FOURTH_OPTION
+			// GAME_OBJECT_FIFTH_OPTION gets sorted underneath Walk here after we swap, so it doesn't work
 	);
 
 	private static final Set<String> ESSENCE_MINE_NPCS = ImmutableSet.of(
-		"aubury",
-		"archmage sedridor",
-		"wizard distentor",
-		"wizard cromperty",
-		"brimstail"
+			"aubury",
+			"archmage sedridor",
+			"wizard distentor",
+			"wizard cromperty",
+			"brimstail"
 	);
 
 	private static final Set<String> TEMPOROSS_NPCS = ImmutableSet.of(
-		"captain dudi",
-		"captain pudi",
-		"first mate deri",
-		"first mate peri"
+			"captain dudi",
+			"captain pudi",
+			"first mate deri",
+			"first mate peri"
 	);
 
 	private Client client = Main.client;
@@ -222,7 +222,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		}
 
 		swapContains("configure", alwaysTrue(), "last-destination", () ->
-			config.swapFairyRing() == FairyRingMode.LAST_DESTINATION || config.swapFairyRing() == FairyRingMode.ZANARIS);
+				config.swapFairyRing() == FairyRingMode.LAST_DESTINATION || config.swapFairyRing() == FairyRingMode.ZANARIS);
 		swapContains("tree", alwaysTrue(), "zanaris", () -> config.swapFairyRing() == FairyRingMode.ZANARIS);
 
 		swap("check", "reset", config::swapBoxTrap);
@@ -274,11 +274,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 		swap("teleport menu", "al kharid", config::swapJewelleryBox);
 
 		Arrays.asList(
-			"annakarl", "ape atoll dungeon", "ardougne", "barrows", "battlefront", "camelot", "carrallangar",
-			"catherby", "cemetery", "draynor manor", "falador", "fenkenstrain's castle", "fishing guild", "ghorrock",
-			"grand exchange", "great kourend", "harmony island", "kharyrll", "lumbridge", "arceuus library",
-			"lunar isle", "marim", "mind altar", "salve graveyard", "seers' village", "senntisten", "troll stronghold",
-			"varrock", "watchtower", "waterbirth island", "weiss", "west ardougne", "yanille"
+				"annakarl", "ape atoll dungeon", "ardougne", "barrows", "battlefront", "camelot", "carrallangar",
+				"catherby", "cemetery", "draynor manor", "falador", "fenkenstrain's castle", "fishing guild", "ghorrock",
+				"grand exchange", "great kourend", "harmony island", "kharyrll", "lumbridge", "arceuus library",
+				"lunar isle", "marim", "mind altar", "salve graveyard", "seers' village", "senntisten", "troll stronghold",
+				"varrock", "watchtower", "waterbirth island", "weiss", "west ardougne", "yanille"
 		).forEach(location -> swap(location, "portal nexus", "teleport menu", config::swapPortalNexus));
 
 		swap("shared", "private", config::swapPrivate);
@@ -346,27 +346,27 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private void removeOldSwaps()
 	{
 		String[] keys = {
-			"swapBattlestaves",
-			"swapPrayerBook",
-			"swapContract",
-			"claimSlime",
-			"swapDarkMage",
-			"swapCaptainKhaled",
-			"swapDecant",
-			"swapHardWoodGrove",
-			"swapHardWoodGroveParcel",
-			"swapHouseAdvertisement",
-			"swapEnchant",
-			"swapHouseTeleportSpell",
-			"swapTeleportSpell",
-			"swapStartMinigame",
-			"swapQuickleave",
-			"swapNpcContact",
-			"swapNets",
-			"swapGauntlet",
-			"swapCollectMiscellania",
-			"swapRockCake",
-			"swapRowboatDive"
+				"swapBattlestaves",
+				"swapPrayerBook",
+				"swapContract",
+				"claimSlime",
+				"swapDarkMage",
+				"swapCaptainKhaled",
+				"swapDecant",
+				"swapHardWoodGrove",
+				"swapHardWoodGroveParcel",
+				"swapHouseAdvertisement",
+				"swapEnchant",
+				"swapHouseTeleportSpell",
+				"swapTeleportSpell",
+				"swapStartMinigame",
+				"swapQuickleave",
+				"swapNpcContact",
+				"swapNets",
+				"swapGauntlet",
+				"swapCollectMiscellania",
+				"swapRockCake",
+				"swapRowboatDive"
 		};
 		for (String key : keys)
 		{
@@ -440,7 +440,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 	{
 		itemId = ItemVariationMapping.INSTANCE.map(itemId);
 		String config = configManager.getConfiguration(MenuEntrySwapperConfig.GROUP,
-			(shift ? WORN_ITEM_SHIFT_KEY_PREFIX : WORN_ITEM_KEY_PREFIX) + itemId);
+				(shift ? WORN_ITEM_SHIFT_KEY_PREFIX : WORN_ITEM_KEY_PREFIX) + itemId);
 		if (config == null || config.isEmpty())
 		{
 			return null;
@@ -453,14 +453,14 @@ public class MenuEntrySwapperPlugin extends Plugin
 	{
 		itemId = ItemVariationMapping.INSTANCE.map(itemId);
 		configManager.setConfiguration(MenuEntrySwapperConfig.GROUP,
-			(shift ? WORN_ITEM_SHIFT_KEY_PREFIX : WORN_ITEM_KEY_PREFIX) + itemId, index);
+				(shift ? WORN_ITEM_SHIFT_KEY_PREFIX : WORN_ITEM_KEY_PREFIX) + itemId, index);
 	}
 
 	private void unsetWornItemSwapConfig(boolean shift, int itemId)
 	{
 		itemId = ItemVariationMapping.INSTANCE.map(itemId);
 		configManager.unsetConfiguration(MenuEntrySwapperConfig.GROUP,
-			(shift ? WORN_ITEM_SHIFT_KEY_PREFIX : WORN_ITEM_KEY_PREFIX) + itemId);
+				(shift ? WORN_ITEM_SHIFT_KEY_PREFIX : WORN_ITEM_KEY_PREFIX) + itemId);
 	}
 
 	@Override
@@ -491,11 +491,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 				final Integer swapConfig = getObjectSwapConfig(false, composition.getId());
 				final MenuAction currentAction = swapConfig != null ? OBJECT_MENU_TYPES.get(swapConfig) :
-					defaultAction(composition);
+						defaultAction(composition);
 
 				final Integer shiftSwapConfig = getObjectSwapConfig(true, composition.getId());
 				final MenuAction currentShiftAction = shiftSwapConfig != null ? OBJECT_MENU_TYPES.get(shiftSwapConfig) :
-					defaultAction(composition);
+						defaultAction(composition);
 
 				int shiftOff = 0;
 				for (int actionIdx = 0; actionIdx < OBJECT_MENU_TYPES.size(); ++actionIdx)
@@ -508,20 +508,20 @@ public class MenuEntrySwapperPlugin extends Plugin
 					final MenuAction menuAction = OBJECT_MENU_TYPES.get(actionIdx);
 					if (menuAction != currentAction)
 					{
-						client.createMenuEntry(idx + shiftOff)
-							.setOption("Swap left click " + actions[actionIdx])
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE)
-							.onClick(objectConsumer(composition, actions, actionIdx, menuAction, false));
+						MenuEntry menuEntry = client.createMenuEntry(idx + shiftOff)
+								.setOption("Swap left click " + actions[actionIdx])
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, objectConsumer(composition, actions, actionIdx, menuAction, false));
 					}
 
 					if (menuAction != currentShiftAction && menuAction != currentAction)
 					{
-						client.createMenuEntry(idx)
-							.setOption("Swap shift click " + actions[actionIdx])
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE)
-							.onClick(objectConsumer(composition, actions, actionIdx, menuAction, true));
+						MenuEntry menuEntry = client.createMenuEntry(idx)
+								.setOption("Swap shift click " + actions[actionIdx])
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, objectConsumer(composition, actions, actionIdx, menuAction, true));
 						++shiftOff;
 					}
 				}
@@ -529,43 +529,42 @@ public class MenuEntrySwapperPlugin extends Plugin
 				if (swapConfig != null || shiftSwapConfig != null)
 				{
 					// Reset
-					client.createMenuEntry(idx)
-						.setOption("Reset swap")
-						.setTarget(entry.getTarget())
-						.setType(MenuAction.RUNELITE)
-						.onClick(e ->
-						{
-							final String message = new ChatMessageBuilder()
+					MenuEntry menuEntry = client.createMenuEntry(idx)
+							.setOption("Reset swap")
+							.setTarget(entry.getTarget())
+							.setType(MenuAction.RUNELITE);
+					Main.INSTANCE.getOnClicks().put(menuEntry, e -> {
+						final String message = new ChatMessageBuilder()
 								.append("The default left and shift click options for '").append(Text.removeTags(composition.getName())).append("' ")
 								.append("have been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.Companion.builder()
+						chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
 								.runeLiteFormattedMessage(message));
 
-							log.debug("Unset object swap for {}", composition.getId());
-							unsetObjectSwapConfig(true, composition.getId());
-							unsetObjectSwapConfig(false, composition.getId());
-						});
+						log.debug("Unset object swap for {}", composition.getId());
+						unsetObjectSwapConfig(true, composition.getId());
+						unsetObjectSwapConfig(false, composition.getId());
+					});
 				}
 			}
 		}
 	}
 
 	private Consumer<MenuEntry> objectConsumer(ObjectComposition composition, String[] actions, int menuIdx,
-		MenuAction menuAction, boolean shift)
+											   MenuAction menuAction, boolean shift)
 	{
 		return e ->
 		{
 			final String message = new ChatMessageBuilder()
-				.append("The default ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(composition.getName())).append("' ")
-				.append("has been set to '").append(actions[menuIdx]).append("'.")
-				.build();
+					.append("The default ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(composition.getName())).append("' ")
+					.append("has been set to '").append(actions[menuIdx]).append("'.")
+					.build();
 
 			chatMessageManager.queue(QueuedMessage.Companion.builder()
-				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message));
+					.type(ChatMessageType.CONSOLE)
+					.runeLiteFormattedMessage(message));
 
 			log.debug("Set object swap for {} to {}", composition.getId(), menuAction);
 
@@ -578,13 +577,13 @@ public class MenuEntrySwapperPlugin extends Plugin
 		return e ->
 		{
 			final String message = new ChatMessageBuilder()
-				.append("The default ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(composition.getName())).append("' ")
-				.append("has been set to Walk here.")
-				.build();
+					.append("The default ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(composition.getName())).append("' ")
+					.append("has been set to Walk here.")
+					.build();
 
 			chatMessageManager.queue(QueuedMessage.Companion.builder()
-				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message));
+					.type(ChatMessageType.CONSOLE)
+					.runeLiteFormattedMessage(message));
 
 			log.debug("Set npc {} click swap for {} to Walk here", shift ? "shift" : "left", composition.getId());
 
@@ -617,17 +616,17 @@ public class MenuEntrySwapperPlugin extends Plugin
 				final Integer shiftSwapConfig = getNpcSwapConfig(true, composition.getId());
 				final boolean hasAttack = Arrays.stream(composition.getActions()).anyMatch("Attack"::equalsIgnoreCase);
 				final MenuAction currentAction = swapConfig == null ?
-					// Attackable NPCs always have Attack as the first, last (deprioritized), or when hidden, no, option.
-					// Due to this the default action would be either Attack or the first non-Attack option, based on
-					// the game settings. Since it may be valid to swap an option up to override Attack, even when Attack
-					// is left-click, we cannot assume any default currentAction on attackable NPCs.
-					// Non-attackable NPCS have a predictable default action which we can prevent a swap to if no swap
-					// config is set, which just avoids showing a Swap option on a 1-op NPC, which looks odd.
-					(hasAttack ? null : defaultAction(composition)) :
-					(swapConfig == -1 ? MenuAction.WALK : NPC_MENU_TYPES.get(swapConfig));
+						// Attackable NPCs always have Attack as the first, last (deprioritized), or when hidden, no, option.
+						// Due to this the default action would be either Attack or the first non-Attack option, based on
+						// the game settings. Since it may be valid to swap an option up to override Attack, even when Attack
+						// is left-click, we cannot assume any default currentAction on attackable NPCs.
+						// Non-attackable NPCS have a predictable default action which we can prevent a swap to if no swap
+						// config is set, which just avoids showing a Swap option on a 1-op NPC, which looks odd.
+						(hasAttack ? null : defaultAction(composition)) :
+						(swapConfig == -1 ? MenuAction.WALK : NPC_MENU_TYPES.get(swapConfig));
 				final MenuAction currentShiftAction = shiftSwapConfig == null ?
-					(hasAttack ? null : defaultAction(composition)) :
-					(shiftSwapConfig == -1 ? MenuAction.WALK : NPC_MENU_TYPES.get(shiftSwapConfig));
+						(hasAttack ? null : defaultAction(composition)) :
+						(shiftSwapConfig == -1 ? MenuAction.WALK : NPC_MENU_TYPES.get(shiftSwapConfig));
 
 				int shiftOff = 0;
 				for (int actionIdx = 0; actionIdx < NPC_MENU_TYPES.size(); ++actionIdx)
@@ -641,7 +640,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 					}
 
 					if ("Knock-Out".equals(actions[actionIdx])
-						|| "Lure".equals(actions[actionIdx]))
+							|| "Lure".equals(actions[actionIdx]))
 					{
 						// https://secure.runescape.com/m=news/third-party-client-guidelines?oldschool=1
 						continue;
@@ -650,78 +649,78 @@ public class MenuEntrySwapperPlugin extends Plugin
 					final MenuAction menuAction = NPC_MENU_TYPES.get(actionIdx);
 					if (menuAction != currentAction)
 					{
-						client.createMenuEntry(idx + shiftOff)
-							.setOption("Swap left click " + actions[actionIdx])
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE)
-							.onClick(npcConsumer(composition, actions, actionIdx, menuAction, false));
+						MenuEntry menuEntry = client.createMenuEntry(idx + shiftOff)
+								.setOption("Swap left click " + actions[actionIdx])
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, npcConsumer(composition, actions, actionIdx, menuAction, false));
 					}
 
 					if (menuAction != currentShiftAction)
 					{
-						client.createMenuEntry(idx)
-							.setOption("Swap shift click " + actions[actionIdx])
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE)
-							.onClick(npcConsumer(composition, actions, actionIdx, menuAction, true));
+						MenuEntry menuEntry = client.createMenuEntry(idx)
+								.setOption("Swap shift click " + actions[actionIdx])
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, npcConsumer(composition, actions, actionIdx, menuAction, true));
 						++shiftOff;
 					}
 				}
 
 				// Walk here swap
-				client.createMenuEntry(idx + shiftOff)
-					.setOption("Swap left click Walk here")
-					.setTarget(entry.getTarget())
-					.setType(MenuAction.RUNELITE)
-					.onClick(walkHereConsumer(false, composition));
+				MenuEntry menuEntry = client.createMenuEntry(idx + shiftOff)
+						.setOption("Swap left click Walk here")
+						.setTarget(entry.getTarget())
+						.setType(MenuAction.RUNELITE);
+				Main.INSTANCE.getOnClicks().put(menuEntry, walkHereConsumer(false, composition));
 
-				client.createMenuEntry(idx)
-					.setOption("Swap shift click Walk here")
-					.setTarget(entry.getTarget())
-					.setType(MenuAction.RUNELITE)
-					.onClick(walkHereConsumer(true, composition));
+				MenuEntry menuEntry2 = client.createMenuEntry(idx)
+						.setOption("Swap shift click Walk here")
+						.setTarget(entry.getTarget())
+						.setType(MenuAction.RUNELITE);
+
+				Main.INSTANCE.getOnClicks().put(menuEntry2, walkHereConsumer(true, composition));
 				++shiftOff;
 
 				if (getNpcSwapConfig(true, composition.getId()) != null || getNpcSwapConfig(false, composition.getId()) != null) // NOPMD: BrokenNullCheck
 				{
 					// Reset
-					client.createMenuEntry(idx)
-						.setOption("Reset swap")
-						.setTarget(entry.getTarget())
-						.setType(MenuAction.RUNELITE)
-						.onClick(e ->
-						{
-							final String message = new ChatMessageBuilder()
+					MenuEntry menuEntry3 = client.createMenuEntry(idx)
+							.setOption("Reset swap")
+							.setTarget(entry.getTarget())
+							.setType(MenuAction.RUNELITE);
+					Main.INSTANCE.getOnClicks().put(menuEntry3, e -> {
+						final String message = new ChatMessageBuilder()
 								.append("The default left and shift click options for '").append(Text.removeTags(composition.getName())).append("' ")
 								.append("have been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.Companion.builder()
+						chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
 								.runeLiteFormattedMessage(message));
 
-							log.debug("Unset npc swap for {}", composition.getId());
-							unsetNpcSwapConfig(true, composition.getId());
-							unsetNpcSwapConfig(false, composition.getId());
-						});
+						log.debug("Unset npc swap for {}", composition.getId());
+						unsetNpcSwapConfig(true, composition.getId());
+						unsetNpcSwapConfig(false, composition.getId());
+					});
 				}
 			}
 		}
 	}
 
 	private Consumer<MenuEntry> npcConsumer(NPCComposition composition, String[] actions, int menuIdx,
-		MenuAction menuAction, boolean shift)
+											MenuAction menuAction, boolean shift)
 	{
 		return e ->
 		{
 			final String message = new ChatMessageBuilder()
-				.append("The default ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(composition.getName())).append("' ")
-				.append("has been set to '").append(actions[menuIdx]).append("'.")
-				.build();
+					.append("The default ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(composition.getName())).append("' ")
+					.append("has been set to '").append(actions[menuIdx]).append("'.")
+					.build();
 
 			chatMessageManager.queue(QueuedMessage.Companion.builder()
-				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message));
+					.type(ChatMessageType.CONSOLE)
+					.runeLiteFormattedMessage(message));
 
 			log.debug("Set npc {} swap for {} to {}", shift ? "shift" : "left", composition.getId(), menuAction);
 
@@ -743,7 +742,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 			Widget w = entry.getWidget();
 
 			if (w != null && WidgetInfo.TO_GROUP(w.getId()) == WidgetID.EQUIPMENT_GROUP_ID
-				&& "Examine".equals(entry.getOption()) && entry.getIdentifier() == 10)
+					&& "Examine".equals(entry.getOption()) && entry.getIdentifier() == 10)
 			{
 				w = w.getChild(1);
 				if (w != null && w.getItemId() > -1)
@@ -762,77 +761,79 @@ public class MenuEntrySwapperPlugin extends Plugin
 						{
 							if (leftClickOp == null || leftClickOp != opId)
 							{
-								leftClickMenus.add(client.createMenuEntry(idx)
-									.setOption(opName)
-									.setType(MenuAction.RUNELITE)
-									.onClick(wornItemConsumer(itemComposition, opName, opId, false)));
+								MenuEntry menuEntry = client.createMenuEntry(idx)
+										.setOption(opName)
+										.setType(MenuAction.RUNELITE);
+								Main.INSTANCE.getOnClicks().put(menuEntry, wornItemConsumer(itemComposition, opName, opId, false));
+								leftClickMenus.add(menuEntry);
 							}
 							if (shiftClickOp == null || shiftClickOp != opId)
 							{
-								shiftClickMenus.add(client.createMenuEntry(idx)
-									.setOption(opName)
-									.setType(MenuAction.RUNELITE)
-									.onClick(wornItemConsumer(itemComposition, opName, opId, true)));
+								MenuEntry menuEntry = client.createMenuEntry(idx)
+										.setOption(opName)
+										.setType(MenuAction.RUNELITE);
+								Main.INSTANCE.getOnClicks().put(menuEntry, wornItemConsumer(itemComposition, opName, opId, true));
+								shiftClickMenus.add(menuEntry);
 							}
 						}
 					}
 
 					if (leftClickOp != null)
 					{
-						leftClickMenus.add(client.createMenuEntry(idx)
-							.setOption("Reset")
-							.setType(MenuAction.RUNELITE)
-							.onClick(e ->
-							{
-								final String message = new ChatMessageBuilder()
+						MenuEntry menuEntry = client.createMenuEntry(idx)
+								.setOption("Reset")
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, e -> {
+							final String message = new ChatMessageBuilder()
 									.append("The default worn left click option for '").append(itemComposition.getName()).append("' ")
 									.append("has been reset.")
 									.build();
 
-								chatMessageManager.queue(QueuedMessage.Companion.builder()
+							chatMessageManager.queue(QueuedMessage.Companion.builder()
 									.type(ChatMessageType.CONSOLE)
 									.runeLiteFormattedMessage(message));
 
-								log.debug("Unset worn item left swap for {}", itemComposition.getName());
-								unsetWornItemSwapConfig(false, itemComposition.getId());
-							}));
+							log.debug("Unset worn item left swap for {}", itemComposition.getName());
+							unsetWornItemSwapConfig(false, itemComposition.getId());
+						});
+						leftClickMenus.add(menuEntry);
 					}
 					if (shiftClickOp != null)
 					{
-						shiftClickMenus.add(client.createMenuEntry(idx)
-							.setOption("Reset")
-							.setType(MenuAction.RUNELITE)
-							.onClick(e ->
-							{
-								final String message = new ChatMessageBuilder()
+						MenuEntry menuEntry =client.createMenuEntry(idx)
+								.setOption("Reset")
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, e -> {
+							final String message = new ChatMessageBuilder()
 									.append("The default worn shift click option for '").append(itemComposition.getName()).append("' ")
 									.append("has been reset.")
 									.build();
 
-								chatMessageManager.queue(QueuedMessage.Companion.builder()
+							chatMessageManager.queue(QueuedMessage.Companion.builder()
 									.type(ChatMessageType.CONSOLE)
 									.runeLiteFormattedMessage(message));
 
-								log.debug("Unset worn item shift swap for {}", itemComposition.getName());
-								unsetWornItemSwapConfig(true, itemComposition.getId());
-							}));
+							log.debug("Unset worn item shift swap for {}", itemComposition.getName());
+							unsetWornItemSwapConfig(true, itemComposition.getId());
+						});
+						shiftClickMenus.add(menuEntry);
 					}
 
 					if (!leftClickMenus.isEmpty())
 					{
 						MenuEntry sub = client.createMenuEntry(idx)
-							.setOption("Swap left click")
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE_SUBMENU);
+								.setOption("Swap left click")
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE_SUBMENU);
 						leftClickMenus.forEach(menu -> menu.setParent(sub));
 					}
 
 					if (!shiftClickMenus.isEmpty())
 					{
 						MenuEntry sub = client.createMenuEntry(idx)
-							.setOption("Swap shift click")
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE_SUBMENU);
+								.setOption("Swap shift click")
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE_SUBMENU);
 						shiftClickMenus.forEach(menu -> menu.setParent(sub));
 					}
 				}
@@ -846,13 +847,13 @@ public class MenuEntrySwapperPlugin extends Plugin
 		return e ->
 		{
 			final String message = new ChatMessageBuilder()
-				.append("The default worn ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(itemComposition.getName())).append("' ")
-				.append("has been set to '").append(opName).append("'.")
-				.build();
+					.append("The default worn ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(itemComposition.getName())).append("' ")
+					.append("has been set to '").append(opName).append("'.")
+					.build();
 
 			chatMessageManager.queue(QueuedMessage.Companion.builder()
-				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message));
+					.type(ChatMessageType.CONSOLE)
+					.runeLiteFormattedMessage(message));
 
 			log.debug("Set worn item {} swap for {} to {}", shift ? "shift" : "left", itemComposition.getName(), opIdx);
 			setWornItemSwapConfig(shift, itemComposition.getId(), opIdx);
@@ -873,7 +874,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 			final Widget w = entry.getWidget();
 
 			if (w != null && WidgetInfo.TO_GROUP(w.getId()) == WidgetID.INVENTORY_GROUP_ID
-				&& "Examine".equals(entry.getOption()) && entry.getIdentifier() == 10)
+					&& "Examine".equals(entry.getOption()) && entry.getIdentifier() == 10)
 			{
 				final ItemComposition itemComposition = itemManager.getItemComposition(entry.getItemId());
 				final String[] actions = itemComposition.getInventoryActions();
@@ -894,22 +895,24 @@ public class MenuEntrySwapperPlugin extends Plugin
 						{
 							if (defaultLeftClickOp != actionIdx && (leftClickOp == null || leftClickOp != actionIdx))
 							{
-								leftClickMenus.add(client.createMenuEntry(idx)
-									.setOption("LClick " + opName)
-									.setTarget(itemComposition.getName())
-									.setType(MenuAction.RUNELITE)
-									.onClick(heldItemConsumer(itemComposition, opName, actionIdx, false)));
+								MenuEntry menuEntry = client.createMenuEntry(idx)
+										.setOption("LClick " + opName)
+										.setTarget(itemComposition.getName())
+										.setType(MenuAction.RUNELITE);
+								Main.INSTANCE.getOnClicks().put(menuEntry, heldItemConsumer(itemComposition, opName, actionIdx, false));
+								leftClickMenus.add(menuEntry);
 							}
 						}
 						if (config.shiftClickCustomization())
 						{
 							if (defaultShiftClickOp != actionIdx && (shiftClickOp == null || shiftClickOp != actionIdx))
 							{
-								shiftClickMenus.add(client.createMenuEntry(idx)
-									.setOption("Shift " + opName)
-									.setTarget(itemComposition.getName())
-									.setType(MenuAction.RUNELITE)
-									.onClick(heldItemConsumer(itemComposition, opName, actionIdx, true)));
+								MenuEntry menuEntry = client.createMenuEntry(idx)
+										.setOption("Shift " + opName)
+										.setTarget(itemComposition.getName())
+										.setType(MenuAction.RUNELITE);
+								Main.INSTANCE.getOnClicks().put(menuEntry, heldItemConsumer(itemComposition, opName, actionIdx, true));
+								shiftClickMenus.add(menuEntry);
 							}
 						}
 					}
@@ -919,81 +922,82 @@ public class MenuEntrySwapperPlugin extends Plugin
 						// Use
 						if (defaultLeftClickOp != -1 && config.leftClickCustomization())
 						{
-							leftClickMenus.add(client.createMenuEntry(idx)
-								.setOption("LClick " + "Use")
-								.setTarget(itemComposition.getName())
-								.setType(MenuAction.RUNELITE)
-								.onClick(heldItemConsumer(itemComposition, "Use", -1, false)));
+							MenuEntry menuEntry = client.createMenuEntry(idx)
+									.setOption("LClick " + "Use")
+									.setTarget(itemComposition.getName())
+									.setType(MenuAction.RUNELITE);
+							Main.INSTANCE.getOnClicks().put(menuEntry, heldItemConsumer(itemComposition, "Use", -1, false));
+							leftClickMenus.add(menuEntry);
 						}
 						if (defaultShiftClickOp != -1 && config.shiftClickCustomization())
 						{
-							shiftClickMenus.add(client.createMenuEntry(idx)
-								.setOption("Shift " + "Use")
-								.setTarget(itemComposition.getName())
-								.setType(MenuAction.RUNELITE)
-								.onClick(heldItemConsumer(itemComposition, "Use", -1, true)));
+							MenuEntry menuEntry = client.createMenuEntry(idx)
+									.setOption("Shift " + "Use")
+									.setTarget(itemComposition.getName())
+									.setType(MenuAction.RUNELITE);
+							Main.INSTANCE.getOnClicks().put(menuEntry, heldItemConsumer(itemComposition, "Use", -1, true));
+							shiftClickMenus.add(menuEntry);
 						}
 					}
 				}
 
 				if (leftClickOp != null && config.leftClickCustomization())
 				{
-					leftClickMenus.add(client.createMenuEntry(idx)
-						.setOption("Reset")
-						.setTarget(itemComposition.getName())
-						.setType(MenuAction.RUNELITE)
-						.onClick(e ->
-						{
-							final String message = new ChatMessageBuilder()
+					MenuEntry menuEntry = client.createMenuEntry(idx)
+							.setOption("Reset")
+							.setTarget(itemComposition.getName())
+							.setType(MenuAction.RUNELITE);
+					Main.INSTANCE.getOnClicks().put(menuEntry, e -> {
+						final String message = new ChatMessageBuilder()
 								.append("The default held left click option for '").append(itemComposition.getName()).append("' ")
 								.append("has been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.Companion.builder()
+						chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
 								.runeLiteFormattedMessage(message));
 
-							log.debug("Unset held item left swap for {}", itemComposition.getName());
-							unsetItemSwapConfig(false, itemComposition.getId());
-						}));
+						log.debug("Unset held item left swap for {}", itemComposition.getName());
+						unsetItemSwapConfig(false, itemComposition.getId());
+					});
 				}
 				if (shiftClickOp != null && config.shiftClickCustomization())
 				{
-					shiftClickMenus.add(client.createMenuEntry(idx)
-						.setOption("Reset")
-						.setTarget(itemComposition.getName())
-						.setType(MenuAction.RUNELITE)
-						.onClick(e ->
-						{
-							final String message = new ChatMessageBuilder()
+					MenuEntry menuEntry = client.createMenuEntry(idx)
+							.setOption("Reset")
+							.setTarget(itemComposition.getName())
+							.setType(MenuAction.RUNELITE);
+					Main.INSTANCE.getOnClicks().put(menuEntry, e -> {
+						final String message = new ChatMessageBuilder()
 								.append("The default held shift click option for '").append(itemComposition.getName()).append("' ")
 								.append("has been reset.")
 								.build();
 
-							chatMessageManager.queue(QueuedMessage.Companion.builder()
+						chatMessageManager.queue(QueuedMessage.Companion.builder()
 								.type(ChatMessageType.CONSOLE)
 								.runeLiteFormattedMessage(message));
 
-							log.debug("Unset held item shift swap for {}", itemComposition.getName());
-							unsetItemSwapConfig(true, itemComposition.getId());
-						}));
+						log.debug("Unset held item shift swap for {}", itemComposition.getName());
+						unsetItemSwapConfig(true, itemComposition.getId());
+					});
+					shiftClickMenus.add(menuEntry);
 				}
 
 				if (!leftClickMenus.isEmpty())
 				{
 					MenuEntry sub = client.createMenuEntry(idx)
-						.setOption("Swap left click")
-						.setTarget(entry.getTarget())
-						.setType(MenuAction.RUNELITE_SUBMENU);
+							.setOption("Swap left click")
+							.setTarget(entry.getTarget())
+							.setType(MenuAction.RUNELITE_SUBMENU);
 					leftClickMenus.forEach(menu -> menu.setParent(sub));
 				}
 
 				if (!shiftClickMenus.isEmpty())
 				{
 					MenuEntry sub = client.createMenuEntry(idx)
-						.setOption("Swap shift click")
-						.setTarget(entry.getTarget())
-						.setType(MenuAction.RUNELITE_SUBMENU);
+							.setOption("Swap shift click")
+							.setTarget(entry.getTarget())
+							.setType(MenuAction.RUNELITE_SUBMENU);
 					shiftClickMenus.forEach(menu -> menu.setParent(sub));
 				}
 				break;
@@ -1006,13 +1010,13 @@ public class MenuEntrySwapperPlugin extends Plugin
 		return e ->
 		{
 			final String message = new ChatMessageBuilder()
-				.append("The default held ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(itemComposition.getName())).append("' ")
-				.append("has been set to '").append(opName).append("'.")
-				.build();
+					.append("The default held ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(itemComposition.getName())).append("' ")
+					.append("has been set to '").append(opName).append("'.")
+					.build();
 
 			chatMessageManager.queue(QueuedMessage.Companion.builder()
-				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message));
+					.type(ChatMessageType.CONSOLE)
+					.runeLiteFormattedMessage(message));
 
 			log.debug("Set held item {} swap for {} to {}", shift ? "shift" : "left", itemComposition.getName(), opIdx);
 			setItemSwapConfig(shift, itemComposition.getId(), opIdx);
@@ -1075,45 +1079,45 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 					if (identifier != lowestOp && (leftClick == null || leftClick != identifier))
 					{
-						client.createMenuEntry(1 + shiftOff)
-							.setOption("Swap left click " + entry.getOption())
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE)
-							.onClick(uiConsumer(entry.getOption(), entry.getTarget(), false, componentId, itemId, identifier));
+						MenuEntry menuEntry = client.createMenuEntry(1 + shiftOff)
+								.setOption("Swap left click " + entry.getOption())
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, uiConsumer(entry.getOption(), entry.getTarget(), false, componentId, itemId, identifier));
 					}
 
 					if (identifier != lowestOp && (shiftClick == null || shiftClick != identifier))
 					{
-						client.createMenuEntry(1)
-							.setOption("Swap shift click " + entry.getOption())
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE)
-							.onClick(uiConsumer(entry.getOption(), entry.getTarget(), true, componentId, itemId, identifier));
+						MenuEntry menuEntry = client.createMenuEntry(1)
+								.setOption("Swap shift click " + entry.getOption())
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE);
+
+						Main.INSTANCE.getOnClicks().put(menuEntry, uiConsumer(entry.getOption(), entry.getTarget(), true, componentId, itemId, identifier));
 						++shiftOff;
 					}
 
 					if (identifier == highestOp && (leftClick != null || shiftClick != null))
 					{
-						client.createMenuEntry(1)
-							.setOption("Reset swap")
-							.setTarget(entry.getTarget())
-							.setType(MenuAction.RUNELITE)
-							.onClick(menuEntry ->
-							{
-								final String message = new ChatMessageBuilder()
+						MenuEntry menuEntry = client.createMenuEntry(1)
+								.setOption("Reset swap")
+								.setTarget(entry.getTarget())
+								.setType(MenuAction.RUNELITE);
+						Main.INSTANCE.getOnClicks().put(menuEntry, e -> {
+							final String message = new ChatMessageBuilder()
 									.append("The default left and shift click options for '").append(Text.removeTags(menuEntry.getTarget())).append("' ")
 									.append("have been reset.")
 									.build();
 
-								chatMessageManager.queue(QueuedMessage.Companion.builder()
+							chatMessageManager.queue(QueuedMessage.Companion.builder()
 									.type(ChatMessageType.CONSOLE)
 									.runeLiteFormattedMessage(message));
 
-								log.debug("Unset ui swap for {}/{}", componentId, menuEntry.getTarget());
+							log.debug("Unset ui swap for {}/{}", componentId, menuEntry.getTarget());
 
-								unsetUiSwapConfig(false, componentId, itemId);
-								unsetUiSwapConfig(true, componentId, itemId);
-							});
+							unsetUiSwapConfig(false, componentId, itemId);
+							unsetUiSwapConfig(true, componentId, itemId);
+						});
 					}
 				}
 			}
@@ -1125,13 +1129,13 @@ public class MenuEntrySwapperPlugin extends Plugin
 		return e ->
 		{
 			final String message = new ChatMessageBuilder()
-				.append("The default  ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(target)).append("' ")
-				.append("has been set to '").append(option).append("'.")
-				.build();
+					.append("The default  ").append(shift ? "shift" : "left").append(" click option for '").append(Text.removeTags(target)).append("' ")
+					.append("has been set to '").append(option).append("'.")
+					.build();
 
 			chatMessageManager.queue(QueuedMessage.Companion.builder()
-				.type(ChatMessageType.CONSOLE)
-				.runeLiteFormattedMessage(message));
+					.type(ChatMessageType.CONSOLE)
+					.runeLiteFormattedMessage(message));
 
 			log.debug("Set ui {} swap for {}/{} to {}", shift ? "shift" : "left", componentId, itemId, opId);
 			setUiSwapConfig(shift, componentId, itemId, opId);
@@ -1153,15 +1157,15 @@ public class MenuEntrySwapperPlugin extends Plugin
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x for deposit box interface and chambers of xeric storage unit.
 		// Deposit- op 2 is the current withdraw amount 1/5/10/x for bank interface
 		if (shiftModifier() && config.bankDepositShiftClick() != ShiftDepositMode.OFF
-			&& type == MenuAction.CC_OP
-			&& menuEntry.getIdentifier() == (isDepositBoxPlayerInventory || isGroupStoragePlayerInventory || isChambersOfXericStorageUnitPlayerInventory ? 1 : 2)
-			&& (menuEntry.getOption().startsWith("Deposit-") || menuEntry.getOption().startsWith("Store") || menuEntry.getOption().startsWith("Donate")))
+				&& type == MenuAction.CC_OP
+				&& menuEntry.getIdentifier() == (isDepositBoxPlayerInventory || isGroupStoragePlayerInventory || isChambersOfXericStorageUnitPlayerInventory ? 1 : 2)
+				&& (menuEntry.getOption().startsWith("Deposit-") || menuEntry.getOption().startsWith("Store") || menuEntry.getOption().startsWith("Donate")))
 		{
 			ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
 			final int opId = isDepositBoxPlayerInventory ? shiftDepositMode.getIdentifierDepositBox()
-				: isChambersOfXericStorageUnitPlayerInventory ? shiftDepositMode.getIdentifierChambersStorageUnit()
-				: isGroupStoragePlayerInventory ? shiftDepositMode.getIdentifierGroupStorage()
-				: shiftDepositMode.getIdentifier();
+					: isChambersOfXericStorageUnitPlayerInventory ? shiftDepositMode.getIdentifierChambersStorageUnit()
+					: isGroupStoragePlayerInventory ? shiftDepositMode.getIdentifierGroupStorage()
+					: shiftDepositMode.getIdentifier();
 			final MenuAction action = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY : MenuAction.CC_OP;
 			bankModeSwap(action, opId);
 			return true;
@@ -1170,8 +1174,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 		// Swap to shift-click withdraw behavior
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x
 		if (shiftModifier() && config.bankWithdrawShiftClick() != ShiftWithdrawMode.OFF
-			&& type == MenuAction.CC_OP && menuEntry.getIdentifier() == 1
-			&& menuEntry.getOption().startsWith("Withdraw"))
+				&& type == MenuAction.CC_OP && menuEntry.getIdentifier() == 1
+				&& menuEntry.getOption().startsWith("Withdraw"))
 		{
 			ShiftWithdrawMode shiftWithdrawMode = config.bankWithdrawShiftClick();
 			final MenuAction action;
@@ -1250,8 +1254,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 			if (swapIndex != null)
 			{
 				final int swapAction = swapIndex >= 0
-					? 1 + swapIndex
-					: -1;
+						? 1 + swapIndex
+						: -1;
 
 				if (swapAction == -1)
 				{
@@ -1358,8 +1362,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 		}
 
 		if (menuAction == MenuAction.GROUND_ITEM_FIRST_OPTION || menuAction == MenuAction.GROUND_ITEM_SECOND_OPTION
-			|| menuAction == MenuAction.GROUND_ITEM_THIRD_OPTION || menuAction == MenuAction.GROUND_ITEM_FOURTH_OPTION
-			|| menuAction == MenuAction.GROUND_ITEM_FIFTH_OPTION)
+				|| menuAction == MenuAction.GROUND_ITEM_THIRD_OPTION || menuAction == MenuAction.GROUND_ITEM_FOURTH_OPTION
+				|| menuAction == MenuAction.GROUND_ITEM_FIFTH_OPTION)
 		{
 			if (shiftModifier() && config.groundItemShiftClickWalkHere())
 			{
@@ -1369,8 +1373,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		// UI swaps
 		if ((menuAction == MenuAction.CC_OP || menuAction == MenuAction.CC_OP_LOW_PRIORITY)
-			&& w != null && (w.getIndex() == -1 || w.getItemId() != -1)
-			&& !itemOp && WidgetInfo.TO_GROUP(w.getId()) != WidgetID.EQUIPMENT_GROUP_ID)
+				&& w != null && (w.getIndex() == -1 || w.getItemId() != -1)
+				&& !itemOp && WidgetInfo.TO_GROUP(w.getId()) != WidgetID.EQUIPMENT_GROUP_ID)
 		{
 			final String[] actions = w.getRawActions();
 			int numActions = 0;
@@ -1405,8 +1409,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		// Don't swap on hint arrow npcs, usually they need "Talk-to" for clues.
 		if (hintArrowNpc != null
-			&& hintArrowNpc.getIndex() == eventId
-			&& NPC_MENU_TYPES.contains(menuAction))
+				&& hintArrowNpc.getIndex() == eventId
+				&& NPC_MENU_TYPES.contains(menuAction))
 		{
 			return;
 		}
@@ -1463,12 +1467,12 @@ public class MenuEntrySwapperPlugin extends Plugin
 	{
 		MenuEntry[] oldEntries = client.getMenuEntries();
 		MenuEntry[] newEntries = Arrays.stream(oldEntries)
-			.filter(e ->
-			{
-				final NPC npc = e.getNpc();
-				return npc == null || npc.getHealthRatio() == 0;
-			})
-			.toArray(MenuEntry[]::new);
+				.filter(e ->
+				{
+					final NPC npc = e.getNpc();
+					return npc == null || npc.getHealthRatio() == 0;
+				})
+				.toArray(MenuEntry[]::new);
 		if (oldEntries.length != newEntries.length)
 		{
 			client.setMenuEntries(newEntries);
@@ -1557,7 +1561,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		}
 
 		MenuEntry entry1 = entries[index1],
-			entry2 = entries[index2];
+				entry2 = entries[index2];
 
 		entries[index1] = entry2;
 		entries[index2] = entry1;
@@ -1578,10 +1582,10 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		// Update optionIndexes
 		String option1 = Text.removeTags(entry1.getOption()).toLowerCase(),
-			option2 = Text.removeTags(entry2.getOption()).toLowerCase();
+				option2 = Text.removeTags(entry2.getOption()).toLowerCase();
 
 		List<Integer> list1 = optionIndexes.get(option1),
-			list2 = optionIndexes.get(option2);
+				list2 = optionIndexes.get(option2);
 
 		// call remove(Object) instead of remove(int)
 		list1.remove((Integer) index1);
@@ -1639,7 +1643,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private Integer getNpcSwapConfig(boolean shift, int npcId)
 	{
 		String config = configManager.getConfiguration(MenuEntrySwapperConfig.GROUP,
-			(shift ? NPC_SHIFT_KEY_PREFIX : NPC_KEY_PREFIX) + npcId);
+				(shift ? NPC_SHIFT_KEY_PREFIX : NPC_KEY_PREFIX) + npcId);
 		if (config == null || config.isEmpty())
 		{
 			return null;
@@ -1699,7 +1703,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private Integer getUiSwapConfig(boolean shift, int componentId, int itemId)
 	{
 		String config = configManager.getConfiguration(MenuEntrySwapperConfig.GROUP,
-			(shift ? UI_SHIFT_KEY_PREFIX : UI_KEY_PREFIX) + componentId + (itemId != -1 ? "_" + itemId : ""));
+				(shift ? UI_SHIFT_KEY_PREFIX : UI_KEY_PREFIX) + componentId + (itemId != -1 ? "_" + itemId : ""));
 		if (config == null || config.isEmpty())
 		{
 			return null;
@@ -1711,13 +1715,13 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private void setUiSwapConfig(boolean shift, int componentId, int itemId, int op)
 	{
 		configManager.setConfiguration(MenuEntrySwapperConfig.GROUP,
-			(shift ? UI_SHIFT_KEY_PREFIX : UI_KEY_PREFIX) + componentId + (itemId != -1 ? "_" + itemId : ""),
-			op);
+				(shift ? UI_SHIFT_KEY_PREFIX : UI_KEY_PREFIX) + componentId + (itemId != -1 ? "_" + itemId : ""),
+				op);
 	}
 
 	private void unsetUiSwapConfig(boolean shift, int componentId, int itemId)
 	{
 		configManager.unsetConfiguration(MenuEntrySwapperConfig.GROUP,
-			(shift ? UI_SHIFT_KEY_PREFIX : UI_KEY_PREFIX) + componentId + (itemId != -1 ? "_" + itemId : ""));
+				(shift ? UI_SHIFT_KEY_PREFIX : UI_KEY_PREFIX) + componentId + (itemId != -1 ? "_" + itemId : ""));
 	}
 }

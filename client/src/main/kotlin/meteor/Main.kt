@@ -5,8 +5,6 @@ import androidx.compose.ui.window.ApplicationScope
 import androidx.compose.ui.window.FrameWindowScope
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
@@ -55,14 +53,15 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 import org.koin.core.context.startKoin
 import org.rationalityfrontline.kevent.KEVENT
-import java.io.InputStreamReader
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
+import java.util.function.Consumer
 import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 
 object Main : ApplicationScope, KoinComponent, EventSubscriber() {
+    var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
     init {
         ConfigManager.loadSavedProperties()
         ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
@@ -163,6 +162,11 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
             for (menuEntry in AutomatedMenu.onClicks.keys) {
                 if (it.data.menuEntry == menuEntry) {
                     AutomatedMenu.onClicks[menuEntry]?.accept(menuEntry)
+                }
+            }
+            for (menuEntry in onClicks.keys) {
+                if (it.data.menuEntry == menuEntry) {
+                    onClicks[menuEntry]?.accept(menuEntry)
                 }
             }
         }

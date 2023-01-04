@@ -29,6 +29,7 @@ import com.google.common.collect.EvictingQueue
 import eventbus.events.ChatMessage
 import eventbus.events.MenuEntryAdded
 import eventbus.events.MenuOptionClicked
+import meteor.Main
 import meteor.input.KeyListener
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
@@ -147,14 +148,14 @@ class ChatHistoryPlugin : Plugin(), KeyListener {
         // menu is open and dynamicChildId will be outdated
         val messageContents = parent.getChild(dynamicChildId) ?: return
         val currentMessage = messageContents.text
-        client.createMenuEntry(1)
+        val menuEntry = client.createMenuEntry(1)
                 .setOption(COPY_TO_CLIPBOARD)
                 .setTarget(entry.target)
                 .setType(MenuAction.RUNELITE)
-                .onClick { e: MenuEntry? ->
-                    val stringSelection = StringSelection(Text.removeTags(currentMessage))
-                    Toolkit.getDefaultToolkit().systemClipboard.setContents(stringSelection, null)
-                }
+        Main.onClicks.put(menuEntry) {
+            val stringSelection = StringSelection(Text.removeTags(currentMessage))
+            Toolkit.getDefaultToolkit().systemClipboard.setContents(stringSelection, null)
+        }
     }
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {

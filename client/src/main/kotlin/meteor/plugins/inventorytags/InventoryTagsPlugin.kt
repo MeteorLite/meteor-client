@@ -112,14 +112,6 @@ class InventoryTagsPlugin : Plugin() {
     }
 
     override fun onMenuOpened(it: MenuOpened) {
-        var vanillaEntry: MenuEntry? = null
-        for (menu in it.menuEntries) {
-            if (menu.param0 != 0) {
-                vanillaEntry = menu
-                break
-            }
-        }
-        vanillaEntry!!
         val firstEntry = it.firstEntry
         if (firstEntry == null || !editorMode) {
             return

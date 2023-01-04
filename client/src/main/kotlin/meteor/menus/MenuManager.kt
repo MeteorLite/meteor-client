@@ -31,6 +31,7 @@ import eventbus.events.MenuEntryAdded
 import eventbus.events.MenuOptionClicked
 import eventbus.events.PlayerMenuOptionsChanged
 import eventbus.events.WidgetMenuOptionClicked
+import meteor.Main
 import meteor.Main.client
 import meteor.Main.eventBus
 import meteor.plugins.EventSubscriber
@@ -93,12 +94,14 @@ object MenuManager : EventSubscriber() {
             if (menuContainsCustomMenu(menuEntries, currentMenu)) {
                 return
             }
-            client.createMenuEntry(insertIdx--)
+            val menuEntry = client.createMenuEntry(insertIdx--)
                 .setOption(currentMenu.menuOption)
                 .setTarget(currentMenu.getMenuTarget())
                 .setType(MenuAction.RUNELITE)
                 .setParam1(widgetId)
-                .onClick(currentMenu.callback)
+            currentMenu.callback?.let {
+                Main.onClicks[menuEntry] = it
+            }
         }
     }
 

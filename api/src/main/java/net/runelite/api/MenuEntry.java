@@ -92,13 +92,6 @@ public interface MenuEntry
 	MenuEntry setDeprioritized(boolean deprioritized);
 
 	/**
-	 * Set a callback to be called when this menu option is clicked
-	 * @param callback
-	 * @return
-	 */
-	MenuEntry onClick(Consumer<MenuEntry> callback);
-
-	/**
 	 * Test if this menu entry is an item op. "Use" and "Examine" are not considered item ops.
 	 * @return
 	 */

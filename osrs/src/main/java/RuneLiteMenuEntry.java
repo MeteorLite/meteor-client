@@ -238,13 +238,6 @@ public class RuneLiteMenuEntry implements MenuEntry
 		return this;
 	}
 
-	@Override
-	public MenuEntry onClick(Consumer consumer)
-	{
-		this.consumer = consumer;
-		return this;
-	}
-
 	public boolean instanceOf(Object o)
 	{
 		return o instanceof RuneLiteMenuEntry;
