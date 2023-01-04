@@ -12,6 +12,8 @@ public class RuneLiteMenuEntry implements MenuEntry
 {
 	public static RSClient client;
 
+	public static boolean isVanilla = false;
+
 	public Consumer consumer;
 	public int idx;
 	public MenuEntry parent;

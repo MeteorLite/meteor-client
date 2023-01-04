@@ -5715,7 +5715,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
          }
 
          BuddyRankComparator.client = this;
-         RuneLiteMenuEntry.client = (RSClient) (Object) this;
+         if (!RuneLiteMenuEntry.isVanilla)
+            RuneLiteMenuEntry.client = (RSClient) (Object) this;
          RunException.clientType = clientType;
          if (field543 == -1) {
             field543 = 0;
