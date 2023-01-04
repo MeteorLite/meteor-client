@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -32,7 +31,7 @@ final class class101 implements class297 {
          ScriptEvent var1 = new ScriptEvent();
          var1.method475(this.val$cc);
          var1.setArgs(this.val$cc.method1735().field2812);
-         AABB.method1232().addFirst(var1);
+         AABB.getScriptEvents().addFirst(var1);
       }
 
    }

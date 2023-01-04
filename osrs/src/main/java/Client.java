@@ -2688,7 +2688,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   while(keyHandlerInstance.method1087() && field555 < 128) {
                      if (staffModLevel >= 2 && keyHandlerInstance.getKeyPressed(82) && keyHandlerInstance.field1833 == 66) {
                         String var44 = LoginScreenAnimation.method529();
-                        BuddyRankComparator.client.method148(var44);
+                        BuddyRankComparator.client.copyToClipboard(var44);
                      } else if (oculusOrbState != 1 || keyHandlerInstance.field1820 <= 0) {
                         field596[field555] = keyHandlerInstance.field1833;
                         field619[field555] = keyHandlerInstance.field1820;

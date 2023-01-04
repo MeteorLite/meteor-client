@@ -120,7 +120,7 @@ public class class199 implements class30 {
                ScriptEvent var3 = new ScriptEvent();
                var3.method475(var1);
                var3.setArgs(var2.field2811);
-               AABB.method1232().addFirst(var3);
+               AABB.getScriptEvents().addFirst(var3);
             }
          }
       }
@@ -152,7 +152,7 @@ public class class199 implements class30 {
                ScriptEvent var3 = new ScriptEvent();
                var3.method475(var2);
                var3.setArgs(var1.field2811);
-               AABB.method1232().addFirst(var3);
+               AABB.getScriptEvents().addFirst(var3);
             }
 
          }
@@ -183,21 +183,21 @@ public class class199 implements class30 {
                return true;
             case 65:
                if (this.field1812) {
-                  var5 = BuddyRankComparator.client.method149();
+                  var5 = BuddyRankComparator.client.getClipboard();
                   var2.method1670(var5);
                }
 
                return true;
             case 66:
                if (this.field1812) {
-                  var5 = BuddyRankComparator.client.method149();
+                  var5 = BuddyRankComparator.client.getClipboard();
                   var2.method1701(var5);
                }
 
                return true;
             case 67:
                if (this.field1812) {
-                  var5 = BuddyRankComparator.client.method149();
+                  var5 = BuddyRankComparator.client.getClipboard();
                   var2.method1671(var5);
                }
 
@@ -212,7 +212,7 @@ public class class199 implements class30 {
                   ScriptEvent var4 = new ScriptEvent();
                   var4.method475(this.field1813);
                   var4.setArgs(var3.field2809);
-                  AABB.method1232().addFirst(var4);
+                  AABB.getScriptEvents().addFirst(var4);
                   this.method1065();
                }
 
