@@ -182,7 +182,7 @@ public class EventInspector extends EventInspectorSubscriber {
     private int writeInterval = 100;
 
     private File outputFile;
-
+    private int scrollSpeed = 15;
 
     private final File settingsFile = new File(Configuration.INSTANCE.getMETEOR_DIR().getAbsolutePath() + "/event-inspector-settings.txt");
     private final List<String> eventBuffer = new ArrayList<>(500);
@@ -202,7 +202,9 @@ public class EventInspector extends EventInspectorSubscriber {
         final JScrollPane trackerScroller = new JScrollPane(trackerWrapper);
         trackerScroller.setPreferredSize(new Dimension(1400, 300));
 
+        trackerScroller.getHorizontalScrollBar().setUnitIncrement(scrollSpeed);
         final JScrollBar vertical = trackerScroller.getVerticalScrollBar();
+        vertical.setUnitIncrement(scrollSpeed);
         vertical.addAdjustmentListener(new AdjustmentListener() {
             int lastMaximum = actualMax();
 
@@ -329,6 +331,7 @@ public class EventInspector extends EventInspectorSubscriber {
         }
 
         final JScrollPane scrollPane = new JScrollPane(trackerOpts);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollPane, BorderLayout.EAST);
 
@@ -538,8 +541,12 @@ public class EventInspector extends EventInspectorSubscriber {
                 lastTick = tick;
                 JLabel header = new JLabel("Tick " + tick);
                 header.setFont(FontManager.INSTANCE.getRunescapeSmallFont());
-                header.setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ColorScheme.INSTANCE.getLIGHT_GRAY_COLOR()),
-                        BorderFactory.createEmptyBorder(3, 6, 0, 0)));
+                header.setBorder(
+                        new CompoundBorder(
+                                BorderFactory.createMatteBorder(0, 0, 1, 0, ColorScheme.INSTANCE.getLIGHT_GRAY_COLOR()),
+                                BorderFactory.createEmptyBorder(3, 6, 0, 0)
+                        )
+                );
                 tracker.add(header);
             }
 
@@ -549,11 +556,16 @@ public class EventInspector extends EventInspectorSubscriber {
             prefixLabel.setEditable(false);
             prefixLabel.setBackground(null);
             prefixLabel.setToolTipText(prefix);
-            prefixLabel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, new Color(52, 52, 52)));
+            prefixLabel.setBorder(
+                    new CompoundBorder(
+                            BorderFactory.createMatteBorder(0, 0, 0, 1, ColorScheme.INSTANCE.getLIGHT_GRAY_COLOR()),
+                            BorderFactory.createEmptyBorder(0, 5, 0, 0)
+                    )
+            );
             JTextField textLabel = new JTextField(text);
             textLabel.setEditable(false);
             textLabel.setBackground(null);
-            textLabel.setBorder(null);
+            textLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
             prefixLabel.setPreferredSize(new Dimension(rsCoordFormat.isSelected() ? 600 : 400, 14));
             prefixLabel.setMaximumSize(new Dimension(rsCoordFormat.isSelected() ? 600 : 400, 14));
             labelPanel.add(prefixLabel, BorderLayout.WEST);
