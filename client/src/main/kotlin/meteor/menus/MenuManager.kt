@@ -62,7 +62,8 @@ object MenuManager : EventSubscriber() {
      */
     fun addManagedCustomMenu(customMenuOption: WidgetMenuOption, callback: Consumer<MenuEntry>) {
         managedMenuOptions.put(customMenuOption.widgetId, customMenuOption)
-        customMenuOption.callback = callback
+        Main.onClicksWidget.put(customMenuOption, callback);
+        //customMenuOption.callback = callback
     }
 
     /**

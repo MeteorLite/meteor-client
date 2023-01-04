@@ -222,4 +222,5 @@ fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin): ((Boole
 private fun onPluginConfigurationOpened(plugin: Plugin) {
     lastPlugin = plugin
     configOpen.value = true
+    pluginsOpen.value = false
 }

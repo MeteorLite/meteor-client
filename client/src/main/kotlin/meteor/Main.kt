@@ -21,6 +21,7 @@ import meteor.game.chatbox.ChatboxPanelManager
 import meteor.game.npcoverlay.NpcOverlayService
 import meteor.hiscore.HiscoreManager
 import meteor.menus.MenuManager
+import meteor.menus.WidgetMenuOption
 import meteor.plugins.EventSubscriber
 import meteor.plugins.PluginManager
 import meteor.plugins.meteor.MeteorConfig
@@ -62,6 +63,7 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 object Main : ApplicationScope, KoinComponent, EventSubscriber() {
     var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
+    var onClicksWidget = HashMap<WidgetMenuOption, Consumer<MenuEntry>>()
     init {
         ConfigManager.loadSavedProperties()
         ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
@@ -159,14 +161,24 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
             GameThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
         }
         KEVENT.subscribe<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) {
+            //These are api onClicks (before client code is usable)
             for (menuEntry in AutomatedMenu.onClicks.keys) {
                 if (it.data.menuEntry == menuEntry) {
                     AutomatedMenu.onClicks[menuEntry]?.accept(menuEntry)
                 }
             }
+            // These are regular menu onClick()
             for (menuEntry in onClicks.keys) {
                 if (it.data.menuEntry == menuEntry) {
                     onClicks[menuEntry]?.accept(menuEntry)
+                }
+            }
+            //These are from MenuManager's managed menus
+            //For whatever reason, this fails a concurrency modification check, so we clone it.
+            val copy: HashMap<WidgetMenuOption, Consumer<MenuEntry>> = onClicksWidget.clone() as HashMap<WidgetMenuOption, Consumer<MenuEntry>>
+            for (menuEntry in copy.keys) {
+                if (it.data.menuEntry.option == menuEntry.menuOption) {
+                    onClicksWidget[menuEntry]?.accept(it.data.menuEntry)
                 }
             }
         }

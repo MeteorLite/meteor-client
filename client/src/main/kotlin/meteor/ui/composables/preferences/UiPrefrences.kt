@@ -90,11 +90,17 @@ val pluginListButton = addButton(
         iconColor = uiColor.value,
         description = "Opens Plugins list",
         onClick = {
-            when {
-                pluginPanelIsOpen.value -> setOpenValues(false)
-                configOpen.value -> setOpenValues(true)
-                else -> setOpenValues(!pluginsOpen.value)
+            if (configOpen.value) {
+                configOpen.value = false
+                pluginsOpen.value = true
+                return@ToolbarButton
             }
+            if (pluginPanelIsOpen.value) {
+                pluginPanelIsOpen.value = false
+                pluginsOpen.value = true
+                return@ToolbarButton
+            }
+            setOpenValues(!pluginsOpen.value)
         },
         position = 0)
 )
