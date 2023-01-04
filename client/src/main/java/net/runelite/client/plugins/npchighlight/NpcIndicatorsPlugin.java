@@ -309,7 +309,7 @@ public class NpcIndicatorsPlugin extends Plugin
 
 			npcOverlayService.rebuild();
 		}
-		else
+		else if (entry.getOption().equals(TAG_ALL) || entry.getOption().equals(UNTAG_ALL))
 		{
 			final String name = npc.getName();
 			final List<String> highlightedNpcs = new ArrayList<>(highlights);
