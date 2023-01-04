@@ -1794,9 +1794,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("hintArrowHeight")
 	int getHintArrowHeight();
 
-	@Import("userRegistrationId")
+	@Import("timeOfPreviousKeyPress")
 	@Override
-	long getUserRegistrationId();
+	long getTimeOfPreviousKeyPress();
 
 	@Import("getDbTableType")
 	RSDbTableType getDbTableType(int var0);

@@ -2355,7 +2355,7 @@ public class EventInspector extends EventInspectorSubscriber {
         //noinspection deprecation
         addLine(
                 "Initialization",
-                "Logged into account " + client.getUsername() + ", registration id: " + client.getUserRegistrationId() + ".",
+                "Logged into account " + client.getUsername() + ".",
                 client.getTickCount(),
                 true,
                 null,
