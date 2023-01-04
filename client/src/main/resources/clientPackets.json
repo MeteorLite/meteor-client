@@ -9,11 +9,11 @@
         "argument": "id"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "selectedSpellChildIndex"
       },
       {
@@ -21,7 +21,7 @@
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "selectedSpellItemId"
       }
     ]
@@ -47,11 +47,11 @@
     "deobname": "field2433",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "itemId"
       },
       {
@@ -59,11 +59,11 @@
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param0"
       },
       {
-        "method": "method2381",
+        "method": "writeIntLE",
         "argument": "param1"
       }
     ]
@@ -96,15 +96,15 @@
         "argument": "id"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "param1"
       },
       {
-        "method": "method2369",
+        "method": "writeByteC",
         "argument": "shiftPressed"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "selectedItemSlot"
       },
       {
@@ -112,11 +112,11 @@
         "argument": "selectedItemWidget"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "selectedItemId"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "worldX"
       }
     ]
@@ -137,15 +137,15 @@
         "argument": "id"
       },
       {
-        "method": "method2369",
+        "method": "writeByteC",
         "argument": "shiftPressed"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param1"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param0"
       }
     ]
@@ -199,11 +199,11 @@
     "deobname": "field2437",
     "structure": [
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       },
       {
@@ -211,11 +211,11 @@
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "selectedSpellItemId"
       },
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       }
     ]
@@ -226,7 +226,7 @@
     "deobname": "field2537",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "selectedSpellItemId"
       },
       {
@@ -238,15 +238,15 @@
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "slot"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "itemId"
       }
     ]
@@ -257,7 +257,7 @@
     "deobname": "field2494",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param1"
       },
       {
@@ -265,12 +265,12 @@
         "argument": "shiftPressed"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       },
       {
-        "method": "method2386",
-        "argument": "worldX"
+        "method": "writeShortLE",
+        "argument": "param0"
       }
     ]
   },
@@ -292,7 +292,7 @@
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "worldX"
       },
       {
@@ -300,7 +300,7 @@
         "argument": "id"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       },
       {
@@ -321,7 +321,7 @@
     "deobname": "field2450",
     "structure": [
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       },
       {
@@ -336,11 +336,11 @@
     "deobname": "field2451",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       },
       {
-        "method": "method2369",
+        "method": "writeByteC",
         "argument": "shiftPressed"
       }
     ]
@@ -351,7 +351,7 @@
     "deobname": "field2452",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       },
       {
@@ -391,11 +391,11 @@
     "deobname": "field2440",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param0"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "itemId"
       },
       {
@@ -510,19 +510,19 @@
     "deobname": "field2464",
     "structure": [
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param1"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "param0"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "id"
       }
     ]
@@ -533,7 +533,7 @@
     "deobname": "field2524",
     "structure": [
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "id"
       },
       {
@@ -552,19 +552,19 @@
         "argument": "selectedItemWidget"
       },
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "selectedItemSlot"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "selectedItemId"
       }
     ]
@@ -575,11 +575,11 @@
     "deobname": "field2496",
     "structure": [
       {
-        "method": "writeIntME",
-        "argument": "worldX"
+        "method": "writeShortA",
+        "argument": "param0"
       },
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       },
       {
@@ -610,11 +610,11 @@
     "deobname": "field2489",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       },
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       }
     ]
@@ -631,11 +631,11 @@
     "deobname": "field2472",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "id"
       },
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       }
     ]
@@ -673,27 +673,27 @@
     "deobname": "field2453",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "id"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param1"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "selectedItemSlot"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "selectedItemId"
       },
       {
-        "method": "method2381",
+        "method": "writeIntLE",
         "argument": "selectedItemWidget"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "worldX"
       },
       {
@@ -712,11 +712,11 @@
         "argument": "param1"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "itemId"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "param0"
       }
     ]
@@ -731,7 +731,7 @@
         "argument": "id"
       },
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       }
     ]
@@ -742,7 +742,7 @@
     "deobname": "field2479",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param0"
       },
       {
@@ -750,7 +750,7 @@
         "argument": "param1"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "itemId"
       }
     ]
@@ -761,7 +761,7 @@
     "deobname": "field2511",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "itemId"
       }
     ]
@@ -803,19 +803,19 @@
     "deobname": "field2484",
     "structure": [
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "id"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param1"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param0"
       }
     ]
@@ -826,15 +826,15 @@
     "deobname": "field2485",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "itemId"
       },
       {
-        "method": "method2381",
+        "method": "writeIntLE",
         "argument": "param1"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param0"
       }
     ]
@@ -845,7 +845,7 @@
     "deobname": "field2486",
     "structure": [
       {
-        "method": "method2369",
+        "method": "writeByteC",
         "argument": "shiftPressed"
       },
       {
@@ -868,7 +868,7 @@
         "argument": "param0"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "itemId"
       }
     ]
@@ -887,7 +887,7 @@
         "argument": "itemId"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "param0"
       }
     ]
@@ -917,11 +917,11 @@
     "deobname": "field2490",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "id"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       },
       {
@@ -929,8 +929,8 @@
         "argument": "param1"
       },
       {
-        "method": "writeIntME",
-        "argument": "worldX"
+        "method": "writeShortA",
+        "argument": "param0"
       }
     ]
   },
@@ -940,7 +940,7 @@
     "deobname": "field2535",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       }
     ]
@@ -973,11 +973,11 @@
         "argument": "itemId"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "param0"
       },
       {
-        "method": "method2381",
+        "method": "writeIntLE",
         "argument": "param1"
       }
     ]
@@ -1034,11 +1034,11 @@
         "argument": "param1"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param0"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "itemId"
       }
     ]
@@ -1053,11 +1053,11 @@
         "argument": "shiftPressed"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param0"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "param1"
       },
       {
@@ -1078,19 +1078,19 @@
     "deobname": "field2503",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param1"
       },
       {
         "method": "writeShort",
-        "argument": "worldX"
+        "argument": "param0"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "id"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       }
     ]
@@ -1101,11 +1101,11 @@
     "deobname": "field2522",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       }
     ]
@@ -1128,19 +1128,19 @@
     "deobname": "field2507",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param1"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "id"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "worldX"
       }
     ]
@@ -1200,7 +1200,7 @@
     "deobname": "field2470",
     "structure": [
       {
-        "method": "method2370",
+        "method": "writeByteS",
         "argument": "shiftPressed"
       },
       {
@@ -1208,15 +1208,15 @@
         "argument": "selectedItemWidget"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "selectedItemSlot"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "selectedItemId"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "id"
       }
     ]
@@ -1231,7 +1231,7 @@
         "argument": "param1"
       },
       {
-        "method": "method2381",
+        "method": "writeIntLE",
         "argument": "selectedItemWidget"
       },
       {
@@ -1239,11 +1239,11 @@
         "argument": "itemId"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "selectedItemSlot"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param0"
       },
       {
@@ -1258,7 +1258,7 @@
     "deobname": "field2516",
     "structure": [
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "worldX"
       },
       {
@@ -1266,7 +1266,7 @@
         "argument": "param1"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       }
     ]
@@ -1285,7 +1285,7 @@
         "argument": "param1"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "itemId"
       }
     ]
@@ -1300,7 +1300,7 @@
         "argument": "shiftPressed"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "id"
       }
     ]
@@ -1317,19 +1317,19 @@
     "deobname": "field2446",
     "structure": [
       {
-        "method": "writeIntME",
-        "argument": "worldX"
+        "method": "writeShortA",
+        "argument": "param0"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "id"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "param1"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       }
     ]
@@ -1340,11 +1340,11 @@
     "deobname": "field2521",
     "structure": [
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "id"
       },
       {
-        "method": "method2368",
+        "method": "writeByteA",
         "argument": "shiftPressed"
       }
     ]
@@ -1359,11 +1359,11 @@
         "argument": "param1"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "itemId"
       },
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "param0"
       }
     ]
@@ -1469,7 +1469,7 @@
     "deobname": "field2531",
     "structure": [
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "id"
       },
       {
@@ -1502,7 +1502,7 @@
     "deobname": "field2487",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "shiftPressed"
       }
     ]
@@ -1513,11 +1513,11 @@
     "deobname": "field2536",
     "structure": [
       {
-        "method": "method2375",
+        "method": "writeShortLEA",
         "argument": "worldX"
       },
       {
-        "method": "method2386",
+        "method": "writeShortLE",
         "argument": "selectedSpellChildIndex"
       },
       {
@@ -1525,7 +1525,7 @@
         "argument": "selectedSpellWidget"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "selectedSpellItemId"
       },
       {
@@ -1533,11 +1533,11 @@
         "argument": "param1"
       },
       {
-        "method": "method2369",
+        "method": "writeByteC",
         "argument": "shiftPressed"
       },
       {
-        "method": "writeIntME",
+        "method": "writeShortA",
         "argument": "id"
       }
     ]
