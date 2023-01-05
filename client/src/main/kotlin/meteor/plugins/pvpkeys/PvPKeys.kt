@@ -134,7 +134,9 @@ class PvPKeys : Plugin() {
     private val toggleAutoprayer: HotkeyListener = object : HotkeyListener({ config.AutoPray() }) {
         override fun hotkeyPressed() {
             autoPrayEnabled = !autoPrayEnabled
-            client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Autoprayer ${if (autoPrayEnabled) "enabled" else "disabled"}", null)
+            ClientThread.invoke {
+                client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Autoprayer ${if (autoPrayEnabled) "enabled" else "disabled"}", null)
+            }
         }
     }
 
