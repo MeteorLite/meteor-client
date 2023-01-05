@@ -295,7 +295,7 @@ class XpTrackerPlugin : Plugin() {
             val endGoalXp = if (endGoal != null) client.getVar(endGoal) else -1
             if (!initializeTracker) {
                 // This is the XP sync on login, wait until after login to begin counting
-                if (!config.hideMaxed() && currentLevel < Experience.MAX_REAL_LEVEL) {
+                if (!config.hideMaxed() && currentLevel < Experience.MAX_VIRT_LEVEL) {
                     val state = xpState.getSkill(skill)
                     state.actionType = XpActionType.EXPERIENCE
                     val interacting = client.localPlayer!!.interacting
