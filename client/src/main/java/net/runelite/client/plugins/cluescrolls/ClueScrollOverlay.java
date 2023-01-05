@@ -35,6 +35,7 @@ import meteor.Main;
 import meteor.ui.components.LineComponent;
 import meteor.ui.overlay.OverlayMenuEntry;
 import meteor.ui.overlay.OverlayPanel;
+import meteor.ui.overlay.OverlayPosition;
 import meteor.ui.overlay.OverlayPriority;
 import net.runelite.api.Client;
 import net.runelite.api.Item;
@@ -97,6 +98,7 @@ public class ClueScrollOverlay extends OverlayPanel
 		this.plugin = plugin;
 		this.client = Main.client;
 		setPriority(OverlayPriority.LOW);
+		setPosition(OverlayPosition.TOP_CENTER);
 		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Clue Scroll overlay"));
 		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY, "Reset", "Clue Scroll overlay"));
 	}
