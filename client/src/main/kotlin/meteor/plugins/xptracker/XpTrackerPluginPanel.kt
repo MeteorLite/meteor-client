@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.Main
 import meteor.Main.client
+import meteor.hiscore.Skill
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.*
 import net.runelite.api.Experience.*
@@ -36,7 +37,7 @@ class XpTrackerPluginPanel : PluginPanel() {
     override fun Content() {
         val expHrKeys = expHrMap.filter { it.value > 0 }.keys.toList()
         if (expHrKeys.isEmpty()) {
-            Column(Modifier.background(surface).fillMaxHeight().width(300.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(Modifier.fillMaxHeight().width(300.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
                     text = "XP Tracker",
                     color = uiColor.value,
@@ -119,10 +120,10 @@ class XpTrackerPluginPanel : PluginPanel() {
                             )
                         }
                         Column {
-
+                            val start = getXpForLevel(client.getRealSkillLevel(skill))
                             startExp.forEach {
                                 if (it.first == skill) Text(
-                                    text = it.second.toString(),
+                                    text = start.toString(),
                                     style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = secondColor.value, letterSpacing = 2.sp),
                                     textAlign = TextAlign.Center,
                                 )
@@ -137,7 +138,7 @@ class XpTrackerPluginPanel : PluginPanel() {
                             }
                             startExp.forEach {
                                 if (it.first == skill) Text(
-                                    text = (client.getSkillExperience(skill) - it.second).toString(),
+                                    text = (client.getSkillExperience(skill) - start).toString(),
                                     style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = secondColor.value, letterSpacing = 2.sp),
                                     textAlign = TextAlign.Center,
                                 )
@@ -177,12 +178,21 @@ class XpTrackerPluginPanel : PluginPanel() {
                         val progress = ((xpGained / xpGoal) * 100).roundToInt()
                         BoxWithConstraints(contentAlignment = Alignment.Center) {
                             Box {
-                                LinearProgressIndicator(modifier = Modifier.width(295.dp).height(20.dp).progressSemantics(value = skillProgress, valueRange = startFloat..endFloat).background(shape = RoundedCornerShape(3.dp), color = surface), color = uiColor.value, backgroundColor = surface, progress = if (skillProgress > 1.00f) 1.00f else skillProgress)
+                                LinearProgressIndicator(modifier = Modifier.width(295.dp).height(20.dp).progressSemantics(
+                                    value = skillProgress,
+                                    valueRange = startFloat..endFloat).background(
+                                    shape = RoundedCornerShape(3.dp), color = surface),
+                                    color = uiColor.value,
+                                    backgroundColor = surface,
+                                    progress = if (skillProgress > 1.00f) 1.00f else skillProgress)
                             }
                             Box {
                                 Text(
-                                    text = if (client.getRealSkillLevel(skill) > 98) "100%" else "$progress%",
-                                    style = TextStyle(fontSize = 17.sp, textAlign = TextAlign.Center, color = if (progress >= 50) Color.Black else secondColor.value, letterSpacing = 2.sp),
+                                    text = if (client.getRealSkillLevel(skill) > 99) "100%" else "$progress%",
+                                    style = TextStyle(fontSize = 17.sp,
+                                        textAlign = TextAlign.Center,
+                                        color = if (progress >= 50) Color.Black else secondColor.value,
+                                        letterSpacing = 2.sp),
                                     textAlign = TextAlign.Center,
                                 )
                             }
