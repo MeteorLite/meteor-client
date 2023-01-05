@@ -1,5 +1,6 @@
 package meteor.plugins.notes
 
+import androidx.compose.ui.window.Window
 import compose.icons.Octicons
 import compose.icons.TablerIcons
 import compose.icons.octicons.Note24
@@ -7,8 +8,7 @@ import compose.icons.tablericons.Notes
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.PluginPanel
-import meteor.ui.composables.preferences.pluginPanel
-import meteor.ui.composables.preferences.uiColor
+import meteor.ui.composables.preferences.*
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
@@ -33,6 +33,8 @@ class NotesPlugin : Plugin() {
 
     fun onClick() {
         pluginPanel.value = panel
+        notesOpen.value = true
+        pluginsOpen.value = false
         togglePluginPanel(notesButton)
     }
 

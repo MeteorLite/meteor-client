@@ -79,7 +79,7 @@ interface ItemChargeConfig : Config {
         name = "Teleport Charges",
         description = "Show teleport item charge counts",
         position = 5,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showTeleportCharges(): Boolean {
         return true
@@ -90,7 +90,7 @@ interface ItemChargeConfig : Config {
         name = "Dodgy Necklace Count",
         description = "Show Dodgy necklace charges",
         position = 6,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showDodgyCount(): Boolean {
         return true
@@ -102,7 +102,7 @@ interface ItemChargeConfig : Config {
         name = "Imp-in-a-box charges",
         description = "Show Imp-in-a-box item charges",
         position = 8,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showImpCharges(): Boolean {
         return true
@@ -113,7 +113,7 @@ interface ItemChargeConfig : Config {
         name = "Fungicide Charges",
         description = "Show Fungicide item charges",
         position = 9,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showFungicideCharges(): Boolean {
         return true
@@ -124,7 +124,7 @@ interface ItemChargeConfig : Config {
         name = "Watering Can Charges",
         description = "Show Watering can item charges",
         position = 10,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showWateringCanCharges(): Boolean {
         return true
@@ -135,7 +135,7 @@ interface ItemChargeConfig : Config {
         name = "Waterskin Charges",
         description = "Show Waterskin dose counts",
         position = 11,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showWaterskinCharges(): Boolean {
         return true
@@ -146,7 +146,7 @@ interface ItemChargeConfig : Config {
         name = "Bellows Charges",
         description = "Show Ogre bellows item charges",
         position = 12,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showBellowCharges(): Boolean {
         return true
@@ -157,7 +157,7 @@ interface ItemChargeConfig : Config {
         name = "Basket Charges",
         description = "Show Fruit basket item counts",
         position = 13,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showBasketCharges(): Boolean {
         return true
@@ -168,7 +168,7 @@ interface ItemChargeConfig : Config {
         name = "Sack Charges",
         description = "Show Sack item counts",
         position = 14,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showSackCharges(): Boolean {
         return true
@@ -179,7 +179,7 @@ interface ItemChargeConfig : Config {
         name = "Abyssal Bracelet Charges",
         description = "Show Abyssal bracelet item charges",
         position = 15,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showAbyssalBraceletCharges(): Boolean {
         return true
@@ -190,7 +190,7 @@ interface ItemChargeConfig : Config {
         name = "Amulet of Chemistry Charges",
         description = "Show Amulet of chemistry item charges",
         position = 16,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showAmuletOfChemistryCharges(): Boolean {
         return true
@@ -201,7 +201,7 @@ interface ItemChargeConfig : Config {
         name = "Amulet of Bounty Charges",
         description = "Show Amulet of bounty item charges",
         position = 17,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showAmuletOfBountyCharges(): Boolean {
         return true
@@ -213,7 +213,7 @@ interface ItemChargeConfig : Config {
         name = "Binding Necklace Charges",
         description = "Show Binding necklace item charges",
         position = 19,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showBindingNecklaceCharges(): Boolean {
         return true
@@ -225,7 +225,7 @@ interface ItemChargeConfig : Config {
         name = "Explorer's Ring Alch Charges",
         description = "Show Explorer's ring alchemy charges",
         position = 21,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showExplorerRingCharges(): Boolean {
         return true
@@ -236,7 +236,7 @@ interface ItemChargeConfig : Config {
         name = "Ring of Forging Charges",
         description = "Show Ring of forging item charges",
         position = 22,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showRingOfForgingCount(): Boolean {
         return true
@@ -258,7 +258,7 @@ interface ItemChargeConfig : Config {
         name = "Potion Doses",
         description = "Show remaining potion doses",
         position = 25,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showPotionDoseCount(): Boolean {
         return false
@@ -269,7 +269,7 @@ interface ItemChargeConfig : Config {
         name = "Bracelet of Slaughter Charges",
         description = "Show Bracelet of Slaughter item charges",
         position = 26,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showBraceletOfSlaughterCharges(): Boolean {
         return true
@@ -280,7 +280,7 @@ interface ItemChargeConfig : Config {
         name = "Expeditious Bracelet Charges",
         description = "Show Expeditious Bracelet item charges",
         position = 28,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showExpeditiousBraceletCharges(): Boolean {
         return true
@@ -291,7 +291,7 @@ interface ItemChargeConfig : Config {
         name = "Guthix Rest Doses",
         description = "Show Guthix Rest doses",
         position = 29,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showGuthixRestDoses(): Boolean {
         return true
@@ -302,7 +302,7 @@ interface ItemChargeConfig : Config {
         name = "Blood Essence Charges",
         description = "Show Blood Essence charges",
         position = 30,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showBloodEssenceCharges(): Boolean {
         return true
@@ -313,7 +313,7 @@ interface ItemChargeConfig : Config {
         name = "Bracelet of Clay Charges",
         description = "Show Bracelet of Clay item charges",
         position = 31,
-        section = "chargesSection"
+        section = "Charge Settings"
     )
     fun showBraceletOfClayCharges(): Boolean {
         return true

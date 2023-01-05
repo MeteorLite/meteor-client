@@ -19,6 +19,12 @@ import meteor.ui.composables.toolbar.addButton
 
 var pluginsOpen = mutableStateOf(false)
 var configOpen = mutableStateOf(false)
+var hiscoreOpen = mutableStateOf( false)
+var xpTrackerOpen = mutableStateOf(false)
+var lootTrackerOpen = mutableStateOf(false)
+var externalsOpen = mutableStateOf(false)
+var notesOpen = mutableStateOf(false)
+var infoPanelOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 const val consoleHeight = 500
