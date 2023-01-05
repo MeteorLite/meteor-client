@@ -49,7 +49,7 @@ dependencies {
     implementation(project(":http"))
     implementation(project(":annotations"))
     implementation(project(":logger"))
-    implementation(files("./src/main/resources/injected-client.jar"))
+    runtimeOnly(files("./src/main/resources/injected-client.jar"))
     runtimeOnly(project(":scripts"))
 
     //Deob
