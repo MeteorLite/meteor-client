@@ -128,6 +128,8 @@ class LootTrackerPlugin: Plugin() {
 
     fun onClick() {
         pluginPanel.value = panel
+        xpTrackerOpen.value = true
+        pluginsOpen.value = false
         togglePluginPanel(lootTrackerButton)
 
     }

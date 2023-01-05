@@ -3,13 +3,10 @@ package meteor.ui.composables.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.FrameWindowScope
 import meteor.Main
-import meteor.plugins.scriptcreator.script.eventbus.onGameTick
-import meteor.rs.Applet
 import meteor.ui.composables.configPanel
 import meteor.ui.composables.nodes.sectionItem
 import meteor.ui.composables.preferences.*
@@ -24,7 +21,7 @@ fun FrameWindowScope.windowContent() {
 
                 val width = when {
                     scriptCreator.value -> scriptCreatorWidth
-                    pluginsOpen.value || configOpen.value -> totalClientWidth
+                    pluginsOpen.value || configOpen.value || infoPanelOpen.value || hiscoreOpen.value || xpTrackerOpen.value || lootTrackerOpen.value || externalsOpen.value || notesOpen.value -> totalClientWidth
                     else -> totalMinimalWidth
                 }
                 val height = when{

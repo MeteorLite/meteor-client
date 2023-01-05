@@ -8,7 +8,9 @@ import meteor.hiscore.HiscoreClient
 import meteor.menus.MenuManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.ui.composables.preferences.hiscoreOpen
 import meteor.ui.composables.preferences.pluginPanel
+import meteor.ui.composables.preferences.pluginsOpen
 import meteor.ui.composables.preferences.uiColor
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
@@ -57,6 +59,8 @@ class HiScorePlugin : Plugin() {
             HiscorePanel.result = hiscoreClient.lookup(config.username())
         }
         pluginPanel.value = panel
+        hiscoreOpen.value = true
+        pluginsOpen.value = false
         togglePluginPanel(notesButton)
     }
 

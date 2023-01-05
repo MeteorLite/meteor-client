@@ -8,10 +8,7 @@ import meteor.plugins.PluginDescriptor
 import meteor.plugins.scriptcreator.script.eventbus.ScriptSubscriber
 import meteor.plugins.scriptcreator.script.eventbus.unsubscribeScript
 import meteor.ui.composables.PluginPanel
-import meteor.ui.composables.preferences.codeState
-import meteor.ui.composables.preferences.scriptCreator
-import meteor.ui.composables.preferences.pluginPanel
-import meteor.ui.composables.preferences.uiColor
+import meteor.ui.composables.preferences.*
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
@@ -49,6 +46,7 @@ class ScriptCreatorPlugin : ScriptSubscriber() {
     fun onClick() {
         pluginPanel.value = panel
         scriptCreator.value = scriptCreator.value == false
+        pluginsOpen.value = false
 
         togglePluginPanel(consoleButton)
     }

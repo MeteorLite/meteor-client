@@ -19,7 +19,7 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 class Applet : AppletStub, AppletContext {
 
     companion object {
-        var panelSize = 375
+        var panelSize = 300
         lateinit var applet: Applet
         var mainThread: Thread? = null
         var clientThread: Thread? = null
