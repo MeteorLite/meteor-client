@@ -54,6 +54,11 @@ class DefaultWorldPlugin : Plugin() {
                     return@subscribe
                 }
 
+                val world = ConfigManager.getConfiguration("defaultworld", "lastWorld")?.toIntOrNull()
+                if (world == client.world) {
+                    return@subscribe
+                }
+
                 ConfigManager.setConfiguration("defaultworld", "lastWorld", client.world)
             }
         }

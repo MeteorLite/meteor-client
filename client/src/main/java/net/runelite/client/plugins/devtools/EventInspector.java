@@ -2227,6 +2227,8 @@ public class EventInspector extends EventInspectorSubscriber {
 
     @Override
     public void open() {
+        if (isVisible()) return;
+
         resetOutputFile();
         if (settingsFile.exists()) {
             readSettingsFile();
@@ -2412,6 +2414,8 @@ public class EventInspector extends EventInspectorSubscriber {
 
     @Override
     public void close() {
+        if (!isVisible()) return;
+
         super.close();
         tracker.removeAll();
         writeToFile();
