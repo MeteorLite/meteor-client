@@ -3085,6 +3085,12 @@ public abstract class RSClientMixin implements RSClient {
     }
 
     @Inject
+    @MethodHook("playSong")
+    public static void playMusic(int musicId) {
+        client.getCallbacks().post(Events.MUSIC_PLAYED, new MusicPlayed(musicId));
+    }
+
+    @Inject
     @MethodHook(value = "performPlayerAnimation", end = true)
     public static void performPlayerAnimation(Player var0, int var1, int var2) {
         client.getCallbacks().post(Events.PLAYER_ANIMATION_PLAYED, new PlayerAnimationPlayed(var0, var1, var2));

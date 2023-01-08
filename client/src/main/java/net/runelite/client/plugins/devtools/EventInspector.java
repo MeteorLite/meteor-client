@@ -147,6 +147,7 @@ public class EventInspector extends EventInspectorSubscriber {
     private final JCheckBox inventoryChanges = new JCheckBox("Inventories", false);
     private final JCheckBox graphicsObjectChanges = new JCheckBox("Spotanim Specific", true);
     private final JCheckBox jingles = new JCheckBox("Jingles", true);
+    private final JCheckBox musics = new JCheckBox("Music", true);
     private final JCheckBox hintArrows = new JCheckBox("Hint Arrows", true);
     private final JCheckBox camera = new JCheckBox("Camera", true);
     private final JCheckBox minimapState = new JCheckBox("Minimap State", true);
@@ -464,6 +465,7 @@ public class EventInspector extends EventInspectorSubscriber {
         panel.add(inventoryChanges);
         panel.add(soundEffects);
         panel.add(jingles);
+        panel.add(musics);
         panel.add(experience);
         panel.add(stats);
         panel.add(runEnergy);
@@ -638,6 +640,7 @@ public class EventInspector extends EventInspectorSubscriber {
     @Override
     public void onGraphicChanged(GraphicChanged event) {
         Actor actor = event.getActor();
+        if (actor == null) return;
         String actorLabel = formatActor(actor);
         StringBuilder graphicsLabelBuilder = new StringBuilder();
         graphicsLabelBuilder.append("Graphics(");
@@ -1835,6 +1838,11 @@ public class EventInspector extends EventInspectorSubscriber {
         } else {
             addLine("Jingle", "Jingle(id = " + event.getJingleId() + ")", true, jingles);
         }
+    }
+
+    @Override
+    public void onMusicPlayed(MusicPlayed event) {
+        addLine("Music", "Music(id = " + event.getMusicId() + ")", true, musics);
     }
 
     @Override
