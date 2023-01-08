@@ -94,7 +94,6 @@ dependencies {
     implementation("com.formdev:flatlaf:_")
     implementation("com.formdev:flatlaf-intellij-themes:_")
     implementation("com.miglayout:miglayout:_")
-    implementation("io.insert-koin:koin-core:_")
     implementation("com.kitfox.svg:svg-salamander:_")
     implementation("com.formdev:flatlaf-extras:_")
     implementation("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")

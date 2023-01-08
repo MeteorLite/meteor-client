@@ -50,9 +50,6 @@ import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
 import org.jetbrains.skiko.OS
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.get
-import org.koin.core.context.startKoin
 import org.rationalityfrontline.kevent.KEVENT
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -61,7 +58,7 @@ import kotlin.system.exitProcess
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 
-object Main : ApplicationScope, KoinComponent, EventSubscriber() {
+object Main : ApplicationScope, EventSubscriber() {
     var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
     var onClicksWidget = HashMap<WidgetMenuOption, Consumer<MenuEntry>>()
     init {
@@ -104,8 +101,7 @@ object Main : ApplicationScope, KoinComponent, EventSubscriber() {
             MeteorliteTheme.installDark()
         }
         timer.start()
-        startKoin { modules(Module.CLIENT_MODULE) }
-        callbacks = get()
+        callbacks = Hooks()
         AppletConfiguration.init()
         Applet().init()
 
