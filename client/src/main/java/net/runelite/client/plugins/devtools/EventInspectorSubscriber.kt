@@ -120,7 +120,6 @@ open class EventInspectorSubscriber : DevToolsFrame(), KEventSubscriber {
     open fun onIfOpenSubEvent(it: IfOpenSubEvent) {}
     open fun onIfOpenTopEvent(it: IfOpenTopEvent) {}
     open fun onJinglePlayed(it: JinglePlayed) {}
-    open fun onMusicPlayed(it: MusicPlayed) {}
     open fun onMinimapStateChange(it: MinimapStateChange) {}
     open fun onNameChangeEvent(it: NameChangeEvent) {}
     open fun onNPCMoved(it: NPCMoved) {}
@@ -454,7 +453,6 @@ open class EventInspectorSubscriber : DevToolsFrame(), KEventSubscriber {
         subscribeEvent<IfOpenTopEvent>(Events.IF_OPEN_TOP_EVENT) { executeIfListening { onIfOpenTopEvent(it) } }
         subscribeEvent<InteractingChanged>(Events.INTERACTING_CHANGED) { executeIfListening { onInteractingChanged(it) } }
         subscribeEvent<JinglePlayed>(Events.JINGLE_PLAYED) { executeIfListening { onJinglePlayed(it) } }
-        subscribeEvent<MusicPlayed>(Events.MUSIC_PLAYED) { executeIfListening { onMusicPlayed(it) } }
         subscribeEvent<MinimapStateChange>(Events.MINIMAP_STATE_CHANGE) { executeIfListening { onMinimapStateChange(it) } }
         subscribeEvent<NameChangeEvent>(Events.NAME_CHANGE_EVENT) { executeIfListening { onNameChangeEvent(it) } }
         subscribeEvent<NPCMoved>(Events.NPC_MOVED) { executeIfListening { onNPCMoved(it) } }
