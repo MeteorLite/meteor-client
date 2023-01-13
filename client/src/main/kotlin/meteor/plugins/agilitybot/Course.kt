@@ -260,15 +260,19 @@ enum class Course(val obstacles: Array<Obstacle>?) {
     }
 
     fun getNext(player: Player): Obstacle? {
-        for (obstacle in obstacles!!) {
-            if (obstacle.area.contains(player)) return obstacle
+        obstacles?.let {
+            for (obstacle in it) {
+                if (obstacle.area.contains(player)) return obstacle
+            }
         }
+
         return null
     }
 
     operator fun get(gameObject: TileObject): Obstacle? {
-        for (obstacle in obstacles!!) {
-            if (gameObject.id == obstacle.id) return obstacle
+        obstacles?.let {
+            for (obstacle in it)
+                if (gameObject.id == obstacle.id) return obstacle
         }
         return null
     }
@@ -293,11 +297,13 @@ enum class Course(val obstacles: Array<Obstacle>?) {
                 var dist = Double.MAX_VALUE
                 for (course in values()) {
                     val obstacles = course.obstacles
-                    val area = obstacles!![0].area
-                    val dist2 = area.center.toWorldPoint().distanceTo(local.worldLocation).toDouble()
-                    if (dist2 < dist) {
-                        dist = dist2
-                        nearest = course
+                    obstacles?.let {
+                        val area = obstacles!![0].area
+                        val dist2 = area.center.toWorldPoint().distanceTo(local.worldLocation).toDouble()
+                        if (dist2 < dist) {
+                            dist = dist2
+                            nearest = course
+                        }
                     }
                 }
                 return nearest
