@@ -1,9 +1,6 @@
 package meteor.plugins.notes
 
-import androidx.compose.ui.window.Window
-import compose.icons.Octicons
 import compose.icons.TablerIcons
-import compose.icons.octicons.Note24
 import compose.icons.tablericons.Notes
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor

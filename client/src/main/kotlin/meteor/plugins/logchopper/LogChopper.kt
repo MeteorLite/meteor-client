@@ -57,7 +57,7 @@ class LogChopper : Plugin() {
             LogChopperConfig.MethodType.Bank -> {
                 if (!client.localPlayer?.isAnimating!! && !client.localPlayer?.isMoving!! && !isFull()) {
                     chopTree()
-                } else if (isFull()) {
+                } else if (isFull() && !bankOpen()) {
                     useBank()
                 }
                 if (bankOpen()) {
