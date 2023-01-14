@@ -26,7 +26,6 @@
  */
 package meteor.plugins.gauntletextended
 
-import com.google.common.base.Supplier
 import eventbus.events.*
 import meteor.Main
 import meteor.api.items.Items
@@ -111,7 +110,9 @@ class GauntletExtendedPlugin : Plugin() {
         switchWeapon = false
         overlayTimer.reset()
         resourceManager.reset()
-        entitySets.forEach(Consumer { obj: MutableSet<*> -> obj.clear() })
+        entitySets.forEach(Consumer { obj: MutableSet<*> -> obj.clear()
+            KeyManager.unregisterKeyListener(eat)
+            KeyManager.unregisterKeyListener(drink)})
     }
 
     override fun onConfigChanged(it: ConfigChanged) {

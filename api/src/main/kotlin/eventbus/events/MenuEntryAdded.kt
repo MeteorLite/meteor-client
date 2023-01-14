@@ -31,7 +31,7 @@ import net.runelite.api.MenuEntry
  * An event when a new entry is added to a right-click menu.
  */
 class MenuEntryAdded(
-    val option: String?,
+    var option: String?,
     val target: String?,
     val identifier: Int,
     var opcode: Int,
