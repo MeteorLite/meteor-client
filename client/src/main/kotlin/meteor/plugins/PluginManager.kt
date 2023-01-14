@@ -79,6 +79,7 @@ import meteor.plugins.notes.NotesPlugin
 import meteor.plugins.objecthider.ObjectHiderPlugin
 import meteor.plugins.objectindicators.ObjectIndicatorsPlugin
 import meteor.plugins.olmswapper.OlmSwapperPlugin
+import meteor.plugins.oneclickaerialfishing.OneClickAerialFishingPlugin
 import meteor.plugins.oneclickagility.OneClickAgilityPlugin
 import meteor.plugins.oneclickblackjack.OneClickBlackjackPlugin
 import meteor.plugins.oneclickchins.Oneclickchinsplugin
@@ -230,6 +231,7 @@ object PluginManager {
         init<ObjectHiderPlugin>()
         init<ObjectIndicatorsPlugin>()
         init<OneClick3t4g>()
+        init<OneClickAerialFishingPlugin>()
         init<OneClickAgilityPlugin>()
         init<OneClickBlackjackPlugin>()
         init<Oneclickchinsplugin>()
