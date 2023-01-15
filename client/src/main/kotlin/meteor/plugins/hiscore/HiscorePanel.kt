@@ -9,6 +9,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -27,10 +29,10 @@ import meteor.ui.composables.preferences.uiColor
 
 class HiscorePanel : PluginPanel() {
     companion object {
-        var result: HiscoreResult? = null
+        var result: MutableState<HiscoreResult?> = mutableStateOf(null)
     }
 
-    var username = ""
+    var username = mutableStateOf("")
 
     @Composable
     override fun Header() {
@@ -45,7 +47,7 @@ class HiscorePanel : PluginPanel() {
             ) {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
-                            text = username,
+                            text = username.value,
                             style = TextStyle(fontSize = 20.sp, textAlign = TextAlign.Center, color = uiColor.value),
                             textAlign = TextAlign.Center
                     )

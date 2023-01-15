@@ -34,6 +34,7 @@ import eventbus.events.WidgetMenuOptionClicked
 import meteor.Main
 import meteor.Main.client
 import meteor.Main.eventBus
+import meteor.Main.logger
 import meteor.plugins.EventSubscriber
 import net.runelite.api.MenuAction
 import net.runelite.api.MenuEntry
@@ -52,6 +53,7 @@ object MenuManager : EventSubscriber() {
 
     init {
         subscribe()
+        eventListening = true
     }
 
     /**
@@ -152,6 +154,12 @@ object MenuManager : EventSubscriber() {
         val idx: Int = it.index
         val menuText = playerMenuIndexMap[idx]
             ?: return  // not our menu
+
+        //Only allow adding unique options
+        for (option in client.playerOptions) {
+            if (option == menuText)
+                return
+        }
 
         // find new index for this option
         val newIdx = findEmptyPlayerMenuIndex()

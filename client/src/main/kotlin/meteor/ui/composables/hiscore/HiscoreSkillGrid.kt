@@ -20,32 +20,27 @@ import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import kotlin.math.max
 
-var result = HiscorePanel.result!!
-
 @OptIn(ExperimentalFoundationApi::class)
 
 fun LazyGridScope.hiscoreSkillGrid() {
+    val result = HiscorePanel.result.value
     items(items = HiscoreSkill.values().filter { it.type == HiscoreSkillType.SKILL }) { item ->
         Card(backgroundColor = surface, modifier = Modifier.size(40.dp).padding(4.dp)) {
 
             TooltipArea(tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
                 Column(modifier = Modifier.background(surface)) {
                     Text(
-                            text = mutableStateOf(
-                                    "Rank:" + max(
-                                            0,
-                                            result.getSkill(item)!!.rank
-                                    ).toString()
-                            ).value,
+                            text = "Rank:" + max(
+                                0,
+                                result?.getSkill(item)?.rank ?: -1
+                            ).toString(),
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                     )
                     Text(
-                            text = mutableStateOf(
-                                    "Total Exp:" + max(
-                                            0,
-                                            result.getSkill(item)!!.experience
-                                    ).toString()
-                            ).value,
+                            text = "Total Exp:" + max(
+                                0,
+                                result?.getSkill(item)?.experience ?: -1
+                            ).toString(),
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                     )
                 }
@@ -64,9 +59,9 @@ fun LazyGridScope.hiscoreSkillGrid() {
                         )
                         Spacer(modifier = Modifier.width(15.dp))
                         Text(
-                                text = mutableStateOf(result.getSkill(item)?.level.toString()).value,
+                                text = result?.getSkill(item)?.level?.toString() ?: "null",
                                 style = TextStyle(fontSize = 15.sp, color = uiColor.value),
-                                modifier = Modifier.offset(x = -5.dp, y = 5.dp)
+                                modifier = Modifier.offset(x = (-5).dp, y = 5.dp)
                         )
                     }
                 }
@@ -80,6 +75,7 @@ fun LazyGridScope.hiscoreSkillGrid() {
 }
 
 fun LazyGridScope.overallSkillItem() {
+    val result = HiscorePanel.result
     items(items = HiscoreSkill.values().filter { it.type == HiscoreSkillType.OVERALL }) { overall ->
         Card(backgroundColor = surface, modifier = Modifier.size(40.dp).padding(4.dp)) {
                 Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically, modifier = Modifier.offset(x = 5.dp, y = -2.dp)) {
@@ -90,7 +86,7 @@ fun LazyGridScope.overallSkillItem() {
                         alignment = Alignment.Center
                 )
                     Text(
-                            text = mutableStateOf(result.getSkill(overall)?.level.toString()).value,
+                            text = mutableStateOf(result.value?.getSkill(overall)?.level.toString()).value,
                             style = TextStyle(fontSize = 15.sp, color = uiColor.value),
                     )
                 }

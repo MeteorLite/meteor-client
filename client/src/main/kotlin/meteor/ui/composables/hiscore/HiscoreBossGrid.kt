@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.hiscore.HiscoreSkill
 import meteor.hiscore.HiscoreSkillType
+import meteor.plugins.hiscore.HiscorePanel.Companion.result
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import kotlin.math.max
@@ -32,7 +33,7 @@ fun LazyGridScope.hiscoreBossGrid() {
                 ), tooltipPlacement = TooltipPlacement.ComponentRect(), tooltip = {
                     Column(modifier = Modifier.background(surface)) {
                         Text(
-                            text = "Rank:" + max(0, result.getSkill(item)!!.rank).toString(),
+                            text = "Rank:" + max(0, result.value?.getSkill(item)?.rank ?: -1).toString(),
                             style = TextStyle(fontSize = 10.sp, color = uiColor.value)
                         )
                         Text(
@@ -52,7 +53,7 @@ fun LazyGridScope.hiscoreBossGrid() {
                         modifier = Modifier.size(18.dp)
                     )
                     Text(
-                        text = max(0, result.getSkill(item)!!.level).toString(),
+                        text = max(0, result.value?.getSkill(item)?.level ?: -1).toString(),
                         style = TextStyle(
                             fontSize = 12.sp,
                             textAlign = TextAlign.Center,

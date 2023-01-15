@@ -41,20 +41,10 @@ import eventbus.events.WallObjectChanged;
 import eventbus.events.WallObjectDespawned;
 import eventbus.events.WallObjectSpawned;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import net.runelite.api.CollisionData;
-import net.runelite.api.CollisionDataFlag;
-import net.runelite.api.Constants;
-import net.runelite.api.DecorativeObject;
-import net.runelite.api.GameState;
-import net.runelite.api.GroundObject;
-import net.runelite.api.ItemLayer;
-import net.runelite.api.MenuAction;
-import net.runelite.api.Node;
-import net.runelite.api.Point;
-import net.runelite.api.Tile;
-import net.runelite.api.TileItem;
-import net.runelite.api.WallObject;
+
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.mixins.FieldHook;
@@ -739,10 +729,8 @@ public abstract class RSTileMixin implements RSTile
 			if (oldQueue != null)
 			{
 				// despawn everything in old ..
-				RSNode head = oldQueue.getSentinel();
-				for (RSNode cur = head.getNext(); cur != head; cur = cur.getNext())
-				{
-					RSTileItem item = (RSTileItem) cur;
+				for (Object o : oldQueue) {
+					RSTileItem item = (RSTileItem) o;
 					ItemDespawned itemDespawned = new ItemDespawned(this, item);
 					client.getCallbacks().post(Events.ITEM_DESPAWNED, itemDespawned);
 				}
