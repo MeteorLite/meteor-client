@@ -30,7 +30,7 @@ import meteor.config.legacy.Keybind.Companion.getModifierForKeyCode
 import meteor.input.KeyListener
 import java.awt.event.KeyEvent
 
-open class HotkeyListener(private val keybind: suspend () -> Keybind) : KeyListener {
+open class HotkeyListener(private val keybind: () -> Keybind) : KeyListener {
     private var isPressed = false
     private var isConsumingTyped = false
 
@@ -42,20 +42,18 @@ open class HotkeyListener(private val keybind: suspend () -> Keybind) : KeyListe
     }
 
     override fun keyPressed(e: KeyEvent) {
-        runBlocking {
-                if (keybind().matches(e)) {
-                    val wasPressed = isPressed
-                    isPressed = true
-                    if (!wasPressed) {
+        if (keybind().matches(e)) {
+            val wasPressed = isPressed
+            isPressed = true
+            if (!wasPressed) {
 
-                        hotkeyPressed()
-                    }
-                    if (getModifierForKeyCode(e.keyCode) == null) {
-                        isConsumingTyped = true
-                        // Only consume non modifier keys
-                        e.consume()
-                    }
-                }
+                hotkeyPressed()
+            }
+            if (getModifierForKeyCode(e.keyCode) == null) {
+                isConsumingTyped = true
+                // Only consume non modifier keys
+                e.consume()
+            }
         }
     }
 

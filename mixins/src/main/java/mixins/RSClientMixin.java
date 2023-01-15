@@ -894,6 +894,11 @@ public abstract class RSClientMixin implements RSClient {
         if (var0 == -1)
             return;
 
+        if (var0 > 500) {
+            rl$logger.error("Invalid menu idx swap");
+            return;
+        }
+
         RSRuneLiteMenuEntry var1 = rl$menuEntries[var0];
         RSRuneLiteMenuEntry var2 = rl$menuEntries[var0 + 1];
 
