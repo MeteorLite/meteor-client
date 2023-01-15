@@ -280,10 +280,7 @@ class KEvent(
             val subscriberList = subscribersReadOnlyMap[event.type]?.run {
                 filter { it.threadMode == SubscriberThreadMode.POSTING }
             }
-            if (subscriberList == null || subscriberList.isEmpty()) {
-                //logger.warn { "No subscribers for event type \"${event.type.name}\" with dispatch mode ${EventDispatchMode.POSTING}" }
-                return false
-            } else {
+            if (!subscriberList.isNullOrEmpty()) {
                 subscriberList.forEach { subscriber ->
                     if (!isValidEvent(event)) return@forEach
                     consumeEvent(subscriber, event)

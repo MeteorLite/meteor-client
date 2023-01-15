@@ -26,7 +26,6 @@ import dev.hoot.api.game.Prices
 import meteor.Main.itemManager
 import meteor.plugins.PluginDescriptor
 import meteor.ui.composables.PluginPanel
-import meteor.ui.composables.hiscore.result
 import meteor.ui.composables.preferences.*
 import meteor.util.ImageUtil
 import org.jetbrains.skiko.toBitmap

@@ -153,6 +153,7 @@ enum class HiscoreSkill(val skillName: String, val type: HiscoreSkillType) {
         "Obor",
         HiscoreSkillType.BOSS
     ),
+    PHANTOM_MUSPAH("Phantom Muspah", HiscoreSkillType.BOSS),
     SARACHNIS("Sarachnis", HiscoreSkillType.BOSS), SCORPIA("Scorpia", HiscoreSkillType.BOSS), SKOTIZO(
         "Skotizo",
         HiscoreSkillType.BOSS
