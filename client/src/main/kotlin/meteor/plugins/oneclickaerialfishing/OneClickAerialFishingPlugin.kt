@@ -74,7 +74,7 @@ class OneClickAerialFishingPlugin : Plugin() {
     }
 
     private val emptySlots: Int
-            get() {
+        get() {
             val inventory: Widget? = client.getWidget(WidgetInfo.INVENTORY.id)
             val bankInventory: Widget? = client.getWidget(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.id)
             if (inventory != null && !inventory.isHidden && inventory.dynamicChildren != null) {
@@ -123,7 +123,7 @@ class OneClickAerialFishingPlugin : Plugin() {
     }
 
     private val fishingSpot: NPC?
-            get() = NPCQuery()
+        get() = NPCQuery()
             .idEquals(TENCH_FISHING_SPOT_NPC_ID)
             .result(client)
             .nearestTo(client.localPlayer)
