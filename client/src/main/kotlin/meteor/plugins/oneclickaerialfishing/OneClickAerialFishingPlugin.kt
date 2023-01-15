@@ -2,12 +2,13 @@ package meteor.plugins.oneclickaerialfishing
 
 import eventbus.events.ClientTick
 import eventbus.events.MenuOptionClicked
-import meteor.api.items.Items
-import meteor.api.npcs.NPCs
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.*
+import net.runelite.api.queries.NPCQuery
+import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
+import java.util.*
 
 @PluginDescriptor(
     name = "One Click Aerial Fishing",
@@ -16,10 +17,6 @@ import net.runelite.api.widgets.WidgetInfo
     enabledByDefault = false
 )
 class OneClickAerialFishingPlugin : Plugin() {
-
-    private val fishIds = mutableListOf(22826, 22829, 22832, 22835)
-    private var shouldCut = false
-
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
         if (it.getMenuOption().equals("<col=00ff00>One Click Aerial Fishing")) {
             handleClick(it)
@@ -31,69 +28,108 @@ class OneClickAerialFishingPlugin : Plugin() {
         }
         val text = "<col=00ff00>One Click Aerial Fishing"
         client.insertMenuItem(
-            text,
-            "" ,
-            MenuAction.UNKNOWN.id,
-            0,
-            0,
-            0,
-            true
+            text, "", MenuAction.UNKNOWN
+                .id, 0, 0, 0, true
         )
     }
 
     private fun handleClick(it: MenuOptionClicked) {
-        if( Items.inventoryContains(ItemID.KING_WORM)  || Items.inventoryContains(ItemID.FISH_CHUNKS) //if bait exists
-
+        if (emptySlots > 0 && (getLastInventoryItem(ItemID.KING_WORM) != null || getLastInventoryItem(ItemID.FISH_CHUNKS) != null) //if bait exists
+            && !shouldCut
         ) {
             it.menuEntry = (catchFishMenuEntry())
             return
+        } else {
+            shouldCut = true
         }
-
-        fishIds.forEach { fish ->
-            if (Items.inventoryContains(fish)) {
-                if (!Items.inventoryContains("Knife")) {
-                    it.menuEntry = (dropFishMenuEntry(Items.getFirst(fish)))
+        //if space in inventory then fish, else cut // add check for bait!
+        for (fish in LIST_OF_FISH_IDS) {
+            if (getLastInventoryItem(fish) != null) {
+                if (getLastInventoryItem(ItemID.KNIFE) == null) {
+                    it.menuEntry = (dropFishMenuEntry(getLastInventoryItem(fish)))
                     return
                 }
                 client.selectedSpellWidget = WidgetInfo.INVENTORY.id
-                client.selectedSpellChildIndex = Items.getFirst(ItemID.KNIFE)!!.slot
+                client.selectedSpellChildIndex = getLastInventoryItem(ItemID.KNIFE)!!.index
                 client.selectedSpellItemId = ItemID.KNIFE
-                it.menuEntry = (useKnifeOnFishMenuEntry(Items.getFirst(fish)))
+                it.menuEntry = (useKnifeOnFishMenuEntry(getLastInventoryItem(fish)))
                 return
             }
         }
         shouldCut = false
     }
 
-    private fun useKnifeOnFishMenuEntry(it: Item?): MenuEntry {
+    private fun getLastInventoryItem(it: Int): Widget? {
+        val inventoryWidget: Widget? = client.getWidget(WidgetInfo.INVENTORY)
+        return if (inventoryWidget != null && !inventoryWidget.isHidden) {
+            getLastWidgetItem(inventoryWidget, it)
+        } else null
+    }
+
+    private fun getLastWidgetItem(it: Widget, id: Int): Widget? {
+        return Arrays.stream(it.dynamicChildren)
+            .filter { item: Widget? -> item!!.itemId == id }
+            .reduce { first: Widget?, second: Widget? -> second }
+            .orElse(null)
+    }
+
+    private val emptySlots: Int
+        get() {
+            val inventory: Widget? = client.getWidget(WidgetInfo.INVENTORY.id)
+            val bankInventory: Widget? = client.getWidget(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.id)
+            if (inventory != null && !inventory.isHidden && inventory.dynamicChildren != null) {
+                val inventoryItems =
+                    Arrays.asList<Widget>(*client.getWidget(WidgetInfo.INVENTORY.id)?.dynamicChildren)
+                return inventoryItems.stream().filter { item: Widget -> item.itemId == 6512 }.count().toInt()
+            }
+            if (bankInventory != null && !bankInventory.isHidden && bankInventory.dynamicChildren != null) {
+                val inventoryItems = Arrays.asList<Widget>(
+                    *client.getWidget(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.id)?.dynamicChildren
+                )
+                return inventoryItems.stream().filter { item: Widget -> item.itemId == 6512 }.count().toInt()
+            }
+            return -1
+        }
+
+    private fun useKnifeOnFishMenuEntry(it: Widget?): MenuEntry {
         return createMenuEntry(
             0,
             MenuAction.WIDGET_TARGET_ON_WIDGET,
-            it!!.slot,
+            it!!.index,
             9764864,
             false
         )
     }
 
-    private fun dropFishMenuEntry(it: Item?): MenuEntry {
+    private fun dropFishMenuEntry(it: Widget?): MenuEntry {
         return createMenuEntry(
             7,
             MenuAction.CC_OP_LOW_PRIORITY,
-            it!!.slot,
+            it!!.index,
             9764864,
             false
         )
     }
 
     private fun catchFishMenuEntry(): MenuEntry {
-        val fishingSpot = NPCs.getFirst(NpcID.FISHING_SPOT_8523)
+        val FishingSpot = fishingSpot
         return createMenuEntry(
-            fishingSpot!!.index,
+            FishingSpot!!.index,
             MenuAction.NPC_FIRST_OPTION,
-            fishingSpot.worldLocation.x,
-            fishingSpot.worldLocation.y,
+            getNPCLocation(FishingSpot).x,
+            getNPCLocation(FishingSpot).y,
             true
         )
+    }
+
+    private val fishingSpot: NPC?
+        get() = NPCQuery()
+            .idEquals(TENCH_FISHING_SPOT_NPC_ID)
+            .result(client)
+            .nearestTo(client.localPlayer)
+
+    private fun getNPCLocation(npc: NPC): Point {
+        return Point(npc.localLocation.sceneX, npc.localLocation.sceneY)
     }
 
     fun createMenuEntry(
@@ -103,14 +139,17 @@ class OneClickAerialFishingPlugin : Plugin() {
         param1: Int,
         forceLeftClick: Boolean
     ): MenuEntry {
-        return client.createMenuEntry(0)
-            .setOption("")
-            .setTarget("")
-            .setIdentifier(identifier)
-            .setType(type)
-            .setParam0(param0)
-            .setParam1(param1)
-            .setForceLeftClick(forceLeftClick)
+        return client.createMenuEntry(0).setOption("").setTarget("").setIdentifier(identifier).setType(type)
+            .setParam0(param0).setParam1(param1).setForceLeftClick(forceLeftClick)
     }
 
+    private fun printLineNumber() {
+        println("LINE - " + Thread.currentThread().stackTrace[2].lineNumber)
+    }
+
+    companion object {
+        private const val TENCH_FISHING_SPOT_NPC_ID = 8523
+        private val LIST_OF_FISH_IDS: List<Int> = mutableListOf(22826, 22829, 22832, 22835)
+        private var shouldCut = false
+    }
 }
