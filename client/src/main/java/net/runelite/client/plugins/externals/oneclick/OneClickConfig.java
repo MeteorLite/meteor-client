@@ -86,9 +86,9 @@ public interface OneClickConfig extends Config
 		description = "Select which plots you want to compost.",
 		section = farmRunConfig
 	)
-	default Set<Compostable> getCompostablePlots()
+	default Compostable getCompostablePlots()
 	{
-		return Set.of(Compostable.values());
+		return Compostable.ALLOTMENT;
 	}
 
 	@ConfigSection(

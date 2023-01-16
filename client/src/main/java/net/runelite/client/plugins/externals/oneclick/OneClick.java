@@ -237,10 +237,10 @@ public class OneClick extends Plugin
 		clientThread.invoke(() ->
 		{
 			convertStringToCustomItemMap();
-			clickable.addAll(Combat.createInstances(Combat.values()));
+			clickable.addAll(Combat.Companion.createInstances(Combat.values()));
 			clickable.addAll(Custom.Companion.createInstances(Custom.values()));
-			clickable.addAll(Minigame.createInstances(Minigame.values()));
-			clickable.addAll(Skilling.createInstances(Skilling.values()));
+			clickable.addAll(Minigame.Companion.createInstances(Minigame.values()));
+			clickable.addAll(Skilling.Companion.createInstances(Skilling.values()));
 		});
 	}
 

@@ -1,6 +1,7 @@
 package net.runelite.client.plugins.externals.oneclick.clickables.skilling.farming;
 
 import java.util.Optional;
+import java.util.Set;
 
 import eventbus.events.MenuEntryAdded;
 import eventbus.events.MenuOptionClicked;
@@ -15,6 +16,7 @@ import net.runelite.client.plugins.externals.oneclick.clickables.skilling.farmin
 import net.runelite.client.plugins.externals.oneclick.clickables.skilling.farming.utils.FarmingPlot;
 import net.runelite.client.plugins.externals.oneclick.clickables.skilling.farming.utils.FarmingRegion;
 import net.runelite.client.plugins.externals.oneclick.clickables.skilling.farming.utils.FarmingWorld;
+import net.runelite.client.plugins.externals.oneclick.config.Compostable;
 
 @Slf4j
 public class FarmingRun extends Clickable
@@ -91,7 +93,7 @@ public class FarmingRun extends Clickable
 				Main.INSTANCE.getOnClicks().put(menuEntry, me -> updateSelectedItem(plot.getSeeds()));
 				return true;
 			case GROWING:
-				if (!plot.isCompostable() || config.getCompostablePlots().stream().noneMatch(compostable -> compostable.getPlot() == plot))
+				if (!plot.isCompostable() || Set.of(Compostable.values()).stream().noneMatch(compostable -> compostable.getPlot() == plot))
 				{
 					return false;
 				}

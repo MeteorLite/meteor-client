@@ -1,20 +1,22 @@
 package net.runelite.client.plugins.externals.oneclick.config
 
 import net.runelite.client.plugins.externals.oneclick.clickables.Clickable
-import net.runelite.client.plugins.externals.oneclick.clickables.custom.CustomInventory
+import net.runelite.client.plugins.externals.oneclick.clickables.combat.Slayer
+import net.runelite.client.plugins.externals.oneclick.clickables.combat.Vorkath
 import java.util.*
 import java.util.Set
 import java.util.stream.Collectors
+import kotlin.collections.List
 
-enum class Custom(val clazz: Class<out Clickable>) {
-    CUSTOM_INV(CustomInventory::class.java as Class<Clickable>);
+enum class Combat(val clazz: Class<out Clickable>) {
+    SLAYER(Slayer::class.java), VORKATH(Vorkath::class.java);
 
     companion object {
-        fun createInstances(customs: Array<Custom>): List<Clickable> {
-            val set = mutableSetOf(*customs)
+        fun createInstances(combats: Array<Combat>): List<Clickable> {
+            val set = mutableSetOf(*combats)
             return set.stream()
-                .filter { obj: Custom -> Objects.nonNull(obj) }
-                .map { skilling: Custom ->
+                .filter { obj: Combat -> Objects.nonNull(obj) }
+                .map { skilling: Combat ->
                     try {
                         return@map skilling.clazz.newInstance()
                     } catch (e: InstantiationException) {
