@@ -58,16 +58,13 @@ open class HotkeyListener(private val keybind: () -> Keybind) : KeyListener {
     }
 
     override fun keyReleased(e: KeyEvent) {
-        runBlocking {
-            if (keybind().matches(e)) {
-                if (isPressed) {
-                    hotkeyReleased()
-                }
-                isPressed = false
-                isConsumingTyped = false
+        if (keybind().matches(e)) {
+            if (isPressed) {
+                hotkeyReleased()
             }
+            isPressed = false
+            isConsumingTyped = false
         }
-
     }
 
     protected open fun hotkeyPressed() {

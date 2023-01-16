@@ -16,7 +16,7 @@ object CreateLauncherUpdate {
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        release.version = "158" // Last merged PR is version
+        release.version = "163" // Last merged PR is version
         release.updateInfo = ""
 
         if (releaseDir.exists())
