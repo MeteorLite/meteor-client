@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Jasper Ketelaar <Jasper0781@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,35 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package meteor.plugins.mta
 
-import java.util.HashMap;
+import lombok.Getter
+import net.runelite.api.ItemID
+import java.util.*
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
-{
-	int[] getFaceColors1();
+enum class AlchemyItem(@field:Getter val itemName: String, @field:Getter val id: Int) {
+    LEATHER_BOOTS("Leather Boots", ItemID.LEATHER_BOOTS_6893), ADAMANT_KITESHIELD(
+        "Adamant Kiteshield",
+        ItemID.ADAMANT_KITESHIELD_6894
+    ),
+    ADAMANT_MED_HELM("Helm", ItemID.ADAMANT_MED_HELM_6895), EMERALD(
+        "Emerald",
+        ItemID.EMERALD_6896
+    ),
+    RUNE_LONGSWORD("Rune Longsword", ItemID.RUNE_LONGSWORD_6897), EMPTY("", -1), POSSIBLY_EMPTY(
+        "",
+        ItemID.CAKE_OF_GUIDANCE
+    ),
+    UNKNOWN("Unknown", ItemID.CAKE_OF_GUIDANCE);
 
-	int[] getFaceColors2();
-
-	int[] getFaceColors3();
-
-	int getSceneId();
-	void setSceneId(int sceneId);
-
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
-
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getBottomY();
-
-	void calculateBoundsCylinder$api();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+    companion object {
+        fun find(item: String): AlchemyItem? {
+            for (alchemyItem in values()) {
+                if (item.lowercase(Locale.getDefault()).contains(alchemyItem.name.lowercase(Locale.getDefault()))) {
+                    return alchemyItem
+                }
+            }
+            return null
+        }
+    }
 }

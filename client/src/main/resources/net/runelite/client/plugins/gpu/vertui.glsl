@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+#version 330
 
-import java.util.HashMap;
+#define SAMPLING_DEFAULT 0
+#define SAMPLING_MITCHELL 1
+#define SAMPLING_CATROM 2
+#define SAMPLING_XBR 3
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
+uniform int samplingMode;
+uniform ivec2 sourceDimensions;
+uniform ivec2 targetDimensions;
+
+#include scale/xbr_lv2_vert.glsl
+
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec2 aTexCoord;
+
+out vec2 TexCoord;
+out XBRTable xbrTable;
+
+void main()
 {
-	int[] getFaceColors1();
+    gl_Position = vec4(aPos, 1.0);
+    TexCoord = aTexCoord;
 
-	int[] getFaceColors2();
-
-	int[] getFaceColors3();
-
-	int getSceneId();
-	void setSceneId(int sceneId);
-
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
-
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getBottomY();
-
-	void calculateBoundsCylinder$api();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+    if (samplingMode == SAMPLING_XBR)
+        xbrTable = xbr_vert(TexCoord, sourceDimensions);
 }

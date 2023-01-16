@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,64 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.gpu;
 
-import java.util.HashMap;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.IntBuffer;
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
+class GpuIntBuffer
 {
-	int[] getFaceColors1();
+	private IntBuffer buffer = allocateDirect(65536);
 
-	int[] getFaceColors2();
+	void put(int x, int y, int z)
+	{
+		buffer.put(x).put(y).put(z);
+	}
 
-	int[] getFaceColors3();
+	void put(int x, int y, int z, int c)
+	{
+		buffer.put(x).put(y).put(z).put(c);
+	}
 
-	int getSceneId();
-	void setSceneId(int sceneId);
+	void flip()
+	{
+		buffer.flip();
+	}
 
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
+	void clear()
+	{
+		buffer.clear();
+	}
 
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
+	void ensureCapacity(int size)
+	{
+		int capacity = buffer.capacity();
+		final int position = buffer.position();
+		if ((capacity - position) < size)
+		{
+			do
+			{
+				capacity *= 2;
+			}
+			while ((capacity - position) < size);
 
-	int getBottomY();
+			IntBuffer newB = allocateDirect(capacity);
+			buffer.flip();
+			newB.put(buffer);
+			buffer = newB;
+		}
+	}
 
-	void calculateBoundsCylinder$api();
+	IntBuffer getBuffer()
+	{
+		return buffer;
+	}
 
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+	static IntBuffer allocateDirect(int size)
+	{
+		return ByteBuffer.allocateDirect(size * Integer.BYTES)
+			.order(ByteOrder.nativeOrder())
+			.asIntBuffer();
+	}
 }

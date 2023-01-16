@@ -13,10 +13,7 @@ import meteor.api.loot.Interact
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
 import meteor.dev.widgetinspector.WidgetInspector
-import meteor.game.FontManager
-import meteor.game.ItemManager
-import meteor.game.LootManager
-import meteor.game.WorldService
+import meteor.game.*
 import meteor.game.chatbox.ChatboxPanelManager
 import meteor.game.npcoverlay.NpcOverlayService
 import meteor.hiscore.HiscoreManager
@@ -79,6 +76,7 @@ object Main : ApplicationScope, EventSubscriber() {
     lateinit var xpTrackerService: XpTrackerService
     lateinit var chatMessageManager: ChatMessageManager
     lateinit var chatCommandManager: ChatCommandManager
+    lateinit var xpDropManager: XpDropManager
     val httpClient = OkHttpClient()
     val xpClient = XpClient(httpClient)
     val chatClient = ChatClient(httpClient)
@@ -131,6 +129,7 @@ object Main : ApplicationScope, EventSubscriber() {
         npcOverlayService = NpcOverlayService()
         PluginManager.loadExternalPlugins()
         xpTrackerService = XpTrackerService(PluginManager.get())
+        xpDropManager = XpDropManager()
         SessionManager.start()
         timer.stop()
 

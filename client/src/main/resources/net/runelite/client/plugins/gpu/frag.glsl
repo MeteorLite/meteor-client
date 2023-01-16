@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,49 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+#version 330
 
-import java.util.HashMap;
+uniform sampler2DArray textures;
+uniform float brightness;
+uniform float smoothBanding;
+uniform vec4 fogColor;
+uniform int colorBlindMode;
+uniform float textureLightMode;
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
-{
-	int[] getFaceColors1();
+in vec4 Color;
+noperspective centroid in float fHsl;
+flat in int textureId;
+in vec2 fUv;
+in float fogAmount;
 
-	int[] getFaceColors2();
+out vec4 FragColor;
 
-	int[] getFaceColors3();
+#include hsl_to_rgb.glsl
+#include colorblind.glsl
 
-	int getSceneId();
-	void setSceneId(int sceneId);
+void main() {
+  vec4 c;
 
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
+  if (textureId > 0) {
+    int textureIdx = textureId - 1;
 
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
+    vec4 textureColor = texture(textures, vec3(fUv, float(textureIdx)));
+    vec4 textureColorBrightness = pow(textureColor, vec4(brightness, brightness, brightness, 1.0f));
 
-	int getBottomY();
+    // textured triangles hsl is a 7 bit lightness 2-126
+    float light = fHsl / 127.f;
+    vec3 mul = (1.f - textureLightMode) * vec3(light) + textureLightMode * Color.rgb;
+    c = textureColorBrightness * vec4(mul, 1.f);
+  } else {
+    // pick interpolated hsl or rgb depending on smooth banding setting
+    vec3 rgb = hslToRgb(int(fHsl)) * smoothBanding + Color.rgb * (1.f - smoothBanding);
+    c = vec4(rgb, Color.a);
+  }
 
-	void calculateBoundsCylinder$api();
+  if (colorBlindMode > 0) {
+    c.rgb = colorblind(colorBlindMode, c.rgb);
+  }
 
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+  vec3 mixedColor = mix(c.rgb, fogColor.rgb, fogAmount);
+  FragColor = vec4(mixedColor, c.a);
 }

@@ -113,6 +113,8 @@ import net.runelite.client.plugins.cannon.CannonPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.devtools.DevToolsPlugin
+import net.runelite.client.plugins.externals.oneclick.OneClick
+import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.itemstats.ItemStatPlugin
@@ -198,6 +200,7 @@ object PluginManager {
         init<FullscreenPlugin>()
         init<GauntletExtendedPlugin>()
         init<HdPlugin>()
+        init<GpuPlugin>()
         init<GroundItemsPlugin>()
         init<GroundMarkerPlugin>()
         init<GuardiansOfTheRiftPlugin>()
@@ -231,6 +234,7 @@ object PluginManager {
         init<NightmareHelper>()
         init<ObjectHiderPlugin>()
         init<ObjectIndicatorsPlugin>()
+        init<OneClick>()
         init<OneClick3t4g>()
         init<OneClick3TFishPlugin>()
         init<OneClickAerialFishingPlugin>()

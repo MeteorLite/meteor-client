@@ -104,6 +104,8 @@ open class EventSubscriber : KEventSubscriber {
     open fun onCheatEntered(it: CheatEntered) {}
     open fun onVarCIntChanged(it: VarClientIntChanged) {}
     open fun onVarCStrChanged(it: VarClientStrChanged) {}
+
+    open fun onXPDrop(it: XPDrop) {}
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
             unit()
@@ -340,6 +342,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<CheatEntered>(Events.CHEAT_ENTERED) { executeIfListening { onCheatEntered(it) } }
         subscribeEvent<VarClientIntChanged>(Events.VARCLIENT_INT_CHANGED) { executeIfListening { onVarCIntChanged(it) } }
         subscribeEvent<VarClientStrChanged>(Events.VARCLIENT_STR_CHANGED) { executeIfListening { onVarCStrChanged(it) } }
+        subscribeEvent<XPDrop>(Events.XP_DROP) { executeIfListening { onXPDrop(it) } }
     }
 
     internal inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

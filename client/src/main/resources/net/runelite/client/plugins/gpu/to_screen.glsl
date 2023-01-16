@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,26 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
 
-import java.util.HashMap;
-
-/**
- * Represents the model of an object.
+/*
+ * Convert a vertex to screen space
  */
-public interface Model extends Mesh, Renderable
-{
-	int[] getFaceColors1();
+vec3 toScreen(ivec3 vertex, int cameraYaw, int cameraPitch, int centerX, int centerY, int zoom) {
+  float yawSin = sin(cameraYaw * UNIT);
+  float yawCos = cos(cameraYaw * UNIT);
 
-	int[] getFaceColors2();
+  float pitchSin = sin(cameraPitch * UNIT);
+  float pitchCos = cos(cameraPitch * UNIT);
 
-	int[] getFaceColors3();
+  float rotatedX = (vertex.z * yawSin) + (vertex.x * yawCos);
+  float rotatedZ = (vertex.z * yawCos) - (vertex.x * yawSin);
 
-	int getSceneId();
-	void setSceneId(int sceneId);
+  float var13 = (vertex.y * pitchCos) - (rotatedZ * pitchSin);
+  float var12 = (vertex.y * pitchSin) + (rotatedZ * pitchCos);
 
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
+  float x = rotatedX * zoom / var12 + centerX;
+  float y = var13 * zoom / var12 + centerY;
+  float z = -var12; // in OpenGL depth is negative
 
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getBottomY();
-
-	void calculateBoundsCylinder$api();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+  return vec3(x, y, z);
 }

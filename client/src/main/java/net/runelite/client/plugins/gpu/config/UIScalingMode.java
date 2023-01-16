@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019 logarrhytmic <https://github.com/logarrhythmic>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,27 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.gpu.config;
 
-import java.util.HashMap;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
+@Getter
+@RequiredArgsConstructor
+public enum UIScalingMode
 {
-	int[] getFaceColors1();
+	NEAREST("Nearest Neighbor", 0),
+	LINEAR("Bilinear", 0),
+	MITCHELL("Bicubic (Mitchell)", 1),
+	CATMULL_ROM("Bicubic (Catmull-Rom)", 2),
+	XBR("xBR", 3);
 
-	int[] getFaceColors2();
+	private final String name;
+	private final int mode;
 
-	int[] getFaceColors3();
-
-	int getSceneId();
-	void setSceneId(int sceneId);
-
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
-
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getBottomY();
-
-	void calculateBoundsCylinder$api();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2021, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.gpu;
 
-import java.util.HashMap;
+import org.jocl.Pointer;
+import org.jocl.cl_mem;
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
+class GLBuffer
 {
-	int[] getFaceColors1();
+	int glBufferId = -1;
+	int size = -1;
+	cl_mem cl_mem;
 
-	int[] getFaceColors2();
-
-	int[] getFaceColors3();
-
-	int getSceneId();
-	void setSceneId(int sceneId);
-
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
-
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getBottomY();
-
-	void calculateBoundsCylinder$api();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+	Pointer ptr()
+	{
+		return cl_mem != null ? Pointer.to(cl_mem) : null;
+	}
 }

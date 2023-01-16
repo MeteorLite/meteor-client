@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2021, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,36 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package meteor.game
 
-import java.util.HashMap;
+import eventbus.Events
+import eventbus.events.StatChanged
+import eventbus.events.XPDrop
+import meteor.Main
+import meteor.plugins.EventSubscriber
+import net.runelite.api.Skill
+import java.util.*
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
-{
-	int[] getFaceColors1();
+class XpDropManager : EventSubscriber() {
+    init {
+        subscribe()
+        eventListening = true
+    }
 
-	int[] getFaceColors2();
+    private val client = Main.client
 
-	int[] getFaceColors3();
+    private val previousSkillExpTable: MutableMap<Skill, Int> = EnumMap(
+        Skill::class.java
+    )
 
-	int getSceneId();
-	void setSceneId(int sceneId);
-
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
-
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getBottomY();
-
-	void calculateBoundsCylinder$api();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
+    override fun onStatChanged(event: StatChanged) {
+        val skill = event.skill
+        val xp = client.getSkillExperience(skill)
+        val previous = previousSkillExpTable.put(skill, xp)
+        if (previous != null) {
+            val previousExpGained = xp - previous
+            val xpDropEvent = XPDrop(skill, previousExpGained)
+            Main.client.callbacks.post(Events.XP_DROP, xpDropEvent)
+        }
+    }
 }
