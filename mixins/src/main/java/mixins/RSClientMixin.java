@@ -1338,6 +1338,11 @@ public abstract class RSClientMixin implements RSClient {
     @FieldHook("Varps_main")
     @Inject
     public static void settingsChanged(int idx) {
+        VarbitChanged varpChanged = new VarbitChanged();
+        varpChanged.setVarpId(idx);
+        varpChanged.setValue(client.getVarpValue(idx));
+        client.getCallbacks().post(Events.VARBIT_CHANGED, varpChanged);
+
         if (oldVarps == null) {
             oldVarps = new int[client.getVarps().length];
         }
@@ -1373,18 +1378,11 @@ public abstract class RSClientMixin implements RSClient {
                         changedBits &= ~maxValue;
                         int varbitValue = (newValue & maxValue) >>> startBit;
                         VarbitChanged varbitChanged = new VarbitChanged();
-                        varbitChanged.setVarpId(idx);
+                        varbitChanged.setVarpId(-1);
                         varbitChanged.setVarbitId(varbit);
                         varbitChanged.setValue(varbitValue);
                         client.getCallbacks().post(Events.VARBIT_CHANGED, varbitChanged);
                     }
-                }
-
-                if (changedBits != 0) {
-                    VarbitChanged varbitChanged = new VarbitChanged();
-                    varbitChanged.setVarpId(idx);
-                    varbitChanged.setValue(newValue);
-                    client.getCallbacks().post(Events.VARBIT_CHANGED, varbitChanged);
                 }
             }
 
