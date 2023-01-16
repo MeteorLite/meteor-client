@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2021, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
 
-import java.util.HashMap;
+struct uniform {
+  int cameraYaw;
+  int cameraPitch;
+  int centerX;
+  int centerY;
+  int zoom;
+  int cameraX;
+  int cameraY;
+  int cameraZ;
+  int4 sinCosTable[2048];
+};
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Mesh, Renderable
-{
-	int[] getFaceColors1();
+struct shared_data {
+  int totalNum[12]; // number of faces with a given priority
+  int totalDistance[12]; // sum of distances to faces of a given priority
+  int totalMappedNum[18]; // number of faces with a given adjusted priority
+  int min10; // minimum distance to a face of priority 10
+  int dfs[0]; // packed face id and distance, size 512 for small, 4096 for large
+};
 
-	int[] getFaceColors2();
-
-	int[] getFaceColors3();
-
-	int getSceneId();
-	void setSceneId(int sceneId);
-
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
-
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getBottomY();
-
-	void calculateBoundsCylinder$api();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	float[] getFaceTextureUVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getXYZMag();
-	boolean isClickable();
-	
-	void drawFace$api(int face);
-
-	int[] getVertexNormalsX();
-	int[] getVertexNormalsY();
-	int[] getVertexNormalsZ();
-
-	byte getOverrideAmount();
-	byte getOverrideHue();
-	byte getOverrideSaturation();
-	byte getOverrideLuminance();
-
-	HashMap<Integer, AABB>  getAABBMap();
-
-	AABB getAABB(int orientation);
-
-	void calculateBoundingBox(int orientation);
-
-	int getLastOrientation();
-	int getDiameter();
-}
+struct modelinfo {
+  int offset;   // offset into buffer
+  int uvOffset; // offset into uv buffer
+  int size;     // length in faces
+  int idx;      // write idx in target buffer
+  int flags;    // radius, orientation
+  int x;        // scene position x
+  int y;        // scene position y
+  int z;        // scene position z
+};
