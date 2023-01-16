@@ -1,0 +1,58 @@
+package net.runelite.client.plugins.externals.oneclick.clickables.minigames;
+
+import com.google.common.collect.ImmutableMap;
+import eventbus.events.MenuEntryAdded;
+import eventbus.events.MenuOptionClicked;
+import net.runelite.api.ItemID;
+import net.runelite.api.MenuAction;
+import net.runelite.client.plugins.externals.oneclick.clickables.Clickable;
+import net.runelite.client.plugins.externals.oneclick.pojos.ItemData;
+
+public class Healers extends Clickable
+{
+	private static final ImmutableMap<String, Integer> ITEMS = ImmutableMap.<String, Integer>builder()
+		.put("Pois. Worms", ItemID.POISONED_WORMS)
+		.put("Pois. Tofu", ItemID.POISONED_TOFU)
+		.put("Pois. Meat", ItemID.POISONED_MEAT)
+		.build();
+
+	@Override
+	public boolean isValidEntry(MenuEntryAdded event)
+	{
+		if (event.getOpcode() != MenuAction.EXAMINE_NPC.getId() || event.getForceLeftClick() || !event.getTarget().contains("Penance Healer"))
+		{
+			return false;
+		}
+
+		int id = ITEMS.getOrDefault(plugin.getRoleText(), -1);
+
+		if (id == -1)
+		{
+			return false;
+		}
+
+		ItemData item = findItem(id);
+
+		if (item == null)
+		{
+			return false;
+		}
+
+		client.createMenuEntry(client.getMenuOptionCount())
+			.setOption("Use")
+			.setTarget("<col=ff9040>Food<col=ffffff> -> <col=ffff00>Penance Healer")
+			.setType(MenuAction.WIDGET_TARGET_ON_NPC)
+			.setIdentifier(event.getIdentifier())
+			.setParam0(event.getParam0())
+			.setParam1(event.getParam1())
+			.setForceLeftClick(true);
+		return true;
+	}
+
+	@Override
+	public boolean isValidClick(MenuOptionClicked event)
+	{
+		return event.getMenuTarget().equals("<col=ff9040>Food<col=ffffff> -> <col=ffff00>Penance Healer") &&
+			updateSelectedItem(ITEMS.getOrDefault(plugin.getRoleText(), -1));
+	}
+}
