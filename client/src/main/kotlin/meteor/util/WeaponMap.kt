@@ -4,6 +4,7 @@ import net.runelite.api.ItemID
 
 class WeaponMap {
     companion object {
+        @JvmStatic
         var StyleMap: HashMap<Int, WeaponStyle> = HashMap()
         init {
             // Melee
