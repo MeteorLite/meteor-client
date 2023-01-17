@@ -135,11 +135,14 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     }
 
     fun getColorForItemReq(ir: ItemRequirement) : Color {
-        return when (ir.getColorConsideringBank(Main.client, false, questHelper.questBank.bankItems, questHelper.config)) {
-            java.awt.Color.WHITE -> Color.Yellow
-            java.awt.Color.GREEN -> Color.Green
-            else -> Color.Red
-        }
+        var color = Color.Red
+        try {
+            when (ir.getColorConsideringBank(Main.client, false, questHelper.questBank.bankItems, questHelper.config)) {
+                java.awt.Color.WHITE -> color = Color.Yellow
+                java.awt.Color.GREEN -> color = Color.Green
+            }
+        } catch (_: Exception) {}
+        return color
     }
 
     @Composable fun NonUpdatingTextList(list: List<String>?, text: String) {
