@@ -113,6 +113,7 @@ import net.runelite.client.plugins.cannon.CannonPlugin
 import net.runelite.client.plugins.chatcommands.ChatCommandsPlugin
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin
 import net.runelite.client.plugins.devtools.DevToolsPlugin
+import net.runelite.client.plugins.externals.leftclickcast.LeftClickCast
 import net.runelite.client.plugins.externals.oneclick.OneClick
 import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
@@ -218,6 +219,7 @@ object PluginManager {
         init<KebabBuyerPlugin>()
         init<KeyboardBankPinPlugin>()
         init<KeyRemappingPlugin>()
+        init<LeftClickCast>()
         init<LogChopper>()
         init<LootTrackerPlugin>()
         init<LowDetailPlugin>()
