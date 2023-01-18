@@ -131,6 +131,7 @@ import net.runelite.client.plugins.timers.TimersPlugin
 import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
 import rs117.hd.HdPlugin
+import tictac7x.tithe.TithePlugin
 import java.io.File
 import java.net.JarURLConnection
 import java.net.URL
@@ -267,6 +268,7 @@ object PluginManager {
         init<TileIndicatorsPlugin>()
         init<TilemanModePlugin>()
         init<TimersPlugin>()
+        init<TithePlugin>()
         init<VirtualLevelsPlugin>()
         init<WineMakerPlugin>()
         init<WorldMapPlugin>()
