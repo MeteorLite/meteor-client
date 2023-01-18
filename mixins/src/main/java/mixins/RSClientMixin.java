@@ -731,32 +731,41 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
-    public MenuEntry createMenuEntry(int idx) {
-        if (client.getMenuOptionCount() >= 500) {
+    public MenuEntry createMenuEntry(int idx)
+    {
+        if (client.getMenuOptionCount() >= 500)
+        {
             throw new IllegalStateException();
-        } else {
-            if (idx < 0) {
+        }
+        else
+        {
+            if (idx < 0)
+            {
                 idx = client.getMenuOptionCount() + idx + 1;
-                if (idx < 0) {
+                if (idx < 0)
+                {
                     throw new IllegalArgumentException();
                 }
             }
 
             RSRuneLiteMenuEntry menuEntry;
-            if (idx < client.getMenuOptionCount()) {
+            if (idx < client.getMenuOptionCount())
+            {
                 RSRuneLiteMenuEntry tmpEntry = rl$menuEntries[client.getMenuOptionCount()];
-                if (tmpEntry == null) {
-                    tmpEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(
-                            client.getMenuOptionCount());
+                if (tmpEntry == null)
+                {
+                    tmpEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(client.getMenuOptionCount());
                 }
 
-                for (int i = client.getMenuOptionCount(); i > idx; rl$menuEntries[i].setIdx(i--)) {
+                for (int i = client.getMenuOptionCount(); i > idx; rl$menuEntries[i].setIdx(i--))
+                {
                     client.getMenuOptions()[i] = client.getMenuOptions()[i - 1];
                     client.getMenuTargets()[i] = client.getMenuTargets()[i - 1];
                     client.getMenuIdentifiers()[i] = client.getMenuIdentifiers()[i - 1];
                     client.getMenuOpcodes()[i] = client.getMenuOpcodes()[i - 1];
                     client.getMenuArguments1()[i] = client.getMenuArguments1()[i - 1];
                     client.getMenuArguments2()[i] = client.getMenuArguments2()[i - 1];
+                    client.getMenuItemIds()[i] = client.getMenuItemIds()[i - 1];
                     client.getMenuForceLeftClick()[i] = client.getMenuForceLeftClick()[i - 1];
 
                     rl$menuEntries[i] = rl$menuEntries[i - 1];
@@ -769,16 +778,19 @@ public abstract class RSClientMixin implements RSClient {
                 rl$menuEntries[idx] = tmpEntry;
 
                 tmpEntry.setIdx(idx);
-            } else {
-                if (idx != client.getMenuOptionCount()) {
+            }
+            else
+            {
+                if (idx != client.getMenuOptionCount())
+                {
                     throw new IllegalArgumentException();
                 }
 
                 menuEntry = rl$menuEntries[client.getMenuOptionCount()];
 
-                if (menuEntry == null) {
-                    menuEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(
-                            client.getMenuOptionCount());
+                if (menuEntry == null)
+                {
+                    menuEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(client.getMenuOptionCount());
                 }
 
                 client.setMenuOptionCount(client.getMenuOptionCount() + 1);
@@ -791,6 +803,7 @@ public abstract class RSClientMixin implements RSClient {
             menuEntry.setType(MenuAction.RUNELITE);
             menuEntry.setParam0(0);
             menuEntry.setParam1(0);
+            menuEntry.setItemId(-1);
             menuEntry.setConsumer(null);
 
             return menuEntry;
@@ -911,44 +924,54 @@ public abstract class RSClientMixin implements RSClient {
 
     @FieldHook("menuOptionsCount")
     @Inject
-    public static void onMenuOptionsChanged(int idx) {
+    public static void onMenuOptionsChanged(int idx)
+    {
         int tmpOptionsCount = tmpMenuOptionsCount;
         int optionCount = client.getMenuOptionCount();
 
         tmpMenuOptionsCount = optionCount;
 
-        if (optionCount < tmpOptionsCount) {
-            for (int i = optionCount; i < tmpOptionsCount; ++i) {
+        if (optionCount < tmpOptionsCount)
+        {
+            for (int i = optionCount; i < tmpOptionsCount; ++i)
+            {
+                RSRuneLiteMenuEntry entry = rl$menuEntries[i];
+                if (entry == null)
+                {
+                    rl$logger.error("about to crash: opcnt:{} tmpopcnt:{} i:{}", optionCount, tmpOptionsCount, i);
+                }
                 rl$menuEntries[i].setConsumer(null);
             }
-        } else if (optionCount == tmpOptionsCount + 1) {
-            if (client.getMenuOptions()[tmpOptionsCount] == null) {
+        }
+        else if (optionCount == tmpOptionsCount + 1)
+        {
+            if (client.getMenuOptions()[tmpOptionsCount] == null)
+            {
                 client.getMenuOptions()[tmpOptionsCount] = "null";
             }
 
-            if (client.getMenuTargets()[tmpOptionsCount] == null) {
+            if (client.getMenuTargets()[tmpOptionsCount] == null)
+            {
                 client.getMenuTargets()[tmpOptionsCount] = "null";
             }
 
-            String menuOption = client.getMenuOptions()[tmpOptionsCount];
-            String menuTarget = client.getMenuTargets()[tmpOptionsCount];
-            int menuOpcode = client.getMenuOpcodes()[tmpOptionsCount];
-            int menuIdentifier = client.getMenuIdentifiers()[tmpOptionsCount];
-            int menuArgument1 = client.getMenuArguments1()[tmpOptionsCount];
-            int menuArgument2 = client.getMenuArguments2()[tmpOptionsCount];
-            if (rl$menuEntries[tmpOptionsCount] == null) {
+            if (rl$menuEntries[tmpOptionsCount] == null)
+            {
                 rl$menuEntries[tmpOptionsCount] = newRuneliteMenuEntry(tmpOptionsCount);
-            } else {
+            }
+            else
+            {
                 rl$menuEntries[tmpOptionsCount].setConsumer(null);
             }
 
-            MenuEntryAdded menuEntryAdded = new MenuEntryAdded(menuOption, menuTarget, menuOpcode, menuIdentifier,
-                    menuArgument1, menuArgument2);
-            MenuEntry menuEntry = client.createMenuEntry(menuOption, menuTarget, menuIdentifier, menuOpcode,
-                    menuArgument1, menuArgument2, false);
-            menuEntryAdded.setMenuEntry(menuEntry);
+            MenuEntryAdded menuEntryAdded = new MenuEntryAdded(
+                    rl$menuEntries[tmpOptionsCount]
+            );
+
             client.getCallbacks().post(Events.MENU_ENTRY_ADDED, menuEntryAdded);
-            if (menuEntryAdded.getModified() && client.getMenuOptionCount() == optionCount) {
+
+            if (menuEntryAdded.getModified() && client.getMenuOptionCount() == optionCount)
+            {
                 client.getMenuOptions()[tmpOptionsCount] = menuEntryAdded.getOption();
                 client.getMenuTargets()[tmpOptionsCount] = menuEntryAdded.getTarget();
                 client.getMenuIdentifiers()[tmpOptionsCount] = menuEntryAdded.getIdentifier();
