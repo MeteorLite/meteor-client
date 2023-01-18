@@ -194,6 +194,7 @@ tasks {
     }
 
     register<JavaExec>("createLauncherUpdate") {
+        dependsOn("build", "createDistributable")
         classpath(sourceSets["main"].runtimeClasspath)
         mainClass.set("meteor.launcher.CreateLauncherUpdate")
     }

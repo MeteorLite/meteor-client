@@ -10,26 +10,26 @@ import kotlin.math.ceil
 
 object CreateLauncherUpdate {
     private val release = LauncherUpdate()
-    private val releaseDir = java.io.File(".\\client\\build\\release\\")
-    private val modulesFile = java.io.File("./client/build/compose/binaries/main/app/client/runtime/lib/modules")
+    private val releaseDir = java.io.File(".\\build\\release\\")
+    private val modulesFile = java.io.File("./build/compose/binaries/main/app/client/runtime/lib/modules")
 
     @JvmStatic
     fun main(args: Array<String>) {
         val gson = GsonBuilder().setPrettyPrinting().create()
-        release.version = "164" // Last merged PR is version
+        release.version = "167" // Last merged PR is version
         release.updateInfo = ""
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()
 
         releaseDir.mkdirs()
-        java.io.File("./client/build/compose/binaries/main/app/client/client.bat")
+        java.io.File("./build/compose/binaries/main/app/client/client.bat")
             .writeText(
                 "%USERPROFILE%\\.meteor\\launcher\\client.exe\n" +
                         "pause")
-        crawlDirectory(java.io.File("./client/build/compose/binaries/main/app/client/"))
+        crawlDirectory(java.io.File("./build/compose/binaries/main/app/client/"))
         handleModuleFiles()
-        java.io.File("./client/build/release/release.json").writeText(gson.toJson(release))
+        java.io.File("./build/release/release.json").writeText(gson.toJson(release))
     }
 
     private fun handleModuleFiles() {
@@ -37,8 +37,8 @@ object CreateLauncherUpdate {
         for ((count, chunk) in modulesChunks.withIndex()) {
             val file = File()
             file.name = "modules\\modules-$count"
-            val targetFile = java.io.File("./client/build/release/modules/modules-$count")
-            java.io.File("./client/build/release/modules/").mkdirs()
+            val targetFile = java.io.File("./build/release/modules/modules-$count")
+            java.io.File("./build/release/modules/").mkdirs()
             targetFile.writeBytes(chunk)
             file.size = chunk.size.toLong()
             file.hash = generateCRC(targetFile)
