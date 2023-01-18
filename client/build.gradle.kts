@@ -132,18 +132,46 @@ compose {
                     console = true
                     upgradeUuid = "9df19035-e962-4bb4-90c0-74330a07082b"
                     iconFile.set(project.file("src/main/resources/Meteor.ico"))
+                    jvmArgs(
+                        // This fixes a rare bug exclusive to windows when using AA in GPU or GPU HD
+                        "-Dsun.java2d.dpiaware=false,",
+                        "-Dsun.java2d.uiScale=1.0",
+
+                        "-ea",
+                        "-noverify",
+                        "--add-exports", "java.base/java.lang=ALL-UNNAMED",
+                        "--add-opens", "java.base/java.net=ALL-UNNAMED",
+                        "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
+                        "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED",
+                        "--add-opens", "java.desktop/java.awt=ALL-UNNAMED",
+                        "--add-opens", "java.desktop/java.awt.color=ALL-UNNAMED",
+                    )
+                }
+                macOS {
+                    jvmArgs(
+                        "-ea",
+                        "-noverify",
+                        "--add-exports", "java.base/java.lang=ALL-UNNAMED",
+                        "--add-opens", "java.base/java.net=ALL-UNNAMED",
+                        "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
+                        "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED",
+                        "--add-opens", "java.desktop/java.awt=ALL-UNNAMED",
+                        "--add-opens", "java.desktop/java.awt.color=ALL-UNNAMED",
+                    )
+                }
+                linux {
+                    jvmArgs(
+                        "-ea",
+                        "-noverify",
+                        "--add-exports", "java.base/java.lang=ALL-UNNAMED",
+                        "--add-opens", "java.base/java.net=ALL-UNNAMED",
+                        "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
+                        "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED",
+                        "--add-opens", "java.desktop/java.awt=ALL-UNNAMED",
+                        "--add-opens", "java.desktop/java.awt.color=ALL-UNNAMED",
+                    )
                 }
             }
-            jvmArgs(
-                "-ea",
-                "-noverify",
-                "--add-exports", "java.base/java.lang=ALL-UNNAMED",
-                "--add-opens", "java.base/java.net=ALL-UNNAMED",
-                "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
-                "--add-exports", "java.desktop/sun.java2d=ALL-UNNAMED",
-                "--add-opens", "java.desktop/java.awt=ALL-UNNAMED",
-                "--add-opens", "java.desktop/java.awt.color=ALL-UNNAMED",
-            )
         }
     }
 }
