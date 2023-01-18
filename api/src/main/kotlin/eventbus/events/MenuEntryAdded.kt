@@ -32,23 +32,17 @@ import net.runelite.api.MenuEntry
  */
 class MenuEntryAdded(
     var option: String?,
-    val target: String?,
-    val identifier: Int,
+    var target: String?,
+    var identifier: Int,
     var opcode: Int,
     var param0: Int,
     var param1: Int,
-    val forceLeftClick: Boolean,
+    var forceLeftClick: Boolean,
     var itemId: Int = -1
 ) {
-    // Here for RuneLite compatibility (different parameter order)
-    constructor(
-        option: String?,
-        target: String?,
-        type: Int,
-        identifier: Int,
-        actionParam0: Int,
-        actionParam1: Int
-    ) : this(option, target, identifier, type, actionParam0, actionParam1, false) {
+    constructor(menuEntry: MenuEntry
+    ) : this(menuEntry.option, menuEntry.target, menuEntry.identifier, menuEntry.type.id, menuEntry.param0, menuEntry.param1, false, menuEntry.itemId) {
+        this.menuEntry = menuEntry
     }
 
     /**
