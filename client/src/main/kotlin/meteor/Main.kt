@@ -58,6 +58,7 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 object Main : ApplicationScope, EventSubscriber() {
     var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
     var onClicksWidget = HashMap<WidgetMenuOption, Consumer<MenuEntry>>()
+    var pluginsEnabled = true
     init {
         ConfigManager.loadSavedProperties()
         ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
@@ -113,7 +114,6 @@ object Main : ApplicationScope, EventSubscriber() {
                 windowContent()
                 // finishStartup is ran here
             }
-
         )
     }
 
@@ -128,7 +128,8 @@ object Main : ApplicationScope, EventSubscriber() {
         RuntimeConfigLoader.get()
         npcOverlayService = NpcOverlayService()
         PluginManager.loadExternalPlugins()
-        xpTrackerService = XpTrackerService(PluginManager.get())
+        if (pluginsEnabled)
+            xpTrackerService = XpTrackerService(PluginManager.get())
         xpDropManager = XpDropManager()
         SessionManager.start()
         timer.stop()

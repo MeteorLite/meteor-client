@@ -33,6 +33,7 @@ import javax.swing.JPanel
 var loaded = false
 var applet = java.applet.Applet()
 var subscribed = false
+var gamePanel = JPanel()
 
 @Composable
 fun OSRSPanel() {
@@ -52,36 +53,31 @@ fun OSRSPanel() {
                     Color.Black,
                     modifier = Modifier.fillParentMaxWidth().fillParentMaxHeight(if (consoleOpen.value) 0.75f else 1f),
                     factory = {
-                        JPanel().apply {
-                            minimumSize = Dimension(765, 503)
-                            size = Dimension()
-                            layout = BorderLayout()
-                            if (!loaded) {
+                        if (!loaded) {
+                            gamePanel.apply {
+                                minimumSize = Dimension(765, 503)
+                                size = Dimension()
+                                layout = BorderLayout()
                                 applet = Applet.applet
-
                                 add(Applet.applet)
                                 Applet.applet.init()
                                 Applet.applet.start()
                                 Main.finishStartup()
                                 loaded = true
-                            } else
-                                add(Applet.applet)
+                            }
+                        } else {
+                            gamePanel
                         }
                     })
             }
         }
         when {
             consoleOpen.value -> {
-
                 item {
-
-
                     val scrollState = rememberScrollState(0)
                     val scope = rememberCoroutineScope()
-
                         Row {
                             BasicTextField(
-
                                 modifier = Modifier.fillMaxWidth().background(Color.Black)
                                     .fillParentMaxHeight(if (consoleOpen.value) 0.25f else 0f)
                                     .padding(all = 1.dp)
@@ -95,7 +91,6 @@ fun OSRSPanel() {
 
                                     outPut.value = it
                                 },
-
                                 maxLines = 3000,
                                 textStyle = TextStyle(
                                     color = secondColor.value,
@@ -105,7 +100,6 @@ fun OSRSPanel() {
                                 )
                             )
                         }
-
                 }
             }
         }

@@ -26,7 +26,9 @@ class AntiDragPlugin : Plugin() {
 
     private val config = configuration<AntiDragConfig>()
 
-    private val overlay = overlay(AntiDragOverlay())
+    //When an overlay is enabled dynamically, do NOT wrap it in the overlay() function.
+    private val overlay = AntiDragOverlay()
+
     private val keyManager = KeyManager
     private var toggleDrag = false
 
@@ -35,6 +37,7 @@ class AntiDragPlugin : Plugin() {
             toggleDrag = !toggleDrag
             if (toggleDrag) {
                 if (config.overlay()) {
+                    //Also we don't do this at all if wrapping with overlay()
                     overlayManager.add(overlay)
                 }
                 setDragDelay()
