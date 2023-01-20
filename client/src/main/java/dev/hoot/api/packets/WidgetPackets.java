@@ -1,6 +1,7 @@
 package dev.hoot.api.packets;
 
 import dev.hoot.api.game.Game;
+import meteor.api.packets.ClientPackets;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.widgets.Widget;
 
@@ -230,136 +231,61 @@ public class WidgetPackets
 
 	public static PacketBufferNode createFirstAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON1(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction1Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createSecondAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON2(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction2Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createThirdAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON3(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction3Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createFourthAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON4(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction4Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createFifthAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON5(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction5Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createSixthAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON6(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction6Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createSeventhAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON7(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction7Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createEighthAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON8(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction8Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createNinthAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON9(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction9Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createTenthAction(int widgetId, int itemId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTON10(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeInt$api(widgetId);
-		packetBufferNode.getPacketBuffer().writeShort$api(childId);
-		packetBufferNode.getPacketBuffer().writeShort$api(itemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createWidgetAction10Packet(widgetId, itemId, childId);
 	}
 
 	public static PacketBufferNode createWidgetOnWidget(int sourceWidgetId, int sourceSlot, int sourceItemId, int destinationWidgetId, int destinationSlot, int destinationItemId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-		var packetBufferNode = Game.getClient().preparePacket(clientPacket.IF_BUTTONT(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortAddLE(sourceItemId);	// Old: packetBufferNode.getPacketBuffer().writeIntME(sourceWidgetId);
-		packetBufferNode.getPacketBuffer().writeShortAdd(sourceSlot);	// Old: packetBufferNode.getPacketBuffer().writeIntLE(destinationWidgetId);
-		packetBufferNode.getPacketBuffer().writeIntLE$api(sourceWidgetId);	// Old: packetBufferNode.getPacketBuffer().writeShort(destinationItemId);
-		packetBufferNode.getPacketBuffer().writeShortAddLE(destinationItemId);	// Old: packetBufferNode.getPacketBuffer().writeShortAdd(sourceSlot);
-		packetBufferNode.getPacketBuffer().writeShort$api(destinationSlot);	// Old: packetBufferNode.getPacketBuffer().writeShortLE(destinationSlot);
-		packetBufferNode.getPacketBuffer().writeIntIME(destinationWidgetId);	// Old: packetBufferNode.getPacketBuffer().writeShortAddLE(sourceItemId);
-		return packetBufferNode;
+		return ClientPackets.INSTANCE.createItemWidgetOnItemWidgetPacket(sourceWidgetId, sourceSlot, sourceItemId, destinationWidgetId, destinationSlot, destinationItemId);
 	}
 
 	public static PacketBufferNode createContinuePacket(int widgetId, int childId)
 	{
-		var client = Game.getClient();
-		var clientPacket = Game.getClientPacket();
-/*		var packetBufferNode = Game.getClient().preparePacket(clientPacket.RESUME_PAUSEBUTTON(), client.getPacketWriter().getIsaacCipher());
-		packetBufferNode.getPacketBuffer().writeShortLE(childId);	// Old: packetBufferNode.getPacketBuffer().writeIntIME(widgetId);
-		packetBufferNode.getPacketBuffer().writeIntIME(widgetId);	// Old: packetBufferNode.getPacketBuffer().writeShortAdd(childId);
-		return packetBufferNode;*/
-		return null;
+		return ClientPackets.INSTANCE.createContinuePacket(widgetId, childId);
 	}
 }
