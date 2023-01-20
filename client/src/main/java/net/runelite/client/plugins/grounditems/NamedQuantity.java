@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2020, dekvall <https://github.com/dekvall>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems
+package net.runelite.client.plugins.grounditems;
 
-import net.runelite.api.MenuEntry
+import lombok.RequiredArgsConstructor;
+import lombok.Value;
 
-internal class MenuEntryWithCount(var entry: MenuEntry, var count: Int = 1) {
-    fun increment() {
-        count++
-    }
+@Value
+@RequiredArgsConstructor
+class NamedQuantity
+{
+	private final String name;
+	private final int quantity;
+
+	NamedQuantity(GroundItem groundItem)
+	{
+		this(groundItem.getName(), groundItem.getQuantity());
+	}
 }

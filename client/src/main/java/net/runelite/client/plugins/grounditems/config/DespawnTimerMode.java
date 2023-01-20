@@ -22,8 +22,12 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems.config
+package net.runelite.client.plugins.grounditems.config;
 
-enum class DespawnTimerMode {
-    OFF, PIE, TICKS, SECONDS
+public enum DespawnTimerMode
+{
+	OFF,
+	PIE,
+	TICKS,
+	SECONDS
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Hydrox6 <ikada@protonmail.ch>
+ * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,20 +22,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems.config
+package net.runelite.client.plugins.grounditems.config;
 
-import meteor.plugins.grounditems.GroundItemsConfig
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-enum class HighlightTier {
-    OFF, LOW, MEDIUM, HIGH, INSANE;
+@Getter
+@RequiredArgsConstructor
+public enum ItemHighlightMode
+{
+	NONE("None"),
+	OVERLAY("Overlay"),
+	MENU("Right-click menu"),
+	BOTH("Both");
 
-    fun getValueFromTier(config: GroundItemsConfig): Int {
-        return when (this) {
-            LOW -> config.lowValuePrice()
-            MEDIUM -> config.mediumValuePrice()
-            HIGH -> config.highValuePrice()
-            INSANE -> config.insaneValuePrice()
-            else -> throw UnsupportedOperationException()
-        }
-    }
+	private final String name;
+
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 }

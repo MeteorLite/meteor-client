@@ -127,9 +127,11 @@ object Main : ApplicationScope, EventSubscriber() {
         initManagers()
         RuntimeConfigLoader.get()
         npcOverlayService = NpcOverlayService()
-        PluginManager.loadExternalPlugins()
-        if (pluginsEnabled)
+        if (pluginsEnabled) {
+            PluginManager.loadExternalPlugins()
             xpTrackerService = XpTrackerService(PluginManager.get())
+        }
+
         xpDropManager = XpDropManager()
         SessionManager.start()
         timer.stop()

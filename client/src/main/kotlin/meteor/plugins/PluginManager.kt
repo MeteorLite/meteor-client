@@ -53,7 +53,6 @@ import meteor.plugins.fishing.FishingPlugin
 import meteor.plugins.fps.FpsPlugin
 import meteor.plugins.fullscreen.FullscreenPlugin
 import meteor.plugins.gauntletextended.GauntletExtendedPlugin
-import meteor.plugins.grounditems.GroundItemsPlugin
 import meteor.plugins.groundmarkers.GroundMarkerPlugin
 import meteor.plugins.guardiansoftherift.GuardiansOfTheRiftPlugin
 import meteor.plugins.hiscore.HiScorePlugin
@@ -117,6 +116,7 @@ import net.runelite.client.plugins.devtools.DevToolsPlugin
 import net.runelite.client.plugins.externals.leftclickcast.LeftClickCast
 import net.runelite.client.plugins.externals.oneclick.OneClick
 import net.runelite.client.plugins.gpu.GpuPlugin
+import net.runelite.client.plugins.grounditems.GroundItemsPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.itemstats.ItemStatPlugin

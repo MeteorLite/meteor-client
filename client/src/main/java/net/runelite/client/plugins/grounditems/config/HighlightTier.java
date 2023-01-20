@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2020, Hydrox6 <ikada@protonmail.ch>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems.config
+package net.runelite.client.plugins.grounditems.config;
 
-enum class MenuHighlightMode(var type: String) {
-    OPTION("Menu option"), NAME("Menu item name"), BOTH("Both");
+import net.runelite.client.plugins.grounditems.GroundItemsConfig;
 
-    override fun toString(): String {
-        return type
-    }
+public enum HighlightTier
+{
+	OFF,
+	LOW,
+	MEDIUM,
+	HIGH,
+	INSANE;
+
+	public int getValueFromTier(GroundItemsConfig config)
+	{
+		switch (this)
+		{
+			case LOW:
+				return config.lowValuePrice();
+			case MEDIUM:
+				return config.mediumValuePrice();
+			case HIGH:
+				return config.highValuePrice();
+			case INSANE:
+				return config.insaneValuePrice();
+			default:
+				throw new UnsupportedOperationException();
+		}
+	}
 }

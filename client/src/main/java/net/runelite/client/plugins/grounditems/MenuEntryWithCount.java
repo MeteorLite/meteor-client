@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Abel Briggs <https://github.com/abelbriggs1>
+ * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,14 +22,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems.config
+package net.runelite.client.plugins.grounditems;
 
-enum class ValueCalculationMode(var type: String) {
-    HA("High Alchemy"),     // calc highlight by HA value
-    GE("Grand Exchange"),   // calc by GE
-    HIGHEST("Highest");     // use whatever is highest.
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import net.runelite.api.MenuEntry;
 
-    override fun toString(): String {
-        return type
-    }
+@RequiredArgsConstructor
+class MenuEntryWithCount
+{
+	@Getter
+	private final MenuEntry entry;
+
+	@Getter
+	private int count = 1;
+
+	void increment()
+	{
+		count++;
+	}
 }
+
