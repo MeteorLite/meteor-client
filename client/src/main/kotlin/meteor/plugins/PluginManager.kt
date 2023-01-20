@@ -65,7 +65,6 @@ import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
 import meteor.plugins.kebabbuyer.KebabBuyerPlugin
 import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
-import meteor.plugins.keyremapping.KeyRemappingPlugin
 import meteor.plugins.logchopper.LogChopper
 import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.lowdetail.LowDetailPlugin
@@ -120,6 +119,7 @@ import net.runelite.client.plugins.grounditems.GroundItemsPlugin
 import net.runelite.client.plugins.herbiboars.HerbiboarPlugin
 import net.runelite.client.plugins.interfacestyles.InterfaceStylesPlugin
 import net.runelite.client.plugins.itemstats.ItemStatPlugin
+import net.runelite.client.plugins.keyremapping.KeyRemappingPlugin
 import net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperPlugin
 import net.runelite.client.plugins.mining.MiningPlugin
 import net.runelite.client.plugins.motherlode.MotherlodePlugin
