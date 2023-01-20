@@ -915,6 +915,9 @@ public abstract class RSClientMixin implements RSClient {
         RSRuneLiteMenuEntry var1 = rl$menuEntries[var0];
         RSRuneLiteMenuEntry var2 = rl$menuEntries[var0 + 1];
 
+        if (var1 == null || var2 == null)
+            return;
+
         rl$menuEntries[var0] = var2;
         rl$menuEntries[var0 + 1] = var1;
 

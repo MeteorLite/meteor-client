@@ -79,6 +79,7 @@ open class Keybind @JvmOverloads constructor(keyCode: Int, modifiers: Int, ignor
         @JvmStatic
         val NOT_SET = Keybind(KeyEvent.VK_UNDEFINED, 0)
         val CTRL = Keybind(KeyEvent.VK_UNDEFINED, InputEvent.CTRL_DOWN_MASK)
+        @JvmField
         val ALT = Keybind(KeyEvent.VK_UNDEFINED, InputEvent.ALT_DOWN_MASK)
         val SHIFT = Keybind(
             KeyEvent.VK_UNDEFINED,

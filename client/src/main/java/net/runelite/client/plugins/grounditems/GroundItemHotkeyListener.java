@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, Seth <https://github.com/sethtroll>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,36 +22,56 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems
+package net.runelite.client.plugins.grounditems;
 
-import com.google.common.base.Strings
-import com.google.common.cache.CacheLoader
-import meteor.util.WildcardMatcher.matches
-import java.util.*
-import java.util.stream.Collectors
-import javax.annotation.Nonnull
+import java.time.Duration;
+import java.time.Instant;
+import javax.inject.Inject;
 
-internal class WildcardMatchLoader(configEntries: List<String?>) : CacheLoader<NamedQuantity, Boolean>() {
-    private val itemThresholds: MutableList<ItemThreshold>
-    override fun load(@Nonnull key: NamedQuantity): Boolean {
-        if (Strings.isNullOrEmpty(key.name)) {
-            return false
-        }
-        val filteredName = key.name.trim { it <= ' ' }
-        for (entry in itemThresholds) {
-            if (matches(entry.itemName, filteredName)
-                && entry.quantity == (key.quantity)
-            ) {
-                return true
-            }
-        }
-        return false
-    }
+import meteor.util.HotkeyListener;
 
-    init {
-        itemThresholds = configEntries.stream()
-            .map { entry: String? -> ItemThreshold.fromConfigEntry(entry!!) }
-            .filter { obj: ItemThreshold? -> Objects.nonNull(obj) }
-            .collect(Collectors.toList())
-    }
+class GroundItemHotkeyListener extends HotkeyListener
+{
+	private final GroundItemsPlugin plugin;
+	private final GroundItemsConfig config;
+
+	private Instant lastPress;
+
+	GroundItemHotkeyListener(GroundItemsPlugin plugin, GroundItemsConfig config)
+	{
+		super(config::hotkey);
+
+		this.plugin = plugin;
+		this.config = config;
+	}
+
+	@Override
+	public void hotkeyPressed()
+	{
+		if (plugin.isHideAll())
+		{
+			plugin.setHideAll(false);
+			plugin.setHotKeyPressed(true);
+			lastPress = null;
+		}
+		else if (lastPress != null && !plugin.isHotKeyPressed() && config.doubleTapDelay() > 0 && Duration.between(lastPress, Instant.now()).compareTo(Duration.ofMillis(config.doubleTapDelay())) < 0)
+		{
+			plugin.setHideAll(true);
+			lastPress = null;
+		}
+		else
+		{
+			plugin.setHotKeyPressed(true);
+			lastPress = Instant.now();
+		}
+	}
+
+	@Override
+	public void hotkeyReleased()
+	{
+		plugin.setHotKeyPressed(false);
+		plugin.setTextBoxBounds(null);
+		plugin.setHiddenBoxBounds(null);
+		plugin.setHighlightBoxBounds(null);
+	}
 }

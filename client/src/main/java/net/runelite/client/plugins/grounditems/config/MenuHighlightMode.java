@@ -22,12 +22,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.grounditems.config
+package net.runelite.client.plugins.grounditems.config;
 
-enum class ItemHighlightMode(var type: String) {
-    NONE("None"), OVERLAY("Overlay"), MENU("Right-click menu"), BOTH("Both");
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-    override fun toString(): String {
-        return type
-    }
+@Getter
+@RequiredArgsConstructor
+public enum MenuHighlightMode
+{
+	OPTION("Menu option"),
+	NAME("Menu item name"),
+	BOTH("Both");
+
+	private final String name;
+
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 }
