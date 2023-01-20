@@ -2,16 +2,12 @@
 
 package meteor.api.packets
 
-import com.google.common.reflect.TypeToken
-import com.google.gson.Gson
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import meteor.Main
-import meteor.model.BufferMethod
 import meteor.model.ObfuscatedBufferStructure
-import meteor.model.ObfuscatedClientPacket
 import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
 import net.runelite.api.packets.PacketBuffer
@@ -21,278 +17,590 @@ import net.runelite.api.widgets.WidgetType
 
 
 object ClientPackets {
-    private val clientPackets: HashMap<Int, ObfuscatedClientPacket>
-    private val bufferMethods: ArrayList<BufferMethod>
-    init {
-        val packetsJson = readResourceAsString("clientPackets.json")
-        val bufferMethodsJson = readResourceAsString("buffer.json")
-        clientPackets = Gson().fromJson(
-            packetsJson,
-            object : TypeToken<HashMap<Int, ObfuscatedClientPacket>>() {}.type
-        )
-        bufferMethods = Gson().fromJson(
-            bufferMethodsJson,
-            object : TypeToken<ArrayList<BufferMethod>>() {}.type
-        )
+
+    // OPLOC1
+    // param0: worldX
+    // param1: worldY
+    fun createGroundItemAction1Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(16, 7)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldY)
+        bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.writeShortAddLE(groundItemId)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldX)
+        return bufferNode
     }
 
-    fun getPacket(name: String): ObfuscatedClientPacket {
-        return clientPackets.values.first { obfuscatedClientPacket -> obfuscatedClientPacket.name == name }
+    // OPLOC2
+    // param0: worldX
+    // param1: worldY
+    fun createGroundItemAction2Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(59, 7)
+        bufferNode.packetBuffer.`writeShortLE$api`(groundItemId)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShort$api`(worldY)
+        bufferNode.packetBuffer.writeShortAdd(worldX)
+        return bufferNode
     }
 
-    fun getOpcode(clientPacket: ObfuscatedClientPacket): Int {
-        for (key in clientPackets.keys) {
-            if (clientPackets[key] == clientPacket)
-                return key
-        }
-        return -1
+    // OPLOC3
+    // param0: worldX
+    // param1: worldY
+    fun createGroundItemAction3Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(89, 7)
+        bufferNode.packetBuffer.writeShortAdd(worldX)
+        bufferNode.packetBuffer.`writeShortLE$api`(groundItemId)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldY)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        return bufferNode
     }
 
-    fun createItemActionPacket(packetName: String, itemId: Int, itemSlot: Int, itemWidgetId: Int): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value = -1
-            when (methodCall.argument) {
-                "param1" -> value = itemSlot
-                "param0" -> value = itemWidgetId
-                "id" -> value = itemId
-                else -> println(methodCall.argument)
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
+    // OPLOC4
+    // param0: worldX
+    // param1: worldY
+    fun createGroundItemAction4Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(36, 7)
+        bufferNode.packetBuffer.writeShortAdd(worldX)
+        bufferNode.packetBuffer.writeByteSub(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShort$api`(worldY)
+        bufferNode.packetBuffer.`writeShort$api`(groundItemId)
+        return bufferNode
     }
 
-    fun createItemOnGroundItemPacket(
-        packetName: String,
+    // OPLOC5
+    // param0: worldX
+    // param1: worldY
+    fun createGroundItemAction5Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(72, 7)
+        bufferNode.packetBuffer.writeShortAddLE(worldY)
+        bufferNode.packetBuffer.`writeShort$api`(worldX)
+        bufferNode.packetBuffer.writeShortAdd(groundItemId)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    // OPHELD1
+    // param0: widgetId
+    // param1: itemSlot
+    fun createItemAction1Packet(itemId: Int, worldX: Int, worldY: Int): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(48, 8)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldX)
+        bufferNode.packetBuffer.`writeIntME$api`(worldY)
+        bufferNode.packetBuffer.writeShortAdd(itemId)
+        return bufferNode
+    }
+
+    //OPHELD2
+    // param0: widgetId
+    // param1: itemSlot
+    fun createItemAction2Packet(itemId: Int, worldX: Int, worldY: Int): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(54, 8)
+        bufferNode.packetBuffer.writeShortAddLE(itemId)
+        bufferNode.packetBuffer.`writeIntLE$api`(worldY)
+        bufferNode.packetBuffer.writeShortAdd(worldX)
+        return bufferNode
+    }
+
+    //OPHELD3
+    // param0: widgetId
+    // param1: itemSlot
+    fun createItemAction3Packet(itemId: Int, worldX: Int, worldY: Int): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(46, 8)
+        bufferNode.packetBuffer.`writeInt$api`(worldY)
+        bufferNode.packetBuffer.writeShortAdd(itemId)
+        bufferNode.packetBuffer.writeShortAdd(worldX)
+        return bufferNode
+    }
+
+    //OPHELD4
+    // param0: widgetId
+    // param1: itemSlot
+    fun createItemAction4Packet(itemId: Int, worldX: Int, worldY: Int): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(56, 8)
+        bufferNode.packetBuffer.`writeIntME$api`(worldY)
+        bufferNode.packetBuffer.`writeShort$api`(worldX)
+        bufferNode.packetBuffer.writeShortAddLE(itemId)
+        return bufferNode
+    }
+
+    //OPHELD5
+    // param0: widgetId
+    // param1: itemSlot
+    fun createItemAction5Packet(itemId: Int, worldX: Int, worldY: Int): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(57, 8)
+        bufferNode.packetBuffer.`writeIntME$api`(worldY)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        bufferNode.packetBuffer.writeShortAdd(worldX)
+        return bufferNode
+    }
+
+    // OPOBJ1
+    // param0: worldX
+    // param1: worldY
+    fun createObjectAction1Packet(
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(70, 7)
+        bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.writeShortAddLE(worldX)
+        bufferNode.packetBuffer.writeShortAdd(worldY)
+        bufferNode.packetBuffer.`writeShort$api`(objectID)
+        return bufferNode
+    }
+
+    // OPOBJ2
+    // param0: worldX
+    // param1: worldY
+    fun createObjectAction2Packet(
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(53, 7)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShortLE$api`(objectID)
+        bufferNode.packetBuffer.writeShortAddLE(worldY)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldX)
+        return bufferNode
+    }
+
+    // OPOBJ3
+    // param0: worldX
+    // param1: worldY
+    fun createObjectAction3Packet(
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(33, 7)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.writeShortAddLE(worldY)
+        bufferNode.packetBuffer.writeShortAdd(worldX)
+        bufferNode.packetBuffer.writeShortAdd(objectID)
+        return bufferNode
+    }
+
+    // OPOBJ4
+    // param0: worldX
+    // param1: worldY
+    fun createObjectAction4Packet(
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(8, 7)
+        bufferNode.packetBuffer.`writeShort$api`(objectID)
+        bufferNode.packetBuffer.writeByteNeg(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.writeShortAddLE(worldY)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldX)
+        return bufferNode
+    }
+
+    // OPOBJ5
+    // param0: worldX
+    // param1: worldY
+    fun createObjectAction5Packet(
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(72, 7)
+        bufferNode.packetBuffer.writeShortAddLE(worldY)
+        bufferNode.packetBuffer.`writeShort$api`(worldX)
+        bufferNode.packetBuffer.writeShortAdd(objectID)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    // OPOBJT
+    // param0: worldX
+    // param1: worldY
+    fun createItemWidgetOnGameObjectPacket(
+        objectID: Int,
+        worldX: Int,
+        worldY: Int,
+        itemSlot: Int,
+        itemId: Int,
+        itemWidgetID: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(105, 15)
+        bufferNode.packetBuffer.writeShortAddLE(worldX)
+        bufferNode.packetBuffer.`writeShortLE$api`(itemSlot)
+        bufferNode.packetBuffer.writeIntIME(itemWidgetID)
+        bufferNode.packetBuffer.writeShortAdd(itemId)
+        bufferNode.packetBuffer.`writeShort$api`(worldY)
+        bufferNode.packetBuffer.writeByteNeg(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.writeShortAdd(objectID)
+        return bufferNode
+    }
+
+    //OPNPCT
+    fun createItemWidgetOnNPCPacket(
+        npcIdx: Int,
+        itemWidgetID: Int,
+        itemID: Int,
+        itemSlot: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(14, 11)
+        bufferNode.packetBuffer.writeShortAdd(itemSlot)
+        bufferNode.packetBuffer.writeShortAddLE(npcIdx)
+        bufferNode.packetBuffer.writeIntIME(itemWidgetID)
+        bufferNode.packetBuffer.writeShortAdd(itemID)
+        bufferNode.packetBuffer.writeByteSub(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    //OPNPC1
+    fun createNPCAction1Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(90, 3)
+        bufferNode.packetBuffer.`writeShortLE$api`(npcIdx)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    //OPNPC2
+    fun createNPCAction2Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(21, 3)
+        bufferNode.packetBuffer.writeShortAddLE(npcIdx)
+        bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    //OPNPC3
+    fun createNPCAction3Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(34, 3)
+        bufferNode.packetBuffer.writeShortAdd(npcIdx)
+        bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    //OPNPC4
+    fun createNPCAction4Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(55, 3)
+        bufferNode.packetBuffer.writeByteNeg(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShort$api`(npcIdx)
+        return bufferNode
+    }
+
+    //OPNPC5
+    fun createNPCAction5Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(20, 3)
+        bufferNode.packetBuffer.writeShortAddLE(npcIdx)
+        bufferNode.packetBuffer.writeByteNeg(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    //OPPLAYERT
+    fun createItemWidgetOnPlayerPacket(
+        playerIdx: Int,
+        itemId: Int,
+        itemSlot: Int,
+        itemWidgetID: Int,
+        shiftPressed: Boolean
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(0, 11)
+        bufferNode.packetBuffer.`writeShort$api`(playerIdx)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShortLE$api`(itemSlot)
+        bufferNode.packetBuffer.`writeInt$api`(itemWidgetID)
+        bufferNode.packetBuffer.writeShortAddLE(itemId)
+        return bufferNode
+    }
+
+    ///OPPLAYER1
+    fun createPlayerAction1Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(44, 3)
+        bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShort$api`(playerIdx)
+        return bufferNode
+    }
+
+    ///OPPLAYER2
+    fun createPlayerAction2Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(100, 3)
+        bufferNode.packetBuffer.writeShortAdd(playerIdx)
+        bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    ///OPPLAYER3
+    fun createPlayerAction3Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(87, 3)
+        bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.writeShortAddLE(playerIdx)
+        return bufferNode
+    }
+
+    ///OPPLAYER4
+    fun createPlayerAction4Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(47, 3)
+        bufferNode.packetBuffer.`writeShort$api`(playerIdx)
+        bufferNode.packetBuffer.writeByteSub(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    ///OPPLAYER5
+    fun createPlayerAction5Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(41, 3)
+        bufferNode.packetBuffer.`writeShortLE$api`(playerIdx)
+        bufferNode.packetBuffer.writeByteSub(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    ///OPPLAYER6
+    fun createPlayerAction6Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(19, 3)
+        bufferNode.packetBuffer.writeByteSub(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShort$api`(playerIdx)
+        return bufferNode
+    }
+
+    ///OPPLAYER7
+    fun createPlayerAction7Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(39, 3)
+        bufferNode.packetBuffer.writeShortAddLE(playerIdx)
+        bufferNode.packetBuffer.writeByteSub(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    ///OPPLAYER8
+    fun createPlayerAction8Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(73, 3)
+        bufferNode.packetBuffer.writeShortAddLE(playerIdx)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        return bufferNode
+    }
+
+    //OPLOCT
+    fun createItemWidgetOnGroundItemPacket(
         groundItemID: Int,
         worldX: Int,
         worldY: Int,
         itemSlot: Int,
         itemID: Int,
         itemWidgetID: Int,
-        ctrlPressed: Boolean
+        shiftPressed: Boolean
     ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "param0" -> value = worldX
-                "param1" -> value = worldY
-                "id" -> value = groundItemID
-                "shiftPressed" -> value = ctrlPressed
-                "selectedSpellWidget" -> value = itemWidgetID
-                "selectedSpellItemId" -> value = itemID
-                "selectedSpellChildIndex" -> value = itemSlot
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
+        val bufferNode = preparePacketBuffer(17, 15)
+        bufferNode.packetBuffer.`writeShort$api`(worldY)
+        bufferNode.packetBuffer.`writeShort$api`(itemSlot)
+        bufferNode.packetBuffer.`writeIntME$api`(itemWidgetID)
+        bufferNode.packetBuffer.writeShortAddLE(worldX)
+        bufferNode.packetBuffer.`writeShort$api`(groundItemID)
+        bufferNode.packetBuffer.writeByteAdd(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShort$api`(itemID)
+        return bufferNode
     }
 
-    fun createGroundItemActionPacket(
-        packetName: String,
-        groundItemId: Int,
-        worldX: Int,
-        worldY: Int,
-        ctrlPressed: Boolean
+    //IF_BUTTONT
+    // param0: destinationSlot
+    // param1: destinationWidgetId
+    fun createItemWidgetOnItemWidgetPacket(
+        sourceWidgetId: Int,
+        sourceSlot: Int,
+        sourceItemId: Int,
+        destinationWidgetId: Int,
+        destinationSlot: Int,
+        destinationItemId: Int
     ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "param0" -> value = worldX
-                "param1" -> value = worldY
-                "id" -> value = groundItemId
-                "shiftPressed" -> value = ctrlPressed
-                else -> println(methodCall.argument)
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
+        val bufferNode = preparePacketBuffer(15, 16)
+        bufferNode.packetBuffer.`writeShortLE$api`(sourceItemId)
+        bufferNode.packetBuffer.`writeInt$api`(destinationWidgetId)
+        bufferNode.packetBuffer.`writeIntME$api`(sourceWidgetId)
+        bufferNode.packetBuffer.writeShortAddLE(sourceSlot)
+        bufferNode.packetBuffer.`writeShortLE$api`(destinationSlot)
+        bufferNode.packetBuffer.writeShortAddLE(destinationItemId)
+        return bufferNode
     }
 
-    fun createItemOnNPCPacket(
-        packetName: String,
-        npcIndex: Int,
-        itemWidgetID: Int,
-        itemID: Int,
-        itemSlot: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "id" -> value = npcIndex
-                "shiftPressed" -> value = ctrlPressed
-                "selectedSpellWidget" -> value = itemWidgetID
-                "selectedSpellItemId" -> value = itemID
-                "selectedSpellChildIndex" -> value = itemSlot
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createNPCActionPacket(packetName: String, npcIndex: Int, ctrlPressed: Boolean): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "id" -> value = npcIndex
-                "shiftPressed" -> value = ctrlPressed
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createObjectActionPacket(
-        packetName: String,
-        objectID: Int,
-        worldX: Int,
-        worldY: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "param0" -> value = worldX
-                "param1" -> value = worldY
-                "id" -> value = objectID
-                "shiftPressed" -> value = ctrlPressed
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createItemOnObjectPacket(
-        packetName: String,
-        objectID: Int,
-        worldX: Int,
-        worldY: Int,
-        itemSlot: Int,
-        itemId: Int,
-        itemWidgetID: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "param0" -> value = worldX
-                "param1" -> value = worldY
-                "id" -> value = objectID
-                "shiftPressed" -> value = ctrlPressed
-                "selectedSpellWidget" -> value = itemWidgetID
-                "selectedSpellItemId" -> value = itemId
-                "selectedSpellChildIndex" -> value = itemSlot
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createWidgetOnObjectPacket(
-        packetName: String,
-        objectID: Int,
-        worldX: Int,
-        worldY: Int,
-        itemSlot: Int,
-        itemId: Int,
-        widgetID: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "param0" -> value = worldX
-                "param1" -> value = worldY
-                "id" -> value = objectID
-                "shiftPressed" -> value = ctrlPressed
-                "selectedSpellWidget" -> value = widgetID
-                "selectedSpellItemId" -> value = itemId
-                "selectedSpellChildIndex" -> value = itemSlot
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createWidgetOnPlayerPacket(
-        packetName: String,
-        playerIndex: Int,
-        itemId: Int,
-        itemSlot: Int,
-        itemWidgetID: Int,
-        ctrlPressed: Boolean
-    ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "id" -> value = playerIndex
-                "shiftPressed" -> value = ctrlPressed
-                "selectedSpellWidget" -> value = itemWidgetID
-                "selectedSpellItemId" -> value = itemId
-                "selectedSpellChildIndex" -> value = itemSlot
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createWidgetActionPacket(
-        packetName: String,
+    // IF_BUTTON1
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction1Packet(
         widgetId: Int,
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "param1" -> value = childId
-                "param0" -> value = widgetId
-                "itemId" -> value = itemId
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
+        val bufferNode = preparePacketBuffer(13, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
     }
 
-    fun createPlayerActionPacket(packetName: String, playerIndex: Int, ctrlPressed: Boolean): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "id" -> value = playerIndex
-                "shiftPressed" -> value = ctrlPressed
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
+    // IF_BUTTON2
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction2Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(97, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
     }
 
-    fun createWidgetOnWidgetPacket(packetName: String, sourceWidgetId: Int, sourceSlot: Int, sourceItemId: Int, destinationWidgetId: Int, destinationSlot: Int, destinationItemId: Int): PacketBufferNode {
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "selectedSpellWidget" -> value = sourceWidgetId
-                "selectedSpellChildIndex" -> value = sourceSlot
-                "selectedSpellItemId" -> value = sourceItemId
-                "itemId" -> value = destinationItemId
-                "slot" -> value = destinationSlot
-                "widgetId" -> value = destinationWidgetId
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
+    // IF_BUTTON3
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction3Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(23, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    // IF_BUTTON4
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction4Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(81, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    // IF_BUTTON5
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction5Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(25, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    // IF_BUTTON6
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction6Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(51, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    // IF_BUTTON7
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction7Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(32, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    // IF_BUTTON8
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction8Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(27, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    // IF_BUTTON9
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction9Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(67, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    // IF_BUTTON10
+    // param0: childId
+    // param1: widgetId
+    fun createWidgetAction10Packet(
+        widgetId: Int,
+        itemId: Int,
+        childId: Int,
+    ): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(29, 8)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        bufferNode.packetBuffer.`writeShort$api`(childId)
+        bufferNode.packetBuffer.`writeShort$api`(itemId)
+        return bufferNode
+    }
+
+    fun createClickPacket(mouseInfo: Int, x: Int, y: Int): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(58, 6)
+        bufferNode.packetBuffer.`writeShort$api`(mouseInfo)
+        bufferNode.packetBuffer.`writeShort$api`(x)
+        bufferNode.packetBuffer.`writeShort$api`(y)
+        return bufferNode
+    }
+
+    fun createMovementPacket(worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(92, -1)
+        bufferNode.packetBuffer.`writeByte$api`(5)
+        bufferNode.packetBuffer.writeByteSub(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldX)
+        bufferNode.packetBuffer.writeShortAdd(worldY)
+        return bufferNode
+    }
+
+    fun createContinuePacket(widgetId: Int, childId: Int): PacketBufferNode {
+        val bufferNode = preparePacketBuffer(9, 6)
+        bufferNode.packetBuffer.writeShortAdd(childId)
+        bufferNode.packetBuffer.`writeInt$api`(widgetId)
+        return bufferNode
+    }
+
+    fun preparePacketBuffer(opcode: Int, size: Int): PacketBufferNode {
+        val clientPacket = Main.client.createClientPacket(opcode, size)
+        return Main.client.preparePacket(
+            clientPacket,
+            Main.client.packetWriter.isaacCipher
+        )
     }
 
     fun queueClickPacket(mouseInfo: Int, x: Int, y: Int) {
@@ -314,84 +622,6 @@ object ClientPackets {
         queueClickPacket(mouseInfo.toInt(), x, y)
     }
 
-    fun createClickPacket(mouseInfo: Int, x: Int, y: Int): PacketBufferNode {
-        val packetName = "EVENT_MOUSE_CLICK"
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "mouseInfo" -> value = mouseInfo
-                "x" -> value = x
-                "y" -> value = y
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun createMovementPacket(worldX: Int, worldY: Int, ctrlPressed: Boolean): PacketBufferNode {
-        val packetName = "MOVE_GAMECLICK"
-        val packetBuffer = preparePacket(packetName)
-        for (methodCall in getPacket(packetName).structure) {
-            var value: Any = -1
-            when (methodCall.argument) {
-                "_five_" -> value = 5
-                "worldX" -> value = worldX
-                "worldY" -> value = worldY
-                "ctrlPressed" -> value = ctrlPressed
-            }
-            encodeToBuffer(packetBuffer.packetBuffer, methodCall, value)
-        }
-        return packetBuffer
-    }
-
-    fun preparePacket(packetName: String): PacketBufferNode {
-        val client = Main.client
-        Main.logger.debug("Preparing packet: $packetName")
-        val packet = getPacket(packetName)
-        return client.preparePacket(
-            client.createClientPacket(getOpcode(packet), packet.size),
-            client.packetWriter.isaacCipher
-        )
-    }
-
-    fun encodeToBuffer(packetBuffer: PacketBuffer, methodCall: ObfuscatedBufferStructure, value: Any) {
-        // transform boolean to number
-        val finalValue: Any = if (value is Boolean)
-            if (value) 1 else 0
-        else
-            value
-
-        when (getBufferEncoderName(methodCall.method)) {
-            "writeByte" -> packetBuffer.`writeByte$api`(finalValue as Int)
-            "writeByteAdd" -> packetBuffer.writeByteAdd(finalValue as Int)
-            "writeByteNeg" -> packetBuffer.writeByteNeg(finalValue as Int)
-            "writeByteSub" -> packetBuffer.writeByteSub(finalValue as Int)
-            "writeInt" -> packetBuffer.`writeInt$api`(finalValue as Int)
-            "writeIntIME" -> packetBuffer.writeIntIME(finalValue as Int)
-            "writeIntLE" -> packetBuffer.`writeIntLE$api`(finalValue as Int)
-            "writeIntME" -> packetBuffer.`writeIntME$api`(finalValue as Int)
-            "writeShort" -> packetBuffer.`writeShort$api`(finalValue as Int)
-            "writeShortLE" -> packetBuffer.`writeShortLE$api`(finalValue as Int)
-            "writeShortAdd" -> packetBuffer.writeShortAdd(finalValue as Int)
-            "writeShortAddLE" -> packetBuffer.writeShortAddLE(finalValue as Int)
-            else -> throw RuntimeException("Unmapped ObfuscatedClientPacket methodCall ${methodCall.method}")
-        }
-    }
-
-    private fun readResourceAsString(filename: String): String? {
-        ClassLoader.getSystemClassLoader().getResourceAsStream(filename)?.let { return String(it.readAllBytes()) }
-        return null
-    }
-
-    fun getBufferEncoderName(deobName: String) : String {
-        for (bufferMethod in bufferMethods) {
-            if (deobName == bufferMethod.deobName)
-                return bufferMethod.method
-        }
-        return ""
-    }
-
     fun createClientPacket(menu: AutomatedMenu): PacketBufferNode? {
         val opcode = menu.opcode
         val client = Main.client
@@ -404,8 +634,7 @@ object ClientPackets {
         val selectedWidget = client.selectedSpellWidget
 
         when (opcode) {
-            MenuAction.ITEM_USE_ON_GAME_OBJECT, MenuAction.WIDGET_TARGET_ON_GAME_OBJECT -> return createItemOnObjectPacket(
-                "OPOBJT",
+            MenuAction.ITEM_USE_ON_GAME_OBJECT, MenuAction.WIDGET_TARGET_ON_GAME_OBJECT -> return createItemWidgetOnGameObjectPacket(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
@@ -414,69 +643,62 @@ object ClientPackets {
                 selectedWidget,
                 false
             )
-            MenuAction.GAME_OBJECT_FIRST_OPTION -> return createObjectActionPacket(
-                "OPOBJ1",
+            MenuAction.GAME_OBJECT_FIRST_OPTION -> return createObjectAction1Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_SECOND_OPTION -> return createObjectActionPacket(
-                "OPOBJ2",
+            MenuAction.GAME_OBJECT_SECOND_OPTION -> return createObjectAction2Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_THIRD_OPTION -> return createObjectActionPacket(
-                "OPOBJ3",
+            MenuAction.GAME_OBJECT_THIRD_OPTION -> return createObjectAction3Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_FOURTH_OPTION -> return createObjectActionPacket(
-                "OPOBJ4",
+            MenuAction.GAME_OBJECT_FOURTH_OPTION -> return createObjectAction4Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_FIFTH_OPTION -> return createObjectActionPacket(
-                "OPOBJ5",
+            MenuAction.GAME_OBJECT_FIFTH_OPTION -> return createObjectAction5Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.ITEM_USE_ON_NPC, MenuAction.WIDGET_TARGET_ON_NPC -> return createItemOnNPCPacket(
-                "OPNPCT",
+            MenuAction.ITEM_USE_ON_NPC, MenuAction.WIDGET_TARGET_ON_NPC -> return createItemWidgetOnNPCPacket(
                 id,
                 selectedWidget,
                 selectedWidgetItemId,
                 selectedWidgetSlot,
                 false)
-            MenuAction.NPC_FIRST_OPTION -> return createNPCActionPacket("OPNPC1", id, false)
-            MenuAction.NPC_SECOND_OPTION -> return createNPCActionPacket("OPNPC2", id, false)
-            MenuAction.NPC_THIRD_OPTION -> return createNPCActionPacket("OPNPC3", id, false)
-            MenuAction.NPC_FOURTH_OPTION -> return createNPCActionPacket("OPNPC4", id, false)
-            MenuAction.NPC_FIFTH_OPTION -> return createNPCActionPacket("OPNPC5", id, false)
-            MenuAction.ITEM_USE_ON_PLAYER, MenuAction.WIDGET_TARGET_ON_PLAYER -> return createWidgetOnPlayerPacket(
-                "OPPLAYERT",
+            MenuAction.NPC_FIRST_OPTION -> return createNPCAction1Packet(id, false)
+            MenuAction.NPC_SECOND_OPTION -> return createNPCAction2Packet(id, false)
+            MenuAction.NPC_THIRD_OPTION -> return createNPCAction3Packet(id, false)
+            MenuAction.NPC_FOURTH_OPTION -> return createNPCAction4Packet(id, false)
+            MenuAction.NPC_FIFTH_OPTION -> return createNPCAction5Packet(id, false)
+            MenuAction.ITEM_USE_ON_PLAYER, MenuAction.WIDGET_TARGET_ON_PLAYER -> return createItemWidgetOnPlayerPacket(
                 id,
                 selectedWidgetItemId,
                 selectedWidgetSlot,
                 selectedWidget,
                 false)
-            MenuAction.PLAYER_FIRST_OPTION -> return createPlayerActionPacket("OPPLAYER1", id, false)
-            MenuAction.PLAYER_SECOND_OPTION -> return createPlayerActionPacket("OPPLAYER2", id, false)
-            MenuAction.PLAYER_THIRD_OPTION -> return createPlayerActionPacket("OPPLAYER3", id, false)
-            MenuAction.PLAYER_FOURTH_OPTION -> return createPlayerActionPacket("OPPLAYER4", id, false)
-            MenuAction.PLAYER_FIFTH_OPTION -> return createPlayerActionPacket("OPPLAYER5", id, false)
-            MenuAction.PLAYER_SIXTH_OPTION -> return createPlayerActionPacket("OPPLAYER6", id, false)
-            MenuAction.PLAYER_SEVENTH_OPTION -> return createPlayerActionPacket("OPPLAYER7", id, false)
-            MenuAction.PLAYER_EIGTH_OPTION -> return createPlayerActionPacket("OPPLAYER8", id, false)
-            MenuAction.ITEM_USE_ON_GROUND_ITEM, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM -> return createItemOnGroundItemPacket("OPLOCT",
+            MenuAction.PLAYER_FIRST_OPTION -> return createPlayerAction1Packet(id, false)
+            MenuAction.PLAYER_SECOND_OPTION -> return createPlayerAction2Packet(id, false)
+            MenuAction.PLAYER_THIRD_OPTION -> return createPlayerAction3Packet(id, false)
+            MenuAction.PLAYER_FOURTH_OPTION -> return createPlayerAction4Packet(id, false)
+            MenuAction.PLAYER_FIFTH_OPTION -> return createPlayerAction5Packet(id, false)
+            MenuAction.PLAYER_SIXTH_OPTION -> return createPlayerAction6Packet(id, false)
+            MenuAction.PLAYER_SEVENTH_OPTION -> return createPlayerAction7Packet(id, false)
+            MenuAction.PLAYER_EIGTH_OPTION -> return createPlayerAction8Packet(id, false)
+            MenuAction.ITEM_USE_ON_GROUND_ITEM, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM -> return createItemWidgetOnGroundItemPacket(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
@@ -485,31 +707,31 @@ object ClientPackets {
                 selectedWidget,
                 false
             )
-            MenuAction.GROUND_ITEM_FIRST_OPTION -> return createGroundItemActionPacket("OPLOC1",
+            MenuAction.GROUND_ITEM_FIRST_OPTION -> return createGroundItemAction1Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_SECOND_OPTION -> return createGroundItemActionPacket("OPLOC2",
+            MenuAction.GROUND_ITEM_SECOND_OPTION -> return createGroundItemAction2Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_THIRD_OPTION -> return createGroundItemActionPacket("OPLOC3",
+            MenuAction.GROUND_ITEM_THIRD_OPTION -> return createGroundItemAction3Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_FOURTH_OPTION -> return createGroundItemActionPacket("OPLOC4",
+            MenuAction.GROUND_ITEM_FOURTH_OPTION -> return createGroundItemAction4Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_FIFTH_OPTION -> return createGroundItemActionPacket("OPLOC5",
+            MenuAction.GROUND_ITEM_FIFTH_OPTION -> return createGroundItemAction5Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
@@ -527,7 +749,7 @@ object ClientPackets {
                     selectedWidgetSlot = -1
                     selectedWidgetItemId = -1
                 }
-                return createWidgetOnWidgetPacket("IF_BUTTONT",
+                return createItemWidgetOnItemWidgetPacket(
                     selectedWidget,
                     selectedWidgetSlot,
                     selectedWidgetItemId,
@@ -535,52 +757,52 @@ object ClientPackets {
                     param0,
                     childItemId)
             }
-            MenuAction.ITEM_FIRST_OPTION -> return createItemActionPacket("OPHELD1",
+            MenuAction.ITEM_FIRST_OPTION -> return createItemAction1Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_SECOND_OPTION -> return createItemActionPacket("OPHELD2",
+            MenuAction.ITEM_SECOND_OPTION -> return createItemAction2Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_THIRD_OPTION -> return createItemActionPacket("OPHELD3",
+            MenuAction.ITEM_THIRD_OPTION -> return createItemAction3Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_FOURTH_OPTION -> return createItemActionPacket("OPHELD4",
+            MenuAction.ITEM_FOURTH_OPTION -> return createItemAction4Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_FIFTH_OPTION -> return createItemActionPacket("OPHELD5",
+            MenuAction.ITEM_FIFTH_OPTION -> return createItemAction5Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.WIDGET_FIRST_OPTION -> return createWidgetActionPacket("IF_BUTTON1",
+            MenuAction.WIDGET_FIRST_OPTION -> return createWidgetAction1Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_SECOND_OPTION -> return createWidgetActionPacket("IF_BUTTON2",
+            MenuAction.WIDGET_SECOND_OPTION -> return createWidgetAction2Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_THIRD_OPTION -> return createWidgetActionPacket("IF_BUTTON3",
+            MenuAction.WIDGET_THIRD_OPTION -> return createWidgetAction3Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_FOURTH_OPTION -> return createWidgetActionPacket("IF_BUTTON4",
+            MenuAction.WIDGET_FOURTH_OPTION -> return createWidgetAction4Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_FIFTH_OPTION -> return createWidgetActionPacket("IF_BUTTON5",
+            MenuAction.WIDGET_FIFTH_OPTION -> return createWidgetAction5Packet(
                 param1,
                 -1,
                 param0
