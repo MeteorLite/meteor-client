@@ -9,6 +9,7 @@ import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
 import eventbus.events.MenuOptionClicked
+import meteor.Configuration.EXTERNALS_DIR
 import meteor.api.loot.Interact
 import meteor.api.packets.ClientPackets
 import meteor.config.ConfigManager
@@ -94,6 +95,7 @@ object Main : ApplicationScope, EventSubscriber() {
 
     @JvmStatic
     fun main(args: Array<String>) = application {
+        EXTERNALS_DIR.mkdirs()
         Proxy.handle(args)
         ClientPackets
         if (winOS != null || macOS != null) {
