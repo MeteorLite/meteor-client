@@ -492,10 +492,10 @@ public class Perspective
 			int plane,
 			int zOffset)
 	{
-/*		if (!localLocation.isInScene())
+		if (!localLocation.isInScene())
 		{
 			return null;
-		}*/
+		}
 
 		final byte[][][] tileSettings = client.getTileSettings();
 		final int sceneX = localLocation.getSceneX();
