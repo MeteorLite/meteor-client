@@ -403,9 +403,12 @@ public class QuestHelperPlugin extends Plugin
 
 		if (state == GameState.LOGIN_SCREEN)
 		{
-			questBank.saveBankToConfig();
-			//SwingUtilities.invokeLater(() -> panel.refresh(Collections.emptyList(), true, new HashMap<>()));
-			questBank.emptyState();
+			if (questBank.getBankItems().size() > 0) {
+				questBank.saveBankToConfig();
+				//SwingUtilities.invokeLater(() -> panel.refresh(Collections.emptyList(), true, new HashMap<>()));
+				questBank.emptyState();
+			}
+
 			if (selectedQuest != null && selectedQuest.getCurrentStep() != null)
 			{
 				shutDownQuest(true);
