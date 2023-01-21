@@ -80,8 +80,8 @@ fun configPanelHeader() {
                 IconButton( onClick = {
                     when {
                         configOpen.value -> configOpen.value = false
-                        !pluginsOpen.value -> pluginsOpen.value = true
                     }
+                    pluginsOpen.value = true
                 }) {
                     Icon(
                         imageVector = Octicons.ChevronLeft24,

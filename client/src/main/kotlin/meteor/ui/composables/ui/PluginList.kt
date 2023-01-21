@@ -4,6 +4,7 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,6 +12,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -85,7 +87,7 @@ fun searchBar(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun plugins() {
-    val pluginListScrollState = rememberLazyListState()
+    val pluginListScrollState = rememberForeverLazyListState()
 
     val textState = remember { searchValue }
     searchBar(state = textState, placeHolder = "", modifier = Modifier.fillMaxWidth())
@@ -98,7 +100,7 @@ fun plugins() {
             .fillMaxHeight()
     ) {
 
-        LazyColumn(modifier = Modifier.fillMaxHeight(), state = pluginListScrollState!!) {
+        LazyColumn(modifier = Modifier.fillMaxHeight(), state = pluginListScrollState) {
 
             val searchedText = textState.value
 
@@ -209,6 +211,35 @@ fun plugins() {
             })
         }
     }
+}
+
+
+private var scrollStateRemembered = ScrollState(0,0)
+
+private data class ScrollState(
+    val index: Int,
+    val scrollOffset: Int
+)
+
+@Composable
+fun rememberForeverLazyListState(): LazyListState {
+    val scrollState = rememberSaveable(saver = LazyListState.Saver) {
+        val savedValue = scrollStateRemembered
+        val savedIndex = savedValue.index
+        val savedOffset = savedValue.scrollOffset
+        LazyListState(
+            savedIndex,
+            savedOffset
+        )
+    }
+    DisposableEffect(Unit) {
+        onDispose {
+            val lastIndex = scrollState.firstVisibleItemIndex
+            val lastOffset = scrollState.firstVisibleItemScrollOffset
+            scrollStateRemembered = ScrollState(lastIndex, lastOffset)
+        }
+    }
+    return scrollState
 }
 
 
