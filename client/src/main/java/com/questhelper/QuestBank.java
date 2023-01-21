@@ -118,7 +118,6 @@ public class QuestBank
 
 	public void saveBankToConfig()
 	{
-		Main.INSTANCE.getLogger().error("saving bank items");
 		configManager.setConfiguration(CONFIG_GROUP, BANK_KEY, gson.toJson(questBankData.getIdAndQuantity()));
 	}
 
