@@ -25,6 +25,7 @@ import meteor.plugins.autologin.AutoLoginPlugin
 import meteor.plugins.autorun.AutoRunPlugin
 import meteor.plugins.bank.BankPlugin
 import meteor.plugins.banksetups.BankSetups
+import meteor.plugins.bankactions.BankActionsPlugin
 import meteor.plugins.barrows.BarrowsPlugin
 import meteor.plugins.barrowsdoorhighlighter.BarrowsDoorHighlighter
 import meteor.plugins.blastfurnace.BlastFurnacePlugin
@@ -166,6 +167,7 @@ object PluginManager {
             init<AutoLoginPlugin>()
             init<AutoLogHop>()
             init<AutoRunPlugin>()
+            init<BankActionsPlugin>()
             init<BankPlugin>()
             init<BankSetups>()
             init<BarrowsPlugin>()
