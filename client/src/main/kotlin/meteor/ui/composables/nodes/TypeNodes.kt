@@ -28,6 +28,8 @@ import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import meteor.util.ColorUtil
 import meteor.util.FontUtil
+import net.runelite.api.KeyCode
+import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
 
 @Composable
@@ -54,6 +56,9 @@ fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
     Spacer(Modifier.height(4.dp).background(background))
 }
 
+var ctrlPressed = false
+var altPressed = false
+
 @Composable
 fun hotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     val configStr = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())!!
@@ -66,11 +71,35 @@ fun hotKeyNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDes
                 Text(configItemDescriptor.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
             }, value = keyBind.toString(), onValueChange = {
                 keyBind.toString()
-                ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), keyBind)
             }, modifier = Modifier.onKeyEvent {
                 if (it.type == KeyEventType.KeyDown) {
-                    keyBind = ModifierlessKeybind(it.key.nativeKeyCode, KeyEvent.KEY_PRESSED)
+                    if (it.key.nativeKeyCode == KeyEvent.VK_ALT) {
+                        altPressed = true
+                    }
+                    if (it.key.nativeKeyCode == KeyEvent.VK_CONTROL) {
+                        ctrlPressed = true
+                    }
+                }
+                if (it.type == KeyEventType.KeyUp) {
+                    if (it.key.nativeKeyCode == KeyEvent.VK_ALT) {
+                        altPressed = false
+                    }
+                    if (it.key.nativeKeyCode == KeyEvent.VK_CONTROL) {
+                        ctrlPressed = false
+                    }
+                }
 
+                if (it.type == KeyEventType.KeyDown) {
+                    var modifier = 0
+
+                    if (altPressed) {
+                        modifier = InputEvent.ALT_DOWN_MASK
+                    }
+                    else if (ctrlPressed)
+                        modifier = InputEvent.CTRL_DOWN_MASK
+
+                    keyBind = ModifierlessKeybind(it.key.nativeKeyCode, modifier)
+                    ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), keyBind)
                 }
                 true
             }.background(darkThemeColors.background, RoundedCornerShape(4.dp)).width(150.dp))

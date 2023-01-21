@@ -453,6 +453,11 @@ public class GroundItemsPlugin extends Plugin
 
 			final WorldPoint worldPoint = WorldPoint.fromScene(client, sceneX, sceneY, client.getPlane());
 			GroundItem groundItem = collectedGroundItems.get(worldPoint, itemId);
+
+			//This can happen if you drop an item before turning on ground items then moving your mouse over it after its enabled
+			if (groundItem == null) {
+				return;
+			}
 			int quantity = groundItem.getQuantity();
 
 			final int gePrice = groundItem.getGePrice();

@@ -5,6 +5,11 @@ import java.awt.event.KeyEvent
 
 
 class ModifierlessKeybind(keyCode: Int, modifiers: Int) : Keybind(keyCode, modifiers, true) {
+    init {
+        super.keyCode = keyCode
+        super.modifiers = modifiers
+    }
+
     /**
      * Constructs a keybind with that matches the passed KeyEvent
      */

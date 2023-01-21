@@ -12,9 +12,7 @@ import java.awt.event.KeyEvent
  * key
  */
 
-open class Keybind @JvmOverloads constructor(keyCode: Int, modifiers: Int, ignoreModifiers: Boolean = false) {
-    var keyCode = 0
-    var modifiers = 0
+open class Keybind @JvmOverloads constructor(var keyCode: Int, var modifiers: Int, ignoreModifiers: Boolean = false) {
 
     /**
      * Constructs a keybind with that matches the passed KeyEvent
@@ -67,6 +65,9 @@ open class Keybind @JvmOverloads constructor(keyCode: Int, modifiers: Int, ignor
         if (mod.isEmpty() && key.isEmpty()) {
             return "Not set"
         }
+        //Nullify a duplicate modifier / key to prevent a combo such as Alt + Alt
+        if (mod == key)
+            mod = ""
         if (mod.isNotEmpty() && key.isNotEmpty()) {
             return "$mod+$key"
         }
