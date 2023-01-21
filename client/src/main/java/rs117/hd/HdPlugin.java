@@ -2254,7 +2254,6 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 			case "unlockFps":
 			case "vsyncMode":
 			case "fpsTarget":
-				log.debug("Rebuilding sync mode");
 				clientThread.invoke(this::setupSyncMode);
 				break;
 			case "hideBakedEffects":

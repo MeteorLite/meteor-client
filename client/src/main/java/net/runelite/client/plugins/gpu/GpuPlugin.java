@@ -436,7 +436,6 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 					|| configChanged.getKey().equals("vsyncMode")
 					|| configChanged.getKey().equals("fpsTarget"))
 			{
-				log.debug("Rebuilding sync mode");
 				clientThread.invokeLater(this::setupSyncMode);
 			}
 		}
