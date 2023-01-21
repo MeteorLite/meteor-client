@@ -24,14 +24,16 @@
  */
 package net.runelite.client.plugins.grounditems;
 
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.time.Instant;
 import javax.inject.Inject;
 
+import meteor.Main;
+import meteor.input.KeyListener;
 import meteor.util.HotkeyListener;
 
-class GroundItemHotkeyListener extends HotkeyListener
-{
+class GroundItemHotkeyListener implements KeyListener {
 	private final GroundItemsPlugin plugin;
 	private final GroundItemsConfig config;
 
@@ -39,39 +41,44 @@ class GroundItemHotkeyListener extends HotkeyListener
 
 	GroundItemHotkeyListener(GroundItemsPlugin plugin, GroundItemsConfig config)
 	{
-		super(config::hotkey);
-
 		this.plugin = plugin;
 		this.config = config;
 	}
 
 	@Override
-	public void hotkeyPressed()
-	{
-		if (plugin.isHideAll())
-		{
-			plugin.setHideAll(false);
-			plugin.setHotKeyPressed(true);
-			lastPress = null;
-		}
-		else if (lastPress != null && !plugin.isHotKeyPressed() && config.doubleTapDelay() > 0 && Duration.between(lastPress, Instant.now()).compareTo(Duration.ofMillis(config.doubleTapDelay())) < 0)
-		{
-			plugin.setHideAll(true);
-			lastPress = null;
-		}
-		else
-		{
-			plugin.setHotKeyPressed(true);
-			lastPress = Instant.now();
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == config.hotkey().getKeyCode()) {
+			if (plugin.isHideAll())
+			{
+				plugin.setHideAll(false);
+				plugin.setHotKeyPressed(true);
+				lastPress = null;
+			}
+			else if (lastPress != null && !plugin.isHotKeyPressed() && config.doubleTapDelay() > 0 && Duration.between(lastPress, Instant.now()).compareTo(Duration.ofMillis(config.doubleTapDelay())) < 0)
+			{
+				plugin.setHideAll(true);
+				lastPress = null;
+			}
+			else
+			{
+				plugin.setHotKeyPressed(true);
+				lastPress = Instant.now();
+			}
 		}
 	}
 
 	@Override
-	public void hotkeyReleased()
-	{
-		plugin.setHotKeyPressed(false);
-		plugin.setTextBoxBounds(null);
-		plugin.setHiddenBoxBounds(null);
-		plugin.setHighlightBoxBounds(null);
+	public void keyReleased(KeyEvent e) {
+		if (e.getKeyCode() == config.hotkey().getKeyCode()) {
+			plugin.setHotKeyPressed(false);
+			plugin.setTextBoxBounds(null);
+			plugin.setHiddenBoxBounds(null);
+			plugin.setHighlightBoxBounds(null);
+		}
 	}
 }
