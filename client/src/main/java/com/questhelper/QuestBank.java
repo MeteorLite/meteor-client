@@ -35,6 +35,7 @@ import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 import meteor.Main;
 import meteor.config.ConfigManager;
+import meteor.plugins.PluginManager;
 import net.runelite.api.Client;
 import net.runelite.api.Item;
 import net.runelite.api.WorldType;
@@ -86,7 +87,7 @@ public class QuestBank
 
 	public void loadState()
 	{
-		if (!lastUsername.equalsIgnoreCase(Objects.requireNonNull(client.getLocalPlayer()).getName())) {
+		if (lastUsername == null || !lastUsername.equalsIgnoreCase(Objects.requireNonNull(client.getLocalPlayer()).getName())) {
 			lastUsername = client.getLocalPlayer().getName();
 			loadBankFromConfig();
 		}
@@ -112,15 +113,11 @@ public class QuestBank
 			saveBankToConfig();
 		}
 		bankItems = questBankData.getAsList();
+		saveBankToConfig();
 	}
 
 	public void saveBankToConfig()
 	{
-		if (rsProfileKey == null)
-		{
-			return;
-		}
-
 		configManager.setConfiguration(CONFIG_GROUP, BANK_KEY, gson.toJson(questBankData.getIdAndQuantity()));
 	}
 
