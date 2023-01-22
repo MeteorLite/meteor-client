@@ -17,8 +17,10 @@ import androidx.compose.ui.unit.sp
 import com.questhelper.questhelpers.QuestHelper
 import com.questhelper.requirements.Requirement
 import com.questhelper.requirements.item.ItemRequirement
+import dev.hoot.api.game.GameThread
 import eventbus.events.GameTick
 import eventbus.events.ItemContainerChanged
+import kotlinx.coroutines.runBlocking
 import meteor.Main
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.*
@@ -136,12 +138,17 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     fun getColorForItemReq(ir: ItemRequirement) : Color {
         var color = Color.Red
-        try {
-            when (ir.getColorConsideringBank(Main.client, false, questHelper.questBank.bankItems, questHelper.config)) {
-                java.awt.Color.WHITE -> color = Color.Yellow
-                java.awt.Color.GREEN -> color = Color.Green
-            }
-        } catch (_: Exception) {}
+        runBlocking {
+            try {
+                val awtColor = GameThread.invokeLater {
+                    ir.getColorConsideringBank(Main.client, false, questHelper.questBank.bankItems, questHelper.config)
+                }
+                when (awtColor) {
+                    java.awt.Color.WHITE -> color = Color.Yellow
+                    java.awt.Color.GREEN -> color = Color.Green
+                }
+            } catch (_: Exception) {}
+        }
         return color
     }
 
