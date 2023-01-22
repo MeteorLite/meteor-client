@@ -1,8 +1,8 @@
 package meteor.plugins
 
 import androidx.compose.runtime.mutableStateListOf
-import com.questhelper.QuestHelperPlugin
-import com.tileman.TilemanModePlugin
+import net.runelite.client.plugins.questhelper.QuestHelperPlugin
+import net.runelite.client.plugins.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
 import meteor.Main.pluginsEnabled
@@ -133,8 +133,8 @@ import net.runelite.client.plugins.timers.TimersPlugin
 import net.runelite.client.plugins.timestamp.TimestampPlugin
 import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
-import rs117.hd.HdPlugin
-import tictac7x.tithe.TithePlugin
+import net.runelite.client.plugins.gpuhd.HdPlugin
+import net.runelite.client.plugins.titheextended.TithePlugin
 import java.io.File
 import java.net.JarURLConnection
 import java.net.URL

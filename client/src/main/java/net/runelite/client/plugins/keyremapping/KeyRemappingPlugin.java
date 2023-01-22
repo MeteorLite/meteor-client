@@ -25,7 +25,6 @@
  */
 package net.runelite.client.plugins.keyremapping;
 
-import com.google.inject.Provides;
 import eventbus.events.ScriptCallbackEvent;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -39,9 +38,8 @@ import meteor.util.ColorUtil;
 import net.runelite.api.*;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.client.chat.JagexColors;
+import meteor.chat.JagexColors;
 
-import javax.inject.Inject;
 import java.awt.*;
 
 @PluginDescriptor(

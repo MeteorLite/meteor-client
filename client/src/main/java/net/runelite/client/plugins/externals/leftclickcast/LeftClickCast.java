@@ -5,18 +5,15 @@
  */
 package net.runelite.client.plugins.externals.leftclickcast;
 
-import com.google.inject.Provides;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.Nullable;
-import javax.inject.Inject;
 
 import eventbus.events.ConfigChanged;
 import eventbus.events.GameStateChanged;
 import eventbus.events.ItemContainerChanged;
 import eventbus.events.MenuEntryAdded;
-import lombok.extern.slf4j.Slf4j;
 import meteor.Logger;
 import meteor.Main;
 import meteor.input.KeyManager;
@@ -39,7 +36,7 @@ import net.runelite.api.NPC;
 import net.runelite.api.util.Text;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.client.util.PvPUtil;
+import meteor.util.PvPUtil;
 
 @PluginDescriptor(
 	name = "Left Click Cast",

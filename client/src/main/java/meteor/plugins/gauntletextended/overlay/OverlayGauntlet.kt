@@ -32,7 +32,7 @@ import net.runelite.api.Player
 import net.runelite.api.coords.LocalPoint
 import meteor.plugins.gauntletextended.GauntletExtendedConfig
 import meteor.plugins.gauntletextended.GauntletExtendedPlugin
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.awt.Dimension
 import java.awt.Graphics2D
 

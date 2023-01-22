@@ -1,8 +1,7 @@
 package net.runelite.client.plugins.zulrah;
 
 import com.google.common.base.Preconditions;
-import com.google.common.eventbus.Subscribe;
-import com.google.inject.Provides;
+
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
@@ -19,7 +18,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 import eventbus.events.*;
@@ -28,8 +26,6 @@ import meteor.game.SkillIconManager;
 import meteor.game.SpriteManager;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
-
-import meteor.config.ConfigManager;
 
 import meteor.input.KeyListener;
 import meteor.input.KeyManager;
@@ -41,19 +37,11 @@ import meteor.ui.overlay.OverlayManager;
 
 import meteor.ui.overlay.infobox.InfoBoxManager;
 import meteor.util.ImageUtil;
-import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.client.Counter;
-import net.runelite.client.plugins.cannon.CannonOverlay;
-import net.runelite.client.plugins.slayer.SlayerConfig;
+import meteor.ui.overlay.infobox.Counter;
 import net.runelite.client.plugins.zulrah.overlays.*;
 import net.runelite.client.plugins.zulrah.rotationutils.RotationType;
 import net.runelite.client.plugins.zulrah.rotationutils.ZulrahData;
 import net.runelite.client.plugins.zulrah.rotationutils.ZulrahPhase;
-import net.runelite.client.plugins.zulrah.util.OverlayUtils;
-import org.rationalityfrontline.kevent.KEventSubscriber;
-
-import static org.lwjgl.opengl.GL11C.GL_RENDERER;
-import static org.lwjgl.opengl.GL11C.glGetString;
 
 
 @PluginDescriptor(

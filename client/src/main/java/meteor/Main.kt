@@ -41,8 +41,8 @@ import meteor.util.Proxy
 import meteor.util.RuntimeConfigLoader
 import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
-import net.runelite.client.chat.ChatCommandManager
-import net.runelite.client.chat.ChatMessageManager
+import meteor.chat.ChatCommandManager
+import meteor.chat.ChatMessageManager
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient

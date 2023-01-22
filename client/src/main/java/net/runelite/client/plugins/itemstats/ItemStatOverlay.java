@@ -25,7 +25,7 @@
 package net.runelite.client.plugins.itemstats;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.inject.Inject;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -46,7 +46,7 @@ import net.runelite.api.MenuEntry;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.client.chat.JagexColors;
+import meteor.chat.JagexColors;
 import net.runelite.client.plugins.itemstats.potions.PotionDuration;
 import net.runelite.http.api.item.ItemEquipmentStats;
 import net.runelite.http.api.item.ItemStats;

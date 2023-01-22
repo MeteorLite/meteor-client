@@ -40,7 +40,7 @@ import net.runelite.api.model.Vertex
 import meteor.plugins.gauntletextended.GauntletExtendedConfig
 import meteor.plugins.gauntletextended.GauntletExtendedPlugin
 import meteor.plugins.gauntletextended.entity.Hunllef
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.awt.*
 
 class OverlayHunllef(

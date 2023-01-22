@@ -44,7 +44,7 @@ import net.runelite.api.*
 import net.runelite.api.queries.GameObjectQuery
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.util.*
 import java.util.List
 import java.util.function.Consumer

@@ -26,8 +26,7 @@
 package net.runelite.client.plugins.slayer;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.inject.Binder;
-import com.google.inject.Provides;
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -43,8 +42,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.inject.Inject;
-import javax.inject.Named;
 
 import eventbus.events.*;
 import joptsimple.internal.Strings;
@@ -70,11 +67,10 @@ import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.util.Text;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.client.chat.ChatColorType;
-import net.runelite.client.chat.ChatCommandManager;
-import net.runelite.client.chat.ChatMessageBuilder;
-import net.runelite.client.events.ChatInput;
-import net.runelite.client.events.CommandExecuted;
+import meteor.chat.ChatColorType;
+import meteor.chat.ChatCommandManager;
+import meteor.chat.ChatMessageBuilder;
+import meteor.events.ChatInput;
 import net.runelite.http.api.chat.ChatClient;
 import org.apache.commons.lang3.ArrayUtils;
 

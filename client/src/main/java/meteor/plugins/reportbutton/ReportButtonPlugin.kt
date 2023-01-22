@@ -33,7 +33,7 @@ import meteor.rs.ClientThread
 import net.runelite.api.Constants
 import net.runelite.api.GameState
 import net.runelite.api.widgets.WidgetInfo
-import net.runelite.client.task.Schedule
+import meteor.task.Schedule
 import org.apache.commons.lang3.time.DurationFormatUtils
 import java.text.DateFormat
 import java.text.SimpleDateFormat

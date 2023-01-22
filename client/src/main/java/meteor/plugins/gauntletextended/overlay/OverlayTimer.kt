@@ -33,8 +33,8 @@ import meteor.ui.overlay.PanelComponent
 import meteor.ui.overlay.OverlayPosition
 import meteor.ui.overlay.OverlayPriority
 import java.awt.Dimension
-import net.runelite.client.chat.ChatMessageBuilder
-import net.runelite.client.chat.ChatColorType
+import meteor.chat.ChatMessageBuilder
+import meteor.chat.ChatColorType
 import meteor.chat.QueuedMessage
 import net.runelite.api.ChatMessageType
 import meteor.Main

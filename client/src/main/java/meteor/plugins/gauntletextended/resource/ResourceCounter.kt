@@ -26,7 +26,7 @@ package meteor.plugins.gauntletextended.resource
 import meteor.plugins.gauntletextended.GauntletExtendedPlugin
 import java.awt.image.BufferedImage
 import meteor.ui.overlay.infobox.InfoBoxPriority
-import net.runelite.client.Counter
+import meteor.ui.overlay.infobox.Counter
 
 internal class ResourceCounter(
     plugin: GauntletExtendedPlugin?,

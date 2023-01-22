@@ -8,7 +8,7 @@ import meteor.rs.ClientThread
 import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.util.*
 
 @PluginDescriptor(

@@ -38,9 +38,8 @@ import net.runelite.api.ItemID
 import net.runelite.api.MenuAction
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
-import net.runelite.client.chat.ChatColorType
-import net.runelite.client.chat.ChatMessageBuilder
-import net.runelite.client.chat.ChatMessageManager
+import meteor.chat.ChatColorType
+import meteor.chat.ChatMessageBuilder
 import java.util.*
 import kotlin.math.max
 

@@ -23,6 +23,5 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package meteor.events
-import net.runelite.client.events.ChatInput
 
 abstract class ChatboxInput(val value: String? = null, val chatType: Int = 0) : ChatInput()

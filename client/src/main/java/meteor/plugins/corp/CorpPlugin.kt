@@ -30,8 +30,8 @@ import meteor.chat.QueuedMessage.Companion.builder
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.*
-import net.runelite.client.chat.ChatColorType
-import net.runelite.client.chat.ChatMessageBuilder
+import meteor.chat.ChatColorType
+import meteor.chat.ChatMessageBuilder
 import meteor.game.npcoverlay.HighlightedNpc
 import java.awt.Color
 import java.util.function.Function
