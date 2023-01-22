@@ -33,7 +33,7 @@ import net.runelite.api.Point
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldArea
 import net.runelite.api.coords.WorldPoint
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.awt.*
 import java.util.function.Consumer
 

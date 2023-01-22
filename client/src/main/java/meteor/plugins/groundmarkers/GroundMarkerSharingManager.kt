@@ -39,7 +39,6 @@ import meteor.menus.WidgetMenuOption
 import net.runelite.api.ChatMessageType
 import net.runelite.api.MenuEntry
 import net.runelite.api.widgets.WidgetInfo
-import net.runelite.client.chat.ChatMessageManager
 import java.awt.Toolkit
 import java.awt.datatransfer.DataFlavor
 import java.awt.datatransfer.StringSelection

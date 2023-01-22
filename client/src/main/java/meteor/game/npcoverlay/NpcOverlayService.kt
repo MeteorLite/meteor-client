@@ -35,7 +35,7 @@ import meteor.rs.ClientThread
 import meteor.ui.overlay.OverlayManager.add
 import net.runelite.api.GameState
 import net.runelite.api.NPC
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.util.function.Function
 
 class NpcOverlayService : EventSubscriber() {

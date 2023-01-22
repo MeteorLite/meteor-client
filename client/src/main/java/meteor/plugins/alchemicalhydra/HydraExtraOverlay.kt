@@ -11,7 +11,7 @@ import net.runelite.api.Point
 import net.runelite.api.coords.LocalPoint
 import meteor.plugins.alchemicalhydra.HydraConfig.ImmunityMode
 import meteor.plugins.alchemicalhydra.HydraConfig.LightningMode
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.awt.*
 import java.awt.image.BufferedImage
 import java.awt.image.ImageObserver

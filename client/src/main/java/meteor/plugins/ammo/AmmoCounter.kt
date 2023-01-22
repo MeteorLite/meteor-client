@@ -24,10 +24,9 @@
  */
 package meteor.plugins.ammo
 
-import lombok.Getter
 import meteor.plugins.Plugin
 import meteor.util.QuantityFormatter.quantityToRSDecimalStack
-import net.runelite.client.Counter
+import meteor.ui.overlay.infobox.Counter
 import java.awt.image.BufferedImage
 
 internal class AmmoCounter(

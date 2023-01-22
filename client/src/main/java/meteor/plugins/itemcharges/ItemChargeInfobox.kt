@@ -26,8 +26,7 @@ package meteor.plugins.itemcharges
 
 import lombok.Getter
 import lombok.ToString
-import meteor.rs.ClientThread.invoke
-import net.runelite.client.Counter
+import meteor.ui.overlay.infobox.Counter
 import java.awt.Color
 import java.awt.image.BufferedImage
 

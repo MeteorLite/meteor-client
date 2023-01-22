@@ -8,7 +8,7 @@ import meteor.ui.overlay.OverlayPriority
 import meteor.util.OverlayUtil
 import net.runelite.api.*
 
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.awt.*
 
 internal class ObjectIndicatorsOverlay(private val plugin: ObjectIndicatorsPlugin) : Overlay() {

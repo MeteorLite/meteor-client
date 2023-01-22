@@ -33,7 +33,7 @@ import net.runelite.api.NPC
 import net.runelite.api.Perspective
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.util.Text
-import ui.overlay.outline.ModelOutlineRenderer
+import meteor.outline.ModelOutlineRenderer
 import java.awt.*
 import java.util.function.Predicate
 
