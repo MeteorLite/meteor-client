@@ -627,7 +627,7 @@ public abstract class RSWidgetMixin implements RSWidget {
 
     @Inject
     public boolean isVisible() {
-        return visible;
+        return !isHidden() && visible;
     }
 
     @Inject
