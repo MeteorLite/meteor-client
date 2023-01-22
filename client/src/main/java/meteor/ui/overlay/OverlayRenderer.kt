@@ -25,7 +25,6 @@ import javax.swing.SwingUtilities
 import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 class OverlayRenderer : KeyListener, MouseAdapter() {
-
     init {
         KeyManager.registerKeyListener(this, javaClass)
         MouseManager.registerMouseListener(this)
