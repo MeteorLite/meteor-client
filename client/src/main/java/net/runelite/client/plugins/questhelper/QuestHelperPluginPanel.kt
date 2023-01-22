@@ -62,7 +62,11 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     fun updateRequirements(requirements: List<Requirement>) {
         val requirementsMet = ArrayList<RequirementMet>()
         requirements.forEach {
-            requirementsMet.add(RequirementMet(it, it.check(Main.client)))
+            var requirementMet = false
+            try {
+                requirementMet = it.check(Main.client)
+            } catch (_: Exception) {}
+            requirementsMet.add(RequirementMet(it, requirementMet))
         }
         when (requirements) {
             generalRequirements -> generalRequirementsMet.value = requirementsMet
@@ -138,17 +142,12 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
 
     fun getColorForItemReq(ir: ItemRequirement) : Color {
         var color = Color.Red
-        runBlocking {
-            try {
-                val awtColor = GameThread.invokeLater {
-                    ir.getColorConsideringBank(Main.client, false, questHelper.questBank.bankItems, questHelper.config)
-                }
-                when (awtColor) {
-                    java.awt.Color.WHITE -> color = Color.Yellow
-                    java.awt.Color.GREEN -> color = Color.Green
-                }
-            } catch (_: Exception) {}
-        }
+        try {
+            when (ir.getColorConsideringBank(Main.client, false, questHelper.questBank.bankItems, questHelper.config)) {
+                java.awt.Color.WHITE -> color = Color.Yellow
+                java.awt.Color.GREEN -> color = Color.Green
+            }
+        } catch (_: Exception) {}
         return color
     }
 
