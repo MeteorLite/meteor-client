@@ -31,6 +31,7 @@ import meteor.api.loot.Interact
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.util.Text
+import java.awt.Point
 import java.util.*
 import java.util.stream.Collectors
 
@@ -52,6 +53,7 @@ interface TileItem : Renderable {
     val inventoryActions: Array<String>
     val tile: Tile
     var index: Int
+    var clickPoint: Point
 
     fun getId(): Int
     fun getMenu(idx: Int) : AutomatedMenu

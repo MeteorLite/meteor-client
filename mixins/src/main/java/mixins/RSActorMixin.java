@@ -308,6 +308,7 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
+	@Override
 	public java.awt.Point getClickPoint()
 	{
 		java.awt.Point point = Randomizer.getRandomPointIn(getBounds());

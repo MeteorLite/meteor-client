@@ -7,11 +7,11 @@ import dev.hoot.api.movement.Movement
 import dev.hoot.api.packets.ItemPackets
 import dev.hoot.api.widgets.Dialog
 import dev.hoot.api.widgets.Prayers
+import dev.hoot.api.widgets.Widgets
 import eventbus.events.ChatMessage
 import eventbus.events.GameTick
 import meteor.Logger
 import meteor.Main
-import meteor.Main.executor
 import meteor.api.items.Items
 import meteor.api.loot.Loots
 import meteor.api.npcs.NPCs
@@ -20,9 +20,9 @@ import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.autoalch.AutoAlchConfig
-import meteor.rs.ClientThread
 import net.runelite.api.TileItem
 import net.runelite.api.coords.WorldPoint
+import net.runelite.api.widgets.WidgetInfo
 import java.util.*
 import javax.inject.Singleton
 
@@ -56,30 +56,37 @@ class FighterPlugin : Plugin() {
                 return
             }
             if (config.flick() && Prayers.isQuickPrayerEnabled()) {
-                Prayers.toggleQuickPrayer(false)
+                val widget = Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB)
+                widget?.let {
+                    Prayers.toggleQuickPrayer(false)
+                    val clickPoint = it.clickPoint
+                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
+                }
             }
             if (config.eat() && Combat.getHealthPercent() <= config.healthPercent()) {
                 val foods = config.foods().split(",".toRegex()).toList()
                 Items.getAll()?.filter { it.name in foods }?.forEach{
-                        ItemPackets.itemAction(it, "Eat")
-                        ClientPackets.queueClickPacket(0, 0)
+                        val clickPoint = it.clickPoint
+                        it.interact("Eat")
+                        ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                         return
                 }
             }
             if (config.restore() && Prayers.getPoints() < 5) {
-                Items.getAll()?.filter { it.name == "Prayer potion" || it.name == "Super Restore" }?.forEach {
-                    ItemPackets.itemAction(it, "Drink")
-                    ClientPackets.queueClickPacket(0, 0)
+                Items.getFirst("Prayer potion", "Super Restore")?.let {
+                    it.interact("Drink")
+                    val clickPoint = it.clickPoint
+                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                     return
                 }
             }
             if (config.buryBones()) {
-                Items.getAll()?.filter { it.hasAction("Bury") }?.forEach {
-                    ItemPackets.itemAction(it, "Bury")
-                    ClientPackets.queueClickPacket(0, 0)
+                Items.getFirstWithAction("Bury")?.let {
+                    it.interact("Bury")
+                    val clickPoint = it.clickPoint
+                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                     return
                 }
-
             }
             val local = Main.client.localPlayer!!
 
@@ -96,6 +103,8 @@ class FighterPlugin : Plugin() {
                 }?.forEach {
                     if(local.isIdle)
                     it.interact("Take")
+                    val clickPoint = it.clickPoint
+                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                }
             }
             if (config.alching()) {
@@ -110,6 +119,9 @@ class FighterPlugin : Plugin() {
                             Regular.LOW_LEVEL_ALCHEMY.widget.id
                     alchItem?.forEach {
                         ItemPackets.queueSpellOnItemPacket(it.id, it.slot, spellToUse)
+                        val clickPoint = it.clickPoint
+                        ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
+                        return
                     }
                 }
             }
@@ -123,7 +135,11 @@ class FighterPlugin : Plugin() {
                         && !it.isDead
                         && it.worldLocation.distanceTo(local.worldLocation) < config.attackRange()
             }
-                mob?.interact("Attack")
+                mob?.let {
+                    it.interact("Attack")
+                    val clickPoint = it.clickPoint
+                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
+                }
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
