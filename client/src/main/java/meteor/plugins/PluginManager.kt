@@ -336,7 +336,7 @@ object PluginManager {
     }
 
     inline fun <reified T : Plugin> init() {
-        val plugin = T::class.java.newInstance()
+        val plugin = T::class.java.getDeclaredConstructor().newInstance()
         if (plugins.filterIsInstance<T>().isNotEmpty())
             throw RuntimeException("Duplicate plugin ${plugin::class.simpleName} not allowed")
 
@@ -358,24 +358,30 @@ object PluginManager {
             start(plugin)
     }
 
-    fun initExternalPlugin(jar: File, manifest: Manifest) {
+    private fun initExternalPlugin(jar: File, manifest: Manifest) {
         try {
-            val classLoader = URLClassLoader(arrayOf(jar.toURI().toURL()))
-            val plugin = classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor().newInstance() as Plugin
-            if (plugins.any { p -> p.getName().equals(plugin.getName()) })
-                throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
+            URLClassLoader(arrayOf(jar.toURI().toURL())).use { classLoader ->
+                val plugin =
+                    classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
+                        .newInstance() as Plugin
+                // Do something with the plugin
 
-            if (ConfigManager.getConfiguration(
-                    plugin.javaClass.simpleName,
-                    "pluginEnabled"
-                ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
-            )
-                ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
+                classLoader.close()
+                if (plugins.any { p -> p.getName().equals(plugin.getName()) })
+                    throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
-            plugins.add(plugin)
-            runningMap[plugin] = plugin.shouldEnable()
-            if (runningMap[plugin]!!)
-                start(plugin)
+                if (ConfigManager.getConfiguration(
+                        plugin.javaClass.simpleName,
+                        "pluginEnabled"
+                    ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
+                )
+                    ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
+
+                plugins.add(plugin)
+                runningMap[plugin] = plugin.shouldEnable()
+                if (runningMap[plugin]!!)
+                    start(plugin)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
             if (e is java.lang.RuntimeException) {

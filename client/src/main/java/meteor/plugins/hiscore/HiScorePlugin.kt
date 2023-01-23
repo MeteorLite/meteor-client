@@ -3,8 +3,6 @@ package meteor.plugins.hiscore
 import compose.icons.TablerIcons
 import compose.icons.tablericons.Trophy
 import eventbus.events.MenuOptionClicked
-import meteor.config.ConfigManager
-import meteor.hiscore.HiscoreClient
 import meteor.hiscore.HiscoreEndpoint
 import meteor.menus.MenuManager
 import meteor.plugins.Plugin
@@ -19,10 +17,8 @@ import net.runelite.api.WorldType
 
 @PluginDescriptor(name = "Hiscore", enabledByDefault = true, disabledOnStartup = false)
 class HiScorePlugin : Plugin() {
-    private val hiscoreClient = HiscoreClient()
-    var panel: HiscorePanel? = null
-    var config = configuration<HiscoreConfig>()
 
+    var panel: HiscorePanel? = null
 
     private var hiscoreButton = ToolbarButton(
         "HiScore",
@@ -36,42 +32,30 @@ class HiScorePlugin : Plugin() {
         bottom = false
     )
 
-    fun getWorldEndpoint(): HiscoreEndpoint {
-        if (client.worldType.contains(WorldType.FRESH_START_WORLD)) {
-            return HiscoreEndpoint.FRESH_START_WORLD
-        }
-        if (client.worldType.contains(WorldType.DEADMAN)) {
-            return HiscoreEndpoint.DEADMAN
-        }
-        return HiscoreEndpoint.NORMAL
-    }
+
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
         if (it.getMenuAction() == MenuAction.RUNELITE_PLAYER && it.getMenuOption()
                 .equals("Lookup")
         ) {
             val player = it.menuEntry.player?.name
-            ConfigManager.setConfiguration(
-                "hiscore",
-                "username",
-                player!!
-            )
-            HiscorePanel.result.value = hiscoreClient.lookup(config.username(), endpoint = getWorldEndpoint())
+            if (player != null) {
+                username.value =  player
+            }
+
+            hiscoreresult.value = hiscoreClient.lookup(username.value, endpoint = getWorldEndpoint())
             if (!pluginPanelIsOpen.value) {
                 togglePluginPanel(hiscoreButton)
                 pluginPanel.value = panel
                 hiscoreOpen.value = true
                 pluginsOpen.value = false
             }
-            panel!!.username.value = config.username()
+
         }
     }
 
     fun onClick() {
-        if (panel!!.username.value != config.username()) {
-            panel!!.username.value = config.username()
-            HiscorePanel.result.value = hiscoreClient.lookup(config.username(), endpoint = getWorldEndpoint())
-        }
+
         togglePluginPanel(hiscoreButton)
         pluginPanel.value = panel
         hiscoreOpen.value = true
@@ -79,6 +63,7 @@ class HiScorePlugin : Plugin() {
     }
 
     override fun onStart() {
+
         MenuManager.addPlayerMenuItem("Lookup")
         panel = HiscorePanel()
         addButton(hiscoreButton)

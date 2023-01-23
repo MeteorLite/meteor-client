@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import meteor.hiscore.HiscoreSkill
 import meteor.hiscore.HiscoreSkillType
-import meteor.plugins.hiscore.HiscorePanel
+import meteor.ui.composables.preferences.hiscoreresult
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import kotlin.math.max
@@ -23,7 +23,7 @@ import kotlin.math.max
 @OptIn(ExperimentalFoundationApi::class)
 
 fun LazyGridScope.hiscoreSkillGrid() {
-    val result = HiscorePanel.result.value
+    val result = hiscoreresult.value
     items(items = HiscoreSkill.values().filter { it.type == HiscoreSkillType.SKILL }) { item ->
         Card(backgroundColor = surface, modifier = Modifier.size(40.dp).padding(4.dp)) {
 
@@ -75,7 +75,7 @@ fun LazyGridScope.hiscoreSkillGrid() {
 }
 
 fun LazyGridScope.overallSkillItem() {
-    val result = HiscorePanel.result
+    val result = hiscoreresult
     items(items = HiscoreSkill.values().filter { it.type == HiscoreSkillType.OVERALL }) { overall ->
         Card(backgroundColor = surface, modifier = Modifier.size(40.dp).padding(4.dp)) {
                 Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically, modifier = Modifier.offset(x = 5.dp, y = -2.dp)) {

@@ -1,12 +1,21 @@
 package meteor.ui.composables.preferences
 
 
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
 import compose.icons.LineAwesomeIcons
+import compose.icons.Octicons
 import compose.icons.lineawesomeicons.PlugSolid
+import compose.icons.octicons.Alert24
 import meteor.Main
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.hiscore.HiscoreResult
@@ -26,6 +35,8 @@ var externalsOpen = mutableStateOf(false)
 var notesOpen = mutableStateOf(false)
 var infoPanelOpen = mutableStateOf(false)
 var pluginPanelIsOpen = mutableStateOf(false)
+var error = mutableStateOf(false)
+var errorText = mutableStateOf("")
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 const val consoleHeight = 500
 const val minimumHeight = 542
@@ -80,6 +91,24 @@ val lightThemeColors = lightColors(
     surface = Color(0xFFf3f5f7),
 )
 
+fun setErrorState(errorMessage: String) {
+    error.value = true
+    errorText.value = errorMessage
+}
+
+@Composable
+fun ErrorDialog(){
+    if(error.value) {
+        Popup(onDismissRequest = { error.value = false}, alignment = Alignment.Center, focusable = true) {
+            Card(shape = RoundedCornerShape(5.dp), backgroundColor = surface) {
+                Row(Modifier.width(200.dp)) {
+                    Icon(imageVector = Octicons.Alert24,contentDescription = null, tint = uiColor.value)
+                    Text(errorText.value, color = secondColor.value)
+                }
+            }
+        }
+    }
+}
 fun setOpenValues(openValue: Boolean) {
     pluginPanelIsOpen.value = false
     configOpen.value = false
