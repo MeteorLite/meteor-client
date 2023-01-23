@@ -144,6 +144,9 @@ compose {
 
                 "-ea",
                 "-noverify",
+                "-XX:+UseDynamicNumberOfGCThreads",
+                "-XX:+UseZGC",
+                "-Xmx2048m",
                 "--add-exports", "java.base/java.lang=ALL-UNNAMED",
                 "--add-opens", "java.base/java.net=ALL-UNNAMED",
                 "--add-exports", "java.desktop/sun.awt=ALL-UNNAMED",
