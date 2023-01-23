@@ -17,7 +17,7 @@ class AutoEaterPlugin() : Plugin() {
     private var nextEatVal = 0
 
     private fun getEatVal(): Int {
-        return r.nextInt(config.maxHp() - config.minHp()) + config.minHp()
+        return r.nextInt((config.maxHp() - config.minHp()).coerceAtLeast(1)) + config.minHp()
     }
 
     override fun onStart() {
