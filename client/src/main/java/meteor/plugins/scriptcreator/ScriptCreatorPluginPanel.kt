@@ -1,7 +1,8 @@
 package meteor.plugins.scriptcreator
 
 
-import androidx.compose.foundation.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,9 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
@@ -21,21 +20,14 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.halilibo.richtext.markdown.Markdown
-import com.halilibo.richtext.markdown.MarkdownParseOptions
-import com.halilibo.richtext.ui.RichText
 import com.wakaztahir.codeeditor.model.CodeLang
 import com.wakaztahir.codeeditor.prettify.PrettifyParser
-import com.wakaztahir.codeeditor.theme.CodeTheme
-import com.wakaztahir.codeeditor.theme.SyntaxColors
 import com.wakaztahir.codeeditor.utils.parseCodeAsAnnotatedString
 import compose.icons.Octicons
-import compose.icons.octicons.FileDirectory16
-import compose.icons.octicons.Play24
-import compose.icons.octicons.Question24
-import compose.icons.octicons.Stop24
+import compose.icons.octicons.*
 import dev.hoot.api.commons.FileUtil
-import meteor.plugins.scriptcreator.script.documentation.*
+import meteor.plugins.scriptcreator.script.documentation.InfoDropDown
+import meteor.plugins.scriptcreator.script.documentation.showReadMe
 import meteor.ui.composables.PluginPanel
 import meteor.ui.composables.preferences.*
 
@@ -70,14 +62,12 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                         imageVector = Octicons.FileDirectory16,
                         contentDescription = "",
                         modifier = Modifier.clickable {
-                            when {
-                                !FileUtil.exists(plugin, savedScript.value) -> {
-                                    FileUtil.serialize(
-                                        ScriptCreatorPlugin(),
-                                        savedScript.value+".kts",
-                                        codeState.value
-                                    )
-                                }
+                            if (!FileUtil.exists(plugin, savedScript.value)) {
+                                FileUtil.serialize(
+                                    ScriptCreatorPlugin(),
+                                    "${savedScript.value}.kts",
+                                    codeState.value
+                                )
                             }
                         }.size(40.dp, 30.dp)
                     )
@@ -132,7 +122,6 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                         .background(surface, RoundedCornerShape(4.dp)),
                     value = savedString.value,
                     onValueChange = {
-                        savedString.value = it
                         savedScript.value = it.text
                     })
             }
@@ -140,21 +129,23 @@ class ScriptCreatorPluginPanel : PluginPanel() {
 
             Row(horizontalArrangement = Arrangement.SpaceAround, verticalAlignment = Alignment.CenterVertically, modifier = Modifier.width(100.dp)) {
                 Icon(
-                    tint = Color.Green,
-                    imageVector = Octicons.Play24,
+                    tint = if (!playRecording .value) Color.Green else Color.Red,
+                    imageVector =if (!playRecording.value)  Octicons.Play24 else Octicons.Stop24,
                     contentDescription = "",
                     modifier = Modifier.clickable {
-                        plugin.startScript()
-                    }.size(25.dp)
+                          if  (!playRecording.value)  plugin.startScript() else if (playRecording.value) plugin.stopScript()
+
+                    }.size(22.dp)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
-                    tint = Color.Red,
-                    imageVector = Octicons.Stop24,
+                    tint =if (!record.value) Color.White else Color.Red,
+                    imageVector =if (!record.value) Octicons.DeviceCameraVideo24 else Octicons.XCircleFill24,
                     contentDescription = "",
                     modifier = Modifier.clickable {
-                        plugin.stopScript()
-                    }.size(25.dp)
+                        if (!record.value)  record.value = true else if (record.value)  record.value = false
+                        tickCounter = 0
+                    }.size(22.dp)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 Icon(
@@ -163,46 +154,9 @@ class ScriptCreatorPluginPanel : PluginPanel() {
                     contentDescription = "",
                     modifier = Modifier.clickable {
                         if (!md.value)  md.value = true else if (md.value)  md.value = false
-                    }.size(25.dp)
+                    }.size(22.dp)
                 )
-                CursorDropdownMenu(
-                    expanded = md.value,
-                    onDismissRequest = {
-                            md.value = false
-                    },
-                ) {
-                    DropdownMenuItem({ setSelectedCategory("Event Info")}){
-                        Text("Event Info")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Use On") }) {
-                        Text("Use On")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Interact") }) {
-                        Text("Interact")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Bank") }) {
-                        Text("Bank")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Gear") }) {
-                        Text("Gear")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Item") }) {
-                        Text("Item")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Key") }) {
-                        Text("Key")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Loot") }) {
-                        Text("Loot")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Npc") }) {
-                        Text("Npc")
-                    }
-                    DropdownMenuItem({ setSelectedCategory("Exit Info") }) {
-                        Text("Exit Info")
-                    }
-
-                }
+                InfoDropDown()
             }
         }
         Spacer(modifier = Modifier.height(4.dp))
@@ -210,73 +164,10 @@ class ScriptCreatorPluginPanel : PluginPanel() {
         Spacer(Modifier.height(4.dp))
     }
 
-
-    internal class Personal(val plugin: ScriptCreatorPlugin = ScriptCreatorPlugin()) : CodeTheme(
-        colors = SyntaxColors(
-            type = Color(plugin.config.type().rgb),
-            keyword = Color(plugin.config.keyword().rgb),
-            literal = Color(plugin.config.literal().rgb),
-            comment = Color(plugin.config.comment().rgb),
-            string = Color(plugin.config.string().rgb),
-            punctuation = Color(plugin.config.punctuation().rgb),
-            plain = Color(plugin.config.plain().rgb),
-            tag = Color(plugin.config.tag().rgb),
-            declaration = Color(plugin.config.declaration().rgb),
-            source = Color(plugin.config.source().rgb),
-            attrName = Color(plugin.config.attrName().rgb),
-            attrValue = Color(plugin.config.attrValue().rgb),
-            nocode = Color(plugin.config.nocode().rgb),
-        )
-    ) {
-
-
-        fun getTheme(): CodeTheme = Personal()
-    }
-
-
-    private fun setSelectedCategory(selectedCategory: String) {
-        bankInfo.value = false
-        gearInfo.value = false
-        itemInfo.value = false
-        keyInfo.value = false
-        lootInfo.value = false
-        npcInfo.value = false
-        objectInfo.value = false
-        interactInfo.value = false
-        useOnInfo.value = false
-        eventInfo.value = false
-        when (selectedCategory) {
-            "Event Info" -> eventInfo.value = true
-            "Use On" -> useOnInfo.value = true
-            "Interact" -> interactInfo.value = true
-            "Bank" -> bankInfo.value = true
-            "Gear" -> gearInfo.value = true
-            "Item" -> itemInfo.value = true
-            "Key" -> keyInfo.value = true
-            "Loot" -> lootInfo.value = true
-            "Npc" -> npcInfo.value = true
-            "Object" -> objectInfo.value = true
-            "Exit Info" -> {
-                eventInfo.value = false
-                useOnInfo.value = false
-                bankInfo.value = false
-                gearInfo.value = false
-                itemInfo.value = false
-                keyInfo.value = false
-                lootInfo.value = false
-                npcInfo.value = false
-                objectInfo.value = false
-            }
-        }
-    }
-
     @Composable
     override fun Content() {
 
-
         val language = CodeLang.Kotlin
-
-
         val parser = remember { PrettifyParser() }
         val themeState by remember { mutableStateOf(Personal()) }
         val theme = remember(themeState) { themeState.getTheme() }
@@ -291,7 +182,7 @@ class ScriptCreatorPluginPanel : PluginPanel() {
             )
         }
 
-        var textFieldValue by remember(key1 = setString.value) { mutableStateOf(TextFieldValue(parse(codeState.value)))}
+        var textFieldValue by remember(key1 = setString.value,key2 = newCode.value) { mutableStateOf(TextFieldValue(parse(codeState.value)))}
         var lineTops by remember { mutableStateOf(emptyArray<Float>()) }
         val density = LocalDensity.current
 
@@ -314,60 +205,9 @@ class ScriptCreatorPluginPanel : PluginPanel() {
             }
             LazyColumn(Modifier.fillMaxWidth().fillMaxHeight()) {
 
-
                 item {
-                    when {
-                        eventInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(eventInfoMD, MarkdownParseOptions(true))
-                        }
-                        useOnInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(useOnInfoMD, MarkdownParseOptions(true))
-                        }
-                        interactInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(interactInfoMD, MarkdownParseOptions(true))
-                        }
-                        bankInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(bankInfoMD, MarkdownParseOptions(true))
-                        }
-                        gearInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(gearInfoMD, MarkdownParseOptions(true))
-                        }
-                        itemInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(itemInfoMD, MarkdownParseOptions(true))
-                        }
-                        keyInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(keyInfoMD, MarkdownParseOptions(true))
-                        }
-                        lootInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(lootInfoMD, MarkdownParseOptions(true))
-                        }
-                        npcInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(npcInfoMD, MarkdownParseOptions(true))
-                        }
-                        objectInfo.value -> RichText(
-                            modifier = Modifier.padding(16.dp).background(surface, RoundedCornerShape(4.dp))
-                        ) {
-                            Markdown(objectInfoMD, MarkdownParseOptions(true))
-                        }
-                    }
+                    showReadMe()
+                    ErrorDialog()
                     BasicTextField(
                         modifier = Modifier.fillMaxWidth().fillParentMaxHeight(),
                         value = textFieldValue,
@@ -386,6 +226,4 @@ class ScriptCreatorPluginPanel : PluginPanel() {
             }
         }
     }
-
-
 }

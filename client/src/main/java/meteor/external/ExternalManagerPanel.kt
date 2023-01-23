@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import compose.icons.Octicons
 import compose.icons.octicons.Plug16
 import meteor.ui.composables.PluginPanel
+import meteor.ui.composables.preferences.ErrorDialog
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
@@ -28,12 +29,14 @@ class ExternalManagerPanel : PluginPanel() {
     @Composable
     override fun Content() {
 
-        val textfieldColors = TextFieldDefaults.textFieldColors(textColor = uiColor.value,
-            unfocusedLabelColor = uiColor.value,
-            unfocusedIndicatorColor = uiColor.value,
-            focusedIndicatorColor = secondColor.value,
-            focusedLabelColor = secondColor.value,
+        val textfieldColors = TextFieldDefaults.textFieldColors(textColor = secondColor.value,
+            unfocusedLabelColor = secondColor.value,
+            unfocusedIndicatorColor = secondColor.value,
+            focusedIndicatorColor = uiColor.value,
+            focusedLabelColor = uiColor.value,
             cursorColor = uiColor.value)
+
+        ErrorDialog()
 
         LazyColumn( modifier = Modifier.width(300.dp).fillMaxHeight(),
             horizontalAlignment =  Alignment.CenterHorizontally,
@@ -71,8 +74,10 @@ class ExternalManagerPanel : PluginPanel() {
                                 for (i in 0 until jsonArray!!.length()) {
                                     val plugin = jsonArray?.getJSONObject(i)
                                     plugin?.getString("name")?.let {
-                                        pluginNames.add(it)
-                                        pluginNamesState.value = pluginNames
+                                        if (!pluginNames.contains(it)) {
+                                            pluginNames.add(it)
+                                            pluginNamesState.value = pluginNames
+                                        }
                                     }
                                 }
                                 val firstPlugin = jsonArray?.getJSONObject(0)
@@ -89,7 +94,7 @@ class ExternalManagerPanel : PluginPanel() {
                     ) {
                         Icon(imageVector = Octicons.Plug16, contentDescription = "", tint = uiColor.value)
                         Spacer(modifier = Modifier.width(5.dp))
-                        Text(text = "Find Plugins", color = uiColor.value, fontSize = 20.sp)
+                        Text(text = "Find Plugins", color = secondColor.value, fontSize = 20.sp)
                     }
                 }
                 Spacer(Modifier.height(4.dp))
@@ -104,18 +109,21 @@ class ExternalManagerPanel : PluginPanel() {
             }
             items(items = pluginNamesState.value) { pluginName ->
                 val plugin = findJsonValue(pluginName)
+                val fileName = "${plugin?.getString("name")}.jar"
+                val jarFile = File("$savePath/$fileName")
+                val releases = plugin?.getJSONArray("releases")
+                val release = releases?.getJSONObject(0)
+                val url = release?.getString("url")
+                val hash = release?.getString("sha512sum")
+                val version = release?.getString("version")
 
                 Column(modifier = Modifier.background(surface, RoundedCornerShape(5.dp)).fillParentMaxWidth(0.9f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-
                     Row {
                         Text(text = "Name:", color = uiColor.value)
                         Text(text = pluginName, color = secondColor.value)
                     }
                     Row {
                         Text(text = "Version:", color = uiColor.value)
-                        val releases = plugin?.getJSONArray("releases")
-                        val release = releases?.getJSONObject(0)
-                        val version = release?.getString("version")
                         if (version != null) {
                             Text(text = version, color = secondColor.value)
                         }
@@ -127,23 +135,22 @@ class ExternalManagerPanel : PluginPanel() {
                         }
                     }
 
-                    Button(colors = ButtonDefaults.buttonColors(backgroundColor = surface),
-                        onClick = {
-                            val releases = plugin?.getJSONArray("releases")
-                            val release = releases?.getJSONObject(0)
-                            val url = release?.getString("url")
-                            val savePath = "${System.getProperty("user.home")}/.meteor/externalplugins"
-                            val fileName = "${plugin?.getString("name")}.jar"
-                            val hash = release?.getString("sha512sum")
-                            if (hash != null && url != null) {
-                                downloadFile(url, savePath, fileName, hash)
-                            }
-                            val jar = File("$savePath/$fileName")
-                            loadAndInitJar(jar)
-                        }) {
-                        Text(text = "Download", color = secondColor.value)
-                    }
+                    if (jarFile.exists()) {
+                        Row {
+                            Text(text = "(installed)", color = secondColor.value)
+                        }
+                    } else {
+                        Button(colors = ButtonDefaults.buttonColors(backgroundColor = surface),
+                            onClick = {
 
+                                if (hash != null && url != null) {
+                                    downloadFile(url, savePath, fileName, hash)
+                                }
+                                loadAndInitJar(jarFile)
+                            }) {
+                            Text(text = "Download", color = secondColor.value)
+                        }
+                    }
                 }
             }
 

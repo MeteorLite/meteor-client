@@ -1,9 +1,10 @@
 package meteor.plugins.scriptcreator.script.api
 
+import meteor.Main
 import meteor.api.items.Items
 import net.runelite.api.InventoryID
 import net.runelite.api.Item
-import kotlin.random.Random
+import net.runelite.api.widgets.WidgetInfo
 
 
 /**
@@ -33,7 +34,7 @@ inline fun <reified T> getFirst(id: T, container: InventoryID = InventoryID.INVE
                 InventoryID.BANK -> Items.getAll(InventoryID.BANK)!!
                     .first { it.name?.lowercase() == id.toString().lowercase() }
                 InventoryID.INVENTORY -> Items.getAll(InventoryID.INVENTORY)!!.first {
-                    it.name?.lowercase() == id.toString().lowercase()
+                    it.name?.lowercase()!!.contains(id.toString() , true)
                 }
                 else -> throw IllegalArgumentException("Wrong container type")
             }
@@ -92,8 +93,8 @@ fun isEmpty(inventoryID: InventoryID = InventoryID.INVENTORY): Boolean {
  */
 inline fun <reified T> getAll(ids: Iterable<T>): MutableList<Item> {
     return when (T::class) {
-        Int::class -> Items.getAll()!!.filter { obj -> ids.any { it == obj.id } }.toMutableList()
-        String::class -> Items.getAll()!!
+        Int::class -> getAll()!!.filter { obj -> ids.any { it == obj.id } }.toMutableList()
+        String::class -> getAll()!!
             .filter { obj -> ids.any { it.toString().lowercase() == obj.name?.lowercase() } }.toMutableList()
         else -> throw IllegalArgumentException("Use the right type getAll() requires  String || Int")
     }
@@ -130,8 +131,8 @@ inline fun <reified T> containsAll(ids: MutableList<T>, container: InventoryID):
  */
 inline fun <reified T> has(id: T, container: InventoryID): Boolean? {
     return when (T::class) {
-        Int::class -> Items.getAll(container)?.any { it.id == id }
-        String::class -> Items.getAll(container)?.any { it.name == id }
+        Int::class -> getAll(container)?.any { it.id == id as Int }
+        String::class -> getAll(container)?.any { it.name?.contains(id.toString(),true) == true }
         else -> throw IllegalArgumentException("Wrong type use Int || String")
     }
 }
@@ -150,19 +151,25 @@ inline fun <reified T> has(id: T, container: InventoryID): Boolean? {
  *
  */
 inline fun <reified T> isCarrying(id: T, container: InventoryID): Boolean {
-    return has(id, container) == true || has(id, container) == true
+    return has(id, container) == true || has(id.toString(), container) == true
 }
+
 
 /**
+ * Returns a list of all items in a container.
  *
-
-@param block a block of code to be executed if a random number between 0 and 99 is less than the given Int value
-This infix operator allows for a block of code to be executed based on a random probability. The given Int value
-represents the probability as a percentage (e.g. 20 means there is a 20% chance of the code block being executed).
-The operator generates a random number between 0 and 99, and if it is less than the given Int value, the code block
-is executed.
+ * @param inventoryID the ID of the container to get the items from, defaults to INVENTORY
+ * @return a list of all items in the specified container, or null if the container does not exist
  */
-val r = Random(233)
-inline infix operator fun Int.rem(block: () -> Unit) {
-    if (r.nextInt(100) < this) block()
+fun getAll(inventoryID: InventoryID = InventoryID.INVENTORY): List<Item>? {
+    val itemContainer = Main.client.getItemContainer(inventoryID) ?: return null
+    return itemContainer.items
+        .filterNot { it.id == -1 }
+        .mapIndexed { index, item ->
+            val newItem = Item(item.id, item.quantity)
+            newItem.widgetId = WidgetInfo.INVENTORY.packedId
+            newItem.slot = index
+            newItem
+        }
 }
+

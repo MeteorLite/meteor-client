@@ -8,17 +8,18 @@ import meteor.events.InfoBoxMenuClicked
 import meteor.events.NpcLootReceived
 import meteor.events.PlayerLootReceived
 import meteor.events.PluginChanged
+import meteor.plugins.scriptcreator.script.api.tickWrapper
 
 
+var onGameTick: (gameTick:GameTick) -> Unit = { }
 fun onGameTick(it: (GameTick) -> Unit) {
-    onGameTick = it
+    tickWrapper {
+        onGameTick = it
+    }
 }
-
-var onGameTick: (GameTick) -> Unit = {}
 fun onNpcLootReceived(it: (NpcLootReceived) -> Unit) {
     onNpcLootReceived = it
 }
-
 var onNpcLootReceived: (NpcLootReceived) -> Unit = {}
 fun onPlayerLootReceived(it: (PlayerLootReceived) -> Unit) {
     onPlayerLootReceived = it
@@ -196,7 +197,9 @@ fun onDialogProcessed(it: (DialogProcessed) -> Unit) {
 
 var onDialogProcessed: (DialogProcessed) -> Unit = {}
 fun onClientTick(it: (ClientTick) -> Unit) {
-    onClientTick = it
+    tickWrapper {
+        onClientTick = it
+    }
 }
 
 var onClientTick: (ClientTick) -> Unit = {}

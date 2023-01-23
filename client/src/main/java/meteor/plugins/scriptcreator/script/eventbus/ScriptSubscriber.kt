@@ -10,6 +10,7 @@ import meteor.events.NpcLootReceived
 import meteor.events.PlayerLootReceived
 import meteor.events.PluginChanged
 import meteor.plugins.Plugin
+import meteor.plugins.scriptcreator.script.api.tickWrapper
 
 open class ScriptSubscriber : Plugin() {
     open fun subscribeScript() {
@@ -169,12 +170,12 @@ open class ScriptSubscriber : Plugin() {
                 )
             }
         }
-        subscribeEvent<GameTick>(Events.GAME_TICK) { gt ->
+        subscribeEvent<GameTick>(Events.GAME_TICK) { it ->
             executeIfListening {
-
-                meteor.plugins.scriptcreator.script.eventbus.onGameTick(gt)
+                    tickWrapper {
+                        meteor.plugins.scriptcreator.script.eventbus.onGameTick(it)
+                    }
             }
-
         }
 
 

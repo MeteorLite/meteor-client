@@ -35,7 +35,7 @@ object Item {
 
     /**
      *
-     * This function uses the `getAll` function to get all of the items in the player's inventory that have an id
+     * This function uses the `getAll` function to get all the items in the player's inventory that have an id
      * that matches any of the given ids. If the ids are of type Int, it will match based on the Item's id field.
      * If the ids are of type String, it will match based on the Item's name field (case-insensitive).
      * If any matching items are found in the inventory, the function returns true, otherwise it returns false.

@@ -1,12 +1,27 @@
 package meteor.plugins.scriptcreator.script.api
 
+import dev.hoot.api.packets.WidgetPackets
 import meteor.Main.client
 import meteor.api.items.Items.deposit
 import meteor.api.items.Items.withdraw
+import meteor.api.packets.ClientPackets
 import net.runelite.api.InventoryID
+import net.runelite.api.queries.BankItemQuery
 import net.runelite.api.widgets.WidgetInfo
 
 object Bank {
+    /**
+     * Withdraws an item from the bank
+     * @param it the name of the item to withdraw
+     * @param x the amount of the item to withdraw
+     */
+    fun withdraw(it: String , x:Int){
+        val fi = first(it)
+        val bankItem = BankItemQuery().idEquals(fi.id).result(client).first()?.widget
+        WidgetPackets.widgetAction(bankItem, "Withdraw-X")
+        ClientPackets.queueClickPacket(0, 0)
+        Key type x
+    }
 
     /**
      *
