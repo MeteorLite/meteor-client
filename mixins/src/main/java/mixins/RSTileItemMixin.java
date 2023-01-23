@@ -227,6 +227,7 @@ public abstract class RSTileItemMixin implements RSTileItem
 	}
 
 	@Inject
+	@Override
 	public java.awt.Point getClickPoint()
 	{
 		java.awt.Point point = Randomizer.getRandomPointIn(getBounds());

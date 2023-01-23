@@ -480,4 +480,6 @@ public interface Actor extends Renderable, Locatable
 	byte recolourAmount();
 	int getGraphicStartCycle();
 	boolean showPublicPlayerChat();
+
+	java.awt.Point getClickPoint();
 }

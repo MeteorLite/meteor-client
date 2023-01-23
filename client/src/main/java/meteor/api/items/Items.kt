@@ -94,6 +94,22 @@ object Items {
         return getAll(*names, container = container)?.firstOrNull()
     }
 
+    fun getFirstWithAction(vararg actions: String, container: InventoryID = InventoryID.INVENTORY): Item? {
+        val items = getAll(container)
+        items?.let { collectedItems ->
+            for (item in collectedItems) {
+                for (action in actions) {
+                    item.actions?.let { itemActions ->
+                        if (itemActions.contains(action)) {
+                            return item
+                        }
+                    }
+                }
+            }
+        }
+        return null
+    }
+
     fun getCount(vararg ids: Int, container: InventoryID? = InventoryID.INVENTORY): Int {
         var count = 0
         getAll(*ids, container = container)?.forEach {
