@@ -8,17 +8,8 @@ object Players {
      * Returns a list of all players in the current game.
      * @return a list of all players in the current game
      */
-    fun getAll(): MutableList<Player>? {
-        var players: MutableList<Player>? = null
-        for (player in Main.client.players) {
-            if (players == null) {
-                players = mutableListOf()
-            }
-            player?.let {
-                players.add(it)
-            }
-        }
-        return players
+    fun getAll(): List<Player> {
+        return Main.client.players.filterNotNull()
     }
 
     /**
@@ -27,7 +18,7 @@ object Players {
      * @return a list of all players in the current game with names that are contained in the specified list
      */
     fun getAll(names: MutableList<String>): MutableList<Player>? {
-        return getAll()?.filter { it.name in names }?.toMutableList()
+        return getAll().filter { it.name in names }?.toMutableList()
     }
 
     /**
@@ -36,6 +27,6 @@ object Players {
      * @return the first player in the current game with a name that contains the specified string, or null if no such player exists
      */
     fun getFirst(name: String): Player? {
-        return getAll()?.firstOrNull { it.name.lowercase().contains(name) }
+        return getAll().firstOrNull { it.name.lowercase().contains(name) }
     }
 }

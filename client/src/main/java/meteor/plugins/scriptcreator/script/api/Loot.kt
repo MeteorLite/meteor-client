@@ -39,60 +39,47 @@ object Loot {
      * @param worldPoint the world point to search for tile items
      * @return a list of all tile items at the given world point
      */
-    fun getAt(worldPoint: WorldPoint): MutableList<TileItem> {
-        val loots: MutableList<TileItem> = mutableListOf()
-        Main.client.scene.tiles.forEach { z ->
-            z?.forEach { x ->
-                x?.forEach { y ->
-                    if (y.worldX == worldPoint.x && y.worldY == worldPoint.y && y.plane == worldPoint.plane) {
-                        loots.addAll(y.groundItems)
-                        return loots
-                    }
-                }
-            }
-        }
-        return loots
+    fun getAt(worldPoint: WorldPoint): List<TileItem> {
+        return Main.client.scene.tiles
+            .flatMap { it.asIterable() }
+            .flatMap { it.asIterable() }
+            .filter { it.worldX == worldPoint.x && it.worldY == worldPoint.y && it.plane == worldPoint.plane }
+            .flatMap { it.groundItems.asIterable() }
+            .toList()
     }
-
     /**
      * Returns a list of all tile items in the client's scene.
      *
      * @param sortByDistance whether to sort the list of tile items by distance from the player (default is false)
      * @return a list of all tile items in the client's scene
      */
-    fun getAll(sortByDistance: Boolean = false): java.util.ArrayList<TileItem>? {
-        var loots: ArrayList<TileItem>? = null
-        Main.client.scene.tiles.forEach { z ->
-            z?.forEach { x ->
-                x?.forEach { y ->
-                    if (!y?.groundItems.isNullOrEmpty())
-                        for (item in y.groundItems) {
-                            if (loots == null) {
-                                loots = ArrayList()
-                                loots!!.add(item)
-                            } else
-                                loots!!.add(item)
-                        }
-                }
-            }
+    fun getAll(sortByDistance: Boolean = false): List<TileItem>? {
+        val loots = Main.client.scene.tiles
+            .flatMap { it.asIterable() }
+            .flatMap { it.asIterable() }
+            .flatMap { it.groundItems.asIterable() }
+            .toMutableList()
+
+        if (sortByDistance) {
+            loots.sortBy { loot -> Main.client.localPlayer?.let { loot.distanceTo(it) } }
         }
-        loots?.let {
-            if (sortByDistance) {
-                return ArrayList(it.sortedBy { loot -> Main.client.localPlayer?.let { it1 -> loot.distanceTo(it1) } })
-            }
-        }
-        return loots
+
+        return if (loots.isEmpty()) null else loots
     }
 
     /**
-     * Returns the first tile item in the client's scene with the given name.
+     * Returns the first tile item in the client's scene that matches the given name or id.
      *
-     * @param name the name of the tile item to search for
-     * @return the first tile item in the client's scene with the given name
-     * @throws NullPointerException if no tile item with the given name is found
+     * @param nameOrId the name or id of the tile item to search for
+     * @return the first tile item in the client's scene that matches the given name or id
+     * @throws NullPointerException if no tile item with the given name or id is found
      */
-    inline fun <reified T> getFirst(name: T): TileItem {
-        return getAll()?.first { name == it.getName() } ?: throw NullPointerException("No name matching the predicate")
+    inline fun <reified T> getFirst(nameOrId: T): TileItem {
+        return when(T::class){
+            String::class -> getAll()!!.first { it.getName()?.contains(nameOrId as String,true) == true }
+            Int::class -> getAll()!!.first { it.getId() == nameOrId as Int }
+            else -> throw NullPointerException("No name or id matching the predicate")
+        }
     }
 
     /**
@@ -114,9 +101,9 @@ object Loot {
      */
     inline infix fun <reified T> getAll(ids: T): List<TileItem> {
         return when (T::class) {
-            Int::class -> getAll()?.filter { obj -> ids == obj.getId() }!!.toMutableList()
+            Int::class -> getAll()?.filter { obj -> ids as Int == obj.getId() }!!.toMutableList()
             String::class -> getAll()?.filter { obj ->
-                obj.getName()!!.lowercase().contains(ids.toString().lowercase())
+                obj.getName()!!.contains(ids.toString(), ignoreCase = true)
             }!!.toMutableList()
             else -> throw IllegalArgumentException("Use the right type getAll() requires  String || Int")
         }
@@ -130,7 +117,7 @@ object Loot {
      */
     inline fun <reified T> contains(id: T): Boolean {
         return when (T::class) {
-            Int::class -> getAll()!!.any { it.getId() == id || it.notedId == id }
+            Int::class -> getAll()!!.any { it.getId() == id as Int || it.notedId == id as Int }
             String::class -> getAll()!!.any { it.getName() == id }
             else -> throw IllegalArgumentException("Wrong type use String || Int")
         }

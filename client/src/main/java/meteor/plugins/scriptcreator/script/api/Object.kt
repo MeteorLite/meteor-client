@@ -14,6 +14,13 @@ object Object {
     inline infix fun <reified T> first(id: T) = getFirst(id)
 
     /**
+     * Returns the first element that matches the first ID in the list.
+     * @param ids the ID to search for
+     * @return the first element that matches the specified ID, or null if no such element exists
+     */
+    inline infix fun <reified T> firstIn(ids: List<T>) = getAll(ids).first()
+
+    /**
      * Returns true if an element with the specified ID exists in the collection.
      * @param id the ID to search for
      * @return true if an element with the specified ID exists in the collection, false otherwise
@@ -26,6 +33,13 @@ object Object {
      * @return true if all elements in the specified iterable have a corresponding element in the collection with the same ID, false otherwise
      */
     inline infix fun <reified T> exists(id: Iterable<T>) = contains(id)
+
+    /**
+     * Returns true if any elements in the specified iterable have a corresponding element in the collection with the same ID.
+     * @param id the iterable of IDs to search for
+     * @return true if any elements in the specified iterable have a corresponding element in the collection with the same ID, false otherwise
+     */
+    inline infix fun <reified T> existsAny(id: Iterable<T>) = getAll(id).any()
 
     /**
      * Returns all elements that have IDs that are contained in the specified iterable.
@@ -83,6 +97,7 @@ object Object {
                     obj.name.contains(it.toString(), true)
                 }
             }.toMutableList()
+
             else -> throw IllegalArgumentException("Use the right type getAll() requires  String || Int")
         }
     }
@@ -94,9 +109,10 @@ object Object {
      */
     inline infix fun <reified T> getAll(ids: T): List<TileObject?>? {
         return when (T::class) {
-            Int::class -> getAll()?.filter { obj -> ids == obj.id }?.toMutableList()
-            String::class -> getAll()?.filter { obj -> obj.name.contains(ids.toString(),true )  }
+            Int::class -> getAll().filter { obj -> ids == obj.id }?.toMutableList()
+            String::class -> getAll().filter { obj -> obj.name.contains(ids.toString(), true) }
                 ?.toMutableList()
+
             else -> throw IllegalArgumentException("Use the right type getAll() requires  String || Int")
         }
     }
@@ -110,8 +126,10 @@ object Object {
         return when (T::class) {
             Int::class -> getAll().sortedBy { Main.client.localPlayer?.distanceTo(it.worldLocation) }
                 .first { it.id == id }
+
             String::class -> getAll().sortedBy { Main.client.localPlayer?.distanceTo(it.worldLocation) }
-                .first { it.name.contains(id.toString(),true) }
+                .first { it.name.contains(id.toString(), true) }
+
             else -> throw IllegalArgumentException("Use the right type getFirst() requires  String || Int")
         }
     }
@@ -121,33 +139,11 @@ object Object {
      * @param tile the tile to search for objects on
      * @return a list of all objects on the specified tile
      */
-    private fun getTileObjects(tile: Tile?): MutableList<TileObject> {
-        val out: MutableList<TileObject> = mutableListOf()
-        if (tile == null) {
-            return out
-        }
-        val dec = tile.decorativeObject
-        if (dec != null && dec.id != -1) {
-            out.add(dec)
-        }
-        val wall = tile.wallObject
-        if (wall != null && wall.id != -1) {
-            out.add(wall)
-        }
-        val ground = tile.groundObject
-        if (ground != null && ground.id != -1) {
-            out.add(ground)
-        }
-        val gameObjects = tile.gameObjects
-        if (gameObjects != null) {
-            for (gameObject in gameObjects) {
-                if (gameObject == null || !Main.client.isTileObjectValid(tile, gameObject) || gameObject.id == -1) {
-                    continue
-                }
-                out.add(gameObject)
-            }
-        }
-        return out
+
+    private fun getTileObjects(tile: Tile?): List<TileObject> {
+        if (tile == null) return emptyList()
+        return listOfNotNull(tile.decorativeObject, tile.wallObject, tile.groundObject) +
+                tile.gameObjects.filterNotNull().filter { Main.client.isTileObjectValid(tile, it) && it.id != -1 }
     }
 
 

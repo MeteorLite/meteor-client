@@ -58,16 +58,13 @@ object Npc {
      * @param sortByDistance sort the list by distance to the local player if true, do not sort the list if false
      * @return a list of all NPCs in the client's scene
      */
-    fun getAll(alive: Boolean = false, sortByDistance: Boolean = false): MutableList<NPC> {
-        val npcs = Main.client.npcs.filter { (alive && !it.isDead) || !alive }.toMutableList()
-        return if (sortByDistance) {
-            npcs.sortBy { npc -> npc.distanceTo(Main.client.localPlayer) }
-            npcs
-        } else {
-            npcs
+    fun getAll(alive: Boolean = false, sortByDistance: Boolean = false): List<NPC> {
+        var npcs = Main.client.npcs.filter { (alive && !it.isDead) || !alive }
+        if (sortByDistance) {
+            npcs = npcs.sortedBy { it.distanceTo(Main.client.localPlayer) }
         }
+        return npcs
     }
-
     /**
      * Returns a list of NPCs in the client's scene with IDs or names that are equal to any of the given values.
      *
@@ -82,8 +79,8 @@ object Npc {
         sortByDistance: Boolean = false
     ): MutableList<NPC> {
         return when (T::class) {
-            Int::class -> getAll().filter { obj -> ids.any { it == obj.id } }.toMutableList()
-            String::class -> getAll().filter { obj -> ids.any { it.toString().lowercase() == obj.name.lowercase() } }
+            Int::class -> getAll(alive,sortByDistance).filter { obj -> ids.any { it == obj.id } }.toMutableList()
+            String::class -> getAll(alive, sortByDistance).filter { obj -> ids.any { it.toString().lowercase() == obj.name.lowercase() } }
                 .toMutableList()
             else -> throw IllegalArgumentException("Use the right type getAll() requires  String || Int")
         }
@@ -108,7 +105,7 @@ object Npc {
      */
     inline fun <reified T> contains(id: T): Boolean {
         return when (T::class) {
-            Int::class -> getAll().any { it.id == id }
+            Int::class -> getAll().any { it.id == id as Int }
             String::class -> getAll().any { it.name == id }
             else -> throw IllegalArgumentException("Wrong type use String || Int")
         }
@@ -123,7 +120,7 @@ object Npc {
      */
     inline fun <reified T> getFirst(id: T): NPC {
         return when (T::class) {
-            Int::class -> getAll().first { it.id == id }
+            Int::class -> getAll().first { it.id == id as Int }
             String::class -> getAll().first { it.name.lowercase() == id.toString().lowercase() }
             else -> throw IllegalArgumentException("Use the right type getFirst() requires  String || Int")
         }

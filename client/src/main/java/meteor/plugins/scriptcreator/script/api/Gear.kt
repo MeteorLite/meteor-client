@@ -4,6 +4,10 @@ package meteor.plugins.scriptcreator.script.api
 import net.runelite.api.InventoryID
 
 object Gear {
+
+
+
+
     /**
      * This function uses the `has` function to check if the player's equipment contains an item with an id
      * that matches the given id. If the id is of type Int, it will match based on the Item's id field.
