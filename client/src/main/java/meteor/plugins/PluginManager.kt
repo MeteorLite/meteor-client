@@ -134,6 +134,7 @@ import net.runelite.client.plugins.timestamp.TimestampPlugin
 import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
 import net.runelite.client.plugins.gpuhd.HdPlugin
+import net.runelite.client.plugins.kourendlibrary.KourendLibraryPlugin
 import net.runelite.client.plugins.titheextended.TithePlugin
 import java.io.File
 import java.net.JarURLConnection
@@ -224,6 +225,7 @@ object PluginManager {
             init<KebabBuyerPlugin>()
             init<KeyboardBankPinPlugin>()
             init<KeyRemappingPlugin>()
+            init<KourendLibraryPlugin>()
             init<LeftClickCast>()
             init<LogChopper>()
             init<LootTrackerPlugin>()
