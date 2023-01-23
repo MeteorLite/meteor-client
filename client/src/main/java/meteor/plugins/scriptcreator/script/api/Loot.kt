@@ -39,13 +39,19 @@ object Loot {
      * @param worldPoint the world point to search for tile items
      * @return a list of all tile items at the given world point
      */
-    fun getAt(worldPoint: WorldPoint): List<TileItem> {
-        return Main.client.scene.tiles
-            .flatMap { it.asIterable() }
-            .flatMap { it.asIterable() }
-            .filter { it.worldX == worldPoint.x && it.worldY == worldPoint.y && it.plane == worldPoint.plane }
-            .flatMap { it.groundItems.asIterable() }
-            .toList()
+    fun getAt(worldPoint: WorldPoint) : ArrayList<TileItem>? {
+        val loots = ArrayList<TileItem>()
+        Main.client.scene.tiles.forEach { z ->
+            z?.forEach { x ->
+                x?.forEach { y ->
+                    y?.groundItems?.let { groundItems ->
+                        groundItems.filter { it.getWorldLocation().x == worldPoint.x && it.getWorldLocation().y == worldPoint.y && it.getWorldLocation().plane == worldPoint.plane }
+                            .forEach { loots.add(it) }
+                    }
+                }
+            }
+        }
+        return if (loots.isEmpty()) null else loots
     }
     /**
      * Returns a list of all tile items in the client's scene.
@@ -53,17 +59,20 @@ object Loot {
      * @param sortByDistance whether to sort the list of tile items by distance from the player (default is false)
      * @return a list of all tile items in the client's scene
      */
-    fun getAll(sortByDistance: Boolean = false): List<TileItem>? {
-        val loots = Main.client.scene.tiles
-            .flatMap { it.asIterable() }
-            .flatMap { it.asIterable() }
-            .flatMap { it.groundItems.asIterable() }
-            .toMutableList()
-
+    fun getAll(sortByDistance: Boolean = false): ArrayList<TileItem>? {
+        val loots = ArrayList<TileItem>()
+        Main.client.scene.tiles.forEach { z ->
+            z?.forEach { x ->
+                x?.forEach { y ->
+                    y?.groundItems?.let { groundItems ->
+                        loots.addAll(groundItems)
+                    }
+                }
+            }
+        }
         if (sortByDistance) {
             loots.sortBy { loot -> Main.client.localPlayer?.let { loot.distanceTo(it) } }
         }
-
         return if (loots.isEmpty()) null else loots
     }
 
