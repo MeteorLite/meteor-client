@@ -41,18 +41,12 @@ import net.runelite.client.plugins.questhelper.overlays.QuestHelperWorldLineOver
 import net.runelite.client.plugins.questhelper.overlays.QuestHelperWorldOverlay;
 import net.runelite.client.plugins.questhelper.questhelpers.QuestDetails;
 import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
+import net.runelite.client.plugins.questhelper.requirements.Requirement;
 import net.runelite.client.plugins.questhelper.requirements.item.ItemRequirement;
 import net.runelite.client.plugins.questhelper.steps.QuestStep;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
@@ -305,6 +299,35 @@ public class QuestHelperPlugin extends Plugin
 
 	boolean hasSetup = false;
 
+	public ArrayList<RequirementMet> checkRequirements() {
+
+		List<Requirement> generalRequirements = selectedQuest.getGeneralRequirements();
+		ArrayList<RequirementMet> generalRequirementsMet = new ArrayList<>();
+		generalRequirements.forEach(requirement -> {
+			boolean requirementMet = requirement.check(Main.client);
+			generalRequirementsMet.add(new RequirementMet(requirement, requirementMet));
+		});
+		pluginPanel.getGeneralRequirementsMet().setValue(generalRequirementsMet);
+
+		List<ItemRequirement> itemRequirements = selectedQuest.getItemRequirements();
+		ArrayList<RequirementMet> itemRequirementsMet = new ArrayList<>();
+		itemRequirements.forEach(requirement -> {
+			boolean requirementMet = requirement.check(Main.client);
+			itemRequirementsMet.add(new RequirementMet(requirement, requirementMet));
+		});
+		pluginPanel.getItemRequirementsMet().setValue(itemRequirementsMet);
+
+		List<ItemRequirement> itemRecomends = selectedQuest.getItemRecommended();
+		ArrayList<RequirementMet> itemRecomendsMet = new ArrayList<>();
+		itemRecomends.forEach(requirement -> {
+			boolean requirementMet = requirement.check(Main.client);
+			itemRecomendsMet.add(new RequirementMet(requirement, requirementMet));
+		});
+		pluginPanel.getItemRecommendMet().setValue(itemRecomendsMet);
+
+		return itemRecomendsMet;
+	}
+
 	@Override
 	public void onGameTick(GameTick event)
 	{
@@ -362,6 +385,9 @@ public class QuestHelperPlugin extends Plugin
 					//clientThread.invokeLater(() -> panel.updateItemRequirements(client, questBank.getBankItems()));
 				}*/
 				//panel.updateLocks();
+
+				//Ensure this is done on the client thread, so no more crashing.
+				checkRequirements();
 			}
 		}
 		if (loadQuestList)

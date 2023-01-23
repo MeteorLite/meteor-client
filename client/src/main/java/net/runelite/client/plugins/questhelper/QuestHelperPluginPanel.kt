@@ -28,14 +28,9 @@ import meteor.ui.composables.preferences.*
 class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     var quest = questHelper.quest
 
-    //Dynamic data
-    val generalRequirements = questHelper.generalRequirements
-    val itemRequirements = questHelper.itemRequirements
-    val itemRecommends = questHelper.itemRecommended
-
     //We use mutableStateOf so compose is aware of changes to it, and will redraw
     //Checking requirements met must be done on ClientThread (so not in @Composable function)
-    //Which is why we use EventBus to update requirements met
+    //So the actual checking is done in the plugin onGameTick
     var generalRequirementsMet = mutableStateOf(ArrayList<RequirementMet>())
     var itemRequirementsMet = mutableStateOf(ArrayList<RequirementMet>())
     var itemRecommendMet = mutableStateOf(ArrayList<RequirementMet>())
@@ -43,37 +38,6 @@ class QuestHelperPluginPanel(var questHelper: QuestHelper) : PluginPanel() {
     //Static data
     val enemiesToDefeat = questHelper.combatRequirements
     val rewards = questHelper.questRewards
-
-    init {
-        generalRequirements?.let { updateRequirements(generalRequirements) }
-        itemRequirements?.let { updateRequirements(itemRequirements) }
-        itemRecommends?.let { updateRequirements(itemRecommends) }
-    }
-
-    override fun onGameTick(it: GameTick) {
-        generalRequirements?.let { updateRequirements(generalRequirements) }
-    }
-
-    override fun onItemContainerChanged(it: ItemContainerChanged) {
-        itemRequirements?.let { updateRequirements(itemRequirements) }
-        itemRecommends?.let { updateRequirements(itemRecommends) }
-    }
-
-    fun updateRequirements(requirements: List<Requirement>) {
-        val requirementsMet = ArrayList<RequirementMet>()
-        requirements.forEach {
-            var requirementMet = false
-            try {
-                requirementMet = it.check(Main.client)
-            } catch (_: Exception) {}
-            requirementsMet.add(RequirementMet(it, requirementMet))
-        }
-        when (requirements) {
-            generalRequirements -> generalRequirementsMet.value = requirementsMet
-            itemRequirements -> itemRequirementsMet.value = requirementsMet
-            itemRecommends -> itemRecommendMet.value = requirementsMet
-        }
-    }
 
     @Composable override fun Header() {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
