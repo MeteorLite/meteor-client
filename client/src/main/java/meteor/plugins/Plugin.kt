@@ -100,4 +100,13 @@ open class Plugin() : EventSubscriber() {
     open fun closePluginPanel() {
         pluginPanelIsOpen.value = false
     }
+
+    fun isFavorite() : Boolean {
+        val savedValue = ConfigManager.getConfiguration(getName()!!.replace(" ", ""), "isFavorite") ?: return false
+        return savedValue.toBoolean()
+    }
+
+    fun setFavorite(isFavorite: Boolean) {
+        ConfigManager.setConfiguration(getName()!!.replace(" ", ""), "isFavorite", isFavorite)
+    }
 }
