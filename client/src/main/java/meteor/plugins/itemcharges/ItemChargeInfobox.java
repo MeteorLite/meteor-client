@@ -22,32 +22,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.plugins.itemcharges
+package meteor.plugins.itemcharges;
 
-import lombok.Getter
-import lombok.ToString
-import meteor.ui.overlay.infobox.Counter
-import java.awt.Color
-import java.awt.image.BufferedImage
+import lombok.Getter;
+import lombok.ToString;
+import meteor.ui.overlay.infobox.Counter;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 @Getter
 @ToString
-internal class ItemChargeInfobox(
-	plugin: ItemChargePlugin,
-	image: BufferedImage?,
-	name: String,
-	charges: Int,
-	item: Int
-) : Counter(image, plugin, charges) {
-    private val plugin1: ItemChargePlugin
-    val item: Int
+class ItemChargeInfobox extends Counter
+{
+	private final ItemChargePlugin plugin;
+	private final int item;
 
-    init {
-        tooltip = name
-        plugin1 = plugin
-        this.item = item
-    }
+	ItemChargeInfobox(
+		ItemChargePlugin plugin,
+		BufferedImage image,
+		String name,
+		int charges,
+		int item)
+	{
+		super(image, plugin, charges);
+		setTooltip(name);
+		this.plugin = plugin;
+		this.item = item;
+	}
 
-    override val textColor: Color?
-        get() = plugin1.getColor(count)
+	@Override
+	public Color getTextColor()
+	{
+		return getPlugin().getColor(getCount());
+	}
 }
