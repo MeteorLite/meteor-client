@@ -9,6 +9,7 @@ import meteor.api.Loots
 import meteor.api.Objects
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import net.runelite.api.GameState
 
 @PluginDescriptor(name = "Agility Bot", enabledByDefault = false)
 class AgilityBot : Plugin() {
@@ -20,14 +21,23 @@ class AgilityBot : Plugin() {
     private var course: Course? = null
 
     override fun onStart() {
-        course = if (course == Course.NEAREST) {
-            Course.nearest
-        } else {
-            config.course()
+        getCourse()
+    }
+
+    fun getCourse() {
+        if (client.gameState == GameState.LOGGED_IN) {
+            course = if (course == Course.NEAREST) {
+                Course.nearest
+            } else {
+                config.course()
+            }
         }
     }
 
     override fun onGameTick(it: GameTick) {
+        if (course == null) {
+            getCourse()
+        }
         if (Dialog.canContinue()) {
             Dialog.continueSpace()
             return

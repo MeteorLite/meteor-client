@@ -29,7 +29,6 @@ import meteor.ui.composables.items.titleItems
 import meteor.ui.composables.preferences.*
 import meteor.ui.composables.ui.onPluginToggled
 
-
 @Composable
 fun configPanel() {
     if (lastPlugin.configuration != null) descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)
@@ -69,8 +68,6 @@ fun configs(){
 
 @Composable
 fun configPanelHeader() {
-
-
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
             modifier = Modifier.fillMaxWidth().height(42.dp).background(surface,
@@ -104,21 +101,15 @@ fun configPanelHeader() {
                 modifier = Modifier.width(50.dp)
             ) {
                 val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
-
                 Switch(
                     switchState.value,
-                    onPluginToggled(switchState, lastPlugin),
+                    onPluginToggled(switchState, lastPlugin, true),
                     enabled = true,
                     modifier = Modifier.scale(0.75f),
                     colors = SwitchDefaults.colors(checkedThumbColor = uiColor.value, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)
                 )
-
             }
-
-
-
     }
-
 }
 
 
