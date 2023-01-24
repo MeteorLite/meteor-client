@@ -37,9 +37,11 @@ class FighterPlugin : Plugin() {
     override fun onStart() {
 
         if (config.quickPrayer() && !Prayers.isQuickPrayerEnabled()) {
-            Prayers.toggleQuickPrayer(true)
+            val widget = Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB)
+            widget?.let {
+                Prayers.toggleQuickPrayer(true)
+            }
         }
-
 
         if (Game.isLoggedIn()) {
             startPoint = Main.client.localPlayer!!.worldLocation
@@ -59,32 +61,24 @@ class FighterPlugin : Plugin() {
                 val widget = Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB)
                 widget?.let {
                     Prayers.toggleQuickPrayer(false)
-                    val clickPoint = it.clickPoint
-                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                 }
             }
             if (config.eat() && Combat.getHealthPercent() <= config.healthPercent()) {
                 val foods = config.foods().split(",".toRegex()).toList()
                 Items.getAll()?.filter { it.name in foods }?.forEach{
-                        val clickPoint = it.clickPoint
                         it.interact("Eat")
-                        ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                         return
                 }
             }
             if (config.restore() && Prayers.getPoints() < 5) {
                 Items.getFirst("Prayer potion", "Super Restore")?.let {
                     it.interact("Drink")
-                    val clickPoint = it.clickPoint
-                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                     return
                 }
             }
             if (config.buryBones()) {
                 Items.getFirstWithAction("Bury")?.let {
                     it.interact("Bury")
-                    val clickPoint = it.clickPoint
-                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                     return
                 }
             }
@@ -103,8 +97,6 @@ class FighterPlugin : Plugin() {
                 }?.forEach {
                     if(local.isIdle)
                     it.interact("Take")
-                    val clickPoint = it.clickPoint
-                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                }
             }
             if (config.alching()) {
@@ -119,8 +111,7 @@ class FighterPlugin : Plugin() {
                             Regular.LOW_LEVEL_ALCHEMY.widget.id
                     alchItem?.forEach {
                         ItemPackets.queueSpellOnItemPacket(it.id, it.slot, spellToUse)
-                        val clickPoint = it.clickPoint
-                        ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
+                        ClientPackets.queueClickPacket(it.clickPoint)
                         return
                     }
                 }
@@ -137,8 +128,6 @@ class FighterPlugin : Plugin() {
             }
                 mob?.let {
                     it.interact("Attack")
-                    val clickPoint = it.clickPoint
-                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
                 }
             }
         } catch (ex: Exception) {

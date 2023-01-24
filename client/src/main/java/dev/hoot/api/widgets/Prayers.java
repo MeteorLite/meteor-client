@@ -2,6 +2,7 @@ package dev.hoot.api.widgets;
 
 import dev.hoot.api.game.Skills;
 import dev.hoot.api.game.Vars;
+import meteor.api.packets.ClientPackets;
 import net.runelite.api.Prayer;
 import net.runelite.api.Skill;
 import net.runelite.api.Varbits;
@@ -36,7 +37,9 @@ public class Prayers
 		if (widget != null)
 		{
 			widget.interact(enabled ? "Activate" : "Deactivate");
+			ClientPackets.INSTANCE.queueClickPacket(widget.getClickPoint());
 		}
+
 	}
 
 	public static boolean isQuickPrayerEnabled()

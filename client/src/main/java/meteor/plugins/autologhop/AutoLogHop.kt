@@ -130,8 +130,8 @@ class AutoLogHop : Plugin() {
         //client.invokeMenuAction("Grand Exchange", "<col=ff9040>Ring of wealth ( )</col>", 3, MenuAction.CC_OP.getId(), -1, equipment.getId());
         val ring: WidgetInfo = WidgetInfo.EQUIPMENT_RING
         val ringWidget: Widget = client.getWidget(ring)!!
-        ClientPackets.queueClickPacket(0, 0)
         WidgetPackets.widgetAction(ringWidget, "Grand Exchange")
+        ClientPackets.queueClickPacket(ringWidget.clickPoint)
     }
 
     private fun passedWildernessChecks(): Boolean {

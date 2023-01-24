@@ -89,6 +89,7 @@ interface NPC : Actor {
             return
         }
         invoke(index)
+        client.sendClickPacket(clickPoint)
     }
 
     fun invoke(index: Int) {

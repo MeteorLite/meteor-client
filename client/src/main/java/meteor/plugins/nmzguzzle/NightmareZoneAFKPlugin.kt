@@ -34,7 +34,6 @@ class NightmareZoneAFKPlugin : Plugin() {
                 NPCs.getAll(alive = true, sortByDistance = true)?.firstOrNull()?.let {
                     if (it.distanceTo(client.localPlayer) < 2) {
                         it.interact("Attack")
-                        ClientPackets.queueClickPacket(0, 0)
                     }
                 }
                 ticksSinceLastManualAttack = 0

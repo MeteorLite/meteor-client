@@ -39,15 +39,15 @@ class AutoAlchPlugin : Plugin() {
             timeout = 0
         }
         if (timeout == 0) {
-                val spellToUse =
-                    if (config.alchType() == AutoAlchConfig.AlchType.HIGH)
-                        Regular.HIGH_LEVEL_ALCHEMY
-                    else
-                        Regular.LOW_LEVEL_ALCHEMY
+            val spellToUse =
+                if (config.alchType() == AutoAlchConfig.AlchType.HIGH)
+                    Regular.HIGH_LEVEL_ALCHEMY
+                else
+                    Regular.LOW_LEVEL_ALCHEMY
             Items.getFirst(config.itemID())?.let{
-            Magic.cast(spellToUse,it)
+                Magic.cast(spellToUse,it)
+                ClientPackets.queueClickPacket(it.clickPoint)
             }
-
         }
         timeout--
     }

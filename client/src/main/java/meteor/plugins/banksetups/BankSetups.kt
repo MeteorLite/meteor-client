@@ -124,36 +124,37 @@ class BankSetups : Plugin() {
                         if (it[1] != 1) {
                             WidgetPackets.widgetAction(item, "Withdraw-X")
                             DialogPackets.sendNumberInput(it[1])
-                            ClientPackets.queueClickPacket(0, 0)
                             ItemPackets.queueItemAction1Packet(
                                 WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
                                 item.itemId,
                                 firstFree
                             )
+                            ClientPackets.queueClickPacket(item.clickPoint)
                             return@forEach
                         }
 
                         WidgetPackets.widgetAction(item, "Withdraw-1")
-                        ClientPackets.queueClickPacket(0, 0)
+
                         ItemPackets.queueItemAction1Packet(
                             WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
                             item.itemId,
                             firstFree
                         )
+                        ClientPackets.queueClickPacket(item.clickPoint)
                         state = 3
                     }
                 }
             }
             3 -> {
                 bankSetups[0].equipment!!.forEach {
-                    val items = Items.getFirst(*it) ?: return@forEach
+                    val item = Items.getFirst(*it) ?: return@forEach
                     if (Bank.isOpen()) {
-                        ClientPackets.queueClickPacket(0, 0)
                         ItemPackets.queueItemAction9Packet(
                             WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
-                            items.id,
-                            items.slot
+                            item.id,
+                            item.slot
                         )
+                        ClientPackets.queueClickPacket(item.clickPoint)
                     }
                     state = 4
                 }
@@ -161,7 +162,6 @@ class BankSetups : Plugin() {
             4 -> {
                 bankSetups[0].inventory.forEach {
                     val item = getBankItemWidget(it[0]) ?: return@forEach
-                    ClientPackets.queueClickPacket(0, 0)
                     if (it[1] != 1) {
                         WidgetPackets.widgetAction(item, "Withdraw-X")
                         DialogPackets.sendNumberInput(it[1])
@@ -170,6 +170,7 @@ class BankSetups : Plugin() {
                             item.itemId,
                             firstFree
                         )
+                        ClientPackets.queueClickPacket(item.clickPoint)
                     }
                     wait = 10
                     state = -1
