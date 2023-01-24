@@ -1,6 +1,6 @@
 package meteor.plugins.guardiansoftherift
 
-import meteor.api.npcs.NPCs
+import meteor.api.NPCs
 import meteor.game.ItemManager
 import meteor.ui.overlay.Overlay
 import meteor.util.AsyncBufferedImage

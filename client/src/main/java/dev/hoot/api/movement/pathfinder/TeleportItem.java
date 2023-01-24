@@ -1,7 +1,7 @@
 package dev.hoot.api.movement.pathfinder;
 
 import dev.hoot.api.game.Vars;
-import meteor.api.items.Items;
+import meteor.api.Items;
 import net.runelite.api.InventoryID;
 import net.runelite.api.ItemID;
 import net.runelite.api.coords.WorldPoint;

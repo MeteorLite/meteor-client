@@ -1,6 +1,5 @@
 package meteor.plugins.prayerflicker
 
-import com.google.common.base.Supplier
 import dev.hoot.api.game.Game
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Prayers
@@ -8,8 +7,7 @@ import dev.hoot.api.widgets.Widgets
 import eventbus.events.ClientTick
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
-import meteor.api.packets.ClientPackets
-import meteor.config.legacy.Keybind
+import meteor.api.ClientPackets
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor

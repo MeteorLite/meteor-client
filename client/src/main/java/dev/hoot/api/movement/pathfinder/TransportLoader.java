@@ -12,8 +12,8 @@ import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
 import lombok.Value;
 import meteor.Main;
-import meteor.api.items.Items;
-import meteor.api.npcs.NPCs;
+import meteor.api.Items;
+import meteor.api.NPCs;
 import net.runelite.api.*;
 import net.runelite.api.coords.Direction;
 import net.runelite.api.coords.WorldArea;
@@ -23,7 +23,6 @@ import net.runelite.api.widgets.WidgetInfo;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;

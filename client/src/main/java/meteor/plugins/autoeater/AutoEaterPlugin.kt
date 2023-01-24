@@ -2,7 +2,7 @@ package meteor.plugins.autoeater
 
 import eventbus.events.ConfigChanged
 import eventbus.events.GameTick
-import meteor.api.items.Items
+import meteor.api.Items
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.*

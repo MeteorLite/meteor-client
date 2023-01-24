@@ -28,8 +28,8 @@ package meteor.plugins.gauntletextended
 
 import eventbus.events.*
 import meteor.Main
-import meteor.api.items.Items
-import meteor.api.items.Items.getFirst
+import meteor.api.Items
+import meteor.api.Items.getFirst
 import meteor.game.SkillIconManager
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
@@ -170,9 +170,9 @@ class GauntletExtendedPlugin : Plugin() {
             activatePrayer(hunllef!!.attackPhase.prayer)
         }
         if (inHunllef && hunllef!!.npc.composition?.getOverheadIcon() == HeadIcon.MAGIC && isItemEquipped(MAGE_WEAPONS)) {
-            if (Items.inventoryContainsAny(RANGE_WEAPONS)) {
+            if (Items.inventoryContains(RANGE_WEAPONS)) {
                 rangeWeapon()
-            } else if (Items.inventoryContainsAny(MELEE_WEAPONS)) {
+            } else if (Items.inventoryContains(MELEE_WEAPONS)) {
                 meleeWeapon()
             }
         }
@@ -180,9 +180,9 @@ class GauntletExtendedPlugin : Plugin() {
                 MELEE_WEAPONS
             )
         ) {
-            if (Items.inventoryContainsAny(MAGE_WEAPONS)) {
+            if (Items.inventoryContains(MAGE_WEAPONS)) {
                 mageWeapon()
-            } else if (Items.inventoryContainsAny(RANGE_WEAPONS)) {
+            } else if (Items.inventoryContains(RANGE_WEAPONS)) {
                 rangeWeapon()
             }
         }
@@ -190,9 +190,9 @@ class GauntletExtendedPlugin : Plugin() {
                 RANGE_WEAPONS
             )
         ) {
-            if (Items.inventoryContainsAny(MELEE_WEAPONS)) {
+            if (Items.inventoryContains(MELEE_WEAPONS)) {
                 meleeWeapon()
-            } else if (Items.inventoryContainsAny(MAGE_WEAPONS)) {
+            } else if (Items.inventoryContains(MAGE_WEAPONS)) {
                 mageWeapon()
             }
         }
@@ -429,7 +429,7 @@ class GauntletExtendedPlugin : Plugin() {
     fun meleeWeapon() {
         val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (mw in MELEE_WEAPONS) {
-            val mi = getFirst(InventoryID.INVENTORY, mw)
+            val mi = getFirst(mw)
             mi?.interact("Wield")
         }
     }
@@ -437,7 +437,7 @@ class GauntletExtendedPlugin : Plugin() {
     fun rangeWeapon() {
         val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (rw in RANGE_WEAPONS) {
-            val ri = getFirst(InventoryID.INVENTORY, rw)
+            val ri = getFirst(rw)
             ri?.interact("Wield")
         }
     }
@@ -445,7 +445,7 @@ class GauntletExtendedPlugin : Plugin() {
     fun mageWeapon() {
         val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (mw in MAGE_WEAPONS) {
-            val mi = getFirst(InventoryID.INVENTORY, mw)
+            val mi = getFirst(mw)
             mi?.interact("Wield")
         }
     }
@@ -453,21 +453,21 @@ class GauntletExtendedPlugin : Plugin() {
     fun drinkPotion() {
         val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (potion in POTIONS) {
-            val item = getFirst(InventoryID.INVENTORY, potion)
+            val item = getFirst(potion)
             item?.interact("Drink")
         }
     }
 
     fun autoEat() {
         val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
-        val item = getFirst(InventoryID.INVENTORY, ItemID.PADDLEFISH)
+        val item = getFirst(ItemID.PADDLEFISH)
         item?.interact("Eat")
     }
 
     fun autoTickEat() {
         val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (food in TICK_FOOD) {
-            val item = getFirst(InventoryID.INVENTORY, food)
+            val item = getFirst(food)
             item?.interact("Eat")
         }
     }

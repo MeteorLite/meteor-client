@@ -2,9 +2,9 @@ package meteor.plugins.scriptcreator.script.api
 
 import dev.hoot.api.packets.WidgetPackets
 import meteor.Main.client
-import meteor.api.items.Items.deposit
-import meteor.api.items.Items.withdraw
-import meteor.api.packets.ClientPackets
+import meteor.api.Items.deposit
+import meteor.api.Items.withdraw
+import meteor.api.ClientPackets
 import net.runelite.api.InventoryID
 import net.runelite.api.queries.BankItemQuery
 import net.runelite.api.widgets.WidgetInfo

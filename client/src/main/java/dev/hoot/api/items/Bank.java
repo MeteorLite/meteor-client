@@ -4,9 +4,7 @@ import dev.hoot.api.commons.Predicates;
 import dev.hoot.api.commons.Time;
 import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Vars;
-import dev.hoot.api.widgets.Dialog;
 import dev.hoot.api.widgets.Widgets;
-import meteor.Main;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemContainer;
@@ -225,7 +223,7 @@ public class Bank extends Items
 			return;
 		}
 		Item i = new Item(item.getId(), item.getQuantity());
-		meteor.api.items.Items.deposit(i, amount);
+		meteor.api.Items.deposit(i, amount);
 	}
 
 	public static void withdrawAll(String name, WithdrawMode withdrawMode)
@@ -262,7 +260,7 @@ public class Bank extends Items
 			return;
 		}
 		Item i = new Item(item.getId(), item.getQuantity());
-		meteor.api.items.Items.withdraw(i, amount, withdrawMode);
+		meteor.api.Items.withdraw(i, amount, withdrawMode);
 	}
 
 	public static void withdrawLastQuantity(String name, WithdrawMode withdrawMode)
@@ -285,7 +283,7 @@ public class Bank extends Items
 		}
 
 		Item i = new Item(item.getId(), item.getQuantity());
-		meteor.api.items.Items.withdrawLastQuantity(i, withdrawMode);
+		meteor.api.Items.withdrawLastQuantity(i, withdrawMode);
 	}
 
 	public static void setWithdrawMode(boolean noted)

@@ -1,7 +1,7 @@
 package meteor.plugins.scriptcreator.script.api
 
 import meteor.Main
-import meteor.api.items.Items
+import meteor.api.Items
 import net.runelite.api.InventoryID
 import net.runelite.api.Item
 import net.runelite.api.widgets.WidgetInfo

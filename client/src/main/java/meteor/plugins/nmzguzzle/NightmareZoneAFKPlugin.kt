@@ -2,10 +2,9 @@ package meteor.plugins.nmzguzzle
 
 import eventbus.events.GameTick
 import eventbus.events.HitsplatApplied
-import meteor.api.items.Items
-import meteor.api.npcs.NPCs
-import meteor.api.objects.Objects
-import meteor.api.packets.ClientPackets
+import meteor.api.Items
+import meteor.api.NPCs
+import meteor.api.Objects
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.ObjectID.POTION_26276

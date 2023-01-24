@@ -12,10 +12,10 @@ import eventbus.events.ChatMessage
 import eventbus.events.GameTick
 import meteor.Logger
 import meteor.Main
-import meteor.api.items.Items
-import meteor.api.loot.Loots
-import meteor.api.npcs.NPCs
-import meteor.api.packets.ClientPackets
+import meteor.api.Items
+import meteor.api.Loots
+import meteor.api.NPCs
+import meteor.api.ClientPackets
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor

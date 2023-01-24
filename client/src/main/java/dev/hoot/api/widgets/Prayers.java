@@ -2,7 +2,7 @@ package dev.hoot.api.widgets;
 
 import dev.hoot.api.game.Skills;
 import dev.hoot.api.game.Vars;
-import meteor.api.packets.ClientPackets;
+import meteor.api.ClientPackets;
 import net.runelite.api.Prayer;
 import net.runelite.api.Skill;
 import net.runelite.api.Varbits;

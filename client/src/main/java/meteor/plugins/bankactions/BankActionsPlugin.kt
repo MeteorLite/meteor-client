@@ -4,8 +4,8 @@ import dev.hoot.api.items.Bank
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import eventbus.events.GameTick
-import meteor.api.items.Items
-import meteor.api.npcs.NPCs
+import meteor.api.Items
+import meteor.api.NPCs
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.InventoryID
