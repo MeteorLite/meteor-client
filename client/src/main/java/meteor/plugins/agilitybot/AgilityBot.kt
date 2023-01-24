@@ -5,8 +5,8 @@ import dev.hoot.api.movement.Movement
 import dev.hoot.api.widgets.Dialog
 import eventbus.events.GameTick
 import meteor.Logger
-import meteor.api.loot.Loots
-import meteor.api.objects.Objects
+import meteor.api.Loots
+import meteor.api.Objects
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 

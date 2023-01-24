@@ -2,8 +2,8 @@ package meteor.plugins.guardiansoftherift
 
 import dev.hoot.api.movement.pathfinder.Walker
 import eventbus.events.*
-import meteor.api.items.Items
-import meteor.api.objects.Objects
+import meteor.api.Items
+import meteor.api.Objects
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor

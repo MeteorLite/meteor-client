@@ -24,7 +24,6 @@
  */
 package meteor.plugins.blastfurnace
 
-import meteor.Main
 import meteor.ui.overlay.Overlay
 import meteor.ui.overlay.OverlayPosition
 import net.runelite.api.GameObject

@@ -4,7 +4,7 @@ import eventbus.events.ChatMessage;
 import eventbus.events.ClientTick;
 import eventbus.events.MenuOptionClicked;
 import meteor.Main;
-import meteor.api.items.Items;
+import meteor.api.Items;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
 import meteor.plugins.PluginManager;

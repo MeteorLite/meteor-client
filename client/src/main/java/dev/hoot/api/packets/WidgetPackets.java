@@ -1,7 +1,7 @@
 package dev.hoot.api.packets;
 
 import dev.hoot.api.game.Game;
-import meteor.api.packets.ClientPackets;
+import meteor.api.ClientPackets;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.widgets.Widget;
 

@@ -8,8 +8,8 @@ import eventbus.events.PlayerSpawned
 import meteor.Main
 import meteor.Main.executor
 import meteor.Main.worldService
-import meteor.api.items.Items
-import meteor.api.packets.ClientPackets
+import meteor.api.Items
+import meteor.api.ClientPackets
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread

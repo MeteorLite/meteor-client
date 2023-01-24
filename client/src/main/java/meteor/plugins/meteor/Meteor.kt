@@ -16,7 +16,7 @@ import eventbus.events.DialogProcessed
 import eventbus.events.MenuOptionClicked
 import meteor.Configuration
 import meteor.Logger
-import meteor.api.packets.ClientPackets
+import meteor.api.ClientPackets
 
 import meteor.config.ConfigManager
 

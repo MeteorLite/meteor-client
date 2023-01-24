@@ -1,22 +1,22 @@
 @file:Suppress("DEPRECATION")
-
-package meteor.api.packets
+package meteor.api
 
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import meteor.Main
-import meteor.model.ObfuscatedBufferStructure
 import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
-import net.runelite.api.packets.PacketBuffer
 import net.runelite.api.packets.PacketBufferNode
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetType
 import java.awt.Point
 
-
+/**
+ * an object for calling various Client Packets
+ * @author Null
+ */
 object ClientPackets {
 
     // OPLOC1
@@ -596,6 +596,9 @@ object ClientPackets {
         return bufferNode
     }
 
+    /**
+     * creates a new packetBuffer with the provided [opcode] and [size]
+     */
     fun preparePacketBuffer(opcode: Int, size: Int): PacketBufferNode {
         val clientPacket = Main.client.createClientPacket(opcode, size)
         return Main.client.preparePacket(
@@ -627,6 +630,10 @@ object ClientPackets {
         queueClickPacket(mouseInfo.toInt(), x, y)
     }
 
+    /**
+     * attempts to create a client packet from the provided [menu]
+     * @param menu the menu we extract the information that we need to create the packet
+     */
     fun createClientPacket(menu: AutomatedMenu): PacketBufferNode? {
         val opcode = menu.opcode
         val client = Main.client

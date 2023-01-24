@@ -2,12 +2,10 @@ package meteor.plugins.autoalch
 
 import dev.hoot.api.magic.Magic
 import dev.hoot.api.magic.Regular
-import dev.hoot.api.packets.ItemPackets
-import dev.hoot.api.packets.WidgetPackets
 import eventbus.events.GameTick
 import eventbus.events.StatChanged
-import meteor.api.items.Items
-import meteor.api.packets.ClientPackets
+import meteor.api.Items
+import meteor.api.ClientPackets
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.Skill

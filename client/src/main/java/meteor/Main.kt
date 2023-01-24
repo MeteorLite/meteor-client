@@ -12,7 +12,7 @@ import eventbus.events.ClickPacket
 import eventbus.events.MenuOptionClicked
 import meteor.Configuration.EXTERNALS_DIR
 import meteor.api.loot.Interact
-import meteor.api.packets.ClientPackets
+import meteor.api.ClientPackets
 import meteor.config.ConfigManager
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.*

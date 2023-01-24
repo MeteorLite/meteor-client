@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm")
     id("org.jetbrains.compose") version "1.3.0-rc01"
     kotlin("plugin.serialization") version "1.7.21"
+    id("org.jetbrains.dokka") version "1.7.20"
     java
     `maven-publish`
 }
@@ -182,6 +183,31 @@ tasks {
     }
 }
 
+tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
+    dokkaSourceSets {
+        configureEach {
+            displayName.set("Meteor Automation API")
+            perPackageOption {
+                matchingRegex.set(".*meteor.api.*")
+                suppress.set(false)
+                reportUndocumented.set(false)
+                documentedVisibilities.set(
+                    setOf(
+                        org.jetbrains.dokka.DokkaConfiguration.Visibility.PUBLIC,
+                        org.jetbrains.dokka.DokkaConfiguration.Visibility.PROTECTED,
+                        org.jetbrains.dokka.DokkaConfiguration.Visibility.INTERNAL,
+                        org.jetbrains.dokka.DokkaConfiguration.Visibility.PACKAGE
+                    )
+                )
+            }
+            perPackageOption {
+                matchingRegex.set("^((?!.*meteor.api.*).)*\$")
+                suppress.set(true)
+            }
+        }
+    }
+}
+
 tasks.compileJava {
     sourceCompatibility = JavaVersion.VERSION_17.toString()
     targetCompatibility = JavaVersion.VERSION_17.toString()
@@ -198,6 +224,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
             "-Xbackend-threads=4")
     }
 }
+
+
 
 tasks.withType<org.gradle.jvm.tasks.Jar> {
     exclude("META-INF/BC1024KE.RSA", "META-INF/BC1024KE.SF", "META-INF/BC1024KE.DSA")

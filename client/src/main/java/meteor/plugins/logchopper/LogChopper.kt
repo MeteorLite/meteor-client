@@ -1,7 +1,8 @@
 package meteor.plugins.logchopper
 
 import eventbus.events.GameTick
-import meteor.api.items.Items
+import meteor.api.Items
+import meteor.api.Objects
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.*
@@ -13,7 +14,7 @@ import net.runelite.api.queries.GameObjectQuery
 @PluginDescriptor(name = "Log Chopper", description = "Chops down trees", enabledByDefault = false)
 class LogChopper : Plugin() {
     val config = configuration<LogChopperConfig>()
-    val objects = meteor.api.objects.Objects
+    val objects = Objects
     var currentTree = 0
     val trees = listOf(NullObjectID.NULL_30482, NullObjectID.NULL_30480, NullObjectID.NULL_30481)
     var area: WorldArea = WorldArea( WorldPoint(3695, 3801,0), WorldPoint(3748, 3839,0))

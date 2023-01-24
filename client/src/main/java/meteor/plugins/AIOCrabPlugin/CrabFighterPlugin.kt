@@ -5,7 +5,7 @@ import dev.hoot.api.game.Worlds
 import dev.hoot.api.movement.Movement
 import eventbus.events.GameObjectSpawned
 import eventbus.events.GameTick
-import meteor.api.objects.Objects
+import meteor.api.Objects
 import meteor.plugins.AIOCrabPlugin.constants.CrabHome
 import meteor.plugins.AIOCrabPlugin.constants.StateController
 import meteor.plugins.Plugin

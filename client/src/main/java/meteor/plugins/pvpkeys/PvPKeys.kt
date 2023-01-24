@@ -7,7 +7,7 @@ import dev.hoot.api.widgets.Prayers
 import eventbus.events.ClientTick
 import eventbus.events.InteractingChanged
 import eventbus.events.MenuOptionClicked
-import meteor.api.items.Items
+import meteor.api.Items
 import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor

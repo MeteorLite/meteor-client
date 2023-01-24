@@ -11,12 +11,13 @@ import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Dialog
 import eventbus.events.ClientTick
 import eventbus.events.MenuOptionClicked
-import meteor.api.items.Bank.getBankItemWidget
-import meteor.api.items.Items
-import meteor.api.packets.ClientPackets
+import meteor.api.Items
+import meteor.api.Items.getBankItemWidget
+import meteor.api.ClientPackets
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import net.runelite.api.InventoryID
 import net.runelite.api.KeyCode
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetInfo
@@ -96,10 +97,10 @@ class BankSetups : Plugin() {
             }
         }
 
-        val firstFree: Int = Items.getFirstEmptySlot()
+        val firstFree: Int = Items.getFirstEmptyInventorySlot()
         when (state) {
             1 -> {
-                if (Items.getAllGear() != null) {
+                if (Items.getAll(InventoryID.EQUIPMENT) != null) {
                     Bank.depositEquipment()
                 }
                 if (Items.getAll() != null) {
@@ -109,7 +110,7 @@ class BankSetups : Plugin() {
             }
 
             2 -> {
-                if (Items.getAllGear() == null && Items.getAll() == null) {
+                if (Items.getAll(InventoryID.EQUIPMENT) == null && Items.getAll() == null) {
                     bankSetups[0].equipment!!.forEach {
                         var item = getBankItemWidget(it[0])
                         if (item == null) {

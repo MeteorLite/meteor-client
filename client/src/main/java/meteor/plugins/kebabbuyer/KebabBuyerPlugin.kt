@@ -5,9 +5,9 @@ import dev.hoot.api.movement.Movement
 import dev.hoot.api.widgets.Dialog
 import dev.hoot.api.widgets.DialogOption
 import eventbus.events.GameTick
-import meteor.api.items.Items
+import meteor.api.Items
 import meteor.plugins.Plugin
-import meteor.api.npcs.NPCs
+import meteor.api.NPCs
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.ChatMessageType
 import net.runelite.api.InventoryID

@@ -1,10 +1,19 @@
-package meteor.api.objects
+package meteor.api
 
 import meteor.Main
 import net.runelite.api.Tile
 import net.runelite.api.TileObject
 
+/**
+ * an object for working with Objects
+ * @author Null
+ * @author Dab
+ */
 object Objects {
+
+    /**
+     * gets all objects
+     */
     fun getAll(): ArrayList<TileObject>? {
         var objects: ArrayList<TileObject>? = null
         for (plane in Main.client.scene.tiles)
@@ -12,30 +21,46 @@ object Objects {
                 for (tileY in tileX) {
                     if (objects == null) {
                         objects = ArrayList()
-                        objects.addAll(getTileObjects(tileY))
+                        objects.addAll(getObjectsAt(tileY))
                     } else
-                        objects.addAll(getTileObjects(tileY))
+                        objects.addAll(getObjectsAt(tileY))
                 }
         return objects
     }
 
+    /**
+     * gets all objects which match any of the provided [ids]
+     * @param ids the object ids we should filter for
+     */
     fun getAll(vararg ids: Int): ArrayList<TileObject>? {
         return getAll()?.filter { obj -> ids.any { it == obj.id } } as ArrayList?
     }
 
+    /**
+     * gets all objects which match any of the provided [names]
+     * @param names the object names we should filter for
+     */
     fun getAll(vararg names: String): ArrayList<TileObject>? {
         return getAll()?.filter { obj -> names.any { it.equals(obj.name, true) } } as ArrayList?
     }
 
+    /**
+     * gets the first object with an id matching the provided [id]
+     * @param id the object id we should filter for
+     */
     fun getFirst(id: Int): TileObject? {
         return getAll(id)?.minByOrNull { it.distanceTo(Main.client.localPlayer) }
     }
 
+    /**
+     * gets the first object with an id matching the provided [name]
+     * @param name the object name we should filter for
+     */
     fun getFirst(name: String): TileObject? {
         return getAll(name)?.minByOrNull { it.distanceTo(Main.client.localPlayer) }
     }
 
-    private fun getTileObjects(tile: Tile?): List<TileObject> {
+    private fun getObjectsAt(tile: Tile?): List<TileObject> {
         val out: MutableList<TileObject> = java.util.ArrayList()
         if (tile == null) {
             return out
