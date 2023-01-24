@@ -2661,4 +2661,6 @@ public interface Client extends GameEngine
 	 * Gets a entry out of a DBTable Row
 	 */
 	Object getDBTableField(int rowID, int column, int tupleIndex, int fieldIndex);
+
+	void sendClickPacket(java.awt.Point clickPoint);
 }

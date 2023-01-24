@@ -18,9 +18,11 @@ object Bank {
     fun withdraw(it: String , x:Int){
         val fi = first(it)
         val bankItem = BankItemQuery().idEquals(fi.id).result(client).first()?.widget
-        WidgetPackets.widgetAction(bankItem, "Withdraw-X")
-        ClientPackets.queueClickPacket(0, 0)
-        Key type x
+        bankItem?.let {
+            WidgetPackets.widgetAction(it, "Withdraw-X")
+            ClientPackets.queueClickPacket(it.clickPoint)
+            Key type x
+        }
     }
 
     /**

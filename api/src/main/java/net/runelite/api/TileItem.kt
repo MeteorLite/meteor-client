@@ -121,6 +121,7 @@ interface TileItem : Renderable {
             return
         }
         invoke()
+        client!!.sendClickPacket(clickPoint)
     }
 
     fun take() {

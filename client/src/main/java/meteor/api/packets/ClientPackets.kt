@@ -14,6 +14,7 @@ import net.runelite.api.packets.PacketBuffer
 import net.runelite.api.packets.PacketBufferNode
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetType
+import java.awt.Point
 
 
 object ClientPackets {
@@ -601,6 +602,10 @@ object ClientPackets {
             clientPacket,
             Main.client.packetWriter.isaacCipher
         )
+    }
+
+    fun queueClickPacket(clickPoint: Point) {
+        queueClickPacket(clickPoint.x, clickPoint.y)
     }
 
     fun queueClickPacket(mouseInfo: Int, x: Int, y: Int) {

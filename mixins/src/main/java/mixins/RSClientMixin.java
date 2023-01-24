@@ -3268,4 +3268,10 @@ public abstract class RSClientMixin implements RSClient {
     public int getEnergy() {
         return getServerEnergy() / 100;
     }
+
+    @Inject
+    @Override
+    public void sendClickPacket(java.awt.Point clickPoint) {
+        callbacks.post(Events.CLICK_PACKET, new ClickPacket(clickPoint));
+    }
 }

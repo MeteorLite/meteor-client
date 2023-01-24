@@ -33,10 +33,12 @@ class PrayerFlickerPlugin : Plugin() {
     private val quickPrayerWidgetID = WidgetInfo.MINIMAP_QUICK_PRAYER_ORB
 
     private fun togglePrayer() {
-                WidgetPackets.widgetAction(Widgets.get(quickPrayerWidgetID), "Activate")
-                ClientPackets.queueClickPacket(0, 0)
-                WidgetPackets.widgetAction(Widgets.get(quickPrayerWidgetID), "Deactivate")
-                ClientPackets.queueClickPacket(0, 0)
+                val quickPrayerOrb = Widgets.get(quickPrayerWidgetID)
+                val clickPoint = quickPrayerOrb.clickPoint
+                WidgetPackets.widgetAction(quickPrayerOrb, "Activate")
+                ClientPackets.queueClickPacket(clickPoint)
+                WidgetPackets.widgetAction(quickPrayerOrb, "Deactivate")
+                ClientPackets.queueClickPacket(clickPoint)
     }
 
     override fun onStart() {

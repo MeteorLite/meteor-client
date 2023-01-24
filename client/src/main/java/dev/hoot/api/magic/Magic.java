@@ -4,6 +4,7 @@ import dev.hoot.api.game.Game;
 import dev.hoot.api.game.Vars;
 import dev.hoot.api.widgets.Widgets;
 import meteor.Main;
+import meteor.api.packets.ClientPackets;
 import net.runelite.api.Item;
 import net.runelite.api.MenuAction;
 import net.runelite.api.NPC;
@@ -72,6 +73,7 @@ public class Magic
 		if (widget != null)
 		{
 			Game.getClient().setSelectedSpellWidget(widget.getId());
+			ClientPackets.INSTANCE.queueClickPacket(widget.getClickPoint());
 		}
 	}
 

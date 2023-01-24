@@ -8,6 +8,7 @@ import androidx.compose.ui.window.application
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
+import eventbus.events.ClickPacket
 import eventbus.events.MenuOptionClicked
 import meteor.Configuration.EXTERNALS_DIR
 import meteor.api.loot.Interact
@@ -159,6 +160,9 @@ object Main : ApplicationScope, EventSubscriber() {
         Player.client = client
         KEVENT.subscribe<Interact>(Events.INTERACT) {
             GameThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
+        }
+        KEVENT.subscribe<ClickPacket>(Events.CLICK_PACKET) {
+            GameThread.invoke { ClientPackets.queueClickPacket(it.data.clickPoint) }
         }
         KEVENT.subscribe<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) {
             //These are api onClicks (before client code is usable)
