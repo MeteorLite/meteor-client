@@ -13,6 +13,36 @@ import java.awt.Color
 @ConfigGroup(Configuration.MASTER_GROUP)
 interface MeteorConfig : Config {
     @ConfigItem(
+        name = "Always on top",
+        keyName = "alwaysOnTop",
+        description = "",
+        position = 0,
+    )
+    fun alwaysOnTop(): Boolean {
+        return false
+    }
+    @ConfigItem(
+        name = "Lock window size",
+        keyName = "lockWindowSize",
+        description = "",
+        position = 1,
+    )
+    fun lockWindowSize(): Boolean {
+        return false
+    }
+
+    @ConfigItem(
+        name = "lockedWindowSize",
+        keyName = "lockedWindowSize",
+        description = "",
+        position = 1,
+        hidden = true,
+        unhide = "nothingBITCH"
+    )
+    fun lockedWindowSize(): String {
+        return "1280:720"
+    }
+    @ConfigItem(
         name = "MeteorColor",
         keyName = "MeteorColor",
         description = "",

@@ -1,10 +1,10 @@
 package meteor
 
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.window.ApplicationScope
-import androidx.compose.ui.window.FrameWindowScope
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.*
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
@@ -61,12 +61,14 @@ object Main : ApplicationScope, EventSubscriber() {
     var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
     var onClicksWidget = HashMap<WidgetMenuOption, Consumer<MenuEntry>>()
     var pluginsEnabled = true
+    var meteorConfig: MeteorConfig
     init {
         ConfigManager.loadSavedProperties()
         ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
         ConfigManager.saveProperties()
+        meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java)!!
     }
-    var meteorConfig: MeteorConfig = ConfigManager.getConfig(MeteorConfig::class.java)!!
+
 
     var window: FrameWindowScope? = null
     val eventBus = EventBus
@@ -106,16 +108,34 @@ object Main : ApplicationScope, EventSubscriber() {
         callbacks = Hooks()
         AppletConfiguration.init()
         Applet().init()
+        initWindow()
+        // finishStartup is ran here after windowContent()
+    }
+
+    @Composable
+    fun initWindow() {
+        var windowState: WindowState? = rememberWindowState()
+
+        if (meteorConfig.lockWindowSize()) {
+            val sizeString = meteorConfig.lockedWindowSize()
+
+            val windowSize = DpSize(
+                sizeString.split(":")[0].toInt().dp,
+                sizeString.split(":")[1].toInt().dp)
+
+            windowState = rememberWindowState(size = windowSize)
+        }
 
         Window(
             onCloseRequest = Main::exitApplication,
             title = "Meteor",
             icon = painterResource("Meteor_icon.svg"),
             undecorated = meteorConfig.fullscreen(),
-           // state = rememberWindowState(placement = WindowPlacement.Maximized, size = DpSize.Unspecified),
+            alwaysOnTop = meteorConfig.alwaysOnTop(),
+            resizable = !meteorConfig.lockWindowSize(),
+            state = windowState!!,
             content = {
                 windowContent()
-                // finishStartup is ran here
             }
         )
     }
