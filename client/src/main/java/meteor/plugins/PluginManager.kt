@@ -294,7 +294,7 @@ object PluginManager {
     fun loadExternalPlugins() {
         val timer = StopWatch()
 
-        if (externalsDir.exists())
+        if (!externalsDir.exists())
             externalsDir.mkdirs()
 
         val externalJars = externalsDir.listFiles()
