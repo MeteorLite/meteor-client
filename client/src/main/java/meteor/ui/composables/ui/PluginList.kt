@@ -61,6 +61,11 @@ val favoritePlugins = mutableStateOf(getFavoritePlugins())
 
 val nonFavoritePlugins = mutableStateOf(getNonFavoritePlugins())
 
+fun updatePluginsList() {
+    favoritePlugins.value = getFavoritePlugins()
+    nonFavoritePlugins.value = getNonFavoritePlugins()
+}
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun plugins() {
@@ -127,8 +132,7 @@ fun plugins() {
                         IconButton(
                             onClick = {
                                 plugin.setFavorite(!plugin.isFavorite())
-                                favoritePlugins.value = getFavoritePlugins()
-                                nonFavoritePlugins.value = getNonFavoritePlugins()
+                                updatePluginsList()
                             },
                         ) {
                             if (plugin.isFavorite()) {
@@ -195,7 +199,10 @@ fun plugins() {
                     ) {
                         if (plugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).external) {
                             IconButton(
-                                onClick = { PluginManager.reloadExternal(plugin) },
+                                onClick = {
+                                    PluginManager.reloadExternal(plugin)
+                                    updatePluginsList()
+                                },
                             ) {
                                 Icon(
                                     Icons.Filled.Refresh,
