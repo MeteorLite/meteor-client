@@ -90,6 +90,7 @@ import meteor.plugins.oneclickkarambwans.OneClickKarambwansPlugin
 import meteor.plugins.oneclicksandstone.OneClickSandstonePlugin
 import meteor.plugins.opponentinfo.OpponentInfoPlugin
 import meteor.plugins.pestcontrol.PestControlPlugin
+import meteor.plugins.playeroutline.PlayerOutlinePlugin
 import meteor.plugins.poison.PoisonPlugin
 import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.prayerpotdrinker.PrayerPotDrinker
@@ -257,6 +258,7 @@ object PluginManager {
             init<OpponentInfoPlugin>()
             init<OlmSwapperPlugin>()
             init<PestControlPlugin>()
+            init<PlayerOutlinePlugin>()
             init<PoisonPlugin>()
             init<PuzzleSolverPlugin>()
             init<PvPKeys>()
