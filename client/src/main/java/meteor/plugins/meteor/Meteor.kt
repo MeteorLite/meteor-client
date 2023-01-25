@@ -1,5 +1,8 @@
 package meteor.plugins.meteor
 
+import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.rememberWindowState
 import com.formdev.flatlaf.FlatLaf
 import dev.hoot.api.InteractMethod
 import dev.hoot.api.InteractionException
@@ -16,6 +19,7 @@ import eventbus.events.DialogProcessed
 import eventbus.events.MenuOptionClicked
 import meteor.Configuration
 import meteor.Logger
+import meteor.Main
 import meteor.api.ClientPackets
 
 import meteor.config.ConfigManager
@@ -27,6 +31,7 @@ import net.runelite.api.Constants
 import net.runelite.api.MenuAction
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Color
+import java.awt.Dimension
 import java.awt.Point
 import java.awt.Rectangle
 
@@ -162,6 +167,25 @@ class Meteor : Plugin() {
 
 
     override fun onConfigChanged(it: ConfigChanged) {
+        if (it.group == Configuration.MASTER_GROUP) {
+            when(it.key) {
+                "alwaysOnTop" -> {
+                    Main.window!!.window.isAlwaysOnTop = config.alwaysOnTop()
+                }
+                "lockWindowSize" -> {
+                    Main.window!!.window.isResizable = !config.lockWindowSize()
+                    if (config.lockWindowSize()) {
+                        val lockedSize = Main.window!!.window.size
+                        val lockedSizeString = "${lockedSize.width}:${lockedSize.height}"
+
+                        ConfigManager.setConfiguration(Configuration.MASTER_GROUP, "lockedWindowSize", lockedSizeString)
+
+                        Main.window!!.window.size = lockedSize
+                    }
+                }
+            }
+        }
+
         when {
             !config.theme() && it.key == "Light theme/Dark theme" -> {
 
