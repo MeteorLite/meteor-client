@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, Ron Young <https://github.com/raiyni>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,14 +23,43 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.game.chatbox
+package meteor.plugins.banktags.tabs;
 
-import meteor.plugins.EventSubscriber
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import net.runelite.api.widgets.Widget;
 
-/**
- * A modal input that lives in the chatbox panel.
- */
-abstract class ChatboxInput : EventSubscriber(){
-    open fun open() {}
-    open fun close() {}
+@Data
+@EqualsAndHashCode(of = "tag")
+public class TagTab
+{
+	private String tag;
+	private int iconItemId;
+	private Widget background;
+	private Widget icon;
+	private Widget menu;
+
+	TagTab(int iconItemId, String tag)
+	{
+		this.iconItemId = iconItemId;
+		this.tag = tag;
+	}
+
+	void setHidden(boolean hide)
+	{
+		if (background != null)
+		{
+			background.setHidden(hide);
+		}
+
+		if (icon != null)
+		{
+			icon.setHidden(hide);
+		}
+
+		if (menu != null)
+		{
+			menu.setHidden(hide);
+		}
+	}
 }

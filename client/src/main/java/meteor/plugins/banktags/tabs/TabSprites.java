@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2018, Ron Young <https://github.com/raiyni>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,14 +23,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package meteor.game.chatbox
+package meteor.plugins.banktags.tabs;
 
-import meteor.plugins.EventSubscriber
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import meteor.game.SpriteOverride;
 
-/**
- * A modal input that lives in the chatbox panel.
- */
-abstract class ChatboxInput : EventSubscriber(){
-    open fun open() {}
-    open fun close() {}
+@RequiredArgsConstructor
+public enum TabSprites implements SpriteOverride
+{
+	INCINERATOR(-200, "incinerator.png"),
+	TAB_BACKGROUND(-201, "tag-tab.png"),
+	TAB_BACKGROUND_ACTIVE(-202, "tag-tab-active.png"),
+	UP_ARROW(-203, "up-arrow.png"),
+	DOWN_ARROW(-204, "down-arrow.png"),
+	NEW_TAB(-205, "new-tab.png");
+
+	@Getter
+	private final int spriteId;
+
+	@Getter
+	private final String fileName;
 }

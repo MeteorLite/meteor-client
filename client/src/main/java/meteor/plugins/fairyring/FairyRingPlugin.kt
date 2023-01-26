@@ -30,6 +30,7 @@ package meteor.plugins.fairyring
 import eventbus.events.GameTick
 import eventbus.events.VarbitChanged
 import eventbus.events.WidgetLoaded
+import meteor.Main
 import meteor.game.chatbox.ChatboxPanelManager
 import meteor.game.chatbox.ChatboxTextInput
 import meteor.plugins.Plugin
@@ -39,6 +40,7 @@ import net.runelite.api.*
 import net.runelite.api.util.Text
 import net.runelite.api.widgets.*
 import java.util.*
+import java.util.function.Consumer
 
 @PluginDescriptor(
     name = "Fairy Rings",
@@ -47,7 +49,7 @@ import java.util.*
 )
 class FairyRingPlugin : Plugin() {
     private val config = configuration<FairyRingConfig>()
-    private val chatboxPanelManager = ChatboxPanelManager
+    private val chatboxPanelManager = ChatboxPanelManager.INSTANCE
     private val clientThread =  ClientThread
     private var searchInput = ChatboxTextInput()
     private var searchBtn: Widget? = null
@@ -128,7 +130,9 @@ class FairyRingPlugin : Plugin() {
         searchBtn?.setOnOpListener(JavaScriptCallback { e: ScriptEvent? -> menuClose(e!!) })
         searchInput = chatboxPanelManager.openTextInput("Filter fairy rings")
             .onChanged { s: String? -> clientThread.invokeLater { updateFilter(s!!) } }
-            .isDone { false }
+            .onDone(Consumer {
+                false
+            })
             .onClose {
                 clientThread.invokeLater { updateFilter("") }
                 searchBtn?.setOnOpListener(JavaScriptCallback { e: ScriptEvent? -> menuOpen(e!!) })

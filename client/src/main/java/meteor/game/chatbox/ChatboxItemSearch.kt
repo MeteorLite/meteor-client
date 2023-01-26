@@ -24,6 +24,7 @@
  */
 package meteor.game.chatbox
 
+import meteor.Main
 import meteor.Main.client
 import meteor.game.ItemManager
 import meteor.util.JagexColors
@@ -82,7 +83,7 @@ object ChatboxItemSearch : ChatboxTextInput() {
     }
 
     override fun update() {
-        val container = ChatboxPanelManager.containerWidget
+        val container = ChatboxPanelManager.INSTANCE.containerWidget
         container!!.deleteAllChildren()
         val promptWidget = container.createChild(-1, WidgetType.TEXT)
         promptWidget.text = prompt
@@ -135,7 +136,7 @@ object ChatboxItemSearch : ChatboxTextInput() {
                 if (onItemSelected != null) {
                     onItemSelected!!(itemComposition.id)
                 }
-                ChatboxPanelManager.close()
+                ChatboxPanelManager.INSTANCE.close()
             } as JavaScriptCallback?)
             x += ICON_WIDTH + PADDING
             if (x + ICON_WIDTH >= container.width) {
@@ -147,7 +148,7 @@ object ChatboxItemSearch : ChatboxTextInput() {
     }
 
     override fun keyPressed(ev: KeyEvent) {
-        if (!ChatboxPanelManager.shouldTakeInput()) {
+        if (!ChatboxPanelManager.INSTANCE.shouldTakeInput()) {
             return
         }
         when (ev.keyCode) {
@@ -157,7 +158,7 @@ object ChatboxItemSearch : ChatboxTextInput() {
                     if (onItemSelected != null) {
                         onItemSelected!!(  results.keys.toTypedArray()[index])
                     }
-                    ChatboxPanelManager.close()
+                    ChatboxPanelManager.INSTANCE.close()
                 }
             }
             KeyEvent.VK_TAB, KeyEvent.VK_RIGHT -> {

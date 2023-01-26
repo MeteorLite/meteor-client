@@ -25,6 +25,7 @@
 package meteor.plugins.bank
 
 
+import meteor.Main
 import meteor.rs.ClientThread
 import net.runelite.api.Client
 import net.runelite.api.ScriptID
@@ -36,21 +37,20 @@ import org.apache.commons.lang3.ArrayUtils
 
 
 object BankSearch {
-    private val client: Client? = null
     var clientThread = ClientThread
 
     fun layoutBank() {
-        val bankContainer = client?.getWidget(WidgetInfo.BANK_ITEM_CONTAINER)
+        val bankContainer = Main.client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER)
         if (bankContainer == null || bankContainer.isHidden) {
             return
         }
         val scriptArgs = bankContainer.onInvTransmitListener ?: return
-        client?.runScript(*scriptArgs)
+        Main.client.runScript(*scriptArgs)
     }
 
     fun initSearch() {
         clientThread.invoke {
-            val bankContainer = client!!.getWidget(WidgetInfo.BANK_ITEM_CONTAINER)
+            val bankContainer = Main.client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER)
             if (bankContainer == null || bankContainer.isHidden) {
                 return@invoke
             }
@@ -62,7 +62,7 @@ object BankSearch {
 
             // reset search to clear tab tags and also allow us to initiate a new search while searching
             reset(true)
-            client.runScript(*searchToggleArgs)
+            Main.client.runScript(*searchToggleArgs)
         }
     }
 
@@ -73,10 +73,10 @@ object BankSearch {
             // selecting/changing tab
             if (closeChat) {
                 // this clears the input text and type, and resets the chatbox to allow input
-                client!!.runScript(ScriptID.MESSAGE_LAYER_CLOSE, 1, 1, 0)
+                Main.client.runScript(ScriptID.MESSAGE_LAYER_CLOSE, 1, 1, 0)
             } else {
-                client!!.setVarcIntValue(VarClientInt.INPUT_TYPE.index, InputType.NONE.type)
-                client.setVarcStrValue(VarClientStr.INPUT_TEXT.index, "")
+                Main.client.setVarcIntValue(VarClientInt.INPUT_TYPE.index, InputType.NONE.type)
+                Main.client.setVarcStrValue(VarClientStr.INPUT_TEXT.index, "")
             }
             layoutBank()
         }

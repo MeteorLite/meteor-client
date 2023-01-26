@@ -217,7 +217,6 @@ object Main : ApplicationScope, EventSubscriber() {
     fun initManagers() {
         MenuManager
         LootManager
-        ChatboxPanelManager
         chatMessageManager = ChatMessageManager()
         chatCommandManager = ChatCommandManager()
         GameEventManager

@@ -84,7 +84,6 @@ open class EventSubscriber : KEventSubscriber {
     open fun onNpcSpawned(it: NpcSpawned) {}
     open fun onNpcChanged(it: NpcChanged) {}
     open fun onNpcDespawned(it: NpcDespawned) {}
-
     open fun onProjectileMoved(it: ProjectileMoved) {}
     open fun onConfigChanged(it: ConfigChanged) {}
     open fun onPostItemComposition(it: PostItemComposition) {}
@@ -104,8 +103,8 @@ open class EventSubscriber : KEventSubscriber {
     open fun onCheatEntered(it: CheatEntered) {}
     open fun onVarCIntChanged(it: VarClientIntChanged) {}
     open fun onVarCStrChanged(it: VarClientStrChanged) {}
-
     open fun onXPDrop(it: XPDrop) {}
+    open fun onDraggingWidgetChanged(it: DraggingWidgetChanged) {}
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
             unit()
@@ -343,6 +342,7 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<VarClientIntChanged>(Events.VARCLIENT_INT_CHANGED) { executeIfListening { onVarCIntChanged(it) } }
         subscribeEvent<VarClientStrChanged>(Events.VARCLIENT_STR_CHANGED) { executeIfListening { onVarCStrChanged(it) } }
         subscribeEvent<XPDrop>(Events.XP_DROP) { executeIfListening { onXPDrop(it) } }
+        subscribeEvent<DraggingWidgetChanged>(Events.DRAGGING_WIDGET_CHANGED) { executeIfListening { onDraggingWidgetChanged(it) } }
     }
 
     internal inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

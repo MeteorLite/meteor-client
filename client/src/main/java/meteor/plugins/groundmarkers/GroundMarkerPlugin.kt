@@ -8,6 +8,7 @@ import eventbus.events.GameStateChanged
 import eventbus.events.MenuEntryAdded
 import eventbus.events.MenuOptionClicked
 import meteor.Logger
+import meteor.Main
 import meteor.config.ConfigManager
 import meteor.game.chatbox.ChatboxPanelManager
 import meteor.plugins.Plugin
@@ -19,6 +20,7 @@ import net.runelite.api.Tile
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import java.util.*
+import java.util.function.Consumer
 
 @PluginDescriptor(
     name = "Ground Markers",
@@ -32,7 +34,7 @@ class GroundMarkerPlugin : Plugin() {
     private val config = configuration<GroundMarkerConfig>()
     private val overlay = overlay(GroundMarkerOverlay(config,this))
     private val minimapOverlay = overlay(GroundMarkerMinimapOverlay(config,this))
-    private val chatboxPanelManager = ChatboxPanelManager
+    private val chatboxPanelManager = ChatboxPanelManager.INSTANCE
     private val sharingManager = GroundMarkerSharingManager(this)
     private val gson = Gson()
     private val log = Logger("Ground Marker Plugin")
@@ -247,20 +249,20 @@ class GroundMarkerPlugin : Plugin() {
         val existing = points.firstOrNull { p: GroundMarkerPoint -> p == searchPoint } ?: return
         chatboxPanelManager.openTextInput("Tile label")
             .value(Optional.ofNullable(existing.label).orElse(""))
-            .onDone { input ->
+            .onDone(Consumer {
                 val newPoint = GroundMarkerPoint(
                     regionId,
                     worldPoint.regionX,
                     worldPoint.regionY,
                     worldPoint.plane,
                     existing.color,
-                    input ?: ""
+                    it ?: ""
                 )
                 points.remove(searchPoint)
                 points.add(newPoint)
                 savePoints(regionId, points)
                 loadPoints()
-            }
+            })
             ?.build()
     }
 
