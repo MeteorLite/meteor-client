@@ -109,4 +109,6 @@ open class Plugin() : EventSubscriber() {
     fun setFavorite(isFavorite: Boolean) {
         ConfigManager.setConfiguration(getName()!!.replace(" ", ""), "isFavorite", isFavorite)
     }
+
+    open fun resetConfiguration() {}
 }

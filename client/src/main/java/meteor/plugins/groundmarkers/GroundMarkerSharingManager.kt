@@ -58,7 +58,7 @@ internal class GroundMarkerSharingManager(
     private val log = Logger("GM Sharing Manager")
 
     private val chatMessageManager = Main.chatMessageManager
-    private val chatboxPanelManager = ChatboxPanelManager
+    private val chatboxPanelManager = ChatboxPanelManager.INSTANCE
     private val gson = Gson()
     fun addImportExportMenuOptions() {
         MenuManager.addManagedCustomMenu(EXPORT_MARKERS_OPTION) { menuEntry: MenuEntry -> exportGroundMarkers(menuEntry) }

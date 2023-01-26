@@ -1,10 +1,16 @@
 package meteor.ui.composables
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.TooltipArea
+import androidx.compose.foundation.TooltipPlacement
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
@@ -15,7 +21,9 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,6 +62,7 @@ fun configPanel() {
 
     }
 }
+
 @Composable
 fun configs(){
     LazyColumn(
@@ -66,6 +75,7 @@ fun configs(){
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun configPanelHeader() {
         Row(
@@ -87,7 +97,7 @@ fun configPanelHeader() {
                     )
                 }
             }
-            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(210.dp)) {
+            Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(180.dp)) {
                 MaterialTheme(colors = darkThemeColors) {
                     Text(
                         lastPlugin.javaClass.getDeclaredAnnotation(PluginDescriptor::class.java).name,
@@ -100,6 +110,48 @@ fun configPanelHeader() {
                 horizontalArrangement = Arrangement.End,
                 modifier = Modifier.width(50.dp)
             ) {
+                TooltipArea(
+                    modifier = Modifier.background(
+                        shape = RoundedCornerShape(16.dp), color = surface
+                    ), tooltipPlacement = TooltipPlacement.ComponentRect(offset = DpOffset(x = 15.dp, y = 0.dp)), tooltip = {
+                        val descriptionText = "Reset plugin configuration"
+                        if (descriptionText.isNotEmpty()) {
+                            Box(modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 10.dp, maxWidth = 200.dp, maxHeight = 200.dp)
+                                .background(color = surface, RoundedCornerShape(5.dp)), contentAlignment = Alignment.Center)
+                            {
+                                Text(
+                                    descriptionText,
+                                    style = TextStyle(
+                                        color = uiColor.value,
+                                        textAlign = TextAlign.Center,
+                                        letterSpacing = 2.sp,
+                                        fontSize = pluginListSize.value.sp,
+                                        fontWeight = FontWeight.Medium
+                                    ),
+                                    modifier = Modifier.padding(vertical = 5.dp)
+                                )
+                            }
+                        }
+                    }) {
+                    IconButton(
+                        onClick = {
+                            ConfigManager.setDefaultConfiguration(lastPlugin.configuration as Any, true)
+                            lastPlugin.resetConfiguration()
+
+                            //I'm lazy af so we just close the panel. FUCKING SUE ME
+                            configOpen.value = false
+                            pluginsOpen.value = true
+                        },
+
+                        ) {
+                        Icon(
+                            Icons.Outlined.Refresh,
+                            contentDescription = "Reset plugin configuration",
+                            tint = uiColor.value
+                        )
+                    }
+                }
+
                 val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
                 Switch(
                     switchState.value,

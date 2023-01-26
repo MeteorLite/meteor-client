@@ -2,14 +2,15 @@ package meteor.ui.composables.items
 
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateOf
 import meteor.config.legacy.ModifierlessKeybind
 import meteor.ui.composables.nodes.*
 import meteor.ui.composables.preferences.descriptor
 import java.awt.Color
 
-
+var configItems = mutableStateOf(descriptor.items.filter { it.item.section.isEmpty() })
 fun LazyListScope.configItems() {
-                items(items = descriptor.items.filter { it.item.section.isEmpty() })
+                items(items = configItems.value)
                 { config ->
                     if (config.item.unhide.isBlank()) {
                     when (config.type) {
