@@ -1,10 +1,7 @@
 package meteor.plugins.logchopper
 
 import dev.hoot.api.items.Bank
-import dev.hoot.api.packets.WidgetPackets
-import dev.hoot.api.widgets.Widgets
 import eventbus.events.GameTick
-import meteor.api.ClientPackets
 import meteor.api.Items
 import meteor.api.Objects
 import meteor.plugins.Plugin
@@ -13,8 +10,6 @@ import net.runelite.api.*
 import net.runelite.api.coords.WorldArea
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.queries.GameObjectQuery
-import net.runelite.api.widgets.WidgetID
-import net.runelite.api.widgets.WidgetInfo
 
 
 @PluginDescriptor(name = "Log Chopper", description = "Chops down trees", enabledByDefault = false)
