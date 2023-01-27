@@ -56,7 +56,7 @@ public class KeyRemappingPlugin extends Plugin
 
 	private ClientThread clientThread = ClientThread.INSTANCE;
 	private KeyManager keyManager = KeyManager.INSTANCE;
-	private KeyRemappingConfig config = (KeyRemappingConfig) javaConfiguration(KeyRemappingConfig.class);
+	private KeyRemappingConfig config = configuration(KeyRemappingConfig.class);
 	private KeyRemappingListener inputListener = new KeyRemappingListener(this, config);
 
 	@Getter(AccessLevel.PACKAGE)

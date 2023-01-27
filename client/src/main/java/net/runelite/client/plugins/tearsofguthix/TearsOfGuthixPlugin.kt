@@ -29,6 +29,7 @@ import eventbus.events.DecorativeObjectSpawned
 import eventbus.events.GameStateChanged
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import net.runelite.api.DecorativeObject
 import net.runelite.api.GameState
 import net.runelite.api.ObjectID
@@ -40,7 +41,7 @@ import java.time.Instant
     tags = ["minigame", "overlay", "skilling", "timers", "tog"]
 )
 class TearsOfGuthixPlugin : Plugin() {
-    private val config = javaConfiguration(TearsOfGuthixConfig::class.java) as TearsOfGuthixConfig
+    private val config = configuration<TearsOfGuthixConfig>()
     private val overlay = TearsOfGuthixOverlay(this, config)
     val streams: MutableMap<DecorativeObject, Instant> = HashMap()
     override fun onStart() {

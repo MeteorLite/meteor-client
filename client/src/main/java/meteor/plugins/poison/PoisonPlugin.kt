@@ -31,6 +31,7 @@ import meteor.game.FontManager.runescapeSmallFont
 import meteor.game.SpriteManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import meteor.rs.ClientThread
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ColorUtil.wrapWithColorTag
@@ -58,7 +59,7 @@ class PoisonPlugin : Plugin() {
     private val poisonOverlay = PoisonOverlay(this)
     private val infoBoxManager = InfoBoxManager
     private val spriteManager = SpriteManager
-    private val config = javaConfiguration(PoisonConfig::class.java) as PoisonConfig
+    private val config = configuration<PoisonConfig>()
 
     var lastDamage = 0
     private var envenomed = false

@@ -33,6 +33,7 @@ import net.runelite.api.*
 import meteor.chat.ChatColorType
 import meteor.chat.ChatMessageBuilder
 import meteor.game.npcoverlay.HighlightedNpc
+import meteor.plugins.attackstyles.AttackStylesConfig
 import java.awt.Color
 import java.util.function.Function
 
@@ -44,7 +45,7 @@ class CorpPlugin : Plugin() {
     var totalDamage = 0
     val players: MutableSet<Actor?> = HashSet()
     private val chatMessageManager = Main.chatMessageManager
-    private val config = javaConfiguration(CorpConfig::class.java) as CorpConfig
+    private val config = configuration<CorpConfig>()
     private val corpOverlay = CorpDamageOverlay(this, config)
     private val npcOverlayService = Main.npcOverlayService
     private val isCore = Function { npc: NPC ->

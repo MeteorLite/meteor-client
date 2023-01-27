@@ -50,7 +50,7 @@ public class InterfaceStylesPlugin extends Plugin
 {
 	private Client client = Main.INSTANCE.getClient();
 	private ClientThread clientThread = ClientThread.INSTANCE;
-	private InterfaceStylesConfig config = (InterfaceStylesConfig) javaConfiguration(InterfaceStylesConfig.class);
+	private InterfaceStylesConfig config = configuration(InterfaceStylesConfig.class);
 	private SpriteManager spriteManager = SpriteManager.INSTANCE;
 	private SpritePixels[] defaultCrossSprites;
 

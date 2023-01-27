@@ -49,7 +49,7 @@ class AttackStylesPlugin : Plugin() {
 
     val hiddenWidgets: Table<WeaponType?, WidgetInfo, Boolean> = HashBasedTable.create()
     private val clientThread = ClientThread
-    private val config = javaConfiguration(AttackStylesConfig::class.java) as AttackStylesConfig
+    private val config = configuration<AttackStylesConfig>()
     private val overlay = AttackStylesOverlay(this, config)
     override fun onStart() {
         overlayManager.add(overlay)

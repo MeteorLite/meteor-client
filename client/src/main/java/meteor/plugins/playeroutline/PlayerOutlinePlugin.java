@@ -36,7 +36,7 @@ import meteor.ui.overlay.OverlayManager;
 )
 public class PlayerOutlinePlugin extends Plugin
 {
-	PlayerOutlineConfig config = (PlayerOutlineConfig) javaConfiguration(PlayerOutlineConfig.class);
+	PlayerOutlineConfig config = configuration(PlayerOutlineConfig.class);
 	PlayerOutlineOverlay playerOutlineOverlay = new PlayerOutlineOverlay(config, new ModelOutlineRenderer());
 
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;

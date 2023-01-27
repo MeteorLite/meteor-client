@@ -56,7 +56,7 @@ public class PuzzleSolverPlugin extends Plugin
 
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 
-	private PuzzleSolverConfig config = (PuzzleSolverConfig) javaConfiguration(PuzzleSolverConfig.class);
+	private PuzzleSolverConfig config = configuration(PuzzleSolverConfig.class);
 	private PuzzleSolverOverlay overlay = new PuzzleSolverOverlay(config);
 	private Client client = Main.client;
 

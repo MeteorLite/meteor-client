@@ -83,7 +83,7 @@ public class NpcIndicatorsPlugin extends Plugin
 	private static final String UNTAG_ALL = "Un-tag-All";
 
 	private Client client = Main.client;
-	private NpcIndicatorsConfig config = (NpcIndicatorsConfig) javaConfiguration(NpcIndicatorsConfig.class);
+	private NpcIndicatorsConfig config = configuration(NpcIndicatorsConfig.class);
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 	private NpcRespawnOverlay npcRespawnOverlay = new NpcRespawnOverlay(this, config);
 	private ClientThread clientThread = ClientThread.INSTANCE;

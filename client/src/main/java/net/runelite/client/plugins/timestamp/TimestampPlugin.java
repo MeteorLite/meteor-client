@@ -58,7 +58,7 @@ public class TimestampPlugin extends Plugin
 {
 	private Client client = Main.client;
 	private ClientThread clientThread = ClientThread.INSTANCE;
-	private TimestampConfig config = (TimestampConfig) javaConfiguration(TimestampConfig.class);
+	private TimestampConfig config = configuration(TimestampConfig.class);
 
 	@Getter
 	private SimpleDateFormat formatter;

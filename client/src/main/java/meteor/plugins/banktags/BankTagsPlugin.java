@@ -98,7 +98,7 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener
 
 	private MouseManager mouseManager = MouseManager.INSTANCE;
 
-	private BankTagsConfig config = (BankTagsConfig) javaConfiguration(BankTagsConfig.class);
+	private BankTagsConfig config = configuration(BankTagsConfig.class);
 
 	private TagManager tagManager = new TagManager();
 

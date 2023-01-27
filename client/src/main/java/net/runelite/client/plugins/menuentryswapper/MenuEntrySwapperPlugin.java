@@ -136,8 +136,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 	private ClientThread clientThread = ClientThread.INSTANCE;
 
-	private MenuEntrySwapperConfig config = (MenuEntrySwapperConfig) javaConfiguration(
-			MenuEntrySwapperConfig.class);
+	private MenuEntrySwapperConfig config = configuration(MenuEntrySwapperConfig.class);
 
 	private ConfigManager configManager = ConfigManager.INSTANCE;
 

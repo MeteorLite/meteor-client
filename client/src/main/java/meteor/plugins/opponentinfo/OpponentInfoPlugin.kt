@@ -32,6 +32,7 @@ import lombok.Getter
 import meteor.hiscore.HiscoreEndpoint
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import net.runelite.api.*
 import net.runelite.api.widgets.WidgetInfo
 import java.text.DecimalFormat
@@ -44,7 +45,7 @@ import java.time.Instant
     tags = ["combat", "health", "hitpoints", "npcs", "overlay"]
 )
 class OpponentInfoPlugin : Plugin() {
-    private val config = javaConfiguration(OpponentInfoConfig::class.java) as OpponentInfoConfig
+    private val config = configuration<OpponentInfoConfig>()
     private val opponentInfoOverlay = OpponentInfoOverlay(this, config)
     private val playerComparisonOverlay = PlayerComparisonOverlay(this, config)
 

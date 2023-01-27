@@ -89,7 +89,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 	private ClientThread clientThread = ClientThread.INSTANCE;
 
-	private GpuPluginConfig config = (GpuPluginConfig) javaConfiguration(GpuPluginConfig.class);
+	private GpuPluginConfig config = configuration(GpuPluginConfig.class);
 
 	private TextureManager textureManager = new TextureManager();
 

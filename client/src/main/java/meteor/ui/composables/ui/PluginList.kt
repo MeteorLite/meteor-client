@@ -214,7 +214,12 @@ fun plugins() {
 
                         if (plugin.configuration != null) {
                             IconButton(
-                                onClick = { onPluginConfigurationOpened(plugin) },
+                                onClick = {
+                                    lastPlugin = plugin
+                                    descriptor = ConfigManager.getConfigDescriptor(plugin.configuration!!)
+                                    configOpen.value = true
+                                    pluginsOpen.value = false
+                                          },
 
                                 ) {
                                 Icon(
@@ -291,10 +296,4 @@ fun onPluginToggled(switchState: MutableState<Boolean>, plugin: Plugin, isPresse
         switchState.value = it
         ConfigManager.saveProperties()
     }
-}
-
-private fun onPluginConfigurationOpened(plugin: Plugin) {
-    lastPlugin = plugin
-    configOpen.value = true
-    pluginsOpen.value = false
 }

@@ -48,6 +48,7 @@ import net.runelite.api.widgets.WidgetInfo
 import meteor.chat.ChatColorType
 import meteor.chat.ChatMessageBuilder
 import meteor.chat.QueuedMessage
+import meteor.plugins.attackstyles.AttackStylesConfig
 import org.apache.commons.lang3.ArrayUtils
 import java.time.temporal.ChronoUnit
 
@@ -61,7 +62,7 @@ class BarrowsPlugin : Plugin() {
     private val spriteManager = SpriteManager
     private val infoBoxManager = InfoBoxManager
     private val chatMessageManager = Main.chatMessageManager
-    private val config = javaConfiguration(BarrowsConfig::class.java) as BarrowsConfig
+    private val config = configuration<BarrowsConfig>()
     private val barrowsOverlay = BarrowsOverlay(this, config)
     private val brotherOverlay = BarrowsBrotherSlainOverlay(this)
     override fun onStart() {

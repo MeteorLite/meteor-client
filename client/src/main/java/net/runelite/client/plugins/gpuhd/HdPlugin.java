@@ -134,7 +134,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 	private Client client = Main.client;
 	private OpenCLManager openCLManager = new OpenCLManager();
 	private ClientThread clientThread = ClientThread.INSTANCE;
-	private HdPluginConfig config = (HdPluginConfig) javaConfiguration(HdPluginConfig.class);
+	private HdPluginConfig config = configuration(HdPluginConfig.class);
 	private TextureManager textureManager = new TextureManager(this, config);
 	private LightManager lightManager = new LightManager(this, config);
 	private ModelOverrideManager modelOverrideManager = new ModelOverrideManager(this);

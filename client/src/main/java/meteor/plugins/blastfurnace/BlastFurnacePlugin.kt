@@ -32,6 +32,7 @@ import eventbus.events.GameTick
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import meteor.ui.overlay.infobox.InfoBox
 import meteor.ui.overlay.infobox.InfoBoxManager
 import net.runelite.api.*
@@ -46,7 +47,7 @@ class BlastFurnacePlugin : Plugin() {
     var barDispenser: GameObject? = null
     private var foremanTimer: ForemanTimer? = null
     private val overlay = BlastFurnaceOverlay(this)
-    private val config = javaConfiguration(BlastFurnaceConfig::class.java) as BlastFurnaceConfig
+    private val config = configuration<BlastFurnaceConfig>()
     private val cofferOverlay = BlastFurnaceCofferOverlay(this, config)
     private val clickBoxOverlay = BlastFurnaceClickBoxOverlay(this, config)
     private val itemManager = ItemManager

@@ -29,6 +29,7 @@ import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import net.runelite.api.GameState
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.WidgetInfo
@@ -36,7 +37,7 @@ import net.runelite.api.widgets.WidgetInfo
 @PluginDescriptor(name = "Blast Mine", description = "Show helpful information for the Blast Mine minigame", tags = ["explode", "explosive", "mining", "minigame", "skilling"])
 class BlastMinePlugin : Plugin() {
     val rocks: MutableMap<WorldPoint, BlastMineRock> = HashMap()
-    private val config = javaConfiguration(BlastMinePluginConfig::class.java) as BlastMinePluginConfig
+    private val config = configuration<BlastMinePluginConfig>()
     private val blastMineRockOverlay = BlastMineRockOverlay(this, config)
     private val blastMineOreCountOverlay = BlastMineOreCountOverlay(config)
     override fun onStart() {

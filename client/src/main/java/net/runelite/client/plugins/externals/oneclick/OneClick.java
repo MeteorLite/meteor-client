@@ -46,7 +46,7 @@ public class OneClick extends Plugin
 
 	private Client client = Main.client;
 	private ClientThread clientThread = ClientThread.INSTANCE;
-	public OneClickConfig config = (OneClickConfig) javaConfiguration(OneClickConfig.class);
+	public OneClickConfig config = configuration(OneClickConfig.class);
 
 	@Getter
 	private final List<ItemData> inventory = new ArrayList<>();

@@ -13,10 +13,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import meteor.ui.composables.preferences.descriptor
+import meteor.config.descriptor.ConfigDescriptor
 import meteor.ui.composables.preferences.uiColor
 
-fun LazyListScope.titleItems(){
+fun LazyListScope.titleItems(descriptor: ConfigDescriptor){
         val title = descriptor.titles.sortedBy { it.title.position }.toMutableList()
     items(items = title) {
         BoxWithConstraints(

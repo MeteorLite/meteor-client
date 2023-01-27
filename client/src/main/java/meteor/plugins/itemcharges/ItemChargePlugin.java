@@ -151,7 +151,7 @@ public class ItemChargePlugin extends Plugin
 
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 
-	private ItemChargeConfig config = (ItemChargeConfig) javaConfiguration(ItemChargeConfig.class);
+	private ItemChargeConfig config = configuration(ItemChargeConfig.class);
 
 	private ItemChargeOverlay overlay = new ItemChargeOverlay(this, config);
 

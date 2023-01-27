@@ -125,7 +125,7 @@ public class GroundItemsPlugin extends Plugin
 	private List<String> hiddenItemList = new CopyOnWriteArrayList<>();
 	private List<String> highlightedItemsList = new CopyOnWriteArrayList<>();
 	
-	private GroundItemsConfig config = (GroundItemsConfig) javaConfiguration(GroundItemsConfig.class);
+	private GroundItemsConfig config = configuration(GroundItemsConfig.class);
 	private GroundItemHotkeyListener hotkeyListener = new GroundItemHotkeyListener(this, config);
 	private GroundItemMouseAdapter mouseAdapter = new GroundItemMouseAdapter(this);
 	private MouseManager mouseManager = MouseManager.INSTANCE;

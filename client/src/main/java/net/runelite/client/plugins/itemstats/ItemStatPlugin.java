@@ -77,7 +77,7 @@ public class ItemStatPlugin extends Plugin
 
 	private Client client = Main.client;
 	private ItemManager itemManager = ItemManager.INSTANCE;
-	private ItemStatConfig config = (ItemStatConfig) javaConfiguration(ItemStatConfig.class);
+	private ItemStatConfig config = configuration(ItemStatConfig.class);
 	private ClientThread clientThread = ClientThread.INSTANCE;
 	private ItemStatOverlay overlay = new ItemStatOverlay(config);
 	private Widget itemInformationTitle;

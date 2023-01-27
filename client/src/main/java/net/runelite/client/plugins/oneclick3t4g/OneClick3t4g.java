@@ -24,7 +24,7 @@ import static net.runelite.api.MenuAction.*;
         enabledByDefault = false
 )
 public class OneClick3t4g extends Plugin {
-    private OneClick3t4gConfig config = (OneClick3t4gConfig) javaConfiguration(OneClick3t4gConfig.class);
+    private OneClick3t4gConfig config = configuration(OneClick3t4gConfig.class);
 
     private Client client = Main.INSTANCE.getClient();
     private int startingTickCount=-1;
