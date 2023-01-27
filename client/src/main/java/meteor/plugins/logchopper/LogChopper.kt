@@ -1,5 +1,6 @@
 package meteor.plugins.logchopper
 
+import dev.hoot.api.items.Bank
 import eventbus.events.GameTick
 import meteor.api.Items
 import meteor.api.Objects
@@ -19,11 +20,14 @@ class LogChopper : Plugin() {
     val trees = listOf(NullObjectID.NULL_30482, NullObjectID.NULL_30480, NullObjectID.NULL_30481)
     var area: WorldArea = WorldArea( WorldPoint(3695, 3801,0), WorldPoint(3748, 3839,0))
     override fun onGameTick(it: GameTick) {
-
+        if (config.useSpec() && !isFull()){
+            spec()
+        }
         if (client.localPlayer?.isIdle == true) {
             when (config.type()) {
                 LogChopperConfig.LogType.Teak -> processBoth()
                 LogChopperConfig.LogType.Mahogany -> processBoth()
+                LogChopperConfig.LogType.Redwood -> processRedwood()
                 else -> processNormal()
             }
         }
@@ -33,6 +37,24 @@ class LogChopper : Plugin() {
         if (client.localPlayer?.worldLocation!!.isInArea(area)) {
             processPatches()
         } else processNormal()
+    }
+
+    private fun processRedwood(){
+        if (isFull()){
+            if (config.trees() == LogChopperConfig.MethodType.Drop){
+                dropLogs()
+            } else {
+                if (client.localPlayer?.worldLocation!!.x in 1567..1574) ladderDown()
+                else if (bankOpen()) {
+                    depositLogs()
+                } else useBank()
+            }
+        } else {
+            if (client.localPlayer?.worldLocation!!.x > 1575) {
+                return ladderUp()
+            }
+            chopRedwood()
+        }
     }
 
     private fun processPatches() {
@@ -73,7 +95,18 @@ class LogChopper : Plugin() {
             }
         }
     }
-
+    private fun spec() {
+        if (client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT) == 1000) {
+            client.invokeMenuAction(
+                "Use",
+                "Special Attack",
+                1,
+                57,
+                -1,
+                10485795
+            )
+        }
+    }
     private fun isFull(): Boolean {
         return Items.isFull()
     }
@@ -98,12 +131,25 @@ class LogChopper : Plugin() {
         val tree = objects.getFirst(config.type().treeID)
         tree?.interact("Chop down")
     }
+    private fun chopRedwood(){
+        val redwood = objects.getFirst(ObjectID.REDWOOD_29670, ObjectID.REDWOOD)
+        redwood?.interact("Cut")
 
+    }
     private fun useBank() {
+        if (!Bank.bankPinIsOpen())
         objects.getFirst("Bank chest")?.interact("Use")
         objects.getFirst("Bank booth")?.interact("Bank")
     }
 
+    private  fun ladderUp(){
+        val upLadder = objects.getFirst(ObjectID.ROPE_LADDER_28857)
+        upLadder?.interact("Climb-up")
+    }
+    private fun ladderDown(){
+        val downLadder = objects.getFirst(ObjectID.ROPE_LADDER_28858)
+        downLadder?.interact("Climb-down")
+    }
     private fun obstacleIn() {
         val ob1 = objects.getFirst(ObjectID.HOLE_31481)
         ob1?.interact("Climb through")

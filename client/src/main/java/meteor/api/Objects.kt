@@ -45,11 +45,11 @@ object Objects {
     }
 
     /**
-     * gets the first object with an id matching the provided [id]
-     * @param id the object id we should filter for
+     * gets the first object with an id matching the provided [ids]
+     * @param ids the object ids we should filter for
      */
-    fun getFirst(id: Int): TileObject? {
-        return getAll(id)?.minByOrNull { it.distanceTo(Main.client.localPlayer) }
+    fun getFirst(vararg ids: Int): TileObject? {
+        return getAll(*ids)?.minByOrNull { it.distanceTo(Main.client.localPlayer) }
     }
 
     /**
