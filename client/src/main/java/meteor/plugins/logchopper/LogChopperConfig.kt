@@ -27,6 +27,16 @@ interface LogChopperConfig : Config{
         return MethodType.Bank
     }
 
+    @ConfigItem(
+        keyName = "spec",
+        name = "Use Spec",
+        description = "Use dragon axe special?",
+        position = 3
+    )
+    fun useSpec() : Boolean{
+        return false
+    }
+
     enum class MethodType (val string : String){
         Bank("bank"), Drop("drop")
     }
@@ -40,5 +50,6 @@ interface LogChopperConfig : Config{
         Mahogany("Mahogany tree", ItemID.MAHOGANY_LOGS),
         Yew("Yew", ItemID.YEW_LOGS),
         Magic("Magic tree", ItemID.MAGIC_LOGS),
+        Redwood("Redwood", ItemID.REDWOOD_LOGS)
     }
 }
