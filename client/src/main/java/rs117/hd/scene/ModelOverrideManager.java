@@ -64,7 +64,7 @@ public class ModelOverrideManager {
                         modelPusher.clearModelCache();
                     });
                 }
-                log.debug("Loaded {} model overrides", modelOverrides.size());
+                //log.debug("Loaded {} model overrides", modelOverrides.size());
             } catch (IOException ex) {
                 log.error("Failed to load model overrides:", ex);
             }

@@ -154,7 +154,7 @@ public class LightManager
 				l.graphicsObjectIds.forEach(id -> GRAPHICS_OBJECT_LIGHTS.put(id, l));
 			}
 
-			log.debug("Loaded {} lights", lights.length);
+			//log.debug("Loaded {} lights", lights.length);
 			configChanged = true;
 		}
 		catch (Exception ex)

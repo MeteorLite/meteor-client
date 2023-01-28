@@ -100,7 +100,7 @@ class SceneUploader
 		}
 
 		stopwatch.stop();
-		log.debug("Scene upload time: {}", stopwatch);
+		//log.debug("Scene upload time: {}", stopwatch);
 	}
 
 	private void uploadModel(long hash, Model model, GpuIntBuffer vertexBuffer, GpuFloatBuffer uvBuffer, GpuFloatBuffer normalBuffer, int tileZ, int tileX, int tileY, int orientation, ObjectType objectType)

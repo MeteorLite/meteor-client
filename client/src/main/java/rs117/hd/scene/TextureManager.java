@@ -89,7 +89,7 @@ public class TextureManager
 	public void startUp()
 	{
 		texturePath.watch(path -> {
-			log.debug("Loading Textures...");
+			//log.debug("Loading Textures...");
 			freeTextures();
 		});
 	}
@@ -256,7 +256,7 @@ public class TextureManager
 		}
 
 		int vanillaCount = i - unusedIndices.size();
-		log.debug("Loaded {} vanilla textures", vanillaCount);
+		//log.debug("Loaded {} vanilla textures", vanillaCount);
 
 		for (Material material : Material.values())
 		{
@@ -301,7 +301,7 @@ public class TextureManager
 		}
 
 		int hdCount = i - unusedIndices.size() - vanillaCount;
-		log.debug("Loaded {} HD textures", hdCount);
+		//log.debug("Loaded {} HD textures", hdCount);
 
 		glGenerateMipmap(GL_TEXTURE_2D_ARRAY);
 

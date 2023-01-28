@@ -262,7 +262,7 @@ public class EnvironmentManager
 	private void changeEnvironment(Environment newEnvironment, int camTargetX, int camTargetY, boolean instantChange)
 	{
 		currentEnvironment = newEnvironment;
-		log.debug("currentEnvironment changed to " + newEnvironment);
+		//log.debug("currentEnvironment changed to " + newEnvironment);
 
 		startTime = System.currentTimeMillis();
 		transitionCompleteTime = instantChange ? 0 : startTime + transitionDuration;
@@ -430,7 +430,7 @@ public class EnvironmentManager
 		}
 		AABB sceneAABB = new AABB(baseX, baseY, baseX + SCENE_SIZE - 2, baseY + SCENE_SIZE - 2);
 
-		log.debug("Adding environments for scene {}", sceneAABB);
+		//log.debug("Adding environments for scene {}", sceneAABB);
 
 		for (Environment environment: Environment.values())
 		{
@@ -438,7 +438,7 @@ public class EnvironmentManager
 			{
 				if (sceneAABB.intersects(aabb))
 				{
-					log.debug("Added environment {} to sceneArea list", environment.name());
+					//log.debug("Added environment {} to sceneArea list", environment.name());
 					sceneEnvironments.add(environment);
 					break;
 				}
@@ -447,7 +447,7 @@ public class EnvironmentManager
 
 		for (Environment environment : sceneEnvironments)
 		{
-			log.debug("SceneArea: " + environment.name());
+			//log.debug("SceneArea: " + environment.name());
 		}
 
 		WorldPoint camPosition = localPointToWorldTile(hdPlugin.camTarget[0], hdPlugin.camTarget[1]);

@@ -1037,7 +1037,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 				final int samples = forcedAASamples != 0 ? forcedAASamples :
 						Math.min(antiAliasingMode.getSamples(), maxSamples);
 
-				log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
+				//log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
 
 				initAAFbo(stretchedCanvasWidth, stretchedCanvasHeight, samples);
 

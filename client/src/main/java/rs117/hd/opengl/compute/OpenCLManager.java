@@ -369,7 +369,7 @@ public class OpenCLManager
 	private cl_kernel getKernel(cl_program program, String kernelName)
 	{
 		cl_kernel kernel = clCreateKernel(program, kernelName, null);
-		log.debug("Loaded kernel {} for program {}", kernelName, program);
+		//log.debug("Loaded kernel {} for program {}", kernelName, program);
 		return kernel;
 	}
 

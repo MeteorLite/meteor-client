@@ -1745,7 +1745,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 					final int samples = forcedAASamples != 0 ? forcedAASamples :
 						Math.min(antiAliasingMode.getSamples(), maxSamples);
 
-					log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
+					//log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
 
 					initAAFbo(stretchedCanvasWidth, stretchedCanvasHeight, samples);
 
@@ -2159,10 +2159,10 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		proceduralGenerator.generateTerrainData(client.getScene());
 		timerGenerateTerrainData = (int)(System.currentTimeMillis() - startTime);
 
-		log.debug("procedural data generation took {}ms to complete", (System.currentTimeMillis() - procGenTimer));
-		log.debug("-- calculateTerrainNormals: {}ms", timerCalculateTerrainNormals);
-		log.debug("-- generateTerrainData: {}ms", timerGenerateTerrainData);
-		log.debug("-- generateUnderwaterTerrain: {}ms", timerGenerateUnderwaterTerrain);
+		//log.debug("procedural data generation took {}ms to complete", (System.currentTimeMillis() - procGenTimer));
+		//log.debug("-- calculateTerrainNormals: {}ms", timerCalculateTerrainNormals);
+		//log.debug("-- generateTerrainData: {}ms", timerGenerateTerrainData);
+		//log.debug("-- generateUnderwaterTerrain: {}ms", timerGenerateUnderwaterTerrain);
 	}
 
 	private boolean skyboxColorChanged = false;
@@ -2594,7 +2594,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		if (size > glBuffer.size)
 		{
 			size = HDUtils.ceilPow2(size);
-			log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
+			//log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
 
 			glBuffer.size = size;
 			glBufferData(target, size, usage);
@@ -2614,7 +2614,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		if (size > glBuffer.size)
 		{
 			size = HDUtils.ceilPow2(size);
-			log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
+			//log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
 
 			if (offset > 0)
 			{
@@ -2654,7 +2654,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		if (size > glBuffer.size)
 		{
 			size = HDUtils.ceilPow2(size);
-			log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
+			//log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
 
 			if (offset > 0)
 			{
@@ -2688,7 +2688,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		if (size > glBuffer.size)
 		{
 			size = HDUtils.ceilPow2(size);
-			log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
+			//log.debug("Buffer resize: {} {} -> {}", glBuffer, glBuffer.size, size);
 
 			glBuffer.size = size;
 			glBindBuffer(target, glBuffer.glBufferId);
