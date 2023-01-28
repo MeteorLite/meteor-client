@@ -116,18 +116,6 @@ public abstract class RSClientMixin implements RSClient {
     private static int tickCount;
 
     @Inject
-    private static boolean interpolatePlayerAnimations;
-
-    @Inject
-    private static boolean interpolateNpcAnimations;
-
-    @Inject
-    private static boolean interpolateObjectAnimations;
-
-    @Inject
-    private static boolean interpolateWidgetAnimations;
-
-    @Inject
     private static RSPlayer[] oldPlayers = new RSPlayer[2048];
 
     @Inject
@@ -324,54 +312,6 @@ public abstract class RSClientMixin implements RSClient {
     @Override
     public Logger getLogger() {
         return rl$logger;
-    }
-
-    @Inject
-    @Override
-    public boolean isInterpolatePlayerAnimations() {
-        return interpolatePlayerAnimations;
-    }
-
-    @Inject
-    @Override
-    public void setInterpolatePlayerAnimations(boolean interpolate) {
-        interpolatePlayerAnimations = interpolate;
-    }
-
-    @Inject
-    @Override
-    public boolean isInterpolateNpcAnimations() {
-        return interpolateNpcAnimations;
-    }
-
-    @Inject
-    @Override
-    public void setInterpolateNpcAnimations(boolean interpolate) {
-        interpolateNpcAnimations = interpolate;
-    }
-
-    @Inject
-    @Override
-    public boolean isInterpolateObjectAnimations() {
-        return interpolateObjectAnimations;
-    }
-
-    @Inject
-    @Override
-    public void setInterpolateObjectAnimations(boolean interpolate) {
-        interpolateObjectAnimations = interpolate;
-    }
-
-    @Inject
-    @Override
-    public boolean isInterpolateWidgetAnimations() {
-        return interpolateWidgetAnimations;
-    }
-
-    @Inject
-    @Override
-    public void setInterpolateWidgetAnimations(boolean interpolate) {
-        interpolateWidgetAnimations = interpolate;
     }
 
     @Inject

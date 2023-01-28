@@ -46,18 +46,6 @@ public abstract class RSDynamicObjectMixin implements RSDynamicObject
 	@Shadow("client")
 	private static RSClient client;
 
-	@FieldHook("cycleStart")
-	@Inject
-	public void onAnimCycleCountChanged(int idx)
-	{
-		if (client.isInterpolateObjectAnimations())
-		{
-			// sets the packed anim frame with the frame cycle
-			int objectFrameCycle = client.getGameCycle() - getAnimCycleCount();
-			setAnimFrame(Integer.MIN_VALUE | objectFrameCycle << 16 | getAnimFrame());
-		}
-	}
-
 	@MethodHook(value = "<init>", end = true)
 	@Inject
 	public void rl$init(int id, int type, int orientation, int plane, int x, int y, int animationID, boolean var8, RSRenderable var9)
