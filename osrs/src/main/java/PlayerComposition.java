@@ -39,11 +39,11 @@ public class PlayerComposition {
       descriptor = "([I[Lfx;Z[IIIII)V",
       garbageValue = "-1317748076"
    )
-   public void method1629(int[] var1, ObjTypeCustomisation[] var2, boolean var3, int[] var4, int var5, int var6, int var7) {
+   public void setAppearance(int[] var1, ObjTypeCustomisation[] var2, boolean var3, int[] var4, int var5, int var6, int var7) {
       this.customisations = var2;
       this.isFemale = var3;
       this.field2820 = var7;
-      this.method1622(var1, var4, var5, var6);
+      this.initiateAppearance(var1, var4, var5, var6);
    }
 
    @ObfuscatedName("e")
@@ -51,7 +51,7 @@ public class PlayerComposition {
       descriptor = "([I[IIIB)V",
       garbageValue = "53"
    )
-   public void method1622(int[] var1, int[] var2, int var3, int var4) {
+   public void initiateAppearance(int[] var1, int[] var2, int var3, int var4) {
       if (var1 == null) {
          var1 = new int[12];
 
@@ -141,7 +141,7 @@ public class PlayerComposition {
    )
    public void method1624(int var1) {
       if (this.field2818 != var1) {
-         this.method1622((int[])null, this.bodyColors, var1, -1);
+         this.initiateAppearance((int[])null, this.bodyColors, var1, -1);
       }
    }
 

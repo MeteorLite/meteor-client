@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -408,14 +407,14 @@ public class WorldMapCacheName {
       Buffer var1 = new Buffer(var0);
       int var2 = var1.readUnsignedByte();
       int var3 = var1.readInt();
-      if (var3 >= 0 && (AbstractArchive.field3463 == 0 || var3 <= AbstractArchive.field3463)) {
+      if (var3 >= 0 && (AbstractArchive.maximumContainerSize == 0 || var3 <= AbstractArchive.maximumContainerSize)) {
          if (var2 == 0) {
             byte[] var4 = new byte[var3];
             var1.readBytes(var4, 0, var3);
             return var4;
          } else {
             int var6 = var1.readInt();
-            if (var6 < 0 || AbstractArchive.field3463 != 0 && var6 > AbstractArchive.field3463) {
+            if (var6 < 0 || AbstractArchive.maximumContainerSize != 0 && var6 > AbstractArchive.maximumContainerSize) {
                throw new RuntimeException();
             } else {
                byte[] var5 = new byte[var6];

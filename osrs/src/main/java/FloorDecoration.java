@@ -183,22 +183,22 @@ public final class FloorDecoration {
                      if (var9 >= 8) {
                         if (var0.movementSequence == var0.walkSequence && var0.runSequence != -1) {
                            var0.movementSequence = var0.runSequence;
-                        } else if (var0.movementSequence == var0.walkBackSequence && var0.field943 != -1) {
-                           var0.movementSequence = var0.field943;
-                        } else if (var0.walkLeftSequence == var0.movementSequence && var0.field953 != -1) {
-                           var0.movementSequence = var0.field953;
-                        } else if (var0.walkRightSequence == var0.movementSequence && var0.field945 != -1) {
-                           var0.movementSequence = var0.field945;
+                        } else if (var0.movementSequence == var0.walkBackSequence && var0.runBackSequence != -1) {
+                           var0.movementSequence = var0.runBackSequence;
+                        } else if (var0.walkLeftSequence == var0.movementSequence && var0.runLeftSequence != -1) {
+                           var0.movementSequence = var0.runLeftSequence;
+                        } else if (var0.walkRightSequence == var0.movementSequence && var0.runRightSequence != -1) {
+                           var0.movementSequence = var0.runRightSequence;
                         }
                      } else if (var9 <= 1) {
-                        if (var0.walkSequence == var0.movementSequence && var0.field946 != -1) {
-                           var0.movementSequence = var0.field946;
-                        } else if (var0.movementSequence == var0.walkBackSequence && var0.field947 != -1) {
-                           var0.movementSequence = var0.field947;
-                        } else if (var0.movementSequence == var0.walkLeftSequence && var0.field978 != -1) {
-                           var0.movementSequence = var0.field978;
-                        } else if (var0.movementSequence == var0.walkRightSequence && var0.field949 != -1) {
-                           var0.movementSequence = var0.field949;
+                        if (var0.walkSequence == var0.movementSequence && var0.crawlSequence != -1) {
+                           var0.movementSequence = var0.crawlSequence;
+                        } else if (var0.movementSequence == var0.walkBackSequence && var0.crawlBackSequence != -1) {
+                           var0.movementSequence = var0.crawlBackSequence;
+                        } else if (var0.movementSequence == var0.walkLeftSequence && var0.crawlLeftSequence != -1) {
+                           var0.movementSequence = var0.crawlLeftSequence;
+                        } else if (var0.movementSequence == var0.walkRightSequence && var0.crawlRightSequence != -1) {
+                           var0.movementSequence = var0.crawlRightSequence;
                         }
                      }
 

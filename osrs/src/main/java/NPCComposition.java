@@ -1,5 +1,5 @@
 import java.util.Date;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -51,21 +51,21 @@ public class NPCComposition extends DualNode {
    @ObfuscatedName("l")
    public int walkRightSequence = -1;
    @ObfuscatedName("t")
-   public int field1563 = -1;
+   public int runSequence = -1;
    @ObfuscatedName("c")
-   public int field1566 = -1;
+   public int runBackSequence = -1;
    @ObfuscatedName("p")
-   public int field1567 = -1;
+   public int runLeftSequence = -1;
    @ObfuscatedName("d")
-   public int field1568 = -1;
+   public int runRightSequence = -1;
    @ObfuscatedName("y")
-   public int field1569 = -1;
+   public int crawlSequence = -1;
    @ObfuscatedName("z")
-   public int field1570 = -1;
+   public int crawlBackSequence = -1;
    @ObfuscatedName("w")
-   public int field1571 = -1;
+   public int crawlLeftSequence = -1;
    @ObfuscatedName("as")
-   public int field1572 = -1;
+   public int crawlRightSequence = -1;
    @ObfuscatedName("ad")
    short[] recolorFrom;
    @ObfuscatedName("ao")
@@ -255,19 +255,19 @@ public class NPCComposition extends DualNode {
             } else if (var2 == 111) {
                this.isFollower = true;
             } else if (var2 == 114) {
-               this.field1563 = var1.readUnsignedShort();
+               this.runSequence = var1.readUnsignedShort();
             } else if (var2 == 115) {
-               this.field1563 = var1.readUnsignedShort();
-               this.field1566 = var1.readUnsignedShort();
-               this.field1567 = var1.readUnsignedShort();
-               this.field1568 = var1.readUnsignedShort();
+               this.runSequence = var1.readUnsignedShort();
+               this.runBackSequence = var1.readUnsignedShort();
+               this.runLeftSequence = var1.readUnsignedShort();
+               this.runRightSequence = var1.readUnsignedShort();
             } else if (var2 == 116) {
-               this.field1569 = var1.readUnsignedShort();
+               this.crawlSequence = var1.readUnsignedShort();
             } else if (var2 == 117) {
-               this.field1569 = var1.readUnsignedShort();
-               this.field1570 = var1.readUnsignedShort();
-               this.field1571 = var1.readUnsignedShort();
-               this.field1572 = var1.readUnsignedShort();
+               this.crawlSequence = var1.readUnsignedShort();
+               this.crawlBackSequence = var1.readUnsignedShort();
+               this.crawlLeftSequence = var1.readUnsignedShort();
+               this.crawlRightSequence = var1.readUnsignedShort();
             } else if (var2 == 249) {
                this.params = DynamicObject.readStringIntParameters(var1, this.params);
             }
