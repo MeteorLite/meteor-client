@@ -151,8 +151,6 @@ public interface RSModel extends RSRenderable, Model
 	@Override
 	void drawFace$api(int face);
 
-	void interpolateFrames(RSFrames frames, int frameId, RSFrames nextFrames, int nextFrameId, int interval, int intervalCount);
-
 	/**
 	 * Compute the convex hull of this model
 	 */

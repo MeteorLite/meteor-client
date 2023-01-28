@@ -13,7 +13,6 @@ import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.agilitybot.AgilityBot
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
 import meteor.plugins.ammo.AmmoPlugin
-import meteor.plugins.animsmoothing.AnimationSmoothingPlugin
 import meteor.plugins.antidrag.AntiDragPlugin
 import meteor.plugins.attackstyles.AttackStylesPlugin
 import meteor.plugins.autoalch.AutoAlchPlugin
@@ -160,7 +159,6 @@ object PluginManager {
             init<AgilityBot>()
             init<AlchemicalHydraPlugin>()
             init<AmmoPlugin>()
-            init<AnimationSmoothingPlugin>()
             init<AoeWarningPlugin>()
             init<AttackStylesPlugin>()
             init<AntiDragPlugin>()
