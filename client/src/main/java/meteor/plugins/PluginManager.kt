@@ -33,6 +33,7 @@ import meteor.plugins.blastfurnace.BlastFurnacePlugin
 import meteor.plugins.blastmine.BlastMinePlugin
 import meteor.plugins.boosts.BoostsPlugin
 import meteor.plugins.bosstimer.BossTimersPlugin
+import meteor.plugins.bowfletcher.BowFletcher
 import meteor.plugins.camera.CameraPlugin
 import meteor.plugins.cannonreloader.CannonReloaderPlugin
 import meteor.plugins.chathistory.ChatHistoryPlugin
@@ -180,6 +181,7 @@ object PluginManager {
             init<BlastMinePlugin>()
             init<BoostsPlugin>()
             init<BossTimersPlugin>()
+            init<BowFletcher>()
             init<CameraPlugin>()
             init<CannonPlugin>()
             init<CannonReloaderPlugin>()

@@ -137,9 +137,10 @@ class LogChopper : Plugin() {
 
     }
     private fun useBank() {
-        if (!Bank.bankPinIsOpen())
-        objects.getFirst("Bank chest")?.interact("Use")
-        objects.getFirst("Bank booth")?.interact("Bank")
+        if (!Bank.bankPinIsOpen()) {
+            objects.getFirst("Bank chest")?.interact("Use")
+            objects.getFirst("Bank booth")?.interact("Bank")
+        }
     }
 
     private  fun ladderUp(){
@@ -178,9 +179,16 @@ class LogChopper : Plugin() {
     }
 
     private fun useNullBank() {
-        val obj = getGameObject(31427) ?: return
-        client.invokeMenuAction(
-            "Use", null, 31427, MenuAction.GAME_OBJECT_FIRST_OPTION.id, obj.sceneMinLocation.x, obj.sceneMinLocation.y
-        )
+        if (!Bank.bankPinIsOpen()) {
+            val obj = getGameObject(31427) ?: return
+            client.invokeMenuAction(
+                "Use",
+                null,
+                31427,
+                MenuAction.GAME_OBJECT_FIRST_OPTION.id,
+                obj.sceneMinLocation.x,
+                obj.sceneMinLocation.y
+            )
+        }
     }
 }
