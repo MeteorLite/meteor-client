@@ -269,7 +269,7 @@ public final class Player extends Actor {
          this.appearance = new PlayerComposition();
       }
 
-      this.appearance.method1629(var5, var26, var27, var25, var2, var4, var3);
+      this.appearance.setAppearance(var5, var26, var27, var25, var2, var4, var3);
    }
 
    @ObfuscatedName("e")

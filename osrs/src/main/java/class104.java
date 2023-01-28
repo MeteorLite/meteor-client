@@ -173,7 +173,7 @@ public class class104 {
       Client.interfaceParents = new NodeHashTable(8);
       Client.meslayerContinueWidget = null;
       WorldMapSectionType.method1426();
-      Client.playerAppearance.method1622((int[])null, new int[]{0, 0, 0, 0, 0}, 0, -1);
+      Client.playerAppearance.initiateAppearance((int[])null, new int[]{0, 0, 0, 0, 0}, 0, -1);
 
       for(var0 = 0; var0 < 8; ++var0) {
          Client.playerMenuActions[var0] = null;
