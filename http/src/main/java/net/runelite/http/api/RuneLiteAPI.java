@@ -174,7 +174,7 @@ public class RuneLiteAPI {
     }
     catch (ParserConfigurationException | IOException | SAXException ex)
     {
-      logger.error(null, ex);
+      ex.printStackTrace();
     }
   }
 

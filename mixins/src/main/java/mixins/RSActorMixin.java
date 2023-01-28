@@ -90,7 +90,7 @@ public abstract class RSActorMixin implements RSActor
 		}
 		catch (ArrayIndexOutOfBoundsException e)
 		{
-			client.getLogger().error("", e);
+			e.printStackTrace();
 			return null;
 		}
 	}

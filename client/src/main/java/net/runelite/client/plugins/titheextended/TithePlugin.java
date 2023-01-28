@@ -71,7 +71,8 @@ public class TithePlugin extends Plugin {
 		overlays.remove(overlay_points);
 		overlays.remove(overlay_patches);
 		overlays.remove(overlay_inventory);
-		client_thread.invokeLater(() -> overlay_points.shutDown());
+		if (overlay_points != null)
+			client_thread.invokeLater(() -> overlay_points.shutDown());
 	}
 
 	@Override

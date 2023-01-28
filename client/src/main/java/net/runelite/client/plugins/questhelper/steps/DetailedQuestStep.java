@@ -456,13 +456,13 @@ public class DetailedQuestStep extends QuestStep
 		Stream<Requirement> stream = requirements.stream();
 		if (additionalRequirements.size() > 0)
 		{
-			stream = Stream.concat(stream, additionalRequirements.stream());
+			stream = Stream.concat(stream, additionalRequirements.stream().filter(Objects::nonNull));
+			stream
+					.distinct()
+					.map(req -> req.getDisplayTextWithChecks(client, questHelper.getConfig()))
+					.flatMap(Collection::stream)
+					.forEach(line -> panelComponent.getChildren().add(line));
 		}
-		stream
-			.distinct()
-			.map(req -> req.getDisplayTextWithChecks(client, questHelper.getConfig()))
-			.flatMap(Collection::stream)
-			.forEach(line -> panelComponent.getChildren().add(line));
 
 		if (!recommended.isEmpty())
 		{

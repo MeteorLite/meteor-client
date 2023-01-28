@@ -97,7 +97,7 @@ public class BigBufferedImage extends BufferedImage
 				}
 				catch (InterruptedException ex)
 				{
-					log.error(null, ex);
+					ex.printStackTrace();
 				}
 			}
 		}
