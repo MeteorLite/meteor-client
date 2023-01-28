@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 import meteor.Main
 import meteor.rs.Applet
 import meteor.ui.composables.preferences.consoleOpen
-import meteor.ui.composables.preferences.outPut
 import meteor.ui.composables.preferences.secondColor
 import java.awt.BorderLayout
 import java.awt.Dimension
@@ -45,13 +44,11 @@ fun OSRSPanel() {
         }
         subscribed = true
     }
-    
-    LazyColumn {
-        item {
+
             Row {
                 SwingPanel(
                     Color.Black,
-                    modifier = Modifier.fillParentMaxWidth().fillParentMaxHeight(if (consoleOpen.value) 0.75f else 1f),
+                    modifier = Modifier.fillMaxWidth().fillMaxHeight(if (consoleOpen.value) 0.75f else 1f),
                     factory = {
                         if (!loaded) {
                             gamePanel.apply {
@@ -70,38 +67,5 @@ fun OSRSPanel() {
                         }
                     })
             }
-        }
-        when {
-            consoleOpen.value -> {
-                item {
-                    val scrollState = rememberScrollState(0)
-                    val scope = rememberCoroutineScope()
-                        Row {
-                            BasicTextField(
-                                modifier = Modifier.fillMaxWidth().background(Color.Black)
-                                    .fillParentMaxHeight(if (consoleOpen.value) 0.25f else 0f)
-                                    .padding(all = 1.dp)
-                                    .verticalScroll(scrollState).onFocusEvent {
-                                        scope.launch {
-                                            scrollState.scrollTo(scrollState.maxValue)
-                                        }
-                                    },
-                                value = outPut.value,
-                                onValueChange = {
 
-                                    outPut.value = it
-                                },
-                                maxLines = 3000,
-                                textStyle = TextStyle(
-                                    color = secondColor.value,
-                                    fontSize = 14.sp,
-                                    textDirection = TextDirection.Ltr,
-                                    letterSpacing = 2.sp
-                                )
-                            )
-                        }
-                }
-            }
-        }
-    }
 }

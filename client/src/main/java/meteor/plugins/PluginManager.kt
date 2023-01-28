@@ -99,7 +99,6 @@ import meteor.plugins.pvpkeys.PvPKeys
 import meteor.plugins.reportbutton.ReportButtonPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.runepouch.RunepouchPlugin
-import meteor.plugins.scriptcreator.ScriptCreatorPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
@@ -270,7 +269,6 @@ object PluginManager {
             init<ReportButtonPlugin>()
             init<RunepouchPlugin>()
             init<RsnHiderPlugin>()
-            init<ScriptCreatorPlugin>()
             init<SlayerPlugin>()
             init<SpecBarPlugin>()
             init<StatusBarsPlugin>()
@@ -370,9 +368,6 @@ object PluginManager {
                 val plugin =
                     classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
                         .newInstance() as Plugin
-                // Do something with the plugin
-
-                classLoader.close()
                 if (plugins.any { p -> p.getName().equals(plugin.getName()) })
                     throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
@@ -400,9 +395,9 @@ object PluginManager {
         }
 
     }
-     fun get(p: Class<out Plugin>): Plugin {
+    fun get(p: Class<out Plugin>): Plugin {
         return plugins.first { it.javaClass == p }
-     }
+    }
 
     inline fun <reified T : Plugin> get(): T {
         return plugins.filterIsInstance<T>().first()

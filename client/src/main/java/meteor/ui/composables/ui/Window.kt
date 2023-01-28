@@ -20,7 +20,7 @@ fun FrameWindowScope.windowContent() {
                 Main.window = this@windowContent
 
                 val width = when {
-                    scriptCreator.value -> scriptCreatorWidth
+
                     pluginsOpen.value || configOpen.value || infoPanelOpen.value || hiscoreOpen.value || xpTrackerOpen.value || lootTrackerOpen.value || externalsOpen.value || notesOpen.value -> totalClientWidth
                     else -> totalMinimalWidth
                 }

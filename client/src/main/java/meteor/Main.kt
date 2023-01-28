@@ -159,17 +159,6 @@ object Main : ApplicationScope, EventSubscriber() {
         SessionManager.start()
         timer.stop()
 
-
-/*       val outStream = PrintStream(object : ByteArrayOutputStream() {
-            override fun flush() {
-                val decodedString = String(buf, 0, count, Charset.defaultCharset())
-                val strippedString = decodedString.replace(Regex("\u001B\\[[;\\d]*m"), "")
-                outPut.value = strippedString
-            }
-
-        }, true)
-        val teeStream = TeeOutputStream(System.out, outStream)
-        System.setOut(PrintStream(teeStream, true))*/
         logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 
