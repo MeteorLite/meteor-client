@@ -29,6 +29,7 @@ import eventbus.events.GameStateChanged
 import eventbus.events.GameTick
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import meteor.rs.ClientThread
 import net.runelite.api.Constants
 import net.runelite.api.GameState
@@ -57,7 +58,7 @@ class ReportButtonPlugin : Plugin() {
     private var ticksSinceLogin = 0
     private var ready = false
     private val clientThread = ClientThread
-    var config = javaConfiguration(ReportButtonConfig::class.java) as ReportButtonConfig
+    var config = configuration<ReportButtonConfig>()
     override fun onStart() {
         clientThread.invoke { updateReportButtonTime() }
         updateTimeFormat()

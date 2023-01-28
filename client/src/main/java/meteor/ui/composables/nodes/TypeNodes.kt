@@ -133,7 +133,10 @@ fun colorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
 @Composable
 fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     var expanded by remember { mutableStateOf(false) }
-    var configStr = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())!!
+    var configStr = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())
+    if (configStr == null) {
+        println("null config ${descriptor.group} ${configItemDescriptor.item.name}")
+    }
     Row(modifier = Modifier.fillMaxWidth().height(32.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background)) {
             MaterialTheme(colors = darkThemeColors) {

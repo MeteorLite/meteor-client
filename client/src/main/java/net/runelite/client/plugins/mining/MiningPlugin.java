@@ -83,7 +83,7 @@ public class MiningPlugin extends Plugin
 			"(?:some|an?) " +
 			"(?:copper|tin|clay|iron|silver|coal|gold|mithril|adamantite|runeite|amethyst|sandstone|granite|barronite shards|barronite deposit|Opal|piece of Jade|Red Topaz|Emerald|Sapphire|Ruby|Diamond)" +
 			"(?:\\.|!)");
-	private MiningConfig config = (MiningConfig) javaConfiguration(MiningConfig.class);
+	private MiningConfig config = configuration(MiningConfig.class);
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 	private MiningOverlay overlay = new MiningOverlay(this, config);
 	private MiningRocksOverlay rocksOverlay = new MiningRocksOverlay(this);

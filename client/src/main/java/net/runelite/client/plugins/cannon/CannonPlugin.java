@@ -100,7 +100,7 @@ public class CannonPlugin extends Plugin {
 
 
 
-	public CannonConfig config = (CannonConfig) javaConfiguration(CannonConfig.class);
+	public CannonConfig config = configuration(CannonConfig.class);
 	private CannonOverlay cannonOverlay = new CannonOverlay(this, config);
 	private CannonSpotOverlay cannonSpotOverlay = new CannonSpotOverlay(this, config);
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;

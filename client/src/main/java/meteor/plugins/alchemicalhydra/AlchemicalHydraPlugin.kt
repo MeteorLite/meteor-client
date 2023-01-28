@@ -31,7 +31,7 @@ class AlchemicalHydraPlugin : Plugin() {
     var blueVent: GameObject? = null
     private var inFight = false
     var ventTicks = 0
-    var config = javaConfiguration(HydraConfig::class.java) as HydraConfig
+    var config = configuration<HydraConfig>()
     private val spriteManager = SpriteManager
     private val clientThread = ClientThread
     private val renderer = ModelOutlineRenderer()

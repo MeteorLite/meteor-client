@@ -33,6 +33,7 @@ import lombok.Getter
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import meteor.ui.overlay.infobox.InfoBox
 import meteor.ui.overlay.infobox.InfoBoxManager
 import net.runelite.api.ChatMessageType
@@ -43,7 +44,7 @@ import java.time.Instant
 
 @PluginDescriptor(name = "Cooking", description = "Show cooking statistics", tags = ["overlay", "skilling", "cook"])
 class CookingPlugin : Plugin() {
-    private val config = javaConfiguration(CookingConfig::class.java) as CookingConfig
+    private val config = configuration<CookingConfig>()
     private val overlay = CookingOverlay(this)
     private val infoBoxManager = InfoBoxManager
     private val itemManager = ItemManager

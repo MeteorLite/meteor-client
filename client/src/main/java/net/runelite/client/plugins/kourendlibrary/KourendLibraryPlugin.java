@@ -63,7 +63,7 @@ public class KourendLibraryPlugin extends Plugin
 
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 
-	private KourendLibraryConfig config = (KourendLibraryConfig) javaConfiguration(KourendLibraryConfig.class);
+	private KourendLibraryConfig config = configuration(KourendLibraryConfig.class);
 
 	private KourendLibraryOverlay overlay = new KourendLibraryOverlay(this, config, library);
 

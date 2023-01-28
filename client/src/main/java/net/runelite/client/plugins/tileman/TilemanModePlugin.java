@@ -65,7 +65,7 @@ public class TilemanModePlugin extends Plugin {
     private final List<WorldPoint> points = new ArrayList<>();
 
     private Client client = Main.INSTANCE.getClient();
-    private TilemanModeConfigEvaluator config = new TilemanModeConfigEvaluator((TilemanModeConfig) javaConfiguration(TilemanModeConfig.class));
+    private TilemanModeConfigEvaluator config = new TilemanModeConfigEvaluator(configuration(TilemanModeConfig.class));
     private ConfigManager configManager = ConfigManager.INSTANCE;
     private OverlayManager overlayManager = OverlayManager.INSTANCE;
     private TilemanModeOverlay overlay = new TilemanModeOverlay(config, this);

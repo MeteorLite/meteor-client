@@ -135,7 +135,7 @@ public class ChatCommandsPlugin extends Plugin
 
 	private Client client = Main.INSTANCE.getClient();
 	private ClientThread clientThread = ClientThread.INSTANCE;
-	private ChatCommandsConfig config = (ChatCommandsConfig) javaConfiguration(ChatCommandsConfig.class);
+	private ChatCommandsConfig config = configuration(ChatCommandsConfig.class);
 	private ConfigManager configManager = ConfigManager.INSTANCE;
 	private ItemManager itemManager = ItemManager.INSTANCE;
 	private ChatCommandManager chatCommandManager = Main.INSTANCE.getChatCommandManager();

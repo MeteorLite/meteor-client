@@ -39,7 +39,6 @@ import meteor.ui.composables.ui.onPluginToggled
 
 @Composable
 fun configPanel() {
-    if (lastPlugin.configuration != null) descriptor = ConfigManager.getConfigDescriptor(lastPlugin.configuration!!)
     val mod = Modifier.background(if (darkLightMode.value) darkThemeColors.background else lightThemeColors.background
     ).fillMaxHeight().width(300.dp)
     Column {
@@ -69,9 +68,9 @@ fun configs(){
         horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
         modifier = Modifier.width(300.dp).fillMaxHeight().background(background ).padding(start = 4.dp)
     ) {
-        titleItems()
-        sectionItems()
-        configItems()
+        titleItems(descriptor)
+        sectionItems(descriptor)
+        configItems(descriptor)
     }
 }
 

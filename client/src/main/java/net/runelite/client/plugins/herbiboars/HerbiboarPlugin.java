@@ -53,7 +53,7 @@ import static net.runelite.api.ObjectID.*;
 public class HerbiboarPlugin extends Plugin
 {
 	private ClientThread clientThread = ClientThread.INSTANCE;
-	private HerbiboarConfig config = (HerbiboarConfig) javaConfiguration(HerbiboarConfig.class);
+	private HerbiboarConfig config = configuration(HerbiboarConfig.class);
 	private HerbiboarOverlay overlay = new HerbiboarOverlay(this, config);
 	private HerbiboarMinimapOverlay minimapOverlay = new HerbiboarMinimapOverlay(this, config);
 

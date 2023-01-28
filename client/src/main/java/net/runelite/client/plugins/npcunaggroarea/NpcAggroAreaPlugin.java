@@ -79,7 +79,7 @@ public class NpcAggroAreaPlugin extends Plugin
 	private static final WorldArea WILDERNESS_UNDERGROUND = new WorldArea(2944, 9918, 320, 442, 0);
 
 	private Client client = Main.INSTANCE.getClient();
-	private NpcAggroAreaConfig config = (NpcAggroAreaConfig) javaConfiguration(NpcAggroAreaConfig.class);
+	private NpcAggroAreaConfig config = configuration(NpcAggroAreaConfig.class);
 	private NpcAggroAreaOverlay overlay = new NpcAggroAreaOverlay(config, this);
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 	private ItemManager itemManager = ItemManager.INSTANCE;

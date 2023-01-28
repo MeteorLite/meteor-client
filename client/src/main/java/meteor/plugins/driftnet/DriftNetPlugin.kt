@@ -30,6 +30,7 @@ import com.google.common.collect.ImmutableSet
 import eventbus.events.*
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.plugins.attackstyles.AttackStylesConfig
 import meteor.rs.ClientThread
 import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
@@ -39,7 +40,7 @@ import java.util.stream.Collectors
 @PluginDescriptor(name = "Drift Net", description = "Display information about drift nets", tags = ["hunter", "fishing", "drift", "net"], enabledByDefault = false)
 class DriftNetPlugin : Plugin() {
     private val clientThread = ClientThread
-    private val config = javaConfiguration(DriftNetConfig::class.java) as DriftNetConfig
+    private val config = configuration<DriftNetConfig>()
     private val overlay = DriftNetOverlay(this, config)
     val fish: MutableSet<NPC> = HashSet()
     val taggedFish: MutableMap<NPC?, Int> = HashMap()

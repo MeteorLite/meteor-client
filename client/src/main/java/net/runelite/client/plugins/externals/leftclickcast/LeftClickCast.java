@@ -48,7 +48,7 @@ public class LeftClickCast extends Plugin
 {
 	private Client client = Main.client;
 
-	private LeftClickConfig config = (LeftClickConfig) javaConfiguration(LeftClickConfig.class);
+	private LeftClickConfig config = configuration(LeftClickConfig.class);
 
 	private KeyManager keyManager = KeyManager.INSTANCE;
 

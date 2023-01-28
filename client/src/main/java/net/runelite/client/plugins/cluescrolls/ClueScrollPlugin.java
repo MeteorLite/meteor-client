@@ -156,7 +156,7 @@ public class ClueScrollPlugin extends Plugin
 
 	private ClueScrollWorldOverlay clueScrollWorldOverlay = new ClueScrollWorldOverlay(this);
 
-	private ClueScrollConfig config = (ClueScrollConfig) javaConfiguration(ClueScrollConfig.class);
+	private ClueScrollConfig config = configuration(ClueScrollConfig.class);
 
 	private WorldMapPointManager worldMapPointManager = WorldMapPointManager.INSTANCE;
 

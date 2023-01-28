@@ -57,7 +57,7 @@ public class AoeWarningPlugin extends Plugin {
   @Getter(AccessLevel.PACKAGE)
   private final Set<ProjectileContainer> projectiles = new HashSet<>();
 
-  public AoeWarningConfig config = (AoeWarningConfig) javaConfiguration(AoeWarningConfig.class);
+  public AoeWarningConfig config = configuration(AoeWarningConfig.class);
   private AoeWarningOverlay coreOverlay = new AoeWarningOverlay(this, config);
   private BombOverlay bombOverlay = new BombOverlay(this, config);
   private OverlayManager overlayManager = OverlayManager.INSTANCE;

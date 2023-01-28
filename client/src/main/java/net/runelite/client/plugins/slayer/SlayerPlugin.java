@@ -111,7 +111,7 @@ public class SlayerPlugin extends Plugin
 	private static final int TASK_STRING_MAX_LENGTH = 50;
 
 	private Client client = Main.client;
-	private SlayerConfig config = (SlayerConfig) javaConfiguration(SlayerConfig.class);
+	private SlayerConfig config = configuration(SlayerConfig.class);
 	private ConfigManager configManager = ConfigManager.INSTANCE;
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 	private SlayerOverlay overlay = new SlayerOverlay(this, config);

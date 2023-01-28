@@ -183,7 +183,7 @@ public class QuestHelperPlugin extends Plugin
 	private QuestHelperDebugOverlay questHelperDebugOverlay = new QuestHelperDebugOverlay(this);
 
 	@Getter
-	private QuestHelperConfig config = (QuestHelperConfig) javaConfiguration(QuestHelperConfig.class);
+	private QuestHelperConfig config = configuration(QuestHelperConfig.class);
 
 	@Getter
 	private QuestHelper selectedQuest = null;

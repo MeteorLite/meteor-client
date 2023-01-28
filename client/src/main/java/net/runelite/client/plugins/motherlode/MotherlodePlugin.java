@@ -89,7 +89,7 @@ public class MotherlodePlugin extends Plugin
 	private static final int UPPER_FLOOR_HEIGHT = -490;
 
 	private MotherlodeSession session = new MotherlodeSession();
-	private MotherlodeConfig config = (MotherlodeConfig) javaConfiguration(MotherlodeConfig.class);
+	private MotherlodeConfig config = configuration(MotherlodeConfig.class);
 	private OverlayManager overlayManager = OverlayManager.INSTANCE;
 	private MotherlodeOverlay overlay = new MotherlodeOverlay(this, session, config);
 	private MotherlodeSceneOverlay sceneOverlay = new MotherlodeSceneOverlay(this, config);

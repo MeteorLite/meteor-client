@@ -27,20 +27,18 @@ open class Plugin() : EventSubscriber() {
         return getDescriptor().name
     }
 
-    fun javaConfiguration(clazz: Class<out Config>): Config {
-        val c: Config = getConfig(clazz)!!
-        setDefaultConfiguration(c, false)
+    fun <T : Config?> configuration(clazz: Class<out Config?>): T {
+        val c: T = getConfig(clazz)!! as T
+        setDefaultConfiguration(c as Config, false)
         configuration = c
         return c
     }
 
-    inline fun <reified T : Config> configuration(): T {
-
-        val config = getConfig(T::class.java) as T
-
-        setDefaultConfiguration(config, false)
-        configuration = config
-        return config
+    inline fun <reified T : Config?> configuration(): T {
+        val c: Config = getConfig(T::class.java)!!
+        setDefaultConfiguration(c, false)
+        configuration = c
+        return c as T
     }
 
     inline fun <reified T : Overlay> overlay(overlay: T): T {

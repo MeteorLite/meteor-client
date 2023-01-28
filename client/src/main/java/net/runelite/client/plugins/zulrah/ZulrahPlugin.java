@@ -55,7 +55,7 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
 
    public static meteor.Logger log = new meteor.Logger("Zulrah");
 
-    private ZulrahConfig config = (ZulrahConfig) javaConfiguration(ZulrahConfig.class);
+    private ZulrahConfig config = configuration(ZulrahConfig.class);
 
    private Client client = Main.INSTANCE.getClient();
 

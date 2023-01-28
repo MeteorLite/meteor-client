@@ -138,7 +138,7 @@ public class TimersPlugin extends Plugin
 	private ItemManager itemManager = ItemManager.INSTANCE;
 	private SpriteManager spriteManager = SpriteManager.INSTANCE;
 	private Client client = Main.INSTANCE.getClient();
-	private TimersConfig config = (TimersConfig) javaConfiguration(TimersConfig.class);
+	private TimersConfig config = configuration(TimersConfig.class);
 	private InfoBoxManager infoBoxManager = InfoBoxManager.INSTANCE;
 
 	@Override
