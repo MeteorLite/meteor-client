@@ -154,7 +154,7 @@ fun configPanelHeader() {
                 val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
                 Switch(
                     switchState.value,
-                    onPluginToggled(switchState, lastPlugin, true),
+                    onPluginToggled(switchState, lastPlugin),
                     enabled = true,
                     modifier = Modifier.scale(0.75f),
                     colors = SwitchDefaults.colors(checkedThumbColor = uiColor.value, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)

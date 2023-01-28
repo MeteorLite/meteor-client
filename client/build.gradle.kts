@@ -102,19 +102,9 @@ dependencies {
     implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
     implementation("br.com.devsrsouza.compose.icons.jetbrains:tabler-icons:1.0.0")
     implementation("br.com.devsrsouza.compose.icons.jetbrains:line-awesome:1.0.0")
-
-    //script creator
     implementation(kotlin("stdlib-jdk8:1.8.0-RC2"))
     implementation(kotlin("reflect"))
-    implementation(kotlin("script-runtime"))
-    implementation(kotlin("script-util"))
-    implementation(kotlin("compiler-embeddable"))
-    implementation(kotlin("scripting-compiler-embeddable"))
-    implementation(kotlin("script-util"))
-    implementation("org.slf4j:slf4j-api:_")
     implementation("net.java.dev.jna:jna:_")
-    implementation("com.github.Qawaz.compose-code-editor:codeeditor:3.0.5")
-    implementation("com.halilibo.compose-richtext:richtext-commonmark:_")
 
     implementation(compose.desktop.currentOs)
 

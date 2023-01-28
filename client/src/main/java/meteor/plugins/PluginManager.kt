@@ -99,7 +99,6 @@ import meteor.plugins.pvpkeys.PvPKeys
 import meteor.plugins.reportbutton.ReportButtonPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
 import meteor.plugins.runepouch.RunepouchPlugin
-import meteor.plugins.scriptcreator.ScriptCreatorPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
@@ -270,7 +269,6 @@ object PluginManager {
             init<ReportButtonPlugin>()
             init<RunepouchPlugin>()
             init<RsnHiderPlugin>()
-            init<ScriptCreatorPlugin>()
             init<SlayerPlugin>()
             init<SpecBarPlugin>()
             init<StatusBarsPlugin>()
@@ -364,30 +362,24 @@ object PluginManager {
             start(plugin)
     }
 
-    private fun initExternalPlugin(jar: File, manifest: Manifest) {
+    fun initExternalPlugin(jar: File, manifest: Manifest) {
         try {
-            URLClassLoader(arrayOf(jar.toURI().toURL())).use { classLoader ->
-                val plugin =
-                    classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
-                        .newInstance() as Plugin
-                // Do something with the plugin
+            val classLoader = URLClassLoader(arrayOf(jar.toURI().toURL()))
+            val plugin = classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor().newInstance() as Plugin
+            if (plugins.any { p -> p.getName().equals(plugin.getName()) })
+                throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
-                classLoader.close()
-                if (plugins.any { p -> p.getName().equals(plugin.getName()) })
-                    throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
+            if (ConfigManager.getConfiguration(
+                    plugin.javaClass.simpleName,
+                    "pluginEnabled"
+                ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
+            )
+                ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
-                if (ConfigManager.getConfiguration(
-                        plugin.javaClass.simpleName,
-                        "pluginEnabled"
-                    ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
-                )
-                    ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
-
-                plugins.add(plugin)
-                runningMap[plugin] = plugin.shouldEnable()
-                if (runningMap[plugin]!!)
-                    start(plugin)
-            }
+            plugins.add(plugin)
+            runningMap[plugin] = plugin.shouldEnable()
+            if (runningMap[plugin]!!)
+                start(plugin)
         } catch (e: Exception) {
             e.printStackTrace()
             if (e is java.lang.RuntimeException) {

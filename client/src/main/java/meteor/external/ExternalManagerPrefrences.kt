@@ -24,12 +24,12 @@ import meteor.ui.composables.preferences.setErrorState
 import meteor.ui.composables.preferences.surface
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
-import org.jetbrains.kotlin.daemon.common.toHexString
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
+import java.math.BigInteger
 import java.net.URL
 import java.net.URLClassLoader
 import java.security.MessageDigest
@@ -42,7 +42,8 @@ fun InputStream.hash(): String {
         md.update(buffer, 0, read)
         read = read(buffer)
     }
-    return md.digest().toHexString()
+    val digest = md.digest()
+    return BigInteger(1, digest).toString(16)
 }
 val savePath = "${System.getProperty("user.home")}/.meteor/externalplugins"
 var projectUrl = mutableStateOf("")
