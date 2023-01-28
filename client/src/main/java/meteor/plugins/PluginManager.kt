@@ -362,24 +362,27 @@ object PluginManager {
             start(plugin)
     }
 
-    fun initExternalPlugin(jar: File, manifest: Manifest) {
+    private fun initExternalPlugin(jar: File, manifest: Manifest) {
         try {
-            val classLoader = URLClassLoader(arrayOf(jar.toURI().toURL()))
-            val plugin = classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor().newInstance() as Plugin
-            if (plugins.any { p -> p.getName().equals(plugin.getName()) })
-                throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
+            URLClassLoader(arrayOf(jar.toURI().toURL())).use { classLoader ->
+                val plugin =
+                    classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
+                        .newInstance() as Plugin
+                if (plugins.any { p -> p.getName().equals(plugin.getName()) })
+                    throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
 
-            if (ConfigManager.getConfiguration(
-                    plugin.javaClass.simpleName,
-                    "pluginEnabled"
-                ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
-            )
-                ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
+                if (ConfigManager.getConfiguration(
+                        plugin.javaClass.simpleName,
+                        "pluginEnabled"
+                    ) != null && plugin.javaClass.getAnnotation(PluginDescriptor::class.java)!!.disabledOnStartup
+                )
+                    ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
-            plugins.add(plugin)
-            runningMap[plugin] = plugin.shouldEnable()
-            if (runningMap[plugin]!!)
-                start(plugin)
+                plugins.add(plugin)
+                runningMap[plugin] = plugin.shouldEnable()
+                if (runningMap[plugin]!!)
+                    start(plugin)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
             if (e is java.lang.RuntimeException) {
@@ -392,9 +395,9 @@ object PluginManager {
         }
 
     }
-     fun get(p: Class<out Plugin>): Plugin {
+    fun get(p: Class<out Plugin>): Plugin {
         return plugins.first { it.javaClass == p }
-     }
+    }
 
     inline fun <reified T : Plugin> get(): T {
         return plugins.filterIsInstance<T>().first()
