@@ -27,7 +27,9 @@ package mixins;
 import dev.hoot.api.events.AutomatedMenu;
 import java.awt.Polygon;
 import java.awt.Shape;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import eventbus.Events;
 import eventbus.events.NPCMoved;
@@ -133,13 +135,21 @@ public abstract class RSNPCMixin implements RSNPC
 		}
 	}
 
+	@Inject
+	ArrayList<Integer> dontProcessNPCIds = new ArrayList<>(
+			Arrays.asList(
+					//Phantom Muspah
+					12077, 12078, 12079, 12080, 12082
+			));
+
 	@Copy("getModel")
 	@Replace("getModel")
 	@SuppressWarnings("InfiniteRecursion")
 	public RSModel copy$getModel()
 	{
 		if (!client.isInterpolateNpcAnimations()
-			|| getAnimation() == AnimationID.HELLHOUND_DEFENCE)
+			|| getAnimation() == AnimationID.HELLHOUND_DEFENCE
+			|| dontProcessNPCIds.contains(getId()))
 		{
 			return copy$getModel();
 		}
