@@ -101,14 +101,14 @@ public class class1 implements Callable {
             var3.walkBackSequence = (var5 & 8) != 0 ? var0.readUnsignedShort() : var3.definition.walkBackSequence * 1430199505 * -501040079;
             var3.walkLeftSequence = (var5 & 16) != 0 ? var0.readUnsignedShort() : var3.definition.walkLeftSequence * 1601988001 * 141606497;
             var3.walkRightSequence = (var5 & 32) != 0 ? var0.readUnsignedShortLE() : var3.definition.walkRightSequence * 1871825673 * 253702969;
-            var3.runSequence = (var5 & 64) != 0 ? var0.readUnsignedShortA() : var3.definition.field1563 * 154044717 * -2080788827;
-            var3.field943 = (var5 & 128) != 0 ? var0.readUnsignedShortLE() : var3.definition.field1566 * 1788894577 * 752796561;
-            var3.field953 = (var5 & 256) != 0 ? var0.readUnsignedShortLE() : var3.definition.field1567 * 1054411661 * 1998925637;
-            var3.field945 = (var5 & 512) != 0 ? var0.readUnsignedShortLEA() : var3.definition.field1568 * -500654361 * 875795671;
-            var3.field946 = (var5 & 1024) != 0 ? var0.readUnsignedShortA() : var3.definition.field1569 * 903143861 * -1829256035;
-            var3.field947 = (var5 & 2048) != 0 ? var0.readUnsignedShortLE() : var3.definition.field1570 * -630313423 * 1152150225;
-            var3.field978 = (var5 & 4096) != 0 ? var0.readUnsignedShortLE() : var3.definition.field1571 * -1129939695 * -63171599;
-            var3.field949 = (var5 & 8192) != 0 ? var0.readUnsignedShortA() : var3.definition.field1572 * -2023873033 * -1710216249;
+            var3.runSequence = (var5 & 64) != 0 ? var0.readUnsignedShortA() : var3.definition.runSequence * 154044717 * -2080788827;
+            var3.runBackSequence = (var5 & 128) != 0 ? var0.readUnsignedShortLE() : var3.definition.runBackSequence * 1788894577 * 752796561;
+            var3.runLeftSequence = (var5 & 256) != 0 ? var0.readUnsignedShortLE() : var3.definition.runLeftSequence * 1054411661 * 1998925637;
+            var3.runRightSequence = (var5 & 512) != 0 ? var0.readUnsignedShortLEA() : var3.definition.runRightSequence * -500654361 * 875795671;
+            var3.crawlSequence = (var5 & 1024) != 0 ? var0.readUnsignedShortA() : var3.definition.crawlSequence * 903143861 * -1829256035;
+            var3.crawlBackSequence = (var5 & 2048) != 0 ? var0.readUnsignedShortLE() : var3.definition.crawlBackSequence * -630313423 * 1152150225;
+            var3.crawlLeftSequence = (var5 & 4096) != 0 ? var0.readUnsignedShortLE() : var3.definition.crawlLeftSequence * -1129939695 * -63171599;
+            var3.crawlRightSequence = (var5 & 8192) != 0 ? var0.readUnsignedShortA() : var3.definition.crawlRightSequence * -2023873033 * -1710216249;
             var3.idleSequence = (var5 & 16384) != 0 ? var0.readUnsignedShortLE() : var3.definition.idleSequence * -499537861 * -171249421;
          }
 

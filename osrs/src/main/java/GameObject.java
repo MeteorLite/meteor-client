@@ -78,13 +78,13 @@ public final class GameObject {
       var0.idleSequence = var0.definition.idleSequence;
       var0.turnLeftSequence = var0.definition.turnLeftSequence;
       var0.turnRightSequence = var0.definition.turnRightSequence;
-      var0.runSequence = var0.definition.field1563;
-      var0.field943 = var0.definition.field1566;
-      var0.field953 = var0.definition.field1567;
-      var0.field945 = var0.definition.field1568;
-      var0.field946 = var0.definition.field1569;
-      var0.field947 = var0.definition.field1570;
-      var0.field978 = var0.definition.field1571;
-      var0.field949 = var0.definition.field1572;
+      var0.runSequence = var0.definition.runSequence;
+      var0.runBackSequence = var0.definition.runBackSequence;
+      var0.runLeftSequence = var0.definition.runLeftSequence;
+      var0.runRightSequence = var0.definition.runRightSequence;
+      var0.crawlSequence = var0.definition.crawlSequence;
+      var0.crawlBackSequence = var0.definition.crawlBackSequence;
+      var0.crawlLeftSequence = var0.definition.crawlLeftSequence;
+      var0.crawlRightSequence = var0.definition.crawlRightSequence;
    }
 }

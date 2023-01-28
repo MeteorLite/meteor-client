@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -35,19 +34,19 @@ public abstract class Actor extends Renderable {
    @ObfuscatedName("ax")
    int runSequence = -1;
    @ObfuscatedName("ah")
-   int field943 = -1;
+   int runBackSequence = -1;
    @ObfuscatedName("aw")
-   int field953 = -1;
+   int runLeftSequence = -1;
    @ObfuscatedName("aj")
-   int field945 = -1;
+   int runRightSequence = -1;
    @ObfuscatedName("aq")
-   int field946 = -1;
+   int crawlSequence = -1;
    @ObfuscatedName("ap")
-   int field947 = -1;
+   int crawlBackSequence = -1;
    @ObfuscatedName("aa")
-   int field978 = -1;
+   int crawlLeftSequence = -1;
    @ObfuscatedName("ae")
-   int field949 = -1;
+   int crawlRightSequence = -1;
    @ObfuscatedName("ac")
    String overheadText = null;
    @ObfuscatedName("bh")
