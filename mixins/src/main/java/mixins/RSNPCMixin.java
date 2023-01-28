@@ -27,7 +27,9 @@ package mixins;
 import dev.hoot.api.events.AutomatedMenu;
 import java.awt.Polygon;
 import java.awt.Shape;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import eventbus.Events;
 import eventbus.events.NPCMoved;
@@ -133,36 +135,12 @@ public abstract class RSNPCMixin implements RSNPC
 		}
 	}
 
-	@Copy("getModel")
-	@Replace("getModel")
-	@SuppressWarnings("InfiniteRecursion")
-	public RSModel copy$getModel()
-	{
-		if (!client.isInterpolateNpcAnimations()
-			|| getAnimation() == AnimationID.HELLHOUND_DEFENCE)
-		{
-			return copy$getModel();
-		}
-		int actionFrame = getActionFrame();
-		int poseFrame = getPoseFrame();
-		int spotAnimFrame = getSpotAnimFrame();
-		try
-		{
-			// combine the frames with the frame cycle so we can access this information in the sequence methods
-			// without having to change method calls
-			setActionFrame(Integer.MIN_VALUE | getActionFrameCycle() << 16 | actionFrame);
-			setPoseFrame(Integer.MIN_VALUE | getPoseFrameCycle() << 16 | poseFrame);
-			setSpotAnimFrame(Integer.MIN_VALUE | getSpotAnimationFrameCycle() << 16 | spotAnimFrame);
-			return copy$getModel();
-		}
-		finally
-		{
-			// reset frames
-			setActionFrame(actionFrame);
-			setPoseFrame(poseFrame);
-			setSpotAnimFrame(spotAnimFrame);
-		}
-	}
+	@Inject
+	ArrayList<Integer> dontProcessNPCIds = new ArrayList<>(
+			Arrays.asList(
+					//Phantom Muspah
+					12077, 12078, 12079, 12080, 12082
+			));
 
 	@Inject
 	@Override
