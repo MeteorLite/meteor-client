@@ -26,10 +26,8 @@ package net.runelite.client.plugins.questhelper.steps;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import net.runelite.client.plugins.questhelper.QuestBank;
-import net.runelite.client.plugins.questhelper.QuestHelperPlugin;
-import net.runelite.client.plugins.questhelper.QuestHelperWorldMapPoint;
-import net.runelite.client.plugins.questhelper.QuestTile;
+import meteor.Main;
+import net.runelite.client.plugins.questhelper.*;
 import net.runelite.client.plugins.questhelper.questhelpers.QuestHelper;
 import net.runelite.client.plugins.questhelper.requirements.item.ItemRequirement;
 import net.runelite.client.plugins.questhelper.requirements.Requirement;
@@ -439,6 +437,12 @@ public class DetailedQuestStep extends QuestStep
 		}
 	}
 
+	public List<LineComponent> getDisplayText(Requirement requirement, QuestHelperConfig config) {
+		if (requirement == null)
+			return List.of(new LineComponent.Builder().left("INVALID REQ").build());
+		return requirement.getDisplayTextWithChecks(Main.client, config);
+	}
+
 	@Override
 	public void makeOverlayHint(PanelComponent panelComponent, QuestHelperPlugin plugin, @NonNull List<String> additionalText, @NonNull List<Requirement> additionalRequirements)
 	{
@@ -457,12 +461,12 @@ public class DetailedQuestStep extends QuestStep
 		if (additionalRequirements.size() > 0)
 		{
 			stream = Stream.concat(stream, additionalRequirements.stream().filter(Objects::nonNull));
-			stream
-					.distinct()
-					.map(req -> req.getDisplayTextWithChecks(client, questHelper.getConfig()))
-					.flatMap(Collection::stream)
-					.forEach(line -> panelComponent.getChildren().add(line));
 		}
+		stream
+				.distinct()
+				.map(req -> getDisplayText(req, questHelper.getConfig()))
+				.flatMap(Collection::stream)
+				.forEach(line -> panelComponent.getChildren().add(line));
 
 		if (!recommended.isEmpty())
 		{
