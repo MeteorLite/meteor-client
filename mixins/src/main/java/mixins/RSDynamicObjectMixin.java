@@ -46,32 +46,6 @@ public abstract class RSDynamicObjectMixin implements RSDynamicObject
 	@Shadow("client")
 	private static RSClient client;
 
-	@SuppressWarnings("InfiniteRecursion")
-	@Copy("getModel")
-	@Replace("getModel")
-	public RSModel copy$getModel()
-	{
-		try
-		{
-			// reset frame because it may have been set from the constructor
-			// it should be set again inside the getModel method
-			int animFrame = getAnimFrame();
-			if (animFrame < 0)
-			{
-				setAnimFrame((animFrame ^ Integer.MIN_VALUE) & 0xFFFF);
-			}
-			return copy$getModel();
-		}
-		finally
-		{
-			int animFrame = getAnimFrame();
-			if (animFrame < 0)
-			{
-				setAnimFrame((animFrame ^ Integer.MIN_VALUE) & 0xFFFF);
-			}
-		}
-	}
-
 	@FieldHook("cycleStart")
 	@Inject
 	public void onAnimCycleCountChanged(int idx)

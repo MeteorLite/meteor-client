@@ -223,36 +223,6 @@ public abstract class RSPlayerMixin implements RSPlayer
 		return model.getConvexHull(getX(), getY(), getOrientation(), tileHeight);
 	}
 
-	@SuppressWarnings("InfiniteRecursion")
-	@Copy("getModel")
-	@Replace("getModel")
-	public RSModel copy$getModel()
-	{
-		if (!client.isInterpolatePlayerAnimations())
-		{
-			return copy$getModel();
-		}
-		int actionFrame = getActionFrame();
-		int poseFrame = getPoseFrame();
-		int spotAnimFrame = getSpotAnimFrame();
-		try
-		{
-			// combine the frames with the frame cycle so we can access this information in the sequence methods
-			// without having to change method calls
-			setActionFrame(Integer.MIN_VALUE | getActionFrameCycle() << 16 | actionFrame);
-			setPoseFrame(Integer.MIN_VALUE | getPoseFrameCycle() << 16 | poseFrame);
-			setSpotAnimFrame(Integer.MIN_VALUE | getSpotAnimationFrameCycle() << 16 | spotAnimFrame);
-			return copy$getModel();
-		}
-		finally
-		{
-			// reset frames
-			setActionFrame(actionFrame);
-			setPoseFrame(poseFrame);
-			setSpotAnimFrame(spotAnimFrame);
-		}
-	}
-
 	@Inject
 	public boolean isFriended()
 	{

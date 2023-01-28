@@ -527,18 +527,6 @@ public abstract class RSWidgetMixin implements RSWidget {
         }
     }
 
-    @Copy("getModel")
-    @Replace("getModel")
-    @SuppressWarnings("InfiniteRecursion")
-    public RSModel copy$getModel(RSSequenceDefinition sequence, int frame, boolean alternate,
-                                 RSPlayerComposition playerComposition, RSNPCComposition npcComposition,
-                                 RSNewShit newShit) {
-        if (frame != -1 && client.isInterpolateWidgetAnimations()) {
-            frame = frame | getModelFrameCycle() << 16 | Integer.MIN_VALUE;
-        }
-        return copy$getModel(sequence, frame, alternate, playerComposition, npcComposition, newShit);
-    }
-
     @Inject
     @Override
     public boolean isWidgetItemDragged(int index) {
