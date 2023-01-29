@@ -38,7 +38,7 @@ interface MuspahAssistConfig : Config {
     }
     @ConfigItem(
         keyName = "mageOffensivePrayer",
-        name = "Range Offensive Prayer",
+        name = "Mage Offensive Prayer",
         description = "Choose which offensive prayer to use with Auto Prayer",
         position = 3
     )
