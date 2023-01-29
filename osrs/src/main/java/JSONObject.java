@@ -7,11 +7,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.Map.Entry;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
 @Implements("JSONObject")
 @ObfuscatedName("org/json/JSONObject")
@@ -196,7 +195,7 @@ public class JSONObject {
       for(int var5 = 0; var5 < var4.length; ++var5) {
          try {
             Method var6 = var4[var5];
-            String var7 = Reflection.getMethodName(var6);
+            String var7 = _Reflection.getMethodName(var6);
             String var8 = "";
             if (var7.startsWith("get")) {
                var8 = var7.substring(3);
@@ -204,14 +203,14 @@ public class JSONObject {
                var8 = var7.substring(2);
             }
 
-            if (var8.length() > 0 && Character.isUpperCase(var8.charAt(0)) && Reflection.getParameterTypes(var6).length == 0) {
+            if (var8.length() > 0 && Character.isUpperCase(var8.charAt(0)) && _Reflection.getParameterTypes(var6).length == 0) {
                if (var8.length() == 1) {
                   var8 = var8.toLowerCase();
                } else if (!Character.isUpperCase(var8.charAt(1))) {
                   var8 = var8.substring(0, 1).toLowerCase() + var8.substring(1);
                }
 
-               Object var9 = Reflection.invoke(var6, var1, (Object[])null);
+               Object var9 = _Reflection.invoke(var6, var1, (Object[])null);
                if (var9 == null) {
                   this.field4118.put(var8, NULL);
                } else if (var9.getClass().isArray()) {
