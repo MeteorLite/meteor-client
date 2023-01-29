@@ -79,6 +79,7 @@ fun plugins() {
             onValueChange = { value ->
                 searchText.value = value
             },
+            singleLine = true,
             textStyle = TextStyle(
                 color = uiColor.value,
                 letterSpacing = 4.sp,
