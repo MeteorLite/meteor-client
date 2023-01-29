@@ -1,6 +1,3 @@
-package net.runelite.rs;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.*;
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -10,12 +7,18 @@ import java.util.Map;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-public class Reflection {
+import net.runelite.rs.ObfuscatedClassMap;
+
+public class _Reflection {
 	public static final boolean PRINT_DEBUG_MESSAGES = false;
 
-
-
 	private static Map<String, Class<?>> classes = new HashMap<>();
+
+	//These are mixed in
+	public static void reportFindClass(String className) {}
+	public static void reportFindField(Class<?> className, String fieldName) {}
+	public static void reportInvoke(Method method, Object object, Object[] args) {}
+
 
 	static {
 		ObfuscatedClassMap.INSTANCE.forEach((deobClassName, obfuscatedClassName) -> {
@@ -30,6 +33,7 @@ public class Reflection {
 	public static Class<?> findClass(String name) throws ClassNotFoundException {
 		Class<?> clazz = classes.get(name);
 		if (clazz != null) {
+			reportFindClass(clazz.getName());
 			return clazz;
 		}
 		if (PRINT_DEBUG_MESSAGES) {
@@ -39,6 +43,7 @@ public class Reflection {
 	}
 
 	public static Field findField(Class<?> clazz, String name) throws NoSuchFieldException {
+		reportFindField(clazz, name);
 		if (PRINT_DEBUG_MESSAGES) {
 			System.out.println((("Looking for field " + name) + " in ") + clazz);
 		}
@@ -160,6 +165,7 @@ public class Reflection {
 	}
 
 	public static Object invoke(Method method, Object object, Object[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		reportInvoke(method, object, args);
 		if (PRINT_DEBUG_MESSAGES) {
 			System.out.println("Invoking " + method);
 		}

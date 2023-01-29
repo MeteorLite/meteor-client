@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
 @ObfuscatedName("fy")
 @Implements("MilliClock")
@@ -158,8 +157,8 @@ public class MilliClock extends Clock {
 
                   for(int var15 = 0; var15 < var14.length; ++var15) {
                      Method var16 = var14[var15];
-                     if (Reflection.getMethodName(var16).equals(var6)) {
-                        Class[] var17 = Reflection.getParameterTypes(var16);
+                     if (_Reflection.getMethodName(var16).equals(var6)) {
+                        Class[] var17 = _Reflection.getParameterTypes(var16);
                         if (var21.length == var17.length) {
                            boolean var18 = true;
 
@@ -193,7 +192,7 @@ public class MilliClock extends Clock {
                   throw new SecurityException();
                }
 
-               var2.fields[var3] = Reflection.findField(loadClassFromDescriptor(var5), var6);
+               var2.fields[var3] = _Reflection.findField(loadClassFromDescriptor(var5), var6);
             }
          } catch (ClassNotFoundException var24) {
             var2.creationErrors[var3] = -1;
@@ -234,7 +233,7 @@ public class MilliClock extends Clock {
       } else if (var0.equals("C")) {
          return Character.TYPE;
       } else {
-         return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
+         return var0.equals("void") ? Void.TYPE : _Reflection.findClass(var0);
       }
    }
 }
