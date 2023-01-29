@@ -168,6 +168,8 @@ class Hooks : Callbacks {
                     // VolatileImage javadocs says this proactively releases the resources used by the VolatileImage
                     stretchedImage?.flush()
 
+                    if (stretchedDimensions.width <= 0 || stretchedDimensions.height <= 0)
+                        return
                     stretchedImage =
                         gc.createCompatibleVolatileImage(stretchedDimensions.width, stretchedDimensions.height)
                     lastStretchedDimensions = stretchedDimensions

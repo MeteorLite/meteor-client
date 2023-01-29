@@ -106,7 +106,7 @@ fun configPanelHeader() {
             Row(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.End,
-                modifier = Modifier.width(50.dp)
+                modifier = Modifier.fillMaxWidth()
             ) {
                 TooltipArea(
                     modifier = Modifier.background(
