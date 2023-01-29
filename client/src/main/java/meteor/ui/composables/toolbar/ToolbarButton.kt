@@ -26,7 +26,7 @@ import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 
 class ToolbarButton(
-    var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color = uiColor.value,
+    var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: MutableState<Color>? = uiColor,
     var backgroundColor: MutableState<Color> = mutableStateOf(background),
     var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
     var bottom: Boolean = false, var onClick: () -> Unit,
@@ -47,7 +47,7 @@ class ToolbarButton(
                 alignment = alignment,
                 bottom = bottom,
                 onClick = onClick,
-                iconColor = uiColor.value
+                iconColor = null
             )
 
     @OptIn(ExperimentalFoundationApi::class)
@@ -87,7 +87,7 @@ class ToolbarButton(
                         Icon(
                             icon!!,
                             contentDescription = description,
-                            tint = iconColor,
+                            tint = iconColor?.value ?: uiColor.value,
                         )
                     else if (imageResource != null)
                         Image(

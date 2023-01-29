@@ -1,5 +1,6 @@
 package meteor.plugins.fullscreen
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import compose.icons.Octicons
 import compose.icons.octicons.ScreenFull24
@@ -10,6 +11,7 @@ import meteor.Main
 import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.ui.composables.preferences.uiColor
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.composables.toolbar.addButton
 import meteor.ui.composables.toolbar.removeButton
@@ -19,7 +21,7 @@ class FullscreenPlugin : Plugin() {
     private var exitApplicationButton = ToolbarButton(
         "exitMeteor",
         Octicons.XCircle24,
-        iconColor = Color.Red,
+        iconColor = mutableStateOf(Color.Red),
         description = "Exit Meteor",
         onClick = {
             closeMeteor()
@@ -30,7 +32,7 @@ class FullscreenPlugin : Plugin() {
     var enableFullscreenButton = ToolbarButton(
         "enableFullscreen",
         Octicons.ScreenFull24,
-        iconColor = Color.Cyan,
+        iconColor = uiColor,
         description = "Toggle Fullscreen",
         onClick = {
             toggleFullscreen()
@@ -41,7 +43,7 @@ class FullscreenPlugin : Plugin() {
     var disableFullscreenButton = ToolbarButton(
         "disableFullscreen",
         Octicons.ScreenNormal24,
-        iconColor = Color.Cyan,
+        iconColor = uiColor,
         description = "Toggle Fullscreen",
         onClick = {
             toggleFullscreen()

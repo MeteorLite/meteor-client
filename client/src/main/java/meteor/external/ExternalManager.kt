@@ -19,7 +19,7 @@ class ExternalManager: Plugin() {
     private var externalsButton = ToolbarButton(
         "Externals",
         TablerIcons.CodePlus,
-        iconColor = uiColor.value,
+        iconColor = uiColor,
         description = "External",
         position = 1,
         onClick = {

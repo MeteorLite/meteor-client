@@ -51,12 +51,9 @@ lateinit var descriptor: ConfigDescriptor
 lateinit var lastPlugin: Plugin
 val pluginListSize = mutableStateOf(Main.meteorConfig.pluginListTextSize())
 val pluginSpacer = mutableStateOf(Main.meteorConfig.pluginSpaceBetween())
-val darkLightMode
-    get() = mutableStateOf(Main.meteorConfig.theme())
-val uiColor
-    get() = mutableStateOf(Color(Main.meteorConfig.uiColor().rgb))
-val secondColor
-    get() = mutableStateOf(Color(Main.meteorConfig.secondColor().rgb))
+val darkLightMode = mutableStateOf(Main.meteorConfig.theme())
+val uiColor = mutableStateOf(Color(Main.meteorConfig.uiColor().rgb))
+val secondColor = mutableStateOf(Color(Main.meteorConfig.secondColor().rgb))
 val surface: Color
     get() = if (darkLightMode.value) darkThemeColors.surface
     else lightThemeColors.surface
@@ -121,7 +118,7 @@ val pluginListButton = addButton(
     ToolbarButton(
         "Plugins",
         LineAwesomeIcons.PlugSolid,
-        iconColor = uiColor.value,
+        iconColor = uiColor,
         description = "Opens Plugins list",
         onClick = {
             if (configOpen.value) {

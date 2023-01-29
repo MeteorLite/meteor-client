@@ -28,7 +28,7 @@ val width = mutableStateOf(Main.meteorConfig.toolbarWidth())
 
 @Composable
 fun ToolbarPanel() {
-    return Column(modifier = Modifier.width(width.value.dp).background(surface)) {
+    return Column(modifier = Modifier.width(width.value.dp).background(surface), horizontalAlignment = Alignment.CenterHorizontally) {
         LazyColumn(modifier = Modifier.fillMaxHeight(.8f)) {
             items(items = topToolbar.sortedBy { it.position }, itemContent = { toolbarButton ->
                 toolbarButton.CreateComponent()

@@ -81,7 +81,7 @@ class XpTrackerPlugin : Plugin() {
     private var xpButton = ToolbarButton(
         "xp",
         TablerIcons.ChartBar,
-        iconColor = uiColor.value,
+        iconColor = uiColor,
         description = "Xp tracker",
         position = 2,
         onClick = {

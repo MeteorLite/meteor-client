@@ -23,7 +23,7 @@ class HiScorePlugin : Plugin() {
     private var hiscoreButton = ToolbarButton(
         "HiScore",
         TablerIcons.Trophy,
-        iconColor = uiColor.value,
+        iconColor = uiColor,
         description = "Player Hiscores",
         position = 4,
         onClick = {
