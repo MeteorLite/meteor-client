@@ -73,6 +73,7 @@ import meteor.plugins.lowdetail.LowDetailPlugin
 import meteor.plugins.meteor.Meteor
 import meteor.plugins.minimap.MinimapPlugin
 import meteor.plugins.mousetooltips.MouseTooltipPlugin
+import meteor.plugins.muspahassist.MuspahAssist
 import meteor.plugins.neverlog.NeverLogoutPlugin
 import meteor.plugins.nightmareHelper.NightmareHelper
 import meteor.plugins.nmzguzzle.NightmareZoneAFKPlugin
@@ -237,6 +238,7 @@ object PluginManager {
             init<MiningPlugin>()
             init<MotherlodePlugin>()
             init<MouseTooltipPlugin>()
+            init<MuspahAssist>()
             init<NightmareZoneAFKPlugin>()
             init<NotesPlugin>()
             init<NpcAggroAreaPlugin>()

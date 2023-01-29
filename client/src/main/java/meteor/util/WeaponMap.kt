@@ -372,6 +372,8 @@ class WeaponMap {
             StyleMap[ItemID.OPAL_MACHETE] = WeaponStyle.MELEE
             StyleMap[ItemID.ORANGE_FLOWERS] = WeaponStyle.MELEE
             StyleMap[ItemID.ORANGE_SALAMANDER] = WeaponStyle.MELEE
+            StyleMap[ItemID.OSMUMTENS_FANG] = WeaponStyle.MELEE
+            StyleMap[ItemID.OSMUMTENS_FANG_OR] = WeaponStyle.MELEE
             StyleMap[ItemID.PEACEFUL_HANDEGG] = WeaponStyle.MELEE
             StyleMap[ItemID.PET_ROCK] = WeaponStyle.MELEE
             StyleMap[ItemID.PISCARILIUS_BANNER] = WeaponStyle.MELEE
@@ -499,6 +501,8 @@ class WeaponMap {
             StyleMap[ItemID.TZHAARKETEM] = WeaponStyle.MELEE
             StyleMap[ItemID.TZHAARKETOM] = WeaponStyle.MELEE
             StyleMap[ItemID.TZHAARKETOM_T] = WeaponStyle.MELEE
+            StyleMap[ItemID.URSINE_CHAINMACE]= WeaponStyle.MELEE
+            StyleMap[ItemID.URSINE_CHAINMACE_U]= WeaponStyle.MELEE
             StyleMap[ItemID.VERACS_FLAIL] = WeaponStyle.MELEE
             StyleMap[ItemID.VERACS_FLAIL_0] = WeaponStyle.MELEE
             StyleMap[ItemID.VERACS_FLAIL_100] = WeaponStyle.MELEE
@@ -512,6 +516,7 @@ class WeaponMap {
             StyleMap[ItemID.VESTAS_SPEAR] = WeaponStyle.MELEE
             StyleMap[ItemID.VIGGORAS_CHAINMACE] = WeaponStyle.MELEE
             StyleMap[ItemID.VIGGORAS_CHAINMACE_U] = WeaponStyle.MELEE
+            StyleMap[ItemID.VOIDWAKER] = WeaponStyle.MELEE
             StyleMap[ItemID.VOLCANIC_ABYSSAL_WHIP] = WeaponStyle.MELEE
             StyleMap[ItemID.WESTERN_BANNER_1] = WeaponStyle.MELEE
             StyleMap[ItemID.WESTERN_BANNER_2] = WeaponStyle.MELEE
@@ -740,6 +745,9 @@ class WeaponMap {
             StyleMap[ItemID.TOXIC_BLOWPIPE_EMPTY] = WeaponStyle.RANGE
             StyleMap[ItemID.TRAINING_BOW] = WeaponStyle.RANGE
             StyleMap[ItemID.TWISTED_BOW] = WeaponStyle.RANGE
+            StyleMap[ItemID.VENATOR_BOW] = WeaponStyle.RANGE
+            StyleMap[ItemID.WEBWEAVER_BOW] = WeaponStyle.RANGE
+            StyleMap[ItemID.WEBWEAVER_BOW_U] = WeaponStyle.RANGE
             StyleMap[ItemID.WILLOW_COMP_BOW] = WeaponStyle.RANGE
             StyleMap[ItemID.WILLOW_LONGBOW] = WeaponStyle.RANGE
             StyleMap[ItemID.WILLOW_SHORTBOW] = WeaponStyle.RANGE
@@ -752,6 +760,10 @@ class WeaponMap {
 
             // Magic
             StyleMap[ItemID._3RD_AGE_WAND] = WeaponStyle.MAGIC
+            StyleMap[ItemID.ACCURSED_SCEPTRE] = WeaponStyle.MAGIC
+            StyleMap[ItemID.ACCURSED_SCEPTRE_A] = WeaponStyle.MAGIC
+            StyleMap[ItemID.ACCURSED_SCEPTRE_AU] = WeaponStyle.MAGIC
+            StyleMap[ItemID.ACCURSED_SCEPTRE_U] = WeaponStyle.MAGIC
             StyleMap[ItemID.AHRIMS_STAFF] = WeaponStyle.MAGIC
             StyleMap[ItemID.AHRIMS_STAFF_0] = WeaponStyle.MAGIC
             StyleMap[ItemID.AHRIMS_STAFF_100] = WeaponStyle.MAGIC
@@ -761,6 +773,7 @@ class WeaponMap {
             StyleMap[ItemID.AHRIMS_STAFF_23653] = WeaponStyle.MAGIC
             StyleMap[ItemID.AIR_BATTLESTAFF] = WeaponStyle.MAGIC
             StyleMap[ItemID.ANCIENT_CROZIER] = WeaponStyle.MAGIC
+            StyleMap[ItemID.ANCIENT_SCEPTRE] = WeaponStyle.MAGIC
             StyleMap[ItemID.ANCIENT_STAFF] = WeaponStyle.MAGIC
             StyleMap[ItemID.APPRENTICE_WAND] = WeaponStyle.MAGIC
             StyleMap[ItemID.ARMADYL_CROZIER] = WeaponStyle.MAGIC
@@ -876,6 +889,8 @@ class WeaponMap {
             StyleMap[ItemID.TRIDENT_OF_THE_SEAS_FULL] = WeaponStyle.MAGIC
             StyleMap[ItemID.TRIDENT_OF_THE_SWAMP] = WeaponStyle.MAGIC
             StyleMap[ItemID.TRIDENT_OF_THE_SWAMP_E] = WeaponStyle.MAGIC
+            StyleMap[ItemID.TUMEKENS_SHADOW] = WeaponStyle.MAGIC
+            StyleMap[ItemID.TUMEKENS_SHADOW_UNCHARGED] = WeaponStyle.MAGIC
             StyleMap[ItemID.UNCHARGED_TOXIC_TRIDENT] = WeaponStyle.MAGIC
             StyleMap[ItemID.UNCHARGED_TOXIC_TRIDENT_E] = WeaponStyle.MAGIC
             StyleMap[ItemID.UNCHARGED_TRIDENT] = WeaponStyle.MAGIC

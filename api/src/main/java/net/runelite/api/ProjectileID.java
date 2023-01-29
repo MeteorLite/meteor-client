@@ -122,4 +122,7 @@ public final class ProjectileID
 	public static final int PORAZDIR_ENERGY_BALL = 1514;
 
 	public static final int ZALCANO_PROJECTILE_FIREBALL = 1728;
+
+	public static final int PHANTOM_MUSPAH_MAGE_ATTACK = 2327;
+	public static final int PHANTOM_MUSPAH_RANGE_ATTACK = 2329;
 }

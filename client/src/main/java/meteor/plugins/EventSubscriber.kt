@@ -29,7 +29,6 @@ open class EventSubscriber : KEventSubscriber {
     open fun onScriptPostFired(it: ScriptPostFired) {}
     open fun onScriptCallbackEvent(it: ScriptCallbackEvent) {}
     open fun onResizeableChanged(it: ResizeableChanged) {}
-    open fun onProjetileSpawned(it: ProjectileSpawned) {}
     open fun onStatChanged(it: StatChanged) {}
     open fun onPlayerSpawned(it: PlayerSpawned) {}
     open fun onPlayerSkullChanged(it: PlayerSkullChanged) {}
@@ -286,7 +285,6 @@ open class EventSubscriber : KEventSubscriber {
             }
         }
         subscribeEvent<ProjectileMoved>(Events.PROJECTILE_MOVED) { executeIfListening { onProjectileMoved(it) } }
-        subscribeEvent<ProjectileSpawned>(Events.PROJECTILE_SPAWNED) { executeIfListening { onProjetileSpawned(it) } }
         subscribeEvent<ResizeableChanged>(Events.RESIZEABLE_CHANGED) { executeIfListening { onResizeableChanged(it) } }
         subscribeEvent<ScriptCallbackEvent>(Events.SCRIPT_CALLBACK) { executeIfListening { onScriptCallbackEvent(it) } }
         subscribeEvent<ScriptPostFired>(Events.SCRIPT_POST_FIRED) { executeIfListening { onScriptPostFired(it) } }
