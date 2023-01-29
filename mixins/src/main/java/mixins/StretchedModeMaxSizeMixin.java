@@ -26,9 +26,16 @@ public abstract class StretchedModeMaxSizeMixin implements RSGameEngine
 			if (client.isResized())
 			{
 				Dimension realDimensions = client.getRealDimensions();
+				int width = realDimensions.width;
+				if (width <= 0)
+					width = 1280;
 
-				setMaxCanvasWidth(realDimensions.width);
-				setMaxCanvasHeight(realDimensions.height);
+				int height = realDimensions.height;
+				if (height <= 0)
+					height = 720;
+
+				setMaxCanvasWidth(width);
+				setMaxCanvasHeight(height);
 			}
 		}
 

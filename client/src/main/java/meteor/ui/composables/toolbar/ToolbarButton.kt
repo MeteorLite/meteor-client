@@ -7,6 +7,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,8 +26,8 @@ import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 
 class ToolbarButton(
-    var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color? = null ,
-    var backgroundColor: Color? = null,
+    var name: String, var icon: ImageVector?, var imageResource: String? = null, var iconColor: Color = uiColor.value,
+    var backgroundColor: MutableState<Color> = mutableStateOf(background),
     var description: String? = "", var alignment: Alignment = Alignment.TopCenter,
     var bottom: Boolean = false, var onClick: () -> Unit,
     var position: Int = 999
@@ -42,7 +43,6 @@ class ToolbarButton(
                 name,
                 icon = null,
                 imageResource = imageResource,
-                backgroundColor = mutableStateOf(background).value ,
                 description = description,
                 alignment = alignment,
                 bottom = bottom,
@@ -87,7 +87,7 @@ class ToolbarButton(
                         Icon(
                             icon!!,
                             contentDescription = description,
-                            tint = uiColor.value,
+                            tint = iconColor,
                         )
                     else if (imageResource != null)
                         Image(
@@ -98,7 +98,7 @@ class ToolbarButton(
             }
             Spacer(
                 Modifier.height(10.dp)
-                    .background(background)
+                    .background(backgroundColor.value)
             )
         }
     }

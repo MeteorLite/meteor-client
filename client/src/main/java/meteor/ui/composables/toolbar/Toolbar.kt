@@ -2,6 +2,8 @@ package meteor.ui.composables.toolbar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
@@ -26,14 +28,11 @@ val width = mutableStateOf(Main.meteorConfig.toolbarWidth())
 
 @Composable
 fun ToolbarPanel() {
-    return Column(modifier = Modifier.width(width.value.dp).background(background )) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(.9f).background(surface)
-        ) {
-            MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
-                topToolbar.sortedBy { it.position }.forEach { it.CreateComponent() }
-            }
+    return Column(modifier = Modifier.width(width.value.dp).background(surface)) {
+        LazyColumn(modifier = Modifier.fillMaxHeight(.8f)) {
+            items(items = topToolbar.sortedBy { it.position }, itemContent = { toolbarButton ->
+                toolbarButton.CreateComponent()
+            })
         }
 
         Column(
@@ -41,7 +40,7 @@ fun ToolbarPanel() {
             modifier = Modifier.fillMaxWidth().fillMaxHeight().background(surface)
         ) {
             MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
-                for (button in bottomToolbar)
+                for (button in bottomToolbar.sortedBy { it.position })
                     button.CreateComponent()
             }
         }
