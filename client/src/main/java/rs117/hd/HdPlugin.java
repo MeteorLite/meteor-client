@@ -509,11 +509,12 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 				clientThread.invokeLater(this::displayUpdateMessage);
 			}
-			catch (Throwable err)
+			catch (Exception e)
 			{
-				log.error("Error while starting 117HD", err);
-				err.printStackTrace();
+				log.error("Error while starting 117HD", e);
+				e.printStackTrace();
 				stopPlugin();
+				setRunning(false);
 				Main.INSTANCE.setGpuHDNeedsReenabled(true);
 			}
 			return;
