@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.FrameWindowScope
 import meteor.Main
-import meteor.Main.shouldRender
 import meteor.ui.composables.configPanel
 import meteor.ui.composables.nodes.sectionItem
 import meteor.ui.composables.preferences.*
@@ -20,14 +19,10 @@ fun FrameWindowScope.windowContent() {
         Main.window = this@windowContent
 
         val width = when {
-
             pluginsOpen.value || configOpen.value || infoPanelOpen.value || hiscoreOpen.value || xpTrackerOpen.value || lootTrackerOpen.value || externalsOpen.value || notesOpen.value -> totalClientWidth
             else -> totalMinimalWidth
         }
-        val height = when{
-            consoleOpen.value -> consoleHeight else -> minimumHeight
-
-        }
+        val height = minimumHeight
         window.minimumSize = Dimension(width,height)
         when {
             toolBarOpen.value -> toolBar {

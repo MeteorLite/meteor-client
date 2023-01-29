@@ -22,8 +22,6 @@ import eventbus.events.ConfigChanged
 import kotlinx.coroutines.launch
 import meteor.Main
 import meteor.rs.Applet
-import meteor.ui.composables.preferences.consoleOpen
-import meteor.ui.composables.preferences.secondColor
 import java.awt.BorderLayout
 import java.awt.Dimension
 import javax.swing.JPanel
@@ -36,19 +34,10 @@ var gamePanel = JPanel()
 
 @Composable
 fun OSRSPanel() {
-    if (!subscribed) {
-        Main.eventBus.subscribe<ConfigChanged>(eventbus.Events.CONFIG_CHANGED) {
-            if (it.data.group == "MeteorLite")
-                if (it.data.key == "console")
-                    consoleOpen.value = Main.meteorConfig.console()
-        }
-        subscribed = true
-    }
-
             Row {
                 SwingPanel(
                     Color.Black,
-                    modifier = Modifier.fillMaxWidth().fillMaxHeight(if (consoleOpen.value) 0.75f else 1f),
+                    modifier = Modifier.fillMaxSize(),
                     factory = {
                         if (!loaded) {
                             gamePanel.apply {

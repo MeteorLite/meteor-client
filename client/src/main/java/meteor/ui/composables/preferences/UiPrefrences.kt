@@ -43,7 +43,6 @@ const val minimumHeight = 542
 val totalClientWidth = Applet().clientWidth + Main.meteorConfig.toolbarWidth()
 val totalMinimalWidth = Applet().minimalWidth + Main.meteorConfig.toolbarWidth()
 var result: HiscoreResult? = null
-var consoleOpen = mutableStateOf(Main.meteorConfig.console())
 var pluginPanel = mutableStateOf<PluginPanel?>(null)
 var searchValue = mutableStateOf("")
 var lastButtonClicked : ToolbarButton? = null
@@ -109,7 +108,6 @@ fun setOpenValues(openValue: Boolean) {
     pluginPanelIsOpen.value = false
     configOpen.value = false
     pluginsOpen.value = openValue
-
 }
 
 
