@@ -1,6 +1,7 @@
 package meteor
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -9,6 +10,8 @@ import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
 import eventbus.events.ClickPacket
+import eventbus.events.ConfigChanged
+import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
 import meteor.Configuration.EXTERNALS_DIR
 import meteor.api.loot.Interact
@@ -44,12 +47,15 @@ import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
 import meteor.chat.ChatCommandManager
 import meteor.chat.ChatMessageManager
+import meteor.plugins.Plugin
+import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
 import org.jetbrains.skiko.OS
 import org.rationalityfrontline.kevent.KEVENT
+import rs117.hd.HdPlugin
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -112,28 +118,83 @@ object Main : ApplicationScope, EventSubscriber() {
         // finishStartup is ran here after windowContent()
     }
 
+    val windowPlacement = mutableStateOf(WindowPlacement.Maximized)
+    val windowSize = mutableStateOf(DpSize.Unspecified)
+
+    val windowState = mutableStateOf<WindowState?>(null)
+    val defaultWindowState = mutableStateOf<WindowState?>(null)
+
+    val windowChangeRequired = mutableStateOf(false)
     @Composable
     fun initWindow() {
-        var windowState: WindowState? = rememberWindowState()
+        //We do this to redraw the window
+        if (windowChangeRequired.value) {
+            createWindow()
+        } else {
+            createWindow()
+        }
+    }
+
+    val shouldRender = mutableStateOf(true)
+    var shouldExit = true;
+
+    @Composable
+    fun createWindow() {
+        window?.let {
+            if (!shouldRender.value)
+                if (it.window.isDisplayable) {
+                    while (it.window.isDisplayable) {
+                        it.window.dispose()
+                        Thread.sleep(100)
+                    }
+                }
+        }
+
+        windowState.value = rememberWindowState()
+        defaultWindowState.value = rememberWindowState()
 
         if (meteorConfig.lockWindowSize()) {
             val sizeString = meteorConfig.lockedWindowSize()
 
-            val windowSize = DpSize(
+            windowSize.value = DpSize(
                 sizeString.split(":")[0].toInt().dp,
                 sizeString.split(":")[1].toInt().dp)
 
-            windowState = rememberWindowState(size = windowSize)
+            windowState.value = WindowState(size = windowSize.value)
         }
 
+        if (meteorConfig.fullscreen()) {
+            windowPlacement.value = WindowPlacement.Maximized
+            windowSize.value = DpSize.Unspecified
+            windowState.value = WindowState(placement = windowPlacement.value, size = windowSize.value)
+        }
+
+        if (shouldRender.value)
+            createNewWindow()
+        else {
+            while (window!!.window.isDisplayable) {
+                Thread.sleep(100)
+            }
+            createNewWindow()
+        }
+        shouldExit = true
+        shouldRender.value = true
+    }
+
+    @Composable
+    fun createNewWindow() {
         Window(
-            onCloseRequest = Main::exitApplication,
+            onCloseRequest = {
+                if (shouldExit)
+                    exitApplication()
+                window!!.window.dispose()
+            },
             title = "Meteor",
             icon = painterResource("Meteor_icon.svg"),
             undecorated = meteorConfig.fullscreen(),
             alwaysOnTop = meteorConfig.alwaysOnTop(),
             resizable = !meteorConfig.lockWindowSize(),
-            state = windowState!!,
+            state = windowState.value!!,
             content = {
                 windowContent()
             }
@@ -159,20 +220,12 @@ object Main : ApplicationScope, EventSubscriber() {
         SessionManager.start()
         timer.stop()
 
-
-/*       val outStream = PrintStream(object : ByteArrayOutputStream() {
-            override fun flush() {
-                val decodedString = String(buf, 0, count, Charset.defaultCharset())
-                val strippedString = decodedString.replace(Regex("\u001B\\[[;\\d]*m"), "")
-                outPut.value = strippedString
-            }
-
-        }, true)
-        val teeStream = TeeOutputStream(System.out, outStream)
-        System.setOut(PrintStream(teeStream, true))*/
         logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 
+    var gpuNeedsReenabled = false
+    var gpuHDNeedsReenabled = false
+    var lastGPUPluginName = ""
     fun initApi() {
         TileItem.client = client
         Item.client = client
@@ -203,6 +256,50 @@ object Main : ApplicationScope, EventSubscriber() {
             for (menuEntry in copy.keys) {
                 if (it.data.menuEntry.option == menuEntry.menuOption) {
                     onClicksWidget[menuEntry]?.accept(it.data.menuEntry)
+                }
+            }
+        }
+        KEVENT.subscribe<ConfigChanged>(Events.CONFIG_CHANGED) {
+            if (it.data.group == Configuration.MASTER_GROUP)
+                if (it.data.key == "fullscreen") {
+                    shouldExit = false
+                    val gpuIsRunning = PluginManager.get<GpuPlugin>().running
+                    val gpuHdIsRunning = PluginManager.get<HdPlugin>().running
+                    var enabledGPUPlugin = false
+                    if (gpuIsRunning) {
+                        PluginManager.stop(PluginManager.get<GpuPlugin>())
+                        lastGPUPluginName = "GPU"
+                        enabledGPUPlugin = true
+                        gpuNeedsReenabled = true
+                    }
+                    if (gpuHdIsRunning) {
+                        PluginManager.stop(PluginManager.get<HdPlugin>())
+                        lastGPUPluginName = "GPUHD"
+                        enabledGPUPlugin = true
+                        gpuHDNeedsReenabled = true
+                    }
+                    if (!enabledGPUPlugin) {
+                        when (lastGPUPluginName) {
+                            "GPU" -> gpuNeedsReenabled = true
+                            "GPUHD" -> gpuHDNeedsReenabled = true
+                        }
+                    }
+                    shouldRender.value = false
+                }
+        }
+        KEVENT.subscribe<GameTick>(Events.GAME_TICK) {
+            window?.let {
+                if (it.window.isDisplayable) {
+                    if (gpuNeedsReenabled) {
+                        PluginManager.start(PluginManager.get<GpuPlugin>())
+                        if (PluginManager.runningMap[PluginManager.get<GpuPlugin>()]!!)
+                            gpuNeedsReenabled = false
+                    }
+                    if (gpuHDNeedsReenabled) {
+                        PluginManager.start(PluginManager.get<HdPlugin>())
+                        if (PluginManager.runningMap[PluginManager.get<HdPlugin>()]!!)
+                            gpuHDNeedsReenabled = false
+                    }
                 }
             }
         }

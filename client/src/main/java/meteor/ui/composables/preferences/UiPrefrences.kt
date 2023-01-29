@@ -40,7 +40,6 @@ var errorText = mutableStateOf("")
 var toolBarOpen = mutableStateOf(Main.meteorConfig.toolbarExpanded())
 const val consoleHeight = 500
 const val minimumHeight = 542
-const val scriptCreatorWidth = 1333
 val totalClientWidth = Applet().clientWidth + Main.meteorConfig.toolbarWidth()
 val totalMinimalWidth = Applet().minimalWidth + Main.meteorConfig.toolbarWidth()
 var result: HiscoreResult? = null
@@ -113,7 +112,7 @@ fun setOpenValues(openValue: Boolean) {
     pluginPanelIsOpen.value = false
     configOpen.value = false
     pluginsOpen.value = openValue
-    scriptCreator.value = false
+
 }
 
 

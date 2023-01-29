@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateOf
@@ -107,7 +106,7 @@ fun configPanelHeader() {
             Row(
                 verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.End,
-                modifier = Modifier.width(50.dp)
+                modifier = Modifier.fillMaxWidth()
             ) {
                 TooltipArea(
                     modifier = Modifier.background(
@@ -154,7 +153,7 @@ fun configPanelHeader() {
                 val switchState = remember { mutableStateOf(lastPlugin.shouldEnable()) }
                 Switch(
                     switchState.value,
-                    onPluginToggled(switchState, lastPlugin, true),
+                    onPluginToggled(switchState, lastPlugin,true),
                     enabled = true,
                     modifier = Modifier.scale(0.75f),
                     colors = SwitchDefaults.colors(checkedThumbColor = uiColor.value, uncheckedThumbColor = Color.DarkGray, uncheckedTrackColor = Color.LightGray)

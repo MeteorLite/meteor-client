@@ -260,7 +260,15 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 					awtContext.configurePixelFormat(0, 0, 0);
 				}
 
-				awtContext.createGLContext();
+				try {
+					awtContext.createGLContext();
+				} catch (Exception e) {
+					onStop();
+					setRunning(false);
+					Main.INSTANCE.setGpuNeedsReenabled(true);
+					return;
+				}
+
 
 				canvas.setIgnoreRepaint(true);
 
@@ -362,11 +370,13 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 				checkGLErrors();
 			}
-			catch (Throwable e)
+			catch (Exception e)
 			{
 				log.error("Error starting GPU plugin", e);
 				e.printStackTrace();
 				onStop();
+				setRunning(false);
+				Main.INSTANCE.setGpuNeedsReenabled(true);
 			}
 		});
 	}
@@ -1002,237 +1012,244 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 	@Override
 	public void draw(int overlayColor)
 	{
-		final int canvasHeight = client.getCanvasHeight();
-		final int canvasWidth = client.getCanvasWidth();
+		try {
+			final int canvasHeight = client.getCanvasHeight();
+			final int canvasWidth = client.getCanvasWidth();
 
-		final int viewportHeight = client.getViewportHeight();
-		final int viewportWidth = client.getViewportWidth();
+			final int viewportHeight = client.getViewportHeight();
+			final int viewportWidth = client.getViewportWidth();
 
-		prepareInterfaceTexture(canvasWidth, canvasHeight);
+			prepareInterfaceTexture(canvasWidth, canvasHeight);
 
-		// Setup anti-aliasing
-		final AntiAliasingMode antiAliasingMode = config.antiAliasingMode();
-		final boolean aaEnabled = antiAliasingMode != AntiAliasingMode.DISABLED;
+			// Setup anti-aliasing
+			final AntiAliasingMode antiAliasingMode = config.antiAliasingMode();
+			final boolean aaEnabled = antiAliasingMode != AntiAliasingMode.DISABLED;
 
-		if (aaEnabled)
-		{
-			GL43C.glEnable(GL43C.GL_MULTISAMPLE);
-
-			final Dimension stretchedDimensions = client.getStretchedDimensions();
-
-			final int stretchedCanvasWidth = client.isStretchedEnabled() ? stretchedDimensions.width : canvasWidth;
-			final int stretchedCanvasHeight = client.isStretchedEnabled() ? stretchedDimensions.height : canvasHeight;
-
-			// Re-create fbo
-			if (lastStretchedCanvasWidth != stretchedCanvasWidth
-					|| lastStretchedCanvasHeight != stretchedCanvasHeight
-					|| lastAntiAliasingMode != antiAliasingMode)
+			if (aaEnabled)
 			{
-				shutdownAAFbo();
+				GL43C.glEnable(GL43C.GL_MULTISAMPLE);
 
-				// Bind default FBO to check whether anti-aliasing is forced
-				GL43C.glBindFramebuffer(GL43C.GL_FRAMEBUFFER, awtContext.getFramebuffer(false));
-				final int forcedAASamples = GL43C.glGetInteger(GL43C.GL_SAMPLES);
-				final int maxSamples = GL43C.glGetInteger(GL43C.GL_MAX_SAMPLES);
-				final int samples = forcedAASamples != 0 ? forcedAASamples :
-						Math.min(antiAliasingMode.getSamples(), maxSamples);
+				final Dimension stretchedDimensions = client.getStretchedDimensions();
 
-				//log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
+				final int stretchedCanvasWidth = client.isStretchedEnabled() ? stretchedDimensions.width : canvasWidth;
+				final int stretchedCanvasHeight = client.isStretchedEnabled() ? stretchedDimensions.height : canvasHeight;
 
-				initAAFbo(stretchedCanvasWidth, stretchedCanvasHeight, samples);
-
-				lastStretchedCanvasWidth = stretchedCanvasWidth;
-				lastStretchedCanvasHeight = stretchedCanvasHeight;
-			}
-
-			GL43C.glBindFramebuffer(GL43C.GL_DRAW_FRAMEBUFFER, fboSceneHandle);
-		}
-		else
-		{
-			GL43C.glDisable(GL43C.GL_MULTISAMPLE);
-			shutdownAAFbo();
-		}
-
-		lastAntiAliasingMode = antiAliasingMode;
-
-		// Clear scene
-		int sky = client.getSkyboxColor();
-		GL43C.glClearColor((sky >> 16 & 0xFF) / 255f, (sky >> 8 & 0xFF) / 255f, (sky & 0xFF) / 255f, 1f);
-		GL43C.glClear(GL43C.GL_COLOR_BUFFER_BIT);
-
-		// Draw 3d scene
-		final GameState gameState = client.getGameState();
-		if (gameState.getState() >= GameState.LOADING.getState())
-		{
-			final TextureProvider textureProvider = client.getTextureProvider();
-			if (textureArrayId == -1)
-			{
-				// lazy init textures as they may not be loaded at plugin start.
-				// this will return -1 and retry if not all textures are loaded yet, too.
-				textureArrayId = textureManager.initTextureArray(textureProvider);
-				if (textureArrayId > -1)
+				// Re-create fbo
+				if (lastStretchedCanvasWidth != stretchedCanvasWidth
+						|| lastStretchedCanvasHeight != stretchedCanvasHeight
+						|| lastAntiAliasingMode != antiAliasingMode)
 				{
-					// if texture upload is successful, compute and set texture animations
-					float[] texAnims = textureManager.computeTextureAnimations(textureProvider);
-					GL43C.glUseProgram(glProgram);
-					GL43C.glUniform2fv(uniTextureAnimations, texAnims);
-					GL43C.glUseProgram(0);
-				}
-			}
+					shutdownAAFbo();
 
-			int renderWidthOff = viewportOffsetX;
-			int renderHeightOff = viewportOffsetY;
-			int renderCanvasHeight = canvasHeight;
-			int renderViewportHeight = viewportHeight;
-			int renderViewportWidth = viewportWidth;
+					// Bind default FBO to check whether anti-aliasing is forced
+					GL43C.glBindFramebuffer(GL43C.GL_FRAMEBUFFER, awtContext.getFramebuffer(false));
+					final int forcedAASamples = GL43C.glGetInteger(GL43C.GL_SAMPLES);
+					final int maxSamples = GL43C.glGetInteger(GL43C.GL_MAX_SAMPLES);
+					final int samples = forcedAASamples != 0 ? forcedAASamples :
+							Math.min(antiAliasingMode.getSamples(), maxSamples);
 
-			// Setup anisotropic filtering
-			final int anisotropicFilteringLevel = config.anisotropicFilteringLevel();
+					//log.debug("AA samples: {}, max samples: {}, forced samples: {}", samples, maxSamples, forcedAASamples);
 
-			if (textureArrayId != -1 && lastAnisotropicFilteringLevel != anisotropicFilteringLevel)
-			{
-				textureManager.setAnisotropicFilteringLevel(textureArrayId, anisotropicFilteringLevel);
-				lastAnisotropicFilteringLevel = anisotropicFilteringLevel;
-			}
+					initAAFbo(stretchedCanvasWidth, stretchedCanvasHeight, samples);
 
-			if (client.isStretchedEnabled())
-			{
-				Dimension dim = client.getStretchedDimensions();
-				renderCanvasHeight = dim.height;
-
-				double scaleFactorY = dim.getHeight() / canvasHeight;
-				double scaleFactorX = dim.getWidth() / canvasWidth;
-
-				// Pad the viewport a little because having ints for our viewport dimensions can introduce off-by-one errors.
-				final int padding = 1;
-
-				// Ceil the sizes because even if the size is 599.1 we want to treat it as size 600 (i.e. render to the x=599 pixel).
-				renderViewportHeight = (int) Math.ceil(scaleFactorY * (renderViewportHeight)) + padding * 2;
-				renderViewportWidth = (int) Math.ceil(scaleFactorX * (renderViewportWidth)) + padding * 2;
-
-				// Floor the offsets because even if the offset is 4.9, we want to render to the x=4 pixel anyway.
-				renderHeightOff = (int) Math.floor(scaleFactorY * (renderHeightOff)) - padding;
-				renderWidthOff = (int) Math.floor(scaleFactorX * (renderWidthOff)) - padding;
-			}
-
-			glDpiAwareViewport(renderWidthOff, renderCanvasHeight - renderViewportHeight - renderHeightOff, renderViewportWidth, renderViewportHeight);
-
-			GL43C.glUseProgram(glProgram);
-
-			final int drawDistance = getDrawDistance();
-			final int fogDepth = config.fogDepth();
-			GL43C.glUniform1i(uniUseFog, fogDepth > 0 ? 1 : 0);
-			GL43C.glUniform4f(uniFogColor, (sky >> 16 & 0xFF) / 255f, (sky >> 8 & 0xFF) / 255f, (sky & 0xFF) / 255f, 1f);
-			GL43C.glUniform1i(uniFogDepth, fogDepth);
-			GL43C.glUniform1i(uniDrawDistance, drawDistance * Perspective.LOCAL_TILE_SIZE);
-
-			// Brightness happens to also be stored in the texture provider, so we use that
-			GL43C.glUniform1f(uniBrightness, (float) textureProvider.getBrightness());
-			GL43C.glUniform1f(uniSmoothBanding, config.smoothBanding() ? 0f : 1f);
-			GL43C.glUniform1i(uniColorBlindMode, config.colorBlindMode().ordinal());
-			GL43C.glUniform1f(uniTextureLightMode, config.brightTextures() ? 1f : 0f);
-			if (gameState == GameState.LOGGED_IN)
-			{
-				// avoid textures animating during loading
-				GL43C.glUniform1i(uniTick, client.getGameCycle());
-			}
-
-			// Calculate projection matrix
-			float[] projectionMatrix = Mat4.scale(client.getScale(), client.getScale(), 1);
-			Mat4.mul(projectionMatrix, Mat4.projection(viewportWidth, viewportHeight, 50));
-			Mat4.mul(projectionMatrix, Mat4.rotateX((float) -(Math.PI - pitch * Perspective.UNIT)));
-			Mat4.mul(projectionMatrix, Mat4.rotateY((float) (yaw * Perspective.UNIT)));
-			Mat4.mul(projectionMatrix, Mat4.translate(-client.getCameraX2(), -client.getCameraY2(), -client.getCameraZ2()));
-			GL43C.glUniformMatrix4fv(uniProjectionMatrix, false, projectionMatrix);
-
-			// Bind uniforms
-			GL43C.glUniformBlockBinding(glProgram, uniBlockMain, 0);
-			GL43C.glUniform1i(uniTextures, 1); // texture sampler array is bound to texture1
-
-			// We just allow the GL to do face culling. Note this requires the priority renderer
-			// to have logic to disregard culled faces in the priority depth testing.
-			GL43C.glEnable(GL43C.GL_CULL_FACE);
-
-			// Enable blending for alpha
-			GL43C.glEnable(GL43C.GL_BLEND);
-			GL43C.glBlendFuncSeparate(GL43C.GL_SRC_ALPHA, GL43C.GL_ONE_MINUS_SRC_ALPHA, GL43C.GL_ONE, GL43C.GL_ONE);
-
-			// Draw buffers
-			GL43C.glBindVertexArray(vaoHandle);
-
-			int vertexBuffer, uvBuffer;
-			if (computeMode != ComputeMode.NONE)
-			{
-				if (computeMode == ComputeMode.OPENGL)
-				{
-					// Before reading the SSBOs written to from postDrawScene() we must insert a barrier
-					GL43C.glMemoryBarrier(GL43C.GL_SHADER_STORAGE_BARRIER_BIT);
-				}
-				else
-				{
-					// Wait for the command queue to finish, so that we know the compute is done
-					openCLManager.finish();
+					lastStretchedCanvasWidth = stretchedCanvasWidth;
+					lastStretchedCanvasHeight = stretchedCanvasHeight;
 				}
 
-				// Draw using the output buffer of the compute
-				vertexBuffer = tmpOutBuffer.glBufferId;
-				uvBuffer = tmpOutUvBuffer.glBufferId;
+				GL43C.glBindFramebuffer(GL43C.GL_DRAW_FRAMEBUFFER, fboSceneHandle);
 			}
 			else
 			{
-				// Only use the temporary buffers, which will contain the full scene
-				vertexBuffer = tmpVertexBuffer.glBufferId;
-				uvBuffer = tmpUvBuffer.glBufferId;
+				GL43C.glDisable(GL43C.GL_MULTISAMPLE);
+				shutdownAAFbo();
 			}
 
-			GL43C.glEnableVertexAttribArray(0);
-			GL43C.glBindBuffer(GL43C.GL_ARRAY_BUFFER, vertexBuffer);
-			GL43C.glVertexAttribIPointer(0, 4, GL43C.GL_INT, 0, 0);
+			lastAntiAliasingMode = antiAliasingMode;
 
-			GL43C.glEnableVertexAttribArray(1);
-			GL43C.glBindBuffer(GL43C.GL_ARRAY_BUFFER, uvBuffer);
-			GL43C.glVertexAttribPointer(1, 4, GL43C.GL_FLOAT, false, 0, 0);
+			// Clear scene
+			int sky = client.getSkyboxColor();
+			GL43C.glClearColor((sky >> 16 & 0xFF) / 255f, (sky >> 8 & 0xFF) / 255f, (sky & 0xFF) / 255f, 1f);
+			GL43C.glClear(GL43C.GL_COLOR_BUFFER_BIT);
 
-			GL43C.glDrawArrays(GL43C.GL_TRIANGLES, 0, targetBufferOffset);
+			// Draw 3d scene
+			final GameState gameState = client.getGameState();
+			if (gameState.getState() >= GameState.LOADING.getState())
+			{
+				final TextureProvider textureProvider = client.getTextureProvider();
+				if (textureArrayId == -1)
+				{
+					// lazy init textures as they may not be loaded at plugin start.
+					// this will return -1 and retry if not all textures are loaded yet, too.
+					textureArrayId = textureManager.initTextureArray(textureProvider);
+					if (textureArrayId > -1)
+					{
+						// if texture upload is successful, compute and set texture animations
+						float[] texAnims = textureManager.computeTextureAnimations(textureProvider);
+						GL43C.glUseProgram(glProgram);
+						GL43C.glUniform2fv(uniTextureAnimations, texAnims);
+						GL43C.glUseProgram(0);
+					}
+				}
 
-			GL43C.glDisable(GL43C.GL_BLEND);
-			GL43C.glDisable(GL43C.GL_CULL_FACE);
+				int renderWidthOff = viewportOffsetX;
+				int renderHeightOff = viewportOffsetY;
+				int renderCanvasHeight = canvasHeight;
+				int renderViewportHeight = viewportHeight;
+				int renderViewportWidth = viewportWidth;
 
-			GL43C.glUseProgram(0);
+				// Setup anisotropic filtering
+				final int anisotropicFilteringLevel = config.anisotropicFilteringLevel();
+
+				if (textureArrayId != -1 && lastAnisotropicFilteringLevel != anisotropicFilteringLevel)
+				{
+					textureManager.setAnisotropicFilteringLevel(textureArrayId, anisotropicFilteringLevel);
+					lastAnisotropicFilteringLevel = anisotropicFilteringLevel;
+				}
+
+				if (client.isStretchedEnabled())
+				{
+					Dimension dim = client.getStretchedDimensions();
+					renderCanvasHeight = dim.height;
+
+					double scaleFactorY = dim.getHeight() / canvasHeight;
+					double scaleFactorX = dim.getWidth() / canvasWidth;
+
+					// Pad the viewport a little because having ints for our viewport dimensions can introduce off-by-one errors.
+					final int padding = 1;
+
+					// Ceil the sizes because even if the size is 599.1 we want to treat it as size 600 (i.e. render to the x=599 pixel).
+					renderViewportHeight = (int) Math.ceil(scaleFactorY * (renderViewportHeight)) + padding * 2;
+					renderViewportWidth = (int) Math.ceil(scaleFactorX * (renderViewportWidth)) + padding * 2;
+
+					// Floor the offsets because even if the offset is 4.9, we want to render to the x=4 pixel anyway.
+					renderHeightOff = (int) Math.floor(scaleFactorY * (renderHeightOff)) - padding;
+					renderWidthOff = (int) Math.floor(scaleFactorX * (renderWidthOff)) - padding;
+				}
+
+				glDpiAwareViewport(renderWidthOff, renderCanvasHeight - renderViewportHeight - renderHeightOff, renderViewportWidth, renderViewportHeight);
+
+				GL43C.glUseProgram(glProgram);
+
+				final int drawDistance = getDrawDistance();
+				final int fogDepth = config.fogDepth();
+				GL43C.glUniform1i(uniUseFog, fogDepth > 0 ? 1 : 0);
+				GL43C.glUniform4f(uniFogColor, (sky >> 16 & 0xFF) / 255f, (sky >> 8 & 0xFF) / 255f, (sky & 0xFF) / 255f, 1f);
+				GL43C.glUniform1i(uniFogDepth, fogDepth);
+				GL43C.glUniform1i(uniDrawDistance, drawDistance * Perspective.LOCAL_TILE_SIZE);
+
+				// Brightness happens to also be stored in the texture provider, so we use that
+				GL43C.glUniform1f(uniBrightness, (float) textureProvider.getBrightness());
+				GL43C.glUniform1f(uniSmoothBanding, config.smoothBanding() ? 0f : 1f);
+				GL43C.glUniform1i(uniColorBlindMode, config.colorBlindMode().ordinal());
+				GL43C.glUniform1f(uniTextureLightMode, config.brightTextures() ? 1f : 0f);
+				if (gameState == GameState.LOGGED_IN)
+				{
+					// avoid textures animating during loading
+					GL43C.glUniform1i(uniTick, client.getGameCycle());
+				}
+
+				// Calculate projection matrix
+				float[] projectionMatrix = Mat4.scale(client.getScale(), client.getScale(), 1);
+				Mat4.mul(projectionMatrix, Mat4.projection(viewportWidth, viewportHeight, 50));
+				Mat4.mul(projectionMatrix, Mat4.rotateX((float) -(Math.PI - pitch * Perspective.UNIT)));
+				Mat4.mul(projectionMatrix, Mat4.rotateY((float) (yaw * Perspective.UNIT)));
+				Mat4.mul(projectionMatrix, Mat4.translate(-client.getCameraX2(), -client.getCameraY2(), -client.getCameraZ2()));
+				GL43C.glUniformMatrix4fv(uniProjectionMatrix, false, projectionMatrix);
+
+				// Bind uniforms
+				GL43C.glUniformBlockBinding(glProgram, uniBlockMain, 0);
+				GL43C.glUniform1i(uniTextures, 1); // texture sampler array is bound to texture1
+
+				// We just allow the GL to do face culling. Note this requires the priority renderer
+				// to have logic to disregard culled faces in the priority depth testing.
+				GL43C.glEnable(GL43C.GL_CULL_FACE);
+
+				// Enable blending for alpha
+				GL43C.glEnable(GL43C.GL_BLEND);
+				GL43C.glBlendFuncSeparate(GL43C.GL_SRC_ALPHA, GL43C.GL_ONE_MINUS_SRC_ALPHA, GL43C.GL_ONE, GL43C.GL_ONE);
+
+				// Draw buffers
+				GL43C.glBindVertexArray(vaoHandle);
+
+				int vertexBuffer, uvBuffer;
+				if (computeMode != ComputeMode.NONE)
+				{
+					if (computeMode == ComputeMode.OPENGL)
+					{
+						// Before reading the SSBOs written to from postDrawScene() we must insert a barrier
+						GL43C.glMemoryBarrier(GL43C.GL_SHADER_STORAGE_BARRIER_BIT);
+					}
+					else
+					{
+						// Wait for the command queue to finish, so that we know the compute is done
+						openCLManager.finish();
+					}
+
+					// Draw using the output buffer of the compute
+					vertexBuffer = tmpOutBuffer.glBufferId;
+					uvBuffer = tmpOutUvBuffer.glBufferId;
+				}
+				else
+				{
+					// Only use the temporary buffers, which will contain the full scene
+					vertexBuffer = tmpVertexBuffer.glBufferId;
+					uvBuffer = tmpUvBuffer.glBufferId;
+				}
+
+				GL43C.glEnableVertexAttribArray(0);
+				GL43C.glBindBuffer(GL43C.GL_ARRAY_BUFFER, vertexBuffer);
+				GL43C.glVertexAttribIPointer(0, 4, GL43C.GL_INT, 0, 0);
+
+				GL43C.glEnableVertexAttribArray(1);
+				GL43C.glBindBuffer(GL43C.GL_ARRAY_BUFFER, uvBuffer);
+				GL43C.glVertexAttribPointer(1, 4, GL43C.GL_FLOAT, false, 0, 0);
+
+				GL43C.glDrawArrays(GL43C.GL_TRIANGLES, 0, targetBufferOffset);
+
+				GL43C.glDisable(GL43C.GL_BLEND);
+				GL43C.glDisable(GL43C.GL_CULL_FACE);
+
+				GL43C.glUseProgram(0);
+			}
+
+			if (aaEnabled)
+			{
+				GL43C.glBindFramebuffer(GL43C.GL_READ_FRAMEBUFFER, fboSceneHandle);
+				GL43C.glBindFramebuffer(GL43C.GL_DRAW_FRAMEBUFFER, awtContext.getFramebuffer(false));
+				GL43C.glBlitFramebuffer(0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
+						0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
+						GL43C.GL_COLOR_BUFFER_BIT, GL43C.GL_NEAREST);
+
+				// Reset
+				GL43C.glBindFramebuffer(GL43C.GL_READ_FRAMEBUFFER, awtContext.getFramebuffer(false));
+			}
+
+			vertexBuffer.clear();
+			uvBuffer.clear();
+			modelBuffer.clear();
+			modelBufferSmall.clear();
+			modelBufferUnordered.clear();
+
+			smallModels = largeModels = unorderedModels = 0;
+			tempOffset = 0;
+			tempUvOffset = 0;
+
+			// Texture on UI
+			drawUi(overlayColor, canvasHeight, canvasWidth);
+
+			awtContext.swapBuffers();
+
+			drawManager.processDrawComplete(this::screenshot);
+
+			GL43C.glBindFramebuffer(GL43C.GL_FRAMEBUFFER, awtContext.getFramebuffer(false));
+
+			checkGLErrors();
+		} catch (Exception e) {
+			onStop();
+			setRunning(false);
+			Main.INSTANCE.setGpuNeedsReenabled(true);
 		}
 
-		if (aaEnabled)
-		{
-			GL43C.glBindFramebuffer(GL43C.GL_READ_FRAMEBUFFER, fboSceneHandle);
-			GL43C.glBindFramebuffer(GL43C.GL_DRAW_FRAMEBUFFER, awtContext.getFramebuffer(false));
-			GL43C.glBlitFramebuffer(0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
-					0, 0, lastStretchedCanvasWidth, lastStretchedCanvasHeight,
-					GL43C.GL_COLOR_BUFFER_BIT, GL43C.GL_NEAREST);
-
-			// Reset
-			GL43C.glBindFramebuffer(GL43C.GL_READ_FRAMEBUFFER, awtContext.getFramebuffer(false));
-		}
-
-		vertexBuffer.clear();
-		uvBuffer.clear();
-		modelBuffer.clear();
-		modelBufferSmall.clear();
-		modelBufferUnordered.clear();
-
-		smallModels = largeModels = unorderedModels = 0;
-		tempOffset = 0;
-		tempUvOffset = 0;
-
-		// Texture on UI
-		drawUi(overlayColor, canvasHeight, canvasWidth);
-
-		awtContext.swapBuffers();
-
-		drawManager.processDrawComplete(this::screenshot);
-
-		GL43C.glBindFramebuffer(GL43C.GL_FRAMEBUFFER, awtContext.getFramebuffer(false));
-
-		checkGLErrors();
 	}
 
 	private void drawUi(final int overlayColor, final int canvasHeight, final int canvasWidth)

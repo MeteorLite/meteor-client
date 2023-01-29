@@ -39,6 +39,7 @@ import meteor.config.ConfigManager;
 import meteor.events.PluginChanged;
 import meteor.plugins.Plugin;
 import meteor.plugins.PluginDescriptor;
+import meteor.plugins.PluginManager;
 import meteor.rs.ClientThread;
 import meteor.ui.DrawManager;
 import meteor.util.OSType;
@@ -508,10 +509,13 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 				clientThread.invokeLater(this::displayUpdateMessage);
 			}
-			catch (Throwable err)
+			catch (Exception e)
 			{
-				log.error("Error while starting 117HD", err);
+				log.error("Error while starting 117HD", e);
+				e.printStackTrace();
 				stopPlugin();
+				setRunning(false);
+				Main.INSTANCE.setGpuHDNeedsReenabled(true);
 			}
 			return;
 		});
@@ -1962,7 +1966,13 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		// Texture on UI
 		drawUi(overlayColor, canvasHeight, canvasWidth);
 
-		awtContext.swapBuffers();
+		try {
+			awtContext.swapBuffers();
+		} catch (Exception e) {
+			PluginManager.INSTANCE.stop(this);
+			Main.INSTANCE.setGpuHDNeedsReenabled(true);
+			return;
+		}
 
 		drawManager.processDrawComplete(this::screenshot);
 
