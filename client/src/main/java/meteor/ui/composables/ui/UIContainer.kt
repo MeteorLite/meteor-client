@@ -66,7 +66,7 @@ class UI {
 
         ) {
 
-            mutableStateOf(ToolbarPanel())
+            ToolbarPanel()
             content.invoke()
         }
     }

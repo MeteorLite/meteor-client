@@ -19,7 +19,7 @@ class NotesPlugin : Plugin() {
     private var notesButton = ToolbarButton(
         "Notes",
         TablerIcons.Notes,
-        iconColor = uiColor.value,
+        iconColor = uiColor,
         description = "Notes",
         position = 98,
         onClick = {

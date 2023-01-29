@@ -42,7 +42,7 @@ class LootTrackerPlugin: Plugin() {
     private var lootTrackerButton = ToolbarButton(
         "LootTracker",
         TablerIcons.Coin,
-        iconColor = uiColor.value,
+        iconColor = uiColor,
         description = "Loot Tracker",
         position = 3,
         onClick = {

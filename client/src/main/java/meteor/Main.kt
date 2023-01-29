@@ -2,6 +2,7 @@ package meteor
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -48,6 +49,7 @@ import net.runelite.api.hooks.Callbacks
 import meteor.chat.ChatCommandManager
 import meteor.chat.ChatMessageManager
 import meteor.plugins.Plugin
+import meteor.ui.composables.preferences.uiColor
 import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
@@ -285,6 +287,9 @@ object Main : ApplicationScope, EventSubscriber() {
                         }
                     }
                     shouldRender.value = false
+                }
+            else if (it.data.key == "MeteorColor") {
+                    uiColor.value = Color(meteorConfig.uiColor().rgb)
                 }
         }
         KEVENT.subscribe<GameTick>(Events.GAME_TICK) {

@@ -19,7 +19,7 @@ class InfoPanelPlugin : Plugin() {
     private val infoPanelButton = ToolbarButton(
         "Info Panel",
         TablerIcons.InfoCircle,
-        iconColor = uiColor.value,
+        iconColor = uiColor,
         description = "Info",
         onClick = {
             onClick()
