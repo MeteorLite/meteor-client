@@ -155,7 +155,7 @@ enum class Course(val obstacles: Array<Obstacle>?) {
             )
             .append(
                 Area(Location(3036, 3343, 3), Location(3040, 3342, 3), 3),
-                "Tightrope", "Cross", Location(3040, 3343, 3)
+                "Tightrope", "Cross", 14899
             )
             .append(
                 Area(Location(3045, 3349, 3), Location(3051, 3341, 3), 3),
