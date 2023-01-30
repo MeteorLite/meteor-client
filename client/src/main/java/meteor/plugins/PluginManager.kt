@@ -35,6 +35,7 @@ import meteor.plugins.bosstimer.BossTimersPlugin
 import meteor.plugins.bowfletcher.BowFletcher
 import meteor.plugins.camera.CameraPlugin
 import meteor.plugins.cannonreloader.CannonReloaderPlugin
+import meteor.plugins.cerbprayers.CerbAutoPrayersPlugin
 import meteor.plugins.chathistory.ChatHistoryPlugin
 import meteor.plugins.combatlevel.CombatLevelPlugin
 import meteor.plugins.commands.CommandsPlugin
@@ -182,6 +183,7 @@ object PluginManager {
             init<CameraPlugin>()
             init<CannonPlugin>()
             init<CannonReloaderPlugin>()
+            init<CerbAutoPrayersPlugin>()
             init<ChatCommandsPlugin>()
             init<ChatHistoryPlugin>()
             init<ClueScrollPlugin>()
