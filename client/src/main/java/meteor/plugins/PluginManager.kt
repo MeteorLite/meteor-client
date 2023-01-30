@@ -66,7 +66,6 @@ import meteor.plugins.itemcharges.ItemChargePlugin
 import meteor.plugins.itemprices.ItemPricesPlugin
 import meteor.plugins.jadautoprayer.JadAutoPrayerPlugin
 import meteor.plugins.kebabbuyer.KebabBuyerPlugin
-import meteor.plugins.keyboardbankpin.KeyboardBankPinPlugin
 import meteor.plugins.logchopper.LogChopper
 import meteor.plugins.loottracker.LootTrackerPlugin
 import meteor.plugins.lowdetail.LowDetailPlugin
@@ -226,7 +225,6 @@ object PluginManager {
             init<ItemStatPlugin>()
             init<JadAutoPrayerPlugin>()
             init<KebabBuyerPlugin>()
-            init<KeyboardBankPinPlugin>()
             init<KeyRemappingPlugin>()
             init<KourendLibraryPlugin>()
             init<LeftClickCast>()
