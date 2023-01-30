@@ -30,6 +30,7 @@ import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft24
 import meteor.config.ConfigManager
 import meteor.plugins.PluginDescriptor
+import meteor.ui.composables.items.instructions
 import meteor.ui.composables.items.configItems
 import meteor.ui.composables.items.sectionItems
 import meteor.ui.composables.items.titleItems
@@ -52,6 +53,7 @@ fun configPanel() {
                     modifier = Modifier.fillMaxHeight()
                 ) {
                     configPanelHeader()
+                    instructions(lastPlugin)
                     configs()
                 }
 
