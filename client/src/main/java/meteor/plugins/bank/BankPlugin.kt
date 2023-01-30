@@ -40,6 +40,7 @@ import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.util.QuantityFormatter
 import net.runelite.api.*
+import net.runelite.api.widgets.JavaScriptCallback
 import net.runelite.api.widgets.WidgetID
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.event.KeyEvent
@@ -121,17 +122,24 @@ class BankPlugin : Plugin() {
     }
 
     override fun onScriptCallbackEvent(it: ScriptCallbackEvent) {
-        val intStack = client.intStack
-        val stringStack = client.stringStack
-        val intStackSize = client.intStackSize
-        val stringStackSize = client.stringStackSize
-        when (it.eventName) {
-            "bankSearchFilter" -> {
-                val itemId = intStack[intStackSize - 1]
-                val search = stringStack[stringStackSize - 1]
-                if (valueSearch(itemId, search)) {
-                    // return true
-                    intStack[intStackSize - 2] = 1
+        if (config.bankPinKeyboard()) {
+            val intStack = client.intStack
+            val intStackSize = client.intStackSize
+            when (it.eventName) {
+                "bankpinButtonSetup" -> {
+                    val compId = intStack[intStackSize - 2]
+                    val buttonId = intStack[intStackSize - 1]
+                    val button = client.getWidget(compId)
+                    val buttonRect = button!!.getChild(0)
+                    val onOpListener = buttonRect.onOpListener
+                    buttonRect.setOnKeyListener(JavaScriptCallback { e: ScriptEvent ->
+                        val typedChar = e.typedKeyChar - '0'.code
+                        if (typedChar == buttonId) {
+                            client.runScript(*onOpListener)
+                            // Block the key press this tick in keypress_permit so it doesn't enter the chatbox
+                            client.setVarcIntValue(VarClientInt.BLOCK_KEYPRESS.index, client.gameCycle + 1)
+                        }
+                    })
                 }
             }
         }

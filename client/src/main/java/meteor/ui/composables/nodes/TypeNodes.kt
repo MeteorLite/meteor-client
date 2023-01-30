@@ -45,7 +45,6 @@ fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
         }
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth().height(32.dp).background(background)) {
             MaterialTheme(colors = darkThemeColors) {
-
                 Checkbox(toggled, onCheckedChange = {
                     ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
                     toggled = it
