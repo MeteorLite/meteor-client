@@ -21,7 +21,6 @@ import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
-import meteor.ui.composables.preferences.uiColor
 import net.runelite.api.*
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Toolkit
