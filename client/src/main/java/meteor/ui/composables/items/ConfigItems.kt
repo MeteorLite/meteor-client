@@ -52,8 +52,12 @@ fun LazyListScope.configItems(descriptor: ConfigDescriptor) {
                     when {
                         config.item.textArea -> stringAreaTextNode(descriptor, config)
                         else -> {
-                            val key = "${descriptor.group}:${config.key()}"
-                            configStringsMap[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!)
+                            val key = "${descriptor.group.value}:${config.key()}"
+                            configStringsMap[key]?.let {
+                                it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())!!
+                            }
+                            if (configStringsMap[key] == null)
+                                configStringsMap[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!)
                             stringTextNode(descriptor, config, configStringsMap[key]!!)
                         }
                     }

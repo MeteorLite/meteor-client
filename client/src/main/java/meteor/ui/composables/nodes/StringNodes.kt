@@ -65,7 +65,6 @@ fun stringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Confi
 
 @Composable
 fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor, mutableText: MutableState<String>) {
-    var text = mutableText.value
 
     Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(background ) ) {
         Row(
@@ -74,7 +73,7 @@ fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
         ) {
             MaterialTheme(colors = darkThemeColors) {
                 OutlinedTextField(
-                    value = text,
+                    value = mutableText.value,
                     visualTransformation = if (!configItemDescriptor.secret()) VisualTransformation.None else PasswordVisualTransformation(),
                     onValueChange = {
 
@@ -82,7 +81,7 @@ fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIte
                             descriptor.group.value, configItemDescriptor.key(),
                             it
                         )
-                        text = it
+                        mutableText.value = it
 
                     },
                     label = {
