@@ -272,12 +272,10 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
       NPC npc = npcCompositionChanged.getNpc();
       if (config.offensivePrayerToggle())
       {
-         switch (npc.getId())
-         {
-            case NpcID.ZULRAH:
-            case NpcID.ZULRAH_2043:
-               activatePrayer(config.offensiveMagePrayer().getPrayer());
-            case NpcID.ZULRAH_2044: activatePrayer(config.offensiveRangePrayer().getPrayer());
+         if (npc.getId() == NpcID.ZULRAH_2044) {
+            activatePrayer(config.offensiveRangePrayer().getPrayer());
+         } else {
+            activatePrayer(config.offensiveMagePrayer().getPrayer());
          }
       }
    }
@@ -288,13 +286,8 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
       NPC npc = npcSpawned.getNpc();
       if (config.offensivePrayerToggle())
       {
-         switch (npc.getId())
-         {
-            case NpcID.ZULRAH:
-            case NpcID.ZULRAH_2043:
-               activatePrayer(config.offensiveMagePrayer().getPrayer());
-            case NpcID.ZULRAH_2044:
-               activatePrayer(config.offensiveRangePrayer().getPrayer());
+         if (npc.getId() == NpcID.ZULRAH) {
+            activatePrayer(config.offensiveMagePrayer().getPrayer());
          }
       }
    }
