@@ -295,8 +295,16 @@ class PvPKeys : Plugin() {
     override fun onClientTick(it: ClientTick) {
         val gear = client.getWidget(WidgetInfo.EQUIPMENT.id)
         val mousePoint = client.mouseCanvasPosition
-        if (gear != null) {
-            if (gear.bounds.contains(mousePoint.x, mousePoint.y)) client.insertMenuItem("<col=00FFFF>Copy Gear</col>", "", 10000000, 100000, 0, 0, false)
+        if (gear != null && gear.isVisible) {
+            if (gear.bounds.contains(mousePoint.x, mousePoint.y)) client.insertMenuItem(
+                "<col=00FFFF>Copy Gear</col>",
+                "",
+                MenuAction.RUNELITE.id,
+                InventoryID.EQUIPMENT.id,
+                0,
+                0,
+                false
+            )
         }
         if (client.gameState != GameState.LOGGED_IN || !autoPrayEnabled || lastEnemy?.interacting == null) {
             return

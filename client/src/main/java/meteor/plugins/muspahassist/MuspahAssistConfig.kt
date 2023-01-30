@@ -54,6 +54,45 @@ interface MuspahAssistConfig : Config {
     fun smiteToggle(): Boolean {
         return false
     }
+    @ConfigItem(
+        keyName = "autoGear",
+        name = "Auto Gear Swap",
+        description = "",
+        position = 5,
+    )
+    fun gearToggle(): Boolean{
+        return false
+    }
+    @ConfigItem(
+        keyName = "RangeIDs",
+        name = "Range Gear",
+        description = "",
+        textField = true,
+        position = 6
+    )
+    fun RangeIDs(): String? {
+        return "Equip the gear"
+    }
+    @ConfigItem(
+        keyName = "MageIDs",
+        name = "Mage Gear",
+        description = "",
+        textField = true,
+        position = 7
+    )
+    fun MageIDs(): String? {
+        return "Right click inside the equipment tab"
+    }
+    @ConfigItem(
+        keyName = "shieldIDs",
+        name = "Shield Phase Gear",
+        description = "",
+        textField = true,
+        position = 8
+    )
+    fun ShieldIDs(): String? {
+        return "Click copy gear and paste it here"
+    }
 
     enum class RangeOffensivePrayers(val prayer: Prayer) {
         EAGLE_EYE(Prayer.EAGLE_EYE), RIGOUR(Prayer.RIGOUR);

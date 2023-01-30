@@ -427,7 +427,6 @@ class GauntletExtendedPlugin : Plugin() {
     }
 
     fun meleeWeapon() {
-        val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (mw in MELEE_WEAPONS) {
             val mi = getFirst(mw)
             mi?.interact("Wield")
@@ -435,7 +434,6 @@ class GauntletExtendedPlugin : Plugin() {
     }
 
     fun rangeWeapon() {
-        val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (rw in RANGE_WEAPONS) {
             val ri = getFirst(rw)
             ri?.interact("Wield")
@@ -443,7 +441,6 @@ class GauntletExtendedPlugin : Plugin() {
     }
 
     fun mageWeapon() {
-        val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (mw in MAGE_WEAPONS) {
             val mi = getFirst(mw)
             mi?.interact("Wield")
@@ -451,7 +448,6 @@ class GauntletExtendedPlugin : Plugin() {
     }
 
     fun drinkPotion() {
-        val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (potion in POTIONS) {
             val item = getFirst(potion)
             item?.interact("Drink")
@@ -459,13 +455,11 @@ class GauntletExtendedPlugin : Plugin() {
     }
 
     fun autoEat() {
-        val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         val item = getFirst(ItemID.PADDLEFISH)
         item?.interact("Eat")
     }
 
     fun autoTickEat() {
-        val inventory = client.getWidget(WidgetInfo.INVENTORY) ?: return
         for (food in TICK_FOOD) {
             val item = getFirst(food)
             item?.interact("Eat")
