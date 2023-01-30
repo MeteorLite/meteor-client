@@ -12,6 +12,10 @@ import java.awt.Color
 
 val configStringsMap = HashMap<String, MutableState<String>>()
 
+fun updateConfigUI(group: String, key: String, value: String) {
+    configStringsMap["$group:$key"]?.value = value
+}
+
 fun LazyListScope.configItems(descriptor: ConfigDescriptor) {
     items(items = descriptor.items.toTypedArray())
     { config ->
