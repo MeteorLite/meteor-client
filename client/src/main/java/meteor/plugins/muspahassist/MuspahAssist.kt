@@ -30,6 +30,9 @@ class MuspahAssist : Plugin() {
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079,true,true) != null && client.isPrayerActive(Prayer.PROTECT_FROM_MELEE)){
             activatePrayer(Prayer.PROTECT_FROM_MISSILES)
         }
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079,true,true) == null && client.isPrayerActive(Prayer.SMITE)){
+            activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+        }
     }
     override fun onAnimationChanged(it: AnimationChanged) {
         if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")) {
