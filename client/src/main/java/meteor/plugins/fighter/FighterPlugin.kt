@@ -20,6 +20,7 @@ import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.plugins.autoalch.AutoAlchConfig
+import net.runelite.api.GameState
 import net.runelite.api.TileItem
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.widgets.WidgetInfo
@@ -36,14 +37,14 @@ class FighterPlugin : Plugin() {
     private val notOurItems: MutableList<TileItem> = ArrayList()
     override fun onStart() {
 
-        if (config.quickPrayer() && !Prayers.isQuickPrayerEnabled()) {
-            val widget = Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB)
-            widget?.let {
-                Prayers.toggleQuickPrayer(true)
+        if (client.gameState == GameState.LOGGED_IN) {
+            if (config.quickPrayer() && !Prayers.isQuickPrayerEnabled()) {
+                val widget = Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB)
+                widget?.let {
+                    Prayers.toggleQuickPrayer(true)
+                }
             }
-        }
 
-        if (Game.isLoggedIn()) {
             startPoint = Main.client.localPlayer!!.worldLocation
         }
     }
