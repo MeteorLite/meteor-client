@@ -220,10 +220,33 @@ public interface ZulrahConfig extends Config {
    }
 
    @ConfigItem(
+           keyName = "RangeIDs",
+           name = "Range Gear",
+           description = "",
+           textField = true,
+           position = 4,
+           section = fightHelperSection
+   )
+   default String RangeIDs() {
+      return "Equip the gear";
+   }
+   @ConfigItem(
+           keyName = "MageIDs",
+           name = "Mage Gear",
+           description = "",
+           textField = true,
+           position = 5,
+           section = fightHelperSection
+   )
+   default String MageIDs() {
+      return "Equip the gear";
+   }
+
+   @ConfigItem(
       name = "Prayer Helper",
       keyName = "prayerHelper",
       description = "Displays an overlay showing the correct prayer to use for the entirity of the Zulrah fight<br>Changes color dependent on whether or not you're praying correctly or not",
-      position = 0,
+      position = 6,
       section = fightHelperSection
    )
    default boolean prayerHelper() {
@@ -234,7 +257,7 @@ public interface ZulrahConfig extends Config {
       name = "Prayer Marker",
       keyName = "prayerMarker",
       description = "Marks the correct prayer to use in the prayer book to use for the entirity of the Zulrah fight<br>Changes color dependent on whether or not you're praying correctly or not",
-      position = 1,
+      position = 7,
       section = fightHelperSection
    )
    default boolean prayerMarker() {
@@ -245,7 +268,7 @@ public interface ZulrahConfig extends Config {
       name = "Prayer Conservation",
       keyName = "prayerConservation",
       description = "Displays text over your head showing when it's safe to turn off your overheads<br>Overlay gets displayed when Zulrah is not actively targeting you and your overheads are on",
-      position = 2,
+      position = 8,
       section = fightHelperSection
    )
    default boolean prayerConservation() {
@@ -256,7 +279,7 @@ public interface ZulrahConfig extends Config {
       name = "Stand Locations",
       keyName = "standLocations",
       description = "Highlights the tiles to stand on for the current and next Zulrah phase",
-      position = 7,
+      position = 9,
       section = fightHelperSection
    )
    default boolean standLocations() {
@@ -267,7 +290,7 @@ public interface ZulrahConfig extends Config {
       name = "Stand/Next Tile Color",
       keyName = "standAndNextColor",
       description = "Configure the color for the stand/next GROUPED tile and text",
-      position = 8,
+      position = 10,
       section = fightHelperSection
    )
    @Alpha
@@ -279,7 +302,7 @@ public interface ZulrahConfig extends Config {
       name = "Stand Tile Color",
       keyName = "standTileColor",
       description = "Configure the color for the current stand tile and text",
-      position = 9,
+      position = 11,
       section = fightHelperSection
    )
    @Alpha
@@ -291,7 +314,7 @@ public interface ZulrahConfig extends Config {
       name = "Next Tile Color",
       keyName = "nextStandTileColor",
       description = "Configure the color for the next stand tile and text",
-      position = 10,
+      position = 12,
       section = fightHelperSection
    )
    @Alpha
@@ -303,7 +326,7 @@ public interface ZulrahConfig extends Config {
       name = "Stall Locations",
       keyName = "stallLocations",
       description = "Highlights the tile to pillar stall a Zulrah phase if it supports it",
-      position = 11,
+      position = 13,
       section = fightHelperSection
    )
    default boolean stallLocations() {
@@ -314,7 +337,7 @@ public interface ZulrahConfig extends Config {
       name = "Stall Tile Color",
       keyName = "stallTileColor",
       description = "Configures the color for the stall tile and text",
-      position = 12,
+      position = 14,
       section = fightHelperSection
    )
    @Alpha
