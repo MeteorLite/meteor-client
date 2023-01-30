@@ -48,7 +48,6 @@ import net.runelite.api.widgets.WidgetInfo
 import meteor.chat.ChatColorType
 import meteor.chat.ChatMessageBuilder
 import meteor.chat.QueuedMessage
-import meteor.plugins.attackstyles.AttackStylesConfig
 import org.apache.commons.lang3.ArrayUtils
 import java.time.temporal.ChronoUnit
 

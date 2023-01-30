@@ -2,15 +2,15 @@ package meteor.ui.composables.items
 
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.legacy.ModifierlessKeybind
 import meteor.ui.composables.nodes.*
-import meteor.ui.composables.preferences.descriptor
 import java.awt.Color
 
+val configStringsMap = HashMap<String, MutableState<String>>()
 
 fun LazyListScope.configItems(descriptor: ConfigDescriptor) {
     items(items = descriptor.items.toTypedArray())
@@ -51,7 +51,11 @@ fun LazyListScope.configItems(descriptor: ConfigDescriptor) {
                 String::class.java -> {
                     when {
                         config.item.textArea -> stringAreaTextNode(descriptor, config)
-                        else -> stringTextNode(descriptor, config)
+                        else -> {
+                            val key = "${descriptor.group}:${config.key()}"
+                            configStringsMap[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!)
+                            stringTextNode(descriptor, config, configStringsMap[key]!!)
+                        }
                     }
                 }
                 else -> if (config.type?.isEnum == true) {

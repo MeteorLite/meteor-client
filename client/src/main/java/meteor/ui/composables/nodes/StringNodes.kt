@@ -64,15 +64,8 @@ fun stringAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: Confi
 }
 
 @Composable
-fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-    var text by remember {
-        mutableStateOf(
-            ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
-            ).toString()
-        )
-    }
+fun stringTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor, mutableText: MutableState<String>) {
+    var text = mutableText.value
 
     Row(modifier = Modifier.fillMaxWidth().height(60.dp).background(background ) ) {
         Row(

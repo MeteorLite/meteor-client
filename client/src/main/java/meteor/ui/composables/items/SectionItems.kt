@@ -2,6 +2,8 @@ package meteor.ui.composables.items
 
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.mutableStateOf
+import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.legacy.ModifierlessKeybind
 import meteor.ui.composables.nodes.*
@@ -35,7 +37,7 @@ fun LazyListScope.sectionItems(descriptor: ConfigDescriptor) {
                                     String::class.java -> {
                                         when {
                                             config.item.textArea -> stringAreaTextNode(descriptor, config)
-                                            else -> stringTextNode(descriptor, config)
+                                            else -> stringTextNode(descriptor, config, mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!))
                                         }
                                     }
                                     else -> if (config.type?.isEnum == true) {

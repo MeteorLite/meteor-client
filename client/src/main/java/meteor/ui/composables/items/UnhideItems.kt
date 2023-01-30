@@ -128,7 +128,8 @@ fun unhideEnum(config : ConfigItemDescriptor){
                                         )
                                         else -> stringTextNode(
                                             descriptor,
-                                            hiddenItem
+                                            hiddenItem,
+                                            mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, hiddenItem.key())!!)
                                         )
                                     }
                                 }
@@ -226,7 +227,8 @@ fun hiddenItems(config : ConfigItemDescriptor){
                                     )
                                     else -> stringTextNode(
                                         descriptor,
-                                        hiddenItem
+                                        hiddenItem,
+                                        mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, hiddenItem.key())!!)
                                     )
                                 }
                             }
