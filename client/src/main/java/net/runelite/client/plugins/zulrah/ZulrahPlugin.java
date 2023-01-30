@@ -2,6 +2,8 @@ package net.runelite.client.plugins.zulrah;
 
 import com.google.common.base.Preconditions;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
@@ -23,10 +25,12 @@ import javax.annotation.Nullable;
 
 import eventbus.events.*;
 import meteor.Main;
+import meteor.api.Items;
 import meteor.game.SkillIconManager;
 import meteor.game.SpriteManager;
 import meteor.rs.ClientThread;
 import net.runelite.api.*;
+import net.runelite.api.Point;
 import net.runelite.api.coords.LocalPoint;
 
 import meteor.input.KeyListener;
@@ -49,7 +53,7 @@ import net.runelite.client.plugins.zulrah.rotationutils.ZulrahPhase;
 
 
 @PluginDescriptor(
-   name = "Zulrah",
+   name = "Zulrah Assist",
    description = "All-in-One tool to help during the Zulrah fight",
    tags = {"zulrah", "zul", "andra", "snakeling", "zhuri/nicole", "girls rule boys drool"},
    enabledByDefault = false//cringe
@@ -80,7 +84,15 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
    private PrayerMarkerOverlay prayerMarkerOverlay  = new PrayerMarkerOverlay(client,this, config);
 
    private SceneOverlay sceneOverlay  = new SceneOverlay(client,this, config, SkillIconManager.INSTANCE);
+   public List<String> getMageGear() {
+      String[] mageIDs = config.MageIDs().split(",");
+      return Arrays.asList(mageIDs);
+   }
 
+   public List<String> getRangeGear() {
+      String[] rangeIDs = config.RangeIDs().split(",");
+      return Arrays.asList(rangeIDs);
+   }
    private NPC zulrahNpc = null;
    private int stage = 0;
    private int phaseTicks = -1;
@@ -204,6 +216,22 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
    @Override
    public void onClientTick(ClientTick event)
    {
+      Widget gear = client.getWidget(WidgetInfo.EQUIPMENT.getId());
+      Point mousePoint = client.getMouseCanvasPosition();
+      if (gear != null && gear.isVisible()) {
+         Rectangle bounds = gear.getBounds();
+         if (bounds.contains(mousePoint.getX(), mousePoint.getY())) {
+            client.insertMenuItem(
+                    "<col=00FFFF>Copy Gear</col>",
+                    "",
+                    MenuAction.RUNELITE.getId(),
+                    InventoryID.EQUIPMENT.getId(),
+                    0,
+                    0,
+                    false
+            );
+         }
+      }
       if (client.getGameState() != GameState.LOGGED_IN || zulrahNpc == null)
       {
          return;
@@ -274,8 +302,10 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
       {
          if (npc.getId() == NpcID.ZULRAH_2044) {
             activatePrayer(config.offensiveRangePrayer().getPrayer());
+            equipRangeGear();
          } else {
             activatePrayer(config.offensiveMagePrayer().getPrayer());
+            equipMageGear();
          }
       }
    }
@@ -284,10 +314,11 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
    public void onNpcSpawned(NpcSpawned npcSpawned)
    {
       NPC npc = npcSpawned.getNpc();
-      if (config.offensivePrayerToggle())
+      if (npc.getId() == NpcID.ZULRAH)
       {
          if (npc.getId() == NpcID.ZULRAH) {
             activatePrayer(config.offensiveMagePrayer().getPrayer());
+            equipMageGear();
          }
       }
    }
@@ -371,6 +402,26 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
       if (!it.getFocused())
       {
          holdingSnakelingHotkey = false;
+      }
+   }
+
+   @Override
+   public void onMenuOptionClicked(MenuOptionClicked it) {
+      String menuOption = it.getMenuOption();
+      if (menuOption != null && menuOption.contains("<col=00FFFF>Copy Gear</col>")) {
+         ItemContainer i = client.getItemContainer(InventoryID.EQUIPMENT);
+         if (i == null) {
+            return;
+         }
+         StringBuilder sb = new StringBuilder();
+         for (Item item : i.getItems()) {
+            if (item.getId() == -1 || item.getId() == 0) {
+               continue;
+            }
+            sb.append(item.getName());
+            sb.append(",");
+         }
+         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(sb.toString()), null);
       }
    }
 
@@ -576,6 +627,26 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
       ZulrahPlugin.ZULRAH_IMAGES[0] = ImageUtil.INSTANCE.loadImageResource(ZulrahPlugin.class, "zulrah_range.png");
       ZulrahPlugin.ZULRAH_IMAGES[1] = ImageUtil.INSTANCE.loadImageResource(ZulrahPlugin.class, "zulrah_melee.png");
       ZulrahPlugin.ZULRAH_IMAGES[2] = ImageUtil.INSTANCE.loadImageResource(ZulrahPlugin.class, "zulrah_magic.png");
+   }
+   private void equipMageGear() {
+      ClientThread.INSTANCE.invokeLater(() -> {
+         for (String id : getMageGear()) {
+            Item item = Items.INSTANCE.getFirst(new String[] {id}, InventoryID.INVENTORY);
+            if (item != null) {
+               item.interact(2);
+            }
+         }
+      });
+   }
+   private void equipRangeGear() {
+      ClientThread.INSTANCE.invokeLater(() -> {
+         for (String id : getRangeGear()) {
+            Item item = Items.INSTANCE.getFirst(new String[] {id}, InventoryID.INVENTORY);
+            if (item != null) {
+               item.interact(2);
+            }
+         }
+      });
    }
    public void activatePrayer(Prayer prayer) {
       if (prayer == null) {
