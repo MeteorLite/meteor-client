@@ -1,5 +1,8 @@
 package meteor.plugins
 
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.runtime.Composable
 import meteor.Main
 import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
@@ -109,4 +112,7 @@ open class Plugin() : EventSubscriber() {
     }
 
     open fun resetConfiguration() {}
+
+    @Composable
+    open fun instructions() : @Composable (() -> Unit?)? = null
 }
