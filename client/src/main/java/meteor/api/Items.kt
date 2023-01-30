@@ -148,12 +148,30 @@ object Items {
     }
 
     /**
+     * checks the specified item [container] and returns the first matching item with the [id] provided
+     * @param ids the item id to look for
+     * @param container the item container to check
+     */
+    fun getFirst(id: Int, container: InventoryID? = InventoryID.INVENTORY): Item? {
+        return getAll(id, container = container)?.firstOrNull()
+    }
+
+    /**
      * checks the specified item [container] and returns the first matching item with the [names] provided
      * @param names the item names to look for
      * @param container the item container to check
      */
     fun getFirst(vararg names: String, container: InventoryID? = InventoryID.INVENTORY): Item? {
         return getAll(*names, container = container)?.firstOrNull()
+    }
+
+    /**
+     * checks the specified item [container] and returns the first matching item with the [name] provided
+     * @param name the item name to look for
+     * @param container the item container to check
+     */
+    fun getFirst(name: String, container: InventoryID? = InventoryID.INVENTORY): Item? {
+        return getAll(name, container = container)?.firstOrNull()
     }
 
     /**

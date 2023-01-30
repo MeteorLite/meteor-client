@@ -110,6 +110,7 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
    private Counter zulrahTotalTicksInfoBox;
    public static final BufferedImage[] ZULRAH_IMAGES = new BufferedImage[3];
    private static final BufferedImage CLOCK_ICON = ImageUtil.INSTANCE.loadImageResource(ZulrahPlugin.class, "clock.png");
+   private boolean needsRecoil = false;
    private final BiConsumer<RotationType, RotationType> phaseTicksHandler = (current, potential) -> {
       if (zulrahReset) {
          phaseTicks = 38;
@@ -291,6 +292,21 @@ public class ZulrahPlugin extends Plugin implements KeyListener {
             firstJadAttack = true;
             activatePrayer(prayer);
          }
+      }
+
+      if (config.autoRingOfRecoil()) {
+         Item invRecoil = Items.INSTANCE.getFirst("Ring of recoil", InventoryID.INVENTORY);
+         if (needsRecoil && invRecoil != null) {
+            invRecoil.interact("Wear");
+            needsRecoil = false;
+         }
+      }
+   }
+
+   @Override
+   public void onChatMessage(ChatMessage it) {
+      if (it.getMessage().contains("Your Ring of Recoil has shattered.")) {
+         needsRecoil = true;
       }
    }
 

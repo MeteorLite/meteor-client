@@ -186,6 +186,18 @@ public interface ZulrahConfig extends Config {
    }
 
    @ConfigItem(
+           keyName = "autoRingOfRecoil",
+           name = "Auto Ring of Recoil",
+           description = "Automatically equips a ring of recoil if one shatters",
+           position = 0,
+           section = fightHelperSection
+   )
+   default boolean autoRingOfRecoil()
+   {
+      return true;
+   }
+
+   @ConfigItem(
            keyName = "offensivePrayerToggle",
            name = "Offensive Prayer Toggle",
            description = "Toggles the option to use offensive prayers with Auto Prayer",
