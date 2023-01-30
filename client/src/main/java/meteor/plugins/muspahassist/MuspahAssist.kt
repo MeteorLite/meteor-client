@@ -55,8 +55,9 @@ class MuspahAssist : Plugin() {
     override fun onGameTick(it: GameTick) {
         protectMelee()
         if (System.currentTimeMillis() < smiteEndTime) return
-        val muspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
-        if (muspah != null) {
+        val shieldMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
+        val rangeMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH,true,true)
+        if (shieldMuspah != null) {
             if (client.isPrayerActive(Prayer.SMITE) && config.smiteToggle()) {
                 smiteEndTime = System.currentTimeMillis() + 2000
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
@@ -67,13 +68,16 @@ class MuspahAssist : Plugin() {
         } else if (client.isPrayerActive(Prayer.SMITE)) {
             activatePrayer(Prayer.PROTECT_FROM_MISSILES)
         }
+        if (rangeMuspah != null){
+            equipRangeGear()
+        }
+    }
+    override fun onNpcChanged(it: NpcChanged) {
+        val npc: NPC = it.npc
         if (config.gearToggle()) {
-            if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) {
-                if (muspah == null) {
-                    equipRangeGear()
-                } else {
-                    equipShieldGear()
-                }
+            when (npc.id) {
+                NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear()
+                NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear()
             }
         }
     }
@@ -110,6 +114,7 @@ class MuspahAssist : Plugin() {
             if (config.offensivePrayerToggle()) activatePrayer(config.rangeOffensivePrayer().prayer)
         }
     }
+
     override fun onProjectileSpawned(it: ProjectileSpawned) {
         val projectile: Projectile = it.projectile
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()){
@@ -131,8 +136,8 @@ class MuspahAssist : Plugin() {
         }
     }
     private fun protectMelee() {
-        val muspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true)
-        if (muspah == null) return
+        val meleeMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true)
+        if (meleeMuspah == null) return
         activatePrayer(Prayer.PROTECT_FROM_MELEE)
         if (config.offensivePrayerToggle()) {
             val prayer = if (config.rangeOnly()) {
