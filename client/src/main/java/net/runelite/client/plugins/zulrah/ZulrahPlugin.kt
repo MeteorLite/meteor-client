@@ -1,11 +1,25 @@
 package net.runelite.client.plugins.zulrah
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.common.base.Preconditions
 import eventbus.events.*
 import meteor.Logger
 import meteor.Main
 import meteor.api.Items
 import meteor.api.Items.getFirst
+import meteor.config.ConfigManager
 import meteor.game.SkillIconManager
 import meteor.game.SpriteManager
 import meteor.input.KeyListener
@@ -15,6 +29,10 @@ import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.rs.ClientThread.invoke
 import meteor.rs.ClientThread.invokeLater
+import meteor.ui.composables.items.configStringsMap
+import meteor.ui.composables.preferences.secondColor
+import meteor.ui.composables.preferences.surface
+import meteor.ui.composables.preferences.uiColor
 import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.infobox.Counter
 import meteor.ui.overlay.infobox.InfoBoxManager
@@ -132,7 +150,69 @@ class ZulrahPlugin : Plugin(), KeyListener {
         handleTotalTicksInfoBox(true)
         //log.info("Zulrah Reset!");
     }
+    @Composable
+    override fun instructions() : @Composable () -> Unit? {
+        return {
+            Spacer(Modifier.height(10.dp))
+            Text(
+                style = (TextStyle(fontSize = 12.sp)),
+                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
+                color = secondColor.value,
+                textAlign = TextAlign.Center)
+            Column {
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
 
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("znzulrah", "RangeIDs", sb.toString())
+                            configStringsMap["znzulrah:RangeIDs"]?.value = sb.toString()
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Range Gear", color = uiColor.value)
+                }
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
+
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("znzulrah", "MageIDs", sb.toString())
+                            configStringsMap["znzulrah:MageIDs"]?.value = sb.toString()
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Mage Gear", color = uiColor.value)
+                }
+            }
+        }
+    }
     override fun keyTyped(e: KeyEvent) {}
     override fun keyPressed(e: KeyEvent) {
         if (config.snakelingSetting() == ZulrahConfig.SnakelingSettings.MES && config.snakelingMesHotkey().matches(e)) {
@@ -171,22 +251,6 @@ class ZulrahPlugin : Plugin(), KeyListener {
     }
 
     override fun onClientTick(event: ClientTick) {
-        val gear = client.getWidget(WidgetInfo.EQUIPMENT.id)
-        val mousePoint = client.mouseCanvasPosition
-        if (gear != null && gear.isVisible) {
-            val bounds = gear.bounds
-            if (bounds.contains(mousePoint.x, mousePoint.y)) {
-                client.insertMenuItem(
-                    "<col=00FFFF>Copy Gear</col>",
-                    "",
-                    MenuAction.RUNELITE.id,
-                    InventoryID.EQUIPMENT.id,
-                    0,
-                    0,
-                    false
-                )
-            }
-        }
         if (client.gameState != GameState.LOGGED_IN || zulrahNpc == null) {
             return
         }
@@ -344,22 +408,6 @@ class ZulrahPlugin : Plugin(), KeyListener {
     override fun onFocusChanged(it: FocusChanged) {
         if (!it.focused) {
             holdingSnakelingHotkey = false
-        }
-    }
-
-    override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        val menuOption = it.getMenuOption()
-        if (menuOption != null && menuOption.contains("<col=00FFFF>Copy Gear</col>")) {
-            val i = client.getItemContainer(InventoryID.EQUIPMENT) ?: return
-            val sb = StringBuilder()
-            for (item in i.items) {
-                if (item.id == -1 || item.id == 0) {
-                    continue
-                }
-                sb.append(item.name)
-                sb.append(",")
-            }
-            Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(sb.toString()), null)
         }
     }
 

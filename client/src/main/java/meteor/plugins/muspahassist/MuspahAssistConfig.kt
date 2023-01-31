@@ -71,7 +71,7 @@ interface MuspahAssistConfig : Config {
         position = 6
     )
     fun RangeIDs(): String? {
-        return "Equip the gear"
+        return ""
     }
     @ConfigItem(
         keyName = "MageIDs",
@@ -81,7 +81,7 @@ interface MuspahAssistConfig : Config {
         position = 7
     )
     fun MageIDs(): String? {
-        return "Right click inside the equipment tab"
+        return ""
     }
     @ConfigItem(
         keyName = "shieldIDs",
@@ -91,7 +91,7 @@ interface MuspahAssistConfig : Config {
         position = 8
     )
     fun ShieldIDs(): String? {
-        return "Click copy gear and paste it here"
+        return ""
     }
 
     enum class RangeOffensivePrayers(val prayer: Prayer) {
