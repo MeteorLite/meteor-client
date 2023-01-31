@@ -179,16 +179,14 @@ class MuspahAssist : Plugin() {
             activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             if (config.offensivePrayerToggle()) activatePrayer(config.rangeOffensivePrayer().prayer)
         }
+        if (it.actor.animation == 9918 && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()){
+            activatePrayer(Prayer.SMITE)
+        }
     }
     override fun onProjectileSpawned(it: ProjectileSpawned) {
         val projectile: Projectile = it.projectile
         var ticksRemaining = projectile.remainingCycles / 30
-        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(
-                NpcID.PHANTOM_MUSPAH_12079,
-                true,
-                true
-            ) != null && config.smiteToggle()
-        ) {
+        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()) {
             activatePrayer(Prayer.SMITE)
         }
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1) {
