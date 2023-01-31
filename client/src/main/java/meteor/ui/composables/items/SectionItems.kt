@@ -37,7 +37,15 @@ fun LazyListScope.sectionItems(descriptor: ConfigDescriptor) {
                                     String::class.java -> {
                                         when {
                                             config.item.textArea -> stringAreaTextNode(descriptor, config)
-                                            else -> stringTextNode(descriptor, config, mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!))
+                                            else -> {
+                                                val key = "${descriptor.group.value}:${config.key()}"
+                                                configStringsMap[key]?.let {
+                                                    it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())!!
+                                                }
+                                                if (configStringsMap[key] == null)
+                                                    configStringsMap[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!)
+                                                stringTextNode(descriptor, config, configStringsMap[key]!!)
+                                            }
                                         }
                                     }
                                     else -> if (config.type?.isEnum == true) {
