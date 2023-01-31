@@ -42,9 +42,9 @@ public class ZulrahData {
       } else if (current.getZulrahNpc().getType() == ZulrahType.MELEE) {
          switch(current.getAttributes().getStandLocation()) {
          case NORTHEAST_TOP:
-            return ZulrahPlugin.isFlipStandLocation() ? Optional.of(StandLocation.NORTHEAST_BOTTOM) : Optional.of(current.getAttributes().getStandLocation());
+            return ZulrahPlugin.Companion.isFlipStandLocation() ? Optional.of(StandLocation.NORTHEAST_BOTTOM) : Optional.of(current.getAttributes().getStandLocation());
          case WEST:
-            return ZulrahPlugin.isFlipStandLocation() ? Optional.of(StandLocation.NORTHWEST_BOTTOM) : Optional.of(current.getAttributes().getStandLocation());
+            return ZulrahPlugin.Companion.isFlipStandLocation() ? Optional.of(StandLocation.NORTHWEST_BOTTOM) : Optional.of(current.getAttributes().getStandLocation());
          default:
             return Optional.of(current.getAttributes().getStandLocation());
          }
@@ -66,7 +66,7 @@ public class ZulrahData {
    }
 
    public Optional<Prayer> getCurrentPhasePrayer() {
-      if (ZulrahPlugin.isZulrahReset()) {
+      if (ZulrahPlugin.Companion.isZulrahReset()) {
          return Optional.of(Prayer.PROTECT_FROM_MISSILES);
       } else if (current != null && current.getAttributes().getPrayer() != null) {
          Prayer phasePrayer = current.getAttributes().getPrayer();
@@ -74,7 +74,7 @@ public class ZulrahData {
 
 
 
-         return isJad() ? (ZulrahPlugin.isFlipPhasePrayer() ? Optional.of(invertedPhasePrayer) : Optional.of(phasePrayer)) : Optional.of(phasePrayer);
+         return isJad() ? (ZulrahPlugin.Companion.isFlipPhasePrayer() ? Optional.of(invertedPhasePrayer) : Optional.of(phasePrayer)) : Optional.of(phasePrayer);
       } else {
          return Optional.empty();
       }

@@ -9,8 +9,6 @@ import com.sun.jna.Platform;
 import net.runelite.api.Skill;
 import net.runelite.client.plugins.zulrah.ZulrahPlugin;
 
-import static net.runelite.client.plugins.zulrah.ZulrahPlugin.log;
-
 
 public enum ZulrahType {
    RANGE("Range", 2042, Skill.RANGED, Color.YELLOW),
@@ -38,10 +36,10 @@ public enum ZulrahType {
 
    public BufferedImage getImage() {
       try {
-         return ZulrahPlugin.ZULRAH_IMAGES[this.ordinal()];
+         return ZulrahPlugin.Companion.getZULRAH_IMAGES()[this.ordinal()];
       } catch (ArrayIndexOutOfBoundsException var2) {
 
-          log.info( "Attempted to get Zulrah Image but was out of bounds... Cause -> {}", var2.getMessage());
+          //log.info( "Attempted to get Zulrah Image but was out of bounds... Cause -> {}", var2.getMessage());
          return null;
       }
    }

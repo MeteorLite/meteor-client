@@ -37,8 +37,11 @@ import java.awt.image.BufferedImage;
 public class Counter extends InfoBox
 {
 	@Getter
-	@Setter
 	public int count;
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 	public Counter(BufferedImage image, Plugin plugin, int count)
 	{
