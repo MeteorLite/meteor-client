@@ -1,11 +1,23 @@
 package net.runelite.client.plugins.zulrah
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.common.base.Preconditions
 import eventbus.events.*
 import meteor.Logger
-import meteor.Main
-import meteor.api.Items
 import meteor.api.Items.getFirst
+import meteor.config.ConfigManager
 import meteor.game.SkillIconManager
 import meteor.game.SpriteManager
 import meteor.input.KeyListener
@@ -13,21 +25,20 @@ import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import meteor.rs.ClientThread.invoke
 import meteor.rs.ClientThread.invokeLater
-import meteor.ui.overlay.OverlayManager
+import meteor.ui.composables.items.configStringsMap
+import meteor.ui.composables.preferences.secondColor
+import meteor.ui.composables.preferences.surface
+import meteor.ui.composables.preferences.uiColor
 import meteor.ui.overlay.infobox.Counter
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ImageUtil.loadImageResource
 import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
-import net.runelite.api.widgets.WidgetInfo
 import net.runelite.client.plugins.zulrah.overlays.*
 import net.runelite.client.plugins.zulrah.rotationutils.RotationType
 import net.runelite.client.plugins.zulrah.rotationutils.ZulrahData
 import net.runelite.client.plugins.zulrah.rotationutils.ZulrahPhase
-import java.awt.Toolkit
-import java.awt.datatransfer.StringSelection
 import java.awt.event.KeyEvent
 import java.awt.image.BufferedImage
 import java.lang.reflect.InvocationTargetException
@@ -53,15 +64,15 @@ class ZulrahPlugin : Plugin(), KeyListener {
     private val prayerHelperOverlay = PrayerHelperOverlay(client, this, config, SpriteManager)
     private val prayerMarkerOverlay = PrayerMarkerOverlay(client, this, config)
     private val sceneOverlay = SceneOverlay(client, this, config, SkillIconManager)
-    val mageGear: List<String>
+    private val mageGear: List<String>
         get() {
             val mageIDs = config.MageIDs().split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            return Arrays.asList(*mageIDs)
+            return listOf(*mageIDs)
         }
-    val rangeGear: List<String>
+    private val rangeGear: List<String>
         get() {
             val rangeIDs = config.RangeIDs().split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            return Arrays.asList(*rangeIDs)
+            return listOf(*rangeIDs)
         }
     var zulrahNpc: NPC? = null
         private set
@@ -132,7 +143,69 @@ class ZulrahPlugin : Plugin(), KeyListener {
         handleTotalTicksInfoBox(true)
         //log.info("Zulrah Reset!");
     }
+    @Composable
+    override fun instructions() : @Composable () -> Unit? {
+        return {
+            Spacer(Modifier.height(10.dp))
+            Text(
+                style = (TextStyle(fontSize = 12.sp)),
+                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
+                color = secondColor.value,
+                textAlign = TextAlign.Center)
+            Column {
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
 
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("znzulrah", "RangeIDs", sb.toString())
+                            configStringsMap["znzulrah:RangeIDs"]?.value = sb.toString()
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Range Gear", color = uiColor.value)
+                }
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
+
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("znzulrah", "MageIDs", sb.toString())
+                            configStringsMap["znzulrah:MageIDs"]?.value = sb.toString()
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Mage Gear", color = uiColor.value)
+                }
+            }
+        }
+    }
     override fun keyTyped(e: KeyEvent) {}
     override fun keyPressed(e: KeyEvent) {
         if (config.snakelingSetting() == ZulrahConfig.SnakelingSettings.MES && config.snakelingMesHotkey().matches(e)) {
@@ -170,23 +243,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
         snakelings.clear()
     }
 
-    override fun onClientTick(event: ClientTick) {
-        val gear = client.getWidget(WidgetInfo.EQUIPMENT.id)
-        val mousePoint = client.mouseCanvasPosition
-        if (gear != null && gear.isVisible) {
-            val bounds = gear.bounds
-            if (bounds.contains(mousePoint.x, mousePoint.y)) {
-                client.insertMenuItem(
-                    "<col=00FFFF>Copy Gear</col>",
-                    "",
-                    MenuAction.RUNELITE.id,
-                    InventoryID.EQUIPMENT.id,
-                    0,
-                    0,
-                    false
-                )
-            }
-        }
+    override fun onClientTick(it: ClientTick) {
         if (client.gameState != GameState.LOGGED_IN || zulrahNpc == null) {
             return
         }
@@ -257,25 +314,34 @@ class ZulrahPlugin : Plugin(), KeyListener {
         }
     }
 
-    override fun onNpcChanged(npcCompositionChanged: NpcChanged) {
-        val npc = npcCompositionChanged.npc
+    override fun onNpcChanged(it: NpcChanged) {
+        val npc: NPC = it.npc
         if (config.offensivePrayerToggle()) {
-            if (npc.id == NpcID.ZULRAH_2044) {
-                activatePrayer(config.offensiveRangePrayer().prayer)
-                equipRangeGear()
-            } else {
-                activatePrayer(config.offensiveMagePrayer().prayer)
-                equipMageGear()
+            when (npc.id) {
+                (NpcID.ZULRAH_2044) -> activatePrayer(config.offensiveRangePrayer().prayer)
+                (NpcID.ZULRAH) -> activatePrayer(config.offensiveMagePrayer().prayer)
+                (NpcID.ZULRAH_2043) -> activatePrayer(config.offensiveMagePrayer().prayer)
+            }
+        }
+        if (config.gearToggle()) {
+            when (npc.id){
+                (NpcID.ZULRAH_2044) -> equipRangeGear()
+                (NpcID.ZULRAH) -> equipMageGear()
+                NpcID.ZULRAH_2043 -> equipMageGear()
             }
         }
     }
 
-    override fun onNpcSpawned(npcSpawned: NpcSpawned) {
-        val npc = npcSpawned.npc
-        if (npc.id == NpcID.ZULRAH) {
-            if (npc.id == NpcID.ZULRAH) {
-                activatePrayer(config.offensiveMagePrayer().prayer)
-                equipMageGear()
+    override fun onNpcSpawned(it: NpcSpawned) {
+        val npc: NPC = it.npc
+        if (config.offensivePrayerToggle()){
+            when (npc.id) {
+                (NpcID.ZULRAH) -> activatePrayer(config.offensiveMagePrayer().prayer)
+            }
+        }
+        if (config.gearToggle()){
+            when (npc.id) {
+                (NpcID.ZULRAH) -> equipMageGear()
             }
         }
     }
@@ -344,22 +410,6 @@ class ZulrahPlugin : Plugin(), KeyListener {
     override fun onFocusChanged(it: FocusChanged) {
         if (!it.focused) {
             holdingSnakelingHotkey = false
-        }
-    }
-
-    override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        val menuOption = it.getMenuOption()
-        if (menuOption != null && menuOption.contains("<col=00FFFF>Copy Gear</col>")) {
-            val i = client.getItemContainer(InventoryID.EQUIPMENT) ?: return
-            val sb = StringBuilder()
-            for (item in i.items) {
-                if (item.id == -1 || item.id == 0) {
-                    continue
-                }
-                sb.append(item.name)
-                sb.append(",")
-            }
-            Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(sb.toString()), null)
         }
     }
 
@@ -441,8 +491,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
                     zulrahDataSet.add(
                         ZulrahData(
                             getCurrentPhase(
-                                type as RotationType?
-                            ), getNextPhase(type as RotationType?)
+                                type
+                            ), getNextPhase(type)
                         )
                     )
                 })
@@ -501,18 +551,18 @@ class ZulrahPlugin : Plugin(), KeyListener {
             return
         }
         val widgetInfo = prayer.widgetInfo ?: return
-        val prayer_widget = client.getWidget(widgetInfo) ?: return
+        val prayerWidget = client.getWidget(widgetInfo) ?: return
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
         clientThread.invoke {
             client.invokeMenuAction(
                 "Activate",
-                prayer_widget.name,
+                prayerWidget.name,
                 1,
                 MenuAction.CC_OP.id,
-                prayer_widget.itemId,
-                prayer_widget.id
+                prayerWidget.itemId,
+                prayerWidget.id
             )
         }
     }

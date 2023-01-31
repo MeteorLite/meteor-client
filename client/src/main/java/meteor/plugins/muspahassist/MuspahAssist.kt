@@ -5,6 +5,8 @@ package meteor.plugins.muspahassist
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,11 +18,14 @@ import androidx.compose.ui.unit.sp
 import eventbus.events.*
 import meteor.api.Items
 import meteor.api.NPCs
+import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
+import meteor.ui.composables.items.configStringsMap
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
+import meteor.ui.composables.preferences.uiColor
 import net.runelite.api.*
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Toolkit
@@ -34,12 +39,87 @@ class MuspahAssist : Plugin() {
     override fun instructions() : @Composable () -> Unit? {
         return {
             Spacer(Modifier.height(10.dp))
-            Row(Modifier.heightIn(100.dp).background(color = surface, shape = RoundedCornerShape(3.dp)), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically)  {
-                Text(
-                    style = (TextStyle(fontSize = 16.sp)),
-                    text = "You can copy your equipped gear by right clicking inside the equipment tab and selecting copy gear and then paste it into the appropriate section.",
-                    color = secondColor.value,
-                    textAlign = TextAlign.Center)
+            Text(
+                style = (TextStyle(fontSize = 12.sp)),
+                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
+                color = secondColor.value,
+                textAlign = TextAlign.Center)
+            Column {
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
+
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("muspahassist", "RangeIDs", sb.toString())
+                            configStringsMap["muspahassist:RangeIDs"]?.value = sb.toString()
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Range Gear", color = uiColor.value)
+                }
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
+
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("muspahassist", "MageIDs", sb.toString())
+                            configStringsMap["muspahassist:MageIDs"]?.value = sb.toString()
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Mage Gear", color = uiColor.value)
+                }
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
+
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("muspahassist", "shieldIDs", sb.toString())
+                            configStringsMap["muspahassist:shieldIDs"]?.value = sb.toString()
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Shield Gear", color = uiColor.value)
+                }
             }
         }
     }
@@ -81,21 +161,6 @@ class MuspahAssist : Plugin() {
             }
         }
     }
-    override fun onClientTick(it: ClientTick) {
-        val gear = client.getWidget(WidgetInfo.EQUIPMENT.id)
-        val mousePoint = client.mouseCanvasPosition
-        if (gear != null && gear.isVisible) {
-            if (gear.bounds.contains(mousePoint.x, mousePoint.y)) client.insertMenuItem(
-                "<col=00FFFF>Copy Gear</col>",
-                "",
-                MenuAction.RUNELITE.id,
-                InventoryID.EQUIPMENT.id,
-                0,
-                0,
-                false
-            )
-        }
-    }
     override fun onAnimationChanged(it: AnimationChanged) {
         if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")) {
             return
@@ -119,20 +184,6 @@ class MuspahAssist : Plugin() {
         val projectile: Projectile = it.projectile
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()){
             activatePrayer(Prayer.SMITE)
-        }
-    }
-    override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        if ("<col=00FFFF>Copy Gear</col>" in it.getMenuOption()!!) {
-            val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
-            val sb = StringBuilder()
-            i?.items?.forEach {
-                if (it.id == -1 || it.id == 0) {
-                    return@forEach
-                }
-                sb.append(it.name)
-                sb.append(",")
-            }
-            Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(sb.toString()), null)
         }
     }
     private fun protectMelee() {
