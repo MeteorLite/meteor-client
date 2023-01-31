@@ -22,7 +22,7 @@ import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import meteor.ui.composables.items.configStringsMap
+import meteor.ui.composables.items.updateConfigUI
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
@@ -61,7 +61,7 @@ class MuspahAssist : Plugin() {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("muspahassist", "RangeIDs", sb.toString())
-                            configStringsMap["muspahassist:RangeIDs"]?.value = sb.toString()
+                            updateConfigUI("muspahassist", "RangeIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
@@ -86,7 +86,7 @@ class MuspahAssist : Plugin() {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("muspahassist", "MageIDs", sb.toString())
-                            configStringsMap["muspahassist:MageIDs"]?.value = sb.toString()
+                            updateConfigUI("muspahassist", "MageIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
@@ -111,7 +111,7 @@ class MuspahAssist : Plugin() {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("muspahassist", "shieldIDs", sb.toString())
-                            configStringsMap["muspahassist:shieldIDs"]?.value = sb.toString()
+                            updateConfigUI("muspahassist", "shieldIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(

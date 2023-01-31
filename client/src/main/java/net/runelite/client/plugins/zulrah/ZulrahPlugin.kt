@@ -26,7 +26,7 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.rs.ClientThread.invokeLater
-import meteor.ui.composables.items.configStringsMap
+import meteor.ui.composables.items.updateConfigUI
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
@@ -169,7 +169,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("znzulrah", "RangeIDs", sb.toString())
-                            configStringsMap["znzulrah:RangeIDs"]?.value = sb.toString()
+                            updateConfigUI("znzulrah", "RangeIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
@@ -194,7 +194,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("znzulrah", "MageIDs", sb.toString())
-                            configStringsMap["znzulrah:MageIDs"]?.value = sb.toString()
+                            updateConfigUI("znzulrah", "MageIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
