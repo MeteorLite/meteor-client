@@ -10,7 +10,7 @@ import meteor.config.legacy.ModifierlessKeybind
 import meteor.ui.composables.nodes.*
 import java.awt.Color
 
-val configStringsMap = HashMap<String, MutableState<String>>()
+val configStringsMap = HashMap<String, MutableState<String?>>()
 
 fun updateConfigUI(group: String, key: String, value: String) {
     configStringsMap["$group:$key"]?.value = value
@@ -58,10 +58,10 @@ fun LazyListScope.configItems(descriptor: ConfigDescriptor) {
                         else -> {
                             val key = "${descriptor.group.value}:${config.key()}"
                             configStringsMap[key]?.let {
-                                it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())!!
+                                it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())
                             }
                             if (configStringsMap[key] == null)
-                                configStringsMap[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!)
+                                configStringsMap[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key()))
                             stringTextNode(descriptor, config, configStringsMap[key]!!)
                         }
                     }
