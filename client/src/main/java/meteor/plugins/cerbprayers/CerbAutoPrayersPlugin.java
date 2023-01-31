@@ -732,7 +732,7 @@ public class CerbAutoPrayersPlugin extends Plugin
 
 		clientThread.invoke(() ->
 				client.invokeMenuAction(
-						"Dectivate",
+						"Deactivate",
 						prayer_widget.getName(),
 						1,
 						MenuAction.CC_OP.getId(),
