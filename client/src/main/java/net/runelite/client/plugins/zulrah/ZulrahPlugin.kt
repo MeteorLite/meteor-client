@@ -16,8 +16,6 @@ import androidx.compose.ui.unit.sp
 import com.google.common.base.Preconditions
 import eventbus.events.*
 import meteor.Logger
-import meteor.Main
-import meteor.api.Items
 import meteor.api.Items.getFirst
 import meteor.config.ConfigManager
 import meteor.game.SkillIconManager
@@ -27,25 +25,20 @@ import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import meteor.rs.ClientThread.invoke
 import meteor.rs.ClientThread.invokeLater
 import meteor.ui.composables.items.configStringsMap
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
-import meteor.ui.overlay.OverlayManager
 import meteor.ui.overlay.infobox.Counter
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ImageUtil.loadImageResource
 import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
-import net.runelite.api.widgets.WidgetInfo
 import net.runelite.client.plugins.zulrah.overlays.*
 import net.runelite.client.plugins.zulrah.rotationutils.RotationType
 import net.runelite.client.plugins.zulrah.rotationutils.ZulrahData
 import net.runelite.client.plugins.zulrah.rotationutils.ZulrahPhase
-import java.awt.Toolkit
-import java.awt.datatransfer.StringSelection
 import java.awt.event.KeyEvent
 import java.awt.image.BufferedImage
 import java.lang.reflect.InvocationTargetException
@@ -71,15 +64,15 @@ class ZulrahPlugin : Plugin(), KeyListener {
     private val prayerHelperOverlay = PrayerHelperOverlay(client, this, config, SpriteManager)
     private val prayerMarkerOverlay = PrayerMarkerOverlay(client, this, config)
     private val sceneOverlay = SceneOverlay(client, this, config, SkillIconManager)
-    val mageGear: List<String>
+    private val mageGear: List<String>
         get() {
             val mageIDs = config.MageIDs().split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            return Arrays.asList(*mageIDs)
+            return listOf(*mageIDs)
         }
-    val rangeGear: List<String>
+    private val rangeGear: List<String>
         get() {
             val rangeIDs = config.RangeIDs().split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            return Arrays.asList(*rangeIDs)
+            return listOf(*rangeIDs)
         }
     var zulrahNpc: NPC? = null
         private set
@@ -250,7 +243,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
         snakelings.clear()
     }
 
-    override fun onClientTick(event: ClientTick) {
+    override fun onClientTick(it: ClientTick) {
         if (client.gameState != GameState.LOGGED_IN || zulrahNpc == null) {
             return
         }
@@ -321,25 +314,34 @@ class ZulrahPlugin : Plugin(), KeyListener {
         }
     }
 
-    override fun onNpcChanged(npcCompositionChanged: NpcChanged) {
-        val npc = npcCompositionChanged.npc
+    override fun onNpcChanged(it: NpcChanged) {
+        val npc: NPC = it.npc
         if (config.offensivePrayerToggle()) {
-            if (npc.id == NpcID.ZULRAH_2044) {
-                activatePrayer(config.offensiveRangePrayer().prayer)
-                equipRangeGear()
-            } else {
-                activatePrayer(config.offensiveMagePrayer().prayer)
-                equipMageGear()
+            when (npc.id) {
+                (NpcID.ZULRAH_2044) -> activatePrayer(config.offensiveRangePrayer().prayer)
+                (NpcID.ZULRAH) -> activatePrayer(config.offensiveMagePrayer().prayer)
+                (NpcID.ZULRAH_2043) -> activatePrayer(config.offensiveMagePrayer().prayer)
+            }
+        }
+        if (config.gearToggle()) {
+            when (npc.id){
+                (NpcID.ZULRAH_2044) -> equipRangeGear()
+                (NpcID.ZULRAH) -> equipMageGear()
+                NpcID.ZULRAH_2043 -> equipMageGear()
             }
         }
     }
 
-    override fun onNpcSpawned(npcSpawned: NpcSpawned) {
-        val npc = npcSpawned.npc
-        if (npc.id == NpcID.ZULRAH) {
-            if (npc.id == NpcID.ZULRAH) {
-                activatePrayer(config.offensiveMagePrayer().prayer)
-                equipMageGear()
+    override fun onNpcSpawned(it: NpcSpawned) {
+        val npc: NPC = it.npc
+        if (config.offensivePrayerToggle()){
+            when (npc.id) {
+                (NpcID.ZULRAH) -> activatePrayer(config.offensiveMagePrayer().prayer)
+            }
+        }
+        if (config.gearToggle()){
+            when (npc.id) {
+                (NpcID.ZULRAH) -> equipMageGear()
             }
         }
     }
@@ -489,8 +491,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
                     zulrahDataSet.add(
                         ZulrahData(
                             getCurrentPhase(
-                                type as RotationType?
-                            ), getNextPhase(type as RotationType?)
+                                type
+                            ), getNextPhase(type)
                         )
                     )
                 })
@@ -549,18 +551,18 @@ class ZulrahPlugin : Plugin(), KeyListener {
             return
         }
         val widgetInfo = prayer.widgetInfo ?: return
-        val prayer_widget = client.getWidget(widgetInfo) ?: return
+        val prayerWidget = client.getWidget(widgetInfo) ?: return
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
         clientThread.invoke {
             client.invokeMenuAction(
                 "Activate",
-                prayer_widget.name,
+                prayerWidget.name,
                 1,
                 MenuAction.CC_OP.id,
-                prayer_widget.itemId,
-                prayer_widget.id
+                prayerWidget.itemId,
+                prayerWidget.id
             )
         }
     }
