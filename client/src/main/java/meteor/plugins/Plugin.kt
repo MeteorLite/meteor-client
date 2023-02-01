@@ -8,6 +8,7 @@ import meteor.config.ConfigManager
 import meteor.config.ConfigManager.getConfig
 import meteor.config.ConfigManager.setDefaultConfiguration
 import meteor.config.legacy.Config
+import meteor.ui.composables.composePanelMap
 import meteor.ui.composables.preferences.lastButtonClicked
 import meteor.ui.composables.preferences.pluginPanelIsOpen
 
@@ -113,6 +114,7 @@ open class Plugin() : EventSubscriber() {
 
     open fun resetConfiguration() {}
 
-    @Composable
-    open fun instructions() : @Composable (() -> Unit?)? = null
+    fun setConfigComposable(group: String, key: String, composable: @Composable () -> Unit?) {
+        composePanelMap["$group:$key"] = composable
+    }
 }

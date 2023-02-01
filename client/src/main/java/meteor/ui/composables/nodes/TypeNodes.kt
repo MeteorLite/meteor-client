@@ -33,10 +33,7 @@ import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
 
 @Composable
-fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-    var toggled by remember {
-        mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key()).toBoolean())
-    }
+fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor, booleanValue: MutableState<Boolean?>) {
     Row(modifier = Modifier.fillMaxWidth().height(32.dp).background(background)) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth(0.8f).height(32.dp).background(background)) {
             MaterialTheme(colors = darkThemeColors) {
@@ -45,9 +42,9 @@ fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
         }
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth().height(32.dp).background(background)) {
             MaterialTheme(colors = darkThemeColors) {
-                Checkbox(toggled, onCheckedChange = {
+                Checkbox(booleanValue.value!!, onCheckedChange = {
                     ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
-                    toggled = it
+                    booleanValue.value = it
                 }, enabled = true, modifier = Modifier.scale(0.85f), colors = CheckboxDefaults.colors(checkedColor = uiColor.value, uncheckedColor = surface))
             }
         }

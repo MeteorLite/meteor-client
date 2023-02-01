@@ -46,35 +46,68 @@ interface MuspahAssistConfig : Config {
         return false
     }
     @ConfigItem(
+        keyName = "rangeGearButton",
+        name = "",
+        description = "",
+        position = 6,
+        composePanel = true
+    )
+    fun rangeGearButton(): Boolean {
+        return false
+    }
+    @ConfigItem(
         keyName = "RangeIDs",
         name = "Range Gear",
         description = "",
         textField = true,
-        position = 6
+        position = 7
     )
     fun RangeIDs(): String? {
         return ""
+    }
+
+    @ConfigItem(
+        keyName = "mageGearButton",
+        name = "",
+        description = "",
+        position = 8,
+        composePanel = true
+    )
+    fun mageGearButton(): Boolean {
+        return false
     }
     @ConfigItem(
         keyName = "MageIDs",
         name = "Mage Gear",
         description = "",
         textField = true,
-        position = 7
+        position = 9
     )
     fun MageIDs(): String? {
         return ""
+    }
+    @ConfigItem(
+        keyName = "shieldGearButton",
+        name = "",
+        description = "",
+        position = 10,
+        composePanel = true
+    )
+    fun shieldGearButton(): Boolean {
+        return false
     }
     @ConfigItem(
         keyName = "shieldIDs",
         name = "Shield Phase Gear",
         description = "",
         textField = true,
-        position = 8
+        position = 11
     )
     fun ShieldIDs(): String? {
         return ""
     }
+
+
 
     enum class RangeOffensivePrayers(val prayer: Prayer) {
         EAGLE_EYE(Prayer.EAGLE_EYE), RIGOUR(Prayer.RIGOUR);
