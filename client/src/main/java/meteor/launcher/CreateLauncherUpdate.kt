@@ -9,7 +9,7 @@ import java.util.zip.CRC32
 import kotlin.math.ceil
 
 object CreateLauncherUpdate {
-    private val releaseVersion = "230"
+    private val releaseVersion = "231"
     private val runtimeVersion = "17.0.5"
 
     private val release = LauncherUpdate()

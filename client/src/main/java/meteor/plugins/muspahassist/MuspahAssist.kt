@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.events.*
@@ -164,24 +163,14 @@ class MuspahAssist : Plugin() {
         get() = mutableListOf(*config.ShieldIDs()!!.split(",").toTypedArray())
     private val clientThread = ClientThread
     private var config = configuration<MuspahAssistConfig>()
-    var smiteEndTime = 0L
+    private var tickTimestampIndex = 0
+    private val tickTimestamps = mutableListOf<Long>()
+    private var gameTick = 0
+    private var lastTick: Long = 0
     override fun onGameTick(it: GameTick) {
-        meleePhase()
         rangePhase()
-        if (System.currentTimeMillis() < smiteEndTime) return
-        val shieldMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
-        if (shieldMuspah != null) {
-            if (client.isPrayerActive(Prayer.SMITE) && config.smiteToggle()) {
-                smiteEndTime = System.currentTimeMillis() + 1800
-                activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            }
-            if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE)) {
-                activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            }
-        }
-        if (shieldMuspah == null && client.isPrayerActive(Prayer.SMITE)){
-            activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-        }
+        meleePhase()
+        shieldPhase()
     }
     override fun onNpcChanged(it: NpcChanged) {
         val npc: NPC = it.npc
@@ -230,6 +219,32 @@ class MuspahAssist : Plugin() {
         equipRangeGear()
         activatePrayer(config.rangeOffensivePrayer().prayer)
     }
+    private fun shieldPhase(){
+        val shieldMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
+        if (shieldMuspah == null) {
+            if (client.isPrayerActive(Prayer.SMITE)) {
+                activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            }
+            return
+        }
+        if (shieldMuspah != null) {
+            updateTickTimestamps()
+            lastTick = getCurrentMinTickTimestamp()
+            gameTick++
+
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES) ||
+                client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) {
+                gameTick = 0
+            }
+
+            if (gameTick == 4) {
+                activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            }
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE)) {
+                activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            }
+        }
+    }
     private fun equipMageGear(){
         ClientThread.invokeLater {
             mageGear.forEach {id ->
@@ -259,6 +274,25 @@ class MuspahAssist : Plugin() {
                 }
             }
         }
+    }
+    private fun getCurrentMinTickTimestamp(): Long {
+        var min: Long = 0
+        for (i in tickTimestamps.indices) {
+            min = if (min == 0L) {
+                tickTimestamps[i] + 600 * ((tickTimestampIndex - i + 5) % 5)
+            } else {
+                Math.min(min, tickTimestamps[i] + 600 * ((tickTimestampIndex - i + 5) % 5))
+            }
+        }
+        return min
+    }
+    private fun updateTickTimestamps() {
+        if (tickTimestamps.size <= tickTimestampIndex) {
+            tickTimestamps.add(System.currentTimeMillis())
+        } else {
+            tickTimestamps.set(tickTimestampIndex, System.currentTimeMillis())
+        }
+        tickTimestampIndex = (tickTimestampIndex + 1) % 5
     }
     private fun activatePrayer(prayer: Prayer?) {
         if (prayer == null) {
