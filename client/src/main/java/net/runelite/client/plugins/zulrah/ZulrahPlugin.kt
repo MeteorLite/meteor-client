@@ -12,10 +12,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.common.base.Preconditions
+import dev.hoot.api.events.AutomatedMenu
+import dev.hoot.api.game.GameThread
+import dev.hoot.api.widgets.Prayers
 import eventbus.events.*
 import meteor.Logger
+import meteor.api.ClientPackets
+import meteor.api.Items
 import meteor.api.Items.getFirst
+import meteor.api.Objects
 import meteor.config.ConfigManager
+import meteor.game.ItemVariationMapping
 import meteor.game.SkillIconManager
 import meteor.game.SpriteManager
 import meteor.input.KeyListener
@@ -46,6 +53,7 @@ import java.util.*
 import java.util.function.BiConsumer
 import java.util.function.Consumer
 import java.util.stream.Collectors
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 @PluginDescriptor(
@@ -149,6 +157,32 @@ class ZulrahPlugin : Plugin(), KeyListener {
         //log.info("Zulrah Reset!");
     }
 
+    fun appendVariations(item: Item, sb: StringBuilder) {
+        val mainID = ItemVariationMapping.map(item.id)
+        val variations = ItemVariationMapping.getVariations(item.id)
+        if (mainID != -1) {
+            for (itemId in ItemVariationMapping.getVariations(mainID)) {
+                val itemName = GameThread.invokeLater { client.getItemDefinition(itemId).name }
+                if (itemName != null) {
+                    sb.append(itemName)
+                    sb.append(",")
+                }
+            }
+        }
+        else if (variations.isNotEmpty()) {
+            for (itemId in variations) {
+                val itemName = GameThread.invokeLater { client.getItemDefinition(itemId).name }
+                if (itemName != null) {
+                    sb.append(itemName)
+                    sb.append(",")
+                }
+            }
+        } else {
+            sb.append(item.name)
+            sb.append(",")
+        }
+    }
+
     fun copyMageGearButton() : @Composable () -> Unit? {
         return {
             Spacer(Modifier.height(10.dp))
@@ -170,8 +204,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
                                 if (it.id == -1 || it.id == 0) {
                                     return@forEach
                                 }
-                                sb.append(it.name)
-                                sb.append(",")
+                                appendVariations(it, sb)
                             }
                             ConfigManager.setConfiguration("znzulrah", "MageIDs", sb.toString())
                             updateStringValue("znzulrah", "MageIDs", sb.toString())
@@ -208,8 +241,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
                                 if (it.id == -1 || it.id == 0) {
                                     return@forEach
                                 }
-                                sb.append(it.name)
-                                sb.append(",")
+                                appendVariations(it, sb)
                             }
                             ConfigManager.setConfiguration("znzulrah", "RangeIDs", sb.toString())
                             updateStringValue("znzulrah", "RangeIDs", sb.toString())
@@ -278,9 +310,13 @@ class ZulrahPlugin : Plugin(), KeyListener {
         }
     }
 
+    fun getActivePrayers(): List<Prayer> {
+        return Prayer.values().filter { Prayers.isEnabled(it) }
+    }
+
     private var firstJadAttack = false
     override fun onGameTick(it: GameTick) {
-        if (client.gameState != GameState.LOGGED_IN || zulrahNpc == null) {
+        if (client.gameState != GameState.LOGGED_IN || zulrahNpc == null || Objects.getFirst(11699) == null) {
             return
         }
         ++totalTicks
@@ -302,26 +338,40 @@ class ZulrahPlugin : Plugin(), KeyListener {
         if (zulrahNpc != null && config.autoPray()) {
             var jad = false
             var prayer: Prayer? = null
-            for (data in zulrahData) {
-                if (!data.currentPhasePrayer.isPresent) {
-                    continue
+
+            if (zulrahNpc?.isDead == false) {
+                for (data in zulrahData) {
+                    if (!data.currentPhasePrayer.isPresent) {
+                        continue
+                    }
+                    prayer = data.currentPhasePrayer.get()
+                    jad = data.isJad
                 }
-                prayer = data.currentPhasePrayer.get()
-                jad = data.isJad
+                if (prayer != null && !jad) {
+                    activatePrayer(prayer)
+                }
+                if (jad && !firstJadAttack) {
+                    firstJadAttack = true
+                    activatePrayer(prayer)
+                }
             }
-            if (prayer != null && !jad) {
-                activatePrayer(prayer)
+
+            if (config.autoRingOfRecoil()) {
+                val invRecoil = getFirst("Ring of recoil", InventoryID.INVENTORY)
+                if (needsRecoil && invRecoil != null) {
+                    invRecoil.interact("Wear")
+                    ClientPackets.queueClickPacket(invRecoil.clickPoint)
+                    needsRecoil = false
+                }
             }
-            if (jad && !firstJadAttack) {
-                firstJadAttack = true
-                activatePrayer(prayer)
-            }
-        }
-        if (config.autoRingOfRecoil()) {
-            val invRecoil = getFirst("Ring of recoil", InventoryID.INVENTORY)
-            if (needsRecoil && invRecoil != null) {
-                invRecoil.interact("Wear")
-                needsRecoil = false
+
+            if (zulrahNpc?.isDead == true) {
+                for (prayer in getActivePrayers()) {
+                    val widget = client.getWidget(prayer.widgetInfo)
+                    widget?.let {
+                        deactivatePrayer(prayer)
+                    }
+                }
             }
         }
     }
@@ -369,7 +419,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
             return
         }
         val npc = it.actor as NPC
-        if (npc.name != null && !npc.name.equals("zulrah", ignoreCase = true)) {
+        if (!npc.name.equals("zulrah", ignoreCase = true)) {
             return
         }
         when (npc.animation) {
@@ -559,6 +609,18 @@ class ZulrahPlugin : Plugin(), KeyListener {
         }
     }
 
+    fun deactivatePrayer(prayer: Prayer) {
+
+        val widgetInfo = prayer.widgetInfo ?: return
+        val prayerWidget = client.getWidget(widgetInfo) ?: return
+        if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
+            return
+        }
+
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
+    }
+
     fun activatePrayer(prayer: Prayer?) {
         if (prayer == null) {
             return
@@ -573,16 +635,9 @@ class ZulrahPlugin : Plugin(), KeyListener {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        clientThread.invoke {
-            client.invokeMenuAction(
-                "Activate",
-                prayerWidget.name,
-                1,
-                MenuAction.CC_OP.id,
-                prayerWidget.itemId,
-                prayerWidget.id
-            )
-        }
+
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
     }
 
     companion object {

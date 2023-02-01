@@ -1,6 +1,8 @@
 package meteor.plugins.alchemicalhydra
 
+import dev.hoot.api.events.AutomatedMenu
 import eventbus.events.*
+import meteor.api.ClientPackets
 import meteor.game.SpriteManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -316,16 +318,9 @@ class AlchemicalHydraPlugin : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        clientThread.invoke {
-            client.invokeMenuAction(
-                "Activate",
-                prayerWidget.name,
-                1,
-                MenuAction.CC_OP.id,
-                prayerWidget.itemId,
-                prayerWidget.id
-            )
-        }
+
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
     }
 
     companion object {

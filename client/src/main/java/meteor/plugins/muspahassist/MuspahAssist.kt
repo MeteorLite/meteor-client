@@ -13,10 +13,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.hoot.api.game.GameThread
 import eventbus.events.*
 import meteor.api.Items
 import meteor.api.NPCs
 import meteor.config.ConfigManager
+import meteor.game.ItemVariationMapping
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
@@ -34,6 +36,32 @@ class MuspahAssist : Plugin() {
         setConfigComposable("muspahassist", "rangeGearButton", rangeGearButton())
         setConfigComposable("muspahassist", "mageGearButton", mageGearButton())
         setConfigComposable("muspahassist", "shieldGearButton", shieldGearButton())
+    }
+
+    fun appendVariations(item: Item, sb: StringBuilder) {
+        val mainID = ItemVariationMapping.map(item.id)
+        val variations = ItemVariationMapping.getVariations(item.id)
+        if (mainID != -1) {
+            for (itemId in ItemVariationMapping.getVariations(mainID)) {
+                val itemName = GameThread.invokeLater { client.getItemDefinition(itemId).name }
+                if (itemName != null) {
+                    sb.append(itemName)
+                    sb.append(",")
+                }
+            }
+        }
+        else if (variations.isNotEmpty()) {
+            for (itemId in variations) {
+                val itemName = GameThread.invokeLater { client.getItemDefinition(itemId).name }
+                if (itemName != null) {
+                    sb.append(itemName)
+                    sb.append(",")
+                }
+            }
+        } else {
+            sb.append(item.name)
+            sb.append(",")
+        }
     }
 
     fun rangeGearButton() : @Composable () -> Unit? {
@@ -57,8 +85,7 @@ class MuspahAssist : Plugin() {
                                 if (it.id == -1 || it.id == 0) {
                                     return@forEach
                                 }
-                                sb.append(it.name)
-                                sb.append(",")
+                                appendVariations(it, sb)
                             }
                             ConfigManager.setConfiguration("muspahassist", "RangeIDs", sb.toString())
                             updateStringValue("muspahassist", "RangeIDs", sb.toString())
@@ -95,8 +122,7 @@ class MuspahAssist : Plugin() {
                                 if (it.id == -1 || it.id == 0) {
                                     return@forEach
                                 }
-                                sb.append(it.name)
-                                sb.append(",")
+                                appendVariations(it, sb)
                             }
                             ConfigManager.setConfiguration("muspahassist", "MageIDs", sb.toString())
                             updateStringValue("muspahassist", "MageIDs", sb.toString())
@@ -133,8 +159,7 @@ class MuspahAssist : Plugin() {
                                 if (it.id == -1 || it.id == 0) {
                                     return@forEach
                                 }
-                                sb.append(it.name)
-                                sb.append(",")
+                                appendVariations(it, sb)
                             }
                             ConfigManager.setConfiguration("muspahassist", "shieldIDs", sb.toString())
                             updateStringValue("muspahassist", "shieldIDs", sb.toString())
