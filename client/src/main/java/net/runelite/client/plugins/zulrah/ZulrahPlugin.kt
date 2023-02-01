@@ -7,10 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.google.common.base.Preconditions
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
@@ -18,7 +15,6 @@ import dev.hoot.api.widgets.Prayers
 import eventbus.events.*
 import meteor.Logger
 import meteor.api.ClientPackets
-import meteor.api.Items
 import meteor.api.Items.getFirst
 import meteor.api.Objects
 import meteor.config.ConfigManager
@@ -31,8 +27,6 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.rs.ClientThread.invokeLater
-import meteor.ui.composables.composePanelMap
-import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import meteor.ui.composables.updateStringValue
@@ -53,8 +47,6 @@ import java.util.*
 import java.util.function.BiConsumer
 import java.util.function.Consumer
 import java.util.stream.Collectors
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 @PluginDescriptor(
     name = "Zulrah Assist",
@@ -187,14 +179,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
         return {
             Spacer(Modifier.height(10.dp))
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    style = (TextStyle(fontSize = 12.sp)),
-                    text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
-                    color = secondColor.value,
-                    textAlign = TextAlign.Center)
-                Spacer(Modifier.height(10.dp))
                 Button(
-                    modifier = Modifier.size(200.dp, 40.dp),
+                    modifier = Modifier.size(165.dp, 40.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -224,14 +210,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
         return {
             Spacer(Modifier.height(10.dp))
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    style = (TextStyle(fontSize = 12.sp)),
-                    text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
-                    color = secondColor.value,
-                    textAlign = TextAlign.Center)
-                Spacer(Modifier.height(10.dp))
                 Button(
-                    modifier = Modifier.size(200.dp, 40.dp),
+                    modifier = Modifier.size(165.dp, 40.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()

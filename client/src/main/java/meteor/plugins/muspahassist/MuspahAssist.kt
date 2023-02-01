@@ -9,8 +9,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.hoot.api.events.AutomatedMenu
@@ -24,7 +22,6 @@ import meteor.game.ItemVariationMapping
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import meteor.ui.composables.updateStringValue
@@ -68,16 +65,10 @@ class MuspahAssist : Plugin() {
 
     fun rangeGearButton() : @Composable () -> Unit? {
         return {
-            Spacer(Modifier.height(10.dp))
-            Text(
-                style = (TextStyle(fontSize = 12.sp)),
-                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
-                color = secondColor.value,
-                textAlign = TextAlign.Center)
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(Modifier.height(10.dp))
                 Button(
-                    modifier = Modifier.size(200.dp, 40.dp),
+                    modifier = Modifier.size(165.dp, 40.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -105,16 +96,10 @@ class MuspahAssist : Plugin() {
 
     fun mageGearButton() : @Composable () -> Unit? {
         return {
-            Spacer(Modifier.height(10.dp))
-            Text(
-                style = (TextStyle(fontSize = 12.sp)),
-                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
-                color = secondColor.value,
-                textAlign = TextAlign.Center)
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(Modifier.height(10.dp))
                 Button(
-                    modifier = Modifier.size(200.dp, 40.dp),
+                    modifier = Modifier.size(165.dp, 40.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -142,16 +127,10 @@ class MuspahAssist : Plugin() {
 
     fun shieldGearButton() : @Composable () -> Unit? {
         return {
-            Spacer(Modifier.height(10.dp))
-            Text(
-                style = (TextStyle(fontSize = 12.sp)),
-                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
-                color = secondColor.value,
-                textAlign = TextAlign.Center)
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(Modifier.height(10.dp))
                 Button(
-                    modifier = Modifier.size(200.dp, 40.dp),
+                    modifier = Modifier.size(165.dp, 40.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -187,7 +166,8 @@ class MuspahAssist : Plugin() {
     private var config = configuration<MuspahAssistConfig>()
     var smiteEndTime = 0L
     override fun onGameTick(it: GameTick) {
-        protectMelee()
+        meleePhase()
+        rangePhase()
         if (System.currentTimeMillis() < smiteEndTime) return
         val shieldMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
         if (shieldMuspah != null) {
@@ -206,17 +186,8 @@ class MuspahAssist : Plugin() {
     override fun onNpcChanged(it: NpcChanged) {
         val npc: NPC = it.npc
         when (npc.id) {
-            NpcID.PHANTOM_MUSPAH -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
-            NpcID.PHANTOM_MUSPAH_12078 -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
             NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
             NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
-        }
-    }
-    override fun onNpcSpawned(it: NpcSpawned) {
-        val npc: NPC = it.npc
-        when (npc.id) {
-            (NpcID.PHANTOM_MUSPAH_12078) -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
-            (NpcID.PHANTOM_MUSPAH) -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
         }
     }
     override fun onAnimationChanged(it: AnimationChanged) {
@@ -229,6 +200,8 @@ class MuspahAssist : Plugin() {
             (animation == 9918) -> activatePrayer(Prayer.PROTECT_FROM_MAGIC)
             (animation == -1 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             (animation == -1 && hasNoMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) -> deactivatePrayer(Prayer.PROTECT_FROM_MISSILES).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
+            (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> deactivatePrayer(Prayer.PROTECT_FROM_MAGIC).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
             else -> {}
         }
     }
@@ -238,15 +211,24 @@ class MuspahAssist : Plugin() {
             activatePrayer(Prayer.SMITE)
         }
     }
-    private fun protectMelee() {
+    private fun meleePhase() {
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null) return
-            activatePrayer(Prayer.PROTECT_FROM_MELEE)
-            val prayer = if (config.rangeOnly()) {
-                config.rangeOffensivePrayer().prayer
-            } else {
-                config.mageOffensivePrayer().prayer
-            }
-            activatePrayer(prayer)
+        if (!config.rangeOnly()){
+            equipMageGear()
+        }
+        activatePrayer(Prayer.PROTECT_FROM_MELEE)
+        val prayer = if (config.rangeOnly()) {
+            config.rangeOffensivePrayer().prayer
+        } else {
+            config.mageOffensivePrayer().prayer
+        }
+        activatePrayer(prayer)
+    }
+    private fun rangePhase(){
+
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH, true, true) == null) return
+        equipRangeGear()
+        activatePrayer(config.rangeOffensivePrayer().prayer)
     }
     private fun equipMageGear(){
         ClientThread.invokeLater {
@@ -283,6 +265,21 @@ class MuspahAssist : Plugin() {
             return
         }
         if (client.isPrayerActive(prayer)) {
+            return
+        }
+        val widgetInfo = prayer.widgetInfo ?: return
+        val prayerWidget = client.getWidget(widgetInfo) ?: return
+        if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
+            return
+        }
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
+    }
+    private fun deactivatePrayer(prayer: Prayer?) {
+        if (prayer == null) {
+            return
+        }
+        if (!client.isPrayerActive(prayer)) {
             return
         }
         val widgetInfo = prayer.widgetInfo ?: return
