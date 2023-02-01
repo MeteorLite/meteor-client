@@ -46,15 +46,6 @@ interface MuspahAssistConfig : Config {
         return false
     }
     @ConfigItem(
-        keyName = "autoGear",
-        name = "Auto Gear Swap",
-        description = "",
-        position = 5,
-    )
-    fun gearToggle(): Boolean{
-        return false
-    }
-    @ConfigItem(
         keyName = "RangeIDs",
         name = "Range Gear",
         description = "",

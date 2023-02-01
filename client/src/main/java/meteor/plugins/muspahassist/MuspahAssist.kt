@@ -145,22 +145,18 @@ class MuspahAssist : Plugin() {
     }
     override fun onNpcChanged(it: NpcChanged) {
         val npc: NPC = it.npc
-        if (config.gearToggle()) {
-            when (npc.id) {
-                NpcID.PHANTOM_MUSPAH -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
-                NpcID.PHANTOM_MUSPAH_12078 -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
-                NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
-                NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
-            }
+        when (npc.id) {
+            NpcID.PHANTOM_MUSPAH -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH_12078 -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
         }
     }
     override fun onNpcSpawned(it: NpcSpawned) {
         val npc: NPC = it.npc
-        if (config.gearToggle()) {
-            when (npc.id) {
-                (NpcID.PHANTOM_MUSPAH_12078) -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
-                (NpcID.PHANTOM_MUSPAH) -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
-            }
+        when (npc.id) {
+            (NpcID.PHANTOM_MUSPAH_12078) -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
+            (NpcID.PHANTOM_MUSPAH) -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
         }
     }
     override fun onAnimationChanged(it: AnimationChanged) {
