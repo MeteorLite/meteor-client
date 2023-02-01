@@ -164,87 +164,61 @@ class MuspahAssist : Plugin() {
         val shieldMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
         if (shieldMuspah != null) {
             if (client.isPrayerActive(Prayer.SMITE) && config.smiteToggle()) {
-                smiteEndTime = System.currentTimeMillis() + 2000
+                smiteEndTime = System.currentTimeMillis() + 1800
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             }
             if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE)) {
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             }
-            if (client.isPrayerActive(Prayer.SMITE)) {
-                activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            }
+        }
+        if (shieldMuspah == null && client.isPrayerActive(Prayer.SMITE)){
+            activatePrayer(Prayer.PROTECT_FROM_MISSILES)
         }
     }
     override fun onNpcChanged(it: NpcChanged) {
         val npc: NPC = it.npc
-        if (config.gearToggle()) {
-            when (npc.id) {
-                NpcID.PHANTOM_MUSPAH -> equipRangeGear()
-                NpcID.PHANTOM_MUSPAH_12078 -> equipMageGear()
-                NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear()
-                NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear()
-            }
+        when (npc.id) {
+            NpcID.PHANTOM_MUSPAH -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH_12078 -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
         }
     }
     override fun onNpcSpawned(it: NpcSpawned) {
         val npc: NPC = it.npc
-        if (config.gearToggle()) {
-            when (npc.id) {
-                (NpcID.PHANTOM_MUSPAH_12078) -> equipMageGear()
-                (NpcID.PHANTOM_MUSPAH) -> equipRangeGear()
-            }
+        when (npc.id) {
+            (NpcID.PHANTOM_MUSPAH_12078) -> equipMageGear().also { activatePrayer(config.mageOffensivePrayer().prayer) }
+            (NpcID.PHANTOM_MUSPAH) -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
         }
     }
     override fun onAnimationChanged(it: AnimationChanged) {
-        if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")) {
+        if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah"))
             return
-        }
+        val animation = it.actor.animation
         val isPhantomMuspah = it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")
         val hasNoMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null
-        if (it.actor.animation == 9918 && isPhantomMuspah && config.offensivePrayerToggle()) {
-            activatePrayer(config.rangeOffensivePrayer().prayer)
-        }
-        if (it.actor.animation == -1 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC) && isPhantomMuspah){
-            activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-        }
-        if (it.actor.animation == -1 && hasNoMuspah && isPhantomMuspah) {
-            activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            if (config.offensivePrayerToggle()) activatePrayer(config.rangeOffensivePrayer().prayer)
-        }
-        if (it.actor.animation == 9918 && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()){
-            activatePrayer(Prayer.SMITE)
+        when (isPhantomMuspah) {
+            (animation == 9918) -> activatePrayer(Prayer.PROTECT_FROM_MAGIC)
+            (animation == -1 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && hasNoMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            else -> {}
         }
     }
     override fun onProjectileSpawned(it: ProjectileSpawned) {
         val projectile: Projectile = it.projectile
-        var ticksRemaining = projectile.remainingCycles / 30
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()) {
             activatePrayer(Prayer.SMITE)
         }
-        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1) {
-            activatePrayer(Prayer.PROTECT_FROM_MAGIC)
-        }
     }
     private fun protectMelee() {
-        val meleeMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true)
-        if (meleeMuspah == null) return
-        if (meleeMuspah.distanceTo(client.localPlayer) <= 6) {
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null) return
             activatePrayer(Prayer.PROTECT_FROM_MELEE)
-        }
-        if (config.offensivePrayerToggle()) {
             val prayer = if (config.rangeOnly()) {
                 config.rangeOffensivePrayer().prayer
             } else {
                 config.mageOffensivePrayer().prayer
             }
             activatePrayer(prayer)
-        }
-        when (meleeMuspah.distanceTo(client.localPlayer) > 6) {
-            client.isPrayerActive(Prayer.PROTECT_FROM_MELEE) -> deactivatePrayer(Prayer.PROTECT_FROM_MELEE)
-            client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC) -> deactivatePrayer(Prayer.PROTECT_FROM_MAGIC)
-            client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES) -> deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            else -> return
-        }
     }
     private fun equipMageGear(){
         ClientThread.invokeLater {
@@ -265,29 +239,6 @@ class MuspahAssist : Plugin() {
             shieldGear.forEach {
                 Items.getFirst(it)?.interact(2)
             }
-        }
-    }
-    private fun deactivatePrayer(prayer: Prayer?) {
-        if (prayer == null) {
-            return
-        }
-        if (!client.isPrayerActive(prayer)) {
-            return
-        }
-        val widgetInfo = prayer.widgetInfo ?: return
-        val prayerWidget = client.getWidget(widgetInfo) ?: return
-        if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
-            return
-        }
-        clientThread.invoke {
-            client.invokeMenuAction(
-                "Deactivate",
-                prayerWidget.name,
-                1,
-                MenuAction.CC_OP.id,
-                prayerWidget.itemId,
-                prayerWidget.id
-            )
         }
     }
     private fun activatePrayer(prayer: Prayer?) {
