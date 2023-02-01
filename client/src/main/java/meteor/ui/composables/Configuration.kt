@@ -6,14 +6,12 @@ import androidx.compose.foundation.TooltipPlacement
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -29,11 +27,10 @@ import androidx.compose.ui.unit.sp
 import compose.icons.Octicons
 import compose.icons.octicons.ChevronLeft24
 import meteor.config.ConfigManager
+import meteor.config.legacy.ModifierlessKeybind
 import meteor.plugins.PluginDescriptor
-import meteor.ui.composables.items.instructions
-import meteor.ui.composables.items.configItems
-import meteor.ui.composables.items.sectionItems
-import meteor.ui.composables.items.titleItems
+import meteor.ui.composables.items.*
+import meteor.ui.composables.nodes.*
 import meteor.ui.composables.preferences.*
 import meteor.ui.composables.ui.onPluginToggled
 
@@ -53,7 +50,6 @@ fun configPanel() {
                     modifier = Modifier.fillMaxHeight()
                 ) {
                     configPanelHeader()
-                    instructions(lastPlugin)
                     configs()
                 }
 
@@ -63,15 +59,198 @@ fun configPanel() {
     }
 }
 
+val stringValues = HashMap<String, MutableState<String?>>()
+
+val intValues = HashMap<String, MutableState<Int?>>()
+
+val booleanValues = HashMap<String, MutableState<Boolean?>>()
+
+fun updateStringValue(group: String, key: String, stringValue: String) {
+    stringValues["$group:$key"]?.value = stringValue
+}
+
+fun updateIntValue(group: String, key: String, intValue: Int) {
+    intValues["$group:$key"]?.value = intValue
+}
+
+fun updateBooleanValue(group: String, key: String, booleanValue: Boolean) {
+    booleanValues["$group:$key"]?.value = booleanValue
+}
+
+val composePanelMap = HashMap<String, @Composable () -> Unit?>()
+
 @Composable
 fun configs(){
     LazyColumn(
         horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Top,
         modifier = Modifier.width(300.dp).fillMaxHeight().background(background ).padding(start = 4.dp)
     ) {
-        titleItems(descriptor)
-        sectionItems(descriptor)
-        configItems(descriptor)
+        val composePanelItems = descriptor.items.filter { it.item.composePanel && it.item.section.isEmpty() }.toMutableList()
+        items(items = composePanelItems) { composePanel ->
+            composePanelItems.forEach {
+                val key = "${descriptor.group.value}:${it.key()}"
+                if (composePanel.position() == 0) {
+                    composePanelMap[key]!!.invoke()
+                }
+            }
+        }
+        val title = descriptor.titles.sortedBy { it.title.position }.toMutableList()
+        items(items = title) {
+            BoxWithConstraints(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.TopCenter
+            ) {
+                Text(
+                    modifier = Modifier.fillMaxWidth().padding(it.title.padding.dp),
+                    text = it.name(),
+                    style = TextStyle(
+                        color = uiColor.value,
+                        fontSize = it.title.size.sp,
+                        textAlign = TextAlign.Center,
+                    )
+                )
+            }
+        }
+        items(items = descriptor.sections.sortedBy { it.section.name }.toMutableList()) { sect ->
+            sectionItem(title = sect.name()) {
+                val sections =
+                    descriptor.items.filter { it.item.section == sect.name() || sect.type == it.item.section }
+                sections.forEach { config ->
+                    val key = "${descriptor.group.value}:${config.key()}"
+                    if (config.item.composePanel) {
+                        if (config.item.position != 0)
+                            composePanelMap[key]!!.invoke()
+                    }
+                    else if (config.item.unhide.isBlank()) {
+                        when (config.type) {
+                            Int::class.javaPrimitiveType, Int::class.java -> {
+                                intValues[key]?.let {
+                                    it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toInt()
+                                }
+                                if (intValues[key] == null)
+                                    intValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toInt())
+
+                                when {
+                                    config.item.textArea -> intAreaTextNode(
+                                        descriptor,
+                                        config,
+                                        intValues[key]!!
+                                    )
+                                    else -> intTextNode(descriptor, config, intValues[key]!!)
+                                }
+                            }
+                            Boolean::class.java -> {
+                                booleanValues[key]?.let {
+                                    it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toBoolean()
+                                }
+                                if (booleanValues[key] == null)
+                                    booleanValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toBoolean())
+
+                                if (config.item.unhideKey == "")
+                                    booleanNode(descriptor, config, booleanValues[key]!!)
+                                else hiddenItems(config)
+                            }
+                            java.awt.Color::class.java -> colorPickerNode(descriptor, config)
+                            ModifierlessKeybind::class.java -> hotKeyNode(descriptor, config)
+                            String::class.java -> {
+                                when {
+                                    config.item.textArea -> stringAreaTextNode(descriptor, config)
+                                    else -> {
+                                        val key = "${descriptor.group.value}:${config.key()}"
+                                        stringValues[key]?.let {
+                                            it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())!!
+                                        }
+                                        if (stringValues[key] == null)
+                                            stringValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!)
+                                        stringTextNode(descriptor, config, stringValues[key]!!)
+                                    }
+                                }
+                            }
+                            else -> if (config.type?.isEnum == true) {
+
+                                if(config.item.unhideKey.isEmpty()) {
+                                    enumNode(descriptor, config)
+                                }else
+                                    unhideEnum(config)
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+        items(items = descriptor.items.toTypedArray())
+        { config ->
+            val key = "${descriptor.group.value}:${config.key()}"
+
+            if (config.item.section.isEmpty()) {
+                var hidden = true
+                if (!config.item.hidden) {
+                    hidden = false
+                }
+                if (config.item.hidden && config.item.unhide.isNotEmpty()) {
+                    val value = ConfigManager.getConfiguration(
+                        descriptor.group.value,
+                        config.item.unhide
+                    )
+                    value?.let {
+                        if (it.isNotEmpty())
+                            hidden = !it.toBoolean()
+                    }
+                }
+                if (config.item.composePanel && config.item.position != 0) {
+                    composePanelMap[key]!!.invoke()
+                }
+                else if (!hidden)
+                    when (config.type) {
+                        Int::class.javaPrimitiveType, Int::class.java -> {
+                            intValues[key]?.let {
+                                it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toInt()
+                            }
+                            if (intValues[key] == null)
+                                intValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toInt())
+                            when {
+                                config.item.textArea -> intAreaTextNode(
+                                    descriptor,
+                                    config, intValues[key]!!
+                                )
+                                else -> intTextNode(descriptor, config, intValues[key]!!)
+                            }
+                        }
+                        Boolean::class.java -> {
+                            booleanValues[key]?.let {
+                                it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toBoolean()
+                            }
+                            if (booleanValues[key] == null)
+                                booleanValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toBoolean())
+
+                            booleanNode(descriptor, config, booleanValues[key]!!)
+                        }
+
+                        java.awt.Color::class.java -> colorPickerNode(descriptor, config)
+                        ModifierlessKeybind::class.java -> hotKeyNode(descriptor, config)
+                        String::class.java -> {
+                            stringValues[key]?.let {
+                                it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())
+                            }
+                            if (stringValues[key] == null)
+                                stringValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key()))
+
+                            when {
+                                config.item.textArea -> stringAreaTextNode(descriptor, config)
+                                else -> {
+                                    stringTextNode(descriptor, config, stringValues[key]!!)
+                                }
+                            }
+                        }
+                        else -> if (config.type?.isEnum == true) {
+                            enumNode(descriptor, config)
+                        }
+                    }
+            }
+
+        }
     }
 }
 

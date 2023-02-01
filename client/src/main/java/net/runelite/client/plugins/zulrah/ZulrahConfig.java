@@ -11,6 +11,7 @@ import java.awt.Color;
 public interface ZulrahConfig extends Config {
 
 
+
    @ConfigSection(
        name = "General",
        description = "",
@@ -244,22 +245,42 @@ public interface ZulrahConfig extends Config {
    }
 
    @ConfigItem(
+           name = "",
+           keyName = "copyRangeGearPanel",
+           description = "",
+           position = 5,
+           composePanel = true,
+           section = fightHelperSection
+   )
+   default void copyRangeGearPanel() {}
+
+   @ConfigItem(
            keyName = "RangeIDs",
            name = "Range Gear",
            description = "",
            textField = true,
-           position = 5,
+           position = 6,
            section = fightHelperSection
    )
    default String RangeIDs() {
       return "";
    }
+
+   @ConfigItem(
+           name = "",
+           keyName = "copyMageGearPanel",
+           description = "",
+           position = 7,
+           composePanel = true,
+           section = fightHelperSection
+   )
+   default void copyMageGearPanel() {}
    @ConfigItem(
            keyName = "MageIDs",
            name = "Mage Gear",
            description = "",
            textField = true,
-           position = 6,
+           position = 8,
            section = fightHelperSection
    )
    default String MageIDs() {
@@ -270,7 +291,7 @@ public interface ZulrahConfig extends Config {
       name = "Prayer Helper",
       keyName = "prayerHelper",
       description = "Displays an overlay showing the correct prayer to use for the entirity of the Zulrah fight<br>Changes color dependent on whether or not you're praying correctly or not",
-      position = 7,
+      position = 9,
       section = fightHelperSection
    )
    default boolean prayerHelper() {
@@ -281,7 +302,7 @@ public interface ZulrahConfig extends Config {
       name = "Prayer Marker",
       keyName = "prayerMarker",
       description = "Marks the correct prayer to use in the prayer book to use for the entirity of the Zulrah fight<br>Changes color dependent on whether or not you're praying correctly or not",
-      position = 8,
+      position = 9,
       section = fightHelperSection
    )
    default boolean prayerMarker() {
