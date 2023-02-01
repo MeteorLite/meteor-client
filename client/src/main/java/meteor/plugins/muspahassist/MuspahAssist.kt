@@ -19,18 +19,23 @@ import meteor.config.ConfigManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
-import meteor.ui.composables.items.updateConfigUI
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
+import meteor.ui.composables.updateStringValue
 import net.runelite.api.*
 import java.util.*
 
 
 @PluginDescriptor(name = "Muspah Assist", description = "Auto prays for you at muspah", enabledByDefault = false)
 class MuspahAssist : Plugin() {
-    @Composable
-    override fun instructions() : @Composable () -> Unit? {
+    init {
+        setConfigComposable("muspahassist", "rangeGearButton", rangeGearButton())
+        setConfigComposable("muspahassist", "mageGearButton", mageGearButton())
+        setConfigComposable("muspahassist", "shieldGearButton", shieldGearButton())
+    }
+
+    fun rangeGearButton() : @Composable () -> Unit? {
         return {
             Spacer(Modifier.height(10.dp))
             Text(
@@ -38,7 +43,7 @@ class MuspahAssist : Plugin() {
                 text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
                 color = secondColor.value,
                 textAlign = TextAlign.Center)
-            Column {
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(Modifier.height(10.dp))
                 Button(
                     modifier = Modifier.size(200.dp, 40.dp),
@@ -55,7 +60,7 @@ class MuspahAssist : Plugin() {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("muspahassist", "RangeIDs", sb.toString())
-                            updateConfigUI("muspahassist", "RangeIDs", sb.toString())
+                            updateStringValue("muspahassist", "RangeIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
@@ -64,6 +69,19 @@ class MuspahAssist : Plugin() {
                 ) {
                     Text("Copy Range Gear", color = uiColor.value)
                 }
+            }
+        }
+    }
+
+    fun mageGearButton() : @Composable () -> Unit? {
+        return {
+            Spacer(Modifier.height(10.dp))
+            Text(
+                style = (TextStyle(fontSize = 12.sp)),
+                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
+                color = secondColor.value,
+                textAlign = TextAlign.Center)
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(Modifier.height(10.dp))
                 Button(
                     modifier = Modifier.size(200.dp, 40.dp),
@@ -80,7 +98,7 @@ class MuspahAssist : Plugin() {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("muspahassist", "MageIDs", sb.toString())
-                            updateConfigUI("muspahassist", "MageIDs", sb.toString())
+                            updateStringValue("muspahassist", "MageIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
@@ -89,6 +107,19 @@ class MuspahAssist : Plugin() {
                 ) {
                     Text("Copy Mage Gear", color = uiColor.value)
                 }
+            }
+        }
+    }
+
+    fun shieldGearButton() : @Composable () -> Unit? {
+        return {
+            Spacer(Modifier.height(10.dp))
+            Text(
+                style = (TextStyle(fontSize = 12.sp)),
+                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
+                color = secondColor.value,
+                textAlign = TextAlign.Center)
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(Modifier.height(10.dp))
                 Button(
                     modifier = Modifier.size(200.dp, 40.dp),
@@ -105,7 +136,7 @@ class MuspahAssist : Plugin() {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("muspahassist", "shieldIDs", sb.toString())
-                            updateConfigUI("muspahassist", "shieldIDs", sb.toString())
+                            updateStringValue("muspahassist", "shieldIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
@@ -117,6 +148,7 @@ class MuspahAssist : Plugin() {
             }
         }
     }
+
     val mageGear: MutableList<String>
         get() = mutableListOf(*config.MageIDs()!!.split(",").toTypedArray())
     val rangeGear: MutableList<String>

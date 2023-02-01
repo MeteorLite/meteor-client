@@ -290,6 +290,30 @@ object ConfigManager {
         return methods
     }
 
+    fun getDefaultConfigValue(config: Any, methodName: String) : String?{
+        var value: String? = null
+        val clazz = config.javaClass.interfaces[0]
+        for (method in getAllDeclaredInterfaceMethods(clazz)) {
+            if (method.name == methodName) {
+                val item: ConfigItem? = method.getAnnotation(ConfigItem::class.java)
+
+                // only get default configuration for methods which read configuration (0 args)
+                if (item == null || method.parameterCount != 0) {
+                    continue
+                }
+
+                val defaultValue: Any = try {
+                    ConfigInvocationHandler.callDefaultMethod(config, method, null)
+                } catch (ex: Throwable) {
+                    ex.printStackTrace()
+                    continue
+                }
+                value = objectToString(defaultValue)
+            }
+        }
+        return value
+    }
+
     fun setDefaultConfiguration(config: Any, override: Boolean) {
         val clazz = config.javaClass.interfaces[0]
         val group: ConfigGroup = clazz.getAnnotation(ConfigGroup::class.java)

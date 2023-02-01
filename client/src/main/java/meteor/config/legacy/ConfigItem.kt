@@ -25,4 +25,5 @@ package meteor.config.legacy
     val textArea: Boolean = false,
     val textField: Boolean = false,
     val secret: Boolean = false,
+    val composePanel: Boolean = false,
     )

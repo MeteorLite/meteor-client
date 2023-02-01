@@ -17,23 +17,5 @@ import meteor.config.descriptor.ConfigDescriptor
 import meteor.ui.composables.preferences.uiColor
 
 fun LazyListScope.titleItems(descriptor: ConfigDescriptor){
-        val title = descriptor.titles.sortedBy { it.title.position }.toMutableList()
-    items(items = title) {
-        BoxWithConstraints(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.TopCenter
-        ) {
-            Text(
-                modifier = Modifier.fillMaxWidth().padding(it.title.padding.dp),
-                text = it.name(),
-                style = TextStyle(
-                    color = uiColor.value,
-                    fontSize = it.title.size.sp,
-                    textAlign = TextAlign.Center,
-                )
 
-            )
-        }
-
-    }
 }

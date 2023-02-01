@@ -1,13 +1,11 @@
 package net.runelite.client.plugins.zulrah
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -26,10 +24,11 @@ import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
 import meteor.rs.ClientThread.invokeLater
-import meteor.ui.composables.items.updateConfigUI
+import meteor.ui.composables.composePanelMap
 import meteor.ui.composables.preferences.secondColor
 import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
+import meteor.ui.composables.updateStringValue
 import meteor.ui.overlay.infobox.Counter
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ImageUtil.loadImageResource
@@ -47,6 +46,7 @@ import java.util.*
 import java.util.function.BiConsumer
 import java.util.function.Consumer
 import java.util.stream.Collectors
+import kotlin.collections.HashMap
 
 @PluginDescriptor(
     name = "Zulrah Assist",
@@ -55,6 +55,11 @@ import java.util.stream.Collectors
     enabledByDefault = false
 )
 class ZulrahPlugin : Plugin(), KeyListener {
+    init {
+        setConfigComposable("znzulrah", "copyRangeGearPanel", copyRangeGearButton())
+        setConfigComposable("znzulrah", "copyMageGearPanel", copyMageGearButton())
+    }
+
     private val config = configuration<ZulrahConfig>(ZulrahConfig::class.java)
     private val keyManager = KeyManager
     private val infoBoxManager = InfoBoxManager
@@ -143,41 +148,16 @@ class ZulrahPlugin : Plugin(), KeyListener {
         handleTotalTicksInfoBox(true)
         //log.info("Zulrah Reset!");
     }
-    @Composable
-    override fun instructions() : @Composable () -> Unit? {
+
+    fun copyMageGearButton() : @Composable () -> Unit? {
         return {
             Spacer(Modifier.height(10.dp))
-            Text(
-                style = (TextStyle(fontSize = 12.sp)),
-                text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
-                color = secondColor.value,
-                textAlign = TextAlign.Center)
-            Column {
-                Spacer(Modifier.height(10.dp))
-                Button(
-                    modifier = Modifier.size(200.dp, 40.dp),
-                    onClick = {
-                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
-                        val sb = StringBuilder()
-
-                        clientThread.invoke {
-                            i?.items?.forEach {
-                                if (it.id == -1 || it.id == 0) {
-                                    return@forEach
-                                }
-                                sb.append(it.name)
-                                sb.append(",")
-                            }
-                            ConfigManager.setConfiguration("znzulrah", "RangeIDs", sb.toString())
-                            updateConfigUI("znzulrah", "RangeIDs", sb.toString())
-                        }
-                    },
-                    colors = ButtonDefaults.textButtonColors(
-                        backgroundColor = surface
-                    )
-                ) {
-                    Text("Copy Range Gear", color = uiColor.value)
-                }
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    style = (TextStyle(fontSize = 12.sp)),
+                    text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
+                    color = secondColor.value,
+                    textAlign = TextAlign.Center)
                 Spacer(Modifier.height(10.dp))
                 Button(
                     modifier = Modifier.size(200.dp, 40.dp),
@@ -194,7 +174,7 @@ class ZulrahPlugin : Plugin(), KeyListener {
                                 sb.append(",")
                             }
                             ConfigManager.setConfiguration("znzulrah", "MageIDs", sb.toString())
-                            updateConfigUI("znzulrah", "MageIDs", sb.toString())
+                            updateStringValue("znzulrah", "MageIDs", sb.toString())
                         }
                     },
                     colors = ButtonDefaults.textButtonColors(
@@ -202,6 +182,44 @@ class ZulrahPlugin : Plugin(), KeyListener {
                     )
                 ) {
                     Text("Copy Mage Gear", color = uiColor.value)
+                }
+            }
+        }
+    }
+
+    fun copyRangeGearButton() : @Composable () -> Unit? {
+        return {
+            Spacer(Modifier.height(10.dp))
+            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    style = (TextStyle(fontSize = 12.sp)),
+                    text = "EQUIP YOUR GEAR AND CLICK THE BUTTON",
+                    color = secondColor.value,
+                    textAlign = TextAlign.Center)
+                Spacer(Modifier.height(10.dp))
+                Button(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    onClick = {
+                        val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
+                        val sb = StringBuilder()
+
+                        clientThread.invoke {
+                            i?.items?.forEach {
+                                if (it.id == -1 || it.id == 0) {
+                                    return@forEach
+                                }
+                                sb.append(it.name)
+                                sb.append(",")
+                            }
+                            ConfigManager.setConfiguration("znzulrah", "RangeIDs", sb.toString())
+                            updateStringValue("znzulrah", "RangeIDs", sb.toString())
+                        }
+                    },
+                    colors = ButtonDefaults.textButtonColors(
+                        backgroundColor = surface
+                    )
+                ) {
+                    Text("Copy Range Gear", color = uiColor.value)
                 }
             }
         }

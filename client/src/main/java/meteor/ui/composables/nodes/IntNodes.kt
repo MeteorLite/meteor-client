@@ -17,92 +17,21 @@ import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigDescriptor
 import meteor.config.descriptor.ConfigItemDescriptor
 import meteor.ui.composables.preferences.*
-
-
-@Composable
-fun sliderIntNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-
-    var sliderValue by remember {
-        mutableStateOf(
-            ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
-            )
-        )
-    }
-    var setConfigValue by remember {
-        mutableStateOf(
-            ConfigManager.stringToObject(
-                sliderValue.toString(),
-                Int::class.java
-            ) as Int
-        )
-    }
-    Row(modifier = Modifier.fillMaxWidth().height(46.dp).background(Color(0xFF242424))) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth(0.5f).height(46.dp).background(background )
-        ) {
-            MaterialTheme(colors = darkThemeColors) {
-                Text(configItemDescriptor.name(), style = TextStyle(color = uiColor.value, fontSize = 14.sp))
-            }
-        }
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().height(46.dp).background(surface)
-        ) {
-            MaterialTheme(colors = if (darkLightMode.value)darkThemeColors else lightThemeColors) {
-                Text(
-                    text = setConfigValue.toString(),
-                    modifier = Modifier.padding(8.dp).width(46.dp).background(surface),
-                    style = TextStyle(color = uiColor.value, fontSize = 14.sp, textAlign = TextAlign.Center)
-                )
-                Spacer(Modifier.width(5.dp).background(background ) )
-                Slider(
-                    value = sliderValue!!.toFloat(),
-                    onValueChange = {
-                        sliderValue = setConfigValue.toString()
-                        setConfigValue = it.toInt()
-                        ConfigManager.setConfiguration(
-                            descriptor.group.value,
-                            configItemDescriptor.key(),
-                            it.toInt()
-                        )
-                    },
-                    valueRange = configItemDescriptor.range!!.min.toFloat()..configItemDescriptor.range.max.toFloat(),
-                    modifier = Modifier.height(12.dp).background(background ) ,
-                    colors = SliderDefaults.colors(thumbColor = uiColor.value, activeTrackColor = uiColor.value, inactiveTrackColor = Color.Gray)
-                )
-            }
-        }
-    }
-    Spacer(Modifier.height(4.dp).background(background ) )
-}
+import java.lang.Exception
 
 @Composable
-fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-    var text by remember {
-        mutableStateOf(
-            ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
-            ).toString()
-        )
-    }
+fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor, intValue: MutableState<Int?>) {
     Row(modifier = Modifier.fillMaxWidth().height(100.dp).background(Color(0xFF242424))) {
-
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End,
             modifier = Modifier.fillMaxWidth().height(100.dp).background(background )
         ) {
             MaterialTheme(colors = darkThemeColors) {
-
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth().height(100.dp).padding(all = 3.dp),
-                    value = text,
+                    value = "${ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())?.toInt()}",
                     onValueChange = {
-                        text = it
+                        intValue.value = it.toInt()
                         ConfigManager.setConfiguration(
                             descriptor.group.value,
                             configItemDescriptor.key(),
@@ -125,15 +54,7 @@ fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
 }
 
 @Composable
-fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
-    var text by remember {
-        mutableStateOf(
-            ConfigManager.getConfiguration(
-                descriptor.group.value,
-                configItemDescriptor.key()
-            ).toString()
-        )
-    }
+fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor, intValue: MutableState<Int?>) {
     Row(modifier = Modifier.fillMaxWidth().height(60.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
@@ -142,15 +63,28 @@ fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
             MaterialTheme(colors = darkThemeColors) {
                 OutlinedTextField(
                     modifier = Modifier.fillMaxWidth().height(60.dp).padding(all = 3.dp),
-                    value = text,
+                    value = "${intValue.value}",
                     visualTransformation = if (configItemDescriptor.secret()) PasswordVisualTransformation() else VisualTransformation.None,
-                    onValueChange = {
-                        text = it
+                    onValueChange = { valueChanged ->
+                        var newValue = try {
+                            valueChanged.toInt()
+                        } catch (e: Exception) {
+                            // Return previous value
+                            intValue.value ?: -1
+                        }
+
+                        configItemDescriptor.range?.let {
+                            if (newValue > it.max)
+                                newValue = it.max
+                            if (newValue < it.min)
+                                newValue = it.min
+                        }
+
+                        intValue.value = newValue
                         ConfigManager.setConfiguration(
                             descriptor.group.value, configItemDescriptor.key(),
-                            it
+                            "${intValue.value}"
                         )
-
                     },
                     maxLines = 30,
                     label = {

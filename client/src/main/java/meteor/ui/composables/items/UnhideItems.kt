@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.sp
 import meteor.config.ConfigManager
 import meteor.config.descriptor.ConfigItemDescriptor
 import meteor.config.legacy.ModifierlessKeybind
+import meteor.ui.composables.booleanValues
+import meteor.ui.composables.intValues
 import meteor.ui.composables.nodes.*
 import meteor.ui.composables.preferences.*
 
@@ -88,30 +90,47 @@ fun unhideEnum(config : ConfigItemDescriptor){
                 }
             }
             Spacer(Modifier.height(4.dp).background(background ) )
+
             when {
                 toggledEnum.value ->
                     descriptor.items.filter { it.item.unhide == hiddenEnum.key() }
                         .forEach { hiddenItem ->
+                            val key = "${descriptor.group.value}:${hiddenItem.key()}"
                             when (hiddenItem.type) {
                                 Int::class.javaPrimitiveType, Int::class.java -> {
+                                    intValues[key]?.let {
+                                        it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toInt()
+                                    }
+                                    if (intValues[key] == null)
+                                        intValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toInt())
                                     when {
-                                        hiddenItem.range != null -> sliderIntNode(
+                                        hiddenItem.range != null -> intTextNode(
                                             descriptor,
-                                            hiddenItem
+                                            hiddenItem,
+                                            intValues[key]!!
                                         )
                                         hiddenItem.item.textArea -> intAreaTextNode(
                                             descriptor,
-                                            hiddenItem
+                                            hiddenItem,
+                                            intValues[key]!!
                                         )
                                         else -> intTextNode(
-                                            descriptor, hiddenItem
+                                            descriptor, hiddenItem, intValues[key]!!
                                         )
                                     }
                                 }
-                                Boolean::class.javaPrimitiveType -> booleanNode(
-                                    descriptor,
-                                    hiddenItem
-                                )
+                                Boolean::class.javaPrimitiveType -> {
+                                    booleanValues[key]?.let {
+                                        it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toBoolean()
+                                    }
+                                    if (booleanValues[key] == null)
+                                        booleanValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())?.toBoolean())
+                                    booleanNode(
+                                        descriptor,
+                                        hiddenItem,
+                                        booleanValues[key]!!
+                                    )
+                                }
                                 java.awt.Color::class.java -> colorPickerNode(
                                     descriptor,
                                     hiddenItem
@@ -191,26 +210,43 @@ fun hiddenItems(config : ConfigItemDescriptor){
             toggled.value ->
                 descriptor.items.filter { it.item.unhide == hidden.item.unhideKey }
                     .forEach { hiddenItem ->
+                        val key = "${descriptor.group.value}:${hiddenItem.key()}"
                         when (hiddenItem.type) {
                             Int::class.javaPrimitiveType, Int::class.java -> {
+                                intValues[key]?.let {
+                                    it.value = ConfigManager.getConfiguration(descriptor.group.value, hiddenItem.key())?.toInt()
+                                }
+                                if (intValues[key] == null)
+                                    intValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, hiddenItem.key())?.toInt())
+
                                 when {
-                                    hiddenItem.range != null -> sliderIntNode(
+                                    hiddenItem.range != null -> intTextNode(
                                         descriptor,
-                                        hiddenItem
+                                        hiddenItem,
+                                        intValues[key]!!
                                     )
                                     hiddenItem.item.textArea -> intAreaTextNode(
                                         descriptor,
-                                        hiddenItem
+                                        hiddenItem,
+                                        intValues[key]!!
                                     )
                                     else -> intTextNode(
-                                        descriptor, hiddenItem
+                                        descriptor, hiddenItem, intValues[key]!!
                                     )
                                 }
                             }
-                            Boolean::class.javaPrimitiveType -> booleanNode(
-                                descriptor,
-                                hiddenItem
-                            )
+                            Boolean::class.javaPrimitiveType -> {
+                                booleanValues[key]?.let {
+                                    it.value = ConfigManager.getConfiguration(descriptor.group.value, hiddenItem.key())?.toBoolean()
+                                }
+                                if (booleanValues[key] == null)
+                                    booleanValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, hiddenItem.key())?.toBoolean())
+                                booleanNode(
+                                    descriptor,
+                                    hiddenItem,
+                                    booleanValues[key]!!
+                                )
+                            }
                             java.awt.Color::class.java -> colorPickerNode(
                                 descriptor,
                                 hiddenItem
