@@ -183,12 +183,13 @@ class MuspahAssist : Plugin() {
         if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah"))
             return
         val animation = it.actor.animation
-        val isPhantomMuspah = it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")
-        val hasNoMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null
-        when (isPhantomMuspah) {
-            (animation == 9918) -> activatePrayer(Prayer.PROTECT_FROM_MAGIC)
+        val normalMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null
+        val specialMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
+        when (it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")) {
+            (animation == 9918 && specialMuspah != null && config.smiteToggle() && !client.isPrayerActive(Prayer.SMITE)) -> activatePrayer(Prayer.SMITE)
+            (animation == 9918 && normalMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MAGIC)
             (animation == -1 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            (animation == -1 && hasNoMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && normalMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) -> deactivatePrayer(Prayer.PROTECT_FROM_MISSILES).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
             (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> deactivatePrayer(Prayer.PROTECT_FROM_MAGIC).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
             else -> {}
@@ -196,8 +197,12 @@ class MuspahAssist : Plugin() {
     }
     override fun onProjectileSpawned(it: ProjectileSpawned) {
         val projectile: Projectile = it.projectile
+        var ticksRemaining = projectile.remainingCycles / 30
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()) {
             activatePrayer(Prayer.SMITE)
+        }
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1) {
+            activatePrayer(Prayer.PROTECT_FROM_MAGIC)
         }
     }
     private fun meleePhase() {
@@ -206,28 +211,21 @@ class MuspahAssist : Plugin() {
             equipMageGear()
         }
         activatePrayer(Prayer.PROTECT_FROM_MELEE)
-        val prayer = if (config.rangeOnly()) {
-            config.rangeOffensivePrayer().prayer
-        } else {
-            config.mageOffensivePrayer().prayer
-        }
-        activatePrayer(prayer)
+        activatePrayer(if (config.rangeOnly()) { config.rangeOffensivePrayer().prayer } else { config.mageOffensivePrayer().prayer })
     }
     private fun rangePhase(){
-
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH, true, true) == null) return
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH,true,true) == null) return
         equipRangeGear()
         activatePrayer(config.rangeOffensivePrayer().prayer)
     }
     private fun shieldPhase(){
-        val shieldMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
-        if (shieldMuspah == null) {
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null) {
             if (client.isPrayerActive(Prayer.SMITE)) {
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             }
             return
         }
-        if (shieldMuspah != null) {
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null) {
             updateTickTimestamps()
             lastTick = getCurrentMinTickTimestamp()
             gameTick++
@@ -236,7 +234,6 @@ class MuspahAssist : Plugin() {
                 client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) {
                 gameTick = 0
             }
-
             if (gameTick == 4) {
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             }
