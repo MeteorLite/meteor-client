@@ -339,8 +339,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
             if (config.autoRingOfRecoil()) {
                 val invRecoil = getFirst("Ring of recoil", InventoryID.INVENTORY)
                 if (needsRecoil && invRecoil != null) {
-                    invRecoil.interact("Wear")
                     ClientPackets.queueClickPacket(invRecoil.clickPoint)
+                    invRecoil.interact("Wear")
                     needsRecoil = false
                 }
             }
@@ -576,8 +576,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
         invokeLater {
             mageGear.forEach { id ->
                 getFirst(id)?.let {
-                    it.interact(2)
                     ClientPackets.queueClickPacket(it.clickPoint)
+                    it.interact(2)
                 }
             }
         }
@@ -587,8 +587,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
         invokeLater {
             for (id in rangeGear) {
                 getFirst(id)?.let {
-                    it.interact(2)
                     ClientPackets.queueClickPacket(it.clickPoint)
+                    it.interact(2)
                 }
             }
         }
@@ -601,9 +601,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
         ClientPackets.queueClickPacket(prayerWidget.clickPoint)
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
 
     fun activatePrayer(prayer: Prayer?) {
@@ -620,9 +619,8 @@ class ZulrahPlugin : Plugin(), KeyListener {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
         ClientPackets.queueClickPacket(prayerWidget.clickPoint)
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
 
     companion object {

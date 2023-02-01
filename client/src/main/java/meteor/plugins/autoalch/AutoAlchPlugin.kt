@@ -43,8 +43,8 @@ class AutoAlchPlugin : Plugin() {
                 else
                     Regular.LOW_LEVEL_ALCHEMY
             Items.getFirst(config.itemID())?.let{
-                Magic.cast(spellToUse,it)
                 ClientPackets.queueClickPacket(it.clickPoint)
+                Magic.cast(spellToUse,it)
             }
         }
         timeout--

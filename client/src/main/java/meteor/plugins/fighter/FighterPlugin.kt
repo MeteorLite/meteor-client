@@ -111,8 +111,8 @@ class FighterPlugin : Plugin() {
                         else
                             Regular.LOW_LEVEL_ALCHEMY.widget.id
                     alchItem?.forEach {
-                        ItemPackets.queueSpellOnItemPacket(it.id, it.slot, spellToUse)
                         ClientPackets.queueClickPacket(it.clickPoint)
+                        ItemPackets.queueSpellOnItemPacket(it.id, it.slot, spellToUse)
                         return
                     }
                 }

@@ -198,14 +198,27 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         return null
     }
 
+    val jagexClickPoint: Point
+        get() {
+            val widget: Widget = client.getWidget(widgetId)
+                ?: return Point(0, 0)
+            if (type != Type.EQUIPMENT) {
+                val slot = widget.getChild(slot)
+                if (slot != null) {
+                    return if (slot.bounds != null) slot.jagexClickPoint() else Point(0, 0)
+                }
+            }
+            return widget.jagexClickPoint()
+        }
+
     private val bounds: Rectangle
         get() {
             val widget: Widget = client.getWidget(widgetId)
                 ?: return Rectangle(-1, -1, 0, 0)
             if (type != Type.EQUIPMENT) {
-                val slot = widget.getChild(slot)
-                if (slot != null) {
-                    return if (slot.bounds != null) slot.bounds else Rectangle(-1, -1, 0, 0)
+                widget.getChild(slot)?.let {
+                    println("should be accurate")
+                    return Rectangle(it.canvasLocation.x, it.canvasLocation.y, it.width, it.height)
                 }
             }
             val bounds = widget.bounds

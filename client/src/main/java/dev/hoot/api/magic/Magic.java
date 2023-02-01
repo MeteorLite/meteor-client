@@ -71,8 +71,8 @@ public class Magic
 		Widget widget = Widgets.get(spell.getWidget());
 		if (widget != null)
 		{
-			Game.getClient().setSelectedSpellWidget(widget.getId());
 			ClientPackets.INSTANCE.queueClickPacket(widget.getClickPoint());
+			Game.getClient().setSelectedSpellWidget(widget.getId());
 		}
 	}
 

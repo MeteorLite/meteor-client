@@ -35,11 +35,9 @@ import java.util.List;
 import eventbus.Events;
 import eventbus.events.*;
 import net.runelite.api.*;
-import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.api.widgets.Widget;
 
@@ -609,8 +607,7 @@ public abstract class RSWidgetMixin implements RSWidget {
 
     @Inject
     public java.awt.Point getClickPoint() {
-        java.awt.Point point = Randomizer.getRandomPointIn(getBounds());
-        return new java.awt.Point(point.x, point.y);
+        return Randomizer.getRandomPointIn(getBounds());
     }
 
     @Inject

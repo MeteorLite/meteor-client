@@ -73,8 +73,8 @@ class WintertodtHelper : Plugin() {
                 for (item in items) {
                     if (item.actions?.contains("Eat") == true) {
                         allowance++
-                        item.interact("Eat")
                         ClientPackets.queueClickPacket(item.clickPoint)
+                        item.interact("Eat")
                         return true
                     }
                 }

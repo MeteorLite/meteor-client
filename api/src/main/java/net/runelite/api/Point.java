@@ -32,8 +32,8 @@ import lombok.Value;
 @Value
 public class Point
 {
-	private final int x;
-	private final int y;
+	public final int x;
+	public final int y;
 
 	/**
 	 * Gets the distance between this point and another.

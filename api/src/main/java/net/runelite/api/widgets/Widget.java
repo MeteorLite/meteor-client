@@ -465,6 +465,8 @@ public interface Widget extends Interactable, Identifiable
 	 */
 	Rectangle getBounds();
 
+	java.awt.Point jagexClickPoint();
+
 	/**
 	 * Gets any items that are being displayed in the widget.
 	 *

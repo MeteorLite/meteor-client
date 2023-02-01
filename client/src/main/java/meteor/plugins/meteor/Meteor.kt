@@ -1,8 +1,5 @@
 package meteor.plugins.meteor
 
-import androidx.compose.ui.unit.DpSize
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.rememberWindowState
 import com.formdev.flatlaf.FlatLaf
 import dev.hoot.api.InteractMethod
 import dev.hoot.api.InteractionException
@@ -31,7 +28,6 @@ import net.runelite.api.Constants
 import net.runelite.api.MenuAction
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Color
-import java.awt.Dimension
 import java.awt.Point
 import java.awt.Rectangle
 
@@ -39,6 +35,7 @@ import java.awt.Rectangle
 class Meteor : Plugin() {
     var config = configuration<MeteorConfig>()
     val log = Logger("Meteor")
+    val autoInteractOverlay = overlay(AutoInteractOverlay(config))
     override fun onInvokeMenuAction(it: AutomatedMenu) {
         val debug = ("O=" + it.option
                 + " | T=" + it.target
