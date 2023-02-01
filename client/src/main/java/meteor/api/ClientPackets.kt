@@ -8,6 +8,7 @@ import dev.hoot.api.widgets.Widgets
 import meteor.Main
 import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
+import net.runelite.api.packets.ClientPacket
 import net.runelite.api.packets.PacketBufferNode
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetType
@@ -628,6 +629,7 @@ object ClientPackets {
         Main.client.clientMouseLastPressedMillis = Main.client.mouseLastPressedMillis
         val mouseInfo = (mousePressedTime shl 1) + 1
         queueClickPacket(mouseInfo.toInt(), x, y)
+        Main.logger.error("--Click-Packet-- $x.$y")
     }
 
     /**
@@ -644,9 +646,9 @@ object ClientPackets {
         var selectedWidgetSlot = client.selectedSpellChildIndex
         // Yes, keeping both in case of a future fix in naming
         val selectedWidget = client.selectedSpellWidget
-
-        when (opcode) {
-            MenuAction.ITEM_USE_ON_GAME_OBJECT, MenuAction.WIDGET_TARGET_ON_GAME_OBJECT -> return createItemWidgetOnGameObjectPacket(
+        var result : PacketBufferNode? = null
+        result = when (opcode) {
+            MenuAction.ITEM_USE_ON_GAME_OBJECT, MenuAction.WIDGET_TARGET_ON_GAME_OBJECT -> createItemWidgetOnGameObjectPacket(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
@@ -655,62 +657,62 @@ object ClientPackets {
                 selectedWidget,
                 false
             )
-            MenuAction.GAME_OBJECT_FIRST_OPTION -> return createObjectAction1Packet(
+            MenuAction.GAME_OBJECT_FIRST_OPTION -> createObjectAction1Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_SECOND_OPTION -> return createObjectAction2Packet(
+            MenuAction.GAME_OBJECT_SECOND_OPTION -> createObjectAction2Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_THIRD_OPTION -> return createObjectAction3Packet(
+            MenuAction.GAME_OBJECT_THIRD_OPTION -> createObjectAction3Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_FOURTH_OPTION -> return createObjectAction4Packet(
+            MenuAction.GAME_OBJECT_FOURTH_OPTION -> createObjectAction4Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GAME_OBJECT_FIFTH_OPTION -> return createObjectAction5Packet(
+            MenuAction.GAME_OBJECT_FIFTH_OPTION -> createObjectAction5Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.ITEM_USE_ON_NPC, MenuAction.WIDGET_TARGET_ON_NPC -> return createItemWidgetOnNPCPacket(
+            MenuAction.ITEM_USE_ON_NPC, MenuAction.WIDGET_TARGET_ON_NPC -> createItemWidgetOnNPCPacket(
                 id,
                 selectedWidget,
                 selectedWidgetItemId,
                 selectedWidgetSlot,
                 false)
-            MenuAction.NPC_FIRST_OPTION -> return createNPCAction1Packet(id, false)
-            MenuAction.NPC_SECOND_OPTION -> return createNPCAction2Packet(id, false)
-            MenuAction.NPC_THIRD_OPTION -> return createNPCAction3Packet(id, false)
-            MenuAction.NPC_FOURTH_OPTION -> return createNPCAction4Packet(id, false)
-            MenuAction.NPC_FIFTH_OPTION -> return createNPCAction5Packet(id, false)
-            MenuAction.ITEM_USE_ON_PLAYER, MenuAction.WIDGET_TARGET_ON_PLAYER -> return createItemWidgetOnPlayerPacket(
+            MenuAction.NPC_FIRST_OPTION -> createNPCAction1Packet(id, false)
+            MenuAction.NPC_SECOND_OPTION -> createNPCAction2Packet(id, false)
+            MenuAction.NPC_THIRD_OPTION -> createNPCAction3Packet(id, false)
+            MenuAction.NPC_FOURTH_OPTION -> createNPCAction4Packet(id, false)
+            MenuAction.NPC_FIFTH_OPTION -> createNPCAction5Packet(id, false)
+            MenuAction.ITEM_USE_ON_PLAYER, MenuAction.WIDGET_TARGET_ON_PLAYER -> createItemWidgetOnPlayerPacket(
                 id,
                 selectedWidgetItemId,
                 selectedWidgetSlot,
                 selectedWidget,
                 false)
-            MenuAction.PLAYER_FIRST_OPTION -> return createPlayerAction1Packet(id, false)
-            MenuAction.PLAYER_SECOND_OPTION -> return createPlayerAction2Packet(id, false)
-            MenuAction.PLAYER_THIRD_OPTION -> return createPlayerAction3Packet(id, false)
-            MenuAction.PLAYER_FOURTH_OPTION -> return createPlayerAction4Packet(id, false)
-            MenuAction.PLAYER_FIFTH_OPTION -> return createPlayerAction5Packet(id, false)
-            MenuAction.PLAYER_SIXTH_OPTION -> return createPlayerAction6Packet(id, false)
-            MenuAction.PLAYER_SEVENTH_OPTION -> return createPlayerAction7Packet(id, false)
-            MenuAction.PLAYER_EIGTH_OPTION -> return createPlayerAction8Packet(id, false)
-            MenuAction.ITEM_USE_ON_GROUND_ITEM, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM -> return createItemWidgetOnGroundItemPacket(
+            MenuAction.PLAYER_FIRST_OPTION -> createPlayerAction1Packet(id, false)
+            MenuAction.PLAYER_SECOND_OPTION -> createPlayerAction2Packet(id, false)
+            MenuAction.PLAYER_THIRD_OPTION -> createPlayerAction3Packet(id, false)
+            MenuAction.PLAYER_FOURTH_OPTION -> createPlayerAction4Packet(id, false)
+            MenuAction.PLAYER_FIFTH_OPTION -> createPlayerAction5Packet(id, false)
+            MenuAction.PLAYER_SIXTH_OPTION -> createPlayerAction6Packet(id, false)
+            MenuAction.PLAYER_SEVENTH_OPTION -> createPlayerAction7Packet(id, false)
+            MenuAction.PLAYER_EIGTH_OPTION -> createPlayerAction8Packet(id, false)
+            MenuAction.ITEM_USE_ON_GROUND_ITEM, MenuAction.WIDGET_TARGET_ON_GROUND_ITEM -> createItemWidgetOnGroundItemPacket(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
@@ -719,31 +721,31 @@ object ClientPackets {
                 selectedWidget,
                 false
             )
-            MenuAction.GROUND_ITEM_FIRST_OPTION -> return createGroundItemAction1Packet(
+            MenuAction.GROUND_ITEM_FIRST_OPTION -> createGroundItemAction1Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_SECOND_OPTION -> return createGroundItemAction2Packet(
+            MenuAction.GROUND_ITEM_SECOND_OPTION -> createGroundItemAction2Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_THIRD_OPTION -> return createGroundItemAction3Packet(
+            MenuAction.GROUND_ITEM_THIRD_OPTION -> createGroundItemAction3Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_FOURTH_OPTION -> return createGroundItemAction4Packet(
+            MenuAction.GROUND_ITEM_FOURTH_OPTION -> createGroundItemAction4Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
                 false
             )
-            MenuAction.GROUND_ITEM_FIFTH_OPTION -> return createGroundItemAction5Packet(
+            MenuAction.GROUND_ITEM_FIFTH_OPTION -> createGroundItemAction5Packet(
                 id,
                 param0 + client.baseX,
                 param1 + client.baseY,
@@ -761,7 +763,7 @@ object ClientPackets {
                     selectedWidgetSlot = -1
                     selectedWidgetItemId = -1
                 }
-                return createItemWidgetOnItemWidgetPacket(
+                createItemWidgetOnItemWidgetPacket(
                     selectedWidget,
                     selectedWidgetSlot,
                     selectedWidgetItemId,
@@ -769,62 +771,62 @@ object ClientPackets {
                     param0,
                     childItemId)
             }
-            MenuAction.ITEM_FIRST_OPTION -> return createItemAction1Packet(
+            MenuAction.ITEM_FIRST_OPTION -> createItemAction1Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_SECOND_OPTION -> return createItemAction2Packet(
+            MenuAction.ITEM_SECOND_OPTION -> createItemAction2Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_THIRD_OPTION -> return createItemAction3Packet(
+            MenuAction.ITEM_THIRD_OPTION -> createItemAction3Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_FOURTH_OPTION -> return createItemAction4Packet(
+            MenuAction.ITEM_FOURTH_OPTION -> createItemAction4Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.ITEM_FIFTH_OPTION -> return createItemAction5Packet(
+            MenuAction.ITEM_FIFTH_OPTION -> createItemAction5Packet(
                 param1,
                 id,
                 param0
             )
-            MenuAction.WIDGET_FIRST_OPTION -> return createWidgetAction1Packet(
+            MenuAction.WIDGET_FIRST_OPTION -> createWidgetAction1Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_SECOND_OPTION -> return createWidgetAction2Packet(
+            MenuAction.WIDGET_SECOND_OPTION -> createWidgetAction2Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_THIRD_OPTION -> return createWidgetAction3Packet(
+            MenuAction.WIDGET_THIRD_OPTION -> createWidgetAction3Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_FOURTH_OPTION -> return createWidgetAction4Packet(
+            MenuAction.WIDGET_FOURTH_OPTION -> createWidgetAction4Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_FIFTH_OPTION -> return createWidgetAction5Packet(
+            MenuAction.WIDGET_FIFTH_OPTION -> createWidgetAction5Packet(
                 param1,
                 -1,
                 param0
             )
-            MenuAction.WIDGET_TYPE_1 -> return WidgetPackets.createType1Action(param1)
-            MenuAction.WIDGET_CONTINUE -> return WidgetPackets.createContinuePacket(param1, param0)
+            MenuAction.WIDGET_TYPE_1 -> WidgetPackets.createType1Action(param1)
+            MenuAction.WIDGET_CONTINUE -> WidgetPackets.createContinuePacket(param1, param0)
             MenuAction.WALK -> {
                 client.destinationX = param0
                 client.destinationY = param1
-                return createMovementPacket(
+                createMovementPacket(
                     param0 + client.baseX,
                     param1 + client.baseY,
                     false
@@ -832,12 +834,22 @@ object ClientPackets {
             }
             MenuAction.CC_OP_LOW_PRIORITY,
             MenuAction.CC_OP -> {
-                val widget = Widgets.fromId(param1) ?: return null
-                val child = (if (param0 == -1) null else widget.getChild(param0))
-                    ?: return WidgetPackets.createDefaultAction(id, param1, -1, param0)
-                return WidgetPackets.createDefaultAction(id, param1, child.itemId, param0)
+                val widget = Widgets.fromId(param1) ?: null
+                var child: Widget? = null
+                if (param0 != -1)
+                    child = widget!!.getChild(param0)
+
+                if (child == null)
+                    WidgetPackets.createDefaultAction(id, param1, -1, param0)
+                else
+                    WidgetPackets.createDefaultAction(id, param1, child.itemId, param0)
             }
-            else -> {}
+            else -> null
+        }
+        result?.let {
+            val packetType = opcode
+            Main.logger.warn("--Auto-Packet-- ${packetType.name} id:$id :param0:$param0 param1: $param1")
+            return it
         }
         throw InteractionException("Couldn't parse packet from opcode: $opcode")
     }

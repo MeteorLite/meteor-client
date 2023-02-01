@@ -13,8 +13,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.events.*
+import meteor.api.ClientPackets
 import meteor.api.Items
 import meteor.api.NPCs
 import meteor.config.ConfigManager
@@ -248,22 +250,31 @@ class MuspahAssist : Plugin() {
     }
     private fun equipMageGear(){
         ClientThread.invokeLater {
-            mageGear.forEach {
-                Items.getFirst(it)?.interact(2)
+            mageGear.forEach {id ->
+                Items.getFirst(id)?.let {
+                    it.interact(2)
+                    ClientPackets.queueClickPacket(it.clickPoint)
+                }
             }
         }
     }
     private fun equipRangeGear(){
         ClientThread.invokeLater {
-            rangeGear.forEach {
-                Items.getFirst(it)?.interact(2)
+            rangeGear.forEach {id ->
+                Items.getFirst(id)?.let {
+                 it.interact(2)
+                 ClientPackets.queueClickPacket(it.clickPoint)
+                }
             }
         }
     }
     private fun equipShieldGear(){
         ClientThread.invokeLater {
-            shieldGear.forEach {
-                Items.getFirst(it)?.interact(2)
+            shieldGear.forEach {id ->
+                Items.getFirst(id)?.let {
+                 it.interact(2)
+                 ClientPackets.queueClickPacket(it.clickPoint)
+                }
             }
         }
     }
@@ -279,15 +290,7 @@ class MuspahAssist : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        clientThread.invoke {
-            client.invokeMenuAction(
-                "Activate",
-                prayerWidget.name,
-                1,
-                MenuAction.CC_OP.id,
-                prayerWidget.itemId,
-                prayerWidget.id
-            )
-        }
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
     }
 }

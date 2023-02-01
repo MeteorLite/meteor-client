@@ -360,7 +360,6 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         if (index != null) {
             invoke(index)
         }
-        client.sendClickPacket(clickPoint)
     }
 
     infix fun interact(idx: Int) {

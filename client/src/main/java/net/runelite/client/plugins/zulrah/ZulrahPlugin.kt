@@ -364,21 +364,20 @@ class ZulrahPlugin : Plugin(), KeyListener {
                     needsRecoil = false
                 }
             }
-
-            if (zulrahNpc?.isDead == true) {
-                for (prayer in getActivePrayers()) {
-                    val widget = client.getWidget(prayer.widgetInfo)
-                    widget?.let {
-                        deactivatePrayer(prayer)
-                    }
-                }
-            }
         }
     }
 
     override fun onChatMessage(it: ChatMessage) {
         if (it.message.contains("Your Ring of Recoil has shattered.")) {
             needsRecoil = true
+        }
+        if (it.message.contains("Your Zulrah kill count is")) {
+            for (prayer in getActivePrayers()) {
+                val widget = client.getWidget(prayer.widgetInfo)
+                widget?.let {
+                    deactivatePrayer(prayer)
+                }
+            }
         }
     }
 
@@ -595,8 +594,11 @@ class ZulrahPlugin : Plugin(), KeyListener {
 
     private fun equipMageGear() {
         invokeLater {
-            mageGear.forEach {
-                getFirst(it)?.interact(2)
+            mageGear.forEach { id ->
+                getFirst(id)?.let {
+                    it.interact(2)
+                    ClientPackets.queueClickPacket(it.clickPoint)
+                }
             }
         }
     }
@@ -604,7 +606,10 @@ class ZulrahPlugin : Plugin(), KeyListener {
     private fun equipRangeGear() {
         invokeLater {
             for (id in rangeGear) {
-                getFirst(id)?.interact(2)
+                getFirst(id)?.let {
+                    it.interact(2)
+                    ClientPackets.queueClickPacket(it.clickPoint)
+                }
             }
         }
     }
