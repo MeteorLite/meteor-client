@@ -19,15 +19,6 @@ interface MuspahAssistConfig : Config {
         return false
     }
     @ConfigItem(
-        keyName = "offensivePrayerToggle",
-        name = "Offensive Prayer",
-        description = "Toggles the option to use offensive prayers with Auto Prayer",
-        position = 1
-    )
-    fun offensivePrayerToggle(): Boolean {
-        return false
-    }
-    @ConfigItem(
         keyName = "rangeOffensivePrayer",
         name = "Range Offensive Prayer",
         description = "Choose which offensive prayer to use with Auto Prayer",
@@ -46,7 +37,7 @@ interface MuspahAssistConfig : Config {
         return MageOffensivePrayers.AUGURY
     }
     @ConfigItem(
-        keyName = "offensivePrayerToggle",
+        keyName = "smiteToggle",
         name = "Smite",
         description = "Toggles the option to use offensive prayers with Auto Prayer",
         position = 4

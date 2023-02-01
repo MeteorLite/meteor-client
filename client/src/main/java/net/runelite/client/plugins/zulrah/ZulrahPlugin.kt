@@ -438,12 +438,12 @@ class ZulrahPlugin : Plugin(), KeyListener {
             }
         }
         if (it.projectile.id == 1046 && currentRotation != null && getCurrentPhase(currentRotation)!!
-                .zulrahNpc.isJad
+                .zulrahNpc.isJad && config.autoPray()
         ) { //Mage attack and Jad
             activatePrayer(Prayer.PROTECT_FROM_MISSILES)
         }
         if (it.projectile.id == 1044 && currentRotation != null && getCurrentPhase(currentRotation)!!
-                .zulrahNpc.isJad
+                .zulrahNpc.isJad && config.autoPray()
         ) { //Range attack and Jad
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
         }
