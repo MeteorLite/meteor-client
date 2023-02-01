@@ -254,13 +254,12 @@ interface MeteorConfig : Config {
     }
 
     @ConfigItem(
-        keyName = "drawMouse",
-        name = "Draw mouse events",
-        description = "Draws the sent mouse events on screen",
-        section = "Interaction Manager",
-        position = 5
+        keyName = "debugAutoClicks",
+        name = "Draw auto clicks",
+        description = "Draws the sent mouse click packets on screen",
+        position = 6
     )
-    fun drawMouse(): Boolean {
+    fun drawAutoClicks(): Boolean {
         return false
     }
 

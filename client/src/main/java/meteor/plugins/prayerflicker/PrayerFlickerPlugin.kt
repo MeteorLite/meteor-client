@@ -19,6 +19,7 @@ import net.runelite.api.MenuAction
 import net.runelite.api.Varbits
 import net.runelite.api.widgets.WidgetInfo
 import java.awt.Color
+import java.awt.Point
 
 
 @PluginDescriptor(name = "Prayer Flicker", description = "prayer flicker for quick prayers", enabledByDefault = false)
@@ -26,17 +27,18 @@ class PrayerFlickerPlugin : Plugin() {
 
     var toggle = false
     val config = configuration<PrayerFlickerConfig>()
-
+    lateinit var clickPoint: Point
 
     private val quickPrayerWidgetID = WidgetInfo.MINIMAP_QUICK_PRAYER_ORB
 
     private fun togglePrayer() {
-                val quickPrayerOrb = Widgets.get(quickPrayerWidgetID)
-                val clickPoint = quickPrayerOrb.clickPoint
-                WidgetPackets.widgetAction(quickPrayerOrb, "Activate")
-                ClientPackets.queueClickPacket(clickPoint)
-                WidgetPackets.widgetAction(quickPrayerOrb, "Deactivate")
-                ClientPackets.queueClickPacket(clickPoint)
+        val quickPrayerOrb = Widgets.get(quickPrayerWidgetID)
+        if (!this::clickPoint.isInitialized)
+            clickPoint = quickPrayerOrb.clickPoint
+        ClientPackets.queueClickPacket(clickPoint)
+        WidgetPackets.widgetAction(quickPrayerOrb, "Activate")
+        ClientPackets.queueClickPacket(clickPoint)
+        WidgetPackets.widgetAction(quickPrayerOrb, "Deactivate")
     }
 
     override fun onStart() {

@@ -36,8 +36,8 @@ public class Prayers
 		Widget widget = Widgets.get(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB);
 		if (widget != null)
 		{
-			widget.interact(enabled ? "Activate" : "Deactivate");
 			ClientPackets.INSTANCE.queueClickPacket(widget.getClickPoint());
+			widget.interact(enabled ? "Activate" : "Deactivate");
 		}
 
 	}

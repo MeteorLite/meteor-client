@@ -125,23 +125,24 @@ class BankSetups : Plugin() {
                         if (it[1] != 1) {
                             WidgetPackets.widgetAction(item, "Withdraw-X")
                             DialogPackets.sendNumberInput(it[1])
+                            ClientPackets.queueClickPacket(item.clickPoint)
                             ItemPackets.queueItemAction1Packet(
                                 WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
                                 item.itemId,
                                 firstFree
                             )
-                            ClientPackets.queueClickPacket(item.clickPoint)
                             return@forEach
                         }
 
                         WidgetPackets.widgetAction(item, "Withdraw-1")
 
+                        ClientPackets.queueClickPacket(item.clickPoint)
                         ItemPackets.queueItemAction1Packet(
                             WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
                             item.itemId,
                             firstFree
                         )
-                        ClientPackets.queueClickPacket(item.clickPoint)
+
                         state = 3
                     }
                 }

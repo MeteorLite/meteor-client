@@ -1620,6 +1620,12 @@ public abstract class RSClientMixin implements RSClient {
         checkResize();
     }
 
+    @Inject
+    public static int cachedX = -1;
+
+    @Inject
+    public static int cachedY = -1;
+
     @MethodHook("drawInterface")
     @Inject
     public static void preRenderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY,
@@ -1630,8 +1636,15 @@ public abstract class RSClientMixin implements RSClient {
                 continue;
             }
 
-            final int renderX = x + widget.getRelativeX();
-            final int renderY = y + widget.getRelativeY();
+            int renderX = x + widget.getRelativeX();
+            int renderY = y + widget.getRelativeY();
+            Widget parent = client.getWidget(parentId);
+            if (parent != null) {
+                if (!parent.getBounds().contains(new java.awt.Point(renderX, renderY))) {
+                    renderX = parent.getCanvasLocation().x + widget.getRelativeX();
+                    renderY = parent.getCanvasLocation().y + widget.getRelativeY();
+                }
+            }
             widget.setRenderX(renderX);
             widget.setRenderY(renderY);
 

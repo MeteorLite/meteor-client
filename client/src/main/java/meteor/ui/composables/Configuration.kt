@@ -158,10 +158,10 @@ fun configs(){
                                     else -> {
                                         val key = "${descriptor.group.value}:${config.key()}"
                                         stringValues[key]?.let {
-                                            it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())!!
+                                            it.value = ConfigManager.getConfiguration(descriptor.group.value, config.key())
                                         }
                                         if (stringValues[key] == null)
-                                            stringValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key())!!)
+                                            stringValues[key] = mutableStateOf(ConfigManager.getConfiguration(descriptor.group.value, config.key()))
                                         stringTextNode(descriptor, config, stringValues[key]!!)
                                     }
                                 }

@@ -6,6 +6,7 @@ import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import meteor.Main
+import meteor.plugins.meteor.AutoInteractOverlay
 import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
 import net.runelite.api.packets.ClientPacket
@@ -609,6 +610,7 @@ object ClientPackets {
     }
 
     fun queueClickPacket(clickPoint: Point) {
+        AutoInteractOverlay.lastInteractPoint = clickPoint
         queueClickPacket(clickPoint.x, clickPoint.y)
     }
 

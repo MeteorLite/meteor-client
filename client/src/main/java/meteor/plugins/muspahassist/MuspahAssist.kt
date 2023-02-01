@@ -246,8 +246,8 @@ class MuspahAssist : Plugin() {
         ClientThread.invokeLater {
             mageGear.forEach {id ->
                 Items.getFirst(id)?.let {
-                    it.interact(2)
                     ClientPackets.queueClickPacket(it.clickPoint)
+                    it.interact(2)
                 }
             }
         }
@@ -256,8 +256,8 @@ class MuspahAssist : Plugin() {
         ClientThread.invokeLater {
             rangeGear.forEach {id ->
                 Items.getFirst(id)?.let {
-                 it.interact(2)
                  ClientPackets.queueClickPacket(it.clickPoint)
+                 it.interact(2)
                 }
             }
         }
@@ -266,8 +266,8 @@ class MuspahAssist : Plugin() {
         ClientThread.invokeLater {
             shieldGear.forEach {id ->
                 Items.getFirst(id)?.let {
-                 it.interact(2)
                  ClientPackets.queueClickPacket(it.clickPoint)
+                 it.interact(2)
                 }
             }
         }
@@ -303,8 +303,8 @@ class MuspahAssist : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
         ClientPackets.queueClickPacket(prayerWidget.clickPoint)
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
     private fun deactivatePrayer(prayer: Prayer?) {
         if (prayer == null) {
@@ -318,7 +318,7 @@ class MuspahAssist : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
-        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
         ClientPackets.queueClickPacket(prayerWidget.clickPoint)
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
 }
