@@ -33,6 +33,7 @@ import meteor.util.ColorUtil
 import meteor.util.FontUtil
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
+import java.util.*
 
 @Composable
 fun booleanNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor, booleanValue: MutableState<Boolean?>) {
@@ -131,10 +132,34 @@ fun colorPickerNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
 @Composable
 fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor) {
     var expanded by remember { mutableStateOf(false) }
-    var configStr = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())
-    if (configStr == null) {
-        println("null config ${descriptor.group} ${configItemDescriptor.item.name}")
+    var selectedText = ConfigManager.getConfiguration(descriptor.group.value, configItemDescriptor.key())
+
+    configItemDescriptor.type?.enumConstants?.let {
+        var foundMatch = false
+        for (enum in it) {
+            if (selectedText?.equals(enum.toString()) == true) {
+                selectedText = enum.toString().split("_").joinToString(" ") { it.capitalize() }
+                foundMatch = true
+                break
+            }
+            if (enum.toString().equals(selectedText?.split("_")?.joinToString(" "), ignoreCase = true)) {
+                selectedText = enum.toString().split("_").joinToString(" ") { it.capitalize() }
+                foundMatch = true
+                break
+            }
+        }
+
+        if (!foundMatch) {
+            println("Mismatching enum member/name")
+            println("expected: $selectedText")
+            for (enum in it) {
+                println("found: $enum")
+            }
+        }
     }
+
+    val selectedDropDownText = mutableStateOf(selectedText)
+
     Row(modifier = Modifier.fillMaxWidth().height(32.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start, modifier = Modifier.fillMaxWidth(0.6f).height(32.dp).background(background)) {
             MaterialTheme(colors = darkThemeColors) {
@@ -146,7 +171,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
             MaterialTheme(colors = darkThemeColors) {
                 Box(modifier = Modifier.fillMaxWidth().height(30.dp).wrapContentSize(Alignment.TopStart).border(border = BorderStroke(2.dp, surface), shape = RoundedCornerShape(4.dp))) {
 
-                    Text(configStr.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
+                    Text(selectedDropDownText.value ?: "", color = uiColor.value, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
                         background).wrapContentHeight())
 
                     DropdownMenu(offset = DpOffset(x = -2.dp, y = 1.dp), expanded = expanded, onDismissRequest = { expanded = false }, modifier = Modifier.width(122.dp).background(
@@ -154,14 +179,13 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
                         configItemDescriptor.type?.enumConstants?.forEach {
                             DropdownMenuItem(modifier = Modifier.background(surface), onClick = {
                                 expanded = false
-                                configStr = it.toString().split("_").joinToString(" ") { it.capitalize() }
                                 ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
-                            }, content = {
-                                Text(text = it.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, fontSize = 12.sp, maxLines = 1, modifier = Modifier.fillMaxWidth().fillMaxHeight().wrapContentWidth())
-                            })
+                                selectedDropDownText.value = it.toString().split("_").joinToString { it.capitalize() }
+                            }) {
+                                Text(text = it.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, textAlign = TextAlign.Center, fontSize = 12.sp, maxLines = 1, modifier = Modifier.fillMaxWidth().fillMaxHeight().wrapContentWidth())
+                            }
                         }
                     }
-
                 }
             }
         }

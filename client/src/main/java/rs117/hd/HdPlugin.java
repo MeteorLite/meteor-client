@@ -32,7 +32,6 @@ import com.google.inject.Provides;
 import eventbus.events.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import meteor.Logger;
 import meteor.Main;
 import meteor.config.ConfigManager;
@@ -2017,7 +2016,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		if (client.isStretchedEnabled())
 		{
 			// GL_NEAREST makes sampling for bicubic/xBR simpler, so it should be used whenever linear isn't
-			final int function = config.uiScalingMode() == UIScalingMode.LINEAR ? GL_LINEAR : GL_NEAREST;
+			final int function = config.uiScalingMode() == UIScalingMode.BILINEAR ? GL_LINEAR : GL_NEAREST;
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, function);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, function);
 		}

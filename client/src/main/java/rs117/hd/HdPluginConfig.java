@@ -86,7 +86,7 @@ public interface HdPluginConfig extends Config
 	)
 	default UIScalingMode uiScalingMode()
 	{
-		return UIScalingMode.LINEAR;
+		return UIScalingMode.BILINEAR;
 	}
 
 	@Range(
@@ -322,7 +322,7 @@ public interface HdPluginConfig extends Config
 	)
 	default ShadowResolution shadowResolution()
 	{
-		return ShadowResolution.RES_1024;
+		return ShadowResolution.LOW_1024;
 	}
 
 	@ConfigItem(
