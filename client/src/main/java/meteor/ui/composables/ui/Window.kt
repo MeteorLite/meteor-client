@@ -3,6 +3,7 @@ package meteor.ui.composables.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.FrameWindowScope
@@ -30,14 +31,22 @@ fun FrameWindowScope.windowContent() {
             }
         }
         Column(
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxHeight().width(15.dp).background(background )
-        ) {
-            Spacer(modifier = Modifier.width(15.dp))
-            sectionItem(modifier = Modifier.background(background ).size(25.dp)) {
-                when {
-                    !toolBarOpen.value -> toolBarOpen.value = true
-                    toolBarOpen.value -> toolBarOpen.value = false
+            verticalArrangement = Arrangement.Top,
+        ) {if (configOpen.value == true && pluginPanelIsOpen.value == false)
+            Row(
+                modifier = Modifier.height(42.dp).width(15.dp).background(surface),
+                verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start,
+            ) {}
+            Column(
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxHeight().width(15.dp).background(background)
+            ) { if (configOpen.value == false && pluginPanelIsOpen.value == true)
+                Spacer(modifier = Modifier.width(15.dp))
+                sectionItem(modifier = Modifier.background(background).size(25.dp)) {
+                    when {
+                        !toolBarOpen.value -> toolBarOpen.value = true
+                        toolBarOpen.value -> toolBarOpen.value = false
+                    }
                 }
             }
         }

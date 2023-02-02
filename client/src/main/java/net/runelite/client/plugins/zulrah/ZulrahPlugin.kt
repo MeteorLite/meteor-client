@@ -1,14 +1,15 @@
 package net.runelite.client.plugins.zulrah
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.google.common.base.Preconditions
+import compose.icons.TablerIcons
+import compose.icons.tablericons.Copy
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import dev.hoot.api.widgets.Prayers
@@ -177,10 +178,12 @@ class ZulrahPlugin : Plugin(), KeyListener {
 
     fun copyMageGearButton() : @Composable () -> Unit? {
         return {
-            Spacer(Modifier.height(10.dp))
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Button(
-                    modifier = Modifier.size(165.dp, 40.dp),
+                Spacer(Modifier.height(10.dp))
+                ExtendedFloatingActionButton(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value) },
+                    shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -196,22 +199,23 @@ class ZulrahPlugin : Plugin(), KeyListener {
                             updateStringValue("znzulrah", "MageIDs", sb.toString())
                         }
                     },
-                    colors = ButtonDefaults.textButtonColors(
-                        backgroundColor = surface
-                    )
-                ) {
-                    Text("Copy Mage Gear", color = uiColor.value)
-                }
+                    backgroundColor = surface,
+                    text = { Text("Copy Mage Gear",
+                        color = uiColor.value) },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
             }
+            Spacer(Modifier.height(5.dp))
         }
     }
 
     fun copyRangeGearButton() : @Composable () -> Unit? {
         return {
-            Spacer(Modifier.height(10.dp))
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Button(
-                    modifier = Modifier.size(165.dp, 40.dp),
+                Spacer(Modifier.height(5.dp))
+                ExtendedFloatingActionButton(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value) },
+                    shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -227,13 +231,12 @@ class ZulrahPlugin : Plugin(), KeyListener {
                             updateStringValue("znzulrah", "RangeIDs", sb.toString())
                         }
                     },
-                    colors = ButtonDefaults.textButtonColors(
-                        backgroundColor = surface
-                    )
-                ) {
-                    Text("Copy Range Gear", color = uiColor.value)
-                }
+                    backgroundColor = surface,
+                    text = { Text("Copy Range Gear",
+                        color = uiColor.value) },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
             }
+            Spacer(Modifier.height(5.dp))
         }
     }
     override fun keyTyped(e: KeyEvent) {}
