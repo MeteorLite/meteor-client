@@ -12,6 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -92,7 +93,8 @@ class ToolbarButton(
                     else if (imageResource != null)
                         Image(
                             painter = painterResource(imageResource!!),
-                            contentDescription = description
+                            contentDescription = description,
+                            colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(uiColor.value, BlendMode.Modulate)
                         )
                 }
             }

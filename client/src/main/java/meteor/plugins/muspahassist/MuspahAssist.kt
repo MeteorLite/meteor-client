@@ -3,13 +3,14 @@
 package meteor.plugins.muspahassist
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import compose.icons.TablerIcons
+import compose.icons.tablericons.Copy
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.events.*
@@ -66,8 +67,10 @@ class MuspahAssist : Plugin() {
         return {
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(Modifier.height(10.dp))
-                Button(
-                    modifier = Modifier.size(165.dp, 40.dp),
+                ExtendedFloatingActionButton(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value)},
+                    shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -83,22 +86,23 @@ class MuspahAssist : Plugin() {
                             updateStringValue("muspahassist", "RangeIDs", sb.toString())
                         }
                     },
-                    colors = ButtonDefaults.textButtonColors(
-                        backgroundColor = surface
-                    )
-                ) {
-                    Text("Copy Range Gear", color = uiColor.value)
-                }
+                    backgroundColor = surface,
+                    text = { Text("Copy Range Gear",
+                        color = uiColor.value) },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
             }
+            Spacer(Modifier.height(5.dp))
         }
     }
 
     fun mageGearButton() : @Composable () -> Unit? {
         return {
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Spacer(Modifier.height(10.dp))
-                Button(
-                    modifier = Modifier.size(165.dp, 40.dp),
+                Spacer(Modifier.height(5.dp))
+                ExtendedFloatingActionButton(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value)},
+                    shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -114,22 +118,23 @@ class MuspahAssist : Plugin() {
                             updateStringValue("muspahassist", "MageIDs", sb.toString())
                         }
                     },
-                    colors = ButtonDefaults.textButtonColors(
-                        backgroundColor = surface
-                    )
-                ) {
-                    Text("Copy Mage Gear", color = uiColor.value)
-                }
+                    backgroundColor = surface,
+                    text = { Text("Copy Mage Gear",
+                        color = uiColor.value) },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
             }
+            Spacer(Modifier.height(5.dp))
         }
     }
 
     fun shieldGearButton() : @Composable () -> Unit? {
         return {
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Spacer(Modifier.height(10.dp))
-                Button(
-                    modifier = Modifier.size(165.dp, 40.dp),
+                Spacer(Modifier.height(5.dp))
+                ExtendedFloatingActionButton(
+                    modifier = Modifier.size(200.dp, 40.dp),
+                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value)},
+                    shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
                         val sb = StringBuilder()
@@ -145,13 +150,12 @@ class MuspahAssist : Plugin() {
                             updateStringValue("muspahassist", "shieldIDs", sb.toString())
                         }
                     },
-                    colors = ButtonDefaults.textButtonColors(
-                        backgroundColor = surface
-                    )
-                ) {
-                    Text("Copy Shield Gear", color = uiColor.value)
-                }
+                    backgroundColor = surface,
+                    text = { Text("Copy Shield Gear",
+                        color = uiColor.value) },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
             }
+            Spacer(Modifier.height(5.dp))
         }
     }
 

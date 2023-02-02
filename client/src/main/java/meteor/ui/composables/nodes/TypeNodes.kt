@@ -1,6 +1,8 @@
 package meteor.ui.composables.nodes
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,6 +16,7 @@ import androidx.compose.ui.input.key.*
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.godaddy.android.colorpicker.harmony.ColorHarmonyMode
@@ -28,7 +31,6 @@ import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 import meteor.util.ColorUtil
 import meteor.util.FontUtil
-import net.runelite.api.KeyCode
 import java.awt.event.InputEvent
 import java.awt.event.KeyEvent
 
@@ -142,19 +144,20 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End, modifier = Modifier.fillMaxWidth().height(32.dp)) {
 
             MaterialTheme(colors = darkThemeColors) {
-                Box(modifier = Modifier.fillMaxWidth().height(20.dp).wrapContentSize(Alignment.TopStart)) {
+                Box(modifier = Modifier.fillMaxWidth().height(30.dp).wrapContentSize(Alignment.TopStart).border(border = BorderStroke(2.dp, surface), shape = RoundedCornerShape(4.dp))) {
 
-                    Text(configStr.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(surface))
+                    Text(configStr.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
+                        background).wrapContentHeight())
 
-                    DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }, modifier = Modifier.width(300.dp).padding(horizontal = 5.dp)) {
+                    DropdownMenu(offset = DpOffset(x = -2.dp, y = 1.dp), expanded = expanded, onDismissRequest = { expanded = false }, modifier = Modifier.width(122.dp).background(
+                        surface).border(border = BorderStroke(4.dp, surface))) {
                         configItemDescriptor.type?.enumConstants?.forEach {
-                            DropdownMenuItem(onClick = {
+                            DropdownMenuItem(modifier = Modifier.background(surface), onClick = {
                                 expanded = false
                                 configStr = it.toString().split("_").joinToString(" ") { it.capitalize() }
                                 ConfigManager.setConfiguration(descriptor.group.value, configItemDescriptor.key(), it)
-                                //println(it.toString())
                             }, content = {
-                                Text(text = it.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, fontSize = 14.sp)
+                                Text(text = it.toString().split("_").joinToString(" ") { it.capitalize() }, color = uiColor.value, fontSize = 12.sp, maxLines = 1, modifier = Modifier.fillMaxWidth().fillMaxHeight().wrapContentWidth())
                             })
                         }
                     }

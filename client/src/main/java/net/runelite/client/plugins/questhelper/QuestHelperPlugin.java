@@ -208,7 +208,7 @@ public class QuestHelperPlugin extends Plugin
 
 	private boolean displayNameKnown;
 
-	private ToolbarButton toolbarButton = new ToolbarButton("Quest Helper", "quest_helper.png",
+	private ToolbarButton toolbarButton = new ToolbarButton("Quest Helper", "Quests.png",
 			"Shows info for quest",
 			Alignment.Companion.getTopCenter(), false, togglePanel());
 

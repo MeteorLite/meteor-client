@@ -259,8 +259,7 @@ fun configs(){
 fun configPanelHeader() {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Start,
-            modifier = Modifier.fillMaxWidth().height(42.dp).background(surface,
-                RoundedCornerShape(10.dp))
+            modifier = Modifier.fillMaxWidth().height(42.dp).background(surface)
         ) {
             Row(verticalAlignment = Alignment.Top, horizontalArrangement = Arrangement.Start, modifier = Modifier.width(40.dp)) {
                 IconButton( onClick = {
