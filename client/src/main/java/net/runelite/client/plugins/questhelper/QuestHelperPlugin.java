@@ -672,7 +672,7 @@ public class QuestHelperPlugin extends Plugin
 		return menuEntries;
 	}
 
-	@Subscribe
+	@Override
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
 		int widgetIndex = event.getParam0();
@@ -761,7 +761,7 @@ public class QuestHelperPlugin extends Plugin
 		}
 	}
 
-	@Subscribe
+	@Override
 	public void onChatMessage(ChatMessage chatMessage)
 	{
 		if (config.showFan() && chatMessage.getType() == ChatMessageType.GAMEMESSAGE) {

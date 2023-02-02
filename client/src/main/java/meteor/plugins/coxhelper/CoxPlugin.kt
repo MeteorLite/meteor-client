@@ -47,15 +47,14 @@ import java.util.regex.Pattern
 class CoxPlugin : Plugin() {
     internal val npcContainers: MutableMap<NPC, NPCContainer?> = HashMap()
 
+    var config = configuration<CoxConfig>()
 
+    private val coxOverlay = overlay(CoxOverlay(this, config))
 
-    private val coxOverlay= overlay(CoxOverlay(this))
-
-    private val coxInfoBox= overlay(CoxInfoBox(this))
+    private val coxInfoBox = overlay(CoxInfoBox(this))
 
     private val coxDebugBox: CoxDebugBox? = null
 
-    var config:CoxConfig = configuration()
 
     var vanguards = 0
     var tektonActive = false
