@@ -31,7 +31,7 @@ import com.google.common.collect.EvictingQueue;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Table;
-import com.google.inject.Provides;
+
 import java.awt.Color;
 import java.awt.Rectangle;
 import static java.lang.Boolean.FALSE;
@@ -47,7 +47,6 @@ import java.util.Queue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import javax.inject.Inject;
 
 import eventbus.events.*;
 import lombok.AccessLevel;
@@ -82,7 +81,7 @@ import net.runelite.client.plugins.grounditems.config.HighlightTier;
 import net.runelite.client.plugins.grounditems.config.ItemHighlightMode;
 import net.runelite.client.plugins.grounditems.config.MenuHighlightMode;
 import static net.runelite.client.plugins.grounditems.config.MenuHighlightMode.BOTH;
-import static net.runelite.client.plugins.grounditems.config.MenuHighlightMode.NAME;
+import static net.runelite.client.plugins.grounditems.config.MenuHighlightMode.ITEM_NAME;
 import static net.runelite.client.plugins.grounditems.config.MenuHighlightMode.OPTION;
 
 @PluginDescriptor(
@@ -477,7 +476,7 @@ public class GroundItemsPlugin extends Plugin
 					lastEntry.setOption(ColorUtil.prependColorTag(lastEntry.getOption(), color));
 				}
 
-				if (mode == BOTH || mode == NAME)
+				if (mode == BOTH || mode == ITEM_NAME)
 				{
 					// <col=ff9040>Logs
 					// <col=00ff00>Telekinetic Grab</col><col=ffffff> -> <col=ff9040>Logs

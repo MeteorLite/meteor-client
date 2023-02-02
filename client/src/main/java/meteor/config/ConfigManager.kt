@@ -103,7 +103,12 @@ object ConfigManager {
             return Rectangle(x, y, width, height)
         }
         if (type.isEnum) {
-            return java.lang.Enum.valueOf(type as Class<out Enum<*>?>, str)
+            return try {
+                java.lang.Enum.valueOf(type as Class<out Enum<*>?>, str)
+            } catch (e: Exception) {
+                Main.logger.warn("Outdated enum config ($str) could not be loaded")
+                null
+            }
         }
         if (type == Instant::class.java) {
             return Instant.parse(str)

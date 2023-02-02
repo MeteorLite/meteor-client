@@ -31,8 +31,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum MenuHighlightMode
 {
-	OPTION("Menu option"),
-	NAME("Menu item name"),
+	OPTION("Option"),
+	ITEM_NAME("Item Name"),
 	BOTH("Both");
 
 	private final String name;

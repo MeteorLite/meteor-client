@@ -202,7 +202,7 @@ public interface GroundItemsConfig extends Config
 	)
 	default MenuHighlightMode menuHighlightMode()
 	{
-		return MenuHighlightMode.NAME;
+		return MenuHighlightMode.ITEM_NAME;
 	}
 
 	@ConfigItem(

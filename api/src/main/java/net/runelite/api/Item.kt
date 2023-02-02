@@ -217,7 +217,6 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
                 ?: return Rectangle(-1, -1, 0, 0)
             if (type != Type.EQUIPMENT) {
                 widget.getChild(slot)?.let {
-                    println("should be accurate")
                     return Rectangle(it.canvasLocation.x, it.canvasLocation.y, it.width, it.height)
                 }
             }
