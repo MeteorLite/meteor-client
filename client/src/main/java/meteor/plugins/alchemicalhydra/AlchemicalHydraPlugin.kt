@@ -200,8 +200,8 @@ class AlchemicalHydraPlugin : Plugin() {
                     hydra = null
                     poisonProjectiles.clear()
                     removeOverlays()
-                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) deactivatePrayer(Prayer.PROTECT_FROM_MAGIC)
-                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
+                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC) && config.autoPray()) deactivatePrayer(Prayer.PROTECT_FROM_MAGIC)
+                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES) && config.autoPray()) deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
                     if (config.offensivePrayerToggle()) deactivatePrayer(config.offensivePrayer().prayer)
 
                     return
@@ -273,7 +273,7 @@ class AlchemicalHydraPlugin : Plugin() {
         if (System.currentTimeMillis() < hydraRespawn) {
             return
         }
-        if (inFight && NPCs.getFirst("Alchemical Hydra") == null) {
+        if (inFight && config.autoPray() && NPCs.getFirst("Alchemical Hydra") == null) {
             hydraRespawn = System.currentTimeMillis() + 29400
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
         }
