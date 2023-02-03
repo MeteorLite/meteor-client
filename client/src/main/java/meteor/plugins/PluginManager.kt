@@ -136,6 +136,7 @@ import net.runelite.client.plugins.timestamp.TimestampPlugin
 import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
 import net.runelite.client.plugins.kourendlibrary.KourendLibraryPlugin
+import net.runelite.client.plugins.raids.RaidsPlugin
 import net.runelite.client.plugins.titheextended.TithePlugin
 import rs117.hd.HdPlugin
 import java.io.File
@@ -184,6 +185,7 @@ object PluginManager {
             init<CannonPlugin>()
             init<CannonReloaderPlugin>()
             init<CerbAutoPrayersPlugin>()
+            init<RaidsPlugin>()
             init<ChatCommandsPlugin>()
             init<ChatHistoryPlugin>()
             init<ClueScrollPlugin>()

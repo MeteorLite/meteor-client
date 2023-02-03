@@ -37,9 +37,8 @@ import meteor.outline.ModelOutlineRenderer
 import java.awt.*
 import java.util.function.Consumer
 
-class CoxOverlay(private val plugin: CoxPlugin) : Overlay() {
+class CoxOverlay(private val plugin: CoxPlugin, private val config: CoxConfig) : Overlay() {
     var outliner = ModelOutlineRenderer()
-    var config = plugin.config
     init {
 
         position = OverlayPosition.DYNAMIC
