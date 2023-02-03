@@ -23,20 +23,13 @@ import meteor.rs.ClientThread;
 import meteor.util.HotkeyListener;
 import meteor.util.WeaponMap;
 import meteor.util.WeaponStyle;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.MenuAction;
-import static net.runelite.api.MenuAction.WIDGET_TARGET_ON_NPC;
-import static net.runelite.api.MenuAction.WIDGET_TARGET_ON_PLAYER;
-import net.runelite.api.NPC;
+import net.runelite.api.*;
 import net.runelite.api.util.Text;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import meteor.util.PvPUtil;
+
+import static net.runelite.api.MenuAction.*;
 
 @PluginDescriptor(
 	name = "Left Click Cast",
@@ -239,7 +232,7 @@ public class LeftClickCast extends Plugin
 				.setParam1(0)
 				.setForceLeftClick(true);
 		}
-		else if (event.getOpcode() == MenuAction.NPC_SECOND_OPTION.getId() && isMage)
+		if (event.getOpcode() == MenuAction.NPC_SECOND_OPTION.getId() && isMage)
 		{
 			try
 			{
@@ -250,9 +243,14 @@ public class LeftClickCast extends Plugin
 					return;
 				}
 
-				if (config.disableStaffChecks() && !whitelist.contains(npc.getId()))
+				if (!whitelist.contains(npc.getId()))
 				{
 					return;
+				}
+
+				if (config.disableStaffChecks())
+				{
+				isMage = true;
 				}
 
 				setSelectSpell(currentSpell.getSpell());
@@ -268,6 +266,18 @@ public class LeftClickCast extends Plugin
 			catch (IndexOutOfBoundsException ignored)
 			{
 			}
+		}
+		if (event.getOpcode() == MenuAction.GROUND_ITEM_THIRD_OPTION.getId() && isMage)
+		{
+			setSelectSpell(currentSpell.getSpell());
+			client.createMenuEntry(client.getMenuOptionCount())
+					.setOption("(I) Left Click " + client.getSelectedSpellName() + " -> ")
+					.setTarget(event.getTarget())
+					.setType(WIDGET_TARGET_ON_GROUND_ITEM)
+					.setIdentifier(event.getIdentifier())
+					.setParam0(event.getParam0())
+					.setParam1(event.getParam1())
+					.setForceLeftClick(true);
 		}
 	}
 

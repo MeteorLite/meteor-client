@@ -13,6 +13,7 @@ import net.runelite.api.widgets.WidgetInfo;
 @AllArgsConstructor
 public enum Spells
 {
+	TELEGRAB ("Telekinetic Grab", WidgetInfo.SPELL_TELEKINETIC_GRAB),
 	BIND("Bind", WidgetInfo.SPELL_BIND),
 	CLAWS_OF_GUTHIX("Claws of Guthix", WidgetInfo.SPELL_CLAWS_OF_GUTHIX),
 	CRUMBLE("Crumble Undead", WidgetInfo.SPELL_CRUMBLE_UNDEAD),
