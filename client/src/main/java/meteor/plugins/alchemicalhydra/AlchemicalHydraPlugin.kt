@@ -13,7 +13,6 @@ import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import meteor.outline.ModelOutlineRenderer
-import meteor.plugins.bosstimer.BossTimersPlugin
 import java.util.*
 
 @PluginDescriptor(
