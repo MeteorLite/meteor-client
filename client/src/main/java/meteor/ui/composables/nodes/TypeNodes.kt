@@ -171,7 +171,7 @@ fun enumNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescr
             MaterialTheme(colors = darkThemeColors) {
                 Box(modifier = Modifier.fillMaxWidth().height(30.dp).wrapContentSize(Alignment.TopStart).border(border = BorderStroke(2.dp, surface), shape = RoundedCornerShape(4.dp))) {
 
-                    Text(selectedDropDownText.value ?: "", color = uiColor.value, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
+                    Text(selectedDropDownText.value ?: "", color = uiColor.value, textAlign = TextAlign.Center, fontSize = 12.sp, modifier = Modifier.fillMaxWidth().fillMaxHeight().clickable(onClick = { expanded = true }).background(
                         background).wrapContentHeight())
 
                     DropdownMenu(offset = DpOffset(x = -2.dp, y = 1.dp), expanded = expanded, onDismissRequest = { expanded = false }, modifier = Modifier.width(122.dp).background(

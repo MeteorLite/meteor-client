@@ -3,6 +3,8 @@ package meteor.plugins.alchemicalhydra
 import dev.hoot.api.events.AutomatedMenu
 import eventbus.events.*
 import meteor.api.ClientPackets
+import meteor.api.NPCs
+import meteor.game.NpcUtil
 import meteor.game.SpriteManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -11,6 +13,7 @@ import net.runelite.api.*
 import net.runelite.api.coords.LocalPoint
 import net.runelite.api.coords.WorldPoint
 import meteor.outline.ModelOutlineRenderer
+import meteor.plugins.bosstimer.BossTimersPlugin
 import java.util.*
 
 @PluginDescriptor(
@@ -34,12 +37,14 @@ class AlchemicalHydraPlugin : Plugin() {
     private var inFight = false
     var ventTicks = 0
     var config = configuration<HydraConfig>()
+    var hydraRespawn = 0L
     private val spriteManager = SpriteManager
     private val clientThread = ClientThread
     private val renderer = ModelOutlineRenderer()
     private val overlay = overlay(HydraOverlay(this, spriteManager, config))
     private val sceneOverlay = overlay(HydraSceneOverlay(this, config))
     private val extraOverlay = overlay(HydraExtraOverlay(this, config, renderer))
+    private val npcUtil = NpcUtil
     override fun onStart() {
         reset()
         initConfig()
@@ -196,6 +201,10 @@ class AlchemicalHydraPlugin : Plugin() {
                     hydra = null
                     poisonProjectiles.clear()
                     removeOverlays()
+                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) deactivatePrayer(Prayer.PROTECT_FROM_MAGIC)
+                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
+                    if (config.offensivePrayerToggle()) deactivatePrayer(config.offensivePrayer().prayer)
+
                     return
                 }
             }
@@ -262,6 +271,13 @@ class AlchemicalHydraPlugin : Plugin() {
                 ventTicks = 8
             }
         }
+        if (System.currentTimeMillis() < hydraRespawn) {
+            return
+        }
+        if (inFight && NPCs.getFirst("Alchemical Hydra") == null) {
+            hydraRespawn = System.currentTimeMillis() + 29400
+            activatePrayer(Prayer.PROTECT_FROM_MAGIC)
+        }
     }
 
     override fun onGameObjectSpawned(it: GameObjectSpawned) {
@@ -308,8 +324,6 @@ class AlchemicalHydraPlugin : Plugin() {
         if (prayer == null) {
             return
         }
-
-        //check if prayer is already active this tick
         if (client.isPrayerActive(prayer)) {
             return
         }
@@ -318,7 +332,22 @@ class AlchemicalHydraPlugin : Plugin() {
         if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
             return
         }
+        ClientPackets.queueClickPacket(prayerWidget.clickPoint)
+        ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+    }
 
+    private fun deactivatePrayer(prayer: Prayer?) {
+        if (prayer == null) {
+            return
+        }
+        if (!client.isPrayerActive(prayer)) {
+            return
+        }
+        val widgetInfo = prayer.widgetInfo ?: return
+        val prayerWidget = client.getWidget(widgetInfo) ?: return
+        if (client.getBoostedSkillLevel(Skill.PRAYER) <= 0) {
+            return
+        }
         ClientPackets.queueClickPacket(prayerWidget.clickPoint)
         ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
     }
