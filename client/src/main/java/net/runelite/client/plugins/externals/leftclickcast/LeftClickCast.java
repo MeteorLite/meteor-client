@@ -53,7 +53,7 @@ public class LeftClickCast extends Plugin
 
 	private boolean isMage;
 	private boolean disabled = false;
-	private Spells currentSpell = Spells.ICE_BARRAGE;
+	private Spells currentSpell = config.spellOne();
 
 	private final HotkeyListener spellOneSwap = new HotkeyListener(() -> config.spellOneSwap())
 	{
@@ -262,8 +262,12 @@ public class LeftClickCast extends Plugin
 			{
 			}
 		}
-		if (event.getOpcode() == MenuAction.GROUND_ITEM_THIRD_OPTION.getId() && isMage)
+		if (event.getOpcode() == MenuAction.GROUND_ITEM_THIRD_OPTION.getId() && isMage && config.telegrabItems())
 		{
+			if (config.disableStaffChecks())
+			{
+				isMage = true;
+			}
 			setSelectSpell(currentSpell.getSpell());
 			client.createMenuEntry(client.getMenuOptionCount())
 					.setOption("(I) Left Click " + client.getSelectedSpellName() + " -> ")
