@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, tha23rd <https://https://github.com/tha23rd>
+ * Copyright (c) 2019, HSJ <https://github.com/HSJ-OSRS>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,41 +22,12 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package eventbus.events
 
-import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldPoint;
+import meteor.Event
+import net.runelite.api.packets.PacketBufferNode
 
-import java.awt.Point;
-
-public interface Locatable
-{
-	/**
-	 * Gets the server-side location of the actor.
-	 * <p>
-	 * This value is typically ahead of where the client renders and is not
-	 * affected by things such as animations.
-	 *
-	 * @return the server location
-	 */
-	WorldPoint getWorldLocation();
-
-	/**
-	 * Gets the client-side location of the actor.
-	 *
-	 * @return the client location
-	 */
-	LocalPoint getLocalLocation();
-
-	Point getClickPoint();
-
-	default int distanceTo(Locatable locatable)
-	{
-		return locatable.getWorldLocation().distanceTo(getWorldLocation());
-	}
-
-	default int distanceTo(WorldPoint point)
-	{
-		return point.distanceTo(getWorldLocation());
-	}
-}
+/**
+ * An event fired when a click packet is queued, useful to alter the information being sent
+ */
+class PacketQueued(var packetNode: PacketBufferNode? = null, var opcode: Int? = -1) : Event()

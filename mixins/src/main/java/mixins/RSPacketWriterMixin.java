@@ -2,10 +2,7 @@ package mixins;
 
 import dev.hoot.api.events.PacketSent;
 import eventbus.Events;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
+import net.runelite.api.mixins.*;
 import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSPacketBufferNode;
@@ -24,10 +21,6 @@ public abstract class RSPacketWriterMixin implements RSPacketWriter
 		sendPacket((RSPacketBufferNode) packetBufferNode);
 	}
 
-	@Inject
-	@MethodHook("addNode")
-	public void addNode(RSPacketBufferNode packet)
-	{
-		client.getCallbacks().post(Events.PACKET_SENT, new PacketSent(packet));
-	}
+	@Copy("addNode")
+	public void rs$addNode(RSPacketBufferNode packetNode) {}
 }

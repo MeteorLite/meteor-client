@@ -43,6 +43,8 @@ import net.runelite.api.coords.WorldPoint;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
+import java.util.Random;
+
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
@@ -311,7 +313,16 @@ public abstract class RSActorMixin implements RSActor
 	@Override
 	public java.awt.Point getClickPoint()
 	{
-		java.awt.Point point = Randomizer.getRandomPointIn(getBounds());
+		Random rand = new Random();
+		java.awt.Point point = Randomizer.getHumanizedRandomPointIn(getBounds());
+		if (point.x < 0)
+			point.x = rand.nextInt(client.getStretchedDimensions().width);
+		if (point.x > client.getStretchedDimensions().width)
+			point.x = rand.nextInt(client.getStretchedDimensions().width);
+		if (point.y < 0)
+			point.y = rand.nextInt(client.getStretchedDimensions().height);
+		if (point.y > client.getStretchedDimensions().height)
+			point.y = rand.nextInt(client.getStretchedDimensions().height);
 		return new java.awt.Point(point.x, point.y);
 	}
 

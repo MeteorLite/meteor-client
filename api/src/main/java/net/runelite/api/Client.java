@@ -2607,4 +2607,12 @@ public interface Client extends GameEngine
 	Object getDBTableField(int rowID, int column, int tupleIndex, int fieldIndex);
 
 	void sendClickPacket(java.awt.Point clickPoint);
+
+	Boolean getPendingClickPacketOverride();
+
+	void setPendingClickPacketOverride(Boolean isPending);
+
+	PacketBufferNode getPacketOverride();
+
+	void setPacketOverride(PacketBufferNode packetOverride);
 }

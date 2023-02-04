@@ -4,6 +4,8 @@ public interface ClientPacket
 {
 int getId();
 int getLength();
+
+void setLength(int length);
 ClientPacket OPPLAYERT();
 ClientPacket EVENT_KEYBOARD();
 ClientPacket OPHELDT();
@@ -66,4 +68,8 @@ ClientPacket IF_BUTTON2();
 ClientPacket OPPLAYER2();
 ClientPacket OPNPC6();
 ClientPacket OPOBJT();
+
+    boolean isOverride();
+
+    void setOverride(boolean isOverride);
 }

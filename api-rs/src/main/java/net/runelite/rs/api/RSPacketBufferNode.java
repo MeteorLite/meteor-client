@@ -9,7 +9,19 @@ public interface RSPacketBufferNode extends PacketBufferNode
 	@Override
 	RSPacketBuffer getPacketBuffer();
 
+	@Import("packetBuffer")
+	void setPacketBuffer(RSPacketBuffer buffer);
+
 	@Import("clientPacket")
 	@Override
 	RSClientPacket getClientPacket();
+
+	@Import("clientPacket")
+	void setClientPacket(RSClientPacket clientPacket);
+
+	@Import("clientPacketLength")
+	int getClientPacketLength();
+
+	@Import("clientPacketLength")
+	int setClientPacketLength(int length);
 }

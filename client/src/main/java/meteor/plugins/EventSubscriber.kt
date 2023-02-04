@@ -2,7 +2,6 @@ package meteor.plugins
 
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.events.MenuActionProcessed
-import dev.hoot.api.events.PacketSent
 import eventbus.Events
 import eventbus.events.*
 import meteor.Main
@@ -92,7 +91,6 @@ open class EventSubscriber : KEventSubscriber {
     open fun onOverheadTextChanged(it: OverheadTextChanged) {}
     open fun onInvokeMenuAction(it: AutomatedMenu) {}
     open fun onHitsplatApplied(it: HitsplatApplied) {}
-    open fun onPacketSent(it: PacketSent) {}
     open fun onMenuOpened(it: MenuOpened) {}
     open fun onPostHealthBar(it: PostHealthBar) {}
     open fun onGraphicChanged(it: GraphicChanged) {}
@@ -104,6 +102,9 @@ open class EventSubscriber : KEventSubscriber {
     open fun onVarCStrChanged(it: VarClientStrChanged) {}
     open fun onXPDrop(it: XPDrop) {}
     open fun onDraggingWidgetChanged(it: DraggingWidgetChanged) {}
+    open fun onPacketQueued(it: PacketQueued) {}
+
+    open fun onCheckClick(it: CheckClick) {}
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
             unit()
@@ -323,7 +324,6 @@ open class EventSubscriber : KEventSubscriber {
             }
         }
         subscribeEvent<HitsplatApplied>(Events.HITSPLAT_APPLIED) { executeIfListening { onHitsplatApplied(it) } }
-        subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening { onPacketSent(it) } }
         subscribeEvent<MenuOpened>(Events.MENU_OPENED) { executeIfListening { onMenuOpened(it) } }
         subscribeEvent<PostHealthBar>(Events.POST_HEALTHBAR) { executeIfListening { onPostHealthBar(it) } }
         subscribeEvent<GraphicChanged>(Events.GRAPHIC_CHANGED) { executeIfListening { onGraphicChanged(it) } }
@@ -341,6 +341,8 @@ open class EventSubscriber : KEventSubscriber {
         subscribeEvent<VarClientStrChanged>(Events.VARCLIENT_STR_CHANGED) { executeIfListening { onVarCStrChanged(it) } }
         subscribeEvent<XPDrop>(Events.XP_DROP) { executeIfListening { onXPDrop(it) } }
         subscribeEvent<DraggingWidgetChanged>(Events.DRAGGING_WIDGET_CHANGED) { executeIfListening { onDraggingWidgetChanged(it) } }
+        subscribeEvent<PacketQueued>(Events.PACKET_QUEUED) { executeIfListening { onPacketQueued(it) } }
+        subscribeEvent<CheckClick>(Events.CHECK_CLICK) { executeIfListening { onCheckClick(it) } }
     }
 
     internal inline fun <reified T : Any> subscribeEvent(type: Enum<*>, noinline unit: (T) -> Unit) {

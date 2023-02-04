@@ -1,5 +1,7 @@
 package net.runelite.rs.api;
 
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.Replace;
 import net.runelite.api.packets.PacketWriter;
 import net.runelite.mapping.Import;
 

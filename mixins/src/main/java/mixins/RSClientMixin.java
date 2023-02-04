@@ -33,6 +33,7 @@ import dev.hoot.api.events.ResumePauseSent;
 import dev.hoot.api.widgets.DialogOption;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -73,6 +74,7 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.api.overlay.OverlayIndex;
+import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.vars.AccountType;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetConfig;
@@ -3225,6 +3227,16 @@ public abstract class RSClientMixin implements RSClient {
     @Inject
     @Override
     public void sendClickPacket(java.awt.Point clickPoint) {
-        callbacks.post(Events.CLICK_PACKET, new ClickPacket(clickPoint));
+        callbacks.post(Events.SEND_CLICK_PACKET, new ClickPacket(clickPoint));
+    }
+
+    @Copy("shouldProcessClick")
+    @Replace("shouldProcessClick")
+    public boolean shouldProcessClick$mixin() {
+        CheckClick checkClick = new CheckClick();
+        client.getCallbacks().post(Events.CHECK_CLICK, checkClick);
+        if (checkClick.getClickPoint() != null)
+            sendClickPacket(checkClick.getClickPoint());
+        return checkClick.getClickPoint() == null;
     }
 }
