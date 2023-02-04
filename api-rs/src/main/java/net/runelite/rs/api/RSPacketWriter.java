@@ -10,8 +10,6 @@ public interface RSPacketWriter extends PacketWriter
 	@Import("addNode")
 	void sendPacket(RSPacketBufferNode packet);
 
-	@Replace("addNode")
-
 	@Import("isaacCipher")
 	@Override
 	RSIsaacCipher getIsaacCipher();
