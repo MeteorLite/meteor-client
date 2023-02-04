@@ -9,7 +9,6 @@ import meteor.Main
 import meteor.plugins.meteor.AutoInteractOverlay
 import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
-import net.runelite.api.packets.ClientPacket
 import net.runelite.api.packets.PacketBufferNode
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetType
@@ -610,7 +609,7 @@ object ClientPackets {
     }
 
     fun queueClickPacket(clickPoint: Point) {
-        AutoInteractOverlay.lastInteractPoint = clickPoint
+        AutoInteractOverlay.interactPoint = clickPoint
         queueClickPacket(clickPoint.x, clickPoint.y)
     }
 
@@ -632,6 +631,21 @@ object ClientPackets {
         val mouseInfo = (mousePressedTime shl 1) + 1
         queueClickPacket(mouseInfo.toInt(), x, y)
         Main.logger.error("--Click-Packet-- $x.$y")
+    }
+
+    fun createClickPacket(x: Int, y: Int, override: Boolean = false): PacketBufferNode {
+        Main.client.mouseLastPressedMillis = System.currentTimeMillis()
+        var mousePressedTime =
+            Main.client.mouseLastPressedMillis - Main.client.clientMouseLastPressedMillis
+        if (mousePressedTime < 0) {
+            mousePressedTime = 0
+        }
+        if (mousePressedTime > 32767) {
+            mousePressedTime = 32767
+        }
+        Main.client.clientMouseLastPressedMillis = Main.client.mouseLastPressedMillis
+        val mouseInfo = (mousePressedTime shl 1) + 1
+        return createClickPacket(mouseInfo.toInt(), x, y)
     }
 
     /**

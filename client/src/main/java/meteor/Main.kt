@@ -20,7 +20,6 @@ import meteor.api.ClientPackets
 import meteor.config.ConfigManager
 import meteor.dev.widgetinspector.WidgetInspector
 import meteor.game.*
-import meteor.game.chatbox.ChatboxPanelManager
 import meteor.game.npcoverlay.NpcOverlayService
 import meteor.hiscore.HiscoreManager
 import meteor.menus.MenuManager
@@ -48,7 +47,6 @@ import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
 import meteor.chat.ChatCommandManager
 import meteor.chat.ChatMessageManager
-import meteor.plugins.Plugin
 import meteor.ui.composables.preferences.uiColor
 import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.http.api.chat.ChatClient
@@ -233,10 +231,11 @@ object Main : ApplicationScope, EventSubscriber() {
         Item.client = client
         NPC.client = client
         Player.client = client
+        Tile.client = client
         KEVENT.subscribe<Interact>(Events.INTERACT) {
             GameThread.invoke { ClientPackets.createClientPacket(it.data.menu)!!.send() }
         }
-        KEVENT.subscribe<ClickPacket>(Events.CLICK_PACKET) {
+        KEVENT.subscribe<ClickPacket>(Events.SEND_CLICK_PACKET) {
             GameThread.invoke { ClientPackets.queueClickPacket(it.data.clickPoint) }
         }
         KEVENT.subscribe<MenuOptionClicked>(Events.MENU_OPTION_CLICKED) {

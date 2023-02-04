@@ -370,7 +370,7 @@ open class EventInspectorSubscriber : DevToolsFrame(), KEventSubscriber {
             }
         }
         subscribeEvent<HitsplatApplied>(Events.HITSPLAT_APPLIED) { executeIfListening { onHitsplatApplied(it) } }
-        subscribeEvent<PacketSent>(Events.PACKET_SENT) { executeIfListening { onPacketSent(it) } }
+        subscribeEvent<PacketSent>(Events.PACKET_QUEUED) { executeIfListening { onPacketSent(it) } }
         subscribeEvent<MenuOpened>(Events.MENU_OPENED) { executeIfListening { onMenuOpened(it) } }
         subscribeEvent<PostHealthBar>(Events.POST_HEALTHBAR) { executeIfListening { onPostHealthBar(it) } }
         subscribeEvent<GraphicChanged>(Events.GRAPHIC_CHANGED) { executeIfListening { onGraphicChanged(it) } }

@@ -1803,4 +1803,7 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("getDbRowType")
 	RSDbRowType getDbRowType(int var0);
+
+	@Import("shouldProcessClick")
+	boolean shouldProcessClick$api();
 }

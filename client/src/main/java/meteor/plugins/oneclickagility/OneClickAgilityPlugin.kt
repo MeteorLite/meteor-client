@@ -1,6 +1,8 @@
 package meteor.plugins.oneclickagility
 
 import eventbus.events.*
+import meteor.Main
+import meteor.api.ClientPackets
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -223,6 +225,30 @@ class OneClickAgilityPlugin : Plugin() {
         }
         obstacleArea.createMenuEntry()?.let {thisMenu->
             it.menuEntry = thisMenu
+        }
+    }
+
+    override fun onCheckClick(it: CheckClick) {
+        if (config.pickUpMarks() && marks.isNotEmpty()) {
+            var markToPickup: Tile?
+            for (mark in marks) {
+                if (course?.getCurrentObstacleArea(client.localPlayer)?.containsObject(mark) == true) {
+                    val markTile = client.scene.tiles[mark.plane][mark.sceneLocation.x][mark.sceneLocation.y]
+                    if (markTile != null && checkTileForMark(markTile)) {
+                        if (config.pickUpCoins() && checkTileForCoins(markTile)) {} else {
+                            markToPickup = mark
+                            it.clickPoint = markToPickup.clickPoint
+                        }
+                        return
+                    }
+                }
+            }
+        } else {
+            course?.getCurrentObstacleArea(client.localPlayer)?.let {  area ->
+                area.nextObstacle?.let {obj ->
+                    it.clickPoint = obj.clickPoint
+                }
+            }
         }
     }
 

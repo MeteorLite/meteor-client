@@ -13,6 +13,10 @@ int getId();
 @Override
 int getLength();
 
+    @Import("length")
+    @Override
+    void setLength(int length);
+
 @Import("field2480")
 @Override
 RSClientPacket OPPLAYERT();

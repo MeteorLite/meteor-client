@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, tha23rd <https://https://github.com/tha23rd>
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,41 +23,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package mixins;
 
-import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldPoint;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSClientPacket;
 
-import java.awt.Point;
-
-public interface Locatable
-{
-	/**
-	 * Gets the server-side location of the actor.
-	 * <p>
-	 * This value is typically ahead of where the client renders and is not
-	 * affected by things such as animations.
-	 *
-	 * @return the server location
-	 */
-	WorldPoint getWorldLocation();
-
-	/**
-	 * Gets the client-side location of the actor.
-	 *
-	 * @return the client location
-	 */
-	LocalPoint getLocalLocation();
-
-	Point getClickPoint();
-
-	default int distanceTo(Locatable locatable)
-	{
-		return locatable.getWorldLocation().distanceTo(getWorldLocation());
-	}
-
-	default int distanceTo(WorldPoint point)
-	{
-		return point.distanceTo(getWorldLocation());
-	}
+@Mixin(RSClientPacket.class)
+public abstract class RSClientPacketMixin implements RSClientPacket {
+    @Shadow("client")
+    private static RSClient client;
 }

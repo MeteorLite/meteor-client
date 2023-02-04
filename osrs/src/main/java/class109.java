@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
 import javax.net.ssl.HttpsURLConnection;
-import net.runelite.mapping.Export;
+
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -99,7 +99,7 @@ public class class109 extends UrlRequester {
       descriptor = "(B)Ljx;",
       garbageValue = "65"
    )
-   public static PacketBufferNode method651() {
+   public static PacketBufferNode createPacketBufferNode() {
       return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
    }
 

@@ -1813,7 +1813,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
          PacketBufferNode var32;
          if (loginState == 2) {
             packetWriter.clearBuffer();
-            var32 = class109.method651();
+            var32 = class109.createPacketBufferNode();
             var32.clientPacket = null;
             var32.clientPacketLength = 0;
             var32.packetBuffer = new PacketBuffer(5000);
@@ -1924,7 +1924,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
             var33.encryptRsa(class71.field725, class71.field723);
             WorldMapEvent.field2413 = var34;
-            PacketBufferNode var6 = class109.method651();
+            PacketBufferNode var6 = class109.createPacketBufferNode();
             var6.clientPacket = null;
             var6.clientPacketLength = 0;
             var6.packetBuffer = new PacketBuffer(5000);
@@ -2084,7 +2084,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             }
 
             packetWriter.clearBuffer();
-            var32 = class109.method651();
+            var32 = class109.createPacketBufferNode();
             var32.clientPacket = null;
             var32.clientPacketLength = 0;
             var32.packetBuffer = new PacketBuffer(5000);
@@ -2314,6 +2314,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
       }
    }
 
+   boolean shouldProcessClick() {
+      return true;
+   }
+
    @ObfuscatedName("gg")
    @ObfuscatedSignature(
       descriptor = "(I)V",
@@ -2499,11 +2503,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                      }
 
                      var5 = (int)var16;
-                     var18 = class136.getPacketBufferNode(ClientPacket.field2498, packetWriter.isaacCipher);
-                     var18.packetBuffer.writeShort((MouseHandler.MouseHandler_lastButton == 2 ? 1 : 0) + (var5 << 1));
-                     var18.packetBuffer.writeShort(var4);
-                     var18.packetBuffer.writeShort(var3);
-                     packetWriter.addNode(var18);
+                     if (shouldProcessClick()) {
+                        var18 = class136.getPacketBufferNode(ClientPacket.field2498, packetWriter.isaacCipher);
+                        var18.packetBuffer.writeShort((MouseHandler.MouseHandler_lastButton == 2 ? 1 : 0) + (var5 << 1));
+                        var18.packetBuffer.writeShort(var4);
+                        var18.packetBuffer.writeShort(var3);
+                        packetWriter.addNode(var18);
+                     }
                   }
 
                   if (keyHandlerInstance.pressedKeysCount > 0) {

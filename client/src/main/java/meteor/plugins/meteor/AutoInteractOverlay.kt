@@ -6,22 +6,31 @@ import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics2D
 import java.awt.Point
-import java.awt.Rectangle
 
 class AutoInteractOverlay(val config: MeteorConfig) : Overlay() {
     companion object {
+        var interactPoint : Point? = null
         var lastInteractPoint : Point? = null
     }
+
+    var lastInteractTime = 0L
 
     init {
         layer = OverlayLayer.ALWAYS_ON_TOP
     }
     override fun render(graphics: Graphics2D): Dimension? {
-        if (config.drawAutoClicks())
-        lastInteractPoint?.let {
-            graphics.color = Color.RED
-            graphics.draw(Rectangle(it.x-1, it.y-1, 2, 2))
+        if (lastInteractPoint != interactPoint) {
+            lastInteractTime = System.currentTimeMillis()
+            lastInteractPoint = interactPoint
         }
+        if (config.drawAutoClicks())
+            if (System.currentTimeMillis() < (lastInteractTime + 2000)) {
+                interactPoint?.let {
+                    graphics.color = Color.RED
+                    graphics.drawLine(0, interactPoint!!.y-1, client.stretchedDimensions.width, interactPoint!!.y+1)
+                    graphics.drawLine(interactPoint!!.x-1, 0, interactPoint!!.x+1, client.stretchedDimensions.height)
+                }
+            }
         return null
     }
 }

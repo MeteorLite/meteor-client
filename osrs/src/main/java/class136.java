@@ -23,7 +23,7 @@ public abstract class class136 extends Node {
       garbageValue = "107"
    )
    public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-      PacketBufferNode var2 = class109.method651();
+      PacketBufferNode var2 = class109.createPacketBufferNode();
       var2.clientPacket = var0;
       var2.clientPacketLength = var0.length;
       if (var2.clientPacketLength == -1) {

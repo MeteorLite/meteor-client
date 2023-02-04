@@ -7,4 +7,8 @@ public interface PacketBufferNode
 	ClientPacket getClientPacket();
 
 	void send();
+
+	boolean isDummy();
+
+	void setDummy(boolean isDummy);
 }
