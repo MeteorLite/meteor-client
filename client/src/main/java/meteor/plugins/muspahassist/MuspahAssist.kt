@@ -179,7 +179,7 @@ class MuspahAssist : Plugin() {
     override fun onNpcChanged(it: NpcChanged) {
         val npc: NPC = it.npc
         when (npc.id) {
-            NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { activatePrayer(Prayer.PROTECT_FROM_MISSILES) }
             NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
         }
     }
@@ -191,7 +191,6 @@ class MuspahAssist : Plugin() {
         val specialMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
         when (it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")) {
             (animation == 9918 && specialMuspah != null && config.smiteToggle() && !client.isPrayerActive(Prayer.SMITE)) -> activatePrayer(Prayer.SMITE)
-            (animation == 9918 && normalMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MAGIC)
             (animation == -1 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             (animation == -1 && normalMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) -> deactivatePrayer(Prayer.PROTECT_FROM_MISSILES).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
@@ -205,7 +204,7 @@ class MuspahAssist : Plugin() {
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()) {
             activatePrayer(Prayer.SMITE)
         }
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1) {
+        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1) {
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
         }
     }

@@ -43,9 +43,20 @@ public interface LeftClickConfig extends Config
 	{
 		return false;
 	}
-
 	@ConfigItem(
 			position = 3,
+			keyName = "telegrabItems",
+			name = "Telegrab Items",
+			description = "",
+			section = preset
+	)
+	default boolean telegrabItems()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 4,
 			keyName = "whitelist",
 			name = "Whitelisted NPCs",
 			description = "Seperate with comma.",
