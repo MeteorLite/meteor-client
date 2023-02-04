@@ -243,11 +243,6 @@ public class LeftClickCast extends Plugin
 					return;
 				}
 
-				if (!whitelist.contains(npc.getId()))
-				{
-					return;
-				}
-
 				if (config.disableStaffChecks())
 				{
 				isMage = true;
