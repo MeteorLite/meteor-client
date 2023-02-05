@@ -30,7 +30,7 @@ import java.util.*
 
 
 @PluginDescriptor(name = "Muspah Assist", description = "Auto prays for you at muspah", enabledByDefault = false)
-class MuspahAssist : Plugin() {
+class MuspahAssist() : Plugin() {
     init {
         setConfigComposable("muspahassist", "rangeGearButton", rangeGearButton())
         setConfigComposable("muspahassist", "mageGearButton", mageGearButton())
@@ -69,7 +69,7 @@ class MuspahAssist : Plugin() {
                 Spacer(Modifier.height(10.dp))
                 ExtendedFloatingActionButton(
                     modifier = Modifier.size(200.dp, 40.dp),
-                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value)},
+                    icon = { Icon(TablerIcons.Copy, "", tint = uiColor.value) },
                     shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
@@ -87,9 +87,14 @@ class MuspahAssist : Plugin() {
                         }
                     },
                     backgroundColor = surface,
-                    text = { Text("Copy Range Gear",
-                        color = uiColor.value) },
-                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
+                    text = {
+                        Text(
+                            "Copy Range Gear",
+                            color = uiColor.value
+                        )
+                    },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),
+                )
             }
             Spacer(Modifier.height(5.dp))
         }
@@ -101,7 +106,7 @@ class MuspahAssist : Plugin() {
                 Spacer(Modifier.height(5.dp))
                 ExtendedFloatingActionButton(
                     modifier = Modifier.size(200.dp, 40.dp),
-                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value)},
+                    icon = { Icon(TablerIcons.Copy, "", tint = uiColor.value) },
                     shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
@@ -119,9 +124,14 @@ class MuspahAssist : Plugin() {
                         }
                     },
                     backgroundColor = surface,
-                    text = { Text("Copy Mage Gear",
-                        color = uiColor.value) },
-                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
+                    text = {
+                        Text(
+                            "Copy Mage Gear",
+                            color = uiColor.value
+                        )
+                    },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),
+                )
             }
             Spacer(Modifier.height(5.dp))
         }
@@ -133,7 +143,7 @@ class MuspahAssist : Plugin() {
                 Spacer(Modifier.height(5.dp))
                 ExtendedFloatingActionButton(
                     modifier = Modifier.size(200.dp, 40.dp),
-                    icon = { Icon(TablerIcons.Copy,"", tint = uiColor.value)},
+                    icon = { Icon(TablerIcons.Copy, "", tint = uiColor.value) },
                     shape = RoundedCornerShape(6.dp),
                     onClick = {
                         val i: ItemContainer? = client.getItemContainer(InventoryID.EQUIPMENT)
@@ -151,9 +161,14 @@ class MuspahAssist : Plugin() {
                         }
                     },
                     backgroundColor = surface,
-                    text = { Text("Copy Shield Gear",
-                        color = uiColor.value) },
-                    elevation = FloatingActionButtonDefaults.elevation(8.dp),)
+                    text = {
+                        Text(
+                            "Copy Shield Gear",
+                            color = uiColor.value
+                        )
+                    },
+                    elevation = FloatingActionButtonDefaults.elevation(8.dp),
+                )
             }
             Spacer(Modifier.height(5.dp))
         }
@@ -167,34 +182,51 @@ class MuspahAssist : Plugin() {
         get() = mutableListOf(*config.ShieldIDs()!!.split(",").toTypedArray())
     private val clientThread = ClientThread
     private var config = configuration<MuspahAssistConfig>()
-    private var tickTimestampIndex = 0
-    private val tickTimestamps = mutableListOf<Long>()
-    private var gameTick = 0
-    private var lastTick: Long = 0
+    private val muspahOverlay = overlay(MuspahAssistOverlay(this, config))
+    private var ticks = -1
+
+    override fun onStart() {
+        overlayManager.add(muspahOverlay)
+    }
+    override fun onStop() {
+        overlayManager.remove(muspahOverlay)
+    }
     override fun onGameTick(it: GameTick) {
         rangePhase()
         meleePhase()
         shieldPhase()
+        if (ticks >= 0) --ticks
     }
     override fun onNpcChanged(it: NpcChanged) {
         val npc: NPC = it.npc
         when (npc.id) {
-            NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { activatePrayer(Prayer.PROTECT_FROM_MISSILES) }
-            NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }
+            NpcID.PHANTOM_MUSPAH -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            NpcID.PHANTOM_MUSPAH_12080 -> equipRangeGear().also { if (!client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) activatePrayer(Prayer.PROTECT_FROM_MISSILES) }
+            NpcID.PHANTOM_MUSPAH_12079 -> equipShieldGear().also { activatePrayer(config.rangeOffensivePrayer().prayer) }.also { if (!client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) activatePrayer(Prayer.PROTECT_FROM_MISSILES) }
         }
+    }
+    override fun onNpcSpawned(it: NpcSpawned) {
+        val npc: NPC = it.npc
+        if (npc.id == NpcID.PHANTOM_MUSPAH) activatePrayer(Prayer.PROTECT_FROM_MISSILES)
     }
     override fun onAnimationChanged(it: AnimationChanged) {
         if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah"))
             return
         val animation = it.actor.animation
         val normalMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null
+        val finalMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH, true, true) == null
         val specialMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
         when (it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")) {
             (animation == 9918 && specialMuspah != null && config.smiteToggle() && !client.isPrayerActive(Prayer.SMITE)) -> activatePrayer(Prayer.SMITE)
-            (animation == -1 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            (animation == -1 && normalMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && normalMuspah && !config.flickPrayer() && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && normalMuspah && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && finalMuspah && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && finalMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) -> deactivatePrayer(Prayer.PROTECT_FROM_MISSILES).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
             (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> deactivatePrayer(Prayer.PROTECT_FROM_MAGIC).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
+            (animation == 9918 && specialMuspah == null) -> ticks = 6
+            (animation == 9920 && specialMuspah == null) -> ticks = 6
+            (animation == 9922 && specialMuspah == null) -> ticks = 6
             else -> {}
         }
     }
@@ -207,6 +239,11 @@ class MuspahAssist : Plugin() {
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1) {
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
         }
+        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null) ticks = 5
+        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null) ticks = 5
+    }
+    fun getTicks(): Int {
+        return ticks
     }
     private fun meleePhase() {
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null) return
@@ -220,29 +257,27 @@ class MuspahAssist : Plugin() {
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH,true,true) == null) return
         equipRangeGear()
         activatePrayer(config.rangeOffensivePrayer().prayer)
+        if (ticks == 1 && config.flickPrayer()){
+            activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+        }
+        if (ticks > 1 && config.flickPrayer()) {
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES))
+                deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC))
+                deactivatePrayer(Prayer.PROTECT_FROM_MAGIC)
+        }
     }
     private fun shieldPhase(){
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null) {
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null){
             if (client.isPrayerActive(Prayer.SMITE)) {
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             }
-            return
         }
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null) {
-            updateTickTimestamps()
-            lastTick = getCurrentMinTickTimestamp()
-            gameTick++
-
-            if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES) ||
-                client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) {
-                gameTick = 0
-            }
-            if (gameTick == 4) {
+            if (ticks == 1)
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            }
-            if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE)) {
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE))
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            }
         }
     }
     private fun equipMageGear(){
@@ -274,25 +309,6 @@ class MuspahAssist : Plugin() {
                 }
             }
         }
-    }
-    private fun getCurrentMinTickTimestamp(): Long {
-        var min: Long = 0
-        for (i in tickTimestamps.indices) {
-            min = if (min == 0L) {
-                tickTimestamps[i] + 600 * ((tickTimestampIndex - i + 5) % 5)
-            } else {
-                Math.min(min, tickTimestamps[i] + 600 * ((tickTimestampIndex - i + 5) % 5))
-            }
-        }
-        return min
-    }
-    private fun updateTickTimestamps() {
-        if (tickTimestamps.size <= tickTimestampIndex) {
-            tickTimestamps.add(System.currentTimeMillis())
-        } else {
-            tickTimestamps.set(tickTimestampIndex, System.currentTimeMillis())
-        }
-        tickTimestampIndex = (tickTimestampIndex + 1) % 5
     }
     private fun activatePrayer(prayer: Prayer?) {
         if (prayer == null) {
