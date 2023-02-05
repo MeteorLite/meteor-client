@@ -1,10 +1,13 @@
 package meteor.plugins.muspahassist
 
+import meteor.config.legacy.Alpha
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
 import meteor.config.legacy.ConfigItem
 import meteor.plugins.alchemicalhydra.HydraConfig
+import meteor.ui.components.ComponentConstants
 import net.runelite.api.Prayer
+import java.awt.Color
 
 @ConfigGroup("muspahassist")
 interface MuspahAssistConfig : Config {
@@ -39,17 +42,35 @@ interface MuspahAssistConfig : Config {
     @ConfigItem(
         keyName = "smiteToggle",
         name = "Smite",
-        description = "Toggles the option to use offensive prayers with Auto Prayer",
+        description = "",
         position = 4
     )
     fun smiteToggle(): Boolean {
         return false
     }
     @ConfigItem(
+        keyName = "conserve",
+        name = "Conserve Prayer",
+        description = "Can potentially be dangerous if connection is bad",
+        position = 5
+    )
+    fun flickPrayer(): Boolean {
+        return false
+    }
+    @ConfigItem(
+        keyName = "showOverlay",
+        name = "Show Overlay",
+        description = "",
+        position = 6
+    )
+    fun showOverlay(): Boolean {
+        return true
+    }
+    @ConfigItem(
         keyName = "rangeGearButton",
         name = "",
         description = "",
-        position = 6,
+        position = 7,
         composePanel = true
     )
     fun rangeGearButton(): Boolean {
@@ -60,7 +81,7 @@ interface MuspahAssistConfig : Config {
         name = "Range Gear",
         description = "",
         textField = true,
-        position = 7
+        position = 8
     )
     fun RangeIDs(): String? {
         return ""
@@ -70,7 +91,7 @@ interface MuspahAssistConfig : Config {
         keyName = "mageGearButton",
         name = "",
         description = "",
-        position = 8,
+        position = 9,
         composePanel = true
     )
     fun mageGearButton(): Boolean {
@@ -81,7 +102,7 @@ interface MuspahAssistConfig : Config {
         name = "Mage Gear",
         description = "",
         textField = true,
-        position = 9
+        position = 10
     )
     fun MageIDs(): String? {
         return ""
@@ -90,7 +111,7 @@ interface MuspahAssistConfig : Config {
         keyName = "shieldGearButton",
         name = "",
         description = "",
-        position = 10,
+        position = 11,
         composePanel = true
     )
     fun shieldGearButton(): Boolean {
@@ -101,13 +122,21 @@ interface MuspahAssistConfig : Config {
         name = "Shield Phase Gear",
         description = "",
         textField = true,
-        position = 11
+        position = 12
     )
     fun ShieldIDs(): String? {
         return ""
     }
-
-
+    @Alpha
+    @ConfigItem(
+        keyName = "overlayBackgroundColor",
+        name = "Overlay Color",
+        description = "",
+        position = 13
+    )
+    fun overlayColor(): Color {
+        return Color.CYAN
+    }
 
     enum class RangeOffensivePrayers(val prayer: Prayer) {
         EAGLE_EYE(Prayer.EAGLE_EYE), RIGOUR(Prayer.RIGOUR);
