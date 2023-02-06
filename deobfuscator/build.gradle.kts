@@ -7,8 +7,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://repo.runelite.net") }
-    maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master") }
+    maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
 }
 
 dependencies {

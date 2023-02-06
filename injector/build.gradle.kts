@@ -8,8 +8,6 @@ version = "1.0.0"
 
 repositories{
     mavenCentral()
-    maven { url = uri("https://repo.runelite.net")}
-    maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master")}
 }
 
 dependencies{

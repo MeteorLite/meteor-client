@@ -13,7 +13,6 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://repo.runelite.net")}
 }
 
 dependencies {
