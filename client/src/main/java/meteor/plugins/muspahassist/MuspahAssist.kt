@@ -234,7 +234,6 @@ class MuspahAssist() : Plugin() {
             (animation == 9918 && range != null) -> ticks = 6
             (animation == 9920 && melee != null) -> ticks = 6
             (animation == 9922 && range != null) -> ticks = 6
-            (animation == 9918 && shieldMuspah) -> ticks = 5
             (animation == 9922 && shieldMuspah) -> ticks = 5
             (animation == 9918 && finalMuspah) -> ticks = 5
             (animation == 9922 && finalMuspah) -> ticks = 5
@@ -249,6 +248,9 @@ class MuspahAssist() : Plugin() {
         }
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1 && config.flickPrayer()) {
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
+        }
+        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079) != null){
+            ticks = 5
         }
     }
     fun getTicks(): Int {
