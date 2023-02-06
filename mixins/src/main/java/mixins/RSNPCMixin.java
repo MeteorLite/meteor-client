@@ -151,6 +151,10 @@ public abstract class RSNPCMixin implements RSNPC
 			setTransformedId(composition.getId());
 			setTransformedLevel(composition.getCombatLevel());
 			setTransformedName(composition.getName());
+		} else {
+			setTransformedId(getId());
+			setTransformedLevel(getCombatLevel());
+			setTransformedName(getName());
 		}
 		return composition;
 	}
