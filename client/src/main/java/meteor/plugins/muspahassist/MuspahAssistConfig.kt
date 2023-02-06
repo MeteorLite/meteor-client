@@ -4,8 +4,6 @@ import meteor.config.legacy.Alpha
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
 import meteor.config.legacy.ConfigItem
-import meteor.plugins.alchemicalhydra.HydraConfig
-import meteor.ui.components.ComponentConstants
 import net.runelite.api.Prayer
 import java.awt.Color
 
@@ -58,10 +56,19 @@ interface MuspahAssistConfig : Config {
         return false
     }
     @ConfigItem(
+        keyName = "conserve",
+        name = "Range Teleport Phase",
+        description = "Uses range gear when muspah is teleporting",
+        position = 6
+    )
+    fun tele(): Boolean {
+        return false
+    }
+    @ConfigItem(
         keyName = "showOverlay",
         name = "Show Overlay",
         description = "",
-        position = 6
+        position = 7
     )
     fun showOverlay(): Boolean {
         return true
@@ -70,7 +77,7 @@ interface MuspahAssistConfig : Config {
         keyName = "rangeGearButton",
         name = "",
         description = "",
-        position = 7,
+        position = 8,
         composePanel = true
     )
     fun rangeGearButton(): Boolean {
@@ -81,7 +88,7 @@ interface MuspahAssistConfig : Config {
         name = "Range Gear",
         description = "",
         textField = true,
-        position = 8
+        position = 9
     )
     fun RangeIDs(): String? {
         return ""
@@ -91,7 +98,7 @@ interface MuspahAssistConfig : Config {
         keyName = "mageGearButton",
         name = "",
         description = "",
-        position = 9,
+        position = 10,
         composePanel = true
     )
     fun mageGearButton(): Boolean {
@@ -102,7 +109,7 @@ interface MuspahAssistConfig : Config {
         name = "Mage Gear",
         description = "",
         textField = true,
-        position = 10
+        position = 11
     )
     fun MageIDs(): String? {
         return ""
@@ -111,7 +118,7 @@ interface MuspahAssistConfig : Config {
         keyName = "shieldGearButton",
         name = "",
         description = "",
-        position = 11,
+        position = 12,
         composePanel = true
     )
     fun shieldGearButton(): Boolean {
@@ -122,7 +129,7 @@ interface MuspahAssistConfig : Config {
         name = "Shield Phase Gear",
         description = "",
         textField = true,
-        position = 12
+        position = 13
     )
     fun ShieldIDs(): String? {
         return ""
@@ -132,7 +139,7 @@ interface MuspahAssistConfig : Config {
         keyName = "overlayBackgroundColor",
         name = "Overlay Color",
         description = "",
-        position = 13
+        position = 14
     )
     fun overlayColor(): Color {
         return Color.CYAN
