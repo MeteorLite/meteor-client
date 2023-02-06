@@ -265,11 +265,13 @@ class MuspahAssist() : Plugin() {
         return ticks
     }
     private fun meleePhase() {
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null && config.tele()) {
-            ticks = -1
-            equipRangeGear()
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null) {
+            if (config.tele()) {
+                ticks = -1
+                equipRangeGear()
+                activatePrayer(config.rangeOffensivePrayer().prayer)
+            }
             deactivatePrayer(Prayer.PROTECT_FROM_MELEE)
-            activatePrayer(config.rangeOffensivePrayer().prayer)
         }
 
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078) == null) return
@@ -288,7 +290,7 @@ class MuspahAssist() : Plugin() {
         }
     }
     private fun rangePhase(){
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null && config.tele()) {
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null) {
             ticks = -1
             if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES))
                 deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
