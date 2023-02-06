@@ -18,6 +18,10 @@ object NPCs {
         var npcs: ArrayList<NPC>? = null
         for (npc in Main.client.npcs) {
             npc?.let {
+
+                // init transformed composition and name, id, cblvl
+                it.transformedComposition
+
                 if (npcs == null) {
                     npcs = ArrayList()
                     if ((alive && !it.isDead) || !alive) {
@@ -45,7 +49,13 @@ object NPCs {
      * @param ids npc ids we should filter with
      */
     fun getAll(alive: Boolean = true, sortByDistance: Boolean = true, vararg ids: Int): ArrayList<NPC>? {
-        return getAll(alive, sortByDistance)?.filter { ids.contains(it.id) } as ArrayList?
+        return getAll(alive, sortByDistance)?.filter {
+            val isTransform = it.transformedComposition != null
+            if (isTransform)
+                ids.contains(it.transformedId!!)
+            else
+                ids.contains(it.id)
+        } as ArrayList?
     }
 
     /**
@@ -55,7 +65,13 @@ object NPCs {
      * @param names npc names we should filter with
      */
     fun getAll(alive: Boolean = true, sortByDistance: Boolean = true, vararg names: String): ArrayList<NPC>? {
-        return getAll(alive, sortByDistance)?.filter { names.contains(it.name) } as ArrayList?
+        return getAll(alive, sortByDistance)?.filter {
+            val isTransform = it.transformedComposition != null
+            if (isTransform)
+                names.contains(it.transformedName!!)
+            else
+                names.contains(it.name)
+        } as ArrayList?
     }
 
     /**
