@@ -72,9 +72,11 @@ interface NPC : Actor {
      * @return the transformed NPC
      */
     var transformedComposition: NPCComposition?
-    val transformedId: Int
-    val transformedName: String?
-    val transformedLevel: Int
+    var transformedId: Int?
+    var transformedName: String?
+    var transformedLevel: Int?
+
+    fun getTransformedComposition(): NPCComposition?
 
     // Kris changes:
     fun getNameOverride(): String?

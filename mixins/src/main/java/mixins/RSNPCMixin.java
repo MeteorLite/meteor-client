@@ -29,14 +29,12 @@ import java.awt.Polygon;
 import java.awt.Shape;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import eventbus.Events;
 import eventbus.events.NPCMoved;
 import eventbus.events.NameChangeEvent;
 import eventbus.events.NpcChanged;
 import eventbus.events.NpcDespawned;
-import net.runelite.api.AnimationID;
 import net.runelite.api.MenuAction;
 import net.runelite.api.NPCComposition;
 import net.runelite.api.Perspective;
@@ -143,6 +141,9 @@ public abstract class RSNPCMixin implements RSNPC
 			));
 
 	@Inject
+	private RSNPCComposition transformedComposition = null;
+
+	@Inject
 	@Override
 	public NPCComposition getTransformedComposition()
 	{
@@ -150,6 +151,10 @@ public abstract class RSNPCMixin implements RSNPC
 		if (composition != null && composition.getConfigs() != null)
 		{
 			composition = composition.transform();
+			setTransformedComposition(composition);
+			setTransformedId(composition.getId());
+			setTransformedLevel(composition.getCombatLevel());
+			setTransformedName(composition.getName());
 		}
 		return composition;
 	}
@@ -189,10 +194,6 @@ public abstract class RSNPCMixin implements RSNPC
 
 		return model.getConvexHull(getX(), getY(), getOrientation(), tileHeight);
 	}
-
-
-	@Inject
-	private RSNPCComposition transformedComposition = null;
 
 	@Inject
 	@Override
