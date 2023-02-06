@@ -8,6 +8,7 @@ version = "1.0.0"
 
 repositories{
     mavenCentral()
+    maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
 }
 
 dependencies{
