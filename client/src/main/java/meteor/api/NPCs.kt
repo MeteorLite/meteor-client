@@ -20,7 +20,7 @@ object NPCs {
             npc?.let {
 
                 // init transformed composition and name, id, cblvl
-                it.getTransformedComposition()
+                it.transformedComposition
 
                 if (npcs == null) {
                     npcs = ArrayList()
