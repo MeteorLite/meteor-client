@@ -141,9 +141,6 @@ public abstract class RSNPCMixin implements RSNPC
 			));
 
 	@Inject
-	private RSNPCComposition transformedComposition = null;
-
-	@Inject
 	@Override
 	public NPCComposition getTransformedComposition()
 	{
@@ -151,12 +148,59 @@ public abstract class RSNPCMixin implements RSNPC
 		if (composition != null && composition.getConfigs() != null)
 		{
 			composition = composition.transform();
-			setTransformedComposition(composition);
 			setTransformedId(composition.getId());
 			setTransformedLevel(composition.getCombatLevel());
 			setTransformedName(composition.getName());
 		}
 		return composition;
+	}
+
+	@Inject
+	public Integer transformedId;
+
+	@Inject
+	@Override
+	public Integer getTransformedId() {
+		return transformedId;
+	}
+
+	@Inject
+	@Override
+	public void setTransformedId(Integer id)
+	{
+		transformedId = id;
+	}
+
+	@Inject
+	public Integer transformedLvl;
+
+	@Inject
+	@Override
+	public Integer getTransformedLevel() {
+		return transformedLvl;
+	}
+
+	@Inject
+	@Override
+	public void setTransformedLevel(Integer lvl)
+	{
+		transformedLvl = lvl;
+	}
+
+	@Inject
+	public String transformedName;
+
+	@Inject
+	@Override
+	public String getTransformedName() {
+		return transformedName;
+	}
+
+	@Inject
+	@Override
+	public void setTransformedName(String name)
+	{
+		transformedName = name;
 	}
 
 	@Inject
