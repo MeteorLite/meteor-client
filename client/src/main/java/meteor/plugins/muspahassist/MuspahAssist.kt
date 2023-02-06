@@ -13,6 +13,7 @@ import compose.icons.TablerIcons
 import compose.icons.tablericons.Copy
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
+import dev.hoot.api.widgets.Prayers
 import eventbus.events.*
 import meteor.api.ClientPackets
 import meteor.api.Items
@@ -228,9 +229,6 @@ class MuspahAssist() : Plugin() {
             (animation == -1 && rangedMuspah && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             (animation == -1 && finalMuspah && !config.flickPrayer() && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             (animation == -1 && finalMuspah && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            (animation == 9941 && ticks > -1) -> ticks == -1
-            (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) -> deactivatePrayer(Prayer.PROTECT_FROM_MISSILES).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
-            (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> deactivatePrayer(Prayer.PROTECT_FROM_MAGIC).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
             (animation == 9918 && range != null) -> ticks = 6
             (animation == 9920 && melee != null) -> ticks = 6
             (animation == 9922 && range != null) -> ticks = 6
@@ -253,24 +251,50 @@ class MuspahAssist() : Plugin() {
             ticks = 5
         }
     }
+    override fun onChatMessage(it: ChatMessage) {
+        if (it.message.contains("Your Phantom Muspah kill count is")) {
+            for (prayer in getActivePrayers()) {
+                val widget = client.getWidget(prayer.widgetInfo)
+                widget?.let {
+                    deactivatePrayer(prayer)
+                }
+            }
+        }
+    }
     fun getTicks(): Int {
         return ticks
     }
     private fun meleePhase() {
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null && config.tele()){
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null && config.tele()) {
+            ticks = -1
             equipRangeGear()
-            if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE))
-                deactivatePrayer(Prayer.PROTECT_FROM_MELEE)
-
+            deactivatePrayer(Prayer.PROTECT_FROM_MELEE)
+            activatePrayer(config.rangeOffensivePrayer().prayer)
         }
+
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078) == null) return
-        if (!config.rangeOnly()){
+        if (!config.rangeOnly()) {
             equipMageGear()
         }
-        activatePrayer(Prayer.PROTECT_FROM_MELEE)
-        activatePrayer(if (config.rangeOnly()) { config.rangeOffensivePrayer().prayer } else { config.mageOffensivePrayer().prayer })
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) == null) {
+            activatePrayer(Prayer.PROTECT_FROM_MELEE)
+            activatePrayer(
+                if (config.rangeOnly()) {
+                    config.rangeOffensivePrayer().prayer
+                } else {
+                    config.mageOffensivePrayer().prayer
+                }
+            )
+        }
     }
     private fun rangePhase(){
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null && config.tele()) {
+            ticks = -1
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES))
+                deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC))
+                deactivatePrayer(Prayer.PROTECT_FROM_MAGIC)
+        }
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH) == null) return
         equipRangeGear()
         activatePrayer(config.rangeOffensivePrayer().prayer)
@@ -356,6 +380,9 @@ class MuspahAssist() : Plugin() {
         }
         ClientPackets.queueClickPacket(prayerWidget.clickPoint)
         ClientPackets.createClientPacket(AutomatedMenu(1, MenuAction.CC_OP.id, prayerWidget.itemId, prayerWidget.id))!!.send()
+    }
+    fun getActivePrayers(): List<Prayer> {
+        return Prayer.values().filter { Prayers.isEnabled(it) }
     }
     private fun deactivatePrayer(prayer: Prayer?) {
         if (prayer == null) {
