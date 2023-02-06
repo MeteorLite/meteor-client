@@ -195,6 +195,7 @@ class MuspahAssist() : Plugin() {
         rangePhase()
         meleePhase()
         shieldPhase()
+        finalPhase()
         if (ticks >= 0) --ticks
     }
     override fun onNpcChanged(it: NpcChanged) {
@@ -210,43 +211,57 @@ class MuspahAssist() : Plugin() {
         if (npc.id == NpcID.PHANTOM_MUSPAH) activatePrayer(Prayer.PROTECT_FROM_MISSILES)
     }
     override fun onAnimationChanged(it: AnimationChanged) {
-        if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah"))
+        if (this.client.localPlayer == null || it.actor.name == null || !it.actor.name.equals("phantom muspah",true))
             return
         val animation = it.actor.animation
-        val normalMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null
-        val finalMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null && NPCs.getFirst(NpcID.PHANTOM_MUSPAH, true, true) == null
-        val specialMuspah = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true)
-        when (it.actor.name.lowercase(Locale.getDefault()).contains("phantom muspah")) {
-            (animation == 9918 && specialMuspah != null && config.smiteToggle() && !client.isPrayerActive(Prayer.SMITE)) -> activatePrayer(Prayer.SMITE)
-            (animation == -1 && normalMuspah && !config.flickPrayer() && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            (animation == -1 && normalMuspah && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            (animation == -1 && finalMuspah && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
-            (animation == -1 && finalMuspah) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+        val range = NPCs.getFirst(NpcID.PHANTOM_MUSPAH)
+        val melee = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078)
+        val shield = NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079)
+        val rangedMuspah = melee == null && shield == null
+        val shieldMuspah = shield != null
+        val finalMuspah = range == null && melee == null && shield == null
+        when (it.actor.name.equals("phantom muspah",true)) {
+            (animation == 9918 && shieldMuspah && config.smiteToggle() && !client.isPrayerActive(Prayer.SMITE)) -> activatePrayer(Prayer.SMITE)
+            (animation == -1 && shieldMuspah && !config.smiteToggle() && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == 9918 && !config.smiteToggle() && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MAGIC)
+            (animation == -1 && rangedMuspah && !config.flickPrayer() && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && rangedMuspah && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && finalMuspah && !config.flickPrayer() && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == -1 && finalMuspah && !config.flickPrayer()) -> activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            (animation == 9941 && ticks > -1) -> ticks == -1
             (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES)) -> deactivatePrayer(Prayer.PROTECT_FROM_MISSILES).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
             (animation == 9941 && client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)) -> deactivatePrayer(Prayer.PROTECT_FROM_MAGIC).also { deactivatePrayer(config.rangeOffensivePrayer().prayer) }
-            (animation == 9918 && specialMuspah == null) -> ticks = 6
-            (animation == 9920 && specialMuspah == null) -> ticks = 6
-            (animation == 9922 && specialMuspah == null) -> ticks = 6
+            (animation == 9918 && range != null) -> ticks = 6
+            (animation == 9920 && melee != null) -> ticks = 6
+            (animation == 9922 && range != null) -> ticks = 6
+            (animation == 9918 && shieldMuspah) -> ticks = 5
+            (animation == 9922 && shieldMuspah) -> ticks = 5
+            (animation == 9918 && finalMuspah) -> ticks = 5
+            (animation == 9922 && finalMuspah) -> ticks = 5
             else -> {}
         }
     }
     override fun onProjectileSpawned(it: ProjectileSpawned) {
         val projectile: Projectile = it.projectile
         var ticksRemaining = projectile.remainingCycles / 30
-        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null && config.smiteToggle()) {
+        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079) != null && config.smiteToggle()) {
             activatePrayer(Prayer.SMITE)
         }
-        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1) {
+        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1 && config.flickPrayer()) {
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
         }
-        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_RANGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null) ticks = 5
-        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null) ticks = 5
     }
     fun getTicks(): Int {
         return ticks
     }
     private fun meleePhase() {
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078, true, true) == null) return
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12082) != null && config.tele()){
+            equipRangeGear()
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE))
+                deactivatePrayer(Prayer.PROTECT_FROM_MELEE)
+
+        }
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12078) == null) return
         if (!config.rangeOnly()){
             equipMageGear()
         }
@@ -254,7 +269,7 @@ class MuspahAssist() : Plugin() {
         activatePrayer(if (config.rangeOnly()) { config.rangeOffensivePrayer().prayer } else { config.mageOffensivePrayer().prayer })
     }
     private fun rangePhase(){
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH,true,true) == null) return
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH) == null) return
         equipRangeGear()
         activatePrayer(config.rangeOffensivePrayer().prayer)
         if (ticks == 1 && config.flickPrayer()){
@@ -268,16 +283,31 @@ class MuspahAssist() : Plugin() {
         }
     }
     private fun shieldPhase(){
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) == null){
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079) == null){
             if (client.isPrayerActive(Prayer.SMITE)) {
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             }
         }
-        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079, true, true) != null) {
+        if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079) != null) {
             if (ticks == 1)
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
             if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE))
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+        }
+    }
+    private fun finalPhase() {
+        NPCs.getAll()?.forEach {
+            it.transformedComposition
+            if (it.transformedId == 12080) {
+                if (ticks == 1 && config.flickPrayer())
+                    activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+                if (ticks > 1 && config.flickPrayer()) {
+                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MISSILES))
+                        deactivatePrayer(Prayer.PROTECT_FROM_MISSILES)
+                    if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC))
+                        deactivatePrayer(Prayer.PROTECT_FROM_MAGIC)
+                }
+            }
         }
     }
     private fun equipMageGear(){
