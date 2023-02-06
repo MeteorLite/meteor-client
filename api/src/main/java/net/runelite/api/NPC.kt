@@ -76,8 +76,6 @@ interface NPC : Actor {
     var transformedName: String?
     var transformedLevel: Int?
 
-    fun getTransformedComposition(): NPCComposition?
-
     // Kris changes:
     fun getNameOverride(): String?
 
