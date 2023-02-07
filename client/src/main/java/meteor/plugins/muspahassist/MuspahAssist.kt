@@ -246,7 +246,9 @@ class MuspahAssist() : Plugin() {
         }
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1 && config.flickPrayer()) {
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
-            ticks = 3
+            if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079) != null){
+                ticks = 3
+            }
         }
     }
     override fun onChatMessage(it: ChatMessage) {
