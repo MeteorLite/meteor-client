@@ -190,7 +190,7 @@ object Main : ApplicationScope, EventSubscriber() {
                 window!!.window.dispose()
             },
             title = "Meteor",
-            icon = painterResource("Meteor_icon.svg"),
+            icon = painterResource("Meteor.ico"),
             undecorated = meteorConfig.fullscreen(),
             alwaysOnTop = meteorConfig.alwaysOnTop(),
             resizable = !meteorConfig.lockWindowSize(),
