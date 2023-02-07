@@ -246,9 +246,7 @@ class MuspahAssist() : Plugin() {
         }
         if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && ticksRemaining == 1 && config.flickPrayer()) {
             activatePrayer(Prayer.PROTECT_FROM_MAGIC)
-        }
-        if (projectile.id == ProjectileID.PHANTOM_MUSPAH_MAGE_ATTACK && NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079) != null){
-            ticks = 5
+            ticks = 3
         }
     }
     override fun onChatMessage(it: ChatMessage) {
@@ -319,6 +317,8 @@ class MuspahAssist() : Plugin() {
         if (NPCs.getFirst(NpcID.PHANTOM_MUSPAH_12079) != null) {
             if (ticks == 1)
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
+            if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC) && ticks == 2 && config.smiteToggle())
+                activatePrayer(Prayer.SMITE)
             if (client.isPrayerActive(Prayer.PROTECT_FROM_MELEE))
                 activatePrayer(Prayer.PROTECT_FROM_MISSILES)
         }
