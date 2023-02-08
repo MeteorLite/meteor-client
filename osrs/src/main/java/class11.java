@@ -3,8 +3,7 @@ import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.LinkedList;
-import java.util.concurrent.ScheduledExecutorService;
-
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.Certificate;
@@ -12,28 +11,24 @@ import org.bouncycastle.crypto.tls.CertificateRequest;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 import org.bouncycastle.crypto.tls.TlsCredentials;
 
-@ObfuscatedName("g")
+@ObfuscatedName("r")
 class class11 implements TlsAuthentication {
-   @ObfuscatedName("q")
-   public static int[] SpriteBuffer_spriteWidths;
-   @ObfuscatedName("r")
-   static ScheduledExecutorService soundSystemExecutor;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lo;"
+           descriptor = "Lm;"
    )
    @ObfuscatedName("this$2")
    final class13 this$2;
 
    @ObfuscatedSignature(
-      descriptor = "(Lo;)V"
+      descriptor = "(Lm;)V"
    )
    class11(class13 var1) {
       this.this$2 = var1;
    }
 
-   @ObfuscatedName("notifyServerCertificate")
-   public void notifyServerCertificate(Certificate var1) throws IOException {
+    @ObfuscatedName("notifyServerCertificate")
+    public void notifyServerCertificate(Certificate var1) throws IOException {
       try {
          CertificateFactory var2 = CertificateFactory.getInstance("X.509");
          LinkedList var3 = new LinkedList();
@@ -44,47 +39,14 @@ class class11 implements TlsAuthentication {
             var3.add(var2.generateCertificate(new ByteArrayInputStream(var6.getEncoded())));
          }
 
-         this.this$2.this$1.field38 = (java.security.cert.Certificate[])((java.security.cert.Certificate[])var3.toArray(new java.security.cert.Certificate[0]));
+         this.this$2.this$1.field43 = (java.security.cert.Certificate[])((java.security.cert.Certificate[])var3.toArray(new java.security.cert.Certificate[0]));
       } catch (CertificateException var7) {
          throw new IOException(var7);
       }
    }
 
-   @ObfuscatedName("getClientCredentials")
-   public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
+    @ObfuscatedName("getClientCredentials")
+    public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
       return null;
-   }
-
-   @ObfuscatedName("jk")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIIIIIII)V",
-      garbageValue = "-507085025"
-   )
-   static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
-      PendingSpawn var10 = null;
-
-      for(PendingSpawn var11 = (PendingSpawn)Client.pendingSpawns.last(); var11 != null; var11 = (PendingSpawn)Client.pendingSpawns.previous()) {
-         if (var0 == var11.plane && var11.x == var1 && var2 == var11.y && var3 == var11.type) {
-            var10 = var11;
-            break;
-         }
-      }
-
-      if (var10 == null) {
-         var10 = new PendingSpawn();
-         var10.plane = var0;
-         var10.type = var3;
-         var10.x = var1;
-         var10.y = var2;
-         UserComparator4.method659(var10);
-         Client.pendingSpawns.addFirst(var10);
-      }
-
-      var10.id = var4;
-      var10.objectType = var5;
-      var10.rotation = var6;
-      var10.startCycle = var8;
-      var10.endCycle = var9;
-      var10.method509(var7);
    }
 }

@@ -3,39 +3,47 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("go")
+@ObfuscatedName("gq")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Ljv;"
-   )
-   static EvictingDualNodeHashTable EnumDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("fe")
-   static String field1536;
-   @ObfuscatedName("v")
-   public char inputType;
-   @ObfuscatedName("x")
-   public char outputType;
-   @ObfuscatedName("m")
-   public String defaultStr = "null";
-   @ObfuscatedName("q")
-   public int defaultInt;
-   @ObfuscatedName("f")
-   public int outputCount = 0;
-   @ObfuscatedName("r")
-   public int[] keys;
-   @ObfuscatedName("u")
-   public int[] intVals;
-   @ObfuscatedName("b")
-   public String[] strVals;
+    @ObfuscatedName("vc")
+    @ObfuscatedSignature(
+            descriptor = "Lmk;"
+    )
+    static GrandExchangeEvents grandExchangeEvents;
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Lln;"
+    )
+    static AbstractArchive EnumDefinition_archive;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lja;"
+    )
+    static EvictingDualNodeHashTable EnumDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("v")
+    public char inputType;
+    @ObfuscatedName("s")
+    public char outputType;
+    @ObfuscatedName("z")
+    public String defaultStr = "null";
+    @ObfuscatedName("j")
+    public int defaultInt;
+    @ObfuscatedName("i")
+    public int outputCount = 0;
+    @ObfuscatedName("n")
+    public int[] keys;
+    @ObfuscatedName("l")
+    public int[] intVals;
+    @ObfuscatedName("k")
+    public String[] strVals;
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;I)V",
-      garbageValue = "-2074495591"
-   )
-   void decode(Buffer var1) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;I)V",
+            garbageValue = "-2126248770"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -46,12 +54,12 @@ public class EnumComposition extends DualNode {
       }
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;IS)V",
-      garbageValue = "8918"
-   )
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;II)V",
+            garbageValue = "-225365971"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.inputType = (char)var1.readUnsignedByte();
       } else if (var2 == 2) {
@@ -85,51 +93,171 @@ public class EnumComposition extends DualNode {
 
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-585138184"
-   )
-   public int size() {
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "59"
+    )
+    public int size() {
       return this.outputCount;
    }
 
-   @ObfuscatedName("h")
+   @ObfuscatedName("a")
    @ObfuscatedSignature(
-      descriptor = "(I)[Ljf;",
-      garbageValue = "-1969198767"
+      descriptor = "(ILba;ZI)I",
+      garbageValue = "1103882701"
    )
-   public static ServerPacket[] ServerPacket_values() {
-      return new ServerPacket[]{ServerPacket.field2597, ServerPacket.field2596, ServerPacket.field2673, ServerPacket.field2565, ServerPacket.field2576, ServerPacket.field2567, ServerPacket.field2564, ServerPacket.field2569, ServerPacket.field2570, ServerPacket.field2587, ServerPacket.field2572, ServerPacket.field2573, ServerPacket.field2574, ServerPacket.field2641, ServerPacket.field2650, ServerPacket.field2577, ServerPacket.field2578, ServerPacket.field2579, ServerPacket.field2580, ServerPacket.field2609, ServerPacket.field2575, ServerPacket.field2583, ServerPacket.field2653, ServerPacket.field2585, ServerPacket.field2651, ServerPacket.field2562, ServerPacket.field2588, ServerPacket.field2589, ServerPacket.field2590, ServerPacket.field2591, ServerPacket.field2584, ServerPacket.field2593, ServerPacket.field2581, ServerPacket.field2649, ServerPacket.field2566, ServerPacket.field2659, ServerPacket.field2598, ServerPacket.field2592, ServerPacket.field2600, ServerPacket.field2601, ServerPacket.field2602, ServerPacket.field2603, ServerPacket.field2630, ServerPacket.field2605, ServerPacket.field2606, ServerPacket.field2563, ServerPacket.field2608, ServerPacket.field2621, ServerPacket.field2610, ServerPacket.field2611, ServerPacket.field2571, ServerPacket.field2636, ServerPacket.field2614, ServerPacket.field2615, ServerPacket.field2616, ServerPacket.field2635, ServerPacket.field2595, ServerPacket.field2619, ServerPacket.field2620, ServerPacket.field2618, ServerPacket.field2622, ServerPacket.field2623, ServerPacket.field2624, ServerPacket.field2625, ServerPacket.field2626, ServerPacket.field2645, ServerPacket.field2664, ServerPacket.field2613, ServerPacket.field2628, ServerPacket.field2604, ServerPacket.field2632, ServerPacket.field2633, ServerPacket.field2634, ServerPacket.field2586, ServerPacket.field2627, ServerPacket.field2637, ServerPacket.field2643, ServerPacket.field2639, ServerPacket.field2640, ServerPacket.field2678, ServerPacket.field2642, ServerPacket.field2617, ServerPacket.field2644, ServerPacket.field2638, ServerPacket.field2646, ServerPacket.field2647, ServerPacket.field2648, ServerPacket.field2665, ServerPacket.field2582, ServerPacket.field2594, ServerPacket.field2666, ServerPacket.field2607, ServerPacket.field2654, ServerPacket.field2655, ServerPacket.field2656, ServerPacket.field2657, ServerPacket.field2658, ServerPacket.field2652, ServerPacket.field2660, ServerPacket.field2661, ServerPacket.field2662, ServerPacket.field2663, ServerPacket.field2631, ServerPacket.field2612, ServerPacket.field2629, ServerPacket.field2667, ServerPacket.field2668, ServerPacket.field2669, ServerPacket.field2670, ServerPacket.field2671, ServerPacket.field2672, ServerPacket.field2568, ServerPacket.field2674, ServerPacket.field2675, ServerPacket.field2676};
+   static int method948(int var0, Script var1, boolean var2) {
+      Widget var3 = class133.getWidget(Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize]);
+      if (var0 == 2600) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.scrollX;
+         return 1;
+      } else if (var0 == 2601) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.scrollY;
+         return 1;
+      } else if (var0 == 2602) {
+         Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3.text;
+         return 1;
+      } else if (var0 == 2603) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.scrollWidth;
+         return 1;
+      } else if (var0 == 2604) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.scrollHeight;
+         return 1;
+      } else if (var0 == 2605) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.modelZoom;
+         return 1;
+      } else if (var0 == 2606) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.modelAngleX;
+         return 1;
+      } else if (var0 == 2607) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.modelAngleZ;
+         return 1;
+      } else if (var0 == 2608) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.modelAngleY;
+         return 1;
+      } else if (var0 == 2609) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.transparencyTop;
+         return 1;
+      } else if (var0 == 2610) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.transparencyBot;
+         return 1;
+      } else if (var0 == 2611) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.color;
+         return 1;
+      } else if (var0 == 2612) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.color2;
+         return 1;
+      } else if (var0 == 2613) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
+         return 1;
+      } else if (var0 == 2614) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
+         return 1;
+      } else {
+         class302 var4;
+         if (var0 == 2617) {
+            var4 = var3.method1745();
+            Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var4 != null ? var4.field2794 * 1058580729 * -1366058679 : 0;
+         }
+
+         if (var0 == 2618) {
+            var4 = var3.method1745();
+            Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var4 != null ? var4.field2797 * 2101478585 * -318979703 : 0;
+            return 1;
+         } else {
+            class307 var7;
+            if (var0 == 2619) {
+               var7 = var3.method1750();
+               Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1714().method1941() : "";
+               return 1;
+            } else if (var0 == 2620) {
+               var4 = var3.method1745();
+               Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var4 != null ? var4.field2795 * 1069637893 * 781009869 : 0;
+               return 1;
+            } else if (var0 == 2621) {
+               var7 = var3.method1750();
+               Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1661() : 0;
+               return 1;
+            } else if (var0 == 2622) {
+               var7 = var3.method1750();
+               Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1686() : 0;
+               return 1;
+            } else if (var0 == 2623) {
+               var7 = var3.method1750();
+               Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1687() : 0;
+               return 1;
+            } else if (var0 == 2624) {
+               var7 = var3.method1750();
+               Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null && var7.method1680() ? 1 : 0;
+               return 1;
+            } else if (var0 != 2625) {
+               if (var0 == 2626) {
+                  var7 = var3.method1750();
+                  Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1679().method2013() : "";
+                  return 1;
+               } else if (var0 == 2627) {
+                  var7 = var3.method1750();
+                  int var5 = var7 != null ? var7.method1682() : 0;
+                  int var6 = var7 != null ? var7.method1716() : 0;
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Math.min(var5, var6);
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Math.max(var5, var6);
+                  return 1;
+               } else if (var0 == 2628) {
+                  var7 = var3.method1750();
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1716() : 0;
+                  return 1;
+               } else if (var0 == 2629) {
+                  var7 = var3.method1750();
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1688() : 0;
+                  return 1;
+               } else if (var0 == 2630) {
+                  var7 = var3.method1750();
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1660() : 0;
+                  return 1;
+               } else if (var0 == 2631) {
+                  var7 = var3.method1750();
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1709() : 0;
+                  return 1;
+               } else if (var0 == 2632) {
+                  var7 = var3.method1750();
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null ? var7.method1689() : 0;
+                  return 1;
+               } else {
+                  class27 var8;
+                  if (var0 == 2633) {
+                     var8 = var3.method1746();
+                     Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize - 1] = var8 != null ? var8.method98(Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize - 1]) : 0;
+                     return 1;
+                  } else if (var0 == 2634) {
+                     var8 = var3.method1746();
+                     Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize - 1] = var8 != null ? var8.method99((char)Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize - 1]) : 0;
+                     return 1;
+                  } else {
+                     return 2;
+                  }
+               }
+            } else {
+               var7 = var3.method1750();
+               Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var7 != null && var7.method1663() ? 1 : 0;
+               return 1;
+            }
+         }
+      }
    }
 
-   @ObfuscatedName("h")
+   @ObfuscatedName("kk")
    @ObfuscatedSignature(
-      descriptor = "([BI)Ljava/lang/String;",
-      garbageValue = "-850113409"
+      descriptor = "(II)Z",
+      garbageValue = "1234070189"
    )
-   public static String method944(byte[] var0) {
-      int var2 = var0.length;
-      StringBuilder var3 = new StringBuilder();
-
-      for(int var4 = 0; var4 < var2 + 0; var4 += 3) {
-         int var5 = var0[var4] & 255;
-         var3.append(class359.field3568[var5 >>> 2]);
-         if (var4 < var2 - 1) {
-            int var6 = var0[var4 + 1] & 255;
-            var3.append(class359.field3568[(var5 & 3) << 4 | var6 >>> 4]);
-            if (var4 < var2 - 2) {
-               int var7 = var0[var4 + 2] & 255;
-               var3.append(class359.field3568[(var6 & 15) << 2 | var7 >>> 6]).append(class359.field3568[var7 & 63]);
-            } else {
-               var3.append(class359.field3568[(var6 & 15) << 2]).append("=");
-            }
-         } else {
-            var3.append(class359.field3568[(var5 & 3) << 4]).append("==");
+   static boolean method947(int var0) {
+      for(int var1 = 0; var1 < Client.field623; ++var1) {
+         if (Client.field610[var1] == var0) {
+            return true;
          }
       }
 
-      String var1 = var3.toString();
-      return var1;
+      return false;
    }
 }

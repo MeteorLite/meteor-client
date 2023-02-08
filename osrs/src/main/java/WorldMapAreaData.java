@@ -1,27 +1,32 @@
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("il")
+@ObfuscatedName("je")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-   @ObfuscatedName("i")
-   HashSet worldMapData0Set;
-   @ObfuscatedName("o")
-   HashSet worldMapData1Set;
-   @ObfuscatedName("n")
-   List iconList;
+    @ObfuscatedName("is")
+    @ObfuscatedSignature(
+            descriptor = "Lhn;"
+    )
+    static Scene scene;
+    @ObfuscatedName("b")
+    HashSet worldMapData0Set;
+    @ObfuscatedName("m")
+    HashSet worldMapData1Set;
+    @ObfuscatedName("t")
+    List iconList;
 
-   @ObfuscatedName("bn")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;Lqy;IZI)V",
-      garbageValue = "-2083183142"
-   )
-   void init(Buffer var1, Buffer var2, int var3, boolean var4) {
+    @ObfuscatedName("cq")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;Lrd;IZI)V",
+            garbageValue = "-1685416357"
+    )
+    void init(Buffer var1, Buffer var2, int var3, boolean var4) {
       this.read(var1, var3);
       int var5 = var2.readUnsignedShort();
       this.worldMapData0Set = new HashSet(var5);
@@ -57,17 +62,17 @@ public class WorldMapAreaData extends WorldMapArea {
       this.initIconsList(var2, var4);
    }
 
-   @ObfuscatedName("ba")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;ZB)V",
-      garbageValue = "31"
-   )
-   void initIconsList(Buffer var1, boolean var2) {
+    @ObfuscatedName("cd")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;ZI)V",
+            garbageValue = "-1057034559"
+    )
+    void initIconsList(Buffer var1, boolean var2) {
       this.iconList = new LinkedList();
       int var3 = var1.readUnsignedShort();
 
       for(int var4 = 0; var4 < var3; ++var4) {
-         int var5 = var1.method2362();
+         int var5 = var1.method2419();
          Coord var6 = new Coord(var1.readInt());
          boolean var7 = var1.readUnsignedByte() == 1;
          if (var2 || !var7) {
@@ -77,42 +82,54 @@ public class WorldMapAreaData extends WorldMapArea {
 
    }
 
-   @ObfuscatedName("ip")
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(Lcd;I)V",
+            garbageValue = "-1936200764"
+    )
+    public static void runScriptEvent(ScriptEvent var0) {
+      ItemLayer.runScript(var0, 500000, 475000);
+   }
+
+   @ObfuscatedName("h")
    @ObfuscatedSignature(
-      descriptor = "(Lcj;ZB)V",
-      garbageValue = "8"
+      descriptor = "(B)V",
+      garbageValue = "44"
    )
-   static void addPlayerToScene(Player var0, boolean var1) {
-      if (var0 != null && var0.isVisible() && !var0.isHidden) {
-         var0.isUnanimated = false;
-         if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.movementSequence == var0.idleSequence) {
-            var0.isUnanimated = true;
+   static void method1487() {
+      Login.Login_username = Login.Login_username.trim();
+      if (Login.Login_username.length() == 0) {
+         class70.setLoginResponseString("Please enter your username.", "If you created your account after November", "2010, this will be the creation email address.");
+      } else {
+         long var1 = class70.method418();
+         int var0;
+         if (0L == var1) {
+            var0 = 5;
+         } else {
+            var0 = Ignored.method2123(var1, Login.Login_username);
          }
 
-         int var2 = var0.x >> 7;
-         int var3 = var0.y >> 7;
-         if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
-            long var4 = GameEngine.calculateTag(0, 0, 0, false, var0.index);
-            if (var0.attachedModel != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) {
-               var0.isUnanimated = false;
-               var0.tileHeight = SpotAnimationDefinition.getTileHeight(var0.x, var0.y, class383.Client_plane);
-               var0.playerCycle = Client.cycle;
-               ReflectionCheck.scene.addNullableObject(class383.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.minX, var0.minY, var0.maxX, var0.maxY);
-            } else {
-               if ((var0.x & 127) == 64 && (var0.y & 127) == 64) {
-                  if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) {
-                     return;
-                  }
-
-                  Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount;
-               }
-
-               var0.tileHeight = SpotAnimationDefinition.getTileHeight(var0.x, var0.y, class383.Client_plane);
-               var0.playerCycle = Client.cycle;
-               ReflectionCheck.scene.drawEntity(class383.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking);
-            }
+         switch(var0) {
+         case 2:
+            class70.setLoginResponseString(Strings.field3185, Strings.field3360, Strings.field3361);
+            ReflectionCheck.method171(6);
+            break;
+         case 3:
+            class70.setLoginResponseString("", "Error connecting to server.", "");
+            break;
+         case 4:
+            class70.setLoginResponseString("The part of the website you are trying", "to connect to is offline at the moment.", "Please try again later.");
+            break;
+         case 5:
+            class70.setLoginResponseString("Sorry, there was an error trying to", "log you in to this part of the website.", "Please try again later.");
+            break;
+         case 6:
+            class70.setLoginResponseString("", "Error connecting to server.", "");
+            break;
+         case 7:
+            class70.setLoginResponseString("You must enter a valid login to proceed. For accounts", "created after 24th November 2010, please use your", "email address. Otherwise please use your username.");
          }
+
       }
-
    }
 }

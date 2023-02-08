@@ -233,7 +233,7 @@ class CameraPlugin : Plugin(), KeyListener, MouseListener {
     override fun onScriptPreFired(it: ScriptPreFired) {
         when (it.scriptId) {
             ScriptID.SETTINGS_SLIDER_CHOOSE_ONOP -> {
-                val arg = client.intStackSize - 7
+                val arg = client.intStackSize - 11
                 val intStack = client.intStack
                 if (intStack[arg] == SettingID.CAMERA_ZOOM) {
                     addZoomTooltip(client.scriptActiveWidget)

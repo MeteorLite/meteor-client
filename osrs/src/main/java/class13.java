@@ -8,25 +8,33 @@ import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.DefaultTlsClient;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 
-@ObfuscatedName("o")
+@ObfuscatedName("m")
 class class13 extends DefaultTlsClient {
-   @ObfuscatedName("s")
-   static int field39;
+   @ObfuscatedName("eu")
+   @ObfuscatedSignature(
+      descriptor = "Llm;"
+   )
+   static Archive field44;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Li;"
+      descriptor = "Lb;"
    )
    final class12 this$1;
 
    @ObfuscatedSignature(
-      descriptor = "(Li;)V"
+      descriptor = "(Lb;)V"
    )
    class13(class12 var1) {
       this.this$1 = var1;
    }
 
-   @ObfuscatedName("getClientExtensions")
-   public Hashtable getClientExtensions() throws IOException {
+    @ObfuscatedName("getAuthentication")
+    public TlsAuthentication getAuthentication() throws IOException {
+      return new class11(this);
+   }
+
+    @ObfuscatedName("getClientExtensions")
+    public Hashtable getClientExtensions() throws IOException {
       Hashtable var1 = super.getClientExtensions();
       if (var1 == null) {
          var1 = new Hashtable();
@@ -44,17 +52,12 @@ class class13 extends DefaultTlsClient {
       return var1;
    }
 
-   @ObfuscatedName("getAuthentication")
-   public TlsAuthentication getAuthentication() throws IOException {
-      return new class11(this);
-   }
-
-   @ObfuscatedName("ap")
+   @ObfuscatedName("v")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)I",
-      garbageValue = "-339253147"
+      descriptor = "(I)[Llo;",
+      garbageValue = "1319883394"
    )
-   public static int stringCp1252NullTerminatedByteSize(String var0) {
-      return var0.length() + 1;
+   public static class330[] method51() {
+      return new class330[]{class330.field3405, class330.field3407, class330.field3403, class330.field3404};
    }
 }

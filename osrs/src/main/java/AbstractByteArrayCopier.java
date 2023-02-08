@@ -3,23 +3,41 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kw")
+@ObfuscatedName("lh")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
-   @ObfuscatedName("m")
-   static Thread ArchiveDiskActionHandler_thread;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(I)[B",
+            garbageValue = "2088056836"
+    )
+    abstract byte[] get();
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(B)[B",
-      garbageValue = "-108"
-   )
-   abstract byte[] get();
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "([BI)V",
+            garbageValue = "1513593399"
+    )
+    public abstract void set(byte[] var1);
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("lq")
    @ObfuscatedSignature(
-      descriptor = "([BI)V",
-      garbageValue = "-878200260"
+      descriptor = "(III)V",
+      garbageValue = "-1554709844"
    )
-   public abstract void set(byte[] var1);
+   static final void method1768(int var0, int var1) {
+      ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class482.guestClanChannel;
+      if (var2 != null && var1 >= 0 && var1 < var2.method844()) {
+         ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
+         if (var3.rank == -1) {
+            String var4 = var3.username.getName();
+            PacketBufferNode var5 = Renderable.getPacketBufferNode(ClientPacket.field2463, Client.packetWriter.isaacCipher);
+            var5.packetBuffer.writeByte(3 + class96.stringCp1252NullTerminatedByteSize(var4));
+            var5.packetBuffer.writeByte(var0);
+            var5.packetBuffer.writeShort(var1);
+            var5.packetBuffer.writeStringCp1252NullTerminated(var4);
+            Client.packetWriter.addNode(var5);
+         }
+      }
+   }
 }

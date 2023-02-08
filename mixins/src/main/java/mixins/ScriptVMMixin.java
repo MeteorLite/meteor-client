@@ -191,6 +191,9 @@ public abstract class ScriptVMMixin implements RSClient
 				rootScriptEvent = event;
 				rs$runScript(event, maxExecutionTime, var2);
 			}
+			catch (Exception exception) {
+				exception.printStackTrace();
+			}
 			finally
 			{
 				currentScript = null;

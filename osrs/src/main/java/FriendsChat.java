@@ -1,33 +1,39 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nc")
+@ObfuscatedName("on")
 @Implements("FriendsChat")
 public class FriendsChat extends UserList {
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Lqi;"
-   )
-   final LoginType loginType;
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Lnn;"
-   )
-   final Usernamed localUser;
-   @ObfuscatedName("x")
-   public String name = null;
-   @ObfuscatedName("m")
-   public String owner = null;
-   @ObfuscatedName("q")
-   public byte minKick;
-   @ObfuscatedName("f")
-   public int rank;
-   @ObfuscatedName("r")
-   int memberCount = 1;
+    @ObfuscatedName("ex")
+    @ObfuscatedSignature(
+            descriptor = "Llm;"
+    )
+    static Archive archive7;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lqj;"
+    )
+    final LoginType loginType;
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "Lod;"
+    )
+    final Usernamed localUser;
+    @ObfuscatedName("s")
+    public String name = null;
+    @ObfuscatedName("z")
+    public String owner = null;
+    @ObfuscatedName("j")
+    public byte minKick;
+    @ObfuscatedName("i")
+    public int rank;
+    @ObfuscatedName("n")
+    int memberCount = 1;
 
    @ObfuscatedSignature(
-      descriptor = "(Lqi;Lnn;)V"
+      descriptor = "(Lqj;Lod;)V"
    )
    public FriendsChat(LoginType var1, Usernamed var2) {
       super(500);
@@ -35,31 +41,31 @@ public class FriendsChat extends UserList {
       this.localUser = var2;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lov;",
-      garbageValue = "47"
-   )
-   User newInstance() {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(I)Low;",
+            garbageValue = "-2146736820"
+    )
+    User newInstance() {
       return new ClanMate();
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(II)[Lov;",
-      garbageValue = "1710517567"
-   )
-   User[] newTypedArray(int var1) {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(II)[Low;",
+            garbageValue = "1411048209"
+    )
+    User[] newTypedArray(int var1) {
       return new ClanMate[var1];
    }
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "1741537614"
+      garbageValue = "-1846620710"
    )
-   final void method2028(String var1) {
-      String var3 = ModeWhere.base37DecodeLong(class32.method128(var1));
+   final void method2069(String var1) {
+      String var3 = WorldMapSection1.base37DecodeLong(Decimator.method308(var1));
       if (var3 == null) {
          var3 = "";
       }
@@ -67,13 +73,13 @@ public class FriendsChat extends UserList {
       this.name = var3;
    }
 
-   @ObfuscatedName("g")
+   @ObfuscatedName("n")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)V",
-      garbageValue = "1"
+      descriptor = "(Ljava/lang/String;S)V",
+      garbageValue = "-11312"
    )
-   final void method2029(String var1) {
-      String var3 = ModeWhere.base37DecodeLong(class32.method128(var1));
+   final void method2075(String var1) {
+      String var3 = WorldMapSection1.base37DecodeLong(Decimator.method308(var1));
       if (var3 == null) {
          var3 = "";
       }
@@ -81,33 +87,33 @@ public class FriendsChat extends UserList {
       this.owner = var3;
    }
 
-   @ObfuscatedName("i")
+   @ObfuscatedName("l")
    @ObfuscatedSignature(
-      descriptor = "(Lqy;II)V",
-      garbageValue = "-1010256811"
+      descriptor = "(Lrd;IB)V",
+      garbageValue = "-45"
    )
-   public final void method2034(Buffer var1, int var2) {
-      this.method2029(var1.readStringCp1252NullTerminated());
+   public final void method2072(Buffer var1, int var2) {
+      this.method2075(var1.readStringCp1252NullTerminated());
       long var3 = var1.readLong();
       long var6 = var3;
       String var5;
       int var8;
       if (var3 > 0L && var3 < 6582952005840035281L) {
-         if (var3 % 37L == 0L) {
+         if (0L == var3 % 37L) {
             var5 = null;
          } else {
             var8 = 0;
 
-            for(long var9 = var3; var9 != 0L; var9 /= 37L) {
+            for(long var9 = var3; 0L != var9; var9 /= 37L) {
                ++var8;
             }
 
             StringBuilder var11 = new StringBuilder(var8);
 
-            while(var6 != 0L) {
+            while(0L != var6) {
                long var12 = var6;
                var6 /= 37L;
-               var11.append(class362.base37Table[(int)(var12 - 37L * var6)]);
+               var11.append(class366.base37Table[(int)(var12 - var6 * 37L)]);
             }
 
             var5 = var11.reverse().toString();
@@ -116,7 +122,7 @@ public class FriendsChat extends UserList {
          var5 = null;
       }
 
-      this.method2028(var5);
+      this.method2069(var5);
       this.minKick = var1.readByte();
       short var14;
       if (var2 == 1) {
@@ -127,7 +133,7 @@ public class FriendsChat extends UserList {
             throw new IllegalArgumentException("Invalid friend chat full update version: " + var2);
          }
 
-         var8 = var1.method2407();
+         var8 = var1.method2389();
          var14 = -1;
       }
 
@@ -147,12 +153,12 @@ public class FriendsChat extends UserList {
       }
    }
 
-   @ObfuscatedName("o")
+   @ObfuscatedName("k")
    @ObfuscatedSignature(
-      descriptor = "(Lqy;B)V",
-      garbageValue = "109"
+      descriptor = "(Lrd;I)V",
+      garbageValue = "-1851669074"
    )
-   public final void method2031(Buffer var1) {
+   public final void method2070(Buffer var1) {
       Username var2 = new Username(var1.readStringCp1252NullTerminated(), this.loginType);
       int var3 = var1.readUnsignedShort();
       byte var4 = var1.readByte();
@@ -189,80 +195,88 @@ public class FriendsChat extends UserList {
 
    }
 
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1056288552"
-   )
-   public final void clearFriends() {
+    @ObfuscatedName("c")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-2134376992"
+    )
+    public final void clearFriends() {
       for(int var1 = 0; var1 < this.getSize(); ++var1) {
          ((ClanMate)this.get(var1)).clearIsFriend();
       }
 
    }
 
-   @ObfuscatedName("k")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-87"
-   )
-   public final void invalidateIgnoreds() {
+    @ObfuscatedName("r")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1757065575"
+    )
+    public final void invalidateIgnoreds() {
       for(int var1 = 0; var1 < this.getSize(); ++var1) {
          ((ClanMate)this.get(var1)).clearIsIgnored();
       }
 
    }
 
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      descriptor = "(Log;I)V",
-      garbageValue = "1952671001"
-   )
-   final void isLocalPlayer(ClanMate var1) {
+    @ObfuscatedName("b")
+    @ObfuscatedSignature(
+            descriptor = "(Log;I)V",
+            garbageValue = "1461880973"
+    )
+    final void isLocalPlayer(ClanMate var1) {
       if (var1.getUsername().equals(this.localUser.username())) {
          this.rank = var1.rank;
       }
 
    }
 
-   @ObfuscatedName("gy")
+   @ObfuscatedName("b")
    @ObfuscatedSignature(
-      descriptor = "(Lga;IIIB)V",
-      garbageValue = "-79"
+      descriptor = "(I)V",
+      garbageValue = "-1334053508"
    )
-   static void method2036(SequenceDefinition var0, int var1, int var2, int var3) {
-      if (Client.soundEffectCount < 50 && StructComposition.clientPreferences.getAreaSoundEffectsVolume() != 0) {
-         if (var0.soundEffects != null && var1 < var0.soundEffects.length) {
-            int var4 = var0.soundEffects[var1];
-            if (var4 != 0) {
-               int var7 = var4 >> 8;
-               int var8 = var4 >> 4 & 7;
-               int var9 = var4 & 15;
-               Client.soundEffectIds[Client.soundEffectCount] = var7;
-               Client.queuedSoundEffectLoops[Client.soundEffectCount] = var8;
-               Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
-               Client.soundEffects[Client.soundEffectCount] = null;
-               int var10 = (var2 - 64) / 128;
-               int var11 = (var3 - 64) / 128;
-               Client.soundLocations[Client.soundEffectCount] = var9 + (var11 << 8) + (var10 << 16);
-               ++Client.soundEffectCount;
-            }
-
-         }
+   static final void method2077() {
+      if (!ViewportMouse.ViewportMouse_false0) {
+         int var0 = Scene.Scene_cameraPitchSine;
+         int var1 = Scene.Scene_cameraPitchCosine;
+         int var2 = Scene.Scene_cameraYawSine;
+         int var3 = Scene.Scene_cameraYawCosine;
+         byte var4 = 50;
+         short var5 = 3500;
+         int var6 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.Rasterizer3D_clipMidX) * var4 / Rasterizer3D.Rasterizer3D_zoom;
+         int var7 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var4 / Rasterizer3D.Rasterizer3D_zoom;
+         int var8 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.Rasterizer3D_clipMidX) * var5 / Rasterizer3D.Rasterizer3D_zoom;
+         int var9 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var5 / Rasterizer3D.Rasterizer3D_zoom;
+         int var10 = Rasterizer3D.method1168(var7, var4, var1, var0);
+         int var11 = Rasterizer3D.method1167(var7, var4, var1, var0);
+         var7 = var10;
+         var10 = Rasterizer3D.method1168(var9, var5, var1, var0);
+         int var12 = Rasterizer3D.method1167(var9, var5, var1, var0);
+         var9 = var10;
+         var10 = Rasterizer3D.method1165(var6, var11, var3, var2);
+         var11 = Rasterizer3D.method1166(var6, var11, var3, var2);
+         var6 = var10;
+         var10 = Rasterizer3D.method1165(var8, var12, var3, var2);
+         var12 = Rasterizer3D.method1166(var8, var12, var3, var2);
+         class148.field1332 = (var6 + var10) / 2;
+         GrandExchangeEvent.field3502 = (var7 + var9) / 2;
+         ViewportMouse.field2177 = (var12 + var11) / 2;
+         class419.field3793 = (var10 - var6) / 2;
+         VerticalAlignment.field1595 = (var9 - var7) / 2;
+         class14.field48 = (var12 - var11) / 2;
+         class172.field1439 = Math.abs(class419.field3793);
+         class137.field1297 = Math.abs(VerticalAlignment.field1595);
+         class151.field1365 = Math.abs(class14.field48);
       }
    }
 
-   @ObfuscatedName("jd")
+   @ObfuscatedName("mb")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "1514396714"
+      garbageValue = "-866294822"
    )
-   static void addCancelMenuEntry() {
-      WorldMapSectionType.method1426();
-      Client.menuActions[0] = "Cancel";
-      Client.menuTargets[0] = "";
-      Client.menuOpcodes[0] = 1006;
-      Client.menuShiftClick[0] = false;
-      Client.menuOptionsCount = 1;
+   static void method2076() {
+      PacketWriter.clientPreferences.method533(Client.param21);
    }
 }

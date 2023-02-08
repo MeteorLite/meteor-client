@@ -5,6 +5,7 @@ public interface Buffer extends Node
     byte[] getPayload();
     int getOffset();
 
+    void writeMediumMiddle$api(int i);
     int readUByteAdd();
     int readUByteNeg();
     int readUByteSub();
@@ -16,6 +17,7 @@ public interface Buffer extends Node
 	int readUnsignedShort$api();
 	int readShort$api();
 	String readString();
+    int readShortLE();
 	int readShortSmart$api();
 	int readUShortSmart$api();
 	void writeByte$api(int i);

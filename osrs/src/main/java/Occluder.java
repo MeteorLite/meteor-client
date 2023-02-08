@@ -1,91 +1,77 @@
+import java.applet.Applet;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hv")
+@ObfuscatedName("hx")
 @Implements("Occluder")
 public final class Occluder {
-   @ObfuscatedName("h")
-   int minTileX;
-   @ObfuscatedName("e")
-   int maxTileX;
-   @ObfuscatedName("v")
-   int minTileY;
-   @ObfuscatedName("x")
-   int maxTileY;
-   @ObfuscatedName("m")
-   int type;
-   @ObfuscatedName("q")
-   int minX;
-   @ObfuscatedName("f")
-   int maxX;
+    @ObfuscatedName("th")
+    static int cameraMoveToX;
+    @ObfuscatedName("f")
+    int minTileX;
+    @ObfuscatedName("w")
+    int maxTileX;
+    @ObfuscatedName("v")
+    int minTileY;
+    @ObfuscatedName("s")
+    int maxTileY;
+    @ObfuscatedName("z")
+    int type;
+    @ObfuscatedName("j")
+    int minX;
+    @ObfuscatedName("i")
+    int maxX;
+    @ObfuscatedName("n")
+    int minZ;
+    @ObfuscatedName("l")
+    int maxZ;
+    @ObfuscatedName("k")
+    int minY;
+    @ObfuscatedName("c")
+    int maxY;
    @ObfuscatedName("r")
-   int minZ;
-   @ObfuscatedName("u")
-   int maxZ;
+   int field2066;
    @ObfuscatedName("b")
-   int minY;
-   @ObfuscatedName("j")
-   int maxY;
-   @ObfuscatedName("g")
-   int field2067;
-   @ObfuscatedName("i")
-   int field2076;
+   int field2072;
+   @ObfuscatedName("m")
+   int field2071;
+   @ObfuscatedName("t")
+   int field2074;
+   @ObfuscatedName("h")
+   int field2073;
+   @ObfuscatedName("p")
+   int field2078;
    @ObfuscatedName("o")
    int field2077;
-   @ObfuscatedName("n")
-   int field2078;
-   @ObfuscatedName("k")
-   int field2079;
-   @ObfuscatedName("a")
-   int field2080;
-   @ObfuscatedName("s")
-   int field2081;
 
    @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "8"
+      descriptor = "(Ljava/applet/Applet;Ljava/lang/String;I)V",
+      garbageValue = "1977226602"
    )
-   public static void method1241() {
-      try {
-         if (class286.musicPlayerStatus == 1) {
-            int var0 = class251.midiPcmStream.method1568();
-            if (var0 > 0 && class251.midiPcmStream.isReady()) {
-               var0 -= class286.pcmSampleLength;
-               if (var0 < 0) {
-                  var0 = 0;
-               }
-
-               class251.midiPcmStream.setPcmStreamVolume(var0);
-               return;
-            }
-
-            class251.midiPcmStream.clear();
-            class251.midiPcmStream.removeAll();
-            if (class304.musicTrackArchive != null) {
-               class286.musicPlayerStatus = 2;
-            } else {
-               class286.musicPlayerStatus = 0;
-            }
-
-            class286.musicTrack = null;
-            ItemContainer.soundCache = null;
-         }
-      } catch (Exception var2) {
-         var2.printStackTrace();
-         class251.midiPcmStream.clear();
-         class286.musicPlayerStatus = 0;
-         class286.musicTrack = null;
-         ItemContainer.soundCache = null;
-         class304.musicTrackArchive = null;
+   public static void method1251(Applet var0, String var1) {
+      class31.field100 = var0;
+      if (var1 != null) {
+         class31.field99 = var1;
       }
 
    }
 
-   @ObfuscatedName("f")
-   public static int Entity_unpackID(long var0) {
-      return (int)(var0 >>> 17 & 4294967295L);
+   @ObfuscatedName("af")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/String;B)V",
+      garbageValue = "-76"
+   )
+   static void method1250(String var0) {
+      String var1;
+      if (var0 != null && !var0.isEmpty() && var0.charAt(0) != '#') {
+         var1 = var0;
+      } else {
+         var1 = "";
+      }
+
+      Login.field762 = var1;
    }
 }

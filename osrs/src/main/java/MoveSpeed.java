@@ -1,61 +1,59 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gs")
+@ObfuscatedName("hz")
 @Implements("MoveSpeed")
-public enum MoveSpeed implements class345 {
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Lgs;"
-   )
-   STATIONARY((byte)-1),
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Lgs;"
-   )
-   CRAWL((byte)0),
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Lgs;"
-   )
-   WALK((byte)1),
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Lgs;"
-   )
-   RUN((byte)2);
+public enum MoveSpeed implements class349 {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Lhz;"
+    )
+    STATIONARY((byte)-1),
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lhz;"
+    )
+    CRAWL((byte)0),
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "Lhz;"
+    )
+    WALK((byte)1),
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "Lhz;"
+    )
+    RUN((byte)2);
 
-   @ObfuscatedName("m")
-   public byte speed;
+    @ObfuscatedName("qp")
+    @ObfuscatedSignature(
+            descriptor = "Lqt;"
+    )
+    static class458 HitSplatDefinition_cached;
+    @ObfuscatedName("z")
+    public byte speed;
 
    MoveSpeed(byte var3) {
       this.speed = var3;
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "96"
-   )
-   public int rsOrdinal() {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "3"
+    )
+    public int rsOrdinal() {
       return this.speed;
    }
 
-   @ObfuscatedName("je")
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1945373310"
+      descriptor = "(IIS)I",
+      garbageValue = "-30044"
    )
-   static final void method1105() {
-      for(PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
-         if (var0.endCycle == -1) {
-            var0.startCycle = 0;
-            UserComparator4.method659(var0);
-         } else {
-            var0.remove();
-         }
-      }
-
+   public static int method1110(int var0, int var1) {
+      return (-3 - var0 << 8) + var1;
    }
 }

@@ -3,31 +3,31 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ah")
+@ObfuscatedName("au")
 @Implements("SoundEnvelope")
 public class SoundEnvelope {
-   @ObfuscatedName("h")
-   int segments = 2;
-   @ObfuscatedName("e")
-   int[] durations = new int[2];
-   @ObfuscatedName("v")
-   int[] phases = new int[2];
-   @ObfuscatedName("m")
-   int start;
-   @ObfuscatedName("q")
-   int end;
-   @ObfuscatedName("f")
-   int form;
-   @ObfuscatedName("r")
-   int ticks;
-   @ObfuscatedName("u")
-   int phaseIndex;
-   @ObfuscatedName("b")
-   int step;
-   @ObfuscatedName("j")
-   int amplitude;
-   @ObfuscatedName("g")
-   int max;
+    @ObfuscatedName("f")
+    int segments = 2;
+    @ObfuscatedName("w")
+    int[] durations = new int[2];
+    @ObfuscatedName("v")
+    int[] phases = new int[2];
+    @ObfuscatedName("s")
+    int start;
+    @ObfuscatedName("z")
+    int end;
+    @ObfuscatedName("j")
+    int form;
+    @ObfuscatedName("i")
+    int ticks;
+    @ObfuscatedName("n")
+    int phaseIndex;
+    @ObfuscatedName("l")
+    int step;
+    @ObfuscatedName("k")
+    int amplitude;
+    @ObfuscatedName("c")
+    int max;
 
    SoundEnvelope() {
       this.durations[0] = 0;
@@ -36,22 +36,22 @@ public class SoundEnvelope {
       this.phases[1] = 65535;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;)V"
-   )
-   final void decode(Buffer var1) {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;)V"
+    )
+    final void decode(Buffer var1) {
       this.form = var1.readUnsignedByte();
       this.start = var1.readInt();
       this.end = var1.readInt();
       this.decodeSegments(var1);
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;)V"
-   )
-   final void decodeSegments(Buffer var1) {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;)V"
+    )
+    final void decodeSegments(Buffer var1) {
       this.segments = var1.readUnsignedByte();
       this.durations = new int[this.segments];
       this.phases = new int[this.segments];
@@ -63,8 +63,8 @@ public class SoundEnvelope {
 
    }
 
-   @ObfuscatedName("v")
-   final void reset() {
+    @ObfuscatedName("v")
+    final void reset() {
       this.ticks = 0;
       this.phaseIndex = 0;
       this.step = 0;
@@ -72,8 +72,8 @@ public class SoundEnvelope {
       this.max = 0;
    }
 
-   @ObfuscatedName("x")
-   final int doStep(int var1) {
+    @ObfuscatedName("s")
+    final int doStep(int var1) {
       if (this.max >= this.ticks) {
          this.amplitude = this.phases[this.phaseIndex++] << 15;
          if (this.phaseIndex >= this.segments) {

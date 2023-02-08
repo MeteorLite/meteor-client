@@ -12,7 +12,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("JSONArray")
 @ObfuscatedName("org/json/JSONArray")
 public class JSONArray {
-   @ObfuscatedName("myArrayList")
+    @ObfuscatedName("myArrayList")
    ArrayList myArrayList;
 
    public JSONArray() {
@@ -88,7 +88,7 @@ public class JSONArray {
          int var2 = Array.getLength(var1);
 
          for(int var3 = 0; var3 < var2; ++var3) {
-            this.method2510(Array.get(var1, var3));
+            this.method2547(Array.get(var1, var3));
          }
 
       }
@@ -102,7 +102,7 @@ public class JSONArray {
          int var3 = Array.getLength(var1);
 
          for(int var4 = 0; var4 < var3; ++var4) {
-            this.method2510(new JSONObject(Array.get(var1, var4), var2));
+            this.method2547(new JSONObject(Array.get(var1, var4), var2));
          }
 
       }
@@ -121,13 +121,13 @@ public class JSONArray {
    }
 
    @ObfuscatedName("opt")
-   public Object method2511(int var1) {
+   public Object method2549(int var1) {
       return var1 >= 0 && var1 < this.length() ? this.myArrayList.get(var1) : null;
    }
 
    @ObfuscatedName("get")
-   public Object method2512(int var1) throws JSONException {
-      Object var2 = this.method2511(var1);
+   public Object method2548(int var1) throws JSONException {
+      Object var2 = this.method2549(var1);
       if (var2 == null) {
          throw new JSONException("JSONArray[" + var1 + "] not found.");
       } else {
@@ -139,14 +139,14 @@ public class JSONArray {
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/Object;)Lorg/json/JSONArray;"
    )
-   public JSONArray method2510(Object var1) {
+   public JSONArray method2547(Object var1) {
       this.myArrayList.add(var1);
       return this;
    }
 
-   @ObfuscatedName("getBoolean")
-   public boolean getBoolean(int var1) throws JSONException {
-      Object var2 = this.method2512(var1);
+    @ObfuscatedName("getBoolean")
+    public boolean getBoolean(int var1) throws JSONException {
+      Object var2 = this.method2548(var1);
       if (var2.equals(Boolean.FALSE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("false")) {
          return false;
       } else if (var2.equals(Boolean.TRUE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("true")) {
@@ -156,21 +156,21 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("getLong")
-   public long getLong(int var1) throws JSONException {
-      Object var2 = this.method2512(var1);
+    @ObfuscatedName("getLong")
+    public long getLong(int var1) throws JSONException {
+      Object var2 = this.method2548(var1);
       return var2 instanceof Number ? ((Number)var2).longValue() : (long)this.getDouble(var1);
    }
 
-   @ObfuscatedName("getInt")
-   public int getInt(int var1) throws JSONException {
-      Object var2 = this.method2512(var1);
+    @ObfuscatedName("getInt")
+    public int getInt(int var1) throws JSONException {
+      Object var2 = this.method2548(var1);
       return var2 instanceof Number ? ((Number)var2).intValue() : (int)this.getDouble(var1);
    }
 
-   @ObfuscatedName("getDouble")
-   public double getDouble(int var1) throws JSONException {
-      Object var2 = this.method2512(var1);
+    @ObfuscatedName("getDouble")
+    public double getDouble(int var1) throws JSONException {
+      Object var2 = this.method2548(var1);
 
       try {
          return var2 instanceof Number ? ((Number)var2).doubleValue() : Double.valueOf((String)var2);
@@ -179,13 +179,13 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("length")
-   public int length() {
+    @ObfuscatedName("length")
+    public int length() {
       return this.myArrayList.size();
    }
 
-   @ObfuscatedName("join")
-   public String join(String var1) throws JSONException {
+    @ObfuscatedName("join")
+    public String join(String var1) throws JSONException {
       int var2 = this.length();
       StringBuffer var3 = new StringBuffer();
 
@@ -200,8 +200,8 @@ public class JSONArray {
       return var3.toString();
    }
 
-   @ObfuscatedName("optDouble")
-   public double optDouble(int var1, double var2) {
+    @ObfuscatedName("optDouble")
+    public double optDouble(int var1, double var2) {
       try {
          return this.getDouble(var1);
       } catch (Exception var5) {
@@ -209,12 +209,12 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("getJSONObject")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lorg/json/JSONObject;"
-   )
-   public JSONObject getJSONObject(int var1) throws JSONException {
-      Object var2 = this.method2512(var1);
+    @ObfuscatedName("getJSONObject")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lorg/json/JSONObject;"
+    )
+    public JSONObject getJSONObject(int var1) throws JSONException {
+      Object var2 = this.method2548(var1);
       if (var2 instanceof JSONObject) {
          return (JSONObject)var2;
       } else {
@@ -222,7 +222,7 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("toString")
+    @ObfuscatedName("toString")
    String toString(int var1, int var2) throws JSONException {
       int var3 = this.length();
       if (var3 == 0) {
@@ -260,8 +260,8 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("write")
-   public Writer write(Writer var1) throws JSONException {
+    @ObfuscatedName("write")
+    public Writer write(Writer var1) throws JSONException {
       try {
          boolean var2 = false;
          int var3 = this.length();
@@ -291,8 +291,8 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       try {
          return '[' + this.join(",") + ']';
       } catch (Exception var2) {
@@ -300,8 +300,13 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("optBoolean")
-   public boolean optBoolean(int var1, boolean var2) {
+    @ObfuscatedName("getString")
+    public String getString(int var1) throws JSONException {
+      return this.method2548(var1).toString();
+   }
+
+    @ObfuscatedName("optBoolean")
+    public boolean optBoolean(int var1, boolean var2) {
       try {
          return this.getBoolean(var1);
       } catch (Exception var4) {
@@ -309,22 +314,8 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("optLong")
-   public long optLong(int var1, long var2) {
-      try {
-         return this.getLong(var1);
-      } catch (Exception var5) {
-         return var2;
-      }
-   }
-
-   @ObfuscatedName("getString")
-   public String getString(int var1) throws JSONException {
-      return this.method2512(var1).toString();
-   }
-
-   @ObfuscatedName("optInt")
-   public int optInt(int var1, int var2) {
+    @ObfuscatedName("optInt")
+    public int optInt(int var1, int var2) {
       try {
          return this.getInt(var1);
       } catch (Exception var4) {
@@ -332,9 +323,18 @@ public class JSONArray {
       }
    }
 
-   @ObfuscatedName("optString")
-   public String optString(int var1, String var2) {
-      Object var3 = this.method2511(var1);
+    @ObfuscatedName("optLong")
+    public long optLong(int var1, long var2) {
+      try {
+         return this.getLong(var1);
+      } catch (Exception var5) {
+         return var2;
+      }
+   }
+
+    @ObfuscatedName("optString")
+    public String optString(int var1, String var2) {
+      Object var3 = this.method2549(var1);
       return var3 != null ? var3.toString() : var2;
    }
 }

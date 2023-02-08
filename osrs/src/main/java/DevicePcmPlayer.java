@@ -8,43 +8,43 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("w")
+@ObfuscatedName("g")
 @Implements("DevicePcmPlayer")
 public class DevicePcmPlayer extends PcmPlayer {
-   @ObfuscatedName("h")
-   AudioFormat format;
-   @ObfuscatedName("e")
-   SourceDataLine line;
-   @ObfuscatedName("v")
-   int capacity2;
-   @ObfuscatedName("x")
-   byte[] byteSamples;
+    @ObfuscatedName("f")
+    AudioFormat format;
+    @ObfuscatedName("w")
+    SourceDataLine line;
+    @ObfuscatedName("v")
+    int capacity2;
+    @ObfuscatedName("s")
+    byte[] byteSamples;
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1022018312"
-   )
-   protected void init() {
-      this.format = new AudioFormat((float)PcmPlayer.field198, 16, class286.PcmPlayer_stereo ? 2 : 1, true, false);
-      this.byteSamples = new byte[256 << (class286.PcmPlayer_stereo ? 2 : 1)];
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1600330502"
+    )
+    protected void init() {
+      this.format = new AudioFormat((float)class284.field2683, 16, PcmPlayer.PcmPlayer_stereo ? 2 : 1, true, false);
+      this.byteSamples = new byte[256 << (PcmPlayer.PcmPlayer_stereo ? 2 : 1)];
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "-95"
-   )
-   protected void open(int var1) throws LineUnavailableException {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "742720329"
+    )
+    protected void open(int var1) throws LineUnavailableException {
       try {
-         Info var2 = new Info(SourceDataLine.class, this.format, var1 << (class286.PcmPlayer_stereo ? 2 : 1));
+         Info var2 = new Info(SourceDataLine.class, this.format, var1 << (PcmPlayer.PcmPlayer_stereo ? 2 : 1));
          this.line = (SourceDataLine)AudioSystem.getLine(var2);
          this.line.open();
          this.line.start();
          this.capacity2 = var1;
       } catch (LineUnavailableException var3) {
-         if (class233.method1304(var1) != 1) {
-            this.open(AccessFile.method2278(var1));
+         if (class366.method1928(var1) != 1) {
+            this.open(class4.method5(var1));
          } else {
             this.line = null;
             throw var3;
@@ -52,19 +52,19 @@ public class DevicePcmPlayer extends PcmPlayer {
       }
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "116"
-   )
-   protected int position() {
-      return this.capacity2 - (this.line.available() >> (class286.PcmPlayer_stereo ? 2 : 1));
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-1573553273"
+    )
+    protected int position() {
+      return this.capacity2 - (this.line.available() >> (PcmPlayer.PcmPlayer_stereo ? 2 : 1));
    }
 
-   @ObfuscatedName("x")
-   protected void write() {
+    @ObfuscatedName("s")
+    protected void write() {
       int var1 = 256;
-      if (class286.PcmPlayer_stereo) {
+      if (PcmPlayer.PcmPlayer_stereo) {
          var1 <<= 1;
       }
 
@@ -81,12 +81,12 @@ public class DevicePcmPlayer extends PcmPlayer {
       this.line.write(this.byteSamples, 0, var1 << 1);
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-126"
-   )
-   protected void close() {
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-892812272"
+    )
+    protected void close() {
       if (this.line != null) {
          this.line.close();
          this.line = null;
@@ -94,12 +94,12 @@ public class DevicePcmPlayer extends PcmPlayer {
 
    }
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1458227244"
-   )
-   protected void discard() {
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1285037243"
+    )
+    protected void discard() {
       this.line.flush();
    }
 }

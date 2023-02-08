@@ -3,23 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ky")
+@ObfuscatedName("ko")
 @Implements("Coord")
 public class Coord {
-   @ObfuscatedName("ju")
-   @ObfuscatedSignature(
-      descriptor = "[Lra;"
-   )
-   static IndexedSprite[] modIconSprites;
-   @ObfuscatedName("h")
-   public int plane;
-   @ObfuscatedName("e")
-   public int x;
-   @ObfuscatedName("v")
-   public int y;
+    @ObfuscatedName("f")
+    public int plane;
+    @ObfuscatedName("w")
+    public int x;
+    @ObfuscatedName("v")
+    public int y;
 
    @ObfuscatedSignature(
-      descriptor = "(Lky;)V"
+      descriptor = "(Lko;)V"
    )
    public Coord(Coord var1) {
       this.plane = var1.plane;
@@ -44,21 +39,21 @@ public class Coord {
 
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "15"
-   )
-   public int packed() {
-      return class140.method753(this.plane, this.x, this.y);
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-198351367"
+    )
+    public int packed() {
+      return class237.method1315(this.plane, this.x, this.y);
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Lky;I)Z",
-      garbageValue = "-2001881010"
-   )
-   boolean equalsCoord(Coord var1) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Lko;B)Z",
+            garbageValue = "-96"
+    )
+    boolean equalsCoord(Coord var1) {
       if (this.plane != var1.plane) {
          return false;
       } else if (this.x != var1.x) {
@@ -68,31 +63,31 @@ public class Coord {
       }
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
-      garbageValue = "4"
-   )
-   String toString(String var1) {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
+            garbageValue = "-50"
+    )
+    String toString(String var1) {
       return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
    }
 
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
-      return this.packed();
-   }
-
-   @ObfuscatedName("toString")
-   public String toString() {
-      return this.toString(",");
-   }
-
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (this == var1) {
          return true;
       } else {
          return !(var1 instanceof Coord) ? false : this.equalsCoord((Coord)var1);
       }
+   }
+
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
+      return this.packed();
+   }
+
+    @ObfuscatedName("toString")
+    public String toString() {
+      return this.toString(",");
    }
 }

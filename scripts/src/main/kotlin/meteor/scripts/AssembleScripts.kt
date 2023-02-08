@@ -60,6 +60,7 @@ class AssembleScripts private constructor(private val scriptDirectory: File, pri
         } catch (e: IOException) {
             e.printStackTrace()
         }
+        if (scriptDirectory.listFiles()?.isNotEmpty() == true)
         for (scriptFile in scriptDirectory.listFiles { dir: File?, name: String -> name.endsWith(".rs2asm") }) {
             log.debug("Assembling $scriptFile")
             try {

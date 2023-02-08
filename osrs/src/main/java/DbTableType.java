@@ -3,46 +3,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qs")
+@ObfuscatedName("qh")
 @Implements("DbTableType")
 public class DbTableType extends DualNode {
-   @ObfuscatedName("h")
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "Lly;"
+      descriptor = "Lln;"
    )
-   static AbstractArchive field3975;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Ljv;"
-   )
-   public static EvictingDualNodeHashTable DBTableType_cache = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("v")
-   public int[][] types;
-   @ObfuscatedName("x")
-   public Object[][] defaultValues;
+   static AbstractArchive field3990;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lja;"
+    )
+    public static EvictingDualNodeHashTable DBTableType_cache = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("v")
+    public int[][] types;
+    @ObfuscatedName("s")
+    public Object[][] defaultValues;
 
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      descriptor = "(Lqy;B)V",
-      garbageValue = "98"
+      descriptor = "(Lrd;I)V",
+      garbageValue = "-1384251148"
    )
-   void method2311(Buffer var1) {
+   void method2346(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
             return;
          }
 
-         this.method2314(var1, var2);
+         this.method2347(var1, var2);
       }
    }
 
-   @ObfuscatedName("x")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      descriptor = "(Lqy;IB)V",
-      garbageValue = "1"
+      descriptor = "(Lrd;II)V",
+      garbageValue = "1170374859"
    )
-   void method2314(Buffer var1, int var2) {
+   void method2347(Buffer var1, int var2) {
       if (var2 == 1) {
          int var3 = var1.readUnsignedByte();
          if (this.types == null) {
@@ -71,8 +71,8 @@ public class DbTableType extends DualNode {
                for(int var13 = 0; var13 < var11; ++var13) {
                   for(int var14 = 0; var14 < var7.length; ++var14) {
                      int var15 = var14 + var7.length * var13;
-                     class456 var16 = class9.method33(var7[var14]);
-                     var12[var15] = var16.method2301(var1);
+                     class463 var16 = class370.method1933(var7[var14]);
+                     var12[var15] = var16.method2339(var1);
                   }
                }
 
@@ -83,59 +83,11 @@ public class DbTableType extends DualNode {
 
    }
 
-   @ObfuscatedName("m")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "783882667"
+      garbageValue = "-286548666"
    )
-   void method2312() {
-   }
-
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-      garbageValue = "-770809944"
-   )
-   public static String method2313(CharSequence var0) {
-      int var1 = var0.length();
-      StringBuilder var2 = new StringBuilder(var1);
-
-      for(int var3 = 0; var3 < var1; ++var3) {
-         char var4 = var0.charAt(var3);
-         if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') {
-            if (var4 == ' ') {
-               var2.append('+');
-            } else {
-               byte var5 = class299.charToByteCp1252(var4);
-               var2.append('%');
-               int var6 = var5 >> 4 & 15;
-               if (var6 >= 10) {
-                  var2.append((char)(var6 + 55));
-               } else {
-                  var2.append((char)(var6 + 48));
-               }
-
-               var6 = var5 & 15;
-               if (var6 >= 10) {
-                  var2.append((char)(var6 + 55));
-               } else {
-                  var2.append((char)(var6 + 48));
-               }
-            }
-         } else {
-            var2.append(var4);
-         }
-      }
-
-      return var2.toString();
-   }
-
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(IS)I",
-      garbageValue = "3912"
-   )
-   public static int method2315(int var0) {
-      return var0 >>> 4 & class462.field3985;
+   void method2348() {
    }
 }

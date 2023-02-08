@@ -3,48 +3,39 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gd")
+@ObfuscatedName("gn")
 @Implements("StructComposition")
 public class StructComposition extends DualNode {
-   @ObfuscatedName("vs")
-   @ObfuscatedSignature(
-      descriptor = "Lch;"
-   )
-   static ClientPreferences clientPreferences;
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Lly;"
-   )
-   public static AbstractArchive StructDefinition_archive;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Ljv;"
-   )
-   static EvictingDualNodeHashTable StructDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("f")
-   public static int[] SpriteBuffer_spriteHeights;
-   @ObfuscatedName("u")
-   static int[] field1639;
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Lql;"
-   )
-   IterableNodeHashTable params;
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Lln;"
+    )
+    public static AbstractArchive StructDefinition_archive;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lja;"
+    )
+    static EvictingDualNodeHashTable StructDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "Lqu;"
+    )
+    IterableNodeHashTable params;
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-2106689877"
-   )
-   void postDecode() {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-470838788"
+    )
+    void postDecode() {
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;S)V",
-      garbageValue = "192"
-   )
-   void decode(Buffer var1) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;B)V",
+            garbageValue = "56"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -55,82 +46,112 @@ public class StructComposition extends DualNode {
       }
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;IB)V",
-      garbageValue = "-42"
-   )
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;II)V",
+            garbageValue = "-269996556"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 249) {
-         this.params = DynamicObject.readStringIntParameters(var1, this.params);
+         this.params = class127.readStringIntParameters(var1, this.params);
       }
 
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)I",
-      garbageValue = "76"
-   )
-   public int getIntParam(int var1, int var2) {
-      return UserComparator8.method661(this.params, var1, var2);
-   }
-
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "-389894911"
-   )
-   public String getStringParam(int var1, String var2) {
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)I",
+            garbageValue = "23"
+    )
+    public int getIntParam(int var1, int var2) {
       IterableNodeHashTable var4 = this.params;
-      String var3;
+      int var3;
       if (var4 == null) {
          var3 = var2;
       } else {
-         ObjectNode var5 = (ObjectNode)var4.get((long)var1);
+         IntegerNode var5 = (IntegerNode)var4.get((long)var1);
          if (var5 == null) {
             var3 = var2;
          } else {
-            var3 = (String)var5.obj;
+            var3 = var5.integer;
          }
       }
 
       return var3;
    }
 
-   @ObfuscatedName("e")
-   static final void method997(long var0) {
-      try {
-         Thread.sleep(var0);
-      } catch (InterruptedException var3) {
-         ;
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
+            garbageValue = "-811574533"
+    )
+    public String getStringParam(int var1, String var2) {
+      return class145.method771(this.params, var1, var2);
+   }
+
+   @ObfuscatedName("n")
+   @ObfuscatedSignature(
+      descriptor = "(II)J",
+      garbageValue = "-684272439"
+   )
+   public static long method1003(int var0) {
+      if (var0 > 63) {
+         throw new class367("Cannot generate max unsigned value for more than 63 bits as this is greater than the boundaries of a java long. Value provided: %d", new Object[]{var0});
+      } else {
+         return (long)Math.pow(2.0D, (double)var0) - 1L;
+      }
+   }
+
+   @ObfuscatedName("a")
+   @ObfuscatedSignature(
+      descriptor = "(ZI)V",
+      garbageValue = "1157186816"
+   )
+   public static void method1001(boolean var0) {
+      if (var0 != ItemComposition.ItemDefinition_inMembersWorld) {
+         TaskHandler.method888();
+         ItemComposition.ItemDefinition_inMembersWorld = var0;
       }
 
    }
 
-   @ObfuscatedName("e")
+   @ObfuscatedName("ag")
    @ObfuscatedSignature(
-      descriptor = "([BILjava/lang/CharSequence;I)I",
-      garbageValue = "1948411725"
+      descriptor = "(ILba;ZI)I",
+      garbageValue = "-1409796649"
    )
-   public static int method995(byte[] var0, int var1, CharSequence var2) {
-      int var3 = var2.length();
-      int var4 = var1;
+   static int method1002(int var0, Script var1, boolean var2) {
+      return 2;
+   }
 
-      for(int var5 = 0; var5 < var3; ++var5) {
-         char var6 = var2.charAt(var5);
-         if (var6 <= 127) {
-            var0[var4++] = (byte)var6;
-         } else if (var6 <= 2047) {
-            var0[var4++] = (byte)(192 | var6 >> 6);
-            var0[var4++] = (byte)(128 | var6 & 63);
-         } else {
-            var0[var4++] = (byte)(224 | var6 >> 12);
-            var0[var4++] = (byte)(128 | var6 >> 6 & 63);
-            var0[var4++] = (byte)(128 | var6 & 63);
+   @ObfuscatedName("ir")
+   @ObfuscatedSignature(
+      descriptor = "(B)V",
+      garbageValue = "-78"
+   )
+   static final void method999() {
+      int var0 = class130.menuX;
+      int var1 = ModeWhere.menuY;
+      int var2 = class7.menuWidth;
+      int var3 = PlayerType.menuHeight;
+      int var4 = 6116423;
+      Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, var4);
+      Rasterizer2D.Rasterizer2D_fillRectangle(var0 + 1, var1 + 1, var2 - 2, 16, 0);
+      Rasterizer2D.Rasterizer2D_drawRectangle(var0 + 1, var1 + 18, var2 - 2, var3 - 19, 0);
+      class19.fontBold12.draw("Choose Option", var0 + 3, var1 + 14, var4, -1);
+      int var5 = MouseHandler.MouseHandler_x;
+      int var6 = MouseHandler.MouseHandler_y;
+
+      for(int var7 = 0; var7 < Client.menuOptionsCount; ++var7) {
+         int var8 = var1 + (Client.menuOptionsCount - 1 - var7) * 15 + 31;
+         int var9 = 16777215;
+         if (var5 > var0 && var5 < var0 + var2 && var6 > var8 - 13 && var6 < var8 + 3) {
+            var9 = 16776960;
          }
+
+         class19.fontBold12.draw(TriBool.method2128(var7), var0 + 3, var8, var9, 0);
       }
 
-      return var4 - var1;
+      class7.method27(class130.menuX, ModeWhere.menuY, class7.menuWidth, PlayerType.menuHeight);
    }
 }

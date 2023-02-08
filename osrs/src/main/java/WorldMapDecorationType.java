@@ -3,127 +3,127 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ll")
+@ObfuscatedName("lf")
 @Implements("WorldMapDecorationType")
-public enum WorldMapDecorationType implements class345 {
-   @ObfuscatedName("h")
+public enum WorldMapDecorationType implements class349 {
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3034(0, 0),
-   @ObfuscatedName("e")
+   field3038(0, 0),
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
    field3035(1, 0),
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3036(2, 0),
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3042(3, 0),
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3048(9, 2),
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3037(4, 1),
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3039(5, 1),
-   @ObfuscatedName("r")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3040(6, 1),
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3041(7, 1),
-   @ObfuscatedName("b")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3038(8, 1),
-   @ObfuscatedName("j")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3043(12, 2),
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3044(13, 2),
-   @ObfuscatedName("i")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3045(14, 2),
-   @ObfuscatedName("o")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3046(15, 2),
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3047(16, 2),
-   @ObfuscatedName("k")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3049(17, 2),
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      descriptor = "Lll;"
-   )
-   field3057(18, 2),
+   field3031(2, 0),
    @ObfuscatedName("s")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3050(19, 2),
+   field3032(3, 0),
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3037(9, 2),
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3034(4, 1),
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3030(5, 1),
+   @ObfuscatedName("n")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3036(6, 1),
    @ObfuscatedName("l")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3051(20, 2),
-   @ObfuscatedName("t")
+   field3043(7, 1),
+   @ObfuscatedName("k")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3052(21, 2),
+   field3033(8, 1),
    @ObfuscatedName("c")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3053(10, 2),
+   field3042(12, 2),
+   @ObfuscatedName("r")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3040(13, 2),
+   @ObfuscatedName("b")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3041(14, 2),
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3039(15, 2),
+   @ObfuscatedName("t")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3046(16, 2),
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3044(17, 2),
    @ObfuscatedName("p")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3054(11, 2),
+   field3045(18, 2),
+   @ObfuscatedName("o")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3029(19, 2),
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3047(20, 2),
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3048(21, 2),
+   @ObfuscatedName("a")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3049(10, 2),
+   @ObfuscatedName("q")
+   @ObfuscatedSignature(
+      descriptor = "Llf;"
+   )
+   field3050(11, 2),
    @ObfuscatedName("d")
    @ObfuscatedSignature(
-      descriptor = "Lll;"
+      descriptor = "Llf;"
    )
-   field3055(22, 3);
+   field3051(22, 3);
 
-   @ObfuscatedName("y")
-   public final int id;
+    @ObfuscatedName("e")
+    public final int id;
 
    @ObfuscatedSignature(
       descriptor = "(II)V",
@@ -133,26 +133,30 @@ public enum WorldMapDecorationType implements class345 {
       this.id = var3;
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "96"
-   )
-   public int rsOrdinal() {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "3"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("b")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "224580717"
+      descriptor = "(I)V",
+      garbageValue = "91461371"
    )
-   static final void method1765(String var0) {
-      StringBuilder var10000 = new StringBuilder();
-      Object var10001 = null;
-      var10000 = var10000.append("Please remove ").append(var0);
-      var10001 = null;
-      String var1 = var10000.append(" from your ignore list first").toString();
-      KitDefinition.addGameMessage(30, "", var1);
+   public static void method1777() {
+      VarbitComposition.VarbitDefinition_cached.clear();
+   }
+
+    @ObfuscatedName("ek")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lqf;",
+            garbageValue = "1722547378"
+    )
+    static WorldMap getWorldMap() {
+      return GrandExchangeOfferUnitPriceComparator.worldMap;
    }
 }

@@ -3,52 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fj")
+@ObfuscatedName("gf")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-   @ObfuscatedName("vy")
-   @ObfuscatedSignature(
-      descriptor = "Lpb;"
-   )
-   static WorldMap worldMap;
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Lly;"
-   )
-   public static AbstractArchive KitDefinition_archive;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Lly;"
-   )
-   public static AbstractArchive KitDefinition_modelsArchive;
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Ljv;"
-   )
-   static EvictingDualNodeHashTable KitDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("m")
-   public int bodypartID = -1;
-   @ObfuscatedName("q")
-   int[] models2;
-   @ObfuscatedName("f")
-   short[] recolorFrom;
-   @ObfuscatedName("r")
-   short[] recolorTo;
-   @ObfuscatedName("u")
-   short[] retextureFrom;
-   @ObfuscatedName("b")
-   short[] retextureTo;
-   @ObfuscatedName("j")
-   int[] models = new int[]{-1, -1, -1, -1, -1};
-   @ObfuscatedName("g")
-   public boolean nonSelectable = false;
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Lln;"
+    )
+    public static AbstractArchive KitDefinition_archive;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lln;"
+    )
+    public static AbstractArchive KitDefinition_modelsArchive;
+    @ObfuscatedName("v")
+    public static int KitDefinition_fileCount;
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "Lja;"
+    )
+    static EvictingDualNodeHashTable KitDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("z")
+    public int bodypartID = -1;
+    @ObfuscatedName("j")
+    int[] models2;
+    @ObfuscatedName("i")
+    short[] recolorFrom;
+    @ObfuscatedName("n")
+    short[] recolorTo;
+    @ObfuscatedName("l")
+    short[] retextureFrom;
+    @ObfuscatedName("k")
+    short[] retextureTo;
+    @ObfuscatedName("c")
+    int[] models = new int[]{-1, -1, -1, -1, -1};
+    @ObfuscatedName("r")
+    public boolean nonSelectable = false;
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;B)V",
-      garbageValue = "1"
-   )
-   void decode(Buffer var1) {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;I)V",
+            garbageValue = "1063684102"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -59,12 +56,12 @@ public class KitDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;IB)V",
-      garbageValue = "0"
-   )
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;IB)V",
+            garbageValue = "-28"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.bodypartID = var1.readUnsignedByte();
       } else {
@@ -104,12 +101,12 @@ public class KitDefinition extends DualNode {
 
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1712752741"
-   )
-   public boolean ready() {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(S)Z",
+            garbageValue = "23626"
+    )
+    public boolean ready() {
       if (this.models2 == null) {
          return true;
       } else {
@@ -125,12 +122,12 @@ public class KitDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lgi;",
-      garbageValue = "32"
-   )
-   public ModelData getModelData() {
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lhe;",
+            garbageValue = "1641810679"
+    )
+    public ModelData getModelData() {
       if (this.models2 == null) {
          return null;
       } else {
@@ -164,12 +161,12 @@ public class KitDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("q")
+   @ObfuscatedName("j")
    @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "7"
+      descriptor = "(I)Z",
+      garbageValue = "-1598933884"
    )
-   public boolean method926() {
+   public boolean method934() {
       boolean var1 = true;
 
       for(int var2 = 0; var2 < 5; ++var2) {
@@ -181,12 +178,12 @@ public class KitDefinition extends DualNode {
       return var1;
    }
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lgi;",
-      garbageValue = "1769518048"
-   )
-   public ModelData getKitDefinitionModels() {
+    @ObfuscatedName("i")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lhe;",
+            garbageValue = "-1231697529"
+    )
+    public ModelData getKitDefinitionModels() {
       ModelData[] var1 = new ModelData[5];
       int var2 = 0;
 
@@ -211,14 +208,5 @@ public class KitDefinition extends DualNode {
       }
 
       return var5;
-   }
-
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "1365388558"
-   )
-   static void addGameMessage(int var0, String var1, String var2) {
-      class381.addChatMessage(var0, var1, var2, (String)null);
    }
 }

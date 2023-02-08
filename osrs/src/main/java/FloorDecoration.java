@@ -1,441 +1,246 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hs")
+@ObfuscatedName("hq")
 @Implements("FloorDecoration")
 public final class FloorDecoration {
-   @ObfuscatedName("u")
-   public static byte[][] SpriteBuffer_pixels;
-   @ObfuscatedName("cx")
-   @ObfuscatedSignature(
-      descriptor = "[Lra;"
-   )
-   static IndexedSprite[] worldSelectArrows;
-   @ObfuscatedName("h")
-   int z;
-   @ObfuscatedName("e")
-   int x;
-   @ObfuscatedName("v")
-   int y;
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Lhr;"
-   )
-   public Renderable renderable;
-   @ObfuscatedName("m")
-   public long tag;
+    @ObfuscatedName("f")
+    int z;
+    @ObfuscatedName("w")
+    int x;
+    @ObfuscatedName("v")
+    int y;
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "Lhd;"
+    )
+    public Renderable renderable;
+    @ObfuscatedName("z")
+    public long tag;
+    @ObfuscatedName("j")
+    int flags;
+
    @ObfuscatedName("q")
-   int flags;
-
-   @ObfuscatedName("hv")
    @ObfuscatedSignature(
-      descriptor = "(Lct;IB)V",
-      garbageValue = "13"
+      descriptor = "(I)V",
+      garbageValue = "141827072"
    )
-   static final void updateActorSequence(Actor var0, int var1) {
-      SequenceDefinition var3;
-      int var4;
-      int var11;
-      SequenceDefinition var12;
-      int var14;
-      if (var0.exactMoveArrive1Cycle >= Client.cycle) {
-         class273.method1518(var0);
-      } else {
-         int var5;
-         int var7;
-         int var8;
-         if (var0.exactMoveArrive2Cycle >= Client.cycle) {
-            boolean var2 = var0.exactMoveArrive2Cycle == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0;
-            if (!var2) {
-               var3 = AABB.SequenceDefinition_get(var0.sequence);
-               if (var3 != null && !var3.isCachedModelIdSet()) {
-                  var2 = var0.sequenceFrameCycle + 1 > var3.frameLengths[var0.sequenceFrame];
-               } else {
-                  var2 = true;
-               }
-            }
-
-            if (var2) {
-               var11 = var0.exactMoveArrive2Cycle - var0.exactMoveArrive1Cycle;
-               var4 = Client.cycle - var0.exactMoveArrive1Cycle;
-               var5 = var0.field933 * 64 + var0.exactMoveDeltaX1 * 128;
-               int var6 = var0.field933 * 64 + var0.exactMoveDeltaY1 * 128;
-               var7 = var0.field933 * 64 + var0.exactMoveDeltaX2 * 128;
-               var8 = var0.field933 * 64 + var0.exactMoveDeltaY2 * 128;
-               var0.x = (var7 * var4 + var5 * (var11 - var4)) / var11;
-               var0.y = (var8 * var4 + var6 * (var11 - var4)) / var11;
-            }
-
-            var0.field991 = 0;
-            var0.orientation = var0.exactMoveDirection;
-            var0.rotation = var0.orientation;
-         } else {
-            var0.movementSequence = var0.idleSequence;
-            if (var0.pathLength == 0) {
-               var0.field991 = 0;
-            } else {
-               label498: {
-                  if (var0.sequence != -1 && var0.sequenceDelay == 0) {
-                     var12 = AABB.SequenceDefinition_get(var0.sequence);
-                     if (var0.field1004 > 0 && var12.precedenceAnimating == 0) {
-                        ++var0.field991;
-                        break label498;
-                     }
-
-                     if (var0.field1004 <= 0 && var12.priority == 0) {
-                        ++var0.field991;
-                        break label498;
-                     }
-                  }
-
-                  var14 = var0.x;
-                  var11 = var0.y;
-                  var4 = var0.field933 * 64 + var0.pathX[var0.pathLength - 1] * 128;
-                  var5 = var0.field933 * 64 + var0.pathY[var0.pathLength - 1] * 128;
-                  if (var14 < var4) {
-                     if (var11 < var5) {
-                        var0.orientation = 1280;
-                     } else if (var11 > var5) {
-                        var0.orientation = 1792;
-                     } else {
-                        var0.orientation = 1536;
-                     }
-                  } else if (var14 > var4) {
-                     if (var11 < var5) {
-                        var0.orientation = 768;
-                     } else if (var11 > var5) {
-                        var0.orientation = 256;
-                     } else {
-                        var0.orientation = 512;
-                     }
-                  } else if (var11 < var5) {
-                     var0.orientation = 1024;
-                  } else if (var11 > var5) {
-                     var0.orientation = 0;
-                  }
-
-                  MoveSpeed var13 = var0.pathTraversed[var0.pathLength - 1];
-                  if (var4 - var14 <= 256 && var4 - var14 >= -256 && var5 - var11 <= 256 && var5 - var11 >= -256) {
-                     var7 = var0.orientation - var0.rotation & 2047;
-                     if (var7 > 1024) {
-                        var7 -= 2048;
-                     }
-
-                     var8 = var0.walkBackSequence;
-                     if (var7 >= -256 && var7 <= 256) {
-                        var8 = var0.walkSequence;
-                     } else if (var7 >= 256 && var7 < 768) {
-                        var8 = var0.walkRightSequence;
-                     } else if (var7 >= -768 && var7 <= -256) {
-                        var8 = var0.walkLeftSequence;
-                     }
-
-                     if (var8 == -1) {
-                        var8 = var0.walkSequence;
-                     }
-
-                     var0.movementSequence = var8;
-                     int var9 = 4;
-                     boolean var10 = true;
-                     if (var0 instanceof NPC) {
-                        var10 = ((NPC)var0).definition.isClickable;
-                     }
-
-                     if (var10) {
-                        if (var0.rotation != var0.orientation && var0.targetIndex == -1 && var0.field1001 != 0) {
-                           var9 = 2;
-                        }
-
-                        if (var0.pathLength > 2) {
-                           var9 = 6;
-                        }
-
-                        if (var0.pathLength > 3) {
-                           var9 = 8;
-                        }
-
-                        if (var0.field991 > 0 && var0.pathLength > 1) {
-                           var9 = 8;
-                           --var0.field991;
-                        }
-                     } else {
-                        if (var0.pathLength > 1) {
-                           var9 = 6;
-                        }
-
-                        if (var0.pathLength > 2) {
-                           var9 = 8;
-                        }
-
-                        if (var0.field991 > 0 && var0.pathLength > 1) {
-                           var9 = 8;
-                           --var0.field991;
-                        }
-                     }
-
-                     if (var13 == MoveSpeed.RUN) {
-                        var9 <<= 1;
-                     } else if (var13 == MoveSpeed.CRAWL) {
-                        var9 >>= 1;
-                     }
-
-                     if (var9 >= 8) {
-                        if (var0.movementSequence == var0.walkSequence && var0.runSequence != -1) {
-                           var0.movementSequence = var0.runSequence;
-                        } else if (var0.movementSequence == var0.walkBackSequence && var0.runBackSequence != -1) {
-                           var0.movementSequence = var0.runBackSequence;
-                        } else if (var0.walkLeftSequence == var0.movementSequence && var0.runLeftSequence != -1) {
-                           var0.movementSequence = var0.runLeftSequence;
-                        } else if (var0.walkRightSequence == var0.movementSequence && var0.runRightSequence != -1) {
-                           var0.movementSequence = var0.runRightSequence;
-                        }
-                     } else if (var9 <= 1) {
-                        if (var0.walkSequence == var0.movementSequence && var0.crawlSequence != -1) {
-                           var0.movementSequence = var0.crawlSequence;
-                        } else if (var0.movementSequence == var0.walkBackSequence && var0.crawlBackSequence != -1) {
-                           var0.movementSequence = var0.crawlBackSequence;
-                        } else if (var0.movementSequence == var0.walkLeftSequence && var0.crawlLeftSequence != -1) {
-                           var0.movementSequence = var0.crawlLeftSequence;
-                        } else if (var0.movementSequence == var0.walkRightSequence && var0.crawlRightSequence != -1) {
-                           var0.movementSequence = var0.crawlRightSequence;
-                        }
-                     }
-
-                     if (var4 != var14 || var11 != var5) {
-                        if (var14 < var4) {
-                           var0.x += var9;
-                           if (var0.x > var4) {
-                              var0.x = var4;
-                           }
-                        } else if (var14 > var4) {
-                           var0.x -= var9;
-                           if (var0.x < var4) {
-                              var0.x = var4;
-                           }
-                        }
-
-                        if (var11 < var5) {
-                           var0.y += var9;
-                           if (var0.y > var5) {
-                              var0.y = var5;
-                           }
-                        } else if (var11 > var5) {
-                           var0.y -= var9;
-                           if (var0.y < var5) {
-                              var0.y = var5;
-                           }
-                        }
-                     }
-
-                     if (var4 == var0.x && var5 == var0.y) {
-                        --var0.pathLength;
-                        if (var0.field1004 > 0) {
-                           --var0.field1004;
-                        }
-                     }
-                  } else {
-                     var0.x = var4;
-                     var0.y = var5;
-                     --var0.pathLength;
-                     if (var0.field1004 > 0) {
-                        --var0.field1004;
-                     }
-                  }
-               }
-            }
-         }
-      }
-
-      if (var0.x < 128 || var0.y < 128 || var0.x >= 13184 || var0.y >= 13184) {
-         var0.sequence = -1;
-         var0.spotAnimation = -1;
-         var0.exactMoveArrive1Cycle = 0;
-         var0.exactMoveArrive2Cycle = 0;
-         var0.x = var0.field933 * 64 + var0.pathX[0] * 128;
-         var0.y = var0.field933 * 64 + var0.pathY[0] * 128;
-         var0.method512();
-      }
-
-      if (class155.localPlayer == var0 && (var0.x < 1536 || var0.y < 1536 || var0.x >= 11776 || var0.y >= 11776)) {
-         var0.sequence = -1;
-         var0.spotAnimation = -1;
-         var0.exactMoveArrive1Cycle = 0;
-         var0.exactMoveArrive2Cycle = 0;
-         var0.x = var0.pathX[0] * 128 + var0.field933 * 64;
-         var0.y = var0.field933 * 64 + var0.pathY[0] * 128;
-         var0.method512();
-      }
-
-      FriendSystem.method413(var0);
-      var0.isWalking = false;
-      if (var0.movementSequence != -1) {
-         var12 = AABB.SequenceDefinition_get(var0.movementSequence);
-         if (var12 != null) {
-            if (!var12.isCachedModelIdSet() && var12.frameIds != null) {
-               ++var0.movementFrameCycle;
-               if (var0.movementFrame < var12.frameIds.length && var0.movementFrameCycle > var12.frameLengths[var0.movementFrame]) {
-                  var0.movementFrameCycle = 1;
-                  ++var0.movementFrame;
-                  FriendsChat.method2036(var12, var0.movementFrame, var0.x, var0.y);
-               }
-
-               if (var0.movementFrame >= var12.frameIds.length) {
-                  if (var12.frameCount > 0) {
-                     var0.movementFrame -= var12.frameCount;
-                     if (var12.field1807) {
-                        ++var0.field970;
-                     }
-
-                     if (var0.movementFrame < 0 || var0.movementFrame >= var12.frameIds.length || var12.field1807 && var0.field970 >= var12.iterations) {
-                        var0.movementFrameCycle = 0;
-                        var0.movementFrame = 0;
-                        var0.field970 = 0;
-                     }
-                  } else {
-                     var0.movementFrameCycle = 0;
-                     var0.movementFrame = 0;
-                  }
-
-                  FriendsChat.method2036(var12, var0.movementFrame, var0.x, var0.y);
-               }
-            } else if (var12.isCachedModelIdSet()) {
-               ++var0.movementFrame;
-               var11 = var12.method1056();
-               if (var0.movementFrame < var11) {
-                  class20.method72(var12, var0.movementFrame, var0.x, var0.y);
-               } else {
-                  if (var12.frameCount > 0) {
-                     var0.movementFrame -= var12.frameCount;
-                     if (var12.field1807) {
-                        ++var0.field970;
-                     }
-
-                     if (var0.movementFrame < 0 || var0.movementFrame >= var11 || var12.field1807 && var0.field970 >= var12.iterations) {
-                        var0.movementFrame = 0;
-                        var0.movementFrameCycle = 0;
-                        var0.field970 = 0;
-                     }
-                  } else {
-                     var0.movementFrameCycle = 0;
-                     var0.movementFrame = 0;
-                  }
-
-                  class20.method72(var12, var0.movementFrame, var0.x, var0.y);
-               }
-            } else {
-               var0.movementSequence = -1;
-            }
-         } else {
-            var0.movementSequence = -1;
-         }
-      }
-
-      if (var0.spotAnimation != -1 && Client.cycle >= var0.spotAnimationStartCycle) {
-         if (var0.spotAnimationFrame < 0) {
-            var0.spotAnimationFrame = 0;
-         }
-
-         var14 = ClanSettings.SpotAnimationDefinition_get(var0.spotAnimation).sequence;
-         if (var14 != -1) {
-            var3 = AABB.SequenceDefinition_get(var14);
-            if (var3 != null && var3.frameIds != null && !var3.isCachedModelIdSet()) {
-               ++var0.spotAnimFrameCycle;
-               if (var0.spotAnimationFrame < var3.frameIds.length && var0.spotAnimFrameCycle > var3.frameLengths[var0.spotAnimationFrame]) {
-                  var0.spotAnimFrameCycle = 1;
-                  ++var0.spotAnimationFrame;
-                  FriendsChat.method2036(var3, var0.spotAnimationFrame, var0.x, var0.y);
-               }
-
-               if (var0.spotAnimationFrame >= var3.frameIds.length && (var0.spotAnimationFrame < 0 || var0.spotAnimationFrame >= var3.frameIds.length)) {
-                  var0.spotAnimation = -1;
-               }
-            } else if (var3.isCachedModelIdSet()) {
-               ++var0.spotAnimationFrame;
-               var4 = var3.method1056();
-               if (var0.spotAnimationFrame < var4) {
-                  class20.method72(var3, var0.spotAnimationFrame, var0.x, var0.y);
-               } else if (var0.spotAnimationFrame < 0 || var0.spotAnimationFrame >= var4) {
-                  var0.spotAnimation = -1;
-               }
-            } else {
-               var0.spotAnimation = -1;
-            }
-         } else {
-            var0.spotAnimation = -1;
-         }
-      }
-
-      if (var0.sequence != -1 && var0.sequenceDelay <= 1) {
-         var12 = AABB.SequenceDefinition_get(var0.sequence);
-         if (var12.precedenceAnimating == 1 && var0.field1004 > 0 && var0.exactMoveArrive1Cycle <= Client.cycle && var0.exactMoveArrive2Cycle < Client.cycle) {
-            var0.sequenceDelay = 1;
-            return;
-         }
-      }
-
-      if (var0.sequence != -1 && var0.sequenceDelay == 0) {
-         var12 = AABB.SequenceDefinition_get(var0.sequence);
-         if (var12 == null) {
-            var0.sequence = -1;
-         } else if (!var12.isCachedModelIdSet() && var12.frameIds != null) {
-            ++var0.sequenceFrameCycle;
-            if (var0.sequenceFrame < var12.frameIds.length && var0.sequenceFrameCycle > var12.frameLengths[var0.sequenceFrame]) {
-               var0.sequenceFrameCycle = 1;
-               ++var0.sequenceFrame;
-               FriendsChat.method2036(var12, var0.sequenceFrame, var0.x, var0.y);
-            }
-
-            if (var0.sequenceFrame >= var12.frameIds.length) {
-               var0.sequenceFrame -= var12.frameCount;
-               ++var0.currentSequenceFrameIndex;
-               if (var0.currentSequenceFrameIndex >= var12.iterations) {
-                  var0.sequence = -1;
-               } else if (var0.sequenceFrame >= 0 && var0.sequenceFrame < var12.frameIds.length) {
-                  FriendsChat.method2036(var12, var0.sequenceFrame, var0.x, var0.y);
-               } else {
-                  var0.sequence = -1;
-               }
-            }
-
-            var0.isWalking = var12.stretches;
-         } else if (var12.isCachedModelIdSet()) {
-            ++var0.sequenceFrame;
-            var11 = var12.method1056();
-            if (var0.sequenceFrame < var11) {
-               class20.method72(var12, var0.sequenceFrame, var0.x, var0.y);
-            } else {
-               var0.sequenceFrame -= var12.frameCount;
-               ++var0.currentSequenceFrameIndex;
-               if (var0.currentSequenceFrameIndex >= var12.iterations) {
-                  var0.sequence = -1;
-               } else if (var0.sequenceFrame >= 0 && var0.sequenceFrame < var11) {
-                  class20.method72(var12, var0.sequenceFrame, var0.x, var0.y);
-               } else {
-                  var0.sequence = -1;
-               }
-            }
-         } else {
-            var0.sequence = -1;
-         }
-      }
-
-      if (var0.sequenceDelay > 0) {
-         --var0.sequenceDelay;
+   static void method1144() {
+      if (class290.loadWorlds()) {
+         Login.worldSelectOpen = true;
+         Login.worldSelectPage = 0;
+         Login.worldSelectPagesCount = 0;
       }
 
    }
 
-   @ObfuscatedName("jv")
+   @ObfuscatedName("hd")
    @ObfuscatedSignature(
-      descriptor = "(III)Lgg;",
-      garbageValue = "1330231937"
+      descriptor = "(IIIII)V",
+      garbageValue = "1521078230"
    )
-   static RouteStrategy method1134(int var0, int var1) {
-      Client.field650.approxDestinationX = var0;
-      Client.field650.approxDestinationY = var1;
-      Client.field650.approxDestinationSizeX = 1;
-      Client.field650.approxDestinationSizeY = 1;
-      return Client.field650;
+   static final void method1143(int var0, int var1, int var2, int var3) {
+      Client.overheadTextCount = 0;
+      boolean var4 = false;
+      int var5 = -1;
+      int var6 = -1;
+      int var7 = Players.Players_count;
+      int[] var8 = Players.Players_indices;
+
+      int var9;
+      for(var9 = 0; var9 < var7 + Client.npcCount; ++var9) {
+         Object var10;
+         if (var9 < var7) {
+            var10 = Client.players[var8[var9]];
+            if (var8[var9] == Client.combatTargetPlayerIndex) {
+               var4 = true;
+               var5 = var9;
+               continue;
+            }
+
+            if (var10 == class387.localPlayer) {
+               var6 = var9;
+               continue;
+            }
+         } else {
+            var10 = Client.npcs[Client.npcIndices[var9 - var7]];
+         }
+
+         class374.drawActor2d((Actor)var10, var9, var0, var1, var2, var3);
+      }
+
+      if (Client.renderSelf && var6 != -1) {
+         class374.drawActor2d(class387.localPlayer, var6, var0, var1, var2, var3);
+      }
+
+      if (var4) {
+         class374.drawActor2d(Client.players[Client.combatTargetPlayerIndex], var5, var0, var1, var2, var3);
+      }
+
+      for(var9 = 0; var9 < Client.overheadTextCount; ++var9) {
+         int var19 = Client.overheadTextXs[var9];
+         int var11 = Client.overheadTextYs[var9];
+         int var12 = Client.overheadTextXOffsets[var9];
+         int var13 = Client.overheadTextAscents[var9];
+         boolean var14 = true;
+
+         while(var14) {
+            var14 = false;
+
+            for(int var15 = 0; var15 < var9; ++var15) {
+               if (var11 + 2 > Client.overheadTextYs[var15] - Client.overheadTextAscents[var15] && var11 - var13 < Client.overheadTextYs[var15] + 2 && var19 - var12 < Client.overheadTextXs[var15] + Client.overheadTextXOffsets[var15] && var12 + var19 > Client.overheadTextXs[var15] - Client.overheadTextXOffsets[var15] && Client.overheadTextYs[var15] - Client.overheadTextAscents[var15] < var11) {
+                  var11 = Client.overheadTextYs[var15] - Client.overheadTextAscents[var15];
+                  var14 = true;
+               }
+            }
+         }
+
+         Client.viewportTempX = Client.overheadTextXs[var9];
+         Client.viewportTempY = Client.overheadTextYs[var9] = var11;
+         String var20 = Client.overheadText[var9];
+         if (Client.chatEffects == 0) {
+            int var16 = 16776960;
+            if (Client.overheadTextColors[var9] < 6) {
+               var16 = Client.field622[Client.overheadTextColors[var9]];
+            }
+
+            if (Client.overheadTextColors[var9] == 6) {
+               var16 = Client.viewportDrawCount % 20 < 10 ? 16711680 : 16776960;
+            }
+
+            if (Client.overheadTextColors[var9] == 7) {
+               var16 = Client.viewportDrawCount % 20 < 10 ? 255 : '\uffff';
+            }
+
+            if (Client.overheadTextColors[var9] == 8) {
+               var16 = Client.viewportDrawCount % 20 < 10 ? '뀀' : 8454016;
+            }
+
+            int var17;
+            if (Client.overheadTextColors[var9] == 9) {
+               var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+               if (var17 < 50) {
+                  var16 = var17 * 1280 + 16711680;
+               } else if (var17 < 100) {
+                  var16 = 16776960 - (var17 - 50) * 327680;
+               } else if (var17 < 150) {
+                  var16 = (var17 - 100) * 5 + '\uff00';
+               }
+            }
+
+            if (Client.overheadTextColors[var9] == 10) {
+               var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+               if (var17 < 50) {
+                  var16 = var17 * 5 + 16711680;
+               } else if (var17 < 100) {
+                  var16 = 16711935 - (var17 - 50) * 327680;
+               } else if (var17 < 150) {
+                  var16 = (var17 - 100) * 327680 + 255 - (var17 - 100) * 5;
+               }
+            }
+
+            if (Client.overheadTextColors[var9] == 11) {
+               var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+               if (var17 < 50) {
+                  var16 = 16777215 - var17 * 327685;
+               } else if (var17 < 100) {
+                  var16 = (var17 - 50) * 327685 + '\uff00';
+               } else if (var17 < 150) {
+                  var16 = 16777215 - (var17 - 100) * 327680;
+               }
+            }
+
+            if (Client.overheadTextEffects[var9] == 0) {
+               class19.fontBold12.drawCentered(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0);
+            }
+
+            if (Client.overheadTextEffects[var9] == 1) {
+               class19.fontBold12.drawCenteredWave(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount);
+            }
+
+            if (Client.overheadTextEffects[var9] == 2) {
+               class19.fontBold12.drawCenteredWave2(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount);
+            }
+
+            if (Client.overheadTextEffects[var9] == 3) {
+               class19.fontBold12.drawCenteredShake(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var9]);
+            }
+
+            if (Client.overheadTextEffects[var9] == 4) {
+               var17 = (150 - Client.overheadTextCyclesRemaining[var9]) * (class19.fontBold12.stringWidth(var20) + 100) / 150;
+               Rasterizer2D.Rasterizer2D_expandClip(var0 + Client.viewportTempX - 50, var1, var0 + Client.viewportTempX + 50, var3 + var1);
+               class19.fontBold12.draw(var20, var0 + Client.viewportTempX + 50 - var17, Client.viewportTempY + var1, var16, 0);
+               Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
+            }
+
+            if (Client.overheadTextEffects[var9] == 5) {
+               var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+               int var18 = 0;
+               if (var17 < 25) {
+                  var18 = var17 - 25;
+               } else if (var17 > 125) {
+                  var18 = var17 - 125;
+               }
+
+               Rasterizer2D.Rasterizer2D_expandClip(var0, Client.viewportTempY + var1 - class19.fontBold12.ascent - 1, var0 + var2, Client.viewportTempY + var1 + 5);
+               class19.fontBold12.drawCentered(var20, var0 + Client.viewportTempX, var18 + Client.viewportTempY + var1, var16, 0);
+               Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
+            }
+         } else {
+            class19.fontBold12.drawCentered(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0);
+         }
+      }
+
+   }
+
+   @ObfuscatedName("if")
+   @ObfuscatedSignature(
+      descriptor = "(II)V",
+      garbageValue = "-808127633"
+   )
+   static final void method1142(int var0) {
+      if (var0 >= 0) {
+         int var1 = Client.menuArguments1[var0];
+         int var2 = Client.menuArguments2[var0];
+         int var3 = Client.menuOpcodes[var0];
+         int var4 = Client.menuIdentifiers[var0];
+         int var5 = Client.menuItemIds[var0];
+         String var6 = Client.menuActions[var0];
+         String var7 = Client.menuTargets[var0];
+         FileSystem.menuAction(var1, var2, var3, var4, var5, var6, var7, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
+      }
+   }
+
+   @ObfuscatedName("jo")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/String;Lkz;I)Ljava/lang/String;",
+      garbageValue = "949347159"
+   )
+   static String method1141(String var0, Widget var1) {
+      if (var0.indexOf("%") != -1) {
+         for(int var2 = 1; var2 <= 5; ++var2) {
+            while(true) {
+               int var3 = var0.indexOf("%" + var2);
+               if (var3 == -1) {
+                  break;
+               }
+
+               String var4 = var0.substring(0, var3);
+               int var6 = Language.method1879(var1, var2 - 1);
+               String var5;
+               if (var6 < 999999999) {
+                  var5 = Integer.toString(var6);
+               } else {
+                  var5 = "*";
+               }
+
+               var0 = var4 + var5 + var0.substring(var3 + 2);
+            }
+         }
+      }
+
+      return var0;
    }
 }

@@ -1,26 +1,26 @@
-import java.io.File;
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dc")
+@ObfuscatedName("df")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-   @ObfuscatedName("h")
-   final boolean reversed;
+    @ObfuscatedName("ty")
+    static int cameraMoveToAcceleration;
+    @ObfuscatedName("f")
+    final boolean reversed;
 
    public UserComparator7(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Loa;Loa;I)I",
-      garbageValue = "-221147899"
-   )
-   int compareBuddy(Buddy var1, Buddy var2) {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(Loa;Loa;I)I",
+            garbageValue = "-743510609"
+    )
+    int compareBuddy(Buddy var1, Buddy var2) {
       if (var1.world != 0 && var2.world != 0) {
          return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
       } else {
@@ -28,41 +28,37 @@ public class UserComparator7 extends AbstractUserComparator {
       }
    }
 
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
 
-   @ObfuscatedName("h")
+   @ObfuscatedName("la")
    @ObfuscatedSignature(
-      descriptor = "(IIB)Z",
-      garbageValue = "67"
+      descriptor = "(I)V",
+      garbageValue = "-805212170"
    )
-   static boolean method665(int var0, int var1) {
-      return var0 != 4 || var1 < 8;
+   static final void method651() {
+      Client.field577 = Client.cycleCntr;
    }
 
-   @ObfuscatedName("e")
+   @ObfuscatedName("lu")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/io/File;Ljava/io/File;I)V",
-      garbageValue = "797678294"
+      descriptor = "(IIZI)V",
+      garbageValue = "993311164"
    )
-   static void method664(File var0, File var1) {
-      try {
-         AccessFile var2 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
-         Buffer var3 = new Buffer(500);
-         var3.writeByte(3);
-         var3.writeByte(var1 != null ? 1 : 0);
-         var3.writeCESU8(var0.getPath());
-         if (var1 != null) {
-            var3.writeCESU8("");
+   static final void method652(int var0, int var1, boolean var2) {
+      if (Client.currentClanChannels[var0] != null) {
+         if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method844()) {
+            ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
+            PacketBufferNode var4 = Renderable.getPacketBufferNode(ClientPacket.field2453, Client.packetWriter.isaacCipher);
+            var4.packetBuffer.writeByte(4 + class96.stringCp1252NullTerminatedByteSize(var3.username.getName()));
+            var4.packetBuffer.writeByte(var0);
+            var4.packetBuffer.writeShort(var1);
+            var4.packetBuffer.writeBoolean(var2);
+            var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName());
+            Client.packetWriter.addNode(var4);
          }
-
-         var2.write(var3.array, 0, var3.offset);
-         var2.close();
-      } catch (IOException var4) {
-         var4.printStackTrace();
       }
-
    }
 }

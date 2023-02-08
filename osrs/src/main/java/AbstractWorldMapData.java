@@ -1,149 +1,143 @@
-import java.util.Iterator;
 import java.util.LinkedList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("in")
+@ObfuscatedName("ia")
 @Implements("AbstractWorldMapData")
 public abstract class AbstractWorldMapData {
-   @ObfuscatedName("s")
-   public static boolean field2362 = true;
-   @ObfuscatedName("hy")
-   @ObfuscatedSignature(
-      descriptor = "Lnv;"
-   )
-   static Font fontPlain12;
-   @ObfuscatedName("m")
-   int regionXLow;
-   @ObfuscatedName("q")
-   int regionYLow;
-   @ObfuscatedName("f")
-   int regionX;
-   @ObfuscatedName("r")
-   int regionY;
-   @ObfuscatedName("u")
-   int minPlane;
-   @ObfuscatedName("b")
-   int planes;
-   @ObfuscatedName("j")
-   int groupId = -1;
-   @ObfuscatedName("g")
-   int fileId = -1;
-   @ObfuscatedName("i")
-   short[][][] floorUnderlayIds;
    @ObfuscatedName("o")
-   short[][][] floorOverlayIds;
-   @ObfuscatedName("n")
-   byte[][][] field2359;
-   @ObfuscatedName("k")
-   byte[][][] field2360;
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      descriptor = "[[[[Liz;"
-   )
-   WorldMapDecoration[][][][] decorations;
-   @ObfuscatedName("l")
-   boolean field2363;
+   public static boolean field2351 = true;
+    @ObfuscatedName("z")
+    int regionXLow;
+    @ObfuscatedName("j")
+    int regionYLow;
+    @ObfuscatedName("i")
+    int regionX;
+    @ObfuscatedName("n")
+    int regionY;
+    @ObfuscatedName("l")
+    int minPlane;
+    @ObfuscatedName("k")
+    int planes;
+    @ObfuscatedName("c")
+    int groupId = -1;
+    @ObfuscatedName("r")
+    int fileId = -1;
+    @ObfuscatedName("b")
+    short[][][] floorUnderlayIds;
+    @ObfuscatedName("m")
+    short[][][] floorOverlayIds;
    @ObfuscatedName("t")
-   boolean field2364;
+   byte[][][] field2358;
+   @ObfuscatedName("h")
+   byte[][][] field2355;
+    @ObfuscatedName("p")
+    @ObfuscatedSignature(
+            descriptor = "[[[[Lik;"
+    )
+    WorldMapDecoration[][][][] decorations;
+   @ObfuscatedName("u")
+   boolean field2356;
+   @ObfuscatedName("x")
+   boolean field2357;
 
    AbstractWorldMapData() {
       new LinkedList();
-      this.field2363 = false;
-      this.field2364 = false;
+      this.field2356 = false;
+      this.field2357 = false;
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;I)V",
-      garbageValue = "1703912011"
-   )
-   abstract void readGeography(Buffer var1);
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;B)V",
+            garbageValue = "9"
+    )
+    abstract void readGeography(Buffer var1);
 
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "2145704000"
-   )
-   boolean isFullyLoaded() {
-      return this.field2363 && this.field2364;
+    @ObfuscatedName("a")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-217482611"
+    )
+    boolean isFullyLoaded() {
+      return this.field2356 && this.field2357;
    }
 
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "(Lly;I)V",
-      garbageValue = "1014997119"
-   )
-   void loadGeography(AbstractArchive var1) {
+    @ObfuscatedName("q")
+    @ObfuscatedSignature(
+            descriptor = "(Lln;B)V",
+            garbageValue = "110"
+    )
+    void loadGeography(AbstractArchive var1) {
       if (!this.isFullyLoaded()) {
          byte[] var2 = var1.takeFile(this.groupId, this.fileId);
          if (var2 != null) {
             this.readGeography(new Buffer(var2));
-            this.field2363 = true;
-            this.field2364 = true;
+            this.field2356 = true;
+            this.field2357 = true;
          }
 
       }
    }
 
-   @ObfuscatedName("ad")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1690828901"
-   )
-   void reset() {
+    @ObfuscatedName("d")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "126"
+    )
+    void reset() {
       this.floorUnderlayIds = null;
       this.floorOverlayIds = null;
-      this.field2359 = null;
-      this.field2360 = null;
+      this.field2358 = null;
+      this.field2355 = null;
       this.decorations = null;
-      this.field2363 = false;
-      this.field2364 = false;
+      this.field2356 = false;
+      this.field2357 = false;
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "(IILqy;I)V",
-      garbageValue = "-2009986284"
-   )
-   void readTile(int var1, int var2, Buffer var3) {
+    @ObfuscatedName("e")
+    @ObfuscatedSignature(
+            descriptor = "(IILrd;B)V",
+            garbageValue = "1"
+    )
+    void readTile(int var1, int var2, Buffer var3) {
       int var4 = var3.readUnsignedByte();
       if (var4 != 0) {
          if ((var4 & 1) != 0) {
-            this.method1435(var1, var2, var3, var4);
+            this.method1445(var1, var2, var3, var4);
          } else {
-            this.method1436(var1, var2, var3, var4);
+            this.method1450(var1, var2, var3, var4);
          }
 
       }
    }
 
-   @ObfuscatedName("am")
+   @ObfuscatedName("g")
    @ObfuscatedSignature(
-      descriptor = "(IILqy;II)V",
-      garbageValue = "463825576"
+      descriptor = "(IILrd;II)V",
+      garbageValue = "-2024811095"
    )
-   void method1435(int var1, int var2, Buffer var3, int var4) {
+   void method1445(int var1, int var2, Buffer var3, int var4) {
       boolean var5 = (var4 & 2) != 0;
       if (var5) {
-         this.floorOverlayIds[0][var1][var2] = field2362 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte();
+         this.floorOverlayIds[0][var1][var2] = field2351 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte();
       }
 
-      this.floorUnderlayIds[0][var1][var2] = field2362 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte();
+      this.floorUnderlayIds[0][var1][var2] = field2351 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte();
    }
 
-   @ObfuscatedName("av")
+   @ObfuscatedName("y")
    @ObfuscatedSignature(
-      descriptor = "(IILqy;IB)V",
-      garbageValue = "103"
+      descriptor = "(IILrd;II)V",
+      garbageValue = "2043326073"
    )
-   void method1436(int var1, int var2, Buffer var3, int var4) {
+   void method1450(int var1, int var2, Buffer var3, int var4) {
       int var5 = ((var4 & 24) >> 3) + 1;
       boolean var6 = (var4 & 2) != 0;
       boolean var7 = (var4 & 4) != 0;
-      this.floorUnderlayIds[0][var1][var2] = field2362 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte();
+      this.floorUnderlayIds[0][var1][var2] = field2351 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte();
       int var8;
       int var9;
       int var11;
@@ -151,12 +145,12 @@ public abstract class AbstractWorldMapData {
          var8 = var3.readUnsignedByte();
 
          for(var9 = 0; var9 < var8; ++var9) {
-            int var10 = field2362 ? var3.readUnsignedShort() : var3.readUnsignedByte();
+            int var10 = field2351 ? var3.readUnsignedShort() : var3.readUnsignedByte();
             if (var10 != 0) {
                this.floorOverlayIds[var9][var1][var2] = (short)var10;
                var11 = var3.readUnsignedByte();
-               this.field2359[var9][var1][var2] = (byte)(var11 >> 2);
-               this.field2360[var9][var1][var2] = (byte)(var11 & 3);
+               this.field2358[var9][var1][var2] = (byte)(var11 >> 2);
+               this.field2355[var9][var1][var2] = (byte)(var11 & 3);
             }
          }
       }
@@ -168,7 +162,7 @@ public abstract class AbstractWorldMapData {
                WorldMapDecoration[] var14 = this.decorations[var8][var1][var2] = new WorldMapDecoration[var9];
 
                for(var11 = 0; var11 < var9; ++var11) {
-                  int var12 = var3.method2362();
+                  int var12 = var3.method2419();
                   int var13 = var3.readUnsignedByte();
                   var14[var11] = new WorldMapDecoration(var12, var13 >> 2, var13 & 3);
                }
@@ -178,57 +172,47 @@ public abstract class AbstractWorldMapData {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-2028878275"
-   )
-   int getRegionX() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1948785623"
+    )
+    int getRegionX() {
       return this.regionX;
    }
 
-   @ObfuscatedName("ar")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-574491107"
-   )
-   int getRegionY() {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1777462733"
+    )
+    int getRegionY() {
       return this.regionY;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Lly;IIB)[Lra;",
-      garbageValue = "21"
-   )
-   public static IndexedSprite[] method1431(AbstractArchive var0, int var1, int var2) {
-      byte[] var4 = var0.takeFile(var1, var2);
-      boolean var3;
-      if (var4 == null) {
-         var3 = false;
-      } else {
-         VarpDefinition.SpriteBuffer_decode(var4);
-         var3 = true;
+    @ObfuscatedName("jv")
+    @ObfuscatedSignature(
+            descriptor = "([Lkz;Lkz;ZB)V",
+            garbageValue = "-1"
+    )
+    static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
+      int var3 = var1.scrollWidth != 0 ? var1.scrollWidth * -1665715877 * 1727370963 : var1.width * -1145697413 * -1115677773;
+      int var4 = var1.scrollHeight != 0 ? var1.scrollHeight * -2014827871 * 1565145441 : var1.height * -1361869075 * 2038548197;
+      class374.resizeInterface(var0, var1.id, var3, var4, var2);
+      if (var1.children != null) {
+         class374.resizeInterface(var1.children, var1.id, var3, var4, var2);
       }
 
-      return !var3 ? null : class282.method1535();
-   }
-
-   @ObfuscatedName("mk")
-   @ObfuscatedSignature(
-      descriptor = "(S)V",
-      garbageValue = "2188"
-   )
-   static final void FriendSystem_invalidateIgnoreds() {
-      Iterator var0 = Messages.Messages_hashTable.iterator();
-
-      while(var0.hasNext()) {
-         Message var1 = (Message)var0.next();
-         var1.clearIsFromIgnored();
+      InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
+      if (var5 != null) {
+         int var6 = var5.group;
+         if (class153.loadInterface(var6)) {
+            class374.resizeInterface(WorldMapLabel.Widget_interfaceComponents[var6], -1, var3, var4, var2);
+         }
       }
 
-      if (class281.friendsChat != null) {
-         class281.friendsChat.invalidateIgnoreds();
+      if (var1.contentType == 1337) {
+         ;
       }
 
    }

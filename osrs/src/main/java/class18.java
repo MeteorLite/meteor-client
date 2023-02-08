@@ -1,163 +1,120 @@
-import java.util.Comparator;
-import java.util.Map.Entry;
-
+import java.util.concurrent.Future;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("l")
-class class18 implements Comparator {
-   @ObfuscatedName("h")
+@ObfuscatedName("u")
+public class class18 {
+    @ObfuscatedName("t")
+    @ObfuscatedSignature(
+            descriptor = "[Lqp;"
+    )
+    public static BufferedFile[] JagexCache_idxFiles;
+   @ObfuscatedName("gl")
+   static int[] field58;
+   @ObfuscatedName("oq")
    @ObfuscatedSignature(
-      descriptor = "Lly;"
+      descriptor = "Lkz;"
    )
-   public static AbstractArchive HitSplatDefinition_archive;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-      descriptor = "Lj;"
-   )
-   @ObfuscatedName("this$0")
-   final class10 this$0;
+   static Widget field60;
+   @ObfuscatedName("f")
+   Future field59;
+   @ObfuscatedName("w")
+   String field61;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lj;)V"
-   )
-   class18(class10 var1) {
-      this.this$0 = var1;
+   class18(Future var1) {
+      this.field59 = var1;
    }
 
-   @ObfuscatedName("h")
+   class18(String var1) {
+      this.method68(var1);
+   }
+
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;B)I",
-      garbageValue = "-60"
+      descriptor = "(Ljava/lang/String;B)V",
+      garbageValue = "13"
    )
-   int method58(Entry var1, Entry var2) {
-      return ((Float)var2.getValue()).compareTo((Float)var1.getValue());
+   void method68(String var1) {
+      if (var1 == null) {
+         var1 = "";
+      }
+
+      this.field61 = var1;
+      if (this.field59 != null) {
+         this.field59.cancel(true);
+         this.field59 = null;
+      }
+
    }
 
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
-      return this.method58((Entry)var1, (Entry)var2);
-   }
-
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
-      return super.equals(var1);
-   }
-
-   @ObfuscatedName("h")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      descriptor = "(IIIB)I",
-      garbageValue = "42"
+      descriptor = "(B)Ljava/lang/String;",
+      garbageValue = "17"
    )
-   public static int method60(int var0, int var1, int var2) {
-      var2 &= 3;
-      if (var2 == 0) {
-         return var1;
-      } else if (var2 == 1) {
-         return 7 - var0;
+   public final String method69() {
+      return this.field61;
+   }
+
+   @ObfuscatedName("v")
+   @ObfuscatedSignature(
+      descriptor = "(B)Z",
+      garbageValue = "125"
+   )
+   public boolean method72() {
+      return this.field61 != null || this.field59 == null;
+   }
+
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      descriptor = "(I)Z",
+      garbageValue = "-2116375793"
+   )
+   public final boolean method70() {
+      return this.method72() ? true : this.field59.isDone();
+   }
+
+   @ObfuscatedName("z")
+   @ObfuscatedSignature(
+      descriptor = "(I)La;",
+      garbageValue = "-1250642886"
+   )
+   public final class20 method71() {
+      if (this.method72()) {
+         return new class20(this.field61);
+      } else if (!this.method70()) {
+         return null;
       } else {
-         return var2 == 2 ? 7 - var1 : var0;
-      }
-   }
-
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "801580605"
-   )
-   static int method61(int var0, int var1) {
-      ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-      if (var2 == null) {
-         return -1;
-      } else {
-         return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1;
-      }
-   }
-
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(IB)I",
-      garbageValue = "1"
-   )
-   public static int method63(int var0) {
-      return var0 != 0 && var0 != 1 ? -1 : 0;
-   }
-
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      descriptor = "(Lkd;I[B[BB)V",
-      garbageValue = "120"
-   )
-   static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
-      if (var0.field2946 == null) {
-         if (var2 == null) {
-            return;
-         }
-
-         var0.field2946 = new byte[11][];
-         var0.field2947 = new byte[11][];
-         var0.field2954 = new int[11];
-         var0.field2949 = new int[11];
-      }
-
-      var0.field2946[var1] = var2;
-      if (var2 != null) {
-         var0.field2945 = true;
-      } else {
-         var0.field2945 = false;
-
-         for(int var4 = 0; var4 < var0.field2946.length; ++var4) {
-            if (var0.field2946[var4] != null) {
-               var0.field2945 = true;
-               break;
-            }
-         }
-      }
-
-      var0.field2947[var1] = var3;
-   }
-
-   @ObfuscatedName("gh")
-   @ObfuscatedSignature(
-      descriptor = "(Lln;Ljava/lang/String;I)V",
-      garbageValue = "-156913966"
-   )
-   static void method59(Archive var0, String var1) {
-      ArchiveLoader var2 = new ArchiveLoader(var0, var1);
-      Client.archiveLoaders.add(var2);
-      Client.field649 += var2.groupCount;
-   }
-
-   @ObfuscatedName("lg")
-   @ObfuscatedSignature(
-      descriptor = "(Lkd;III)V",
-      garbageValue = "-1041605206"
-   )
-   static final void clickWidget(Widget var0, int var1, int var2) {
-      if (Client.clickedWidget == null && !Client.isMenuOpen) {
-         if (var0 != null && class306.method1753(var0) != null) {
-            Client.clickedWidget = var0;
-            Client.clickedWidgetParent = class306.method1753(var0);
-            Client.widgetClickX = var1;
-            Client.widgetClickY = var2;
-            class87.widgetDragDuration = 0;
-            Client.isDraggingWidget = false;
-            int var3 = Client.menuOptionsCount - 1;
-            if (var3 != -1) {
-               ReflectionCheck.method187(var3);
-            }
-
+         try {
+            return (class20)this.field59.get();
+         } catch (Exception var3) {
+            String var2 = "Error retrieving REST request reply";
+            System.err.println(var2 + "\r\n" + var3);
+            this.method68(var2);
+            return new class20(var2);
          }
       }
    }
 
-   @ObfuscatedName("ly")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-53673761"
-   )
-   static final void method64(int var0) {
-      var0 = Math.min(Math.max(var0, 0), 127);
-      StructComposition.clientPreferences.setAreaSoundEffectsVolume(var0);
+    @ObfuscatedName("jy")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-2146984996"
+    )
+    static void Widget_runOnTargetLeave() {
+      if (Client.isSpellSelected) {
+         Widget var0 = class135.getWidgetChild(class9.selectedSpellWidget, Client.selectedSpellChildIndex);
+         if (var0 != null && var0.onTargetLeave != null) {
+            ScriptEvent var1 = new ScriptEvent();
+            var1.widget = var0;
+            var1.args = var0.onTargetLeave;
+            WorldMapAreaData.runScriptEvent(var1);
+         }
+
+         Client.selectedSpellItemId = -1;
+         Client.isSpellSelected = false;
+         LoginScreenAnimation.invalidateWidget(var0);
+      }
    }
 }

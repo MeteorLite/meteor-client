@@ -1,10 +1,16 @@
 package meteor
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toAwtImage
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.DpSize
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
 import dev.hoot.api.events.AutomatedMenu
@@ -190,12 +196,15 @@ object Main : ApplicationScope, EventSubscriber() {
                 window!!.window.dispose()
             },
             title = "Meteor",
-            icon = painterResource("Meteor.ico"),
             undecorated = meteorConfig.fullscreen(),
             alwaysOnTop = meteorConfig.alwaysOnTop(),
             resizable = !meteorConfig.lockWindowSize(),
             state = windowState.value!!,
             content = {
+                val icon = painterResource("Meteor.ico")
+                SideEffect {
+                    window.iconImage = icon.toAwtImage(Density(1f), LayoutDirection.Ltr, Size(128f, 128f))
+                }
                 windowContent()
             }
         )

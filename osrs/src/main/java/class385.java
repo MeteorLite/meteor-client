@@ -1,52 +1,18 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nz")
-public final class class385 implements Comparable {
-   @ObfuscatedName("h")
-   Object field3669;
+public class class385 {
    @ObfuscatedName("e")
-   Object field3668;
-   @ObfuscatedName("v")
-   long field3667;
-   @ObfuscatedName("x")
-   long field3670;
-
-   class385(Object var1, Object var2) {
-      this.field3669 = var1;
-      this.field3668 = var2;
-   }
-
-   @ObfuscatedName("h")
    @ObfuscatedSignature(
-      descriptor = "(Lnz;I)I",
-      garbageValue = "16470781"
+      descriptor = "(Ljava/lang/String;II)V",
+      garbageValue = "-1249793384"
    )
-   int method2019(class385 var1) {
-      if (this.field3670 < var1.field3670) {
-         return -1;
-      } else {
-         return this.field3670 > var1.field3670 ? 1 : 0;
-      }
-   }
-
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
-      if (var1 instanceof class385) {
-         return this.field3668.equals(((class385)var1).field3668);
-      } else {
-         throw new IllegalArgumentException();
-      }
-   }
-
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
-      return this.field3668.hashCode();
-   }
-
-   @ObfuscatedName("compareTo")
-   public int compareTo(Object var1) {
-      return this.method2019((class385)var1);
+   static final void method2030(String var0, int var1) {
+      PacketBufferNode var2 = Renderable.getPacketBufferNode(ClientPacket.field2482, Client.packetWriter.isaacCipher);
+      var2.packetBuffer.writeByte(class96.stringCp1252NullTerminatedByteSize(var0) + 1);
+      var2.packetBuffer.writeByteA(var1);
+      var2.packetBuffer.writeStringCp1252NullTerminated(var0);
+      Client.packetWriter.addNode(var2);
    }
 }

@@ -1,76 +1,73 @@
+import java.util.concurrent.Callable;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dp")
-public enum class124 implements class345 {
-   @ObfuscatedName("h")
+@ObfuscatedName("du")
+public class class124 implements Callable {
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "Ldp;"
+      descriptor = "Lda;"
    )
-   field1199(0, 0),
-   @ObfuscatedName("e")
+   final class125 field1203;
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
-      descriptor = "Ldp;"
+      descriptor = "Ldk;"
    )
-   field1194(1, 1),
+   final class126 field1200;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
-      descriptor = "Ldp;"
+      descriptor = "Ldx;"
    )
-   field1195(2, 2),
-   @ObfuscatedName("x")
+   final class127 field1201;
+   @ObfuscatedName("s")
+   final int field1202;
+   // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Ldp;"
+      descriptor = "Lei;"
    )
-   field1200(3, 3),
-   @ObfuscatedName("m")
+   final class133 this$0;
+
    @ObfuscatedSignature(
-      descriptor = "Ldp;"
+      descriptor = "(Lei;Lda;Ldk;Ldx;I)V"
    )
-   field1197(4, 4);
-
-   @ObfuscatedName("q")
-   final int field1198;
-   @ObfuscatedName("f")
-   final int field1196;
-
-   class124(int var3, int var4) {
-      this.field1198 = var3;
-      this.field1196 = var4;
+   class124(class133 var1, class125 var2, class126 var3, class127 var4, int var5) {
+      this.this$0 = var1;
+      this.field1203 = var2;
+      this.field1200 = var3;
+      this.field1201 = var4;
+      this.field1202 = var5;
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "96"
-   )
-   public int rsOrdinal() {
-      return this.field1196;
+   public Object call() {
+      this.field1203.method703();
+      class125[][] var1;
+      if (this.field1200 == class126.field1229) {
+         var1 = this.this$0.field1267;
+      } else {
+         var1 = this.this$0.field1266;
+      }
+
+      var1[this.field1202][this.field1201.method711()] = this.field1203;
+      return null;
    }
 
-   @ObfuscatedName("i")
+    @ObfuscatedName("n")
+    public static int Entity_unpackID(long var0) {
+      return (int)(var0 >>> 17 & 4294967295L);
+   }
+
+   @ObfuscatedName("bz")
    @ObfuscatedSignature(
-      descriptor = "(ZI)V",
-      garbageValue = "-1048113560"
+      descriptor = "(ILko;ZI)V",
+      garbageValue = "508000194"
    )
-   static void method694(boolean var0) {
-      byte var1 = 0;
-      boolean var2 = StructComposition.clientPreferences.method542() >= Client.param21;
-      if (!var2) {
-         var1 = 12;
-      } else if (BuddyRankComparator.client.method355() || BuddyRankComparator.client.method356()) {
-         var1 = 10;
-      }
-
-      class12.setLoginIndex(var1);
-      if (var0) {
-         Login.Login_username = "";
-         Login.Login_password = "";
-         class143.field1321 = 0;
-         class141.otp = "";
-      }
-
-      GameObject.method1298();
-      SoundSystem.method237();
+   static void method695(int var0, Coord var1, boolean var2) {
+      WorldMapArea var3 = WorldMapDecorationType.getWorldMap().getMapArea(var0);
+      int var4 = class387.localPlayer.plane;
+      int var5 = (class387.localPlayer.x >> 7) + ParamComposition.baseX;
+      int var6 = (class387.localPlayer.y >> 7) + Client.baseY;
+      Coord var7 = new Coord(var4, var5, var6);
+      WorldMapDecorationType.getWorldMap().method2287(var3, var7, var1, var2);
    }
 }

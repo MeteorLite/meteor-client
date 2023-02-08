@@ -6,37 +6,39 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("og")
 @Implements("ClanMate")
 public class ClanMate extends Buddy {
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Loh;"
-   )
-   TriBool friend;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Loh;"
-   )
-   TriBool ignored;
+    @ObfuscatedName("dc")
+    static boolean mouseCam;
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Lot;"
+    )
+    TriBool friend;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lot;"
+    )
+    TriBool ignored;
 
    ClanMate() {
       this.friend = TriBool.TriBool_unknown;
       this.ignored = TriBool.TriBool_unknown;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "0"
-   )
-   void clearIsFriend() {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-393311077"
+    )
+    void clearIsFriend() {
       this.friend = TriBool.TriBool_unknown;
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-452939679"
-   )
-   public final boolean isFriend() {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(B)Z",
+            garbageValue = "-25"
+    )
+    public final boolean isFriend() {
       if (this.friend == TriBool.TriBool_unknown) {
          this.fillIsFriend();
       }
@@ -44,30 +46,30 @@ public class ClanMate extends Buddy {
       return this.friend == TriBool.TriBool_true;
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-346316887"
-   )
-   void fillIsFriend() {
-      this.friend = DefaultsGroup.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "16"
+    )
+    void fillIsFriend() {
+      this.friend = WorldMapElement.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "2101166054"
-   )
-   void clearIsIgnored() {
+    @ObfuscatedName("n")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "102"
+    )
+    void clearIsIgnored() {
       this.ignored = TriBool.TriBool_unknown;
    }
 
-   @ObfuscatedName("r")
-   @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "1"
-   )
-   public final boolean isIgnored() {
+    @ObfuscatedName("r")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1204193663"
+    )
+    public final boolean isIgnored() {
       if (this.ignored == TriBool.TriBool_unknown) {
          this.fillIsIgnored();
       }
@@ -75,12 +77,12 @@ public class ClanMate extends Buddy {
       return this.ignored == TriBool.TriBool_true;
    }
 
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "68"
-   )
-   void fillIsIgnored() {
-      this.ignored = DefaultsGroup.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+    @ObfuscatedName("b")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "-67"
+    )
+    void fillIsIgnored() {
+      this.ignored = WorldMapElement.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
 }

@@ -1,253 +1,261 @@
+import java.util.Date;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fc")
-public class class160 extends class136 {
-   @ObfuscatedName("h")
-   int field1403;
-   @ObfuscatedName("e")
-   long field1402;
-   // $FF: synthetic field
+@ObfuscatedName("fe")
+public class class160 {
+   @ObfuscatedName("at")
    @ObfuscatedSignature(
-      descriptor = "Lem;"
+      descriptor = "(ILba;ZI)I",
+      garbageValue = "-1845674352"
    )
-   final class139 this$0;
-
-   @ObfuscatedSignature(
-      descriptor = "(Lem;)V"
-   )
-   class160(class139 var1) {
-      this.this$0 = var1;
-   }
-
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;I)V",
-      garbageValue = "1101327225"
-   )
-   void vmethod3254(Buffer var1) {
-      this.field1403 = var1.readInt();
-      this.field1402 = var1.readLong();
-   }
-
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(Lep;I)V",
-      garbageValue = "839088249"
-   )
-   void vmethod3248(ClanSettings var1) {
-      var1.method791(this.field1403, this.field1402);
-   }
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(Lqx;II)V",
-      garbageValue = "784609466"
-   )
-   static void readPlayerUpdate(PacketBuffer var0, int var1) {
-      boolean var2 = var0.readBits(1) == 1;
-      if (var2) {
-         Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
-      }
-
-      int var3 = var0.readBits(2);
-      Player var4 = Client.players[var1];
-      if (var3 == 0) {
-         if (var2) {
-            var4.hasMovementPending = false;
-         } else if (Client.localPlayerIndex == var1) {
-            throw new RuntimeException();
-         } else {
-            Players.Players_regions[var1] = (var4.plane << 28) + (class154.baseX + var4.pathX[0] >> 13 << 14) + (class365.baseY + var4.pathY[0] >> 13);
-            if (var4.movingOrientation != -1) {
-               Players.Players_orientations[var1] = var4.movingOrientation;
-            } else {
-               Players.Players_orientations[var1] = var4.orientation;
-            }
-
-            Players.Players_targetIndices[var1] = var4.targetIndex;
-            Client.players[var1] = null;
-            if (var0.readBits(1) != 0) {
-               ArchiveDiskAction.updateExternalPlayer(var0, var1);
-            }
-
-         }
+   static int method849(int var0, Script var1, boolean var2) {
+      String var3;
+      int var4;
+      if (var0 == 4100) {
+         var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+         var4 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+         Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3 + var4;
+         return 1;
       } else {
-         int var5;
-         int var6;
-         int var7;
-         if (var3 == 1) {
-            var5 = var0.readBits(3);
-            var6 = var4.pathX[0];
-            var7 = var4.pathY[0];
-            if (var5 == 0) {
-               --var6;
-               --var7;
-            } else if (var5 == 1) {
-               --var7;
-            } else if (var5 == 2) {
-               ++var6;
-               --var7;
-            } else if (var5 == 3) {
-               --var6;
-            } else if (var5 == 4) {
-               ++var6;
-            } else if (var5 == 5) {
-               --var6;
-               ++var7;
-            } else if (var5 == 6) {
-               ++var7;
-            } else if (var5 == 7) {
-               ++var6;
-               ++var7;
-            }
-
-            if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
-               if (var2) {
-                  var4.hasMovementPending = true;
-                  var4.tileX = var6;
-                  var4.tileY = var7;
-               } else {
-                  var4.hasMovementPending = false;
-                  var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
-               }
-            } else {
-               var4.resetPath(var6, var7);
-               var4.hasMovementPending = false;
-            }
-
-         } else if (var3 == 2) {
-            var5 = var0.readBits(4);
-            var6 = var4.pathX[0];
-            var7 = var4.pathY[0];
-            if (var5 == 0) {
-               var6 -= 2;
-               var7 -= 2;
-            } else if (var5 == 1) {
-               --var6;
-               var7 -= 2;
-            } else if (var5 == 2) {
-               var7 -= 2;
-            } else if (var5 == 3) {
-               ++var6;
-               var7 -= 2;
-            } else if (var5 == 4) {
-               var6 += 2;
-               var7 -= 2;
-            } else if (var5 == 5) {
-               var6 -= 2;
-               --var7;
-            } else if (var5 == 6) {
-               var6 += 2;
-               --var7;
-            } else if (var5 == 7) {
-               var6 -= 2;
-            } else if (var5 == 8) {
-               var6 += 2;
-            } else if (var5 == 9) {
-               var6 -= 2;
-               ++var7;
-            } else if (var5 == 10) {
-               var6 += 2;
-               ++var7;
-            } else if (var5 == 11) {
-               var6 -= 2;
-               var7 += 2;
-            } else if (var5 == 12) {
-               --var6;
-               var7 += 2;
-            } else if (var5 == 13) {
-               var7 += 2;
-            } else if (var5 == 14) {
-               ++var6;
-               var7 += 2;
-            } else if (var5 == 15) {
-               var6 += 2;
-               var7 += 2;
-            }
-
-            if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
-               if (var2) {
-                  var4.hasMovementPending = true;
-                  var4.tileX = var6;
-                  var4.tileY = var7;
-               } else {
-                  var4.hasMovementPending = false;
-                  var4.move(var6, var7, Players.playerMovementSpeeds[var1]);
-               }
-            } else {
-               var4.resetPath(var6, var7);
-               var4.hasMovementPending = false;
-            }
-
+         String var9;
+         if (var0 == 4101) {
+            class20.Interpreter_stringStackSize -= 2;
+            var3 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize];
+            var9 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize + 1];
+            Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3 + var9;
+            return 1;
+         } else if (var0 == 4102) {
+            var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+            var4 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+            Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3 + ParamComposition.intToString(var4, true);
+            return 1;
+         } else if (var0 == 4103) {
+            var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+            Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3.toLowerCase();
+            return 1;
          } else {
-            var5 = var0.readBits(1);
-            int var8;
-            int var9;
+            int var6;
             int var10;
-            int var11;
-            if (var5 == 0) {
-               var6 = var0.readBits(12);
-               var7 = var6 >> 10;
-               var8 = var6 >> 5 & 31;
-               if (var8 > 15) {
-                  var8 -= 32;
-               }
-
-               var9 = var6 & 31;
-               if (var9 > 15) {
-                  var9 -= 32;
-               }
-
-               var10 = var8 + var4.pathX[0];
-               var11 = var9 + var4.pathY[0];
-               if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
-                  if (var2) {
-                     var4.hasMovementPending = true;
-                     var4.tileX = var10;
-                     var4.tileY = var11;
-                  } else {
-                     var4.hasMovementPending = false;
-                     var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
-                  }
+            if (var0 == 4104) {
+               var10 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+               long var11 = 86400000L * (11745L + (long)var10);
+               Interpreter.Interpreter_calendar.setTime(new Date(var11));
+               var6 = Interpreter.Interpreter_calendar.get(5);
+               int var17 = Interpreter.Interpreter_calendar.get(2);
+               int var8 = Interpreter.Interpreter_calendar.get(1);
+               Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var6 + "-" + Interpreter.Interpreter_MONTHS[var17] + "-" + var8;
+               return 1;
+            } else if (var0 != 4105) {
+               if (var0 == 4106) {
+                  var10 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                  Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = Integer.toString(var10);
+                  return 1;
+               } else if (var0 == 4107) {
+                  class20.Interpreter_stringStackSize -= 2;
+                  Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = AbstractArchive.method1838(Projectile.compareStrings(Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize + 1], class36.clientLanguage));
+                  return 1;
                } else {
-                  var4.resetPath(var10, var11);
-                  var4.hasMovementPending = false;
-               }
+                  int var5;
+                  byte[] var13;
+                  Font var14;
+                  if (var0 == 4108) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     class302.Interpreter_intStackSize -= 2;
+                     var4 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize];
+                     var5 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 1];
+                     var13 = PendingSpawn.archive13.takeFile(var5, 0);
+                     var14 = new Font(var13);
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var14.lineCount(var3, var4);
+                     return 1;
+                  } else if (var0 == 4109) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     class302.Interpreter_intStackSize -= 2;
+                     var4 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize];
+                     var5 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 1];
+                     var13 = PendingSpawn.archive13.takeFile(var5, 0);
+                     var14 = new Font(var13);
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var14.lineWidth(var3, var4);
+                     return 1;
+                  } else if (var0 == 4110) {
+                     class20.Interpreter_stringStackSize -= 2;
+                     var3 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize];
+                     var9 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize + 1];
+                     if (Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize] == 1) {
+                        Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3;
+                     } else {
+                        Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var9;
+                     }
 
-               var4.plane = (byte)(var7 + var4.plane & 3);
-               if (Client.localPlayerIndex == var1) {
-                  class383.Client_plane = var4.plane;
-               }
+                     return 1;
+                  } else if (var0 == 4111) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = AbstractFont.escapeBrackets(var3);
+                     return 1;
+                  } else if (var0 == 4112) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     var4 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                     Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3 + (char)var4;
+                     return 1;
+                  } else if (var0 == 4113) {
+                     var10 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = class126.isCharPrintable((char)var10) ? 1 : 0;
+                     return 1;
+                  } else if (var0 == 4114) {
+                     var10 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = class97.isAlphaNumeric((char)var10) ? 1 : 0;
+                     return 1;
+                  } else if (var0 == 4115) {
+                     var10 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = class155.isCharAlphabetic((char)var10) ? 1 : 0;
+                     return 1;
+                  } else if (var0 == 4116) {
+                     var10 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = CollisionMap.isDigit((char)var10) ? 1 : 0;
+                     return 1;
+                  } else if (var0 == 4117) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     if (var3 != null) {
+                        Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.length();
+                     } else {
+                        Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = 0;
+                     }
 
+                     return 1;
+                  } else if (var0 == 4118) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     class302.Interpreter_intStackSize -= 2;
+                     var4 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize];
+                     var5 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 1];
+                     Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3.substring(var4, var5);
+                     return 1;
+                  } else if (var0 == 4119) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     StringBuilder var18 = new StringBuilder(var3.length());
+                     boolean var16 = false;
+
+                     for(var6 = 0; var6 < var3.length(); ++var6) {
+                        char var7 = var3.charAt(var6);
+                        if (var7 == '<') {
+                           var16 = true;
+                        } else if (var7 == '>') {
+                           var16 = false;
+                        } else if (!var16) {
+                           var18.append(var7);
+                        }
+                     }
+
+                     Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var18.toString();
+                     return 1;
+                  } else if (var0 == 4120) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     var4 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.indexOf(var4);
+                     return 1;
+                  } else if (var0 == 4121) {
+                     class20.Interpreter_stringStackSize -= 2;
+                     var3 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize];
+                     var9 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize + 1];
+                     var5 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+                     Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = var3.indexOf(var9, var5);
+                     return 1;
+                  } else if (var0 == 4122) {
+                     var3 = Interpreter.Interpreter_stringStack[--class20.Interpreter_stringStackSize];
+                     Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3.toUpperCase();
+                     return 1;
+                  } else if (var0 == 4123) {
+                     class20.Interpreter_stringStackSize -= 3;
+                     var3 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize];
+                     var9 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize + 1];
+                     String var15 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize + 2];
+                     if (class387.localPlayer.appearance == null) {
+                        Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var15;
+                        return 1;
+                     } else {
+                        switch(class387.localPlayer.appearance.field2812) {
+                        case 0:
+                           Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3;
+                           break;
+                        case 1:
+                           Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var9;
+                           break;
+                        case 2:
+                        default:
+                           Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var15;
+                        }
+
+                        return 1;
+                     }
+                  } else {
+                     return 2;
+                  }
+               }
             } else {
-               var6 = var0.readBits(30);
-               var7 = var6 >> 28;
-               var8 = var6 >> 14 & 16383;
-               var9 = var6 & 16383;
-               var10 = (var8 + class154.baseX + var4.pathX[0] & 16383) - class154.baseX;
-               var11 = (var9 + class365.baseY + var4.pathY[0] & 16383) - class365.baseY;
-               if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y >= 1536 && var4.x < 11776 && var4.y < 11776) {
-                  if (var2) {
-                     var4.hasMovementPending = true;
-                     var4.tileX = var10;
-                     var4.tileY = var11;
-                  } else {
-                     var4.hasMovementPending = false;
-                     var4.move(var10, var11, Players.playerMovementSpeeds[var1]);
-                  }
+               class20.Interpreter_stringStackSize -= 2;
+               var3 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize];
+               var9 = Interpreter.Interpreter_stringStack[class20.Interpreter_stringStackSize + 1];
+               if (class387.localPlayer.appearance != null && class387.localPlayer.appearance.field2817 != 0) {
+                  Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var9;
                } else {
-                  var4.resetPath(var10, var11);
-                  var4.hasMovementPending = false;
+                  Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3;
                }
 
-               var4.plane = (byte)(var7 + var4.plane & 3);
-               if (Client.localPlayerIndex == var1) {
-                  class383.Client_plane = var4.plane;
-               }
-
+               return 1;
             }
          }
       }
+   }
+
+    @ObfuscatedName("ge")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-1080663115"
+    )
+    static void setWindowedMode(int var0) {
+      Client.field599 = 0L;
+      if (var0 >= 2) {
+         Client.isResizable = true;
+      } else {
+         Client.isResizable = false;
+      }
+
+      if (Message.getWindowedMode() == 1) {
+         Decimator.client.setMaxCanvasSize(765, 503);
+      } else {
+         Decimator.client.setMaxCanvasSize(7680, 2160);
+      }
+
+      if (Client.gameState >= 25) {
+         PacketBufferNode var1 = Renderable.getPacketBufferNode(ClientPacket.field2494, Client.packetWriter.isaacCipher);
+         var1.packetBuffer.writeByte(Message.getWindowedMode());
+         var1.packetBuffer.writeShort(GameEngine.canvasWidth);
+         var1.packetBuffer.writeShort(class127.canvasHeight);
+         Client.packetWriter.addNode(var1);
+      }
+
+   }
+
+    @ObfuscatedName("lr")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;B)V",
+            garbageValue = "0"
+    )
+    static final void clanKickUser(String var0) {
+      if (class463.friendsChat != null) {
+         PacketBufferNode var1 = Renderable.getPacketBufferNode(ClientPacket.field2434, Client.packetWriter.isaacCipher);
+         var1.packetBuffer.writeByte(class96.stringCp1252NullTerminatedByteSize(var0));
+         var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+         Client.packetWriter.addNode(var1);
+      }
+   }
+
+    @ObfuscatedName("lm")
+    @ObfuscatedSignature(
+            descriptor = "(Lkz;I)Z",
+            garbageValue = "-452016901"
+    )
+    static boolean isComponentHidden(Widget var0) {
+      return var0.isHidden;
    }
 }

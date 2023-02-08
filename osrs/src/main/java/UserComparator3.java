@@ -3,24 +3,22 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("df")
+@ObfuscatedName("dr")
 @Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
-   @ObfuscatedName("d")
-   public static String userHomeDirectory;
-   @ObfuscatedName("h")
-   final boolean reversed;
+    @ObfuscatedName("f")
+    final boolean reversed;
 
    public UserComparator3(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Loa;Loa;I)I",
-      garbageValue = "-1236968818"
-   )
-   int compareBuddy(Buddy var1, Buddy var2) {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(Loa;Loa;B)I",
+            garbageValue = "-48"
+    )
+    int compareBuddy(Buddy var1, Buddy var2) {
       if (var2.world != var1.world) {
          return this.reversed ? var1.world - var2.world : var2.world - var1.world;
       } else {
@@ -28,42 +26,22 @@ public class UserComparator3 extends AbstractUserComparator {
       }
    }
 
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
 
-   @ObfuscatedName("h")
+   @ObfuscatedName("mp")
    @ObfuscatedSignature(
-      descriptor = "(II)Lgd;",
-      garbageValue = "1513245443"
+      descriptor = "(Lrd;B)V",
+      garbageValue = "65"
    )
-   public static StructComposition StructDefinition_getStructDefinition(int var0) {
-      StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
+   static void method656(Buffer var0) {
+      if (Client.randomDatData != null) {
+         var0.writeBytes(Client.randomDatData, 0, Client.randomDatData.length);
       } else {
-         byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0);
-         var1 = new StructComposition();
-         if (var2 != null) {
-            var1.decode(new Buffer(var2));
-         }
-
-         var1.postDecode();
-         StructComposition.StructDefinition_cached.put(var1, (long)var0);
-         return var1;
+         byte[] var1 = class321.method1781();
+         var0.writeBytes(var1, 0, var1.length);
       }
-   }
-
-   @ObfuscatedName("hu")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "110"
-   )
-   static void method670() {
-      if (Client.renderSelf) {
-         WorldMapAreaData.addPlayerToScene(class155.localPlayer, false);
-      }
-
    }
 }

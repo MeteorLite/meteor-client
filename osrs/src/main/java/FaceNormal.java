@@ -3,58 +3,75 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hz")
+@ObfuscatedName("hb")
 @Implements("FaceNormal")
 public class FaceNormal {
-   @ObfuscatedName("h")
-   int x;
-   @ObfuscatedName("e")
-   int y;
-   @ObfuscatedName("v")
-   int z;
+    @ObfuscatedName("f")
+    int x;
+    @ObfuscatedName("w")
+    int y;
+    @ObfuscatedName("v")
+    int z;
 
-   @ObfuscatedName("ae")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)I",
-      garbageValue = "10"
-   )
-   public static int method1235(String var0) {
-      return var0.length() + 2;
-   }
-
-   @ObfuscatedName("gc")
+   @ObfuscatedName("z")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "1404253299"
+      garbageValue = "65533"
    )
-   static final void method1236() {
-      if (Client.logoutTimer > 0) {
-         Player.logOut();
-      } else {
-         Client.timer.method2000();
-         class140.updateGameState(40);
-         class14.field42 = Client.packetWriter.getSocket();
-         Client.packetWriter.removeSocket();
-      }
+   public static void method1245() {
+      VarpDefinition.VarpDefinition_cached.clear();
    }
 
-   @ObfuscatedName("mu")
-   @ObfuscatedSignature(
-      descriptor = "(IIZI)V",
-      garbageValue = "739721891"
-   )
-   static final void method1237(int var0, int var1, boolean var2) {
-      if (Client.currentClanChannels[var0] != null) {
-         if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method828()) {
-            ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
-            PacketBufferNode var4 = class136.getPacketBufferNode(ClientPacket.field2462, Client.packetWriter.isaacCipher);
-            var4.packetBuffer.writeByte(4 + class13.stringCp1252NullTerminatedByteSize(var3.username.getName()));
-            var4.packetBuffer.writeByte(var0);
-            var4.packetBuffer.writeShort(var1);
-            var4.packetBuffer.writeBoolean(var2);
-            var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName());
-            Client.packetWriter.addNode(var4);
-         }
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "(IB)I",
+            garbageValue = "-53"
+    )
+    public static int iLog(int var0) {
+      int var1 = 0;
+      if (var0 < 0 || var0 >= 65536) {
+         var0 >>>= 16;
+         var1 += 16;
       }
+
+      if (var0 >= 256) {
+         var0 >>>= 8;
+         var1 += 8;
+      }
+
+      if (var0 >= 16) {
+         var0 >>>= 4;
+         var1 += 4;
+      }
+
+      if (var0 >= 4) {
+         var0 >>>= 2;
+         var1 += 2;
+      }
+
+      if (var0 >= 1) {
+         var0 >>>= 1;
+         ++var1;
+      }
+
+      return var0 + var1;
+   }
+
+    @ObfuscatedName("fc")
+    @ObfuscatedSignature(
+            descriptor = "(IB)V",
+            garbageValue = "110"
+    )
+    static final void forceDisconnect(int var0) {
+      HealthBarDefinition.logOut();
+      switch(var0) {
+      case 1:
+         WorldMapArea.method1353();
+         break;
+      case 2:
+         ReflectionCheck.method171(24);
+         class70.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
+      }
+
    }
 }

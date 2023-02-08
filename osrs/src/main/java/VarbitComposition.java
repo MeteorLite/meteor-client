@@ -3,44 +3,43 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gu")
+@ObfuscatedName("gh")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Lly;"
-   )
-   public static AbstractArchive VarbitDefinition_archive;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Ljv;"
-   )
-   public static EvictingDualNodeHashTable VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("q")
-   static final int[] field1631 = new int[32];
-   @ObfuscatedName("v")
-   public int baseVar;
-   @ObfuscatedName("x")
-   public int startBit;
-   @ObfuscatedName("m")
-   public int endBit;
+   @ObfuscatedName("sg")
+   static boolean field1631;
+    @ObfuscatedName("vi")
+    static short[] foundItemIds;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lja;"
+    )
+    static EvictingDualNodeHashTable VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
+   @ObfuscatedName("j")
+   static final int[] field1629 = new int[32];
+    @ObfuscatedName("v")
+    public int baseVar;
+    @ObfuscatedName("s")
+    public int startBit;
+    @ObfuscatedName("z")
+    public int endBit;
 
    static {
       int var0 = 2;
 
       for(int var1 = 0; var1 < 32; ++var1) {
-         field1631[var1] = var0 - 1;
+         field1629[var1] = var0 - 1;
          var0 += var0;
       }
 
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;I)V",
-      garbageValue = "2093010759"
-   )
-   public void decode(Buffer var1) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;I)V",
+            garbageValue = "-2142044850"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -51,12 +50,12 @@ public class VarbitComposition extends DualNode {
       }
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;II)V",
-      garbageValue = "1158300194"
-   )
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;IB)V",
+            garbageValue = "8"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.baseVar = var1.readUnsignedShort();
          this.startBit = var1.readUnsignedByte();
@@ -65,69 +64,42 @@ public class VarbitComposition extends DualNode {
 
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lbm;",
-      garbageValue = "-42"
-   )
-   static Script getScript(int var0) {
-      Script var1 = (Script)Script.Script_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = class71.archive12.takeFile(var0, 0);
-         if (var2 == null) {
-            return null;
-         } else {
-            var1 = FriendSystem.newScript(var2);
-            Script.Script_cached.put(var1, (long)var0);
-            return var1;
-         }
+    @ObfuscatedName("a")
+    @ObfuscatedSignature(
+            descriptor = "(Lbw;B)V",
+            garbageValue = "-31"
+    )
+    static void changeWorld(World var0) {
+      if (var0.isMembersOnly() != Client.isMembersWorld) {
+         Client.isMembersWorld = var0.isMembersOnly();
+         StructComposition.method1001(var0.isMembersOnly());
       }
+
+      if (var0.properties != Client.worldProperties) {
+         ObjectComposition.method1028(WorldMapEvent.archive8, var0.properties);
+      }
+
+      NetCache.worldHost = var0.host;
+      Client.worldId = var0.id;
+      Client.worldProperties = var0.properties;
+      class1.worldPort = Client.gameBuild == 0 ? 'ꩊ' : var0.id + '鱀';
+      class10.js5Port = Client.gameBuild == 0 ? 443 : var0.id + '썐';
+      Calendar.currentPort = class1.worldPort;
    }
 
-   @ObfuscatedName("o")
+   @ObfuscatedName("gb")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "235490030"
+      descriptor = "(B)V",
+      garbageValue = "-119"
    )
-   public static String method985(String var0) {
-      int var1 = var0.length();
-      char[] var2 = new char[var1];
-      byte var3 = 2;
-
-      for(int var4 = 0; var4 < var1; ++var4) {
-         char var5 = var0.charAt(var4);
-         if (var3 == 0) {
-            var5 = Character.toLowerCase(var5);
-         } else if (var3 == 2 || Character.isUpperCase(var5)) {
-            char var6;
-            if (var5 != 181 && var5 != 402) {
-               var6 = Character.toTitleCase(var5);
-            } else {
-               var6 = var5;
-            }
-
-            var5 = var6;
+   static final void method983() {
+      for(int var0 = 0; var0 < Client.npcCount; ++var0) {
+         int var1 = Client.npcIndices[var0];
+         NPC var2 = Client.npcs[var1];
+         if (var2 != null) {
+            PcmPlayer.updateActorSequence(var2, var2.definition.size);
          }
-
-         if (Character.isLetter(var5)) {
-            var3 = 0;
-         } else if (var5 != '.' && var5 != '?' && var5 != '!') {
-            if (Character.isSpaceChar(var5)) {
-               if (var3 != 2) {
-                  var3 = 1;
-               }
-            } else {
-               var3 = 1;
-            }
-         } else {
-            var3 = 2;
-         }
-
-         var2[var4] = var5;
       }
 
-      return new String(var2);
    }
 }

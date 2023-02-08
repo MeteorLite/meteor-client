@@ -4,11 +4,11 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rr")
+@ObfuscatedName("rp")
 @Implements("GZipDecompressor")
 public class GZipDecompressor {
-   @ObfuscatedName("h")
-   Inflater inflater;
+    @ObfuscatedName("f")
+    Inflater inflater;
 
    public GZipDecompressor() {
       this(-1, 1000000, 1000000);
@@ -21,12 +21,12 @@ public class GZipDecompressor {
    GZipDecompressor(int var1, int var2, int var3) {
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;[BI)V",
-      garbageValue = "2144741221"
-   )
-   public void decompress(Buffer var1, byte[] var2) {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;[BI)V",
+            garbageValue = "309649442"
+    )
+    public void decompress(Buffer var1, byte[] var2) {
       if (var1.array[var1.offset] == 31 && var1.array[var1.offset + 1] == -117) {
          if (this.inflater == null) {
             this.inflater = new Inflater(true);
