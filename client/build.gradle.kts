@@ -130,7 +130,6 @@ compose {
                 // I would like to separate jvm arguments by platform, but this is a limitation of Compose packaging
                 // If you have an issue with scaling, or performance on linux/macOs, remove these two lines
                 "-Dsun.java2d.dpiaware=false,",
-                "-Dsun.java2d.uiScale=1.5",
 
                 "-ea",
                 "-noverify",
