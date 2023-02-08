@@ -18,11 +18,6 @@ import meteor.ui.composables.preferences.surface
 import meteor.ui.composables.preferences.uiColor
 
 class InfoPanel: PluginPanel() {
-
-    @Composable
-    override fun Header() {
-
-    }
     @Composable
     override fun Content() {
         Column(modifier = Modifier.width(300.dp).padding(5.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.SpaceEvenly){
