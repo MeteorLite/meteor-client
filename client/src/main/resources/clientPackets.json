@@ -188,7 +188,7 @@
         "argument": "selectedItemId"
       },
       {
-        "method": "method2382",
+        "method": "writeIntME",
         "argument": "selectedItemWidget"
       },
       {
@@ -264,7 +264,7 @@
     "deobname": "field2452",
     "structure": [
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -387,7 +387,7 @@
         "argument": "id"
       },
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       }
     ]
@@ -484,7 +484,7 @@
         "argument": "param1"
       },
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -540,7 +540,7 @@
     "deobname": "field2530",
     "structure": [
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "param1"
       },
       {
@@ -638,7 +638,7 @@
     "deobname": "field2479",
     "structure": [
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -661,7 +661,7 @@
         "argument": "param1"
       },
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "selectedSpellWidget"
       },
       {
@@ -721,7 +721,7 @@
         "argument": "id"
       },
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -733,7 +733,7 @@
         "argument": "worldX"
       },
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "selectedItemWidget"
       },
       {
@@ -792,7 +792,7 @@
     "deobname": "field2489",
     "structure": [
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -867,7 +867,7 @@
         "argument": "param0"
       },
       {
-        "method": "method2382",
+        "method": "writeIntME",
         "argument": "param1"
       }
     ]
@@ -907,7 +907,7 @@
     "deobname": "field2446",
     "structure": [
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -938,7 +938,7 @@
         "argument": "selectedSpellItemId"
       },
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "selectedSpellWidget"
       },
       {
@@ -950,7 +950,7 @@
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "widgetId"
       }
     ]
@@ -967,7 +967,7 @@
     "deobname": "field2499",
     "structure": [
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -1125,7 +1125,7 @@
         "argument": "selectedSpellChildIndex"
       },
       {
-        "method": "method2382",
+        "method": "writeIntME",
         "argument": "selectedSpellWidget"
       },
       {
@@ -1219,7 +1219,7 @@
         "argument": "itemId"
       },
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "param1"
       }
     ]
@@ -1249,7 +1249,7 @@
     "deobname": "field2520",
     "structure": [
       {
-        "method": "method2382",
+        "method": "writeIntME",
         "argument": "param1"
       },
       {
@@ -1295,7 +1295,7 @@
     "deobname": "field2524",
     "structure": [
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "selectedItemWidget"
       },
       {
@@ -1415,7 +1415,7 @@
         "argument": "param0"
       },
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "param1"
       },
       {
@@ -1434,7 +1434,7 @@
         "argument": "param1"
       },
       {
-        "method": "method2399",
+        "method": "writeByteAdd",
         "argument": "shiftPressed"
       },
       {
@@ -1461,7 +1461,7 @@
         "argument": "selectedSpellItemId"
       },
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "selectedSpellWidget"
       },
       {
@@ -1494,7 +1494,7 @@
     "deobname": "field2536",
     "structure": [
       {
-        "method": "method2414",
+        "method": "writeIntIME",
         "argument": "selectedSpellWidget"
       },
       {
