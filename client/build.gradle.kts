@@ -4,7 +4,7 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg
 
 plugins {
     kotlin("jvm")
-    id("org.jetbrains.compose") version "1.3.0-rc01"
+    id("org.jetbrains.compose") version "1.3.0"
     kotlin("plugin.serialization") version "1.7.21"
     id("org.jetbrains.dokka") version "1.7.20"
     java
@@ -110,7 +110,7 @@ dependencies {
 }
 
 compose {
-    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0-dev-k1.8.0-RC-4c1865595ed")
+    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0")
 
     desktop {
         application {
