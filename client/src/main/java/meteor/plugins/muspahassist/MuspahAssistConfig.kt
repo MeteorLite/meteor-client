@@ -56,7 +56,7 @@ interface MuspahAssistConfig : Config {
         return false
     }
     @ConfigItem(
-        keyName = "conserve",
+        keyName = "rangeTele",
         name = "Range Teleport Phase",
         description = "Uses range gear when muspah is teleporting",
         position = 6
