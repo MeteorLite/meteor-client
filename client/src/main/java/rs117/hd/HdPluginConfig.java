@@ -652,6 +652,19 @@ public interface HdPluginConfig extends Config
 		return false;
 	}
 
+	@ConfigItem(
+			keyName = "seaFoam",
+			name = "Sea foam",
+			description =
+					"",
+			position = 4,
+			section = miscellaneousSettings
+	)
+	default boolean seaFoam()
+	{
+		return false;
+	}
+
 	String KEY_LEGACY_GREY_COLORS = "reduceOverExposure"; // poorly named config key for legacy reasons
 	@ConfigItem(
 		keyName = KEY_LEGACY_GREY_COLORS,

@@ -55,6 +55,7 @@ fun intAreaTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigIt
 
 @Composable
 fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDescriptor, intValue: MutableState<Int?>) {
+    var textColor = mutableStateOf(uiColor.value)
     Row(modifier = Modifier.fillMaxWidth().height(60.dp)) {
         Row(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center,
@@ -73,24 +74,27 @@ fun intTextNode(descriptor: ConfigDescriptor, configItemDescriptor: ConfigItemDe
                             intValue.value ?: -1
                         }
 
+                        var inRange = true
                         configItemDescriptor.range?.let {
-                            if (newValue > it.max)
-                                newValue = it.max
-                            if (newValue < it.min)
-                                newValue = it.min
+                            if (newValue > it.max || newValue < it.min)
+                                inRange = false
                         }
-
                         intValue.value = newValue
-                        ConfigManager.setConfiguration(
-                            descriptor.group.value, configItemDescriptor.key(),
-                            "${intValue.value}"
-                        )
+                        if (inRange) {
+                            ConfigManager.setConfiguration(
+                                descriptor.group.value, configItemDescriptor.key(),
+                                "${intValue.value}"
+                            )
+                            textColor.value = uiColor.value
+                        } else {
+                            textColor.value = Color.Red
+                        }
                     },
                     maxLines = 30,
                     label = {
                         Text(
                             configItemDescriptor.name(),
-                            style = TextStyle(color = uiColor.value, fontSize = 14.sp)
+                            style = TextStyle(color = textColor.value, fontSize = 14.sp)
                         )
                     },
                     textStyle = TextStyle(color = uiColor.value, fontSize = 14.sp)
