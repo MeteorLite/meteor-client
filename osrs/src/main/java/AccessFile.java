@@ -8,15 +8,15 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qq")
+@ObfuscatedName("qr")
 @Implements("AccessFile")
 public final class AccessFile {
-   @ObfuscatedName("h")
-   RandomAccessFile file;
-   @ObfuscatedName("e")
-   final long maxSize;
-   @ObfuscatedName("v")
-   long offset;
+    @ObfuscatedName("f")
+    RandomAccessFile file;
+    @ObfuscatedName("w")
+    final long maxSize;
+    @ObfuscatedName("v")
+    long offset;
 
    public AccessFile(File var1, String var2, long var3) throws IOException {
       if (-1L == var3) {
@@ -39,18 +39,18 @@ public final class AccessFile {
       this.file.seek(0L);
    }
 
-   @ObfuscatedName("h")
-   final void seek(long var1) throws IOException {
+    @ObfuscatedName("f")
+    final void seek(long var1) throws IOException {
       this.file.seek(var1);
       this.offset = var1;
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "([BIII)V",
-      garbageValue = "-1805233665"
-   )
-   public final void write(byte[] var1, int var2, int var3) throws IOException {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "([BIII)V",
+            garbageValue = "-831518796"
+    )
+    public final void write(byte[] var1, int var2, int var3) throws IOException {
       if ((long)var3 + this.offset > this.maxSize) {
          this.file.seek(this.maxSize);
          this.file.write(1);
@@ -61,21 +61,21 @@ public final class AccessFile {
       }
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1956576895"
-   )
-   public final void close() throws IOException {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-212047498"
+    )
+    public final void close() throws IOException {
       this.closeSync(false);
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(ZB)V",
-      garbageValue = "-81"
-   )
-   public final void closeSync(boolean var1) throws IOException {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(ZB)V",
+            garbageValue = "44"
+    )
+    public final void closeSync(boolean var1) throws IOException {
       if (this.file != null) {
          if (var1) {
             try {
@@ -91,21 +91,21 @@ public final class AccessFile {
 
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(I)J",
-      garbageValue = "-2132615122"
-   )
-   public final long length() throws IOException {
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "(B)J",
+            garbageValue = "-90"
+    )
+    public final long length() throws IOException {
       return this.file.length();
    }
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "([BIII)I",
-      garbageValue = "1181782400"
-   )
-   public final int read(byte[] var1, int var2, int var3) throws IOException {
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "([BIII)I",
+            garbageValue = "-1399314404"
+    )
+    public final int read(byte[] var1, int var2, int var3) throws IOException {
       int var4 = this.file.read(var1, var2, var3);
       if (var4 > 0) {
          this.offset += (long)var4;
@@ -114,27 +114,12 @@ public final class AccessFile {
       return var4;
    }
 
-   @ObfuscatedName("finalize")
-   protected void finalize() throws Throwable {
+    @ObfuscatedName("finalize")
+    protected void finalize() throws Throwable {
       if (this.file != null) {
          System.out.println("");
          this.close();
       }
 
-   }
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "309145420"
-   )
-   public static int method2278(int var0) {
-      --var0;
-      var0 |= var0 >>> 1;
-      var0 |= var0 >>> 2;
-      var0 |= var0 >>> 4;
-      var0 |= var0 >>> 8;
-      var0 |= var0 >>> 16;
-      return var0 + 1;
    }
 }

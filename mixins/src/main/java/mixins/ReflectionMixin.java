@@ -24,11 +24,10 @@
  */
 package mixins;
 
-import net.runelite.api.GameState;
 import net.runelite.api.mixins.*;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RS_Reflection;
+import net.runelite.rs.api.RSReflection;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -40,8 +39,8 @@ import java.lang.reflect.Method;
  * Better safe than sorry I suppose though.
  * We only report method invocations by default.
  */
-@Mixin(RS_Reflection.class)
-public abstract class ReflectionMixin implements RS_Reflection
+@Mixin(RSReflection.class)
+public abstract class ReflectionMixin implements RSReflection
 {
 	@Shadow("client")
 	private static RSClient client;

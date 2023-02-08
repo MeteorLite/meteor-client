@@ -3,15 +3,22 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("ik")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-   @ObfuscatedName("h")
-   final int objectDefinitionId;
-   @ObfuscatedName("e")
-   final int decoration;
-   @ObfuscatedName("v")
-   final int rotation;
+   @ObfuscatedName("uy")
+   static int field2367;
+    @ObfuscatedName("m")
+    @ObfuscatedSignature(
+            descriptor = "Lld;"
+    )
+    public static NetFileRequest NetCache_currentResponse;
+    @ObfuscatedName("f")
+    final int objectDefinitionId;
+    @ObfuscatedName("w")
+    final int decoration;
+    @ObfuscatedName("v")
+    final int rotation;
 
    WorldMapDecoration(int var1, int var2, int var3) {
       this.objectDefinitionId = var1;
@@ -19,16 +26,88 @@ public class WorldMapDecoration {
       this.rotation = var3;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Lly;Lly;Lly;Lka;I)Z",
-      garbageValue = "1603100581"
-   )
-   public static boolean method1442(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
-      class286.musicPatchesArchive = var0;
-      class286.musicSamplesArchive = var1;
-      class286.soundEffectsArchive = var2;
-      class251.midiPcmStream = var3;
-      return true;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(CLmn;B)C",
+            garbageValue = "75"
+    )
+    static char standardizeChar(char var0, Language var1) {
+      if (var0 >= 192 && var0 <= 255) {
+         if (var0 >= 192 && var0 <= 198) {
+            return 'A';
+         }
+
+         if (var0 == 199) {
+            return 'C';
+         }
+
+         if (var0 >= 200 && var0 <= 203) {
+            return 'E';
+         }
+
+         if (var0 >= 204 && var0 <= 207) {
+            return 'I';
+         }
+
+         if (var0 == 209 && var1 != Language.Language_ES) {
+            return 'N';
+         }
+
+         if (var0 >= 210 && var0 <= 214) {
+            return 'O';
+         }
+
+         if (var0 >= 217 && var0 <= 220) {
+            return 'U';
+         }
+
+         if (var0 == 221) {
+            return 'Y';
+         }
+
+         if (var0 == 223) {
+            return 's';
+         }
+
+         if (var0 >= 224 && var0 <= 230) {
+            return 'a';
+         }
+
+         if (var0 == 231) {
+            return 'c';
+         }
+
+         if (var0 >= 232 && var0 <= 235) {
+            return 'e';
+         }
+
+         if (var0 >= 236 && var0 <= 239) {
+            return 'i';
+         }
+
+         if (var0 == 241 && var1 != Language.Language_ES) {
+            return 'n';
+         }
+
+         if (var0 >= 242 && var0 <= 246) {
+            return 'o';
+         }
+
+         if (var0 >= 249 && var0 <= 252) {
+            return 'u';
+         }
+
+         if (var0 == 253 || var0 == 255) {
+            return 'y';
+         }
+      }
+
+      if (var0 == 338) {
+         return 'O';
+      } else if (var0 == 339) {
+         return 'o';
+      } else {
+         return var0 == 376 ? 'Y' : var0;
+      }
    }
 }

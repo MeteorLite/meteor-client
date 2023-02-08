@@ -3,47 +3,47 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nj")
+@ObfuscatedName("om")
 @Implements("IgnoreList")
 public class IgnoreList extends UserList {
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Lqi;"
-   )
-   final LoginType loginType;
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "Lqj;"
+    )
+    final LoginType loginType;
 
    @ObfuscatedSignature(
-      descriptor = "(Lqi;)V"
+      descriptor = "(Lqj;)V"
    )
    public IgnoreList(LoginType var1) {
       super(400);
       this.loginType = var1;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lov;",
-      garbageValue = "47"
-   )
-   User newInstance() {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(I)Low;",
+            garbageValue = "-2146736820"
+    )
+    User newInstance() {
       return new Ignored();
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(II)[Lov;",
-      garbageValue = "1710517567"
-   )
-   User[] newTypedArray(int var1) {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(II)[Low;",
+            garbageValue = "1411048209"
+    )
+    User[] newTypedArray(int var1) {
       return new Ignored[var1];
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;II)V",
-      garbageValue = "1829255932"
-   )
-   public void read(Buffer var1, int var2) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;IB)V",
+            garbageValue = "10"
+    )
+    public void read(Buffer var1, int var2) {
       while(true) {
          if (var1.offset < var2) {
             int var3 = var1.readUnsignedByte();
@@ -55,7 +55,7 @@ public class IgnoreList extends UserList {
                Ignored var7 = (Ignored)this.getByCurrentUsername(var5);
                if (var4) {
                   Ignored var8 = (Ignored)this.getByCurrentUsername(var6);
-                  if (var8 != null && var7 != var8) {
+                  if (var8 != null && var8 != var7) {
                      if (var7 != null) {
                         this.remove(var8);
                      } else {
@@ -82,5 +82,21 @@ public class IgnoreList extends UserList {
 
          return;
       }
+   }
+
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "([BIII)I",
+      garbageValue = "-1742873444"
+   )
+   public static int method2060(byte[] var0, int var1, int var2) {
+      int var3 = -1;
+
+      for(int var4 = var1; var4 < var2; ++var4) {
+         var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255];
+      }
+
+      var3 = ~var3;
+      return var3;
    }
 }

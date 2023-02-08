@@ -1,61 +1,106 @@
+import java.io.File;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cm")
+@ObfuscatedName("ct")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-   @ObfuscatedName("ns")
-   @ObfuscatedSignature(
-      descriptor = "Lbs;"
-   )
-   static MenuAction tempMenuAction;
-   @ObfuscatedName("h")
-   int plane;
-   @ObfuscatedName("e")
-   int type;
-   @ObfuscatedName("v")
-   int x;
-   @ObfuscatedName("x")
-   int y;
-   @ObfuscatedName("m")
-   int objectId;
-   @ObfuscatedName("q")
-   int field928;
-   @ObfuscatedName("f")
-   int field921;
-   @ObfuscatedName("r")
-   int id;
-   @ObfuscatedName("u")
-   int rotation;
-   @ObfuscatedName("b")
-   int objectType;
-   @ObfuscatedName("g")
-   int field920 = 31;
+    @ObfuscatedName("em")
+    @ObfuscatedSignature(
+            descriptor = "Llm;"
+    )
+    static Archive archive13;
+    @ObfuscatedName("f")
+    int plane;
+    @ObfuscatedName("w")
+    int type;
+    @ObfuscatedName("v")
+    int x;
+    @ObfuscatedName("s")
+    int y;
+    @ObfuscatedName("z")
+    int objectId;
+   @ObfuscatedName("j")
+   int field926;
    @ObfuscatedName("i")
-   int startCycle = 0;
-   @ObfuscatedName("o")
-   int endCycle = -1;
+   int field927;
+    @ObfuscatedName("n")
+    int id;
+    @ObfuscatedName("l")
+    int rotation;
+    @ObfuscatedName("k")
+    int objectType;
+   @ObfuscatedName("r")
+   int field931 = 31;
+    @ObfuscatedName("b")
+    int startCycle = 0;
+    @ObfuscatedName("m")
+    int endCycle = -1;
 
-   @ObfuscatedName("h")
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "-39"
+      descriptor = "(II)V",
+      garbageValue = "178165513"
    )
-   void method509(int var1) {
-      this.field920 = var1;
+   void method496(int var1) {
+      this.field931 = var1;
    }
 
-   @ObfuscatedName("e")
+   @ObfuscatedName("w")
    @ObfuscatedSignature(
       descriptor = "(II)Z",
-      garbageValue = "-2145111937"
+      garbageValue = "-211927889"
    )
-   boolean method510(int var1) {
+   boolean method497(int var1) {
       if (var1 >= 0 && var1 <= 4) {
-         return (this.field920 & 1 << var1) != 0;
+         return (this.field931 & 1 << var1) != 0;
       } else {
          return true;
       }
+   }
+
+   @ObfuscatedName("f")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/io/File;B)V",
+      garbageValue = "1"
+   )
+   public static void method499(File var0) {
+      FileSystem.FileSystem_cacheDir = var0;
+      if (!FileSystem.FileSystem_cacheDir.exists()) {
+         throw new RuntimeException("");
+      } else {
+         FileSystem.FileSystem_hasPermissions = true;
+      }
+   }
+
+    @ObfuscatedName("gr")
+    @ObfuscatedSignature(
+            descriptor = "(Lcl;IIB)V",
+            garbageValue = "-1"
+    )
+    static void performPlayerAnimation(Player var0, int var1, int var2) {
+      if (var0.sequence == var1 && var1 != -1) {
+         int var3 = class85.SequenceDefinition_get(var1).replyMode;
+         if (var3 == 1) {
+            var0.sequenceFrame = 0;
+            var0.sequenceFrameCycle = 0;
+            var0.sequenceDelay = var2;
+            var0.currentSequenceFrameIndex = 0;
+         }
+
+         if (var3 == 2) {
+            var0.currentSequenceFrameIndex = 0;
+         }
+      } else if (var1 == -1 || var0.sequence == -1 || class85.SequenceDefinition_get(var1).forcedPriority >= class85.SequenceDefinition_get(var0.sequence).forcedPriority) {
+         var0.sequence = var1;
+         var0.sequenceFrame = 0;
+         var0.sequenceFrameCycle = 0;
+         var0.sequenceDelay = var2;
+         var0.currentSequenceFrameIndex = 0;
+         var0.field1006 = var0.pathLength;
+      }
+
    }
 }

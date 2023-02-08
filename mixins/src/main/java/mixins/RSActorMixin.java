@@ -383,10 +383,4 @@ public abstract class RSActorMixin implements RSActor
 		AnimationFrameIndexChanged animationChange = new AnimationFrameIndexChanged(this);
 		client.getCallbacks().post(Events.ANIMATION_FRAME_INDEX_CHANGED, animationChange);
 	}
-
-	@FieldHook("showPublicPlayerChat")
-	@Inject
-	public void showPublicPlayerChatChanged(int idx) {
-		client.getCallbacks().post(Events.SHOW_PUBLIC_PLAYER_CHAT_CHANGED, new ShowPublicPlayerChatChanged());
-	}
 }

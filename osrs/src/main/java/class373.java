@@ -1,71 +1,40 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nl")
+@ObfuscatedName("nu")
 public class class373 {
-   @ObfuscatedName("h")
-   public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-      if (var2 == var0) {
-         if (var3 == var1) {
-            return;
-         }
+   @ObfuscatedName("in")
+   static int field3599;
+   @ObfuscatedName("f")
+   int field3600;
 
-         if (var3 > var1 && var3 < var4 + var1) {
-            --var4;
-            var1 += var4;
-            var3 += var4;
-            var4 = var1 - var4;
-
-            for(var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) {
-               var2[var3--] = var0[var1--];
-               var2[var3--] = var0[var1--];
-               var2[var3--] = var0[var1--];
-               var2[var3--] = var0[var1--];
-               var2[var3--] = var0[var1--];
-               var2[var3--] = var0[var1--];
-               var2[var3--] = var0[var1--];
-            }
-
-            for(var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) {
-               ;
-            }
-
-            return;
-         }
-      }
-
-      var4 += var1;
-
-      for(var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) {
-         var2[var3++] = var0[var1++];
-         var2[var3++] = var0[var1++];
-         var2[var3++] = var0[var1++];
-         var2[var3++] = var0[var1++];
-         var2[var3++] = var0[var1++];
-         var2[var3++] = var0[var1++];
-         var2[var3++] = var0[var1++];
-      }
-
-      for(var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) {
-         ;
-      }
-
+   @ObfuscatedSignature(
+      descriptor = "(IZ)V",
+      garbageValue = "1"
+   )
+   class373(int var1, boolean var2) {
+      this.field3600 = var1;
    }
 
-   @ObfuscatedName("b")
-   public static void clearIntArray(int[] var0, int var1, int var2) {
-      for(var2 = var2 + var1 - 7; var1 < var2; var0[var1++] = 0) {
-         var0[var1++] = 0;
-         var0[var1++] = 0;
-         var0[var1++] = 0;
-         var0[var1++] = 0;
-         var0[var1++] = 0;
-         var0[var1++] = 0;
-         var0[var1++] = 0;
-      }
+   @ObfuscatedName("f")
+   @ObfuscatedSignature(
+      descriptor = "(B)I",
+      garbageValue = "-32"
+   )
+   public int method1972() {
+      return this.field3600;
+   }
 
-      for(var2 += 7; var1 < var2; var0[var1++] = 0) {
-         ;
+   @ObfuscatedName("fz")
+   @ObfuscatedSignature(
+      descriptor = "(ZI)V",
+      garbageValue = "-1525904611"
+   )
+   static final void method1971(boolean var0) {
+      if (var0) {
+         Client.field403 = Login.field764 ? class135.field1283 : class135.field1285;
+      } else {
+         Client.field403 = PacketWriter.clientPreferences.method537(Login.Login_username) ? class135.field1286 : class135.field1284;
       }
 
    }

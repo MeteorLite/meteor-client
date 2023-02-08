@@ -113,7 +113,7 @@ public class Injector extends InjectData implements InjectTaskHandler
 		inject(new CreateAnnotations(this));
 
 		//Used during rev to create class uses in osrs/net/runelite/rs/
-		//inject(new CreateObfuscatedClassMap(this));
+		inject(new CreateObfuscatedClassMap(this));
 
 		//inject(new GraphicsObject(this));
 

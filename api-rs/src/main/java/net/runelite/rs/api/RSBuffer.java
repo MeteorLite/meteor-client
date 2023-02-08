@@ -14,29 +14,33 @@ int getOffset();
 @Import("offset")
 void setOffset(int offset);
 
-@Import("readUnsignedByteA")
+@Import("method2401")
 @Override
 int readUByteAdd();
 
-@Import("readUnsignedByteC")
+@Import("readUnsignedShortA")
 @Override
 int readUByteNeg();
 
-@Import("readUnsignedByteS")
+@Import("readUnsignedByteA")
 @Override
 int readUByteSub();
 
-@Import("readByteA")
+@Import("method2404")
 @Override
 byte readByteAdd();
 
-@Import("readByteC")
+@Import("method2431")
 @Override
 byte readByteNeg();
 
-@Import("readByteS")
+@Import("method2442")
 @Override
 byte readByteSub();
+
+    @Import("writeMediumMiddle")
+    @Override
+    void writeMediumMiddle$api(int i);
 
 @Import("readUnsignedByte")
 @Override
@@ -74,23 +78,23 @@ void writeByte$api(int i);
 @Override
 void writeInt$api(int i);
 
-@Import("writeIntLE")
+@Import("method2441")
 @Override
 void writeIntLE$api(int i);
 
-@Import("method2382")
+@Import("method2414")
 @Override
 void writeIntIME(int i);
 
-@Import("method2383")
+@Import("method2382")
 @Override
 void writeIntME$api(int i);
 
-@Import("writeShortLE")
+@Import("writeShortA")
 @Override
 void writeShortLE$api(int i);
 
-@Import("writeShortA")
+@Import("writeShortLE")
 @Override
 void writeShortAdd(int i);
 
@@ -98,31 +102,35 @@ void writeShortAdd(int i);
 @Override
 void writeShortAddLE(int i);
 
-@Import("readUnsignedShortLE")
+@Import("readUnsignedShortLEA")
 @Override
 int readUShortLE();
 
-@Import("readUnsignedShortA")
+@Import("readUnsignedByteS")
 @Override
 int readUShortAdd();
 
-@Import("readUnsignedShortLEA")
+@Import("readUnsignedShortLE")
 @Override
 int readShortAddLE();
+
+@Import("method2409")
+@Override
+int readShortLE();
 
 @Import("readInt")
 @Override
 int readInt$api();
 
-@Import("readIntLE")
+@Import("method2415")
 @Override
 int readIntLE$api();
 
-@Import("method2373")
+@Import("method2416")
 @Override
 int readIntIME();
 
-@Import("method2384")
+@Import("method2417")
 @Override
 int readIntME();
 
@@ -138,15 +146,15 @@ void writeLongMedium$api(long l);
 @Override
 void writeShort$api(int i);
 
-@Import("writeByteA")
+@Import("method2399")
 @Override
 void writeByteAdd(int i);
 
-@Import("writeByteS")
+@Import("writeByteA")
 @Override
 void writeByteSub(int i);
 
-@Import("writeByteC")
+@Import("writeByteS")
 @Override
 void writeByteNeg(int i);
 

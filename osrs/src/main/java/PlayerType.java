@@ -3,103 +3,110 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lq")
+@ObfuscatedName("lu")
 @Implements("PlayerType")
-public enum PlayerType implements class345 {
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   PlayerType_normal(0, -1, true, false, true),
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   PlayerType_playerModerator(1, 0, true, true, true),
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   PlayerType_jagexModerator(2, 1, true, true, false),
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   PlayerType_ironman(3, 2, false, false, true),
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   PlayerType_ultimateIronman(4, 3, false, false, true),
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   PlayerType_hardcoreIronman(5, 10, false, false, true),
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3410(6, 22, false, false, true),
-   @ObfuscatedName("r")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3417(7, 41, false, false, true),
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3414(8, 42, false, false, true),
-   @ObfuscatedName("b")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3415(9, 43, false, false, true),
-   @ObfuscatedName("j")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3416(10, 44, false, false, true),
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3406(11, 45, false, false, true),
+public enum PlayerType implements class349 {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Llu;"
+    )
+    PlayerType_normal(0, -1, true, false, true),
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Llu;"
+    )
+    PlayerType_playerModerator(1, 0, true, true, true),
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "Llu;"
+    )
+    PlayerType_jagexModerator(2, 1, true, true, false),
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "Llu;"
+    )
+    PlayerType_ironman(3, 2, false, false, true),
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "Llu;"
+    )
+    PlayerType_ultimateIronman(4, 3, false, false, true),
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "Llu;"
+    )
+    PlayerType_hardcoreIronman(5, 10, false, false, true),
    @ObfuscatedName("i")
    @ObfuscatedSignature(
-      descriptor = "Llq;"
+      descriptor = "Llu;"
    )
-   field3418(12, 46, false, false, true),
-   @ObfuscatedName("o")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3419(13, 47, false, false, true),
+   field3409(6, 22, false, false, true),
    @ObfuscatedName("n")
    @ObfuscatedSignature(
-      descriptor = "Llq;"
+      descriptor = "Llu;"
    )
-   field3420(14, 48, false, false, true),
+   field3415(7, 41, false, false, true),
+   @ObfuscatedName("l")
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3416(8, 42, false, false, true),
    @ObfuscatedName("k")
    @ObfuscatedSignature(
-      descriptor = "Llq;"
+      descriptor = "Llu;"
    )
-   field3421(15, 49, false, false, true),
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      descriptor = "Llq;"
-   )
-   field3422(16, 52, false, false, true);
-
-   @ObfuscatedName("s")
-   final int id;
-   @ObfuscatedName("l")
-   public final int modIcon;
-   @ObfuscatedName("t")
-   public final boolean isPrivileged;
+   field3417(9, 43, false, false, true),
    @ObfuscatedName("c")
-   public final boolean isUser;
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3418(10, 44, false, false, true),
+   @ObfuscatedName("r")
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3430(11, 45, false, false, true),
+   @ObfuscatedName("b")
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3420(12, 46, false, false, true),
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3414(13, 47, false, false, true),
+   @ObfuscatedName("t")
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3422(14, 48, false, false, true),
+   @ObfuscatedName("h")
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3419(15, 49, false, false, true),
+   @ObfuscatedName("p")
+   @ObfuscatedSignature(
+      descriptor = "Llu;"
+   )
+   field3424(16, 52, false, false, true);
+
+    @ObfuscatedName("jj")
+    @ObfuscatedSignature(
+            descriptor = "[Lrg;"
+    )
+    static IndexedSprite[] modIconSprites;
+    @ObfuscatedName("ng")
+    static int menuHeight;
+    @ObfuscatedName("o")
+    final int id;
+    @ObfuscatedName("u")
+    public final int modIcon;
+    @ObfuscatedName("x")
+    public final boolean isPrivileged;
+    @ObfuscatedName("a")
+    public final boolean isUser;
 
    PlayerType(int var3, int var4, boolean var5, boolean var6, boolean var7) {
       this.id = var3;
@@ -108,12 +115,12 @@ public enum PlayerType implements class345 {
       this.isUser = var7;
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "96"
-   )
-   public int rsOrdinal() {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "3"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 }

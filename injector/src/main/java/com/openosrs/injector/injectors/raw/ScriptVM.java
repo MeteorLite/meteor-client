@@ -169,7 +169,7 @@ public class ScriptVM extends AbstractInjector
 							.filter(i -> i.getInstruction() instanceof ILoad)
 							.map(i -> ((ILoad) i.getInstruction()).getVariableIndex())
 							.findFirst()
-							.orElse(null);
+							.orElseThrow(null);
 				}
 			}
 		}

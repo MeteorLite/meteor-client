@@ -1078,7 +1078,7 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 				.putFloat(type.specularGloss)
 				.putFloat(type.normalStrength)
 				.putFloat(type.baseOpacity)
-				.putInt(type.hasFoam ? 1 : 0)
+				.putInt((type.hasFoam && config.seaFoam()) ? 1 : 0)
 				.putFloat(type.duration)
 				.putFloat(type.fresnelAmount)
 				.putFloat(type.surfaceColor[0])

@@ -7,32 +7,27 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fp")
+@ObfuscatedName("fg")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-   @ObfuscatedName("h")
-   public static String javaVendor;
-   @ObfuscatedName("e")
-   public static String javaVersion;
-   @ObfuscatedName("ha")
-   @ObfuscatedSignature(
-      descriptor = "Ldl;"
-   )
-   static UrlRequester urlRequester;
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Lfl;"
-   )
-   Task current = null;
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Lfl;"
-   )
-   Task task = null;
-   @ObfuscatedName("m")
-   Thread thread;
-   @ObfuscatedName("q")
-   boolean isClosed = false;
+    @ObfuscatedName("f")
+    public static String javaVendor;
+    @ObfuscatedName("w")
+    public static String javaVersion;
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "Lff;"
+    )
+    Task current = null;
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "Lff;"
+    )
+    Task task = null;
+    @ObfuscatedName("z")
+    Thread thread;
+    @ObfuscatedName("j")
+    boolean isClosed = false;
 
    public TaskHandler() {
       javaVendor = "Unknown";
@@ -52,12 +47,12 @@ public class TaskHandler implements Runnable {
       this.thread.start();
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "898320509"
-   )
-   public final void close() {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "28"
+    )
+    public final void close() {
       synchronized(this) {
          this.isClosed = true;
          this.notifyAll();
@@ -71,12 +66,12 @@ public class TaskHandler implements Runnable {
 
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(IIILjava/lang/Object;B)Lfl;",
-      garbageValue = "-5"
-   )
-   final Task newTask(int var1, int var2, int var3, Object var4) {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(IIILjava/lang/Object;B)Lff;",
+            garbageValue = "110"
+    )
+    final Task newTask(int var1, int var2, int var3, Object var4) {
       Task var5 = new Task();
       var5.type = var1;
       var5.intArgument = var2;
@@ -94,26 +89,26 @@ public class TaskHandler implements Runnable {
       }
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;IB)Lfl;",
-      garbageValue = "1"
-   )
-   public final Task newSocketTask(String var1, int var2) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;IB)Lff;",
+            garbageValue = "1"
+    )
+    public final Task newSocketTask(String var1, int var2) {
       return this.newTask(1, var2, 0, var1);
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/Runnable;IS)Lfl;",
-      garbageValue = "228"
-   )
-   public final Task newThreadTask(Runnable var1, int var2) {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/Runnable;II)Lff;",
+            garbageValue = "-245767136"
+    )
+    public final Task newThreadTask(Runnable var1, int var2) {
       return this.newTask(2, var2, 0, var1);
    }
 
-   @ObfuscatedName("run")
-   public final void run() {
+    @ObfuscatedName("run")
+    public final void run() {
       while(true) {
          Task var1;
          synchronized(this) {
@@ -162,32 +157,35 @@ public class TaskHandler implements Runnable {
       }
    }
 
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "2090340706"
-   )
-   static void setLoginResponseString(String var0, String var1, String var2) {
-      Login.Login_response1 = var0;
-      Login.Login_response2 = var1;
-      Login.Login_response3 = var2;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lfp;",
+            garbageValue = "513935047"
+    )
+    public static VarpDefinition VarpDefinition_get(int var0) {
+      VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         byte[] var2 = VarpDefinition.VarpDefinition_archive.takeFile(16, var0);
+         var1 = new VarpDefinition();
+         if (var2 != null) {
+            var1.decode(new Buffer(var2));
+         }
+
+         VarpDefinition.VarpDefinition_cached.put(var1, (long)var0);
+         return var1;
+      }
    }
 
-   @ObfuscatedName("k")
+   @ObfuscatedName("x")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;B)Ljava/lang/String;",
-      garbageValue = "81"
+      descriptor = "(I)V",
+      garbageValue = "1182255807"
    )
-   public static String method873(CharSequence var0) {
-      return HealthBar.method570('*', var0.length());
-   }
-
-   @ObfuscatedName("mf")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-2117100344"
-   )
-   public static boolean method871() {
-      return Client.staffModLevel >= 2;
+   public static void method888() {
+      ItemComposition.ItemDefinition_cached.clear();
+      ItemComposition.ItemDefinition_cachedModels.clear();
+      ItemComposition.ItemDefinition_cachedSprites.clear();
    }
 }

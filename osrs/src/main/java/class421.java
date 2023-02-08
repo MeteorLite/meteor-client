@@ -1,14 +1,34 @@
-import java.io.UnsupportedEncodingException;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pu")
-public interface class421 {
-   @ObfuscatedName("h")
+@ObfuscatedName("pq")
+public class class421 implements class426 {
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
-      descriptor = "(B)[B",
-      garbageValue = "0"
+      descriptor = "Lqs;"
    )
-   byte[] vmethod7797() throws UnsupportedEncodingException;
+   public final class451 field3802;
+
+   @ObfuscatedSignature(
+      descriptor = "(Lqe;)V"
+   )
+   class421(class452 var1) {
+      this.field3802 = var1;
+   }
+
+   @ObfuscatedSignature(
+      descriptor = "(Lpo;)V"
+   )
+   public class421(class422 var1) {
+      this(new class452(var1));
+   }
+
+   @ObfuscatedName("f")
+   @ObfuscatedSignature(
+      descriptor = "(IB)I",
+      garbageValue = "70"
+   )
+   public int method2194(int var1) {
+      return this.field3802.vmethod8144(var1);
+   }
 }

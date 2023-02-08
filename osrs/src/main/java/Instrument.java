@@ -4,89 +4,89 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bp")
+@ObfuscatedName("be")
 @Implements("Instrument")
 public class Instrument {
-   @ObfuscatedName("s")
-   static int[] Instrument_samples;
-   @ObfuscatedName("l")
-   static int[] Instrument_noise = new int['耀'];
-   @ObfuscatedName("t")
-   static int[] Instrument_sine;
-   @ObfuscatedName("p")
-   static int[] Instrument_phases;
-   @ObfuscatedName("d")
-   static int[] Instrument_delays;
-   @ObfuscatedName("y")
-   static int[] Instrument_volumeSteps;
-   @ObfuscatedName("z")
-   static int[] Instrument_pitchSteps;
-   @ObfuscatedName("w")
-   static int[] Instrument_pitchBaseSteps;
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope pitch;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope volume;
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope pitchModifier;
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope pitchModifierAmplitude;
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope volumeMultiplier;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope volumeMultiplierAmplitude;
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope release;
-   @ObfuscatedName("r")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope attack;
-   @ObfuscatedName("u")
-   int[] oscillatorVolume = new int[]{0, 0, 0, 0, 0};
-   @ObfuscatedName("b")
-   int[] oscillatorPitch = new int[]{0, 0, 0, 0, 0};
-   @ObfuscatedName("j")
-   int[] oscillatorDelays = new int[]{0, 0, 0, 0, 0};
-   @ObfuscatedName("g")
-   int delayTime = 0;
-   @ObfuscatedName("i")
-   int delayDecay = 100;
-   @ObfuscatedName("o")
-   @ObfuscatedSignature(
-      descriptor = "Lbw;"
-   )
-   AudioFilter filter;
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      descriptor = "Lah;"
-   )
-   SoundEnvelope filterEnvelope;
-   @ObfuscatedName("k")
-   int duration = 500;
-   @ObfuscatedName("a")
-   int offset = 0;
+    @ObfuscatedName("o")
+    static int[] Instrument_samples;
+    @ObfuscatedName("u")
+    static int[] Instrument_noise = new int['耀'];
+    @ObfuscatedName("x")
+    static int[] Instrument_sine;
+    @ObfuscatedName("q")
+    static int[] Instrument_phases;
+    @ObfuscatedName("d")
+    static int[] Instrument_delays;
+    @ObfuscatedName("e")
+    static int[] Instrument_volumeSteps;
+    @ObfuscatedName("g")
+    static int[] Instrument_pitchSteps;
+    @ObfuscatedName("y")
+    static int[] Instrument_pitchBaseSteps;
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope pitch;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope volume;
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope pitchModifier;
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope pitchModifierAmplitude;
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope volumeMultiplier;
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope volumeMultiplierAmplitude;
+    @ObfuscatedName("i")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope release;
+    @ObfuscatedName("n")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope attack;
+    @ObfuscatedName("l")
+    int[] oscillatorVolume = new int[]{0, 0, 0, 0, 0};
+    @ObfuscatedName("k")
+    int[] oscillatorPitch = new int[]{0, 0, 0, 0, 0};
+    @ObfuscatedName("c")
+    int[] oscillatorDelays = new int[]{0, 0, 0, 0, 0};
+    @ObfuscatedName("r")
+    int delayTime = 0;
+    @ObfuscatedName("b")
+    int delayDecay = 100;
+    @ObfuscatedName("m")
+    @ObfuscatedSignature(
+            descriptor = "Lbm;"
+    )
+    AudioFilter filter;
+    @ObfuscatedName("t")
+    @ObfuscatedSignature(
+            descriptor = "Lau;"
+    )
+    SoundEnvelope filterEnvelope;
+    @ObfuscatedName("h")
+    int duration = 500;
+    @ObfuscatedName("p")
+    int offset = 0;
 
    static {
       Random var0 = new Random(0L);
@@ -110,9 +110,9 @@ public class Instrument {
       Instrument_pitchBaseSteps = new int[5];
    }
 
-   @ObfuscatedName("h")
-   final int[] synthesize(int var1, int var2) {
-      class373.clearIntArray(Instrument_samples, 0, var1);
+    @ObfuscatedName("f")
+    final int[] synthesize(int var1, int var2) {
+      class377.clearIntArray(Instrument_samples, 0, var1);
       if (var2 < 10) {
          return Instrument_samples;
       } else {
@@ -313,8 +313,8 @@ public class Instrument {
       }
    }
 
-   @ObfuscatedName("e")
-   final int evaluateWave(int var1, int var2, int var3) {
+    @ObfuscatedName("w")
+    final int evaluateWave(int var1, int var2, int var3) {
       if (var3 == 1) {
          return (var1 & 32767) < 16384 ? var2 : -var2;
       } else if (var3 == 2) {
@@ -326,11 +326,11 @@ public class Instrument {
       }
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;)V"
-   )
-   final void decode(Buffer var1) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;)V"
+    )
+    final void decode(Buffer var1) {
       this.pitch = new SoundEnvelope();
       this.pitch.decode(var1);
       this.volume = new SoundEnvelope();
@@ -379,6 +379,6 @@ public class Instrument {
       this.offset = var1.readUnsignedShort();
       this.filter = new AudioFilter();
       this.filterEnvelope = new SoundEnvelope();
-      this.filter.method323(var1, this.filterEnvelope);
+      this.filter.method314(var1, this.filterEnvelope);
    }
 }

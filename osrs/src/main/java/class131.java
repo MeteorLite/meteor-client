@@ -2,70 +2,55 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
-public enum class131 implements class345 {
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1272(0, 0),
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1264(1, 1),
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1265(2, 2),
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1266(3, 3),
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1267(4, 4),
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1268(5, 5),
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1271(6, 6),
-   @ObfuscatedName("r")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1270(7, 7),
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      descriptor = "Ley;"
-   )
-   field1273(8, 8);
+@ObfuscatedName("en")
+public class class131 {
+    @ObfuscatedName("iz")
+    static int selectedItemId;
 
-   @ObfuscatedName("b")
-   final int field1269;
-   @ObfuscatedName("j")
-   final int field1263;
+    @ObfuscatedName("m")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lhw;",
+            garbageValue = "-1224453305"
+    )
+    static Frames getFrames(int var0) {
+      Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         AbstractArchive var3 = SequenceDefinition.SequenceDefinition_animationsArchive;
+         AbstractArchive var4 = class16.SequenceDefinition_skeletonsArchive;
+         boolean var5 = true;
+         int[] var6 = var3.getGroupFileIds(var0);
 
-   class131(int var3, int var4) {
-      this.field1269 = var3;
-      this.field1263 = var4;
-   }
+         for(int var7 = 0; var7 < var6.length; ++var7) {
+            byte[] var8 = var3.getFile(var0, var6[var7]);
+            if (var8 == null) {
+               var5 = false;
+            } else {
+               int var9 = (var8[0] & 255) << 8 | var8[1] & 255;
+               byte[] var10 = var4.getFile(var9, 0);
+               if (var10 == null) {
+                  var5 = false;
+               }
+            }
+         }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "96"
-   )
-   public int rsOrdinal() {
-      return this.field1263;
+         Frames var2;
+         if (!var5) {
+            var2 = null;
+         } else {
+            try {
+               var2 = new Frames(var3, var4, var0, false);
+            } catch (Exception var12) {
+               var2 = null;
+            }
+         }
+
+         if (var2 != null) {
+            SequenceDefinition.SequenceDefinition_cachedFrames.put(var2, (long)var0);
+         }
+
+         return var2;
+      }
    }
 }

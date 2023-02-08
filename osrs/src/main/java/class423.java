@@ -1,52 +1,21 @@
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pn")
-public class class423 implements class421 {
-   @ObfuscatedName("e")
-   final Map field3799;
+@ObfuscatedName("pp")
+public class class423 extends class424 {
+    @ObfuscatedName("c")
+    public static boolean musicTrackBoolean;
 
-   public class423(Map var1) {
-      this.field3799 = var1;
+   public class423(int var1) {
+      super(var1);
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(B)[B",
-      garbageValue = "0"
-   )
-   public byte[] vmethod7797() throws UnsupportedEncodingException {
-      return this.method2177().getBytes("UTF-8");
-   }
-
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "1995090155"
-   )
-   public String method2177() throws UnsupportedEncodingException {
-      StringBuilder var1 = new StringBuilder();
-      Iterator var2 = this.field3799.entrySet().iterator();
-
-      while(var2.hasNext()) {
-         Entry var3 = (Entry)var2.next();
-         String var4 = URLEncoder.encode((String)var3.getKey(), "UTF-8");
-         String var5 = URLEncoder.encode((String)var3.getValue(), "UTF-8");
-         var1.append(var4).append("=").append(var5).append("&");
-      }
-
-      if (var1.length() == 0) {
-         return "";
-      } else {
-         var1.deleteCharAt(var1.length() - 1);
-         var1.insert(0, "?");
-         return var1.toString();
-      }
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;IS)V",
+            garbageValue = "-22677"
+    )
+    void vmethod7769(Buffer var1, int var2) {
    }
 }

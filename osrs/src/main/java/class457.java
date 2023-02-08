@@ -1,33 +1,75 @@
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qg")
-final class class457 implements class452 {
-   @ObfuscatedName("h")
+@ObfuscatedName("qb")
+class class457 implements Iterator {
+   @ObfuscatedName("f")
+   int field3972;
+   // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/Object;Lqy;I)V",
-      garbageValue = "-1165050397"
+           descriptor = "Lqt;"
    )
-   public void vmethod8274(Object var1, Buffer var2) {
-      this.method2307((String)var1, var2);
+   @ObfuscatedName("this$0")
+   final class458 this$0;
+
+   @ObfuscatedSignature(
+      descriptor = "(Lqt;)V"
+   )
+   class457(class458 var1) {
+      this.this$0 = var1;
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;I)Ljava/lang/Object;",
-      garbageValue = "1911852841"
-   )
-   public Object vmethod8273(Buffer var1) {
-      return var1.readStringCp1252NullTerminated();
+    @ObfuscatedName("hasNext")
+    public boolean hasNext() {
+      return this.field3972 < this.this$0.method2195();
    }
 
-   @ObfuscatedName("b")
+    @ObfuscatedName("next")
+    public Object next() {
+      int var1 = ++this.field3972 - 1;
+      class423 var2 = (class423)this.this$0.field3975.get((long)var1);
+      return var2 != null ? var2 : this.this$0.method2327(var1);
+   }
+
+    @ObfuscatedName("remove")
+    public void remove() {
+      throw new UnsupportedOperationException();
+   }
+
+   @ObfuscatedName("o")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Lqy;B)V",
-      garbageValue = "-8"
+      descriptor = "(ILba;ZI)I",
+      garbageValue = "1674234176"
    )
-   void method2307(String var1, Buffer var2) {
-      var2.writeStringCp1252NullTerminated(var1);
+   static int method2324(int var0, Script var1, boolean var2) {
+      Widget var3 = var2 ? Interpreter.scriptDotWidget : class85.scriptActiveWidget;
+      if (var0 == 1800) {
+         Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = MenuAction.Widget_unpackTargetMask(class173.getWidgetFlags(var3));
+         return 1;
+      } else if (var0 != 1801) {
+         if (var0 == 1802) {
+            if (var3.dataText == null) {
+               Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = "";
+            } else {
+               Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3.dataText;
+            }
+
+            return 1;
+         } else {
+            return 2;
+         }
+      } else {
+         int var4 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize];
+         --var4;
+         if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+            Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = var3.actions[var4];
+         } else {
+            Interpreter.Interpreter_stringStack[++class20.Interpreter_stringStackSize - 1] = "";
+         }
+
+         return 1;
+      }
    }
 }

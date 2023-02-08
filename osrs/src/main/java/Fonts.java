@@ -4,24 +4,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pz")
+@ObfuscatedName("qq")
 @Implements("Fonts")
 public class Fonts {
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "Lly;"
-   )
-   AbstractArchive spritesArchive;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "Lly;"
-   )
-   AbstractArchive fontsArchive;
-   @ObfuscatedName("v")
-   HashMap map;
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "Lln;"
+    )
+    AbstractArchive spritesArchive;
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "Lln;"
+    )
+    AbstractArchive fontsArchive;
+    @ObfuscatedName("v")
+    HashMap map;
 
    @ObfuscatedSignature(
-      descriptor = "(Lly;Lly;)V"
+      descriptor = "(Lln;Lln;)V"
    )
    public Fonts(AbstractArchive var1, AbstractArchive var2) {
       this.spritesArchive = var1;
@@ -29,12 +29,12 @@ public class Fonts {
       this.map = new HashMap();
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "([Lpt;I)Ljava/util/HashMap;",
-      garbageValue = "-1014513679"
-   )
-   public HashMap createMap(FontName[] var1) {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "([Lqy;I)Ljava/util/HashMap;",
+            garbageValue = "655550139"
+    )
+    public HashMap createMap(FontName[] var1) {
       HashMap var2 = new HashMap();
       FontName[] var3 = var1;
 
@@ -43,12 +43,7 @@ public class Fonts {
          if (this.map.containsKey(var5)) {
             var2.put(var5, this.map.get(var5));
          } else {
-            AbstractArchive var7 = this.spritesArchive;
-            AbstractArchive var8 = this.fontsArchive;
-            String var9 = var5.name;
-            int var10 = var7.getGroupId(var9);
-            int var11 = var7.getFileId(var10, "");
-            Font var6 = Timer.method2007(var7, var8, var10, var11);
+            Font var6 = ScriptFrame.method318(this.spritesArchive, this.fontsArchive, var5.name, "");
             if (var6 != null) {
                this.map.put(var5, var6);
                var2.put(var5, var6);

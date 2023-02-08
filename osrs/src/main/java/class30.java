@@ -1,34 +1,19 @@
-import net.runelite.mapping.Export;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("av")
-public interface class30 {
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "1119176744"
-   )
-   boolean vmethod3949(int var1);
+@ObfuscatedName("aw")
+public class class30 {
+   static {
+      ImageIO.setUseCache(false);
+   }
 
-   @ObfuscatedName("e")
+   @ObfuscatedName("s")
    @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "-916991313"
+      descriptor = "(Ljava/lang/CharSequence;II)I",
+      garbageValue = "1387844569"
    )
-   boolean vmethod3989(int var1);
-
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(CI)Z",
-      garbageValue = "-258182"
-   )
-   boolean vmethod3951(char var1);
-
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(ZI)Z",
-      garbageValue = "333814410"
-   )
-   boolean vmethod3953(boolean var1);
+   public static int method117(CharSequence var0, int var1) {
+      return GrandExchangeOfferUnitPriceComparator.method1864(var0, var1, true);
+   }
 }

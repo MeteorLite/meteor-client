@@ -3,49 +3,44 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ia")
+@ObfuscatedName("ir")
 @Implements("WorldMapSection0")
 public class WorldMapSection0 implements WorldMapSection {
-   @ObfuscatedName("ek")
-   @ObfuscatedSignature(
-      descriptor = "Lln;"
-   )
-   static Archive field2342;
-   @ObfuscatedName("h")
-   int oldZ;
-   @ObfuscatedName("e")
-   int newZ;
-   @ObfuscatedName("v")
-   int oldX;
-   @ObfuscatedName("x")
-   int oldY;
-   @ObfuscatedName("m")
-   int newX;
-   @ObfuscatedName("q")
-   int newY;
-   @ObfuscatedName("f")
-   int oldChunkXLow;
-   @ObfuscatedName("r")
-   int oldChunkYLow;
-   @ObfuscatedName("u")
-   int oldChunkXHigh;
-   @ObfuscatedName("b")
-   int oldChunkYHigh;
-   @ObfuscatedName("j")
-   int newChunkXLow;
-   @ObfuscatedName("g")
-   int newChunkYLow;
-   @ObfuscatedName("i")
-   int newChunkXHigh;
-   @ObfuscatedName("o")
-   int newChunkYHigh;
+    @ObfuscatedName("f")
+    int oldZ;
+    @ObfuscatedName("w")
+    int newZ;
+    @ObfuscatedName("v")
+    int oldX;
+    @ObfuscatedName("s")
+    int oldY;
+    @ObfuscatedName("z")
+    int newX;
+    @ObfuscatedName("j")
+    int newY;
+    @ObfuscatedName("i")
+    int oldChunkXLow;
+    @ObfuscatedName("n")
+    int oldChunkYLow;
+    @ObfuscatedName("l")
+    int oldChunkXHigh;
+    @ObfuscatedName("k")
+    int oldChunkYHigh;
+    @ObfuscatedName("c")
+    int newChunkXLow;
+    @ObfuscatedName("r")
+    int newChunkYLow;
+    @ObfuscatedName("b")
+    int newChunkXHigh;
+    @ObfuscatedName("m")
+    int newChunkYHigh;
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Lit;B)V",
-      garbageValue = "86"
-   )
-   public void expandBounds(WorldMapArea var1) {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(Lii;I)V",
+            garbageValue = "1606915966"
+    )
+    public void expandBounds(WorldMapArea var1) {
       if (var1.regionLowX > this.newX) {
          var1.regionLowX = this.newX;
       }
@@ -64,12 +59,12 @@ public class WorldMapSection0 implements WorldMapSection {
 
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(IIII)Z",
-      garbageValue = "986597458"
-   )
-   public boolean containsCoord(int var1, int var2, int var3) {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(IIII)Z",
+            garbageValue = "1059252076"
+    )
+    public boolean containsCoord(int var1, int var2, int var3) {
       if (var1 >= this.oldZ && var1 < this.newZ + this.oldZ) {
          return var2 >= (this.oldX << 6) + (this.oldChunkXLow << 3) && var2 <= (this.oldX << 6) + (this.oldChunkXHigh << 3) + 7 && var3 >= (this.oldY << 6) + (this.oldChunkYLow << 3) && var3 <= (this.oldY << 6) + (this.oldChunkYHigh << 3) + 7;
       } else {
@@ -77,21 +72,21 @@ public class WorldMapSection0 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "(IIS)Z",
-      garbageValue = "-11823"
-   )
-   public boolean containsPosition(int var1, int var2) {
+    @ObfuscatedName("v")
+    @ObfuscatedSignature(
+            descriptor = "(III)Z",
+            garbageValue = "1209851870"
+    )
+    public boolean containsPosition(int var1, int var2) {
       return var1 >= (this.newX << 6) + (this.newChunkXLow << 3) && var1 <= (this.newX << 6) + (this.newChunkXHigh << 3) + 7 && var2 >= (this.newY << 6) + (this.newChunkYLow << 3) && var2 <= (this.newY << 6) + (this.newChunkYHigh << 3) + 7;
    }
 
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      descriptor = "(IIIB)[I",
-      garbageValue = "-52"
-   )
-   public int[] getBorderTileLengths(int var1, int var2, int var3) {
+    @ObfuscatedName("s")
+    @ObfuscatedSignature(
+            descriptor = "(IIII)[I",
+            garbageValue = "-1188894867"
+    )
+    public int[] getBorderTileLengths(int var1, int var2, int var3) {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
       } else {
@@ -100,12 +95,12 @@ public class WorldMapSection0 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(III)Lky;",
-      garbageValue = "1584933614"
-   )
-   public Coord coord(int var1, int var2) {
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "(III)Lko;",
+            garbageValue = "-1946236139"
+    )
+    public Coord coord(int var1, int var2) {
       if (!this.containsPosition(var1, var2)) {
          return null;
       } else {
@@ -115,12 +110,12 @@ public class WorldMapSection0 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "(Lqy;I)V",
-      garbageValue = "1737950913"
-   )
-   public void read(Buffer var1) {
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "(Lrd;I)V",
+            garbageValue = "158933591"
+    )
+    public void read(Buffer var1) {
       this.oldZ = var1.readUnsignedByte();
       this.newZ = var1.readUnsignedByte();
       this.oldX = var1.readUnsignedShort();
@@ -138,25 +133,11 @@ public class WorldMapSection0 implements WorldMapSection {
       this.postRead();
    }
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "49"
-   )
-   void postRead() {
-   }
-
-   @ObfuscatedName("s")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-408404102"
-   )
-   static void method1424() {
-      if (class29.loadWorlds()) {
-         Login.worldSelectOpen = true;
-         Login.worldSelectPage = 0;
-         Login.worldSelectPagesCount = 0;
-      }
-
+    @ObfuscatedName("i")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "808293169"
+    )
+    void postRead() {
    }
 }

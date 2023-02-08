@@ -2,52 +2,47 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ch")
+@ObfuscatedName("cy")
 @Implements("ClientPreferences")
 public class ClientPreferences {
-   @ObfuscatedName("eg")
-   @ObfuscatedSignature(
-      descriptor = "Lln;"
-   )
-   static Archive archive8;
+    @ObfuscatedName("z")
+    boolean roofsHidden;
+    @ObfuscatedName("j")
+    boolean hideUsername = false;
+    @ObfuscatedName("i")
+    boolean titleMusicDisabled;
+    @ObfuscatedName("n")
+    boolean displayFps = false;
+   @ObfuscatedName("l")
+   int field1037;
+    @ObfuscatedName("k")
+    double brightness = 0.8D;
+    @ObfuscatedName("c")
+    int musicVolume = 127;
+    @ObfuscatedName("r")
+    int soundEffectsVolume = 127;
+    @ObfuscatedName("b")
+    int areaSoundEffectsVolume = 127;
    @ObfuscatedName("m")
-   boolean roofsHidden;
-   @ObfuscatedName("q")
-   boolean hideUsername = false;
-   @ObfuscatedName("f")
-   boolean titleMusicDisabled;
-   @ObfuscatedName("r")
-   boolean displayFps = false;
-   @ObfuscatedName("u")
-   int field1036;
-   @ObfuscatedName("b")
-   double brightness = 0.8D;
-   @ObfuscatedName("j")
-   int musicVolume = 127;
-   @ObfuscatedName("g")
-   int soundEffectsVolume = 127;
-   @ObfuscatedName("i")
-   int areaSoundEffectsVolume = 127;
-   @ObfuscatedName("o")
-   int field1040 = -1;
-   @ObfuscatedName("n")
-   String rememberedUsername = null;
-   @ObfuscatedName("k")
-   int windowMode = 1;
-   @ObfuscatedName("a")
-   final Map parameters = new LinkedHashMap();
+   int field1042 = -1;
+    @ObfuscatedName("t")
+    String rememberedUsername = null;
+    @ObfuscatedName("h")
+    int windowMode = 1;
+    @ObfuscatedName("p")
+    final Map parameters = new LinkedHashMap();
 
    ClientPreferences() {
-      this.method533(true);
+      this.method520(true);
    }
 
    @ObfuscatedSignature(
-      descriptor = "(Lqy;)V"
+      descriptor = "(Lrd;)V"
    )
    ClientPreferences(Buffer var1) {
       if (var1 != null && var1.array != null) {
@@ -91,7 +86,7 @@ public class ClientPreferences {
             }
 
             if (var2 > 7) {
-               this.field1040 = var1.readUnsignedByte();
+               this.field1042 = var1.readUnsignedByte();
             }
 
             if (var2 > 8) {
@@ -99,31 +94,31 @@ public class ClientPreferences {
             }
 
             if (var2 > 9) {
-               this.field1036 = var1.readInt();
+               this.field1037 = var1.readInt();
             }
          } else {
-            this.method533(true);
+            this.method520(true);
          }
       } else {
-         this.method533(true);
+         this.method520(true);
       }
 
    }
 
-   @ObfuscatedName("h")
+   @ObfuscatedName("f")
    @ObfuscatedSignature(
       descriptor = "(ZB)V",
-      garbageValue = "1"
+      garbageValue = "54"
    )
-   void method533(boolean var1) {
+   void method520(boolean var1) {
    }
 
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lqy;",
-      garbageValue = "-1732648006"
-   )
-   Buffer toBuffer() {
+    @ObfuscatedName("w")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lrd;",
+            garbageValue = "1661663667"
+    )
+    Buffer toBuffer() {
       Buffer var1 = new Buffer(417, true);
       var1.writeByte(10);
       var1.writeByte(this.roofsHidden ? 1 : 0);
@@ -144,252 +139,252 @@ public class ClientPreferences {
       var1.writeByte(this.musicVolume);
       var1.writeByte(this.soundEffectsVolume);
       var1.writeByte(this.areaSoundEffectsVolume);
-      var1.writeByte(this.field1040);
+      var1.writeByte(this.field1042);
       var1.writeByte(this.displayFps ? 1 : 0);
-      var1.writeInt(this.field1036);
+      var1.writeInt(this.field1037);
       return var1;
    }
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(ZI)V",
-      garbageValue = "533129640"
-   )
-   void setRoofsHidden(boolean var1) {
+    @ObfuscatedName("z")
+    @ObfuscatedSignature(
+            descriptor = "(ZB)V",
+            garbageValue = "-109"
+    )
+    void setRoofsHidden(boolean var1) {
       this.roofsHidden = var1;
-      Tile.savePreferences();
+      SoundSystem.savePreferences();
    }
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "105464922"
-   )
-   boolean getRoofsHidden() {
+    @ObfuscatedName("j")
+    @ObfuscatedSignature(
+            descriptor = "(S)Z",
+            garbageValue = "180"
+    )
+    boolean getRoofsHidden() {
       return this.roofsHidden;
    }
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "(ZB)V",
-      garbageValue = "64"
-   )
-   void setIsUsernameHidden(boolean var1) {
+    @ObfuscatedName("i")
+    @ObfuscatedSignature(
+            descriptor = "(ZB)V",
+            garbageValue = "2"
+    )
+    void setIsUsernameHidden(boolean var1) {
       this.hideUsername = var1;
-      Tile.savePreferences();
+      SoundSystem.savePreferences();
+   }
+
+    @ObfuscatedName("n")
+    @ObfuscatedSignature(
+            descriptor = "(S)Z",
+            garbageValue = "8123"
+    )
+    boolean getIsUsernameHidden() {
+      return this.hideUsername;
+   }
+
+    @ObfuscatedName("l")
+    @ObfuscatedSignature(
+            descriptor = "(ZI)V",
+            garbageValue = "-642291381"
+    )
+    void getTitleMusicDisabled(boolean var1) {
+      this.titleMusicDisabled = var1;
+      SoundSystem.savePreferences();
+   }
+
+    @ObfuscatedName("k")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1585419909"
+    )
+    boolean getTitleMusicDisabled() {
+      return this.titleMusicDisabled;
+   }
+
+   @ObfuscatedName("c")
+   @ObfuscatedSignature(
+      descriptor = "(ZI)V",
+      garbageValue = "810617878"
+   )
+   void method524(boolean var1) {
+      this.displayFps = var1;
+      SoundSystem.savePreferences();
    }
 
    @ObfuscatedName("r")
    @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1900607558"
+      descriptor = "(I)V",
+      garbageValue = "915076830"
    )
-   boolean getIsUsernameHidden() {
-      return this.hideUsername;
-   }
-
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      descriptor = "(ZB)V",
-      garbageValue = "7"
-   )
-   void getTitleMusicDisabled(boolean var1) {
-      this.titleMusicDisabled = var1;
-      Tile.savePreferences();
+   void method525() {
+      this.method524(!this.displayFps);
    }
 
    @ObfuscatedName("b")
    @ObfuscatedSignature(
       descriptor = "(B)Z",
-      garbageValue = "39"
+      garbageValue = "2"
    )
-   boolean getTitleMusicDisabled() {
-      return this.titleMusicDisabled;
-   }
-
-   @ObfuscatedName("j")
-   @ObfuscatedSignature(
-      descriptor = "(ZS)V",
-      garbageValue = "8323"
-   )
-   void method559(boolean var1) {
-      this.displayFps = var1;
-      Tile.savePreferences();
-   }
-
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "141048333"
-   )
-   void method550() {
-      this.method559(!this.displayFps);
-   }
-
-   @ObfuscatedName("i")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1316033707"
-   )
-   boolean method538() {
+   boolean method526() {
       return this.displayFps;
    }
 
-   @ObfuscatedName("o")
+   @ObfuscatedName("m")
    @ObfuscatedSignature(
       descriptor = "(IB)V",
-      garbageValue = "54"
+      garbageValue = "-8"
    )
-   void method539(int var1) {
-      this.field1036 = var1;
-      Tile.savePreferences();
-   }
-
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1786491107"
-   )
-   int method540() {
-      return this.field1036;
-   }
-
-   @ObfuscatedName("k")
-   void setBrightness(double var1) {
-      this.brightness = var1;
-      Tile.savePreferences();
-   }
-
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      descriptor = "(I)D",
-      garbageValue = "2073863373"
-   )
-   double getBrightness() {
-      return this.brightness;
-   }
-
-   @ObfuscatedName("s")
-   @ObfuscatedSignature(
-      descriptor = "(IS)V",
-      garbageValue = "18863"
-   )
-   void setCurrentMusicVolume(int var1) {
-      this.musicVolume = var1;
-      Tile.savePreferences();
-   }
-
-   @ObfuscatedName("l")
-   @ObfuscatedSignature(
-      descriptor = "(S)I",
-      garbageValue = "-5026"
-   )
-   int getCurrentMusicVolume() {
-      return this.musicVolume;
+   void method527(int var1) {
+      this.field1037 = var1;
+      SoundSystem.savePreferences();
    }
 
    @ObfuscatedName("t")
    @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "-25"
+      descriptor = "(I)I",
+      garbageValue = "-2141806502"
    )
-   void setCurrentSoundEffectVolume(int var1) {
-      this.soundEffectsVolume = var1;
-      Tile.savePreferences();
+   int method528() {
+      return this.field1037;
    }
 
-   @ObfuscatedName("c")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1444608091"
-   )
-   int getCurrentSoundEffectsVolume() {
+    @ObfuscatedName("h")
+    void setBrightness(double var1) {
+      this.brightness = var1;
+      SoundSystem.savePreferences();
+   }
+
+    @ObfuscatedName("p")
+    @ObfuscatedSignature(
+            descriptor = "(B)D",
+            garbageValue = "76"
+    )
+    double getBrightness() {
+      return this.brightness;
+   }
+
+    @ObfuscatedName("o")
+    @ObfuscatedSignature(
+            descriptor = "(IB)V",
+            garbageValue = "8"
+    )
+    void setCurrentMusicVolume(int var1) {
+      this.musicVolume = var1;
+      SoundSystem.savePreferences();
+   }
+
+    @ObfuscatedName("u")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-348918421"
+    )
+    int getCurrentMusicVolume() {
+      return this.musicVolume;
+   }
+
+    @ObfuscatedName("x")
+    @ObfuscatedSignature(
+            descriptor = "(IB)V",
+            garbageValue = "107"
+    )
+    void setCurrentSoundEffectVolume(int var1) {
+      this.soundEffectsVolume = var1;
+      SoundSystem.savePreferences();
+   }
+
+    @ObfuscatedName("a")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1825265297"
+    )
+    int getCurrentSoundEffectsVolume() {
       return this.soundEffectsVolume;
    }
 
-   @ObfuscatedName("p")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-315220076"
-   )
-   void setAreaSoundEffectsVolume(int var1) {
+    @ObfuscatedName("q")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-1384124032"
+    )
+    void setAreaSoundEffectsVolume(int var1) {
       this.areaSoundEffectsVolume = var1;
-      Tile.savePreferences();
+      SoundSystem.savePreferences();
    }
 
-   @ObfuscatedName("d")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1615345308"
-   )
-   int getAreaSoundEffectsVolume() {
+    @ObfuscatedName("d")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-1799077602"
+    )
+    int getAreaSoundEffectsVolume() {
       return this.areaSoundEffectsVolume;
+   }
+
+    @ObfuscatedName("e")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)V",
+            garbageValue = "-83522118"
+    )
+    void setUsernameToRemember(String var1) {
+      this.rememberedUsername = var1;
+      SoundSystem.savePreferences();
+   }
+
+    @ObfuscatedName("g")
+    @ObfuscatedSignature(
+            descriptor = "(I)Ljava/lang/String;",
+            garbageValue = "-919916182"
+    )
+    String getUsernameToRemember() {
+      return this.rememberedUsername;
    }
 
    @ObfuscatedName("y")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "-2011496208"
+      descriptor = "(II)V",
+      garbageValue = "1162088376"
    )
-   void setUsernameToRemember(String var1) {
-      this.rememberedUsername = var1;
-      Tile.savePreferences();
+   void method533(int var1) {
+      this.field1042 = var1;
+      SoundSystem.savePreferences();
    }
 
-   @ObfuscatedName("z")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(B)Ljava/lang/String;",
-      garbageValue = "-10"
+      descriptor = "(B)I",
+      garbageValue = "1"
    )
-   String getUsernameToRemember() {
-      return this.rememberedUsername;
+   int method534() {
+      return this.field1042;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("aa")
    @ObfuscatedSignature(
       descriptor = "(II)V",
-      garbageValue = "-1027292403"
+      garbageValue = "724225707"
    )
-   void method549(int var1) {
-      this.field1040 = var1;
-      Tile.savePreferences();
-   }
-
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1999692147"
-   )
-   int method542() {
-      return this.field1040;
-   }
-
-   @ObfuscatedName("ad")
-   @ObfuscatedSignature(
-      descriptor = "(IS)V",
-      garbageValue = "-9009"
-   )
-   void method557(int var1) {
+   void method535(int var1) {
       this.windowMode = var1;
-      Tile.savePreferences();
+      SoundSystem.savePreferences();
    }
 
-   @ObfuscatedName("ao")
+   @ObfuscatedName("ai")
    @ObfuscatedSignature(
       descriptor = "(I)I",
-      garbageValue = "1455962060"
+      garbageValue = "1675025735"
    )
-   int method551() {
+   int method536() {
       return this.windowMode;
    }
 
-   @ObfuscatedName("am")
+   @ObfuscatedName("ag")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;II)V",
-      garbageValue = "8447783"
+      garbageValue = "-1508652053"
    )
-   void method552(String var1, int var2) {
-      int var3 = this.method555(var1);
+   void method550(String var1, int var2) {
+      int var3 = this.method539(var1);
       if (this.parameters.size() >= 10 && !this.parameters.containsKey(var3)) {
          Iterator var4 = this.parameters.entrySet().iterator();
          var4.next();
@@ -397,66 +392,35 @@ public class ClientPreferences {
       }
 
       this.parameters.put(var3, var2);
-      Tile.savePreferences();
+      SoundSystem.savePreferences();
    }
 
-   @ObfuscatedName("av")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;I)Z",
-      garbageValue = "-2059825929"
+      garbageValue = "-1879605728"
    )
-   boolean method553(String var1) {
-      int var2 = this.method555(var1);
+   boolean method537(String var1) {
+      int var2 = this.method539(var1);
       return this.parameters.containsKey(var2);
-   }
-
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)I",
-      garbageValue = "-2095892809"
-   )
-   int method554(String var1) {
-      int var2 = this.method555(var1);
-      return !this.parameters.containsKey(var2) ? 0 : (Integer)this.parameters.get(var2);
    }
 
    @ObfuscatedName("ar")
    @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/String;I)I",
+      garbageValue = "-2142036926"
+   )
+   int method538(String var1) {
+      int var2 = this.method539(var1);
+      return !this.parameters.containsKey(var2) ? 0 : (Integer)this.parameters.get(var2);
+   }
+
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;B)I",
-      garbageValue = "114"
+      garbageValue = "103"
    )
-   int method555(String var1) {
-      String var3 = var1.toLowerCase();
-      int var4 = var3.length();
-      int var5 = 0;
-
-      for(int var6 = 0; var6 < var4; ++var6) {
-         var5 = (var5 << 5) - var5 + var3.charAt(var6);
-      }
-
-      return var5;
-   }
-
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "1700481860"
-   )
-   static int ItemContainer_getCount(int var0, int var1) {
-      ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-      if (var2 == null) {
-         return 0;
-      } else {
-         return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
-      }
-   }
-
-   @ObfuscatedName("iz")
-   @ObfuscatedSignature(
-      descriptor = "(Lct;II)V",
-      garbageValue = "-935643958"
-   )
-   static final void method564(Actor var0, int var1) {
-      ScriptFrame.worldToScreen(var0.x, var0.y, var1);
+   int method539(String var1) {
+      return GrandExchangeOfferAgeComparator.method1848(var1.toLowerCase());
    }
 }

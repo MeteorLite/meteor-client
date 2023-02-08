@@ -3,31 +3,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ha")
+@ObfuscatedName("hw")
 @Implements("Frames")
 public class Frames extends DualNode {
-   @ObfuscatedName("td")
-   static int field2063;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      descriptor = "Lra;"
-   )
-   static IndexedSprite titlebuttonSprite;
-   @ObfuscatedName("a")
-   public static int[] ByteArrayPool_alternativeSizes;
-   @ObfuscatedName("ez")
-   @ObfuscatedSignature(
-      descriptor = "Lln;"
-   )
-   static Archive field2062;
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "[Lho;"
-   )
-   Animation[] frames;
+   @ObfuscatedName("fb")
+   static String field2059;
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "[Lhm;"
+    )
+    Animation[] frames;
 
    @ObfuscatedSignature(
-      descriptor = "(Lly;Lly;IZ)V",
+      descriptor = "(Lln;Lln;IZ)V",
       garbageValue = "0"
    )
    public Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
@@ -59,31 +47,61 @@ public class Frames extends DualNode {
 
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "-974350891"
-   )
-   public boolean hasAlphaTransform(int var1) {
+    @ObfuscatedName("f")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "1076744918"
+    )
+    public boolean hasAlphaTransform(int var1) {
       return this.frames[var1].hasAlphaTransform;
    }
 
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/Object;ZI)[B",
-      garbageValue = "2083897545"
-   )
-   public static byte[] method1239(Object var0, boolean var1) {
-      if (var0 == null) {
-         return null;
-      } else if (var0 instanceof byte[]) {
-         byte[] var3 = (byte[])((byte[])var0);
-         return var1 ? class451.method2290(var3) : var3;
-      } else if (var0 instanceof AbstractByteArrayCopier) {
-         AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
-         return var2.get();
-      } else {
-         throw new IllegalArgumentException();
+    @ObfuscatedName("gd")
+    @ObfuscatedSignature(
+            descriptor = "(Lkz;III)V",
+            garbageValue = "1584997198"
+    )
+    static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
+      if (Client.minimapState == 0 || Client.minimapState == 3) {
+         if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !ClanMate.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) {
+            SpriteMask var3 = var0.getSpriteMask(true);
+            if (var3 == null) {
+               return;
+            }
+
+            int var4 = MouseHandler.MouseHandler_lastPressedX - var1;
+            int var5 = MouseHandler.MouseHandler_lastPressedY - var2;
+            if (var3.contains(var4, var5)) {
+               var4 -= var3.width / 2;
+               var5 -= var3.height / 2;
+               int var6 = Client.camAngleY & 2047;
+               int var7 = Rasterizer3D.Rasterizer3D_sine[var6];
+               int var8 = Rasterizer3D.Rasterizer3D_cosine[var6];
+               int var9 = var5 * var7 + var4 * var8 >> 11;
+               int var10 = var5 * var8 - var4 * var7 >> 11;
+               int var11 = var9 + class387.localPlayer.x >> 7;
+               int var12 = class387.localPlayer.y - var10 >> 7;
+               PacketBufferNode var13 = Renderable.getPacketBufferNode(ClientPacket.field2455, Client.packetWriter.isaacCipher);
+               var13.packetBuffer.writeByte(18);
+               var13.packetBuffer.writeShort(var11 + ParamComposition.baseX);
+               var13.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+               var13.packetBuffer.writeShort(var12 + Client.baseY);
+               var13.packetBuffer.writeByte(var4);
+               var13.packetBuffer.writeByte(var5);
+               var13.packetBuffer.writeShort(Client.camAngleY);
+               var13.packetBuffer.writeByte(57);
+               var13.packetBuffer.writeByte(0);
+               var13.packetBuffer.writeByte(0);
+               var13.packetBuffer.writeByte(89);
+               var13.packetBuffer.writeShort(class387.localPlayer.x);
+               var13.packetBuffer.writeShort(class387.localPlayer.y);
+               var13.packetBuffer.writeByte(63);
+               Client.packetWriter.addNode(var13);
+               Client.destinationX = var11;
+               Client.destinationY = var12;
+            }
+         }
+
       }
    }
 }

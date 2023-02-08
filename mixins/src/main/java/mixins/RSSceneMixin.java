@@ -1313,16 +1313,4 @@ public abstract class RSSceneMixin implements RSScene
 	public void onFloorDecorationAccess(int var1, int var2, int var3) {
 		client.getCallbacks().post(Events.GET_DYNAMIC_OBJECT_FOR_ANIMATION_EVENT, GetDynamicObjectForAnimationEvent.INSTANCE);
 	}
-
-	@MethodHook("getDecorativeObject")
-	@Inject
-	public void onDecorativeObjectAccess(int var1, int var2, int var3) {
-		client.getCallbacks().post(Events.GET_DYNAMIC_OBJECT_FOR_ANIMATION_EVENT, GetDynamicObjectForAnimationEvent.INSTANCE);
-	}
-
-	@MethodHook("getWallObject")
-	@Inject
-	public void onWallObjectAccess(int var1, int var2, int var3) {
-		client.getCallbacks().post(Events.GET_DYNAMIC_OBJECT_FOR_ANIMATION_EVENT, GetDynamicObjectForAnimationEvent.INSTANCE);
-	}
 }
