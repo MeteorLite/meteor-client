@@ -26,6 +26,7 @@ package net.runelite.client.plugins.kourendlibrary;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import meteor.Logger;
 import net.runelite.api.coords.WorldPoint;
 
 import javax.inject.Singleton;
@@ -51,7 +52,6 @@ import static net.runelite.client.plugins.kourendlibrary.Book.*;
  * they are all placed into shelves.
  */
 @Singleton
-@Slf4j
 class Library
 {
 	private final Map<WorldPoint, Bookcase> byPoint = new HashMap<>();
@@ -102,7 +102,6 @@ class Library
 			b.clearBook();
 			b.getPossibleBooks().clear();
 		}
-		log.info("Library is now reset");
 	}
 
 	synchronized void mark(WorldPoint loc, Book book)
@@ -110,7 +109,6 @@ class Library
 		Bookcase bookcase = byPoint.get(loc);
 		if (bookcase == null)
 		{
-			log.debug("Requested non-existent bookcase at {}", loc);
 			return;
 		}
 
@@ -151,7 +149,6 @@ class Library
 			}
 		}
 
-		log.info("Setting bookcase {} to {}", bookcase.getIndex(), book);
 		for (; ; )
 		{
 			bookcase.setBook(book);
@@ -193,7 +190,6 @@ class Library
 							boolean isSeqManuscript = seqBook == null || seqBook.isDarkManuscript();
 							if (!((isSeqManuscript && iBookcase.getBook() == null) || (iBookcase.getBook() == seqBook)))
 							{
-								log.debug("Bailing @ i={} ai={} {}; {} != {}", i, ai, iBookcase.getIndex(), iBookcase.getBook(), seqBook);
 								found = 0;
 								break;
 							}
@@ -205,7 +201,6 @@ class Library
 						// Only bail if this isn't a double bookcase
 						if (iBookcase.isBookSet() && iBookcase.getBook() != null && iBookcase.getIndex().size() == 1)
 						{
-							log.debug("Bailing @ i={} ai={} {}; {} is set", i, ai, iBookcase.getIndex(), iBookcase.getBook());
 							found = 0;
 							break;
 						}
@@ -213,7 +208,6 @@ class Library
 				}
 				return found;
 			}).toArray();
-			log.info("Certainty is now {}", certainty);
 
 			for (Bookcase b : byIndex)
 			{

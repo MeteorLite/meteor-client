@@ -1,6 +1,3 @@
-
-
-
 plugins {
     kotlin("jvm")
     java
@@ -35,6 +32,14 @@ dependencies {
     /** Logging -------------------------------------------------------- */
     implementation("io.github.microutils:kotlin-logging:3.0.4")
     implementation(project(":logger"))
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+    kotlinOptions {
+        apiVersion = "1.8"
+        languageVersion = "1.8"
+        jvmTarget = "17"
+    }
 }
 
 
