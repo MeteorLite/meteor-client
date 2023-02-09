@@ -129,7 +129,8 @@ compose {
                 // This fixes a rare bug exclusive to windows when using AA in GPU or GPU HD
                 // I would like to separate jvm arguments by platform, but this is a limitation of Compose packaging
                 // If you have an issue with scaling, or performance on linux/macOs, remove these two lines
-                "-Dsun.java2d.dpiaware=false,",
+                //"-Dsun.java2d.dpiaware=false,",
+                //"-Dsun.java2d.uiScale=1.0",
 
                 "-ea",
                 "-noverify",
