@@ -37,7 +37,7 @@ class BankActionsPlugin: Plugin() {
             return
         }
 
-        val unneeded = Items.getAll()?.filter { !it.name?.contains(ingredientName)!! && !it.name?.contains(containerName)!! }
+        val unneeded = Items.getAll()?.filter { !it.name?.equals(ingredientName)!!! && !it.name?.equals(containerName)!! }
         if (unneeded != null) {
             if (!Bank.isOpen()) {
                 openBank()
