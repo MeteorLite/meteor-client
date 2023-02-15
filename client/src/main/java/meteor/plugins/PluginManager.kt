@@ -10,7 +10,6 @@ import meteor.config.ConfigManager
 import meteor.external.ExternalManager
 import meteor.plugins.AIOCrabPlugin.CrabFighterPlugin
 import meteor.plugins.agility.AgilityPlugin
-import meteor.plugins.agilitybot.AgilityBot
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
 import meteor.plugins.ammo.AmmoPlugin
 import meteor.plugins.antidrag.AntiDragPlugin
@@ -157,7 +156,6 @@ object PluginManager {
         init<Meteor>()
         if (pluginsEnabled) {
             init<AgilityPlugin>()
-            init<AgilityBot>()
             init<AlchemicalHydraPlugin>()
             init<AmmoPlugin>()
             init<AoeWarningPlugin>()

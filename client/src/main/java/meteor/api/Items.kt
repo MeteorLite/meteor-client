@@ -2,6 +2,8 @@ package meteor.api
 
 import dev.hoot.api.commons.Time
 import dev.hoot.api.items.Bank
+import dev.hoot.api.items.Bank.WithdrawMode
+import dev.hoot.api.items.Bank.WithdrawOption
 import dev.hoot.api.widgets.Dialog
 import meteor.Main
 import net.runelite.api.InventoryID
@@ -353,6 +355,19 @@ object Items {
                     Time.sleepUntil({ !Dialog.isOpen() }, 1200)
                 }
             }
+        }
+    }
+
+    fun withdrawAll(item: Item, withdrawMode: WithdrawMode = Bank.WithdrawMode.NOTED){
+        if (Bank.isOpen()){
+            item.widgetId = item.calculateWidgetId(WidgetInfo.BANK_ITEM_CONTAINER)
+            val withdrawOption = WithdrawOption.ALL
+            if (withdrawMode == Bank.WithdrawMode.NOTED && !Bank.isNotedWithdrawMode()) {
+                Bank.setWithdrawMode(true)
+                Time.sleepUntil({ Bank.isNotedWithdrawMode() }, 1200)
+            }
+
+            item.interact(withdrawOption.menuIndex)
         }
     }
 
