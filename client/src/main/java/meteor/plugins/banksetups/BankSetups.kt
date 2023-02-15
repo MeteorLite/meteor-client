@@ -2,18 +2,14 @@ package meteor.plugins.banksetups
 
 import com.google.gson.reflect.TypeToken
 import dev.hoot.api.commons.FileUtil
-import dev.hoot.api.game.GameThread
 import dev.hoot.api.items.Bank
 import dev.hoot.api.items.Equipment
-import dev.hoot.api.packets.DialogPackets
 import dev.hoot.api.packets.ItemPackets
-import dev.hoot.api.packets.WidgetPackets
-import dev.hoot.api.widgets.Dialog
 import eventbus.events.ClientTick
+import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
-import meteor.api.Items
-import meteor.api.Items.getBankItemWidget
 import meteor.api.ClientPackets
+import meteor.api.Items
 import meteor.game.ItemManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
@@ -36,14 +32,15 @@ class BankSetups : Plugin() {
     var itemManager: ItemManager? = null
     var bankSetups: MutableList<BankSetupObject> = mutableListOf()
     var wait = 0
-    var dialogClose = 0
 
     override fun onStart() {
         state = -1
+        itemManager = ItemManager
         when {
             !FileUtil.exists(this, "bankSetups.json") -> {
                 FileUtil.writeJson(this, "bankSetups.json", bankSetups)
             }
+
             else -> {
                 bankSetups = FileUtil.readJson(
                     this,
@@ -91,95 +88,6 @@ class BankSetups : Plugin() {
     }
 
     override fun onClientTick(it: ClientTick) {
-        if (wait > 0) {
-            if (Dialog.isEnterInputOpen()) {
-                GameThread.invoke { client.runScript(138) }
-            }
-        }
-
-        val firstFree: Int = Items.getFirstEmptyInventorySlot()
-        when (state) {
-            1 -> {
-                if (Items.getAll(InventoryID.EQUIPMENT) != null) {
-                    Bank.depositEquipment()
-                }
-                if (Items.getAll() != null) {
-                    Bank.depositInventory()
-                }
-                state = 2
-            }
-
-            2 -> {
-                if (Items.getAll(InventoryID.EQUIPMENT) == null && Items.getAll() == null) {
-                    bankSetups[0].equipment!!.forEach {
-                        var item = getBankItemWidget(it[0])
-                        if (item == null) {
-                            val y = itemManager!!.canonicalize(it[0])
-                            item = getBankItemWidget(y)
-                            if (item == null) {
-                                return@forEach
-                            }
-
-                        }
-
-                        if (it[1] != 1) {
-                            WidgetPackets.widgetAction(item, "Withdraw-X")
-                            DialogPackets.sendNumberInput(it[1])
-                            ClientPackets.queueClickPacket(item.clickPoint)
-                            ItemPackets.queueItemAction1Packet(
-                                WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
-                                item.itemId,
-                                firstFree
-                            )
-                            return@forEach
-                        }
-
-                        WidgetPackets.widgetAction(item, "Withdraw-1")
-
-                        ClientPackets.queueClickPacket(item.clickPoint)
-                        ItemPackets.queueItemAction1Packet(
-                            WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
-                            item.itemId,
-                            firstFree
-                        )
-
-                        state = 3
-                    }
-                }
-            }
-            3 -> {
-                bankSetups[0].equipment!!.forEach {
-                    val item = Items.getFirst(*it) ?: return@forEach
-                    if (Bank.isOpen()) {
-                        ItemPackets.queueItemAction9Packet(
-                            WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
-                            item.id,
-                            item.slot
-                        )
-                        ClientPackets.queueClickPacket(item.clickPoint)
-                    }
-                    state = 4
-                }
-            }
-            4 -> {
-                bankSetups[0].inventory.forEach {
-                    val item = getBankItemWidget(it[0]) ?: return@forEach
-                    if (it[1] != 1) {
-                        WidgetPackets.widgetAction(item, "Withdraw-X")
-                        DialogPackets.sendNumberInput(it[1])
-                        ItemPackets.queueItemAction1Packet(
-                            WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
-                            item.itemId,
-                            firstFree
-                        )
-                        ClientPackets.queueClickPacket(item.clickPoint)
-                    }
-                    wait = 10
-                    state = -1
-                }
-            }
-
-        }
         val incinerator: Widget? = client.getWidget(WidgetInfo.BANK_INCINERATOR)
         if (incinerator != null && Bank.isOpen()) {
             if (!incinerator.isHidden) {
@@ -219,16 +127,88 @@ class BankSetups : Plugin() {
         }
     }
 
+    override fun onGameTick(it: GameTick) {
+        if(wait > 0){
+            wait--
+            return
+        }
+        when (state) {
+            1 -> {
+                if (Items.getAll(InventoryID.EQUIPMENT) != null) {
+                    Bank.depositEquipment()
+                }
+                if (Items.getAll() != null) {
+                    Bank.depositInventory()
+                }
+                state = 2
+            }
+
+            2 -> {
+                if (Items.getAll(InventoryID.EQUIPMENT).isNullOrEmpty() && Items.getAll().isNullOrEmpty()) {
+                    bankSetups[0].equipment!!.forEach {
+                        val itemToWithdraw = Items.getFirst(it[0], InventoryID.BANK)
+
+                        if (itemToWithdraw != null) {
+                            if(it[1] > 28){
+                                Items.withdrawAll(itemToWithdraw, Bank.WithdrawMode.ITEM)
+                            } else {
+                                Items.withdraw(itemToWithdraw, it[1], Bank.WithdrawMode.ITEM)
+                            }
+                        }
+                        return@forEach
+                    }
+                    state = 3
+                    wait = 2
+                }
+            }
+
+            3 -> {
+                bankSetups[0].equipment!!.forEach {
+                    val item = Items.getFirst(*it) ?: return@forEach
+                    if (Bank.isOpen()) {
+                        ItemPackets.queueItemAction9Packet(
+                            WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.packedId,
+                            item.id,
+                            item.slot
+                        )
+                        ClientPackets.queueClickPacket(item.clickPoint)
+                    }
+                }
+                state = 4
+            }
+
+            4 -> {
+                bankSetups[0].inventory.forEach {
+                    val itemToWithdraw = Items.getFirst(it[0], InventoryID.BANK)
+                    if (itemToWithdraw != null) {
+                        if(it[1] > 28){
+                            Items.withdrawAll(itemToWithdraw, Bank.WithdrawMode.ITEM)
+                        } else {
+                            Items.withdraw(itemToWithdraw, it[1], Bank.WithdrawMode.ITEM)
+                        }
+                    }
+                    return@forEach
+                }
+                state = -1
+            }
+
+        }
+    }
+
     val invent: List<IntArray>
         get() {
-            val items = Items.getAll()
-            return Items.getItems(items!!)
+            Items.getAll()?.let {
+                return Items.getItems(it)
+            }
+            return emptyList()
         }
 
     val equipment: List<IntArray>
         get() {
-            val items = Equipment.getAll()
-            return Items.getItems(items)
+            Equipment.getAll()?.let {
+                return Items.getItems(it)
+            }
+            return emptyList()
         }
 
 }
