@@ -6,11 +6,13 @@ import com.google.common.cache.LoadingCache;
 import dev.hoot.api.commons.Rand;
 import dev.hoot.api.commons.Time;
 import dev.hoot.api.game.Game;
+import dev.hoot.api.game.GameThread;
 import dev.hoot.api.movement.Movement;
 import dev.hoot.api.movement.Reachable;
 import dev.hoot.api.scene.Tiles;
 import lombok.extern.slf4j.Slf4j;
 import meteor.Main;
+import meteor.rs.ClientThread;
 import net.runelite.api.Player;
 import net.runelite.api.Tile;
 import net.runelite.api.WallObject;
@@ -63,8 +65,7 @@ public class Walker
 				}
 			});
 
-	public static boolean walkTo(WorldPoint destination, boolean localRegion)
-	{
+	public static boolean walkTo(WorldPoint destination, boolean localRegion) throws Exception {
 		Player local = Main.client.getLocalPlayer();
 		if (destination.equals(local.getWorldLocation()))
 		{
@@ -148,8 +149,7 @@ public class Walker
 		return walkAlong(destination, path, transports);
 	}
 
-	public static boolean walkAlong(WorldPoint destination, List<WorldPoint> path, Map<WorldPoint, List<Transport>> transports)
-	{
+	public static boolean walkAlong(WorldPoint destination, List<WorldPoint> path, Map<WorldPoint, List<Transport>> transports) throws Exception {
 		Player local = Main.client.getLocalPlayer();
 		WorldPoint endTile = path.get(path.size() - 1);
 
@@ -175,8 +175,7 @@ public class Walker
 		return false;
 	}
 
-	public static boolean stepAlong(List<WorldPoint> path)
-	{
+	public static boolean stepAlong(List<WorldPoint> path) throws Exception {
 		List<WorldPoint> reachablePath = reachablePath(path);
 		if (reachablePath.isEmpty())
 		{
@@ -220,8 +219,7 @@ public class Walker
 		return out;
 	}
 
-	public static boolean step(WorldPoint destination)
-	{
+	public static boolean step(WorldPoint destination) throws Exception {
 		Player local = Main.client.getLocalPlayer();
 		log.debug("Stepping towards " + destination);
 		Movement.walk(destination);
@@ -255,8 +253,7 @@ public class Walker
 		return rechoose;
 	}
 
-	public static boolean handleTransports(List<WorldPoint> path, Map<WorldPoint, List<Transport>> transports)
-	{
+	public static boolean handleTransports(List<WorldPoint> path, Map<WorldPoint, List<Transport>> transports) throws Exception {
 		Player local = Main.client.getLocalPlayer();
 		for (int i = 0; i < MAX_INTERACT_DISTANCE; i++)
 		{
@@ -281,7 +278,7 @@ public class Walker
 				if (transport != null && local.getWorldLocation().distanceTo(transport.getSource()) <= transport.getSourceRadius())
 				{
 					log.debug("Trying to use transport at {}", transport.getSource());
-					transport.getHandler().run();
+					ClientThread.INSTANCE.invoke(() -> transport.getHandler().run());
 					Time.sleep(2800);
 					return true;
 				}
@@ -293,23 +290,23 @@ public class Walker
 				return false;
 			}
 
-			if (Reachable.isDoored(tileA, tileB))
+			if (GameThread.invokeLater(() -> Reachable.isDoored(tileA, tileB)))
 			{
 				WallObject wall = tileA.getWallObject();
-				wall.interact("Open");
+				ClientThread.INSTANCE.invoke(() -> wall.interact("Open"));
 				log.debug("Handling door {}", wall.getWorldLocation());
 				Time.sleepUntil(() -> tileA.getWallObject() == null
-						|| !wall.hasAction("Open"), 2000);
+						|| !GameThread.invokeLater(() -> wall.hasAction("Open")), 2000);
 				return true;
 			}
 
-			if (Reachable.isDoored(tileB, tileA))
+			if (GameThread.invokeLater(() -> Reachable.isDoored(tileB, tileA)))
 			{
 				WallObject wall = tileB.getWallObject();
-				wall.interact("Open");
+				ClientThread.INSTANCE.invoke(() -> wall.interact("Open"));
 				log.debug("Handling door {}", wall.getWorldLocation());
 				Time.sleepUntil(() -> tileB.getWallObject() == null
-						|| !wall.hasAction("Open"), 2000);
+						|| !GameThread.invokeLater(() -> wall.hasAction("Open")), 2000);
 				return true;
 			}
 		}
@@ -391,7 +388,7 @@ public class Walker
 	public static Map<WorldPoint, List<Transport>> buildTransportLinks()
 	{
 		Map<WorldPoint, List<Transport>> out = new HashMap<>();
-		for (Transport transport : TransportLoader.buildTransports())
+		for (Transport transport : GameThread.invokeLater(TransportLoader::buildTransports))
 		{
 			out.computeIfAbsent(transport.getSource(), x -> new ArrayList<>()).add(transport);
 		}

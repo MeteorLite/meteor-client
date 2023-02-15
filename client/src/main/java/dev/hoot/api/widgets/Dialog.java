@@ -113,10 +113,14 @@ public class Dialog
 
 	public static void enterInput(String input)
 	{
-		Time.sleepUntil(Dialog::isEnterInputOpen, 2000);
-		if (isEnterInputOpen())
-		{
-			Keyboard.type(input, true);
+		try {
+			Time.sleepUntil(Dialog::isEnterInputOpen, 2000);
+			if (isEnterInputOpen())
+			{
+				Keyboard.type(input, true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -134,7 +138,11 @@ public class Dialog
 	{
 		if (Dialog.isOpen())
 		{
-			Keyboard.sendSpace();
+			try {
+				Keyboard.sendSpace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -142,7 +150,12 @@ public class Dialog
 	{
 		if (isViewingOptions())
 		{
-			Keyboard.type(index);
+			try {
+				Keyboard.type(index);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			return true;
 		}
 

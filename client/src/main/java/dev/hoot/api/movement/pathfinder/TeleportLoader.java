@@ -231,7 +231,11 @@ public class TeleportLoader
 					Widget teleportItem = children[i];
 					if (teleportItem.getText().contains(target))
 					{
-						Keyboard.type((i + 1));
+						try {
+							Keyboard.type((i + 1));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 						return;
 					}
 				}

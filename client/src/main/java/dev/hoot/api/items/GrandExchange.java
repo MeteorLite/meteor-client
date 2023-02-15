@@ -324,33 +324,27 @@ public class GrandExchange
 		Game.getClient().interact(1, 57, 0, 30474264);
 	}
 
-	public static boolean sell(int itemId, int quantity, int price)
-	{
+	public static boolean sell(int itemId, int quantity, int price) throws Exception {
 		return exchange(false, itemId, quantity, price, true, false);
 	}
 
-	public static boolean sell(int itemId, int quantity, int price, boolean collect, boolean toBank)
-	{
+	public static boolean sell(int itemId, int quantity, int price, boolean collect, boolean toBank) throws Exception {
 		return exchange(false, itemId, quantity, price, collect, toBank);
 	}
 
-	public static boolean buy(int itemId, int quantity, int price)
-	{
+	public static boolean buy(int itemId, int quantity, int price) throws Exception {
 		return exchange(true, itemId, quantity, price, true, false);
 	}
 
-	public static boolean buy(int itemId, int quantity, int price, boolean collect, boolean toBank)
-	{
+	public static boolean buy(int itemId, int quantity, int price, boolean collect, boolean toBank) throws Exception {
 		return exchange(true, itemId, quantity, price, collect, toBank);
 	}
 
-	public static boolean exchange(boolean buy, int itemId, int quantity, int price)
-	{
+	public static boolean exchange(boolean buy, int itemId, int quantity, int price) throws Exception {
 		return exchange(buy, itemId, quantity, price, true, false);
 	}
 
-	public static boolean exchange(boolean buy, int itemId, int quantity, int price, boolean collect, boolean toBank)
-	{
+	public static boolean exchange(boolean buy, int itemId, int quantity, int price, boolean collect, boolean toBank) throws Exception {
 		if (!isOpen())
 		{
 			open();

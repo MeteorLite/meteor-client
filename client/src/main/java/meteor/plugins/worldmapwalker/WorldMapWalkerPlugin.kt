@@ -12,8 +12,10 @@ import meteor.Logger
 import meteor.Main
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.rs.ClientThread
 import meteor.ui.worldmap.WorldMapOverlay
 import net.runelite.api.MenuAction
+import net.runelite.api.MenuEntry
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.events.MenuOpened
 import net.runelite.api.widgets.WidgetInfo
@@ -24,17 +26,17 @@ import net.runelite.api.widgets.WidgetInfo
     description = "Right click anywhere within the World Map to walk there",
     enabledByDefault = false
 )
-class WorldMapWalkerPlugin : Plugin() {
+class WorldMapWalkerPlugin : Plugin(daemon = true) {
     private val worldMapOverlay = overlay(WorldMapOverlay())
     var config: WorldMapWalkerConfig = configuration()
     var log = Logger("World Map Walker")
     private val overlay = overlay(WorldMapWalkerOverlay(this))
+    private var lastTarget : String? = null
 
     var mapPoint: WorldPoint? = null
     var lastMapMenuLocation: WorldPoint? = null
     override fun onStop() {
         mapPoint = null
-
     }
 
     override fun onGameTick(it: GameTick) {
@@ -49,42 +51,57 @@ class WorldMapWalkerPlugin : Plugin() {
             mapPoint = null
             return
         }
-        Movement.walkTo(mapPoint)
+        if (client.localPlayer!!.isIdle)
+            Movement.walkTo(mapPoint)
     }
 
     override fun onMenuOpened(it: MenuOpened) {
-        lastMapMenuLocation = worldMapToWorldPoint(
-            Game.getClient().mouseCanvasPosition
-        )
+        ClientThread.invoke {
+            val menus = client.menuEntries
+            val newList = arrayListOf(*menus)
+            var nextMenu : MenuEntry? = null
+            if (mapPoint != null) {
+                nextMenu = client
+                    .createMenuEntry(-2)
+                    .setOption("<col=00ff00>Clear destination")
+                    .setTarget(lastTarget)
+                    .setType(MenuAction.RUNELITE)
+                newList.add(nextMenu)
+            }
+            val worldMap = Widgets.get(WidgetInfo.WORLD_MAP_VIEW) ?: return@invoke
+            val mouse = Game.getClient().mouseCanvasPosition
+            if (!worldMap.bounds.contains(mouse.x, mouse.y)) {
+                return@invoke
+            }
+            nextMenu = client
+                .createMenuEntry(-2)
+                .setOption("<col=00ff00>Walk to")
+                .setTarget(lastTarget)
+                .setType(MenuAction.RUNELITE)
+            newList.add(nextMenu)
+            client.menuEntries = newList.toTypedArray().reversedArray()
+            lastMapMenuLocation = worldMapToWorldPoint(
+                Game.getClient().mouseCanvasPosition
+            )
+        }
     }
 
     override fun onMenuOptionClicked(it: MenuOptionClicked) {
-        if (it.menuEntry.option == "<col=00ff00>Clear destination")
-            mapPoint = null
-        else if (it.menuEntry.option == "<col=00ff00>Walk to")
-            setWorldMapPoint(
-                lastMapMenuLocation
-            )
+        ClientThread.invoke {
+            if (it.menuEntry.option == "<col=00ff00>Clear destination")
+                mapPoint = null
+            else if (it.menuEntry.option == "<col=00ff00>Walk to")
+                setWorldMapPoint(
+                    lastMapMenuLocation
+                )
+        }
     }
 
     override fun onMenuEntryAdded(it: MenuEntryAdded) {
-        if (mapPoint != null) {
-            Game.getClient()
-                .createMenuEntry(-2)
-                .setOption("<col=00ff00>Clear destination")
-                .setTarget(it.target)
-                .setType(MenuAction.RUNELITE)
+        ClientThread.invoke {
+            val lastEntry = client.menuEntries.last()
+            lastTarget = lastEntry?.target
         }
-        val worldMap = Widgets.get(WidgetInfo.WORLD_MAP_VIEW) ?: return
-        val mouse = Game.getClient().mouseCanvasPosition
-        if (!worldMap.bounds.contains(mouse.x, mouse.y)) {
-            return
-        }
-        Game.getClient()
-            .createMenuEntry(-2)
-            .setOption("<col=00ff00>Walk to")
-            .setTarget(it.target)
-            .setType(MenuAction.RUNELITE)
     }
 
     private fun setWorldMapPoint(wp: WorldPoint?) {

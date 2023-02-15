@@ -47,8 +47,7 @@ public class Keyboard
 		canvas.dispatchEvent(event);
 	}
 
-	public static void type(char c)
-	{
+	public static void type(char c) throws Exception {
 		Canvas canvas = Game.getClient().getCanvas();
 		long time = System.currentTimeMillis();
 		int keyCode = KeyEvent.getExtendedKeyCodeForChar(c);
@@ -70,18 +69,15 @@ public class Keyboard
 		canvas.dispatchEvent(released);
 	}
 
-	public static void type(int number)
-	{
+	public static void type(int number) throws Exception {
 		type(String.valueOf(number));
 	}
 
-	public static void type(String text)
-	{
+	public static void type(String text) throws Exception {
 		type(text, false);
 	}
 
-	public static void type(String text, boolean sendEnter)
-	{
+	public static void type(String text, boolean sendEnter) throws Exception {
 		char[] chars = text.toCharArray();
 		for (char c : chars)
 		{
@@ -94,13 +90,11 @@ public class Keyboard
 		}
 	}
 
-	public static void sendEnter()
-	{
+	public static void sendEnter() throws Exception {
 		type((char) KeyEvent.VK_ENTER);
 	}
 
-	public static void sendSpace()
-	{
+	public static void sendSpace() throws Exception {
 		type((char) KeyEvent.VK_SPACE);
 	}
 }
