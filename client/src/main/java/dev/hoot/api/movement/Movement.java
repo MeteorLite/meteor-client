@@ -166,7 +166,12 @@ public class Movement
 		try
 		{
 			WorldPoint wp = WORLD_AREA_POINT_CACHE.get(worldArea.toWorldPointList());
-			return Walker.walkTo(wp, false);
+			try {
+				return Walker.walkTo(wp, false);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
 		}
 		catch (ExecutionException e)
 		{
@@ -177,7 +182,12 @@ public class Movement
 
 	public static boolean walkTo(WorldPoint worldPoint)
 	{
-		return Walker.walkTo(worldPoint, false);
+		try {
+			return Walker.walkTo(worldPoint, false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public static boolean walkTo(Locatable locatable)
@@ -269,7 +279,12 @@ public class Movement
 	{
 		public static boolean walkTo(WorldPoint worldPoint)
 		{
-			return Walker.walkTo(worldPoint, true);
+			try {
+				return Walker.walkTo(worldPoint, true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return false;
 		}
 
 		public static boolean walkTo(Locatable locatable)

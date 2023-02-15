@@ -113,8 +113,7 @@ public class Bank extends Items
 		return -1;
 	}
 
-	public static void releasePlaceholders()
-	{
+	public static void releasePlaceholders() throws Exception {
 		if (!isSettingsOpen())
 		{
 			toggleSettings();

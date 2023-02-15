@@ -96,9 +96,9 @@ object GameEventManager {
                 }
                 Arrays.stream(tile.gameObjects)
                     .filter { obj: GameObject? -> Objects.nonNull(obj) }
-                    .filter { obj: GameObject -> obj.sceneMinLocation == tile.sceneLocation }
-                    .forEach { obj: GameObject ->
-                        val objectSpawned = GameObjectSpawned(tile, obj)
+                    .filter { obj: GameObject? -> obj?.sceneMinLocation == tile.sceneLocation }
+                    .forEach { obj: GameObject? ->
+                        val objectSpawned = GameObjectSpawned(tile, obj!!)
                         Main.eventBus.post(Events.GAME_OBJECT_SPAWNED, objectSpawned)
                     }
                 Optional.ofNullable(tile.itemLayer).ifPresent { itemLayer: ItemLayer ->

@@ -48,7 +48,7 @@ interface Tile : Locatable {
      *
      * @return the game objects
      */
-    val gameObjects: Array<GameObject>
+    val gameObjects: Array<GameObject?>
 
     /**
      * Gets the items held on this tile.
@@ -77,7 +77,7 @@ interface Tile : Locatable {
      *
      * @param wallObject the ground object
      */
-    var wallObject: WallObject
+    var wallObject: WallObject?
 
     /**
      * Gets the scene paint of the tile.

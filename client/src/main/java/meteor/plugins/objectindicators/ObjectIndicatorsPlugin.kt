@@ -194,7 +194,7 @@ class ObjectIndicatorsPlugin : Plugin() {
         if (tile == null) {
             return null
         }
-        val tileGameObjects: Array<GameObject>? = tile.gameObjects
+        val tileGameObjects: Array<GameObject?>? = tile.gameObjects
         val tileDecorativeObject: DecorativeObject? = tile.decorativeObject
         val tileWallObject: WallObject? = tile.wallObject
         val groundObject: GroundObject? = tile.groundObject

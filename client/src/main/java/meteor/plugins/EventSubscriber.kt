@@ -4,6 +4,9 @@ import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.events.MenuActionProcessed
 import eventbus.Events
 import eventbus.events.*
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import meteor.Main
 import meteor.events.InfoBoxMenuClicked
 import meteor.events.NpcLootReceived
@@ -12,7 +15,7 @@ import meteor.events.PluginChanged
 import net.runelite.api.events.MenuOpened
 import org.rationalityfrontline.kevent.*
 
-open class EventSubscriber : KEventSubscriber {
+open class EventSubscriber(open var daemon: Boolean = false) : KEventSubscriber {
     var eventListening: Boolean = false
     open fun onNpcLootReceived(it: NpcLootReceived){}
     open fun onPlayerLootReceived(it: PlayerLootReceived){}
@@ -105,8 +108,16 @@ open class EventSubscriber : KEventSubscriber {
     open fun onPacketQueued(it: PacketQueued) {}
 
     open fun onCheckClick(it: CheckClick) {}
+
+    @OptIn(DelicateCoroutinesApi::class)
     open fun executeIfListening(unit: () -> (Unit)) {
         if (eventListening)
+            if (daemon) {
+                GlobalScope.launch {
+                    unit()
+                }
+                return
+            }
             unit()
     }
 

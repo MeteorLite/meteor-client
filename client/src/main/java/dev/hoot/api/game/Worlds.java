@@ -109,13 +109,11 @@ public class Worlds
 		return Game.getClient().getWorld();
 	}
 
-	public static void hopTo(World world)
-	{
+	public static void hopTo(World world) throws Exception {
 		hopTo(world, false);
 	}
 
-	public static void hopTo(World world, boolean spam)
-	{
+	public static void hopTo(World world, boolean spam) throws Exception {
 		if (!isHopperOpen())
 		{
 			openHopper();
@@ -161,8 +159,7 @@ public class Worlds
 				.isMembers();
 	}
 
-	public static void loadWorlds()
-	{
+	public static void loadWorlds() throws Exception {
 		if (Game.isOnLoginScreen())
 		{
 			openLobbyWorlds();

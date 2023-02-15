@@ -115,7 +115,7 @@ class BlastMineRockOverlay internal constructor(plugin: BlastMinePlugin, config:
         val z = client.plane
         var x = rock.gameObject.localLocation.x / Perspective.LOCAL_TILE_SIZE
         var y = rock.gameObject.localLocation.y / Perspective.LOCAL_TILE_SIZE
-        val orientation = tiles[z][x][y].wallObject.orientationA
+        val orientation = tiles[z][x][y].wallObject?.orientationA
         when (orientation) {
             1 -> x--
             4 -> x++

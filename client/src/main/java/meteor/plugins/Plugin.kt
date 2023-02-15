@@ -1,7 +1,5 @@
 package meteor.plugins
 
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import meteor.Main
 import meteor.config.ConfigManager
@@ -15,7 +13,7 @@ import meteor.ui.composables.preferences.pluginPanelIsOpen
 import meteor.ui.composables.toolbar.ToolbarButton
 import meteor.ui.overlay.Overlay
 
-open class Plugin() : EventSubscriber() {
+open class Plugin(override var daemon: Boolean = false) : EventSubscriber(daemon = daemon) {
     var configuration: Config? = null
 
     open var client = Main.client

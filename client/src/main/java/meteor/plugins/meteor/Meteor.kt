@@ -23,6 +23,7 @@ import meteor.config.ConfigManager
 
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.rs.ClientThread
 import meteor.ui.themes.MeteorliteTheme
 import net.runelite.api.Constants
 import net.runelite.api.MenuAction
@@ -32,7 +33,7 @@ import java.awt.Point
 import java.awt.Rectangle
 
 @PluginDescriptor(name = "Meteor", enabledByDefault = true, disabledOnStartup = false)
-class Meteor : Plugin() {
+class Meteor : Plugin(daemon = true) {
     var config = configuration<MeteorConfig>()
     val log = Logger("Meteor")
     val autoInteractOverlay = overlay(AutoInteractOverlay(config))
@@ -51,8 +52,10 @@ class Meteor : Plugin() {
         val mouseHandler = client.mouseHandler
         try {
             if (config.mouseBehavior() != MouseBehavior.DISABLED) {
-                mouseHandler.sendMovement(clickPoint.x, clickPoint.y)
-                ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
+                ClientThread.invoke {
+                    ClientPackets.queueClickPacket(clickPoint.x, clickPoint.y)
+                    mouseHandler.sendMovement(clickPoint.x, clickPoint.y)
+                }
             }
             GameThread.invoke {
                 try {

@@ -13,12 +13,10 @@ public class Time
 	private static final meteor.Logger logger = new meteor.Logger("Time");
 	private static final int DEFAULT_POLLING_RATE = 10;
 
-	public static boolean sleep(long ms)
-	{
+	public static boolean sleep(long ms) throws Exception {
 		if (Game.getClient().isClientThread())
 		{
-			logger.debug("Tried to sleep on client thread!");
-			return false;
+			throw new Exception("Tried to sleep on client thread!");
 		}
 
 		try
@@ -34,13 +32,11 @@ public class Time
 		return false;
 	}
 
-	public static boolean sleep(int min, int max)
-	{
+	public static boolean sleep(int min, int max) throws Exception {
 		return sleep(Rand.nextInt(min, max));
 	}
 
-	public static boolean sleepUntil(BooleanSupplier supplier, int pollingRate, int timeOut)
-	{
+	public static boolean sleepUntil(BooleanSupplier supplier, int pollingRate, int timeOut) throws Exception {
 		if (Game.getClient().isClientThread())
 		{
 			logger.debug("Tried to sleepUntil on client thread!");
@@ -64,8 +60,7 @@ public class Time
 		return true;
 	}
 
-	public static boolean sleepUntil(BooleanSupplier supplier, int timeOut)
-	{
+	public static boolean sleepUntil(BooleanSupplier supplier, int timeOut) throws Exception {
 		return sleepUntil(supplier, DEFAULT_POLLING_RATE, timeOut);
 	}
 
