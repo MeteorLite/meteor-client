@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toAwtImage
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.DpSize
@@ -70,23 +69,20 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 
 object Main : ApplicationScope, EventSubscriber() {
-    var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
-    var onClicksWidget = HashMap<WidgetMenuOption, Consumer<MenuEntry>>()
-    var pluginsEnabled = true
     var meteorConfig: MeteorConfig
     init {
+        // load configs immediately
         ConfigManager.loadSavedProperties()
         ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
         ConfigManager.saveProperties()
+
+        // init meteor config
         meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java)!!
     }
 
+    private val startupTimer = StopWatch()
 
-    var window: FrameWindowScope? = null
-    val eventBus = EventBus
-    var logger = Logger("Main")
-    private val timer = StopWatch()
-
+    // api
     lateinit var client: Client
     lateinit var callbacks: Callbacks
     lateinit var npcOverlayService: NpcOverlayService
@@ -94,6 +90,8 @@ object Main : ApplicationScope, EventSubscriber() {
     lateinit var chatMessageManager: ChatMessageManager
     lateinit var chatCommandManager: ChatCommandManager
     lateinit var xpDropManager: XpDropManager
+    var logger = Logger("Main")
+    val eventBus = EventBus
     val httpClient = OkHttpClient()
     val xpClient = XpClient(httpClient)
     val chatClient = ChatClient(httpClient)
@@ -105,8 +103,30 @@ object Main : ApplicationScope, EventSubscriber() {
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
     val hiscoreManager = HiscoreManager
+
+    // onClick listeners
+    var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
+    var onClicksWidget = HashMap<WidgetMenuOption, Consumer<MenuEntry>>()
+
+    // host properties
     val macOS = if ( System.getProperty("os.name").lowercase().contains("mac")) OS.MacOS else null
     val winOS = if ( System.getProperty("os.name").lowercase().contains("win")) OS.Windows else null
+    var shouldExit = true;
+
+    // plugin properties
+    var pluginsEnabled = true
+    var gpuNeedsReenabled = false
+    var gpuHDNeedsReenabled = false
+    var lastGPUPluginName = ""
+
+    // window properties
+    val windowPlacement = mutableStateOf(WindowPlacement.Maximized)
+    val windowSize = mutableStateOf(DpSize.Unspecified)
+    val windowState = mutableStateOf<WindowState?>(null)
+    val defaultWindowState = mutableStateOf<WindowState?>(null)
+    val windowChangeRequired = mutableStateOf(false)
+    val shouldRender = mutableStateOf(true)
+    var window: FrameWindowScope? = null
 
     @JvmStatic
     fun main(args: Array<String>) = application {
@@ -116,7 +136,7 @@ object Main : ApplicationScope, EventSubscriber() {
         if (winOS != null || macOS != null) {
             MeteorliteTheme.installDark()
         }
-        timer.start()
+        startupTimer.start()
         callbacks = Hooks()
         AppletConfiguration.init()
         Applet().init()
@@ -124,26 +144,18 @@ object Main : ApplicationScope, EventSubscriber() {
         // finishStartup is ran here after windowContent()
     }
 
-    val windowPlacement = mutableStateOf(WindowPlacement.Maximized)
-    val windowSize = mutableStateOf(DpSize.Unspecified)
-
-    val windowState = mutableStateOf<WindowState?>(null)
-    val defaultWindowState = mutableStateOf<WindowState?>(null)
-
-    val windowChangeRequired = mutableStateOf(false)
     @Composable
     fun initWindow() {
         //We do this to redraw the window
-        if (windowChangeRequired.value) {
-            createWindow()
-        } else {
-            createWindow()
+        when (windowChangeRequired.value) {
+            else -> createWindow()
         }
     }
 
-    val shouldRender = mutableStateOf(true)
-    var shouldExit = true;
-
+    /**
+     * This is all some neat trickery to get window state toggling to work with Jetbrains Compose
+     * P.S. FIX YOUR SHITTY FRAME / SWING RENDERING CODE <3
+     */
     @Composable
     fun createWindow() {
         window?.let {
@@ -227,14 +239,11 @@ object Main : ApplicationScope, EventSubscriber() {
 
         xpDropManager = XpDropManager()
         SessionManager.start()
-        timer.stop()
+        startupTimer.stop()
 
-        logger.debug("Meteor started in ${timer.getTime(TimeUnit.MILLISECONDS)}ms")
+        logger.debug("Meteor started in ${startupTimer.getTime(TimeUnit.MILLISECONDS)}ms")
     }
 
-    var gpuNeedsReenabled = false
-    var gpuHDNeedsReenabled = false
-    var lastGPUPluginName = ""
     fun initApi() {
         TileItem.client = client
         Item.client = client
