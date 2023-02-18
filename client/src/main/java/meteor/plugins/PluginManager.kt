@@ -135,6 +135,7 @@ import net.runelite.client.plugins.timestamp.TimestampPlugin
 import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
 import net.runelite.client.plugins.kourendlibrary.KourendLibraryPlugin
+import net.runelite.client.plugins.npcstatus.NpcAttackTimersPlugin
 import net.runelite.client.plugins.raids.RaidsPlugin
 import net.runelite.client.plugins.titheextended.TithePlugin
 import rs117.hd.HdPlugin
@@ -242,6 +243,7 @@ object PluginManager {
             init<NightmareZoneAFKPlugin>()
             init<NotesPlugin>()
             init<NpcAggroAreaPlugin>()
+            init<NpcAttackTimersPlugin>()
             init<NpcIndicatorsPlugin>()
             init<NeverLogoutPlugin>()
             init<NightmareHelper>()

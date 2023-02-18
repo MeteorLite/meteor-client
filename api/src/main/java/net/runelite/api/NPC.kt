@@ -45,7 +45,7 @@ interface NPC : Actor {
      * //@see NpcID
      */
     var id: Int
-    override fun getName(): String
+    override fun getName(): String?
     override fun getCombatLevel(): Int
 
     fun getMenu(actionIndex: Int): AutomatedMenu?

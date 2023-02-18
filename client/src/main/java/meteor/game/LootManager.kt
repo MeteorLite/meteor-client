@@ -176,7 +176,7 @@ init {
             // no loot yet
             return
         }
-        log.debug("Got delayed loot stack from {}: {}", delayedLootNpc!!.name, itemStacks)
+        log.debug("Got delayed loot stack from {}: {}", delayedLootNpc!!.name!!, itemStacks)
         client.callbacks.post(Events.NPC_LOOT_RECEIVED,NpcLootReceived(delayedLootNpc, itemStacks))
         delayedLootNpc = null
         delayedLootTickLimit = 0

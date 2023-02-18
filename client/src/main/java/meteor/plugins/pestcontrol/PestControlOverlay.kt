@@ -75,7 +75,7 @@ class PestControlOverlay(plugin: PestControlPlugin) :
 
     private fun renderSpinners(graphics: Graphics2D) {
         for (npc in plugin.spinners) {
-            OverlayUtil.renderActorOverlay(graphics, npc, npc.name, Color.CYAN)
+            OverlayUtil.renderActorOverlay(graphics, npc, npc.name!!, Color.CYAN)
         }
     }
 

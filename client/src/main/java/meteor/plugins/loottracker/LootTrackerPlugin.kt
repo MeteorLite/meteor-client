@@ -64,7 +64,7 @@ class LootTrackerPlugin: Plugin() {
         val items = it.items
         val name = npc!!.name
         items.forEach { ist ->
-            nameInput(name,ist.id,ist.quantity)
+            nameInput(name!!,ist.id,ist.quantity)
             priceInput(name,Prices.getItemPrice(ist.id))
             multiMap.value.entrySet().forEach {map->
                 if(map.key == name)
