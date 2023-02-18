@@ -53,7 +53,7 @@ class BossTimersPlugin : Plugin() {
 
         // remove existing timer
         infoBoxManager.removeIf { t: InfoBox? -> t is RespawnTimer && t.boss == boss }
-        Logger("Boss Timers").debug("Creating spawn timer for {} ({} seconds)", npc.name, boss.spawnTime)
+        Logger("Boss Timers").debug("Creating spawn timer for {} ({} seconds)", npc.name!!, boss.spawnTime)
         val timer = itemManager.getImage(boss.itemSpriteId)?.let { RespawnTimer(boss, it, this) }
         if (timer != null) {
             timer.tooltip = npc.name

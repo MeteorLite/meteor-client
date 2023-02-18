@@ -123,7 +123,7 @@ class FighterPlugin : Plugin() {
 
             if (!Loots.exists(itemsToLoot) && local.isIdle && !local.isMoving) {
             val mob = NPCs.getAll(true, sortByDistance = true)?.firstOrNull {
-                config.monster().split(",".toRegex()).toList().containsIgnoreCase(it.name)
+                config.monster().split(",".toRegex()).toList().containsIgnoreCase(it.name!!)
                         && !it.isDead
                         && it.worldLocation.distanceTo(local.worldLocation) < config.attackRange()
             }
