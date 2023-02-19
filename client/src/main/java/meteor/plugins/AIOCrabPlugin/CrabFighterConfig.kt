@@ -3,7 +3,6 @@ package meteor.plugins.AIOCrabPlugin
 import meteor.config.legacy.Config
 import meteor.config.legacy.ConfigGroup
 import meteor.config.legacy.ConfigItem
-import meteor.plugins.AIOCrabPlugin.constants.CrabHome
 
 @ConfigGroup("AIOCrabPlugin")
 interface CrabFighterConfig : Config {
@@ -14,26 +13,26 @@ interface CrabFighterConfig : Config {
         name = "Crab Home",
         description = "Select the area which you want crabs"
     )
-    fun home(): CrabHome {
-        return CrabHome.RELLEKA_NORTH
+    fun home(): CrabFighterPlugin.CrabHome {
+        return CrabFighterPlugin.CrabHome.RELLEKA_NORTH
     }
-
+//
 //    @ConfigItem(
 //        keyName = "loots",
 //        name = "Loot Items",
-//        description = "Items to loot separated by comma. ex: Lobster,Tuna",
+//        description = "Items to loot separated by comma. ex: Unidentified,Spore\n you can have partly finished words to loot all unidentified fossils",
 //        position = 1,
 //        section = "Loot"
 //    )
 //    fun loot(): String {
-//        return "Any"
+//        return "unidentified, spore"
 //    }
-
+//
 //    @ConfigItem(keyName = "eat", name = "Eat food", description = "Eat food to heal", position = 0, section = "Health")
 //    fun eat(): Boolean {
-//        return true
+//        return false
 //    }
-
+//
 //    @Range(max = 100)
 //    @ConfigItem(
 //        keyName = "eatHealthPercent",
@@ -45,16 +44,16 @@ interface CrabFighterConfig : Config {
 //    fun healthPercent(): Int {
 //        return 65
 //    }
-
+//
 //    @ConfigItem(
 //        keyName = "foods",
 //        name = "Food",
-//        description = "Food to eat, separated by comma. ex: Bones,Coins",
+//        description = "Food to eat, separated by comma. ex: lobster, swordfish, Shark, Tuna",
 //        position = 0,
 //        section = "Health"
 //    )
 //    fun foods(): String {
-//        return "Any"
+//        return "lobster, swordfish"
 //    }
 //        @ConfigSection(name = "General", description = "General settings", position = 0, closedByDefault = true)
 //        val general:String

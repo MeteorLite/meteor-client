@@ -3,11 +3,10 @@ package meteor.plugins.AIOCrabPlugin
 import dev.hoot.api.game.Combat
 import dev.hoot.api.game.Worlds
 import dev.hoot.api.movement.Movement
+import eventbus.events.ClientTick
 import eventbus.events.GameObjectSpawned
 import eventbus.events.GameTick
 import meteor.api.Objects
-import meteor.plugins.AIOCrabPlugin.constants.CrabHome
-import meteor.plugins.AIOCrabPlugin.constants.StateController
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.NPC
@@ -15,8 +14,6 @@ import net.runelite.api.ObjectID
 import net.runelite.api.Player
 import net.runelite.api.TileObject
 import net.runelite.api.coords.WorldPoint
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import kotlin.random.Random
 
 @PluginDescriptor(
@@ -27,14 +24,15 @@ import kotlin.random.Random
 class CrabFighterPlugin : Plugin() {
     private var afkTimer: Int = 0
     private val config = configuration<CrabFighterConfig>()
-    private var timeout: Int = 0
-    private val log: Logger = LoggerFactory.getLogger("CrabFighterPlugin")
+    var state_num: Int = 0
+    private var overlay = overlay(CrabFighterOverlay(this, config))
+    var timeout: Int = 0
+
 
     private lateinit var location: WorldPoint
-    private var state: StateController = StateController.ZERO
     private var health: Double = 0.0
     private var otherPlayerAtHomeTile: Int = 0
-    private var aggroTheseNpcs: List<NPC> = ArrayList()
+    var aggroTheseNpcs: List<NPC> = ArrayList()
     private var hopWorlds: Boolean = false
 
     /**
@@ -48,7 +46,14 @@ class CrabFighterPlugin : Plugin() {
     whenever there's movement -- add a break before moving
      */
 
+    override fun onClientTick(it: ClientTick) {
+        println("peace")
+    }
 
+
+    //    override fun onClientTick(it: ClientTick) {
+//        println("peace")
+//    }
     override fun onGameTick(it: GameTick) {
         if (timeout == 0)
             timeout = refresh()
@@ -67,17 +72,15 @@ class CrabFighterPlugin : Plugin() {
         if(hopWorlds && client.localPlayer!!.isIdle) {
             hopWorlds()
         } else {
-            when (state) {
+            when (state_num) {
                 /********************************************
                  * __ State Zero __
                  * Log in state check
                  *******************************************/
-                StateController.ZERO -> {
-                    log.info("STATE ZERO")
+                0 -> {
 
                     if (true) {
-                        log.info("next state!")
-                        state = StateController.ONE
+                        state_num = 1
                     }
 
                     return 0
@@ -88,19 +91,13 @@ class CrabFighterPlugin : Plugin() {
                  * Walks to home if it's not.
                  * @see CrabFighterConfig.home
                  ********************************************/
-                StateController.ONE -> {
-                    log.info("STATE ONE")
-                    log.info(config.toString())
-
-                    log.info(config.home().home.toString())
+                1 -> {
 
                     return if (location == config.home().home) {
-                        log.info("at home!")
-                        state = StateController.TWO
+                        state_num = 2
                         rand(0, 10)
                     } else {
                         if (!client.localPlayer!!.isMoving) {
-                            log.info("walking home!")
                             Movement.walkTo(config.home().home)
                             return 3
                         }
@@ -113,21 +110,17 @@ class CrabFighterPlugin : Plugin() {
                  * gets aggressive npcs
                  * @see checkAggro for the returns and state changes
                  ********************************************/
-                StateController.TWO -> {
-                    log.info("STATE TWO")
+                2 -> {
                     val npcsAttackingPlayer: List<NPC>
 
                     if (aggroTheseNpcs.size < 2) {
-                        log.info("logging npcs to aggro")
                         getNpcToAggro(config.home().npc1)
                     }
 
                     try {
                         npcsAttackingPlayer =
                             aggroTheseNpcs.filter { it.interacting?.name == client.localPlayer!!.name }
-                        log.info("Npcs attacking player: " + npcsAttackingPlayer.toString())
                     } catch (e: Exception) {
-                        log.info(e.message)
                         return rand(5, 10)
                     }
                     return checkAggro(npcsAttackingPlayer)
@@ -137,15 +130,14 @@ class CrabFighterPlugin : Plugin() {
                  * Configurations for home location
                  * @see CrabHome.location for the switch case
                  */
-                StateController.THREE -> {
-                    log.info("STATE THREE")
+                3 -> {
                     when (config.home().location) {
                         "Rellekka" -> {
                             val tunnel: TileObject? = Objects.getFirst("Tunnel")
                             val inside: Boolean = tunnel!!.id == 5014
                             if (inside) {
                                 tunnel.interact("Enter")
-                                state = StateController.ONE
+                                state_num = 1
                                 return rand(0, 10)
                             } else if (tunnel != null && client.localPlayer!!.isIdle) {
                                 tunnel.interact("Enter")
@@ -153,11 +145,11 @@ class CrabFighterPlugin : Plugin() {
                             }
                         }
                     }
-                    state = StateController.ONE
+                    state_num = 1
                 }
 
                 //get check the aggression
-                StateController.FOUR -> {
+                4 -> {
 
                 }
 
@@ -183,12 +175,10 @@ class CrabFighterPlugin : Plugin() {
         val walkingCrabs: List<NPC> = aggroTheseNpcs.filter { !it.isDead && it.isMoving }
         val noWalkingCrabs: Boolean = walkingCrabs.isEmpty()
 
-        log.info("Walking crabs that should be aggroed: " + walkingCrabs.toString())
 
         if (!noWalkingCrabs && !client.localPlayer!!.isAnimating) {
-            log.info("**!!aggro walking crabs!!**")
             walkingCrabs.first().interact("Attack")
-            state = StateController.ONE
+            state_num = 1
             return rand(3, 7)
         }
 
@@ -198,15 +188,12 @@ class CrabFighterPlugin : Plugin() {
         } else {
             afkTimer++
             if (afkTimer >= rand(4,8)) {
-                log.info("GO TO STATE THREE!!")
-                state = StateController.THREE
+                state_num = 3
                 0
             } else {
                 if(aggroTheseNpcs.size >= 2) {
-                    log.info("Waiting for crabs: " + afkTimer.toString())
                     return rand(10, 15)
                 } else {
-                    log.info("Searching For Crabs")
                     afkTimer = 0
                     0
                 }
@@ -230,14 +217,10 @@ class CrabFighterPlugin : Plugin() {
     }
 
     private fun hopWorlds() {
-        var timeout = 0
-
-        while(timeout < 10000) {
-            timeout++
-            if(client.localPlayer!!.isIdle) {
-                client.hopToWorld(Worlds.getFirst(client.world + 1))
-            }
-        }
+        client.hopToWorld(Worlds.getFirst {
+            it.isMembers && it.isAllPkWorld && !it.isLeague
+                    && !it.isSkillTotal && !it.isTournament && it.id != client.world
+        })
     }
 
     private fun checkIfOtherPlayersIsAtHome() {
@@ -254,4 +237,23 @@ class CrabFighterPlugin : Plugin() {
 
         hopWorlds = false
     }
+
+    enum class CrabHome(val home: WorldPoint, val location: String, val npc1: String) {
+        RELLEKA_NORTH(
+            WorldPoint(2704, 3726, 0),
+            "Rellekka",
+            "Rock Crab"
+        ),
+        RELLEKA_SOUTH(
+            WorldPoint(2701, 3719, 0),
+            "Rellekka",
+            "Rock Crab"),
+        //    AMMONITE_SOUTH(WorldPoint(0,0,0), "Fossil Island"),
+//        AMMONITE_CENTER(WorldPoint(3716,3880,0), "Fossil Island", "Ammonite Crab"),
+//    AMMONITE_NORTH(WorldPoint(0,0,0), "Fossil Island"),
+//    KOUREND_(WorldPoint(0,0,0), "Kourend"),
+//    MORYTANIA_(WorldPoint(0,0,0), "Kourend"),
+    }
 }
+
+
