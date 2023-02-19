@@ -2045,7 +2045,6 @@ public abstract class RSClientMixin implements RSClient {
     @Inject
     @Override
     public ObjectComposition getObjectDefinition(int objectId) {
-        assert this.isClientThread() : "getObjectDefinition must be called on client thread";
         return getRSObjectComposition(objectId);
     }
 
