@@ -138,8 +138,8 @@ class LogChopper : Plugin() {
     }
     private fun useBank() {
         if (!Bank.bankPinIsOpen()) {
-            objects.getFirst("Bank chest")?.interact("Use")
-            objects.getFirst("Bank booth")?.interact("Bank")
+            objects.getFirstWithAction("Bank chest", "Use")?.interact("Use")
+            objects.getFirstWithAction("Bank booth", "Bank")?.interact("Bank")
         }
     }
 
