@@ -52,6 +52,8 @@ import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
 import meteor.chat.ChatCommandManager
 import meteor.chat.ChatMessageManager
+import meteor.rmi.handshake.HandshakeService
+import meteor.rmi.handshake.HandshakeClient
 import meteor.ui.composables.preferences.uiColor
 import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.http.api.chat.ChatClient
@@ -81,6 +83,7 @@ object Main : ApplicationScope, EventSubscriber() {
     }
 
     private val startupTimer = StopWatch()
+    private val rmiPingTimer = StopWatch()
 
     // api
     lateinit var client: Client
@@ -103,6 +106,8 @@ object Main : ApplicationScope, EventSubscriber() {
     val executor = ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor())
     val worldService = WorldService
     val hiscoreManager = HiscoreManager
+    val rmiHost = "15.204.174.14"
+    val handshakeClient = HandshakeClient<HandshakeService>()
 
     // onClick listeners
     var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
@@ -240,6 +245,15 @@ object Main : ApplicationScope, EventSubscriber() {
         xpDropManager = XpDropManager()
         SessionManager.start()
         startupTimer.stop()
+
+
+        if (meteorConfig.authKey().isNotEmpty()) {
+            rmiPingTimer.start()
+            val response = handshakeClient.connect().handshake(meteorConfig.authKey())
+            rmiPingTimer.stop()
+            logger.debug(response)
+            logger.debug("RMI round-trip - ${rmiPingTimer.getTime(TimeUnit.MILLISECONDS)}ms")
+        }
 
         logger.debug("Meteor started in ${startupTimer.getTime(TimeUnit.MILLISECONDS)}ms")
     }

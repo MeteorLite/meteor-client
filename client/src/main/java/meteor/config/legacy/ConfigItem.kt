@@ -24,6 +24,5 @@ package meteor.config.legacy
     val disabledByValue: String = "",
     val textArea: Boolean = false,
     val textField: Boolean = false,
-    val secret: Boolean = false,
     val composePanel: Boolean = false,
     )
