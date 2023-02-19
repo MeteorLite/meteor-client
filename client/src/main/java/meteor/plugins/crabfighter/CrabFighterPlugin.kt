@@ -1,4 +1,4 @@
-package meteor.plugins.AIOCrabPlugin
+package meteor.plugins.crabfighter
 
 import dev.hoot.api.game.Combat
 import dev.hoot.api.game.Worlds
@@ -45,15 +45,7 @@ class CrabFighterPlugin : Plugin() {
     logout and log back in after 5 minutes
     whenever there's movement -- add a break before moving
      */
-
-    override fun onClientTick(it: ClientTick) {
-        println("peace")
-    }
-
-
-    //    override fun onClientTick(it: ClientTick) {
-//        println("peace")
-//    }
+    
     override fun onGameTick(it: GameTick) {
         if (timeout == 0)
             timeout = refresh()

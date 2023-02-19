@@ -1,4 +1,4 @@
-package meteor.plugins.AIOCrabPlugin
+package meteor.plugins.crabfighter
 
 import meteor.ui.components.LineComponent
 import meteor.ui.overlay.*

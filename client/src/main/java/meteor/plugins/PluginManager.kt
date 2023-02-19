@@ -8,7 +8,7 @@ import meteor.Main
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
 import meteor.external.ExternalManager
-import meteor.plugins.AIOCrabPlugin.CrabFighterPlugin
+import meteor.plugins.crabfighter.CrabFighterPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
 import meteor.plugins.ammo.AmmoPlugin

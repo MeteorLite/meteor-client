@@ -1,4 +1,4 @@
-package meteor.plugins.AIOCrabPlugin
+package meteor.plugins.crabfighter
 
 import meteor.config.legacy.Config
 import net.runelite.api.Client
