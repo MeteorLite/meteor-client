@@ -1,6 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     kotlin("jvm")
@@ -9,6 +10,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.7.20"
     java
     `maven-publish`
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 val majorRelease by rootProject.extra { "1.7" }
@@ -149,6 +151,13 @@ compose {
 }
 
 tasks {
+    named<ShadowJar>("shadowJar") {
+        archiveBaseName.set("shadow")
+        mergeServiceFiles()
+        manifest {
+            attributes(mapOf("Main-Class" to "meteor.Main"))
+        }
+    }
     processResources {
         dependsOn(":injector:inject")
         dependsOn(":scripts:assembleScripts")
