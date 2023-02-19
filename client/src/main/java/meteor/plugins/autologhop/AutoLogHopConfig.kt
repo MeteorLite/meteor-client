@@ -1,9 +1,6 @@
 package meteor.plugins.autologhop
 
-import meteor.config.legacy.Config
-import meteor.config.legacy.ConfigGroup
-import meteor.config.legacy.ConfigItem
-import meteor.config.legacy.ConfigSection
+import meteor.config.legacy.*
 
 @ConfigGroup("autologhop")
 interface AutoLogHopConfig : Config {
@@ -43,14 +40,14 @@ interface AutoLogHopConfig : Config {
         return ""
     }
 
+    @Secret
     @ConfigItem(
         keyName = "password",
         name = "password",
         description = "Password for login",
         position = 13,
         section = "AutoLogHop",
-        textField = true,
-        secret = true
+        textField = true
     )
     fun password(): String {
         return ""

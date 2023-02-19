@@ -12,11 +12,22 @@ import java.awt.Color
 
 @ConfigGroup(Configuration.MASTER_GROUP)
 interface MeteorConfig : Config {
+    @Secret
+    @ConfigItem(
+        keyName = "authKey",
+        name = "Auth Key",
+        description = "",
+        position = 0
+    )
+    fun authKey(): String {
+        return ""
+    }
+
     @ConfigItem(
         name = "Always on top",
         keyName = "alwaysOnTop",
         description = "",
-        position = 0,
+        position = 1,
     )
     fun alwaysOnTop(): Boolean {
         return false
@@ -73,7 +84,7 @@ interface MeteorConfig : Config {
         name = "Enable console",
         keyName = "console",
         description = "",
-        position = 0,
+        position = 1,
     )
     fun console(): Boolean {
         return false

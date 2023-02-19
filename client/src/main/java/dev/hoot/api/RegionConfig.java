@@ -1,19 +1,15 @@
 package dev.hoot.api;
 
-import meteor.config.legacy.Config;
-import meteor.config.legacy.ConfigGroup;
-import meteor.config.legacy.ConfigItem;
-import meteor.config.legacy.Range;
-import meteor.config.legacy.Button;
+import meteor.config.legacy.*;
 
 @ConfigGroup("regions")
 public interface RegionConfig extends Config
 {
+	@Secret
 	@ConfigItem(
 			keyName = "apiKey",
 			name = "API Key",
 			description = "API Key used for contributing collision data to our backend.",
-			secret = true,
 			position = 0
 	)
 	default String apiKey()
