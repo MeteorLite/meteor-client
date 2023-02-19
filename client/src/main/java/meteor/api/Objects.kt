@@ -60,6 +60,15 @@ object Objects {
         return getAll(name)?.minByOrNull { it.distanceTo(Main.client.localPlayer) }
     }
 
+    /**
+     * gets the first object with an id and action matching the provided [name] [action]
+     * @param name the object name we should filter for
+     * @param action the object action we should filter for
+     */
+    fun getFirstWithAction(name: String, action: String): TileObject? {
+        return getAll(name)?.firstOrNull{ it.hasAction((action)) }
+    }
+
     private fun getObjectsAt(tile: Tile?): List<TileObject> {
         val out: MutableList<TileObject> = java.util.ArrayList()
         if (tile == null) {
