@@ -4,27 +4,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mj")
+@ObfuscatedName("nn")
 @Implements("IterableDualNodeQueueIterator")
 public class IterableDualNodeQueueIterator implements Iterator {
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Lmc;"
-    )
-    IterableDualNodeQueue queue;
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lpi;"
-    )
-    DualNode head;
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "Lpi;"
-    )
-    DualNode last = null;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lnh;"
+   )
+   @Export("queue")
+   IterableDualNodeQueue queue;
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lqk;"
+   )
+   @Export("head")
+   DualNode head;
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Lqk;"
+   )
+   @Export("last")
+   DualNode last = null;
 
    @ObfuscatedSignature(
-      descriptor = "(Lmc;)V"
+      descriptor = "(Lnh;)V"
    )
    IterableDualNodeQueueIterator(IterableDualNodeQueue var1) {
       this.queue = var1;
@@ -32,8 +35,9 @@ public class IterableDualNodeQueueIterator implements Iterator {
       this.last = null;
    }
 
-    @ObfuscatedName("next")
-    public Object next() {
+   @Export("next")
+   @ObfuscatedName("next")
+   public Object next() {
       DualNode var1 = this.head;
       if (var1 == this.queue.sentinel) {
          var1 = null;
@@ -46,18 +50,16 @@ public class IterableDualNodeQueueIterator implements Iterator {
       return var1;
    }
 
-    @ObfuscatedName("hasNext")
-    public boolean hasNext() {
-      return this.queue.sentinel != this.head;
+   @Export("remove")
+   @ObfuscatedName("remove")
+   public void remove() {
+      this.last.removeDual();
+      this.last = null;
    }
 
-    @ObfuscatedName("remove")
-    public void remove() {
-      if (this.last == null) {
-         throw new IllegalStateException();
-      } else {
-         this.last.removeDual();
-         this.last = null;
-      }
+   @Export("hasNext")
+   @ObfuscatedName("hasNext")
+   public boolean hasNext() {
+      return this.queue.sentinel != this.head;
    }
 }

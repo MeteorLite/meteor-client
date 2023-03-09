@@ -3,30 +3,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("me")
+@ObfuscatedName("ny")
 @Implements("LinkDeque")
 public class LinkDeque {
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Lpz;"
-    )
-    Link sentinel = new Link();
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lpz;"
-    )
-    Link current;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lqi;"
+   )
+   @Export("sentinel")
+   Link sentinel = new Link();
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lqi;"
+   )
+   @Export("current")
+   Link current;
 
    public LinkDeque() {
       this.sentinel.previous = this.sentinel;
       this.sentinel.next = this.sentinel;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Lpz;)V"
-    )
-    public void addFirst(Link var1) {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(Lqi;)V"
+   )
+   @Export("addFirst")
+   public void addFirst(Link var1) {
       if (var1.next != null) {
          var1.remove();
       }
@@ -37,11 +40,12 @@ public class LinkDeque {
       var1.previous.next = var1;
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "()Lpz;"
-    )
-    public Link last() {
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "()Lqi;"
+   )
+   @Export("last")
+   public Link last() {
       Link var1 = this.sentinel.previous;
       if (var1 == this.sentinel) {
          this.current = null;
@@ -52,11 +56,12 @@ public class LinkDeque {
       }
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "()Lpz;"
-    )
-    public Link previous() {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "()Lqi;"
+   )
+   @Export("previous")
+   public Link previous() {
       Link var1 = this.current;
       if (var1 == this.sentinel) {
          this.current = null;

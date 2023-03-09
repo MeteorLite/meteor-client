@@ -3,96 +3,96 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hy")
+@ObfuscatedName("id")
 @Implements("Tile")
 public final class Tile extends Node {
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @Export("plane")
    int plane;
-   @ObfuscatedName("w")
+   @ObfuscatedName("al")
    @Export("x")
    int x;
-   @ObfuscatedName("v")
+   @ObfuscatedName("ac")
    @Export("y")
    int y;
-   @ObfuscatedName("s")
+   @ObfuscatedName("ab")
    @Export("originalPlane")
    int originalPlane;
-   @ObfuscatedName("z")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lhc;"
+      descriptor = "Lit;"
    )
    @Export("paint")
    SceneTilePaint paint;
-   @ObfuscatedName("j")
+   @ObfuscatedName("ao")
    @ObfuscatedSignature(
-      descriptor = "Lhj;"
+      descriptor = "Lil;"
    )
    @Export("model")
    SceneTileModel model;
-   @ObfuscatedName("i")
+   @ObfuscatedName("av")
    @ObfuscatedSignature(
-      descriptor = "Lhg;"
+      descriptor = "Ljc;"
    )
    @Export("boundaryObject")
    BoundaryObject boundaryObject;
-   @ObfuscatedName("n")
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "Lij;"
+      descriptor = "Ljg;"
    )
    @Export("wallDecoration")
    WallDecoration wallDecoration;
-   @ObfuscatedName("l")
+   @ObfuscatedName("ap")
    @ObfuscatedSignature(
-      descriptor = "Lhq;"
+      descriptor = "Lib;"
    )
    @Export("floorDecoration")
    FloorDecoration floorDecoration;
-   @ObfuscatedName("k")
+   @ObfuscatedName("ar")
    @ObfuscatedSignature(
-      descriptor = "Lhi;"
+      descriptor = "Lij;"
    )
    @Export("itemLayer")
    ItemLayer itemLayer;
-   @ObfuscatedName("c")
+   @ObfuscatedName("ak")
    @Export("gameObjectsCount")
    int gameObjectsCount;
-   @ObfuscatedName("r")
+   @ObfuscatedName("ax")
    @ObfuscatedSignature(
-      descriptor = "[Liu;"
+      descriptor = "[Ljm;"
    )
    @Export("gameObjects")
    GameObject[] gameObjects = new GameObject[5];
-   @ObfuscatedName("b")
+   @ObfuscatedName("as")
    @Export("gameObjectEdgeMasks")
    int[] gameObjectEdgeMasks = new int[5];
-   @ObfuscatedName("m")
+   @ObfuscatedName("ay")
    @Export("gameObjectsEdgeMask")
    int gameObjectsEdgeMask = 0;
-   @ObfuscatedName("t")
+   @ObfuscatedName("am")
    @Export("minPlane")
    int minPlane;
-   @ObfuscatedName("h")
+   @ObfuscatedName("az")
    @Export("drawPrimary")
    boolean drawPrimary;
-   @ObfuscatedName("p")
+   @ObfuscatedName("ae")
    @Export("drawSecondary")
    boolean drawSecondary;
-   @ObfuscatedName("o")
+   @ObfuscatedName("au")
    @Export("drawGameObjects")
    boolean drawGameObjects;
-   @ObfuscatedName("u")
+   @ObfuscatedName("ag")
    @Export("drawGameObjectEdges")
    int drawGameObjectEdges;
-   @ObfuscatedName("x")
-   int field1954;
-   @ObfuscatedName("a")
+   @ObfuscatedName("at")
+   int field1940;
+   @ObfuscatedName("af")
    int field1944;
-   @ObfuscatedName("q")
-   int field1959;
-   @ObfuscatedName("d")
+   @ObfuscatedName("ai")
+   int field1950;
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "Lhy;"
+      descriptor = "Lid;"
    )
    @Export("linkedBelowTile")
    Tile linkedBelowTile;
@@ -101,5 +101,17 @@ public final class Tile extends Node {
       this.originalPlane = this.plane = var1;
       this.x = var2;
       this.y = var3;
+   }
+
+   @ObfuscatedName("ae")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+      garbageValue = "-32899109"
+   )
+   @Export("setLoginResponseString")
+   static void setLoginResponseString(String var0, String var1, String var2) {
+      Login.Login_response1 = var0;
+      Login.Login_response2 = var1;
+      Login.Login_response3 = var2;
    }
 }

@@ -6,27 +6,28 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("je")
+@ObfuscatedName("km")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-    @ObfuscatedName("is")
-    @ObfuscatedSignature(
-            descriptor = "Lhn;"
-    )
-    static Scene scene;
-    @ObfuscatedName("b")
-    HashSet worldMapData0Set;
-    @ObfuscatedName("m")
-    HashSet worldMapData1Set;
-    @ObfuscatedName("t")
-    List iconList;
+   @ObfuscatedName("qu")
+   static int field2398;
+   @ObfuscatedName("as")
+   @Export("worldMapData0Set")
+   HashSet worldMapData0Set;
+   @ObfuscatedName("ay")
+   @Export("worldMapData1Set")
+   HashSet worldMapData1Set;
+   @ObfuscatedName("am")
+   @Export("iconList")
+   List iconList;
 
-    @ObfuscatedName("cq")
-    @ObfuscatedSignature(
-            descriptor = "(Lrd;Lrd;IZI)V",
-            garbageValue = "-1685416357"
-    )
-    void init(Buffer var1, Buffer var2, int var3, boolean var4) {
+   @ObfuscatedName("cm")
+   @ObfuscatedSignature(
+      descriptor = "(Lsy;Lsy;IZI)V",
+      garbageValue = "847951719"
+   )
+   @Export("init")
+   void init(Buffer var1, Buffer var2, int var3, boolean var4) {
       this.read(var1, var3);
       int var5 = var2.readUnsignedShort();
       this.worldMapData0Set = new HashSet(var5);
@@ -62,17 +63,18 @@ public class WorldMapAreaData extends WorldMapArea {
       this.initIconsList(var2, var4);
    }
 
-    @ObfuscatedName("cd")
-    @ObfuscatedSignature(
-            descriptor = "(Lrd;ZI)V",
-            garbageValue = "-1057034559"
-    )
-    void initIconsList(Buffer var1, boolean var2) {
+   @ObfuscatedName("cw")
+   @ObfuscatedSignature(
+      descriptor = "(Lsy;ZB)V",
+      garbageValue = "10"
+   )
+   @Export("initIconsList")
+   void initIconsList(Buffer var1, boolean var2) {
       this.iconList = new LinkedList();
       int var3 = var1.readUnsignedShort();
 
       for(int var4 = 0; var4 < var3; ++var4) {
-         int var5 = var1.method2419();
+         int var5 = var1.method2423();
          Coord var6 = new Coord(var1.readInt());
          boolean var7 = var1.readUnsignedByte() == 1;
          if (var2 || !var7) {
@@ -80,56 +82,5 @@ public class WorldMapAreaData extends WorldMapArea {
          }
       }
 
-   }
-
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Lcd;I)V",
-            garbageValue = "-1936200764"
-    )
-    public static void runScriptEvent(ScriptEvent var0) {
-      ItemLayer.runScript(var0, 500000, 475000);
-   }
-
-   @ObfuscatedName("h")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "44"
-   )
-   static void method1487() {
-      Login.Login_username = Login.Login_username.trim();
-      if (Login.Login_username.length() == 0) {
-         class70.setLoginResponseString("Please enter your username.", "If you created your account after November", "2010, this will be the creation email address.");
-      } else {
-         long var1 = class70.method418();
-         int var0;
-         if (0L == var1) {
-            var0 = 5;
-         } else {
-            var0 = Ignored.method2123(var1, Login.Login_username);
-         }
-
-         switch(var0) {
-         case 2:
-            class70.setLoginResponseString(Strings.field3185, Strings.field3360, Strings.field3361);
-            ReflectionCheck.method171(6);
-            break;
-         case 3:
-            class70.setLoginResponseString("", "Error connecting to server.", "");
-            break;
-         case 4:
-            class70.setLoginResponseString("The part of the website you are trying", "to connect to is offline at the moment.", "Please try again later.");
-            break;
-         case 5:
-            class70.setLoginResponseString("Sorry, there was an error trying to", "log you in to this part of the website.", "Please try again later.");
-            break;
-         case 6:
-            class70.setLoginResponseString("", "Error connecting to server.", "");
-            break;
-         case 7:
-            class70.setLoginResponseString("You must enter a valid login to proceed. For accounts", "created after 24th November 2010, please use your", "email address. Otherwise please use your username.");
-         }
-
-      }
    }
 }

@@ -6,43 +6,47 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("q")
+@ObfuscatedName("ai")
 @Implements("MouseWheelHandler")
-public final class MouseWheelHandler implements class170, MouseWheelListener {
-    @ObfuscatedName("f")
-    int rotation = 0;
+public final class MouseWheelHandler implements class171, MouseWheelListener {
+   @ObfuscatedName("aj")
+   @Export("rotation")
+   int rotation = 0;
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/awt/Component;I)V",
-            garbageValue = "-708063290"
-    )
-    void addTo(Component var1) {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/awt/Component;I)V",
+      garbageValue = "-1696751646"
+   )
+   @Export("addTo")
+   void addTo(Component var1) {
       var1.addMouseWheelListener(this);
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/awt/Component;S)V",
-      garbageValue = "29424"
+      descriptor = "(Ljava/awt/Component;B)V",
+      garbageValue = "-75"
    )
-   void method78(Component var1) {
+   void method86(Component var1) {
       var1.removeMouseWheelListener(this);
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "47"
-    )
-    public synchronized int useRotation() {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "1061064035"
+   )
+   @Export("useRotation")
+   public synchronized int useRotation() {
       int var1 = this.rotation;
       this.rotation = 0;
       return var1;
    }
 
-    @ObfuscatedName("mouseWheelMoved")
-    public synchronized void mouseWheelMoved(MouseWheelEvent var1) {
+   @Export("mouseWheelMoved")
+   @ObfuscatedName("mouseWheelMoved")
+   public synchronized void mouseWheelMoved(MouseWheelEvent var1) {
       this.rotation += var1.getWheelRotation();
    }
 }

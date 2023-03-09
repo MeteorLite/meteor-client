@@ -455,14 +455,11 @@ public interface Actor extends Renderable, Locatable
 
 	int getCombatLevelOverride();
 
-	boolean instantTurn();
-
 	int getFacedDirection();
 
 	int getAnimationDelay();
 
 	int getAnimationFrameIndex();
-
 
 	int exactMoveDeltaX1();
 	int exactMoveDeltaX2();

@@ -3,41 +3,43 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("or")
+@ObfuscatedName("pw")
 @Implements("GraphicsDefaults")
 public class GraphicsDefaults {
-    @ObfuscatedName("bw")
-    static String param9;
-    @ObfuscatedName("f")
-    public int compass = -1;
-   @ObfuscatedName("w")
-   public int field3758 = -1;
-    @ObfuscatedName("v")
-    public int mapScenes = -1;
-    @ObfuscatedName("s")
-    public int headIconsPk = -1;
-   @ObfuscatedName("z")
-   public int field3753 = -1;
-   @ObfuscatedName("j")
-   public int field3754 = -1;
-   @ObfuscatedName("i")
-   public int field3757 = -1;
-   @ObfuscatedName("n")
-   public int field3756 = -1;
-   @ObfuscatedName("l")
-   public int field3759 = -1;
-   @ObfuscatedName("k")
-   public int field3750 = -1;
-   @ObfuscatedName("c")
-   public int field3761 = -1;
+   @ObfuscatedName("aj")
+   @Export("compass")
+   public int compass = -1;
+   @ObfuscatedName("al")
+   public int field3719 = -1;
+   @ObfuscatedName("ac")
+   @Export("mapScenes")
+   public int mapScenes = -1;
+   @ObfuscatedName("ab")
+   @Export("headIconsPk")
+   public int headIconsPk = -1;
+   @ObfuscatedName("an")
+   public int field3716 = -1;
+   @ObfuscatedName("ao")
+   public int field3720 = -1;
+   @ObfuscatedName("av")
+   public int field3721 = -1;
+   @ObfuscatedName("aq")
+   public int field3722 = -1;
+   @ObfuscatedName("ap")
+   public int field3717 = -1;
+   @ObfuscatedName("ar")
+   public int field3723 = -1;
+   @ObfuscatedName("ak")
+   public int field3724 = -1;
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Lln;B)V",
-            garbageValue = "16"
-    )
-    public void decode(AbstractArchive var1) {
-      byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3749.group);
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(Lne;I)V",
+      garbageValue = "1692757151"
+   )
+   @Export("decode")
+   public void decode(AbstractArchive var1) {
+      byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3713.group);
       Buffer var3 = new Buffer(var2);
 
       while(true) {
@@ -51,17 +53,17 @@ public class GraphicsDefaults {
             var3.readMedium();
             break;
          case 2:
-            this.compass = var3.method2419();
-            this.field3758 = var3.method2419();
-            this.mapScenes = var3.method2419();
-            this.headIconsPk = var3.method2419();
-            this.field3753 = var3.method2419();
-            this.field3754 = var3.method2419();
-            this.field3757 = var3.method2419();
-            this.field3756 = var3.method2419();
-            this.field3759 = var3.method2419();
-            this.field3750 = var3.method2419();
-            this.field3761 = var3.method2419();
+            this.compass = var3.method2423();
+            this.field3719 = var3.method2423();
+            this.mapScenes = var3.method2423();
+            this.headIconsPk = var3.method2423();
+            this.field3716 = var3.method2423();
+            this.field3720 = var3.method2423();
+            this.field3721 = var3.method2423();
+            this.field3722 = var3.method2423();
+            this.field3717 = var3.method2423();
+            this.field3723 = var3.method2423();
+            this.field3724 = var3.method2423();
          }
       }
    }

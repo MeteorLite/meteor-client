@@ -4,38 +4,42 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mc")
+@ObfuscatedName("nh")
 @Implements("IterableDualNodeQueue")
 public class IterableDualNodeQueue implements Iterable {
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Lpi;"
-    )
-    public DualNode sentinel = new DualNode();
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lpi;"
-    )
-    DualNode head;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lqk;"
+   )
+   @Export("sentinel")
+   public DualNode sentinel = new DualNode();
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lqk;"
+   )
+   @Export("head")
+   DualNode head;
 
    public IterableDualNodeQueue() {
       this.sentinel.previousDual = this.sentinel;
       this.sentinel.nextDual = this.sentinel;
    }
 
-    @ObfuscatedName("f")
-    public void clear() {
+   @ObfuscatedName("aj")
+   @Export("clear")
+   public void clear() {
       while(this.sentinel.previousDual != this.sentinel) {
          this.sentinel.previousDual.removeDual();
       }
 
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(Lpi;)V"
-    )
-    public void add(DualNode var1) {
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(Lqk;)V"
+   )
+   @Export("add")
+   public void add(DualNode var1) {
       if (var1.nextDual != null) {
          var1.removeDual();
       }
@@ -46,11 +50,12 @@ public class IterableDualNodeQueue implements Iterable {
       var1.previousDual.nextDual = var1;
    }
 
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "()Lpi;"
-    )
-    public DualNode removeLast() {
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "()Lqk;"
+   )
+   @Export("removeLast")
+   public DualNode removeLast() {
       DualNode var1 = this.sentinel.previousDual;
       if (var1 == this.sentinel) {
          return null;
@@ -60,19 +65,21 @@ public class IterableDualNodeQueue implements Iterable {
       }
    }
 
-    @ObfuscatedName("z")
-    @ObfuscatedSignature(
-            descriptor = "()Lpi;"
-    )
-    public DualNode last() {
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "()Lqk;"
+   )
+   @Export("last")
+   public DualNode last() {
       return this.previousOrLast((DualNode)null);
    }
 
-    @ObfuscatedName("j")
-    @ObfuscatedSignature(
-            descriptor = "(Lpi;)Lpi;"
-    )
-    DualNode previousOrLast(DualNode var1) {
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "(Lqk;)Lqk;"
+   )
+   @Export("previousOrLast")
+   DualNode previousOrLast(DualNode var1) {
       DualNode var2;
       if (var1 == null) {
          var2 = this.sentinel.previousDual;
@@ -89,11 +96,12 @@ public class IterableDualNodeQueue implements Iterable {
       }
    }
 
-    @ObfuscatedName("i")
-    @ObfuscatedSignature(
-            descriptor = "()Lpi;"
-    )
-    public DualNode previous() {
+   @ObfuscatedName("av")
+   @ObfuscatedSignature(
+      descriptor = "()Lqk;"
+   )
+   @Export("previous")
+   public DualNode previous() {
       DualNode var1 = this.head;
       if (var1 == this.sentinel) {
          this.head = null;
@@ -104,16 +112,18 @@ public class IterableDualNodeQueue implements Iterable {
       }
    }
 
-    @ObfuscatedName("iterator")
-    public Iterator iterator() {
+   @Export("iterator")
+   @ObfuscatedName("iterator")
+   public Iterator iterator() {
       return new IterableDualNodeQueueIterator(this);
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "(Lpi;Lpi;)V"
-    )
-    public static void DualNodeDeque_addBefore(DualNode var0, DualNode var1) {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "(Lqk;Lqk;)V"
+   )
+   @Export("DualNodeDeque_addBefore")
+   public static void DualNodeDeque_addBefore(DualNode var0, DualNode var1) {
       if (var0.nextDual != null) {
          var0.removeDual();
       }

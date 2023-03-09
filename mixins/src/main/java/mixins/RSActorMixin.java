@@ -79,7 +79,7 @@ public abstract class RSActorMixin implements RSActor
 				return null;
 			}
 
-			int var2 = client.isLargePlayerInfo() ? 65536 : 32768;
+			int var2 = 65536;
 			if (index < var2)
 			{
 				NPC[] npcs = client.getCachedNPCs();
@@ -342,13 +342,14 @@ public abstract class RSActorMixin implements RSActor
 
 	// Kris changes
 
-	@FieldHook("movingOrientation")
+	//TODO: Fix
+/*	@FieldHook("movingOrientation")
 	@Inject
 	public void facedDirectionChanged(int idx)
 	{
 		FacedDirectionChanged facedDirectionChanged = new FacedDirectionChanged(this, getFacedDirection(), instantTurn());
 		client.getCallbacks().post(Events.FACED_DIRECTION_CHANGED, facedDirectionChanged);
-	}
+	}*/
 
 	@FieldHook("exactMoveDirection")
 	@Inject

@@ -3,120 +3,117 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ip")
+@ObfuscatedName("jd")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-    @ObfuscatedName("vv")
-    static int foundItemIndex;
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Lip;"
-    )
-    public static final WorldMapLabelSize WorldMapLabelSize_small = new WorldMapLabelSize(0, 0, 4);
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lip;"
-    )
-    public static final WorldMapLabelSize WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "Lip;"
-    )
-    public static final WorldMapLabelSize WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
-   @ObfuscatedName("hd")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Lov;"
+      descriptor = "Ljd;"
    )
-   static AbstractSocket field2235;
-    @ObfuscatedName("lr")
-    @ObfuscatedSignature(
-            descriptor = "Lkz;"
-    )
-    static Widget dragInventoryWidget;
-   @ObfuscatedName("s")
-   final int field2232;
-   @ObfuscatedName("z")
-   final int field2239;
-   @ObfuscatedName("j")
+   @Export("WorldMapLabelSize_small")
+   public static final WorldMapLabelSize WorldMapLabelSize_small = new WorldMapLabelSize(1, 0, 4);
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Ljd;"
+   )
+   @Export("WorldMapLabelSize_medium")
+   public static final WorldMapLabelSize WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Ljd;"
+   )
+   @Export("WorldMapLabelSize_large")
+   public static final WorldMapLabelSize WorldMapLabelSize_large = new WorldMapLabelSize(0, 2, 0);
+   @ObfuscatedName("ab")
+   final int field2236;
+   @ObfuscatedName("an")
    final int field2237;
+   @ObfuscatedName("ao")
+   final int field2233;
 
    WorldMapLabelSize(int var1, int var2, int var3) {
-      this.field2232 = var1;
-      this.field2239 = var2;
-      this.field2237 = var3;
+      this.field2236 = var1;
+      this.field2237 = var2;
+      this.field2233 = var3;
    }
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
       descriptor = "(FI)Z",
-      garbageValue = "-1217223454"
+      garbageValue = "-160354962"
    )
-   boolean method1317(float var1) {
-      return var1 >= (float)this.field2237;
+   boolean method1314(float var1) {
+      return var1 >= (float)this.field2233;
    }
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "1114113"
+      descriptor = "(I)[Ljd;",
+      garbageValue = "280981839"
    )
-   public static int method1319(int var0) {
-      return var0 >>> 12;
+   static WorldMapLabelSize[] method1315() {
+      return new WorldMapLabelSize[]{WorldMapLabelSize_small, WorldMapLabelSize_medium, WorldMapLabelSize_large};
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "([BB)Lba;",
-            garbageValue = "-50"
-    )
-    static Script newScript(byte[] var0) {
-      Script var1 = new Script();
-      Buffer var2 = new Buffer(var0);
-      var2.offset = var2.array.length - 2;
-      int var3 = var2.readUnsignedShort();
-      int var4 = var2.array.length - 2 - var3 - 12;
-      var2.offset = var4;
-      int var5 = var2.readInt();
-      var1.localIntCount = var2.readUnsignedShort();
-      var1.localStringCount = var2.readUnsignedShort();
-      var1.intArgumentCount = var2.readUnsignedShort();
-      var1.stringArgumentCount = var2.readUnsignedShort();
-      int var6 = var2.readUnsignedByte();
-      int var7;
-      int var8;
-      if (var6 > 0) {
-         var1.switches = var1.newIterableNodeHashTable(var6);
-
-         for(var7 = 0; var7 < var6; ++var7) {
-            var8 = var2.readUnsignedShort();
-            IterableNodeHashTable var9 = new IterableNodeHashTable(var8 > 0 ? class4.method5(var8) : 1);
-            var1.switches[var7] = var9;
-
-            while(var8-- > 0) {
-               int var10 = var2.readInt();
-               int var11 = var2.readInt();
-               var9.put(new IntegerNode(var11), (long)var10);
-            }
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(IIS)I",
+      garbageValue = "-20257"
+   )
+   static int method1318(int var0, int var1) {
+      if (var0 == -2) {
+         return 12345678;
+      } else if (var0 == -1) {
+         if (var1 < 0) {
+            var1 = 0;
+         } else if (var1 > 127) {
+            var1 = 127;
          }
-      }
 
-      var2.offset = 0;
-      var1.field807 = var2.readStringCp1252NullTerminatedOrNull();
-      var1.opcodes = new int[var5];
-      var1.intOperands = new int[var5];
-      var1.stringOperands = new String[var5];
-
-      for(var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) {
-         var8 = var2.readUnsignedShort();
-         if (var8 == 3) {
-            var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
-         } else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) {
-            var1.intOperands[var7] = var2.readInt();
-         } else {
-            var1.intOperands[var7] = var2.readUnsignedByte();
+         var1 = 127 - var1;
+         return var1;
+      } else {
+         var1 = (var0 & 127) * var1 / 128;
+         if (var1 < 2) {
+            var1 = 2;
+         } else if (var1 > 126) {
+            var1 = 126;
          }
-      }
 
-      return var1;
+         return (var0 & 'ﾀ') + var1;
+      }
+   }
+
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "([BI)Ljn;",
+      garbageValue = "-999397643"
+   )
+   static WorldMapSprite method1316(byte[] var0) {
+      return var0 == null ? new WorldMapSprite() : new WorldMapSprite(class139.method748(var0).pixels);
+   }
+
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "(B)[Lhe;",
+      garbageValue = "-106"
+   )
+   static VerticalAlignment[] method1317() {
+      return new VerticalAlignment[]{VerticalAlignment.field1594, VerticalAlignment.field1592, VerticalAlignment.VerticalAlignment_centered};
+   }
+
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "(IS)I",
+      garbageValue = "16256"
+   )
+   public static int method1313(int var0) {
+      --var0;
+      var0 |= var0 >>> 1;
+      var0 |= var0 >>> 2;
+      var0 |= var0 >>> 4;
+      var0 |= var0 >>> 8;
+      var0 |= var0 >>> 16;
+      return var0 + 1;
    }
 }

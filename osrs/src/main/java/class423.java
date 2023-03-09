@@ -1,21 +1,14 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pp")
-public class class423 extends class424 {
-    @ObfuscatedName("c")
-    public static boolean musicTrackBoolean;
+@ObfuscatedName("qo")
+public class class423 {
+   @ObfuscatedName("aj")
+   float[] field3760;
+   @ObfuscatedName("al")
+   int field3761;
 
-   public class423(int var1) {
-      super(var1);
-   }
-
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Lrd;IS)V",
-            garbageValue = "-22677"
-    )
-    void vmethod7769(Buffer var1, int var2) {
+   class423(float[] var1, int var2) {
+      this.field3760 = var1;
+      this.field3761 = var2;
    }
 }

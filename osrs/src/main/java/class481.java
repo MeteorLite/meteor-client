@@ -1,13 +1,11 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rc")
+@ObfuscatedName("so")
 public interface class481 {
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "(II)Ljava/lang/Object;",
-            garbageValue = "1860534238"
-    )
-    Object vmethod8697(int var1);
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(Lsy;B)V"
+   )
+   void method2482(Buffer var1);
 }

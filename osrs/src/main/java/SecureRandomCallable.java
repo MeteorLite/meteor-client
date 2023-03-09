@@ -4,85 +4,120 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cu")
+@ObfuscatedName("dc")
 @Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
-    @ObfuscatedName("call")
-    public Object call() {
-      return class143.method764();
+   @ObfuscatedName("ao")
+   static int field833;
+
+   @Export("call")
+   @ObfuscatedName("call")
+   public Object call() {
+      return class392.method2063();
    }
 
-   @ObfuscatedName("f")
-   public static final int method451(double var0, double var2, double var4) {
-      double var6 = var4;
-      double var8 = var4;
-      double var10 = var4;
-      if (var2 != 0.0D) {
-         double var12;
-         if (var4 < 0.5D) {
-            var12 = var4 * (var2 + 1.0D);
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(II)Lcv;",
+      garbageValue = "-447418058"
+   )
+   @Export("getScript")
+   static Script getScript(int var0) {
+      Script var1 = (Script)Script.Script_cached.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         byte[] var2 = class167.archive12.takeFile(var0, 0);
+         if (var2 == null) {
+            return null;
          } else {
-            var12 = var2 + var4 - var2 * var4;
-         }
-
-         double var14 = var4 * 2.0D - var12;
-         double var16 = var0 + 0.3333333333333333D;
-         if (var16 > 1.0D) {
-            --var16;
-         }
-
-         double var20 = var0 - 0.3333333333333333D;
-         if (var20 < 0.0D) {
-            ++var20;
-         }
-
-         if (var16 * 6.0D < 1.0D) {
-            var6 = 6.0D * (var12 - var14) * var16 + var14;
-         } else if (var16 * 2.0D < 1.0D) {
-            var6 = var12;
-         } else if (var16 * 3.0D < 2.0D) {
-            var6 = 6.0D * (0.6666666666666666D - var16) * (var12 - var14) + var14;
-         } else {
-            var6 = var14;
-         }
-
-         if (var0 * 6.0D < 1.0D) {
-            var8 = var0 * 6.0D * (var12 - var14) + var14;
-         } else if (var0 * 2.0D < 1.0D) {
-            var8 = var12;
-         } else if (var0 * 3.0D < 2.0D) {
-            var8 = (0.6666666666666666D - var0) * (var12 - var14) * 6.0D + var14;
-         } else {
-            var8 = var14;
-         }
-
-         if (var20 * 6.0D < 1.0D) {
-            var10 = var14 + var20 * 6.0D * (var12 - var14);
-         } else if (var20 * 2.0D < 1.0D) {
-            var10 = var12;
-         } else if (var20 * 3.0D < 2.0D) {
-            var10 = 6.0D * (0.6666666666666666D - var20) * (var12 - var14) + var14;
-         } else {
-            var10 = var14;
+            var1 = class4.newScript(var2);
+            Script.Script_cached.put(var1, (long)var0);
+            return var1;
          }
       }
-
-      int var22 = (int)(var6 * 256.0D);
-      int var13 = (int)(var8 * 256.0D);
-      int var23 = (int)(var10 * 256.0D);
-      int var15 = var23 + (var13 << 8) + (var22 << 16);
-      return var15;
    }
 
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "(IZIZI)V",
-            garbageValue = "1603025083"
-    )
-    static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-      if (class88.World_worlds != null) {
-         ClanChannelMember.doWorldSorting(0, class88.World_worlds.length - 1, var0, var1, var2, var3);
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(IIS)I",
+      garbageValue = "-17500"
+   )
+   static int method454(int var0, int var1) {
+      ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+      if (var2 == null) {
+         return -1;
+      } else {
+         return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1;
       }
+   }
 
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(II)Lsh;",
+      garbageValue = "1556690357"
+   )
+   @Export("getDbRowType")
+   public static DbRowType getDbRowType(int var0) {
+      DbRowType var1 = (DbRowType)DbRowType.DBRowType_cache.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         byte[] var2 = DbRowType.field3960.takeFile(38, var0);
+         var1 = new DbRowType();
+         if (var2 != null) {
+            var1.method2378(new Buffer(var2));
+         }
+
+         var1.method2380();
+         DbRowType.DBRowType_cache.put(var1, (long)var0);
+         return var1;
+      }
+   }
+
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "(II)I",
+      garbageValue = "2055202439"
+   )
+   @Export("Messages_getHistorySize")
+   static int Messages_getHistorySize(int var0) {
+      ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0);
+      return var1 == null ? 0 : var1.size();
+   }
+
+   @ObfuscatedName("au")
+   @ObfuscatedSignature(
+      descriptor = "(ILcv;ZI)I",
+      garbageValue = "-1440847049"
+   )
+   static int method458(int var0, Script var1, boolean var2) {
+      Widget var3 = var2 ? GameObject.scriptDotWidget : SoundSystem.scriptActiveWidget;
+      if (var0 == 1800) {
+         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapDecorationType.Widget_unpackTargetMask(ParamComposition.getWidgetFlags(var3));
+         return 1;
+      } else if (var0 != 1801) {
+         if (var0 == 1802) {
+            if (var3.dataText == null) {
+               Interpreter.Interpreter_stringStack[++HealthBar.Interpreter_stringStackSize - 1] = "";
+            } else {
+               Interpreter.Interpreter_stringStack[++HealthBar.Interpreter_stringStackSize - 1] = var3.dataText;
+            }
+
+            return 1;
+         } else {
+            return 2;
+         }
+      } else {
+         int var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+         --var4;
+         if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+            Interpreter.Interpreter_stringStack[++HealthBar.Interpreter_stringStackSize - 1] = var3.actions[var4];
+         } else {
+            Interpreter.Interpreter_stringStack[++HealthBar.Interpreter_stringStackSize - 1] = "";
+         }
+
+         return 1;
+      }
    }
 }

@@ -52,10 +52,8 @@ fun configPanel() {
                     configPanelHeader()
                     configs()
                 }
-
             }
         }
-
     }
 }
 

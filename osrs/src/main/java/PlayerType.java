@@ -3,110 +3,113 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lu")
+@ObfuscatedName("mn")
 @Implements("PlayerType")
-public enum PlayerType implements class349 {
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Llu;"
-    )
-    PlayerType_normal(0, -1, true, false, true),
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Llu;"
-    )
-    PlayerType_playerModerator(1, 0, true, true, true),
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "Llu;"
-    )
-    PlayerType_jagexModerator(2, 1, true, true, false),
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "Llu;"
-    )
-    PlayerType_ironman(3, 2, false, false, true),
-    @ObfuscatedName("z")
-    @ObfuscatedSignature(
-            descriptor = "Llu;"
-    )
-    PlayerType_ultimateIronman(4, 3, false, false, true),
-    @ObfuscatedName("j")
-    @ObfuscatedSignature(
-            descriptor = "Llu;"
-    )
-    PlayerType_hardcoreIronman(5, 10, false, false, true),
-   @ObfuscatedName("i")
+public enum PlayerType implements class352 {
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3409(6, 22, false, false, true),
-   @ObfuscatedName("n")
+   @Export("PlayerType_normal")
+   PlayerType_normal(0, -1, true, false, true),
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3415(7, 41, false, false, true),
-   @ObfuscatedName("l")
+   @Export("PlayerType_playerModerator")
+   PlayerType_playerModerator(1, 0, true, true, true),
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3416(8, 42, false, false, true),
-   @ObfuscatedName("k")
+   @Export("PlayerType_jagexModerator")
+   PlayerType_jagexModerator(2, 1, true, true, false),
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3417(9, 43, false, false, true),
-   @ObfuscatedName("c")
+   @Export("PlayerType_ironman")
+   PlayerType_ironman(3, 2, false, false, true),
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3418(10, 44, false, false, true),
-   @ObfuscatedName("r")
+   @Export("PlayerType_ultimateIronman")
+   PlayerType_ultimateIronman(4, 3, false, false, true),
+   @ObfuscatedName("ao")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3430(11, 45, false, false, true),
-   @ObfuscatedName("b")
+   @Export("PlayerType_hardcoreIronman")
+   PlayerType_hardcoreIronman(5, 10, false, false, true),
+   @ObfuscatedName("av")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3420(12, 46, false, false, true),
-   @ObfuscatedName("m")
+   field3392(6, 22, false, false, true),
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3414(13, 47, false, false, true),
-   @ObfuscatedName("t")
+   field3387(7, 41, false, false, true),
+   @ObfuscatedName("ap")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3422(14, 48, false, false, true),
-   @ObfuscatedName("h")
+   field3390(8, 42, false, false, true),
+   @ObfuscatedName("ar")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3419(15, 49, false, false, true),
-   @ObfuscatedName("p")
+   field3389(9, 43, false, false, true),
+   @ObfuscatedName("ak")
    @ObfuscatedSignature(
-      descriptor = "Llu;"
+      descriptor = "Lmn;"
    )
-   field3424(16, 52, false, false, true);
+   field3395(10, 44, false, false, true),
+   @ObfuscatedName("ax")
+   @ObfuscatedSignature(
+      descriptor = "Lmn;"
+   )
+   field3391(11, 45, false, false, true),
+   @ObfuscatedName("as")
+   @ObfuscatedSignature(
+      descriptor = "Lmn;"
+   )
+   field3397(12, 46, false, false, true),
+   @ObfuscatedName("ay")
+   @ObfuscatedSignature(
+      descriptor = "Lmn;"
+   )
+   field3393(13, 47, false, false, true),
+   @ObfuscatedName("am")
+   @ObfuscatedSignature(
+      descriptor = "Lmn;"
+   )
+   field3394(14, 48, false, false, true),
+   @ObfuscatedName("az")
+   @ObfuscatedSignature(
+      descriptor = "Lmn;"
+   )
+   field3380(15, 49, false, false, true),
+   @ObfuscatedName("ae")
+   @ObfuscatedSignature(
+      descriptor = "Lmn;"
+   )
+   field3388(16, 52, false, false, true);
 
-    @ObfuscatedName("jj")
-    @ObfuscatedSignature(
-            descriptor = "[Lrg;"
-    )
-    static IndexedSprite[] modIconSprites;
-    @ObfuscatedName("ng")
-    static int menuHeight;
-    @ObfuscatedName("o")
-    final int id;
-    @ObfuscatedName("u")
-    public final int modIcon;
-    @ObfuscatedName("x")
-    public final boolean isPrivileged;
-    @ObfuscatedName("a")
-    public final boolean isUser;
+   @ObfuscatedName("au")
+   @Export("id")
+   final int id;
+   @ObfuscatedName("ag")
+   @Export("modIcon")
+   public final int modIcon;
+   @ObfuscatedName("at")
+   @Export("isPrivileged")
+   public final boolean isPrivileged;
+   @ObfuscatedName("af")
+   @Export("isUser")
+   public final boolean isUser;
 
    PlayerType(int var3, int var4, boolean var5, boolean var6, boolean var7) {
       this.id = var3;
@@ -115,12 +118,31 @@ public enum PlayerType implements class349 {
       this.isUser = var7;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "3"
-    )
-    public int rsOrdinal() {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "-1409646049"
+   )
+   @Export("rsOrdinal")
+   public int rsOrdinal() {
       return this.id;
+   }
+
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(Lrm;I)I",
+      garbageValue = "-227471320"
+   )
+   static final int method1808(LoginType var0) {
+      if (var0 == null) {
+         return 12;
+      } else {
+         switch(var0.field3919) {
+         case 2:
+            return 20;
+         default:
+            return 12;
+         }
+      }
    }
 }

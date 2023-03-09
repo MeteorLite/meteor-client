@@ -1,4 +1,3 @@
-import java.awt.datatransfer.Clipboard;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -11,35 +10,39 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 
-@ObfuscatedName("b")
+@ObfuscatedName("as")
 class class12 extends SSLSocket {
-    @ObfuscatedName("vg")
-    @ObfuscatedSignature(
-            descriptor = "Loi;"
-    )
-    static ArchiveDisk masterDisk;
-    @ObfuscatedName("ez")
-    @ObfuscatedSignature(
-            descriptor = "Llm;"
-    )
-    static Archive archive12;
-   @ObfuscatedName("f")
-   Certificate[] field43;
+   @ObfuscatedName("dd")
+   @ObfuscatedSignature(
+      descriptor = "Lsp;"
+   )
+   @Export("worldSelectLeftSprite")
+   static IndexedSprite worldSelectLeftSprite;
+   @ObfuscatedName("gg")
+   static String field39;
+   @ObfuscatedName("jr")
+   @Export("regions")
+   static int[] regions;
+   @ObfuscatedName("aj")
+   Certificate[] field38;
    // $FF: synthetic field
    @ObfuscatedSignature(
-           descriptor = "Lh;"
+      descriptor = "Laz;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
    final class15 this$0;
    // $FF: synthetic field
+   @Export("val$tlsClientProtocol")
    @ObfuscatedName("val$tlsClientProtocol")
    final TlsClientProtocol val$tlsClientProtocol;
    // $FF: synthetic field
+   @Export("val$host")
    @ObfuscatedName("val$host")
    final String val$host;
 
    @ObfuscatedSignature(
-      descriptor = "(Lh;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;Ljava/lang/String;)V"
+      descriptor = "(Laz;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;Ljava/lang/String;)V"
    )
    class12(class15 var1, TlsClientProtocol var2, String var3) {
       this.this$0 = var1;
@@ -51,20 +54,17 @@ class class12 extends SSLSocket {
       return this.val$tlsClientProtocol.getInputStream();
    }
 
-    @ObfuscatedName("close")
-    public synchronized void close() throws IOException {
-      this.val$tlsClientProtocol.close();
-   }
-
    public OutputStream getOutputStream() throws IOException {
       return this.val$tlsClientProtocol.getOutputStream();
    }
 
-   public String[] getEnabledCipherSuites() {
-      return null;
+   @Export("close")
+   @ObfuscatedName("close")
+   public synchronized void close() throws IOException {
+      this.val$tlsClientProtocol.close();
    }
 
-   public String[] getEnabledProtocols() {
+   public String[] getEnabledCipherSuites() {
       return null;
    }
 
@@ -72,19 +72,18 @@ class class12 extends SSLSocket {
       return false;
    }
 
-   public void addHandshakeCompletedListener(HandshakeCompletedListener var1) {
+   @Export("getSession")
+   @ObfuscatedName("getSession")
+   public SSLSession getSession() {
+      return new class17(this);
    }
 
    public String[] getSupportedProtocols() {
       return null;
    }
 
-   public boolean getEnableSessionCreation() {
-      return false;
-   }
-
-   public boolean getWantClientAuth() {
-      return false;
+   public String[] getSupportedCipherSuites() {
+      return null;
    }
 
    public void removeHandshakeCompletedListener(HandshakeCompletedListener var1) {
@@ -102,15 +101,14 @@ class class12 extends SSLSocket {
    public void setNeedClientAuth(boolean var1) {
    }
 
-   public void setUseClientMode(boolean var1) {
+   public void setWantClientAuth(boolean var1) {
    }
 
-    @ObfuscatedName("startHandshake")
-    public void startHandshake() throws IOException {
-      this.val$tlsClientProtocol.connect(new class13(this));
+   public boolean getEnableSessionCreation() {
+      return false;
    }
 
-   public String[] getSupportedCipherSuites() {
+   public String[] getEnabledProtocols() {
       return null;
    }
 
@@ -118,155 +116,99 @@ class class12 extends SSLSocket {
       return false;
    }
 
-   public void setWantClientAuth(boolean var1) {
+   public void addHandshakeCompletedListener(HandshakeCompletedListener var1) {
    }
 
-    @ObfuscatedName("getSession")
-    public SSLSession getSession() {
-      return new class17(this);
+   public boolean getWantClientAuth() {
+      return false;
    }
 
-   @ObfuscatedName("v")
+   public void setUseClientMode(boolean var1) {
+   }
+
+   @Export("startHandshake")
+   @ObfuscatedName("startHandshake")
+   public void startHandshake() throws IOException {
+      this.val$tlsClientProtocol.connect(new class13(this));
+   }
+
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(IIIIB)V",
-      garbageValue = "89"
+      descriptor = "(B)V",
+      garbageValue = "-42"
    )
-   static void method50(int var0, int var1, int var2, int var3) {
-      for(ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) {
-         if (var4.soundEffectId != -1 || var4.soundEffectIds != null) {
-            int var5 = 0;
-            if (var1 > var4.maxX) {
-               var5 += var1 - var4.maxX;
-            } else if (var1 < var4.x) {
-               var5 += var4.x - var1;
-            }
+   static void method42() {
+      Tiles.Tiles_minPlane = 99;
+      Tiles.Tiles_underlays = new short[4][104][104];
+      Tiles.Tiles_overlays = new short[4][104][104];
+      class16.Tiles_shapes = new byte[4][104][104];
+      Tiles.field823 = new byte[4][104][104];
+      class17.field51 = new int[4][105][105];
+      Decimator.field300 = new byte[4][105][105];
+      class306.field2773 = new int[105][105];
+      Tiles.Tiles_hue = new int[104];
+      class134.Tiles_saturation = new int[104];
+      Language.Tiles_lightness = new int[104];
+      TileItem.Tiles_hueMultiplier = new int[104];
+      Interpreter.field696 = new int[104];
+   }
 
-            if (var2 > var4.maxY) {
-               var5 += var2 - var4.maxY;
-            } else if (var2 < var4.y) {
-               var5 += var4.y - var2;
-            }
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
+      garbageValue = "-2"
+   )
+   @Export("addChatMessage")
+   static void addChatMessage(int var0, String var1, String var2, String var3) {
+      ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
+      if (var4 == null) {
+         var4 = new ChatChannel();
+         Messages.Messages_channels.put(var0, var4);
+      }
 
-            if (var5 - 64 <= var4.field692 && PacketWriter.clientPreferences.getAreaSoundEffectsVolume() != 0 && var0 == var4.plane) {
-               var5 -= 64;
-               if (var5 < 0) {
-                  var5 = 0;
-               }
+      Message var5 = var4.addMessage(var0, var1, var2, var3);
+      Messages.Messages_hashTable.put(var5, (long)var5.count);
+      Messages.Messages_queue.add(var5);
+      Client.chatCycle = Client.cycleCntr;
+   }
 
-               int var6 = (var4.field692 - var5) * PacketWriter.clientPreferences.getAreaSoundEffectsVolume() / var4.field692;
-               if (var4.stream1 == null) {
-                  if (var4.soundEffectId >= 0) {
-                     SoundEffect var7 = SoundEffect.readSoundEffect(DynamicObject.field826, var4.soundEffectId, 0);
-                     if (var7 != null) {
-                        RawSound var8 = var7.toRawSound().resample(class257.decimator);
-                        RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6);
-                        var9.setNumLoops(-1);
-                        class209.pcmStreamMixer.addSubStream(var9);
-                        var4.stream1 = var9;
-                     }
-                  }
-               } else {
-                  var4.stream1.method237(var6);
-               }
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(IIIZIZI)V",
+      garbageValue = "675774745"
+   )
+   @Export("doWorldSorting")
+   static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
+      if (var0 < var1) {
+         int var6 = (var0 + var1) / 2;
+         int var7 = var0;
+         World var8 = class260.World_worlds[var6];
+         class260.World_worlds[var6] = class260.World_worlds[var1];
+         class260.World_worlds[var1] = var8;
 
-               if (var4.stream2 == null) {
-                  if (var4.soundEffectIds != null && (var4.field697 -= var3) <= 0) {
-                     int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length);
-                     SoundEffect var12 = SoundEffect.readSoundEffect(DynamicObject.field826, var4.soundEffectIds[var11], 0);
-                     if (var12 != null) {
-                        RawSound var13 = var12.toRawSound().resample(class257.decimator);
-                        RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6);
-                        var10.setNumLoops(0);
-                        class209.pcmStreamMixer.addSubStream(var10);
-                        var4.stream2 = var10;
-                        var4.field697 = var4.field699 + (int)(Math.random() * (double)(var4.field695 - var4.field699));
-                     }
-                  }
-               } else {
-                  var4.stream2.method237(var6);
-                  if (!var4.stream2.hasNext()) {
-                     var4.stream2 = null;
-                  }
-               }
-            } else {
-               if (var4.stream1 != null) {
-                  class209.pcmStreamMixer.removeSubStream(var4.stream1);
-                  var4.stream1 = null;
-               }
-
-               if (var4.stream2 != null) {
-                  class209.pcmStreamMixer.removeSubStream(var4.stream2);
-                  var4.stream2 = null;
-               }
+         for(int var9 = var0; var9 < var1; ++var9) {
+            if (class60.method328(class260.World_worlds[var9], var8, var2, var3, var4, var5) <= 0) {
+               World var10 = class260.World_worlds[var9];
+               class260.World_worlds[var9] = class260.World_worlds[var7];
+               class260.World_worlds[var7++] = var10;
             }
          }
+
+         class260.World_worlds[var1] = class260.World_worlds[var7];
+         class260.World_worlds[var7] = var8;
+         doWorldSorting(var0, var7 - 1, var2, var3, var4, var5);
+         doWorldSorting(var7 + 1, var1, var2, var3, var4, var5);
       }
 
    }
 
-   @ObfuscatedName("fa")
+   @ObfuscatedName("ly")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1608124150"
+      descriptor = "(II)V",
+      garbageValue = "1142912299"
    )
-   static void method47() {
-      Client.packetWriter.clearBuffer();
-      Client.packetWriter.packetBuffer.offset = 0;
-      Client.packetWriter.serverPacket = null;
-      Client.packetWriter.field1137 = null;
-      Client.packetWriter.field1133 = null;
-      Client.packetWriter.field1134 = null;
-      Client.packetWriter.serverPacketLength = 0;
-      Client.packetWriter.field1130 = 0;
-      Client.rebootTimer = 0;
-      ScriptFrame.method322();
-      Client.minimapState = 0;
-      Client.destinationX = 0;
-
-      int var0;
-      for(var0 = 0; var0 < 2048; ++var0) {
-         Client.players[var0] = null;
-      }
-
-      class387.localPlayer = null;
-
-      for(var0 = 0; var0 < Client.npcs.length; ++var0) {
-         NPC var1 = Client.npcs[var0];
-         if (var1 != null) {
-            var1.targetIndex = -1;
-            var1.false0 = false;
-         }
-      }
-
-      class320.method1780();
-      class246.updateGameState(30);
-
-      for(var0 = 0; var0 < 100; ++var0) {
-         Client.field591[var0] = true;
-      }
-
-      PacketBufferNode var2 = Renderable.getPacketBufferNode(ClientPacket.field2494, Client.packetWriter.isaacCipher);
-      var2.packetBuffer.writeByte(Message.getWindowedMode());
-      var2.packetBuffer.writeShort(GameEngine.canvasWidth);
-      var2.packetBuffer.writeShort(class127.canvasHeight);
-      Client.packetWriter.addNode(var2);
-   }
-
-    @ObfuscatedName("hr")
-    @ObfuscatedSignature(
-            descriptor = "(I)Lmo;",
-            garbageValue = "1067755495"
-    )
-    public static NodeDeque getScriptEvents() {
-      return Client.scriptEvents;
-   }
-
-   @ObfuscatedName("my")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ljava/awt/datatransfer/Clipboard;",
-      garbageValue = "17"
-   )
-   public static Clipboard method48() {
-      return Decimator.client.getClipboard();
+   static final void method45(int var0) {
+      var0 = Math.min(Math.max(var0, 0), 127);
+      WorldMapSectionType.clientPreferences.setAreaSoundEffectsVolume(var0);
    }
 }

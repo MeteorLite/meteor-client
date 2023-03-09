@@ -3,60 +3,59 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("w")
+@ObfuscatedName("al")
 public class class1 implements Callable {
-    @ObfuscatedName("ag")
-    static java.awt.Font fontHelvetica13;
-    @ObfuscatedName("fw")
-    static int worldPort;
-   @ObfuscatedName("f")
+   @ObfuscatedName("jt")
    @ObfuscatedSignature(
-      descriptor = "Lrd;"
+      descriptor = "Lir;"
    )
-   final Buffer field3;
-   @ObfuscatedName("w")
+   @Export("scene")
+   static Scene scene;
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Ls;"
+      descriptor = "Lsy;"
+   )
+   final Buffer field1;
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lab;"
    )
    final class3 field0;
    // $FF: synthetic field
    @ObfuscatedSignature(
-           descriptor = "Ln;"
+      descriptor = "Laq;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
    final class7 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Ln;Lrd;Ls;)V"
+      descriptor = "(Laq;Lsy;Lab;)V"
    )
    class1(class7 var1, Buffer var2, class3 var3) {
       this.this$0 = var1;
-      this.field3 = var2;
+      this.field1 = var2;
       this.field0 = var3;
    }
 
-    @ObfuscatedName("call")
-    public Object call() {
-      return this.field0.vmethod12(this.field3);
+   @Export("call")
+   @ObfuscatedName("call")
+   public Object call() {
+      return this.field0.vmethod12(this.field1);
    }
 
-   @ObfuscatedName("v")
+   @ObfuscatedName("ak")
    @ObfuscatedSignature(
-      descriptor = "(Llm;II)V",
-      garbageValue = "-2059005384"
+      descriptor = "(II)I",
+      garbageValue = "-564139226"
    )
-   static void method2(Archive var0, int var1) {
-      class10.field38.offset = var1 * 8 + 5;
-      if (class10.field38.offset >= class10.field38.array.length) {
-         if (var0.field3442) {
-            var0.method1796();
-         } else {
-            throw new RuntimeException("");
-         }
+   @Export("Messages_getLastChatID")
+   static int Messages_getLastChatID(int var0) {
+      Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
+      if (var1 == null) {
+         return -1;
       } else {
-         int var2 = class10.field38.readInt();
-         int var3 = class10.field38.readInt();
-         var0.loadIndex(var2, var3);
+         return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count;
       }
    }
 }

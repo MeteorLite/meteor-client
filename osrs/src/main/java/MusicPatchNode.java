@@ -3,80 +3,146 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kv")
+@ObfuscatedName("lp")
 @Implements("MusicPatchNode")
 public class MusicPatchNode extends Node {
-   @ObfuscatedName("ee")
+   @ObfuscatedName("fu")
    @ObfuscatedSignature(
-      descriptor = "Llm;"
+      descriptor = "Lmx;"
    )
-   static Archive field2782;
-   @ObfuscatedName("fz")
-   static String field2783;
-   @ObfuscatedName("f")
-   int field2771;
-   @ObfuscatedName("w")
+   @Export("archive19")
+   static Archive archive19;
+   @ObfuscatedName("aj")
+   int field2755;
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "Lkq;"
+      descriptor = "Llb;"
    )
-   MusicPatchNode2 field2764;
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "Lkk;"
-    )
-    MusicPatch patch;
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "Lav;"
-    )
-    RawSound rawSound;
-   @ObfuscatedName("z")
-   int field2765;
-   @ObfuscatedName("j")
-   int field2766;
-   @ObfuscatedName("i")
-   int field2767;
-   @ObfuscatedName("n")
-   int field2768;
-   @ObfuscatedName("l")
-   int field2769;
-   @ObfuscatedName("k")
-   int field2763;
-   @ObfuscatedName("c")
-   int field2774;
-   @ObfuscatedName("r")
-   int field2772;
-   @ObfuscatedName("b")
-   int field2773;
-   @ObfuscatedName("m")
-   int field2777;
-   @ObfuscatedName("t")
-   int field2775;
-   @ObfuscatedName("h")
-   int field2761;
-   @ObfuscatedName("p")
-   int field2776;
-   @ObfuscatedName("o")
-   int field2778;
-    @ObfuscatedName("u")
-    @ObfuscatedSignature(
-            descriptor = "Lab;"
-    )
-    RawPcmStream stream;
-   @ObfuscatedName("x")
-   int field2780;
-   @ObfuscatedName("q")
-   int field2781;
+   @Export("patch")
+   MusicPatch patch;
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Lbe;"
+   )
+   @Export("rawSound")
+   RawSound rawSound;
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "Llj;"
+   )
+   MusicPatchNode2 field2737;
+   @ObfuscatedName("an")
+   int field2734;
+   @ObfuscatedName("ao")
+   int field2739;
+   @ObfuscatedName("av")
+   int field2754;
+   @ObfuscatedName("aq")
+   int field2741;
+   @ObfuscatedName("ap")
+   int field2742;
+   @ObfuscatedName("ar")
+   int field2743;
+   @ObfuscatedName("ak")
+   int field2744;
+   @ObfuscatedName("ax")
+   int field2740;
+   @ObfuscatedName("as")
+   int field2746;
+   @ObfuscatedName("ay")
+   int field2747;
+   @ObfuscatedName("am")
+   int field2751;
+   @ObfuscatedName("az")
+   int field2749;
+   @ObfuscatedName("ae")
+   int field2750;
+   @ObfuscatedName("au")
+   int field2738;
+   @ObfuscatedName("ag")
+   @ObfuscatedSignature(
+      descriptor = "Lbn;"
+   )
+   @Export("stream")
+   RawPcmStream stream;
+   @ObfuscatedName("at")
+   int field2753;
+   @ObfuscatedName("ai")
+   int field2748;
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "42680220"
+      garbageValue = "-1067363009"
    )
-   void method1620() {
+   void method1624() {
       this.patch = null;
       this.rawSound = null;
-      this.field2764 = null;
+      this.field2737 = null;
       this.stream = null;
+   }
+
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
+      garbageValue = "871011997"
+   )
+   @Export("addGameMessage")
+   static void addGameMessage(int var0, String var1, String var2) {
+      class12.addChatMessage(var0, var1, var2, (String)null);
+   }
+
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "(I)Z",
+      garbageValue = "-2022661591"
+   )
+   public static boolean method1625() {
+      try {
+         if (class293.musicPlayerStatus == 2) {
+            if (BufferedNetSocket.musicTrack == null) {
+               BufferedNetSocket.musicTrack = MusicTrack.readTrack(class364.musicTrackArchive, IntHashTable.musicTrackGroupId, class293.musicTrackFileId);
+               if (BufferedNetSocket.musicTrack == null) {
+                  return false;
+               }
+            }
+
+            if (class293.soundCache == null) {
+               class293.soundCache = new SoundCache(class293.soundEffectsArchive, class293.musicSamplesArchive);
+            }
+
+            if (class293.midiPcmStream.loadMusicTrack(BufferedNetSocket.musicTrack, class293.musicPatchesArchive, class293.soundCache, 22050)) {
+               class293.midiPcmStream.clearAll();
+               class293.midiPcmStream.setPcmStreamVolume(class368.musicTrackVolume);
+               class293.midiPcmStream.setMusicTrack(BufferedNetSocket.musicTrack, class293.musicTrackBoolean);
+               class293.musicPlayerStatus = 0;
+               BufferedNetSocket.musicTrack = null;
+               class293.soundCache = null;
+               class364.musicTrackArchive = null;
+               return true;
+            }
+         }
+      } catch (Exception var1) {
+         var1.printStackTrace();
+         class293.midiPcmStream.clear();
+         class293.musicPlayerStatus = 0;
+         BufferedNetSocket.musicTrack = null;
+         class293.soundCache = null;
+         class364.musicTrackArchive = null;
+      }
+
+      return false;
+   }
+
+   @ObfuscatedName("ay")
+   @ObfuscatedSignature(
+      descriptor = "(I)V",
+      garbageValue = "2127102250"
+   )
+   public static void method1627() {
+      ObjectComposition.ObjectDefinition_cached.clear();
+      ObjectComposition.ObjectDefinition_cachedModelData.clear();
+      ObjectComposition.ObjectDefinition_cachedEntities.clear();
+      ObjectComposition.ObjectDefinition_cachedModels.clear();
    }
 }

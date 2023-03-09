@@ -196,9 +196,9 @@ public class WidgetPackets
 	{
 		var client = Game.getClient();
 		var clientPacket = Game.getClientPacket();
-		var packet = client.preparePacket(clientPacket.IF_BUTTON10(), client.getPacketWriter().getIsaacCipher());
-		packet.getPacketBuffer().writeInt$api(widgetId);
-		return packet;
+/*		var packet = client.preparePacket(clientPacket.IF_BUTTON10(), client.getPacketWriter().getIsaacCipher());
+		packet.getPacketBuffer().writeInt$api(widgetId);*/
+		return null; //packet;
 	}
 
 	public static net.runelite.api.packets.PacketBufferNode createDefaultAction(int type, int widgetPackedId, int itemId, int itemSlot)

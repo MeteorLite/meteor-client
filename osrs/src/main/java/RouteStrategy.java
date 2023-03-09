@@ -3,31 +3,66 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("ip")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-    @ObfuscatedName("f")
-    public int approxDestinationX;
-    @ObfuscatedName("w")
-    public int approxDestinationY;
-    @ObfuscatedName("v")
-    public int approxDestinationSizeX;
-    @ObfuscatedName("s")
-    public int approxDestinationSizeY;
+   @ObfuscatedName("ct")
+   static int field1837;
+   @ObfuscatedName("aj")
+   @Export("approxDestinationX")
+   public int approxDestinationX;
+   @ObfuscatedName("al")
+   @Export("approxDestinationY")
+   public int approxDestinationY;
+   @ObfuscatedName("ac")
+   @Export("approxDestinationSizeX")
+   public int approxDestinationSizeX;
+   @ObfuscatedName("ab")
+   @Export("approxDestinationSizeY")
+   public int approxDestinationSizeY;
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(IIILgv;I)Z",
-            garbageValue = "118374037"
-    )
-    public abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
-
-   @ObfuscatedName("h")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-546644607"
+      descriptor = "(IIILiz;B)Z",
+      garbageValue = "1"
    )
-   static final void method1108() {
-      Decimator.method306("Your ignore list is full. Max of 100 for free users, and 400 for members");
+   @Export("hasArrived")
+   protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+
+   @ObfuscatedName("aq")
+   @ObfuscatedSignature(
+      descriptor = "(IIZI)Ljava/lang/String;",
+      garbageValue = "-1339770799"
+   )
+   static String method1110(int var0, int var1, boolean var2) {
+      if (var1 >= 2 && var1 <= 36) {
+         if (var2 && var0 >= 0) {
+            int var3 = 2;
+
+            for(int var4 = var0 / var1; var4 != 0; ++var3) {
+               var4 /= var1;
+            }
+
+            char[] var5 = new char[var3];
+            var5[0] = '+';
+
+            for(int var6 = var3 - 1; var6 > 0; --var6) {
+               int var7 = var0;
+               var0 /= var1;
+               int var8 = var7 - var0 * var1;
+               if (var8 >= 10) {
+                  var5[var6] = (char)(var8 + 87);
+               } else {
+                  var5[var6] = (char)(var8 + 48);
+               }
+            }
+
+            return new String(var5);
+         } else {
+            return Integer.toString(var0, var1);
+         }
+      } else {
+         throw new IllegalArgumentException("" + var1);
+      }
    }
 }

@@ -1,197 +1,80 @@
-import java.awt.FontMetrics;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ez")
-public class class153 extends class139 {
-    @ObfuscatedName("aw")
-    static FontMetrics loginScreenFontMetrics;
-    @ObfuscatedName("eg")
-    @ObfuscatedSignature(
-            descriptor = "Llm;"
-    )
-    static Archive archive6;
-   @ObfuscatedName("f")
-   int field1375;
+@ObfuscatedName("fd")
+public class class153 extends class156 {
+   @ObfuscatedName("aj")
+   int field1366;
+   @ObfuscatedName("al")
+   byte field1363;
+   @ObfuscatedName("ac")
+   int field1364;
+   @ObfuscatedName("ab")
+   String field1365;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lex;"
+      descriptor = "Lgk;"
    )
-   final class142 this$0;
+   final class157 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Lex;)V"
+      descriptor = "(Lgk;)V"
    )
-   class153(class142 var1) {
+   class153(class157 var1) {
       this.this$0 = var1;
-      this.field1375 = -1;
+      this.field1366 = -1;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Lrd;S)V",
-            garbageValue = "-5782"
-    )
-    void vmethod3254(Buffer var1) {
-      this.field1375 = var1.readUnsignedShort();
-   }
-
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(Leb;B)V",
-            garbageValue = "-26"
-    )
-    void vmethod3248(ClanSettings var1) {
-      var1.method788(this.field1375);
-   }
-
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(I)J",
-            garbageValue = "-1867500284"
-    )
-    public static final synchronized long clockNow() {
-      long var0 = System.currentTimeMillis();
-      if (var0 < class286.field2687) {
-         class286.field2688 += class286.field2687 - var0;
-      }
-
-      class286.field2687 = var0;
-      return class286.field2688 + var0;
-   }
-
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "-1876809547"
+      descriptor = "(Lsy;I)V",
+      garbageValue = "2070491057"
    )
-   static int method820(int var0, int var1) {
-      FloorOverlayDefinition var3 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0);
-      FloorOverlayDefinition var2;
-      if (var3 != null) {
-         var2 = var3;
-      } else {
-         byte[] var4 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0);
-         var3 = new FloorOverlayDefinition();
-         if (var4 != null) {
-            var3.decode(new Buffer(var4), var0);
-         }
+   @Export("vmethod3238")
+   void vmethod3238(Buffer var1) {
+      var1.readUnsignedByte();
+      this.field1366 = var1.readUnsignedShort();
+      this.field1363 = var1.readByte();
+      this.field1364 = var1.readUnsignedShort();
+      var1.readLong();
+      this.field1365 = var1.readStringCp1252NullTerminated();
+      var1.readUnsignedByte();
+   }
 
-         var3.postDecode();
-         FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var3, (long)var0);
-         var2 = var3;
-      }
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(Lgn;B)V",
+      garbageValue = "-82"
+   )
+   @Export("vmethod3239")
+   void vmethod3239(ClanChannel var1) {
+      ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1366);
+      var2.rank = this.field1363;
+      var2.world = this.field1364;
+      var2.username = new Username(this.field1365);
+   }
 
-      if (var2 == null) {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(IB)Lhp;",
+      garbageValue = "-51"
+   )
+   @Export("getParamDefinition")
+   public static ParamComposition getParamDefinition(int var0) {
+      ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
+      if (var1 != null) {
          return var1;
       } else {
-         int var5;
-         int var6;
-         int var7;
-         int var8;
-         int var9;
-         if (var2.secondaryRgb >= 0) {
-            var5 = var2.secondaryHue;
-            var6 = var2.secondarySaturation;
-            var7 = var2.secondaryLightness;
-            if (var7 > 179) {
-               var6 /= 2;
-            }
-
-            if (var7 > 192) {
-               var6 /= 2;
-            }
-
-            if (var7 > 217) {
-               var6 /= 2;
-            }
-
-            if (var7 > 243) {
-               var6 /= 2;
-            }
-
-            var8 = (var6 / 32 << 7) + var7 / 2 + (var5 / 4 << 10);
-            var9 = class86.method474(var8, 96);
-            return Rasterizer3D.Rasterizer3D_colorPalette[var9] | -16777216;
-         } else if (var2.texture >= 0) {
-            int var10 = class86.method474(Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture), 96);
-            return Rasterizer3D.Rasterizer3D_colorPalette[var10] | -16777216;
-         } else if (var2.primaryRgb == 16711935) {
-            return var1;
-         } else {
-            var5 = var2.hue;
-            var6 = var2.saturation;
-            var7 = var2.lightness;
-            if (var7 > 179) {
-               var6 /= 2;
-            }
-
-            if (var7 > 192) {
-               var6 /= 2;
-            }
-
-            if (var7 > 217) {
-               var6 /= 2;
-            }
-
-            if (var7 > 243) {
-               var6 /= 2;
-            }
-
-            var8 = (var6 / 32 << 7) + var7 / 2 + (var5 / 4 << 10);
-            var9 = class86.method474(var8, 96);
-            return Rasterizer3D.Rasterizer3D_colorPalette[var9] | -16777216;
+         byte[] var2 = class368.ParamDefinition_archive.takeFile(11, var0);
+         var1 = new ParamComposition();
+         if (var2 != null) {
+            var1.decode(new Buffer(var2));
          }
-      }
-   }
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "(Lln;I)V",
-      garbageValue = "-310260529"
-   )
-   public static void method819(AbstractArchive var0) {
-   }
-
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "(II)Z",
-            garbageValue = "-91961917"
-    )
-    public static boolean loadInterface(int var0) {
-      if (class431.Widget_loadedInterfaces[var0]) {
-         return true;
-      } else if (!UserComparator8.Widget_archive.tryLoadGroup(var0)) {
-         return false;
-      } else {
-         int var1 = UserComparator8.Widget_archive.getGroupFileCount(var0);
-         if (var1 == 0) {
-            class431.Widget_loadedInterfaces[var0] = true;
-            return true;
-         } else {
-            if (WorldMapLabel.Widget_interfaceComponents[var0] == null) {
-               WorldMapLabel.Widget_interfaceComponents[var0] = new Widget[var1];
-            }
-
-            for(int var2 = 0; var2 < var1; ++var2) {
-               if (WorldMapLabel.Widget_interfaceComponents[var0][var2] == null) {
-                  byte[] var3 = UserComparator8.Widget_archive.takeFile(var0, var2);
-                  if (var3 != null) {
-                     WorldMapLabel.Widget_interfaceComponents[var0][var2] = new Widget();
-                     WorldMapLabel.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16);
-                     if (var3[0] == -1) {
-                        WorldMapLabel.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
-                     } else {
-                        WorldMapLabel.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3));
-                     }
-                  }
-               }
-            }
-
-            class431.Widget_loadedInterfaces[var0] = true;
-            return true;
-         }
+         var1.postDecode();
+         ParamComposition.ParamDefinition_cached.put(var1, (long)var0);
+         return var1;
       }
    }
 }

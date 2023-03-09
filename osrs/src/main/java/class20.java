@@ -8,38 +8,35 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("a")
+@ObfuscatedName("af")
 public class class20 {
-    @ObfuscatedName("i")
-    public static int musicTrackGroupId;
-    @ObfuscatedName("c")
-    static int Interpreter_stringStackSize;
-   @ObfuscatedName("t")
-   static int field69;
-    @ObfuscatedName("a")
-    @ObfuscatedSignature(
-            descriptor = "Ljd;"
-    )
-    static WorldMapEvent worldMapEvent;
-   @ObfuscatedName("f")
-   final int field71;
-   @ObfuscatedName("w")
-   final Map field72;
-   @ObfuscatedName("v")
-   final String field68;
+   @ObfuscatedName("fw")
+   @ObfuscatedSignature(
+      descriptor = "Lmx;"
+   )
+   static Archive field63;
+   @ObfuscatedName("nt")
+   @Export("menuX")
+   static int menuX;
+   @ObfuscatedName("aj")
+   final int field62;
+   @ObfuscatedName("al")
+   final Map field61;
+   @ObfuscatedName("ac")
+   final String field65;
 
    class20(String var1) {
-      this.field71 = 400;
-      this.field72 = null;
-      this.field68 = "";
+      this.field62 = 400;
+      this.field61 = null;
+      this.field65 = "";
    }
 
    class20(HttpURLConnection var1) throws IOException {
-      this.field71 = var1.getResponseCode();
+      this.field62 = var1.getResponseCode();
       var1.getResponseMessage();
-      this.field72 = var1.getHeaderFields();
+      this.field61 = var1.getHeaderFields();
       StringBuilder var2 = new StringBuilder();
-      InputStream var3 = this.field71 >= 300 ? var1.getErrorStream() : var1.getInputStream();
+      InputStream var3 = this.field62 >= 300 ? var1.getErrorStream() : var1.getInputStream();
       if (var3 != null) {
          InputStreamReader var4 = new InputStreamReader(var3);
          BufferedReader var5 = new BufferedReader(var4);
@@ -52,33 +49,54 @@ public class class20 {
          var3.close();
       }
 
-      this.field68 = var2.toString();
+      this.field65 = var2.toString();
    }
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "1"
+      descriptor = "(I)I",
+      garbageValue = "-273056484"
    )
-   public int method76() {
-      return this.field71;
+   public int method81() {
+      return this.field62;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(B)Ljava/util/Map;",
-      garbageValue = "63"
+      descriptor = "(I)Ljava/util/Map;",
+      garbageValue = "559887748"
    )
-   public Map method74() {
-      return this.field72;
+   public Map method80() {
+      return this.field61;
    }
 
-   @ObfuscatedName("v")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(B)Ljava/lang/String;",
-      garbageValue = "-5"
+      descriptor = "(I)Ljava/lang/String;",
+      garbageValue = "-1857518373"
    )
-   public String method75() {
-      return this.field68;
+   public String method82() {
+      return this.field65;
+   }
+
+   @ObfuscatedName("mt")
+   @ObfuscatedSignature(
+      descriptor = "(IIB)V",
+      garbageValue = "11"
+   )
+   static final void method83(int var0, int var1) {
+      ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class19.guestClanChannel;
+      if (var2 != null && var1 >= 0 && var1 < var2.method843()) {
+         ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
+         if (var3.rank == -1) {
+            String var4 = var3.username.getName();
+            PacketBufferNode var5 = UserComparator9.getPacketBufferNode(ClientPacket.field2430, Client.packetWriter.isaacCipher);
+            var5.packetBuffer.writeByte(3 + WorldMapLabel.stringCp1252NullTerminatedByteSize(var4));
+            var5.packetBuffer.writeByte(var0);
+            var5.packetBuffer.writeShort(var1);
+            var5.packetBuffer.writeStringCp1252NullTerminated(var4);
+            Client.packetWriter.addNode(var5);
+         }
+      }
    }
 }

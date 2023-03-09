@@ -3,80 +3,78 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gw")
+@ObfuscatedName("ho")
 @Implements("HorizontalAlignment")
-public enum HorizontalAlignment implements class349 {
-   @ObfuscatedName("f")
+public enum HorizontalAlignment implements class352 {
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Lgw;"
+      descriptor = "Lho;"
    )
-   field1542(0, 0),
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lgw;"
-    )
-    HorizontalAlignment_centered(2, 1),
-   @ObfuscatedName("v")
+   field1539(0, 0),
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "Lgw;"
+      descriptor = "Lho;"
    )
-   field1539(1, 2);
+   @Export("HorizontalAlignment_centered")
+   HorizontalAlignment_centered(2, 1),
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Lho;"
+   )
+   field1537(1, 2);
 
-   @ObfuscatedName("ed")
-   static long field1543;
-    @ObfuscatedName("s")
-    public final int value;
-    @ObfuscatedName("z")
-    final int id;
+   @ObfuscatedName("ab")
+   @Export("value")
+   public final int value;
+   @ObfuscatedName("an")
+   @Export("id")
+   final int id;
 
    HorizontalAlignment(int var3, int var4) {
       this.value = var3;
       this.id = var4;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "3"
-    )
-    public int rsOrdinal() {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "-1409646049"
+   )
+   @Export("rsOrdinal")
+   public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1953251596"
+      descriptor = "(III)Lcv;",
+      garbageValue = "2046155289"
    )
-   static void method951() {
-      Tiles.Tiles_minPlane = 99;
-      Tiles.Tiles_underlays = new short[4][104][104];
-      class172.Tiles_overlays = new short[4][104][104];
-      Tiles.Tiles_shapes = new byte[4][104][104];
-      Tiles.field835 = new byte[4][104][104];
-      class312.field3014 = new int[4][105][105];
-      Tiles.field836 = new byte[4][105][105];
-      class323.field3055 = new int[105][105];
-      class100.Tiles_hue = new int[104];
-      class161.Tiles_saturation = new int[104];
-      Tiles.Tiles_lightness = new int[104];
-      class463.Tiles_hueMultiplier = new int[104];
-      SceneTilePaint.field2195 = new int[104];
-   }
+   static Script method957(int var0, int var1) {
+      Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
+      if (var2 != null) {
+         return var2;
+      } else {
+         String var3 = String.valueOf(var0);
+         int var4 = class167.archive12.getGroupId(var3);
+         if (var4 == -1) {
+            return null;
+         } else {
+            byte[] var5 = class167.archive12.takeFileFlat(var4);
+            if (var5 != null) {
+               if (var5.length <= 1) {
+                  return null;
+               }
 
-    @ObfuscatedName("gk")
-    @ObfuscatedSignature(
-            descriptor = "(S)V",
-            garbageValue = "381"
-    )
-    static final void playPcmPlayers() {
-      if (WorldMapSectionType.pcmPlayer1 != null) {
-         WorldMapSectionType.pcmPlayer1.run();
+               var2 = class4.newScript(var5);
+               if (var2 != null) {
+                  Script.Script_cached.put(var2, (long)(var0 << 16));
+                  return var2;
+               }
+            }
+
+            return null;
+         }
       }
-
-      if (SoundSystem.pcmPlayer0 != null) {
-         SoundSystem.pcmPlayer0.run();
-      }
-
    }
 }

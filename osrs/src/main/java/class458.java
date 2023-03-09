@@ -1,79 +1,28 @@
-import java.util.Iterator;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qt")
-public class class458 extends class422 implements class268 {
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      descriptor = "Lln;"
-   )
-   final AbstractArchive field3974;
-   @ObfuscatedName("v")
-   @ObfuscatedSignature(
-      descriptor = "Ljp;"
-   )
-   final DemotingHashTable field3975 = new DemotingHashTable(64);
-   @ObfuscatedName("s")
-   final int field3973;
+@ObfuscatedName("rl")
+public class class458 {
+   @ObfuscatedName("ac")
+   static final char[] field3921 = new char[]{' ', ' ', '_', '-', 'à', 'á', 'â', 'ä', 'ã', 'À', 'Á', 'Â', 'Ä', 'Ã', 'è', 'é', 'ê', 'ë', 'È', 'É', 'Ê', 'Ë', 'í', 'î', 'ï', 'Í', 'Î', 'Ï', 'ò', 'ó', 'ô', 'ö', 'õ', 'Ò', 'Ó', 'Ô', 'Ö', 'Õ', 'ù', 'ú', 'û', 'ü', 'Ù', 'Ú', 'Û', 'Ü', 'ç', 'Ç', 'ÿ', 'Ÿ', 'ñ', 'Ñ', 'ß'};
+   @ObfuscatedName("ab")
+   static final char[] field3922 = new char[]{'[', ']', '#'};
+   @ObfuscatedName("an")
+   public static int field3923;
 
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(Lle;ILmn;Lln;)V"
+      descriptor = "(II)Lrf;",
+      garbageValue = "1805661214"
    )
-   public class458(StudioGame var1, int var2, Language var3, AbstractArchive var4) {
-      super(var1, var3, var4 != null ? var4.getGroupFileCount(var2) : 0);
-      this.field3974 = var4;
-      this.field3973 = var2;
-   }
-
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(II)Lpj;",
-            garbageValue = "-982443960"
-    )
-    protected class424 vmethod8207(int var1) {
-      DemotingHashTable var3 = this.field3975;
-      synchronized(this.field3975) {
-         class423 var2 = (class423)this.field3975.get((long)var1);
-         if (var2 == null) {
-            var2 = this.method2327(var1);
-            this.field3975.method1512(var2, (long)var1);
-         }
-
-         return var2;
+   public static class467 method2331(int var0) {
+      int var1 = class465.field3942[var0];
+      if (var1 == 1) {
+         return class467.field3950;
+      } else if (var1 == 2) {
+         return class467.field3949;
+      } else {
+         return var1 == 3 ? class467.field3945 : null;
       }
-   }
-
-   @ObfuscatedName("b")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lpp;",
-      garbageValue = "-1876607651"
-   )
-   class423 method2327(int var1) {
-      byte[] var2 = this.field3974.takeFile(this.field3973, var1);
-      class423 var3 = new class423(var1);
-      if (var2 != null) {
-         var3.method2200(new Buffer(var2));
-      }
-
-      return var3;
-   }
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-105"
-   )
-   public void method2326() {
-      DemotingHashTable var1 = this.field3975;
-      synchronized(this.field3975) {
-         this.field3975.clear();
-      }
-   }
-
-    @ObfuscatedName("iterator")
-    public Iterator iterator() {
-      return new class457(this);
    }
 }

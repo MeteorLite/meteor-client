@@ -4,67 +4,74 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dg")
+@ObfuscatedName("eo")
 @Implements("UrlRequest")
 public class UrlRequest {
-    @ObfuscatedName("jz")
-    @ObfuscatedSignature(
-            descriptor = "[Lrs;"
-    )
-    static SpritePixels[] mapDotSprites;
-    @ObfuscatedName("f")
-    final URL url;
-    @ObfuscatedName("w")
-    volatile boolean isDone0;
-    @ObfuscatedName("v")
-    volatile byte[] response0;
+   @ObfuscatedName("al")
+   static int field1140 = -1;
+   @ObfuscatedName("ac")
+   static int field1141 = -2;
+   @ObfuscatedName("aj")
+   final URL field1142;
+   @ObfuscatedName("ab")
+   volatile int field1139;
+   @ObfuscatedName("an")
+   @Export("response0")
+   volatile byte[] response0;
 
    UrlRequest(URL var1) {
-      this.url = var1;
+      this.field1139 = field1140;
+      this.field1142 = var1;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(I)Z",
-            garbageValue = "1746965864"
-    )
-    public boolean isDone() {
-      return this.isDone0;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(I)Z",
+      garbageValue = "549528116"
+   )
+   @Export("isDone")
+   public boolean isDone() {
+      return this.field1139 != field1140;
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(B)[B",
-            garbageValue = "104"
-    )
-    public byte[] getResponse() {
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(I)[B",
+      garbageValue = "1852193551"
+   )
+   @Export("getResponse")
+   public byte[] getResponse() {
       return this.response0;
    }
 
-   @ObfuscatedName("v")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "988797098"
+      descriptor = "(S)Ljava/lang/String;",
+      garbageValue = "-24011"
    )
-   public String method642() {
-      return this.url.toString();
+   public String method644() {
+      return this.field1142.toString();
    }
 
-   @ObfuscatedName("i")
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-122"
+      descriptor = "(IZIZI)V",
+      garbageValue = "837272188"
    )
-   public static void method643() {
-      StructComposition.StructDefinition_cached.clear();
+   @Export("sortWorldList")
+   static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+      if (class260.World_worlds != null) {
+         class12.doWorldSorting(0, class260.World_worlds.length - 1, var0, var1, var2, var3);
+      }
+
    }
 
-   @ObfuscatedName("ml")
+   @ObfuscatedName("ao")
    @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "1784154993"
+      descriptor = "(I)V",
+      garbageValue = "1203549376"
    )
-   static void method645(int var0) {
-      Client.oculusOrbState = var0;
+   public static void method645() {
+      ParamComposition.ParamDefinition_cached.clear();
    }
 }

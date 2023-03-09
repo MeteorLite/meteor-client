@@ -3,27 +3,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mo")
+@ObfuscatedName("nj")
 @Implements("NodeDeque")
 public class NodeDeque {
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Lpr;"
-    )
-    public Node sentinel = new Node();
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lpr;"
-    )
-    Node current;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lru;"
+   )
+   @Export("sentinel")
+   public Node sentinel = new Node();
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lru;"
+   )
+   @Export("current")
+   Node current;
 
    public NodeDeque() {
       this.sentinel.previous = this.sentinel;
       this.sentinel.next = this.sentinel;
    }
 
-    @ObfuscatedName("f")
-    public void clear() {
+   @ObfuscatedName("aj")
+   @Export("clear")
+   public void clear() {
       while(true) {
          Node var1 = this.sentinel.previous;
          if (var1 == this.sentinel) {
@@ -35,11 +38,12 @@ public class NodeDeque {
       }
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(Lpr;)V"
-    )
-    public void addFirst(Node var1) {
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(Lru;)V"
+   )
+   @Export("addFirst")
+   public void addFirst(Node var1) {
       if (var1.next != null) {
          var1.remove();
       }
@@ -50,11 +54,12 @@ public class NodeDeque {
       var1.previous.next = var1;
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "(Lpr;)V"
-    )
-    public void addLast(Node var1) {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "(Lru;)V"
+   )
+   @Export("addLast")
+   public void addLast(Node var1) {
       if (var1.next != null) {
          var1.remove();
       }
@@ -65,11 +70,12 @@ public class NodeDeque {
       var1.previous.next = var1;
    }
 
-    @ObfuscatedName("z")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node removeLast() {
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("removeLast")
+   public Node removeLast() {
       Node var1 = this.sentinel.previous;
       if (var1 == this.sentinel) {
          return null;
@@ -79,11 +85,12 @@ public class NodeDeque {
       }
    }
 
-    @ObfuscatedName("j")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node removeFirst() {
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("removeFirst")
+   public Node removeFirst() {
       Node var1 = this.sentinel.next;
       if (var1 == this.sentinel) {
          return null;
@@ -93,11 +100,12 @@ public class NodeDeque {
       }
    }
 
-    @ObfuscatedName("i")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node last() {
+   @ObfuscatedName("av")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("last")
+   public Node last() {
       Node var1 = this.sentinel.previous;
       if (var1 == this.sentinel) {
          this.current = null;
@@ -108,11 +116,12 @@ public class NodeDeque {
       }
    }
 
-    @ObfuscatedName("n")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node first() {
+   @ObfuscatedName("aq")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("first")
+   public Node first() {
       Node var1 = this.sentinel.next;
       if (var1 == this.sentinel) {
          this.current = null;
@@ -123,11 +132,12 @@ public class NodeDeque {
       }
    }
 
-    @ObfuscatedName("l")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node previous() {
+   @ObfuscatedName("ap")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("previous")
+   public Node previous() {
       Node var1 = this.current;
       if (var1 == this.sentinel) {
          this.current = null;
@@ -138,11 +148,12 @@ public class NodeDeque {
       }
    }
 
-    @ObfuscatedName("k")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node next() {
+   @ObfuscatedName("ar")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("next")
+   public Node next() {
       Node var1 = this.current;
       if (var1 == this.sentinel) {
          this.current = null;
@@ -153,11 +164,12 @@ public class NodeDeque {
       }
    }
 
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "(Lpr;Lpr;)V"
-    )
-    public static void NodeDeque_addBefore(Node var0, Node var1) {
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "(Lru;Lru;)V"
+   )
+   @Export("NodeDeque_addBefore")
+   public static void NodeDeque_addBefore(Node var0, Node var1) {
       if (var0.next != null) {
          var0.remove();
       }

@@ -2,86 +2,66 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fa")
-public class class174 extends class177 {
-    @ObfuscatedName("ek")
-    @ObfuscatedSignature(
-            descriptor = "Llm;"
-    )
-    static Archive archive14;
-   @ObfuscatedName("f")
-   int field1448;
+@ObfuscatedName("gg")
+public class class174 {
+   @ObfuscatedName("ab")
+   public String field1430;
+   @ObfuscatedName("an")
+   public float[] field1433;
+   @ObfuscatedName("ao")
+   public int field1431;
+   @ObfuscatedName("av")
+   public int field1429;
+   @ObfuscatedName("aq")
+   public int field1432;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lfs;"
+      descriptor = "Lgs;"
    )
-   final class166 this$0;
+   @Export("this$0")
+   @ObfuscatedName("this$0")
+   final class167 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Lfs;Ljava/lang/String;I)V"
+      descriptor = "(Lgs;)V"
    )
-   class174(class166 var1, String var2, int var3) {
-      super(var1, var2);
+   class174(class167 var1) {
       this.this$0 = var1;
-      this.field1448 = var3;
+      this.field1433 = new float[4];
+      this.field1431 = 1;
+      this.field1429 = 1;
+      this.field1432 = 0;
    }
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(S)I",
-      garbageValue = "1024"
+      descriptor = "(Lne;I)I",
+      garbageValue = "-505461552"
    )
-   public int vmethod3379() {
-      return 0;
-   }
-
-    @ObfuscatedName("l")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "64"
-    )
-    public int vmethod3378() {
-      return this.field1448;
-   }
-
-   @ObfuscatedName("fr")
-   @ObfuscatedSignature(
-      descriptor = "(III)V",
-      garbageValue = "-200044471"
-   )
-   static void method900(int var0, int var1) {
-      int[] var2 = new int[9];
+   static int method905(AbstractArchive var0) {
+      int var1 = Login.field759.length + Login.field760.length;
+      String[] var2 = Login.field761;
 
       for(int var3 = 0; var3 < var2.length; ++var3) {
-         int var4 = var3 * 32 + 15 + 128;
-         int var5 = class17.method67(var4);
-         int var6 = Rasterizer3D.Rasterizer3D_sine[var4];
-         int var8 = var1 - 334;
-         if (var8 < 0) {
-            var8 = 0;
-         } else if (var8 > 100) {
-            var8 = 100;
+         String var4 = var2[var3];
+         if (var0.getGroupId(var4) != -1) {
+            ++var1;
          }
-
-         int var9 = (Client.zoomWidth - Client.zoomHeight) * var8 / 100 + Client.zoomHeight;
-         int var7 = var5 * var9 / 256;
-         var2[var3] = var6 * var7 >> 16;
       }
 
-      Scene.Scene_buildVisiblityMap(var2, 500, 800, var0 * 334 / var1, 334);
+      return var1;
    }
 
-    @ObfuscatedName("ig")
-    @ObfuscatedSignature(
-            descriptor = "(I)V",
-            garbageValue = "-2140118435"
-    )
-    static void addCancelMenuEntry() {
-      ScriptFrame.method322();
-      Client.menuActions[0] = "Cancel";
-      Client.menuTargets[0] = "";
-      Client.menuOpcodes[0] = 1006;
-      Client.menuShiftClick[0] = false;
-      Client.menuOptionsCount = 1;
+   @ObfuscatedName("mz")
+   @ObfuscatedSignature(
+      descriptor = "(B)V",
+      garbageValue = "106"
+   )
+   static final void method906() {
+      for(int var0 = 0; var0 < Players.Players_count; ++var0) {
+         Player var1 = Client.players[Players.Players_indices[var0]];
+         var1.clearIsInClanChat();
+      }
+
    }
 }

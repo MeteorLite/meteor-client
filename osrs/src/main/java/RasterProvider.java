@@ -14,13 +14,15 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("al")
+@ObfuscatedName("bl")
 @Implements("RasterProvider")
 public final class RasterProvider extends AbstractRasterProvider {
-    @ObfuscatedName("f")
-    Component component;
-    @ObfuscatedName("w")
-    Image image;
+   @ObfuscatedName("aj")
+   @Export("component")
+   Component component;
+   @ObfuscatedName("al")
+   @Export("image")
+   Image image;
 
    RasterProvider(int var1, int var2, Component var3) {
       super.width = var1;
@@ -34,39 +36,43 @@ public final class RasterProvider extends AbstractRasterProvider {
       this.apply();
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/awt/Component;I)V",
-            garbageValue = "1334791189"
-    )
-    final void setComponent(Component var1) {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/awt/Component;I)V",
+      garbageValue = "-1574363596"
+   )
+   @Export("setComponent")
+   final void setComponent(Component var1) {
       this.component = var1;
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(IIB)V",
-            garbageValue = "44"
-    )
-    public final void drawFull(int var1, int var2) {
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(III)V",
+      garbageValue = "-234209918"
+   )
+   @Export("drawFull")
+   public final void drawFull(int var1, int var2) {
       this.drawFull0(this.component.getGraphics(), var1, var2);
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "(IIIIB)V",
-            garbageValue = "-68"
-    )
-    public final void draw(int var1, int var2, int var3, int var4) {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "(IIIIB)V",
+      garbageValue = "-98"
+   )
+   @Export("draw")
+   public final void draw(int var1, int var2, int var3, int var4) {
       this.draw0(this.component.getGraphics(), var1, var2, var3, var4);
    }
 
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/awt/Graphics;III)V",
-            garbageValue = "-1792511799"
-    )
-    final void drawFull0(Graphics var1, int var2, int var3) {
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/awt/Graphics;IIB)V",
+      garbageValue = "14"
+   )
+   @Export("drawFull0")
+   final void drawFull0(Graphics var1, int var2, int var3) {
       try {
          var1.drawImage(this.image, var2, var3, this.component);
       } catch (Exception var5) {
@@ -75,12 +81,13 @@ public final class RasterProvider extends AbstractRasterProvider {
 
    }
 
-    @ObfuscatedName("z")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/awt/Graphics;IIIIB)V",
-            garbageValue = "1"
-    )
-    final void draw0(Graphics var1, int var2, int var3, int var4, int var5) {
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/awt/Graphics;IIIIB)V",
+      garbageValue = "50"
+   )
+   @Export("draw0")
+   final void draw0(Graphics var1, int var2, int var3, int var4, int var5) {
       try {
          Shape var6 = var1.getClip();
          var1.clipRect(var2, var3, var4, var5);

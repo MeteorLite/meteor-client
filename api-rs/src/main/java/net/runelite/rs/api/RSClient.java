@@ -38,9 +38,6 @@ import net.runelite.mapping.Import;
 
 public interface RSClient extends RSGameEngine, Client
 {
-	@Import("isLargePlayerInfo")
-	boolean isLargePlayerInfo();
-
 	@Import("cameraX")
 	@Override
 	int getCameraX();
@@ -850,14 +847,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("isInInstance")
 	@Override
 	boolean isInInstancedRegion();
-
-	@Import("itemDragDuration")
-	@Override
-	int getItemPressedDuration();
-
-	@Import("itemDragDuration")
-	void setItemPressedDuration(int duration);
-
 	@Import("worldProperties")
 	int getFlags();
 
@@ -1017,14 +1006,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("Rasterizer2D_yClipEnd")
 	int getEndY();
 
-	@Import("dragInventoryWidget")
-	@Override
-	RSWidget getIf1DraggedWidget();
-
-	@Import("dragItemSlotSource")
-	@Override
-	int getIf1DraggedItemIndex();
-
 	@Import("isSpellSelected")
 	@Override
 	void setSpellSelected(boolean selected);
@@ -1097,17 +1078,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("mouseRecorder")
 	RSMouseRecorder getMouseRecorder();
 
-	@Import("selectedSpellName")
-	String getSelectedSpellName();
-
-	@Import("selectedSpellName")
-	@Override
-	void setSelectedSpellName(String name);
-
-	@Override
-	@Import("selectedSpellActionName")
-	String getSelectedSpellActionName();
-
 	@Override
 	@Import("selectedSpellFlags")
 	int getSelectedSpellFlags();
@@ -1162,30 +1132,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("menuAction")
 	void sendMenuAction(int n2, int n3, int n4, int n5, int itemId, String string, String string2, int n6, int n7);
 
-	@Import("selectedItemId")
-	@Override
-	void setSelectedItemID(int id);
-
-	@Import("selectedItemSlot")
-	@Override
-	int getSelectedItemSlot();
-
-	@Import("selectedItemSlot")
-	@Override
-	void setSelectedItemSlot(int index);
-
-	@Import("selectedItemSlot")
-	@Override
-	int getSelectedItemIndex();
-
-	@Import("selectedItemWidget")
-	@Override
-	int getSelectedItemWidget();
-
-	@Import("selectedItemWidget")
-	@Override
-	void setSelectedItemWidget(int widgetID);
-
 	@Import("selectedSpellWidget")
 	@Override
 	int getSelectedSpellWidget();
@@ -1230,12 +1176,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("showMouseCross")
 	@Override
 	void setShowMouseCross(boolean show);
-
-	@Import("draggedWidgetX")
-	int getDraggedWidgetX(); // these should probably have if1 in their names somewhere
-
-	@Import("draggedWidgetY")
-	int getDraggedWidgetY();
 
 	@Import("changedSkills")
 	int[] getChangedSkillLevels();
@@ -1294,9 +1234,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("showMouseOverText")
 	void setShowMouseOverText(boolean showMouseOverText);
 
-	@Import("defaultRotations")
-	int[] getDefaultRotations();
-
 	@Import("showLoadingMessages")
 	boolean getShowLoadingMessages();
 
@@ -1328,14 +1265,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	@Import("isItemSelected")
 	int isItemSelected();
-
-	@Override
-	@Import("isItemSelected")
-	int getSelectedItem();
-
-	@Override
-	@Import("selectedItemName")
-	String getSelectedItemName();
 
 	@Import("meslayerContinueWidget")
 	Widget getMessageContinueWidget();
@@ -1712,10 +1641,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("isMenuOpen")
 	@Override
 	void setMenuOpen(boolean open);
-
-	@Import("selectedItemId")
-	@Override
-	int getSelectedItemID();
 
 	@Import("selectedSpellItemId")
 	@Override
