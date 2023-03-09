@@ -74,15 +74,15 @@ void writeByte$api(int i);
 @Override
 void writeInt$api(int i);
 
-@Import("method2454")
+@Import("writeIntLE")
 @Override
 void writeIntLE$api(int i);
 
-@Import("method2444")
+@Import("writeIntIME")
 @Override
-void writeIntIME(int i);
+void writeIntIME$api(int i);
 
-@Import("method2445")
+@Import("writeIntME")
 @Override
 void writeIntME$api(int i);
 
@@ -94,9 +94,9 @@ void writeShortLE$api(int i);
 @Override
 void writeShortAdd$api(int i);
 
-@Import("writeShortLEA")
+@Import("writeShortAddLE")
 @Override
-void writeShortAddLE(int i);
+void writeShortAddLE$api(int i);
 
 @Import("method2437")
 @Override

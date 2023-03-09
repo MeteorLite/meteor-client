@@ -130,6 +130,5 @@ public final class AccessFile {
          System.out.println("");
          this.close();
       }
-
    }
 }

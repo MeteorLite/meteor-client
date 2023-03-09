@@ -452,11 +452,11 @@ public class class16 implements ThreadFactory {
                      int[] var4 = var0.field1809.method1754();
                      if (var4 != null) {
                         PacketBufferNode var2 = UserComparator9.getPacketBufferNode(ClientPacket.field2470, Client.packetWriter.isaacCipher);
-                        var2.packetBuffer.method2444(var4[1]);
+                        var2.packetBuffer.writeIntIME(var4[1]);
                         var2.packetBuffer.writeInt(var4[0]);
                         var2.packetBuffer.writeInt(var0.field1809.id);
-                        var2.packetBuffer.method2445(var4[2]);
-                        var2.packetBuffer.method2445(var0.field1809.method1761());
+                        var2.packetBuffer.writeIntME(var4[2]);
+                        var2.packetBuffer.writeIntME(var0.field1809.method1761());
                         var2.packetBuffer.writeShort(var0.field1809.childIndex);
                         Client.packetWriter.addNode(var2);
                      }

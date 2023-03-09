@@ -2426,26 +2426,26 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
             var37.packetBuffer.writeBytes(var10.array, 0, var10.array.length);
             var37.packetBuffer.writeByte(clientType);
             var37.packetBuffer.writeInt(0);
-            var37.packetBuffer.method2445(class20.field63.hash);
-            var37.packetBuffer.method2454(class475.archive20.hash);
-            var37.packetBuffer.method2445(class127.archive17.hash);
-            var37.packetBuffer.method2445(AABB.archive10.hash);
-            var37.packetBuffer.method2445(TextureProvider.archive13.hash);
-            var37.packetBuffer.method2445(class308.archive6.hash);
-            var37.packetBuffer.method2445(class167.archive12.hash);
+            var37.packetBuffer.writeIntME(class20.field63.hash);
+            var37.packetBuffer.writeIntLE(class475.archive20.hash);
+            var37.packetBuffer.writeIntME(class127.archive17.hash);
+            var37.packetBuffer.writeIntME(AABB.archive10.hash);
+            var37.packetBuffer.writeIntME(TextureProvider.archive13.hash);
+            var37.packetBuffer.writeIntME(class308.archive6.hash);
+            var37.packetBuffer.writeIntME(class167.archive12.hash);
             var37.packetBuffer.writeInt(class376.archive18.hash);
-            var37.packetBuffer.method2454(class36.field149.hash);
-            var37.packetBuffer.method2445(ClientPreferences.archive9.hash);
-            var37.packetBuffer.method2454(class135.archive4.hash);
+            var37.packetBuffer.writeIntLE(class36.field149.hash);
+            var37.packetBuffer.writeIntME(ClientPreferences.archive9.hash);
+            var37.packetBuffer.writeIntLE(class135.archive4.hash);
             var37.packetBuffer.writeInt(class175.field1434.hash);
-            var37.packetBuffer.method2444(UserComparator5.field1148.hash);
-            var37.packetBuffer.method2444(class258.archive2.hash);
-            var37.packetBuffer.method2454(0);
-            var37.packetBuffer.method2444(class90.archive14.hash);
-            var37.packetBuffer.method2454(MusicPatchPcmStream.archive15.hash);
-            var37.packetBuffer.method2454(MusicPatchNode.archive19.hash);
-            var37.packetBuffer.method2445(class143.archive8.hash);
-            var37.packetBuffer.method2445(class290.archive7.hash);
+            var37.packetBuffer.writeIntIME(UserComparator5.field1148.hash);
+            var37.packetBuffer.writeIntIME(class258.archive2.hash);
+            var37.packetBuffer.writeIntLE(0);
+            var37.packetBuffer.writeIntIME(class90.archive14.hash);
+            var37.packetBuffer.writeIntLE(MusicPatchPcmStream.archive15.hash);
+            var37.packetBuffer.writeIntLE(MusicPatchNode.archive19.hash);
+            var37.packetBuffer.writeIntME(class143.archive8.hash);
+            var37.packetBuffer.writeIntME(class290.archive7.hash);
             var37.packetBuffer.writeInt(Clock.archive11.hash);
             var37.packetBuffer.xteaEncrypt(var36, var8, var37.packetBuffer.offset);
             var37.packetBuffer.writeLengthShort(var37.packetBuffer.offset - var6);
@@ -2953,7 +2953,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                packetIndicator = 20;
                emitPackets = false;
                var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2485, packetWriter.isaacCipher);
-               var14.packetBuffer.writeShortLEA(camAngleY);
+               var14.packetBuffer.writeShortAddLE(camAngleY);
                var14.packetBuffer.writeShort(camAngleX);
                packetWriter.addNode(var14);
             }
@@ -4515,8 +4515,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                var5 = var3.readInt();
                var21 = class105.getGcDuration();
                PacketBufferNode var60 = UserComparator9.getPacketBufferNode(ClientPacket.field2446, packetWriter.isaacCipher);
-               var60.packetBuffer.method2445(var20);
-               var60.packetBuffer.method2444(var5);
+               var60.packetBuffer.writeIntME(var20);
+               var60.packetBuffer.writeIntIME(var5);
                var60.packetBuffer.writeByte(var21);
                var60.packetBuffer.writeByteNeg(GameEngine.fps);
                packetWriter.addNode(var60);
@@ -5732,11 +5732,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
                if (draggedOnWidget != null && class287.method1549(clickedWidget) != null) {
                   PacketBufferNode var11 = UserComparator9.getPacketBufferNode(ClientPacket.field2473, packetWriter.isaacCipher);
-                  var11.packetBuffer.method2454(draggedOnWidget.id);
+                  var11.packetBuffer.writeIntLE(draggedOnWidget.id);
                   var11.packetBuffer.writeShortAdd(clickedWidget.itemId);
-                  var11.packetBuffer.method2454(clickedWidget.id);
-                  var11.packetBuffer.writeShortLEA(draggedOnWidget.childIndex);
-                  var11.packetBuffer.writeShortLEA(draggedOnWidget.itemId);
+                  var11.packetBuffer.writeIntLE(clickedWidget.id);
+                  var11.packetBuffer.writeShortAddLE(draggedOnWidget.childIndex);
+                  var11.packetBuffer.writeShortAddLE(draggedOnWidget.itemId);
                   var11.packetBuffer.writeShortLE(clickedWidget.childIndex);
                   packetWriter.addNode(var11);
                }

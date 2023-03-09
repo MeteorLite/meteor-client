@@ -914,7 +914,7 @@ public class Buffer extends Node {
       garbageValue = "28"
    )
    @Export("writeShortLEA")
-   public void writeShortLEA(int var1) {
+   public void writeShortAddLE(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 + 128);
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
    }
@@ -1037,7 +1037,7 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "2033419243"
    )
-   public void method2454(int var1) {
+   public void writeIntLE(int var1) {
       this.array[++this.offset - 1] = (byte)var1;
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
       this.array[++this.offset - 1] = (byte)(var1 >> 16);
@@ -1049,7 +1049,7 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "-1632604314"
    )
-   public void method2444(int var1) {
+   public void writeIntIME(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
       this.array[++this.offset - 1] = (byte)var1;
       this.array[++this.offset - 1] = (byte)(var1 >> 24);
@@ -1061,7 +1061,7 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "666893750"
    )
-   public void method2445(int var1) {
+   public void writeIntME(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 >> 16);
       this.array[++this.offset - 1] = (byte)(var1 >> 24);
       this.array[++this.offset - 1] = (byte)var1;

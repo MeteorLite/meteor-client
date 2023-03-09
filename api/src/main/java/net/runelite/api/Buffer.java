@@ -23,7 +23,7 @@ public interface Buffer extends Node
 	void writeByte$api(int i);
 	void writeInt$api(int i);
 	void writeIntLE$api(int i);
-	void writeIntIME(int i);
+	void writeIntIME$api(int i);
 	void writeIntME$api(int i);
 	int readInt$api();
     int readIntLE$api();
@@ -31,7 +31,7 @@ public interface Buffer extends Node
     int readIntME();
     void writeShortLE$api(int i);
     void writeShortAdd$api(int i);
-    void writeShortAddLE(int i);
+    void writeShortAddLE$api(int i);
     int readUShortLE();
     int readUShortAdd();
     int readShortAddLE();

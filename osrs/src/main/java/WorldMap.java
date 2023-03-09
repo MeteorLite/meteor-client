@@ -368,7 +368,7 @@ public class WorldMap {
 
                if (var9) {
                   PacketBufferNode var12 = UserComparator9.getPacketBufferNode(ClientPacket.field2479, Client.packetWriter.isaacCipher);
-                  var12.packetBuffer.method2454(this.mouseCoord.packed());
+                  var12.packetBuffer.writeIntLE(this.mouseCoord.packed());
                   Client.packetWriter.addNode(var12);
                   this.field3860 = 0L;
                }
