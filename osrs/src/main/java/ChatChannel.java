@@ -223,7 +223,7 @@ public class ChatChannel {
                   } else {
                      PacketBufferNode var6 = UserComparator9.getPacketBufferNode(ClientPacket.field2505, Client.packetWriter.isaacCipher);
                      var6.packetBuffer.writeShort(1 + WorldMapLabel.stringCp1252NullTerminatedByteSize(var7) + WorldMapLabel.stringCp1252NullTerminatedByteSize(var5));
-                     var6.packetBuffer.writeByteA(var8);
+                     var6.packetBuffer.writeByteSigned(var8);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var5);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var7);
                      Client.packetWriter.addNode(var6);

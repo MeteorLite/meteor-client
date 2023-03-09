@@ -39,7 +39,7 @@ public interface Buffer extends Node
 	void writeLongMedium$api(long l);
 	void writeShort$api(int i);
     void writeByteAdd$api(int i);
-    void writeByteSub(int i);
+    void writeByteSigned$api(int i);
     void writeByteNeg$api(int i);
     void writeString(String s);
 }

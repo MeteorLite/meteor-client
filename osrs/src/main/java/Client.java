@@ -2912,7 +2912,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
                var5 = (int)var16;
                if (shouldProcessClick()) {
-                  var18 = UserComparator9.getPacketBufferNode(ClientPacket.field2489, packetWriter.isaacCipher);
+                  var18 = UserComparator9.getPacketBufferNode(ClientPacket.CLICK, packetWriter.isaacCipher);
                   var18.packetBuffer.writeShort((MouseHandler.MouseHandler_lastButton == 2 ? 1 : 0) + (var5 << 1));
                   var18.packetBuffer.writeShort(var4);
                   var18.packetBuffer.writeShort(var3);
@@ -2933,7 +2933,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                   }
 
                   timeOfPreviousKeyPress = var19;
-                  var14.packetBuffer.writeByteA(keyHandlerInstance.field1814[var5]);
+                  var14.packetBuffer.writeByteSigned(keyHandlerInstance.field1814[var5]);
                   var14.packetBuffer.method2464((int)var21);
                }
 
@@ -3152,7 +3152,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                                                    if (Scene.shouldSendWalk()) {
                                                       var3 = Scene.Scene_selectedX;
                                                       var4 = Scene.Scene_selectedY;
-                                                      PacketBufferNode var40 = UserComparator9.getPacketBufferNode(ClientPacket.field2497, packetWriter.isaacCipher);
+                                                      PacketBufferNode var40 = UserComparator9.getPacketBufferNode(ClientPacket.WALK, packetWriter.isaacCipher);
                                                       var40.packetBuffer.writeByte(5);
                                                       var40.packetBuffer.writeShortAdd(var4 + class178.baseY);
                                                       var40.packetBuffer.writeShort(var3 + GameEngine.baseX);

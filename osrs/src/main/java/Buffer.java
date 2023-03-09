@@ -827,8 +827,8 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "-1672277445"
    )
-   @Export("writeByteA")
-   public void writeByteA(int var1) {
+   @Export("writeByteSigned")
+   public void writeByteSigned(int var1) {
       this.array[++this.offset - 1] = (byte)(128 - var1);
    }
 

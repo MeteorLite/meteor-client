@@ -146,9 +146,9 @@ void writeShort$api(int i);
 @Override
 void writeByteAdd$api(int i);
 
-@Import("writeByteA")
+@Import("writeByteSigned")
 @Override
-void writeByteSub(int i);
+void writeByteSigned$api(int i);
 
 @Import("writeByteNeg")
 @Override

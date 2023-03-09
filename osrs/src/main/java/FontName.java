@@ -164,22 +164,22 @@ public class FontName {
          if (var7 != null && var7 != BuddyRankComparator.localPlayer && var7.username != null && var7.username.equals(var5)) {
             PacketBufferNode var8;
             if (var0 == 1) {
-               var8 = UserComparator9.getPacketBufferNode(ClientPacket.field2433, Client.packetWriter.isaacCipher);
+               var8 = UserComparator9.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeShort(var3[var6]);
-               var8.packetBuffer.writeByteA(0);
+               var8.packetBuffer.writeByteSigned(0);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 4) {
-               var8 = UserComparator9.getPacketBufferNode(ClientPacket.field2451, Client.packetWriter.isaacCipher);
+               var8 = UserComparator9.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeShortAddLE(var3[var6]);
                var8.packetBuffer.writeByteNeg(0);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 6) {
-               var8 = UserComparator9.getPacketBufferNode(ClientPacket.field2450, Client.packetWriter.isaacCipher);
+               var8 = UserComparator9.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeByte(0);
                var8.packetBuffer.writeShortAdd(var3[var6]);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 7) {
-               var8 = UserComparator9.getPacketBufferNode(ClientPacket.field2493, Client.packetWriter.isaacCipher);
+               var8 = UserComparator9.getPacketBufferNode(ClientPacket.OPPLAYER7, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeShort(var3[var6]);
                var8.packetBuffer.writeByte(0);
                Client.packetWriter.addNode(var8);

@@ -15,12 +15,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2463 = new ClientPacket(1, 3);
+   public static final ClientPacket OPPLAYER3 = new ClientPacket(1, 3);
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2502 = new ClientPacket(2, 8);
+   public static final ClientPacket IF_BUTTON2 = new ClientPacket(2, 8);
    @ObfuscatedName("ab")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -60,7 +60,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2455 = new ClientPacket(10, 6);
+   public static final ClientPacket CONTINUE = new ClientPacket(10, 6);
    @ObfuscatedName("ax")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -75,7 +75,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2433 = new ClientPacket(13, 3);
+   public static final ClientPacket OPPLAYER1 = new ClientPacket(13, 3);
    @ObfuscatedName("am")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -95,7 +95,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2425 = new ClientPacket(17, 8);
+   public static final ClientPacket IF_BUTTON7 = new ClientPacket(17, 8);
    @ObfuscatedName("ag")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -110,12 +110,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2440 = new ClientPacket(20, 3);
+   public static final ClientPacket OPNPC2 = new ClientPacket(20, 3);
    @ObfuscatedName("ai")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2441 = new ClientPacket(21, 8);
+   public static final ClientPacket IF_BUTTON8 = new ClientPacket(21, 8);
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -125,12 +125,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2475 = new ClientPacket(23, 8);
+   public static final ClientPacket IF_BUTTON6 = new ClientPacket(23, 8);
    @ObfuscatedName("ah")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2444 = new ClientPacket(24, 8);
+   public static final ClientPacket IF_BUTTON9 = new ClientPacket(24, 8);
    @ObfuscatedName("ad")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -160,12 +160,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2450 = new ClientPacket(30, 3);
+   public static final ClientPacket OPPLAYER6 = new ClientPacket(30, 3);
    @ObfuscatedName("bh")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2451 = new ClientPacket(31, 3);
+   public static final ClientPacket OPPLAYER4 = new ClientPacket(31, 3);
    @ObfuscatedName("bl")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -180,12 +180,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2497 = new ClientPacket(34, -1);
+   public static final ClientPacket WALK = new ClientPacket(34, -1);
    @ObfuscatedName("ba")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2492 = new ClientPacket(35, 3);
+   public static final ClientPacket OPPLAYER5 = new ClientPacket(35, 3);
    @ObfuscatedName("bz")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -230,12 +230,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2464 = new ClientPacket(44, 15);
+   public static final ClientPacket OPLOCT = new ClientPacket(44, 15);
    @ObfuscatedName("bb")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2465 = new ClientPacket(45, 3);
+   public static final ClientPacket OPPLAYER2 = new ClientPacket(45, 3);
    @ObfuscatedName("bx")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -250,17 +250,17 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2423 = new ClientPacket(48, 11);
+   public static final ClientPacket OPNPCT = new ClientPacket(48, 11);
    @ObfuscatedName("bf")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2469 = new ClientPacket(49, 3);
+   public static final ClientPacket OPPLAYER8 = new ClientPacket(49, 3);
    @ObfuscatedName("bw")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2420 = new ClientPacket(50, 8);
+   public static final ClientPacket IF_BUTTON4 = new ClientPacket(50, 8);
    @ObfuscatedName("bi")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -270,7 +270,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2442 = new ClientPacket(52, 8);
+   public static final ClientPacket IF_BUTTON10 = new ClientPacket(52, 8);
    @ObfuscatedName("ca")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -295,12 +295,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2477 = new ClientPacket(57, 16);
+   public static final ClientPacket IF_BUTTONT = new ClientPacket(57, 16);
    @ObfuscatedName("ce")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2438 = new ClientPacket(58, 8);
+   public static final ClientPacket IF_BUTTON1 = new ClientPacket(58, 8);
    @ObfuscatedName("cd")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -310,7 +310,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2480 = new ClientPacket(60, 8);
+   public static final ClientPacket IF_BUTTON5 = new ClientPacket(60, 8);
    @ObfuscatedName("ct")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -350,12 +350,12 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2488 = new ClientPacket(68, 3);
+   public static final ClientPacket OPNPC4 = new ClientPacket(68, 3);
    @ObfuscatedName("cx")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2514 = new ClientPacket(69, 11);
+   public static final ClientPacket OPPLAYERT = new ClientPacket(69, 11);
    @ObfuscatedName("cu")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -375,7 +375,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2493 = new ClientPacket(73, 3);
+   public static final ClientPacket OPPLAYER7 = new ClientPacket(73, 3);
    @ObfuscatedName("ci")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -385,7 +385,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2495 = new ClientPacket(75, 8);
+   public static final ClientPacket IF_BUTTON3 = new ClientPacket(75, 8);
    @ObfuscatedName("cv")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -410,7 +410,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2478 = new ClientPacket(80, 3);
+   public static final ClientPacket OPNPC3 = new ClientPacket(80, 3);
    @ObfuscatedName("dp")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -425,7 +425,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2489 = new ClientPacket(83, 6);
+   public static final ClientPacket CLICK = new ClientPacket(83, 6);
    @ObfuscatedName("de")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -440,7 +440,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2506 = new ClientPacket(86, 3);
+   public static final ClientPacket OPNPC1 = new ClientPacket(86, 3);
    @ObfuscatedName("dd")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -470,7 +470,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2512 = new ClientPacket(92, 3);
+   public static final ClientPacket OPNPC5 = new ClientPacket(92, 3);
    @ObfuscatedName("dw")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
