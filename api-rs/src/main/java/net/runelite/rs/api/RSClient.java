@@ -1731,4 +1731,8 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("shouldProcessClick")
 	boolean shouldProcessClick$api();
+
+	@Import("worldHost")
+	@Override
+	void setHost(String worldHost);
 }

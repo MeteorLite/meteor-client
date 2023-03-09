@@ -38,17 +38,14 @@ public abstract class RSBufferMixin implements RSBuffer
 	@Shadow("client")
 	private static RSClient client;
 
-	@Shadow("modulus")
-	private static BigInteger modulus;
-
 	@Copy("encryptRsa")
 	@Replace("encryptRsa")
 	@SuppressWarnings("InfiniteRecursion")
 	public void copy$encryptRsa(BigInteger exp, BigInteger mod)
 	{
-		if (modulus != null)
+		if (client.getModulus() != null)
 		{
-			mod = modulus;
+			mod = client.getModulus();
 		}
 
 		copy$encryptRsa(exp, mod);

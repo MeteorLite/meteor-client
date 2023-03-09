@@ -95,6 +95,7 @@ import meteor.plugins.playeroutline.PlayerOutlinePlugin
 import meteor.plugins.poison.PoisonPlugin
 import meteor.plugins.prayerflicker.PrayerFlickerPlugin
 import meteor.plugins.prayerpotdrinker.PrayerPotDrinker
+import meteor.plugins.privateserver.PrivateServerPlugin
 import meteor.plugins.pvpkeys.PvPKeys
 import meteor.plugins.reportbutton.ReportButtonPlugin
 import meteor.plugins.rsnhider.RsnHiderPlugin
@@ -265,6 +266,7 @@ object PluginManager {
             init<PestControlPlugin>()
             init<PlayerOutlinePlugin>()
             init<PoisonPlugin>()
+            init<PrivateServerPlugin>()
             init<PuzzleSolverPlugin>()
             init<PvPKeys>()
             init<PrayerFlickerPlugin>()
