@@ -2,183 +2,72 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fn")
-public class class156 {
-   @ObfuscatedName("f")
-   long field1384;
-   @ObfuscatedName("w")
-   long field1382 = -1L;
-   @ObfuscatedName("v")
+@ObfuscatedName("gm")
+public abstract class class156 extends Node {
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Lmt;"
+      descriptor = "(Lsy;I)V",
+      garbageValue = "2070491057"
    )
-   IterableNodeDeque field1383 = new IterableNodeDeque();
+   @Export("vmethod3238")
+   abstract void vmethod3238(Buffer var1);
 
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(Lrd;)V"
+      descriptor = "(Lgn;B)V",
+      garbageValue = "-82"
    )
-   public class156(Buffer var1) {
-      this.method833(var1);
-   }
+   @Export("vmethod3239")
+   abstract void vmethod3239(ClanChannel var1);
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(Lrd;I)V",
-      garbageValue = "-2055199078"
+      descriptor = "(IIIB)I",
+      garbageValue = "49"
    )
-   void method833(Buffer var1) {
-      this.field1384 = var1.readLong();
-      this.field1382 = var1.readLong();
-
-      for(int var2 = var1.readUnsignedByte(); var2 != 0; var2 = var1.readUnsignedByte()) {
-         Object var3;
-         if (var2 == 1) {
-            var3 = new class151(this);
-         } else if (var2 == 4) {
-            var3 = new class162(this);
-         } else if (var2 == 3) {
-            var3 = new class147(this);
-         } else if (var2 == 2) {
-            var3 = new class145(this);
-         } else {
-            if (var2 != 5) {
-               throw new RuntimeException("");
-            }
-
-            var3 = new class152(this);
-         }
-
-         ((class155)var3).vmethod3238(var1);
-         this.field1383.addFirst((Node)var3);
+   static int method829(int var0, int var1, int var2) {
+      if (var2 > 179) {
+         var1 /= 2;
       }
 
+      if (var2 > 192) {
+         var1 /= 2;
+      }
+
+      if (var2 > 217) {
+         var1 /= 2;
+      }
+
+      if (var2 > 243) {
+         var1 /= 2;
+      }
+
+      int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
+      return var3;
    }
 
-   @ObfuscatedName("w")
+   @ObfuscatedName("ay")
    @ObfuscatedSignature(
-      descriptor = "(Lfm;B)V",
-      garbageValue = "0"
+      descriptor = "(IIIIIIIB)Z",
+      garbageValue = "24"
    )
-   public void method832(ClanChannel var1) {
-      if (var1.key == this.field1384 && this.field1382 == var1.field1394) {
-         for(class155 var2 = (class155)this.field1383.last(); var2 != null; var2 = (class155)this.field1383.previous()) {
-            var2.vmethod3239(var1);
-         }
-
-         ++var1.field1394;
+   static final boolean method828(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+      int var7 = ViewportMouse.ViewportMouse_y + var6;
+      if (var7 < var0 && var7 < var1 && var7 < var2) {
+         return false;
       } else {
-         throw new RuntimeException("");
-      }
-   }
-
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "([Lbw;II[I[II)V",
-            garbageValue = "1537846162"
-    )
-    static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
-      if (var1 < var2) {
-         int var5 = var1 - 1;
-         int var6 = var2 + 1;
-         int var7 = (var2 + var1) / 2;
-         World var8 = var0[var7];
-         var0[var7] = var0[var1];
-         var0[var1] = var8;
-
-         while(var5 < var6) {
-            boolean var9 = true;
-
-            int var10;
-            int var11;
-            int var12;
-            do {
-               --var6;
-
-               for(var10 = 0; var10 < 4; ++var10) {
-                  if (var3[var10] == 2) {
-                     var11 = var0[var6].index;
-                     var12 = var8.index;
-                  } else if (var3[var10] == 1) {
-                     var11 = var0[var6].population;
-                     var12 = var8.population;
-                     if (var11 == -1 && var4[var10] == 1) {
-                        var11 = 2001;
-                     }
-
-                     if (var12 == -1 && var4[var10] == 1) {
-                        var12 = 2001;
-                     }
-                  } else if (var3[var10] == 3) {
-                     var11 = var0[var6].isMembersOnly() ? 1 : 0;
-                     var12 = var8.isMembersOnly() ? 1 : 0;
-                  } else {
-                     var11 = var0[var6].id;
-                     var12 = var8.id;
-                  }
-
-                  if (var12 != var11) {
-                     if ((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) {
-                        var9 = false;
-                     }
-                     break;
-                  }
-
-                  if (var10 == 3) {
-                     var9 = false;
-                  }
-               }
-            } while(var9);
-
-            var9 = true;
-
-            do {
-               ++var5;
-
-               for(var10 = 0; var10 < 4; ++var10) {
-                  if (var3[var10] == 2) {
-                     var11 = var0[var5].index;
-                     var12 = var8.index;
-                  } else if (var3[var10] == 1) {
-                     var11 = var0[var5].population;
-                     var12 = var8.population;
-                     if (var11 == -1 && var4[var10] == 1) {
-                        var11 = 2001;
-                     }
-
-                     if (var12 == -1 && var4[var10] == 1) {
-                        var12 = 2001;
-                     }
-                  } else if (var3[var10] == 3) {
-                     var11 = var0[var5].isMembersOnly() ? 1 : 0;
-                     var12 = var8.isMembersOnly() ? 1 : 0;
-                  } else {
-                     var11 = var0[var5].id;
-                     var12 = var8.id;
-                  }
-
-                  if (var11 != var12) {
-                     if ((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) {
-                        var9 = false;
-                     }
-                     break;
-                  }
-
-                  if (var10 == 3) {
-                     var9 = false;
-                  }
-               }
-            } while(var9);
-
-            if (var5 < var6) {
-               World var13 = var0[var5];
-               var0[var5] = var0[var6];
-               var0[var6] = var13;
+         var7 = ViewportMouse.ViewportMouse_y - var6;
+         if (var7 > var0 && var7 > var1 && var7 > var2) {
+            return false;
+         } else {
+            var7 = ViewportMouse.ViewportMouse_x + var6;
+            if (var7 < var3 && var7 < var4 && var7 < var5) {
+               return false;
+            } else {
+               var7 = ViewportMouse.ViewportMouse_x - var6;
+               return var7 <= var3 || var7 <= var4 || var7 <= var5;
             }
          }
-
-         sortWorlds(var0, var1, var6, var3, var4);
-         sortWorlds(var0, var6 + 1, var2, var3, var4);
       }
-
    }
 }

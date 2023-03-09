@@ -1079,7 +1079,7 @@ public abstract class RSClientMixin implements RSClient {
         }
     }
 
-    @FieldHook("itemDragDuration")
+/*    @FieldHook("itemDragDuration")
     @Inject
     public static void itemPressedDurationChanged(int idx) {
         if (client.getItemPressedDuration() > 0) {
@@ -1092,7 +1092,7 @@ public abstract class RSClientMixin implements RSClient {
         } else {
             itemPressedDurationBuffer = 0;
         }
-    }
+    }*/
 
     @FieldHook("changedSkills")
     @Inject
@@ -1565,7 +1565,7 @@ public abstract class RSClientMixin implements RSClient {
                 .menuOpen$api(client.getPlane(), x - client.getViewportXOffset(), y - client.getViewportYOffset(), false);
     }
 
-    @Copy("addWidgetItemMenuItem")
+/*    @Copy("addWidgetItemMenuItem")
     @Replace("addWidgetItemMenuItem")
     static void copy$addWidgetItemMenuItem(RSWidget var0, RSItemComposition var1, int var2, int var3, boolean var4) {
         String[] var5 = var1.getInventoryActions();
@@ -1573,7 +1573,7 @@ public abstract class RSClientMixin implements RSClient {
         if (var5.length > var3) {
             copy$addWidgetItemMenuItem(var0, var1, var2, var3, var4);
         }
-    }
+    }*/
 
     @Inject
     @MethodHook("updateNpcs")
@@ -1888,10 +1888,10 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     static boolean shouldHideAttackOptionFor(RSPlayer p) {
-        if (client.getSpellSelected()) {
+/*        if (client.getSpellSelected()) {
             return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isFriendsChatMember$api())) && !unhiddenCasts.contains(
                     client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
-        }
+        }*/
 
         return ((hideFriendAttackOptions && p.isFriended()) || (hideClanmateAttackOptions && p.isFriendsChatMember$api()));
     }
@@ -1919,9 +1919,9 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
-    public void removeIgnore(String friend) {
+    public void removeIgnore(String friend, boolean confirmToJagex) {
         RSFriendSystem friendSystem = getFriendManager();
-        friendSystem.removeIgnore$api(friend);
+        friendSystem.removeIgnore$api(friend, confirmToJagex);
     }
 
     @Inject

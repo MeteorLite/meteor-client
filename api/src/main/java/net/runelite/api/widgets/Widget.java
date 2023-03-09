@@ -1075,8 +1075,6 @@ public interface Widget extends Interactable, Identifiable
 
 	Point getWidgetItemDragOffsets();
 
-	String getSpellName();
-
 	/**
 	 * You probably want {@link Widget#getText()} instead
 	 */
@@ -1092,8 +1090,6 @@ public interface Widget extends Interactable, Identifiable
 	 * @return the unfiltered name
 	 */
 	String getRSName();
-
-	String[] getItemActions();
 
 	/**
 	 * Changes the parent ID for the widget

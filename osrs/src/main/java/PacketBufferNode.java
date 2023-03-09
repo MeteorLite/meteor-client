@@ -3,66 +3,83 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ji")
+@ObfuscatedName("kp")
 @Implements("PacketBufferNode")
 public class PacketBufferNode extends Node {
-    @ObfuscatedName("z")
-    @ObfuscatedSignature(
-            descriptor = "[Lji;"
-    )
-    static PacketBufferNode[] PacketBufferNode_packetBufferNodes = new PacketBufferNode[300];
-    @ObfuscatedName("j")
-    static int PacketBufferNode_packetBufferNodeCount = 0;
-    @ObfuscatedName("io")
-    @ObfuscatedSignature(
-            descriptor = "Lrs;"
-    )
-    static SpritePixels redHintArrowSprite;
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Ljv;"
-    )
-    ClientPacket clientPacket;
-    @ObfuscatedName("w")
-    int clientPacketLength;
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "Lru;"
-    )
-    public PacketBuffer packetBuffer;
-    @ObfuscatedName("s")
-    public int index;
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "[Lkp;"
+   )
+   @Export("PacketBufferNode_packetBufferNodes")
+   static PacketBufferNode[] PacketBufferNode_packetBufferNodes = new PacketBufferNode[300];
+   @ObfuscatedName("ao")
+   @Export("PacketBufferNode_packetBufferNodeCount")
+   static int PacketBufferNode_packetBufferNodeCount = 0;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lkb;"
+   )
+   @Export("clientPacket")
+   ClientPacket clientPacket;
+   @ObfuscatedName("al")
+   @Export("clientPacketLength")
+   int clientPacketLength;
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Lsq;"
+   )
+   @Export("packetBuffer")
+   public PacketBuffer packetBuffer;
+   @ObfuscatedName("ab")
+   @Export("index")
+   public int index;
 
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "(B)V",
-            garbageValue = "2"
-    )
-    public void release() {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "(I)V",
+      garbageValue = "-957261976"
+   )
+   @Export("release")
+   public void release() {
       if (PacketBufferNode_packetBufferNodeCount < PacketBufferNode_packetBufferNodes.length) {
          PacketBufferNode_packetBufferNodes[++PacketBufferNode_packetBufferNodeCount - 1] = this;
       }
    }
 
-   @ObfuscatedName("v")
+   @ObfuscatedName("as")
    @ObfuscatedSignature(
-      descriptor = "(I)[Lck;",
-      garbageValue = "-1678569517"
+      descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+      garbageValue = "1565722343"
    )
-   static class86[] method1537() {
-      return new class86[]{class86.field886, class86.field882, class86.field884, class86.field888, class86.field885, class86.field883};
-   }
+   public static String method1544(String var0) {
+      StringBuilder var1 = new StringBuilder(var0.length());
+      int var2 = 0;
+      int var3 = -1;
 
-   @ObfuscatedName("lz")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "1"
-   )
-   static final void method1538() {
-      for(int var0 = 0; var0 < Players.Players_count; ++var0) {
-         Player var1 = Client.players[Players.Players_indices[var0]];
-         var1.clearIsInFriendsChat();
+      for(int var4 = 0; var4 < var0.length(); ++var4) {
+         char var5 = var0.charAt(var4);
+         if (var5 == '<') {
+            var1.append(var0.substring(var2, var4));
+            var3 = var4;
+         } else if (var5 == '>' && var3 != -1) {
+            String var6 = var0.substring(var3 + 1, var4);
+            var3 = -1;
+            if (var6.equals("lt")) {
+               var1.append("<");
+            } else if (var6.equals("gt")) {
+               var1.append(">");
+            } else if (var6.equals("br")) {
+               var1.append("\n");
+            }
+
+            var2 = var4 + 1;
+         }
       }
 
+      if (var2 < var0.length()) {
+         var1.append(var0.substring(var2, var0.length()));
+      }
+
+      return var1.toString();
    }
 }

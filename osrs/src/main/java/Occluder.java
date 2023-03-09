@@ -1,77 +1,88 @@
-import java.applet.Applet;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hx")
+@ObfuscatedName("io")
 @Implements("Occluder")
 public final class Occluder {
-    @ObfuscatedName("th")
-    static int cameraMoveToX;
-    @ObfuscatedName("f")
-    int minTileX;
-    @ObfuscatedName("w")
-    int maxTileX;
-    @ObfuscatedName("v")
-    int minTileY;
-    @ObfuscatedName("s")
-    int maxTileY;
-    @ObfuscatedName("z")
-    int type;
-    @ObfuscatedName("j")
-    int minX;
-    @ObfuscatedName("i")
-    int maxX;
-    @ObfuscatedName("n")
-    int minZ;
-    @ObfuscatedName("l")
-    int maxZ;
-    @ObfuscatedName("k")
-    int minY;
-    @ObfuscatedName("c")
-    int maxY;
-   @ObfuscatedName("r")
-   int field2066;
-   @ObfuscatedName("b")
-   int field2072;
-   @ObfuscatedName("m")
-   int field2071;
-   @ObfuscatedName("t")
-   int field2074;
-   @ObfuscatedName("h")
-   int field2073;
-   @ObfuscatedName("p")
-   int field2078;
-   @ObfuscatedName("o")
-   int field2077;
-
-   @ObfuscatedName("f")
+   @ObfuscatedName("co")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/applet/Applet;Ljava/lang/String;I)V",
-      garbageValue = "1977226602"
+      descriptor = "Lrm;"
    )
-   public static void method1251(Applet var0, String var1) {
-      class31.field100 = var0;
-      if (var1 != null) {
-         class31.field99 = var1;
-      }
+   @Export("loginType")
+   static LoginType loginType;
+   @ObfuscatedName("aj")
+   @Export("minTileX")
+   int minTileX;
+   @ObfuscatedName("al")
+   @Export("maxTileX")
+   int maxTileX;
+   @ObfuscatedName("ac")
+   @Export("minTileY")
+   int minTileY;
+   @ObfuscatedName("ab")
+   @Export("maxTileY")
+   int maxTileY;
+   @ObfuscatedName("an")
+   @Export("type")
+   int type;
+   @ObfuscatedName("ao")
+   @Export("minX")
+   int minX;
+   @ObfuscatedName("av")
+   @Export("maxX")
+   int maxX;
+   @ObfuscatedName("aq")
+   @Export("minZ")
+   int minZ;
+   @ObfuscatedName("ap")
+   @Export("maxZ")
+   int maxZ;
+   @ObfuscatedName("ar")
+   @Export("minY")
+   int minY;
+   @ObfuscatedName("ak")
+   @Export("maxY")
+   int maxY;
+   @ObfuscatedName("ax")
+   int field2067;
+   @ObfuscatedName("as")
+   int field2068;
+   @ObfuscatedName("ay")
+   int field2056;
+   @ObfuscatedName("am")
+   int field2070;
+   @ObfuscatedName("az")
+   int field2059;
+   @ObfuscatedName("ae")
+   int field2072;
+   @ObfuscatedName("au")
+   int field2069;
 
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "(S)[Lej;",
+      garbageValue = "22012"
+   )
+   static class125[] method1252() {
+      return new class125[]{class125.field1194, class125.field1193, class125.field1189, class125.field1188, class125.field1190};
    }
 
-   @ObfuscatedName("af")
+   @ObfuscatedName("iw")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)V",
-      garbageValue = "-76"
+      descriptor = "(IIB)I",
+      garbageValue = "-3"
    )
-   static void method1250(String var0) {
-      String var1;
-      if (var0 != null && !var0.isEmpty() && var0.charAt(0) != '#') {
-         var1 = var0;
-      } else {
-         var1 = "";
+   static int method1251(int var0, int var1) {
+      int var2 = var1 - 334;
+      if (var2 < 0) {
+         var2 = 0;
+      } else if (var2 > 100) {
+         var2 = 100;
       }
 
-      Login.field762 = var1;
+      int var3 = (Client.zoomWidth - Client.zoomHeight) * var2 / 100 + Client.zoomHeight;
+      return var0 * var3 / 256;
    }
 }

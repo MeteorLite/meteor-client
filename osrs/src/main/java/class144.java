@@ -2,63 +2,60 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ep")
-public class class144 extends class139 {
-    @ObfuscatedName("ep")
-    @ObfuscatedSignature(
-            descriptor = "Llm;"
-    )
-    static Archive archive4;
-   @ObfuscatedName("f")
-   int field1317;
-   @ObfuscatedName("w")
-   int field1313;
-   @ObfuscatedName("v")
-   int field1315;
-   @ObfuscatedName("s")
-   int field1316;
+@ObfuscatedName("fk")
+public class class144 extends class140 {
+   @ObfuscatedName("av")
+   @Export("SpriteBuffer_spriteHeights")
+   public static int[] SpriteBuffer_spriteHeights;
+   @ObfuscatedName("ap")
+   @Export("SpriteBuffer_pixels")
+   public static byte[][] SpriteBuffer_pixels;
+   @ObfuscatedName("aj")
+   int field1308;
+   @ObfuscatedName("al")
+   byte field1309;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lex;"
+      descriptor = "Lfo;"
    )
-   final class142 this$0;
+   final class143 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Lex;)V"
+      descriptor = "(Lfo;)V"
    )
-   class144(class142 var1) {
+   class144(class143 var1) {
       this.this$0 = var1;
+      this.field1308 = -1;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Lrd;S)V",
-            garbageValue = "-5782"
-    )
-    void vmethod3254(Buffer var1) {
-      this.field1317 = var1.readInt();
-      this.field1316 = var1.readInt();
-      this.field1313 = var1.readUnsignedByte();
-      this.field1315 = var1.readUnsignedByte();
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(Lsy;I)V",
+      garbageValue = "-1979280996"
+   )
+   @Export("vmethod3254")
+   void vmethod3254(Buffer var1) {
+      this.field1308 = var1.readUnsignedShort();
+      this.field1309 = var1.readByte();
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(Leb;B)V",
-            garbageValue = "-26"
-    )
-    void vmethod3248(ClanSettings var1) {
-      var1.method799(this.field1317, this.field1316, this.field1313, this.field1315);
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(Lfi;B)V",
+      garbageValue = "29"
+   )
+   @Export("vmethod3248")
+   void vmethod3248(ClanSettings var1) {
+      var1.method795(this.field1308, this.field1309);
    }
 
-    @ObfuscatedName("ky")
-    @ObfuscatedSignature(
-            descriptor = "(IIIIIIII)V",
-            garbageValue = "-1463294808"
-    )
-    static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-      if (class153.loadInterface(var0)) {
-         class85.updateInterface(WorldMapLabel.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
-      }
+   @ObfuscatedName("ii")
+   @ObfuscatedSignature(
+      descriptor = "(B)Lnj;",
+      garbageValue = "82"
+   )
+   @Export("getScriptEvents")
+   public static NodeDeque getScriptEvents() {
+      return Client.scriptEvents;
    }
 }

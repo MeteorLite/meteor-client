@@ -1,133 +1,85 @@
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.math.BigInteger;
-import java.net.URL;
-import java.net.URLConnection;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("by")
+@ObfuscatedName("cu")
 public class class70 {
-   @ObfuscatedName("f")
-   static final BigInteger field737 = new BigInteger("10001", 16);
-   @ObfuscatedName("w")
-   static final BigInteger field736 = new BigInteger("a7902ee1812735d843652eecfdde4912bfedd478f177374c0294648fb49bbd88547018a7ef9a722512bca091413e35645f8120d67e4497f0d3ed6be6659c7e9a26b273993523273937e636dadde2bdd032e414dbf42dc78a83b7b87f92f5a7248ba59d646a4211612168c23b8e4053b2cddf8725205b42b6ece8636e54050027", 16);
+   @ObfuscatedName("an")
+   static final BigInteger field711 = new BigInteger("80782894952180643741752986186714059433953886149239752893425047584684715842049");
+   @ObfuscatedName("ao")
+   static final BigInteger field712 = new BigInteger("7237300117305667488707183861728052766358166655052137727439795191253340127955075499635575104901523446809299097934591732635674173519120047404024393881551683");
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(Li;I)Ls;",
-      garbageValue = "-1042973543"
+      descriptor = "(Lne;IIB)[Lsn;",
+      garbageValue = "58"
    )
-   public static class3 method423(class6 var0) {
-      switch(var0.field10) {
-      case 0:
-         return new class0();
-      default:
-         throw new IllegalArgumentException();
-      }
-   }
-
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      descriptor = "(I)J",
-      garbageValue = "716176413"
-   )
-   static long method418() {
-      try {
-         URL var0 = new URL(class310.method1760("services", false) + "m=accountappeal/login.ws");
-         URLConnection var1 = var0.openConnection();
-         var1.setRequestProperty("connection", "close");
-         var1.setDoInput(true);
-         var1.setDoOutput(true);
-         var1.setConnectTimeout(5000);
-         OutputStreamWriter var2 = new OutputStreamWriter(var1.getOutputStream());
-         var2.write("data1=req");
-         var2.flush();
-         InputStream var3 = var1.getInputStream();
-         Buffer var4 = new Buffer(new byte[1000]);
-
-         do {
-            int var5 = var3.read(var4.array, var4.offset, 1000 - var4.offset);
-            if (var5 == -1) {
-               var4.offset = 0;
-               long var7 = var4.readLong();
-               return var7;
-            }
-
-            var4.offset += var5;
-         } while(var4.offset < 1000);
-
-         return 0L;
-      } catch (Exception var9) {
-         return 0L;
-      }
-   }
-
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(II)Lba;",
-            garbageValue = "249838937"
-    )
-    static Script getScript(int var0) {
-      Script var1 = (Script)Script.Script_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
+   public static SpritePixels[] method416(AbstractArchive var0, int var1, int var2) {
+      byte[] var4 = var0.takeFile(var1, var2);
+      boolean var3;
+      if (var4 == null) {
+         var3 = false;
       } else {
-         byte[] var2 = class12.archive12.takeFile(var0, 0);
-         if (var2 == null) {
-            return null;
+         class212.SpriteBuffer_decode(var4);
+         var3 = true;
+      }
+
+      return !var3 ? null : ViewportMouse.method1296();
+   }
+
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(Lsy;II)V",
+      garbageValue = "1835049871"
+   )
+   public static void method418(Buffer var0, int var1) {
+      if (JagexCache.JagexCache_randomDat != null) {
+         try {
+            JagexCache.JagexCache_randomDat.seek(0L);
+            JagexCache.JagexCache_randomDat.write(var0.array, var1, 24);
+         } catch (Exception var3) {
+            ;
+         }
+      }
+
+   }
+
+   @ObfuscatedName("lc")
+   @ObfuscatedSignature(
+      descriptor = "(II)V",
+      garbageValue = "1262575388"
+   )
+   static final void method417(int var0) {
+      var0 = Math.min(Math.max(var0, 0), 255);
+      if (var0 != WorldMapSectionType.clientPreferences.getCurrentMusicVolume()) {
+         if (WorldMapSectionType.clientPreferences.getCurrentMusicVolume() == 0 && Client.currentTrackGroupId != -1) {
+            class163.method853(class308.archive6, Client.currentTrackGroupId, 0, var0, false);
+            Client.playingJingle = false;
+         } else if (var0 == 0) {
+            class258.method1464();
+            Client.playingJingle = false;
+         } else if (class293.musicPlayerStatus != 0) {
+            class368.musicTrackVolume = var0;
          } else {
-            var1 = WorldMapLabelSize.newScript(var2);
-            Script.Script_cached.put(var1, (long)var0);
-            return var1;
-         }
-      }
-   }
-
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      descriptor = "(IIII)Lrs;",
-      garbageValue = "1805295704"
-   )
-   static SpritePixels method421(int var0, int var1, int var2) {
-      return (SpritePixels)WorldMapRegion.WorldMapRegion_cachedSprites.get(ParamComposition.method993(var0, var1, var2));
-   }
-
-   @ObfuscatedName("t")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "298475872"
-   )
-   public static int method420(int var0) {
-      class133 var2 = (class133)SequenceDefinition.SequenceDefinition_cachedModel.get((long)var0);
-      class133 var1;
-      if (var2 != null) {
-         var1 = var2;
-      } else {
-         var2 = Login.method425(SequenceDefinition.SequenceDefinition_animationsArchive, class16.SequenceDefinition_skeletonsArchive, var0, false);
-         if (var2 != null) {
-            SequenceDefinition.SequenceDefinition_cachedModel.put(var2, (long)var0);
+            class293.midiPcmStream.setPcmStreamVolume(var0);
          }
 
-         var1 = var2;
+         WorldMapSectionType.clientPreferences.setCurrentMusicVolume(var0);
       }
 
+   }
+
+   @ObfuscatedName("nm")
+   @ObfuscatedSignature(
+      descriptor = "(II)Lst;",
+      garbageValue = "745575289"
+   )
+   static class471 method419(int var0) {
+      class471 var1 = (class471)Client.Widget_cachedFonts.get((long)var0);
       if (var1 == null) {
-         return 2;
-      } else {
-         return var1.method719() ? 0 : 1;
+         var1 = new class471(class320.field3001, var0);
       }
-   }
 
-    @ObfuscatedName("o")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-            garbageValue = "-1481261244"
-    )
-    static void setLoginResponseString(String var0, String var1, String var2) {
-      Login.Login_response1 = var0;
-      Login.Login_response2 = var1;
-      Login.Login_response3 = var2;
+      return var1;
    }
 }

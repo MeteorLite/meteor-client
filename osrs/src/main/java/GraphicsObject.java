@@ -3,32 +3,42 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bb")
+@ObfuscatedName("cq")
 @Implements("GraphicsObject")
 public class GraphicsObject extends Renderable {
-    @ObfuscatedName("f")
-    int id;
-    @ObfuscatedName("w")
-    int cycleStart;
-    @ObfuscatedName("v")
-    int plane;
-    @ObfuscatedName("s")
-    int x;
-    @ObfuscatedName("z")
-    int z;
-    @ObfuscatedName("j")
-    int y;
-    @ObfuscatedName("i")
-    @ObfuscatedSignature(
-            descriptor = "Lge;"
-    )
-    SequenceDefinition sequenceDefinition;
-    @ObfuscatedName("n")
-    int frame;
-    @ObfuscatedName("l")
-    int frameCycle;
-    @ObfuscatedName("k")
-    boolean isFinished;
+   @ObfuscatedName("aj")
+   @Export("id")
+   int id;
+   @ObfuscatedName("al")
+   @Export("cycleStart")
+   int cycleStart;
+   @ObfuscatedName("ac")
+   @Export("plane")
+   int plane;
+   @ObfuscatedName("ab")
+   @Export("x")
+   int x;
+   @ObfuscatedName("an")
+   @Export("y")
+   int y;
+   @ObfuscatedName("ao")
+   @Export("z")
+   int z;
+   @ObfuscatedName("av")
+   @ObfuscatedSignature(
+      descriptor = "Lhx;"
+   )
+   @Export("sequenceDefinition")
+   SequenceDefinition sequenceDefinition;
+   @ObfuscatedName("aq")
+   @Export("frame")
+   int frame;
+   @ObfuscatedName("ap")
+   @Export("frameCycle")
+   int frameCycle;
+   @ObfuscatedName("ar")
+   @Export("isFinished")
+   boolean isFinished;
 
    GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       this.frame = 0;
@@ -40,22 +50,23 @@ public class GraphicsObject extends Renderable {
       this.y = var4;
       this.z = var5;
       this.cycleStart = var7 + var6;
-      int var8 = MouseRecorder.SpotAnimationDefinition_get(this.id).sequence;
+      int var8 = DevicePcmPlayerProvider.SpotAnimationDefinition_get(this.id).sequence;
       if (var8 != -1) {
          this.isFinished = false;
-         this.sequenceDefinition = class85.SequenceDefinition_get(var8);
+         this.sequenceDefinition = Coord.SequenceDefinition_get(var8);
       } else {
          this.isFinished = true;
       }
 
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(II)V",
-            garbageValue = "-1391547294"
-    )
-    final void advance(int var1) {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(II)V",
+      garbageValue = "-1172204333"
+   )
+   @Export("advance")
+   final void advance(int var1) {
       if (!this.isFinished) {
          this.frameCycle += var1;
          if (!this.sequenceDefinition.isCachedModelIdSet()) {
@@ -69,7 +80,7 @@ public class GraphicsObject extends Renderable {
             }
          } else {
             this.frame += var1;
-            if (this.frame >= this.sequenceDefinition.method1060()) {
+            if (this.frame >= this.sequenceDefinition.method1066()) {
                this.isFinished = true;
             }
          }
@@ -77,13 +88,14 @@ public class GraphicsObject extends Renderable {
       }
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(I)Lhs;",
-            garbageValue = "922199662"
-    )
-    protected final Model getModel() {
-      SpotAnimationDefinition var1 = MouseRecorder.SpotAnimationDefinition_get(this.id);
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(I)Lix;",
+      garbageValue = "-1998422213"
+   )
+   @Export("getModel")
+   protected final Model getModel() {
+      SpotAnimationDefinition var1 = DevicePcmPlayerProvider.SpotAnimationDefinition_get(this.id);
       Model var2;
       if (!this.isFinished) {
          var2 = var1.getModel(this.frame);

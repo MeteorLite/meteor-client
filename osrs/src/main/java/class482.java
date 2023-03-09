@@ -2,45 +2,64 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rm")
-public class class482 {
-    @ObfuscatedName("sm")
-    @ObfuscatedSignature(
-            descriptor = "Lfm;"
-    )
-    static ClanChannel guestClanChannel;
-   @ObfuscatedName("f")
-   public final int field4059;
-   @ObfuscatedName("w")
-   public Object field4060;
+@ObfuscatedName("sg")
+public class class482 implements class352 {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lsg;"
+   )
+   public static final class482 field4023 = new class482(5, 0);
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lsg;"
+   )
+   public static final class482 field4017 = new class482(3, 2);
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Lsg;"
+   )
+   static final class482 field4018 = new class482(2, 5);
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "Lsg;"
+   )
+   static final class482 field4016 = new class482(1, 6);
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "Lsg;"
+   )
+   static final class482 field4020 = new class482(0, 7);
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "Lsg;"
+   )
+   static final class482 field4021 = new class482(4, 8);
+   @ObfuscatedName("av")
+   final int field4022;
+   @ObfuscatedName("aq")
+   final int field4019;
 
-   public class482(int var1) {
-      this.field4059 = var1;
+   class482(int var1, int var2) {
+      this.field4022 = var1;
+      this.field4019 = var2;
    }
 
-   public class482(int var1, Object var2) {
-      this.field4059 = var1;
-      this.field4060 = var2;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "-1409646049"
+   )
+   @Export("rsOrdinal")
+   public int rsOrdinal() {
+      return this.field4019;
    }
 
-    @ObfuscatedName("hashCode")
-    public int hashCode() {
-      return super.hashCode();
-   }
-
-    @ObfuscatedName("equals")
-    public boolean equals(Object var1) {
-      if (!(var1 instanceof class482)) {
-         return false;
-      } else {
-         class482 var2 = (class482)var1;
-         if (var2.field4060 == null && this.field4060 != null) {
-            return false;
-         } else if (this.field4060 == null && var2.field4060 != null) {
-            return false;
-         } else {
-            return this.field4059 == var2.field4059 && var2.field4060.equals(this.field4060);
-         }
-      }
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "(I)Z",
+      garbageValue = "-1427661354"
+   )
+   public boolean method2484() {
+      return this == field4017;
    }
 }

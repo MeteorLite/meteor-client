@@ -279,10 +279,4 @@ public interface RSActor extends RSRenderable, Actor
 	@Import("combatLevelChange")
 	@Override
 	int getCombatLevelOverride();
-
-
-	@Import("instantTurn")
-	@Override
-	boolean instantTurn();
-
 }

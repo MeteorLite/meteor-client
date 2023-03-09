@@ -2,43 +2,49 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fv")
+@ObfuscatedName("gx")
 public class class173 {
-   @ObfuscatedName("s")
-   public String field1442;
-   @ObfuscatedName("z")
-   public float[] field1446;
-   @ObfuscatedName("j")
-   public int field1443;
-   @ObfuscatedName("i")
-   public int field1444;
-   @ObfuscatedName("n")
-   public int field1445;
+   @ObfuscatedName("ws")
+   @Export("foundItemIndex")
+   static int foundItemIndex;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Leo;"
+   )
+   public UrlRequest field1427;
+   @ObfuscatedName("al")
+   public float[] field1426;
    // $FF: synthetic field
    @ObfuscatedSignature(
-           descriptor = "Lfs;"
+      descriptor = "Lgs;"
    )
+   @Export("this$0")
    @ObfuscatedName("this$0")
-   final class166 this$0;
+   final class167 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Lfs;)V"
+      descriptor = "(Lgs;)V"
    )
-   class173(class166 var1) {
+   class173(class167 var1) {
       this.this$0 = var1;
-      this.field1446 = new float[4];
-      this.field1443 = 1;
-      this.field1444 = 1;
-      this.field1445 = 0;
+      this.field1426 = new float[4];
    }
 
-    @ObfuscatedName("li")
-    @ObfuscatedSignature(
-            descriptor = "(Lkz;I)I",
-            garbageValue = "-182721901"
-    )
-    static int getWidgetFlags(Widget var0) {
-      IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32));
-      return var1 != null ? var1.integer : var0.flags;
+   @ObfuscatedName("ak")
+   @ObfuscatedSignature(
+      descriptor = "(Lmy;IB)V",
+      garbageValue = "1"
+   )
+   @Export("Widget_setKeyIgnoreHeld")
+   static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+      if (var0.field2885 == null) {
+         throw new RuntimeException();
+      } else {
+         if (var0.field2976 == null) {
+            var0.field2976 = new int[var0.field2885.length];
+         }
+
+         var0.field2976[var1] = Integer.MAX_VALUE;
+      }
    }
 }

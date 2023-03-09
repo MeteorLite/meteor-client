@@ -27,5 +27,5 @@ public interface RSFriendSystem
 	void addIgnore$api(String username);
 
 	@Import("removeIgnore")
-	void removeIgnore$api(String username);
+	void removeIgnore$api(String username, boolean confirmToJagex);
 }

@@ -5,21 +5,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oc")
+@ObfuscatedName("pr")
 @Implements("BufferedNetSocket")
 public class BufferedNetSocket extends AbstractSocket {
-    @ObfuscatedName("f")
-    Socket socket;
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lox;"
-    )
-    BufferedSource source;
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "Los;"
-    )
-    BufferedSink sink;
+   @ObfuscatedName("ax")
+   @ObfuscatedSignature(
+      descriptor = "Llh;"
+   )
+   @Export("musicTrack")
+   public static MusicTrack musicTrack;
+   @ObfuscatedName("aj")
+   @Export("socket")
+   Socket socket;
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lpx;"
+   )
+   @Export("source")
+   BufferedSource source;
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Lpg;"
+   )
+   @Export("sink")
+   BufferedSink sink;
 
    public BufferedNetSocket(Socket var1, int var2, int var3) throws IOException {
       this.socket = var1;
@@ -31,57 +40,63 @@ public class BufferedNetSocket extends AbstractSocket {
       this.sink = new BufferedSink(this.socket.getOutputStream(), var3);
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(II)Z",
-            garbageValue = "-38626951"
-    )
-    public boolean isAvailable(int var1) throws IOException {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(II)Z",
+      garbageValue = "-1511735162"
+   )
+   @Export("isAvailable")
+   public boolean isAvailable(int var1) throws IOException {
       return this.source.isAvailable(var1);
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "50"
-    )
-    public int available() throws IOException {
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "-1330081033"
+   )
+   @Export("available")
+   public int available() throws IOException {
       return this.source.available();
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "-1455058201"
-    )
-    public int readUnsignedByte() throws IOException {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "(B)I",
+      garbageValue = "-16"
+   )
+   @Export("readUnsignedByte")
+   public int readUnsignedByte() throws IOException {
       return this.source.readUnsignedByte();
    }
 
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "([BIII)I",
-            garbageValue = "2061560315"
-    )
-    public int read(byte[] var1, int var2, int var3) throws IOException {
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "([BIIB)I",
+      garbageValue = "0"
+   )
+   @Export("read")
+   public int read(byte[] var1, int var2, int var3) throws IOException {
       return this.source.read(var1, var2, var3);
    }
 
-    @ObfuscatedName("z")
-    @ObfuscatedSignature(
-            descriptor = "([BIIS)V",
-            garbageValue = "26113"
-    )
-    public void write(byte[] var1, int var2, int var3) throws IOException {
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "([BIII)V",
+      garbageValue = "-1968026935"
+   )
+   @Export("write")
+   public void write(byte[] var1, int var2, int var3) throws IOException {
       this.sink.write(var1, var2, var3);
    }
 
-    @ObfuscatedName("j")
-    @ObfuscatedSignature(
-            descriptor = "(B)V",
-            garbageValue = "2"
-    )
-    public void close() {
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "(B)V",
+      garbageValue = "-105"
+   )
+   @Export("close")
+   public void close() {
       this.sink.close();
 
       try {
@@ -93,8 +108,9 @@ public class BufferedNetSocket extends AbstractSocket {
       this.source.close();
    }
 
-    @ObfuscatedName("finalize")
-    protected void finalize() {
+   @Export("finalize")
+   @ObfuscatedName("finalize")
+   protected void finalize() {
       this.close();
    }
 }

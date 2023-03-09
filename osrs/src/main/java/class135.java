@@ -1,122 +1,91 @@
+import java.lang.management.GarbageCollectorMXBean;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eq")
-public enum class135 implements class349 {
-   @ObfuscatedName("f")
+@ObfuscatedName("fa")
+public enum class135 implements class352 {
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Leq;"
+      descriptor = "Lfa;"
    )
-   field1286(2, 0),
-   @ObfuscatedName("w")
+   field1276(0, 0),
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "Leq;"
+      descriptor = "Lfa;"
    )
-   field1283(4, 1),
-   @ObfuscatedName("v")
+   field1267(1, 1),
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "Leq;"
+      descriptor = "Lfa;"
    )
-   field1284(0, 2),
-   @ObfuscatedName("s")
+   field1268(2, 2),
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "Leq;"
+      descriptor = "Lfa;"
    )
-   field1285(3, 3),
-   @ObfuscatedName("z")
+   field1269(3, 3),
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Leq;"
+      descriptor = "Lfa;"
    )
-   field1290(1, 4);
+   field1277(4, 4),
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "Lfa;"
+   )
+   field1271(5, 5),
+   @ObfuscatedName("av")
+   @ObfuscatedSignature(
+      descriptor = "Lfa;"
+   )
+   field1272(6, 6),
+   @ObfuscatedName("aq")
+   @ObfuscatedSignature(
+      descriptor = "Lfa;"
+   )
+   field1273(7, 7),
+   @ObfuscatedName("ap")
+   @ObfuscatedSignature(
+      descriptor = "Lfa;"
+   )
+   field1274(8, 8);
 
-   @ObfuscatedName("uq")
-   static int field1289;
-   @ObfuscatedName("j")
-   public final int field1287;
-    @ObfuscatedName("i")
-    final int id;
+   @ObfuscatedName("bp")
+   @Export("garbageCollector")
+   static GarbageCollectorMXBean garbageCollector;
+   @ObfuscatedName("fg")
+   @ObfuscatedSignature(
+      descriptor = "Lmx;"
+   )
+   @Export("archive4")
+   static Archive archive4;
+   @ObfuscatedName("ar")
+   final int field1270;
+   @ObfuscatedName("ak")
+   final int field1278;
 
    class135(int var3, int var4) {
-      this.field1287 = var3;
-      this.id = var4;
+      this.field1270 = var3;
+      this.field1278 = var4;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "3"
-    )
-    public int rsOrdinal() {
-      return this.id;
-   }
-
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(III)Lkz;",
-            garbageValue = "-1176907573"
-    )
-    public static Widget getWidgetChild(int var0, int var1) {
-      Widget var2 = class133.getWidget(var0);
-      if (var1 == -1) {
-         return var2;
-      } else {
-         return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null;
-      }
-   }
-
-   @ObfuscatedName("v")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(I)[Lch;",
-      garbageValue = "381687737"
+      descriptor = "(I)I",
+      garbageValue = "-1409646049"
    )
-   static class85[] method736() {
-      return new class85[]{class85.field875, class85.field878, class85.field874, class85.field876, class85.field881};
+   @Export("rsOrdinal")
+   public int rsOrdinal() {
+      return this.field1278;
    }
 
-    @ObfuscatedName("kd")
-    @ObfuscatedSignature(
-            descriptor = "([Lkz;IB)V",
-            garbageValue = "10"
-    )
-    static final void runComponentCloseListeners(Widget[] var0, int var1) {
-      for(int var2 = 0; var2 < var0.length; ++var2) {
-         Widget var3 = var0[var2];
-         if (var3 != null) {
-            if (var3.type == 0) {
-               if (var3.children != null) {
-                  runComponentCloseListeners(var3.children, var1);
-               }
-
-               InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
-               if (var4 != null) {
-                  class147.runIntfCloseListeners(var4.group, var1);
-               }
-            }
-
-            ScriptEvent var5;
-            if (var1 == 0 && var3.onDialogAbort != null) {
-               var5 = new ScriptEvent();
-               var5.widget = var3;
-               var5.args = var3.onDialogAbort;
-               WorldMapAreaData.runScriptEvent(var5);
-            }
-
-            if (var1 == 1 && var3.onSubChange != null) {
-               if (var3.childIndex >= 0) {
-                  Widget var6 = class133.getWidget(var3.id);
-                  if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
-                     continue;
-                  }
-               }
-
-               var5 = new ScriptEvent();
-               var5.widget = var3;
-               var5.args = var3.onSubChange;
-               WorldMapAreaData.runScriptEvent(var5);
-            }
-         }
-      }
-
+   @ObfuscatedName("cj")
+   @ObfuscatedSignature(
+      descriptor = "(II)Ljava/lang/Object;",
+      garbageValue = "1765946215"
+   )
+   static Object method734(int var0) {
+      return class148.method778((class467)SpriteMask.findEnumerated(class467.method2367(), var0));
    }
 }

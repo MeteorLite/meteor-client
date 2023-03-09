@@ -1,16 +1,19 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ni")
+@ObfuscatedName("oa")
 public class class365 {
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
+   @Export("cp1252AsciiExtension")
+   static final char[] cp1252AsciiExtension = new char[]{'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'};
+
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "75"
+      descriptor = "(I)I",
+      garbageValue = "1239270328"
    )
-   static void method1926(int var0) {
-      class416.field3769 = var0;
-      class416.field3770 = new class416[var0];
-      class388.field3666 = 0;
+   static int method1939() {
+      return class28.KeyHandler_keyCodes.length;
    }
 }

@@ -271,7 +271,7 @@ public abstract class RSWidgetMixin implements RSWidget {
         return items;
     }
 
-    @Inject
+/*    @Inject
     @Override
     public WidgetItem getWidgetItem(int index) {
         int[] itemIds = getItemIds();
@@ -310,7 +310,7 @@ public abstract class RSWidgetMixin implements RSWidget {
         Rectangle draggedBounds = new Rectangle(itemX + dragOffsetX, itemY + dragOffsetY, ITEM_SLOT_SIZE,
                 ITEM_SLOT_SIZE);
         return new WidgetItem(itemId - 1, itemQuantity, index, bounds, this, draggedBounds);
-    }
+    }*/
 
     @Inject
     @Override
@@ -524,7 +524,7 @@ public abstract class RSWidgetMixin implements RSWidget {
             Arrays.fill(getChildren(), null);
         }
     }
-
+/*
     @Inject
     @Override
     public boolean isWidgetItemDragged(int index) {
@@ -545,7 +545,7 @@ public abstract class RSWidgetMixin implements RSWidget {
         }
 
         return new Point(dragOffsetX, dragOffsetY);
-    }
+    }*/
 
 
     @Inject

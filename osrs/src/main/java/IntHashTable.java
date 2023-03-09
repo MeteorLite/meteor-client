@@ -3,11 +3,15 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("sp")
+@ObfuscatedName("td")
 @Implements("IntHashTable")
 public class IntHashTable {
-    @ObfuscatedName("f")
-    int[] array;
+   @ObfuscatedName("av")
+   @Export("musicTrackGroupId")
+   public static int musicTrackGroupId;
+   @ObfuscatedName("aj")
+   @Export("array")
+   int[] array;
 
    public IntHashTable(int[] var1) {
       int var2;
@@ -33,12 +37,13 @@ public class IntHashTable {
 
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(IB)I",
-            garbageValue = "-50"
-    )
-    public int get(int var1) {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(II)I",
+      garbageValue = "-1554439415"
+   )
+   @Export("get")
+   public int get(int var1) {
       int var2 = (this.array.length >> 1) - 1;
       int var3 = var1 & var2;
 

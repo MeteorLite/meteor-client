@@ -3,28 +3,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qg")
+@ObfuscatedName("rh")
 @Implements("NodeHashTable")
 public final class NodeHashTable {
-    @ObfuscatedName("f")
-    int size;
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "[Lpr;"
-    )
-    Node[] buckets;
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "Lpr;"
-    )
-    Node currentGet;
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "Lpr;"
-    )
-    Node current;
-    @ObfuscatedName("z")
-    int index = 0;
+   @ObfuscatedName("aj")
+   @Export("size")
+   int size;
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "[Lru;"
+   )
+   @Export("buckets")
+   Node[] buckets;
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Lru;"
+   )
+   @Export("currentGet")
+   Node currentGet;
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "Lru;"
+   )
+   @Export("current")
+   Node current;
+   @ObfuscatedName("an")
+   @Export("index")
+   int index = 0;
 
    public NodeHashTable(int var1) {
       this.size = var1;
@@ -38,11 +43,12 @@ public final class NodeHashTable {
 
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(J)Lpr;"
-    )
-    public Node get(long var1) {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(J)Lru;"
+   )
+   @Export("get")
+   public Node get(long var1) {
       Node var3 = this.buckets[(int)(var1 & (long)(this.size - 1))];
 
       for(this.currentGet = var3.previous; var3 != this.currentGet; this.currentGet = this.currentGet.previous) {
@@ -57,11 +63,12 @@ public final class NodeHashTable {
       return null;
    }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(Lpr;J)V"
-    )
-    public void put(Node var1, long var2) {
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "(Lru;J)V"
+   )
+   @Export("put")
+   public void put(Node var1, long var2) {
       if (var1.next != null) {
          var1.remove();
       }
@@ -74,20 +81,22 @@ public final class NodeHashTable {
       var1.key = var2;
    }
 
-    @ObfuscatedName("v")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node first() {
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("first")
+   public Node first() {
       this.index = 0;
       return this.next();
    }
 
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "()Lpr;"
-    )
-    public Node next() {
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "()Lru;"
+   )
+   @Export("next")
+   public Node next() {
       Node var1;
       if (this.index > 0 && this.buckets[this.index - 1] != this.current) {
          var1 = this.current;

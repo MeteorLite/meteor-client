@@ -14,33 +14,29 @@ int getOffset();
 @Import("offset")
 void setOffset(int offset);
 
-@Import("method2401")
+@Import("readUnsignedShortA")
 @Override
 int readUByteAdd();
 
-@Import("readUnsignedShortA")
+@Import("method2430")
 @Override
 int readUByteNeg();
 
-@Import("readUnsignedByteA")
+@Import("method2405")
 @Override
 int readUByteSub();
 
-@Import("method2404")
+@Import("method2432")
 @Override
 byte readByteAdd();
 
-@Import("method2431")
+@Import("method2396")
 @Override
 byte readByteNeg();
 
-@Import("method2442")
+@Import("method2433")
 @Override
 byte readByteSub();
-
-    @Import("writeMediumMiddle")
-    @Override
-    void writeMediumMiddle$api(int i);
 
 @Import("readUnsignedByte")
 @Override
@@ -78,19 +74,19 @@ void writeByte$api(int i);
 @Override
 void writeInt$api(int i);
 
-@Import("method2441")
+@Import("method2454")
 @Override
 void writeIntLE$api(int i);
 
-@Import("method2414")
+@Import("method2444")
 @Override
 void writeIntIME(int i);
 
-@Import("method2382")
+@Import("method2445")
 @Override
 void writeIntME$api(int i);
 
-@Import("writeShortA")
+@Import("method2434")
 @Override
 void writeShortLE$api(int i);
 
@@ -102,11 +98,11 @@ void writeShortAdd(int i);
 @Override
 void writeShortAddLE(int i);
 
-@Import("readUnsignedShortLEA")
+@Import("method2437")
 @Override
 int readUShortLE();
 
-@Import("readUnsignedByteS")
+@Import("readUnsignedShortLEA")
 @Override
 int readUShortAdd();
 
@@ -114,7 +110,7 @@ int readUShortAdd();
 @Override
 int readShortAddLE();
 
-@Import("method2409")
+@Import("method2440")
 @Override
 int readShortLE();
 
@@ -122,15 +118,15 @@ int readShortLE();
 @Override
 int readInt$api();
 
-@Import("method2415")
+@Import("method2455")
 @Override
 int readIntLE$api();
 
-@Import("method2416")
+@Import("readUnsignedByteS")
 @Override
 int readIntIME();
 
-@Import("method2417")
+@Import("method2447")
 @Override
 int readIntME();
 
@@ -146,7 +142,7 @@ void writeLongMedium$api(long l);
 @Override
 void writeShort$api(int i);
 
-@Import("method2399")
+@Import("method2467")
 @Override
 void writeByteAdd(int i);
 
@@ -154,7 +150,7 @@ void writeByteAdd(int i);
 @Override
 void writeByteSub(int i);
 
-@Import("writeByteS")
+@Import("method2409")
 @Override
 void writeByteNeg(int i);
 

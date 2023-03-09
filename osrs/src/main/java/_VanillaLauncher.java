@@ -26,6 +26,8 @@ public class _VanillaLauncher implements AppletStub, AppletContext {
     static Map<String, String> properties = new HashMap<>();
     static Map<String, String> parameters = new HashMap<>();
 
+    public static boolean isVanilla = false;
+
     public static void main(String[] args) {
         INSTANCE.load();
     }

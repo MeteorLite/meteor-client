@@ -3,54 +3,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("of")
+@ObfuscatedName("pp")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Lof;"
+      descriptor = "Lpp;"
    )
-   static final DefaultsGroup field3749 = new DefaultsGroup(3);
-    @ObfuscatedName("w")
-    final int group;
+   static final DefaultsGroup field3713 = new DefaultsGroup(3);
+   @ObfuscatedName("al")
+   @Export("group")
+   final int group;
 
    DefaultsGroup(int var1) {
       this.group = var1;
    }
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "(IB)Lgc;",
-      garbageValue = "7"
+      descriptor = "(I)V",
+      garbageValue = "141700645"
    )
-   public static FloorUnderlayDefinition method2155(int var0) {
-      FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var0);
-         var1 = new FloorUnderlayDefinition();
-         if (var2 != null) {
-            var1.decode(new Buffer(var2), var0);
-         }
+   static void method2166() {
+      Players.Players_count = 0;
 
-         var1.postDecode();
-         FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var1, (long)var0);
-         return var1;
+      for(int var0 = 0; var0 < 2048; ++var0) {
+         Players.cachedAppearanceBuffer[var0] = null;
+         Players.playerMovementSpeeds[var0] = MoveSpeed.WALK;
       }
-   }
 
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(III)I",
-            garbageValue = "-1039832513"
-    )
-    static int ItemContainer_getCount(int var0, int var1) {
-      ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-      if (var2 == null) {
-         return 0;
-      } else {
-         return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
-      }
    }
 }

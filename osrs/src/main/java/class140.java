@@ -1,62 +1,68 @@
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ed")
-public class class140 extends class139 {
-    @ObfuscatedName("l")
-    public static byte[][] SpriteBuffer_pixels;
-   @ObfuscatedName("f")
-   int field1302;
-   @ObfuscatedName("w")
-   boolean field1301;
-   // $FF: synthetic field
+@ObfuscatedName("fj")
+public abstract class class140 extends Node {
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Lex;"
+      descriptor = "(Lsy;I)V",
+      garbageValue = "-1979280996"
    )
-   final class142 this$0;
+   @Export("vmethod3254")
+   abstract void vmethod3254(Buffer var1);
 
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(Lex;)V"
+      descriptor = "(Lfi;B)V",
+      garbageValue = "29"
    )
-   class140(class142 var1) {
-      this.this$0 = var1;
-      this.field1302 = -1;
+   @Export("vmethod3248")
+   abstract void vmethod3248(ClanSettings var1);
+
+   @ObfuscatedName("aj")
+   public static String method753(long var0) {
+      Calendar.Calendar_calendar.setTime(new Date(var0));
+      int var2 = Calendar.Calendar_calendar.get(7);
+      int var3 = Calendar.Calendar_calendar.get(5);
+      int var4 = Calendar.Calendar_calendar.get(2);
+      int var5 = Calendar.Calendar_calendar.get(1);
+      int var6 = Calendar.Calendar_calendar.get(11);
+      int var7 = Calendar.Calendar_calendar.get(12);
+      int var8 = Calendar.Calendar_calendar.get(13);
+      return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT";
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(Lrd;S)V",
-            garbageValue = "-5782"
-    )
-    void vmethod3254(Buffer var1) {
-      this.field1302 = var1.readUnsignedShort();
-      this.field1301 = var1.readUnsignedByte() == 1;
-   }
-
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "(Leb;B)V",
-            garbageValue = "-26"
-    )
-    void vmethod3248(ClanSettings var1) {
-      var1.method797(this.field1302, this.field1301);
-   }
-
-   @ObfuscatedName("j")
+   @ObfuscatedName("jm")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1251147466"
+      descriptor = "(IIIIII)Z",
+      garbageValue = "-1531736711"
    )
-   static void method754() {
-      Messages.Messages_channels.clear();
-      Messages.Messages_hashTable.clear();
-      Messages.Messages_queue.clear();
-      Messages.Messages_count = 0;
+   static final boolean method752(int var0, int var1, int var2, int var3, int var4) {
+      PendingSpawn var5 = null;
+
+      for(PendingSpawn var6 = (PendingSpawn)Client.pendingSpawns.last(); var6 != null; var6 = (PendingSpawn)Client.pendingSpawns.previous()) {
+         if (var0 == var6.plane && var6.x == var1 && var2 == var6.y && var3 == var6.type) {
+            var5 = var6;
+            break;
+         }
+      }
+
+      if (var5 != null) {
+         var5.field922 = var4;
+         return true;
+      } else {
+         return false;
+      }
    }
 
-   @ObfuscatedName("j")
-   public static int method751(long var0) {
-      return (int)(var0 >>> 7 & 127L);
+   @ObfuscatedName("np")
+   @ObfuscatedSignature(
+      descriptor = "(ZB)V",
+      garbageValue = "71"
+   )
+   static void method749(boolean var0) {
+      Client.leftClickOpensMenu = var0;
    }
 }

@@ -1,114 +1,81 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("js")
+@ObfuscatedName("kz")
 @Implements("ZoneOperation")
 public class ZoneOperation {
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2547 = new ZoneOperation(15);
-   @ObfuscatedName("w")
+   public static final ZoneOperation field2522 = new ZoneOperation(5);
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2540 = new ZoneOperation(14);
-   @ObfuscatedName("v")
+   public static final ZoneOperation field2521 = new ZoneOperation(5);
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2541 = new ZoneOperation(16);
-   @ObfuscatedName("s")
+   public static final ZoneOperation field2520 = new ZoneOperation(14);
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2542 = new ZoneOperation(7);
-   @ObfuscatedName("z")
+   public static final ZoneOperation field2523 = new ZoneOperation(4);
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2543 = new ZoneOperation(7);
-   @ObfuscatedName("j")
+   public static final ZoneOperation field2519 = new ZoneOperation(7);
+   @ObfuscatedName("ao")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2546 = new ZoneOperation(4);
-   @ObfuscatedName("i")
+   public static final ZoneOperation field2518 = new ZoneOperation(4);
+   @ObfuscatedName("av")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2544 = new ZoneOperation(5);
-   @ObfuscatedName("n")
+   public static final ZoneOperation field2524 = new ZoneOperation(11);
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2539 = new ZoneOperation(2);
-   @ObfuscatedName("l")
+   public static final ZoneOperation field2525 = new ZoneOperation(14);
+   @ObfuscatedName("ap")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2551 = new ZoneOperation(6);
-   @ObfuscatedName("k")
+   public static final ZoneOperation field2526 = new ZoneOperation(16);
+   @ObfuscatedName("ar")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2548 = new ZoneOperation(4);
-   @ObfuscatedName("c")
+   public static final ZoneOperation field2527 = new ZoneOperation(2);
+   @ObfuscatedName("ak")
    @ObfuscatedSignature(
-      descriptor = "Ljs;"
+      descriptor = "Lkz;"
    )
-   public static final ZoneOperation field2549 = new ZoneOperation(14);
-   @ObfuscatedName("r")
-   @ObfuscatedSignature(
-      descriptor = "Ljs;"
-   )
-   public static final ZoneOperation field2550 = new ZoneOperation(5);
-   @ObfuscatedName("b")
-   @ObfuscatedSignature(
-      descriptor = "Ljs;"
-   )
-   public static final ZoneOperation field2545 = new ZoneOperation(11);
+   public static final ZoneOperation field2528 = new ZoneOperation(6);
+   @ObfuscatedName("jz")
+   static int field2529;
 
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "15"
+      garbageValue = "5"
    )
    ZoneOperation(int var1) {
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
-            garbageValue = "1260897554"
-    )
-    static void addGameMessage(int var0, String var1, String var2) {
-      class134.addChatMessage(var0, var1, var2, (String)null);
-   }
-
-   @ObfuscatedName("v")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "1433537546"
+      descriptor = "(II)Z",
+      garbageValue = "836863508"
    )
-   static int method1535(int var0, int var1) {
-      ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-      if (var2 == null) {
-         return 0;
-      } else if (var1 == -1) {
-         return 0;
-      } else {
-         int var3 = 0;
-
-         for(int var4 = 0; var4 < var2.quantities.length; ++var4) {
-            if (var2.ids[var4] == var1) {
-               var3 += var2.quantities[var4];
-            }
-         }
-
-         return var3;
-      }
+   public static boolean method1542(int var0) {
+      return (var0 >> 20 & 1) != 0;
    }
 }

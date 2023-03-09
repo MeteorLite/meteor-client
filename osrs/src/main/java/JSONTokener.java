@@ -10,13 +10,17 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("JSONTokener")
 @ObfuscatedName("org/json/JSONTokener")
 public class JSONTokener {
-    @ObfuscatedName("useLastChar")
+   @Export("useLastChar")
+   @ObfuscatedName("useLastChar")
    boolean useLastChar;
-    @ObfuscatedName("reader")
+   @Export("reader")
+   @ObfuscatedName("reader")
    Reader reader;
-    @ObfuscatedName("index")
+   @Export("index")
+   @ObfuscatedName("index")
    int index;
-    @ObfuscatedName("lastChar")
+   @Export("lastChar")
+   @ObfuscatedName("lastChar")
    char lastChar;
 
    public JSONTokener(String var1) {
@@ -29,8 +33,9 @@ public class JSONTokener {
       this.index = 0;
    }
 
-    @ObfuscatedName("nextClean")
-    public char nextClean() throws JSONException {
+   @Export("nextClean")
+   @ObfuscatedName("nextClean")
+   public char nextClean() throws JSONException {
       char var1;
       do {
          var1 = this.next();
@@ -39,8 +44,9 @@ public class JSONTokener {
       return var1;
    }
 
-    @ObfuscatedName("next")
-    public char next() throws JSONException {
+   @Export("next")
+   @ObfuscatedName("next")
+   public char next() throws JSONException {
       if (this.useLastChar) {
          this.useLastChar = false;
          if (this.lastChar != 0) {
@@ -67,8 +73,9 @@ public class JSONTokener {
       }
    }
 
-    @ObfuscatedName("nextString")
-    public String nextTo(char var1) throws JSONException {
+   @Export("nextTo")
+   @ObfuscatedName("nextString")
+   public String nextTo(char var1) throws JSONException {
       StringBuffer var3 = new StringBuffer();
 
       while(true) {
@@ -132,13 +139,15 @@ public class JSONTokener {
       }
    }
 
-    @ObfuscatedName("toString")
-    public String toString() {
+   @Export("toString")
+   @ObfuscatedName("toString")
+   public String toString() {
       return " at character " + this.index;
    }
 
-    @ObfuscatedName("back")
-    public void back() throws JSONException {
+   @Export("back")
+   @ObfuscatedName("back")
+   public void back() throws JSONException {
       if (!this.useLastChar && this.index > 0) {
          --this.index;
          this.useLastChar = true;
@@ -147,16 +156,18 @@ public class JSONTokener {
       }
    }
 
-    @ObfuscatedName("syntaxError")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/lang/String;)Lorg/json/JSONException;"
-    )
-    public JSONException syntaxError(String var1) {
+   @Export("syntaxError")
+   @ObfuscatedName("syntaxError")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/String;)Lorg/json/JSONException;"
+   )
+   public JSONException syntaxError(String var1) {
       return new JSONException(var1 + this.toString());
    }
 
-    @ObfuscatedName("next")
-    public String next(int var1) throws JSONException {
+   @Export("next")
+   @ObfuscatedName("next")
+   public String next(int var1) throws JSONException {
       if (var1 == 0) {
          return "";
       } else {
@@ -187,8 +198,9 @@ public class JSONTokener {
       }
    }
 
-    @ObfuscatedName("nextValue")
-    public Object nextValue() throws JSONException {
+   @Export("nextValue")
+   @ObfuscatedName("nextValue")
+   public Object nextValue() throws JSONException {
       char var1 = this.nextClean();
       switch(var1) {
       case '"':

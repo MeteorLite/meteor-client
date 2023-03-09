@@ -19,6 +19,8 @@ import eventbus.events.ClickPacket
 import eventbus.events.ConfigChanged
 import eventbus.events.GameTick
 import eventbus.events.MenuOptionClicked
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import meteor.Configuration.EXTERNALS_DIR
 import meteor.api.loot.Interact
 import meteor.api.ClientPackets
@@ -246,13 +248,20 @@ object Main : ApplicationScope, EventSubscriber() {
         SessionManager.start()
         startupTimer.stop()
 
-
-        if (meteorConfig.authKey().isNotEmpty()) {
-            rmiPingTimer.start()
-            val response = handshakeClient.connect().handshake(meteorConfig.authKey())
-            rmiPingTimer.stop()
-            logger.debug(response)
-            logger.debug("RMI round-trip - ${rmiPingTimer.getTime(TimeUnit.MILLISECONDS)}ms")
+        GlobalScope.launch {
+            // Auth on separate thread (prevent lockup on failure)
+            if (meteorConfig.authKey().isNotEmpty()) {
+                rmiPingTimer.start()
+                try {
+                    val response = handshakeClient.connect().handshake(meteorConfig.authKey())
+                    rmiPingTimer.stop()
+                    logger.debug(response)
+                    logger.debug("RMI round-trip - ${rmiPingTimer.getTime(TimeUnit.MILLISECONDS)}ms")
+                } catch (e: Exception) {
+                    println("Meteor RMI handshake failure")
+                    e.printStackTrace()
+                }
+            }
         }
 
         logger.debug("Meteor started in ${startupTimer.getTime(TimeUnit.MILLISECONDS)}ms")

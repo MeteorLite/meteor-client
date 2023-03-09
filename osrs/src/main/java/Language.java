@@ -1,85 +1,100 @@
-import java.text.ParseException;
-import java.util.Date;
 import java.util.Locale;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mn")
+@ObfuscatedName("nq")
 @Implements("Language")
-public class Language implements class349 {
-   @ObfuscatedName("f")
+public class Language implements class352 {
+   @ObfuscatedName("wx")
    @ObfuscatedSignature(
-           descriptor = "Lmn;"
+      descriptor = "Lnb;"
    )
+   public static class350 field3504;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lnq;"
+   )
+   @Export("Language_EN")
    public static final Language Language_EN;
-   @ObfuscatedName("w")
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "Lmn;"
+      descriptor = "Lnq;"
    )
-   static final Language field3527;
-   @ObfuscatedName("v")
+   static final Language field3497;
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-           descriptor = "Lmn;"
+      descriptor = "Lnq;"
    )
+   @Export("Language_FR")
    public static final Language Language_FR;
-   @ObfuscatedName("s")
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "Lmn;"
+      descriptor = "Lnq;"
    )
-   static final Language field3533;
-   @ObfuscatedName("z")
+   static final Language field3499;
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lmn;"
+      descriptor = "Lnq;"
    )
-   static final Language field3528;
-   @ObfuscatedName("j")
+   static final Language field3500;
+   @ObfuscatedName("ao")
    @ObfuscatedSignature(
-           descriptor = "Lmn;"
+      descriptor = "Lnq;"
    )
+   @Export("Language_ES")
    public static final Language Language_ES;
-   @ObfuscatedName("i")
+   @ObfuscatedName("av")
    @ObfuscatedSignature(
-      descriptor = "Lmn;"
+      descriptor = "Lnq;"
    )
-   static final Language field3524;
-   @ObfuscatedName("c")
+   static final Language field3502;
+   @ObfuscatedName("ak")
    @ObfuscatedSignature(
-      descriptor = "[Lmn;"
+      descriptor = "[Lnq;"
    )
-   public static final Language[] field3530;
-   @ObfuscatedName("n")
-   final String field3525;
-   @ObfuscatedName("l")
+   public static final Language[] field3498;
+   @ObfuscatedName("ax")
+   @Export("Tiles_lightness")
+   static int[] Tiles_lightness;
+   @ObfuscatedName("aq")
+   final String field3496;
+   @ObfuscatedName("ap")
+   @Export("language")
    final String language;
-   @ObfuscatedName("k")
+   @ObfuscatedName("ar")
+   @Export("id")
    final int id;
 
    static {
-      Language_EN = new Language("EN", "en", "English", ModeWhere.field3544, 0, "GB");
-      field3527 = new Language("DE", "de", "German", ModeWhere.field3544, 1, "DE");
-      Language_FR = new Language("FR", "fr", "French", ModeWhere.field3544, 2, "FR");
-      field3533 = new Language("PT", "pt", "Portuguese", ModeWhere.field3544, 3, "BR");
-      field3528 = new Language("NL", "nl", "Dutch", ModeWhere.field3538, 4, "NL");
-      Language_ES = new Language("ES", "es", "Spanish", ModeWhere.field3538, 5, "ES");
-      field3524 = new Language("ES_MX", "es-mx", "Spanish (Latin American)", ModeWhere.field3544, 6, "MX");
-      Language[] var0 = new Language[]{Language_ES, field3527, Language_EN, field3524, Language_FR, field3533, field3528};
-      field3530 = new Language[var0.length];
-      Language[] var2 = var0;
+      Language_EN = new Language("EN", "en", "English", ModeWhere.field3514, 0, "GB");
+      field3497 = new Language("DE", "de", "German", ModeWhere.field3514, 1, "DE");
+      Language_FR = new Language("FR", "fr", "French", ModeWhere.field3514, 2, "FR");
+      field3499 = new Language("PT", "pt", "Portuguese", ModeWhere.field3514, 3, "BR");
+      field3500 = new Language("NL", "nl", "Dutch", ModeWhere.field3521, 4, "NL");
+      Language_ES = new Language("ES", "es", "Spanish", ModeWhere.field3521, 5, "ES");
+      field3502 = new Language("ES_MX", "es-mx", "Spanish (Latin American)", ModeWhere.field3514, 6, "MX");
+      Language[] var0 = method1894();
+      field3498 = new Language[var0.length];
+      Language[] var1 = var0;
 
-      for(int var3 = 0; var3 < var2.length; ++var3) {
-         Language var4 = var2[var3];
-         field3530[var4.id] = var4;
+      for(int var2 = 0; var2 < var1.length; ++var2) {
+         Language var3 = var1[var2];
+         if (field3498[var3.id] != null) {
+            throw new IllegalStateException();
+         }
+
+         field3498[var3.id] = var3;
       }
 
    }
 
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lmm;ILjava/lang/String;)V"
+      descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lnm;ILjava/lang/String;)V"
    )
    Language(String var1, String var2, String var3, ModeWhere var4, int var5, String var6) {
-      this.field3525 = var1;
+      this.field3496 = var1;
       this.language = var2;
       this.id = var5;
       if (var6 != null) {
@@ -90,117 +105,167 @@ public class Language implements class349 {
 
    }
 
-   @ObfuscatedName("f")
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-           descriptor = "(B)I",
-           garbageValue = "3"
+      descriptor = "(I)I",
+      garbageValue = "-1409646049"
    )
+   @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("v")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-           descriptor = "(I)Ljava/lang/String;",
-           garbageValue = "275896102"
+      descriptor = "(I)Ljava/lang/String;",
+      garbageValue = "835968120"
    )
+   @Export("getLanguage")
    String getLanguage() {
       return this.language;
    }
 
+   @Export("toString")
    @ObfuscatedName("toString")
    public String toString() {
       return this.getLanguage().toLowerCase(Locale.ENGLISH);
    }
 
-   @ObfuscatedName("v")
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "(Lrd;II)V",
-      garbageValue = "-2115703573"
+      descriptor = "(I)[Lnq;",
+      garbageValue = "1775890171"
    )
-   public static void method1877(Buffer var0, int var1) {
-      if (JagexCache.JagexCache_randomDat != null) {
-         try {
-            JagexCache.JagexCache_randomDat.seek(0L);
-            JagexCache.JagexCache_randomDat.write(var0.array, var1, 24);
-         } catch (Exception var3) {
-            ;
+   static Language[] method1894() {
+      return new Language[]{Language_EN, field3502, field3499, field3500, field3497, Language_ES, Language_FR};
+   }
+
+   @ObfuscatedName("hn")
+   @ObfuscatedSignature(
+      descriptor = "(II)V",
+      garbageValue = "-1699075309"
+   )
+   @Export("playSong")
+   static void playSong(int var0) {
+      if (var0 == -1 && !Client.playingJingle) {
+         class258.method1464();
+      } else if (var0 != -1 && var0 != Client.currentTrackGroupId && WorldMapSectionType.clientPreferences.getCurrentMusicVolume() != 0 && !Client.playingJingle) {
+         NPC.method574(2, class308.archive6, var0, 0, WorldMapSectionType.clientPreferences.getCurrentMusicVolume(), false);
+      }
+
+      Client.currentTrackGroupId = var0;
+   }
+
+   @ObfuscatedName("hu")
+   @ObfuscatedSignature(
+      descriptor = "(Ldh;IIB)V",
+      garbageValue = "101"
+   )
+   @Export("performPlayerAnimation")
+   static void performPlayerAnimation(Player var0, int var1, int var2) {
+      if (var0.sequence == var1 && var1 != -1) {
+         int var3 = Coord.SequenceDefinition_get(var1).replyMode;
+         if (var3 == 1) {
+            var0.sequenceFrame = 0;
+            var0.sequenceFrameCycle = 0;
+            var0.sequenceDelay = var2;
+            var0.currentSequenceFrameIndex = 0;
          }
+
+         if (var3 == 2) {
+            var0.currentSequenceFrameIndex = 0;
+         }
+      } else if (var1 == -1 || var0.sequence == -1 || Coord.SequenceDefinition_get(var1).forcedPriority >= Coord.SequenceDefinition_get(var0.sequence).forcedPriority) {
+         var0.sequence = var1;
+         var0.sequenceFrame = 0;
+         var0.sequenceFrameCycle = 0;
+         var0.sequenceDelay = var2;
+         var0.currentSequenceFrameIndex = 0;
+         var0.field1004 = var0.pathLength;
       }
 
    }
 
-   @ObfuscatedName("n")
+   @ObfuscatedName("iz")
    @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1124742409"
+      descriptor = "(IIIIZI)V",
+      garbageValue = "-721081490"
    )
-   static boolean method1880() {
-      Date var0;
-      try {
-         var0 = class376.method2014();
-      } catch (ParseException var4) {
-         HealthBarUpdate.method507("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900");
-         return false;
+   @Export("setViewportShape")
+   static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
+      if (var2 < 1) {
+         var2 = 1;
       }
 
-      if (var0 == null) {
-         return false;
+      if (var3 < 1) {
+         var3 = 1;
+      }
+
+      int var5 = var3 - 334;
+      int var6;
+      if (var5 < 0) {
+         var6 = Client.field418;
+      } else if (var5 >= 100) {
+         var6 = Client.field616;
       } else {
-         boolean var3 = class86.method472(var0);
-         boolean var2 = ArchiveDiskAction.method1791(var0);
-         if (!var2) {
-            HealthBarUpdate.method507("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900");
-            return false;
-         } else {
-            if (!var3) {
-               MusicPatchNode2.field2701 = 8388607;
-            } else {
-               MusicPatchNode2.field2701 = (int)(var0.getTime() / 86400000L - 11745L);
+         var6 = (Client.field616 - Client.field418) * var5 / 100 + Client.field418;
+      }
+
+      int var7 = var3 * var6 * 512 / (var2 * 334);
+      int var8;
+      int var9;
+      short var10;
+      if (var7 < Client.field621) {
+         var10 = Client.field621;
+         var6 = var10 * var2 * 334 / (var3 * 512);
+         if (var6 > Client.field620) {
+            var6 = Client.field620;
+            var8 = var3 * var6 * 512 / (var10 * 334);
+            var9 = (var2 - var8) / 2;
+            if (var4) {
+               Rasterizer2D.Rasterizer2D_resetClip();
+               Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216);
+               Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216);
             }
 
-            return true;
+            var0 += var9;
+            var2 -= var9 * 2;
          }
-      }
-   }
+      } else if (var7 > Client.field622) {
+         var10 = Client.field622;
+         var6 = var10 * var2 * 334 / (var3 * 512);
+         if (var6 < Client.field619) {
+            var6 = Client.field619;
+            var8 = var10 * var2 * 334 / (var6 * 512);
+            var9 = (var3 - var8) / 2;
+            if (var4) {
+               Rasterizer2D.Rasterizer2D_resetClip();
+               Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216);
+               Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216);
+            }
 
-   @ObfuscatedName("ix")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-319090450"
-   )
-   static final void method1881() {
-      for(PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
-         if (var0.endCycle == -1) {
-            var0.startCycle = 0;
-            class204.method1076(var0);
-         } else {
-            var0.remove();
-         }
-      }
-
-   }
-
-   @ObfuscatedName("ia")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)V",
-      garbageValue = "-1722162852"
-   )
-   static final void method1878(int var0, int var1, int var2, int var3) {
-      for(int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
-         if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
-            Client.field591[var4] = true;
+            var1 += var9;
+            var3 -= var9 * 2;
          }
       }
 
+      Client.viewportZoom = var3 * var6 / 334;
+      if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
+         class28.method123(var2, var3);
+      }
+
+      Client.viewportOffsetX = var0;
+      Client.viewportOffsetY = var1;
+      Client.viewportWidth = var2;
+      Client.viewportHeight = var3;
    }
 
-   @ObfuscatedName("ki")
+   @ObfuscatedName("lr")
    @ObfuscatedSignature(
-      descriptor = "(Lkz;II)I",
-      garbageValue = "-1163445958"
+      descriptor = "(Lmy;II)I",
+      garbageValue = "-227067391"
    )
-   static final int method1879(Widget var0, int var1) {
+   static final int method1895(Widget var0, int var1) {
       if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) {
          try {
             int[] var2 = var0.cs1Instructions[var1];
@@ -235,12 +300,12 @@ public class Language implements class349 {
                if (var6 == 4) {
                   var9 = var2[var4++] << 16;
                   var9 += var2[var4++];
-                  var10 = class133.getWidget(var9);
+                  var10 = WorldMapSection1.getWidget(var9);
                   var11 = var2[var4++];
-                  if (var11 != -1 && (!TileItem.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
+                  if (var11 != -1 && (!ParamComposition.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
                      for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
                         if (var11 + 1 == var10.itemIds[var12]) {
-                           var7 += var10.itemQuantities[var12];
+                           var7 += var10.field2963[var12];
                         }
                      }
                   }
@@ -259,7 +324,7 @@ public class Language implements class349 {
                }
 
                if (var6 == 8) {
-                  var7 = class387.localPlayer.combatLevel;
+                  var7 = BuddyRankComparator.localPlayer.combatLevel;
                }
 
                if (var6 == 9) {
@@ -273,9 +338,9 @@ public class Language implements class349 {
                if (var6 == 10) {
                   var9 = var2[var4++] << 16;
                   var9 += var2[var4++];
-                  var10 = class133.getWidget(var9);
+                  var10 = WorldMapSection1.getWidget(var9);
                   var11 = var2[var4++];
-                  if (var11 != -1 && (!TileItem.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
+                  if (var11 != -1 && (!ParamComposition.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
                      for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
                         if (var11 + 1 == var10.itemIds[var12]) {
                            var7 = 999999999;
@@ -301,7 +366,7 @@ public class Language implements class349 {
 
                if (var6 == 14) {
                   var9 = var2[var4++];
-                  var7 = SecureRandomFuture.getVarbit(var9);
+                  var7 = class17.getVarbit(var9);
                }
 
                if (var6 == 15) {
@@ -317,11 +382,11 @@ public class Language implements class349 {
                }
 
                if (var6 == 18) {
-                  var7 = (class387.localPlayer.x >> 7) + ParamComposition.baseX;
+                  var7 = (BuddyRankComparator.localPlayer.x >> 7) + GameEngine.baseX;
                }
 
                if (var6 == 19) {
-                  var7 = (class387.localPlayer.y >> 7) + Client.baseY;
+                  var7 = (BuddyRankComparator.localPlayer.y >> 7) + class178.baseY;
                }
 
                if (var6 == 20) {
@@ -356,14 +421,5 @@ public class Language implements class349 {
       } else {
          return -2;
       }
-   }
-
-   @ObfuscatedName("ks")
-   @ObfuscatedSignature(
-           descriptor = "(B)Z",
-           garbageValue = "-97"
-   )
-   static boolean getTapToDrop() {
-      return Client.tapToDrop;
    }
 }

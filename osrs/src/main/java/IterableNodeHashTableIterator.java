@@ -4,44 +4,50 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qi")
+@ObfuscatedName("rp")
 @Implements("IterableNodeHashTableIterator")
 public class IterableNodeHashTableIterator implements Iterator {
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "Lqu;"
-    )
-    IterableNodeHashTable hashTable;
-    @ObfuscatedName("w")
-    @ObfuscatedSignature(
-            descriptor = "Lpr;"
-    )
-    Node head;
-    @ObfuscatedName("v")
-    int index;
-    @ObfuscatedName("s")
-    @ObfuscatedSignature(
-            descriptor = "Lpr;"
-    )
-    Node last = null;
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "Lrz;"
+   )
+   @Export("hashTable")
+   IterableNodeHashTable hashTable;
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Lru;"
+   )
+   @Export("head")
+   Node head;
+   @ObfuscatedName("ac")
+   @Export("index")
+   int index;
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "Lru;"
+   )
+   @Export("last")
+   Node last = null;
 
    @ObfuscatedSignature(
-      descriptor = "(Lqu;)V"
+      descriptor = "(Lrz;)V"
    )
    IterableNodeHashTableIterator(IterableNodeHashTable var1) {
       this.hashTable = var1;
       this.start();
    }
 
-    @ObfuscatedName("f")
-    void start() {
+   @ObfuscatedName("aj")
+   @Export("start")
+   void start() {
       this.head = this.hashTable.buckets[0].previous;
       this.index = 1;
       this.last = null;
    }
 
-    @ObfuscatedName("next")
-    public Object next() {
+   @Export("next")
+   @ObfuscatedName("next")
+   public Object next() {
       Node var1;
       if (this.hashTable.buckets[this.index - 1] != this.head) {
          var1 = this.head;
@@ -63,8 +69,9 @@ public class IterableNodeHashTableIterator implements Iterator {
       }
    }
 
-    @ObfuscatedName("hasNext")
-    public boolean hasNext() {
+   @Export("hasNext")
+   @ObfuscatedName("hasNext")
+   public boolean hasNext() {
       if (this.hashTable.buckets[this.index - 1] != this.head) {
          return true;
       } else {
@@ -81,13 +88,8 @@ public class IterableNodeHashTableIterator implements Iterator {
       }
    }
 
-    @ObfuscatedName("remove")
-    public void remove() {
-      if (this.last == null) {
-         throw new IllegalStateException();
-      } else {
-         this.last.remove();
-         this.last = null;
-      }
+   public void remove() {
+      this.last.remove();
+      this.last = null;
    }
 }

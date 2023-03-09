@@ -1,88 +1,159 @@
-import java.io.IOException;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dq")
-public class class129 implements class119 {
-   @ObfuscatedName("w")
+@ObfuscatedName("ed")
+public class class129 implements class352 {
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "(Lln;Lln;ZIS)V",
-      garbageValue = "222"
+      descriptor = "Led;"
    )
-   static void method714(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
-      if (Login.clearLoginScreen) {
-         if (var3 == 4) {
-            ReflectionCheck.method171(4);
-         }
+   static final class129 field1254 = new class129(0, 0, (String)null, -1, -1);
+   @ObfuscatedName("al")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1236 = new class129(1, 1, (String)null, 0, 2);
+   @ObfuscatedName("ac")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1238 = new class129(2, 2, (String)null, 1, 2);
+   @ObfuscatedName("ab")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1237 = new class129(3, 3, (String)null, 2, 2);
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1249 = new class129(4, 4, (String)null, 3, 1);
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1239 = new class129(5, 5, (String)null, 4, 1);
+   @ObfuscatedName("av")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1240 = new class129(6, 6, (String)null, 5, 1);
+   @ObfuscatedName("aq")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1241 = new class129(7, 7, (String)null, 6, 3);
+   @ObfuscatedName("ap")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1242 = new class129(8, 8, (String)null, 7, 3);
+   @ObfuscatedName("ar")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1243 = new class129(9, 9, (String)null, 8, 3);
+   @ObfuscatedName("ak")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1244 = new class129(10, 10, (String)null, 0, 7);
+   @ObfuscatedName("ax")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1245 = new class129(11, 11, (String)null, 1, 7);
+   @ObfuscatedName("as")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1246 = new class129(12, 12, (String)null, 2, 7);
+   @ObfuscatedName("ay")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1247 = new class129(13, 13, (String)null, 3, 7);
+   @ObfuscatedName("am")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1248 = new class129(14, 14, (String)null, 4, 7);
+   @ObfuscatedName("az")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1235 = new class129(15, 15, (String)null, 5, 7);
+   @ObfuscatedName("ae")
+   @ObfuscatedSignature(
+      descriptor = "Led;"
+   )
+   static final class129 field1250 = new class129(16, 16, (String)null, 0, 5);
+   @ObfuscatedName("au")
+   final int field1253;
+   @ObfuscatedName("ag")
+   final int field1251;
+   @ObfuscatedName("at")
+   final int field1252;
 
-      } else {
-         if (var3 == 0) {
-            GrandExchangeOfferNameComparator.method1845(var2);
-         } else {
-            ReflectionCheck.method171(var3);
-         }
+   @ObfuscatedSignature(
+      descriptor = "(IILjava/lang/String;II)V",
+      garbageValue = "-1"
+   )
+   class129(int var1, int var2, String var3, int var4, int var5) {
+      this.field1253 = var1;
+      this.field1251 = var2;
+      this.field1252 = var4;
+   }
 
-         Rasterizer2D.Rasterizer2D_clear();
-         byte[] var4 = var0.takeFileByNames("title.jpg", "");
-         Login.leftTitleSprite = class266.method1505(var4);
-         class275.rightTitleSprite = Login.leftTitleSprite.mirrorHorizontally();
-         ObjectComposition.method1028(var1, Client.worldProperties);
-         class147.titleboxSprite = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", "");
-         Login.titlebuttonSprite = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", "");
-         class19.field64 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_large", "");
-         Canvas.field79 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "play_now_text", "");
-         VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_wide42,1", "");
-         Login.runesSprite = class125.method705(var1, "runes", "");
-         Login.title_muteSprite = class125.method705(var1, "title_mute", "");
-         Login.options_buttons_0Sprite = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", "");
-         ChatChannel.field828 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", "");
-         Login.options_buttons_2Sprite = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", "");
-         class100.field1079 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
-         WorldMapRectangle.field2360 = Login.options_buttons_0Sprite.subWidth;
-         class134.field1277 = Login.options_buttons_0Sprite.subHeight;
-         class305.field2809 = new LoginScreenAnimation(Login.runesSprite);
-         if (var2) {
-            Login.Login_username = "";
-            Login.Login_password = "";
-            Login.field761 = new String[8];
-            Login.field760 = 0;
-         }
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "-1409646049"
+   )
+   @Export("rsOrdinal")
+   public int rsOrdinal() {
+      return this.field1251;
+   }
 
-         UserComparator4.field1149 = 0;
-         InvDefinition.otp = "";
-         Login.field764 = true;
-         Login.worldSelectOpen = false;
-         if (!PacketWriter.clientPreferences.getTitleMusicDisabled()) {
-            WorldMapScaleHandler.method1501(2, class153.archive6, "scape main", "", 255, false);
-         } else {
-            class28.method110(2);
-         }
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(B)I",
+      garbageValue = "52"
+   )
+   int method711() {
+      return this.field1252;
+   }
 
-         if (NetCache.NetCache_socket != null) {
-            try {
-               Buffer var5 = new Buffer(4);
-               var5.writeByte(3);
-               var5.writeMedium(0);
-               NetCache.NetCache_socket.write(var5.array, 0, 4);
-            } catch (IOException var8) {
-               try {
-                  NetCache.NetCache_socket.close();
-               } catch (Exception var7) {
-                  ;
-               }
+   @ObfuscatedName("hl")
+   @ObfuscatedSignature(
+      descriptor = "(B)V",
+      garbageValue = "18"
+   )
+   static final void method712() {
+      int[] var0 = Players.Players_indices;
 
-               ++NetCache.NetCache_ioExceptions;
-               NetCache.NetCache_socket = null;
+      int var1;
+      for(var1 = 0; var1 < Players.Players_count; ++var1) {
+         Player var2 = Client.players[var0[var1]];
+         if (var2 != null && var2.overheadTextCyclesRemaining > 0) {
+            --var2.overheadTextCyclesRemaining;
+            if (var2.overheadTextCyclesRemaining == 0) {
+               var2.overheadText = null;
             }
          }
-
-         Login.clearLoginScreen = true;
-         Login.xPadding = (GameEngine.canvasWidth - 765) / 2;
-         Login.loginBoxX = Login.xPadding + 202;
-         class143.loginBoxCenter = Login.loginBoxX + 180;
-         Login.leftTitleSprite.drawAt(Login.xPadding, 0);
-         class275.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
-         class33.logoSprite.drawAt(Login.xPadding + 382 - class33.logoSprite.subWidth / 2, 18);
       }
+
+      for(var1 = 0; var1 < Client.npcCount; ++var1) {
+         int var4 = Client.npcIndices[var1];
+         NPC var3 = Client.npcs[var4];
+         if (var3 != null && var3.overheadTextCyclesRemaining > 0) {
+            --var3.overheadTextCyclesRemaining;
+            if (var3.overheadTextCyclesRemaining == 0) {
+               var3.overheadText = null;
+            }
+         }
+      }
+
    }
 }

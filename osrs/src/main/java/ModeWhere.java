@@ -5,94 +5,91 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mm")
+@ObfuscatedName("nm")
 @Implements("ModeWhere")
-public enum ModeWhere implements class349 {
-   @ObfuscatedName("f")
+public enum ModeWhere implements class352 {
+   @ObfuscatedName("aj")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3544("", 0, new class348[]{class348.field3521}),
-   @ObfuscatedName("w")
+   field3514("", 0, new class351[]{class351.field3493}),
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3536("", 1, new class348[]{class348.field3522, class348.field3521}),
-   @ObfuscatedName("v")
+   field3510("", 1, new class351[]{class351.field3492, class351.field3493}),
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3537("", 2, new class348[]{class348.field3522, class348.field3523, class348.field3521}),
-   @ObfuscatedName("s")
+   field3509("", 2, new class351[]{class351.field3492, class351.field3494, class351.field3493}),
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3538("", 3, new class348[]{class348.field3522}),
-   @ObfuscatedName("z")
+   field3521("", 3, new class351[]{class351.field3492}),
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3551("", 4),
-   @ObfuscatedName("j")
+   field3513("", 4),
+   @ObfuscatedName("ao")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3548("", 5, new class348[]{class348.field3522, class348.field3521}),
-   @ObfuscatedName("i")
+   field3511("", 5, new class351[]{class351.field3492, class351.field3493}),
+   @ObfuscatedName("av")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3539("", 6, new class348[]{class348.field3521}),
-   @ObfuscatedName("n")
+   field3515("", 6, new class351[]{class351.field3493}),
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3542("", 8, new class348[]{class348.field3522, class348.field3521}),
-   @ObfuscatedName("l")
+   field3520("", 8, new class351[]{class351.field3492, class351.field3493}),
+   @ObfuscatedName("ap")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3543("", 9, new class348[]{class348.field3522, class348.field3523}),
-   @ObfuscatedName("k")
+   field3517("", 9, new class351[]{class351.field3492, class351.field3494}),
+   @ObfuscatedName("ar")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3535("", 10, new class348[]{class348.field3522}),
-   @ObfuscatedName("c")
+   field3518("", 10, new class351[]{class351.field3492}),
+   @ObfuscatedName("ak")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3547("", 11, new class348[]{class348.field3522}),
-   @ObfuscatedName("r")
+   field3519("", 11, new class351[]{class351.field3492}),
+   @ObfuscatedName("ax")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3546("", 12, new class348[]{class348.field3522, class348.field3521}),
-   @ObfuscatedName("b")
+   field3522("", 12, new class351[]{class351.field3492, class351.field3493}),
+   @ObfuscatedName("as")
    @ObfuscatedSignature(
-      descriptor = "Lmm;"
+      descriptor = "Lnm;"
    )
-   field3540("", 13, new class348[]{class348.field3522});
+   field3516("", 13, new class351[]{class351.field3492});
 
-    @ObfuscatedName("tk")
-    static int cameraMoveToSpeed;
-    @ObfuscatedName("nf")
-    static int menuY;
-    @ObfuscatedName("m")
-    final int id;
-   @ObfuscatedName("t")
-   final Set field3549 = new HashSet();
+   @ObfuscatedName("ay")
+   @Export("id")
+   final int id;
+   @ObfuscatedName("am")
+   final Set field3523 = new HashSet();
 
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I[Lmd;)V"
+      descriptor = "(Ljava/lang/String;I[Lnu;)V"
    )
-   ModeWhere(String var3, int var4, class348[] var5) {
+   ModeWhere(String var3, int var4, class351[] var5) {
       this.id = var4;
-      class348[] var6 = var5;
+      class351[] var6 = var5;
 
       for(int var7 = 0; var7 < var6.length; ++var7) {
-         class348 var8 = var6[var7];
-         this.field3549.add(var8);
+         class351 var8 = var6[var7];
+         this.field3523.add(var8);
       }
 
    }
@@ -101,72 +98,56 @@ public enum ModeWhere implements class349 {
       this.id = var4;
    }
 
-    @ObfuscatedName("f")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "3"
-    )
-    public int rsOrdinal() {
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      descriptor = "(I)I",
+      garbageValue = "-1409646049"
+   )
+   @Export("rsOrdinal")
+   public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(ILkz;IIIII[FI)Lkz;",
-      garbageValue = "2073812484"
+      descriptor = "(S)I",
+      garbageValue = "16024"
    )
-   static Widget method1883(int var0, Widget var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
-      Widget var8 = new Widget();
-      var8.type = var0;
-      var8.parentId = var1.id;
-      var8.childIndex = var2;
-      var8.isIf3 = true;
-      var8.xAlignment = var3;
-      var8.yAlignment = var4;
-      var8.widthAlignment = var5;
-      var8.heightAlignment = var6;
-      var8.rawX = (int)(var7[0] * (float)var1.width);
-      var8.rawY = (int)((float)var1.height * var7[1]);
-      var8.rawWidth = (int)(var7[2] * (float)var1.width);
-      var8.rawHeight = (int)((float)var1.height * var7[3]);
-      return var8;
+   public static int method1900() {
+      return ++MouseHandler.MouseHandler_idleCycles - 1;
    }
 
-    @ObfuscatedName("lc")
-    @ObfuscatedSignature(
-            descriptor = "(IIII)Lcq;",
-            garbageValue = "-837606466"
-    )
-    static final InterfaceParent ifOpenSub(int var0, int var1, int var2) {
-      InterfaceParent var3 = new InterfaceParent();
-      var3.group = var1;
-      var3.type = var2;
-      Client.interfaceParents.put(var3, (long)var0);
-      class155.Widget_resetModelFrames(var1);
-      Widget var4 = class133.getWidget(var0);
-      LoginScreenAnimation.invalidateWidget(var4);
-      if (Client.meslayerContinueWidget != null) {
-         LoginScreenAnimation.invalidateWidget(Client.meslayerContinueWidget);
-         Client.meslayerContinueWidget = null;
-      }
-
-      AbstractWorldMapData.revalidateWidgetScroll(WorldMapLabel.Widget_interfaceComponents[var0 >> 16], var4, false);
-      SoundCache.runWidgetOnLoadListener(var1);
-      if (Client.rootInterface != -1) {
-         class147.runIntfCloseListeners(Client.rootInterface, 1);
-      }
-
-      return var3;
-   }
-
-   @ObfuscatedName("mq")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "0"
+      descriptor = "(B)V",
+      garbageValue = "114"
    )
-   static void method1885(int var0) {
-      if (var0 != Client.loginState) {
-         Client.loginState = var0;
+   static void method1899() {
+      if (Login.clearLoginScreen) {
+         WorldMapSprite.titleboxSprite = null;
+         Login.titlebuttonSprite = null;
+         Login.runesSprite = null;
+         Login.leftTitleSprite = null;
+         class419.rightTitleSprite = null;
+         Login.logoSprite = null;
+         class139.title_muteSprite = null;
+         Login.options_buttons_0Sprite = null;
+         Login.options_buttons_2Sprite = null;
+         WorldMapSection2.worldSelectBackSprites = null;
+         class279.worldSelectFlagSprites = null;
+         class353.worldSelectArrows = null;
+         class293.worldSelectStars = null;
+         FriendSystem.field664 = null;
+         ArchiveDiskActionHandler.field3410.method520();
+         class293.musicPlayerStatus = 1;
+         class364.musicTrackArchive = null;
+         IntHashTable.musicTrackGroupId = -1;
+         class293.musicTrackFileId = -1;
+         class368.musicTrackVolume = 0;
+         class293.musicTrackBoolean = false;
+         AbstractRasterProvider.pcmSampleLength = 2;
+         class166.method865(true);
+         Login.clearLoginScreen = false;
       }
    }
 }
