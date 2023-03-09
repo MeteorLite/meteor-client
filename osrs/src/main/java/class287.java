@@ -159,7 +159,7 @@ public class class287 {
          Client.mouseCrossState = 0;
          Client.destinationX = var0;
          Client.destinationY = var1;
-         var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2516, Client.packetWriter.isaacCipher);
+         var14 = UserComparator9.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
          var14.packetBuffer.writeShort(class178.baseY + var1);
          var14.packetBuffer.writeShortAdd(var0 + GameEngine.baseX);
          var14.packetBuffer.writeShortLE(var3);
@@ -648,7 +648,7 @@ public class class287 {
             Client.mouseCrossState = 0;
             Client.destinationX = var0;
             Client.destinationY = var1;
-            var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2498, Client.packetWriter.isaacCipher);
+            var14 = UserComparator9.getPacketBufferNode(ClientPacket.OPOBJ1, Client.packetWriter.isaacCipher);
             var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var14.packetBuffer.writeShortLEA(var3);
             var14.packetBuffer.writeShort(var0 + GameEngine.baseX);

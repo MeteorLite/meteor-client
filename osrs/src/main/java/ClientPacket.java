@@ -225,7 +225,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2516 = new ClientPacket(43, 7);
+   public static final ClientPacket OPOBJ2 = new ClientPacket(43, 7);
    @ObfuscatedName("bp")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -400,7 +400,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2498 = new ClientPacket(78, 7);
+   public static final ClientPacket OPOBJ1 = new ClientPacket(78, 7);
    @ObfuscatedName("dg")
    @ObfuscatedSignature(
       descriptor = "Lkb;"

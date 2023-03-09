@@ -89,11 +89,11 @@ object ClientPackets {
         worldY: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(23, 7)
+        val bufferNode = preparePacketBuffer(78, 7)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
-        bufferNode.packetBuffer.`writeShortAdd$api`(worldX)
-        bufferNode.packetBuffer.`writeShortLE$api`(objectID)
-        bufferNode.packetBuffer.`writeShort$api`(worldY)
+        bufferNode.packetBuffer.writeShortAddLE(objectID)
+        bufferNode.packetBuffer.`writeShort$api`(worldX)
+        bufferNode.packetBuffer.`writeShortLE$api`(worldY)
         return bufferNode
     }
 
