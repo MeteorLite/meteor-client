@@ -72,8 +72,8 @@ public class Frames extends DualNode {
       byte var4 = MoveSpeed.STATIONARY.speed;
       int var5;
       if ((var3 & 8192) != 0) {
-         var2.spotAnimation = var0.readUnsignedShortLEA();
-         var5 = var0.method2455();
+         var2.spotAnimation = var0.readUnsignedShortAdd();
+         var5 = var0.readIntLE();
          var2.spotAnimHeight = var5 >> 16;
          var2.spotAnimationStartCycle = (var5 & '\uffff') + Client.cycle;
          var2.spotAnimationFrame = 0;
@@ -91,19 +91,19 @@ public class Frames extends DualNode {
          var5 = var0.readUnsignedByte();
          byte[] var6 = new byte[var5];
          Buffer var7 = new Buffer(var6);
-         var0.readBytesAReverse(var6, 0, var5);
+         var0.readBytesAdd(var6, 0, var5);
          Players.cachedAppearanceBuffer[var1] = var7;
          var2.read(var7);
       }
 
       if ((var3 & 4096) != 0) {
-         var2.exactMoveDeltaX1 = var0.method2432();
-         var2.exactMoveDeltaY1 = var0.method2432();
-         var2.exactMoveDeltaX2 = var0.method2432();
-         var2.exactMoveDeltaY2 = var0.method2396();
+         var2.exactMoveDeltaX1 = var0.readByteAdd();
+         var2.exactMoveDeltaY1 = var0.readByteAdd();
+         var2.exactMoveDeltaX2 = var0.readByteAdd();
+         var2.exactMoveDeltaY2 = var0.readByteNeg();
          var2.exactMoveArrive1Cycle = var0.readUnsignedShort() + Client.cycle;
-         var2.exactMoveArrive2Cycle = var0.readUnsignedShortLE() + Client.cycle;
-         var2.exactMoveDirection = var0.method2437();
+         var2.exactMoveArrive2Cycle = var0.readUnsignedShortAddLE() + Client.cycle;
+         var2.exactMoveDirection = var0.readUnsignedShortLE();
          if (var2.hasMovementPending) {
             var2.exactMoveDeltaX1 += var2.tileX;
             var2.exactMoveDeltaY1 += var2.tileY;
@@ -126,7 +126,7 @@ public class Frames extends DualNode {
       int var12;
       int var13;
       if ((var3 & 4) != 0) {
-         var5 = var0.method2405();
+         var5 = var0._readUnsignedByteSub();
          int var10;
          int var11;
          int var14;
@@ -152,15 +152,15 @@ public class Frames extends DualNode {
             }
          }
 
-         var13 = var0.readUnsignedShortA();
+         var13 = var0.readUnsignedByteAdd();
          if (var13 > 0) {
             for(var14 = 0; var14 < var13; ++var14) {
                var8 = var0.readUShortSmart();
                var9 = var0.readUShortSmart();
                if (var9 != 32767) {
                   var10 = var0.readUShortSmart();
-                  var11 = var0.method2405();
-                  var12 = var9 > 0 ? var0.method2405() : var11;
+                  var11 = var0._readUnsignedByteSub();
+                  var12 = var9 > 0 ? var0._readUnsignedByteSub() : var11;
                   var2.addHealthBar(var8, Client.cycle, var9, var10, var11, var12);
                } else {
                   var2.removeHealthBar(var8);
@@ -170,14 +170,14 @@ public class Frames extends DualNode {
       }
 
       if ((var3 & 256) != 0) {
-         var4 = var0.method2433();
+         var4 = var0.readUnsignedByteSub();
       }
 
       if ((var3 & 1) != 0) {
-         var5 = var0.readUnsignedShortLEA();
-         PlayerType var17 = (PlayerType)SpriteMask.findEnumerated(MoveSpeed.PlayerType_values(), var0.method2405());
-         boolean var19 = var0.method2430() == 1;
-         var8 = var0.method2430();
+         var5 = var0.readUnsignedShortAdd();
+         PlayerType var17 = (PlayerType)SpriteMask.findEnumerated(MoveSpeed.PlayerType_values(), var0._readUnsignedByteSub());
+         boolean var19 = var0.readUnsignedByteNeg() == 1;
+         var8 = var0.readUnsignedByteNeg();
          var9 = var0.offset;
          if (var2.username != null && var2.appearance != null) {
             boolean var18 = false;
@@ -187,7 +187,7 @@ public class Frames extends DualNode {
 
             if (!var18 && Client.field540 == 0 && !var2.isHidden) {
                Players.field1079.offset = 0;
-               var0.method2448(Players.field1079.array, 0, var8);
+               var0.readBytesReversedAdd(Players.field1079.array, 0, var8);
                Players.field1079.offset = 0;
                String var15 = AbstractFont.escapeBrackets(class33.method136(class279.readString(Players.field1079)));
                var2.overheadText = var15.trim();
@@ -214,7 +214,7 @@ public class Frames extends DualNode {
       }
 
       if ((var3 & 16384) != 0) {
-         Players.playerMovementSpeeds[var1] = (MoveSpeed)SpriteMask.findEnumerated(VarcInt.method938(), var0.method2432());
+         Players.playerMovementSpeeds[var1] = (MoveSpeed)SpriteMask.findEnumerated(VarcInt.method938(), var0.readByteAdd());
       }
 
       if ((var3 & 16) != 0) {
@@ -223,21 +223,21 @@ public class Frames extends DualNode {
             var5 = -1;
          }
 
-         var13 = var0.method2430();
+         var13 = var0.readUnsignedByteNeg();
          Language.performPlayerAnimation(var2, var5, var13);
       }
 
       if ((var3 & 2048) != 0) {
          var2.recolourStartCycle = Client.cycle + var0.readUnsignedShort();
-         var2.recolourEndCycle = Client.cycle + var0.method2437();
-         var2.recolourHue = var0.method2432();
+         var2.recolourEndCycle = Client.cycle + var0.readUnsignedShortLE();
+         var2.recolourHue = var0.readByteAdd();
          var2.recolourSaturation = var0.readByte();
-         var2.recolourLuminance = var0.method2396();
-         var2.recolourAmount = (byte)var0.method2405();
+         var2.recolourLuminance = var0.readByteNeg();
+         var2.recolourAmount = (byte)var0._readUnsignedByteSub();
       }
 
       if ((var3 & 128) != 0) {
-         var2.movingOrientation = var0.readUnsignedShortLEA();
+         var2.movingOrientation = var0.readUnsignedShortAdd();
          if (var2.pathLength == 0) {
             var2.orientation = var2.movingOrientation;
             var2.method507();
@@ -266,8 +266,8 @@ public class Frames extends DualNode {
       }
 
       if ((var3 & 8) != 0) {
-         var2.targetIndex = var0.method2437();
-         var2.targetIndex += var0.method2430() << 16;
+         var2.targetIndex = var0.readUnsignedShortLE();
+         var2.targetIndex += var0.readUnsignedByteNeg() << 16;
          var5 = 16777215;
          if (var2.targetIndex == var5) {
             var2.targetIndex = -1;

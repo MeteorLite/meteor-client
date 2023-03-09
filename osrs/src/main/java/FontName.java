@@ -166,7 +166,7 @@ public class FontName {
             if (var0 == 1) {
                var8 = UserComparator9.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeShort(var3[var6]);
-               var8.packetBuffer.writeByteSigned(0);
+               var8.packetBuffer.writeByteSub(0);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 4) {
                var8 = UserComparator9.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);

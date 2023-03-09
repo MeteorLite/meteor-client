@@ -90,8 +90,8 @@ public class Skeleton extends Node {
       int var6;
       int var7;
       if (!Client.isInInstance) {
-         var2 = var1.readUnsignedShortLE();
-         int var3 = var1.readUnsignedShortLEA();
+         var2 = var1.readUnsignedShortAddLE();
+         int var3 = var1.readUnsignedShortAdd();
          var4 = var1.readUnsignedShort();
          ModelData0.xteaKeys = new int[var4][4];
 
@@ -120,9 +120,9 @@ public class Skeleton extends Node {
 
          Coord.method1637(var2, var3, true);
       } else {
-         var2 = var1.readUnsignedShortLE();
-         boolean var15 = var1.method2430() == 1;
-         var4 = var1.readUnsignedShortLEA();
+         var2 = var1.readUnsignedShortAddLE();
+         boolean var15 = var1.readUnsignedByteNeg() == 1;
+         var4 = var1.readUnsignedShortAdd();
          var5 = var1.readUnsignedShort();
          var1.importIndex();
 

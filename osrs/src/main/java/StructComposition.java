@@ -89,7 +89,7 @@ public class StructComposition extends DualNode {
       descriptor = "(II)V",
       garbageValue = "-1561868773"
    )
-   static void method1009(int var0) {
+   static void setOculusOrbState(int var0) {
       Client.oculusOrbState = var0;
    }
 }

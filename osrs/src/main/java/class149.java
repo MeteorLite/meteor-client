@@ -5,7 +5,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fq")
 public class class149 extends class140 {
    @ObfuscatedName("jv")
-   static int field1330;
+   static int ZONE_Y;
    @ObfuscatedName("jl")
    @ObfuscatedSignature(
       descriptor = "Lsn;"
