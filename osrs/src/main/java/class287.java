@@ -66,7 +66,7 @@ public class class287 {
             Client.destinationY = var1;
             var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2450, Client.packetWriter.isaacCipher);
             var10.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var10.packetBuffer.writeShortLE(var3);
+            var10.packetBuffer.writeShortAdd(var3);
             Client.packetWriter.addNode(var10);
          }
       }
@@ -79,10 +79,10 @@ public class class287 {
          Client.mouseCrossState = 0;
          Client.destinationX = var0;
          Client.destinationY = var1;
-         var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2435, Client.packetWriter.isaacCipher);
+         var14 = UserComparator9.getPacketBufferNode(ClientPacket.OPLOC2, Client.packetWriter.isaacCipher);
          var14.packetBuffer.writeShortLEA(var3);
-         var14.packetBuffer.writeShortLE(class178.baseY + var1);
-         var14.packetBuffer.method2434(var0 + GameEngine.baseX);
+         var14.packetBuffer.writeShortAdd(class178.baseY + var1);
+         var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
          var14.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
          Client.packetWriter.addNode(var14);
       }
@@ -106,9 +106,9 @@ public class class287 {
             Client.destinationX = var0;
             Client.destinationY = var1;
             var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2496, Client.packetWriter.isaacCipher);
-            var10.packetBuffer.method2434(class124.field1186);
+            var10.packetBuffer.writeShortLE(class124.field1186);
             var10.packetBuffer.writeShortLEA(class31.field87);
-            var10.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var10.packetBuffer.writeShort(var3);
             var10.packetBuffer.method2454(Interpreter.field699);
             Client.packetWriter.addNode(var10);
@@ -146,7 +146,7 @@ public class class287 {
             Client.destinationX = var0;
             Client.destinationY = var1;
             var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2469, Client.packetWriter.isaacCipher);
-            var10.packetBuffer.writeShortLE(var3);
+            var10.packetBuffer.writeShortAdd(var3);
             var10.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var10);
          }
@@ -161,8 +161,8 @@ public class class287 {
          Client.destinationY = var1;
          var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2516, Client.packetWriter.isaacCipher);
          var14.packetBuffer.writeShort(class178.baseY + var1);
-         var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
-         var14.packetBuffer.method2434(var3);
+         var14.packetBuffer.writeShortAdd(var0 + GameEngine.baseX);
+         var14.packetBuffer.writeShortLE(var3);
          var14.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
          Client.packetWriter.addNode(var14);
       }
@@ -240,9 +240,9 @@ public class class287 {
             Client.mouseCrossState = 0;
             Client.destinationX = var0;
             Client.destinationY = var1;
-            var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2431, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
-            var14.packetBuffer.method2434(var3);
+            var14 = UserComparator9.getPacketBufferNode(ClientPacket.OPLOC4, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAdd(var0 + GameEngine.baseX);
+            var14.packetBuffer.writeShortLE(var3);
             var14.packetBuffer.writeShortLEA(class178.baseY + var1);
             var14.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var14);
@@ -259,7 +259,7 @@ public class class287 {
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2488, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeShort(var3);
-               var10.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -271,11 +271,11 @@ public class class287 {
             Client.mouseCrossState = 0;
             Client.destinationX = var0;
             Client.destinationY = var1;
-            var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2490, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.method2467(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14 = UserComparator9.getPacketBufferNode(ClientPacket.OPLOC5, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var14.packetBuffer.writeShort(class178.baseY + var1);
-            var14.packetBuffer.method2434(var0 + GameEngine.baseX);
-            var14.packetBuffer.writeShortLE(var3);
+            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
+            var14.packetBuffer.writeShortAdd(var3);
             Client.packetWriter.addNode(var14);
          }
 
@@ -287,10 +287,10 @@ public class class287 {
             Client.destinationX = var0;
             Client.destinationY = var1;
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2464, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.method2434(var0 + GameEngine.baseX);
+            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
             var14.packetBuffer.writeInt(class18.selectedSpellWidget);
-            var14.packetBuffer.method2434(Client.selectedSpellChildIndex);
-            var14.packetBuffer.method2434(Client.selectedSpellItemId);
+            var14.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
+            var14.packetBuffer.writeShortLE(Client.selectedSpellItemId);
             var14.packetBuffer.writeShortLEA(var3);
             var14.packetBuffer.writeShort(class178.baseY + var1);
             var14.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
@@ -308,11 +308,11 @@ public class class287 {
             Client.mouseCrossState = 0;
             Client.destinationX = var0;
             Client.destinationY = var1;
-            var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2426, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
+            var14 = UserComparator9.getPacketBufferNode(ClientPacket.OPLOC1, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAdd(var0 + GameEngine.baseX);
             var14.packetBuffer.writeShort(class178.baseY + var1);
-            var14.packetBuffer.method2467(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeShortLE(var3);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeShortAdd(var3);
             Client.packetWriter.addNode(var14);
          }
 
@@ -326,7 +326,7 @@ public class class287 {
                Client.destinationX = var0;
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2465, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                var10.packetBuffer.writeShort(var3);
                Client.packetWriter.addNode(var10);
             }
@@ -343,7 +343,7 @@ public class class287 {
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2463, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeShortLEA(var3);
-               var10.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -357,7 +357,7 @@ public class class287 {
             Client.destinationY = var1;
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2462, Client.packetWriter.isaacCipher);
             var14.packetBuffer.writeShortLEA(var3);
-            var14.packetBuffer.method2467(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var14.packetBuffer.writeShort(class178.baseY + var1);
             var14.packetBuffer.writeShort(var0 + GameEngine.baseX);
             Client.packetWriter.addNode(var14);
@@ -374,7 +374,7 @@ public class class287 {
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2440, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-               var10.packetBuffer.method2434(var3);
+               var10.packetBuffer.writeShortLE(var3);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -389,7 +389,7 @@ public class class287 {
                Client.destinationX = var0;
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2478, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.method2467(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                var10.packetBuffer.writeShort(var3);
                Client.packetWriter.addNode(var10);
             }
@@ -412,7 +412,7 @@ public class class287 {
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2482, Client.packetWriter.isaacCipher);
             var14.packetBuffer.writeShortLEA(class178.baseY + var1);
             var14.packetBuffer.writeShortLEA(var3);
-            var14.packetBuffer.method2434(var0 + GameEngine.baseX);
+            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
             var14.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var14);
          }
@@ -427,7 +427,7 @@ public class class287 {
                Client.destinationX = var0;
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2492, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.method2467(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                var10.packetBuffer.writeShort(var3);
                Client.packetWriter.addNode(var10);
             }
@@ -457,12 +457,12 @@ public class class287 {
             Client.destinationX = var0;
             Client.destinationY = var1;
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2427, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var14.packetBuffer.writeShort(Client.selectedSpellItemId);
             var14.packetBuffer.method2444(class18.selectedSpellWidget);
             var14.packetBuffer.writeShort(var0 + GameEngine.baseX);
             var14.packetBuffer.writeShort(var3);
-            var14.packetBuffer.writeShortLE(class178.baseY + var1);
+            var14.packetBuffer.writeShortAdd(class178.baseY + var1);
             var14.packetBuffer.writeShort(Client.selectedSpellChildIndex);
             Client.packetWriter.addNode(var14);
          }
@@ -477,8 +477,8 @@ public class class287 {
                Client.destinationX = var0;
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2423, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.method2434(Client.selectedSpellChildIndex);
-               var10.packetBuffer.writeShortLE(var3);
+               var10.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
+               var10.packetBuffer.writeShortAdd(var3);
                var10.packetBuffer.writeShort(Client.selectedSpellItemId);
                var10.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                var10.packetBuffer.method2444(class18.selectedSpellWidget);
@@ -510,7 +510,7 @@ public class class287 {
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2452, Client.packetWriter.isaacCipher);
             var14.packetBuffer.writeShort(var3);
             var14.packetBuffer.writeShortLEA(var0 + GameEngine.baseX);
-            var14.packetBuffer.writeShortLE(class178.baseY + var1);
+            var14.packetBuffer.writeShortAdd(class178.baseY + var1);
             var14.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var14);
          }
@@ -526,7 +526,7 @@ public class class287 {
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2506, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeShort(var3);
-               var10.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -540,12 +540,12 @@ public class class287 {
             Client.destinationY = var1;
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2458, Client.packetWriter.isaacCipher);
             var14.packetBuffer.method2445(Interpreter.field699);
-            var14.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.method2434(var0 + GameEngine.baseX);
+            var14.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
             var14.packetBuffer.writeShortLEA(class178.baseY + var1);
-            var14.packetBuffer.writeShortLE(class31.field87);
+            var14.packetBuffer.writeShortAdd(class31.field87);
             var14.packetBuffer.writeShortLEA(class124.field1186);
-            var14.packetBuffer.method2434(var3);
+            var14.packetBuffer.writeShortLE(var3);
             Client.packetWriter.addNode(var14);
          }
 
@@ -555,7 +555,7 @@ public class class287 {
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2504, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.method2434(var3);
+            var14.packetBuffer.writeShortLE(var3);
             Client.packetWriter.addNode(var14);
          }
 
@@ -571,7 +571,7 @@ public class class287 {
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2514, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                var10.packetBuffer.writeShortLEA(Client.selectedSpellChildIndex);
-               var10.packetBuffer.method2434(Client.selectedSpellItemId);
+               var10.packetBuffer.writeShortLE(Client.selectedSpellItemId);
                var10.packetBuffer.method2445(class18.selectedSpellWidget);
                var10.packetBuffer.writeShortLEA(var3);
                Client.packetWriter.addNode(var10);
@@ -602,7 +602,7 @@ public class class287 {
 
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2477, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeShort(Client.selectedSpellItemId);
-               var10.packetBuffer.writeShortLE(var4);
+               var10.packetBuffer.writeShortAdd(var4);
                var10.packetBuffer.writeShortLEA(Client.selectedSpellChildIndex);
                var10.packetBuffer.writeShort(var0);
                var10.packetBuffer.method2454(var1);
@@ -619,7 +619,7 @@ public class class287 {
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2437, Client.packetWriter.isaacCipher);
             var14.packetBuffer.writeShortLEA(var3);
             var14.packetBuffer.writeShort(class178.baseY + var1);
-            var14.packetBuffer.method2434(var0 + GameEngine.baseX);
+            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
             Client.packetWriter.addNode(var14);
          }
 
@@ -633,10 +633,10 @@ public class class287 {
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2443, Client.packetWriter.isaacCipher);
             var14.packetBuffer.writeShort(class31.field87);
             var14.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeShortLE(class178.baseY + var1);
+            var14.packetBuffer.writeShortAdd(class178.baseY + var1);
             var14.packetBuffer.writeShort(var0 + GameEngine.baseX);
             var14.packetBuffer.method2454(Interpreter.field699);
-            var14.packetBuffer.writeShortLE(class124.field1186);
+            var14.packetBuffer.writeShortAdd(class124.field1186);
             var14.packetBuffer.writeShortLEA(var3);
             Client.packetWriter.addNode(var14);
          }
@@ -649,10 +649,10 @@ public class class287 {
             Client.destinationX = var0;
             Client.destinationY = var1;
             var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2498, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.method2467(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var14.packetBuffer.writeShortLEA(var3);
             var14.packetBuffer.writeShort(var0 + GameEngine.baseX);
-            var14.packetBuffer.method2434(class178.baseY + var1);
+            var14.packetBuffer.writeShortLE(class178.baseY + var1);
             Client.packetWriter.addNode(var14);
          }
 
@@ -667,7 +667,7 @@ public class class287 {
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2451, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeShortLEA(var3);
-               var10.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -695,11 +695,11 @@ public class class287 {
             Client.mouseCrossState = 0;
             Client.destinationX = var0;
             Client.destinationY = var1;
-            var14 = UserComparator9.getPacketBufferNode(ClientPacket.field2487, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortLE(class178.baseY + var1);
-            var14.packetBuffer.method2409(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeShortLE(var3);
-            var14.packetBuffer.writeShortLE(var0 + GameEngine.baseX);
+            var14 = UserComparator9.getPacketBufferNode(ClientPacket.OPLOC3, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAdd(class178.baseY + var1);
+            var14.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeShortAdd(var3);
+            var14.packetBuffer.writeShortAdd(var0 + GameEngine.baseX);
             Client.packetWriter.addNode(var14);
          }
 
@@ -714,9 +714,9 @@ public class class287 {
                Client.destinationY = var1;
                var10 = UserComparator9.getPacketBufferNode(ClientPacket.field2494, Client.packetWriter.isaacCipher);
                var10.packetBuffer.writeByteA(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-               var10.packetBuffer.writeShortLE(class31.field87);
+               var10.packetBuffer.writeShortAdd(class31.field87);
                var10.packetBuffer.method2454(Interpreter.field699);
-               var10.packetBuffer.method2434(class124.field1186);
+               var10.packetBuffer.writeShortLE(class124.field1186);
                var10.packetBuffer.writeShortLEA(var3);
                Client.packetWriter.addNode(var10);
             }

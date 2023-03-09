@@ -88,7 +88,7 @@ public class class163 extends class156 {
       var4.packetBuffer.writeShort(var0);
       var4.packetBuffer.writeByteA(var2);
       var4.packetBuffer.method2445(var3 ? Client.field448 * -1978635877 * -1328687981 : 0);
-      var4.packetBuffer.writeShortLE(var1);
+      var4.packetBuffer.writeShortAdd(var1);
       Client.packetWriter.addNode(var4);
    }
 }

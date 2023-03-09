@@ -247,9 +247,9 @@ public class class110 extends UrlRequester {
                int var12 = BuddyRankComparator.localPlayer.y - var10 >> 7;
                PacketBufferNode var13 = UserComparator9.getPacketBufferNode(ClientPacket.field2457, Client.packetWriter.isaacCipher);
                var13.packetBuffer.writeByte(18);
-               var13.packetBuffer.writeShortLE(var12 + class178.baseY);
+               var13.packetBuffer.writeShortAdd(var12 + class178.baseY);
                var13.packetBuffer.writeShort(var11 + GameEngine.baseX);
-               var13.packetBuffer.method2467(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+               var13.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
                var13.packetBuffer.writeByte(var4);
                var13.packetBuffer.writeByte(var5);
                var13.packetBuffer.writeShort(Client.camAngleY);

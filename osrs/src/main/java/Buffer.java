@@ -809,7 +809,7 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "59"
    )
-   public void method2467(int var1) {
+   public void writeByteAdd(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 + 128);
    }
 
@@ -818,8 +818,8 @@ public class Buffer extends Node {
       descriptor = "(II)V",
       garbageValue = "-1490727731"
    )
-   public void method2409(int var1) {
-      this.array[++this.offset - 1] = (byte)(0 - var1);
+   public void writeByteNeg(int var1) {
+      this.array[++this.offset - 1] = (byte)(-var1);
    }
 
    @ObfuscatedName("dh")
@@ -892,7 +892,7 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "-4"
    )
-   public void method2434(int var1) {
+   public void writeShortLE(int var1) {
       this.array[++this.offset - 1] = (byte)var1;
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
    }
@@ -902,8 +902,8 @@ public class Buffer extends Node {
       descriptor = "(IB)V",
       garbageValue = "69"
    )
-   @Export("writeShortLE")
-   public void writeShortLE(int var1) {
+   @Export("writeShortAdd")
+   public void writeShortAdd(int var1) {
       this.array[++this.offset - 1] = (byte)(var1 >> 8);
       this.array[++this.offset - 1] = (byte)(var1 + 128);
    }

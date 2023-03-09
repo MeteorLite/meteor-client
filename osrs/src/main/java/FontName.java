@@ -171,12 +171,12 @@ public class FontName {
             } else if (var0 == 4) {
                var8 = UserComparator9.getPacketBufferNode(ClientPacket.field2451, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeShortLEA(var3[var6]);
-               var8.packetBuffer.method2409(0);
+               var8.packetBuffer.writeByteNeg(0);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 6) {
                var8 = UserComparator9.getPacketBufferNode(ClientPacket.field2450, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeByte(0);
-               var8.packetBuffer.writeShortLE(var3[var6]);
+               var8.packetBuffer.writeShortAdd(var3[var6]);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 7) {
                var8 = UserComparator9.getPacketBufferNode(ClientPacket.field2493, Client.packetWriter.isaacCipher);

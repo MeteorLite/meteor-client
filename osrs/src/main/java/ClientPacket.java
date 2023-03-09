@@ -65,7 +65,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2431 = new ClientPacket(11, 7);
+   public static final ClientPacket OPLOC4 = new ClientPacket(11, 7);
    @ObfuscatedName("as")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -100,7 +100,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2426 = new ClientPacket(18, 7);
+   public static final ClientPacket OPLOC1 = new ClientPacket(18, 7);
    @ObfuscatedName("at")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -120,7 +120,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2435 = new ClientPacket(22, 7);
+   public static final ClientPacket OPLOC2 = new ClientPacket(22, 7);
    @ObfuscatedName("aa")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -345,7 +345,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2487 = new ClientPacket(67, 7);
+   public static final ClientPacket OPLOC3 = new ClientPacket(67, 7);
    @ObfuscatedName("cq")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -360,7 +360,7 @@ public class ClientPacket implements class281 {
    @ObfuscatedSignature(
       descriptor = "Lkb;"
    )
-   public static final ClientPacket field2490 = new ClientPacket(70, 7);
+   public static final ClientPacket OPLOC5 = new ClientPacket(70, 7);
    @ObfuscatedName("cm")
    @ObfuscatedSignature(
       descriptor = "Lkb;"

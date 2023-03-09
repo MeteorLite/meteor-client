@@ -30,7 +30,7 @@ public interface Buffer extends Node
     int readIntIME();
     int readIntME();
     void writeShortLE$api(int i);
-    void writeShortAdd(int i);
+    void writeShortAdd$api(int i);
     void writeShortAddLE(int i);
     int readUShortLE();
     int readUShortAdd();
@@ -38,8 +38,8 @@ public interface Buffer extends Node
 	void writeLong$api(long l);
 	void writeLongMedium$api(long l);
 	void writeShort$api(int i);
-    void writeByteAdd(int i);
+    void writeByteAdd$api(int i);
     void writeByteSub(int i);
-    void writeByteNeg(int i);
+    void writeByteNeg$api(int i);
     void writeString(String s);
 }

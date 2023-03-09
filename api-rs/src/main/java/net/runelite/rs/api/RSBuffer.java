@@ -86,13 +86,13 @@ void writeIntIME(int i);
 @Override
 void writeIntME$api(int i);
 
-@Import("method2434")
+@Import("writeShortLE")
 @Override
 void writeShortLE$api(int i);
 
-@Import("writeShortLE")
+@Import("writeShortAdd")
 @Override
-void writeShortAdd(int i);
+void writeShortAdd$api(int i);
 
 @Import("writeShortLEA")
 @Override
@@ -142,17 +142,17 @@ void writeLongMedium$api(long l);
 @Override
 void writeShort$api(int i);
 
-@Import("method2467")
+@Import("writeByteAdd")
 @Override
-void writeByteAdd(int i);
+void writeByteAdd$api(int i);
 
 @Import("writeByteA")
 @Override
 void writeByteSub(int i);
 
-@Import("method2409")
+@Import("writeByteNeg")
 @Override
-void writeByteNeg(int i);
+void writeByteNeg$api(int i);
 
 @Import("writeStringCp1252NullTerminated")
 @Override

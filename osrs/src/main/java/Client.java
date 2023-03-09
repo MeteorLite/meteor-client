@@ -3154,9 +3154,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                                                       var4 = Scene.Scene_selectedY;
                                                       PacketBufferNode var40 = UserComparator9.getPacketBufferNode(ClientPacket.field2497, packetWriter.isaacCipher);
                                                       var40.packetBuffer.writeByte(5);
-                                                      var40.packetBuffer.writeShortLE(var4 + class178.baseY);
+                                                      var40.packetBuffer.writeShortAdd(var4 + class178.baseY);
                                                       var40.packetBuffer.writeShort(var3 + GameEngine.baseX);
-                                                      var40.packetBuffer.method2467(keyHandlerInstance.getKeyPressed(82) ? (keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+                                                      var40.packetBuffer.writeByteAdd(keyHandlerInstance.getKeyPressed(82) ? (keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
                                                       packetWriter.addNode(var40);
                                                       Scene.method1219();
                                                       mouseCrossX = MouseHandler.MouseHandler_lastPressedX;
@@ -4518,7 +4518,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                var60.packetBuffer.method2445(var20);
                var60.packetBuffer.method2444(var5);
                var60.packetBuffer.writeByte(var21);
-               var60.packetBuffer.method2409(GameEngine.fps);
+               var60.packetBuffer.writeByteNeg(GameEngine.fps);
                packetWriter.addNode(var60);
                var1.serverPacket = null;
                return true;
@@ -5733,11 +5733,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
                if (draggedOnWidget != null && class287.method1549(clickedWidget) != null) {
                   PacketBufferNode var11 = UserComparator9.getPacketBufferNode(ClientPacket.field2473, packetWriter.isaacCipher);
                   var11.packetBuffer.method2454(draggedOnWidget.id);
-                  var11.packetBuffer.writeShortLE(clickedWidget.itemId);
+                  var11.packetBuffer.writeShortAdd(clickedWidget.itemId);
                   var11.packetBuffer.method2454(clickedWidget.id);
                   var11.packetBuffer.writeShortLEA(draggedOnWidget.childIndex);
                   var11.packetBuffer.writeShortLEA(draggedOnWidget.itemId);
-                  var11.packetBuffer.method2434(clickedWidget.childIndex);
+                  var11.packetBuffer.writeShortLE(clickedWidget.childIndex);
                   packetWriter.addNode(var11);
                }
             } else if (this.shouldLeftClickOpenMenu()) {
