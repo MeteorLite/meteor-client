@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
 import eventbus.Events;
 import eventbus.events.*;
 import meteor.Logger;
+import meteor.PrivateServerConfiguration;
 import net.runelite.api.*;
 
 import static net.runelite.api.MenuAction.CANCEL;
@@ -1930,13 +1931,13 @@ public abstract class RSClientMixin implements RSClient {
     @Inject
     @Override
     public void setModulus(BigInteger modulus) {
-        RSClientMixin.modulus = modulus;
+        this.modulus = modulus;
     }
 
     @Inject
     @Override
     public BigInteger getModulus() {
-        return RSClientMixin.modulus;
+        return modulus;
     }
 
     @Copy("forceDisconnect")

@@ -35,6 +35,7 @@ import javax.annotation.Nullable;
 import dev.hoot.api.MouseHandler;
 import dev.hoot.api.events.AutomatedMenu;
 import meteor.Logger;
+import meteor.PrivateServerConfiguration;
 import net.runelite.api.annotations.VarCInt;
 import net.runelite.api.annotations.Varbit;
 import net.runelite.api.packets.ClientPacket;
@@ -2553,4 +2554,6 @@ public interface Client extends GameEngine
 	PacketBufferNode getPacketOverride();
 
 	void setPacketOverride(PacketBufferNode packetOverride);
+
+	void setHost(String host);
 }

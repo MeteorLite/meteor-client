@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.*
+import com.google.gson.Gson
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.GameThread
 import eventbus.Events
@@ -60,11 +61,13 @@ import meteor.ui.composables.preferences.uiColor
 import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
+import net.runelite.rs.api.RSClient
 import okhttp3.OkHttpClient
 import org.apache.commons.lang3.time.StopWatch
 import org.jetbrains.skiko.OS
 import org.rationalityfrontline.kevent.KEVENT
 import rs117.hd.HdPlugin
+import java.math.BigInteger
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -110,6 +113,7 @@ object Main : ApplicationScope, EventSubscriber() {
     val hiscoreManager = HiscoreManager
     val rmiHost = "15.204.174.14"
     val handshakeClient = HandshakeClient<HandshakeService>()
+    lateinit var applet: Applet
 
     // onClick listeners
     var onClicks = HashMap<MenuEntry, Consumer<MenuEntry>>()
@@ -135,6 +139,8 @@ object Main : ApplicationScope, EventSubscriber() {
     val shouldRender = mutableStateOf(true)
     var window: FrameWindowScope? = null
 
+    var rspsConfiguration = PrivateServerConfiguration()
+
     @JvmStatic
     fun main(args: Array<String>) = application {
         EXTERNALS_DIR.mkdirs()
@@ -146,7 +152,8 @@ object Main : ApplicationScope, EventSubscriber() {
         startupTimer.start()
         callbacks = Hooks()
         AppletConfiguration.init()
-        Applet().init()
+        applet = Applet()
+        applet.init()
         initWindow()
         // finishStartup is ran here after windowContent()
     }
@@ -229,10 +236,21 @@ object Main : ApplicationScope, EventSubscriber() {
         )
     }
 
+    fun initRSPSConfig() {
+        if (Configuration.rspsConfigFile.exists())
+            try {
+                rspsConfiguration = Gson().fromJson(Configuration.rspsConfigFile.readText(), PrivateServerConfiguration::class.java)
+                if (rspsConfiguration.host.isNotEmpty())
+                    client.setHost(rspsConfiguration.host)
+                if (rspsConfiguration.modulus.isNotEmpty())
+                    client.modulus = BigInteger(rspsConfiguration.host, 16)
+            } catch (_: Exception) {}
+    }
 
     fun finishStartup() {
         client = Applet.asClient(Applet.applet)
         client.callbacks = callbacks
+        initRSPSConfig()
         WidgetInspector
         initApi()
         initOverlays()
