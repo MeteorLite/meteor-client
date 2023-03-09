@@ -149,9 +149,9 @@ public class class150 extends class140 {
       TileItem var39;
       if (ZoneOperation.field2518 == var0) {
          var2 = var1.readUnsignedShort();
-         var3 = var1.method2430();
-         var4 = (var3 >> 4 & 7) + ZoneOperation.field2529;
-         var5 = (var3 & 7) + class149.field1330;
+         var3 = var1.readUnsignedByteNeg();
+         var4 = (var3 >> 4 & 7) + ZoneOperation.Zone_X;
+         var5 = (var3 & 7) + class149.ZONE_Y;
          var6 = var1.readUnsignedByte();
          if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
             var7 = Client.groundItems[TaskHandler.Client_plane][var4][var5];
@@ -171,13 +171,13 @@ public class class150 extends class140 {
          int var31;
          int var32;
          if (ZoneOperation.field2522 == var0) {
-            var2 = var1.readUnsignedShortA();
+            var2 = var1.readUnsignedByteAdd();
             var3 = var2 >> 4 & 15;
             var4 = var2 & 7;
             var5 = var1.readUnsignedByte();
-            var6 = (var5 >> 4 & 7) + ZoneOperation.field2529;
-            var31 = (var5 & 7) + class149.field1330;
-            var32 = var1.readUnsignedShortLE();
+            var6 = (var5 >> 4 & 7) + ZoneOperation.Zone_X;
+            var31 = (var5 & 7) + class149.ZONE_Y;
+            var32 = var1.readUnsignedShortAddLE();
             var9 = var1.readUnsignedByte();
             if (var6 >= 0 && var31 >= 0 && var6 < 104 && var31 < 104) {
                var10 = var3 + 1;
@@ -194,13 +194,13 @@ public class class150 extends class140 {
 
          int var11;
          if (ZoneOperation.field2523 == var0) {
-            var2 = var1.readUnsignedShortA();
+            var2 = var1.readUnsignedByteAdd();
             var3 = var2 >> 2;
             var4 = var2 & 3;
             var5 = Client.OBJECT_TYPE_TO_STUB_TYPE[var3];
-            var6 = var1.readUnsignedShortA();
-            var31 = (var6 >> 4 & 7) + ZoneOperation.field2529;
-            var32 = (var6 & 7) + class149.field1330;
+            var6 = var1.readUnsignedByteAdd();
+            var31 = (var6 >> 4 & 7) + ZoneOperation.Zone_X;
+            var32 = (var6 & 7) + class149.ZONE_Y;
             var9 = var1.readUnsignedShort();
             if (var31 >= 0 && var32 >= 0 && var31 < 103 && var32 < 103) {
                if (var5 == 0) {
@@ -263,11 +263,11 @@ public class class150 extends class140 {
             }
 
          } else if (ZoneOperation.field2524 == var0) {
-            var2 = var1.method2437();
+            var2 = var1.readUnsignedShortLE();
             var3 = var1.readInt();
-            var4 = var1.method2430();
-            var5 = (var4 >> 4 & 7) + ZoneOperation.field2529;
-            var6 = (var4 & 7) + class149.field1330;
+            var4 = var1.readUnsignedByteNeg();
+            var5 = (var4 >> 4 & 7) + ZoneOperation.Zone_X;
+            var6 = (var4 & 7) + class149.ZONE_Y;
             var31 = var1.readInt();
             if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                NodeDeque var40 = Client.groundItems[TaskHandler.Client_plane][var5][var6];
@@ -285,10 +285,10 @@ public class class150 extends class140 {
 
          } else if (ZoneOperation.field2519 == var0) {
             var2 = var1.readUnsignedShort();
-            var3 = var1.method2455();
+            var3 = var1.readIntLE();
             var4 = var1.readUnsignedByte();
-            var5 = (var4 >> 4 & 7) + ZoneOperation.field2529;
-            var6 = (var4 & 7) + class149.field1330;
+            var5 = (var4 >> 4 & 7) + ZoneOperation.Zone_X;
+            var6 = (var4 & 7) + class149.ZONE_Y;
             if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                var7 = Client.groundItems[TaskHandler.Client_plane][var5][var6];
                if (var7 != null) {
@@ -308,30 +308,30 @@ public class class150 extends class140 {
             }
 
          } else if (ZoneOperation.field2521 == var0) {
-            var2 = var1.method2405();
-            var3 = var1.readUnsignedShortLEA();
-            var4 = var1.method2405();
+            var2 = var1._readUnsignedByteSub();
+            var3 = var1.readUnsignedShortAdd();
+            var4 = var1._readUnsignedByteSub();
             var5 = var4 >> 2;
             var6 = var4 & 3;
             var31 = Client.OBJECT_TYPE_TO_STUB_TYPE[var5];
             var32 = var1.readUnsignedByte();
-            var9 = (var32 >> 4 & 7) + ZoneOperation.field2529;
-            var10 = (var32 & 7) + class149.field1330;
+            var9 = (var32 >> 4 & 7) + ZoneOperation.Zone_X;
+            var10 = (var32 & 7) + class149.ZONE_Y;
             if (var9 >= 0 && var10 >= 0 && var9 < 104 && var10 < 104) {
                Decimator.updatePendingSpawn(TaskHandler.Client_plane, var9, var10, var31, var3, var5, var6, var2, 0, -1);
             }
 
          } else if (ZoneOperation.field2520 == var0) {
-            var1.readUnsignedShortLE();
-            var2 = var1.method2430();
-            var3 = var1.readUnsignedShortLE();
-            var1.method2405();
+            var1.readUnsignedShortAddLE();
+            var2 = var1.readUnsignedByteNeg();
+            var3 = var1.readUnsignedShortAddLE();
+            var1._readUnsignedByteSub();
             var1.readUnsignedShort();
-            var4 = var1.method2455();
-            var1.method2405();
-            var5 = var1.method2430();
-            var6 = (var5 >> 4 & 7) + ZoneOperation.field2529;
-            var31 = (var5 & 7) + class149.field1330;
+            var4 = var1.readIntLE();
+            var1._readUnsignedByteSub();
+            var5 = var1.readUnsignedByteNeg();
+            var6 = (var5 >> 4 & 7) + ZoneOperation.Zone_X;
+            var31 = (var5 & 7) + class149.ZONE_Y;
             if (var6 >= 0 && var31 >= 0 && var6 < 104 && var31 < 104) {
                var39 = new TileItem();
                var39.id = var3;
@@ -346,11 +346,11 @@ public class class150 extends class140 {
             }
 
          } else if (ZoneOperation.field2528 == var0) {
-            var2 = var1.method2437();
-            var3 = var1.readUnsignedShortA();
-            var4 = (var3 >> 4 & 7) + ZoneOperation.field2529;
-            var5 = (var3 & 7) + class149.field1330;
-            var6 = var1.readUnsignedShortLEA();
+            var2 = var1.readUnsignedShortLE();
+            var3 = var1.readUnsignedByteAdd();
+            var4 = (var3 >> 4 & 7) + ZoneOperation.Zone_X;
+            var5 = (var3 & 7) + class149.ZONE_Y;
+            var6 = var1.readUnsignedShortAdd();
             var31 = var1.readUnsignedByte();
             if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
                var4 = var4 * 128 + 64;
@@ -365,18 +365,18 @@ public class class150 extends class140 {
             int var14;
             if (ZoneOperation.field2526 == var0) {
                var2 = var1.method2450();
-               byte var37 = var1.method2396();
-               var4 = var1.method2405() * 4;
+               byte var37 = var1.readByteNeg();
+               var4 = var1._readUnsignedByteSub() * 4;
                byte var38 = var1.readByte();
-               var6 = var1.method2437();
+               var6 = var1.readUnsignedShortLE();
                var31 = var1.readUnsignedByte();
-               var32 = var1.method2437();
+               var32 = var1.readUnsignedShortLE();
                var9 = var1.readUnsignedByte() * 4;
-               var10 = var1.readUnsignedShortA();
-               var11 = var1.readUnsignedShortA();
-               var12 = (var11 >> 4 & 7) + ZoneOperation.field2529;
-               var13 = (var11 & 7) + class149.field1330;
-               var14 = var1.readUnsignedShortLE();
+               var10 = var1.readUnsignedByteAdd();
+               var11 = var1.readUnsignedByteAdd();
+               var12 = (var11 >> 4 & 7) + ZoneOperation.Zone_X;
+               var13 = (var11 & 7) + class149.ZONE_Y;
+               var14 = var1.readUnsignedShortAddLE();
                var5 = var38 + var12;
                var3 = var37 + var13;
                if (var12 >= 0 && var13 >= 0 && var12 < 104 && var13 < 104 && var5 >= 0 && var3 >= 0 && var5 < 104 && var3 < 104 && var32 != 65535) {
@@ -395,29 +395,29 @@ public class class150 extends class140 {
                var4 = var2 & 3;
                var5 = Client.OBJECT_TYPE_TO_STUB_TYPE[var3];
                var6 = var1.readUnsignedByte();
-               var31 = (var6 >> 4 & 7) + ZoneOperation.field2529;
-               var32 = (var6 & 7) + class149.field1330;
+               var31 = (var6 >> 4 & 7) + ZoneOperation.Zone_X;
+               var32 = (var6 & 7) + class149.ZONE_Y;
                if (var31 >= 0 && var32 >= 0 && var31 < 104 && var32 < 104) {
                   Decimator.updatePendingSpawn(TaskHandler.Client_plane, var31, var32, var5, -1, var3, var4, 31, 0, -1);
                }
 
             } else {
                if (ZoneOperation.field2525 == var0) {
-                  byte var36 = var1.method2396();
-                  var3 = var1.readUnsignedShortA();
-                  var4 = (var3 >> 4 & 7) + ZoneOperation.field2529;
-                  var5 = (var3 & 7) + class149.field1330;
-                  var6 = var1.readUnsignedShortLEA();
-                  byte var42 = var1.method2432();
-                  var32 = var1.method2437();
-                  byte var41 = var1.method2433();
+                  byte var36 = var1.readByteNeg();
+                  var3 = var1.readUnsignedByteAdd();
+                  var4 = (var3 >> 4 & 7) + ZoneOperation.Zone_X;
+                  var5 = (var3 & 7) + class149.ZONE_Y;
+                  var6 = var1.readUnsignedShortAdd();
+                  byte var42 = var1.readByteAdd();
+                  var32 = var1.readUnsignedShortLE();
+                  byte var41 = var1.readUnsignedByteSub();
                   var10 = var1.readUnsignedShort();
-                  var11 = var1.readUnsignedShortA();
+                  var11 = var1.readUnsignedByteAdd();
                   var12 = var11 >> 2;
                   var13 = var11 & 3;
                   var14 = Client.OBJECT_TYPE_TO_STUB_TYPE[var12];
                   int var35 = var1.readUnsignedShort();
-                  byte var16 = var1.method2433();
+                  byte var16 = var1.readUnsignedByteSub();
                   Player var17;
                   if (var6 == Client.localPlayerIndex) {
                      var17 = BuddyRankComparator.localPlayer;

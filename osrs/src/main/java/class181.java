@@ -147,12 +147,12 @@ final class class181 implements ThreadFactory {
          int var6;
          int var7;
          if ((var4 & 16) != 0) {
-            var5 = var0.readUnsignedShortLEA();
+            var5 = var0.readUnsignedShortAdd();
             if (var5 == 65535) {
                var5 = -1;
             }
 
-            var6 = var0.method2430();
+            var6 = var0.readUnsignedByteNeg();
             if (var5 == var3.sequence && var5 != -1) {
                var7 = Coord.SequenceDefinition_get(var5).replyMode;
                if (var7 == 1) {
@@ -197,12 +197,12 @@ final class class181 implements ThreadFactory {
          }
 
          if ((var4 & 8192) != 0) {
-            var3.method572(var0.readUnsignedShortA());
+            var3.method572(var0.readUnsignedByteAdd());
          }
 
          if ((var4 & 4) != 0) {
-            var3.targetIndex = var0.method2437();
-            var3.targetIndex += var0.method2405() << 16;
+            var3.targetIndex = var0.readUnsignedShortLE();
+            var3.targetIndex += var0._readUnsignedByteSub() << 16;
             var5 = 16777215;
             if (var5 == var3.targetIndex) {
                var3.targetIndex = -1;
@@ -210,26 +210,26 @@ final class class181 implements ThreadFactory {
          }
 
          if ((var4 & 65536) != 0) {
-            var5 = var0.readUnsignedByteS();
-            var3.turnLeftSequence = (var5 & 1) != 0 ? var0.readUnsignedShortLEA() : var3.definition.turnLeftSequence * 1406295179 * 441854755;
-            var3.turnRightSequence = (var5 & 2) != 0 ? var0.readUnsignedShortLE() : var3.definition.turnRightSequence * 1189253961 * -397750535;
-            var3.walkSequence = (var5 & 4) != 0 ? var0.method2437() : var3.definition.walkSequence * 1152348467 * -1377177093;
+            var5 = var0.readIntME();
+            var3.turnLeftSequence = (var5 & 1) != 0 ? var0.readUnsignedShortAdd() : var3.definition.turnLeftSequence * 1406295179 * 441854755;
+            var3.turnRightSequence = (var5 & 2) != 0 ? var0.readUnsignedShortAddLE() : var3.definition.turnRightSequence * 1189253961 * -397750535;
+            var3.walkSequence = (var5 & 4) != 0 ? var0.readUnsignedShortLE() : var3.definition.walkSequence * 1152348467 * -1377177093;
             var3.walkBackSequence = (var5 & 8) != 0 ? var0.readUnsignedShort() : var3.definition.walkBackSequence * 222425699 * -274981045;
-            var3.walkLeftSequence = (var5 & 16) != 0 ? var0.readUnsignedShortLE() : var3.definition.walkLeftSequence * 617555963 * -530199757;
-            var3.walkRightSequence = (var5 & 32) != 0 ? var0.readUnsignedShortLE() : var3.definition.walkRightSequence * -379647223 * 498463545;
-            var3.runSequence = (var5 & 64) != 0 ? var0.method2437() : var3.definition.runSequence * -1285996051 * -945601563;
-            var3.runBackSequence = (var5 & 128) != 0 ? var0.readUnsignedShortLEA() : var3.definition.runBackSequence * 325542601 * -586131591;
-            var3.runLeftSequence = (var5 & 256) != 0 ? var0.method2437() : var3.definition.runLeftSequence * -1302350385 * -1601228497;
-            var3.runRightSequence = (var5 & 512) != 0 ? var0.method2437() : var3.definition.runRightSequence * -1419952353 * 1903000799;
-            var3.crawlSequence = (var5 & 1024) != 0 ? var0.method2437() : var3.definition.crawlSequence * -1974099217 * 1194052623;
-            var3.crawlBackSequence = (var5 & 2048) != 0 ? var0.method2437() : var3.definition.crawlBackSequence * -1679540715 * -943021763;
-            var3.crawlLeftSequence = (var5 & 4096) != 0 ? var0.readUnsignedShortLE() : var3.definition.crawlLeftSequence * -754382153 * -166464761;
-            var3.crawlRightSequence = (var5 & 8192) != 0 ? var0.readUnsignedShortLEA() : var3.definition.crawlRightSequence * 1277541461 * 750870781;
+            var3.walkLeftSequence = (var5 & 16) != 0 ? var0.readUnsignedShortAddLE() : var3.definition.walkLeftSequence * 617555963 * -530199757;
+            var3.walkRightSequence = (var5 & 32) != 0 ? var0.readUnsignedShortAddLE() : var3.definition.walkRightSequence * -379647223 * 498463545;
+            var3.runSequence = (var5 & 64) != 0 ? var0.readUnsignedShortLE() : var3.definition.runSequence * -1285996051 * -945601563;
+            var3.runBackSequence = (var5 & 128) != 0 ? var0.readUnsignedShortAdd() : var3.definition.runBackSequence * 325542601 * -586131591;
+            var3.runLeftSequence = (var5 & 256) != 0 ? var0.readUnsignedShortLE() : var3.definition.runLeftSequence * -1302350385 * -1601228497;
+            var3.runRightSequence = (var5 & 512) != 0 ? var0.readUnsignedShortLE() : var3.definition.runRightSequence * -1419952353 * 1903000799;
+            var3.crawlSequence = (var5 & 1024) != 0 ? var0.readUnsignedShortLE() : var3.definition.crawlSequence * -1974099217 * 1194052623;
+            var3.crawlBackSequence = (var5 & 2048) != 0 ? var0.readUnsignedShortLE() : var3.definition.crawlBackSequence * -1679540715 * -943021763;
+            var3.crawlLeftSequence = (var5 & 4096) != 0 ? var0.readUnsignedShortAddLE() : var3.definition.crawlLeftSequence * -754382153 * -166464761;
+            var3.crawlRightSequence = (var5 & 8192) != 0 ? var0.readUnsignedShortAdd() : var3.definition.crawlRightSequence * 1277541461 * 750870781;
             var3.idleSequence = (var5 & 16384) != 0 ? var0.readUnsignedShort() : var3.definition.idleSequence * -1822581491 * 1877440965;
          }
 
          if ((var4 & 32) != 0) {
-            var3.spotAnimation = var0.readUnsignedShortLEA();
+            var3.spotAnimation = var0.readUnsignedShortAdd();
             var5 = var0.readInt();
             var3.spotAnimHeight = var5 >> 16;
             var3.spotAnimationStartCycle = (var5 & '\uffff') + Client.cycle;
@@ -271,15 +271,15 @@ final class class181 implements ThreadFactory {
                }
             }
 
-            var6 = var0.readUnsignedShortA();
+            var6 = var0.readUnsignedByteAdd();
             if (var6 > 0) {
                for(var7 = 0; var7 < var6; ++var7) {
                   var8 = var0.readUShortSmart();
                   var9 = var0.readUShortSmart();
                   if (var9 != 32767) {
                      var10 = var0.readUShortSmart();
-                     var11 = var0.readUnsignedShortA();
-                     int var12 = var9 > 0 ? var0.readUnsignedShortA() : var11;
+                     var11 = var0.readUnsignedByteAdd();
+                     int var12 = var9 > 0 ? var0.readUnsignedByteAdd() : var11;
                      var3.addHealthBar(var8, Client.cycle, var9, var10, var11, var12);
                   } else {
                      var3.removeHealthBar(var8);
@@ -289,11 +289,11 @@ final class class181 implements ThreadFactory {
          }
 
          if ((var4 & '耀') != 0) {
-            var3.recolourStartCycle = Client.cycle + var0.readUnsignedShortLEA();
+            var3.recolourStartCycle = Client.cycle + var0.readUnsignedShortAdd();
             var3.recolourEndCycle = Client.cycle + var0.readUnsignedShort();
             var3.recolourHue = var0.readByte();
-            var3.recolourSaturation = var0.method2396();
-            var3.recolourLuminance = var0.method2396();
+            var3.recolourSaturation = var0.readByteNeg();
+            var3.recolourLuminance = var0.readByteNeg();
             var3.recolourAmount = (byte)var0.readUnsignedByte();
          }
 
@@ -310,11 +310,11 @@ final class class181 implements ThreadFactory {
             } else {
                var13 = null;
                if ((var5 & 2) == 2) {
-                  var7 = var0.method2405();
+                  var7 = var0._readUnsignedByteSub();
                   var13 = new int[var7];
 
                   for(var8 = 0; var8 < var7; ++var8) {
-                     var9 = var0.method2437();
+                     var9 = var0.readUnsignedShortLE();
                      var9 = var9 == 65535 ? -1 : var9;
                      var13[var8] = var9;
                   }
@@ -344,7 +344,7 @@ final class class181 implements ThreadFactory {
                   var15 = new short[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var15[var10] = (short)var0.method2437();
+                     var15[var10] = (short)var0.readUnsignedShortLE();
                   }
                }
 
@@ -363,13 +363,13 @@ final class class181 implements ThreadFactory {
          }
 
          if ((var4 & 1024) != 0) {
-            var3.exactMoveDeltaX1 = var0.method2433();
-            var3.exactMoveDeltaY1 = var0.method2396();
+            var3.exactMoveDeltaX1 = var0.readUnsignedByteSub();
+            var3.exactMoveDeltaY1 = var0.readByteNeg();
             var3.exactMoveDeltaX2 = var0.readByte();
-            var3.exactMoveDeltaY2 = var0.method2433();
-            var3.exactMoveArrive1Cycle = var0.method2437() + Client.cycle;
-            var3.exactMoveArrive2Cycle = var0.method2437() + Client.cycle;
-            var3.exactMoveDirection = var0.method2437();
+            var3.exactMoveDeltaY2 = var0.readUnsignedByteSub();
+            var3.exactMoveArrive1Cycle = var0.readUnsignedShortLE() + Client.cycle;
+            var3.exactMoveArrive2Cycle = var0.readUnsignedShortLE() + Client.cycle;
+            var3.exactMoveDirection = var0.readUnsignedShortLE();
             var3.pathLength = 1;
             var3.field1004 = 0;
             var3.exactMoveDeltaX1 += var3.pathX[0];
@@ -385,8 +385,8 @@ final class class181 implements ThreadFactory {
          }
 
          if ((var4 & 128) != 0) {
-            var5 = var0.readUnsignedShortLE();
-            var6 = var0.readUnsignedShortLE();
+            var5 = var0.readUnsignedShortAddLE();
+            var6 = var0.readUnsignedShortAddLE();
             var3.field946 = var0.readUnsignedByte() == 1;
             if (Client.param25 >= 212) {
                var3.field969 = var5;
@@ -401,17 +401,17 @@ final class class181 implements ThreadFactory {
          }
 
          if ((var4 & 16384) != 0) {
-            var5 = var0.method2430();
+            var5 = var0.readUnsignedByteNeg();
             if ((var5 & 1) == 1) {
                var3.method578();
             } else {
                var13 = null;
                if ((var5 & 2) == 2) {
-                  var7 = var0.method2405();
+                  var7 = var0._readUnsignedByteSub();
                   var13 = new int[var7];
 
                   for(var8 = 0; var8 < var7; ++var8) {
-                     var9 = var0.readUnsignedShortLEA();
+                     var9 = var0.readUnsignedShortAdd();
                      var9 = var9 == 65535 ? -1 : var9;
                      var13[var8] = var9;
                   }
@@ -427,7 +427,7 @@ final class class181 implements ThreadFactory {
                   var14 = new short[var8];
 
                   for(var9 = 0; var9 < var8; ++var9) {
-                     var14[var9] = (short)var0.readUnsignedShortLE();
+                     var14[var9] = (short)var0.readUnsignedShortAddLE();
                   }
                }
 
@@ -441,7 +441,7 @@ final class class181 implements ThreadFactory {
                   var15 = new short[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var15[var10] = (short)var0.readUnsignedShortLEA();
+                     var15[var10] = (short)var0.readUnsignedShortAdd();
                   }
                }
 

@@ -61,7 +61,7 @@ public class ZoneOperation {
    )
    public static final ZoneOperation field2528 = new ZoneOperation(6);
    @ObfuscatedName("jz")
-   static int field2529;
+   static int Zone_X;
 
    @ObfuscatedSignature(
       descriptor = "(I)V",

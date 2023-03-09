@@ -244,7 +244,7 @@ public class ReflectionCheck extends Node {
                   Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1] = class19.field60.getSortedMembers()[Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1]];
                   return 1;
                } else if (var0 == 3890) {
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class188.field1522 != null ? 1 : 0;
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class188.varclan != null ? 1 : 0;
                   return 1;
                } else {
                   return 2;

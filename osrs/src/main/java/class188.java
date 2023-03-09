@@ -14,7 +14,7 @@ public class class188 {
    @ObfuscatedSignature(
       descriptor = "Lqv;"
    )
-   static class425 field1522;
+   static class425 varclan;
    @ObfuscatedName("te")
    @ObfuscatedSignature(
       descriptor = "Lsn;"

@@ -10,12 +10,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2628 = new ServerPacket(0, -2);
+   public static final ServerPacket REBUILD_REGION_NORMAL = new ServerPacket(0, -2);
    @ObfuscatedName("al")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2537 = new ServerPacket(1, -2);
+   public static final ServerPacket REBUILD_REGION = new ServerPacket(1, -2);
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -25,7 +25,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2636 = new ServerPacket(3, -2);
+   public static final ServerPacket CLANCHANNEL_DELTA = new ServerPacket(3, -2);
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -40,7 +40,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2571 = new ServerPacket(6, -2);
+   public static final ServerPacket REFLECTION_CHECK = new ServerPacket(6, -2);
    @ObfuscatedName("aq")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -55,12 +55,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2598 = new ServerPacket(9, -2);
+   public static final ServerPacket UPDATE_INV_FULL = new ServerPacket(9, -2);
    @ObfuscatedName("ak")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2546 = new ServerPacket(10, 2);
+   public static final ServerPacket CHAT_FILTER_SETTINGS = new ServerPacket(10, 2);
    @ObfuscatedName("ax")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -115,12 +115,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2557 = new ServerPacket(21, 8);
+   public static final ServerPacket SPOTANIM_SPECIFIC = new ServerPacket(21, 8);
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2558 = new ServerPacket(22, 0);
+   public static final ServerPacket RESET_ANIMS = new ServerPacket(22, 0);
    @ObfuscatedName("aa")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -135,7 +135,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2561 = new ServerPacket(25, 1);
+   public static final ServerPacket ENTER_FREECAM = new ServerPacket(25, 1);
    @ObfuscatedName("bm")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -175,7 +175,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2572 = new ServerPacket(33, -2);
+   public static final ServerPacket UPDATE_INV_PARTIAL = new ServerPacket(33, -2);
    @ObfuscatedName("br")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -190,12 +190,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2597 = new ServerPacket(36, -2);
+   public static final ServerPacket PLAYER_INFO = new ServerPacket(36, -2);
    @ObfuscatedName("bq")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2573 = new ServerPacket(37, -2);
+   public static final ServerPacket GAMEFRAME_FULL = new ServerPacket(37, -2);
    @ObfuscatedName("bc")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -205,7 +205,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2575 = new ServerPacket(39, 0);
+   public static final ServerPacket TRIGGER_ONDIALOGABORT = new ServerPacket(39, 0);
    @ObfuscatedName("be")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -215,17 +215,17 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2577 = new ServerPacket(41, 5);
+   public static final ServerPacket SYNTH_SOUND = new ServerPacket(41, 5);
    @ObfuscatedName("bd")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2578 = new ServerPacket(42, 1);
+   public static final ServerPacket HEAT_MAP = new ServerPacket(42, 1);
    @ObfuscatedName("by")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2579 = new ServerPacket(43, -2);
+   public static final ServerPacket TRADING_POST_RESULTS = new ServerPacket(43, -2);
    @ObfuscatedName("bp")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -235,7 +235,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2581 = new ServerPacket(45, -2);
+   public static final ServerPacket MESSAGE_PRIVATE = new ServerPacket(45, -2);
    @ObfuscatedName("bx")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -245,7 +245,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2583 = new ServerPacket(47, 12);
+   public static final ServerPacket IF_SETEVENTS = new ServerPacket(47, 12);
    @ObfuscatedName("bj")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -255,7 +255,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2585 = new ServerPacket(49, 0);
+   public static final ServerPacket FRIENDLIST_LOADED = new ServerPacket(49, 0);
    @ObfuscatedName("bw")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -265,12 +265,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2587 = new ServerPacket(51, 4);
+   public static final ServerPacket CAM_SHAKE = new ServerPacket(51, 4);
    @ObfuscatedName("cl")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2588 = new ServerPacket(52, 28);
+   public static final ServerPacket UPDATE_UID192 = new ServerPacket(52, 28);
    @ObfuscatedName("ca")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -285,22 +285,22 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2591 = new ServerPacket(55, 8);
+   public static final ServerPacket IF_MOVESUB = new ServerPacket(55, 8);
    @ObfuscatedName("cj")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2592 = new ServerPacket(56, 2);
+   public static final ServerPacket UPDATE_RUNENERGY = new ServerPacket(56, 2);
    @ObfuscatedName("cn")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2602 = new ServerPacket(57, 6);
+   public static final ServerPacket IF_SETNPCHEAD = new ServerPacket(57, 6);
    @ObfuscatedName("ce")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2594 = new ServerPacket(58, 2);
+   public static final ServerPacket UPDATE_ZONE_PARTIAL_FOLLOWS = new ServerPacket(58, 2);
    @ObfuscatedName("cd")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -310,12 +310,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2601 = new ServerPacket(60, 6);
+   public static final ServerPacket IF_SETANIM = new ServerPacket(60, 6);
    @ObfuscatedName("ct")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2568 = new ServerPacket(61, 7);
+   public static final ServerPacket IF_OPENSUB = new ServerPacket(61, 7);
    @ObfuscatedName("cy")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -340,7 +340,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2625 = new ServerPacket(66, 6);
+   public static final ServerPacket CAM_LOOKAT = new ServerPacket(66, 6);
    @ObfuscatedName("cs")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -385,7 +385,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2536 = new ServerPacket(75, -1);
+   public static final ServerPacket VARCLAN = new ServerPacket(75, -1);
    @ObfuscatedName("cv")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -395,7 +395,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2613 = new ServerPacket(77, -1);
+   public static final ServerPacket LOGOUT_TRANSFER = new ServerPacket(77, -1);
    @ObfuscatedName("du")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -430,12 +430,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2549 = new ServerPacket(84, -1);
+   public static final ServerPacket MESSAGE_CLANCHANNEL_SYSTEM = new ServerPacket(84, -1);
    @ObfuscatedName("dx")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2574 = new ServerPacket(85, 4);
+   public static final ServerPacket UPDATE_INV_CLEAR = new ServerPacket(85, 4);
    @ObfuscatedName("ds")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -470,12 +470,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2638 = new ServerPacket(92, 8);
+   public static final ServerPacket IF_SETPOSITION = new ServerPacket(92, 8);
    @ObfuscatedName("dw")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2629 = new ServerPacket(93, 4);
+   public static final ServerPacket TOGGLE_OCULUS_ORB = new ServerPacket(93, 4);
    @ObfuscatedName("dt")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -495,12 +495,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2593 = new ServerPacket(97, -2);
+   public static final ServerPacket MESSAGE_PRIVATE_ECHO = new ServerPacket(97, -2);
    @ObfuscatedName("dl")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2634 = new ServerPacket(98, -2);
+   public static final ServerPacket IF_SETTEXT = new ServerPacket(98, -2);
    @ObfuscatedName("df")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -510,12 +510,12 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2560 = new ServerPacket(100, -2);
+   public static final ServerPacket NPC_INFO_SMALL = new ServerPacket(100, -2);
    @ObfuscatedName("do")
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2569 = new ServerPacket(101, -2);
+   public static final ServerPacket NPC_INFO_LARGE = new ServerPacket(101, -2);
    @ObfuscatedName("dn")
    @ObfuscatedSignature(
       descriptor = "Lke;"
@@ -535,7 +535,7 @@ public class ServerPacket {
    @ObfuscatedSignature(
       descriptor = "Lke;"
    )
-   public static final ServerPacket field2641 = new ServerPacket(105, 10);
+   public static final ServerPacket IF_SETOBJECT = new ServerPacket(105, 10);
    @ObfuscatedName("ee")
    @ObfuscatedSignature(
       descriptor = "Lke;"

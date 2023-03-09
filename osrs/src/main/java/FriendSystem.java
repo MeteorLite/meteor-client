@@ -63,7 +63,7 @@ public class FriendSystem {
       descriptor = "(I)V",
       garbageValue = "-805849904"
    )
-   final void method396() {
+   final void FRIENDLIST_WAS_LOADED() {
       this.field662 = 1;
    }
 

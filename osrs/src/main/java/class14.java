@@ -342,7 +342,7 @@ public class class14 {
                                           throw new IllegalStateException();
                                        }
 
-                                       var39 = class188.field1522.method2209(var7[var20]);
+                                       var39 = class188.varclan.method2209(var7[var20]);
                                        if (var39 == null) {
                                           Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
                                        } else {
