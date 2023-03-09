@@ -837,7 +837,6 @@ public class Buffer extends Node {
       descriptor = "(B)I",
       garbageValue = "0"
    )
-   @Export("readUnsignedShortA")
    public int readUnsignedByteAdd() {
       return this.array[++this.offset - 1] - 128 & 255;
    }
@@ -934,7 +933,6 @@ public class Buffer extends Node {
       descriptor = "(I)I",
       garbageValue = "-1348515939"
    )
-   @Export("readUnsignedShortLEA")
    public int readUnsignedShortAdd() {
       this.offset += 2;
       return (this.array[this.offset - 1] - 128 & 255) + ((this.array[this.offset - 2] & 255) << 8);
@@ -945,7 +943,6 @@ public class Buffer extends Node {
       descriptor = "(I)I",
       garbageValue = "-1429501231"
    )
-   @Export("readUnsignedShortLE")
    public int readUnsignedShortAddLE() {
       this.offset += 2;
       return ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] - 128 & 255);

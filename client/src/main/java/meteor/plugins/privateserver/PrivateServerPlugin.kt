@@ -29,20 +29,27 @@ class PrivateServerPlugin : Plugin() {
             if (config.host().isNotEmpty() && config.modulus().isNotEmpty()) {
                 savePrivateServerConfiguration()
             }
+            if (config.host().isEmpty()) {
+                Configuration.rspsConfigFile.delete()
+            }
         }
     }
 
     fun loadPrivateServerConfiguration() {
         if (Configuration.rspsConfigFile.exists()) {
             rspsConfig = gson.fromJson(Configuration.rspsConfigFile.readText(), PrivateServerConfiguration::class.java)
-            client.setHost(rspsConfig.host)
-            client.modulus = BigInteger(rspsConfig.modulus, 16)
+            if (config.host().isNotEmpty()) {
+                client.setHost(rspsConfig.host)
+                client.modulus = BigInteger(rspsConfig.modulus, 16)
+            }
         }
     }
 
     fun savePrivateServerConfiguration() {
-        client.setHost(rspsConfig.host)
-        client.modulus = BigInteger(rspsConfig.modulus, 16)
+        if (rspsConfig.host.isNotEmpty()) {
+            client.setHost(rspsConfig.host)
+            client.modulus = BigInteger(rspsConfig.modulus, 16)
+        }
 
         //Persist data
         rspsConfig.host = config.host()

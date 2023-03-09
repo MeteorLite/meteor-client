@@ -240,10 +240,12 @@ object Main : ApplicationScope, EventSubscriber() {
         if (Configuration.rspsConfigFile.exists())
             try {
                 rspsConfiguration = Gson().fromJson(Configuration.rspsConfigFile.readText(), PrivateServerConfiguration::class.java)
-                if (rspsConfiguration.host.isNotEmpty())
+                if (rspsConfiguration.host.isNotEmpty()) {
                     client.setHost(rspsConfiguration.host)
-                if (rspsConfiguration.modulus.isNotEmpty())
-                    client.modulus = BigInteger(rspsConfiguration.host, 16)
+                    if (rspsConfiguration.modulus.isNotEmpty()) {
+                        client.modulus = BigInteger(rspsConfiguration.host, 16)
+                    }
+                }
             } catch (_: Exception) {}
     }
 

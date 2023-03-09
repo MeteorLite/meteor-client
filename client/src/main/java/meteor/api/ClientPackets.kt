@@ -200,7 +200,7 @@ object ClientPackets {
         bufferNode.packetBuffer.`writeShortLE$api`(itemSlot)
         bufferNode.packetBuffer.`writeShortAdd$api`(npcIdx)
         bufferNode.packetBuffer.`writeShort$api`(itemID)
-        bufferNode.packetBuffer.`writeByteSigned$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeIntIME$api`(itemWidgetID)
         return bufferNode
     }
@@ -216,7 +216,7 @@ object ClientPackets {
     //OPNPC2
     fun createNPCAction2Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
         val bufferNode = preparePacketBuffer(20, 3)
-        bufferNode.packetBuffer.`writeByteSigned$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortLE$api`(npcIdx)
         return bufferNode
     }
@@ -241,7 +241,7 @@ object ClientPackets {
     fun createNPCAction5Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
         val bufferNode = preparePacketBuffer(92, 3)
         bufferNode.packetBuffer.`writeShortAdd$api`(npcIdx)
-        bufferNode.packetBuffer.`writeByteSigned$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         return bufferNode
     }
 
@@ -254,7 +254,7 @@ object ClientPackets {
         shiftPressed: Boolean
     ): PacketBufferNode {
         val bufferNode = preparePacketBuffer(69, 11)
-        bufferNode.packetBuffer.`writeByteSigned$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortAddLE$api`(itemSlot)
         bufferNode.packetBuffer.`writeShortLE$api`(itemId)
         bufferNode.packetBuffer.`writeIntME$api`(itemWidgetID)
@@ -266,7 +266,7 @@ object ClientPackets {
     fun createPlayerAction1Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
         val bufferNode = preparePacketBuffer(13, 3)
         bufferNode.packetBuffer.`writeShort$api`(playerIdx)
-        bufferNode.packetBuffer.`writeByteSigned$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         return bufferNode
     }
 
@@ -343,7 +343,7 @@ object ClientPackets {
         bufferNode.packetBuffer.`writeShortLE$api`(itemID)
         bufferNode.packetBuffer.`writeShortAddLE$api`(groundItemID)
         bufferNode.packetBuffer.`writeShort$api`(worldY)
-        bufferNode.packetBuffer.`writeByteSigned$api`(if (shiftPressed) 1 else 0)
+        bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         return bufferNode
     }
 

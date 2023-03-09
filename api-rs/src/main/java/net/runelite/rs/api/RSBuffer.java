@@ -14,17 +14,17 @@ int getOffset();
 @Import("offset")
 void setOffset(int offset);
 
-@Import("readUnsignedShortA")
+@Import("readUnsignedByteAdd")
 @Override
-int readUByteAdd();
+int readUnsignedByteAdd$api();
 
-@Import("method2430")
+@Import("readUnsignedByteNeg")
 @Override
-int readUByteNeg();
+int readUnsignedByteNeg$api();
 
-@Import("method2405")
+@Import("_readUnsignedByteSub")
 @Override
-int readUByteSub();
+int _readUnsignedByteSub$api();
 
 @Import("method2432")
 @Override
@@ -34,9 +34,9 @@ byte readByteAdd();
 @Override
 byte readByteNeg();
 
-@Import("method2433")
+@Import("readUnsignedByteSub")
 @Override
-byte readByteSub();
+byte readUnsignedByteSub$api();
 
 @Import("readUnsignedByte")
 @Override
@@ -98,27 +98,27 @@ void writeShortAdd$api(int i);
 @Override
 void writeShortAddLE$api(int i);
 
-@Import("method2437")
-@Override
-int readUShortLE();
-
-@Import("readUnsignedShortLEA")
-@Override
-int readUShortAdd();
-
 @Import("readUnsignedShortLE")
 @Override
-int readShortAddLE();
+int readUnsignedShortLE$api();
 
-@Import("method2440")
+@Import("readUnsignedShortAdd")
 @Override
-int readShortLE();
+int readUnsignedShortAdd$api();
+
+@Import("readUnsignedShortAddLE")
+@Override
+int readUnsignedShortAddLE$api();
+
+@Import("readSignedShortAddLE")
+@Override
+int readSignedShortAddLE$api();
 
 @Import("readInt")
 @Override
 int readInt$api();
 
-@Import("method2455")
+@Import("readIntLE")
 @Override
 int readIntLE$api();
 
@@ -146,9 +146,9 @@ void writeShort$api(int i);
 @Override
 void writeByteAdd$api(int i);
 
-@Import("writeByteSigned")
+@Import("writeByteSub")
 @Override
-void writeByteSigned$api(int i);
+void writeByteSub$api(int i);
 
 @Import("writeByteNeg")
 @Override
