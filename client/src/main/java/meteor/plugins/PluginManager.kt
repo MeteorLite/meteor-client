@@ -103,6 +103,7 @@ import meteor.plugins.runepouch.RunepouchPlugin
 import meteor.plugins.specbar.SpecBarPlugin
 import meteor.plugins.statusbars.StatusBarsPlugin
 import meteor.plugins.stretchedmode.StretchedModePlugin
+import meteor.plugins.thralls.ThrallsPlugin
 import meteor.plugins.tileindicators.TileIndicatorsPlugin
 import meteor.plugins.virtuallevels.VirtualLevelsPlugin
 import meteor.plugins.winemaker.WineMakerPlugin
@@ -281,6 +282,7 @@ object PluginManager {
             init<StretchedModePlugin>()
             init<TileIndicatorsPlugin>()
             init<TilemanModePlugin>()
+            init<ThrallsPlugin>()
             init<TimersPlugin>()
             init<TimestampPlugin>()
             init<TithePlugin>()
