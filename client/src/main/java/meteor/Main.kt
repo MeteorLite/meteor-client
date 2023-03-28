@@ -55,6 +55,7 @@ import net.runelite.api.*
 import net.runelite.api.hooks.Callbacks
 import meteor.chat.ChatCommandManager
 import meteor.chat.ChatMessageManager
+import meteor.plugins.privateserver.PrivateServerConfig
 import meteor.rmi.handshake.HandshakeService
 import meteor.rmi.handshake.HandshakeClient
 import meteor.ui.composables.preferences.uiColor
@@ -77,14 +78,17 @@ import org.rationalityfrontline.kevent.KEVENT as EventBus
 
 object Main : ApplicationScope, EventSubscriber() {
     var meteorConfig: MeteorConfig
+    var rspsConfig: PrivateServerConfig
     init {
         // load configs immediately
         ConfigManager.loadSavedProperties()
         ConfigManager.setDefaultConfiguration(MeteorConfig::class, false)
+        ConfigManager.setDefaultConfiguration(PrivateServerConfiguration::class, false)
         ConfigManager.saveProperties()
 
         // init meteor config
         meteorConfig = ConfigManager.getConfig(MeteorConfig::class.java)!!
+        rspsConfig = ConfigManager.getConfig(PrivateServerConfig::class.java)!!
     }
 
     private val startupTimer = StopWatch()
@@ -138,8 +142,6 @@ object Main : ApplicationScope, EventSubscriber() {
     val windowChangeRequired = mutableStateOf(false)
     val shouldRender = mutableStateOf(true)
     var window: FrameWindowScope? = null
-
-    var rspsConfiguration = PrivateServerConfiguration()
 
     @JvmStatic
     fun main(args: Array<String>) = application {
@@ -237,16 +239,14 @@ object Main : ApplicationScope, EventSubscriber() {
     }
 
     fun initRSPSConfig() {
-        if (Configuration.rspsConfigFile.exists())
-            try {
-                rspsConfiguration = Gson().fromJson(Configuration.rspsConfigFile.readText(), PrivateServerConfiguration::class.java)
-                if (rspsConfiguration.host.isNotEmpty()) {
-                    client.setHost(rspsConfiguration.host)
-                    if (rspsConfiguration.modulus.isNotEmpty()) {
-                        client.modulus = BigInteger(rspsConfiguration.host, 16)
-                    }
-                }
-            } catch (_: Exception) {}
+        try {
+            if (rspsConfig.host().isNotEmpty()) {
+                client.setHost(rspsConfig.host())
+
+                if (rspsConfig.modulus().isNotEmpty())
+                    client.modulus = BigInteger(rspsConfig.modulus(), 16)
+            }
+        } catch (_: Exception) {}
     }
 
     fun finishStartup() {
