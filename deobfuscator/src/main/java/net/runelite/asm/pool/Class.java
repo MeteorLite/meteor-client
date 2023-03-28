@@ -26,7 +26,11 @@ package net.runelite.asm.pool;
 
 public class Class
 {
-	private final String name;
+	private String name;
+
+	public void fixEnum() {
+		name = "[L" + name + ";";
+	}
 
 	public Class(String name)
 	{

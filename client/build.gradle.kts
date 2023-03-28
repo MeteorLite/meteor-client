@@ -135,7 +135,6 @@ compose {
                 //"-Dsun.java2d.uiScale=1.0",
 
                 "-ea",
-                "-noverify",
                 "-XX:+UseDynamicNumberOfGCThreads",
                 "-XX:+UseZGC",
                 "-Xmx2048m",
