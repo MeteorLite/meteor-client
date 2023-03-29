@@ -17,7 +17,7 @@ import net.runelite.asm.Named;
 public abstract class InjectTransformer implements Named
 {
 	protected final InjectData inject;
-	protected final Logger log = new Logger(this.getClass().getName());
+	protected final Logger log = new Logger("Injector");
 	private Stopwatch stopwatch;
 
 	public final void transform()

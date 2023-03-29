@@ -13,6 +13,7 @@ import com.openosrs.injector.injection.InjectTaskHandler;
 import com.openosrs.injector.injectors.*;
 import com.openosrs.injector.injectors.raw.*;
 import com.openosrs.injector.rsapi.RSApi;
+import com.openosrs.injector.transformers.EnumInvokeVirtualFixer;
 import com.openosrs.injector.transformers.InjectTransformer;
 import com.openosrs.injector.transformers.Java8Ifier;
 import com.openosrs.injector.transformers.SourceChanger;
@@ -109,6 +110,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 		injector.vanilla.removeClass(reflection);
 
 		transform(new Java8Ifier(this));
+
+		transform(new EnumInvokeVirtualFixer(this));
 
 		inject(new CreateAnnotations(this));
 
