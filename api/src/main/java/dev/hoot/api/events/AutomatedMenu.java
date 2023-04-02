@@ -16,10 +16,10 @@ public class AutomatedMenu
 {
 	private String option;
 	private String target;
-	private int identifier;
+	public int identifier;
 	private MenuAction opcode;
-	private int param0;
-	private int param1;
+	public int param0;
+	public int param1;
 	private int clickX;
 	private int clickY;
 	private long entityTag;

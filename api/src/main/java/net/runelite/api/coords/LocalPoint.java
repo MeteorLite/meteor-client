@@ -44,7 +44,7 @@ public class LocalPoint
 	/**
 	 * X and Y axis coordinates.
 	 */
-	private final int x, y;
+	public final int x, y;
 
 	/**
 	 * Gets the local coordinate at the center of the passed tile.

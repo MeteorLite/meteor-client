@@ -59,19 +59,19 @@ public class WorldPoint
 	/**
 	 * X-axis coordinate.
 	 */
-	private final int x;
+	public final int x;
 
 	/**
 	 * Y-axis coordinate.
 	 */
-	private final int y;
+	public final int y;
 
 	/**
 	 * The plane level of the Tile, also referred as z-axis coordinate.
 	 *
 	 * @see Client#getPlane()
 	 */
-	private final int plane;
+	public final int plane;
 
 	/**
 	 * Offsets the x-axis coordinate by the passed value.
