@@ -21,9 +21,20 @@ interface ContinueClickerConfig : Config {
         keyName = "questHelper",
         name = "Select Quest Helper options",
         description = "Enable to auto select highlighted quest helper options",
-        position = 5
+        position = 1
     )
     fun questHelper(): Boolean {
         return true
+    }
+
+    @ConfigItem(
+        keyName = "customSTR",
+        name = "Custom options",
+        description = "Comma separated, selects dialog options containing your custom string.",
+        textField = true,
+        position = 2
+    )
+    fun customSTR(): String {
+        return "Yes"
     }
 }
