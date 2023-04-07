@@ -51,7 +51,7 @@ class WorldMapWalkerPlugin : Plugin(daemon = true) {
             mapPoint = null
             return
         }
-        if (client.localPlayer!!.isIdle)
+        if (Movement.isWalking() == false)
             Movement.walkTo(mapPoint)
     }
 
