@@ -32,10 +32,27 @@ class ContinueClickerPlugin : Plugin() {
                 Dialog.continueSpace()
             }
         }
+
+        if (Dialog.isViewingOptions() && config.customSTR() != "") {
+            Dialog.getOptions().forEach{
+                Option ->
+                val dialogText = Option.text
+                val customOption = config.customSTR().split(",")
+                customOption.forEach {
+                    str ->
+                    if (dialogText.contains(str.trim())) {
+                        Dialog.chooseOption(str)
+                        return
+                    }
+                }
+            }
+        }
+
         if (config.questHelper()) {
             if (Dialog.isViewingOptions()) {
                 Dialog.chooseOption("[")
             }
         }
+
     }
 }

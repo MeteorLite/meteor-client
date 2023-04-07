@@ -2,6 +2,7 @@ package meteor.api
 
 import meteor.Main
 import net.runelite.api.NPC
+import net.runelite.api.coords.WorldPoint
 
 /**
  * an object for working with NPCS
@@ -82,5 +83,36 @@ object NPCs {
      */
     fun getFirst(name: String, alive: Boolean = true, sortByDistance: Boolean = true): NPC? {
         return getAll(alive, sortByDistance, name)?.firstOrNull()
+    }
+
+    /**
+     * Gets all npcs matching [npcNames] separated by comma's within specified WorldPoints
+     * @param npcNames npc names to find within area
+     * @param topLeft Top left WorldPoint (Camera facing north)
+     * @param bottomRight Bottom right WorldPoint (Camera facing north)
+     * @param sortByDistance option to sort npcs by distance nearest to farthest
+     */
+    fun getNPCsInArea(
+        npcNames: String,
+        topLeft: WorldPoint,
+        bottomRight: WorldPoint,
+        sortByDistance: Boolean
+    ): List<NPC>? {
+        val npcNameList = npcNames.split(",")
+        val (minX, maxX) = if (topLeft.x < bottomRight.x) topLeft.x to bottomRight.x else bottomRight.x to topLeft.x
+        val (minY, maxY) = if (topLeft.y < bottomRight.y) topLeft.y to bottomRight.y else bottomRight.y to topLeft.y
+
+        val npcsInArea = getAll(true, sortByDistance)?.filter { npc ->
+            val npcLocation = npc.worldLocation
+            val inArea = npcLocation.x in minX..maxX &&
+                    npcLocation.y in minY..maxY
+            val npcName = npc.name ?: ""
+            val hasName = npcNameList.any { it.equals(npcName, ignoreCase = true) }
+            val npcInCombat = npc.interacting != null
+
+            inArea && hasName && !npcInCombat
+        }
+
+        return npcsInArea
     }
 }
