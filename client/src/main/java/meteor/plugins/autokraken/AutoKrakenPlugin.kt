@@ -79,7 +79,7 @@ class AutoKrakenPlugin: Plugin() {
                 client.invokeMenuAction(
                     "Attack",
                     "<col=ffff00>Kraken<col=ff0000>  (level-291)",
-                    21589,
+                    21590,
                     10,
                     0,
                     0
