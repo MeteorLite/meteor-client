@@ -56,7 +56,6 @@ class AutoKrakenPlugin: Plugin() {
 
         ClientPackets.queueClickPacket(fishingExplosive.clickPoint)
         fishingExplosive.use()
-        ClientPackets.queueClickPacket(krakenPool.clickPoint)
         client.invokeMenuAction(
             "Use",
             "<col=ff9040>Fishing explosive</col><col=ffffff> -> <col=ffff00>Whirlpool",
@@ -75,7 +74,6 @@ class AutoKrakenPlugin: Plugin() {
         val local = client.localPlayer!!
         if (local.interacting != NPCs.getFirst("Kraken") && local.isIdle) {
             NPCs.getFirst(KRAKEN)?.let {
-                ClientPackets.queueClickPacket(it.clickPoint)
                 client.invokeMenuAction(
                     "Attack",
                     "<col=ffff00>Kraken<col=ff0000>  (level-291)",
