@@ -11,6 +11,7 @@ import meteor.external.ExternalManager
 import meteor.plugins.crabfighter.CrabFighterPlugin
 import meteor.plugins.agility.AgilityPlugin
 import meteor.plugins.alchemicalhydra.AlchemicalHydraPlugin
+import meteor.plugins.autokraken.AutoKrakenPlugin
 import meteor.plugins.ammo.AmmoPlugin
 import meteor.plugins.antidrag.AntiDragPlugin
 import meteor.plugins.attackstyles.AttackStylesPlugin
@@ -160,6 +161,7 @@ object PluginManager {
         if (pluginsEnabled) {
             init<AgilityPlugin>()
             init<AlchemicalHydraPlugin>()
+            init<AutoKrakenPlugin>()
             init<AmmoPlugin>()
             init<AoeWarningPlugin>()
             init<AttackStylesPlugin>()
