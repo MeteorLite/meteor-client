@@ -51,8 +51,7 @@ class WorldMapWalkerPlugin : Plugin(daemon = true) {
             mapPoint = null
             return
         }
-        if (Movement.isWalking() == false)
-            Movement.walkTo(mapPoint)
+        Movement.walkTo(mapPoint)
     }
 
     override fun onMenuOpened(it: MenuOpened) {
