@@ -72,7 +72,7 @@ public class Magic
 		if (widget != null)
 		{
 			ClientPackets.INSTANCE.queueClickPacket(widget.getClickPoint());
-			Game.getClient().setSelectedSpellWidget(widget.getId());
+			widget.interact(0);
 		}
 	}
 
