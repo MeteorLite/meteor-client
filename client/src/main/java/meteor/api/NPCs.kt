@@ -86,19 +86,18 @@ object NPCs {
     }
 
     /**
-     * Gets all npcs matching [npcNames] separated by comma's within specified WorldPoints
-     * @param npcNames npc names to find within area
+     * Gets all npcs matching [npcNames] within specified WorldPoints
+     * @param npcNames vararg array of npc names to find within area
      * @param topLeft Top left WorldPoint (Camera facing north)
      * @param bottomRight Bottom right WorldPoint (Camera facing north)
      * @param sortByDistance option to sort npcs by distance nearest to farthest
      */
-    fun getNPCsInArea(
-        npcNames: String,
+    fun getInArea(
+        vararg npcNames: String,
         topLeft: WorldPoint,
         bottomRight: WorldPoint,
         sortByDistance: Boolean
     ): List<NPC>? {
-        val npcNameList = npcNames.split(",")
         val (minX, maxX) = if (topLeft.x < bottomRight.x) topLeft.x to bottomRight.x else bottomRight.x to topLeft.x
         val (minY, maxY) = if (topLeft.y < bottomRight.y) topLeft.y to bottomRight.y else bottomRight.y to topLeft.y
 
@@ -107,7 +106,7 @@ object NPCs {
             val inArea = npcLocation.x in minX..maxX &&
                     npcLocation.y in minY..maxY
             val npcName = npc.name ?: ""
-            val hasName = npcNameList.any { it.equals(npcName, ignoreCase = true) }
+            val hasName = npcNames.any { it.equals(npcName, ignoreCase = true) }
             val npcInCombat = npc.interacting != null
 
             inArea && hasName && !npcInCombat
