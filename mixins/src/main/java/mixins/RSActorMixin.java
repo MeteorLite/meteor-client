@@ -310,6 +310,12 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
+	public boolean isInCombat()
+	{
+		return getInteracting() != null;
+	}
+
+	@Inject
 	@Override
 	public java.awt.Point getClickPoint()
 	{
@@ -384,4 +390,5 @@ public abstract class RSActorMixin implements RSActor
 		AnimationFrameIndexChanged animationChange = new AnimationFrameIndexChanged(this);
 		client.getCallbacks().post(Events.ANIMATION_FRAME_INDEX_CHANGED, animationChange);
 	}
+
 }

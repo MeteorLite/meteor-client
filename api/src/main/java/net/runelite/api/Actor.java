@@ -427,6 +427,8 @@ public interface Actor extends Renderable, Locatable
 
 	boolean isMoving();
 
+	boolean isInCombat();
+
 	default boolean isAnimating()
 	{
 		return getAnimation() != -1;
