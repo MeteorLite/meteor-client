@@ -212,6 +212,20 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
         return null
     }
 
+    fun getMenu(actionIndex: Int, opcode: Int, npc: NPC): AutomatedMenu? {
+        when (type) {
+            Type.INVENTORY -> {
+                val menu = getMenu(if (actionIndex == 0) 0 else actionIndex + 1, opcode, slot, widgetId)
+                menu.identifier = npc.id
+                menu.param0 = npc.worldLocation.x - client.baseX
+                menu.param1 = npc.worldLocation.y - client.baseY
+                return menu
+            }
+            else -> {}
+        }
+        return null
+    }
+
     val jagexClickPoint: Point
         get() {
             val widget: Widget = client.getWidget(widgetId)
@@ -299,8 +313,17 @@ open class Item(private val id : Int = 0, val quantity: Int = 0) : Identifiable,
     infix fun useOn(npc: NPC) {
         widgetId = WidgetInfo.INVENTORY.packedId
         use()
-        log.info("[Use-on NPC] [${npc.name}]")
-        client.callbacks.post(Events.INTERACT, getMenu(0, MenuAction.WIDGET_TARGET_ON_NPC.id)?.let { Interact(it) })
+        val item = this
+        val npcMenu = npc.getMenu(0) ?: return log.info("[Use-on NPC] [NPC Not Found]")
+        log.info("[Use-on NPC] [${item.name}] -> [${npc.name}]")
+        client.invokeMenuAction(
+            "Use",
+            "<col=ff9040>${item.name}</col><col=ffffff> -> <col=ff9040>${npc.name}</col>",
+            npcMenu.identifier,
+            MenuAction.WIDGET_TARGET_ON_NPC.id,
+            0,
+            0,
+        )
     }
 
     infix fun useOn(player: Player) {
