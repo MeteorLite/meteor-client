@@ -3,6 +3,7 @@ package meteor.api
 import meteor.Main
 import net.runelite.api.Tile
 import net.runelite.api.TileObject
+import net.runelite.api.coords.WorldPoint
 
 /**
  * an object for working with Objects
@@ -45,6 +46,14 @@ object Objects {
     }
 
     /**
+     * Gets object at specific [WorldPoint]
+     * @param location the WorldPoint for the object.
+     */
+    fun getAt(location: WorldPoint): TileObject? {
+        return getAll()?.lastOrNull { obj -> obj.worldLocation == location }
+    }
+
+    /**
      * gets the first object with an id matching the provided [ids]
      * @param ids the object ids we should filter for
      */
@@ -66,7 +75,7 @@ object Objects {
      * @param action the object action we should filter for
      */
     fun getFirstWithAction(name: String, action: String): TileObject? {
-        return getAll(name)?.firstOrNull{ it.hasAction((action)) }
+        return getAll(name)?.firstOrNull { it.hasAction((action)) }
     }
 
     private fun getObjectsAt(tile: Tile?): List<TileObject> {
