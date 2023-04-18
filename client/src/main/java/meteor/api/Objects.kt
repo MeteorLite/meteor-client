@@ -50,7 +50,7 @@ object Objects {
      * @param location the WorldPoint for the object.
      */
     fun getAt(location: WorldPoint): TileObject? {
-        return getAll()?.last { obj -> obj.worldLocation == location }
+        return getAll()?.lastOrNull { obj -> obj.worldLocation == location }
     }
 
     /**

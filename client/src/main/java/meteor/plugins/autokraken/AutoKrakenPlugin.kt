@@ -8,6 +8,7 @@ import meteor.api.NPCs
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import net.runelite.api.Skill
+import rs117.hd.data.NpcID
 import kotlin.random.Random
 
 @PluginDescriptor(name = "Auto Kraken", description = "Automatically triggers Kraken & focuses the Kraken boss.", enabledByDefault = false)
@@ -50,34 +51,27 @@ class AutoKrakenPlugin: Plugin() {
     }
 
     private fun triggerKraken(): Boolean {
-        // The API for item.useOn(NPC) doesn't work. :( pls fix
         val krakenPool = NPCs.getFirst(KRAKEN_POOL_ID) ?: return false
         val fishingExplosive = Items.getFirst(FISHING_EXPLOSIVE) ?: return false
 
-        ClientPackets.queueClickPacket(fishingExplosive.clickPoint)
-        fishingExplosive.use()
-        client.invokeMenuAction(
-            "Use",
-            "<col=ff9040>Fishing explosive</col><col=ffffff> -> <col=ffff00>Whirlpool",
-            21590,
-            8,
-            0,
-            0
-        )
+        fishingExplosive.useOn(krakenPool)
 
-        waitTicks = 9
+        waitTicks = 11
         return true
     }
 
     private fun attackKraken(): Boolean {
         // NPC.interact("Attack") didn't work for the boss
         val local = client.localPlayer!!
-        if (local.interacting != NPCs.getFirst("Kraken") && local.isIdle) {
+        val kraken = NPCs.getFirst(KRAKEN) ?: return false
+        if (local.interacting != kraken && local.isIdle) {
+            val krakenMenu = kraken.getMenu(0) ?: return false
+
             NPCs.getFirst(KRAKEN)?.let {
                 client.invokeMenuAction(
                     "Attack",
-                    "<col=ffff00>Kraken<col=ff0000>  (level-291)",
-                    21590,
+                    "<col=ffff00>${kraken.name}<col=ff0000>  (level-291)",
+                    krakenMenu.identifier,
                     10,
                     0,
                     0
