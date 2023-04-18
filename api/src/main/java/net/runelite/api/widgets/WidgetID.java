@@ -601,15 +601,15 @@ public final class WidgetID
 		static final int PROTECT_FROM_MAGIC = 21;
 		static final int PROTECT_FROM_MISSILES = 22;
 		static final int PROTECT_FROM_MELEE = 23;
-		static final int EAGLE_EYE = 31;
+		static final int EAGLE_EYE = 29;
 		static final int MYSTIC_MIGHT = 32;
 		static final int RETRIBUTION = 24;
 		static final int REDEMPTION = 25;
 		static final int SMITE = 26;
 		static final int PRESERVE = 37;
 		static final int CHIVALRY = 33;
-		static final int PIETY = 34;
-		static final int RIGOUR = 35;
+		static final int PIETY = 35;
+		static final int RIGOUR = 33;
 		static final int AUGURY = 36;
 	}
 

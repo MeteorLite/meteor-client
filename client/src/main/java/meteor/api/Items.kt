@@ -348,7 +348,14 @@ object Items {
             if (withdrawOption == Bank.WithdrawOption.X && item.actions?.contains("Withdraw-$amount") == true) {
                 item.interact(Bank.WithdrawOption.LAST_QUANTITY.menuIndex)
             } else {
-                item.interact(withdrawOption.menuIndex)
+                when(amount) {
+                    5 -> {item.interact(WithdrawOption.FIVE.menuIndex)}
+                    10 -> {item.interact(WithdrawOption.TEN.menuIndex)}
+                    else -> {
+                        item.interact(withdrawOption.menuIndex)
+                    }
+                }
+                
                 if (withdrawOption == Bank.WithdrawOption.X) {
                     Time.sleepUntil({ Dialog.isEnterInputOpen() }, 1200)
                     Dialog.enterInput(amount)

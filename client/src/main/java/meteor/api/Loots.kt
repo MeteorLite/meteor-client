@@ -1,6 +1,7 @@
 package meteor.api
 
 import meteor.Main
+import net.runelite.api.NPC
 import net.runelite.api.TileItem
 import net.runelite.api.coords.WorldPoint
 
@@ -65,6 +66,34 @@ object Loots {
             }
         }
         return loots
+    }
+
+    /**
+     * Gets all npcs matching [lootNames] within specified WorldPoints
+     * @param lootNames vararg array of npc names to find within area
+     * @param topLeft Top left WorldPoint (Camera facing north)
+     * @param bottomRight Bottom right WorldPoint (Camera facing north)
+     */
+    fun getInArea(
+        vararg lootNames: String,
+        topLeft: WorldPoint,
+        bottomRight: WorldPoint,
+        sortByDistance: Boolean = true
+    ): List<TileItem>? {
+        val (minX, maxX) = if (topLeft.x < bottomRight.x) topLeft.x to bottomRight.x else bottomRight.x to topLeft.x
+        val (minY, maxY) = if (topLeft.y < bottomRight.y) topLeft.y to bottomRight.y else bottomRight.y to topLeft.y
+
+        val lootsInArea = getAll(sortByDistance)?.filter { loot ->
+            val lootLocation = loot.getWorldLocation()
+            val inArea = lootLocation.x in minX..maxX &&
+                    lootLocation.y in minY..maxY
+            val npcName = loot.getName() ?: ""
+            val hasName = lootNames.any { it.equals(npcName, ignoreCase = true) }
+
+            inArea && hasName
+        }
+
+        return lootsInArea
     }
 
     /**
