@@ -6,44 +6,34 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dg")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-   @ObfuscatedName("af")
-   @Export("plane")
-   int plane;
-   @ObfuscatedName("an")
-   @Export("type")
-   int type;
-   @ObfuscatedName("aw")
-   @Export("x")
-   int x;
-   @ObfuscatedName("ac")
-   @Export("y")
-   int y;
-   @ObfuscatedName("au")
-   @Export("objectId")
-   int objectId;
+    @ObfuscatedName("af")
+    int plane;
+    @ObfuscatedName("an")
+    int type;
+    @ObfuscatedName("aw")
+    int x;
+    @ObfuscatedName("ac")
+    int y;
+    @ObfuscatedName("au")
+    int objectId;
    @ObfuscatedName("ab")
    int field927;
    @ObfuscatedName("aq")
    int field922;
-   @ObfuscatedName("al")
-   @Export("id")
-   int id;
-   @ObfuscatedName("at")
-   @Export("rotation")
-   int rotation;
-   @ObfuscatedName("aa")
-   @Export("objectType")
-   int objectType;
+    @ObfuscatedName("al")
+    int id;
+    @ObfuscatedName("at")
+    int rotation;
+    @ObfuscatedName("aa")
+    int objectType;
    @ObfuscatedName("ay")
    int field931;
    @ObfuscatedName("ax")
    int field928 = 31;
-   @ObfuscatedName("ai")
-   @Export("startCycle")
-   int startCycle = 0;
-   @ObfuscatedName("ag")
-   @Export("endCycle")
-   int endCycle = -1;
+    @ObfuscatedName("ai")
+    int startCycle = 0;
+    @ObfuscatedName("ag")
+    int endCycle = -1;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(

@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kb")
 @Implements("WorldMapID")
 public class WorldMapID {
-   @ObfuscatedName("wh")
-   @ObfuscatedSignature(
-      descriptor = "Lqk;"
-   )
-   @Export("masterDisk")
-   static ArchiveDisk masterDisk;
+    @ObfuscatedName("wh")
+    @ObfuscatedSignature(
+            descriptor = "Lqk;"
+    )
+    static ArchiveDisk masterDisk;
    @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "Lkb;"
@@ -22,21 +21,19 @@ public class WorldMapID {
       descriptor = "Lkb;"
    )
    static final WorldMapID field2419 = new WorldMapID(1);
-   @ObfuscatedName("aw")
-   @Export("value")
-   final int value;
+    @ObfuscatedName("aw")
+    final int value;
 
    WorldMapID(int var1) {
       this.value = var1;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Lsq;II)Z",
-      garbageValue = "940918989"
-   )
-   @Export("updateExternalPlayer")
-   static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(Lsq;II)Z",
+            garbageValue = "940918989"
+    )
+    static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
       int var2 = var0.readBits(2);
       int var3;
       int var4;
@@ -146,13 +143,12 @@ public class WorldMapID {
       }
    }
 
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lio;",
-      garbageValue = "746118634"
-   )
-   @Export("getFrames")
-   static Frames getFrames(int var0) {
+    @ObfuscatedName("ai")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lio;",
+            garbageValue = "746118634"
+    )
+    static Frames getFrames(int var0) {
       Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
       if (var1 != null) {
          return var1;

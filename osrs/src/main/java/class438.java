@@ -16,23 +16,21 @@ public class class438 implements class436 {
       this.field3827 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lqz;",
-      garbageValue = "-1368831969"
-   )
-   @Export("vmethod2213")
-   public class435 vmethod2213() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lqz;",
+            garbageValue = "-1368831969"
+    )
+    public class435 vmethod2213() {
       return null;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)[B",
-      garbageValue = "888549065"
-   )
-   @Export("vmethod7797")
-   public byte[] vmethod7797() throws UnsupportedEncodingException {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(I)[B",
+            garbageValue = "888549065"
+    )
+    public byte[] vmethod7797() throws UnsupportedEncodingException {
       return this.method2298().getBytes("UTF-8");
    }
 

@@ -6,9 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("re")
 @Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
-   @ObfuscatedName("nj")
-   @Export("menuWidth")
-   static int menuWidth;
+    @ObfuscatedName("nj")
+    static int menuWidth;
    @ObfuscatedName("ac")
    int field3848;
    @ObfuscatedName("au")
@@ -16,13 +15,12 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
    @ObfuscatedName("ab")
    int field3849;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lrv;",
-      garbageValue = "1351664737"
-   )
-   @Export("get")
-   public PlatformInfo get() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lrv;",
+            garbageValue = "1351664737"
+    )
+    public PlatformInfo get() {
       byte var1;
       if (WorldMapSectionType.formattedOperatingSystemName.startsWith("win")) {
          var1 = 1;

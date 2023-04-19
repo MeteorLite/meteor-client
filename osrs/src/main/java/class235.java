@@ -1011,7 +1011,7 @@ public class class235 extends class220 {
          if (var33 != 0) {
             int var34 = (var28 * var27 - var29 * var25 << 9) / var33;
             int var35 = (var29 * var24 - var28 * var26 << 9) / var33;
-            int var36 = super.field2005.field2227;
+            int var36 = super.field2005.viewportZoom;
             var14 = var13 - var14;
             var17 = var16 - var17;
             var20 = var19 - var20;
@@ -1635,7 +1635,7 @@ public class class235 extends class220 {
          if (var33 != 0) {
             int var34 = (var28 * var27 - var29 * var25 << 9) / var33;
             int var35 = (var29 * var24 - var28 * var26 << 9) / var33;
-            int var36 = super.field2005.field2227;
+            int var36 = super.field2005.viewportZoom;
             var14 = var13 - var14;
             var17 = var16 - var17;
             var20 = var19 - var20;

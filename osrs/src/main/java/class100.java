@@ -5,17 +5,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dn")
 final class class100 implements class308 {
-   @ObfuscatedName("af")
-   @Export("RunException_applet")
-   public static Applet RunException_applet;
-   @ObfuscatedName("at")
-   @Export("musicTrackVolume")
-   public static int musicTrackVolume;
+    @ObfuscatedName("af")
+    public static Applet RunException_applet;
+    @ObfuscatedName("at")
+    public static int musicTrackVolume;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lmq;"
+           descriptor = "Lmq;"
    )
-   @Export("val$cc")
    @ObfuscatedName("val$cc")
    final Widget val$cc;
 
@@ -26,13 +23,12 @@ final class class100 implements class308 {
       this.val$cc = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "427135973"
-   )
-   @Export("vmethod5708")
-   public void vmethod5708() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "427135973"
+    )
+    public void vmethod5708() {
       if (this.val$cc != null && this.val$cc.method1818().field2826 != null) {
          ScriptEvent var1 = new ScriptEvent();
          var1.method491(this.val$cc);
@@ -42,13 +38,12 @@ final class class100 implements class308 {
 
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(CB)B",
-      garbageValue = "-20"
-   )
-   @Export("charToByteCp1252")
-   public static byte charToByteCp1252(char var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(CB)B",
+            garbageValue = "-20"
+    )
+    public static byte charToByteCp1252(char var0) {
       byte var1;
       if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {
          if (var0 == 8364) {
@@ -115,13 +110,12 @@ final class class100 implements class308 {
       return var1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lhj;",
-      garbageValue = "1112844336"
-   )
-   @Export("KitDefinition_get")
-   public static KitDefinition KitDefinition_get(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lhj;",
+            garbageValue = "1112844336"
+    )
+    public static KitDefinition KitDefinition_get(int var0) {
       KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -137,13 +131,12 @@ final class class100 implements class308 {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-16"
-   )
-   @Export("savePreferences")
-   static void savePreferences() {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "-16"
+    )
+    static void savePreferences() {
       AccessFile var0 = null;
 
       try {

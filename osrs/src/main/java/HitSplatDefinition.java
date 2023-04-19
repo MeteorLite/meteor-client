@@ -6,47 +6,40 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hb")
 @Implements("HitSplatDefinition")
 public class HitSplatDefinition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("HitSplatDefinition_archive")
-   public static AbstractArchive HitSplatDefinition_archive;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive HitSplatDefinition_archive;
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "Lnm;"
    )
    public static AbstractArchive field1664;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("HitSplatDefinition_fontsArchive")
-   public static AbstractArchive HitSplatDefinition_fontsArchive;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("HitSplatDefinition_cached")
-   static EvictingDualNodeHashTable HitSplatDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("HitSplatDefinition_cachedSprites")
-   static EvictingDualNodeHashTable HitSplatDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("HitSplatDefinition_cachedFonts")
-   static EvictingDualNodeHashTable HitSplatDefinition_cachedFonts = new EvictingDualNodeHashTable(20);
-   @ObfuscatedName("ao")
-   @Export("fontId")
-   int fontId = -1;
-   @ObfuscatedName("ax")
-   @Export("textColor")
-   public int textColor = 16777215;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive HitSplatDefinition_fontsArchive;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable HitSplatDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable HitSplatDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable HitSplatDefinition_cachedFonts = new EvictingDualNodeHashTable(20);
+    @ObfuscatedName("ao")
+    int fontId = -1;
+    @ObfuscatedName("ax")
+    public int textColor = 16777215;
    @ObfuscatedName("ai")
    public int field1672 = 70;
    @ObfuscatedName("ag")
@@ -69,23 +62,19 @@ public class HitSplatDefinition extends DualNode {
    public int field1678 = -1;
    @ObfuscatedName("ad")
    public int field1680 = 0;
-   @ObfuscatedName("ae")
-   @Export("transforms")
-   public int[] transforms;
-   @ObfuscatedName("ap")
-   @Export("transformVarbit")
-   int transformVarbit = -1;
-   @ObfuscatedName("by")
-   @Export("transformVarp")
-   int transformVarp = -1;
+    @ObfuscatedName("ae")
+    public int[] transforms;
+    @ObfuscatedName("ap")
+    int transformVarbit = -1;
+    @ObfuscatedName("by")
+    int transformVarp = -1;
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "1967654150"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "1967654150"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -96,13 +85,12 @@ public class HitSplatDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;IB)V",
-      garbageValue = "1"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;IB)V",
+            garbageValue = "1"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.fontId = var1.method2516();
       } else if (var2 == 2) {
@@ -165,13 +153,12 @@ public class HitSplatDefinition extends DualNode {
 
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lhb;",
-      garbageValue = "-12"
-   )
-   @Export("transform")
-   public final HitSplatDefinition transform() {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lhb;",
+            garbageValue = "-12"
+    )
+    public final HitSplatDefinition transform() {
       int var1 = -1;
       if (this.transformVarbit != -1) {
          var1 = class252.getVarbit(this.transformVarbit);
@@ -189,13 +176,12 @@ public class HitSplatDefinition extends DualNode {
       return var2 != -1 ? class122.method738(var2) : null;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(II)Ljava/lang/String;",
-      garbageValue = "-280765442"
-   )
-   @Export("getString")
-   public String getString(int var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(II)Ljava/lang/String;",
+            garbageValue = "-280765442"
+    )
+    public String getString(int var1) {
       String var2 = this.field1679;
 
       while(true) {
@@ -300,13 +286,12 @@ public class HitSplatDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lon;",
-      garbageValue = "1644925127"
-   )
-   @Export("getFont")
-   public Font getFont() {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lon;",
+            garbageValue = "1644925127"
+    )
+    public Font getFont() {
       if (this.fontId == -1) {
          return null;
       } else {

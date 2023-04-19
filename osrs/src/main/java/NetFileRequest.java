@@ -6,24 +6,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("no")
 @Implements("NetFileRequest")
 public class NetFileRequest extends DualNode {
-   @ObfuscatedName("fc")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive10")
-   static Archive archive10;
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive")
-   Archive archive;
-   @ObfuscatedName("an")
-   @Export("crc")
-   int crc;
-   @ObfuscatedName("aw")
-   @Export("padding")
-   byte padding;
+    @ObfuscatedName("fc")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive10;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    Archive archive;
+    @ObfuscatedName("an")
+    int crc;
+    @ObfuscatedName("aw")
+    byte padding;
 
    @ObfuscatedName("ad")
    @ObfuscatedSignature(
@@ -55,7 +51,7 @@ public class NetFileRequest extends DualNode {
                var10 = PacketBufferNode.method1602(var3);
             }
 
-            PacketBufferNode var12 = class330.getPacketBufferNode(ClientPacket.OPLOC4, Client.packetWriter.isaacCipher);
+            PacketBufferNode var12 = class330.getPacketBufferNode(ClientPacket.asfasgag, Client.packetWriter.isaacCipher);
             var12.packetBuffer.writeInt(var10);
             Client.packetWriter.addNode(var12);
             return 1;
@@ -128,10 +124,10 @@ public class NetFileRequest extends DualNode {
                   } else if (var5.length() > 500) {
                      return 1;
                   } else {
-                     PacketBufferNode var6 = class330.getPacketBufferNode(ClientPacket.OPOBJ5, Client.packetWriter.isaacCipher);
+                     PacketBufferNode var6 = class330.getPacketBufferNode(ClientPacket.nkasjndakjsn, Client.packetWriter.isaacCipher);
                      var6.packetBuffer.writeShort(1 + DynamicObject.stringCp1252NullTerminatedByteSize(var7) + DynamicObject.stringCp1252NullTerminatedByteSize(var5));
                      var6.packetBuffer.writeStringCp1252NullTerminated(var7);
-                     var6.packetBuffer.writeByteAdd(var8);
+                     var6.packetBuffer.writeByteSub(var8);
                      var6.packetBuffer.writeStringCp1252NullTerminated(var5);
                      Client.packetWriter.addNode(var6);
                      return 1;
@@ -479,9 +475,9 @@ public class NetFileRequest extends DualNode {
       IterableNodeHashTableIterator var7 = new IterableNodeHashTableIterator(var0.method532());
 
       int var3;
-      for(Graphic var6 = (Graphic)var7.method2390(); var6 != null; var6 = (Graphic)var7.next()) {
-         if (var6.field4170 != -1 && Client.cycle >= var6.field4171) {
-            var3 = ItemContainer.SpotAnimationDefinition_get(var6.field4170).sequence;
+      for(SpotAnimation var6 = (SpotAnimation)var7.method2390(); var6 != null; var6 = (SpotAnimation)var7.next()) {
+         if (var6.id != -1 && Client.cycle >= var6.frame) {
+            var3 = ItemContainer.SpotAnimationDefinition_get(var6.id).sequence;
             if (var3 == -1) {
                var6.remove();
                --var0.graphicsCount;

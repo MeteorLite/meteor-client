@@ -6,15 +6,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cc")
 @Implements("Decimator")
 public class Decimator {
-   @ObfuscatedName("ac")
-   @Export("inputRate")
-   int inputRate;
-   @ObfuscatedName("au")
-   @Export("outputRate")
-   int outputRate;
-   @ObfuscatedName("ab")
-   @Export("table")
-   int[][] table;
+    @ObfuscatedName("ac")
+    int inputRate;
+    @ObfuscatedName("au")
+    int outputRate;
+    @ObfuscatedName("ab")
+    int[][] table;
 
    public Decimator(int var1, int var2) {
       if (var2 != var1) {
@@ -65,13 +62,12 @@ public class Decimator {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "([BI)[B",
-      garbageValue = "33076536"
-   )
-   @Export("resample")
-   byte[] resample(byte[] var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "([BI)[B",
+            garbageValue = "33076536"
+    )
+    byte[] resample(byte[] var1) {
       if (this.table != null) {
          int var2 = (int)((long)this.outputRate * (long)var1.length / (long)this.inputRate) + 14;
          int[] var3 = new int[var2];
@@ -111,13 +107,12 @@ public class Decimator {
       return var1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IB)I",
-      garbageValue = "45"
-   )
-   @Export("scaleRate")
-   int scaleRate(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IB)I",
+            garbageValue = "45"
+    )
+    int scaleRate(int var1) {
       if (this.table != null) {
          var1 = (int)((long)var1 * (long)this.outputRate / (long)this.inputRate);
       }
@@ -125,13 +120,12 @@ public class Decimator {
       return var1;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "2001424421"
-   )
-   @Export("scalePosition")
-   int scalePosition(int var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(II)I",
+            garbageValue = "2001424421"
+    )
+    int scalePosition(int var1) {
       if (this.table != null) {
          var1 = (int)((long)this.outputRate * (long)var1 / (long)this.inputRate) + 6;
       }
@@ -392,13 +386,12 @@ public class Decimator {
       RouteStrategy.rasterProvider.drawFull(0, 0);
    }
 
-   @ObfuscatedName("ir")
-   @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "-51"
-   )
-   @Export("setWindowedMode")
-   static void setWindowedMode(int var0) {
+    @ObfuscatedName("ir")
+    @ObfuscatedSignature(
+            descriptor = "(IB)V",
+            garbageValue = "-51"
+    )
+    static void setWindowedMode(int var0) {
       Client.field581 = 0L;
       if (var0 >= 2) {
          Client.isResizable = true;

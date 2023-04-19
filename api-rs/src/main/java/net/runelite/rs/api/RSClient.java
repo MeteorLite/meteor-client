@@ -372,6 +372,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int getScale();
 
+	@Import("viewportZoom")
+	void setScale(int scale);
+
 	@Import("canvasHeight")
 	@Override
 	int getCanvasHeight();
@@ -742,7 +745,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int get3dZoom$api();
 
-	@Import("Rasterizer3D_zoom")
 	void set3dZoom(int zoom);
 
 	@Import("getClipMidX2")

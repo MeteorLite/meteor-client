@@ -6,62 +6,46 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ja")
 @Implements("WorldMapSection0")
 public class WorldMapSection0 implements WorldMapSection {
-   @ObfuscatedName("fh")
-   @ObfuscatedSignature(
-      descriptor = "Lgp;"
-   )
-   @Export("js5SocketTask")
-   static Task js5SocketTask;
-   @ObfuscatedName("af")
-   @Export("oldZ")
-   int oldZ;
-   @ObfuscatedName("an")
-   @Export("newZ")
-   int newZ;
-   @ObfuscatedName("aw")
-   @Export("oldX")
-   int oldX;
-   @ObfuscatedName("ac")
-   @Export("oldY")
-   int oldY;
-   @ObfuscatedName("au")
-   @Export("newX")
-   int newX;
-   @ObfuscatedName("ab")
-   @Export("newY")
-   int newY;
-   @ObfuscatedName("aq")
-   @Export("oldChunkXLow")
-   int oldChunkXLow;
-   @ObfuscatedName("al")
-   @Export("oldChunkYLow")
-   int oldChunkYLow;
-   @ObfuscatedName("at")
-   @Export("oldChunkXHigh")
-   int oldChunkXHigh;
-   @ObfuscatedName("aa")
-   @Export("oldChunkYHigh")
-   int oldChunkYHigh;
-   @ObfuscatedName("ay")
-   @Export("newChunkXLow")
-   int newChunkXLow;
-   @ObfuscatedName("ao")
-   @Export("newChunkYLow")
-   int newChunkYLow;
-   @ObfuscatedName("ax")
-   @Export("newChunkXHigh")
-   int newChunkXHigh;
-   @ObfuscatedName("ai")
-   @Export("newChunkYHigh")
-   int newChunkYHigh;
+    @ObfuscatedName("fh")
+    @ObfuscatedSignature(
+            descriptor = "Lgp;"
+    )
+    static Task js5SocketTask;
+    @ObfuscatedName("af")
+    int oldZ;
+    @ObfuscatedName("an")
+    int newZ;
+    @ObfuscatedName("aw")
+    int oldX;
+    @ObfuscatedName("ac")
+    int oldY;
+    @ObfuscatedName("au")
+    int newX;
+    @ObfuscatedName("ab")
+    int newY;
+    @ObfuscatedName("aq")
+    int oldChunkXLow;
+    @ObfuscatedName("al")
+    int oldChunkYLow;
+    @ObfuscatedName("at")
+    int oldChunkXHigh;
+    @ObfuscatedName("aa")
+    int oldChunkYHigh;
+    @ObfuscatedName("ay")
+    int newChunkXLow;
+    @ObfuscatedName("ao")
+    int newChunkYLow;
+    @ObfuscatedName("ax")
+    int newChunkXHigh;
+    @ObfuscatedName("ai")
+    int newChunkYHigh;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljs;I)V",
-      garbageValue = "1131699138"
-   )
-   @Export("expandBounds")
-   public void expandBounds(WorldMapArea var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljs;I)V",
+            garbageValue = "1131699138"
+    )
+    public void expandBounds(WorldMapArea var1) {
       if (var1.regionLowX > this.newX) {
          var1.regionLowX = this.newX;
       }
@@ -80,13 +64,12 @@ public class WorldMapSection0 implements WorldMapSection {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IIIB)Z",
-      garbageValue = "3"
-   )
-   @Export("containsCoord")
-   public boolean containsCoord(int var1, int var2, int var3) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IIIB)Z",
+            garbageValue = "3"
+    )
+    public boolean containsCoord(int var1, int var2, int var3) {
       if (var1 >= this.oldZ && var1 < this.newZ + this.oldZ) {
          return var2 >= (this.oldX << 6) + (this.oldChunkXLow << 3) && var2 <= (this.oldX << 6) + (this.oldChunkXHigh << 3) + 7 && var3 >= (this.oldY << 6) + (this.oldChunkYLow << 3) && var3 <= (this.oldY << 6) + (this.oldChunkYHigh << 3) + 7;
       } else {
@@ -94,23 +77,21 @@ public class WorldMapSection0 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(III)Z",
-      garbageValue = "-1795894381"
-   )
-   @Export("containsPosition")
-   public boolean containsPosition(int var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(III)Z",
+            garbageValue = "-1795894381"
+    )
+    public boolean containsPosition(int var1, int var2) {
       return var1 >= (this.newX << 6) + (this.newChunkXLow << 3) && var1 <= (this.newX << 6) + (this.newChunkXHigh << 3) + 7 && var2 >= (this.newY << 6) + (this.newChunkYLow << 3) && var2 <= (this.newY << 6) + (this.newChunkYHigh << 3) + 7;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(IIIB)[I",
-      garbageValue = "21"
-   )
-   @Export("getBorderTileLengths")
-   public int[] getBorderTileLengths(int var1, int var2, int var3) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(IIIB)[I",
+            garbageValue = "21"
+    )
+    public int[] getBorderTileLengths(int var1, int var2, int var3) {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
       } else {
@@ -119,13 +100,12 @@ public class WorldMapSection0 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)Llb;",
-      garbageValue = "-4"
-   )
-   @Export("coord")
-   public Coord coord(int var1, int var2) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)Llb;",
+            garbageValue = "-4"
+    )
+    public Coord coord(int var1, int var2) {
       if (!this.containsPosition(var1, var2)) {
          return null;
       } else {
@@ -135,13 +115,12 @@ public class WorldMapSection0 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "0"
-   )
-   @Export("read")
-   public void read(Buffer var1) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "0"
+    )
+    public void read(Buffer var1) {
       this.oldZ = var1.readUnsignedByte();
       this.newZ = var1.readUnsignedByte();
       this.oldX = var1.readUnsignedShort();
@@ -159,12 +138,11 @@ public class WorldMapSection0 implements WorldMapSection {
       this.postRead();
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1817267737"
-   )
-   @Export("postRead")
-   void postRead() {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1817267737"
+    )
+    void postRead() {
    }
 }

@@ -30,18 +30,16 @@ public enum class85 implements class356 {
    )
    field874(4, 9);
 
-   @ObfuscatedName("fn")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive2")
-   static Archive archive2;
-   @ObfuscatedName("fz")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive4")
-   static Archive archive4;
+    @ObfuscatedName("fn")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive2;
+    @ObfuscatedName("fz")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive4;
    @ObfuscatedName("ab")
    final int field873;
    @ObfuscatedName("aq")
@@ -52,13 +50,12 @@ public enum class85 implements class356 {
       this.field876 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field876;
    }
 

@@ -6,18 +6,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ib")
 @Implements("VertexNormal")
 public class VertexNormal {
-   @ObfuscatedName("af")
-   @Export("x")
-   int x;
-   @ObfuscatedName("an")
-   @Export("y")
-   int y;
-   @ObfuscatedName("aw")
-   @Export("z")
-   int z;
-   @ObfuscatedName("ac")
-   @Export("magnitude")
-   int magnitude;
+    @ObfuscatedName("af")
+    int x;
+    @ObfuscatedName("an")
+    int y;
+    @ObfuscatedName("aw")
+    int z;
+    @ObfuscatedName("ac")
+    int magnitude;
 
    VertexNormal() {
    }

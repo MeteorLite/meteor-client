@@ -8,18 +8,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class SpriteMask extends DualNode {
    @ObfuscatedName("gn")
    static String field2808;
-   @ObfuscatedName("af")
-   @Export("width")
-   public final int width;
-   @ObfuscatedName("an")
-   @Export("height")
-   public final int height;
-   @ObfuscatedName("aw")
-   @Export("xWidths")
-   public final int[] xWidths;
-   @ObfuscatedName("ac")
-   @Export("xStarts")
-   public final int[] xStarts;
+    @ObfuscatedName("af")
+    public final int width;
+    @ObfuscatedName("an")
+    public final int height;
+    @ObfuscatedName("aw")
+    public final int[] xWidths;
+    @ObfuscatedName("ac")
+    public final int[] xStarts;
 
    SpriteMask(int var1, int var2, int[] var3, int[] var4, int var5) {
       this.width = var1;
@@ -28,13 +24,12 @@ public class SpriteMask extends DualNode {
       this.xStarts = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(III)Z",
-      garbageValue = "-746690647"
-   )
-   @Export("contains")
-   public boolean contains(int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(III)Z",
+            garbageValue = "-746690647"
+    )
+    public boolean contains(int var1, int var2) {
       if (var2 >= 0 && var2 < this.xStarts.length) {
          int var3 = this.xStarts[var2];
          if (var1 >= var3 && var1 <= var3 + this.xWidths[var2]) {

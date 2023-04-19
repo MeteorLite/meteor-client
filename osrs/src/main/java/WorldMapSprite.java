@@ -6,9 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kc")
 @Implements("WorldMapSprite")
 public final class WorldMapSprite {
-   @ObfuscatedName("an")
-   @Export("tileColors")
-   final int[] tileColors;
+    @ObfuscatedName("an")
+    final int[] tileColors;
 
    WorldMapSprite() {
       this.tileColors = new int[4096];
@@ -18,13 +17,12 @@ public final class WorldMapSprite {
       this.tileColors = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "222072056"
-   )
-   @Export("getTileColor")
-   final int getTileColor(int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(III)I",
+            garbageValue = "222072056"
+    )
+    final int getTileColor(int var1, int var2) {
       return this.tileColors[var2 * 64 + var1];
    }
 
@@ -67,13 +65,12 @@ public final class WorldMapSprite {
       }
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;II[BIB)I",
-      garbageValue = "39"
-   )
-   @Export("encodeStringCp1252")
-   public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/CharSequence;II[BIB)I",
+            garbageValue = "39"
+    )
+    public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
       int var5 = var2 - var1;
 
       for(int var6 = 0; var6 < var5; ++var6) {

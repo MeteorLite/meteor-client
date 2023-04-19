@@ -6,15 +6,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ir")
 @Implements("FaceNormal")
 public class FaceNormal {
-   @ObfuscatedName("af")
-   @Export("x")
-   int x;
-   @ObfuscatedName("an")
-   @Export("y")
-   int y;
-   @ObfuscatedName("aw")
-   @Export("z")
-   int z;
+    @ObfuscatedName("af")
+    int x;
+    @ObfuscatedName("an")
+    int y;
+    @ObfuscatedName("aw")
+    int z;
 
    @ObfuscatedName("au")
    @ObfuscatedSignature(
@@ -27,24 +24,22 @@ public class FaceNormal {
       return var1;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lcl;",
-      garbageValue = "-285053165"
-   )
-   @Export("worldListStart")
-   static World worldListStart() {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lcl;",
+            garbageValue = "-285053165"
+    )
+    static World worldListStart() {
       World.World_listCount = 0;
       return Interpreter.getNextWorldListWorld();
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(IIIZII)J",
-      garbageValue = "1232964320"
-   )
-   @Export("calculateTag")
-   public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(IIIZII)J",
+            garbageValue = "1232964320"
+    )
+    public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
       long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17;
       if (var3) {
          var5 |= 65536L;
@@ -53,13 +48,12 @@ public class FaceNormal {
       return var5;
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "858932471"
-   )
-   @Export("Messages_getLastChatID")
-   static int Messages_getLastChatID(int var0) {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(II)I",
+            garbageValue = "858932471"
+    )
+    static int Messages_getLastChatID(int var0) {
       Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
       if (var1 == null) {
          return -1;

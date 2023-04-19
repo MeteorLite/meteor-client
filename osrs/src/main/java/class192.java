@@ -39,9 +39,8 @@ public class class192 {
       descriptor = "Lhl;"
    )
    static final class192 field1618;
-   @ObfuscatedName("nf")
-   @Export("menuX")
-   static int menuX;
+    @ObfuscatedName("nf")
+    static int menuX;
 
    static {
       field1617 = new class192(0, class204.field1839);
@@ -59,13 +58,12 @@ public class class192 {
    class192(int var1, class204 var2) {
    }
 
-   @ObfuscatedName("lj")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;IIB)V",
-      garbageValue = "-121"
-   )
-   @Export("alignWidgetPosition")
-   static void alignWidgetPosition(Widget var0, int var1, int var2) {
+    @ObfuscatedName("lj")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;IIB)V",
+            garbageValue = "-121"
+    )
+    static void alignWidgetPosition(Widget var0, int var1, int var2) {
       if (var0.xAlignment == 0) {
          var0.x = var0.rawX;
       } else if (var0.xAlignment == 1) {

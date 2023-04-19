@@ -6,21 +6,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gv")
 @Implements("Clock")
 public abstract class Clock {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-331366942"
-   )
-   @Export("mark")
-   public abstract void mark();
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-331366942"
+    )
+    public abstract void mark();
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "-1491982008"
-   )
-   @Export("wait")
-   public abstract int wait(int var1, int var2);
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(III)I",
+            garbageValue = "-1491982008"
+    )
+    public abstract int wait(int var1, int var2);
 
    @ObfuscatedName("np")
    @ObfuscatedSignature(

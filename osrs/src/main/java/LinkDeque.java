@@ -6,30 +6,27 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("og")
 @Implements("LinkDeque")
 public class LinkDeque {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lrx;"
-   )
-   @Export("sentinel")
-   Link sentinel = new Link();
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lrx;"
-   )
-   @Export("current")
-   Link current;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lrx;"
+    )
+    Link sentinel = new Link();
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lrx;"
+    )
+    Link current;
 
    public LinkDeque() {
       this.sentinel.previous = this.sentinel;
       this.sentinel.next = this.sentinel;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lrx;)V"
-   )
-   @Export("addFirst")
-   public void addFirst(Link var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lrx;)V"
+    )
+    public void addFirst(Link var1) {
       if (var1.next != null) {
          var1.remove();
       }
@@ -40,12 +37,11 @@ public class LinkDeque {
       var1.previous.next = var1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "()Lrx;"
-   )
-   @Export("last")
-   public Link last() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "()Lrx;"
+    )
+    public Link last() {
       Link var1 = this.sentinel.previous;
       if (var1 == this.sentinel) {
          this.current = null;
@@ -56,12 +52,11 @@ public class LinkDeque {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "()Lrx;"
-   )
-   @Export("previous")
-   public Link previous() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "()Lrx;"
+    )
+    public Link previous() {
       Link var1 = this.current;
       if (var1 == this.sentinel) {
          this.current = null;

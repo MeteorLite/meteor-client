@@ -6,18 +6,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ix")
 @Implements("ViewportMouse")
 public class ViewportMouse {
-   @ObfuscatedName("af")
-   @Export("ViewportMouse_isInViewport")
-   public static boolean ViewportMouse_isInViewport = false;
-   @ObfuscatedName("an")
-   @Export("ViewportMouse_x")
-   public static int ViewportMouse_x = 0;
-   @ObfuscatedName("aw")
-   @Export("ViewportMouse_y")
-   public static int ViewportMouse_y = 0;
-   @ObfuscatedName("ac")
-   @Export("ViewportMouse_false0")
-   public static boolean ViewportMouse_false0 = false;
+    @ObfuscatedName("af")
+    public static boolean ViewportMouse_isInViewport = false;
+    @ObfuscatedName("an")
+    public static int ViewportMouse_x = 0;
+    @ObfuscatedName("aw")
+    public static int ViewportMouse_y = 0;
+    @ObfuscatedName("ac")
+    public static boolean ViewportMouse_false0 = false;
    @ObfuscatedName("au")
    static int field2207;
    @ObfuscatedName("aq")
@@ -26,12 +22,10 @@ public class ViewportMouse {
    static int field2209;
    @ObfuscatedName("ao")
    static int field2211;
-   @ObfuscatedName("ai")
-   @Export("ViewportMouse_entityCount")
-   public static int ViewportMouse_entityCount = 0;
-   @ObfuscatedName("ag")
-   @Export("ViewportMouse_entityTags")
-   public static long[] ViewportMouse_entityTags = new long[1000];
+    @ObfuscatedName("ai")
+    public static int ViewportMouse_entityCount = 0;
+    @ObfuscatedName("ag")
+    public static long[] ViewportMouse_entityTags = new long[1000];
    @ObfuscatedName("hv")
    static String field2213;
 
@@ -44,13 +38,12 @@ public class ViewportMouse {
       return class28.KeyHandler_keyCodes[var0];
    }
 
-   @ObfuscatedName("mw")
-   @ObfuscatedSignature(
-      descriptor = "([Lmq;IIIIIIII)V",
-      garbageValue = "1611526345"
-   )
-   @Export("updateInterface")
-   static final void updateInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+    @ObfuscatedName("mw")
+    @ObfuscatedSignature(
+            descriptor = "([Lmq;IIIIIIII)V",
+            garbageValue = "1611526345"
+    )
+    static final void updateInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       for(int var8 = 0; var8 < var0.length; ++var8) {
          Widget var9 = var0[var8];
          if (var9 != null && var9.parentId == var1 && (var9.method1801() || KeyHandler.getWidgetFlags(var9) != 0 || var9 == Client.clickedWidgetParent)) {

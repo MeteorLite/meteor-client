@@ -32,32 +32,29 @@ public enum class135 implements class356 {
 
    @ObfuscatedName("ab")
    public final int field1304;
-   @ObfuscatedName("aq")
-   @Export("id")
-   final int id;
+    @ObfuscatedName("aq")
+    final int id;
 
    class135(int var3, int var4) {
       this.field1304 = var3;
       this.id = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("ld")
-   @ObfuscatedSignature(
-      descriptor = "([Lmq;IIIZI)V",
-      garbageValue = "1809081725"
-   )
-   @Export("resizeInterface")
-   static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
+    @ObfuscatedName("ld")
+    @ObfuscatedSignature(
+            descriptor = "([Lmq;IIIZI)V",
+            garbageValue = "1809081725"
+    )
+    static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
       for(int var5 = 0; var5 < var0.length; ++var5) {
          Widget var6 = var0[var5];
          if (var6 != null && var6.parentId == var1) {

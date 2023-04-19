@@ -5,27 +5,20 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("bv")
 @Implements("VorbisResidue")
 public class VorbisResidue {
-   @ObfuscatedName("af")
-   @Export("residueType")
-   int residueType = VorbisSample.readBits(16);
-   @ObfuscatedName("an")
-   @Export("begin")
-   int begin = VorbisSample.readBits(24);
-   @ObfuscatedName("aw")
-   @Export("end")
-   int end = VorbisSample.readBits(24);
-   @ObfuscatedName("ac")
-   @Export("partitionSize")
-   int partitionSize = VorbisSample.readBits(24) + 1;
-   @ObfuscatedName("au")
-   @Export("classifications")
-   int classifications = VorbisSample.readBits(6) + 1;
-   @ObfuscatedName("ab")
-   @Export("classbook")
-   int classbook = VorbisSample.readBits(8);
-   @ObfuscatedName("aq")
-   @Export("cascade")
-   int[] cascade;
+    @ObfuscatedName("af")
+    int residueType = VorbisSample.readBits(16);
+    @ObfuscatedName("an")
+    int begin = VorbisSample.readBits(24);
+    @ObfuscatedName("aw")
+    int end = VorbisSample.readBits(24);
+    @ObfuscatedName("ac")
+    int partitionSize = VorbisSample.readBits(24) + 1;
+    @ObfuscatedName("au")
+    int classifications = VorbisSample.readBits(6) + 1;
+    @ObfuscatedName("ab")
+    int classbook = VorbisSample.readBits(8);
+    @ObfuscatedName("aq")
+    int[] cascade;
 
    VorbisResidue() {
       int[] var1 = new int[this.classifications];

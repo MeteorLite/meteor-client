@@ -7,15 +7,12 @@ import net.runelite.mapping.ObfuscatedName;
 @Implements("com/jagex/oldscape/pub/RefreshAccessTokenResponse")
 @ObfuscatedName("com/jagex/oldscape/pub/RefreshAccessTokenResponse")
 public interface RefreshAccessTokenResponse {
-   @Export("isSuccess")
-   @ObfuscatedName("isSuccess")
+    @ObfuscatedName("isSuccess")
    boolean isSuccess();
 
-   @Export("getAccessToken")
-   @ObfuscatedName("getAccessToken")
+    @ObfuscatedName("getAccessToken")
    String getAccessToken();
 
-   @Export("getRefreshToken")
-   @ObfuscatedName("getRefreshToken")
+    @ObfuscatedName("getRefreshToken")
    String getRefreshToken();
 }

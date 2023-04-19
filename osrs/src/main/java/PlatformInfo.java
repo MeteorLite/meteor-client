@@ -88,13 +88,12 @@ public class PlatformInfo extends Node {
       this.field3874 = var26;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "15"
-   )
-   @Export("write")
-   public void write(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "15"
+    )
+    public void write(Buffer var1) {
       var1.writeByte(9);
       var1.writeByte(this.field3876);
       var1.writeByte(this.field3853 ? 1 : 0);
@@ -128,13 +127,12 @@ public class PlatformInfo extends Node {
       var1.writeStringCp1252NullCircumfixed(this.field3874);
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "70"
-   )
-   @Export("size")
-   public int size() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "70"
+    )
+    public int size() {
       byte var1 = 39;
       int var2 = var1 + ObjTypeCustomisation.method971(this.field3865);
       var2 += ObjTypeCustomisation.method971(this.field3866);

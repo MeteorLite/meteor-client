@@ -6,27 +6,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ig")
 @Implements("FloorDecoration")
 public final class FloorDecoration {
-   @ObfuscatedName("af")
-   @Export("z")
-   int z;
-   @ObfuscatedName("an")
-   @Export("x")
-   int x;
-   @ObfuscatedName("aw")
-   @Export("y")
-   int y;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("renderable")
-   public Renderable renderable;
-   @ObfuscatedName("au")
-   @Export("tag")
-   public long tag;
-   @ObfuscatedName("ab")
-   @Export("flags")
-   int flags;
+    @ObfuscatedName("af")
+    int z;
+    @ObfuscatedName("an")
+    int x;
+    @ObfuscatedName("aw")
+    int y;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    public Renderable renderable;
+    @ObfuscatedName("au")
+    public long tag;
+    @ObfuscatedName("ab")
+    int flags;
 
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
@@ -53,13 +47,12 @@ public final class FloorDecoration {
       Rasterizer3D.field1999.vmethod1362(var0, var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17, var18, var19, var20, var21);
    }
 
-   @ObfuscatedName("iq")
-   @ObfuscatedSignature(
-      descriptor = "(Ldv;III)V",
-      garbageValue = "-1059867527"
-   )
-   @Export("performPlayerAnimation")
-   static void performPlayerAnimation(Player var0, int var1, int var2) {
+    @ObfuscatedName("iq")
+    @ObfuscatedSignature(
+            descriptor = "(Ldv;III)V",
+            garbageValue = "-1059867527"
+    )
+    static void performPlayerAnimation(Player var0, int var1, int var2) {
       if (var0.sequence == var1 && var1 != -1) {
          int var3 = ItemContainer.SequenceDefinition_get(var1).replyMode;
          if (var3 == 1) {

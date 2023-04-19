@@ -24,13 +24,12 @@ public class class151 extends class155 {
       this.field1379 = null;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1949352075"
-   )
-   @Export("vmethod3238")
-   void vmethod3238(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1949352075"
+    )
+    void vmethod3238(Buffer var1) {
       if (var1.readUnsignedByte() != 255) {
          --var1.offset;
          var1.readLong();
@@ -42,13 +41,12 @@ public class class151 extends class155 {
       var1.readLong();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lgj;B)V",
-      garbageValue = "-49"
-   )
-   @Export("vmethod3239")
-   void vmethod3239(ClanChannel var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lgj;B)V",
+            garbageValue = "-49"
+    )
+    void vmethod3239(ClanChannel var1) {
       ClanChannelMember var2 = new ClanChannelMember();
       var2.username = new Username(this.field1379);
       var2.world = this.field1378;
@@ -56,13 +54,12 @@ public class class151 extends class155 {
       var1.addMember(var2);
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IIII)Lch;",
-      garbageValue = "-2068677653"
-   )
-   @Export("getWorldMapScript")
-   static Script getWorldMapScript(int var0, int var1, int var2) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IIII)Lch;",
+            garbageValue = "-2068677653"
+    )
+    static Script getWorldMapScript(int var0, int var1, int var2) {
       int var3 = (var1 << 8) + var0;
       Script var5 = ObjectComposition.method1096(var3, var0);
       if (var5 != null) {

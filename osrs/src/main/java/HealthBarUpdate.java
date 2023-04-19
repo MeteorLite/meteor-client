@@ -6,18 +6,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dh")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-   @ObfuscatedName("af")
-   @Export("cycle")
-   int cycle;
-   @ObfuscatedName("an")
-   @Export("health")
-   int health;
-   @ObfuscatedName("aw")
-   @Export("health2")
-   int health2;
-   @ObfuscatedName("ac")
-   @Export("cycleOffset")
-   int cycleOffset;
+    @ObfuscatedName("af")
+    int cycle;
+    @ObfuscatedName("an")
+    int health;
+    @ObfuscatedName("aw")
+    int health2;
+    @ObfuscatedName("ac")
+    int cycleOffset;
 
    HealthBarUpdate(int var1, int var2, int var3, int var4) {
       this.cycle = var1;
@@ -26,26 +22,24 @@ public class HealthBarUpdate extends Node {
       this.cycleOffset = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)V",
-      garbageValue = "470045969"
-   )
-   @Export("set")
-   void set(int var1, int var2, int var3, int var4) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IIIII)V",
+            garbageValue = "470045969"
+    )
+    void set(int var1, int var2, int var3, int var4) {
       this.cycle = var1;
       this.health = var2;
       this.health2 = var3;
       this.cycleOffset = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lhz;",
-      garbageValue = "36"
-   )
-   @Export("ItemDefinition_get")
-   public static ItemComposition ItemDefinition_get(int var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lhz;",
+            garbageValue = "36"
+    )
+    public static ItemComposition ItemDefinition_get(int var0) {
       ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -110,13 +104,12 @@ public class HealthBarUpdate extends Node {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ldr;B)V",
-      garbageValue = "5"
-   )
-   @Export("runScriptEvent")
-   public static void runScriptEvent(ScriptEvent var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ldr;B)V",
+            garbageValue = "5"
+    )
+    public static void runScriptEvent(ScriptEvent var0) {
       PlayerType.runScript(var0, 500000, 475000);
    }
 }

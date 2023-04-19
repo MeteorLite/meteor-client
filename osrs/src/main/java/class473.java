@@ -5,9 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("su")
 public class class473 extends class430 implements class275 {
-   @ObfuscatedName("ev")
-   @Export("mouseCam")
-   static boolean mouseCam;
+    @ObfuscatedName("ev")
+    static boolean mouseCam;
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "Lnm;"
@@ -30,13 +29,12 @@ public class class473 extends class430 implements class275 {
       this.field4020 = var2;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lqg;",
-      garbageValue = "0"
-   )
-   @Export("vmethod8207")
-   protected class432 vmethod8207(int var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lqg;",
+            garbageValue = "0"
+    )
+    protected class432 vmethod8207(int var1) {
       DemotingHashTable var3 = this.field4018;
       synchronized(this.field4018) {
          class431 var2 = (class431)this.field4018.get((long)var1);
@@ -76,9 +74,8 @@ public class class473 extends class430 implements class275 {
       }
    }
 
-   @Export("iterator")
-   @ObfuscatedName("iterator")
-   public Iterator iterator() {
+    @ObfuscatedName("iterator")
+    public Iterator iterator() {
       return new class472(this);
    }
 

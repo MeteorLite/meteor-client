@@ -12,115 +12,83 @@ public class ModelData extends Renderable {
    static int[] field1936 = new int[10000];
    @ObfuscatedName("bu")
    static int field1937 = 0;
-   @ObfuscatedName("bf")
-   @Export("ModelData_sine")
-   static int[] ModelData_sine;
-   @ObfuscatedName("bq")
-   @Export("ModelData_cosine")
-   static int[] ModelData_cosine;
-   @ObfuscatedName("ac")
-   @Export("verticesCount")
-   int verticesCount = 0;
-   @ObfuscatedName("au")
-   @Export("verticesX")
-   int[] verticesX;
-   @ObfuscatedName("ab")
-   @Export("verticesY")
-   int[] verticesY;
-   @ObfuscatedName("aq")
-   @Export("verticesZ")
-   int[] verticesZ;
-   @ObfuscatedName("al")
-   @Export("faceCount")
-   int faceCount = 0;
-   @ObfuscatedName("at")
-   @Export("indices1")
-   int[] indices1;
-   @ObfuscatedName("aa")
-   @Export("indices2")
-   int[] indices2;
-   @ObfuscatedName("ay")
-   @Export("indices3")
-   int[] indices3;
-   @ObfuscatedName("ao")
-   @Export("faceRenderTypes")
-   byte[] faceRenderTypes;
-   @ObfuscatedName("ax")
-   @Export("faceRenderPriorities")
-   byte[] faceRenderPriorities;
-   @ObfuscatedName("ai")
-   @Export("faceAlphas")
-   byte[] faceAlphas;
-   @ObfuscatedName("ag")
-   @Export("textureCoords")
-   byte[] textureCoords;
-   @ObfuscatedName("ah")
-   @Export("faceColors")
-   short[] faceColors;
-   @ObfuscatedName("av")
-   @Export("faceTextures")
-   short[] faceTextures;
-   @ObfuscatedName("ar")
-   @Export("priority")
-   byte priority = 0;
-   @ObfuscatedName("am")
-   @Export("textureTriangleCount")
-   int textureTriangleCount;
-   @ObfuscatedName("as")
-   @Export("textureRenderTypes")
-   byte[] textureRenderTypes;
-   @ObfuscatedName("aj")
-   @Export("texTriangleX")
-   short[] texTriangleX;
-   @ObfuscatedName("ak")
-   @Export("texTriangleY")
-   short[] texTriangleY;
-   @ObfuscatedName("az")
-   @Export("texTriangleZ")
-   short[] texTriangleZ;
-   @ObfuscatedName("ad")
-   @Export("vertexSkins")
-   int[] vertexSkins;
-   @ObfuscatedName("ae")
-   @Export("faceSkins")
-   int[] faceSkins;
-   @ObfuscatedName("ap")
-   @Export("vertexLabels")
-   int[][] vertexLabels;
-   @ObfuscatedName("by")
-   @Export("faceLabelsAlpha")
-   int[][] faceLabelsAlpha;
+    @ObfuscatedName("bf")
+    static int[] ModelData_sine;
+    @ObfuscatedName("bq")
+    static int[] ModelData_cosine;
+    @ObfuscatedName("ac")
+    int verticesCount = 0;
+    @ObfuscatedName("au")
+    int[] verticesX;
+    @ObfuscatedName("ab")
+    int[] verticesY;
+    @ObfuscatedName("aq")
+    int[] verticesZ;
+    @ObfuscatedName("al")
+    int faceCount = 0;
+    @ObfuscatedName("at")
+    int[] indices1;
+    @ObfuscatedName("aa")
+    int[] indices2;
+    @ObfuscatedName("ay")
+    int[] indices3;
+    @ObfuscatedName("ao")
+    byte[] faceRenderTypes;
+    @ObfuscatedName("ax")
+    byte[] faceRenderPriorities;
+    @ObfuscatedName("ai")
+    byte[] faceAlphas;
+    @ObfuscatedName("ag")
+    byte[] textureCoords;
+    @ObfuscatedName("ah")
+    short[] faceColors;
+    @ObfuscatedName("av")
+    short[] faceTextures;
+    @ObfuscatedName("ar")
+    byte priority = 0;
+    @ObfuscatedName("am")
+    int textureTriangleCount;
+    @ObfuscatedName("as")
+    byte[] textureRenderTypes;
+    @ObfuscatedName("aj")
+    short[] texTriangleX;
+    @ObfuscatedName("ak")
+    short[] texTriangleY;
+    @ObfuscatedName("az")
+    short[] texTriangleZ;
+    @ObfuscatedName("ad")
+    int[] vertexSkins;
+    @ObfuscatedName("ae")
+    int[] faceSkins;
+    @ObfuscatedName("ap")
+    int[][] vertexLabels;
+    @ObfuscatedName("by")
+    int[][] faceLabelsAlpha;
    @ObfuscatedName("bb")
    int[][] field1899;
    @ObfuscatedName("bi")
    int[][] field1924;
-   @ObfuscatedName("be")
-   @ObfuscatedSignature(
-      descriptor = "[Lir;"
-   )
-   @Export("faceNormals")
-   FaceNormal[] faceNormals;
-   @ObfuscatedName("bk")
-   @ObfuscatedSignature(
-      descriptor = "[Lib;"
-   )
-   @Export("vertexNormals")
-   VertexNormal[] vertexNormals;
-   @ObfuscatedName("bx")
-   @ObfuscatedSignature(
-      descriptor = "[Lib;"
-   )
-   @Export("vertexVertices")
-   VertexNormal[] vertexVertices;
-   @ObfuscatedName("bo")
-   @Export("ambient")
-   public short ambient;
-   @ObfuscatedName("bz")
-   @Export("contrast")
-   public short contrast;
-   @ObfuscatedName("bm")
-   @Export("isBoundsCalculated")
-   boolean isBoundsCalculated = false;
+    @ObfuscatedName("be")
+    @ObfuscatedSignature(
+            descriptor = "[Lir;"
+    )
+    FaceNormal[] faceNormals;
+    @ObfuscatedName("bk")
+    @ObfuscatedSignature(
+            descriptor = "[Lib;"
+    )
+    VertexNormal[] vertexNormals;
+    @ObfuscatedName("bx")
+    @ObfuscatedSignature(
+            descriptor = "[Lib;"
+    )
+    VertexNormal[] vertexVertices;
+    @ObfuscatedName("bo")
+    public short ambient;
+    @ObfuscatedName("bz")
+    public short contrast;
+    @ObfuscatedName("bm")
+    boolean isBoundsCalculated = false;
    @ObfuscatedName("bd")
    int field1931;
    @ObfuscatedName("bt")
@@ -1617,12 +1585,11 @@ public class ModelData extends Renderable {
       return var3;
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "()Liz;"
-   )
-   @Export("copyModelData")
-   public ModelData copyModelData() {
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "()Liz;"
+    )
+    public ModelData copyModelData() {
       ModelData var1 = new ModelData();
       if (this.faceRenderTypes != null) {
          var1.faceRenderTypes = new byte[this.faceCount];
@@ -1862,9 +1829,8 @@ public class ModelData extends Renderable {
       this.invalidate();
    }
 
-   @ObfuscatedName("am")
-   @Export("changeOffset")
-   public void changeOffset(int var1, int var2, int var3) {
+    @ObfuscatedName("am")
+    public void changeOffset(int var1, int var2, int var3) {
       for(int var4 = 0; var4 < this.verticesCount; ++var4) {
          this.verticesX[var4] += var1;
          this.verticesY[var4] += var2;
@@ -1874,9 +1840,8 @@ public class ModelData extends Renderable {
       this.invalidate();
    }
 
-   @ObfuscatedName("as")
-   @Export("recolor")
-   public void recolor(short var1, short var2) {
+    @ObfuscatedName("as")
+    public void recolor(short var1, short var2) {
       for(int var3 = 0; var3 < this.faceCount; ++var3) {
          if (this.faceColors[var3] == var1) {
             this.faceColors[var3] = var2;
@@ -1885,9 +1850,8 @@ public class ModelData extends Renderable {
 
    }
 
-   @ObfuscatedName("aj")
-   @Export("retexture")
-   public void retexture(short var1, short var2) {
+    @ObfuscatedName("aj")
+    public void retexture(short var1, short var2) {
       if (this.faceTextures != null) {
          for(int var3 = 0; var3 < this.faceCount; ++var3) {
             if (this.faceTextures[var3] == var1) {
@@ -1914,9 +1878,8 @@ public class ModelData extends Renderable {
       this.invalidate();
    }
 
-   @ObfuscatedName("az")
-   @Export("resize")
-   public void resize(int var1, int var2, int var3) {
+    @ObfuscatedName("az")
+    public void resize(int var1, int var2, int var3) {
       for(int var4 = 0; var4 < this.verticesCount; ++var4) {
          this.verticesX[var4] = this.verticesX[var4] * var1 / 128;
          this.verticesY[var4] = var2 * this.verticesY[var4] / 128;
@@ -1926,9 +1889,8 @@ public class ModelData extends Renderable {
       this.invalidate();
    }
 
-   @ObfuscatedName("ad")
-   @Export("calculateVertexNormals")
-   public void calculateVertexNormals() {
+    @ObfuscatedName("ad")
+    public void calculateVertexNormals() {
       if (this.vertexNormals == null) {
          this.vertexNormals = new VertexNormal[this.verticesCount];
 
@@ -2002,18 +1964,16 @@ public class ModelData extends Renderable {
       }
    }
 
-   @ObfuscatedName("ae")
-   @Export("invalidate")
-   void invalidate() {
+    @ObfuscatedName("ae")
+    void invalidate() {
       this.vertexNormals = null;
       this.vertexVertices = null;
       this.faceNormals = null;
       this.isBoundsCalculated = false;
    }
 
-   @ObfuscatedName("ap")
-   @Export("calculateBounds")
-   void calculateBounds() {
+    @ObfuscatedName("ap")
+    void calculateBounds() {
       if (!this.isBoundsCalculated) {
          super.height = 0;
          this.field1931 = 0;
@@ -2055,12 +2015,11 @@ public class ModelData extends Renderable {
       }
    }
 
-   @ObfuscatedName("bb")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)Lit;"
-   )
-   @Export("toModel")
-   public final Model toModel(int var1, int var2, int var3, int var4, int var5) {
+    @ObfuscatedName("bb")
+    @ObfuscatedSignature(
+            descriptor = "(IIIII)Lit;"
+    )
+    public final Model toModel(int var1, int var2, int var3, int var4, int var5) {
       this.calculateVertexNormals();
       int var6 = (int)Math.sqrt((double)(var5 * var5 + var3 * var3 + var4 * var4));
       int var7 = var6 * var2 >> 8;
@@ -2244,12 +2203,11 @@ public class ModelData extends Renderable {
       return var8;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;II)Liz;"
-   )
-   @Export("ModelData_get")
-   public static ModelData ModelData_get(AbstractArchive var0, int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lnm;II)Liz;"
+    )
+    public static ModelData ModelData_get(AbstractArchive var0, int var1, int var2) {
       byte[] var3 = var0.takeFile(var1, var2);
       return var3 == null ? null : new ModelData(var3);
    }

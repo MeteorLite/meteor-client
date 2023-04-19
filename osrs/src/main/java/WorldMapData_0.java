@@ -6,17 +6,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jm")
 @Implements("WorldMapData_0")
 public class WorldMapData_0 extends AbstractWorldMapData {
-   @ObfuscatedName("ib")
-   @Export("baseX")
-   static int baseX;
+    @ObfuscatedName("ib")
+    static int baseX;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1901491736"
-   )
-   @Export("init")
-   void init(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1901491736"
+    )
+    void init(Buffer var1) {
       int var2 = var1.readUnsignedByte();
       if (var2 != WorldMapID.field2418.value) {
          throw new IllegalStateException("");
@@ -32,13 +30,12 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;S)V",
-      garbageValue = "2348"
-   )
-   @Export("readGeography")
-   void readGeography(Buffer var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;S)V",
+            garbageValue = "2348"
+    )
+    void readGeography(Buffer var1) {
       super.planes = Math.min(super.planes, 4);
       super.floorUnderlayIds = new short[1][64][64];
       super.floorOverlayIds = new short[super.planes][64][64];
@@ -64,9 +61,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       }
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (!(var1 instanceof WorldMapData_0)) {
          return false;
       } else {
@@ -75,9 +71,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       }
    }
 
-   @Export("hashCode")
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
       return super.regionX | super.regionY << 8;
    }
 
@@ -90,13 +85,12 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       return var0 * 3 + 600;
    }
 
-   @ObfuscatedName("nr")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1629805896"
-   )
-   @Export("Clan_leaveChat")
-   static final void Clan_leaveChat() {
+    @ObfuscatedName("nr")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1629805896"
+    )
+    static final void Clan_leaveChat() {
       PacketBufferNode var0 = class330.getPacketBufferNode(ClientPacket.field2508, Client.packetWriter.isaacCipher);
       var0.packetBuffer.writeByte(0);
       Client.packetWriter.addNode(var0);

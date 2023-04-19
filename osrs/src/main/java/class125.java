@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ek")
 public class class125 {
-   @ObfuscatedName("kh")
-   @Export("cameraYaw")
-   static int cameraYaw;
+    @ObfuscatedName("kh")
+    static int cameraYaw;
    @ObfuscatedName("af")
    boolean field1231;
    @ObfuscatedName("an")
@@ -222,13 +221,12 @@ public class class125 {
       return this.field1219 == null ? 0 : this.field1219.length;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lsz;",
-      garbageValue = "1883775054"
-   )
-   @Export("getDbRowType")
-   public static DbRowType getDbRowType(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lsz;",
+            garbageValue = "1883775054"
+    )
+    public static DbRowType getDbRowType(int var0) {
       DbRowType var1 = (DbRowType)DbRowType.DBRowType_cache.get((long)var0);
       if (var1 != null) {
          return var1;

@@ -8,27 +8,22 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("qk")
 @Implements("ArchiveDisk")
 public final class ArchiveDisk {
-   @ObfuscatedName("af")
-   @Export("ArchiveDisk_buffer")
-   static byte[] ArchiveDisk_buffer = new byte[520];
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lsj;"
-   )
-   @Export("datFile")
-   BufferedFile datFile = null;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lsj;"
-   )
-   @Export("idxFile")
-   BufferedFile idxFile = null;
-   @ObfuscatedName("ac")
-   @Export("archive")
-   int archive;
-   @ObfuscatedName("au")
-   @Export("maxEntrySize")
-   int maxEntrySize = 65000;
+    @ObfuscatedName("af")
+    static byte[] ArchiveDisk_buffer = new byte[520];
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lsj;"
+    )
+    BufferedFile datFile = null;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lsj;"
+    )
+    BufferedFile idxFile = null;
+    @ObfuscatedName("ac")
+    int archive;
+    @ObfuscatedName("au")
+    int maxEntrySize = 65000;
 
    @ObfuscatedSignature(
       descriptor = "(ILsj;Lsj;I)V"
@@ -40,13 +35,12 @@ public final class ArchiveDisk {
       this.maxEntrySize = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)[B",
-      garbageValue = "-312695357"
-   )
-   @Export("read")
-   public byte[] read(int var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)[B",
+            garbageValue = "-312695357"
+    )
+    public byte[] read(int var1) {
       BufferedFile var2 = this.datFile;
       synchronized(this.datFile) {
          try {
@@ -135,13 +129,12 @@ public final class ArchiveDisk {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I[BII)Z",
-      garbageValue = "-836088827"
-   )
-   @Export("write")
-   public boolean write(int var1, byte[] var2, int var3) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(I[BII)Z",
+            garbageValue = "-836088827"
+    )
+    public boolean write(int var1, byte[] var2, int var3) {
       BufferedFile var4 = this.datFile;
       synchronized(this.datFile) {
          if (var3 >= 0 && var3 <= this.maxEntrySize) {
@@ -157,13 +150,12 @@ public final class ArchiveDisk {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I[BIZI)Z",
-      garbageValue = "6791256"
-   )
-   @Export("write0")
-   boolean write0(int var1, byte[] var2, int var3, boolean var4) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I[BIZI)Z",
+            garbageValue = "6791256"
+    )
+    boolean write0(int var1, byte[] var2, int var3, boolean var4) {
       BufferedFile var5 = this.datFile;
       synchronized(this.datFile) {
          try {
@@ -319,9 +311,8 @@ public final class ArchiveDisk {
       }
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return "" + this.archive;
    }
 }

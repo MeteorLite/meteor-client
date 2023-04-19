@@ -9,9 +9,8 @@ public class class147 extends class155 {
       descriptor = "Lgj;"
    )
    static ClanChannel field1346;
-   @ObfuscatedName("nv")
-   @Export("menuHeight")
-   static int menuHeight;
+    @ObfuscatedName("nv")
+    static int menuHeight;
    @ObfuscatedName("af")
    int field1345;
    // $FF: synthetic field
@@ -28,13 +27,12 @@ public class class147 extends class155 {
       this.field1345 = -1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1949352075"
-   )
-   @Export("vmethod3238")
-   void vmethod3238(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1949352075"
+    )
+    void vmethod3238(Buffer var1) {
       this.field1345 = var1.readUnsignedShort();
       var1.readUnsignedByte();
       if (var1.readUnsignedByte() != 255) {
@@ -44,13 +42,12 @@ public class class147 extends class155 {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lgj;B)V",
-      garbageValue = "-49"
-   )
-   @Export("vmethod3239")
-   void vmethod3239(ClanChannel var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lgj;B)V",
+            garbageValue = "-49"
+    )
+    void vmethod3239(ClanChannel var1) {
       var1.removeMember(this.field1345);
    }
 
@@ -104,13 +101,12 @@ public class class147 extends class155 {
       }
    }
 
-   @ObfuscatedName("jw")
-   @ObfuscatedSignature(
-      descriptor = "(IIIB)I",
-      garbageValue = "-99"
-   )
-   @Export("getTileHeight")
-   static final int getTileHeight(int var0, int var1, int var2) {
+    @ObfuscatedName("jw")
+    @ObfuscatedSignature(
+            descriptor = "(IIIB)I",
+            garbageValue = "-99"
+    )
+    static final int getTileHeight(int var0, int var1, int var2) {
       int var3 = var0 >> 7;
       int var4 = var1 >> 7;
       if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) {

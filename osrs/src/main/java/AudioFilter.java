@@ -8,17 +8,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class AudioFilter {
    @ObfuscatedName("ab")
    static float[][] field305 = new float[2][8];
-   @ObfuscatedName("aq")
-   @Export("coefficients")
-   static int[][] coefficients = new int[2][8];
+    @ObfuscatedName("aq")
+    static int[][] coefficients = new int[2][8];
    @ObfuscatedName("al")
    static float field309;
-   @ObfuscatedName("at")
-   @Export("forwardMultiplier")
-   static int forwardMultiplier;
-   @ObfuscatedName("af")
-   @Export("pairs")
-   int[] pairs = new int[2];
+    @ObfuscatedName("at")
+    static int forwardMultiplier;
+    @ObfuscatedName("af")
+    int[] pairs = new int[2];
    @ObfuscatedName("aw")
    int[][][] field304 = new int[2][2][4];
    @ObfuscatedName("ac")
@@ -40,9 +37,8 @@ public class AudioFilter {
       return normalize(var4);
    }
 
-   @ObfuscatedName("ac")
-   @Export("compute")
-   int compute(int var1, float var2) {
+    @ObfuscatedName("ac")
+    int compute(int var1, float var2) {
       float var3;
       if (var1 == 0) {
          var3 = (float)this.field307[0] + (float)(this.field307[1] - this.field307[0]) * var2;
@@ -133,9 +129,8 @@ public class AudioFilter {
 
    }
 
-   @ObfuscatedName("an")
-   @Export("normalize")
-   static float normalize(float var0) {
+    @ObfuscatedName("an")
+    static float normalize(float var0) {
       float var1 = 32.703197F * (float)Math.pow(2.0D, (double)var0);
       return var1 * 3.1415927F / 11025.0F;
    }

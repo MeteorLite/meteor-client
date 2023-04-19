@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oh")
 public final class class375 {
-   @ObfuscatedName("vj")
-   @ObfuscatedSignature(
-      descriptor = "Lnr;"
-   )
-   @Export("grandExchangeEvents")
-   static GrandExchangeEvents grandExchangeEvents;
+    @ObfuscatedName("vj")
+    @ObfuscatedSignature(
+            descriptor = "Lnr;"
+    )
+    static GrandExchangeEvents grandExchangeEvents;
    @ObfuscatedName("af")
    final Object field3600;
    @ObfuscatedName("an")

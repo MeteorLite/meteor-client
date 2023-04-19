@@ -5,9 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("my")
 public class class335 {
-   @ObfuscatedName("au")
-   @Export("cacheDir")
-   public static File cacheDir;
+    @ObfuscatedName("au")
+    public static File cacheDir;
    @ObfuscatedName("ah")
    static int field3093;
 

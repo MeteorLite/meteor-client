@@ -11,13 +11,12 @@ public class class309 {
    @ObfuscatedName("aw")
    public int field2817;
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "([Ljava/lang/String;[SIII)V",
-      garbageValue = "1826563573"
-   )
-   @Export("sortItemsByName")
-   static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "([Ljava/lang/String;[SIII)V",
+            garbageValue = "1826563573"
+    )
+    static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
       if (var2 < var3) {
          int var4 = (var3 + var2) / 2;
          int var5 = var2;

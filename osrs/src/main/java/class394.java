@@ -13,9 +13,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pc")
 public class class394 {
-   @ObfuscatedName("al")
-   @Export("SpriteBuffer_spritePalette")
-   public static int[] SpriteBuffer_spritePalette;
+    @ObfuscatedName("al")
+    public static int[] SpriteBuffer_spritePalette;
    @ObfuscatedName("ac")
    final Map field3683 = new HashMap();
    @ObfuscatedName("au")

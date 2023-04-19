@@ -21,9 +21,8 @@ public class PrivateChatMode {
       descriptor = "Ltf;"
    )
    static final PrivateChatMode field4162 = new PrivateChatMode(2);
-   @ObfuscatedName("ac")
-   @Export("id")
-   public final int id;
+    @ObfuscatedName("ac")
+    public final int id;
 
    PrivateChatMode(int var1) {
       this.id = var1;

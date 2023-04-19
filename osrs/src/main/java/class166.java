@@ -426,13 +426,12 @@ public class class166 {
       return this.field1419 < 100;
    }
 
-   @ObfuscatedName("kp")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "9"
-   )
-   @Export("Widget_runOnTargetLeave")
-   static void Widget_runOnTargetLeave() {
+    @ObfuscatedName("kp")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "9"
+    )
+    static void Widget_runOnTargetLeave() {
       if (Client.isSpellSelected) {
          Widget var0 = SoundSystem.getWidgetChild(Clips.selectedSpellWidget, Client.selectedSpellChildIndex);
          if (var0 != null && var0.onTargetLeave != null) {

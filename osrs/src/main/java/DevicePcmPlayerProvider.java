@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("az")
 @Implements("DevicePcmPlayerProvider")
 public class DevicePcmPlayerProvider implements class50 {
-   @ObfuscatedName("dk")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("worldSelectArrows")
-   static IndexedSprite[] worldSelectArrows;
+    @ObfuscatedName("dk")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] worldSelectArrows;
    @ObfuscatedName("fd")
    @ObfuscatedSignature(
       descriptor = "Lnd;"
@@ -20,13 +19,12 @@ public class DevicePcmPlayerProvider implements class50 {
    @ObfuscatedName("gi")
    static int field68;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lbu;",
-      garbageValue = "1183188913"
-   )
-   @Export("player")
-   public PcmPlayer player() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lbu;",
+            garbageValue = "1183188913"
+    )
+    public PcmPlayer player() {
       return new DevicePcmPlayer();
    }
 
@@ -39,13 +37,12 @@ public class DevicePcmPlayerProvider implements class50 {
       Rasterizer3D.field1999.vmethod1378(var0, var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17, var18, var19, var20, var21);
    }
 
-   @ObfuscatedName("hs")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1827465123"
-   )
-   @Export("load")
-   static void load() {
+    @ObfuscatedName("hs")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1827465123"
+    )
+    static void load() {
       int var18;
       if (Client.titleLoadingStage == 0) {
          class31.scene = new Scene(4, 104, 104, Tiles.Tiles_heights);

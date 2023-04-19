@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bz")
 public class class33 {
-   @ObfuscatedName("lg")
-   @Export("oculusOrbFocalPointX")
-   static int oculusOrbFocalPointX;
+    @ObfuscatedName("lg")
+    static int oculusOrbFocalPointX;
    @ObfuscatedName("aq")
    int field97;
    @ObfuscatedName("al")
@@ -76,13 +75,12 @@ public class class33 {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lho;",
-      garbageValue = "367699395"
-   )
-   @Export("getParamDefinition")
-   public static ParamComposition getParamDefinition(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lho;",
+            garbageValue = "367699395"
+    )
+    public static ParamComposition getParamDefinition(int var0) {
       ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -206,13 +204,12 @@ public class class33 {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-      garbageValue = "1290821012"
-   )
-   @Export("loadClassFromDescriptor")
-   static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
+            garbageValue = "1290821012"
+    )
+    static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
       if (var0.equals("B")) {
          return Byte.TYPE;
       } else if (var0.equals("I")) {
@@ -234,13 +231,12 @@ public class class33 {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "([BB)Lch;",
-      garbageValue = "1"
-   )
-   @Export("newScript")
-   static Script newScript(byte[] var0) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "([BB)Lch;",
+            garbageValue = "1"
+    )
+    static Script newScript(byte[] var0) {
       Script var1 = new Script();
       Buffer var2 = new Buffer(var0);
       var2.offset = var2.array.length - 2;
@@ -427,13 +423,12 @@ public class class33 {
       }
    }
 
-   @ObfuscatedName("jm")
-   @ObfuscatedSignature(
-      descriptor = "(Lde;IIIIII)V",
-      garbageValue = "1538298261"
-   )
-   @Export("drawActor2d")
-   static final void drawActor2d(Actor var0, int var1, int var2, int var3, int var4, int var5) {
+    @ObfuscatedName("jm")
+    @ObfuscatedSignature(
+            descriptor = "(Lde;IIIIII)V",
+            garbageValue = "1538298261"
+    )
+    static final void drawActor2d(Actor var0, int var1, int var2, int var3, int var4, int var5) {
       if (var0 != null && var0.isVisible()) {
          if (var0 instanceof NPC) {
             NPCComposition var6 = ((NPC)var0).definition;
@@ -1047,13 +1042,12 @@ public class class33 {
       }
    }
 
-   @ObfuscatedName("jz")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIIIIIII)V",
-      garbageValue = "87894197"
-   )
-   @Export("updatePendingSpawn")
-   static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
+    @ObfuscatedName("jz")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIIIIIIII)V",
+            garbageValue = "87894197"
+    )
+    static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
       PendingSpawn var10 = null;
 
       for(PendingSpawn var11 = (PendingSpawn)Client.pendingSpawns.last(); var11 != null; var11 = (PendingSpawn)Client.pendingSpawns.previous()) {

@@ -10,12 +10,11 @@ import org.bouncycastle.crypto.tls.TlsAuthentication;
 
 @ObfuscatedName("ai")
 class class13 extends DefaultTlsClient {
-   @ObfuscatedName("dg")
-   @ObfuscatedSignature(
-      descriptor = "Ltc;"
-   )
-   @Export("worldSelectRightSprite")
-   static IndexedSprite worldSelectRightSprite;
+    @ObfuscatedName("dg")
+    @ObfuscatedSignature(
+            descriptor = "Ltc;"
+    )
+    static IndexedSprite worldSelectRightSprite;
    @ObfuscatedName("gk")
    static int field43;
    // $FF: synthetic field
@@ -31,9 +30,8 @@ class class13 extends DefaultTlsClient {
       this.this$1 = var1;
    }
 
-   @Export("getClientExtensions")
-   @ObfuscatedName("getClientExtensions")
-   public Hashtable getClientExtensions() throws IOException {
+    @ObfuscatedName("getClientExtensions")
+    public Hashtable getClientExtensions() throws IOException {
       Hashtable var1 = super.getClientExtensions();
       if (var1 == null) {
          var1 = new Hashtable();
@@ -51,19 +49,17 @@ class class13 extends DefaultTlsClient {
       return var1;
    }
 
-   @Export("getAuthentication")
-   @ObfuscatedName("getAuthentication")
-   public TlsAuthentication getAuthentication() throws IOException {
+    @ObfuscatedName("getAuthentication")
+    public TlsAuthentication getAuthentication() throws IOException {
       return new class11(this);
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(IIIZIZI)V",
-      garbageValue = "986853816"
-   )
-   @Export("doWorldSorting")
-   static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(IIIZIZI)V",
+            garbageValue = "986853816"
+    )
+    static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
       if (var0 < var1) {
          int var6 = (var0 + var1) / 2;
          int var7 = var0;
@@ -163,13 +159,12 @@ class class13 extends DefaultTlsClient {
       }
    }
 
-   @ObfuscatedName("ch")
-   @ObfuscatedSignature(
-      descriptor = "([BI)[B",
-      garbageValue = "-1117233973"
-   )
-   @Export("decompressBytes")
-   static final byte[] decompressBytes(byte[] var0) {
+    @ObfuscatedName("ch")
+    @ObfuscatedSignature(
+            descriptor = "([BI)[B",
+            garbageValue = "-1117233973"
+    )
+    static final byte[] decompressBytes(byte[] var0) {
       Buffer var1 = new Buffer(var0);
       int var2 = var1.readUnsignedByte();
       int var3 = var1.readInt();
@@ -231,13 +226,12 @@ class class13 extends DefaultTlsClient {
       }
    }
 
-   @ObfuscatedName("lk")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIIIIB)V",
-      garbageValue = "-119"
-   )
-   @Export("drawWidgets")
-   static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+    @ObfuscatedName("lk")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIIIIIB)V",
+            garbageValue = "-119"
+    )
+    static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if (SoundSystem.loadInterface(var0)) {
          WorldMapSection2.field2292 = null;
          class11.drawInterface(VerticalAlignment.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
@@ -258,13 +252,12 @@ class class13 extends DefaultTlsClient {
       }
    }
 
-   @ObfuscatedName("lr")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1764409785"
-   )
-   @Export("getTapToDrop")
-   static boolean getTapToDrop() {
+    @ObfuscatedName("lr")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1764409785"
+    )
+    static boolean getTapToDrop() {
       return Client.tapToDrop;
    }
 }

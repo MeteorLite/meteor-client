@@ -8,23 +8,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nx")
 @Implements("Language")
 public class Language implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnx;"
-   )
-   @Export("Language_EN")
-   public static final Language Language_EN;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnx;"
+    )
+    public static final Language Language_EN;
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "Lnx;"
    )
    static final Language field3554;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lnx;"
-   )
-   @Export("Language_FR")
-   public static final Language Language_FR;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lnx;"
+    )
+    public static final Language Language_FR;
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
       descriptor = "Lnx;"
@@ -35,12 +33,11 @@ public class Language implements class356 {
       descriptor = "Lnx;"
    )
    static final Language field3548;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lnx;"
-   )
-   @Export("Language_ES")
-   public static final Language Language_ES;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lnx;"
+    )
+    public static final Language Language_ES;
    @ObfuscatedName("aq")
    @ObfuscatedSignature(
       descriptor = "Lnx;"
@@ -51,26 +48,22 @@ public class Language implements class356 {
       descriptor = "[Lnx;"
    )
    static final Language[] field3556;
-   @ObfuscatedName("ir")
-   @ObfuscatedSignature(
-      descriptor = "Lon;"
-   )
-   @Export("fontPlain11")
-   static Font fontPlain11;
-   @ObfuscatedName("ot")
-   @ObfuscatedSignature(
-      descriptor = "Lcb;"
-   )
-   @Export("tempMenuAction")
-   static MenuAction tempMenuAction;
+    @ObfuscatedName("ir")
+    @ObfuscatedSignature(
+            descriptor = "Lon;"
+    )
+    static Font fontPlain11;
+    @ObfuscatedName("ot")
+    @ObfuscatedSignature(
+            descriptor = "Lcb;"
+    )
+    static MenuAction tempMenuAction;
    @ObfuscatedName("al")
    final String field3555;
-   @ObfuscatedName("at")
-   @Export("language")
-   final String language;
-   @ObfuscatedName("aa")
-   @Export("id")
-   final int id;
+    @ObfuscatedName("at")
+    final String language;
+    @ObfuscatedName("aa")
+    final int id;
 
    static {
       Language_EN = new Language("EN", "en", "English", ModeWhere.field3573, 0, "GB");
@@ -110,29 +103,26 @@ public class Language implements class356 {
 
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ljava/lang/String;",
-      garbageValue = "80"
-   )
-   @Export("getLanguage")
-   String getLanguage() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(B)Ljava/lang/String;",
+            garbageValue = "80"
+    )
+    String getLanguage() {
       return this.language;
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return this.getLanguage().toLowerCase(Locale.ENGLISH);
    }
 

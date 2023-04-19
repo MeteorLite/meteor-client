@@ -215,7 +215,7 @@ object PluginManager {
             init<FpsPlugin>()
             init<FullscreenPlugin>()
             init<GauntletExtendedPlugin>()
-            init<HdPlugin>()
+            //init<HdPlugin>()
             init<GpuPlugin>()
             init<GroundItemsPlugin>()
             init<GroundMarkerPlugin>()

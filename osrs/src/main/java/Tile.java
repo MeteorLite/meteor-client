@@ -7,96 +7,76 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("is")
 @Implements("Tile")
 public final class Tile extends Node {
-   @ObfuscatedName("af")
-   @Export("plane")
-   int plane;
-   @ObfuscatedName("an")
-   @Export("x")
-   int x;
-   @ObfuscatedName("aw")
-   @Export("y")
-   int y;
-   @ObfuscatedName("ac")
-   @Export("originalPlane")
-   int originalPlane;
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Ljc;"
-   )
-   @Export("paint")
-   SceneTilePaint paint;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lij;"
-   )
-   @Export("model")
-   SceneTileModel model;
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Ljk;"
-   )
-   @Export("boundaryObject")
-   BoundaryObject boundaryObject;
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "Lje;"
-   )
-   @Export("wallDecoration")
-   WallDecoration wallDecoration;
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "Lig;"
-   )
-   @Export("floorDecoration")
-   FloorDecoration floorDecoration;
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "Liy;"
-   )
-   @Export("itemLayer")
-   ItemLayer itemLayer;
-   @ObfuscatedName("ay")
-   @Export("gameObjectsCount")
-   int gameObjectsCount;
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "[Ljj;"
-   )
-   @Export("gameObjects")
-   GameObject[] gameObjects = new GameObject[5];
-   @ObfuscatedName("ax")
-   @Export("gameObjectEdgeMasks")
-   int[] gameObjectEdgeMasks = new int[5];
-   @ObfuscatedName("ai")
-   @Export("gameObjectsEdgeMask")
-   int gameObjectsEdgeMask = 0;
-   @ObfuscatedName("ag")
-   @Export("minPlane")
-   int minPlane;
-   @ObfuscatedName("ah")
-   @Export("drawPrimary")
-   boolean drawPrimary;
-   @ObfuscatedName("av")
-   @Export("drawSecondary")
-   boolean drawSecondary;
-   @ObfuscatedName("ar")
-   @Export("drawGameObjects")
-   boolean drawGameObjects;
-   @ObfuscatedName("am")
-   @Export("drawGameObjectEdges")
-   int drawGameObjectEdges;
+    @ObfuscatedName("af")
+    int plane;
+    @ObfuscatedName("an")
+    int x;
+    @ObfuscatedName("aw")
+    int y;
+    @ObfuscatedName("ac")
+    int originalPlane;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Ljc;"
+    )
+    SceneTilePaint paint;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lij;"
+    )
+    SceneTileModel model;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Ljk;"
+    )
+    BoundaryObject boundaryObject;
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "Lje;"
+    )
+    WallDecoration wallDecoration;
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "Lig;"
+    )
+    FloorDecoration floorDecoration;
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "Liy;"
+    )
+    ItemLayer itemLayer;
+    @ObfuscatedName("ay")
+    int gameObjectsCount;
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "[Ljj;"
+    )
+    GameObject[] gameObjects = new GameObject[5];
+    @ObfuscatedName("ax")
+    int[] gameObjectEdgeMasks = new int[5];
+    @ObfuscatedName("ai")
+    int gameObjectsEdgeMask = 0;
+    @ObfuscatedName("ag")
+    int minPlane;
+    @ObfuscatedName("ah")
+    boolean drawPrimary;
+    @ObfuscatedName("av")
+    boolean drawSecondary;
+    @ObfuscatedName("ar")
+    boolean drawGameObjects;
+    @ObfuscatedName("am")
+    int drawGameObjectEdges;
    @ObfuscatedName("as")
    int field1987;
    @ObfuscatedName("aj")
    int field1969;
    @ObfuscatedName("ak")
    int field1989;
-   @ObfuscatedName("az")
-   @ObfuscatedSignature(
-      descriptor = "Lis;"
-   )
-   @Export("linkedBelowTile")
-   Tile linkedBelowTile;
+    @ObfuscatedName("az")
+    @ObfuscatedSignature(
+            descriptor = "Lis;"
+    )
+    Tile linkedBelowTile;
 
    Tile(int var1, int var2, int var3) {
       this.originalPlane = this.plane = var1;

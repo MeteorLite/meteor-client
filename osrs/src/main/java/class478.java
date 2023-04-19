@@ -41,13 +41,12 @@ public class class478 implements class356 {
       this.field4032 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field4030;
    }
 
@@ -339,13 +338,12 @@ public class class478 implements class356 {
       }
    }
 
-   @ObfuscatedName("nm")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)V",
-      garbageValue = "90"
-   )
-   @Export("clanKickUser")
-   static final void clanKickUser(String var0) {
+    @ObfuscatedName("nm")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;B)V",
+            garbageValue = "90"
+    )
+    static final void clanKickUser(String var0) {
       if (UserComparator5.friendsChat != null) {
          PacketBufferNode var1 = class330.getPacketBufferNode(ClientPacket.field2550, Client.packetWriter.isaacCipher);
          var1.packetBuffer.writeByte(DynamicObject.stringCp1252NullTerminatedByteSize(var0));

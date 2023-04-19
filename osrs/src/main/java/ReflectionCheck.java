@@ -12,29 +12,22 @@ public class ReflectionCheck extends Node {
    static int field166;
    @ObfuscatedName("bj")
    protected static String field167;
-   @ObfuscatedName("af")
-   @Export("id")
-   int id;
-   @ObfuscatedName("an")
-   @Export("size")
-   int size;
-   @ObfuscatedName("aw")
-   @Export("operations")
-   int[] operations;
-   @ObfuscatedName("ac")
-   @Export("creationErrors")
-   int[] creationErrors;
+    @ObfuscatedName("af")
+    int id;
+    @ObfuscatedName("an")
+    int size;
+    @ObfuscatedName("aw")
+    int[] operations;
+    @ObfuscatedName("ac")
+    int[] creationErrors;
    @ObfuscatedName("au")
-   Field[] field158;
-   @ObfuscatedName("ab")
-   @Export("intReplaceValues")
-   int[] intReplaceValues;
-   @ObfuscatedName("aq")
-   @Export("methods")
-   Method[] methods;
-   @ObfuscatedName("al")
-   @Export("arguments")
-   byte[][][] arguments;
+   Field[] fields;
+    @ObfuscatedName("ab")
+    int[] intReplaceValues;
+    @ObfuscatedName("aq")
+    Method[] methods;
+    @ObfuscatedName("al")
+    byte[][][] arguments;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(
@@ -45,13 +38,12 @@ public class ReflectionCheck extends Node {
       DbTableType.field4036 = var0;
    }
 
-   @ObfuscatedName("ii")
-   @ObfuscatedSignature(
-      descriptor = "(Lde;IB)V",
-      garbageValue = "-110"
-   )
-   @Export("updateActorSequence")
-   static final void updateActorSequence(Actor var0, int var1) {
+    @ObfuscatedName("ii")
+    @ObfuscatedSignature(
+            descriptor = "(Lde;IB)V",
+            garbageValue = "-110"
+    )
+    static final void updateActorSequence(Actor var0, int var1) {
       int var2;
       int var3;
       int var4;
@@ -375,13 +367,12 @@ public class ReflectionCheck extends Node {
       NetFileRequest.method1876(var0);
    }
 
-   @ObfuscatedName("mt")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIIII)V",
-      garbageValue = "-631543188"
-   )
-   @Export("updateRootInterface")
-   static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+    @ObfuscatedName("mt")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIIIII)V",
+            garbageValue = "-631543188"
+    )
+    static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
       if (SoundSystem.loadInterface(var0)) {
          ViewportMouse.updateInterface(VerticalAlignment.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
       }

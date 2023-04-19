@@ -7,21 +7,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cz")
 @Implements("Login")
 public class Login {
-   @ObfuscatedName("aw")
-   @Export("xPadding")
-   static int xPadding = 0;
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Ltc;"
-   )
-   @Export("titleboxSprite")
-   static IndexedSprite titleboxSprite;
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "Ltc;"
-   )
-   @Export("options_buttons_0Sprite")
-   static IndexedSprite options_buttons_0Sprite;
+    @ObfuscatedName("aw")
+    static int xPadding = 0;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Ltc;"
+    )
+    static IndexedSprite titleboxSprite;
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "Ltc;"
+    )
+    static IndexedSprite options_buttons_0Sprite;
    @ObfuscatedName("ai")
    @ObfuscatedSignature(
       descriptor = "Ltc;"
@@ -39,40 +36,30 @@ public class Login {
       descriptor = "Lsg;"
    )
    static Buffer field764;
-   @ObfuscatedName("ak")
-   @Export("loginBoxX")
-   static int loginBoxX;
-   @ObfuscatedName("ad")
-   @Export("Login_loadingPercent")
-   static int Login_loadingPercent;
-   @ObfuscatedName("ae")
-   @Export("Login_loadingText")
-   static String Login_loadingText;
+    @ObfuscatedName("ak")
+    static int loginBoxX;
+    @ObfuscatedName("ad")
+    static int Login_loadingPercent;
+    @ObfuscatedName("ae")
+    static String Login_loadingText;
    @ObfuscatedName("ba")
    static int field738;
    @ObfuscatedName("bp")
    static int field752;
-   @ObfuscatedName("ce")
-   @Export("loginIndex")
-   static int loginIndex;
-   @ObfuscatedName("ci")
-   @Export("Login_response0")
-   static String Login_response0;
-   @ObfuscatedName("cs")
-   @Export("Login_response1")
-   static String Login_response1;
-   @ObfuscatedName("cc")
-   @Export("Login_response2")
-   static String Login_response2;
-   @ObfuscatedName("cn")
-   @Export("Login_response3")
-   static String Login_response3;
-   @ObfuscatedName("ca")
-   @Export("Login_username")
-   static String Login_username;
-   @ObfuscatedName("cu")
-   @Export("Login_password")
-   static String Login_password;
+    @ObfuscatedName("ce")
+    static int loginIndex;
+    @ObfuscatedName("ci")
+    static String Login_response0;
+    @ObfuscatedName("cs")
+    static String Login_response1;
+    @ObfuscatedName("cc")
+    static String Login_response2;
+    @ObfuscatedName("cn")
+    static String Login_response3;
+    @ObfuscatedName("ca")
+    static String Login_username;
+    @ObfuscatedName("cu")
+    static String Login_password;
    @ObfuscatedName("cq")
    static int field747;
    @ObfuscatedName("cm")
@@ -85,21 +72,16 @@ public class Login {
    static boolean field740;
    @ObfuscatedName("cd")
    static boolean field751;
-   @ObfuscatedName("dm")
-   @Export("currentLoginField")
-   static int currentLoginField;
-   @ObfuscatedName("di")
-   @Export("worldSelectOpen")
-   static boolean worldSelectOpen;
-   @ObfuscatedName("de")
-   @Export("hoveredWorldIndex")
-   static int hoveredWorldIndex;
-   @ObfuscatedName("dh")
-   @Export("worldSelectPage")
-   static int worldSelectPage;
-   @ObfuscatedName("dp")
-   @Export("worldSelectPagesCount")
-   static int worldSelectPagesCount;
+    @ObfuscatedName("dm")
+    static int currentLoginField;
+    @ObfuscatedName("di")
+    static boolean worldSelectOpen;
+    @ObfuscatedName("de")
+    static int hoveredWorldIndex;
+    @ObfuscatedName("dh")
+    static int worldSelectPage;
+    @ObfuscatedName("dp")
+    static int worldSelectPagesCount;
    @ObfuscatedName("db")
    static long field734;
    @ObfuscatedName("df")
@@ -188,13 +170,12 @@ public class Login {
 
    }
 
-   @ObfuscatedName("nd")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-681433942"
-   )
-   @Export("FriendSystem_invalidateIgnoreds")
-   static final void FriendSystem_invalidateIgnoreds() {
+    @ObfuscatedName("nd")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-681433942"
+    )
+    static final void FriendSystem_invalidateIgnoreds() {
       class124.method742();
       if (UserComparator5.friendsChat != null) {
          UserComparator5.friendsChat.invalidateIgnoreds();

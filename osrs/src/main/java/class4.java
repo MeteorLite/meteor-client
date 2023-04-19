@@ -6,9 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public final class class4 {
    @ObfuscatedName("gq")
    static int field6;
-   @ObfuscatedName("jf")
-   @Export("regionLandArchives")
-   static byte[][] regionLandArchives;
+    @ObfuscatedName("jf")
+    static byte[][] regionLandArchives;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(

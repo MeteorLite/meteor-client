@@ -111,13 +111,12 @@ public class class88 {
       return false;
    }
 
-   @ObfuscatedName("gb")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lrb;",
-      garbageValue = "1134308322"
-   )
-   @Export("getWorldMap")
-   static WorldMap getWorldMap() {
+    @ObfuscatedName("gb")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lrb;",
+            garbageValue = "1134308322"
+    )
+    static WorldMap getWorldMap() {
       return class126.worldMap;
    }
 }

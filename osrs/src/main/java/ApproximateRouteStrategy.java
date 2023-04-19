@@ -7,23 +7,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cm")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IIILif;I)Z",
-      garbageValue = "286986723"
-   )
-   @Export("hasArrived")
-   protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IIILif;I)Z",
+            garbageValue = "286986723"
+    )
+    protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
       return var2 == super.approxDestinationX && var3 == super.approxDestinationY;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lgl;",
-      garbageValue = "-1717461998"
-   )
-   @Export("getInvDefinition")
-   public static InvDefinition getInvDefinition(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lgl;",
+            garbageValue = "-1717461998"
+    )
+    public static InvDefinition getInvDefinition(int var0) {
       InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;

@@ -6,30 +6,26 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ba")
 @Implements("SoundCache")
 public class SoundCache {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("soundEffectIndex")
-   AbstractArchive soundEffectIndex;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("musicSampleIndex")
-   AbstractArchive musicSampleIndex;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lrc;"
-   )
-   @Export("musicSamples")
-   NodeHashTable musicSamples = new NodeHashTable(256);
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lrc;"
-   )
-   @Export("rawSounds")
-   NodeHashTable rawSounds = new NodeHashTable(256);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    AbstractArchive soundEffectIndex;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    AbstractArchive musicSampleIndex;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lrc;"
+    )
+    NodeHashTable musicSamples = new NodeHashTable(256);
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lrc;"
+    )
+    NodeHashTable rawSounds = new NodeHashTable(256);
 
    @ObfuscatedSignature(
       descriptor = "(Lnm;Lnm;)V"
@@ -39,13 +35,12 @@ public class SoundCache {
       this.musicSampleIndex = var2;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II[II)Lbr;",
-      garbageValue = "-1986343683"
-   )
-   @Export("getSoundEffect0")
-   RawSound getSoundEffect0(int var1, int var2, int[] var3) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II[II)Lbr;",
+            garbageValue = "-1986343683"
+    )
+    RawSound getSoundEffect0(int var1, int var2, int[] var3) {
       int var4 = var2 ^ (var1 << 4 & '\uffff' | var1 >>> 12);
       var4 |= var1 << 16;
       long var5 = (long)var4;
@@ -70,13 +65,12 @@ public class SoundCache {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II[IB)Lbr;",
-      garbageValue = "7"
-   )
-   @Export("getMusicSample0")
-   RawSound getMusicSample0(int var1, int var2, int[] var3) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II[IB)Lbr;",
+            garbageValue = "7"
+    )
+    RawSound getMusicSample0(int var1, int var2, int[] var3) {
       int var4 = var2 ^ (var1 << 4 & '\uffff' | var1 >>> 12);
       var4 |= var1 << 16;
       long var5 = (long)var4 ^ 4294967296L;
@@ -107,13 +101,12 @@ public class SoundCache {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I[II)Lbr;",
-      garbageValue = "-103180467"
-   )
-   @Export("getSoundEffect")
-   public RawSound getSoundEffect(int var1, int[] var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I[II)Lbr;",
+            garbageValue = "-103180467"
+    )
+    public RawSound getSoundEffect(int var1, int[] var2) {
       if (this.soundEffectIndex.getGroupCount() == 1) {
          return this.getSoundEffect0(0, var1, var2);
       } else if (this.soundEffectIndex.getGroupFileCount(var1) == 1) {
@@ -123,13 +116,12 @@ public class SoundCache {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(I[II)Lbr;",
-      garbageValue = "-1251509285"
-   )
-   @Export("getMusicSample")
-   public RawSound getMusicSample(int var1, int[] var2) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(I[II)Lbr;",
+            garbageValue = "-1251509285"
+    )
+    public RawSound getMusicSample(int var1, int[] var2) {
       if (this.musicSampleIndex.getGroupCount() == 1) {
          return this.getMusicSample0(0, var1, var2);
       } else if (this.musicSampleIndex.getGroupFileCount(var1) == 1) {

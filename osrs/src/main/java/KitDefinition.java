@@ -8,71 +8,56 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class KitDefinition extends DualNode {
    @ObfuscatedName("ur")
    static int field1519;
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("KitDefinition_archive")
-   static AbstractArchive KitDefinition_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("KitDefinition_modelsArchive")
-   static AbstractArchive KitDefinition_modelsArchive;
-   @ObfuscatedName("aw")
-   @Export("KitDefinition_fileCount")
-   public static int KitDefinition_fileCount;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("KitDefinition_cached")
-   static EvictingDualNodeHashTable KitDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("fl")
-   @ObfuscatedSignature(
-      descriptor = "Lph;"
-   )
-   @Export("js5Socket")
-   static AbstractSocket js5Socket;
-   @ObfuscatedName("ku")
-   @ObfuscatedSignature(
-      descriptor = "[Ltq;"
-   )
-   @Export("headIconHintSprites")
-   static SpritePixels[] headIconHintSprites;
-   @ObfuscatedName("au")
-   @Export("bodypartID")
-   public int bodypartID = -1;
-   @ObfuscatedName("ab")
-   @Export("models2")
-   int[] models2;
-   @ObfuscatedName("aq")
-   @Export("recolorFrom")
-   short[] recolorFrom;
-   @ObfuscatedName("al")
-   @Export("recolorTo")
-   short[] recolorTo;
-   @ObfuscatedName("at")
-   @Export("retextureFrom")
-   short[] retextureFrom;
-   @ObfuscatedName("aa")
-   @Export("retextureTo")
-   short[] retextureTo;
-   @ObfuscatedName("ay")
-   @Export("models")
-   int[] models = new int[]{-1, -1, -1, -1, -1};
-   @ObfuscatedName("ao")
-   @Export("nonSelectable")
-   public boolean nonSelectable = false;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive KitDefinition_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive KitDefinition_modelsArchive;
+    @ObfuscatedName("aw")
+    public static int KitDefinition_fileCount;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable KitDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("fl")
+    @ObfuscatedSignature(
+            descriptor = "Lph;"
+    )
+    static AbstractSocket js5Socket;
+    @ObfuscatedName("ku")
+    @ObfuscatedSignature(
+            descriptor = "[Ltq;"
+    )
+    static SpritePixels[] headIconHintSprites;
+    @ObfuscatedName("au")
+    public int bodypartID = -1;
+    @ObfuscatedName("ab")
+    int[] models2;
+    @ObfuscatedName("aq")
+    short[] recolorFrom;
+    @ObfuscatedName("al")
+    short[] recolorTo;
+    @ObfuscatedName("at")
+    short[] retextureFrom;
+    @ObfuscatedName("aa")
+    short[] retextureTo;
+    @ObfuscatedName("ay")
+    int[] models = new int[]{-1, -1, -1, -1, -1};
+    @ObfuscatedName("ao")
+    public boolean nonSelectable = false;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1026746832"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1026746832"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -83,13 +68,12 @@ public class KitDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;IB)V",
-      garbageValue = "33"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;IB)V",
+            garbageValue = "33"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.bodypartID = var1.readUnsignedByte();
       } else {
@@ -129,13 +113,12 @@ public class KitDefinition extends DualNode {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1647976754"
-   )
-   @Export("ready")
-   public boolean ready() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1647976754"
+    )
+    public boolean ready() {
       if (this.models2 == null) {
          return true;
       } else {
@@ -151,13 +134,12 @@ public class KitDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(I)Liz;",
-      garbageValue = "-240292107"
-   )
-   @Export("getModelData")
-   public ModelData getModelData() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(I)Liz;",
+            garbageValue = "-240292107"
+    )
+    public ModelData getModelData() {
       if (this.models2 == null) {
          return null;
       } else {
@@ -208,13 +190,12 @@ public class KitDefinition extends DualNode {
       return var1;
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(B)Liz;",
-      garbageValue = "-37"
-   )
-   @Export("getKitDefinitionModels")
-   public ModelData getKitDefinitionModels() {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(B)Liz;",
+            garbageValue = "-37"
+    )
+    public ModelData getKitDefinitionModels() {
       ModelData[] var1 = new ModelData[5];
       int var2 = 0;
 
@@ -455,13 +436,12 @@ public class KitDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(IZB)Ljava/lang/String;",
-      garbageValue = "16"
-   )
-   @Export("intToString")
-   public static String intToString(int var0, boolean var1) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(IZB)Ljava/lang/String;",
+            garbageValue = "16"
+    )
+    public static String intToString(int var0, boolean var1) {
       if (var1 && var0 >= 0) {
          int var3 = var0;
          String var2;

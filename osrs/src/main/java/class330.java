@@ -24,13 +24,12 @@ public class class330 {
       this.field3074 = var6;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Llv;Ltp;S)Llg;",
-      garbageValue = "-32752"
-   )
-   @Export("getPacketBufferNode")
-   public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Llv;Ltp;S)Llg;",
+            garbageValue = "-32752"
+    )
+    public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
       PacketBufferNode var2 = SpotAnimationDefinition.method1044();
       var2.clientPacket = var0;
       var2.clientPacketLength = var0.length;
@@ -52,13 +51,12 @@ public class class330 {
       return var2;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsq;II)V",
-      garbageValue = "-547893919"
-   )
-   @Export("readPlayerUpdate")
-   static void readPlayerUpdate(PacketBuffer var0, int var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsq;II)V",
+            garbageValue = "-547893919"
+    )
+    static void readPlayerUpdate(PacketBuffer var0, int var1) {
       boolean var2 = var0.readBits(1) == 1;
       if (var2) {
          Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;

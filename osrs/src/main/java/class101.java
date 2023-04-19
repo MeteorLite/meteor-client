@@ -8,9 +8,8 @@ final class class101 implements class308 {
    static int field1082;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lmq;"
+           descriptor = "Lmq;"
    )
-   @Export("val$cc")
    @ObfuscatedName("val$cc")
    final Widget val$cc;
 
@@ -21,13 +20,12 @@ final class class101 implements class308 {
       this.val$cc = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "427135973"
-   )
-   @Export("vmethod5708")
-   public void vmethod5708() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "427135973"
+    )
+    public void vmethod5708() {
       if (this.val$cc != null && this.val$cc.method1818().field2824 != null) {
          ScriptEvent var1 = new ScriptEvent();
          var1.method491(this.val$cc);

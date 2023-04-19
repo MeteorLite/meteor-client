@@ -7,17 +7,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cf")
 @Implements("GrandExchangeOfferOwnWorldComparator")
 public class GrandExchangeOfferOwnWorldComparator implements Comparator {
-   @ObfuscatedName("af")
-   @Export("filterWorlds")
-   boolean filterWorlds;
+    @ObfuscatedName("af")
+    boolean filterWorlds;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnu;Lnu;B)I",
-      garbageValue = "24"
-   )
-   @Export("compare_bridged")
-   int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lnu;Lnu;B)I",
+            garbageValue = "24"
+    )
+    int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
       if (var2.world == var1.world) {
          return 0;
       } else {
@@ -35,15 +33,13 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
       }
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
    }
 

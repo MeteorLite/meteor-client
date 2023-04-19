@@ -37,13 +37,12 @@ public class class437 implements class436 {
       return class435.field3823;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)[B",
-      garbageValue = "888549065"
-   )
-   @Export("vmethod7797")
-   public byte[] vmethod7797() throws UnsupportedEncodingException {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(I)[B",
+            garbageValue = "888549065"
+    )
+    public byte[] vmethod7797() throws UnsupportedEncodingException {
       return this.field3826 == null ? new byte[0] : this.field3826.toString().getBytes("UTF-8");
    }
 

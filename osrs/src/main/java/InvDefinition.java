@@ -6,29 +6,25 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gl")
 @Implements("InvDefinition")
 public class InvDefinition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("InvDefinition_archive")
-   static AbstractArchive InvDefinition_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("InvDefinition_cached")
-   static EvictingDualNodeHashTable InvDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("aw")
-   @Export("size")
-   public int size = 0;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive InvDefinition_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable InvDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("aw")
+    public int size = 0;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "1"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "1"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -39,26 +35,24 @@ public class InvDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "64174481"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "64174481"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 2) {
          this.size = var1.readUnsignedShort();
       }
 
    }
 
-   @ObfuscatedName("lf")
-   @ObfuscatedSignature(
-      descriptor = "(Ldf;IIIS)V",
-      garbageValue = "31551"
-   )
-   @Export("addNpcToMenu")
-   static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
+    @ObfuscatedName("lf")
+    @ObfuscatedSignature(
+            descriptor = "(Ldf;IIIS)V",
+            garbageValue = "31551"
+    )
+    static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
       NPCComposition var4 = var0.definition;
       if (Client.menuOptionsCount < 400) {
          if (var4.transforms != null) {

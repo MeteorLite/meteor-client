@@ -8,9 +8,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ef")
 public class class108 extends UrlRequester {
-   @ObfuscatedName("cm")
-   @Export("param9")
-   static String param9;
+    @ObfuscatedName("cm")
+    static String param9;
    @ObfuscatedName("au")
    final boolean field1147;
 
@@ -19,13 +18,12 @@ public class class108 extends UrlRequester {
       this.field1147 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lez;B)V",
-      garbageValue = "16"
-   )
-   @Export("vmethod2700")
-   void vmethod2700(UrlRequest var1) throws IOException {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lez;B)V",
+            garbageValue = "16"
+    )
+    void vmethod2700(UrlRequest var1) throws IOException {
       URLConnection var2 = null;
       boolean var9 = false;
 

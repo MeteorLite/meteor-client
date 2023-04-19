@@ -22,13 +22,12 @@ public abstract class class432 implements class272 {
    class432(int var1) {
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "489961361"
-   )
-   @Export("vmethod7769")
-   abstract void vmethod7769(Buffer var1, int var2);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "489961361"
+    )
+    abstract void vmethod7769(Buffer var1, int var2);
 
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
@@ -93,13 +92,12 @@ public abstract class class432 implements class272 {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsq;B)V",
-      garbageValue = "-106"
-   )
-   @Export("performReflectionCheck")
-   public static void performReflectionCheck(PacketBuffer var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsq;B)V",
+            garbageValue = "-106"
+    )
+    public static void performReflectionCheck(PacketBuffer var0) {
       ReflectionCheck var1 = (ReflectionCheck)class36.reflectionChecks.last();
       if (var1 != null) {
          int var2 = var0.offset;
@@ -114,16 +112,16 @@ public abstract class class432 implements class272 {
                   Field var5;
                   int var6;
                   if (var4 == 0) {
-                     var5 = var1.field158[var3];
+                     var5 = var1.fields[var3];
                      var6 = Reflection.getInt(var5, (Object)null);
                      var0.writeByte(0);
                      var0.writeInt(var6);
                   } else if (var4 == 1) {
-                     var5 = var1.field158[var3];
+                     var5 = var1.fields[var3];
                      Reflection.setInt(var5, (Object)null, var1.intReplaceValues[var3]);
                      var0.writeByte(0);
                   } else if (var4 == 2) {
-                     var5 = var1.field158[var3];
+                     var5 = var1.fields[var3];
                      var6 = var5.getModifiers();
                      var0.writeByte(0);
                      var0.writeInt(var6);

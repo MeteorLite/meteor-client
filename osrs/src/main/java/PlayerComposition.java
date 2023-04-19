@@ -11,44 +11,36 @@ public class PlayerComposition {
    public static short[] field2837;
    @ObfuscatedName("ao")
    public static short[][] field2828;
-   @ObfuscatedName("ag")
-   @Export("equipmentIndices")
-   static final int[] equipmentIndices;
-   @ObfuscatedName("ar")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("PlayerAppearance_cachedModels")
-   static EvictingDualNodeHashTable PlayerAppearance_cachedModels;
+    @ObfuscatedName("ag")
+    static final int[] equipmentIndices;
+    @ObfuscatedName("ar")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable PlayerAppearance_cachedModels;
    @ObfuscatedName("af")
    int[] field2841;
-   @ObfuscatedName("an")
-   @Export("equipment")
-   int[] equipment;
-   @ObfuscatedName("aw")
-   @Export("bodyColors")
-   int[] bodyColors;
+    @ObfuscatedName("an")
+    int[] equipment;
+    @ObfuscatedName("aw")
+    int[] bodyColors;
    @ObfuscatedName("ac")
    public int field2831 = -1;
    @ObfuscatedName("au")
    public int field2840 = 0;
-   @ObfuscatedName("ab")
-   @Export("npcTransformId")
-   public int npcTransformId;
-   @ObfuscatedName("aq")
-   @Export("hash")
-   long hash;
+    @ObfuscatedName("ab")
+    public int npcTransformId;
+    @ObfuscatedName("aq")
+    long hash;
    @ObfuscatedName("al")
    long field2834;
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "[Lgx;"
-   )
-   @Export("customisations")
-   ObjTypeCustomisation[] customisations;
-   @ObfuscatedName("aa")
-   @Export("isFemale")
-   boolean isFemale = false;
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "[Lgx;"
+    )
+    ObjTypeCustomisation[] customisations;
+    @ObfuscatedName("aa")
+    boolean isFemale = false;
 
    static {
       equipmentIndices = new int[]{class204.field1839.field1831, class204.field1840.field1831, class204.field1835.field1831, class204.field1837.field1831, class204.field1834.field1831, class204.field1838.field1831, class204.field1843.field1831};
@@ -118,13 +110,12 @@ public class PlayerComposition {
       return var2;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(IZI)V",
-      garbageValue = "-1645926709"
-   )
-   @Export("changeAppearance")
-   public void changeAppearance(int var1, boolean var2) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(IZI)V",
+            garbageValue = "-1645926709"
+    )
+    public void changeAppearance(int var1, boolean var2) {
       if (var1 != 1 || this.field2840 != 1) {
          int var3 = this.equipment[equipmentIndices[var1]];
          if (var3 != 0) {
@@ -191,13 +182,12 @@ public class PlayerComposition {
       }
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "64"
-   )
-   @Export("write")
-   public void write(Buffer var1) {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "64"
+    )
+    public void write(Buffer var1) {
       var1.writeByte(this.field2840);
 
       int var2;
@@ -216,13 +206,12 @@ public class PlayerComposition {
 
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1418315210"
-   )
-   @Export("setHash")
-   void setHash() {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1418315210"
+    )
+    void setHash() {
       long var1 = this.hash;
       int var3 = this.equipment[5];
       int var4 = this.equipment[9];
@@ -261,13 +250,12 @@ public class PlayerComposition {
 
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(Lha;ILha;IB)Lit;",
-      garbageValue = "42"
-   )
-   @Export("getModel")
-   public Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(Lha;ILha;IB)Lit;",
+            garbageValue = "42"
+    )
+    public Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
       if (this.npcTransformId != -1) {
          return AbstractArchive.getNpcDefinition(this.npcTransformId).method1021(var1, var2, var3, var4, (NewShit)null);
       } else {
@@ -391,13 +379,12 @@ public class PlayerComposition {
       }
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(B)Liz;",
-      garbageValue = "126"
-   )
-   @Export("getModelData")
-   ModelData getModelData() {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(B)Liz;",
+            garbageValue = "126"
+    )
+    ModelData getModelData() {
       if (this.npcTransformId != -1) {
          return AbstractArchive.getNpcDefinition(this.npcTransformId).method1022((NewShit)null);
       } else {
@@ -457,13 +444,12 @@ public class PlayerComposition {
       }
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "(S)I",
-      garbageValue = "5890"
-   )
-   @Export("getChatHeadId")
-   public int getChatHeadId() {
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "(S)I",
+            garbageValue = "5890"
+    )
+    public int getChatHeadId() {
       return this.npcTransformId == -1 ? (this.equipment[0] << 15) + this.equipment[1] + (this.equipment[11] << 5) + (this.equipment[8] << 10) + (this.bodyColors[0] << 25) + (this.bodyColors[4] << 20) : 305419896 + AbstractArchive.getNpcDefinition(this.npcTransformId).id;
    }
 

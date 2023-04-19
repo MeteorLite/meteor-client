@@ -12,26 +12,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ep")
 @Implements("Varcs")
 public class Varcs {
-   @ObfuscatedName("gg")
-   @ObfuscatedSignature(
-      descriptor = "Lqw;"
-   )
-   @Export("spriteIds")
-   static GraphicsDefaults spriteIds;
-   @ObfuscatedName("aw")
-   @Export("intsPersistence")
-   boolean[] intsPersistence;
-   @ObfuscatedName("ac")
-   @Export("map")
-   Map map;
+    @ObfuscatedName("gg")
+    @ObfuscatedSignature(
+            descriptor = "Lqw;"
+    )
+    static GraphicsDefaults spriteIds;
+    @ObfuscatedName("aw")
+    boolean[] intsPersistence;
+    @ObfuscatedName("ac")
+    Map map;
    /** @deprecated */
    @Deprecated
    @ObfuscatedName("au")
-   @Export("strings")
    String[] strings;
-   @ObfuscatedName("ab")
-   @Export("unwrittenChanges")
-   boolean unwrittenChanges = false;
+    @ObfuscatedName("ab")
+    boolean unwrittenChanges = false;
    @ObfuscatedName("aq")
    long field1120;
 
@@ -69,13 +64,12 @@ public class Varcs {
       this.read();
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(III)V",
-      garbageValue = "1427050414"
-   )
-   @Export("setInt")
-   void setInt(int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(III)V",
+            garbageValue = "1427050414"
+    )
+    void setInt(int var1, int var2) {
       this.map.put(var1, var2);
       if (this.intsPersistence[var1]) {
          this.unwrittenChanges = true;
@@ -83,34 +77,31 @@ public class Varcs {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "721184906"
-   )
-   @Export("getInt")
-   int getInt(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)I",
+            garbageValue = "721184906"
+    )
+    int getInt(int var1) {
       Object var2 = this.map.get(var1);
       return var2 instanceof Integer ? (Integer)var2 : -1;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;I)V",
-      garbageValue = "-875468987"
-   )
-   @Export("setString")
-   void setString(int var1, String var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;I)V",
+            garbageValue = "-875468987"
+    )
+    void setString(int var1, String var2) {
       this.map.put(var1, var2);
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(II)Ljava/lang/String;",
-      garbageValue = "-1231946680"
-   )
-   @Export("getString")
-   String getString(int var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(II)Ljava/lang/String;",
+            garbageValue = "-1231946680"
+    )
+    String getString(int var1) {
       Object var2 = this.map.get(var1);
       return var2 instanceof String ? (String)var2 : "";
    }
@@ -119,10 +110,9 @@ public class Varcs {
    @Deprecated
    @ObfuscatedName("au")
    @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;I)V",
-      garbageValue = "-1623165865"
+           descriptor = "(ILjava/lang/String;I)V",
+           garbageValue = "-1623165865"
    )
-   @Export("setStringOld")
    void setStringOld(int var1, String var2) {
       this.strings[var1] = var2;
    }
@@ -131,21 +121,19 @@ public class Varcs {
    @Deprecated
    @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "(IB)Ljava/lang/String;",
-      garbageValue = "8"
+           descriptor = "(IB)Ljava/lang/String;",
+           garbageValue = "8"
    )
-   @Export("getStringOld")
    String getStringOld(int var1) {
       return this.strings[var1];
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-39979061"
-   )
-   @Export("clearTransient")
-   void clearTransient() {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-39979061"
+    )
+    void clearTransient() {
       int var1;
       for(var1 = 0; var1 < this.intsPersistence.length; ++var1) {
          if (!this.intsPersistence[var1]) {
@@ -159,23 +147,21 @@ public class Varcs {
 
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(ZB)Lsy;",
-      garbageValue = "61"
-   )
-   @Export("getPreferencesFile")
-   AccessFile getPreferencesFile(boolean var1) {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(ZB)Lsy;",
+            garbageValue = "61"
+    )
+    AccessFile getPreferencesFile(boolean var1) {
       return Rasterizer3D.getPreferencesFile("2", Client.field358.name, var1);
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1900216587"
-   )
-   @Export("write")
-   void write() {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1900216587"
+    )
+    void write() {
       AccessFile var1 = this.getPreferencesFile(true);
 
       try {
@@ -232,13 +218,12 @@ public class Varcs {
       this.field1120 = class96.clockNow();
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-44"
-   )
-   @Export("read")
-   void read() {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "-44"
+    )
+    void read() {
       AccessFile var1 = this.getPreferencesFile(false);
 
       label240: {
@@ -325,26 +310,24 @@ public class Varcs {
       this.unwrittenChanges = false;
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "2118979895"
-   )
-   @Export("tryWrite")
-   void tryWrite() {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "2118979895"
+    )
+    void tryWrite() {
       if (this.unwrittenChanges && this.field1120 < class96.clockNow() - 60000L) {
          this.write();
       }
 
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1302793492"
-   )
-   @Export("hasUnwrittenChanges")
-   boolean hasUnwrittenChanges() {
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-1302793492"
+    )
+    boolean hasUnwrittenChanges() {
       return this.unwrittenChanges;
    }
 

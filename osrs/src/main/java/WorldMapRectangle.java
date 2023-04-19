@@ -8,23 +8,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 public final class WorldMapRectangle {
    @ObfuscatedName("uh")
    static int field2405;
-   @ObfuscatedName("af")
-   @Export("width")
-   int width;
-   @ObfuscatedName("an")
-   @Export("height")
-   int height;
-   @ObfuscatedName("aw")
-   @Export("x")
-   int x;
-   @ObfuscatedName("ac")
-   @Export("y")
-   int y;
+    @ObfuscatedName("af")
+    int width;
+    @ObfuscatedName("an")
+    int height;
+    @ObfuscatedName("aw")
+    int x;
+    @ObfuscatedName("ac")
+    int y;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Ljv;"
+           descriptor = "Ljv;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final WorldMapManager this$0;
 

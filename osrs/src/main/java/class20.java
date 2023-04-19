@@ -10,12 +10,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("aj")
 public class class20 {
-   @ObfuscatedName("vb")
-   @ObfuscatedSignature(
-      descriptor = "Ldu;"
-   )
-   @Export("clientPreferences")
-   static ClientPreferences clientPreferences;
+    @ObfuscatedName("vb")
+    @ObfuscatedSignature(
+            descriptor = "Ldu;"
+    )
+    static ClientPreferences clientPreferences;
    @ObfuscatedName("af")
    final int field64;
    @ObfuscatedName("an")

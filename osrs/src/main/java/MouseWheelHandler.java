@@ -9,17 +9,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ak")
 @Implements("MouseWheelHandler")
 public final class MouseWheelHandler implements class170, MouseWheelListener {
-   @ObfuscatedName("af")
-   @Export("rotation")
-   int rotation = 0;
+    @ObfuscatedName("af")
+    int rotation = 0;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/awt/Component;I)V",
-      garbageValue = "-1336020209"
-   )
-   @Export("addTo")
-   void addTo(Component var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/awt/Component;I)V",
+            garbageValue = "-1336020209"
+    )
+    void addTo(Component var1) {
       var1.addMouseWheelListener(this);
    }
 
@@ -32,21 +30,19 @@ public final class MouseWheelHandler implements class170, MouseWheelListener {
       var1.removeMouseWheelListener(this);
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1765986428"
-   )
-   @Export("useRotation")
-   public synchronized int useRotation() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1765986428"
+    )
+    public synchronized int useRotation() {
       int var1 = this.rotation;
       this.rotation = 0;
       return var1;
    }
 
-   @Export("mouseWheelMoved")
-   @ObfuscatedName("mouseWheelMoved")
-   public synchronized void mouseWheelMoved(MouseWheelEvent var1) {
+    @ObfuscatedName("mouseWheelMoved")
+    public synchronized void mouseWheelMoved(MouseWheelEvent var1) {
       this.rotation += var1.getWheelRotation();
    }
 }

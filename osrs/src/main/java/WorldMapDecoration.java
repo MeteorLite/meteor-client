@@ -6,15 +6,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jl")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-   @ObfuscatedName("af")
-   @Export("objectDefinitionId")
-   final int objectDefinitionId;
-   @ObfuscatedName("an")
-   @Export("decoration")
-   final int decoration;
-   @ObfuscatedName("aw")
-   @Export("rotation")
-   final int rotation;
+    @ObfuscatedName("af")
+    final int objectDefinitionId;
+    @ObfuscatedName("an")
+    final int decoration;
+    @ObfuscatedName("aw")
+    final int rotation;
 
    WorldMapDecoration(int var1, int var2, int var3) {
       this.objectDefinitionId = var1;
@@ -22,13 +19,12 @@ public class WorldMapDecoration {
       this.rotation = var3;
    }
 
-   @ObfuscatedName("ij")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;ZI)V",
-      garbageValue = "-215676095"
-   )
-   @Export("drawLoadingMessage")
-   static final void drawLoadingMessage(String var0, boolean var1) {
+    @ObfuscatedName("ij")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;ZI)V",
+            garbageValue = "-215676095"
+    )
+    static final void drawLoadingMessage(String var0, boolean var1) {
       if (Client.showLoadingMessages) {
          byte var2 = 4;
          int var3 = var2 + 6;

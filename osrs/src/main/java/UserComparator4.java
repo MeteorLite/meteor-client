@@ -7,36 +7,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ej")
 @Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
-   @ObfuscatedName("ax")
-   @Export("Tiles_hueMultiplier")
-   static int[] Tiles_hueMultiplier;
-   @ObfuscatedName("af")
-   @Export("reversed")
-   final boolean reversed;
+    @ObfuscatedName("ax")
+    static int[] Tiles_hueMultiplier;
+    @ObfuscatedName("af")
+    final boolean reversed;
 
    public UserComparator4(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpb;Lpb;B)I",
-      garbageValue = "54"
-   )
-   @Export("compare_bridged")
-   int compare_bridged(Buddy var1, Buddy var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpb;Lpb;B)I",
+            garbageValue = "54"
+    )
+    int compare_bridged(Buddy var1, Buddy var2) {
       return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compare_bridged((Buddy)var1, (Buddy)var2);
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 

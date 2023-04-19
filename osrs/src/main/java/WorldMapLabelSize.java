@@ -6,24 +6,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jd")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Ljd;"
-   )
-   @Export("WorldMapLabelSize_small")
-   public static final WorldMapLabelSize WorldMapLabelSize_small = new WorldMapLabelSize(0, 0, 4);
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Ljd;"
-   )
-   @Export("WorldMapLabelSize_medium")
-   public static final WorldMapLabelSize WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Ljd;"
-   )
-   @Export("WorldMapLabelSize_large")
-   public static final WorldMapLabelSize WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Ljd;"
+    )
+    public static final WorldMapLabelSize WorldMapLabelSize_small = new WorldMapLabelSize(0, 0, 4);
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Ljd;"
+    )
+    public static final WorldMapLabelSize WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Ljd;"
+    )
+    public static final WorldMapLabelSize WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
    @ObfuscatedName("fq")
    @ObfuscatedSignature(
       descriptor = "Lnd;"
@@ -93,13 +90,12 @@ public class WorldMapLabelSize {
 
    }
 
-   @ObfuscatedName("hn")
-   @ObfuscatedSignature(
-      descriptor = "(IZZZZI)Lnd;",
-      garbageValue = "2134354855"
-   )
-   @Export("newArchive")
-   static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
+    @ObfuscatedName("hn")
+    @ObfuscatedSignature(
+            descriptor = "(IZZZZI)Lnd;",
+            garbageValue = "2134354855"
+    )
+    static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
       ArchiveDisk var5 = null;
       if (JagexCache.JagexCache_dat2File != null) {
          var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class370.JagexCache_idxFiles[var0], 1000000);

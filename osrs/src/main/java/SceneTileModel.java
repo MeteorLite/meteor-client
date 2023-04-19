@@ -21,50 +21,36 @@ public final class SceneTileModel {
    static final int[][] field2106 = new int[][]{{1, 3, 5, 7}, {1, 3, 5, 7}, {1, 3, 5, 7}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 6}, {1, 3, 5, 7, 2, 6}, {1, 3, 5, 7, 2, 8}, {1, 3, 5, 7, 2, 8}, {1, 3, 5, 7, 11, 12}, {1, 3, 5, 7, 11, 12}, {1, 3, 5, 7, 13, 14}};
    @ObfuscatedName("az")
    static final int[][] field2128 = new int[][]{{0, 1, 2, 3, 0, 0, 1, 3}, {1, 1, 2, 3, 1, 0, 1, 3}, {0, 1, 2, 3, 1, 0, 1, 3}, {0, 0, 1, 2, 0, 0, 2, 4, 1, 0, 4, 3}, {0, 0, 1, 4, 0, 0, 4, 3, 1, 1, 2, 4}, {0, 0, 4, 3, 1, 0, 1, 2, 1, 0, 2, 4}, {0, 1, 2, 4, 1, 0, 1, 4, 1, 0, 4, 3}, {0, 4, 1, 2, 0, 4, 2, 5, 1, 0, 4, 5, 1, 0, 5, 3}, {0, 4, 1, 2, 0, 4, 2, 3, 0, 4, 3, 5, 1, 0, 4, 5}, {0, 0, 4, 5, 1, 4, 1, 2, 1, 4, 2, 3, 1, 4, 3, 5}, {0, 0, 1, 5, 0, 1, 4, 5, 0, 1, 2, 4, 1, 0, 5, 3, 1, 5, 4, 3, 1, 4, 2, 3}, {1, 0, 1, 5, 1, 1, 4, 5, 1, 1, 2, 4, 0, 0, 5, 3, 0, 5, 4, 3, 0, 4, 2, 3}, {1, 0, 5, 4, 1, 0, 1, 5, 0, 0, 4, 3, 0, 4, 5, 3, 0, 5, 2, 3, 0, 1, 2, 5}};
-   @ObfuscatedName("af")
-   @Export("vertexX")
-   int[] vertexX;
-   @ObfuscatedName("an")
-   @Export("vertexY")
-   int[] vertexY;
-   @ObfuscatedName("aw")
-   @Export("vertexZ")
-   int[] vertexZ;
-   @ObfuscatedName("ac")
-   @Export("triangleColorA")
-   int[] triangleColorA;
-   @ObfuscatedName("au")
-   @Export("triangleColorB")
-   int[] triangleColorB;
-   @ObfuscatedName("ab")
-   @Export("triangleColorC")
-   int[] triangleColorC;
-   @ObfuscatedName("aq")
-   @Export("faceX")
-   int[] faceX;
-   @ObfuscatedName("al")
-   @Export("faceY")
-   int[] faceY;
-   @ObfuscatedName("at")
-   @Export("faceZ")
-   int[] faceZ;
-   @ObfuscatedName("aa")
-   @Export("triangleTextureId")
-   int[] triangleTextureId;
+    @ObfuscatedName("af")
+    int[] vertexX;
+    @ObfuscatedName("an")
+    int[] vertexY;
+    @ObfuscatedName("aw")
+    int[] vertexZ;
+    @ObfuscatedName("ac")
+    int[] triangleColorA;
+    @ObfuscatedName("au")
+    int[] triangleColorB;
+    @ObfuscatedName("ab")
+    int[] triangleColorC;
+    @ObfuscatedName("aq")
+    int[] faceX;
+    @ObfuscatedName("al")
+    int[] faceY;
+    @ObfuscatedName("at")
+    int[] faceZ;
+    @ObfuscatedName("aa")
+    int[] triangleTextureId;
    @ObfuscatedName("ay")
    boolean field2114 = true;
-   @ObfuscatedName("ao")
-   @Export("shape")
-   int shape;
-   @ObfuscatedName("ax")
-   @Export("rotation")
-   int rotation;
-   @ObfuscatedName("ai")
-   @Export("underlayRgb")
-   int underlayRgb;
-   @ObfuscatedName("ag")
-   @Export("overlayRgb")
-   int overlayRgb;
+    @ObfuscatedName("ao")
+    int shape;
+    @ObfuscatedName("ax")
+    int rotation;
+    @ObfuscatedName("ai")
+    int underlayRgb;
+    @ObfuscatedName("ag")
+    int overlayRgb;
 
    SceneTileModel(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19) {
       if (var7 != var6 || var8 != var6 || var9 != var6) {

@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ev")
 public class class120 {
-   @ObfuscatedName("ay")
-   @Export("musicTrackBoolean")
-   public static boolean musicTrackBoolean;
+    @ObfuscatedName("ay")
+    public static boolean musicTrackBoolean;
    @ObfuscatedName("af")
    int field1175;
    @ObfuscatedName("an")
@@ -39,13 +38,12 @@ public class class120 {
       this.field1173 = var1.method2487();
    }
 
-   @ObfuscatedName("lw")
-   @ObfuscatedSignature(
-      descriptor = "(ZB)V",
-      garbageValue = "-44"
-   )
-   @Export("setTapToDrop")
-   static void setTapToDrop(boolean var0) {
+    @ObfuscatedName("lw")
+    @ObfuscatedSignature(
+            descriptor = "(ZB)V",
+            garbageValue = "-44"
+    )
+    static void setTapToDrop(boolean var0) {
       Client.tapToDrop = var0;
    }
 }

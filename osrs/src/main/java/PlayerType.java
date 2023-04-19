@@ -6,42 +6,36 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nz")
 @Implements("PlayerType")
 public enum PlayerType implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnz;"
-   )
-   @Export("PlayerType_normal")
-   PlayerType_normal(0, -1, true, false, true),
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnz;"
-   )
-   @Export("PlayerType_playerModerator")
-   PlayerType_playerModerator(1, 0, true, true, true),
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lnz;"
-   )
-   @Export("PlayerType_jagexModerator")
-   PlayerType_jagexModerator(2, 1, true, true, false),
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lnz;"
-   )
-   @Export("PlayerType_ironman")
-   PlayerType_ironman(3, 2, false, false, true),
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Lnz;"
-   )
-   @Export("PlayerType_ultimateIronman")
-   PlayerType_ultimateIronman(4, 3, false, false, true),
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lnz;"
-   )
-   @Export("PlayerType_hardcoreIronman")
-   PlayerType_hardcoreIronman(5, 10, false, false, true),
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnz;"
+    )
+    PlayerType_normal(0, -1, true, false, true),
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnz;"
+    )
+    PlayerType_playerModerator(1, 0, true, true, true),
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lnz;"
+    )
+    PlayerType_jagexModerator(2, 1, true, true, false),
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lnz;"
+    )
+    PlayerType_ironman(3, 2, false, false, true),
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Lnz;"
+    )
+    PlayerType_ultimateIronman(4, 3, false, false, true),
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lnz;"
+    )
+    PlayerType_hardcoreIronman(5, 10, false, false, true),
    @ObfuscatedName("aq")
    @ObfuscatedSignature(
       descriptor = "Lnz;"
@@ -98,24 +92,19 @@ public enum PlayerType implements class356 {
    )
    field3440(16, 52, false, false, true);
 
-   @ObfuscatedName("dz")
-   @ObfuscatedSignature(
-      descriptor = "Ltc;"
-   )
-   @Export("worldSelectLeftSprite")
-   static IndexedSprite worldSelectLeftSprite;
-   @ObfuscatedName("ar")
-   @Export("id")
-   final int id;
-   @ObfuscatedName("am")
-   @Export("modIcon")
-   public final int modIcon;
-   @ObfuscatedName("as")
-   @Export("isPrivileged")
-   public final boolean isPrivileged;
-   @ObfuscatedName("aj")
-   @Export("isUser")
-   public final boolean isUser;
+    @ObfuscatedName("dz")
+    @ObfuscatedSignature(
+            descriptor = "Ltc;"
+    )
+    static IndexedSprite worldSelectLeftSprite;
+    @ObfuscatedName("ar")
+    final int id;
+    @ObfuscatedName("am")
+    public final int modIcon;
+    @ObfuscatedName("as")
+    public final boolean isPrivileged;
+    @ObfuscatedName("aj")
+    public final boolean isUser;
 
    PlayerType(int var3, int var4, boolean var5, boolean var6, boolean var7) {
       this.id = var3;
@@ -124,23 +113,21 @@ public enum PlayerType implements class356 {
       this.isUser = var7;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Ldr;III)V",
-      garbageValue = "637714632"
-   )
-   @Export("runScript")
-   static void runScript(ScriptEvent var0, int var1, int var2) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Ldr;III)V",
+            garbageValue = "637714632"
+    )
+    static void runScript(ScriptEvent var0, int var1, int var2) {
       Object[] var3 = var0.args;
       Script var4;
       int var20;

@@ -6,84 +6,59 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cw")
 @Implements("Projectile")
 public final class Projectile extends Renderable {
-   @ObfuscatedName("af")
-   @Export("id")
-   int id;
-   @ObfuscatedName("an")
-   @Export("plane")
-   int plane;
-   @ObfuscatedName("aw")
-   @Export("sourceX")
-   int sourceX;
-   @ObfuscatedName("ac")
-   @Export("sourceY")
-   int sourceY;
-   @ObfuscatedName("au")
-   @Export("sourceZ")
-   int sourceZ;
-   @ObfuscatedName("ab")
-   @Export("endHeight")
-   int endHeight;
-   @ObfuscatedName("aq")
-   @Export("cycleStart")
-   int cycleStart;
-   @ObfuscatedName("al")
-   @Export("cycleEnd")
-   int cycleEnd;
-   @ObfuscatedName("at")
-   @Export("slope")
-   int slope;
-   @ObfuscatedName("aa")
-   @Export("startHeight")
-   int startHeight;
-   @ObfuscatedName("ay")
-   @Export("targetIndex")
-   int targetIndex;
-   @ObfuscatedName("ao")
-   @Export("isMoving")
-   boolean isMoving = false;
-   @ObfuscatedName("ax")
-   @Export("x")
-   double x;
-   @ObfuscatedName("ai")
-   @Export("y")
-   double y;
-   @ObfuscatedName("ag")
-   @Export("z")
-   double z;
-   @ObfuscatedName("ah")
-   @Export("speedX")
-   double speedX;
-   @ObfuscatedName("av")
-   @Export("speedY")
-   double speedY;
-   @ObfuscatedName("ar")
-   @Export("speed")
-   double speed;
-   @ObfuscatedName("am")
-   @Export("speedZ")
-   double speedZ;
-   @ObfuscatedName("as")
-   @Export("accelerationZ")
-   double accelerationZ;
-   @ObfuscatedName("aj")
-   @Export("yaw")
-   int yaw;
-   @ObfuscatedName("ak")
-   @Export("pitch")
-   int pitch;
-   @ObfuscatedName("az")
-   @ObfuscatedSignature(
-      descriptor = "Lha;"
-   )
-   @Export("sequenceDefinition")
-   SequenceDefinition sequenceDefinition;
-   @ObfuscatedName("ad")
-   @Export("frame")
-   int frame = 0;
-   @ObfuscatedName("ae")
-   @Export("frameCycle")
-   int frameCycle = 0;
+    @ObfuscatedName("af")
+    int id;
+    @ObfuscatedName("an")
+    int plane;
+    @ObfuscatedName("aw")
+    int sourceX;
+    @ObfuscatedName("ac")
+    int sourceY;
+    @ObfuscatedName("au")
+    int sourceZ;
+    @ObfuscatedName("ab")
+    int endHeight;
+    @ObfuscatedName("aq")
+    int cycleStart;
+    @ObfuscatedName("al")
+    int cycleEnd;
+    @ObfuscatedName("at")
+    int slope;
+    @ObfuscatedName("aa")
+    int startHeight;
+    @ObfuscatedName("ay")
+    int targetIndex;
+    @ObfuscatedName("ao")
+    boolean isMoving = false;
+    @ObfuscatedName("ax")
+    double x;
+    @ObfuscatedName("ai")
+    double y;
+    @ObfuscatedName("ag")
+    double z;
+    @ObfuscatedName("ah")
+    double speedX;
+    @ObfuscatedName("av")
+    double speedY;
+    @ObfuscatedName("ar")
+    double speed;
+    @ObfuscatedName("am")
+    double speedZ;
+    @ObfuscatedName("as")
+    double accelerationZ;
+    @ObfuscatedName("aj")
+    int yaw;
+    @ObfuscatedName("ak")
+    int pitch;
+    @ObfuscatedName("az")
+    @ObfuscatedSignature(
+            descriptor = "Lha;"
+    )
+    SequenceDefinition sequenceDefinition;
+    @ObfuscatedName("ad")
+    int frame = 0;
+    @ObfuscatedName("ae")
+    int frameCycle = 0;
 
    Projectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
       this.id = var1;
@@ -107,13 +82,12 @@ public final class Projectile extends Renderable {
 
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)V",
-      garbageValue = "-335674854"
-   )
-   @Export("setDestination")
-   final void setDestination(int var1, int var2, int var3, int var4) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IIIII)V",
+            garbageValue = "-335674854"
+    )
+    final void setDestination(int var1, int var2, int var3, int var4) {
       double var5;
       if (!this.isMoving) {
          var5 = (double)(var1 - this.sourceX);
@@ -135,13 +109,12 @@ public final class Projectile extends Renderable {
       this.accelerationZ = 2.0D * ((double)var3 - this.z - this.speedZ * var5) / (var5 * var5);
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lit;",
-      garbageValue = "-112"
-   )
-   @Export("getModel")
-   protected final Model getModel() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lit;",
+            garbageValue = "-112"
+    )
+    protected final Model getModel() {
       SpotAnimationDefinition var1 = ItemContainer.SpotAnimationDefinition_get(this.id);
       Model var2 = var1.getModel(this.frame);
       if (var2 == null) {
@@ -152,13 +125,12 @@ public final class Projectile extends Renderable {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "1703494104"
-   )
-   @Export("advance")
-   final void advance(int var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "1703494104"
+    )
+    final void advance(int var1) {
       this.isMoving = true;
       this.x += this.speedX * (double)var1;
       this.y += this.speedY * (double)var1;

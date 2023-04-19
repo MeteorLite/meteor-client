@@ -28,26 +28,24 @@ public class MilliClock extends Clock {
 
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-331366942"
-   )
-   @Export("mark")
-   public void mark() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-331366942"
+    )
+    public void mark() {
       for(int var1 = 0; var1 < 10; ++var1) {
          this.field1461[var1] = 0L;
       }
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "-1491982008"
-   )
-   @Export("wait")
-   public int wait(int var1, int var2) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(III)I",
+            garbageValue = "-1491982008"
+    )
+    public int wait(int var1, int var2) {
       int var3 = this.field1456;
       int var4 = this.field1457;
       this.field1456 = 300;

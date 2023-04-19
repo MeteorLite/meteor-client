@@ -6,13 +6,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ob")
 public class class387 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;B)V",
-      garbageValue = "8"
-   )
-   @Export("RunException_sendStackTrace")
-   public static void RunException_sendStackTrace(String var0, Throwable var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;B)V",
+            garbageValue = "8"
+    )
+    public static void RunException_sendStackTrace(String var0, Throwable var1) {
       if (var1 != null) {
          var1.printStackTrace();
       } else {

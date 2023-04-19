@@ -6,27 +6,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jc")
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
-   @ObfuscatedName("af")
-   @Export("swColor")
-   int swColor;
-   @ObfuscatedName("an")
-   @Export("seColor")
-   int seColor;
-   @ObfuscatedName("aw")
-   @Export("neColor")
-   int neColor;
-   @ObfuscatedName("ac")
-   @Export("nwColor")
-   int nwColor;
-   @ObfuscatedName("au")
-   @Export("texture")
-   int texture;
-   @ObfuscatedName("ab")
-   @Export("isFlat")
-   boolean isFlat = true;
-   @ObfuscatedName("aq")
-   @Export("rgb")
-   int rgb;
+    @ObfuscatedName("af")
+    int swColor;
+    @ObfuscatedName("an")
+    int seColor;
+    @ObfuscatedName("aw")
+    int neColor;
+    @ObfuscatedName("ac")
+    int nwColor;
+    @ObfuscatedName("au")
+    int texture;
+    @ObfuscatedName("ab")
+    boolean isFlat = true;
+    @ObfuscatedName("aq")
+    int rgb;
 
    SceneTilePaint(int var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
       this.swColor = var1;
@@ -38,13 +31,12 @@ public final class SceneTilePaint {
       this.isFlat = var7;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)Ljava/lang/String;",
-      garbageValue = "98"
-   )
-   @Export("readString")
-   public static String readString(Buffer var0) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)Ljava/lang/String;",
+            garbageValue = "98"
+    )
+    public static String readString(Buffer var0) {
       String var1;
       try {
          int var2 = var0.readUShortSmart();
@@ -111,13 +103,12 @@ public final class SceneTilePaint {
       }
    }
 
-   @ObfuscatedName("lv")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZB)V",
-      garbageValue = "18"
-   )
-   @Export("insertMenuItem")
-   static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
+    @ObfuscatedName("lv")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZB)V",
+            garbageValue = "18"
+    )
+    static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
       if (!Client.isMenuOpen) {
          if (Client.menuOptionsCount < 500) {
             Client.menuActions[Client.menuOptionsCount] = var0;

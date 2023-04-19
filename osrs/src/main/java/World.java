@@ -6,69 +6,54 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cl")
 @Implements("World")
 public class World {
-   @ObfuscatedName("vt")
-   @ObfuscatedSignature(
-      descriptor = "Lcg;"
-   )
-   @Export("friendSystem")
-   public static FriendSystem friendSystem;
-   @ObfuscatedName("ab")
-   @Export("World_count")
-   static int World_count = 0;
-   @ObfuscatedName("aq")
-   @Export("World_listCount")
-   static int World_listCount = 0;
-   @ObfuscatedName("al")
-   @Export("World_sortOption2")
-   static int[] World_sortOption2 = new int[]{1, 1, 1, 1};
-   @ObfuscatedName("at")
-   @Export("World_sortOption1")
-   static int[] World_sortOption1 = new int[]{0, 1, 2, 3};
-   @ObfuscatedName("dt")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("worldSelectStars")
-   static IndexedSprite[] worldSelectStars;
-   @ObfuscatedName("ay")
-   @Export("id")
-   int id;
-   @ObfuscatedName("ao")
-   @Export("properties")
-   int properties;
-   @ObfuscatedName("ax")
-   @Export("population")
-   int population;
-   @ObfuscatedName("ai")
-   @Export("host")
-   String host;
-   @ObfuscatedName("ag")
-   @Export("activity")
-   String activity;
-   @ObfuscatedName("ah")
-   @Export("location")
-   int location;
-   @ObfuscatedName("av")
-   @Export("index")
-   int index;
+    @ObfuscatedName("vt")
+    @ObfuscatedSignature(
+            descriptor = "Lcg;"
+    )
+    public static FriendSystem friendSystem;
+    @ObfuscatedName("ab")
+    static int World_count = 0;
+    @ObfuscatedName("aq")
+    static int World_listCount = 0;
+    @ObfuscatedName("al")
+    static int[] World_sortOption2 = new int[]{1, 1, 1, 1};
+    @ObfuscatedName("at")
+    static int[] World_sortOption1 = new int[]{0, 1, 2, 3};
+    @ObfuscatedName("dt")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] worldSelectStars;
+    @ObfuscatedName("ay")
+    int id;
+    @ObfuscatedName("ao")
+    int properties;
+    @ObfuscatedName("ax")
+    int population;
+    @ObfuscatedName("ai")
+    String host;
+    @ObfuscatedName("ag")
+    String activity;
+    @ObfuscatedName("ah")
+    int location;
+    @ObfuscatedName("av")
+    int index;
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1029039210"
-   )
-   @Export("isMembersOnly")
-   boolean isMembersOnly() {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1029039210"
+    )
+    boolean isMembersOnly() {
       return (1 & this.properties) != 0;
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1583670467"
-   )
-   @Export("isDeadman")
-   boolean isDeadman() {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-1583670467"
+    )
+    boolean isDeadman() {
       return (65536 & this.properties) != 0;
    }
 
@@ -81,13 +66,12 @@ public class World {
       return (2 & this.properties) != 0;
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1502648578"
-   )
-   @Export("isPvp")
-   boolean isPvp() {
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1502648578"
+    )
+    boolean isPvp() {
       return (4 & this.properties) != 0;
    }
 
@@ -109,13 +93,12 @@ public class World {
       return (536870912 & this.properties) != 0;
    }
 
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "578362576"
-   )
-   @Export("isBeta")
-   boolean isBeta() {
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "578362576"
+    )
+    boolean isBeta() {
       return (33554432 & this.properties) != 0;
    }
 
@@ -155,13 +138,12 @@ public class World {
       FloorUnderlayDefinition.FloorUnderlayDefinition_archive = var0;
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(IB)I",
-      garbageValue = "127"
-   )
-   @Export("Messages_getHistorySize")
-   static int Messages_getHistorySize(int var0) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(IB)I",
+            garbageValue = "127"
+    )
+    static int Messages_getHistorySize(int var0) {
       ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0);
       return var1 == null ? 0 : var1.size();
    }

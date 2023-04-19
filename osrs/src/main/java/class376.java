@@ -30,21 +30,18 @@ public class class376 implements Iterator {
       this.field3602 = var1;
    }
 
-   @Export("hasNext")
-   @ObfuscatedName("hasNext")
-   public boolean hasNext() {
+    @ObfuscatedName("hasNext")
+    public boolean hasNext() {
       return this.field3604 < this.field3602.field3610;
    }
 
-   @Export("remove")
-   @ObfuscatedName("remove")
-   public void remove() {
+    @ObfuscatedName("remove")
+    public void remove() {
       throw new UnsupportedOperationException();
    }
 
-   @Export("next")
-   @ObfuscatedName("next")
-   public Object next() {
+    @ObfuscatedName("next")
+    public Object next() {
       if (this.field3602.field3607 != this.field3603) {
          throw new ConcurrentModificationException();
       } else if (this.field3604 < this.field3602.field3610) {

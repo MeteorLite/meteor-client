@@ -71,13 +71,12 @@ public class class156 {
       }
    }
 
-   @ObfuscatedName("kw")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-742935767"
-   )
-   @Export("addCancelMenuEntry")
-   static void addCancelMenuEntry() {
+    @ObfuscatedName("kw")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-742935767"
+    )
+    static void addCancelMenuEntry() {
       Client.menuOptionsCount = 0;
       Client.isMenuOpen = false;
       Client.menuActions[0] = "Cancel";

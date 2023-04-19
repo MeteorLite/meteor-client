@@ -6,39 +6,30 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jk")
 @Implements("BoundaryObject")
 public final class BoundaryObject {
-   @ObfuscatedName("af")
-   @Export("z")
-   int z;
-   @ObfuscatedName("an")
-   @Export("x")
-   int x;
-   @ObfuscatedName("aw")
-   @Export("y")
-   int y;
-   @ObfuscatedName("ac")
-   @Export("orientationA")
-   int orientationA;
-   @ObfuscatedName("au")
-   @Export("orientationB")
-   int orientationB;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("renderable1")
-   public Renderable renderable1;
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("renderable2")
-   public Renderable renderable2;
-   @ObfuscatedName("al")
-   @Export("tag")
-   public long tag = 0L;
-   @ObfuscatedName("at")
-   @Export("flags")
-   int flags = 0;
+    @ObfuscatedName("af")
+    int z;
+    @ObfuscatedName("an")
+    int x;
+    @ObfuscatedName("aw")
+    int y;
+    @ObfuscatedName("ac")
+    int orientationA;
+    @ObfuscatedName("au")
+    int orientationB;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    public Renderable renderable1;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    public Renderable renderable2;
+    @ObfuscatedName("al")
+    public long tag = 0L;
+    @ObfuscatedName("at")
+    int flags = 0;
 
    @ObfuscatedName("ah")
    @ObfuscatedSignature(

@@ -6,16 +6,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fz")
 @Implements("ClanChannelMember")
 public class ClanChannelMember {
-   @ObfuscatedName("af")
-   @Export("rank")
-   public byte rank;
-   @ObfuscatedName("an")
-   @Export("world")
-   public int world;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Ltm;"
-   )
-   @Export("username")
-   public Username username;
+    @ObfuscatedName("af")
+    public byte rank;
+    @ObfuscatedName("an")
+    public int world;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Ltm;"
+    )
+    public Username username;
 }

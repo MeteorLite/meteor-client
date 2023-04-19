@@ -5,12 +5,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("he")
 public class class205 implements class29 {
-   @ObfuscatedName("gr")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive20")
-   static Archive archive20;
+    @ObfuscatedName("gr")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive20;
    @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
@@ -21,13 +20,12 @@ public class class205 implements class29 {
    @ObfuscatedName("aw")
    boolean field1849 = false;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "1311192309"
-   )
-   @Export("vmethod3949")
-   public boolean vmethod3949(int var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "1311192309"
+    )
+    public boolean vmethod3949(int var1) {
       if (this.field1850 == null) {
          return false;
       } else {
@@ -73,13 +71,12 @@ public class class205 implements class29 {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(CI)Z",
-      garbageValue = "-2018590760"
-   )
-   @Export("vmethod3951")
-   public boolean vmethod3951(char var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(CI)Z",
+            garbageValue = "-2018590760"
+    )
+    public boolean vmethod3951(char var1) {
       if (this.field1850 == null) {
          return false;
       } else if (!MouseHandler.method195(var1)) {
@@ -103,13 +100,12 @@ public class class205 implements class29 {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(ZB)Z",
-      garbageValue = "-16"
-   )
-   @Export("vmethod3953")
-   public boolean vmethod3953(boolean var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(ZB)Z",
+            garbageValue = "-16"
+    )
+    public boolean vmethod3953(boolean var1) {
       return false;
    }
 
@@ -348,13 +344,12 @@ public class class205 implements class29 {
       return var1;
    }
 
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "768397072"
-   )
-   @Export("setLoginResponseString")
-   static void setLoginResponseString(String var0, String var1, String var2) {
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+            garbageValue = "768397072"
+    )
+    static void setLoginResponseString(String var0, String var1, String var2) {
       Login.Login_response1 = var0;
       Login.Login_response2 = var1;
       Login.Login_response3 = var2;

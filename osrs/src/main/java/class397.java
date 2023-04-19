@@ -9,9 +9,8 @@ class class397 implements Comparator {
    static int field3691;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lpk;"
+           descriptor = "Lpk;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class398 this$0;
 
@@ -35,15 +34,13 @@ class class397 implements Comparator {
       }
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.method2119((class399)var1, (class399)var2);
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 

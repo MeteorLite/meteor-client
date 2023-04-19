@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -6,42 +5,33 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cq")
 @Implements("Message")
 public class Message extends DualNode {
-   @ObfuscatedName("af")
-   @Export("count")
-   int count;
-   @ObfuscatedName("an")
-   @Export("cycle")
-   int cycle;
-   @ObfuscatedName("aw")
-   @Export("type")
-   int type;
-   @ObfuscatedName("ac")
-   @Export("sender")
-   String sender;
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Ltm;"
-   )
-   @Export("senderUsername")
-   Username senderUsername;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lpx;"
-   )
-   @Export("isFromFriend0")
-   TriBool isFromFriend0;
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Lpx;"
-   )
-   @Export("isFromIgnored0")
-   TriBool isFromIgnored0;
-   @ObfuscatedName("al")
-   @Export("prefix")
-   String prefix;
-   @ObfuscatedName("at")
-   @Export("text")
-   String text;
+    @ObfuscatedName("af")
+    int count;
+    @ObfuscatedName("an")
+    int cycle;
+    @ObfuscatedName("aw")
+    int type;
+    @ObfuscatedName("ac")
+    String sender;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Ltm;"
+    )
+    Username senderUsername;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lpx;"
+    )
+    TriBool isFromFriend0;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Lpx;"
+    )
+    TriBool isFromIgnored0;
+    @ObfuscatedName("al")
+    String prefix;
+    @ObfuscatedName("at")
+    String text;
 
    Message(int var1, String var2, String var3, String var4) {
       this.isFromFriend0 = TriBool.TriBool_unknown;
@@ -49,13 +39,12 @@ public class Message extends DualNode {
       this.set(var1, var2, var3, var4);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "1617874492"
-   )
-   @Export("set")
-   void set(int var1, String var2, String var3, String var4) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+            garbageValue = "1617874492"
+    )
+    void set(int var1, String var2, String var3, String var4) {
       this.count = class129.method762();
       this.cycle = Client.cycle;
       this.type = var1;
@@ -67,23 +56,21 @@ public class Message extends DualNode {
       this.clearIsFromIgnored();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-124"
-   )
-   @Export("clearIsFromFriend")
-   void clearIsFromFriend() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "-124"
+    )
+    void clearIsFromFriend() {
       this.isFromFriend0 = TriBool.TriBool_unknown;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "769376242"
-   )
-   @Export("isFromFriend")
-   final boolean isFromFriend() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "769376242"
+    )
+    final boolean isFromFriend() {
       if (this.isFromFriend0 == TriBool.TriBool_unknown) {
          this.fillIsFromFriend();
       }
@@ -91,33 +78,30 @@ public class Message extends DualNode {
       return this.isFromFriend0 == TriBool.TriBool_true;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "8"
-   )
-   @Export("fillIsFromFriend")
-   void fillIsFromFriend() {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "8"
+    )
+    void fillIsFromFriend() {
       this.isFromFriend0 = World.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1267480248"
-   )
-   @Export("clearIsFromIgnored")
-   void clearIsFromIgnored() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1267480248"
+    )
+    void clearIsFromIgnored() {
       this.isFromIgnored0 = TriBool.TriBool_unknown;
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1426002396"
-   )
-   @Export("isFromIgnored")
-   final boolean isFromIgnored() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1426002396"
+    )
+    final boolean isFromIgnored() {
       if (this.isFromIgnored0 == TriBool.TriBool_unknown) {
          this.fillIsFromIgnored();
       }
@@ -125,23 +109,21 @@ public class Message extends DualNode {
       return this.isFromIgnored0 == TriBool.TriBool_true;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1665665360"
-   )
-   @Export("fillIsFromIgnored")
-   void fillIsFromIgnored() {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1665665360"
+    )
+    void fillIsFromIgnored() {
       this.isFromIgnored0 = World.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-90703200"
-   )
-   @Export("fillSenderUsername")
-   final void fillSenderUsername() {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-90703200"
+    )
+    final void fillSenderUsername() {
       if (this.sender != null) {
          this.senderUsername = new Username(ModeWhere.method1953(this.sender), class70.loginType);
       } else {
@@ -150,13 +132,12 @@ public class Message extends DualNode {
 
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lnd;IIIBZB)V",
-      garbageValue = "12"
-   )
-   @Export("requestNetFile")
-   static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lnd;IIIBZB)V",
+            garbageValue = "12"
+    )
+    static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
       long var6 = (long)((var1 << 16) + var2);
       NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6);
       if (var8 == null) {
@@ -312,13 +293,12 @@ public class Message extends DualNode {
       VerticalAlignment.method1036("Please remove " + var0 + " from your ignore list first");
    }
 
-   @ObfuscatedName("ks")
-   @ObfuscatedSignature(
-      descriptor = "(IIIILjava/lang/String;I)V",
-      garbageValue = "1238902143"
-   )
-   @Export("widgetDefaultMenuAction")
-   static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
+    @ObfuscatedName("ks")
+    @ObfuscatedSignature(
+            descriptor = "(IIIILjava/lang/String;I)V",
+            garbageValue = "1238902143"
+    )
+    static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
       Widget var5 = SoundSystem.getWidgetChild(var1, var2);
       if (var5 != null) {
          if (var5.onOp != null) {
@@ -350,7 +330,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 2) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.OPLOC5, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON2, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -358,7 +338,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 3) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.field2540, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON3, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -366,7 +346,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 4) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.OPNPC5, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON4, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -374,7 +354,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 5) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.OPNPC2, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON5, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -382,7 +362,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 6) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.field2535, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON6, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -390,7 +370,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 7) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.field2558, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON7, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -398,7 +378,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 8) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.field2527, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON8, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -406,7 +386,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 9) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.WALK, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON9, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);
@@ -414,7 +394,7 @@ public class Message extends DualNode {
                }
 
                if (var0 == 10) {
-                  var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYERT, Client.packetWriter.isaacCipher);
+                  var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON10, Client.packetWriter.isaacCipher);
                   var10.packetBuffer.writeInt(var1);
                   var10.packetBuffer.writeShort(var2);
                   var10.packetBuffer.writeShort(var3);

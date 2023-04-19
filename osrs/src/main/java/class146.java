@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fv")
 public class class146 extends class139 {
-   @ObfuscatedName("bk")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("Widget_fontsArchive")
-   static AbstractArchive Widget_fontsArchive;
+    @ObfuscatedName("bk")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive Widget_fontsArchive;
    @ObfuscatedName("af")
    boolean field1342;
    @ObfuscatedName("an")
@@ -33,13 +32,12 @@ public class class146 extends class139 {
       this.this$0 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1342 = var1.readUnsignedByte() == 1;
       this.field1339 = var1.readByte();
       this.field1340 = var1.readByte();
@@ -47,13 +45,12 @@ public class class146 extends class139 {
       this.field1338 = var1.readByte();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.allowGuests = this.field1342;
       var1.field1369 = this.field1339;
       var1.field1359 = this.field1340;
@@ -99,13 +96,12 @@ public class class146 extends class139 {
       ViewportMouse.ViewportMouse_entityCount = 0;
    }
 
-   @ObfuscatedName("kb")
-   @ObfuscatedSignature(
-      descriptor = "(ZLsq;I)V",
-      garbageValue = "-1232221421"
-   )
-   @Export("updateNpcs")
-   static final void updateNpcs(boolean var0, PacketBuffer var1) {
+    @ObfuscatedName("kb")
+    @ObfuscatedSignature(
+            descriptor = "(ZLsq;I)V",
+            garbageValue = "-1232221421"
+    )
+    static final void updateNpcs(boolean var0, PacketBuffer var1) {
       Client.field484 = 0;
       Client.field416 = 0;
       class30.method131(var1);
@@ -136,7 +132,7 @@ public class class146 extends class139 {
                var6 = -1;
             }
 
-            var7 = var1.readUnsignedByteNeg();
+            var7 = var1.readUnsignedByteAdd();
             if (var6 == var4.sequence && var6 != -1) {
                var8 = ItemContainer.SequenceDefinition_get(var6).replyMode;
                if (var8 == 1) {
@@ -161,7 +157,7 @@ public class class146 extends class139 {
 
          if ((var5 & 32) != 0) {
             var4.targetIndex = var1.readUnsignedShort();
-            var4.targetIndex += var1.readUnsignedByteNeg() << 16;
+            var4.targetIndex += var1.readUnsignedByteAdd() << 16;
             var6 = 16777215;
             if (var6 == var4.targetIndex) {
                var4.targetIndex = -1;
@@ -201,7 +197,7 @@ public class class146 extends class139 {
                }
             }
 
-            var7 = var1._readUnsignedByteSub();
+            var7 = var1.readUnsignedByteNeg();
             if (var7 > 0) {
                for(var8 = 0; var8 < var7; ++var8) {
                   var9 = var1.readUShortSmart();
@@ -209,7 +205,7 @@ public class class146 extends class139 {
                   if (var10 != 32767) {
                      var11 = var1.readUShortSmart();
                      var12 = var1.readUnsignedByte();
-                     int var13 = var10 > 0 ? var1._readUnsignedByteSub() : var12;
+                     int var13 = var10 > 0 ? var1.readUnsignedByteNeg() : var12;
                      var4.addHealthBar(var9, Client.cycle, var10, var11, var12, var13);
                   } else {
                      var4.removeHealthBar(var9);
@@ -219,21 +215,21 @@ public class class146 extends class139 {
          }
 
          if ((var5 & 8) != 0) {
-            var4.definition = AbstractArchive.getNpcDefinition(var1.readUnsignedShortLE());
+            var4.definition = AbstractArchive.getNpcDefinition(var1.readUnsignedShortAddLE());
             class142.method811(var4);
             var4.method606();
          }
 
          if ((var5 & 1) != 0) {
             var6 = var1.readUnsignedShort();
-            var7 = var1.method2518();
-            var4.updateGraphic(0, var6, var7 >> 16, var7 & '\uffff');
+            var7 = var1.readIntLE();
+            var4.updateSpotAnimation(0, var6, var7 >> 16, var7 & '\uffff');
          }
 
          if ((var5 & 16) != 0) {
             var6 = var1.readUnsignedShortAdd();
             var7 = var1.readUnsignedShortAdd();
-            var4.field938 = var1.readUnsignedByteNeg() == 1;
+            var4.field938 = var1.readUnsignedByteAdd() == 1;
             if (Client.param25 >= 212) {
                var4.field993 = var6;
                var4.field970 = var7;
@@ -249,12 +245,12 @@ public class class146 extends class139 {
 
          if ((var5 & 16384) != 0) {
             var4.field983 = var1.readByte();
-            var4.field985 = var1.method2535();
-            var4.field984 = var1.method2535();
-            var4.field1003 = var1.method2535();
+            var4.field985 = var1.readByteNeg();
+            var4.field984 = var1.readByteNeg();
+            var4.field1003 = var1.readByteNeg();
             var4.spotAnimation = var1.readUnsignedShortAdd() + Client.cycle;
-            var4.exactMoveArrive1Cycle = var1.readUnsignedShortAddLE() + Client.cycle;
-            var4.exactMoveDirection = var1.readUnsignedShortLE();
+            var4.exactMoveArrive1Cycle = var1.readUnsignedShortLE() + Client.cycle;
+            var4.exactMoveDirection = var1.readUnsignedShortAddLE();
             var4.pathLength = 1;
             var4.field1006 = 0;
             var4.field983 += var4.pathX[0];
@@ -268,12 +264,12 @@ public class class146 extends class139 {
          }
 
          if ((var5 & 2048) != 0) {
-            var4.recolourStartCycle = Client.cycle + var1.readUnsignedShortAddLE();
+            var4.recolourStartCycle = Client.cycle + var1.readUnsignedShortLE();
             var4.recolourEndCycle = Client.cycle + var1.readUnsignedShort();
-            var4.recolourHue = var1.method2531();
-            var4.recolourSaturation = var1.method2535();
-            var4.recolourLuminance = var1.method2503();
-            var4.recolourAmount = (byte)var1.readUnsignedByteAdd();
+            var4.recolourHue = var1.readByteAdd();
+            var4.recolourSaturation = var1.readByteNeg();
+            var4.recolourLuminance = var1.readUnsignedByteSub();
+            var4.recolourAmount = (byte)var1._readUnsignedByteSub();
          }
 
          if ((var5 & 512) != 0) {
@@ -290,13 +286,13 @@ public class class146 extends class139 {
          long var18;
          boolean var20;
          if ((var5 & 4096) != 0) {
-            var6 = var1.readUnsignedByteAdd();
+            var6 = var1._readUnsignedByteSub();
             if ((var6 & 1) == 1) {
                var4.method608();
             } else {
                var15 = null;
                if ((var6 & 2) == 2) {
-                  var8 = var1.readUnsignedByteAdd();
+                  var8 = var1._readUnsignedByteSub();
                   var15 = new int[var8];
 
                   for(var9 = 0; var9 < var8; ++var9) {
@@ -316,7 +312,7 @@ public class class146 extends class139 {
                   var16 = new short[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var16[var10] = (short)var1.readUnsignedShortAddLE();
+                     var16[var10] = (short)var1.readUnsignedShortLE();
                   }
                }
 
@@ -345,17 +341,17 @@ public class class146 extends class139 {
          }
 
          if ((var5 & 1024) != 0) {
-            var6 = var1.readUnsignedByteNeg();
+            var6 = var1.readUnsignedByteAdd();
             if ((var6 & 1) == 1) {
                var4.method601();
             } else {
                var15 = null;
                if ((var6 & 2) == 2) {
-                  var8 = var1.readUnsignedByteNeg();
+                  var8 = var1.readUnsignedByteAdd();
                   var15 = new int[var8];
 
                   for(var9 = 0; var9 < var8; ++var9) {
-                     var10 = var1.readUnsignedShortLE();
+                     var10 = var1.readUnsignedShortAddLE();
                      var10 = var10 == 65535 ? -1 : var10;
                      var15[var9] = var10;
                   }
@@ -371,7 +367,7 @@ public class class146 extends class139 {
                   var16 = new short[var9];
 
                   for(var10 = 0; var10 < var9; ++var10) {
-                     var16[var10] = (short)var1.readUnsignedShortAddLE();
+                     var16[var10] = (short)var1.readUnsignedShortLE();
                   }
                }
 
@@ -385,7 +381,7 @@ public class class146 extends class139 {
                   var17 = new short[var10];
 
                   for(var11 = 0; var11 < var10; ++var11) {
-                     var17[var11] = (short)var1.readUnsignedShortLE();
+                     var17[var11] = (short)var1.readUnsignedShortAddLE();
                   }
                }
 
@@ -400,7 +396,7 @@ public class class146 extends class139 {
          }
 
          if ((var5 & 131072) != 0) {
-            var6 = var1.readUnsignedByteAdd();
+            var6 = var1._readUnsignedByteSub();
             var15 = new int[8];
             var16 = new short[8];
 
@@ -421,29 +417,29 @@ public class class146 extends class139 {
             var6 = var1.readInt();
             var4.turnLeftSequence = (var6 & 1) != 0 ? var1.readUnsignedShort() : var4.definition.turnLeftSequence * 1526449071 * -2117504177;
             var4.turnRightSequence = (var6 & 2) != 0 ? var1.readUnsignedShort() : var4.definition.turnRightSequence * 1635935495 * 1325267127;
-            var4.walkSequence = (var6 & 4) != 0 ? var1.readUnsignedShortLE() : var4.definition.walkSequence * 849832979 * 1653161499;
+            var4.walkSequence = (var6 & 4) != 0 ? var1.readUnsignedShortAddLE() : var4.definition.walkSequence * 849832979 * 1653161499;
             var4.walkBackSequence = (var6 & 8) != 0 ? var1.readUnsignedShort() : var4.definition.walkBackSequence * -820247353 * 606174455;
             var4.walkLeftSequence = (var6 & 16) != 0 ? var1.readUnsignedShort() : var4.definition.walkLeftSequence * 1030172671 * 429445119;
             var4.walkRightSequence = (var6 & 32) != 0 ? var1.readUnsignedShort() : var4.definition.walkRightSequence * -1237616413 * -2142663477;
             var4.runSequence = (var6 & 64) != 0 ? var1.readUnsignedShort() : var4.definition.runSequence * -1565402875 * 1104808909;
-            var4.runBackSequence = (var6 & 128) != 0 ? var1.readUnsignedShortAddLE() : var4.definition.runBackSequence * -1535672631 * 1434909561;
-            var4.runLeftSequence = (var6 & 256) != 0 ? var1.readUnsignedShortAddLE() : var4.definition.runLeftSequence * -1171795391 * -257868351;
-            var4.runRightSequence = (var6 & 512) != 0 ? var1.readUnsignedShortAddLE() : var4.definition.runRightSequence * 1924156607 * -1734270145;
+            var4.runBackSequence = (var6 & 128) != 0 ? var1.readUnsignedShortLE() : var4.definition.runBackSequence * -1535672631 * 1434909561;
+            var4.runLeftSequence = (var6 & 256) != 0 ? var1.readUnsignedShortLE() : var4.definition.runLeftSequence * -1171795391 * -257868351;
+            var4.runRightSequence = (var6 & 512) != 0 ? var1.readUnsignedShortLE() : var4.definition.runRightSequence * 1924156607 * -1734270145;
             var4.crawlSequence = (var6 & 1024) != 0 ? var1.readUnsignedShort() : var4.definition.crawlSequence * -237251001 * -1186532489;
             var4.crawlBackSequence = (var6 & 2048) != 0 ? var1.readUnsignedShort() : var4.definition.crawlBackSequence * 1456216629 * -1296177123;
             var4.crawlLeftSequence = (var6 & 4096) != 0 ? var1.readUnsignedShortAdd() : var4.definition.crawlLeftSequence * -750567499 * -2136803683;
-            var4.crawlRightSequence = (var6 & 8192) != 0 ? var1.readUnsignedShortLE() : var4.definition.crawlRightSequence * 2044090389 * 1520351037;
+            var4.crawlRightSequence = (var6 & 8192) != 0 ? var1.readUnsignedShortAddLE() : var4.definition.crawlRightSequence * 2044090389 * 1520351037;
             var4.idleSequence = (var6 & 16384) != 0 ? var1.readUnsignedShortAdd() : var4.definition.idleSequence * 1304162881 * 1235033537;
          }
 
          if ((var5 & 65536) != 0) {
-            var6 = var1.readUnsignedByteNeg();
+            var6 = var1.readUnsignedByteAdd();
 
             for(var7 = 0; var7 < var6; ++var7) {
-               var8 = var1.readUnsignedByteAdd();
-               var9 = var1.readUnsignedShortLE();
-               var10 = var1.method2518();
-               var4.updateGraphic(var8, var9, var10 >> 16, var10 & '\uffff');
+               var8 = var1._readUnsignedByteSub();
+               var9 = var1.readUnsignedShortAddLE();
+               var10 = var1.readIntLE();
+               var4.updateSpotAnimation(var8, var9, var10 >> 16, var10 & '\uffff');
             }
          }
       }

@@ -4,21 +4,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bt")
 public class class36 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Loi;"
-   )
-   @Export("reflectionChecks")
-   public static IterableNodeDeque reflectionChecks = new IterableNodeDeque();
-   @ObfuscatedName("jl")
-   @ObfuscatedSignature(
-      descriptor = "[Ltq;"
-   )
-   @Export("headIconPkSprites")
-   static SpritePixels[] headIconPkSprites;
-   @ObfuscatedName("kx")
-   @Export("cameraX")
-   static int cameraX;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Loi;"
+    )
+    public static IterableNodeDeque reflectionChecks = new IterableNodeDeque();
+    @ObfuscatedName("jl")
+    @ObfuscatedSignature(
+            descriptor = "[Ltq;"
+    )
+    static SpritePixels[] headIconPkSprites;
+    @ObfuscatedName("kx")
+    static int cameraX;
 
    @ObfuscatedName("ie")
    @ObfuscatedSignature(
@@ -33,13 +30,12 @@ public class class36 {
 
    }
 
-   @ObfuscatedName("it")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIZI)V",
-      garbageValue = "-1386012109"
-   )
-   @Export("setViewportShape")
-   static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
+    @ObfuscatedName("it")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIZI)V",
+            garbageValue = "-1386012109"
+    )
+    static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
       if (var2 < 1) {
          var2 = 1;
       }

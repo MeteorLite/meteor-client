@@ -14,12 +14,11 @@ public class class396 {
       descriptor = "Lpy;"
    )
    static final class396 field3687 = new class396(0);
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("runesSprite")
-   static IndexedSprite[] runesSprite;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] runesSprite;
    @ObfuscatedName("aw")
    final int field3688;
 

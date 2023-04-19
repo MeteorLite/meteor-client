@@ -98,13 +98,12 @@ public class ZoneOperation {
       Language.tempMenuAction.target = Client.menuTargets[var0];
    }
 
-   @ObfuscatedName("mj")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "1669002823"
-   )
-   @Export("Widget_resetModelFrames")
-   static final void Widget_resetModelFrames(int var0) {
+    @ObfuscatedName("mj")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "1669002823"
+    )
+    static final void Widget_resetModelFrames(int var0) {
       if (SoundSystem.loadInterface(var0)) {
          Widget[] var1 = VerticalAlignment.Widget_interfaceComponents[var0];
 

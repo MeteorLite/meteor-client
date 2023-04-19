@@ -14,20 +14,17 @@ class class132 implements Callable {
    static long field1276;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lfh;"
+           descriptor = "Lfh;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class133 this$0;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lsg;"
+           descriptor = "Lsg;"
    )
-   @Export("val$p")
    @ObfuscatedName("val$p")
    final Buffer val$p;
    // $FF: synthetic field
-   @Export("val$version")
    @ObfuscatedName("val$version")
    final int val$version;
 
@@ -40,9 +37,8 @@ class class132 implements Callable {
       this.val$version = var3;
    }
 
-   @Export("call")
-   @ObfuscatedName("call")
-   public Object call() {
+    @ObfuscatedName("call")
+    public Object call() {
       this.this$0.method769(this.val$p, this.val$version);
       return null;
    }

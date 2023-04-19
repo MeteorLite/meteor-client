@@ -6,21 +6,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("er")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-   @ObfuscatedName("af")
-   @Export("reversed")
-   final boolean reversed;
+    @ObfuscatedName("af")
+    final boolean reversed;
 
    public BuddyRankComparator(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpb;Lpb;B)I",
-      garbageValue = "-49"
-   )
-   @Export("compareBuddy")
-   int compareBuddy(Buddy var1, Buddy var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpb;Lpb;B)I",
+            garbageValue = "-49"
+    )
+    int compareBuddy(Buddy var1, Buddy var2) {
       if (var2.rank != var1.rank) {
          return this.reversed ? var1.rank - var2.rank : var2.rank - var1.rank;
       } else {
@@ -28,9 +26,8 @@ public class BuddyRankComparator extends AbstractUserComparator {
       }
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
 

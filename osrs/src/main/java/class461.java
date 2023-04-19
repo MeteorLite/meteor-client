@@ -13,15 +13,13 @@ public class class461 {
       this.field3973 = var2;
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return this.field3972 + ", " + this.field3973;
    }
 
-   @Export("hashCode")
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
       int var1 = 0;
       if (this.field3972 != null) {
          var1 += this.field3972.hashCode();
@@ -34,9 +32,8 @@ public class class461 {
       return var1;
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (var1 != null && var1 instanceof class461) {
          class461 var2 = (class461)var1;
          if (this.field3972 == null) {

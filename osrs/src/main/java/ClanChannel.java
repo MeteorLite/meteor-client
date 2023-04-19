@@ -9,24 +9,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gj")
 @Implements("ClanChannel")
 public class ClanChannel extends Node {
-   @ObfuscatedName("av")
-   @Export("ByteArrayPool_alternativeSizes")
-   static int[] ByteArrayPool_alternativeSizes;
+    @ObfuscatedName("av")
+    static int[] ByteArrayPool_alternativeSizes;
    @ObfuscatedName("af")
    boolean field1402;
    @ObfuscatedName("an")
    boolean field1404 = true;
-   @ObfuscatedName("aw")
-   @Export("members")
-   public List members;
-   @ObfuscatedName("ac")
-   @Export("sortedMembers")
-   int[] sortedMembers;
+    @ObfuscatedName("aw")
+    public List members;
+    @ObfuscatedName("ac")
+    int[] sortedMembers;
    @ObfuscatedName("au")
    long field1399;
-   @ObfuscatedName("ab")
-   @Export("name")
-   public String name = null;
+    @ObfuscatedName("ab")
+    public String name = null;
    @ObfuscatedName("aq")
    public byte field1396;
    @ObfuscatedName("al")
@@ -43,13 +39,12 @@ public class ClanChannel extends Node {
       this.method900(var1);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)[I",
-      garbageValue = "67863678"
-   )
-   @Export("getSortedMembers")
-   public int[] getSortedMembers() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)[I",
+            garbageValue = "67863678"
+    )
+    public int[] getSortedMembers() {
       if (this.sortedMembers == null) {
          String[] var1 = new String[this.members.size()];
          this.sortedMembers = new int[this.members.size()];
@@ -65,24 +60,22 @@ public class ClanChannel extends Node {
       return this.sortedMembers;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfz;I)V",
-      garbageValue = "-1098707641"
-   )
-   @Export("addMember")
-   void addMember(ClanChannelMember var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfz;I)V",
+            garbageValue = "-1098707641"
+    )
+    void addMember(ClanChannelMember var1) {
       this.members.add(var1);
       this.sortedMembers = null;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "-27"
-   )
-   @Export("removeMember")
-   void removeMember(int var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(IB)V",
+            garbageValue = "-27"
+    )
+    void removeMember(int var1) {
       this.members.remove(var1);
       this.sortedMembers = null;
    }

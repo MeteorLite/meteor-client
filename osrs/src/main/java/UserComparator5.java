@@ -6,27 +6,24 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("es")
 @Implements("UserComparator5")
 public class UserComparator5 extends AbstractUserComparator {
-   @ObfuscatedName("sb")
-   @ObfuscatedSignature(
-      descriptor = "Lps;"
-   )
-   @Export("friendsChat")
-   static FriendsChat friendsChat;
-   @ObfuscatedName("af")
-   @Export("reversed")
-   final boolean reversed;
+    @ObfuscatedName("sb")
+    @ObfuscatedSignature(
+            descriptor = "Lps;"
+    )
+    static FriendsChat friendsChat;
+    @ObfuscatedName("af")
+    final boolean reversed;
 
    public UserComparator5(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpb;Lpb;I)I",
-      garbageValue = "318450924"
-   )
-   @Export("compareBuddy")
-   int compareBuddy(Buddy var1, Buddy var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpb;Lpb;I)I",
+            garbageValue = "318450924"
+    )
+    int compareBuddy(Buddy var1, Buddy var2) {
       if (var1.world != 0) {
          if (var2.world == 0) {
             return this.reversed ? -1 : 1;
@@ -38,19 +35,17 @@ public class UserComparator5 extends AbstractUserComparator {
       return this.compareUser(var1, var2);
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
-      garbageValue = "-397121414"
-   )
-   @Export("addGameMessage")
-   static void addGameMessage(int var0, String var1, String var2) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
+            garbageValue = "-397121414"
+    )
+    static void addGameMessage(int var0, String var1, String var2) {
       class136.addChatMessage(var0, var1, var2, (String)null);
    }
 

@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -6,20 +5,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("po")
 @Implements("FriendsList")
 public class FriendsList extends UserList {
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lsw;"
-   )
-   @Export("loginType")
-   final LoginType loginType;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lsw;"
+    )
+    final LoginType loginType;
    @ObfuscatedName("ac")
    int field3707 = 1;
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Log;"
-   )
-   @Export("friendLoginUpdates")
-   public LinkDeque friendLoginUpdates = new LinkDeque();
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Log;"
+    )
+    public LinkDeque friendLoginUpdates = new LinkDeque();
 
    @ObfuscatedSignature(
       descriptor = "(Lsw;)V"
@@ -29,33 +26,30 @@ public class FriendsList extends UserList {
       this.loginType = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lpw;",
-      garbageValue = "1756938494"
-   )
-   @Export("newInstance")
-   User newInstance() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lpw;",
+            garbageValue = "1756938494"
+    )
+    User newInstance() {
       return new Friend();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)[Lpw;",
-      garbageValue = "-463450295"
-   )
-   @Export("newTypedArray")
-   User[] newTypedArray(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)[Lpw;",
+            garbageValue = "-463450295"
+    )
+    User[] newTypedArray(int var1) {
       return new Friend[var1];
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Ltm;ZI)Z",
-      garbageValue = "-605757932"
-   )
-   @Export("isFriended")
-   public boolean isFriended(Username var1, boolean var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Ltm;ZI)Z",
+            garbageValue = "-605757932"
+    )
+    public boolean isFriended(Username var1, boolean var2) {
       Friend var3 = (Friend)this.getByUsername(var1);
       if (var3 == null) {
          return false;
@@ -64,13 +58,12 @@ public class FriendsList extends UserList {
       }
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;IB)V",
-      garbageValue = "-80"
-   )
-   @Export("read")
-   public void read(Buffer var1, int var2) {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;IB)V",
+            garbageValue = "-80"
+    )
+    public void read(Buffer var1, int var2) {
       while(true) {
          if (var1.offset < var2) {
             boolean var3 = var1.readUnsignedByte() == 1;
@@ -177,13 +170,13 @@ public class FriendsList extends UserList {
                   if (ObjectComposition.method1097(KeyHandler.getWidgetFlags(var0.field1854))) {
                      int[] var4 = var0.field1854.method1812();
                      if (var4 != null) {
-                        PacketBufferNode var2 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON3, Client.packetWriter.isaacCipher);
-                        var2.packetBuffer.method2472(var4[0]);
-                        var2.packetBuffer.writeIntIME(var0.field1854.id);
+                        PacketBufferNode var2 = class330.getPacketBufferNode(ClientPacket.jkasjhfaaa, Client.packetWriter.isaacCipher);
+                        var2.packetBuffer.writeIntIME(var4[0]);
+                        var2.packetBuffer.writeIntLE(var0.field1854.id);
                         var2.packetBuffer.writeInt(var4[1]);
-                        var2.packetBuffer.writeIntLE(var0.field1854.method1811());
-                        var2.packetBuffer.method2472(var4[2]);
-                        var2.packetBuffer.writeIntME(var0.field1854.childIndex);
+                        var2.packetBuffer.writeIntME(var0.field1854.method1811());
+                        var2.packetBuffer.writeIntIME(var4[2]);
+                        var2.packetBuffer.writeShortLE(var0.field1854.childIndex);
                         Client.packetWriter.addNode(var2);
                      }
                   }

@@ -7,32 +7,28 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nt")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-   @ObfuscatedName("fu")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive18")
-   static Archive archive18;
+    @ObfuscatedName("fu")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive18;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnu;Lnu;I)I",
-      garbageValue = "-411750205"
-   )
-   @Export("compare_bridged")
-   int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lnu;Lnu;I)I",
+            garbageValue = "-411750205"
+    )
+    int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
       return var1.grandExchangeOffer.unitPrice < var2.grandExchangeOffer.unitPrice ? -1 : (var2.grandExchangeOffer.unitPrice == var1.grandExchangeOffer.unitPrice ? 0 : 1);
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 

@@ -5,9 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fo")
 public class class136 extends class139 {
-   @ObfuscatedName("ar")
-   @Export("ByteArrayPool_altSizeArrayCounts")
-   static int[] ByteArrayPool_altSizeArrayCounts;
+    @ObfuscatedName("ar")
+    static int[] ByteArrayPool_altSizeArrayCounts;
    @ObfuscatedName("af")
    int field1310;
    @ObfuscatedName("an")
@@ -30,26 +29,24 @@ public class class136 extends class139 {
       this.field1310 = -1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1310 = var1.readUnsignedShort();
       this.field1308 = var1.readInt();
       this.field1306 = var1.readUnsignedByte();
       this.field1309 = var1.readUnsignedByte();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.method865(this.field1310, this.field1308, this.field1306, this.field1309);
    }
 
@@ -66,13 +63,12 @@ public class class136 extends class139 {
       return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT";
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;S)V",
-      garbageValue = "-29165"
-   )
-   @Export("addChatMessage")
-   static void addChatMessage(int var0, String var1, String var2, String var3) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;S)V",
+            garbageValue = "-29165"
+    )
+    static void addChatMessage(int var0, String var1, String var2, String var3) {
       ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
       if (var4 == null) {
          var4 = new ChatChannel();

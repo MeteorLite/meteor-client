@@ -12,24 +12,20 @@ import org.bouncycastle.crypto.tls.TlsClientProtocol;
 
 @ObfuscatedName("ax")
 class class12 extends SSLSocket {
-   @ObfuscatedName("an")
-   @Export("clearLoginScreen")
-   static boolean clearLoginScreen;
+    @ObfuscatedName("an")
+    static boolean clearLoginScreen;
    @ObfuscatedName("af")
    Certificate[] field40;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lah;"
+           descriptor = "Lah;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class15 this$0;
    // $FF: synthetic field
-   @Export("val$tlsClientProtocol")
    @ObfuscatedName("val$tlsClientProtocol")
    final TlsClientProtocol val$tlsClientProtocol;
    // $FF: synthetic field
-   @Export("val$host")
    @ObfuscatedName("val$host")
    final String val$host;
 
@@ -46,9 +42,8 @@ class class12 extends SSLSocket {
       return this.val$tlsClientProtocol.getInputStream();
    }
 
-   @Export("close")
-   @ObfuscatedName("close")
-   public synchronized void close() throws IOException {
+    @ObfuscatedName("close")
+    public synchronized void close() throws IOException {
       this.val$tlsClientProtocol.close();
    }
 
@@ -90,9 +85,8 @@ class class12 extends SSLSocket {
    public void setNeedClientAuth(boolean var1) {
    }
 
-   @Export("startHandshake")
-   @ObfuscatedName("startHandshake")
-   public void startHandshake() throws IOException {
+    @ObfuscatedName("startHandshake")
+    public void startHandshake() throws IOException {
       this.val$tlsClientProtocol.connect(new class13(this));
    }
 
@@ -106,9 +100,8 @@ class class12 extends SSLSocket {
    public void setUseClientMode(boolean var1) {
    }
 
-   @Export("getSession")
-   @ObfuscatedName("getSession")
-   public SSLSession getSession() {
+    @ObfuscatedName("getSession")
+    public SSLSession getSession() {
       return new class17(this);
    }
 
@@ -133,13 +126,12 @@ class class12 extends SSLSocket {
       return Rasterizer3D.clips.field2229;
    }
 
-   @ObfuscatedName("ci")
-   @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "120"
-   )
-   @Export("runWidgetOnLoadListener")
-   static void runWidgetOnLoadListener(int var0) {
+    @ObfuscatedName("ci")
+    @ObfuscatedSignature(
+            descriptor = "(IB)V",
+            garbageValue = "120"
+    )
+    static void runWidgetOnLoadListener(int var0) {
       if (var0 != -1) {
          if (SoundSystem.loadInterface(var0)) {
             Widget[] var1 = VerticalAlignment.Widget_interfaceComponents[var0];

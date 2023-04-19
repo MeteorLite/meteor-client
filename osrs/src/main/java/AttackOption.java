@@ -8,50 +8,45 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dj")
 @Implements("AttackOption")
 public enum AttackOption implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Ldj;"
-   )
-   @Export("AttackOption_dependsOnCombatLevels")
-   AttackOption_dependsOnCombatLevels(0),
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Ldj;"
-   )
-   @Export("AttackOption_alwaysRightClick")
-   AttackOption_alwaysRightClick(1),
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Ldj;"
+    )
+    AttackOption_dependsOnCombatLevels(0),
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Ldj;"
+    )
+    AttackOption_alwaysRightClick(1),
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "Ldj;"
    )
    field1070(2),
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Ldj;"
-   )
-   @Export("AttackOption_hidden")
-   AttackOption_hidden(3),
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Ldj;"
+    )
+    AttackOption_hidden(3),
    @ObfuscatedName("au")
    @ObfuscatedSignature(
       descriptor = "Ldj;"
    )
    field1073(4);
 
-   @ObfuscatedName("ab")
-   @Export("id")
-   final int id;
+    @ObfuscatedName("ab")
+    final int id;
 
    AttackOption(int var3) {
       this.id = var3;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
@@ -82,13 +77,12 @@ public enum AttackOption implements class356 {
       return class439.field3829[var0 & 16383];
    }
 
-   @ObfuscatedName("mf")
-   @ObfuscatedSignature(
-      descriptor = "(IIII)Ldi;",
-      garbageValue = "-1618920051"
-   )
-   @Export("ifOpenSub")
-   static final InterfaceParent ifOpenSub(int var0, int var1, int var2) {
+    @ObfuscatedName("mf")
+    @ObfuscatedSignature(
+            descriptor = "(IIII)Ldi;",
+            garbageValue = "-1618920051"
+    )
+    static final InterfaceParent ifOpenSub(int var0, int var1, int var2) {
       InterfaceParent var3 = new InterfaceParent();
       var3.group = var1;
       var3.type = var2;

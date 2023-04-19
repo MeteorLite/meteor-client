@@ -6,53 +6,44 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ho")
 @Implements("ParamComposition")
 public class ParamComposition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("ParamDefinition_archive")
-   static AbstractArchive ParamDefinition_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("ParamDefinition_cached")
-   static EvictingDualNodeHashTable ParamDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "Ltq;"
-   )
-   @Export("rightTitleSprite")
-   static SpritePixels rightTitleSprite;
-   @ObfuscatedName("aw")
-   @Export("type")
-   char type;
-   @ObfuscatedName("ac")
-   @Export("defaultInt")
-   public int defaultInt;
-   @ObfuscatedName("au")
-   @Export("defaultStr")
-   public String defaultStr;
-   @ObfuscatedName("ab")
-   @Export("autoDisable")
-   boolean autoDisable = true;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive ParamDefinition_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable ParamDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "Ltq;"
+    )
+    static SpritePixels rightTitleSprite;
+    @ObfuscatedName("aw")
+    char type;
+    @ObfuscatedName("ac")
+    public int defaultInt;
+    @ObfuscatedName("au")
+    public String defaultStr;
+    @ObfuscatedName("ab")
+    boolean autoDisable = true;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1924870301"
-   )
-   @Export("postDecode")
-   void postDecode() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1924870301"
+    )
+    void postDecode() {
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "-102"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "-102"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -63,13 +54,12 @@ public class ParamComposition extends DualNode {
       }
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "1800051666"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "1800051666"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          byte var4 = var1.readByte();
          int var5 = var4 & 255;
@@ -98,13 +88,12 @@ public class ParamComposition extends DualNode {
 
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1346057295"
-   )
-   @Export("isString")
-   public boolean isString() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-1346057295"
+    )
+    public boolean isString() {
       return this.type == 's';
    }
 

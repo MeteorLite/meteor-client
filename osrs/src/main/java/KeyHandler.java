@@ -25,12 +25,10 @@ public class KeyHandler implements KeyListener, FocusListener {
       descriptor = "[Lbe;"
    )
    class29[] field80 = new class29[3];
-   @ObfuscatedName("au")
-   @Export("KeyHandler_pressedKeys")
-   boolean[] KeyHandler_pressedKeys = new boolean[112];
-   @ObfuscatedName("ab")
-   @Export("KeyHandler_idleCycles")
-   volatile int KeyHandler_idleCycles = 0;
+    @ObfuscatedName("au")
+    boolean[] KeyHandler_pressedKeys = new boolean[112];
+    @ObfuscatedName("ab")
+    volatile int KeyHandler_idleCycles = 0;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(
@@ -41,13 +39,12 @@ public class KeyHandler implements KeyListener, FocusListener {
       this.field80[var2] = var1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "-31"
-   )
-   @Export("getIdleCycles")
-   public int getIdleCycles() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "-31"
+    )
+    public int getIdleCycles() {
       return this.KeyHandler_idleCycles;
    }
 
@@ -107,9 +104,8 @@ public class KeyHandler implements KeyListener, FocusListener {
       this.field77 = var1;
    }
 
-   @Export("keyTyped")
-   @ObfuscatedName("keyTyped")
-   public final synchronized void keyTyped(KeyEvent var1) {
+    @ObfuscatedName("keyTyped")
+    public final synchronized void keyTyped(KeyEvent var1) {
       char var2 = var1.getKeyChar();
       if (var2 != 0 && var2 != '\uffff') {
          boolean var3;
@@ -145,9 +141,8 @@ public class KeyHandler implements KeyListener, FocusListener {
       this.field77.add(new class33(4, 1));
    }
 
-   @Export("focusLost")
-   @ObfuscatedName("focusLost")
-   public final synchronized void focusLost(FocusEvent var1) {
+    @ObfuscatedName("focusLost")
+    public final synchronized void focusLost(FocusEvent var1) {
       for(int var2 = 0; var2 < 112; ++var2) {
          if (this.KeyHandler_pressedKeys[var2]) {
             this.KeyHandler_pressedKeys[var2] = false;
@@ -158,9 +153,8 @@ public class KeyHandler implements KeyListener, FocusListener {
       this.field77.add(new class33(4, 0));
    }
 
-   @Export("keyPressed")
-   @ObfuscatedName("keyPressed")
-   public final synchronized void keyPressed(KeyEvent var1) {
+    @ObfuscatedName("keyPressed")
+    public final synchronized void keyPressed(KeyEvent var1) {
       int var2;
       label23: {
          var2 = var1.getKeyCode();
@@ -188,9 +182,8 @@ public class KeyHandler implements KeyListener, FocusListener {
       var1.consume();
    }
 
-   @Export("keyReleased")
-   @ObfuscatedName("keyReleased")
-   public final synchronized void keyReleased(KeyEvent var1) {
+    @ObfuscatedName("keyReleased")
+    public final synchronized void keyReleased(KeyEvent var1) {
       int var2;
       label16: {
          var2 = var1.getKeyCode();
@@ -338,13 +331,12 @@ public class KeyHandler implements KeyListener, FocusListener {
 
    }
 
-   @ObfuscatedName("ng")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;I)I",
-      garbageValue = "311252747"
-   )
-   @Export("getWidgetFlags")
-   static int getWidgetFlags(Widget var0) {
+    @ObfuscatedName("ng")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;I)I",
+            garbageValue = "311252747"
+    )
+    static int getWidgetFlags(Widget var0) {
       IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32));
       return var1 != null ? var1.integer : var0.flags;
    }

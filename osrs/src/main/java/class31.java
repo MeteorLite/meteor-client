@@ -9,26 +9,23 @@ public class class31 {
    public static Applet field90 = null;
    @ObfuscatedName("an")
    public static String field91 = "";
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "[Lcl;"
-   )
-   @Export("World_worlds")
-   static World[] World_worlds;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "[Lcl;"
+    )
+    static World[] World_worlds;
    @ObfuscatedName("ai")
    static int[] field92;
-   @ObfuscatedName("js")
-   @ObfuscatedSignature(
-      descriptor = "Lie;"
-   )
-   @Export("scene")
-   static Scene scene;
-   @ObfuscatedName("kg")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("modIconSprites")
-   static IndexedSprite[] modIconSprites;
+    @ObfuscatedName("js")
+    @ObfuscatedSignature(
+            descriptor = "Lie;"
+    )
+    static Scene scene;
+    @ObfuscatedName("kg")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] modIconSprites;
 
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
@@ -462,13 +459,12 @@ public class class31 {
       }
    }
 
-   @ObfuscatedName("hc")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1902768187"
-   )
-   @Export("logOut")
-   static final void logOut() {
+    @ObfuscatedName("hc")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1902768187"
+    )
+    static final void logOut() {
       Client.packetWriter.close();
       FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
       class294.method1607();

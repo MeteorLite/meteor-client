@@ -6,34 +6,29 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gz")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("VarpDefinition_archive")
-   public static AbstractArchive VarpDefinition_archive;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive VarpDefinition_archive;
    @ObfuscatedName("an")
    public static int field1475;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("VarpDefinition_cached")
-   public static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("al")
-   @Export("musicTrackFileId")
-   public static int musicTrackFileId;
-   @ObfuscatedName("ac")
-   @Export("type")
-   public int type = 0;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    public static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("al")
+    public static int musicTrackFileId;
+    @ObfuscatedName("ac")
+    public int type = 0;
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "955579844"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "955579844"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -44,13 +39,12 @@ public class VarpDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "1359565158"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "1359565158"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 5) {
          this.type = var1.readUnsignedShort();
       }

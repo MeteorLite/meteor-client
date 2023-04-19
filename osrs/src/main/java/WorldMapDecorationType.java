@@ -122,9 +122,8 @@ public enum WorldMapDecorationType implements class356 {
    )
    field3066(22, 3);
 
-   @ObfuscatedName("ad")
-   @Export("id")
-   public final int id;
+    @ObfuscatedName("ad")
+    public final int id;
 
    @ObfuscatedSignature(
       descriptor = "(II)V",
@@ -134,13 +133,12 @@ public enum WorldMapDecorationType implements class356 {
       this.id = var3;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 

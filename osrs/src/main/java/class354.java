@@ -5,21 +5,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nf")
 public class class354 {
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "Lbq;"
-   )
-   @Export("soundSystem")
-   static SoundSystem soundSystem;
-   @ObfuscatedName("af")
-   @Export("spriteMap")
-   final HashMap spriteMap = new HashMap();
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lqu;"
-   )
-   @Export("bounds")
-   Bounds bounds = new Bounds(0, 0);
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "Lbq;"
+    )
+    static SoundSystem soundSystem;
+    @ObfuscatedName("af")
+    final HashMap spriteMap = new HashMap();
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lqu;"
+    )
+    Bounds bounds = new Bounds(0, 0);
    @ObfuscatedName("aw")
    int[] field3534 = new int[2048];
    @ObfuscatedName("ac")
@@ -205,13 +202,12 @@ public class class354 {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lhw;",
-      garbageValue = "2096193718"
-   )
-   @Export("WorldMapElement_get")
-   public static WorldMapElement WorldMapElement_get(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lhw;",
+            garbageValue = "2096193718"
+    )
+    public static WorldMapElement WorldMapElement_get(int var0) {
       return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
    }
 }

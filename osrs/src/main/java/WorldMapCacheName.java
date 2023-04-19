@@ -31,9 +31,8 @@ public class WorldMapCacheName {
       descriptor = "Lkq;"
    )
    public static final WorldMapCacheName field2434 = new WorldMapCacheName("labels");
-   @ObfuscatedName("ab")
-   @Export("name")
-   public final String name;
+    @ObfuscatedName("ab")
+    public final String name;
 
    WorldMapCacheName(String var1) {
       this.name = var1;

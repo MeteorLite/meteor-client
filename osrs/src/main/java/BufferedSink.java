@@ -8,30 +8,22 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("qe")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-   @ObfuscatedName("af")
-   @Export("thread")
-   Thread thread;
-   @ObfuscatedName("an")
-   @Export("outputStream")
-   OutputStream outputStream;
-   @ObfuscatedName("aw")
-   @Export("capacity")
-   int capacity;
-   @ObfuscatedName("ac")
-   @Export("buffer")
-   byte[] buffer;
-   @ObfuscatedName("au")
-   @Export("position")
-   int position = 0;
-   @ObfuscatedName("ab")
-   @Export("limit")
-   int limit = 0;
-   @ObfuscatedName("aq")
-   @Export("exception")
-   IOException exception;
-   @ObfuscatedName("al")
-   @Export("closed")
-   boolean closed;
+    @ObfuscatedName("af")
+    Thread thread;
+    @ObfuscatedName("an")
+    OutputStream outputStream;
+    @ObfuscatedName("aw")
+    int capacity;
+    @ObfuscatedName("ac")
+    byte[] buffer;
+    @ObfuscatedName("au")
+    int position = 0;
+    @ObfuscatedName("ab")
+    int limit = 0;
+    @ObfuscatedName("aq")
+    IOException exception;
+    @ObfuscatedName("al")
+    boolean closed;
 
    BufferedSink(OutputStream var1, int var2) {
       this.outputStream = var1;
@@ -42,13 +34,12 @@ public class BufferedSink implements Runnable {
       this.thread.start();
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "44"
-   )
-   @Export("isClosed")
-   boolean isClosed() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(B)Z",
+            garbageValue = "44"
+    )
+    boolean isClosed() {
       if (this.closed) {
          try {
             this.outputStream.close();
@@ -67,13 +58,12 @@ public class BufferedSink implements Runnable {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "([BIIB)V",
-      garbageValue = "-78"
-   )
-   @Export("write")
-   void write(byte[] var1, int var2, int var3) throws IOException {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "([BIIB)V",
+            garbageValue = "-78"
+    )
+    void write(byte[] var1, int var2, int var3) throws IOException {
       if (var3 >= 0 && var2 >= 0 && var3 + var2 <= var1.length) {
          synchronized(this) {
             if (this.exception != null) {
@@ -107,13 +97,12 @@ public class BufferedSink implements Runnable {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "663754894"
-   )
-   @Export("close")
-   void close() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "663754894"
+    )
+    void close() {
       synchronized(this) {
          this.closed = true;
          this.notifyAll();
@@ -127,9 +116,8 @@ public class BufferedSink implements Runnable {
 
    }
 
-   @Export("run")
-   @ObfuscatedName("run")
-   public void run() {
+    @ObfuscatedName("run")
+    public void run() {
       do {
          int var1;
          synchronized(this) {

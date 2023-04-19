@@ -20,33 +20,30 @@ public class IgnoreList extends UserList {
       this.field3706 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lpw;",
-      garbageValue = "1756938494"
-   )
-   @Export("newInstance")
-   User newInstance() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lpw;",
+            garbageValue = "1756938494"
+    )
+    User newInstance() {
       return new Ignored();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)[Lpw;",
-      garbageValue = "-463450295"
-   )
-   @Export("newTypedArray")
-   User[] newTypedArray(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)[Lpw;",
+            garbageValue = "-463450295"
+    )
+    User[] newTypedArray(int var1) {
       return new Ignored[var1];
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "-1460121478"
-   )
-   @Export("read")
-   public void read(Buffer var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "-1460121478"
+    )
+    public void read(Buffer var1, int var2) {
       while(var1.offset < var2) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 4) {

@@ -7,38 +7,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ia")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "Lld;"
-   )
-   @Export("musicTrack")
-   public static MusicTrack musicTrack;
-   @ObfuscatedName("bn")
-   @ObfuscatedSignature(
-      descriptor = "Ltk;"
-   )
-   @Export("rasterProvider")
-   public static AbstractRasterProvider rasterProvider;
-   @ObfuscatedName("af")
-   @Export("approxDestinationX")
-   public int approxDestinationX;
-   @ObfuscatedName("an")
-   @Export("approxDestinationY")
-   public int approxDestinationY;
-   @ObfuscatedName("aw")
-   @Export("approxDestinationSizeX")
-   public int approxDestinationSizeX;
-   @ObfuscatedName("ac")
-   @Export("approxDestinationSizeY")
-   public int approxDestinationSizeY;
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "Lld;"
+    )
+    public static MusicTrack musicTrack;
+    @ObfuscatedName("bn")
+    @ObfuscatedSignature(
+            descriptor = "Ltk;"
+    )
+    public static AbstractRasterProvider rasterProvider;
+    @ObfuscatedName("af")
+    public int approxDestinationX;
+    @ObfuscatedName("an")
+    public int approxDestinationY;
+    @ObfuscatedName("aw")
+    public int approxDestinationSizeX;
+    @ObfuscatedName("ac")
+    public int approxDestinationSizeY;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IIILif;I)Z",
-      garbageValue = "286986723"
-   )
-   @Export("hasArrived")
-   protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IIILif;I)Z",
+            garbageValue = "286986723"
+    )
+    protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
 
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
@@ -176,13 +169,12 @@ public abstract class RouteStrategy {
       return var2;
    }
 
-   @ObfuscatedName("jc")
-   @ObfuscatedSignature(
-      descriptor = "(ZS)V",
-      garbageValue = "17477"
-   )
-   @Export("addNpcsToScene")
-   static final void addNpcsToScene(boolean var0) {
+    @ObfuscatedName("jc")
+    @ObfuscatedSignature(
+            descriptor = "(ZS)V",
+            garbageValue = "17477"
+    )
+    static final void addNpcsToScene(boolean var0) {
       for(int var1 = 0; var1 < Client.npcCount; ++var1) {
          NPC var2 = Client.npcs[Client.npcIndices[var1]];
          if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {

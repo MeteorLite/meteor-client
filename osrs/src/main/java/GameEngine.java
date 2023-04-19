@@ -27,121 +27,90 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bm")
 @Implements("GameEngine")
 public abstract class GameEngine extends Applet implements Runnable, FocusListener, WindowListener {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lgd;"
-   )
-   @Export("taskHandler")
-   protected static TaskHandler taskHandler;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lbm;"
-   )
-   @Export("gameEngine")
-   static GameEngine gameEngine = null;
-   @ObfuscatedName("aw")
-   @Export("GameEngine_redundantStartThreadCount")
-   static int GameEngine_redundantStartThreadCount = 0;
-   @ObfuscatedName("ac")
-   @Export("stopTimeMs")
-   static long stopTimeMs = 0L;
-   @ObfuscatedName("au")
-   @Export("isKilled")
-   static boolean isKilled = false;
-   @ObfuscatedName("al")
-   @Export("cycleDurationMillis")
-   static int cycleDurationMillis = 20;
-   @ObfuscatedName("at")
-   @Export("fiveOrOne")
-   static int fiveOrOne = 1;
-   @ObfuscatedName("aa")
-   @Export("fps")
-   protected static int fps = 0;
-   @ObfuscatedName("ax")
-   @Export("graphicsTickTimes")
-   static long[] graphicsTickTimes = new long[32];
-   @ObfuscatedName("ag")
-   @Export("clientTickTimes")
-   static long[] clientTickTimes = new long[32];
-   @ObfuscatedName("aj")
-   @Export("canvasWidth")
-   public static int canvasWidth;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lgd;"
+    )
+    protected static TaskHandler taskHandler;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lbm;"
+    )
+    static GameEngine gameEngine = null;
+    @ObfuscatedName("aw")
+    static int GameEngine_redundantStartThreadCount = 0;
+    @ObfuscatedName("ac")
+    static long stopTimeMs = 0L;
+    @ObfuscatedName("au")
+    static boolean isKilled = false;
+    @ObfuscatedName("al")
+    static int cycleDurationMillis = 20;
+    @ObfuscatedName("at")
+    static int fiveOrOne = 1;
+    @ObfuscatedName("aa")
+    protected static int fps = 0;
+    @ObfuscatedName("ax")
+    static long[] graphicsTickTimes = new long[32];
+    @ObfuscatedName("ag")
+    static long[] clientTickTimes = new long[32];
+    @ObfuscatedName("aj")
+    public static int canvasWidth;
    @ObfuscatedName("bz")
    static int field124 = 500;
-   @ObfuscatedName("bu")
-   @Export("volatileFocus")
-   static volatile boolean volatileFocus = true;
-   @ObfuscatedName("bq")
-   @ObfuscatedSignature(
-      descriptor = "Lap;"
-   )
-   @Export("keyHandler")
-   protected static KeyHandler keyHandler = new KeyHandler();
-   @ObfuscatedName("bv")
-   @Export("garbageCollectorLastCollectionTime")
-   static long garbageCollectorLastCollectionTime = -1L;
-   @ObfuscatedName("bl")
-   @Export("garbageCollectorLastCheckTimeMs")
-   static long garbageCollectorLastCheckTimeMs = -1L;
-   @ObfuscatedName("mh")
-   @Export("Client_plane")
-   static int Client_plane;
-   @ObfuscatedName("ab")
-   @Export("hasErrored")
-   boolean hasErrored = false;
-   @ObfuscatedName("av")
-   @Export("contentWidth")
-   protected int contentWidth;
-   @ObfuscatedName("ar")
-   @Export("contentHeight")
-   protected int contentHeight;
-   @ObfuscatedName("am")
-   @Export("canvasX")
-   int canvasX = 0;
-   @ObfuscatedName("as")
-   @Export("canvasY")
-   int canvasY = 0;
+    @ObfuscatedName("bu")
+    static volatile boolean volatileFocus = true;
+    @ObfuscatedName("bq")
+    @ObfuscatedSignature(
+            descriptor = "Lap;"
+    )
+    protected static KeyHandler keyHandler = new KeyHandler();
+    @ObfuscatedName("bv")
+    static long garbageCollectorLastCollectionTime = -1L;
+    @ObfuscatedName("bl")
+    static long garbageCollectorLastCheckTimeMs = -1L;
+    @ObfuscatedName("mh")
+    static int Client_plane;
+    @ObfuscatedName("ab")
+    boolean hasErrored = false;
+    @ObfuscatedName("av")
+    protected int contentWidth;
+    @ObfuscatedName("ar")
+    protected int contentHeight;
+    @ObfuscatedName("am")
+    int canvasX = 0;
+    @ObfuscatedName("as")
+    int canvasY = 0;
    @ObfuscatedName("az")
    int field116;
    @ObfuscatedName("ad")
    int field117;
-   @ObfuscatedName("ae")
-   @Export("maxCanvasWidth")
-   int maxCanvasWidth;
-   @ObfuscatedName("ap")
-   @Export("maxCanvasHeight")
-   int maxCanvasHeight;
+    @ObfuscatedName("ae")
+    int maxCanvasWidth;
+    @ObfuscatedName("ap")
+    int maxCanvasHeight;
    @ObfuscatedName("by")
    protected boolean field120 = false;
-   @ObfuscatedName("be")
-   @Export("frame")
-   Frame frame;
-   @ObfuscatedName("bk")
-   @Export("canvas")
-   java.awt.Canvas canvas;
-   @ObfuscatedName("bx")
-   @Export("fullRedraw")
-   volatile boolean fullRedraw = true;
-   @ObfuscatedName("bm")
-   @Export("resizeCanvasNextFrame")
-   boolean resizeCanvasNextFrame = false;
-   @ObfuscatedName("bd")
-   @Export("isCanvasInvalid")
-   volatile boolean isCanvasInvalid = false;
+    @ObfuscatedName("be")
+    Frame frame;
+    @ObfuscatedName("bk")
+    java.awt.Canvas canvas;
+    @ObfuscatedName("bx")
+    volatile boolean fullRedraw = true;
+    @ObfuscatedName("bm")
+    boolean resizeCanvasNextFrame = false;
+    @ObfuscatedName("bd")
+    volatile boolean isCanvasInvalid = false;
    @ObfuscatedName("bt")
    volatile long field109 = 0L;
-   @ObfuscatedName("bs")
-   @ObfuscatedSignature(
-      descriptor = "Lak;"
-   )
-   @Export("mouseWheelHandler")
-   MouseWheelHandler mouseWheelHandler;
-   @ObfuscatedName("br")
-   @Export("clipboard")
-   Clipboard clipboard;
-   @ObfuscatedName("bg")
-   @Export("eventQueue")
-   final EventQueue eventQueue;
+    @ObfuscatedName("bs")
+    @ObfuscatedSignature(
+            descriptor = "Lak;"
+    )
+    MouseWheelHandler mouseWheelHandler;
+    @ObfuscatedName("br")
+    Clipboard clipboard;
+    @ObfuscatedName("bg")
+    final EventQueue eventQueue;
 
    protected GameEngine() {
       EventQueue var1 = null;
@@ -157,13 +126,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       PcmPlayer.pcmPlayerProvider = var2;
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)V",
-      garbageValue = "2"
-   )
-   @Export("setMaxCanvasSize")
-   protected final void setMaxCanvasSize(int var1, int var2) {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)V",
+            garbageValue = "2"
+    )
+    protected final void setMaxCanvasSize(int var1, int var2) {
       if (this.maxCanvasWidth != var1 || var2 != this.maxCanvasHeight) {
          this.method181();
       }
@@ -172,13 +140,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       this.maxCanvasHeight = var2;
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/Object;I)V",
-      garbageValue = "1513004820"
-   )
-   @Export("post")
-   final void post(Object var1) {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/Object;I)V",
+            garbageValue = "1513004820"
+    )
+    final void post(Object var1) {
       if (this.eventQueue != null) {
          for(int var2 = 0; var2 < 50 && this.eventQueue.peekEvent() != null; ++var2) {
             PlayerComposition.method1704(1L);
@@ -191,13 +158,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lgf;",
-      garbageValue = "1822835590"
-   )
-   @Export("mouseWheel")
-   protected class170 mouseWheel() {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lgf;",
+            garbageValue = "1822835590"
+    )
+    protected class170 mouseWheel() {
       if (this.mouseWheelHandler == null) {
          this.mouseWheelHandler = new MouseWheelHandler();
          this.mouseWheelHandler.addTo(this.canvas);
@@ -206,13 +172,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       return this.mouseWheelHandler;
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1981115082"
-   )
-   @Export("setUpClipboard")
-   protected void setUpClipboard() {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1981115082"
+    )
+    protected void setUpClipboard() {
       this.clipboard = this.getToolkit().getSystemClipboard();
    }
 
@@ -225,23 +190,21 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       this.clipboard.setContents(new StringSelection(var1), (ClipboardOwner)null);
    }
 
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "(I)Ljava/awt/datatransfer/Clipboard;",
-      garbageValue = "-481768005"
-   )
-   @Export("getClipboard")
-   protected Clipboard getClipboard() {
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "(I)Ljava/awt/datatransfer/Clipboard;",
+            garbageValue = "-481768005"
+    )
+    protected Clipboard getClipboard() {
       return this.clipboard;
    }
 
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "39"
-   )
-   @Export("setUpKeyboard")
-   protected final void setUpKeyboard() {
+    @ObfuscatedName("ai")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "39"
+    )
+    protected final void setUpKeyboard() {
       class158.method896();
       keyHandler.method102(this.canvas);
    }
@@ -273,13 +236,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       class394.method2117(this.canvas);
    }
 
-   @ObfuscatedName("ar")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1698796359"
-   )
-   @Export("resizeCanvas")
-   final void resizeCanvas() {
+    @ObfuscatedName("ar")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1698796359"
+    )
+    final void resizeCanvas() {
       Container var1 = this.container();
       if (var1 != null) {
          Bounds var2 = this.getFrameContentBounds();
@@ -311,21 +273,19 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "79"
-   )
-   @Export("resizeGame")
-   protected abstract void resizeGame();
+    @ObfuscatedName("am")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "79"
+    )
+    protected abstract void resizeGame();
 
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "23"
-   )
-   @Export("clearBackground")
-   void clearBackground() {
+    @ObfuscatedName("as")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "23"
+    )
+    void clearBackground() {
       int var1 = this.canvasX;
       int var2 = this.canvasY;
       int var3 = this.contentWidth - canvasWidth - var1;
@@ -365,13 +325,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
    }
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1142186209"
-   )
-   @Export("replaceCanvas")
-   final void replaceCanvas() {
+    @ObfuscatedName("aj")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1142186209"
+    )
+    final void replaceCanvas() {
       keyHandler.method106(this.canvas);
       java.awt.Canvas var1 = this.canvas;
       var1.removeMouseListener(MouseHandler.MouseHandler_instance);
@@ -392,13 +351,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       this.method181();
    }
 
-   @ObfuscatedName("ak")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIB)V",
-      garbageValue = "-75"
-   )
-   @Export("startThread")
-   protected final void startThread(int var1, int var2, int var3, int var4) {
+    @ObfuscatedName("ak")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIB)V",
+            garbageValue = "-75"
+    )
+    protected final void startThread(int var1, int var2, int var3, int var4) {
       try {
          if (gameEngine != null) {
             ++GameEngine_redundantStartThreadCount;
@@ -429,13 +387,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
    }
 
-   @ObfuscatedName("az")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1549595366"
-   )
-   @Export("addCanvas")
-   final synchronized void addCanvas() {
+    @ObfuscatedName("az")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1549595366"
+    )
+    final synchronized void addCanvas() {
       Container var1 = this.container();
       if (this.canvas != null) {
          this.canvas.removeFocusListener(this);
@@ -493,13 +450,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
    }
 
-   @ObfuscatedName("ae")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "524669560"
-   )
-   @Export("checkHost")
-   protected final boolean checkHost() {
+    @ObfuscatedName("ae")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "524669560"
+    )
+    protected final boolean checkHost() {
       String var1 = this.getDocumentBase().getHost().toLowerCase();
       if (!var1.equals("jagex.com") && !var1.endsWith(".jagex.com")) {
          if (!var1.equals("runescape.com") && !var1.endsWith(".runescape.com")) {
@@ -525,13 +481,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
-   @ObfuscatedName("ap")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1294253430"
-   )
-   @Export("clientTick")
-   void clientTick() {
+    @ObfuscatedName("ap")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1294253430"
+    )
+    void clientTick() {
       long var1 = class96.clockNow();
       long var3 = clientTickTimes[class335.field3093];
       clientTickTimes[class335.field3093] = var1;
@@ -547,13 +502,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       this.doCycle();
    }
 
-   @ObfuscatedName("by")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "29"
-   )
-   @Export("graphicsTick")
-   void graphicsTick() {
+    @ObfuscatedName("by")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "29"
+    )
+    void graphicsTick() {
       Container var1 = this.container();
       long var2 = class96.clockNow();
       long var4 = graphicsTickTimes[Rasterizer3D.field2000];
@@ -613,13 +567,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       this.resizeCanvasNextFrame = true;
    }
 
-   @ObfuscatedName("be")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "812160949"
-   )
-   @Export("kill")
-   final synchronized void kill() {
+    @ObfuscatedName("be")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "812160949"
+    )
+    final synchronized void kill() {
       if (!isKilled) {
          isKilled = true;
 
@@ -655,45 +608,40 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
-   @ObfuscatedName("bm")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "42"
-   )
-   @Export("setUp")
-   protected abstract void setUp();
+    @ObfuscatedName("bm")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "42"
+    )
+    protected abstract void setUp();
 
-   @ObfuscatedName("bd")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-2106306379"
-   )
-   @Export("doCycle")
-   protected abstract void doCycle();
+    @ObfuscatedName("bd")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-2106306379"
+    )
+    protected abstract void doCycle();
 
-   @ObfuscatedName("bt")
-   @ObfuscatedSignature(
-      descriptor = "(ZS)V",
-      garbageValue = "7737"
-   )
-   @Export("draw")
-   protected abstract void draw(boolean var1);
+    @ObfuscatedName("bt")
+    @ObfuscatedSignature(
+            descriptor = "(ZS)V",
+            garbageValue = "7737"
+    )
+    protected abstract void draw(boolean var1);
 
-   @ObfuscatedName("bj")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-72974483"
-   )
-   @Export("kill0")
-   protected abstract void kill0();
+    @ObfuscatedName("bj")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-72974483"
+    )
+    protected abstract void kill0();
 
-   @ObfuscatedName("bn")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;ZI)V",
-      garbageValue = "-2001673745"
-   )
-   @Export("drawInitial")
-   protected final void drawInitial(int var1, String var2, boolean var3) {
+    @ObfuscatedName("bn")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;ZI)V",
+            garbageValue = "-2001673745"
+    )
+    protected final void drawInitial(int var1, String var2, boolean var3) {
       try {
          Graphics var4 = this.canvas.getGraphics();
          if (class244.fontHelvetica13 == null) {
@@ -754,13 +702,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       class27.loginScreenFontMetrics = null;
    }
 
-   @ObfuscatedName("br")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "-1294118678"
-   )
-   @Export("error")
-   protected void error(String var1) {
+    @ObfuscatedName("br")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)V",
+            garbageValue = "-1294118678"
+    )
+    protected void error(String var1) {
       if (!this.hasErrored) {
          this.hasErrored = true;
          System.out.println("error_game_" + var1);
@@ -774,23 +721,21 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
-   @ObfuscatedName("bg")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ljava/awt/Container;",
-      garbageValue = "6"
-   )
-   @Export("container")
-   Container container() {
+    @ObfuscatedName("bg")
+    @ObfuscatedSignature(
+            descriptor = "(B)Ljava/awt/Container;",
+            garbageValue = "6"
+    )
+    Container container() {
       return (Container)(this.frame != null ? this.frame : this);
    }
 
-   @ObfuscatedName("bu")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lqu;",
-      garbageValue = "-1516355947"
-   )
-   @Export("getFrameContentBounds")
-   Bounds getFrameContentBounds() {
+    @ObfuscatedName("bu")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lqu;",
+            garbageValue = "-1516355947"
+    )
+    Bounds getFrameContentBounds() {
       Container var1 = this.container();
       int var2 = Math.max(var1.getWidth(), this.field116);
       int var3 = Math.max(var1.getHeight(), this.field117);
@@ -803,27 +748,24 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       return new Bounds(var2, var3);
    }
 
-   @ObfuscatedName("bf")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "972866614"
-   )
-   @Export("hasFrame")
-   protected final boolean hasFrame() {
+    @ObfuscatedName("bf")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "972866614"
+    )
+    protected final boolean hasFrame() {
       return this.frame != null;
    }
 
-   @ObfuscatedName("ba")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1086551379"
-   )
-   @Export("vmethod1485")
-   protected abstract void vmethod1485();
+    @ObfuscatedName("ba")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1086551379"
+    )
+    protected abstract void vmethod1485();
 
-   @Export("destroy")
-   @ObfuscatedName("destroy")
-   public final void destroy() {
+    @ObfuscatedName("destroy")
+    public final void destroy() {
       if (this == gameEngine && !isKilled) {
          stopTimeMs = class96.clockNow();
          PlayerComposition.method1704(5000L);
@@ -831,9 +773,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
-   @Export("paint")
-   @ObfuscatedName("paint")
-   public final synchronized void paint(Graphics var1) {
+    @ObfuscatedName("paint")
+    public final synchronized void paint(Graphics var1) {
       if (this == gameEngine && !isKilled) {
          this.fullRedraw = true;
          if (class96.clockNow() - this.field109 > 1000L) {
@@ -846,9 +787,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       }
    }
 
-   @Export("run")
-   @ObfuscatedName("run")
-   public void run() {
+    @ObfuscatedName("run")
+    public void run() {
       try {
          if (TaskHandler.javaVendor != null) {
             String var1 = TaskHandler.javaVendor.toLowerCase();
@@ -899,38 +839,33 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
       this.kill();
    }
 
-   @Export("start")
-   @ObfuscatedName("start")
-   public final void start() {
+    @ObfuscatedName("start")
+    public final void start() {
       if (this == gameEngine && !isKilled) {
          stopTimeMs = 0L;
       }
    }
 
-   @Export("stop")
-   @ObfuscatedName("stop")
-   public final void stop() {
+    @ObfuscatedName("stop")
+    public final void stop() {
       if (this == gameEngine && !isKilled) {
          stopTimeMs = class96.clockNow() + 4000L;
       }
    }
 
-   @Export("update")
-   @ObfuscatedName("update")
-   public final void update(Graphics var1) {
+    @ObfuscatedName("update")
+    public final void update(Graphics var1) {
       this.paint(var1);
    }
 
-   @Export("focusGained")
-   @ObfuscatedName("focusGained")
-   public final void focusGained(FocusEvent var1) {
+    @ObfuscatedName("focusGained")
+    public final void focusGained(FocusEvent var1) {
       volatileFocus = true;
       this.fullRedraw = true;
    }
 
-   @Export("windowClosing")
-   @ObfuscatedName("windowClosing")
-   public final void windowClosing(WindowEvent var1) {
+    @ObfuscatedName("windowClosing")
+    public final void windowClosing(WindowEvent var1) {
       this.destroy();
    }
 

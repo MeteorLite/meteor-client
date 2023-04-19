@@ -23,23 +23,21 @@ public class class195 extends DualNode {
       ParamComposition.ParamDefinition_archive = var0;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "1489168609"
-   )
-   @Export("Widget_unpackTargetMask")
-   public static int Widget_unpackTargetMask(int var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)I",
+            garbageValue = "1489168609"
+    )
+    public static int Widget_unpackTargetMask(int var0) {
       return var0 >> 11 & 63;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lht;",
-      garbageValue = "-680528429"
-   )
-   @Export("StructDefinition_getStructDefinition")
-   public static StructComposition StructDefinition_getStructDefinition(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lht;",
+            garbageValue = "-680528429"
+    )
+    public static StructComposition StructDefinition_getStructDefinition(int var0) {
       StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;

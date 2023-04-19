@@ -6,24 +6,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("db")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-   @ObfuscatedName("ka")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("scrollBarSprites")
-   static IndexedSprite[] scrollBarSprites;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lhm;"
-   )
-   @Export("definition")
-   HealthBarDefinition definition;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Loi;"
-   )
-   @Export("updates")
-   IterableNodeDeque updates = new IterableNodeDeque();
+    @ObfuscatedName("ka")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] scrollBarSprites;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lhm;"
+    )
+    HealthBarDefinition definition;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Loi;"
+    )
+    IterableNodeDeque updates = new IterableNodeDeque();
 
    @ObfuscatedSignature(
       descriptor = "(Lhm;)V"
@@ -32,13 +29,12 @@ public class HealthBar extends Node {
       this.definition = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)V",
-      garbageValue = "-869970014"
-   )
-   @Export("put")
-   void put(int var1, int var2, int var3, int var4) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IIIII)V",
+            garbageValue = "-869970014"
+    )
+    void put(int var1, int var2, int var3, int var4) {
       HealthBarUpdate var5 = null;
       int var6 = 0;
 
@@ -68,13 +64,12 @@ public class HealthBar extends Node {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Ldh;",
-      garbageValue = "-122"
-   )
-   @Export("get")
-   HealthBarUpdate get(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Ldh;",
+            garbageValue = "-122"
+    )
+    HealthBarUpdate get(int var1) {
       HealthBarUpdate var2 = (HealthBarUpdate)this.updates.last();
       if (var2 != null && var2.cycle <= var1) {
          for(HealthBarUpdate var3 = (HealthBarUpdate)this.updates.previous(); var3 != null && var3.cycle <= var1; var3 = (HealthBarUpdate)this.updates.previous()) {
@@ -93,13 +88,12 @@ public class HealthBar extends Node {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-12674764"
-   )
-   @Export("isEmpty")
-   boolean isEmpty() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-12674764"
+    )
+    boolean isEmpty() {
       return this.updates.method1971();
    }
 }

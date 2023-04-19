@@ -9,13 +9,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dm")
 @Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
-   @ObfuscatedName("ay")
-   @Export("Interpreter_stringStackSize")
-   static int Interpreter_stringStackSize;
+    @ObfuscatedName("ay")
+    static int Interpreter_stringStackSize;
 
-   @Export("call")
-   @ObfuscatedName("call")
-   public Object call() {
+    @ObfuscatedName("call")
+    public Object call() {
       SecureRandom var2 = new SecureRandom();
       var2.nextInt();
       return var2;

@@ -8,18 +8,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class1 implements Callable {
    @ObfuscatedName("wa")
    static Iterator field4;
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "Lmq;"
-   )
-   @Export("scriptActiveWidget")
-   static Widget scriptActiveWidget;
-   @ObfuscatedName("is")
-   @ObfuscatedSignature(
-      descriptor = "Lgp;"
-   )
-   @Export("socketTask")
-   static Task socketTask;
+    @ObfuscatedName("ai")
+    @ObfuscatedSignature(
+            descriptor = "Lmq;"
+    )
+    static Widget scriptActiveWidget;
+    @ObfuscatedName("is")
+    @ObfuscatedSignature(
+            descriptor = "Lgp;"
+    )
+    static Task socketTask;
    @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "Lsg;"
@@ -32,9 +30,8 @@ public class class1 implements Callable {
    final class3 field1;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lal;"
+           descriptor = "Lal;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class7 this$0;
 
@@ -47,9 +44,8 @@ public class class1 implements Callable {
       this.field1 = var3;
    }
 
-   @Export("call")
-   @ObfuscatedName("call")
-   public Object call() {
+    @ObfuscatedName("call")
+    public Object call() {
       return this.field1.vmethod12(this.field0);
    }
 
@@ -66,13 +62,12 @@ public class class1 implements Callable {
       Rasterizer3D.field1999.method1223(var0, var1, var2, var3);
    }
 
-   @ObfuscatedName("hf")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-1439083269"
-   )
-   @Export("playSong")
-   static void playSong(int var0) {
+    @ObfuscatedName("hf")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-1439083269"
+    )
+    static void playSong(int var0) {
       if (var0 == -1 && !Client.playingJingle) {
          FloorUnderlayDefinition.method1050();
       } else if (var0 != -1 && var0 != Client.currentTrackGroupId && class20.clientPreferences.getCurrentMusicVolume() != 0 && !Client.playingJingle) {

@@ -3068,6 +3068,13 @@ public abstract class RSClientMixin implements RSClient {
         return clips.getClipNegativeMidY();
     }
 
+    @Inject
+    @Override
+    public void set3dZoom(int zoom) {
+        clips.setViewportZoom(zoom);
+        client.setScale(zoom);
+    }
+
     @FieldHook("minimapState")
     @Inject
     public static void changeMinimapState(int idx) {

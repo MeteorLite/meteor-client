@@ -11,13 +11,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ar")
 class class17 implements SSLSession {
    @ObfuscatedName("au")
-   @Export("SpriteBuffer_yOffsets")
    public static int[] SpriteBuffer_yOffsets;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lax;"
+           descriptor = "Lax;"
    )
-   @Export("this$1")
    @ObfuscatedName("this$1")
    final class12 this$1;
 
@@ -36,7 +34,6 @@ class class17 implements SSLSession {
       return 0;
    }
 
-   @Export("removeValue")
    @ObfuscatedName("removeValue")
    public void removeValue(String var1) {
       throw new UnsupportedOperationException();
@@ -70,7 +67,6 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
-   @Export("isValid")
    @ObfuscatedName("isValid")
    public boolean isValid() {
       throw new UnsupportedOperationException();
@@ -80,13 +76,11 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
-   @Export("getId")
    @ObfuscatedName("getId")
    public byte[] getId() {
       throw new UnsupportedOperationException();
    }
 
-   @Export("putValue")
    @ObfuscatedName("putValue")
    public void putValue(String var1, Object var2) {
       throw new UnsupportedOperationException();
@@ -100,7 +94,6 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
-   @Export("getPeerPrincipal")
    @ObfuscatedName("getPeerPrincipal")
    public Principal getPeerPrincipal() throws SSLPeerUnverifiedException {
       return null;
@@ -114,13 +107,11 @@ class class17 implements SSLSession {
       throw new UnsupportedOperationException();
    }
 
-   @Export("getValue")
    @ObfuscatedName("getValue")
    public Object getValue(String var1) {
       throw new UnsupportedOperationException();
    }
 
-   @Export("invalidate")
    @ObfuscatedName("invalidate")
    public void invalidate() {
       throw new UnsupportedOperationException();
@@ -128,11 +119,10 @@ class class17 implements SSLSession {
 
    @ObfuscatedName("ke")
    @ObfuscatedSignature(
-      descriptor = "(IIIIILjava/lang/String;Ljava/lang/String;III)V",
-      garbageValue = "1875049190"
+           descriptor = "(IIIIILjava/lang/String;Ljava/lang/String;III)V",
+           garbageValue = "1875049190"
    )
-   @Export("menuAction")
-   static final void menuAction(int var0, int var1, int var2, int var3, int var4, String var5, String var6, int var7, int var8) {
+   static final void menuAction(int param0, int param1, int var2, int var3, int var4, String var5, String var6, int var7, int var8) {
       if (var2 >= 2000) {
          var2 -= 2000;
       }
@@ -146,11 +136,11 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);
-            var10.packetBuffer.writeIntME(var3);
-            var10.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPNPC3, Client.packetWriter.isaacCipher);
+            var10.packetBuffer.writeShortLE(var3);
+            var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var10);
          }
       }
@@ -161,13 +151,13 @@ class class17 implements SSLSession {
          Client.mouseCrossY = var8;
          Client.mouseCrossColor = 2;
          Client.mouseCrossState = 0;
-         Client.destinationX = var0;
-         Client.destinationY = var1;
-         var14 = class330.getPacketBufferNode(ClientPacket.OPNPCT, Client.packetWriter.isaacCipher);
-         var14.packetBuffer.writeShortAddLE(var3);
-         var14.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-         var14.packetBuffer.writeShortAddLE(GameObject.baseY + var1);
-         var14.packetBuffer.writeIntME(var0 + WorldMapData_0.baseX);
+         Client.destinationX = param0;
+         Client.destinationY = param1;
+         var14 = class330.getPacketBufferNode(ClientPacket.nkajsdnaskjdn, Client.packetWriter.isaacCipher);
+         var14.packetBuffer.writeShortAdd(var3);
+         var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+         var14.packetBuffer.writeShortAdd(GameObject.baseY + param1);
+         var14.packetBuffer.writeShortLE(param0 + WorldMapData_0.baseX);
          Client.packetWriter.addNode(var14);
       }
 
@@ -178,11 +168,11 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER8, Client.packetWriter.isaacCipher);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPNPC5, Client.packetWriter.isaacCipher);
             var10.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var10.packetBuffer.writeShortAddLE(var3);
+            var10.packetBuffer.writeShortAdd(var3);
             Client.packetWriter.addNode(var10);
          }
       }
@@ -192,18 +182,18 @@ class class17 implements SSLSession {
          Client.mouseCrossY = var8;
          Client.mouseCrossColor = 2;
          Client.mouseCrossState = 0;
-         Client.destinationX = var0;
-         Client.destinationY = var1;
-         var14 = class330.getPacketBufferNode(ClientPacket.OPLOCT, Client.packetWriter.isaacCipher);
-         var14.packetBuffer.writeShortAdd(var0 + WorldMapData_0.baseX);
-         var14.packetBuffer.writeIntME(var3);
-         var14.packetBuffer.writeShortAdd(GameObject.baseY + var1);
+         Client.destinationX = param0;
+         Client.destinationY = param1;
+         var14 = class330.getPacketBufferNode(ClientPacket.OPOBJ3, Client.packetWriter.isaacCipher);
+         var14.packetBuffer.writeShortAddLE(param0 + WorldMapData_0.baseX);
+         var14.packetBuffer.writeShortLE(var3);
+         var14.packetBuffer.writeShortAddLE(GameObject.baseY + param1);
          var14.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
          Client.packetWriter.addNode(var14);
       }
 
       if (var2 == 1008 || var2 == 1009 || var2 == 1010 || var2 == 1011 || var2 == 1012) {
-         class126.worldMap.worldMapMenuAction(var2, var3, new Coord(var0), new Coord(var1));
+         class126.worldMap.worldMapMenuAction(var2, var3, new Coord(param0), new Coord(param1));
       }
 
       if (var2 == 19) {
@@ -211,13 +201,13 @@ class class17 implements SSLSession {
          Client.mouseCrossY = var8;
          Client.mouseCrossColor = 2;
          Client.mouseCrossState = 0;
-         Client.destinationX = var0;
-         Client.destinationY = var1;
-         var14 = class330.getPacketBufferNode(ClientPacket.field2498, Client.packetWriter.isaacCipher);
-         var14.packetBuffer.writeShortAddLE(GameObject.baseY + var1);
-         var14.packetBuffer.writeShortAdd(var3);
+         Client.destinationX = param0;
+         Client.destinationY = param1;
+         var14 = class330.getPacketBufferNode(ClientPacket.OPLOC2, Client.packetWriter.isaacCipher);
+         var14.packetBuffer.writeShortAdd(GameObject.baseY + param1);
+         var14.packetBuffer.writeShortAddLE(var3);
          var14.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-         var14.packetBuffer.writeShortAdd(var0 + WorldMapData_0.baseX);
+         var14.packetBuffer.writeShortAddLE(param0 + WorldMapData_0.baseX);
          Client.packetWriter.addNode(var14);
       }
 
@@ -226,13 +216,13 @@ class class17 implements SSLSession {
          Client.mouseCrossY = var8;
          Client.mouseCrossColor = 2;
          Client.mouseCrossState = 0;
-         Client.destinationX = var0;
-         Client.destinationY = var1;
-         var14 = class330.getPacketBufferNode(ClientPacket.field2536, Client.packetWriter.isaacCipher);
+         Client.destinationX = param0;
+         Client.destinationY = param1;
+         var14 = class330.getPacketBufferNode(ClientPacket.OPOBJ5, Client.packetWriter.isaacCipher);
          var14.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-         var14.packetBuffer.writeShortAdd(var3);
-         var14.packetBuffer.writeShortAddLE(var0 + WorldMapData_0.baseX);
-         var14.packetBuffer.writeShortAdd(GameObject.baseY + var1);
+         var14.packetBuffer.writeShortAddLE(var3);
+         var14.packetBuffer.writeShortAdd(param0 + WorldMapData_0.baseX);
+         var14.packetBuffer.writeShortAddLE(GameObject.baseY + param1);
          Client.packetWriter.addNode(var14);
       }
 
@@ -240,7 +230,7 @@ class class17 implements SSLSession {
          if (Client.isMenuOpen) {
             class31.scene.setViewportWalking();
          } else {
-            class31.scene.menuOpen(GameEngine.Client_plane, var0, var1, true);
+            class31.scene.menuOpen(GameEngine.Client_plane, param0, param1, true);
          }
       }
 
@@ -248,9 +238,9 @@ class class17 implements SSLSession {
       Widget var15;
       if (var2 == 28) {
          var14 = class330.getPacketBufferNode(ClientPacket.field2497, Client.packetWriter.isaacCipher);
-         var14.packetBuffer.writeInt(var1);
+         var14.packetBuffer.writeInt(param1);
          Client.packetWriter.addNode(var14);
-         var15 = class165.getWidget(var1);
+         var15 = class165.getWidget(param1);
          if (var15 != null && var15.cs1Instructions != null && var15.cs1Instructions[0][0] == 5) {
             var11 = var15.cs1Instructions[0][1];
             Varps.Varps_main[var11] = 1 - Varps.Varps_main[var11];
@@ -266,11 +256,11 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.field2526, Client.packetWriter.isaacCipher);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
             var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var10.packetBuffer.writeIntME(var3);
+            var10.packetBuffer.writeShortLE(var3);
             Client.packetWriter.addNode(var10);
          }
       }
@@ -282,13 +272,13 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
+            Client.destinationX = param0;
+            Client.destinationY = param1;
             var10 = class330.getPacketBufferNode(ClientPacket.field2557, Client.packetWriter.isaacCipher);
-            var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var10.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var10.packetBuffer.writeInt(class294.field2713);
-            var10.packetBuffer.writeShortAddLE(var3);
-            var10.packetBuffer.writeShortAdd(class144.field1333);
+            var10.packetBuffer.writeShortAdd(var3);
+            var10.packetBuffer.writeShortAddLE(class144.field1333);
             var10.packetBuffer.writeShort(WorldMapSectionType.field2385);
             Client.packetWriter.addNode(var10);
          }
@@ -301,11 +291,11 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
-            var10.packetBuffer.writeShortAdd(var3);
-            var10.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER7, Client.packetWriter.isaacCipher);
+            var10.packetBuffer.writeShortAddLE(var3);
+            var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var10);
          }
       }
@@ -317,20 +307,20 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.CLICK, Client.packetWriter.isaacCipher);
-            var10.packetBuffer.writeShortAddLE(var3);
-            var10.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPNPC2, Client.packetWriter.isaacCipher);
+            var10.packetBuffer.writeShortAdd(var3);
+            var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var10);
          }
       }
 
       Widget var17;
       if (var2 == 57 || var2 == 1007) {
-         var17 = SoundSystem.getWidgetChild(var1, var0);
+         var17 = SoundSystem.getWidgetChild(param1, param0);
          if (var17 != null) {
-            Message.widgetDefaultMenuAction(var3, var1, var0, var4, var6);
+            Message.widgetDefaultMenuAction(var3, param1, param0, var4, var6);
          }
       }
 
@@ -341,12 +331,12 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.iouujwuda, Client.packetWriter.isaacCipher);
             var10.packetBuffer.writeShort(var3);
-            var10.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var10.packetBuffer.writeShortAddLE(WorldMapSectionType.field2385);
+            var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var10.packetBuffer.writeShortAdd(WorldMapSectionType.field2385);
             var10.packetBuffer.writeInt(class294.field2713);
             var10.packetBuffer.writeShort(class144.field1333);
             Client.packetWriter.addNode(var10);
@@ -360,9 +350,9 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.OPLOC2, Client.packetWriter.isaacCipher);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER5, Client.packetWriter.isaacCipher);
             var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             var10.packetBuffer.writeShort(var3);
             Client.packetWriter.addNode(var10);
@@ -376,11 +366,11 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.field2555, Client.packetWriter.isaacCipher);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPNPC1, Client.packetWriter.isaacCipher);
             var10.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var10.packetBuffer.writeShortAdd(var3);
+            var10.packetBuffer.writeShortAddLE(var3);
             Client.packetWriter.addNode(var10);
          }
       }
@@ -392,10 +382,10 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var10 = class330.getPacketBufferNode(ClientPacket.field2472, Client.packetWriter.isaacCipher);
-            var10.packetBuffer.writeShortAddLE(var3);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER8, Client.packetWriter.isaacCipher);
+            var10.packetBuffer.writeShortAdd(var3);
             var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var10);
          }
@@ -406,21 +396,21 @@ class class17 implements SSLSession {
          Client.mouseCrossY = var8;
          Client.mouseCrossColor = 2;
          Client.mouseCrossState = 0;
-         Client.destinationX = var0;
-         Client.destinationY = var1;
-         var14 = class330.getPacketBufferNode(ClientPacket.field2474, Client.packetWriter.isaacCipher);
-         var14.packetBuffer.writeIntME(var0 + WorldMapData_0.baseX);
-         var14.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-         var14.packetBuffer.writeShortAdd(GameObject.baseY + var1);
-         var14.packetBuffer.writeShortAddLE(var3);
+         Client.destinationX = param0;
+         Client.destinationY = param1;
+         var14 = class330.getPacketBufferNode(ClientPacket.OPOBJ1, Client.packetWriter.isaacCipher);
+         var14.packetBuffer.writeShortLE(param0 + WorldMapData_0.baseX);
+         var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+         var14.packetBuffer.writeShortAddLE(GameObject.baseY + param1);
+         var14.packetBuffer.writeShortAdd(var3);
          Client.packetWriter.addNode(var14);
       }
 
       if (var2 == 25) {
-         var17 = SoundSystem.getWidgetChild(var1, var0);
+         var17 = SoundSystem.getWidgetChild(param1, param0);
          if (var17 != null) {
             class166.Widget_runOnTargetLeave();
-            class18.selectSpell(var1, var0, class195.Widget_unpackTargetMask(KeyHandler.getWidgetFlags(var17)), var4);
+            class18.selectSpell(param1, param0, class195.Widget_unpackTargetMask(KeyHandler.getWidgetFlags(var17)), var4);
             Client.isItemSelected = 0;
             Client.field530 = MusicPatchNode.Widget_getSpellActionName(var17);
             if (Client.field530 == null) {
@@ -437,7 +427,7 @@ class class17 implements SSLSession {
       } else {
          PacketBufferNode var13;
          if (var2 == 24) {
-            var17 = class165.getWidget(var1);
+            var17 = class165.getWidget(param1);
             if (var17 != null) {
                boolean var12 = true;
                if (var17.contentType > 0) {
@@ -446,7 +436,7 @@ class class17 implements SSLSession {
 
                if (var12) {
                   var13 = class330.getPacketBufferNode(ClientPacket.field2497, Client.packetWriter.isaacCipher);
-                  var13.packetBuffer.writeInt(var1);
+                  var13.packetBuffer.writeInt(param1);
                   Client.packetWriter.addNode(var13);
                }
             }
@@ -466,7 +456,7 @@ class class17 implements SSLSession {
 
                if (var18 != null) {
                   var13 = class330.getPacketBufferNode(ClientPacket.field2524, Client.packetWriter.isaacCipher);
-                  var13.packetBuffer.writeIntME(var18.id);
+                  var13.packetBuffer.writeShortLE(var18.id);
                   Client.packetWriter.addNode(var13);
                }
             }
@@ -477,13 +467,13 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.field2492, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortAddLE(var0 + WorldMapData_0.baseX);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.OPLOC3, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAdd(param0 + WorldMapData_0.baseX);
             var14.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeShortAdd(var3);
-            var14.packetBuffer.writeShortAddLE(GameObject.baseY + var1);
+            var14.packetBuffer.writeShortAddLE(var3);
+            var14.packetBuffer.writeShortAdd(GameObject.baseY + param1);
             Client.packetWriter.addNode(var14);
          }
 
@@ -494,10 +484,10 @@ class class17 implements SSLSession {
                Client.mouseCrossY = var8;
                Client.mouseCrossColor = 2;
                Client.mouseCrossState = 0;
-               Client.destinationX = var0;
-               Client.destinationY = var1;
-               var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTONT, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.writeShortAddLE(var3);
+               Client.destinationX = param0;
+               Client.destinationY = param1;
+               var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);
+               var10.packetBuffer.writeShortAdd(var3);
                var10.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
@@ -510,14 +500,14 @@ class class17 implements SSLSession {
                Client.mouseCrossY = var8;
                Client.mouseCrossColor = 2;
                Client.mouseCrossState = 0;
-               Client.destinationX = var0;
-               Client.destinationY = var1;
-               var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON10, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.writeShortAddLE(Client.selectedSpellItemId);
-               var10.packetBuffer.method2472(Clips.selectedSpellWidget);
-               var10.packetBuffer.writeIntME(var3);
-               var10.packetBuffer.writeShortAddLE(Client.selectedSpellChildIndex);
-               var10.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               Client.destinationX = param0;
+               Client.destinationY = param1;
+               var10 = class330.getPacketBufferNode(ClientPacket.OPNPCT, Client.packetWriter.isaacCipher);
+               var10.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
+               var10.packetBuffer.writeIntIME(Clips.selectedSpellWidget);
+               var10.packetBuffer.writeShortLE(var3);
+               var10.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
+               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -527,16 +517,16 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON9, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeIntME(var3);
-            var14.packetBuffer.writeIntME(Client.selectedSpellItemId);
-            var14.packetBuffer.writeIntME(var0 + WorldMapData_0.baseX);
-            var14.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
-            var14.packetBuffer.method2472(Clips.selectedSpellWidget);
-            var14.packetBuffer.writeShortAdd(GameObject.baseY + var1);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeShortLE(var3);
+            var14.packetBuffer.writeShortLE(Client.selectedSpellItemId);
+            var14.packetBuffer.writeShortLE(param0 + WorldMapData_0.baseX);
+            var14.packetBuffer.writeShortAddLE(Client.selectedSpellChildIndex);
+            var14.packetBuffer.writeIntIME(Clips.selectedSpellWidget);
+            var14.packetBuffer.writeShortAddLE(GameObject.baseY + param1);
             Client.packetWriter.addNode(var14);
          }
 
@@ -545,8 +535,8 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            var14 = class330.getPacketBufferNode(ClientPacket.OPNPC4, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortAdd(var3);
+            var14 = class330.getPacketBufferNode(ClientPacket.nkasjdnak, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAddLE(var3);
             Client.packetWriter.addNode(var14);
          }
 
@@ -557,11 +547,11 @@ class class17 implements SSLSession {
                Client.mouseCrossY = var8;
                Client.mouseCrossColor = 2;
                Client.mouseCrossState = 0;
-               Client.destinationX = var0;
-               Client.destinationY = var1;
-               var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER5, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-               var10.packetBuffer.writeIntME(var3);
+               Client.destinationX = param0;
+               Client.destinationY = param1;
+               var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER2, Client.packetWriter.isaacCipher);
+               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeShortLE(var3);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -571,16 +561,16 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
+            Client.destinationX = param0;
+            Client.destinationY = param1;
             var14 = class330.getPacketBufferNode(ClientPacket.field2479, Client.packetWriter.isaacCipher);
             var14.packetBuffer.writeShort(WorldMapSectionType.field2385);
-            var14.packetBuffer.writeShortAdd(var0 + WorldMapData_0.baseX);
-            var14.packetBuffer.writeShortAdd(var3);
-            var14.packetBuffer.writeShortAdd(GameObject.baseY + var1);
+            var14.packetBuffer.writeShortAddLE(param0 + WorldMapData_0.baseX);
+            var14.packetBuffer.writeShortAddLE(var3);
+            var14.packetBuffer.writeShortAddLE(GameObject.baseY + param1);
             var14.packetBuffer.writeShort(class144.field1333);
             var14.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.method2472(class294.field2713);
+            var14.packetBuffer.writeIntIME(class294.field2713);
             Client.packetWriter.addNode(var14);
          }
 
@@ -591,11 +581,11 @@ class class17 implements SSLSession {
                Client.mouseCrossY = var8;
                Client.mouseCrossColor = 2;
                Client.mouseCrossState = 0;
-               Client.destinationX = var0;
-               Client.destinationY = var1;
-               var10 = class330.getPacketBufferNode(ClientPacket.OPOBJ4, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.writeIntME(var3);
-               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               Client.destinationX = param0;
+               Client.destinationY = param1;
+               var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER3, Client.packetWriter.isaacCipher);
+               var10.packetBuffer.writeShortLE(var3);
+               var10.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -605,13 +595,13 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.field2513, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortAdd(var0 + WorldMapData_0.baseX);
-            var14.packetBuffer.writeIntME(GameObject.baseY + var1);
-            var14.packetBuffer.writeShortAdd(var3);
-            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAddLE(param0 + WorldMapData_0.baseX);
+            var14.packetBuffer.writeShortLE(GameObject.baseY + param1);
+            var14.packetBuffer.writeShortAddLE(var3);
+            var14.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
             Client.packetWriter.addNode(var14);
          }
 
@@ -622,10 +612,10 @@ class class17 implements SSLSession {
                Client.mouseCrossY = var8;
                Client.mouseCrossColor = 2;
                Client.mouseCrossState = 0;
-               Client.destinationX = var0;
-               Client.destinationY = var1;
+               Client.destinationX = param0;
+               Client.destinationY = param1;
                var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               var10.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                var10.packetBuffer.writeShort(var3);
                Client.packetWriter.addNode(var10);
             }
@@ -636,18 +626,18 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.field2548, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortAdd(var3);
-            var14.packetBuffer.writeShort(GameObject.baseY + var1);
-            var14.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeIntME(var0 + WorldMapData_0.baseX);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.OPLOC1, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAddLE(var3);
+            var14.packetBuffer.writeShort(GameObject.baseY + param1);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeShortLE(param0 + WorldMapData_0.baseX);
             Client.packetWriter.addNode(var14);
          }
 
          if (var2 == 58) {
-            var17 = SoundSystem.getWidgetChild(var1, var0);
+            var17 = SoundSystem.getWidgetChild(param1, param0);
             if (var17 != null) {
                if (var17.field2984 != null) {
                   ScriptEvent var19 = new ScriptEvent();
@@ -658,20 +648,20 @@ class class17 implements SSLSession {
                   HealthBarUpdate.runScriptEvent(var19);
                }
 
-               var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTON6, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.writeIntME(var0);
+               var10 = class330.getPacketBufferNode(ClientPacket.IF_BUTTONT, Client.packetWriter.isaacCipher);
+               var10.packetBuffer.writeShortLE(param0);
                var10.packetBuffer.writeShort(var4);
-               var10.packetBuffer.writeIntLE(Clips.selectedSpellWidget);
-               var10.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
-               var10.packetBuffer.method2472(var1);
-               var10.packetBuffer.writeShortAddLE(Client.selectedSpellItemId);
+               var10.packetBuffer.writeIntME(Clips.selectedSpellWidget);
+               var10.packetBuffer.writeShortAddLE(Client.selectedSpellChildIndex);
+               var10.packetBuffer.writeIntIME(param1);
+               var10.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
                Client.packetWriter.addNode(var10);
             }
          }
 
          if (var2 == 30 && Client.meslayerContinueWidget == null) {
-            class81.resumePauseWidget(var1, var0);
-            Client.meslayerContinueWidget = SoundSystem.getWidgetChild(var1, var0);
+            class81.resumePauseWidget(param1, param0);
+            Client.meslayerContinueWidget = SoundSystem.getWidgetChild(param1, param0);
             class144.invalidateWidget(Client.meslayerContinueWidget);
          }
 
@@ -686,13 +676,13 @@ class class17 implements SSLSession {
                Client.mouseCrossY = var8;
                Client.mouseCrossColor = 2;
                Client.mouseCrossState = 0;
-               Client.destinationX = var0;
-               Client.destinationY = var1;
-               var10 = class330.getPacketBufferNode(ClientPacket.field2511, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
-               var10.packetBuffer.writeShortAddLE(Client.selectedSpellItemId);
-               var10.packetBuffer.writeIntME(var3);
-               var10.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               Client.destinationX = param0;
+               Client.destinationY = param1;
+               var10 = class330.getPacketBufferNode(ClientPacket.OPPLAYERT, Client.packetWriter.isaacCipher);
+               var10.packetBuffer.writeShortAddLE(Client.selectedSpellChildIndex);
+               var10.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
+               var10.packetBuffer.writeShortLE(var3);
+               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                var10.packetBuffer.writeInt(Clips.selectedSpellWidget);
                Client.packetWriter.addNode(var10);
             }
@@ -705,11 +695,11 @@ class class17 implements SSLSession {
                Client.mouseCrossY = var8;
                Client.mouseCrossColor = 2;
                Client.mouseCrossState = 0;
-               Client.destinationX = var0;
-               Client.destinationY = var1;
-               var10 = class330.getPacketBufferNode(ClientPacket.field2528, Client.packetWriter.isaacCipher);
-               var10.packetBuffer.writeShortAddLE(var3);
-               var10.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+               Client.destinationX = param0;
+               Client.destinationY = param1;
+               var10 = class330.getPacketBufferNode(ClientPacket.OPNPC4, Client.packetWriter.isaacCipher);
+               var10.packetBuffer.writeShortAdd(var3);
+               var10.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
                Client.packetWriter.addNode(var10);
             }
          }
@@ -719,16 +709,16 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortAddLE(var3);
-            var14.packetBuffer.method2472(class294.field2713);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.hklasjhfakjfh, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAdd(var3);
+            var14.packetBuffer.writeIntIME(class294.field2713);
             var14.packetBuffer.writeShort(WorldMapSectionType.field2385);
-            var14.packetBuffer.writeShortAddLE(var0 + WorldMapData_0.baseX);
-            var14.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeShortAddLE(class144.field1333);
-            var14.packetBuffer.writeShortAdd(GameObject.baseY + var1);
+            var14.packetBuffer.writeShortAdd(param0 + WorldMapData_0.baseX);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeShortAdd(class144.field1333);
+            var14.packetBuffer.writeShortAddLE(GameObject.baseY + param1);
             Client.packetWriter.addNode(var14);
          }
 
@@ -737,16 +727,16 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.field2489, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.method2472(Clips.selectedSpellWidget);
-            var14.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.OPLOCT, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeIntIME(Clips.selectedSpellWidget);
+            var14.packetBuffer.writeShortAddLE(Client.selectedSpellChildIndex);
             var14.packetBuffer.writeShort(var3);
-            var14.packetBuffer.writeIntME(var0 + WorldMapData_0.baseX);
-            var14.packetBuffer.writeShortAddLE(GameObject.baseY + var1);
-            var14.packetBuffer.writeShortAddLE(Client.selectedSpellItemId);
+            var14.packetBuffer.writeShortLE(param0 + WorldMapData_0.baseX);
+            var14.packetBuffer.writeShortAdd(GameObject.baseY + param1);
+            var14.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
             Client.packetWriter.addNode(var14);
          }
 
@@ -755,21 +745,21 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.field2487, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShortAddLE(var0 + WorldMapData_0.baseX);
-            var14.packetBuffer.method2500(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeShortAdd(GameObject.baseY + var1);
-            var14.packetBuffer.writeIntME(var3);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.OPLOC4, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortAdd(param0 + WorldMapData_0.baseX);
+            var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+            var14.packetBuffer.writeShortAddLE(GameObject.baseY + param1);
+            var14.packetBuffer.writeShortLE(var3);
             Client.packetWriter.addNode(var14);
          }
 
          if (var2 == 29) {
             var14 = class330.getPacketBufferNode(ClientPacket.field2497, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeInt(var1);
+            var14.packetBuffer.writeInt(param1);
             Client.packetWriter.addNode(var14);
-            var15 = class165.getWidget(var1);
+            var15 = class165.getWidget(param1);
             if (var15 != null && var15.cs1Instructions != null && var15.cs1Instructions[0][0] == 5) {
                var11 = var15.cs1Instructions[0][1];
                if (Varps.Varps_main[var11] != var15.cs1ComparisonValues[0]) {
@@ -784,13 +774,13 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            Client.destinationX = var0;
-            Client.destinationY = var1;
-            var14 = class330.getPacketBufferNode(ClientPacket.field2483, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeIntME(GameObject.baseY + var1);
+            Client.destinationX = param0;
+            Client.destinationY = param1;
+            var14 = class330.getPacketBufferNode(ClientPacket.OPLOC5, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShortLE(GameObject.baseY + param1);
             var14.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-            var14.packetBuffer.writeShort(var0 + WorldMapData_0.baseX);
-            var14.packetBuffer.writeIntME(var3);
+            var14.packetBuffer.writeShort(param0 + WorldMapData_0.baseX);
+            var14.packetBuffer.writeShortLE(var3);
             Client.packetWriter.addNode(var14);
          }
 
@@ -799,10 +789,10 @@ class class17 implements SSLSession {
             Client.mouseCrossY = var8;
             Client.mouseCrossColor = 2;
             Client.mouseCrossState = 0;
-            var14 = class330.getPacketBufferNode(ClientPacket.OPOBJ1, Client.packetWriter.isaacCipher);
-            var14.packetBuffer.writeShort(GameObject.baseY + var1);
-            var14.packetBuffer.writeIntME(var3);
-            var14.packetBuffer.writeIntME(var0 + WorldMapData_0.baseX);
+            var14 = class330.getPacketBufferNode(ClientPacket.jlaskjfalk, Client.packetWriter.isaacCipher);
+            var14.packetBuffer.writeShort(GameObject.baseY + param1);
+            var14.packetBuffer.writeShortLE(var3);
+            var14.packetBuffer.writeShortLE(param0 + WorldMapData_0.baseX);
             Client.packetWriter.addNode(var14);
          }
 

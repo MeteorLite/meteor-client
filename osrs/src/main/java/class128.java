@@ -5,32 +5,27 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ei")
 class class128 implements Callable {
-   @ObfuscatedName("fg")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive13")
-   static Archive archive13;
+    @ObfuscatedName("fg")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive13;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lfh;"
+           descriptor = "Lfh;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class133 this$0;
    // $FF: synthetic field
-   @Export("val$workStart")
    @ObfuscatedName("val$workStart")
    final int val$workStart;
    // $FF: synthetic field
-   @Export("val$workEnd")
    @ObfuscatedName("val$workEnd")
    final int val$workEnd;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "[Leh;"
+           descriptor = "[Leh;"
    )
-   @Export("val$curveLoadJobs")
    @ObfuscatedName("val$curveLoadJobs")
    final class124[] val$curveLoadJobs;
 
@@ -44,9 +39,8 @@ class class128 implements Callable {
       this.val$curveLoadJobs = var4;
    }
 
-   @Export("call")
-   @ObfuscatedName("call")
-   public Object call() {
+    @ObfuscatedName("call")
+    public Object call() {
       for(int var1 = this.val$workStart; var1 < this.val$workEnd; ++var1) {
          this.val$curveLoadJobs[var1].call();
       }

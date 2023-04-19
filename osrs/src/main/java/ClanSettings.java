@@ -9,30 +9,25 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fj")
 @Implements("ClanSettings")
 public class ClanSettings {
-   @ObfuscatedName("ck")
-   @ObfuscatedSignature(
-      descriptor = "Lnx;"
-   )
-   @Export("clientLanguage")
-   static Language clientLanguage;
-   @ObfuscatedName("an")
-   @Export("useHashes")
-   boolean useHashes;
-   @ObfuscatedName("aw")
-   @Export("useNames")
-   boolean useNames;
+    @ObfuscatedName("ck")
+    @ObfuscatedSignature(
+            descriptor = "Lnx;"
+    )
+    static Language clientLanguage;
+    @ObfuscatedName("an")
+    boolean useHashes;
+    @ObfuscatedName("aw")
+    boolean useNames;
    @ObfuscatedName("ac")
    long field1370;
    @ObfuscatedName("au")
    int field1354 = 0;
-   @ObfuscatedName("ab")
-   @Export("name")
-   public String name = null;
+    @ObfuscatedName("ab")
+    public String name = null;
    @ObfuscatedName("aq")
    int field1356 = 0;
-   @ObfuscatedName("al")
-   @Export("allowGuests")
-   public boolean allowGuests;
+    @ObfuscatedName("al")
+    public boolean allowGuests;
    @ObfuscatedName("at")
    public byte field1369;
    @ObfuscatedName("aa")
@@ -41,47 +36,37 @@ public class ClanSettings {
    public byte field1360;
    @ObfuscatedName("ao")
    public byte field1351;
-   @ObfuscatedName("ax")
-   @Export("memberCount")
-   public int memberCount;
-   @ObfuscatedName("ai")
-   @Export("memberHashes")
-   long[] memberHashes;
-   @ObfuscatedName("ag")
-   @Export("memberRanks")
-   public byte[] memberRanks;
-   @ObfuscatedName("ah")
-   @Export("sortedMembers")
-   int[] sortedMembers;
+    @ObfuscatedName("ax")
+    public int memberCount;
+    @ObfuscatedName("ai")
+    long[] memberHashes;
+    @ObfuscatedName("ag")
+    public byte[] memberRanks;
+    @ObfuscatedName("ah")
+    int[] sortedMembers;
    @ObfuscatedName("av")
    int[] field1367;
    @ObfuscatedName("ar")
    public int[] field1366;
    @ObfuscatedName("am")
    public boolean[] field1375;
-   @ObfuscatedName("as")
-   @Export("currentOwner")
-   public int currentOwner = -1;
+    @ObfuscatedName("as")
+    public int currentOwner = -1;
    @ObfuscatedName("aj")
    public int field1374 = -1;
-   @ObfuscatedName("ak")
-   @Export("bannedMemberCount")
-   public int bannedMemberCount;
-   @ObfuscatedName("az")
-   @Export("bannedMemberHashes")
-   long[] bannedMemberHashes;
-   @ObfuscatedName("ad")
-   @Export("memberNames")
-   public String[] memberNames;
-   @ObfuscatedName("ae")
-   @Export("bannedMemberNames")
-   public String[] bannedMemberNames;
-   @ObfuscatedName("ap")
-   @ObfuscatedSignature(
-      descriptor = "Lro;"
-   )
-   @Export("parameters")
-   IterableNodeHashTable parameters;
+    @ObfuscatedName("ak")
+    public int bannedMemberCount;
+    @ObfuscatedName("az")
+    long[] bannedMemberHashes;
+    @ObfuscatedName("ad")
+    public String[] memberNames;
+    @ObfuscatedName("ae")
+    public String[] bannedMemberNames;
+    @ObfuscatedName("ap")
+    @ObfuscatedSignature(
+            descriptor = "Lro;"
+    )
+    IterableNodeHashTable parameters;
 
    @ObfuscatedSignature(
       descriptor = "(Lsg;)V"
@@ -191,13 +176,12 @@ public class ClanSettings {
       return (this.field1367[var1] & var4) >>> var2;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Ljava/lang/Integer;",
-      garbageValue = "-112"
-   )
-   @Export("getTitleGroupValue")
-   public Integer getTitleGroupValue(int var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Ljava/lang/Integer;",
+            garbageValue = "-112"
+    )
+    public Integer getTitleGroupValue(int var1) {
       if (this.parameters == null) {
          return null;
       } else {
@@ -206,13 +190,12 @@ public class ClanSettings {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(B)[I",
-      garbageValue = "33"
-   )
-   @Export("getSortedMembers")
-   public int[] getSortedMembers() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(B)[I",
+            garbageValue = "33"
+    )
+    public int[] getSortedMembers() {
       if (this.sortedMembers == null) {
          String[] var1 = new String[this.memberCount];
          this.sortedMembers = new int[this.memberCount];
@@ -312,13 +295,12 @@ public class ClanSettings {
       }
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1881573906"
-   )
-   @Export("updateOwner")
-   void updateOwner() {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1881573906"
+    )
+    void updateOwner() {
       if (this.memberCount == 0) {
          this.currentOwner = -1;
          this.field1374 = -1;

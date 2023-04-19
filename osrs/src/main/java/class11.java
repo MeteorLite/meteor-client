@@ -13,17 +13,15 @@ import org.bouncycastle.crypto.tls.TlsCredentials;
 
 @ObfuscatedName("ao")
 class class11 implements TlsAuthentication {
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "Lez;"
-   )
-   @Export("World_request")
-   static UrlRequest World_request;
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "Lez;"
+    )
+    static UrlRequest World_request;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lai;"
+           descriptor = "Lai;"
    )
-   @Export("this$2")
    @ObfuscatedName("this$2")
    final class13 this$2;
 
@@ -34,9 +32,8 @@ class class11 implements TlsAuthentication {
       this.this$2 = var1;
    }
 
-   @Export("notifyServerCertificate")
-   @ObfuscatedName("notifyServerCertificate")
-   public void notifyServerCertificate(Certificate var1) throws IOException {
+    @ObfuscatedName("notifyServerCertificate")
+    public void notifyServerCertificate(Certificate var1) throws IOException {
       try {
          CertificateFactory var2 = CertificateFactory.getInstance("X.509");
          LinkedList var3 = new LinkedList();
@@ -53,19 +50,17 @@ class class11 implements TlsAuthentication {
       }
    }
 
-   @Export("getClientCredentials")
-   @ObfuscatedName("getClientCredentials")
-   public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
+    @ObfuscatedName("getClientCredentials")
+    public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
       return null;
    }
 
-   @ObfuscatedName("lh")
-   @ObfuscatedSignature(
-      descriptor = "([Lmq;IIIIIIIII)V",
-      garbageValue = "-465475629"
-   )
-   @Export("drawInterface")
-   static final void drawInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+    @ObfuscatedName("lh")
+    @ObfuscatedSignature(
+            descriptor = "([Lmq;IIIIIIIII)V",
+            garbageValue = "-465475629"
+    )
+    static final void drawInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5);
       class18.method68();
 

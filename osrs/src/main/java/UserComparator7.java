@@ -6,21 +6,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("eu")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-   @ObfuscatedName("af")
-   @Export("reversed")
-   final boolean reversed;
+    @ObfuscatedName("af")
+    final boolean reversed;
 
    public UserComparator7(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpb;Lpb;B)I",
-      garbageValue = "-76"
-   )
-   @Export("compareBuddy")
-   int compareBuddy(Buddy var1, Buddy var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpb;Lpb;B)I",
+            garbageValue = "-76"
+    )
+    int compareBuddy(Buddy var1, Buddy var2) {
       if (var1.world != 0 && var2.world != 0) {
          return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
       } else {
@@ -28,9 +26,8 @@ public class UserComparator7 extends AbstractUserComparator {
       }
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
 
@@ -102,7 +99,7 @@ public class UserComparator7 extends AbstractUserComparator {
       garbageValue = "-1532029373"
    )
    public static int get3dZoom() {
-      return Rasterizer3D.clips.field2227;
+      return Rasterizer3D.clips.viewportZoom;
    }
 
    @ObfuscatedName("bv")
@@ -131,23 +128,23 @@ public class UserComparator7 extends AbstractUserComparator {
             PacketBufferNode var8;
             if (var0 == 1) {
                var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.writeByteAdd(0);
+               var8.packetBuffer.writeByteSub(0);
                var8.packetBuffer.writeShort(var3[var6]);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 4) {
-               var8 = class330.getPacketBufferNode(ClientPacket.field2526, Client.packetWriter.isaacCipher);
+               var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
                var8.packetBuffer.writeByteNeg(0);
-               var8.packetBuffer.writeIntME(var3[var6]);
+               var8.packetBuffer.writeShortLE(var3[var6]);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 6) {
-               var8 = class330.getPacketBufferNode(ClientPacket.IF_BUTTONT, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.writeShortAddLE(var3[var6]);
+               var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);
+               var8.packetBuffer.writeShortAdd(var3[var6]);
                var8.packetBuffer.writeByteNeg(0);
                Client.packetWriter.addNode(var8);
             } else if (var0 == 7) {
-               var8 = class330.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.writeShortAdd(var3[var6]);
-               var8.packetBuffer.method2500(0);
+               var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER7, Client.packetWriter.isaacCipher);
+               var8.packetBuffer.writeShortAddLE(var3[var6]);
+               var8.packetBuffer.writeByteAdd(0);
                Client.packetWriter.addNode(var8);
             }
 

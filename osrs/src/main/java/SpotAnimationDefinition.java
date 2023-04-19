@@ -6,74 +6,57 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hh")
 @Implements("SpotAnimationDefinition")
 public class SpotAnimationDefinition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("SpotAnimationDefinition_archive")
-   static AbstractArchive SpotAnimationDefinition_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("SpotAnimationDefinition_modelArchive")
-   static AbstractArchive SpotAnimationDefinition_modelArchive;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("SpotAnimationDefinition_cached")
-   public static EvictingDualNodeHashTable SpotAnimationDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("SpotAnimationDefinition_cachedModels")
-   public static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels = new EvictingDualNodeHashTable(30);
-   @ObfuscatedName("au")
-   @Export("id")
-   int id;
-   @ObfuscatedName("ab")
-   @Export("archive")
-   int archive;
-   @ObfuscatedName("aq")
-   @Export("sequence")
-   public int sequence = -1;
-   @ObfuscatedName("al")
-   @Export("recolorFrom")
-   short[] recolorFrom;
-   @ObfuscatedName("at")
-   @Export("recolorTo")
-   short[] recolorTo;
-   @ObfuscatedName("aa")
-   @Export("retextureFrom")
-   short[] retextureFrom;
-   @ObfuscatedName("ay")
-   @Export("retextureTo")
-   short[] retextureTo;
-   @ObfuscatedName("ao")
-   @Export("widthScale")
-   int widthScale = 128;
-   @ObfuscatedName("ax")
-   @Export("heightScale")
-   int heightScale = 128;
-   @ObfuscatedName("ai")
-   @Export("orientation")
-   int orientation = 0;
-   @ObfuscatedName("ag")
-   @Export("ambient")
-   int ambient = 0;
-   @ObfuscatedName("ah")
-   @Export("contrast")
-   int contrast = 0;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive SpotAnimationDefinition_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive SpotAnimationDefinition_modelArchive;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    public static EvictingDualNodeHashTable SpotAnimationDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    public static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels = new EvictingDualNodeHashTable(30);
+    @ObfuscatedName("au")
+    int id;
+    @ObfuscatedName("ab")
+    int archive;
+    @ObfuscatedName("aq")
+    public int sequence = -1;
+    @ObfuscatedName("al")
+    short[] recolorFrom;
+    @ObfuscatedName("at")
+    short[] recolorTo;
+    @ObfuscatedName("aa")
+    short[] retextureFrom;
+    @ObfuscatedName("ay")
+    short[] retextureTo;
+    @ObfuscatedName("ao")
+    int widthScale = 128;
+    @ObfuscatedName("ax")
+    int heightScale = 128;
+    @ObfuscatedName("ai")
+    int orientation = 0;
+    @ObfuscatedName("ag")
+    int ambient = 0;
+    @ObfuscatedName("ah")
+    int contrast = 0;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "2"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "2"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -84,13 +67,12 @@ public class SpotAnimationDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;IB)V",
-      garbageValue = "4"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;IB)V",
+            garbageValue = "4"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.archive = var1.readUnsignedShort();
       } else if (var2 == 2) {
@@ -131,19 +113,18 @@ public class SpotAnimationDefinition extends DualNode {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lit;",
-      garbageValue = "-1066689699"
-   )
-   @Export("getModel")
-   public final Model getModel(int var1) {
-      Model var2 = this.method1042();
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lit;",
+            garbageValue = "-1066689699"
+    )
+    public final Model getModel(int var1) {
+      Model var2 = this.getSharedSpotAnimationModel();
       Model var3;
       if (this.sequence != -1 && var1 != -1) {
-         var3 = ItemContainer.SequenceDefinition_get(this.sequence).method1130(var2, var1);
+         var3 = ItemContainer.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
       } else {
-         var3 = var2.method1312(true);
+         var3 = var2.toSharedSpotAnimationModel(true);
       }
 
       if (this.widthScale != 128 || this.heightScale != 128) {
@@ -175,7 +156,7 @@ public class SpotAnimationDefinition extends DualNode {
       descriptor = "(I)Lit;",
       garbageValue = "-972501101"
    )
-   public final Model method1042() {
+   public final Model getSharedSpotAnimationModel() {
       Model var1 = (Model)SpotAnimationDefinition_cachedModels.get((long)this.id);
       if (var1 == null) {
          ModelData var2 = ModelData.ModelData_get(SpotAnimationDefinition_modelArchive, this.archive, 0);

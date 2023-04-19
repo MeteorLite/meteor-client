@@ -10,48 +10,42 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cj")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-   @ObfuscatedName("oo")
-   @Export("selectedSpellFlags")
-   static int selectedSpellFlags;
-   @ObfuscatedName("af")
-   @Export("executor")
-   ExecutorService executor = Executors.newSingleThreadExecutor();
-   @ObfuscatedName("an")
-   @Export("future")
-   Future future;
+    @ObfuscatedName("oo")
+    static int selectedSpellFlags;
+    @ObfuscatedName("af")
+    ExecutorService executor = Executors.newSingleThreadExecutor();
+    @ObfuscatedName("an")
+    Future future;
 
    SecureRandomFuture() {
       this.future = this.executor.submit(new SecureRandomCallable());
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1244424155"
-   )
-   @Export("shutdown")
-   void shutdown() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1244424155"
+    )
+    void shutdown() {
       this.executor.shutdown();
       this.executor = null;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "85"
-   )
-   @Export("isDone")
-   boolean isDone() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Z",
+            garbageValue = "85"
+    )
+    boolean isDone() {
       return this.future.isDone();
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ljava/security/SecureRandom;",
-      garbageValue = "14"
-   )
-   @Export("get")
-   SecureRandom get() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(B)Ljava/security/SecureRandom;",
+            garbageValue = "14"
+    )
+    SecureRandom get() {
       try {
          return (SecureRandom)this.future.get();
       } catch (Exception var4) {

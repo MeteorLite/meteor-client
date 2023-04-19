@@ -14,30 +14,23 @@ public class Animation {
    static int[] field1957 = new int[500];
    @ObfuscatedName("ac")
    static int[] field1960 = new int[500];
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Lik;"
-   )
-   @Export("skeleton")
-   Skeleton skeleton = null;
-   @ObfuscatedName("ab")
-   @Export("transformCount")
-   int transformCount = -1;
-   @ObfuscatedName("aq")
-   @Export("transformSkeletonLabels")
-   int[] transformSkeletonLabels;
-   @ObfuscatedName("al")
-   @Export("transformXs")
-   int[] transformXs;
-   @ObfuscatedName("at")
-   @Export("transformYs")
-   int[] transformYs;
-   @ObfuscatedName("aa")
-   @Export("transformZs")
-   int[] transformZs;
-   @ObfuscatedName("ay")
-   @Export("hasAlphaTransform")
-   boolean hasAlphaTransform = false;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Lik;"
+    )
+    Skeleton skeleton = null;
+    @ObfuscatedName("ab")
+    int transformCount = -1;
+    @ObfuscatedName("aq")
+    int[] transformSkeletonLabels;
+    @ObfuscatedName("al")
+    int[] transformXs;
+    @ObfuscatedName("at")
+    int[] transformYs;
+    @ObfuscatedName("aa")
+    int[] transformZs;
+    @ObfuscatedName("ay")
+    boolean hasAlphaTransform = false;
 
    @ObfuscatedSignature(
       descriptor = "([BLik;)V"

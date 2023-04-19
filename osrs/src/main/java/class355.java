@@ -19,10 +19,9 @@ public class class355 {
       descriptor = "Lnc;"
    )
    static final class355 field3539 = new class355();
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("ItemDefinition_archive")
-   public static AbstractArchive ItemDefinition_archive;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive ItemDefinition_archive;
 }

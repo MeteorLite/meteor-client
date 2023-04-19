@@ -25,13 +25,12 @@ public class class252 implements WorldMapSection {
    @ObfuscatedName("aa")
    int field2348;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljs;I)V",
-      garbageValue = "1131699138"
-   )
-   @Export("expandBounds")
-   public void expandBounds(WorldMapArea var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljs;I)V",
+            garbageValue = "1131699138"
+    )
+    public void expandBounds(WorldMapArea var1) {
       if (var1.regionLowX > this.field2345) {
          var1.regionLowX = this.field2345;
       }
@@ -50,13 +49,12 @@ public class class252 implements WorldMapSection {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IIIB)Z",
-      garbageValue = "3"
-   )
-   @Export("containsCoord")
-   public boolean containsCoord(int var1, int var2, int var3) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IIIB)Z",
+            garbageValue = "3"
+    )
+    public boolean containsCoord(int var1, int var2, int var3) {
       if (var1 >= this.field2350 && var1 < this.field2353 + this.field2350) {
          return var2 >= (this.field2346 << 6) + (this.field2349 << 3) && var2 <= (this.field2346 << 6) + (this.field2349 << 3) + 7 && var3 >= (this.field2347 << 6) + (this.field2351 << 3) && var3 <= (this.field2347 << 6) + (this.field2351 << 3) + 7;
       } else {
@@ -64,23 +62,21 @@ public class class252 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(III)Z",
-      garbageValue = "-1795894381"
-   )
-   @Export("containsPosition")
-   public boolean containsPosition(int var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(III)Z",
+            garbageValue = "-1795894381"
+    )
+    public boolean containsPosition(int var1, int var2) {
       return var1 >= (this.field2345 << 6) + (this.field2352 << 3) && var1 <= (this.field2345 << 6) + (this.field2352 << 3) + 7 && var2 >= (this.field2354 << 6) + (this.field2348 << 3) && var2 <= (this.field2354 << 6) + (this.field2348 << 3) + 7;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(IIIB)[I",
-      garbageValue = "21"
-   )
-   @Export("getBorderTileLengths")
-   public int[] getBorderTileLengths(int var1, int var2, int var3) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(IIIB)[I",
+            garbageValue = "21"
+    )
+    public int[] getBorderTileLengths(int var1, int var2, int var3) {
       if (!this.containsCoord(var1, var2, var3)) {
          return null;
       } else {
@@ -89,13 +85,12 @@ public class class252 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)Llb;",
-      garbageValue = "-4"
-   )
-   @Export("coord")
-   public Coord coord(int var1, int var2) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)Llb;",
+            garbageValue = "-4"
+    )
+    public Coord coord(int var1, int var2) {
       if (!this.containsPosition(var1, var2)) {
          return null;
       } else {
@@ -105,13 +100,12 @@ public class class252 implements WorldMapSection {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "0"
-   )
-   @Export("read")
-   public void read(Buffer var1) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "0"
+    )
+    public void read(Buffer var1) {
       this.field2350 = var1.readUnsignedByte();
       this.field2353 = var1.readUnsignedByte();
       this.field2346 = var1.readUnsignedShort();
@@ -133,13 +127,12 @@ public class class252 implements WorldMapSection {
    void method1488() {
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "1949946238"
-   )
-   @Export("getVarbit")
-   public static int getVarbit(int var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)I",
+            garbageValue = "1949946238"
+    )
+    public static int getVarbit(int var0) {
       VarbitComposition var1 = class158.method894(var0);
       int var2 = var1.baseVar;
       int var3 = var1.startBit;
@@ -148,13 +141,12 @@ public class class252 implements WorldMapSection {
       return Varps.Varps_main[var2] >> var3 & var5;
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIZI)Ltq;",
-      garbageValue = "13705148"
-   )
-   @Export("getItemSprite")
-   public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIIZI)Ltq;",
+            garbageValue = "13705148"
+    )
+    public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
       if (var1 == -1) {
          var4 = 0;
       } else if (var4 == 2 && var1 != 1) {

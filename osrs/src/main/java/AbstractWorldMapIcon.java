@@ -6,24 +6,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kg")
 @Implements("AbstractWorldMapIcon")
 public abstract class AbstractWorldMapIcon {
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Llb;"
-   )
-   @Export("coord2")
-   public final Coord coord2;
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "Llb;"
-   )
-   @Export("coord1")
-   public final Coord coord1;
-   @ObfuscatedName("at")
-   @Export("screenX")
-   int screenX;
-   @ObfuscatedName("aa")
-   @Export("screenY")
-   int screenY;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Llb;"
+    )
+    public final Coord coord2;
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "Llb;"
+    )
+    public final Coord coord1;
+    @ObfuscatedName("at")
+    int screenX;
+    @ObfuscatedName("aa")
+    int screenY;
 
    @ObfuscatedSignature(
       descriptor = "(Llb;Llb;)V"
@@ -33,45 +29,40 @@ public abstract class AbstractWorldMapIcon {
       this.coord2 = var2;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-1645421540"
-   )
-   @Export("getElement")
-   public abstract int getElement();
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-1645421540"
+    )
+    public abstract int getElement();
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)Lku;",
-      garbageValue = "-2043987595"
-   )
-   @Export("getLabel")
-   abstract WorldMapLabel getLabel();
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)Lku;",
+            garbageValue = "-2043987595"
+    )
+    abstract WorldMapLabel getLabel();
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-1623088499"
-   )
-   @Export("getSubWidth")
-   abstract int getSubWidth();
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-1623088499"
+    )
+    abstract int getSubWidth();
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "435365367"
-   )
-   @Export("getSubHeight")
-   abstract int getSubHeight();
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "435365367"
+    )
+    abstract int getSubHeight();
 
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)Z",
-      garbageValue = "-65"
-   )
-   @Export("fitsScreen")
-   boolean fitsScreen(int var1, int var2) {
+    @ObfuscatedName("am")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)Z",
+            garbageValue = "-65"
+    )
+    boolean fitsScreen(int var1, int var2) {
       if (this.elementFitsScreen(var1, var2)) {
          return true;
       } else {
@@ -79,23 +70,21 @@ public abstract class AbstractWorldMapIcon {
       }
    }
 
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1824088404"
-   )
-   @Export("hasValidElement")
-   boolean hasValidElement() {
+    @ObfuscatedName("as")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1824088404"
+    )
+    boolean hasValidElement() {
       return this.getElement() >= 0;
    }
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(III)Z",
-      garbageValue = "2000208750"
-   )
-   @Export("elementFitsScreen")
-   boolean elementFitsScreen(int var1, int var2) {
+    @ObfuscatedName("aj")
+    @ObfuscatedSignature(
+            descriptor = "(III)Z",
+            garbageValue = "2000208750"
+    )
+    boolean elementFitsScreen(int var1, int var2) {
       if (!this.hasValidElement()) {
          return false;
       } else {
@@ -143,13 +132,12 @@ public abstract class AbstractWorldMapIcon {
       }
    }
 
-   @ObfuscatedName("ak")
-   @ObfuscatedSignature(
-      descriptor = "(III)Z",
-      garbageValue = "-1064122109"
-   )
-   @Export("labelFitsScreen")
-   boolean labelFitsScreen(int var1, int var2) {
+    @ObfuscatedName("ak")
+    @ObfuscatedSignature(
+            descriptor = "(III)Z",
+            garbageValue = "-1064122109"
+    )
+    boolean labelFitsScreen(int var1, int var2) {
       WorldMapLabel var3 = this.getLabel();
       if (var3 == null) {
          return false;

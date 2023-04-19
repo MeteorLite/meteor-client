@@ -216,13 +216,12 @@ public class class103 {
       }
    }
 
-   @ObfuscatedName("le")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIB)V",
-      garbageValue = "0"
-   )
-   @Export("drawScrollBar")
-   static final void drawScrollBar(int var0, int var1, int var2, int var3, int var4) {
+    @ObfuscatedName("le")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIIB)V",
+            garbageValue = "0"
+    )
+    static final void drawScrollBar(int var0, int var1, int var2, int var3, int var4) {
       HealthBar.scrollBarSprites[0].drawAt(var0, var1);
       HealthBar.scrollBarSprites[1].drawAt(var0, var3 + var1 - 16);
       Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1 + 16, 16, var3 - 32, Client.field443);

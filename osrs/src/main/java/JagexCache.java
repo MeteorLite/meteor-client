@@ -7,33 +7,27 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gc")
 @Implements("JagexCache")
 public class JagexCache {
-   @ObfuscatedName("ac")
-   @Export("JagexCache_locationFile")
-   static File JagexCache_locationFile;
-   @ObfuscatedName("ab")
-   @Export("idxCount")
-   public static int idxCount;
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "Lsj;"
-   )
-   @Export("JagexCache_randomDat")
-   public static BufferedFile JagexCache_randomDat = null;
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "Lsj;"
-   )
-   @Export("JagexCache_dat2File")
-   public static BufferedFile JagexCache_dat2File = null;
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "Lsj;"
-   )
-   @Export("JagexCache_idx255File")
-   public static BufferedFile JagexCache_idx255File = null;
-   @ObfuscatedName("ah")
-   @Export("cacheGamebuild")
-   public static int cacheGamebuild;
+    @ObfuscatedName("ac")
+    static File JagexCache_locationFile;
+    @ObfuscatedName("ab")
+    public static int idxCount;
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "Lsj;"
+    )
+    public static BufferedFile JagexCache_randomDat = null;
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "Lsj;"
+    )
+    public static BufferedFile JagexCache_dat2File = null;
+    @ObfuscatedName("ai")
+    @ObfuscatedSignature(
+            descriptor = "Lsj;"
+    )
+    public static BufferedFile JagexCache_idx255File = null;
+    @ObfuscatedName("ah")
+    public static int cacheGamebuild;
 
    @ObfuscatedName("ag")
    @ObfuscatedSignature(

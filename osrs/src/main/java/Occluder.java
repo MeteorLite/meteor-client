@@ -5,39 +5,28 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("ip")
 @Implements("Occluder")
 public final class Occluder {
-   @ObfuscatedName("af")
-   @Export("minTileX")
-   int minTileX;
-   @ObfuscatedName("an")
-   @Export("maxTileX")
-   int maxTileX;
-   @ObfuscatedName("aw")
-   @Export("minTileY")
-   int minTileY;
-   @ObfuscatedName("ac")
-   @Export("maxTileY")
-   int maxTileY;
-   @ObfuscatedName("au")
-   @Export("type")
-   int type;
-   @ObfuscatedName("ab")
-   @Export("minX")
-   int minX;
-   @ObfuscatedName("aq")
-   @Export("maxX")
-   int maxX;
-   @ObfuscatedName("al")
-   @Export("minZ")
-   int minZ;
-   @ObfuscatedName("at")
-   @Export("maxZ")
-   int maxZ;
-   @ObfuscatedName("aa")
-   @Export("minY")
-   int minY;
-   @ObfuscatedName("ay")
-   @Export("maxY")
-   int maxY;
+    @ObfuscatedName("af")
+    int minTileX;
+    @ObfuscatedName("an")
+    int maxTileX;
+    @ObfuscatedName("aw")
+    int minTileY;
+    @ObfuscatedName("ac")
+    int maxTileY;
+    @ObfuscatedName("au")
+    int type;
+    @ObfuscatedName("ab")
+    int minX;
+    @ObfuscatedName("aq")
+    int maxX;
+    @ObfuscatedName("al")
+    int minZ;
+    @ObfuscatedName("at")
+    int maxZ;
+    @ObfuscatedName("aa")
+    int minY;
+    @ObfuscatedName("ay")
+    int maxY;
    @ObfuscatedName("ao")
    int field2092;
    @ObfuscatedName("ax")

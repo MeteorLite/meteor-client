@@ -11,46 +11,40 @@ public enum HorizontalAlignment implements class356 {
       descriptor = "Lhd;"
    )
    field1547(0, 0),
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lhd;"
-   )
-   @Export("HorizontalAlignment_centered")
-   HorizontalAlignment_centered(2, 1),
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lhd;"
+    )
+    HorizontalAlignment_centered(2, 1),
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "Lhd;"
    )
    field1549(1, 2);
 
-   @ObfuscatedName("az")
-   @Export("userHomeDirectory")
-   public static String userHomeDirectory;
-   @ObfuscatedName("tt")
-   @ObfuscatedSignature(
-      descriptor = "Lbu;"
-   )
-   @Export("pcmPlayer1")
-   static PcmPlayer pcmPlayer1;
-   @ObfuscatedName("ac")
-   @Export("value")
-   public final int value;
-   @ObfuscatedName("au")
-   @Export("id")
-   final int id;
+    @ObfuscatedName("az")
+    public static String userHomeDirectory;
+    @ObfuscatedName("tt")
+    @ObfuscatedSignature(
+            descriptor = "Lbu;"
+    )
+    static PcmPlayer pcmPlayer1;
+    @ObfuscatedName("ac")
+    public final int value;
+    @ObfuscatedName("au")
+    final int id;
 
    HorizontalAlignment(int var3, int var4) {
       this.value = var3;
       this.id = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 

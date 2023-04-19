@@ -8,29 +8,25 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class ChatChannel {
    @ObfuscatedName("cz")
    static int field817;
-   @ObfuscatedName("jb")
-   @ObfuscatedSignature(
-      descriptor = "Ltq;"
-   )
-   @Export("compass")
-   static SpritePixels compass;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "[Lcq;"
-   )
-   @Export("messages")
-   Message[] messages = new Message[100];
-   @ObfuscatedName("aw")
-   @Export("count")
-   int count;
+    @ObfuscatedName("jb")
+    @ObfuscatedSignature(
+            descriptor = "Ltq;"
+    )
+    static SpritePixels compass;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "[Lcq;"
+    )
+    Message[] messages = new Message[100];
+    @ObfuscatedName("aw")
+    int count;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;S)Lcq;",
-      garbageValue = "-22035"
-   )
-   @Export("addMessage")
-   Message addMessage(int var1, String var2, String var3, String var4) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;S)Lcq;",
+            garbageValue = "-22035"
+    )
+    Message addMessage(int var1, String var2, String var3, String var4) {
       Message var5 = this.messages[99];
 
       for(int var6 = this.count; var6 > 0; --var6) {
@@ -55,33 +51,30 @@ public class ChatChannel {
       return var5;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lcq;",
-      garbageValue = "-2100835042"
-   )
-   @Export("getMessage")
-   Message getMessage(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lcq;",
+            garbageValue = "-2100835042"
+    )
+    Message getMessage(int var1) {
       return var1 >= 0 && var1 < this.count ? this.messages[var1] : null;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1727774568"
-   )
-   @Export("size")
-   int size() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1727774568"
+    )
+    int size() {
       return this.count;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;Lro;B)Lro;",
-      garbageValue = "-78"
-   )
-   @Export("readStringIntParameters")
-   static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;Lro;B)Lro;",
+            garbageValue = "-78"
+    )
+    static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
       int var2 = var0.readUnsignedByte();
       int var3;
       if (var1 == null) {

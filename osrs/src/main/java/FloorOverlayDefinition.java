@@ -6,56 +6,43 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hk")
 @Implements("FloorOverlayDefinition")
 public class FloorOverlayDefinition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("FloorOverlayDefinition_archive")
-   public static AbstractArchive FloorOverlayDefinition_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("FloorOverlayDefinition_cached")
-   public static EvictingDualNodeHashTable FloorOverlayDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("aw")
-   @Export("primaryRgb")
-   public int primaryRgb = 0;
-   @ObfuscatedName("ac")
-   @Export("texture")
-   public int texture = -1;
-   @ObfuscatedName("au")
-   @Export("hideUnderlay")
-   public boolean hideUnderlay = true;
-   @ObfuscatedName("ab")
-   @Export("secondaryRgb")
-   public int secondaryRgb = -1;
-   @ObfuscatedName("aq")
-   @Export("hue")
-   public int hue;
-   @ObfuscatedName("al")
-   @Export("saturation")
-   public int saturation;
-   @ObfuscatedName("at")
-   @Export("lightness")
-   public int lightness;
-   @ObfuscatedName("aa")
-   @Export("secondaryHue")
-   public int secondaryHue;
-   @ObfuscatedName("ay")
-   @Export("secondarySaturation")
-   public int secondarySaturation;
-   @ObfuscatedName("ao")
-   @Export("secondaryLightness")
-   public int secondaryLightness;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive FloorOverlayDefinition_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    public static EvictingDualNodeHashTable FloorOverlayDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("aw")
+    public int primaryRgb = 0;
+    @ObfuscatedName("ac")
+    public int texture = -1;
+    @ObfuscatedName("au")
+    public boolean hideUnderlay = true;
+    @ObfuscatedName("ab")
+    public int secondaryRgb = -1;
+    @ObfuscatedName("aq")
+    public int hue;
+    @ObfuscatedName("al")
+    public int saturation;
+    @ObfuscatedName("at")
+    public int lightness;
+    @ObfuscatedName("aa")
+    public int secondaryHue;
+    @ObfuscatedName("ay")
+    public int secondarySaturation;
+    @ObfuscatedName("ao")
+    public int secondaryLightness;
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1436922747"
-   )
-   @Export("postDecode")
-   public void postDecode() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1436922747"
+    )
+    public void postDecode() {
       if (this.secondaryRgb != -1) {
          this.setHsl(this.secondaryRgb);
          this.secondaryHue = this.hue;
@@ -66,13 +53,12 @@ public class FloorOverlayDefinition extends DualNode {
       this.setHsl(this.primaryRgb);
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;IS)V",
-      garbageValue = "128"
-   )
-   @Export("decode")
-   public void decode(Buffer var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;IS)V",
+            garbageValue = "128"
+    )
+    public void decode(Buffer var1, int var2) {
       while(true) {
          int var3 = var1.readUnsignedByte();
          if (var3 == 0) {
@@ -83,13 +69,12 @@ public class FloorOverlayDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;IIS)V",
-      garbageValue = "132"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2, int var3) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;IIS)V",
+            garbageValue = "132"
+    )
+    void decodeNext(Buffer var1, int var2, int var3) {
       if (var2 == 1) {
          this.primaryRgb = var1.readMedium();
       } else if (var2 == 2) {
@@ -104,13 +89,12 @@ public class FloorOverlayDefinition extends DualNode {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "2082710578"
-   )
-   @Export("setHsl")
-   void setHsl(int var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "2082710578"
+    )
+    void setHsl(int var1) {
       double var2 = (double)(var1 >> 16 & 255) / 256.0D;
       double var4 = (double)(var1 >> 8 & 255) / 256.0D;
       double var6 = (double)(var1 & 255) / 256.0D;
@@ -171,13 +155,12 @@ public class FloorOverlayDefinition extends DualNode {
 
    }
 
-   @ObfuscatedName("ah")
-   @ObfuscatedSignature(
-      descriptor = "(Lcl;I)V",
-      garbageValue = "1003171316"
-   )
-   @Export("changeWorld")
-   static void changeWorld(World var0) {
+    @ObfuscatedName("ah")
+    @ObfuscatedSignature(
+            descriptor = "(Lcl;I)V",
+            garbageValue = "1003171316"
+    )
+    static void changeWorld(World var0) {
       if (var0.isMembersOnly() != Client.isMembersWorld) {
          Client.isMembersWorld = var0.isMembersOnly();
          boolean var1 = var0.isMembersOnly();

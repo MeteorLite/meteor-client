@@ -5,12 +5,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gk")
 public class class174 extends class177 {
-   @ObfuscatedName("hz")
-   @Export("secureRandom")
-   static SecureRandom secureRandom;
-   @ObfuscatedName("kv")
-   @Export("cameraY")
-   static int cameraY;
+    @ObfuscatedName("hz")
+    static SecureRandom secureRandom;
+    @ObfuscatedName("kv")
+    static int cameraY;
    @ObfuscatedName("af")
    int field1452;
    // $FF: synthetic field
@@ -37,13 +35,12 @@ public class class174 extends class177 {
       return 0;
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "421671702"
-   )
-   @Export("vmethod3378")
-   public int vmethod3378() {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "421671702"
+    )
+    public int vmethod3378() {
       return this.field1452;
    }
 }

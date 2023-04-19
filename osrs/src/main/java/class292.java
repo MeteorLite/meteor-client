@@ -8,12 +8,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 public final class class292 {
    @ObfuscatedName("aw")
    static final HashMap field2709 = new HashMap();
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Ltc;"
-   )
-   @Export("titlebuttonSprite")
-   static IndexedSprite titlebuttonSprite;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Ltc;"
+    )
+    static IndexedSprite titlebuttonSprite;
 
    static {
       java.util.Calendar.getInstance(method1604("Europe/London"));
@@ -37,13 +36,12 @@ public final class class292 {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "-964267539"
-   )
-   @Export("isWorldMapEvent")
-   public static boolean isWorldMapEvent(int var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "-964267539"
+    )
+    public static boolean isWorldMapEvent(int var0) {
       return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
    }
 }

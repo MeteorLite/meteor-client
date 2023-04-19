@@ -10,15 +10,13 @@ public final class NPC extends Actor {
    static int field1050 = 1;
    @ObfuscatedName("aa")
    static int field1047 = 1;
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lhs;"
-   )
-   @Export("definition")
-   NPCComposition definition;
-   @ObfuscatedName("aw")
-   @Export("nameChange")
-   String nameChange = "";
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lhs;"
+    )
+    NPCComposition definition;
+    @ObfuscatedName("aw")
+    String nameChange = "";
    @ObfuscatedName("au")
    int field1045 = 31;
    @ObfuscatedName("ab")
@@ -46,13 +44,12 @@ public final class NPC extends Actor {
       this.nameChange = var1 == null ? "" : var1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lit;",
-      garbageValue = "-112"
-   )
-   @Export("getModel")
-   protected final Model getModel() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lit;",
+            garbageValue = "-112"
+    )
+    protected final Model getModel() {
       if (this.definition == null) {
          return null;
       } else {
@@ -134,13 +131,12 @@ public final class NPC extends Actor {
       }
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(ILiu;B)V",
-      garbageValue = "110"
-   )
-   @Export("move")
-   final void move(int var1, MoveSpeed var2) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(ILiu;B)V",
+            garbageValue = "110"
+    )
+    final void move(int var1, MoveSpeed var2) {
       int var3 = super.pathX[0];
       int var4 = super.pathY[0];
       if (var1 == 0) {
@@ -318,13 +314,12 @@ public final class NPC extends Actor {
       this.field1048 = var1;
    }
 
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "1666539507"
-   )
-   @Export("isVisible")
-   final boolean isVisible() {
+    @ObfuscatedName("as")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "1666539507"
+    )
+    final boolean isVisible() {
       return this.definition != null;
    }
 

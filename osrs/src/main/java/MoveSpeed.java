@@ -11,46 +11,40 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("iu")
 @Implements("MoveSpeed")
 public enum MoveSpeed implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Liu;"
-   )
-   @Export("STATIONARY")
-   STATIONARY((byte)-1),
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Liu;"
-   )
-   @Export("CRAWL")
-   CRAWL((byte)0),
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Liu;"
-   )
-   @Export("WALK")
-   WALK((byte)1),
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Liu;"
-   )
-   @Export("RUN")
-   RUN((byte)2);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Liu;"
+    )
+    STATIONARY((byte)-1),
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Liu;"
+    )
+    CRAWL((byte)0),
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Liu;"
+    )
+    WALK((byte)1),
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Liu;"
+    )
+    RUN((byte)2);
 
-   @ObfuscatedName("au")
-   @Export("speed")
-   public byte speed;
+    @ObfuscatedName("au")
+    public byte speed;
 
    MoveSpeed(byte var3) {
       this.speed = var3;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.speed;
    }
 
@@ -64,7 +58,7 @@ public enum MoveSpeed implements class356 {
       if (var0 instanceof RunException) {
          RunException var2 = (RunException)var0;
          var1 = var2.field4179 + " | ";
-         var0 = var2.field4177;
+         var0 = var2.parent;
       } else {
          var1 = "";
       }

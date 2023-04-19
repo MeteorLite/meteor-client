@@ -4,50 +4,42 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ly")
 public class class297 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("musicPatchesArchive")
-   public static AbstractArchive musicPatchesArchive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("musicSamplesArchive")
-   public static AbstractArchive musicSamplesArchive;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("soundEffectsArchive")
-   public static AbstractArchive soundEffectsArchive;
-   @ObfuscatedName("au")
-   @Export("musicPlayerStatus")
-   public static int musicPlayerStatus = 0;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("musicTrackArchive")
-   public static AbstractArchive musicTrackArchive;
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "Lba;"
-   )
-   @Export("soundCache")
-   public static SoundCache soundCache;
-   @ObfuscatedName("ke")
-   @Export("cameraZ")
-   static int cameraZ;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive musicPatchesArchive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive musicSamplesArchive;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive soundEffectsArchive;
+    @ObfuscatedName("au")
+    public static int musicPlayerStatus = 0;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive musicTrackArchive;
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "Lba;"
+    )
+    public static SoundCache soundCache;
+    @ObfuscatedName("ke")
+    static int cameraZ;
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(Lcl;Lcl;IZB)I",
-      garbageValue = "52"
-   )
-   @Export("compareWorlds")
-   static int compareWorlds(World var0, World var1, int var2, boolean var3) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(Lcl;Lcl;IZB)I",
+            garbageValue = "52"
+    )
+    static int compareWorlds(World var0, World var1, int var2, boolean var3) {
       if (var2 == 1) {
          int var4 = var0.population;
          int var5 = var1.population;

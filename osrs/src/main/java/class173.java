@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gq")
 public class class173 {
-   @ObfuscatedName("kb")
-   @ObfuscatedSignature(
-      descriptor = "[Ltq;"
-   )
-   @Export("crossSprites")
-   static SpritePixels[] crossSprites;
+    @ObfuscatedName("kb")
+    @ObfuscatedSignature(
+            descriptor = "[Ltq;"
+    )
+    static SpritePixels[] crossSprites;
    @ObfuscatedName("ac")
    public String field1447;
    @ObfuscatedName("au")
@@ -22,9 +21,8 @@ public class class173 {
    public int field1446;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lgy;"
+           descriptor = "Lgy;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class166 this$0;
 

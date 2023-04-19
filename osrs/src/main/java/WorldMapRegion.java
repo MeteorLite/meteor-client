@@ -12,42 +12,32 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jr")
 @Implements("WorldMapRegion")
 public class WorldMapRegion {
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Lke;"
-   )
-   @Export("WorldMapRegion_cachedSprites")
-   public static DemotingHashTable WorldMapRegion_cachedSprites = new DemotingHashTable(37748736, 256);
-   @ObfuscatedName("ab")
-   @Export("regionX")
-   int regionX;
-   @ObfuscatedName("aq")
-   @Export("regionY")
-   int regionY;
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "Ljm;"
-   )
-   @Export("worldMapData_0")
-   WorldMapData_0 worldMapData_0;
-   @ObfuscatedName("at")
-   @Export("worldMapData1List")
-   LinkedList worldMapData1List;
-   @ObfuscatedName("aa")
-   @Export("backgroundColor")
-   int backgroundColor;
-   @ObfuscatedName("ay")
-   @Export("pixelsPerTile")
-   int pixelsPerTile;
-   @ObfuscatedName("ao")
-   @Export("icon0List")
-   List icon0List;
-   @ObfuscatedName("ax")
-   @Export("iconMap")
-   HashMap iconMap;
-   @ObfuscatedName("ai")
-   @Export("fonts")
-   final HashMap fonts;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Lke;"
+    )
+    public static DemotingHashTable WorldMapRegion_cachedSprites = new DemotingHashTable(37748736, 256);
+    @ObfuscatedName("ab")
+    int regionX;
+    @ObfuscatedName("aq")
+    int regionY;
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "Ljm;"
+    )
+    WorldMapData_0 worldMapData_0;
+    @ObfuscatedName("at")
+    LinkedList worldMapData1List;
+    @ObfuscatedName("aa")
+    int backgroundColor;
+    @ObfuscatedName("ay")
+    int pixelsPerTile;
+    @ObfuscatedName("ao")
+    List icon0List;
+    @ObfuscatedName("ax")
+    HashMap iconMap;
+    @ObfuscatedName("ai")
+    final HashMap fonts;
 
    WorldMapRegion(int var1, int var2, int var3, HashMap var4) {
       this.regionX = var1;
@@ -76,25 +66,23 @@ public class WorldMapRegion {
       }
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Ljm;Ljava/util/List;I)V",
-      garbageValue = "1780260388"
-   )
-   @Export("initWorldMapData0")
-   void initWorldMapData0(WorldMapData_0 var1, List var2) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(Ljm;Ljava/util/List;I)V",
+            garbageValue = "1780260388"
+    )
+    void initWorldMapData0(WorldMapData_0 var1, List var2) {
       this.iconMap.clear();
       this.worldMapData_0 = var1;
       this.addAllToIconList(var2);
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/util/HashSet;Ljava/util/List;I)V",
-      garbageValue = "1961953252"
-   )
-   @Export("initWorldMapData1")
-   void initWorldMapData1(HashSet var1, List var2) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/util/HashSet;Ljava/util/List;I)V",
+            garbageValue = "1961953252"
+    )
+    void initWorldMapData1(HashSet var1, List var2) {
       this.iconMap.clear();
       Iterator var3 = var1.iterator();
 
@@ -108,13 +96,12 @@ public class WorldMapRegion {
       this.addAllToIconList(var2);
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(IIIILjz;I)V",
-      garbageValue = "791967957"
-   )
-   @Export("getIconsForTiles")
-   void getIconsForTiles(int var1, int var2, int var3, int var4, AbstractWorldMapData var5) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(IIIILjz;I)V",
+            garbageValue = "791967957"
+    )
+    void getIconsForTiles(int var1, int var2, int var3, int var4, AbstractWorldMapData var5) {
       for(int var6 = var1; var6 < var3 + var1; ++var6) {
          label67:
          for(int var7 = var2; var7 < var2 + var4; ++var7) {
@@ -160,13 +147,12 @@ public class WorldMapRegion {
 
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(Lhq;IIILjz;I)V",
-      garbageValue = "881675685"
-   )
-   @Export("getIcon")
-   void getIcon(ObjectComposition var1, int var2, int var3, int var4, AbstractWorldMapData var5) {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(Lhq;IIILjz;I)V",
+            garbageValue = "881675685"
+    )
+    void getIcon(ObjectComposition var1, int var2, int var3, int var4, AbstractWorldMapData var5) {
       Coord var6 = new Coord(var2, var3 + this.regionX * 64, this.regionY * 64 + var4);
       Coord var7 = null;
       if (this.worldMapData_0 != null) {
@@ -192,13 +178,12 @@ public class WorldMapRegion {
 
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1575710248"
-   )
-   @Export("initWorldMapIcon1s")
-   void initWorldMapIcon1s() {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1575710248"
+    )
+    void initWorldMapIcon1s() {
       Iterator var1 = this.iconMap.values().iterator();
 
       while(var1.hasNext()) {
@@ -210,13 +195,12 @@ public class WorldMapRegion {
 
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/util/List;S)V",
-      garbageValue = "10781"
-   )
-   @Export("addAllToIconList")
-   void addAllToIconList(List var1) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/util/List;S)V",
+            garbageValue = "10781"
+    )
+    void addAllToIconList(List var1) {
       Iterator var2 = var1.iterator();
 
       while(var2.hasNext()) {
@@ -248,13 +232,12 @@ public class WorldMapRegion {
 
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;S)Z",
-      garbageValue = "8372"
-   )
-   @Export("loadGeography")
-   boolean loadGeography(AbstractArchive var1) {
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "(Lnm;S)Z",
+            garbageValue = "8372"
+    )
+    boolean loadGeography(AbstractArchive var1) {
       this.iconMap.clear();
       if (this.worldMapData_0 != null) {
          this.worldMapData_0.loadGeography(var1);
@@ -287,13 +270,12 @@ public class WorldMapRegion {
       }
    }
 
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "(ILkj;[Ltc;Lnm;Lnm;I)V",
-      garbageValue = "-818426546"
-   )
-   @Export("drawTile")
-   void drawTile(int var1, WorldMapScaleHandler var2, IndexedSprite[] var3, AbstractArchive var4, AbstractArchive var5) {
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "(ILkj;[Ltc;Lnm;Lnm;I)V",
+            garbageValue = "-818426546"
+    )
+    void drawTile(int var1, WorldMapScaleHandler var2, IndexedSprite[] var3, AbstractArchive var4, AbstractArchive var5) {
       this.pixelsPerTile = var1;
       if (this.worldMapData_0 != null || !this.worldMapData1List.isEmpty()) {
          if (VarpDefinition.method982(this.regionX, this.regionY, var1) == null) {
@@ -348,13 +330,12 @@ public class WorldMapRegion {
       this.drawMapLinks(var1, var2, var4, var3);
    }
 
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/util/HashSet;III)V",
-      garbageValue = "-1521624109"
-   )
-   @Export("flashElements")
-   void flashElements(HashSet var1, int var2, int var3) {
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/util/HashSet;III)V",
+            garbageValue = "-1521624109"
+    )
+    void flashElements(HashSet var1, int var2, int var3) {
       Iterator var4 = this.iconMap.values().iterator();
 
       while(var4.hasNext()) {
@@ -440,13 +421,12 @@ public class WorldMapRegion {
       this.method1464(var1, var2, var3, var5);
    }
 
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "(IILjz;Lkj;Lkc;I)V",
-      garbageValue = "-2045075746"
-   )
-   @Export("drawTileGround")
-   void drawTileGround(int var1, int var2, AbstractWorldMapData var3, WorldMapScaleHandler var4, WorldMapSprite var5) {
+    @ObfuscatedName("am")
+    @ObfuscatedSignature(
+            descriptor = "(IILjz;Lkj;Lkc;I)V",
+            garbageValue = "-2045075746"
+    )
+    void drawTileGround(int var1, int var2, AbstractWorldMapData var3, WorldMapScaleHandler var4, WorldMapSprite var5) {
       int var6 = var3.floorUnderlayIds[0][var1][var2] - 1;
       int var7 = var3.floorOverlayIds[0][var1][var2] - 1;
       if (var6 == -1 && var7 == -1) {
@@ -758,13 +738,12 @@ public class WorldMapRegion {
 
    }
 
-   @ObfuscatedName("ad")
-   @ObfuscatedSignature(
-      descriptor = "(IILjava/util/HashSet;II)V",
-      garbageValue = "-1769642683"
-   )
-   @Export("drawNonLinkMapIcons")
-   void drawNonLinkMapIcons(int var1, int var2, HashSet var3, int var4) {
+    @ObfuscatedName("ad")
+    @ObfuscatedSignature(
+            descriptor = "(IILjava/util/HashSet;II)V",
+            garbageValue = "-1769642683"
+    )
+    void drawNonLinkMapIcons(int var1, int var2, HashSet var3, int var4) {
       float var5 = (float)var4 / 64.0F;
       float var6 = var5 / 2.0F;
       Iterator var7 = this.iconMap.entrySet().iterator();
@@ -807,13 +786,12 @@ public class WorldMapRegion {
 
    }
 
-   @ObfuscatedName("ap")
-   @ObfuscatedSignature(
-      descriptor = "(Lhw;IIIII)V",
-      garbageValue = "-1649381751"
-   )
-   @Export("drawBackgroundCircle")
-   void drawBackgroundCircle(WorldMapElement var1, int var2, int var3, int var4, int var5) {
+    @ObfuscatedName("ap")
+    @ObfuscatedSignature(
+            descriptor = "(Lhw;IIIII)V",
+            garbageValue = "-1649381751"
+    )
+    void drawBackgroundCircle(WorldMapElement var1, int var2, int var3, int var4, int var5) {
       SpritePixels var6 = var1.getSpriteBool(false);
       if (var6 != null) {
          var6.drawTransBgAt(var2 - var6.subWidth / 2, var3 - var6.subHeight / 2);
@@ -866,13 +844,12 @@ public class WorldMapRegion {
       }
    }
 
-   @ObfuscatedName("be")
-   @ObfuscatedSignature(
-      descriptor = "(IILjava/util/HashSet;II)V",
-      garbageValue = "-2097457957"
-   )
-   @Export("drawMapLinks")
-   void drawMapLinks(int var1, int var2, HashSet var3, int var4) {
+    @ObfuscatedName("be")
+    @ObfuscatedSignature(
+            descriptor = "(IILjava/util/HashSet;II)V",
+            garbageValue = "-2097457957"
+    )
+    void drawMapLinks(int var1, int var2, HashSet var3, int var4) {
       float var5 = (float)var4 / 64.0F;
       Iterator var6 = this.icon0List.iterator();
 
@@ -933,13 +910,12 @@ public class WorldMapRegion {
       return this.createMapLabel(var2);
    }
 
-   @ObfuscatedName("bz")
-   @ObfuscatedSignature(
-      descriptor = "(Lhw;I)Lku;",
-      garbageValue = "433294126"
-   )
-   @Export("createMapLabel")
-   WorldMapLabel createMapLabel(WorldMapElement var1) {
+    @ObfuscatedName("bz")
+    @ObfuscatedSignature(
+            descriptor = "(Lhw;I)Lku;",
+            garbageValue = "433294126"
+    )
+    WorldMapLabel createMapLabel(WorldMapElement var1) {
       if (var1.name != null && this.fonts != null && this.fonts.get(WorldMapLabelSize.WorldMapLabelSize_small) != null) {
          WorldMapLabelSize var2 = WorldMapLabelSize.method1395(var1.textSize);
          if (var2 == null) {
@@ -1009,13 +985,12 @@ public class WorldMapRegion {
       }
    }
 
-   @ObfuscatedName("bd")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ljava/util/List;",
-      garbageValue = "26"
-   )
-   @Export("icons")
-   List icons() {
+    @ObfuscatedName("bd")
+    @ObfuscatedSignature(
+            descriptor = "(B)Ljava/util/List;",
+            garbageValue = "26"
+    )
+    List icons() {
       LinkedList var1 = new LinkedList();
       var1.addAll(this.icon0List);
       var1.addAll(this.iconMap.values());
@@ -1047,13 +1022,12 @@ public class WorldMapRegion {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-28927295"
-   )
-   @Export("clearItemContainer")
-   static void clearItemContainer(int var0) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-28927295"
+    )
+    static void clearItemContainer(int var0) {
       ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var1 != null) {
          for(int var2 = 0; var2 < var1.ids.length; ++var2) {

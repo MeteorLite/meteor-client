@@ -6,35 +6,28 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ih")
 @Implements("Texture")
 public class Texture extends Node {
-   @ObfuscatedName("ag")
-   @Export("Texture_animatedPixels")
-   static int[] Texture_animatedPixels;
-   @ObfuscatedName("au")
-   @Export("averageRGB")
-   int averageRGB;
+    @ObfuscatedName("ag")
+    static int[] Texture_animatedPixels;
+    @ObfuscatedName("au")
+    int averageRGB;
    @ObfuscatedName("ab")
    boolean field1954;
-   @ObfuscatedName("aq")
-   @Export("fileIds")
-   int[] fileIds;
+    @ObfuscatedName("aq")
+    int[] fileIds;
    @ObfuscatedName("al")
    int[] field1949;
    @ObfuscatedName("at")
    int[] field1951;
    @ObfuscatedName("aa")
    int[] field1952;
-   @ObfuscatedName("ay")
-   @Export("animationDirection")
-   int animationDirection;
-   @ObfuscatedName("ao")
-   @Export("animationSpeed")
-   int animationSpeed;
-   @ObfuscatedName("ax")
-   @Export("pixels")
-   int[] pixels;
-   @ObfuscatedName("ai")
-   @Export("isLoaded")
-   boolean isLoaded = false;
+    @ObfuscatedName("ay")
+    int animationDirection;
+    @ObfuscatedName("ao")
+    int animationSpeed;
+    @ObfuscatedName("ax")
+    int[] pixels;
+    @ObfuscatedName("ai")
+    boolean isLoaded = false;
 
    @ObfuscatedSignature(
       descriptor = "(Lsg;)V"
@@ -81,12 +74,11 @@ public class Texture extends Node {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(DILnm;)Z"
-   )
-   @Export("load")
-   boolean load(double var1, int var3, AbstractArchive var4) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(DILnm;)Z"
+    )
+    boolean load(double var1, int var3, AbstractArchive var4) {
       int var5;
       for(var5 = 0; var5 < this.fileIds.length; ++var5) {
          if (var4.getFileFlat(this.fileIds[var5]) == null) {
@@ -182,15 +174,13 @@ public class Texture extends Node {
       return true;
    }
 
-   @ObfuscatedName("an")
-   @Export("reset")
-   void reset() {
+    @ObfuscatedName("an")
+    void reset() {
       this.pixels = null;
    }
 
-   @ObfuscatedName("aw")
-   @Export("animate")
-   void animate(int var1) {
+    @ObfuscatedName("aw")
+    void animate(int var1) {
       if (this.pixels != null) {
          short var2;
          int var3;

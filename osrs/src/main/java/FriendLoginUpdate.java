@@ -8,15 +8,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class FriendLoginUpdate extends Link {
    @ObfuscatedName("af")
    public int field3722 = (int)(class96.clockNow() / 1000L);
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Ltm;"
-   )
-   @Export("friendUsername")
-   public Username friendUsername;
-   @ObfuscatedName("aw")
-   @Export("worldId")
-   public short worldId;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Ltm;"
+    )
+    public Username friendUsername;
+    @ObfuscatedName("aw")
+    public short worldId;
 
    @ObfuscatedSignature(
       descriptor = "(Ltm;I)V"

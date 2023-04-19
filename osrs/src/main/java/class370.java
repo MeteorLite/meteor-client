@@ -12,12 +12,11 @@ public class class370 {
    static char[] field3592;
    @ObfuscatedName("ac")
    static int[] field3594;
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "[Lsj;"
-   )
-   @Export("JagexCache_idxFiles")
-   public static BufferedFile[] JagexCache_idxFiles;
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "[Lsj;"
+    )
+    public static BufferedFile[] JagexCache_idxFiles;
 
    static {
       int var0;
@@ -93,13 +92,12 @@ public class class370 {
       var1[45] = 63;
    }
 
-   @ObfuscatedName("mm")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;III)V",
-      garbageValue = "-1880681871"
-   )
-   @Export("clickWidget")
-   static final void clickWidget(Widget var0, int var1, int var2) {
+    @ObfuscatedName("mm")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;III)V",
+            garbageValue = "-1880681871"
+    )
+    static final void clickWidget(Widget var0, int var1, int var2) {
       if (Client.clickedWidget == null && !Client.isMenuOpen) {
          if (var0 != null) {
             Widget var5 = var0;

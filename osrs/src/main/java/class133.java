@@ -339,13 +339,12 @@ public class class133 extends DualNode {
       var15.method2249();
    }
 
-   @ObfuscatedName("he")
-   @ObfuscatedSignature(
-      descriptor = "(IIIB)V",
-      garbageValue = "-121"
-   )
-   @Export("queueSoundEffect")
-   static void queueSoundEffect(int var0, int var1, int var2) {
+    @ObfuscatedName("he")
+    @ObfuscatedSignature(
+            descriptor = "(IIIB)V",
+            garbageValue = "-121"
+    )
+    static void queueSoundEffect(int var0, int var1, int var2) {
       if (class20.clientPreferences.getCurrentSoundEffectsVolume() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
          Client.soundEffectIds[Client.soundEffectCount] = var0;
          Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;

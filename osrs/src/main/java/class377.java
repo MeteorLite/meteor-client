@@ -114,9 +114,8 @@ public class class377 extends AbstractQueue {
       this.field3608[var1].field3601 = var1;
    }
 
-   @Export("remove")
-   @ObfuscatedName("remove")
-   public boolean remove(Object var1) {
+    @ObfuscatedName("remove")
+    public boolean remove(Object var1) {
       class375 var2 = (class375)this.field3606.remove(var1);
       if (var2 == null) {
          return false;
@@ -141,21 +140,18 @@ public class class377 extends AbstractQueue {
       }
    }
 
-   @Export("peek")
-   @ObfuscatedName("peek")
-   public Object peek() {
+    @ObfuscatedName("peek")
+    public Object peek() {
       return this.field3610 == 0 ? null : this.field3608[0].field3600;
    }
 
-   @Export("size")
-   @ObfuscatedName("size")
-   public int size() {
+    @ObfuscatedName("size")
+    public int size() {
       return this.field3610;
    }
 
-   @Export("offer")
-   @ObfuscatedName("offer")
-   public boolean offer(Object var1) {
+    @ObfuscatedName("offer")
+    public boolean offer(Object var1) {
       if (this.field3606.containsKey(var1)) {
          throw new IllegalArgumentException("");
       } else {
@@ -179,9 +175,8 @@ public class class377 extends AbstractQueue {
       }
    }
 
-   @Export("poll")
-   @ObfuscatedName("poll")
-   public Object poll() {
+    @ObfuscatedName("poll")
+    public Object poll() {
       if (this.field3610 == 0) {
          return null;
       } else {
@@ -202,21 +197,18 @@ public class class377 extends AbstractQueue {
       }
    }
 
-   @Export("contains")
-   @ObfuscatedName("contains")
-   public boolean contains(Object var1) {
+    @ObfuscatedName("contains")
+    public boolean contains(Object var1) {
       return this.field3606.containsKey(var1);
    }
 
-   @Export("iterator")
-   @ObfuscatedName("iterator")
-   public Iterator iterator() {
+    @ObfuscatedName("iterator")
+    public Iterator iterator() {
       return new class376(this);
    }
 
-   @Export("toArray")
-   @ObfuscatedName("toArray")
-   public Object[] toArray() {
+    @ObfuscatedName("toArray")
+    public Object[] toArray() {
       Object[] var1 = super.toArray();
       if (this.field3609 != null) {
          Arrays.sort(var1, this.field3609);

@@ -5,24 +5,22 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nv")
 public class class357 {
-   @ObfuscatedName("iv")
-   @ObfuscatedSignature(
-      descriptor = "Lra;"
-   )
-   @Export("WorldMapElement_fonts")
-   static Fonts WorldMapElement_fonts;
+    @ObfuscatedName("iv")
+    @ObfuscatedSignature(
+            descriptor = "Lra;"
+    )
+    static Fonts WorldMapElement_fonts;
 
    static {
       new HashMap();
    }
 
-   @ObfuscatedName("my")
-   @ObfuscatedSignature(
-      descriptor = "(Ldi;ZI)V",
-      garbageValue = "1366698381"
-   )
-   @Export("closeInterface")
-   static final void closeInterface(InterfaceParent var0, boolean var1) {
+    @ObfuscatedName("my")
+    @ObfuscatedSignature(
+            descriptor = "(Ldi;ZI)V",
+            garbageValue = "1366698381"
+    )
+    static final void closeInterface(InterfaceParent var0, boolean var1) {
       int var2 = var0.group;
       int var3 = (int)var0.key;
       var0.remove();

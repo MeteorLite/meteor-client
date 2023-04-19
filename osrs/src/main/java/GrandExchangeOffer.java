@@ -8,24 +8,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class GrandExchangeOffer {
    @ObfuscatedName("cq")
    static String field3530;
-   @ObfuscatedName("af")
-   @Export("state")
-   byte state;
-   @ObfuscatedName("an")
-   @Export("id")
-   public int id;
-   @ObfuscatedName("aw")
-   @Export("unitPrice")
-   public int unitPrice;
-   @ObfuscatedName("ac")
-   @Export("totalQuantity")
-   public int totalQuantity;
-   @ObfuscatedName("au")
-   @Export("currentQuantity")
-   public int currentQuantity;
-   @ObfuscatedName("ab")
-   @Export("currentPrice")
-   public int currentPrice;
+    @ObfuscatedName("af")
+    byte state;
+    @ObfuscatedName("an")
+    public int id;
+    @ObfuscatedName("aw")
+    public int unitPrice;
+    @ObfuscatedName("ac")
+    public int totalQuantity;
+    @ObfuscatedName("au")
+    public int currentQuantity;
+    @ObfuscatedName("ab")
+    public int currentPrice;
 
    public GrandExchangeOffer() {
    }
@@ -43,23 +37,21 @@ public class GrandExchangeOffer {
       this.currentPrice = var1.readInt();
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-746702541"
-   )
-   @Export("status")
-   public int status() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-746702541"
+    )
+    public int status() {
       return this.state & 7;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "-79"
-   )
-   @Export("type")
-   public int type() {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "-79"
+    )
+    public int type() {
       return (this.state & 8) == 8 ? 1 : 0;
    }
 
@@ -121,13 +113,12 @@ public class GrandExchangeOffer {
       return var4 - var1;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)[Lta;",
-      garbageValue = "1113408540"
-   )
-   @Export("FillMode_values")
-   public static FillMode[] FillMode_values() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(I)[Lta;",
+            garbageValue = "1113408540"
+    )
+    public static FillMode[] FillMode_values() {
       return new FillMode[]{FillMode.field4120, FillMode.SOLID, FillMode.field4119};
    }
 }

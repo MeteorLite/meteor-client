@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fc")
 public class class148 extends class139 {
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("title_muteSprite")
-   static IndexedSprite[] title_muteSprite;
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] title_muteSprite;
    @ObfuscatedName("af")
    String field1347;
    // $FF: synthetic field
@@ -27,34 +26,31 @@ public class class148 extends class139 {
       this.this$0 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1347 = var1.readStringCp1252NullTerminated();
       var1.readInt();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.name = this.field1347;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lhx;",
-      garbageValue = "15"
-   )
-   @Export("getEnum")
-   public static EnumComposition getEnum(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lhx;",
+            garbageValue = "15"
+    )
+    public static EnumComposition getEnum(int var0) {
       EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;

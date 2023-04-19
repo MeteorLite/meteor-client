@@ -11,9 +11,8 @@ public class class207 implements class29 {
    int[] field1864 = new int[128];
    @ObfuscatedName("aw")
    public int[] field1856 = new int[128];
-   @ObfuscatedName("ac")
-   @Export("pressedKeysCount")
-   public int pressedKeysCount = 0;
+    @ObfuscatedName("ac")
+    public int pressedKeysCount = 0;
    @ObfuscatedName("au")
    int[] field1859 = new int[128];
    @ObfuscatedName("ab")
@@ -35,13 +34,12 @@ public class class207 implements class29 {
    @ObfuscatedName("ai")
    public int field1867;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "1311192309"
-   )
-   @Export("vmethod3949")
-   public boolean vmethod3949(int var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "1311192309"
+    )
+    public boolean vmethod3949(int var1) {
       this.method1149(var1);
       this.field1863[var1] = true;
       this.field1858[var1] = true;
@@ -50,13 +48,12 @@ public class class207 implements class29 {
       return true;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "1312051339"
-   )
-   @Export("vmethod3989")
-   public boolean vmethod3989(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "1312051339"
+    )
+    public boolean vmethod3989(int var1) {
       this.field1863[var1] = false;
       this.field1858[var1] = false;
       this.field1865[var1] = true;
@@ -64,13 +61,12 @@ public class class207 implements class29 {
       return true;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(CI)Z",
-      garbageValue = "-2018590760"
-   )
-   @Export("vmethod3951")
-   public boolean vmethod3951(char var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(CI)Z",
+            garbageValue = "-2018590760"
+    )
+    public boolean vmethod3951(char var1) {
       int var2 = this.field1869 + 1 & 127;
       if (var2 != this.field1857) {
          this.field1864[this.field1869] = -1;
@@ -81,13 +77,12 @@ public class class207 implements class29 {
       return false;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(ZB)Z",
-      garbageValue = "-16"
-   )
-   @Export("vmethod3953")
-   public boolean vmethod3953(boolean var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(ZB)Z",
+            garbageValue = "-16"
+    )
+    public boolean vmethod3953(boolean var1) {
       return false;
    }
 
@@ -145,13 +140,12 @@ public class class207 implements class29 {
       return var1 >= 0 && var1 < 112 ? this.field1858[var1] : false;
    }
 
-   @ObfuscatedName("av")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "847321512"
-   )
-   @Export("getKeyPressed")
-   public boolean getKeyPressed(int var1) {
+    @ObfuscatedName("av")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "847321512"
+    )
+    public boolean getKeyPressed(int var1) {
       return var1 >= 0 && var1 < 112 ? this.field1863[var1] : false;
    }
 
@@ -194,13 +188,12 @@ public class class207 implements class29 {
       return var1;
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIILie;Lif;I)V",
-      garbageValue = "-1625886951"
-   )
-   @Export("addObjects")
-   static final void addObjects(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, CollisionMap var7) {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIIILie;Lif;I)V",
+            garbageValue = "-1625886951"
+    )
+    static final void addObjects(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, CollisionMap var7) {
       if (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var1][var2] & 2) != 0 || (Tiles.Tiles_renderFlags[var0][var1][var2] & 16) == 0) {
          if (var0 < Tiles.Tiles_minPlane) {
             Tiles.Tiles_minPlane = var0;
@@ -545,13 +538,12 @@ public class class207 implements class29 {
       }
    }
 
-   @ObfuscatedName("bb")
-   @ObfuscatedSignature(
-      descriptor = "(Lbp;I)V",
-      garbageValue = "2037910040"
-   )
-   @Export("PcmStream_disable")
-   static final void PcmStream_disable(PcmStream var0) {
+    @ObfuscatedName("bb")
+    @ObfuscatedSignature(
+            descriptor = "(Lbp;I)V",
+            garbageValue = "2037910040"
+    )
+    static final void PcmStream_disable(PcmStream var0) {
       var0.active = false;
       if (var0.sound != null) {
          var0.sound.position = 0;

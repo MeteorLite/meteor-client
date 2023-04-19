@@ -4,21 +4,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pj")
 public final class class399 implements Comparable {
-   @ObfuscatedName("wm")
-   @Export("foundItemIds")
-   static short[] foundItemIds;
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "Lgv;"
-   )
-   @Export("clock")
-   static Clock clock;
-   @ObfuscatedName("fw")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive6")
-   static Archive archive6;
+    @ObfuscatedName("wm")
+    static short[] foundItemIds;
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "Lgv;"
+    )
+    static Clock clock;
+    @ObfuscatedName("fw")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive6;
    @ObfuscatedName("af")
    Object field3699;
    @ObfuscatedName("an")
@@ -46,9 +43,8 @@ public final class class399 implements Comparable {
       }
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (var1 instanceof class399) {
          return this.field3700.equals(((class399)var1).field3700);
       } else {
@@ -56,15 +52,13 @@ public final class class399 implements Comparable {
       }
    }
 
-   @Export("hashCode")
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
       return this.field3700.hashCode();
    }
 
-   @Export("compareTo")
-   @ObfuscatedName("compareTo")
-   public int compareTo(Object var1) {
+    @ObfuscatedName("compareTo")
+    public int compareTo(Object var1) {
       return this.method2128((class399)var1);
    }
 

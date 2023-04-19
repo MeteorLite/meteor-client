@@ -6,22 +6,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("di")
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
-   @ObfuscatedName("af")
-   @Export("group")
-   int group;
-   @ObfuscatedName("an")
-   @Export("type")
-   int type;
+    @ObfuscatedName("af")
+    int group;
+    @ObfuscatedName("an")
+    int type;
    @ObfuscatedName("aw")
    boolean field848 = false;
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "([BB)V",
-      garbageValue = "7"
-   )
-   @Export("ByteArrayPool_release")
-   public static synchronized void ByteArrayPool_release(byte[] var0) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "([BB)V",
+            garbageValue = "7"
+    )
+    public static synchronized void ByteArrayPool_release(byte[] var0) {
       if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field3659) {
          ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
       } else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field3660) {
@@ -52,9 +49,8 @@ public class InterfaceParent extends Node {
       StructComposition.StructDefinition_cached.clear();
    }
 
-   @ObfuscatedName("at")
-   @Export("Entity_unpackID")
-   public static int Entity_unpackID(long var0) {
+    @ObfuscatedName("at")
+    public static int Entity_unpackID(long var0) {
       return (int)(var0 >>> 17 & 4294967295L);
    }
 }

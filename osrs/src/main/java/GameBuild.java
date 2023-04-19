@@ -6,55 +6,47 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("md")
 @Implements("GameBuild")
 public class GameBuild {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lmd;"
-   )
-   @Export("LIVE")
-   static final GameBuild LIVE = new GameBuild("LIVE", 0);
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lmd;"
-   )
-   @Export("BUILDLIVE")
-   static final GameBuild BUILDLIVE = new GameBuild("BUILDLIVE", 3);
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lmd;"
-   )
-   @Export("RC")
-   static final GameBuild RC = new GameBuild("RC", 1);
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lmd;"
-   )
-   @Export("WIP")
-   static final GameBuild WIP = new GameBuild("WIP", 2);
-   @ObfuscatedName("fb")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive7")
-   static Archive archive7;
-   @ObfuscatedName("au")
-   @Export("name")
-   public final String name;
-   @ObfuscatedName("ab")
-   @Export("buildId")
-   final int buildId;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lmd;"
+    )
+    static final GameBuild LIVE = new GameBuild("LIVE", 0);
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lmd;"
+    )
+    static final GameBuild BUILDLIVE = new GameBuild("BUILDLIVE", 3);
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lmd;"
+    )
+    static final GameBuild RC = new GameBuild("RC", 1);
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lmd;"
+    )
+    static final GameBuild WIP = new GameBuild("WIP", 2);
+    @ObfuscatedName("fb")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive7;
+    @ObfuscatedName("au")
+    public final String name;
+    @ObfuscatedName("ab")
+    final int buildId;
 
    GameBuild(String var1, int var2) {
       this.name = var1;
       this.buildId = var2;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lsm;",
-      garbageValue = "97"
-   )
-   @Export("getDbTableType")
-   public static DbTableType getDbTableType(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lsm;",
+            garbageValue = "97"
+    )
+    public static DbTableType getDbTableType(int var0) {
       DbTableType var1 = (DbTableType)DbTableType.DBTableType_cache.get((long)var0);
       if (var1 != null) {
          return var1;

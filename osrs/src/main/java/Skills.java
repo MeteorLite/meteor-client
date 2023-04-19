@@ -5,12 +5,10 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("mh")
 @Implements("Skills")
 public class Skills {
-   @ObfuscatedName("an")
-   @Export("Skills_enabled")
-   public static final boolean[] Skills_enabled = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false};
-   @ObfuscatedName("aw")
-   @Export("Skills_experienceTable")
-   public static int[] Skills_experienceTable = new int[99];
+    @ObfuscatedName("an")
+    public static final boolean[] Skills_enabled = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false};
+    @ObfuscatedName("aw")
+    public static int[] Skills_experienceTable = new int[99];
 
    static {
       int var0 = 0;

@@ -295,19 +295,14 @@ public interface Actor extends Renderable, Locatable
 	 */
 	void setGraphicHeight(int height);
 
-	/**
-	 * Get the frame of the currently playing spotanim
-	 *
-	 * @return
-	 */
-	int getSpotAnimFrame();
+	IterableHashTable getGraphics();
 
-	/**
+/*	*//**
 	 * Set the frame of the currently playing spotanim
 	 *
 	 * @param spotAnimFrame
-	 */
-	void setSpotAnimFrame(int spotAnimFrame);
+	 *//*
+	void setSpotAnimFrame(int spotAnimFrame);*/
 
 	/**
 	 * Gets the canvas area of the current tiles the actor is standing on.
@@ -463,12 +458,12 @@ public interface Actor extends Renderable, Locatable
 
 	int getAnimationFrameIndex();
 
-	int exactMoveDeltaX1();
+/*	int exactMoveDeltaX1();
 	int exactMoveDeltaX2();
 	int exactMoveDeltaY1();
-	int exactMoveDeltaY2();
-	int exactMoveArrive1Cycle();
-	int exactMoveArrive2Cycle();
+	int exactMoveDeltaY2();*/
+/*	int exactMoveArrive1Cycle();
+	int exactMoveArrive2Cycle();*/
 	int exactMoveDirection();
 
 	int recolourStartCycle();
@@ -477,7 +472,7 @@ public interface Actor extends Renderable, Locatable
 	byte recolourSaturation();
 	byte recolourLuminance();
 	byte recolourAmount();
-	int getGraphicStartCycle();
+/*	int getGraphicStartCycle();*/
 	boolean showPublicPlayerChat();
 
 	java.awt.Point getClickPoint();

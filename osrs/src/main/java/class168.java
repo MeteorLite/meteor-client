@@ -4,10 +4,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gw")
 public class class168 {
-   @ObfuscatedName("go")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive17")
-   static Archive archive17;
+    @ObfuscatedName("go")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive17;
 }

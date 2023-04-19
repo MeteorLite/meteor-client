@@ -18,9 +18,8 @@ public class class19 implements Callable {
    final class10 field61;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lag;"
+           descriptor = "Lag;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class14 this$0;
 
@@ -32,9 +31,8 @@ public class class19 implements Callable {
       this.field61 = var2;
    }
 
-   @Export("call")
-   @ObfuscatedName("call")
-   public Object call() throws Exception {
+    @ObfuscatedName("call")
+    public Object call() throws Exception {
       try {
          while(this.field61.method37()) {
             PlayerComposition.method1704(10L);

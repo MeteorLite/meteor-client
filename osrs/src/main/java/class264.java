@@ -8,12 +8,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kt")
 public class class264 {
-   @ObfuscatedName("wu")
-   @Export("foundItemIdCount")
-   static int foundItemIdCount;
-   @ObfuscatedName("by")
-   @Export("Widget_loadedInterfaces")
-   public static boolean[] Widget_loadedInterfaces;
+    @ObfuscatedName("wu")
+    static int foundItemIdCount;
+    @ObfuscatedName("by")
+    public static boolean[] Widget_loadedInterfaces;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(
