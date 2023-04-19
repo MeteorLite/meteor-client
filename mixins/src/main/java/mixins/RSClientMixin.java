@@ -33,7 +33,6 @@ import dev.hoot.api.events.ResumePauseSent;
 import dev.hoot.api.widgets.DialogOption;
 
 import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -43,7 +42,6 @@ import javax.annotation.Nullable;
 import eventbus.Events;
 import eventbus.events.*;
 import meteor.Logger;
-import meteor.PrivateServerConfiguration;
 import net.runelite.api.*;
 
 import static net.runelite.api.MenuAction.CANCEL;
@@ -75,7 +73,6 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.api.overlay.OverlayIndex;
-import net.runelite.api.packets.PacketBufferNode;
 import net.runelite.api.vars.AccountType;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetConfig;
@@ -1056,7 +1053,7 @@ public abstract class RSClientMixin implements RSClient {
                                          boolean noted, int scale) {
         assert isClientThread() : "createItemSprite must be called on client thread";
 
-        int zoom = get3dZoom();
+        int zoom = get3dZoom$api();
         set3dZoom(scale);
         try {
             return createItemSprite(itemId, quantity, border, shadowColor, stackable, noted);
@@ -3026,21 +3023,21 @@ public abstract class RSClientMixin implements RSClient {
 
     // Kris's events
 
-    @FieldHook("cameraShakeSpeed")
+/*    @FieldHook("cameraShakeSpeed")
     @Inject
     public static void cameraShakeSpeedChange(int idx) {
         client.getCallbacks().post(Events.CAMERA_SHAKE_EVENT,
                 new CameraShakeEvent(idx, client.cameraShakeIntensity()[idx], client.cameraMoveIntensity()[idx],
                         client.cameraShakeSpeed()[idx]));
-    }
+    }*/
 
-    @FieldHook("cameraShaking")
+/*    @FieldHook("cameraShaking")
     @Inject
     public static void cameraShakingChange(int idx) {
         client.getCallbacks().post(Events.CAMERA_RESET_EVENT, new CameraResetEvent(idx));
-    }
+    }*/
 
-    @FieldHook("cameraMoveToAcceleration")
+/*    @FieldHook("cameraMoveToAcceleration")
     @Inject
     public static void cameraMoveTo(int idx) {
         client.getCallbacks().post(Events.CAMERA_MOVE_TO_EVENT,
@@ -3054,6 +3051,21 @@ public abstract class RSClientMixin implements RSClient {
         client.getCallbacks().post(Events.CAMERA_LOOK_AT_EVENT,
                 new CameraLookAtEvent(client.cameraLookAtX(), client.cameraLookAtY(), client.cameraLookAtHeight(),
                         client.cameraLookAtSpeed(), client.cameraLookAtAcceleration()));
+    }*/
+
+    @Shadow("clips")
+    static RSClips clips;
+
+    @Inject
+    @Override
+    public int getRasterizer3D_clipNegativeMidX() {
+        return clips.getClipNegativeMidX();
+    }
+
+    @Inject
+    @Override
+    public int getRasterizer3D_clipNegativeMidY() {
+        return clips.getClipNegativeMidY();
     }
 
     @FieldHook("minimapState")

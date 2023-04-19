@@ -5,18 +5,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("aa")
+@ObfuscatedName("ad")
 @Implements("Canvas")
 public final class Canvas extends java.awt.Canvas {
-   @ObfuscatedName("uj")
-   @Export("cameraLookAtY")
-   static int cameraLookAtY;
-   @ObfuscatedName("an")
-   @Export("SpriteBuffer_yOffsets")
-   public static int[] SpriteBuffer_yOffsets;
-   @ObfuscatedName("ar")
-   static int field70;
-   @ObfuscatedName("aj")
+   @ObfuscatedName("ay")
+   @ObfuscatedSignature(
+      descriptor = "Ltc;"
+   )
+   @Export("logoSprite")
+   static IndexedSprite logoSprite;
+   @ObfuscatedName("af")
    @Export("component")
    Component component;
 
@@ -32,22 +30,24 @@ public final class Canvas extends java.awt.Canvas {
       this.component.update(var1);
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "([Ljava/lang/String;[IB)V",
-      garbageValue = "123"
+      descriptor = "(IIII)I",
+      garbageValue = "1551365421"
    )
-   public static void method91(String[] var0, int[] var1) {
-      HealthBar.method557(var0, var1, 0, var0.length - 1);
+   public static int method91(int var0, int var1, int var2) {
+      int var3 = class140.method806(var2 - var1 + 1);
+      var3 <<= var1;
+      return var0 & ~var3;
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("ne")
    @ObfuscatedSignature(
-      descriptor = "(IB)Ljava/lang/String;",
-      garbageValue = "-22"
+      descriptor = "(B)V",
+      garbageValue = "0"
    )
-   @Export("colorStartTag")
-   static String colorStartTag(int var0) {
-      return "<col=" + Integer.toHexString(var0) + ">";
+   static void method92() {
+      Client.packetWriter.addNode(class330.getPacketBufferNode(ClientPacket.field2467, Client.packetWriter.isaacCipher));
+      Client.oculusOrbState = 0;
    }
 }

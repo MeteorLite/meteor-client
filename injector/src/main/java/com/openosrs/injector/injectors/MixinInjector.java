@@ -150,7 +150,7 @@ public class MixinInjector extends AbstractInjector
 		{
 			for (ClassFile mixinClass : inject.getMixins())
 			{
-				//System.out.println(mixinClass.getClassName());
+				System.out.println(mixinClass.getClassName());
 				final List<ClassFile> ret = getMixins(mixinClass);
 				builder.put(
 					(ret.size() > 1 ? mixinProvider(mixinClass) : () -> mixinClass),
@@ -178,6 +178,7 @@ public class MixinInjector extends AbstractInjector
 				{
 					if (targetClass.getInterfaces().addInterface(itf))
 					{
+
 						injectedInterfaces++;
 					}
 				});
@@ -773,17 +774,21 @@ public class MixinInjector extends AbstractInjector
 	@SuppressWarnings("unchecked")
 	private List<ClassFile> getMixins(Annotated from)
 	{
-		final Annotation mixin = from.findAnnotation(MIXIN);
-		if (mixin != null)
-		{
-			return List.of(InjectUtil.getVanillaClassFromAnnotationString(inject, mixin));
-		}
-		final Annotation mixins = from.findAnnotation(MIXINS);
-		if (mixins != null)
-		{
-			return ((List<Annotation>) mixins.getValue()).stream()
-				.map(mix -> InjectUtil.getVanillaClassFromAnnotationString(inject, mix))
-				.collect(Collectors.toUnmodifiableList());
+		try {
+			final Annotation mixin = from.findAnnotation(MIXIN);
+			if (mixin != null)
+			{
+				return List.of(InjectUtil.getVanillaClassFromAnnotationString(inject, mixin));
+			}
+			final Annotation mixins = from.findAnnotation(MIXINS);
+			if (mixins != null)
+			{
+				return ((List<Annotation>) mixins.getValue()).stream()
+						.map(mix -> InjectUtil.getVanillaClassFromAnnotationString(inject, mix))
+						.collect(Collectors.toUnmodifiableList());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		throw new IllegalArgumentException("No MIXIN or MIXINS found on " + from.toString());
 	}

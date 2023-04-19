@@ -1,52 +1,48 @@
-import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bb")
+@ObfuscatedName("ba")
 @Implements("SoundCache")
 public class SoundCache {
-   @ObfuscatedName("an")
-   @Export("cacheDir")
-   static File cacheDir;
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "Lne;"
+      descriptor = "Lnm;"
    )
    @Export("soundEffectIndex")
    AbstractArchive soundEffectIndex;
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lne;"
+      descriptor = "Lnm;"
    )
    @Export("musicSampleIndex")
    AbstractArchive musicSampleIndex;
-   @ObfuscatedName("ac")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "Lrh;"
+      descriptor = "Lrc;"
    )
    @Export("musicSamples")
    NodeHashTable musicSamples = new NodeHashTable(256);
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "Lrh;"
+      descriptor = "Lrc;"
    )
    @Export("rawSounds")
    NodeHashTable rawSounds = new NodeHashTable(256);
 
    @ObfuscatedSignature(
-      descriptor = "(Lne;Lne;)V"
+      descriptor = "(Lnm;Lnm;)V"
    )
    public SoundCache(AbstractArchive var1, AbstractArchive var2) {
       this.soundEffectIndex = var1;
       this.musicSampleIndex = var2;
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(II[II)Lbe;",
-      garbageValue = "-234093775"
+      descriptor = "(II[II)Lbr;",
+      garbageValue = "-1986343683"
    )
    @Export("getSoundEffect0")
    RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -74,10 +70,10 @@ public class SoundCache {
       }
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(II[IS)Lbe;",
-      garbageValue = "17177"
+      descriptor = "(II[IB)Lbr;",
+      garbageValue = "7"
    )
    @Export("getMusicSample0")
    RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -111,10 +107,10 @@ public class SoundCache {
       }
    }
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "(I[II)Lbe;",
-      garbageValue = "1998431104"
+      descriptor = "(I[II)Lbr;",
+      garbageValue = "-103180467"
    )
    @Export("getSoundEffect")
    public RawSound getSoundEffect(int var1, int[] var2) {
@@ -127,10 +123,10 @@ public class SoundCache {
       }
    }
 
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(I[II)Lbe;",
-      garbageValue = "731877540"
+      descriptor = "(I[II)Lbr;",
+      garbageValue = "-1251509285"
    )
    @Export("getMusicSample")
    public RawSound getMusicSample(int var1, int[] var2) {
@@ -140,109 +136,6 @@ public class SoundCache {
          return this.getMusicSample0(var1, 0, var2);
       } else {
          throw new RuntimeException();
-      }
-   }
-
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(Lne;II)Lsp;",
-      garbageValue = "-973248165"
-   )
-   public static IndexedSprite method233(AbstractArchive var0, int var1) {
-      byte[] var3 = var0.takeFileFlat(var1);
-      boolean var2;
-      if (var3 == null) {
-         var2 = false;
-      } else {
-         class212.SpriteBuffer_decode(var3);
-         var2 = true;
-      }
-
-      return !var2 ? null : class353.method1890();
-   }
-
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "(ILcv;ZB)I",
-      garbageValue = "12"
-   )
-   static int method230(int var0, Script var1, boolean var2) {
-      Widget var3;
-      if (var0 == 2700) {
-         var3 = WorldMapSection1.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemId;
-         return 1;
-      } else if (var0 == 2701) {
-         var3 = WorldMapSection1.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-         if (var3.itemId != -1) {
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemQuantity;
-         } else {
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-         }
-
-         return 1;
-      } else if (var0 == 2702) {
-         int var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-         InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var5);
-         if (var4 != null) {
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
-         } else {
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-         }
-
-         return 1;
-      } else if (var0 == 2706) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.rootInterface;
-         return 1;
-      } else if (var0 == 2707) {
-         var3 = WorldMapSection1.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.method1772() ? 1 : 0;
-         return 1;
-      } else if (var0 == 2708) {
-         var3 = WorldMapSection1.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-         return World.method394(var3);
-      } else if (var0 == 2709) {
-         var3 = WorldMapSection1.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-         return class420.method2184(var3);
-      } else {
-         return 2;
-      }
-   }
-
-   @ObfuscatedName("in")
-   @ObfuscatedSignature(
-      descriptor = "(Ldh;B)Z",
-      garbageValue = "1"
-   )
-   static boolean method231(Player var0) {
-      if (Client.drawPlayerNames == 0) {
-         return false;
-      } else if (BuddyRankComparator.localPlayer != var0) {
-         boolean var1 = (Client.drawPlayerNames & 4) != 0;
-         boolean var2 = var1;
-         if (!var1) {
-            boolean var3 = (Client.drawPlayerNames & 1) != 0;
-            var2 = var3 && var0.isFriend();
-         }
-
-         return var2 || ItemLayer.method1118() && var0.isFriendsChatMember();
-      } else {
-         return IgnoreList.method2079();
-      }
-   }
-
-   @ObfuscatedName("mf")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)V",
-      garbageValue = "-12"
-   )
-   @Export("clanKickUser")
-   static final void clanKickUser(String var0) {
-      if (ReflectionCheck.friendsChat != null) {
-         PacketBufferNode var1 = UserComparator9.getPacketBufferNode(ClientPacket.field2453, Client.packetWriter.isaacCipher);
-         var1.packetBuffer.writeByte(WorldMapLabel.stringCp1252NullTerminatedByteSize(var0));
-         var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-         Client.packetWriter.addNode(var1);
       }
    }
 }

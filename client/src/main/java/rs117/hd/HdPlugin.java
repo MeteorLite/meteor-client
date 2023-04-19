@@ -1252,8 +1252,8 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 		uniformBuf
 			.put(yaw)
 			.put(pitch)
-			.put(client.getCenterX())
-			.put(client.getCenterY())
+			.put(client.getCenterX$api())
+			.put(client.getCenterY$api())
 			.put(client.getScale())
 			.put(cameraX)
 			.put(cameraY)
@@ -2336,13 +2336,13 @@ public class HdPlugin extends Plugin implements DrawCallbacks
 
 		final int XYZMag = model.getXYZMag();
 		final int bottomY = model.getBottomY();
-		final int zoom = (configShadowsEnabled && configExpandShadowDraw) ? client.get3dZoom() / 2 : client.get3dZoom();
+		final int zoom = (configShadowsEnabled && configExpandShadowDraw) ? client.get3dZoom$api() / 2 : client.get3dZoom$api();
 		final int modelHeight = model.getModelHeight();
 
-		int Rasterizer3D_clipMidX2 = client.getRasterizer3D_clipMidX2();
+		int Rasterizer3D_clipMidX2 = client.getClipMidX2$api();
 		int Rasterizer3D_clipNegativeMidX = client.getRasterizer3D_clipNegativeMidX();
 		int Rasterizer3D_clipNegativeMidY = client.getRasterizer3D_clipNegativeMidY();
-		int Rasterizer3D_clipMidY2 = client.getRasterizer3D_clipMidY2();
+		int Rasterizer3D_clipMidY2 = client.getClipMidY2$api();
 
 		int var11 = yawCos * z - yawSin * x >> 16;
 		int var12 = pitchSin * y + pitchCos * var11 >> 16;

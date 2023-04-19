@@ -1,217 +1,156 @@
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fm")
-public class class148 extends class156 {
-   @ObfuscatedName("aj")
-   int field1327;
+@ObfuscatedName("fc")
+public class class148 extends class139 {
+   @ObfuscatedName("ao")
+   @ObfuscatedSignature(
+      descriptor = "[Ltc;"
+   )
+   @Export("title_muteSprite")
+   static IndexedSprite[] title_muteSprite;
+   @ObfuscatedName("af")
+   String field1347;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lgk;"
+      descriptor = "Lfa;"
    )
-   final class157 this$0;
+   final class142 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Lgk;)V"
+      descriptor = "(Lfa;)V"
    )
-   class148(class157 var1) {
+   class148(class142 var1) {
       this.this$0 = var1;
-      this.field1327 = -1;
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;I)V",
-      garbageValue = "2070491057"
+      descriptor = "(Lsg;I)V",
+      garbageValue = "168736686"
    )
-   @Export("vmethod3238")
-   void vmethod3238(Buffer var1) {
-      this.field1327 = var1.readUnsignedShort();
-      var1.readUnsignedByte();
-      if (var1.readUnsignedByte() != 255) {
-         --var1.offset;
-         var1.readLong();
-      }
+   @Export("vmethod3254")
+   void vmethod3254(Buffer var1) {
+      this.field1347 = var1.readStringCp1252NullTerminated();
+      var1.readInt();
+   }
 
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(Lfj;I)V",
+      garbageValue = "1712319228"
+   )
+   @Export("vmethod3248")
+   void vmethod3248(ClanSettings var1) {
+      var1.name = this.field1347;
+   }
+
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(IB)Lhx;",
+      garbageValue = "15"
+   )
+   @Export("getEnum")
+   public static EnumComposition getEnum(int var0) {
+      EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         byte[] var2 = EnumComposition.EnumDefinition_archive.takeFile(8, var0);
+         var1 = new EnumComposition();
+         if (var2 != null) {
+            var1.decode(new Buffer(var2));
+         }
+
+         EnumComposition.EnumDefinition_cached.put(var1, (long)var0);
+         return var1;
+      }
    }
 
    @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(Lgn;B)V",
-      garbageValue = "-82"
+      descriptor = "(I)Lgv;",
+      garbageValue = "450057476"
    )
-   @Export("vmethod3239")
-   void vmethod3239(ClanChannel var1) {
-      var1.removeMember(this.field1327);
-   }
-
-   @ObfuscatedName("co")
-   @ObfuscatedSignature(
-      descriptor = "(Lrf;I)Ljava/lang/Object;",
-      garbageValue = "556757847"
-   )
-   static Object method778(class467 var0) {
-      if (var0 == null) {
-         throw new IllegalStateException("popValueOfType() failure - null baseVarType");
-      } else {
-         switch(var0.field3946) {
-         case 0:
-            return Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-         case 2:
-            return Interpreter.Interpreter_stringStack[--HealthBar.Interpreter_stringStackSize];
-         default:
-            throw new IllegalStateException("popValueOfType() failure - unsupported type");
-         }
+   public static Clock method840() {
+      try {
+         return new NanoClock();
+      } catch (Throwable var1) {
+         return new MilliClock();
       }
    }
 
-   @ObfuscatedName("jf")
+   @ObfuscatedName("as")
    @ObfuscatedSignature(
-      descriptor = "(IIB)V",
-      garbageValue = "0"
+      descriptor = "(Lgd;III)Lbu;",
+      garbageValue = "1831095645"
    )
-   @Export("updateItemPile")
-   static final void updateItemPile(int var0, int var1) {
-      NodeDeque var2 = Client.groundItems[TaskHandler.Client_plane][var0][var1];
-      if (var2 == null) {
-         class1.scene.removeGroundItemPile(TaskHandler.Client_plane, var0, var1);
-      } else {
-         long var3 = -99999999L;
-         TileItem var5 = null;
-
-         TileItem var6;
-         for(var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-            ItemComposition var7 = ParamComposition.ItemDefinition_get(var6.id);
-            long var8 = (long)var7.price;
-            if (var7.isStackable == 1) {
-               var8 *= var6.quantity < Integer.MAX_VALUE ? (long)(var6.quantity + 1) : (long)var6.quantity;
-            }
-
-            if (var8 > var3) {
-               var3 = var8;
-               var5 = var6;
-            }
+   public static final PcmPlayer method843(TaskHandler var0, int var1, int var2) {
+      if (PcmPlayer.field201 == 0) {
+         throw new IllegalStateException();
+      } else if (var1 >= 0 && var1 < 2) {
+         if (var2 < 256) {
+            var2 = 256;
          }
 
-         if (var5 == null) {
-            class1.scene.removeGroundItemPile(TaskHandler.Client_plane, var0, var1);
-         } else {
-            var2.addLast(var5);
-            TileItem var12 = null;
-            TileItem var11 = null;
+         try {
+            PcmPlayer var3 = PcmPlayer.pcmPlayerProvider.player();
+            var3.samples = new int[256 * (PcmPlayer.PcmPlayer_stereo ? 2 : 1)];
+            var3.field200 = var2;
+            var3.init();
+            var3.capacity = (var2 & -1024) + 1024;
+            if (var3.capacity > 16384) {
+               var3.capacity = 16384;
+            }
 
-            for(var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-               if (var5.id != var6.id) {
-                  if (var12 == null) {
-                     var12 = var6;
-                  }
+            var3.open(var3.capacity);
+            if (UrlRequest.field1154 > 0 && class354.soundSystem == null) {
+               class354.soundSystem = new SoundSystem();
+               SoundSystem.soundSystemExecutor = Executors.newScheduledThreadPool(1);
+               SoundSystem.soundSystemExecutor.scheduleAtFixedRate(class354.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
+            }
 
-                  if (var12.id != var6.id && var11 == null) {
-                     var11 = var6;
-                  }
+            if (class354.soundSystem != null) {
+               if (class354.soundSystem.players[var1] != null) {
+                  throw new IllegalArgumentException();
                }
+
+               class354.soundSystem.players[var1] = var3;
             }
 
-            long var9 = class103.calculateTag(var0, var1, 3, false, 0);
-            class1.scene.newGroundItemPile(TaskHandler.Client_plane, var0, var1, WorldMapDecorationType.getTileHeight(var0 * 128 + 64, var1 * 128 + 64, TaskHandler.Client_plane), var5, var9, var12, var11);
+            return var3;
+         } catch (Throwable var4) {
+            return new PcmPlayer();
          }
+      } else {
+         throw new IllegalArgumentException();
       }
    }
 
-   @ObfuscatedName("jw")
+   @ObfuscatedName("ml")
    @ObfuscatedSignature(
-      descriptor = "(ZLsq;B)V",
-      garbageValue = "3"
+      descriptor = "(I)V",
+      garbageValue = "-1480705530"
    )
-   @Export("updateNpcs")
-   static final void updateNpcs(boolean var0, PacketBuffer var1) {
-      Client.field480 = 0;
-      Client.field413 = 0;
-      var1.importIndex();
-      int var2 = var1.readBits(8);
-      int var3;
-      if (var2 < Client.npcCount) {
-         for(var3 = var2; var3 < Client.npcCount; ++var3) {
-            Client.field481[++Client.field480 - 1] = Client.npcIndices[var3];
+   static final void method844() {
+      PacketBufferNode var0 = class330.getPacketBufferNode(ClientPacket.field2532, Client.packetWriter.isaacCipher);
+      Client.packetWriter.addNode(var0);
+      Interpreter.field704 = true;
+
+      for(InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) {
+         if (var1.type == 0 || var1.type == 3) {
+            class357.closeInterface(var1, true);
          }
       }
 
-      if (var2 > Client.npcCount) {
-         throw new RuntimeException("");
-      } else {
-         Client.npcCount = 0;
-
-         for(var3 = 0; var3 < var2; ++var3) {
-            int var4 = Client.npcIndices[var3];
-            NPC var5 = Client.npcs[var4];
-            int var6 = var1.readBits(1);
-            if (var6 == 0) {
-               Client.npcIndices[++Client.npcCount - 1] = var4;
-               var5.npcCycle = Client.cycle;
-            } else {
-               int var7 = var1.readBits(2);
-               if (var7 == 0) {
-                  Client.npcIndices[++Client.npcCount - 1] = var4;
-                  var5.npcCycle = Client.cycle;
-                  Client.field535[++Client.field413 - 1] = var4;
-               } else {
-                  int var8;
-                  int var9;
-                  if (var7 == 1) {
-                     Client.npcIndices[++Client.npcCount - 1] = var4;
-                     var5.npcCycle = Client.cycle;
-                     var8 = var1.readBits(3);
-                     var5.move(var8, MoveSpeed.WALK);
-                     var9 = var1.readBits(1);
-                     if (var9 == 1) {
-                        Client.field535[++Client.field413 - 1] = var4;
-                     }
-                  } else if (var7 == 2) {
-                     Client.npcIndices[++Client.npcCount - 1] = var4;
-                     var5.npcCycle = Client.cycle;
-                     if (var1.readBits(1) == 1) {
-                        var8 = var1.readBits(3);
-                        var5.move(var8, MoveSpeed.RUN);
-                        var9 = var1.readBits(3);
-                        var5.move(var9, MoveSpeed.RUN);
-                     } else {
-                        var8 = var1.readBits(3);
-                        var5.move(var8, MoveSpeed.CRAWL);
-                     }
-
-                     var8 = var1.readBits(1);
-                     if (var8 == 1) {
-                        Client.field535[++Client.field413 - 1] = var4;
-                     }
-                  } else if (var7 == 3) {
-                     Client.field481[++Client.field480 - 1] = var4;
-                  }
-               }
-            }
-         }
-
-         class19.method78(var0, var1);
-         class181.method923(var1);
-
-         for(var2 = 0; var2 < Client.field480; ++var2) {
-            var3 = Client.field481[var2];
-            if (Client.npcs[var3].npcCycle != Client.cycle) {
-               Client.npcs[var3].definition = null;
-               Client.npcs[var3] = null;
-            }
-         }
-
-         if (var1.offset != Client.packetWriter.serverPacketLength) {
-            throw new RuntimeException(var1.offset + "," + Client.packetWriter.serverPacketLength);
-         } else {
-            for(var2 = 0; var2 < Client.npcCount; ++var2) {
-               if (Client.npcs[Client.npcIndices[var2]] == null) {
-                  throw new RuntimeException(var2 + "," + Client.npcCount);
-               }
-            }
-
-         }
+      if (Client.meslayerContinueWidget != null) {
+         class144.invalidateWidget(Client.meslayerContinueWidget);
+         Client.meslayerContinueWidget = null;
       }
+
+      Interpreter.field704 = false;
    }
 }

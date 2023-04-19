@@ -1,4 +1,5 @@
 import java.io.EOFException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,28 +9,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ee")
+@ObfuscatedName("ep")
 @Implements("Varcs")
 public class Varcs {
-   @ObfuscatedName("ac")
+   @ObfuscatedName("gg")
+   @ObfuscatedSignature(
+      descriptor = "Lqw;"
+   )
+   @Export("spriteIds")
+   static GraphicsDefaults spriteIds;
+   @ObfuscatedName("aw")
    @Export("intsPersistence")
    boolean[] intsPersistence;
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ac")
    @Export("map")
    Map map;
    /** @deprecated */
    @Deprecated
-   @ObfuscatedName("an")
+   @ObfuscatedName("au")
    @Export("strings")
    String[] strings;
-   @ObfuscatedName("ao")
+   @ObfuscatedName("ab")
    @Export("unwrittenChanges")
    boolean unwrittenChanges = false;
-   @ObfuscatedName("av")
-   long field1109;
+   @ObfuscatedName("aq")
+   long field1120;
 
    Varcs() {
-      int var1 = class258.archive2.getGroupFileCount(19);
+      int var1 = class85.archive2.getGroupFileCount(19);
       this.map = new HashMap();
       this.intsPersistence = new boolean[var1];
 
@@ -40,10 +47,10 @@ public class Varcs {
          if (var4 != null) {
             var3 = var4;
          } else {
-            byte[] var5 = VarcInt.VarcInt_archive.takeFile(19, var2);
+            byte[] var5 = class294.VarcInt_archive.takeFile(19, var2);
             var4 = new VarcInt();
             if (var5 != null) {
-               var4.method936(new Buffer(var5));
+               var4.method991(new Buffer(var5));
             }
 
             VarcInt.VarcInt_cached.put(var4, (long)var2);
@@ -54,18 +61,18 @@ public class Varcs {
       }
 
       var2 = 0;
-      if (class258.archive2.method1818(15)) {
-         var2 = class258.archive2.getGroupFileCount(15);
+      if (class85.archive2.method1870(15)) {
+         var2 = class85.archive2.getGroupFileCount(15);
       }
 
       this.strings = new String[var2];
       this.read();
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "(III)V",
-      garbageValue = "189351145"
+      garbageValue = "1427050414"
    )
    @Export("setInt")
    void setInt(int var1, int var2) {
@@ -76,10 +83,10 @@ public class Varcs {
 
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(IS)I",
-      garbageValue = "17769"
+      descriptor = "(II)I",
+      garbageValue = "721184906"
    )
    @Export("getInt")
    int getInt(int var1) {
@@ -87,20 +94,20 @@ public class Varcs {
       return var2 instanceof Integer ? (Integer)var2 : -1;
    }
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "(ILjava/lang/String;I)V",
-      garbageValue = "106800955"
+      garbageValue = "-875468987"
    )
    @Export("setString")
    void setString(int var1, String var2) {
       this.map.put(var1, var2);
    }
 
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
       descriptor = "(II)Ljava/lang/String;",
-      garbageValue = "-1782127200"
+      garbageValue = "-1231946680"
    )
    @Export("getString")
    String getString(int var1) {
@@ -110,10 +117,10 @@ public class Varcs {
 
    /** @deprecated */
    @Deprecated
-   @ObfuscatedName("an")
+   @ObfuscatedName("au")
    @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;B)V",
-      garbageValue = "113"
+      descriptor = "(ILjava/lang/String;I)V",
+      garbageValue = "-1623165865"
    )
    @Export("setStringOld")
    void setStringOld(int var1, String var2) {
@@ -122,20 +129,20 @@ public class Varcs {
 
    /** @deprecated */
    @Deprecated
-   @ObfuscatedName("ao")
+   @ObfuscatedName("ab")
    @ObfuscatedSignature(
-      descriptor = "(II)Ljava/lang/String;",
-      garbageValue = "-81497682"
+      descriptor = "(IB)Ljava/lang/String;",
+      garbageValue = "8"
    )
    @Export("getStringOld")
    String getStringOld(int var1) {
       return this.strings[var1];
    }
 
-   @ObfuscatedName("av")
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "-1424772556"
+      garbageValue = "-39979061"
    )
    @Export("clearTransient")
    void clearTransient() {
@@ -152,20 +159,20 @@ public class Varcs {
 
    }
 
-   @ObfuscatedName("aq")
+   @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(ZB)Lre;",
-      garbageValue = "20"
+      descriptor = "(ZB)Lsy;",
+      garbageValue = "61"
    )
    @Export("getPreferencesFile")
    AccessFile getPreferencesFile(boolean var1) {
-      return class350.getPreferencesFile("2", DbTableType.field3951.name, var1);
+      return Rasterizer3D.getPreferencesFile("2", Client.field358.name, var1);
    }
 
-   @ObfuscatedName("ap")
+   @ObfuscatedName("at")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "685094308"
+      garbageValue = "1900216587"
    )
    @Export("write")
    void write() {
@@ -185,7 +192,7 @@ public class Varcs {
                if (var7 instanceof Integer) {
                   var2 += 4;
                } else if (var7 instanceof String) {
-                  var2 += WorldMapLabel.stringCp1252NullTerminatedByteSize((String)var7);
+                  var2 += DynamicObject.stringCp1252NullTerminatedByteSize((String)var7);
                }
 
                ++var3;
@@ -203,9 +210,9 @@ public class Varcs {
             if (this.intsPersistence[var13]) {
                var23.writeShort(var13);
                Object var8 = var12.getValue();
-               class467 var9 = class467.method2365(var8.getClass());
-               var23.writeByte(var9.field3947);
-               class467.method2366(var8, var23);
+               class478 var9 = class478.method2431(var8.getClass());
+               var23.writeByte(var9.field4030);
+               class478.method2440(var8, var23);
             }
          }
 
@@ -222,19 +229,19 @@ public class Varcs {
       }
 
       this.unwrittenChanges = false;
-      this.field1109 = WorldMapSection2.clockNow();
+      this.field1120 = class96.clockNow();
    }
 
-   @ObfuscatedName("ar")
+   @ObfuscatedName("aa")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-183595775"
+      descriptor = "(B)V",
+      garbageValue = "-44"
    )
    @Export("read")
    void read() {
       AccessFile var1 = this.getPreferencesFile(false);
 
-      label213: {
+      label240: {
          try {
             byte[] var2 = new byte[(int)var1.length()];
 
@@ -263,14 +270,14 @@ public class Varcs {
 
                   while(true) {
                      if (var7 >= var16) {
-                        break label213;
+                        break label240;
                      }
 
                      var8 = var14.readUnsignedShort();
                      var9 = var14.readUnsignedByte();
-                     class467 var10 = (class467)SpriteMask.findEnumerated(class467.method2367(), var9);
-                     Object var11 = var10.method2362(var14);
-                     if (this.intsPersistence[var8]) {
+                     class478 var10 = (class478)StructComposition.findEnumerated(class478.method2432(), var9);
+                     Object var11 = var10.method2435(var14);
+                     if (var8 >= 0 && var8 < this.intsPersistence.length && this.intsPersistence[var8]) {
                         this.map.put(var8, var11);
                      }
 
@@ -282,7 +289,7 @@ public class Varcs {
                   for(var7 = 0; var7 < var16; ++var7) {
                      var8 = var14.readUnsignedShort();
                      var9 = var14.readInt();
-                     if (this.intsPersistence[var8]) {
+                     if (var8 >= 0 && var8 < this.intsPersistence.length && this.intsPersistence[var8]) {
                         this.map.put(var8, var9);
                      }
                   }
@@ -292,7 +299,7 @@ public class Varcs {
 
                   while(true) {
                      if (var8 >= var7) {
-                        break label213;
+                        break label240;
                      }
 
                      var14.readUnsignedShort();
@@ -302,7 +309,7 @@ public class Varcs {
                }
             }
          } catch (Exception var25) {
-            break label213;
+            break label240;
          } finally {
             try {
                var1.close();
@@ -318,61 +325,138 @@ public class Varcs {
       this.unwrittenChanges = false;
    }
 
-   @ObfuscatedName("ak")
+   @ObfuscatedName("ay")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "295942057"
+      garbageValue = "2118979895"
    )
    @Export("tryWrite")
    void tryWrite() {
-      if (this.unwrittenChanges && this.field1109 < WorldMapSection2.clockNow() - 60000L) {
+      if (this.unwrittenChanges && this.field1120 < class96.clockNow() - 60000L) {
          this.write();
       }
 
    }
 
-   @ObfuscatedName("ax")
+   @ObfuscatedName("ao")
    @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "-90"
+      descriptor = "(I)Z",
+      garbageValue = "-1302793492"
    )
    @Export("hasUnwrittenChanges")
    boolean hasUnwrittenChanges() {
       return this.unwrittenChanges;
    }
 
-   @ObfuscatedName("ay")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(IIII)I",
-      garbageValue = "-2118839909"
+      descriptor = "(B)[Llm;",
+      garbageValue = "-49"
    )
-   static final int method617(int var0, int var1, int var2) {
-      int var3 = var0 / var2;
-      int var4 = var0 & var2 - 1;
-      int var5 = var1 / var2;
-      int var6 = var1 & var2 - 1;
-      int var7 = class137.method738(var3, var5);
-      int var8 = class137.method738(var3 + 1, var5);
-      int var9 = class137.method738(var3, var5 + 1);
-      int var10 = class137.method738(var3 + 1, var5 + 1);
-      int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
-      int var11 = ((65536 - var12) * var7 >> 16) + (var12 * var8 >> 16);
-      int var14 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
-      int var13 = ((65536 - var14) * var9 >> 16) + (var14 * var10 >> 16);
-      int var16 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1;
-      int var15 = ((65536 - var16) * var11 >> 16) + (var16 * var13 >> 16);
-      return var15;
+   public static ZoneOperation[] method641() {
+      return new ZoneOperation[]{ZoneOperation.field2571, ZoneOperation.field2563, ZoneOperation.field2566, ZoneOperation.field2564, ZoneOperation.field2565, ZoneOperation.field2567, ZoneOperation.field2572, ZoneOperation.field2568, ZoneOperation.field2569, ZoneOperation.field2570, ZoneOperation.field2562};
    }
 
-   @ObfuscatedName("nd")
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1952675812"
+      descriptor = "(I)Ljava/util/Date;",
+      garbageValue = "2052817619"
    )
-   static void method619() {
-      if (Client.oculusOrbState == 1) {
-         Client.oculusOrbOnLocalPlayer = true;
+   static Date method651() {
+      java.util.Calendar var0 = java.util.Calendar.getInstance();
+      var0.set(2, 0);
+      var0.set(5, 1);
+      var0.set(1, 1900);
+      return var0.getTime();
+   }
+
+   @ObfuscatedName("aq")
+   @ObfuscatedSignature(
+      descriptor = "(ILch;ZI)I",
+      garbageValue = "2095977299"
+   )
+   static int method654(int var0, Script var1, boolean var2) {
+      Widget var3;
+      if (var0 >= 2000) {
+         var0 -= 1000;
+         var3 = class165.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+      } else {
+         var3 = var2 ? SoundSystem.scriptDotWidget : class1.scriptActiveWidget;
       }
 
+      class144.invalidateWidget(var3);
+      int var4;
+      int var5;
+      if (var0 != 1200 && var0 != 1205 && var0 != 1212) {
+         if (var0 == 1201) {
+            var3.modelType = 2;
+            var3.modelId = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+            return 1;
+         } else if (var0 == 1202) {
+            var3.modelType = 3;
+            var3.modelId = MusicPatchNode.localPlayer.appearance.getChatHeadId();
+            return 1;
+         } else if (var0 == 1207) {
+            boolean var7 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
+            SecureRandomCallable.method476(var3, MusicPatchNode.localPlayer.appearance, var7);
+            return 1;
+         } else if (var0 == 1208) {
+            var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+            if (var3.field2894 == null) {
+               throw new RuntimeException("");
+            } else {
+               class282.method1591(var3, var4);
+               return 1;
+            }
+         } else if (var0 == 1209) {
+            Interpreter.Interpreter_intStackSize -= 2;
+            var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+            var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+            if (var3.field2894 == null) {
+               throw new RuntimeException("");
+            } else {
+               ChatChannel.method470(var3, var4, var5);
+               return 1;
+            }
+         } else if (var0 == 1210) {
+            var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+            if (var3.field2894 == null) {
+               throw new RuntimeException("");
+            } else {
+               class162.method911(var3, MusicPatchNode.localPlayer.appearance.field2840, var4);
+               return 1;
+            }
+         } else {
+            return 2;
+         }
+      } else {
+         Interpreter.Interpreter_intStackSize -= 2;
+         var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+         var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+         var3.itemId = var4;
+         var3.itemQuantity = var5;
+         ItemComposition var6 = HealthBarUpdate.ItemDefinition_get(var4);
+         var3.modelAngleX = var6.xan2d;
+         var3.modelAngleY = var6.yan2d;
+         var3.modelAngleZ = var6.zan2d;
+         var3.modelOffsetX = var6.offsetX2d;
+         var3.modelOffsetY = var6.offsetY2d;
+         var3.modelZoom = var6.zoom2d;
+         if (var0 == 1205) {
+            var3.itemQuantityMode = 0;
+         } else if (var0 == 1212 | var6.isStackable == 1) {
+            var3.itemQuantityMode = 1;
+         } else {
+            var3.itemQuantityMode = 2;
+         }
+
+         if (var3.modelRotation > 0) {
+            var3.modelZoom = var3.modelZoom * 32 / var3.modelRotation;
+         } else if (var3.rawWidth > 0) {
+            var3.modelZoom = var3.modelZoom * 32 / var3.rawWidth;
+         }
+
+         return 1;
+      }
    }
 }

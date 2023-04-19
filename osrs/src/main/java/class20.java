@@ -8,35 +8,33 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("af")
+@ObfuscatedName("aj")
 public class class20 {
-   @ObfuscatedName("fw")
+   @ObfuscatedName("vb")
    @ObfuscatedSignature(
-      descriptor = "Lmx;"
+      descriptor = "Ldu;"
    )
-   static Archive field63;
-   @ObfuscatedName("nt")
-   @Export("menuX")
-   static int menuX;
-   @ObfuscatedName("aj")
-   final int field62;
-   @ObfuscatedName("al")
-   final Map field61;
-   @ObfuscatedName("ac")
-   final String field65;
+   @Export("clientPreferences")
+   static ClientPreferences clientPreferences;
+   @ObfuscatedName("af")
+   final int field64;
+   @ObfuscatedName("an")
+   final Map field63;
+   @ObfuscatedName("aw")
+   final String field62;
 
    class20(String var1) {
-      this.field62 = 400;
-      this.field61 = null;
-      this.field65 = "";
+      this.field64 = 400;
+      this.field63 = null;
+      this.field62 = "";
    }
 
    class20(HttpURLConnection var1) throws IOException {
-      this.field62 = var1.getResponseCode();
+      this.field64 = var1.getResponseCode();
       var1.getResponseMessage();
-      this.field61 = var1.getHeaderFields();
+      this.field63 = var1.getHeaderFields();
       StringBuilder var2 = new StringBuilder();
-      InputStream var3 = this.field62 >= 300 ? var1.getErrorStream() : var1.getInputStream();
+      InputStream var3 = this.field64 >= 300 ? var1.getErrorStream() : var1.getInputStream();
       if (var3 != null) {
          InputStreamReader var4 = new InputStreamReader(var3);
          BufferedReader var5 = new BufferedReader(var4);
@@ -49,54 +47,69 @@ public class class20 {
          var3.close();
       }
 
-      this.field65 = var2.toString();
+      this.field62 = var2.toString();
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "(I)I",
-      garbageValue = "-273056484"
+      garbageValue = "-869061222"
    )
-   public int method81() {
-      return this.field62;
+   public int method79() {
+      return this.field64;
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "(I)Ljava/util/Map;",
-      garbageValue = "559887748"
+      garbageValue = "-1956902698"
    )
    public Map method80() {
-      return this.field61;
+      return this.field63;
+   }
+
+   @ObfuscatedName("aw")
+   @ObfuscatedSignature(
+      descriptor = "(I)Ljava/lang/String;",
+      garbageValue = "1415778501"
+   )
+   public String method81() {
+      return this.field62;
    }
 
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "-1857518373"
+      descriptor = "(III)I",
+      garbageValue = "-964267539"
    )
-   public String method82() {
-      return this.field65;
+   static int method83(int var0, int var1) {
+      long var2 = (long)((var0 << 16) + var1);
+      return Script.NetCache_currentResponse != null && Script.NetCache_currentResponse.key == var2 ? NetCache.NetCache_responseArchiveBuffer.offset * 99 / (NetCache.NetCache_responseArchiveBuffer.array.length - Script.NetCache_currentResponse.padding) + 1 : 0;
    }
 
-   @ObfuscatedName("mt")
+   @ObfuscatedName("ag")
    @ObfuscatedSignature(
-      descriptor = "(IIB)V",
-      garbageValue = "11"
+      descriptor = "(II)I",
+      garbageValue = "854271946"
    )
-   static final void method83(int var0, int var1) {
-      ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class19.guestClanChannel;
-      if (var2 != null && var1 >= 0 && var1 < var2.method843()) {
-         ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
-         if (var3.rank == -1) {
-            String var4 = var3.username.getName();
-            PacketBufferNode var5 = UserComparator9.getPacketBufferNode(ClientPacket.field2430, Client.packetWriter.isaacCipher);
-            var5.packetBuffer.writeByte(3 + WorldMapLabel.stringCp1252NullTerminatedByteSize(var4));
-            var5.packetBuffer.writeByte(var0);
-            var5.packetBuffer.writeShort(var1);
-            var5.packetBuffer.writeStringCp1252NullTerminated(var4);
-            Client.packetWriter.addNode(var5);
+   public static int method82(int var0) {
+      class133 var2 = (class133)SequenceDefinition.SequenceDefinition_cachedModel.get((long)var0);
+      class133 var1;
+      if (var2 != null) {
+         var1 = var2;
+      } else {
+         var2 = class211.method1180(SequenceDefinition.SequenceDefinition_animationsArchive, SequenceDefinition.SequenceDefinition_skeletonsArchive, var0, false);
+         if (var2 != null) {
+            SequenceDefinition.SequenceDefinition_cachedModel.put(var2, (long)var0);
          }
+
+         var1 = var2;
+      }
+
+      if (var1 == null) {
+         return 2;
+      } else {
+         return var1.method774() ? 0 : 1;
       }
    }
 }

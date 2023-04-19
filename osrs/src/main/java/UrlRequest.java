@@ -4,74 +4,79 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eo")
+@ObfuscatedName("ez")
 @Implements("UrlRequest")
 public class UrlRequest {
-   @ObfuscatedName("al")
-   static int field1140 = -1;
-   @ObfuscatedName("ac")
-   static int field1141 = -2;
-   @ObfuscatedName("aj")
-   final URL field1142;
-   @ObfuscatedName("ab")
-   volatile int field1139;
    @ObfuscatedName("an")
+   static int field1151 = -1;
+   @ObfuscatedName("aw")
+   static int field1150 = -2;
+   @ObfuscatedName("at")
+   public static int field1154;
+   @ObfuscatedName("af")
+   final URL field1152;
+   @ObfuscatedName("ac")
+   volatile int field1149;
+   @ObfuscatedName("au")
    @Export("response0")
    volatile byte[] response0;
 
    UrlRequest(URL var1) {
-      this.field1139 = field1140;
-      this.field1142 = var1;
+      this.field1149 = field1151;
+      this.field1152 = var1;
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "549528116"
+      descriptor = "(B)Z",
+      garbageValue = "-54"
    )
    @Export("isDone")
    public boolean isDone() {
-      return this.field1139 != field1140;
+      return this.field1149 != field1151;
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(I)[B",
-      garbageValue = "1852193551"
+      descriptor = "(B)[B",
+      garbageValue = "76"
    )
    @Export("getResponse")
    public byte[] getResponse() {
       return this.response0;
    }
 
+   @ObfuscatedName("aw")
+   @ObfuscatedSignature(
+      descriptor = "(B)Ljava/lang/String;",
+      garbageValue = "82"
+   )
+   public String method679() {
+      return this.field1152.toString();
+   }
+
    @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(S)Ljava/lang/String;",
-      garbageValue = "-24011"
-   )
-   public String method644() {
-      return this.field1142.toString();
+   @Export("Rasterizer3D_brighten")
+   static int Rasterizer3D_brighten(int var0, double var1) {
+      double var3 = (double)(var0 >> 16) / 256.0D;
+      double var5 = (double)(var0 >> 8 & 255) / 256.0D;
+      double var7 = (double)(var0 & 255) / 256.0D;
+      var3 = Math.pow(var3, var1);
+      var5 = Math.pow(var5, var1);
+      var7 = Math.pow(var7, var1);
+      int var9 = (int)(var3 * 256.0D);
+      int var10 = (int)(var5 * 256.0D);
+      int var11 = (int)(var7 * 256.0D);
+      return var11 + (var10 << 8) + (var9 << 16);
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(IZIZI)V",
-      garbageValue = "837272188"
-   )
-   @Export("sortWorldList")
-   static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-      if (class260.World_worlds != null) {
-         class12.doWorldSorting(0, class260.World_worlds.length - 1, var0, var1, var2, var3);
-      }
-
-   }
-
-   @ObfuscatedName("ao")
+   @ObfuscatedName("as")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "1203549376"
+      garbageValue = "-560341895"
    )
-   public static void method645() {
-      ParamComposition.ParamDefinition_cached.clear();
+   static void method680() {
+      class129.method763(24);
+      class205.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
    }
 }

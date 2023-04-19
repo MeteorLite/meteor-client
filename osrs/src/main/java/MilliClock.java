@@ -3,96 +3,98 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gq")
+@ObfuscatedName("gb")
 @Implements("MilliClock")
 public class MilliClock extends Clock {
-   @ObfuscatedName("aj")
-   long[] field1437 = new long[10];
-   @ObfuscatedName("al")
-   int field1438 = 256;
-   @ObfuscatedName("ac")
-   int field1436 = 1;
-   @ObfuscatedName("ab")
-   long field1439 = WorldMapSection2.clockNow();
+   @ObfuscatedName("ux")
+   static int field1455;
+   @ObfuscatedName("af")
+   long[] field1461 = new long[10];
    @ObfuscatedName("an")
-   int field1440 = 0;
-   @ObfuscatedName("ao")
-   int field1441;
+   int field1456 = 256;
+   @ObfuscatedName("aw")
+   int field1457 = 1;
+   @ObfuscatedName("ac")
+   long field1458 = class96.clockNow();
+   @ObfuscatedName("au")
+   int field1460 = 0;
+   @ObfuscatedName("ab")
+   int field1459;
 
    MilliClock() {
       for(int var1 = 0; var1 < 10; ++var1) {
-         this.field1437[var1] = this.field1439;
+         this.field1461[var1] = this.field1458;
       }
 
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "1425086968"
+      garbageValue = "-331366942"
    )
    @Export("mark")
    public void mark() {
       for(int var1 = 0; var1 < 10; ++var1) {
-         this.field1437[var1] = 0L;
+         this.field1461[var1] = 0L;
       }
 
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "(III)I",
-      garbageValue = "1465993621"
+      garbageValue = "-1491982008"
    )
    @Export("wait")
    public int wait(int var1, int var2) {
-      int var3 = this.field1438;
-      int var4 = this.field1436;
-      this.field1438 = 300;
-      this.field1436 = 1;
-      this.field1439 = WorldMapSection2.clockNow();
-      if (this.field1437[this.field1441] == 0L) {
-         this.field1438 = var3;
-         this.field1436 = var4;
-      } else if (this.field1439 > this.field1437[this.field1441]) {
-         this.field1438 = (int)((long)(var1 * 2560) / (this.field1439 - this.field1437[this.field1441]));
+      int var3 = this.field1456;
+      int var4 = this.field1457;
+      this.field1456 = 300;
+      this.field1457 = 1;
+      this.field1458 = class96.clockNow();
+      if (0L == this.field1461[this.field1459]) {
+         this.field1456 = var3;
+         this.field1457 = var4;
+      } else if (this.field1458 > this.field1461[this.field1459]) {
+         this.field1456 = (int)((long)(var1 * 2560) / (this.field1458 - this.field1461[this.field1459]));
       }
 
-      if (this.field1438 < 25) {
-         this.field1438 = 25;
+      if (this.field1456 < 25) {
+         this.field1456 = 25;
       }
 
-      if (this.field1438 > 256) {
-         this.field1438 = 256;
-         this.field1436 = (int)((long)var1 - (this.field1439 - this.field1437[this.field1441]) / 10L);
+      if (this.field1456 > 256) {
+         this.field1456 = 256;
+         this.field1457 = (int)((long)var1 - (this.field1458 - this.field1461[this.field1459]) / 10L);
       }
 
-      if (this.field1436 > var1) {
-         this.field1436 = var1;
+      if (this.field1457 > var1) {
+         this.field1457 = var1;
       }
 
-      this.field1437[this.field1441] = this.field1439;
-      this.field1441 = (this.field1441 + 1) % 10;
+      this.field1461[this.field1459] = this.field1458;
+      this.field1459 = (this.field1459 + 1) % 10;
       int var5;
-      if (this.field1436 > 1) {
+      if (this.field1457 > 1) {
          for(var5 = 0; var5 < 10; ++var5) {
-            if (0L != this.field1437[var5]) {
-               this.field1437[var5] += (long)this.field1436;
+            if (0L != this.field1461[var5]) {
+               this.field1461[var5] += (long)this.field1457;
             }
          }
       }
 
-      if (this.field1436 < var2) {
-         this.field1436 = var2;
+      if (this.field1457 < var2) {
+         this.field1457 = var2;
       }
 
-      Login.method429((long)this.field1436);
+      PlayerComposition.method1704((long)this.field1457);
 
-      for(var5 = 0; this.field1440 < 256; this.field1440 += this.field1438) {
+      for(var5 = 0; this.field1460 < 256; this.field1460 += this.field1456) {
          ++var5;
       }
 
-      this.field1440 &= 255;
+      this.field1460 &= 255;
       return var5;
    }
 }

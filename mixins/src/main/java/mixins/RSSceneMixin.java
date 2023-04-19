@@ -540,9 +540,9 @@ public abstract class RSSceneMixin implements RSScene
 			final int cameraY2 = client.getCameraY2();
 			final int cameraZ2 = client.getCameraZ2();
 
-			final int zoom = client.get3dZoom();
-			final int centerX = client.getCenterX();
-			final int centerY = client.getCenterY();
+			final int zoom = client.get3dZoom$api();
+			final int centerX = client.getCenterX$api();
+			final int centerY = client.getCenterY$api();
 
 			final int mouseX2 = client.getMouseX2();
 			final int mouseY2 = client.getMouseY2();
@@ -670,9 +670,9 @@ public abstract class RSSceneMixin implements RSScene
 			final int cameraX2 = client.getCameraX2();
 			final int cameraY2 = client.getCameraY2();
 			final int cameraZ2 = client.getCameraZ2();
-			final int zoom = client.get3dZoom();
-			final int centerX = client.getCenterX();
-			final int centerY = client.getCenterY();
+			final int zoom = client.get3dZoom$api();
+			final int centerX = client.getCenterX$api();
+			final int centerY = client.getCenterY$api();
 
 			drawCallbacks.drawSceneModel(0, pitchSin, pitchCos, yawSin, yawCos, -cameraX2, -cameraY2, -cameraZ2,
 				tile, client.getPlane(), tileX, tileY,

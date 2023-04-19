@@ -3,67 +3,42 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gj")
+@ObfuscatedName("gv")
 @Implements("Clock")
 public abstract class Clock {
-   @ObfuscatedName("fo")
-   @ObfuscatedSignature(
-      descriptor = "Lmx;"
-   )
-   @Export("archive11")
-   static Archive archive11;
-
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "(I)V",
-      garbageValue = "1425086968"
+      garbageValue = "-331366942"
    )
    @Export("mark")
    public abstract void mark();
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "(III)I",
-      garbageValue = "1465993621"
+      garbageValue = "-1491982008"
    )
    @Export("wait")
    public abstract int wait(int var1, int var2);
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("np")
    @ObfuscatedSignature(
-      descriptor = "(IB)I",
-      garbageValue = "95"
+      descriptor = "(IIZI)V",
+      garbageValue = "787854296"
    )
-   public static int method920(int var0) {
-      return (var0 & class473.field3965) - 1;
-   }
-
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(Lsy;[II)[Ljava/lang/Object;",
-      garbageValue = "1953692546"
-   )
-   static Object[] method918(Buffer var0, int[] var1) {
-      int var2 = var0.readUShortSmart();
-      Object[] var3 = new Object[var1.length * var2];
-
-      for(int var4 = 0; var4 < var2; ++var4) {
-         for(int var5 = 0; var5 < var1.length; ++var5) {
-            int var6 = var1.length * var4 + var5;
-            class467 var7 = class458.method2331(var1[var5]);
-            var3[var6] = var7.method2362(var0);
+   static final void method970(int var0, int var1, boolean var2) {
+      if (Client.currentClanChannels[var0] != null) {
+         if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method898()) {
+            ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
+            PacketBufferNode var4 = class330.getPacketBufferNode(ClientPacket.field2543, Client.packetWriter.isaacCipher);
+            var4.packetBuffer.writeByte(4 + DynamicObject.stringCp1252NullTerminatedByteSize(var3.username.getName()));
+            var4.packetBuffer.writeByte(var0);
+            var4.packetBuffer.writeShort(var1);
+            var4.packetBuffer.writeBoolean(var2);
+            var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName());
+            Client.packetWriter.addNode(var4);
          }
       }
-
-      return var3;
-   }
-
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "-1193424580"
-   )
-   public static boolean method919(int var0) {
-      return (var0 >> 21 & 1) != 0;
    }
 }

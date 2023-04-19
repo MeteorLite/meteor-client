@@ -3,121 +3,102 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dx")
+@ObfuscatedName("dr")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-   @ObfuscatedName("aj")
+   @ObfuscatedName("uw")
+   static int field851;
+   @ObfuscatedName("be")
+   @ObfuscatedSignature(
+      descriptor = "Lnm;"
+   )
+   @Export("Widget_spritesArchive")
+   static AbstractArchive Widget_spritesArchive;
+   @ObfuscatedName("af")
    @Export("args")
    Object[] args;
-   @ObfuscatedName("al")
-   boolean field848;
-   @ObfuscatedName("ac")
+   @ObfuscatedName("an")
+   boolean field849;
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "Lmy;"
+      descriptor = "Lmq;"
    )
    @Export("widget")
    Widget widget;
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ac")
    @Export("mouseX")
    int mouseX;
-   @ObfuscatedName("an")
+   @ObfuscatedName("au")
    @Export("mouseY")
    int mouseY;
-   @ObfuscatedName("ao")
+   @ObfuscatedName("ab")
    @Export("opIndex")
    int opIndex;
-   @ObfuscatedName("av")
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "Lmy;"
+      descriptor = "Lmq;"
    )
    @Export("dragTarget")
    Widget dragTarget;
-   @ObfuscatedName("aq")
+   @ObfuscatedName("al")
    @Export("keyTyped")
    int keyTyped;
-   @ObfuscatedName("ap")
+   @ObfuscatedName("at")
    @Export("keyPressed")
    int keyPressed;
-   @ObfuscatedName("ar")
+   @ObfuscatedName("aa")
    @Export("targetName")
    String targetName;
-   @ObfuscatedName("ak")
-   int field853;
-   @ObfuscatedName("ax")
+   @ObfuscatedName("ay")
+   int field859;
+   @ObfuscatedName("ao")
    @Export("type")
    int type = 76;
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "([Ljava/lang/Object;I)V",
-      garbageValue = "-1270007973"
+      garbageValue = "1592193051"
    )
    @Export("setArgs")
    public void setArgs(Object[] var1) {
       this.args = var1;
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "(II)V",
-      garbageValue = "1638695958"
+      garbageValue = "-715457953"
    )
    @Export("setType")
    public void setType(int var1) {
       this.type = var1;
    }
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "(Lmy;I)V",
-      garbageValue = "-376683317"
+      descriptor = "(Lmq;B)V",
+      garbageValue = "46"
    )
-   public void method467(Widget var1) {
+   public void method491(Widget var1) {
       this.widget = var1;
    }
 
-   @ObfuscatedName("hq")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(Ldq;IB)V",
-      garbageValue = "106"
+      descriptor = "(II)Z",
+      garbageValue = "-404046027"
    )
-   @Export("updateActorSequence")
-   static final void updateActorSequence(Actor var0, int var1) {
-      if (var0.exactMoveArrive1Cycle >= Client.cycle) {
-         int var2 = Math.max(1, var0.exactMoveArrive1Cycle - Client.cycle);
-         int var3 = var0.field931 * 64 + var0.exactMoveDeltaX1 * 128;
-         int var4 = var0.field931 * 64 + var0.exactMoveDeltaY1 * 128;
-         var0.x += (var3 - var0.x) / var2;
-         var0.y += (var4 - var0.y) / var2;
-         var0.field1003 = 0;
-         var0.orientation = var0.exactMoveDirection;
-      } else if (var0.exactMoveArrive2Cycle >= Client.cycle) {
-         class6.method11(var0);
-      } else {
-         class18.method73(var0);
-      }
+   public static boolean method492(int var0) {
+      return (var0 >> 21 & 1) != 0;
+   }
 
-      if (var0.x < 128 || var0.y < 128 || var0.x >= 13184 || var0.y >= 13184) {
-         var0.sequence = -1;
-         var0.spotAnimation = -1;
-         var0.exactMoveArrive1Cycle = 0;
-         var0.exactMoveArrive2Cycle = 0;
-         var0.x = var0.field931 * 64 + var0.pathX[0] * 128;
-         var0.y = var0.field931 * 64 + var0.pathY[0] * 128;
-         var0.method509();
-      }
-
-      if (BuddyRankComparator.localPlayer == var0 && (var0.x < 1536 || var0.y < 1536 || var0.x >= 11776 || var0.y >= 11776)) {
-         var0.sequence = -1;
-         var0.spotAnimation = -1;
-         var0.exactMoveArrive1Cycle = 0;
-         var0.exactMoveArrive2Cycle = 0;
-         var0.x = var0.field931 * 64 + var0.pathX[0] * 128;
-         var0.y = var0.pathY[0] * 128 + var0.field931 * 64;
-         var0.method509();
-      }
-
-      MenuAction.method422(var0);
-      class13.method46(var0);
+   @ObfuscatedName("cn")
+   @ObfuscatedSignature(
+      descriptor = "(II)Ljava/lang/Object;",
+      garbageValue = "140297466"
+   )
+   static Object method489(int var0) {
+      return Language.method1948((class478)StructComposition.findEnumerated(class478.method2432(), var0));
    }
 }

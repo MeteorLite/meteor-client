@@ -70,7 +70,7 @@ public class Deob
 
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		ClassGroup group = JarUtil.load(new File("./deobfuscator/star-212.jar"), true);
+		ClassGroup group = JarUtil.load(new File("./deobfuscator/star-213.jar"), true);
 
 		// remove except RuntimeException
 		run(group, new RuntimeExceptions());

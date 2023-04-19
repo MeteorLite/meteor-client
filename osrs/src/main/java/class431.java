@@ -1,70 +1,77 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qn")
-public class class431 {
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "Lqn;"
-   )
-   public static final class431 field3770 = new class431("application/json");
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "Lqn;"
-   )
-   static final class431 field3771 = new class431("text/plain");
-   @ObfuscatedName("ac")
-   String field3772;
-
-   class431(String var1) {
-      this.field3772 = var1;
+@ObfuscatedName("qb")
+public class class431 extends class432 {
+   public class431(int var1) {
+      super(var1);
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "-1837842196"
+      descriptor = "(Lsg;II)V",
+      garbageValue = "489961361"
    )
-   public String method2220() {
-      return this.field3772;
+   @Export("vmethod7769")
+   void vmethod7769(Buffer var1, int var2) {
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;B)Ljava/lang/String;",
-      garbageValue = "-23"
+      descriptor = "(III)I",
+      garbageValue = "2098730562"
    )
-   public static String method2221(CharSequence var0) {
-      int var1 = var0.length();
-      StringBuilder var2 = new StringBuilder(var1);
+   @Export("ItemContainer_getCount")
+   static int ItemContainer_getCount(int var0, int var1) {
+      ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+      if (var2 == null) {
+         return 0;
+      } else {
+         return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
+      }
+   }
 
-      for(int var3 = 0; var3 < var1; ++var3) {
-         char var4 = var0.charAt(var3);
-         if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') {
-            if (var4 == ' ') {
-               var2.append('+');
-            } else {
-               byte var5 = class18.charToByteCp1252(var4);
-               var2.append('%');
-               int var6 = var5 >> 4 & 15;
-               if (var6 >= 10) {
-                  var2.append((char)(var6 + 55));
-               } else {
-                  var2.append((char)(var6 + 48));
-               }
+   @ObfuscatedName("kx")
+   @ObfuscatedSignature(
+      descriptor = "(IIB)V",
+      garbageValue = "88"
+   )
+   static void method2278(int var0, int var1) {
+      int var2 = class137.fontBold12.stringWidth("Choose Option");
 
-               var6 = var5 & 15;
-               if (var6 >= 10) {
-                  var2.append((char)(var6 + 55));
-               } else {
-                  var2.append((char)(var6 + 48));
-               }
-            }
-         } else {
-            var2.append(var4);
+      int var3;
+      int var4;
+      for(var3 = 0; var3 < Client.menuOptionsCount; ++var3) {
+         var4 = class137.fontBold12.stringWidth(Friend.method2152(var3));
+         if (var4 > var2) {
+            var2 = var4;
          }
       }
 
-      return var2.toString();
+      var2 += 8;
+      var3 = Client.menuOptionsCount * 15 + 22;
+      var4 = var0 - var2 / 2;
+      if (var2 + var4 > GameEngine.canvasWidth) {
+         var4 = GameEngine.canvasWidth - var2;
+      }
+
+      if (var4 < 0) {
+         var4 = 0;
+      }
+
+      int var5 = var1;
+      if (var3 + var1 > class262.canvasHeight) {
+         var5 = class262.canvasHeight - var3;
+      }
+
+      if (var5 < 0) {
+         var5 = 0;
+      }
+
+      class192.menuX = var4;
+      ArchiveLoader.menuY = var5;
+      DesktopPlatformInfoProvider.menuWidth = var2;
+      class147.menuHeight = Client.menuOptionsCount * 15 + 22;
    }
 }

@@ -1,29 +1,31 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qr")
+@ObfuscatedName("qz")
 public class class435 {
+   @ObfuscatedName("af")
+   @ObfuscatedSignature(
+      descriptor = "Lqz;"
+   )
+   public static final class435 field3823 = new class435("application/json");
    @ObfuscatedName("an")
-   static final int[] field3776 = new int[16384];
-   @ObfuscatedName("ao")
-   static final int[] field3777 = new int[16384];
+   @ObfuscatedSignature(
+      descriptor = "Lqz;"
+   )
+   static final class435 field3822 = new class435("text/plain");
+   @ObfuscatedName("aw")
+   String field3824;
 
-   static {
-      double var0 = 3.834951969714103E-4D;
-
-      for(int var2 = 0; var2 < 16384; ++var2) {
-         field3776[var2] = (int)(16384.0D * Math.sin(var0 * (double)var2));
-         field3777[var2] = (int)(16384.0D * Math.cos(var0 * (double)var2));
-      }
-
+   class435(String var1) {
+      this.field3824 = var1;
    }
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-2131868008"
+      descriptor = "(I)Ljava/lang/String;",
+      garbageValue = "797480377"
    )
-   static void method2232() {
-      WorldMapRegion.WorldMapRegion_cachedSprites.clear();
+   public String method2287() {
+      return this.field3824;
    }
 }

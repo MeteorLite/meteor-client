@@ -3,35 +3,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hc")
+@ObfuscatedName("gz")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "Lne;"
+      descriptor = "Lnm;"
    )
    @Export("VarpDefinition_archive")
-   static AbstractArchive VarpDefinition_archive;
-   @ObfuscatedName("al")
-   public static int field1461;
-   @ObfuscatedName("ac")
+   public static AbstractArchive VarpDefinition_archive;
+   @ObfuscatedName("an")
+   public static int field1475;
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "Lkt;"
+      descriptor = "Lkh;"
    )
    @Export("VarpDefinition_cached")
    public static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("as")
-   public static boolean field1462;
-   @ObfuscatedName("az")
-   static int field1465;
-   @ObfuscatedName("ab")
+   @ObfuscatedName("al")
+   @Export("musicTrackFileId")
+   public static int musicTrackFileId;
+   @ObfuscatedName("ac")
    @Export("type")
    public int type = 0;
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;I)V",
-      garbageValue = "-1839808014"
+      descriptor = "(Lsg;I)V",
+      garbageValue = "955579844"
    )
    @Export("decode")
    void decode(Buffer var1) {
@@ -45,10 +44,10 @@ public class VarpDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ab")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;IS)V",
-      garbageValue = "-22092"
+      descriptor = "(Lsg;II)V",
+      garbageValue = "1359565158"
    )
    @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
@@ -56,5 +55,32 @@ public class VarpDefinition extends DualNode {
          this.type = var1.readUnsignedShort();
       }
 
+   }
+
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(IIII)Ltq;",
+      garbageValue = "2091722822"
+   )
+   static SpritePixels method982(int var0, int var1, int var2) {
+      return (SpritePixels)WorldMapRegion.WorldMapRegion_cachedSprites.get(BuddyRankComparator.method710(var0, var1, var2));
+   }
+
+   @ObfuscatedName("au")
+   @ObfuscatedSignature(
+      descriptor = "(I)[Ley;",
+      garbageValue = "335062925"
+   )
+   static class126[] method983() {
+      return new class126[]{class126.field1243, class126.field1240, class126.field1241, class126.field1246, class126.field1247, class126.field1244};
+   }
+
+   @ObfuscatedName("ag")
+   @ObfuscatedSignature(
+      descriptor = "(IIII)V",
+      garbageValue = "-1740756415"
+   )
+   public static void method981(int var0, int var1, int var2) {
+      Rasterizer3D.clips.method1360(var0, var1, var2);
    }
 }

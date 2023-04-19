@@ -13,15 +13,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-@ObfuscatedName("az")
+@ObfuscatedName("ah")
 public class class15 extends SSLSocketFactory {
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Laz;"
+      descriptor = "Lah;"
    )
-   public static class15 field44;
-   @ObfuscatedName("aj")
-   SecureRandom field45 = new SecureRandom();
+   public static class15 field50;
+   @ObfuscatedName("af")
+   SecureRandom field49 = new SecureRandom();
 
    static {
       if (Security.getProvider("BC") == null) {
@@ -30,28 +30,13 @@ public class class15 extends SSLSocketFactory {
 
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;B)Ljavax/net/ssl/SSLSocket;",
-      garbageValue = "-103"
+      descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;I)Ljavax/net/ssl/SSLSocket;",
+      garbageValue = "-489123832"
    )
-   SSLSocket method56(String var1, TlsClientProtocol var2) {
+   SSLSocket method59(String var1, TlsClientProtocol var2) {
       return new class12(this, var2, var1);
-   }
-
-   @Export("createSocket")
-   @ObfuscatedName("createSocket")
-   public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
-      if (var1 == null) {
-         var1 = new Socket();
-      }
-
-      if (!var1.isConnected()) {
-         var1.connect(new InetSocketAddress(var2, var3));
-      }
-
-      TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field45);
-      return this.method56(var2, var5);
    }
 
    public String[] getDefaultCipherSuites() {
@@ -76,5 +61,20 @@ public class class15 extends SSLSocketFactory {
 
    public Socket createSocket(String var1, int var2, InetAddress var3, int var4) throws IOException, UnknownHostException {
       return null;
+   }
+
+   @Export("createSocket")
+   @ObfuscatedName("createSocket")
+   public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
+      if (var1 == null) {
+         var1 = new Socket();
+      }
+
+      if (!var1.isConnected()) {
+         var1.connect(new InetSocketAddress(var2, var3));
+      }
+
+      TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field49);
+      return this.method59(var2, var5);
    }
 }
