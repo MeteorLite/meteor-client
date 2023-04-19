@@ -20,13 +20,12 @@ public enum class6 implements class356 {
       this.field8 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field8;
    }
 
@@ -39,13 +38,12 @@ public enum class6 implements class356 {
       return Rasterizer3D.clips.field2233;
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(ZI)V",
-      garbageValue = "1620071571"
-   )
-   @Export("Login_promptCredentials")
-   static void Login_promptCredentials(boolean var0) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(ZI)V",
+            garbageValue = "1620071571"
+    )
+    static void Login_promptCredentials(boolean var0) {
       if (!ScriptFrame.client.method394() && !ScriptFrame.client.method370() && !ScriptFrame.client.method369()) {
          Login.Login_response1 = "";
          Login.Login_response2 = "Enter your username/email & password.";
@@ -67,13 +65,12 @@ public enum class6 implements class356 {
       }
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "(Lon;Lon;Lon;I)V",
-      garbageValue = "-1602531743"
-   )
-   @Export("drawTitle")
-   static void drawTitle(Font var0, Font var1, Font var2) {
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "(Lon;Lon;Lon;I)V",
+            garbageValue = "-1602531743"
+    )
+    static void drawTitle(Font var0, Font var1, Font var2) {
       Login.xPadding = (GameEngine.canvasWidth - 765) / 2;
       Login.loginBoxX = Login.xPadding + 202;
       class143.loginBoxCenter = Login.loginBoxX + 180;

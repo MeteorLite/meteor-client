@@ -11,13 +11,12 @@ public class Friend extends Buddy {
    @ObfuscatedName("an")
    boolean field3718;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpr;B)I",
-      garbageValue = "78"
-   )
-   @Export("compareToFriend")
-   int compareToFriend(Friend var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpr;B)I",
+            garbageValue = "78"
+    )
+    int compareToFriend(Friend var1) {
       if (super.world == Client.worldId && Client.worldId != var1.world) {
          return -1;
       } else if (Client.worldId == var1.world && super.world != Client.worldId) {
@@ -39,13 +38,12 @@ public class Friend extends Buddy {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lpw;I)I",
-      garbageValue = "1093536041"
-   )
-   @Export("compareTo_user")
-   public int compareTo_user(User var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lpw;I)I",
+            garbageValue = "1093536041"
+    )
+    public int compareTo_user(User var1) {
       return this.compareToFriend((Friend)var1);
    }
 

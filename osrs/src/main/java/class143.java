@@ -5,9 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fy")
 public class class143 extends class139 {
-   @ObfuscatedName("az")
-   @Export("loginBoxCenter")
-   static int loginBoxCenter;
+    @ObfuscatedName("az")
+    static int loginBoxCenter;
    @ObfuscatedName("af")
    int field1325;
    @ObfuscatedName("an")
@@ -26,24 +25,22 @@ public class class143 extends class139 {
       this.field1325 = -1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1325 = var1.readUnsignedShort();
       this.field1326 = var1.readByte();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.method866(this.field1325, this.field1326);
    }
 
@@ -56,13 +53,12 @@ public class class143 extends class139 {
       return var0 * var2 + var3 * var1 >> 16;
    }
 
-   @ObfuscatedName("mq")
-   @ObfuscatedSignature(
-      descriptor = "([Lmq;IB)V",
-      garbageValue = "119"
-   )
-   @Export("runComponentCloseListeners")
-   static final void runComponentCloseListeners(Widget[] var0, int var1) {
+    @ObfuscatedName("mq")
+    @ObfuscatedSignature(
+            descriptor = "([Lmq;IB)V",
+            garbageValue = "119"
+    )
+    static final void runComponentCloseListeners(Widget[] var0, int var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          Widget var3 = var0[var2];
          if (var3 != null) {

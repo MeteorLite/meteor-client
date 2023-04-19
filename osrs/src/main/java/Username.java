@@ -6,12 +6,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("tm")
 @Implements("Username")
 public class Username implements Comparable {
-   @ObfuscatedName("af")
-   @Export("name")
-   String name;
-   @ObfuscatedName("an")
-   @Export("cleanName")
-   String cleanName;
+    @ObfuscatedName("af")
+    String name;
+    @ObfuscatedName("an")
+    String cleanName;
 
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Lsw;)V"
@@ -26,13 +24,12 @@ public class Username implements Comparable {
       this.cleanName = class30.method132(var1, LoginType.oldscape);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "-710264960"
-   )
-   @Export("getName")
-   public String getName() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Ljava/lang/String;",
+            garbageValue = "-710264960"
+    )
+    public String getName() {
       return this.name;
    }
 
@@ -45,23 +42,21 @@ public class Username implements Comparable {
       return this.cleanName;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1688194993"
-   )
-   @Export("hasCleanName")
-   public boolean hasCleanName() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-1688194993"
+    )
+    public boolean hasCleanName() {
       return this.cleanName != null;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(Ltm;B)I",
-      garbageValue = "58"
-   )
-   @Export("compareToTyped")
-   public int compareToTyped(Username var1) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(Ltm;B)I",
+            garbageValue = "58"
+    )
+    public int compareToTyped(Username var1) {
       if (this.cleanName == null) {
          return var1.cleanName == null ? 0 : 1;
       } else {
@@ -69,9 +64,8 @@ public class Username implements Comparable {
       }
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (var1 instanceof Username) {
          Username var2 = (Username)var1;
          if (this.cleanName == null) {
@@ -86,21 +80,18 @@ public class Username implements Comparable {
       }
    }
 
-   @Export("hashCode")
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
       return this.cleanName == null ? 0 : this.cleanName.hashCode();
    }
 
-   @Export("compareTo")
-   @ObfuscatedName("compareTo")
-   public int compareTo(Object var1) {
+    @ObfuscatedName("compareTo")
+    public int compareTo(Object var1) {
       return this.compareToTyped((Username)var1);
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return this.getName();
    }
 }

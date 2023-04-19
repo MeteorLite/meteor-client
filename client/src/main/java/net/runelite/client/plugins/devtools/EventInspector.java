@@ -647,8 +647,8 @@ public class EventInspector extends EventInspectorSubscriber {
         } else {
             graphicsLabelBuilder.append("id = ").append(actor.getGraphic() == 65535 ? -1 : actor.getGraphic());
         }
-        final int delay = actor.getGraphicStartCycle() - client.getGameCycle();
-        if (delay != 0) graphicsLabelBuilder.append(", delay = ").append(delay);
+/*        final int delay = actor.getGraphicStartCycle() - client.getGameCycle();
+        if (delay != 0) graphicsLabelBuilder.append(", delay = ").append(delay);*/
         if (actor.getGraphicHeight() != 0) graphicsLabelBuilder.append(", height = ").append(actor.getGraphicHeight());
         graphicsLabelBuilder.append(")");
         addLine(actorLabel, graphicsLabelBuilder.toString(), isActorConsoleLogged(actor), spotanims);

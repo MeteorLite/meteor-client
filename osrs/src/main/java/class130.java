@@ -5,24 +5,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fe")
 final class class130 implements ThreadFactory {
-   @ObfuscatedName("av")
-   @Export("cacheParentPaths")
-   public static String[] cacheParentPaths;
+    @ObfuscatedName("av")
+    public static String[] cacheParentPaths;
    @ObfuscatedName("os")
    @ObfuscatedSignature(
       descriptor = "Lmq;"
    )
    static Widget field1274;
-   @ObfuscatedName("td")
-   @ObfuscatedSignature(
-      descriptor = "Lbn;"
-   )
-   @Export("pcmStreamMixer")
-   static PcmStreamMixer pcmStreamMixer;
+    @ObfuscatedName("td")
+    @ObfuscatedSignature(
+            descriptor = "Lbn;"
+    )
+    static PcmStreamMixer pcmStreamMixer;
 
-   @Export("newThread")
-   @ObfuscatedName("newThread")
-   public Thread newThread(Runnable var1) {
+    @ObfuscatedName("newThread")
+    public Thread newThread(Runnable var1) {
       return new Thread(var1, "OSRS Maya Anim Load");
    }
 

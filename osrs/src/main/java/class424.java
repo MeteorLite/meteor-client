@@ -93,15 +93,13 @@ public final class class424 {
       this.method2240(var1.field3789 * this.field3790 + var1.field3788 * this.field3791 + var1.field3791 * this.field3788 - this.field3789 * var1.field3790, var1.field3789 * this.field3791 + (this.field3789 * var1.field3791 - this.field3790 * var1.field3788) + this.field3788 * var1.field3790, this.field3790 * var1.field3791 + var1.field3788 * this.field3789 - var1.field3789 * this.field3788 + var1.field3790 * this.field3791, this.field3791 * var1.field3791 - var1.field3788 * this.field3788 - this.field3789 * var1.field3789 - this.field3790 * var1.field3790);
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return this.field3788 + "," + this.field3789 + "," + this.field3790 + "," + this.field3791;
    }
 
-   @Export("hashCode")
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
       boolean var1 = true;
       float var2 = 1.0F;
       var2 = var2 * 31.0F + this.field3788;
@@ -111,9 +109,8 @@ public final class class424 {
       return (int)var2;
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (!(var1 instanceof class424)) {
          return false;
       } else {

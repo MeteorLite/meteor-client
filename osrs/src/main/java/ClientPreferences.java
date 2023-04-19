@@ -10,43 +10,32 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("du")
 @Implements("ClientPreferences")
 public class ClientPreferences {
-   @ObfuscatedName("au")
-   @Export("roofsHidden")
-   boolean roofsHidden;
-   @ObfuscatedName("ab")
-   @Export("hideUsername")
-   boolean hideUsername = false;
-   @ObfuscatedName("aq")
-   @Export("titleMusicDisabled")
-   boolean titleMusicDisabled;
-   @ObfuscatedName("al")
-   @Export("displayFps")
-   boolean displayFps = false;
+    @ObfuscatedName("au")
+    boolean roofsHidden;
+    @ObfuscatedName("ab")
+    boolean hideUsername = false;
+    @ObfuscatedName("aq")
+    boolean titleMusicDisabled;
+    @ObfuscatedName("al")
+    boolean displayFps = false;
    @ObfuscatedName("at")
    int field1040;
-   @ObfuscatedName("aa")
-   @Export("brightness")
-   double brightness = 0.8D;
-   @ObfuscatedName("ay")
-   @Export("musicVolume")
-   int musicVolume = 127;
-   @ObfuscatedName("ao")
-   @Export("soundEffectsVolume")
-   int soundEffectsVolume = 127;
-   @ObfuscatedName("ax")
-   @Export("areaSoundEffectsVolume")
-   int areaSoundEffectsVolume = 127;
+    @ObfuscatedName("aa")
+    double brightness = 0.8D;
+    @ObfuscatedName("ay")
+    int musicVolume = 127;
+    @ObfuscatedName("ao")
+    int soundEffectsVolume = 127;
+    @ObfuscatedName("ax")
+    int areaSoundEffectsVolume = 127;
    @ObfuscatedName("ai")
    int field1036 = -1;
-   @ObfuscatedName("ag")
-   @Export("rememberedUsername")
-   String rememberedUsername = null;
-   @ObfuscatedName("ah")
-   @Export("windowMode")
-   int windowMode = 1;
-   @ObfuscatedName("av")
-   @Export("parameters")
-   final Map parameters = new LinkedHashMap();
+    @ObfuscatedName("ag")
+    String rememberedUsername = null;
+    @ObfuscatedName("ah")
+    int windowMode = 1;
+    @ObfuscatedName("av")
+    final Map parameters = new LinkedHashMap();
 
    ClientPreferences() {
       this.method557(true);
@@ -124,13 +113,12 @@ public class ClientPreferences {
    void method557(boolean var1) {
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lsg;",
-      garbageValue = "43"
-   )
-   @Export("toBuffer")
-   Buffer toBuffer() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lsg;",
+            garbageValue = "43"
+    )
+    Buffer toBuffer() {
       Buffer var1 = new Buffer(417, true);
       var1.writeByte(10);
       var1.writeByte(this.roofsHidden ? 1 : 0);
@@ -157,66 +145,60 @@ public class ClientPreferences {
       return var1;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(ZI)V",
-      garbageValue = "-1505559794"
-   )
-   @Export("setRoofsHidden")
-   void setRoofsHidden(boolean var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(ZI)V",
+            garbageValue = "-1505559794"
+    )
+    void setRoofsHidden(boolean var1) {
       this.roofsHidden = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1957276732"
-   )
-   @Export("getRoofsHidden")
-   boolean getRoofsHidden() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-1957276732"
+    )
+    boolean getRoofsHidden() {
       return this.roofsHidden;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(ZI)V",
-      garbageValue = "-1926536328"
-   )
-   @Export("setIsUsernameHidden")
-   void setIsUsernameHidden(boolean var1) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(ZI)V",
+            garbageValue = "-1926536328"
+    )
+    void setIsUsernameHidden(boolean var1) {
       this.hideUsername = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-2084960938"
-   )
-   @Export("getIsUsernameHidden")
-   boolean getIsUsernameHidden() {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-2084960938"
+    )
+    boolean getIsUsernameHidden() {
       return this.hideUsername;
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(ZI)V",
-      garbageValue = "-527699713"
-   )
-   @Export("getTitleMusicDisabled")
-   void getTitleMusicDisabled(boolean var1) {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(ZI)V",
+            garbageValue = "-527699713"
+    )
+    void getTitleMusicDisabled(boolean var1) {
       this.titleMusicDisabled = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-1197954221"
-   )
-   @Export("getTitleMusicDisabled")
-   boolean getTitleMusicDisabled() {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-1197954221"
+    )
+    boolean getTitleMusicDisabled() {
       return this.titleMusicDisabled;
    }
 
@@ -267,104 +249,94 @@ public class ClientPreferences {
       return this.field1040;
    }
 
-   @ObfuscatedName("ah")
-   @Export("setBrightness")
-   void setBrightness(double var1) {
+    @ObfuscatedName("ah")
+    void setBrightness(double var1) {
       this.brightness = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("av")
-   @ObfuscatedSignature(
-      descriptor = "(I)D",
-      garbageValue = "1864449029"
-   )
-   @Export("getBrightness")
-   double getBrightness() {
+    @ObfuscatedName("av")
+    @ObfuscatedSignature(
+            descriptor = "(I)D",
+            garbageValue = "1864449029"
+    )
+    double getBrightness() {
       return this.brightness;
    }
 
-   @ObfuscatedName("ar")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-935900203"
-   )
-   @Export("setCurrentMusicVolume")
-   void setCurrentMusicVolume(int var1) {
+    @ObfuscatedName("ar")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-935900203"
+    )
+    void setCurrentMusicVolume(int var1) {
       this.musicVolume = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1131552164"
-   )
-   @Export("getCurrentMusicVolume")
-   int getCurrentMusicVolume() {
+    @ObfuscatedName("am")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1131552164"
+    )
+    int getCurrentMusicVolume() {
       return this.musicVolume;
    }
 
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-957604712"
-   )
-   @Export("setCurrentSoundEffectVolume")
-   void setCurrentSoundEffectVolume(int var1) {
+    @ObfuscatedName("as")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-957604712"
+    )
+    void setCurrentSoundEffectVolume(int var1) {
       this.soundEffectsVolume = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1406684169"
-   )
-   @Export("getCurrentSoundEffectsVolume")
-   int getCurrentSoundEffectsVolume() {
+    @ObfuscatedName("aj")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1406684169"
+    )
+    int getCurrentSoundEffectsVolume() {
       return this.soundEffectsVolume;
    }
 
-   @ObfuscatedName("ak")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "745434039"
-   )
-   @Export("setAreaSoundEffectsVolume")
-   void setAreaSoundEffectsVolume(int var1) {
+    @ObfuscatedName("ak")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "745434039"
+    )
+    void setAreaSoundEffectsVolume(int var1) {
       this.areaSoundEffectsVolume = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("az")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-2076733437"
-   )
-   @Export("getAreaSoundEffectsVolume")
-   int getAreaSoundEffectsVolume() {
+    @ObfuscatedName("az")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-2076733437"
+    )
+    int getAreaSoundEffectsVolume() {
       return this.areaSoundEffectsVolume;
    }
 
-   @ObfuscatedName("ad")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "-472730554"
-   )
-   @Export("setUsernameToRemember")
-   void setUsernameToRemember(String var1) {
+    @ObfuscatedName("ad")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)V",
+            garbageValue = "-472730554"
+    )
+    void setUsernameToRemember(String var1) {
       this.rememberedUsername = var1;
       class100.savePreferences();
    }
 
-   @ObfuscatedName("ae")
-   @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "-598675425"
-   )
-   @Export("getUsernameToRemember")
-   String getUsernameToRemember() {
+    @ObfuscatedName("ae")
+    @ObfuscatedSignature(
+            descriptor = "(I)Ljava/lang/String;",
+            garbageValue = "-598675425"
+    )
+    String getUsernameToRemember() {
       return this.rememberedUsername;
    }
 
@@ -461,7 +433,7 @@ public class ClientPreferences {
       byte var4 = MoveSpeed.STATIONARY.speed;
       int var5;
       if ((var3 & 2) != 0) {
-         var5 = var0.readUnsignedByteNeg();
+         var5 = var0.readUnsignedByteAdd();
          byte[] var6 = new byte[var5];
          Buffer var7 = new Buffer(var6);
          var0.readBytes(var6, 0, var5);
@@ -476,13 +448,13 @@ public class ClientPreferences {
             var5 = -1;
          }
 
-         var13 = var0._readUnsignedByteSub();
+         var13 = var0.readUnsignedByteNeg();
          FloorDecoration.performPlayerAnimation(var2, var5, var13);
       }
 
       if ((var3 & 4) != 0) {
-         var2.targetIndex = var0.readUnsignedShortLE();
-         var2.targetIndex += var0.readUnsignedByteNeg() << 16;
+         var2.targetIndex = var0.readUnsignedShortAddLE();
+         var2.targetIndex += var0.readUnsignedByteAdd() << 16;
          var5 = 16777215;
          if (var2.targetIndex == var5) {
             var2.targetIndex = -1;
@@ -534,15 +506,15 @@ public class ClientPreferences {
             }
          }
 
-         var13 = var0.readUnsignedByteNeg();
+         var13 = var0.readUnsignedByteAdd();
          if (var13 > 0) {
             for(var14 = 0; var14 < var13; ++var14) {
                var8 = var0.readUShortSmart();
                var9 = var0.readUShortSmart();
                if (var9 != 32767) {
                   var10 = var0.readUShortSmart();
-                  var11 = var0.readUnsignedByteAdd();
-                  var12 = var9 > 0 ? var0._readUnsignedByteSub() : var11;
+                  var11 = var0._readUnsignedByteSub();
+                  var12 = var9 > 0 ? var0.readUnsignedByteNeg() : var11;
                   var2.addHealthBar(var8, Client.cycle, var9, var10, var11, var12);
                } else {
                   var2.removeHealthBar(var8);
@@ -562,8 +534,8 @@ public class ClientPreferences {
       if ((var3 & 32) != 0) {
          var5 = var0.readUnsignedShortAdd();
          PlayerType var17 = (PlayerType)StructComposition.findEnumerated(StudioGame.PlayerType_values(), var0.readUnsignedByte());
-         boolean var21 = var0._readUnsignedByteSub() == 1;
-         var8 = var0.readUnsignedByteNeg();
+         boolean var21 = var0.readUnsignedByteNeg() == 1;
+         var8 = var0.readUnsignedByteAdd();
          var9 = var0.offset;
          if (var2.username != null && var2.appearance != null) {
             boolean var20 = false;
@@ -601,18 +573,18 @@ public class ClientPreferences {
 
       if ((var3 & 4096) != 0) {
          var5 = var0.readUnsignedShort();
-         var13 = var0.method2519();
-         var2.updateGraphic(0, var5, var13 >> 16, var13 & '\uffff');
+         var13 = var0.readIntME();
+         var2.updateSpotAnimation(0, var5, var13 >> 16, var13 & '\uffff');
       }
 
       if ((var3 & 1024) != 0) {
          var2.field983 = var0.readByte();
-         var2.field985 = var0.method2503();
-         var2.field984 = var0.method2535();
-         var2.field1003 = var0.method2535();
-         var2.spotAnimation = var0.readUnsignedShortLE() + Client.cycle;
+         var2.field985 = var0.readUnsignedByteSub();
+         var2.field984 = var0.readByteNeg();
+         var2.field1003 = var0.readByteNeg();
+         var2.spotAnimation = var0.readUnsignedShortAddLE() + Client.cycle;
          var2.exactMoveArrive1Cycle = var0.readUnsignedShort() + Client.cycle;
-         var2.exactMoveDirection = var0.readUnsignedShortLE();
+         var2.exactMoveDirection = var0.readUnsignedShortAddLE();
          if (var2.hasMovementPending) {
             var2.field983 += var2.tileX;
             var2.field985 += var2.tileY;
@@ -633,7 +605,7 @@ public class ClientPreferences {
       if ((var3 & 512) != 0) {
          MoveSpeed[] var16 = Players.playerMovementSpeeds;
          MoveSpeed[] var19 = new MoveSpeed[]{MoveSpeed.WALK, MoveSpeed.STATIONARY, MoveSpeed.CRAWL, MoveSpeed.RUN};
-         var16[var1] = (MoveSpeed)StructComposition.findEnumerated(var19, var0.method2531());
+         var16[var1] = (MoveSpeed)StructComposition.findEnumerated(var19, var0.readByteAdd());
       }
 
       if ((var3 & 2048) != 0) {
@@ -647,22 +619,22 @@ public class ClientPreferences {
       }
 
       if ((var3 & '耀') != 0) {
-         var2.recolourStartCycle = Client.cycle + var0.readUnsignedShortLE();
+         var2.recolourStartCycle = Client.cycle + var0.readUnsignedShortAddLE();
          var2.recolourEndCycle = Client.cycle + var0.readUnsignedShort();
          var2.recolourHue = var0.readByte();
          var2.recolourSaturation = var0.readByte();
-         var2.recolourLuminance = var0.method2531();
-         var2.recolourAmount = (byte)var0._readUnsignedByteSub();
+         var2.recolourLuminance = var0.readByteAdd();
+         var2.recolourAmount = (byte)var0.readUnsignedByteNeg();
       }
 
       if ((var3 & 65536) != 0) {
-         var5 = var0.readUnsignedByteAdd();
+         var5 = var0._readUnsignedByteSub();
 
          for(var13 = 0; var13 < var5; ++var13) {
-            var14 = var0._readUnsignedByteSub();
-            var8 = var0.readUnsignedShortLE();
+            var14 = var0.readUnsignedByteNeg();
+            var8 = var0.readUnsignedShortAddLE();
             var9 = var0.readInt();
-            var2.updateGraphic(var14, var8, var9 >> 16, var9 & '\uffff');
+            var2.updateSpotAnimation(var14, var8, var9 >> 16, var9 & '\uffff');
          }
       }
 

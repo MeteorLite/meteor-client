@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("io")
 @Implements("Frames")
 public class Frames extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "[Lil;"
-   )
-   @Export("frames")
-   Animation[] frames;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "[Lil;"
+    )
+    Animation[] frames;
 
    @ObfuscatedSignature(
       descriptor = "(Lnm;Lnm;IZ)V"
@@ -51,13 +50,12 @@ public class Frames extends DualNode {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "997946133"
-   )
-   @Export("hasAlphaTransform")
-   public boolean hasAlphaTransform(int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "997946133"
+    )
+    public boolean hasAlphaTransform(int var1) {
       return this.frames[var1].hasAlphaTransform;
    }
 

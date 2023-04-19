@@ -7,25 +7,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bq")
 @Implements("SoundSystem")
 public class SoundSystem implements Runnable {
-   @ObfuscatedName("al")
-   @Export("soundSystemExecutor")
-   static ScheduledExecutorService soundSystemExecutor;
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "Lmq;"
-   )
-   @Export("scriptDotWidget")
-   static Widget scriptDotWidget;
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "[Lbu;"
-   )
-   @Export("players")
-   volatile PcmPlayer[] players = new PcmPlayer[2];
+    @ObfuscatedName("al")
+    static ScheduledExecutorService soundSystemExecutor;
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "Lmq;"
+    )
+    static Widget scriptDotWidget;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "[Lbu;"
+    )
+    volatile PcmPlayer[] players = new PcmPlayer[2];
 
-   @Export("run")
-   @ObfuscatedName("run")
-   public void run() {
+    @ObfuscatedName("run")
+    public void run() {
       try {
          for(int var1 = 0; var1 < 2; ++var1) {
             PcmPlayer var2 = this.players[var1];
@@ -39,13 +35,12 @@ public class SoundSystem implements Runnable {
 
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(III)Lmq;",
-      garbageValue = "-310708295"
-   )
-   @Export("getWidgetChild")
-   public static Widget getWidgetChild(int var0, int var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(III)Lmq;",
+            garbageValue = "-310708295"
+    )
+    public static Widget getWidgetChild(int var0, int var1) {
       Widget var2 = class165.getWidget(var0);
       if (var1 == -1) {
          return var2;
@@ -54,13 +49,12 @@ public class SoundSystem implements Runnable {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "1376777516"
-   )
-   @Export("loadInterface")
-   public static boolean loadInterface(int var0) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "1376777516"
+    )
+    public static boolean loadInterface(int var0) {
       if (class264.Widget_loadedInterfaces[var0]) {
          return true;
       } else if (!UserComparator3.Widget_archive.tryLoadGroup(var0)) {

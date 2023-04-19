@@ -12,9 +12,8 @@ final class JSONObject$Null {
       return this;
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       return var1 == null || this == var1;
    }
 

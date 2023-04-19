@@ -10,21 +10,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nr")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-   @ObfuscatedName("an")
-   @Export("GrandExchangeEvents_ageComparator")
-   public static Comparator GrandExchangeEvents_ageComparator = new GrandExchangeOfferAgeComparator();
-   @ObfuscatedName("aw")
-   @Export("GrandExchangeEvents_priceComparator")
-   public static Comparator GrandExchangeEvents_priceComparator;
-   @ObfuscatedName("ac")
-   @Export("GrandExchangeEvents_nameComparator")
-   public static Comparator GrandExchangeEvents_nameComparator;
-   @ObfuscatedName("au")
-   @Export("GrandExchangeEvents_quantityComparator")
-   public static Comparator GrandExchangeEvents_quantityComparator;
-   @ObfuscatedName("af")
-   @Export("events")
-   public final List events;
+    @ObfuscatedName("an")
+    public static Comparator GrandExchangeEvents_ageComparator = new GrandExchangeOfferAgeComparator();
+    @ObfuscatedName("aw")
+    public static Comparator GrandExchangeEvents_priceComparator;
+    @ObfuscatedName("ac")
+    public static Comparator GrandExchangeEvents_nameComparator;
+    @ObfuscatedName("au")
+    public static Comparator GrandExchangeEvents_quantityComparator;
+    @ObfuscatedName("af")
+    public final List events;
 
    static {
       new GrandExchangeOfferWorldComparator();
@@ -56,13 +51,12 @@ public class GrandExchangeEvents {
 
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/util/Comparator;ZI)V",
-      garbageValue = "694808074"
-   )
-   @Export("sort")
-   public void sort(Comparator var1, boolean var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/util/Comparator;ZI)V",
+            garbageValue = "694808074"
+    )
+    public void sort(Comparator var1, boolean var2) {
       if (var2) {
          Collections.sort(this.events, var1);
       } else {
@@ -71,13 +65,12 @@ public class GrandExchangeEvents {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lsq;II)V",
-      garbageValue = "-48927414"
-   )
-   @Export("updatePlayers")
-   static final void updatePlayers(PacketBuffer var0, int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lsq;II)V",
+            garbageValue = "-48927414"
+    )
+    static final void updatePlayers(PacketBuffer var0, int var1) {
       int var2 = var0.offset;
       Players.Players_pendingUpdateCount = 0;
       int var3 = 0;

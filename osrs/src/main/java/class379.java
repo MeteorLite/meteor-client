@@ -5,9 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("oq")
 public class class379 {
-   @ObfuscatedName("aq")
-   @Export("musicTrackGroupId")
-   public static int musicTrackGroupId;
+    @ObfuscatedName("aq")
+    public static int musicTrackGroupId;
    @ObfuscatedName("ah")
    int field3616 = Integer.MAX_VALUE;
    @ObfuscatedName("av")
@@ -788,13 +787,12 @@ public class class379 {
       ItemComposition.ItemDefinition_cachedSprites.clear();
    }
 
-   @ObfuscatedName("nl")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "613256531"
-   )
-   @Export("Clan_joinChat")
-   static final void Clan_joinChat(String var0) {
+    @ObfuscatedName("nl")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)V",
+            garbageValue = "613256531"
+    )
+    static final void Clan_joinChat(String var0) {
       if (!var0.equals("")) {
          PacketBufferNode var1 = class330.getPacketBufferNode(ClientPacket.field2508, Client.packetWriter.isaacCipher);
          var1.packetBuffer.writeByte(DynamicObject.stringCp1252NullTerminatedByteSize(var0));

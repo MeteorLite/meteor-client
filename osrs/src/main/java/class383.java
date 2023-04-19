@@ -134,13 +134,12 @@ public class class383 {
       return var1 >= 0 && var1 < this.method2079() ? this.field3650.method2002(this.field3648 + var1) : null;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Ljava/lang/String;",
-      garbageValue = "-1607388222"
-   )
-   @Export("colorStartTag")
-   static String colorStartTag(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Ljava/lang/String;",
+            garbageValue = "-1607388222"
+    )
+    static String colorStartTag(int var0) {
       return "<col=" + Integer.toHexString(var0) + ">";
    }
 

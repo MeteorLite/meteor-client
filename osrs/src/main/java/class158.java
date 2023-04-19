@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gs")
 public class class158 extends class139 {
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "Ltc;"
-   )
-   @Export("options_buttons_2Sprite")
-   static IndexedSprite options_buttons_2Sprite;
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "Ltc;"
+    )
+    static IndexedSprite options_buttons_2Sprite;
    @ObfuscatedName("af")
    int field1394;
    // $FF: synthetic field
@@ -26,23 +25,21 @@ public class class158 extends class139 {
       this.field1394 = -1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1394 = var1.readUnsignedShort();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.method850(this.field1394);
    }
 
@@ -103,13 +100,12 @@ public class class158 extends class139 {
       }
    }
 
-   @ObfuscatedName("lq")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;IIZI)V",
-      garbageValue = "-2141631151"
-   )
-   @Export("alignWidgetSize")
-   static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
+    @ObfuscatedName("lq")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;IIZI)V",
+            garbageValue = "-2141631151"
+    )
+    static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
       int var4 = var0.width;
       int var5 = var0.height;
       if (var0.widthAlignment == 0) {

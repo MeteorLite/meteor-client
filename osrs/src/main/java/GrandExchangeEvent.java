@@ -8,24 +8,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class GrandExchangeEvent {
    @ObfuscatedName("il")
    static long field3524;
-   @ObfuscatedName("af")
-   @Export("world")
-   public final int world;
-   @ObfuscatedName("an")
-   @Export("age")
-   public final long age;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lnb;"
-   )
-   @Export("grandExchangeOffer")
-   public final GrandExchangeOffer grandExchangeOffer;
-   @ObfuscatedName("ac")
-   @Export("offerName")
-   String offerName;
-   @ObfuscatedName("au")
-   @Export("previousOfferName")
-   String previousOfferName;
+    @ObfuscatedName("af")
+    public final int world;
+    @ObfuscatedName("an")
+    public final long age;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lnb;"
+    )
+    public final GrandExchangeOffer grandExchangeOffer;
+    @ObfuscatedName("ac")
+    String offerName;
+    @ObfuscatedName("au")
+    String previousOfferName;
 
    @ObfuscatedSignature(
       descriptor = "(Lsg;BI)V"
@@ -47,23 +42,21 @@ public class GrandExchangeEvent {
       this.grandExchangeOffer.id = var3;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "513475535"
-   )
-   @Export("getOfferName")
-   public String getOfferName() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)Ljava/lang/String;",
+            garbageValue = "513475535"
+    )
+    public String getOfferName() {
       return this.offerName;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "-171427168"
-   )
-   @Export("getPreviousOfferName")
-   public String getPreviousOfferName() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(I)Ljava/lang/String;",
+            garbageValue = "-171427168"
+    )
+    public String getPreviousOfferName() {
       return this.previousOfferName;
    }
 

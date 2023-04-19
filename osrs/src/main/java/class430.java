@@ -11,13 +11,12 @@ public abstract class class430 extends class273 implements class496 {
       super(var1, var2, var3);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lqg;",
-      garbageValue = "0"
-   )
-   @Export("vmethod8207")
-   protected abstract class432 vmethod8207(int var1);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lqg;",
+            garbageValue = "0"
+    )
+    protected abstract class432 vmethod8207(int var1);
 
    @ObfuscatedName("an")
    @ObfuscatedSignature(
@@ -28,13 +27,12 @@ public abstract class class430 extends class273 implements class496 {
       return super.field2449;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(IS)Ljava/lang/Object;",
-      garbageValue = "-16285"
-   )
-   @Export("vmethod8697")
-   public Object vmethod8697(int var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(IS)Ljava/lang/Object;",
+            garbageValue = "-16285"
+    )
+    public Object vmethod8697(int var1) {
       class432 var2 = this.vmethod8207(var1);
       return var2 != null && var2.method2283() ? var2.method2284() : null;
    }

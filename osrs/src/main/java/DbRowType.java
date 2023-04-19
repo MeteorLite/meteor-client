@@ -11,20 +11,17 @@ public class DbRowType extends DualNode {
       descriptor = "Lnm;"
    )
    static AbstractArchive field4040;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("DBRowType_cache")
-   public static EvictingDualNodeHashTable DBRowType_cache = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("aw")
-   @Export("columnTypes")
-   Object[][] columnTypes;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    public static EvictingDualNodeHashTable DBRowType_cache = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("aw")
+    Object[][] columnTypes;
    @ObfuscatedName("ac")
    int[][] field4041;
-   @ObfuscatedName("au")
-   @Export("tableId")
-   public int tableId = -1;
+    @ObfuscatedName("au")
+    public int tableId = -1;
 
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
@@ -42,13 +39,12 @@ public class DbRowType extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(IB)[Ljava/lang/Object;",
-      garbageValue = "-88"
-   )
-   @Export("getColumnType")
-   public Object[] getColumnType(int var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(IB)[Ljava/lang/Object;",
+            garbageValue = "-88"
+    )
+    public Object[] getColumnType(int var1) {
       return this.columnTypes == null ? null : this.columnTypes[var1];
    }
 

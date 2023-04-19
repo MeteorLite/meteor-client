@@ -17,97 +17,68 @@ public final class BZip2State {
    final int field4059 = 50;
    @ObfuscatedName("ab")
    final int field4055 = 18002;
-   @ObfuscatedName("aq")
-   @Export("inputArray")
-   byte[] inputArray;
-   @ObfuscatedName("al")
-   @Export("nextByte")
-   int nextByte = 0;
-   @ObfuscatedName("at")
-   @Export("nextBit_unused")
-   int nextBit_unused;
-   @ObfuscatedName("aa")
-   @Export("outputArray")
-   byte[] outputArray;
-   @ObfuscatedName("ay")
-   @Export("next_out")
-   int next_out = 0;
-   @ObfuscatedName("ao")
-   @Export("outputLength")
-   int outputLength;
+    @ObfuscatedName("aq")
+    byte[] inputArray;
+    @ObfuscatedName("al")
+    int nextByte = 0;
+    @ObfuscatedName("at")
+    int nextBit_unused;
+    @ObfuscatedName("aa")
+    byte[] outputArray;
+    @ObfuscatedName("ay")
+    int next_out = 0;
+    @ObfuscatedName("ao")
+    int outputLength;
    @ObfuscatedName("ax")
    int field4067;
-   @ObfuscatedName("ai")
-   @Export("out_char")
-   byte out_char;
-   @ObfuscatedName("ag")
-   @Export("su_rNToGo")
-   int su_rNToGo;
-   @ObfuscatedName("ah")
-   @Export("bsBuff")
-   int bsBuff;
-   @ObfuscatedName("av")
-   @Export("bsLive")
-   int bsLive;
-   @ObfuscatedName("ar")
-   @Export("blockSize100k")
-   int blockSize100k;
-   @ObfuscatedName("am")
-   @Export("originalPointer")
-   int originalPointer;
+    @ObfuscatedName("ai")
+    byte out_char;
+    @ObfuscatedName("ag")
+    int su_rNToGo;
+    @ObfuscatedName("ah")
+    int bsBuff;
+    @ObfuscatedName("av")
+    int bsLive;
+    @ObfuscatedName("ar")
+    int blockSize100k;
+    @ObfuscatedName("am")
+    int originalPointer;
    @ObfuscatedName("as")
    int field4074;
-   @ObfuscatedName("aj")
-   @Export("su_ch2")
-   int su_ch2;
-   @ObfuscatedName("ak")
-   @Export("unzftab")
-   int[] unzftab = new int[256];
-   @ObfuscatedName("az")
-   @Export("nblocks_used")
-   int nblocks_used;
-   @ObfuscatedName("ad")
-   @Export("cftab")
-   int[] cftab = new int[257];
-   @ObfuscatedName("ap")
-   @Export("nInUse")
-   int nInUse;
-   @ObfuscatedName("by")
-   @Export("inUse")
-   boolean[] inUse = new boolean[256];
-   @ObfuscatedName("bb")
-   @Export("inUse16")
-   boolean[] inUse16 = new boolean[16];
-   @ObfuscatedName("bi")
-   @Export("seqToUnseq")
-   byte[] seqToUnseq = new byte[256];
-   @ObfuscatedName("be")
-   @Export("ll8")
-   byte[] ll8 = new byte[4096];
-   @ObfuscatedName("bk")
-   @Export("getAndMoveToFrontDecode_yy")
-   int[] getAndMoveToFrontDecode_yy = new int[16];
-   @ObfuscatedName("bx")
-   @Export("selector")
-   byte[] selector = new byte[18002];
-   @ObfuscatedName("bo")
-   @Export("selectorMtf")
-   byte[] selectorMtf = new byte[18002];
-   @ObfuscatedName("bz")
-   @Export("temp_charArray2d")
-   byte[][] temp_charArray2d = new byte[6][258];
-   @ObfuscatedName("bm")
-   @Export("limit")
-   int[][] limit = new int[6][258];
-   @ObfuscatedName("bd")
-   @Export("base")
-   int[][] base = new int[6][258];
-   @ObfuscatedName("bt")
-   @Export("perm")
-   int[][] perm = new int[6][258];
-   @ObfuscatedName("bj")
-   @Export("minLens")
-   int[] minLens = new int[6];
+    @ObfuscatedName("aj")
+    int su_ch2;
+    @ObfuscatedName("ak")
+    int[] unzftab = new int[256];
+    @ObfuscatedName("az")
+    int nblocks_used;
+    @ObfuscatedName("ad")
+    int[] cftab = new int[257];
+    @ObfuscatedName("ap")
+    int nInUse;
+    @ObfuscatedName("by")
+    boolean[] inUse = new boolean[256];
+    @ObfuscatedName("bb")
+    boolean[] inUse16 = new boolean[16];
+    @ObfuscatedName("bi")
+    byte[] seqToUnseq = new byte[256];
+    @ObfuscatedName("be")
+    byte[] ll8 = new byte[4096];
+    @ObfuscatedName("bk")
+    int[] getAndMoveToFrontDecode_yy = new int[16];
+    @ObfuscatedName("bx")
+    byte[] selector = new byte[18002];
+    @ObfuscatedName("bo")
+    byte[] selectorMtf = new byte[18002];
+    @ObfuscatedName("bz")
+    byte[][] temp_charArray2d = new byte[6][258];
+    @ObfuscatedName("bm")
+    int[][] limit = new int[6][258];
+    @ObfuscatedName("bd")
+    int[][] base = new int[6][258];
+    @ObfuscatedName("bt")
+    int[][] perm = new int[6][258];
+    @ObfuscatedName("bj")
+    int[] minLens = new int[6];
    @ObfuscatedName("bn")
    int field4092;
 }

@@ -9,13 +9,12 @@ public final class class293 {
    @ObfuscatedName("an")
    static long field2712;
 
-   @ObfuscatedName("hg")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "16777216"
-   )
-   @Export("forceDisconnect")
-   static final void forceDisconnect(int var0) {
+    @ObfuscatedName("hg")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "16777216"
+    )
+    static final void forceDisconnect(int var0) {
       class31.logOut();
       switch(var0) {
       case 1:

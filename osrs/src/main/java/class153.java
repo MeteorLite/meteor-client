@@ -20,23 +20,21 @@ public class class153 extends class139 {
       this.field1384 = -1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1384 = var1.readUnsignedShort();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.method858(this.field1384);
    }
 }

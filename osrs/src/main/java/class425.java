@@ -21,12 +21,11 @@ public final class class425 {
    public static final class425 field3792;
    @ObfuscatedName("jg")
    static int field3798;
-   @ObfuscatedName("kc")
-   @ObfuscatedSignature(
-      descriptor = "[Ltq;"
-   )
-   @Export("headIconPrayerSprites")
-   static SpritePixels[] headIconPrayerSprites;
+    @ObfuscatedName("kc")
+    @ObfuscatedSignature(
+            descriptor = "[Ltq;"
+    )
+    static SpritePixels[] headIconPrayerSprites;
    @ObfuscatedName("au")
    public float[] field3797 = new float[16];
 
@@ -389,9 +388,8 @@ public final class class425 {
       return var1;
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       StringBuilder var1 = new StringBuilder();
       this.method2246();
       this.method2248();
@@ -416,9 +414,8 @@ public final class class425 {
       return var1.toString();
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (!(var1 instanceof class425)) {
          return false;
       } else {
@@ -434,9 +431,8 @@ public final class class425 {
       }
    }
 
-   @Export("hashCode")
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
       boolean var1 = true;
       byte var2 = 1;
       int var3 = var2 * 31 + Arrays.hashCode(this.field3797);

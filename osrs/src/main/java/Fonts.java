@@ -7,21 +7,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ra")
 @Implements("Fonts")
 public class Fonts {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("spritesArchive")
-   AbstractArchive spritesArchive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("fontsArchive")
-   AbstractArchive fontsArchive;
-   @ObfuscatedName("aw")
-   @Export("map")
-   HashMap map;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    AbstractArchive spritesArchive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    AbstractArchive fontsArchive;
+    @ObfuscatedName("aw")
+    HashMap map;
 
    @ObfuscatedSignature(
       descriptor = "(Lnm;Lnm;)V"
@@ -32,13 +29,12 @@ public class Fonts {
       this.map = new HashMap();
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "([Lri;B)Ljava/util/HashMap;",
-      garbageValue = "54"
-   )
-   @Export("createMap")
-   public HashMap createMap(FontName[] var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "([Lri;B)Ljava/util/HashMap;",
+            garbageValue = "54"
+    )
+    public HashMap createMap(FontName[] var1) {
       HashMap var2 = new HashMap();
       FontName[] var3 = var1;
 

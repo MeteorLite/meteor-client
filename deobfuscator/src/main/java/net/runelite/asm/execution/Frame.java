@@ -41,6 +41,7 @@ import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.Label;
 import net.runelite.asm.attributes.code.instruction.types.InvokeInstruction;
 import net.runelite.asm.attributes.code.instruction.types.MappableInstruction;
+import net.runelite.asm.attributes.code.instructions.InvokeDynamic;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
 import net.runelite.asm.signature.Signature;
 public class Frame
@@ -246,6 +247,8 @@ public class Frame
 
 			try
 			{
+				if (cur instanceof InvokeDynamic)
+					return;
 				ictx = cur.execute(this);
 				this.addInstructionContext(ictx);
 			}

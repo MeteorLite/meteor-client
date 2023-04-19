@@ -7,13 +7,12 @@ public class class323 {
    @ObfuscatedName("wd")
    static long field3037;
 
-   @ObfuscatedName("hz")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-411015869"
-   )
-   @Export("playPcmPlayers")
-   static final void playPcmPlayers() {
+    @ObfuscatedName("hz")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-411015869"
+    )
+    static final void playPcmPlayers() {
       if (HorizontalAlignment.pcmPlayer1 != null) {
          HorizontalAlignment.pcmPlayer1.run();
       }

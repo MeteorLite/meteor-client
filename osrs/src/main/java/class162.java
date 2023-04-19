@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ga")
 public class class162 extends class155 {
-   @ObfuscatedName("aa")
-   @Export("pcmSampleLength")
-   public static int pcmSampleLength;
+    @ObfuscatedName("aa")
+    public static int pcmSampleLength;
    @ObfuscatedName("af")
    String field1411;
    @ObfuscatedName("an")
@@ -26,13 +25,12 @@ public class class162 extends class155 {
       this.this$0 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1949352075"
-   )
-   @Export("vmethod3238")
-   void vmethod3238(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1949352075"
+    )
+    void vmethod3238(Buffer var1) {
       this.field1411 = var1.readStringCp1252NullTerminatedOrNull();
       if (this.field1411 != null) {
          var1.readUnsignedByte();
@@ -42,13 +40,12 @@ public class class162 extends class155 {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lgj;B)V",
-      garbageValue = "-49"
-   )
-   @Export("vmethod3239")
-   void vmethod3239(ClanChannel var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lgj;B)V",
+            garbageValue = "-49"
+    )
+    void vmethod3239(ClanChannel var1) {
       var1.name = this.field1411;
       if (this.field1411 != null) {
          var1.field1396 = this.field1410;

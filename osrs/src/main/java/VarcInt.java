@@ -6,15 +6,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hi")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("VarcInt_cached")
-   public static EvictingDualNodeHashTable VarcInt_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("aw")
-   @Export("persist")
-   public boolean persist = false;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    public static EvictingDualNodeHashTable VarcInt_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("aw")
+    public boolean persist = false;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(
@@ -44,13 +42,12 @@ public class VarcInt extends DualNode {
 
    }
 
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "(CB)Z",
-      garbageValue = "4"
-   )
-   @Export("isCharPrintable")
-   public static boolean isCharPrintable(char var0) {
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "(CB)Z",
+            garbageValue = "4"
+    )
+    public static boolean isCharPrintable(char var0) {
       if (var0 >= ' ' && var0 <= '~') {
          return true;
       } else if (var0 >= 160 && var0 <= 255) {

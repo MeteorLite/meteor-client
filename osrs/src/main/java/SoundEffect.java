@@ -6,18 +6,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bs")
 @Implements("SoundEffect")
 public class SoundEffect {
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "[Lca;"
-   )
-   @Export("instruments")
-   Instrument[] instruments = new Instrument[10];
-   @ObfuscatedName("aw")
-   @Export("start")
-   int start;
-   @ObfuscatedName("ac")
-   @Export("end")
-   int end;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "[Lca;"
+    )
+    Instrument[] instruments = new Instrument[10];
+    @ObfuscatedName("aw")
+    int start;
+    @ObfuscatedName("ac")
+    int end;
 
    @ObfuscatedSignature(
       descriptor = "(Lsg;)V"
@@ -36,19 +33,17 @@ public class SoundEffect {
       this.end = var1.readUnsignedShort();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "()Lbr;"
-   )
-   @Export("toRawSound")
-   public RawSound toRawSound() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "()Lbr;"
+    )
+    public RawSound toRawSound() {
       byte[] var1 = this.mix();
       return new RawSound(22050, var1, this.start * 22050 / 1000, this.end * 22050 / 1000);
    }
 
-   @ObfuscatedName("aw")
-   @Export("calculateDelay")
-   public final int calculateDelay() {
+    @ObfuscatedName("aw")
+    public final int calculateDelay() {
       int var1 = 9999999;
 
       int var2;
@@ -80,9 +75,8 @@ public class SoundEffect {
       }
    }
 
-   @ObfuscatedName("ac")
-   @Export("mix")
-   final byte[] mix() {
+    @ObfuscatedName("ac")
+    final byte[] mix() {
       int var1 = 0;
 
       int var2;
@@ -119,12 +113,11 @@ public class SoundEffect {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;II)Lbs;"
-   )
-   @Export("readSoundEffect")
-   public static SoundEffect readSoundEffect(AbstractArchive var0, int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lnm;II)Lbs;"
+    )
+    public static SoundEffect readSoundEffect(AbstractArchive var0, int var1, int var2) {
       byte[] var3 = var0.takeFile(var1, var2);
       return var3 == null ? null : new SoundEffect(new Buffer(var3));
    }

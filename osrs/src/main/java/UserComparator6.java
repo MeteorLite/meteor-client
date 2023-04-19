@@ -6,27 +6,24 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("eg")
 @Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
-   @ObfuscatedName("eq")
-   @ObfuscatedSignature(
-      descriptor = "Ldl;"
-   )
-   @Export("mouseRecorder")
-   static MouseRecorder mouseRecorder;
-   @ObfuscatedName("af")
-   @Export("reversed")
-   final boolean reversed;
+    @ObfuscatedName("eq")
+    @ObfuscatedSignature(
+            descriptor = "Ldl;"
+    )
+    static MouseRecorder mouseRecorder;
+    @ObfuscatedName("af")
+    final boolean reversed;
 
    public UserComparator6(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpb;Lpb;I)I",
-      garbageValue = "2114105554"
-   )
-   @Export("compareBuddy")
-   int compareBuddy(Buddy var1, Buddy var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpb;Lpb;I)I",
+            garbageValue = "2114105554"
+    )
+    int compareBuddy(Buddy var1, Buddy var2) {
       if (var1.world != 0 && var2.world != 0) {
          return this.reversed ? var1.getUsername().compareToTyped(var2.getUsername()) : var2.getUsername().compareToTyped(var1.getUsername());
       } else {
@@ -34,9 +31,8 @@ public class UserComparator6 extends AbstractUserComparator {
       }
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
 
@@ -79,7 +75,7 @@ public class UserComparator6 extends AbstractUserComparator {
             Interpreter.Interpreter_intStackSize -= 2;
             var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
             var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-            var6 = class330.getPacketBufferNode(ClientPacket.OPPLAYER7, Client.packetWriter.isaacCipher);
+            var6 = class330.getPacketBufferNode(ClientPacket.okjsnafkajsfn, Client.packetWriter.isaacCipher);
             var6.packetBuffer.writeByte(DynamicObject.stringCp1252NullTerminatedByteSize(var3) + 2);
             var6.packetBuffer.writeStringCp1252NullTerminated(var3);
             var6.packetBuffer.writeByte(var4 - 1);

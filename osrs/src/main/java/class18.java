@@ -324,13 +324,12 @@ public class class18 {
       return Math.min(Math.max(var0, 128), 383);
    }
 
-   @ObfuscatedName("id")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)V",
-      garbageValue = "-1135729474"
-   )
-   @Export("drawEntities")
-   static final void drawEntities(int var0, int var1, int var2, int var3) {
+    @ObfuscatedName("id")
+    @ObfuscatedSignature(
+            descriptor = "(IIIII)V",
+            garbageValue = "-1135729474"
+    )
+    static final void drawEntities(int var0, int var1, int var2, int var3) {
       ++Client.viewportDrawCount;
       if (MusicPatchNode.localPlayer.x >> 7 == Client.destinationX && MusicPatchNode.localPlayer.y >> 7 == Client.destinationY) {
          Client.destinationX = 0;
@@ -429,10 +428,10 @@ public class class18 {
          var17 = (class33.oculusOrbFocalPointX >> 7) + WorldMapData_0.baseX;
          var18 = (class144.oculusOrbFocalPointY >> 7) + GameObject.baseY;
          PacketBufferNode var19 = class330.getPacketBufferNode(ClientPacket.field2545, Client.packetWriter.isaacCipher);
-         var19.packetBuffer.method2472(Client.field444);
-         var19.packetBuffer.writeShortAddLE(var17);
-         var19.packetBuffer.method2500(var16);
-         var19.packetBuffer.writeShortAdd(var18);
+         var19.packetBuffer.writeIntIME(Client.field444);
+         var19.packetBuffer.writeShortAdd(var17);
+         var19.packetBuffer.writeByteAdd(var16);
+         var19.packetBuffer.writeShortAddLE(var18);
          Client.packetWriter.addNode(var19);
       }
 
@@ -515,14 +514,14 @@ public class class18 {
       class323.playPcmPlayers();
       var18 = UserComparator7.get3dZoom();
       class314.method1750(ScriptFrame.client.field120);
-      Rasterizer3D.clips.field2227 = Client.viewportZoom;
+      Rasterizer3D.clips.viewportZoom = Client.viewportZoom;
       class31.scene.draw(class36.cameraX, class174.cameraY, class297.cameraZ, WorldMapSectionType.cameraPitch, class125.cameraYaw, var10);
       class314.method1750(false);
       if (Client.renderSelf) {
          Rasterizer2D.method2578();
       }
 
-      Rasterizer3D.clips.field2227 = var18;
+      Rasterizer3D.clips.viewportZoom = var18;
       class323.playPcmPlayers();
       class31.scene.clearTempGameObjects();
       Client.overheadTextCount = 0;
@@ -695,13 +694,12 @@ public class class18 {
 
    }
 
-   @ObfuscatedName("kh")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)V",
-      garbageValue = "-308434665"
-   )
-   @Export("selectSpell")
-   static void selectSpell(int var0, int var1, int var2, int var3) {
+    @ObfuscatedName("kh")
+    @ObfuscatedSignature(
+            descriptor = "(IIIII)V",
+            garbageValue = "-308434665"
+    )
+    static void selectSpell(int var0, int var1, int var2, int var3) {
       Widget var4 = SoundSystem.getWidgetChild(var0, var1);
       if (var4 != null && var4.onTargetEnter != null) {
          ScriptEvent var5 = new ScriptEvent();

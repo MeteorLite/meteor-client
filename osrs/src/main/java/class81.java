@@ -22,13 +22,12 @@ public class class81 {
       return var0.before(var2);
    }
 
-   @ObfuscatedName("ku")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIIIII)V",
-      garbageValue = "-2147193321"
-   )
-   @Export("addPendingSpawnToScene")
-   static final void addPendingSpawnToScene(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+    @ObfuscatedName("ku")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIIIIII)V",
+            garbageValue = "-2147193321"
+    )
+    static final void addPendingSpawnToScene(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if (var2 >= 1 && var3 >= 1 && var2 <= 102 && var3 <= 102) {
          if (Client.isLowDetail && var0 != GameEngine.Client_plane) {
             return;
@@ -106,16 +105,15 @@ public class class81 {
 
    }
 
-   @ObfuscatedName("kf")
-   @ObfuscatedSignature(
-      descriptor = "(IIS)V",
-      garbageValue = "27574"
-   )
-   @Export("resumePauseWidget")
-   static void resumePauseWidget(int var0, int var1) {
+    @ObfuscatedName("kf")
+    @ObfuscatedSignature(
+            descriptor = "(IIS)V",
+            garbageValue = "27574"
+    )
+    static void resumePauseWidget(int var0, int var1) {
       PacketBufferNode var2 = class330.getPacketBufferNode(ClientPacket.CONTINUE, Client.packetWriter.isaacCipher);
-      var2.packetBuffer.writeIntLE(var0);
-      var2.packetBuffer.writeIntME(var1);
+      var2.packetBuffer.writeIntME(var0);
+      var2.packetBuffer.writeShortLE(var1);
       Client.packetWriter.addNode(var2);
    }
 

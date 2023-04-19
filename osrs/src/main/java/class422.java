@@ -4,13 +4,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("qi")
 public class class422 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsq;B)V",
-      garbageValue = "-98"
-   )
-   @Export("updatePlayer")
-   static final void updatePlayer(PacketBuffer var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsq;B)V",
+            garbageValue = "-98"
+    )
+    static final void updatePlayer(PacketBuffer var0) {
       var0.importIndex();
       int var1 = Client.localPlayerIndex;
       Player var2 = MusicPatchNode.localPlayer = Client.players[var1] = new Player();

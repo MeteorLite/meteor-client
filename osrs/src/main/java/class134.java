@@ -61,13 +61,12 @@ public enum class134 implements class356 {
       this.field1297 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field1297;
    }
 
@@ -108,13 +107,12 @@ public enum class134 implements class356 {
       return var0;
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(CB)Z",
-      garbageValue = "3"
-   )
-   @Export("isCharAlphabetic")
-   public static boolean isCharAlphabetic(char var0) {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(CB)Z",
+            garbageValue = "3"
+    )
+    public static boolean isCharAlphabetic(char var0) {
       return var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
    }
 

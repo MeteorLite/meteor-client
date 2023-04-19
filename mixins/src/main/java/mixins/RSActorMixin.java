@@ -202,7 +202,7 @@ public abstract class RSActorMixin implements RSActor
 		client.getCallbacks().post(Events.ANIMATION_CHANGED, animationChange);
 	}
 
-	@MethodHook(value = "updateGraphic", end = true)
+	@MethodHook(value = "updateSpotAnimation", end = true)
 	@Inject
 	public void onGraphicChanged(int idx, int graphicID, int graphicHeight, int graphicStartCycle)
 	{
@@ -357,14 +357,14 @@ public abstract class RSActorMixin implements RSActor
 		client.getCallbacks().post(Events.FACED_DIRECTION_CHANGED, facedDirectionChanged);
 	}*/
 
-	@FieldHook("exactMoveDirection")
+/*	@FieldHook("exactMoveDirection")
 	@Inject
 	public void exactMoveReceived(int idx)
 	{
 		ExactMoveEvent exactMoveEvent = new ExactMoveEvent(this, exactMoveDeltaX1(), exactMoveDeltaX2(), exactMoveDeltaY1(), exactMoveDeltaY2(),
 				exactMoveArrive1Cycle(), exactMoveArrive2Cycle(), exactMoveDirection(), client.getGameCycle());
 		client.getCallbacks().post(Events.EXACT_MOVE_EVENT, exactMoveEvent);
-	}
+	}*/
 
 	@FieldHook("recolourAmount")
 	@Inject
@@ -391,4 +391,18 @@ public abstract class RSActorMixin implements RSActor
 		client.getCallbacks().post(Events.ANIMATION_FRAME_INDEX_CHANGED, animationChange);
 	}
 
+	@Inject
+	public int graphicHeight = -1;
+
+	@Inject
+	@Override
+	public int getGraphicHeight() {
+		return graphicHeight;
+	}
+
+	@Inject
+	@Override
+	public void setGraphicHeight(int height) {
+		graphicHeight = height;
+	}
 }

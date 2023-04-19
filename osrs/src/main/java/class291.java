@@ -4,7 +4,6 @@ import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("li")
 public class class291 {
-   @ObfuscatedName("ba")
-   @Export("garbageCollector")
-   static GarbageCollectorMXBean garbageCollector;
+    @ObfuscatedName("ba")
+    static GarbageCollectorMXBean garbageCollector;
 }

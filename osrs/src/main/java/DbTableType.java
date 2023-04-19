@@ -11,18 +11,15 @@ public class DbTableType extends DualNode {
       descriptor = "Lnm;"
    )
    static AbstractArchive field4036;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("DBTableType_cache")
-   static EvictingDualNodeHashTable DBTableType_cache = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("aw")
-   @Export("types")
-   public int[][] types;
-   @ObfuscatedName("ac")
-   @Export("defaultValues")
-   public Object[][] defaultValues;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable DBTableType_cache = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("aw")
+    public int[][] types;
+    @ObfuscatedName("ac")
+    public Object[][] defaultValues;
 
    @ObfuscatedName("aw")
    @ObfuscatedSignature(

@@ -6,70 +6,57 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cr")
 @Implements("ObjectSound")
 public final class ObjectSound extends Node {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnh;"
-   )
-   @Export("objectSounds")
-   static NodeDeque objectSounds = new NodeDeque();
-   @ObfuscatedName("jw")
-   @Export("regionMapArchives")
-   static byte[][] regionMapArchives;
-   @ObfuscatedName("an")
-   @Export("plane")
-   int plane;
-   @ObfuscatedName("aw")
-   @Export("x")
-   int x;
-   @ObfuscatedName("ac")
-   @Export("y")
-   int y;
-   @ObfuscatedName("au")
-   @Export("maxX")
-   int maxX;
-   @ObfuscatedName("ab")
-   @Export("maxY")
-   int maxY;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnh;"
+    )
+    static NodeDeque objectSounds = new NodeDeque();
+    @ObfuscatedName("jw")
+    static byte[][] regionMapArchives;
+    @ObfuscatedName("an")
+    int plane;
+    @ObfuscatedName("aw")
+    int x;
+    @ObfuscatedName("ac")
+    int y;
+    @ObfuscatedName("au")
+    int maxX;
+    @ObfuscatedName("ab")
+    int maxY;
    @ObfuscatedName("aq")
    int field673;
-   @ObfuscatedName("al")
-   @Export("soundEffectId")
-   int soundEffectId;
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "Lbl;"
-   )
-   @Export("stream1")
-   RawPcmStream stream1;
+    @ObfuscatedName("al")
+    int soundEffectId;
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "Lbl;"
+    )
+    RawPcmStream stream1;
    @ObfuscatedName("aa")
    int field681;
    @ObfuscatedName("ay")
    int field682;
-   @ObfuscatedName("ao")
-   @Export("soundEffectIds")
-   int[] soundEffectIds;
+    @ObfuscatedName("ao")
+    int[] soundEffectIds;
    @ObfuscatedName("ax")
    int field679;
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "Lbl;"
-   )
-   @Export("stream2")
-   RawPcmStream stream2;
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "Lhq;"
-   )
-   @Export("obj")
-   ObjectComposition obj;
+    @ObfuscatedName("ai")
+    @ObfuscatedSignature(
+            descriptor = "Lbl;"
+    )
+    RawPcmStream stream2;
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "Lhq;"
+    )
+    ObjectComposition obj;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "27660078"
-   )
-   @Export("set")
-   void set() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "27660078"
+    )
+    void set() {
       int var1 = this.soundEffectId;
       ObjectComposition var2 = this.obj.transform();
       if (var2 != null) {

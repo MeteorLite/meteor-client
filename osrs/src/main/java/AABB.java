@@ -12,22 +12,16 @@ public class AABB {
    )
    static GameBuild field2070;
    @ObfuscatedName("af")
-   @Export("xMid")
    int xMid;
    @ObfuscatedName("an")
-   @Export("yMid")
    int yMid;
    @ObfuscatedName("aw")
-   @Export("zMid")
    int zMid;
    @ObfuscatedName("ac")
-   @Export("xMidOffset")
    int xMidOffset;
    @ObfuscatedName("au")
-   @Export("yMidOffset")
    int yMidOffset;
    @ObfuscatedName("ab")
-   @Export("zMidOffset")
    int zMidOffset;
 
    AABB(int var1, int var2, int var3, int var4, int var5, int var6) {

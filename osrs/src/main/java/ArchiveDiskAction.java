@@ -6,24 +6,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("nw")
 @Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
-   @ObfuscatedName("af")
-   @Export("type")
-   int type;
-   @ObfuscatedName("an")
-   @Export("data")
-   public byte[] data;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lqk;"
-   )
-   @Export("archiveDisk")
-   public ArchiveDisk archiveDisk;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive")
-   public Archive archive;
+    @ObfuscatedName("af")
+    int type;
+    @ObfuscatedName("an")
+    public byte[] data;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lqk;"
+    )
+    public ArchiveDisk archiveDisk;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    public Archive archive;
 
    @ObfuscatedName("au")
    @ObfuscatedSignature(
@@ -34,13 +30,12 @@ public class ArchiveDiskAction extends Node {
       return new class86[]{class86.field880, class86.field884, class86.field881, class86.field886, class86.field883, class86.field882};
    }
 
-   @ObfuscatedName("ly")
-   @ObfuscatedSignature(
-      descriptor = "(IS)Ljava/lang/String;",
-      garbageValue = "13178"
-   )
-   @Export("formatItemStacks")
-   static final String formatItemStacks(int var0) {
+    @ObfuscatedName("ly")
+    @ObfuscatedSignature(
+            descriptor = "(IS)Ljava/lang/String;",
+            garbageValue = "13178"
+    )
+    static final String formatItemStacks(int var0) {
       String var1 = Integer.toString(var0);
 
       for(int var2 = var1.length() - 3; var2 > 0; var2 -= 3) {

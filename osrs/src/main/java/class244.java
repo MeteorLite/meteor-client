@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jn")
 public class class244 {
-   @ObfuscatedName("bb")
-   @Export("fontHelvetica13")
-   static java.awt.Font fontHelvetica13;
+    @ObfuscatedName("bb")
+    static java.awt.Font fontHelvetica13;
 
    @ObfuscatedName("an")
    public static String method1393(long var0) {

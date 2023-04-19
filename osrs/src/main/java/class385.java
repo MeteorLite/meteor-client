@@ -12,9 +12,8 @@ public class class385 {
    @ObfuscatedName("ac")
    int field3651;
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       boolean var1 = true;
       int var2 = 10 - Integer.toString(this.field3652).length();
       int var3 = 10 - Integer.toString(this.field3653).length();

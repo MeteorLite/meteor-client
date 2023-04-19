@@ -6,18 +6,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ik")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-   @ObfuscatedName("ab")
-   @Export("id")
-   int id;
-   @ObfuscatedName("aq")
-   @Export("count")
-   int count;
-   @ObfuscatedName("al")
-   @Export("transformTypes")
-   int[] transformTypes;
-   @ObfuscatedName("at")
-   @Export("labels")
-   int[][] labels;
+    @ObfuscatedName("ab")
+    int id;
+    @ObfuscatedName("aq")
+    int count;
+    @ObfuscatedName("al")
+    int[] transformTypes;
+    @ObfuscatedName("at")
+    int[][] labels;
    @ObfuscatedName("aa")
    @ObfuscatedSignature(
       descriptor = "Lic;"

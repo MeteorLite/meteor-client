@@ -47,13 +47,12 @@ public class class68 {
       }
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;IIII)V",
-      garbageValue = "-635612095"
-   )
-   @Export("Widget_setKeyRate")
-   static final void Widget_setKeyRate(Widget var0, int var1, int var2, int var3) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;IIII)V",
+            garbageValue = "-635612095"
+    )
+    static final void Widget_setKeyRate(Widget var0, int var1, int var2, int var3) {
       if (var0.field2936 == null) {
          throw new RuntimeException();
       } else {
@@ -62,13 +61,12 @@ public class class68 {
       }
    }
 
-   @ObfuscatedName("nf")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;ZS)V",
-      garbageValue = "255"
-   )
-   @Export("findItemDefinitions")
-   static void findItemDefinitions(String var0, boolean var1) {
+    @ObfuscatedName("nf")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;ZS)V",
+            garbageValue = "255"
+    )
+    static void findItemDefinitions(String var0, boolean var1) {
       var0 = var0.toLowerCase();
       short[] var2 = new short[16];
       int var3 = 0;

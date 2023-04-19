@@ -8,12 +8,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class ObjTypeCustomisation {
    @ObfuscatedName("ut")
    static int field1471;
-   @ObfuscatedName("aw")
-   @Export("recol")
-   public short[] recol;
-   @ObfuscatedName("ac")
-   @Export("retex")
-   public short[] retex;
+    @ObfuscatedName("aw")
+    public short[] recol;
+    @ObfuscatedName("ac")
+    public short[] retex;
 
    ObjTypeCustomisation(int var1) {
       ItemComposition var2 = HealthBarUpdate.ItemDefinition_get(var1);

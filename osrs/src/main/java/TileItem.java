@@ -8,12 +8,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 public final class TileItem extends Renderable {
    @ObfuscatedName("gp")
    static String field1079;
-   @ObfuscatedName("af")
-   @Export("id")
-   int id;
-   @ObfuscatedName("an")
-   @Export("quantity")
-   int quantity;
+    @ObfuscatedName("af")
+    int id;
+    @ObfuscatedName("an")
+    int quantity;
    @ObfuscatedName("ac")
    int field1078 = 31;
 
@@ -26,13 +24,12 @@ public final class TileItem extends Renderable {
       this.field1078 = var1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lit;",
-      garbageValue = "-112"
-   )
-   @Export("getModel")
-   protected final Model getModel() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lit;",
+            garbageValue = "-112"
+    )
+    protected final Model getModel() {
       return HealthBarUpdate.ItemDefinition_get(this.id).getModel(this.quantity);
    }
 
@@ -87,13 +84,12 @@ public final class TileItem extends Renderable {
 
    }
 
-   @ObfuscatedName("ms")
-   @ObfuscatedSignature(
-      descriptor = "([Lmq;IB)V",
-      garbageValue = "21"
-   )
-   @Export("drawModelComponents")
-   static final void drawModelComponents(Widget[] var0, int var1) {
+    @ObfuscatedName("ms")
+    @ObfuscatedSignature(
+            descriptor = "([Lmq;IB)V",
+            garbageValue = "21"
+    )
+    static final void drawModelComponents(Widget[] var0, int var1) {
       for(int var2 = 0; var2 < var0.length; ++var2) {
          Widget var3 = var0[var2];
          if (var3 != null && var3.parentId == var1 && (!var3.isIf3 || !class393.isComponentHidden(var3))) {

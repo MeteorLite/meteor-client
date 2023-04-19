@@ -13,13 +13,12 @@ public class class315 {
    @ObfuscatedName("ac")
    public static final short[][] field2866 = new short[][]{{6554, 115, 10304, 28, 5702, 7756, 5681, 4510, -31835, 22437, 2859, -11339, 16, 5157, 10446, 3658, -27314, -21965, 472, 580, 784, 21966, 28950, -15697, -14002, -22116, 945, 8144, -13414, 30389}, {9104, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 25486, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019}, new short[0], new short[0], new short[0]};
 
-   @ObfuscatedName("hr")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "1004858522"
-   )
-   @Export("getLoginError")
-   static void getLoginError(int var0) {
+    @ObfuscatedName("hr")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "1004858522"
+    )
+    static void getLoginError(int var0) {
       int var1 = class330.method1846();
       if (var0 == -3) {
          class205.setLoginResponseString("Connection timed out.", "Please try using a different world.", "");

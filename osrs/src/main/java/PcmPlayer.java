@@ -8,37 +8,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class PcmPlayer {
    @ObfuscatedName("au")
    public static int field201;
-   @ObfuscatedName("ab")
-   @Export("PcmPlayer_stereo")
-   public static boolean PcmPlayer_stereo;
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "Lbh;"
-   )
-   @Export("pcmPlayerProvider")
-   public static class50 pcmPlayerProvider;
+    @ObfuscatedName("ab")
+    public static boolean PcmPlayer_stereo;
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "Lbh;"
+    )
+    public static class50 pcmPlayerProvider;
    @ObfuscatedName("gs")
    @ObfuscatedSignature(
       descriptor = "Lnd;"
    )
    static Archive field211;
-   @ObfuscatedName("ai")
-   @Export("samples")
-   protected int[] samples;
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "Lbp;"
-   )
-   @Export("stream")
-   PcmStream stream;
+    @ObfuscatedName("ai")
+    protected int[] samples;
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "Lbp;"
+    )
+    PcmStream stream;
    @ObfuscatedName("ah")
    int field197 = 32;
-   @ObfuscatedName("av")
-   @Export("timeMs")
-   long timeMs = class96.clockNow();
-   @ObfuscatedName("ar")
-   @Export("capacity")
-   int capacity;
+    @ObfuscatedName("av")
+    long timeMs = class96.clockNow();
+    @ObfuscatedName("ar")
+    int capacity;
    @ObfuscatedName("am")
    int field200;
    @ObfuscatedName("as")
@@ -68,74 +62,66 @@ public class PcmPlayer {
    )
    PcmStream[] field210 = new PcmStream[8];
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "28"
-   )
-   @Export("init")
-   protected void init() throws Exception {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "28"
+    )
+    protected void init() throws Exception {
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "182405776"
-   )
-   @Export("open")
-   protected void open(int var1) throws Exception {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "182405776"
+    )
+    protected void open(int var1) throws Exception {
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-654786411"
-   )
-   @Export("position")
-   protected int position() throws Exception {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-654786411"
+    )
+    protected int position() throws Exception {
       return this.capacity;
    }
 
-   @ObfuscatedName("ac")
-   @Export("write")
-   protected void write() throws Exception {
+    @ObfuscatedName("ac")
+    protected void write() throws Exception {
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1466449702"
-   )
-   @Export("close")
-   protected void close() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1466449702"
+    )
+    protected void close() {
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "22"
-   )
-   @Export("discard")
-   protected void discard() throws Exception {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "22"
+    )
+    protected void discard() throws Exception {
    }
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(Lbp;I)V",
-      garbageValue = "-412033085"
-   )
-   @Export("setStream")
-   public final synchronized void setStream(PcmStream var1) {
+    @ObfuscatedName("aj")
+    @ObfuscatedSignature(
+            descriptor = "(Lbp;I)V",
+            garbageValue = "-412033085"
+    )
+    public final synchronized void setStream(PcmStream var1) {
       this.stream = var1;
    }
 
-   @ObfuscatedName("ak")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "336870901"
-   )
-   @Export("run")
-   public final synchronized void run() {
+    @ObfuscatedName("ak")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "336870901"
+    )
+    public final synchronized void run() {
       if (this.samples != null) {
          long var1 = class96.clockNow();
 
@@ -231,13 +217,12 @@ public class PcmPlayer {
       this.field207 = true;
    }
 
-   @ObfuscatedName("ad")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1703203933"
-   )
-   @Export("tryDiscard")
-   public final synchronized void tryDiscard() {
+    @ObfuscatedName("ad")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1703203933"
+    )
+    public final synchronized void tryDiscard() {
       this.field207 = true;
 
       try {
@@ -249,13 +234,12 @@ public class PcmPlayer {
 
    }
 
-   @ObfuscatedName("ae")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-1"
-   )
-   @Export("shutdown")
-   public final synchronized void shutdown() {
+    @ObfuscatedName("ae")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "-1"
+    )
+    public final synchronized void shutdown() {
       if (class354.soundSystem != null) {
          boolean var1 = true;
 
@@ -280,13 +264,12 @@ public class PcmPlayer {
       this.samples = null;
    }
 
-   @ObfuscatedName("ap")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-1042309166"
-   )
-   @Export("skip")
-   final void skip(int var1) {
+    @ObfuscatedName("ap")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-1042309166"
+    )
+    final void skip(int var1) {
       this.field209 -= var1;
       if (this.field209 < 0) {
          this.field209 = 0;
@@ -298,9 +281,8 @@ public class PcmPlayer {
 
    }
 
-   @ObfuscatedName("by")
-   @Export("fill")
-   final void fill(int[] var1, int var2) {
+    @ObfuscatedName("by")
+    final void fill(int[] var1, int var2) {
       int var3 = var2;
       if (PcmPlayer_stereo) {
          var3 = var2 << 1;

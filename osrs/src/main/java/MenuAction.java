@@ -6,33 +6,25 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cb")
 @Implements("MenuAction")
 public class MenuAction {
-   @ObfuscatedName("qh")
-   @ObfuscatedSignature(
-      descriptor = "Lsu;"
-   )
-   @Export("HitSplatDefinition_cached")
-   static class473 HitSplatDefinition_cached;
-   @ObfuscatedName("af")
-   @Export("param0")
-   int param0;
-   @ObfuscatedName("an")
-   @Export("param1")
-   int param1;
-   @ObfuscatedName("aw")
-   @Export("opcode")
-   int opcode;
-   @ObfuscatedName("ac")
-   @Export("identifier")
-   int identifier;
-   @ObfuscatedName("au")
-   @Export("itemId")
-   int itemId;
-   @ObfuscatedName("ab")
-   @Export("action")
-   String action;
-   @ObfuscatedName("aq")
-   @Export("target")
-   String target;
+    @ObfuscatedName("qh")
+    @ObfuscatedSignature(
+            descriptor = "Lsu;"
+    )
+    static class473 HitSplatDefinition_cached;
+    @ObfuscatedName("af")
+    int param0;
+    @ObfuscatedName("an")
+    int param1;
+    @ObfuscatedName("aw")
+    int opcode;
+    @ObfuscatedName("ac")
+    int identifier;
+    @ObfuscatedName("au")
+    int itemId;
+    @ObfuscatedName("ab")
+    String action;
+    @ObfuscatedName("aq")
+    String target;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(
@@ -72,23 +64,21 @@ public class MenuAction {
       VarbitComposition.VarbitDefinition_archive = var0;
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(CI)Z",
-      garbageValue = "-2123095492"
-   )
-   @Export("isAlphaNumeric")
-   public static boolean isAlphaNumeric(char var0) {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(CI)Z",
+            garbageValue = "-2123095492"
+    )
+    public static boolean isAlphaNumeric(char var0) {
       return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
    }
 
-   @ObfuscatedName("kz")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
-      garbageValue = "116"
-   )
-   @Export("insertMenuItemNoShift")
-   public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+    @ObfuscatedName("kz")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
+            garbageValue = "116"
+    )
+    public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
       SceneTilePaint.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
    }
 }

@@ -6,21 +6,17 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ku")
 @Implements("WorldMapLabel")
 public class WorldMapLabel {
-   @ObfuscatedName("af")
-   @Export("text")
-   String text;
-   @ObfuscatedName("an")
-   @Export("width")
-   int width;
-   @ObfuscatedName("aw")
-   @Export("height")
-   int height;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Ljd;"
-   )
-   @Export("size")
-   WorldMapLabelSize size;
+    @ObfuscatedName("af")
+    String text;
+    @ObfuscatedName("an")
+    int width;
+    @ObfuscatedName("aw")
+    int height;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Ljd;"
+    )
+    WorldMapLabelSize size;
 
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;IILjd;)V"

@@ -25,13 +25,12 @@ public class MusicPatchNode2 {
    @ObfuscatedName("at")
    int field2721;
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;Ljava/lang/String;Ljava/lang/String;I)Ltc;",
-      garbageValue = "1319736369"
-   )
-   @Export("SpriteBuffer_getIndexedSpriteByName")
-   public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(Lnm;Ljava/lang/String;Ljava/lang/String;I)Ltc;",
+            garbageValue = "1319736369"
+    )
+    public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
       if (!var0.isValidFileName(var1, var2)) {
          return null;
       } else {

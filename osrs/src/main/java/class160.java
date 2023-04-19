@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gg")
 public class class160 {
-   @ObfuscatedName("qm")
-   @ObfuscatedSignature(
-      descriptor = "Lsu;"
-   )
-   @Export("HitSplatDefinition_cachedSprites")
-   static class473 HitSplatDefinition_cachedSprites;
+    @ObfuscatedName("qm")
+    @ObfuscatedSignature(
+            descriptor = "Lsu;"
+    )
+    static class473 HitSplatDefinition_cachedSprites;
 
    @ObfuscatedName("ab")
    @ObfuscatedSignature(

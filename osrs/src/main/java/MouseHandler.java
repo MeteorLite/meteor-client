@@ -11,77 +11,57 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bd")
 @Implements("MouseHandler")
 public class MouseHandler implements MouseListener, MouseMotionListener, FocusListener {
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lbd;"
-   )
-   @Export("MouseHandler_instance")
-   public static MouseHandler MouseHandler_instance = new MouseHandler();
-   @ObfuscatedName("au")
-   @Export("MouseHandler_idleCycles")
-   public static volatile int MouseHandler_idleCycles = 0;
-   @ObfuscatedName("ab")
-   @Export("MouseHandler_currentButtonVolatile")
-   public static volatile int MouseHandler_currentButtonVolatile = 0;
-   @ObfuscatedName("aq")
-   @Export("MouseHandler_xVolatile")
-   public static volatile int MouseHandler_xVolatile = -1;
-   @ObfuscatedName("al")
-   @Export("MouseHandler_yVolatile")
-   public static volatile int MouseHandler_yVolatile = -1;
-   @ObfuscatedName("at")
-   @Export("MouseHandler_lastMovedVolatile")
-   public static volatile long MouseHandler_lastMovedVolatile = -1L;
-   @ObfuscatedName("aa")
-   @Export("MouseHandler_currentButton")
-   public static int MouseHandler_currentButton = 0;
-   @ObfuscatedName("ay")
-   @Export("MouseHandler_x")
-   public static int MouseHandler_x = 0;
-   @ObfuscatedName("ao")
-   @Export("MouseHandler_y")
-   public static int MouseHandler_y = 0;
-   @ObfuscatedName("ax")
-   @Export("MouseHandler_millis")
-   public static long MouseHandler_millis = 0L;
-   @ObfuscatedName("ai")
-   @Export("MouseHandler_lastButtonVolatile")
-   public static volatile int MouseHandler_lastButtonVolatile = 0;
-   @ObfuscatedName("ag")
-   @Export("MouseHandler_lastPressedXVolatile")
-   public static volatile int MouseHandler_lastPressedXVolatile = 0;
-   @ObfuscatedName("ah")
-   @Export("MouseHandler_lastPressedYVolatile")
-   public static volatile int MouseHandler_lastPressedYVolatile = 0;
-   @ObfuscatedName("av")
-   @Export("MouseHandler_lastPressedTimeMillisVolatile")
-   public static volatile long MouseHandler_lastPressedTimeMillisVolatile = 0L;
-   @ObfuscatedName("ar")
-   @Export("MouseHandler_lastButton")
-   public static int MouseHandler_lastButton = 0;
-   @ObfuscatedName("am")
-   @Export("MouseHandler_lastPressedX")
-   public static int MouseHandler_lastPressedX = 0;
-   @ObfuscatedName("as")
-   @Export("MouseHandler_lastPressedY")
-   public static int MouseHandler_lastPressedY = 0;
-   @ObfuscatedName("aj")
-   @Export("MouseHandler_lastPressedTimeMillis")
-   public static long MouseHandler_lastPressedTimeMillis = 0L;
-   @ObfuscatedName("sx")
-   @ObfuscatedSignature(
-      descriptor = "Lgj;"
-   )
-   @Export("guestClanChannel")
-   static ClanChannel guestClanChannel;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lbd;"
+    )
+    public static MouseHandler MouseHandler_instance = new MouseHandler();
+    @ObfuscatedName("au")
+    public static volatile int MouseHandler_idleCycles = 0;
+    @ObfuscatedName("ab")
+    public static volatile int MouseHandler_currentButtonVolatile = 0;
+    @ObfuscatedName("aq")
+    public static volatile int MouseHandler_xVolatile = -1;
+    @ObfuscatedName("al")
+    public static volatile int MouseHandler_yVolatile = -1;
+    @ObfuscatedName("at")
+    public static volatile long MouseHandler_lastMovedVolatile = -1L;
+    @ObfuscatedName("aa")
+    public static int MouseHandler_currentButton = 0;
+    @ObfuscatedName("ay")
+    public static int MouseHandler_x = 0;
+    @ObfuscatedName("ao")
+    public static int MouseHandler_y = 0;
+    @ObfuscatedName("ax")
+    public static long MouseHandler_millis = 0L;
+    @ObfuscatedName("ai")
+    public static volatile int MouseHandler_lastButtonVolatile = 0;
+    @ObfuscatedName("ag")
+    public static volatile int MouseHandler_lastPressedXVolatile = 0;
+    @ObfuscatedName("ah")
+    public static volatile int MouseHandler_lastPressedYVolatile = 0;
+    @ObfuscatedName("av")
+    public static volatile long MouseHandler_lastPressedTimeMillisVolatile = 0L;
+    @ObfuscatedName("ar")
+    public static int MouseHandler_lastButton = 0;
+    @ObfuscatedName("am")
+    public static int MouseHandler_lastPressedX = 0;
+    @ObfuscatedName("as")
+    public static int MouseHandler_lastPressedY = 0;
+    @ObfuscatedName("aj")
+    public static long MouseHandler_lastPressedTimeMillis = 0L;
+    @ObfuscatedName("sx")
+    @ObfuscatedSignature(
+            descriptor = "Lgj;"
+    )
+    static ClanChannel guestClanChannel;
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/awt/event/MouseEvent;B)I",
-      garbageValue = "-121"
-   )
-   @Export("getButton")
-   final int getButton(MouseEvent var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/awt/event/MouseEvent;B)I",
+            garbageValue = "-121"
+    )
+    final int getButton(MouseEvent var1) {
       int var2 = var1.getButton();
       if (!var1.isAltDown() && var2 != 2) {
          return !var1.isMetaDown() && var2 != 3 ? 1 : 2;
@@ -100,9 +80,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
    }
 
-   @Export("mousePressed")
-   @ObfuscatedName("mousePressed")
-   public final synchronized void mousePressed(MouseEvent var1) {
+    @ObfuscatedName("mousePressed")
+    public final synchronized void mousePressed(MouseEvent var1) {
       if (MouseHandler_instance != null) {
          MouseHandler_idleCycles = 0;
          MouseHandler_lastPressedXVolatile = var1.getX();
@@ -120,9 +99,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
    }
 
-   @Export("mouseReleased")
-   @ObfuscatedName("mouseReleased")
-   public final synchronized void mouseReleased(MouseEvent var1) {
+    @ObfuscatedName("mouseReleased")
+    public final synchronized void mouseReleased(MouseEvent var1) {
       if (MouseHandler_instance != null) {
          MouseHandler_idleCycles = 0;
          MouseHandler_currentButtonVolatile = 0;
@@ -144,9 +122,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
    }
 
-   @Export("mouseClicked")
-   @ObfuscatedName("mouseClicked")
-   public final void mouseClicked(MouseEvent var1) {
+    @ObfuscatedName("mouseClicked")
+    public final void mouseClicked(MouseEvent var1) {
       if (var1.isPopupTrigger()) {
          var1.consume();
       }
@@ -358,13 +335,12 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
       }
    }
 
-   @ObfuscatedName("ib")
-   @ObfuscatedSignature(
-      descriptor = "(Ldv;ZI)V",
-      garbageValue = "-1861126010"
-   )
-   @Export("addPlayerToScene")
-   static void addPlayerToScene(Player var0, boolean var1) {
+    @ObfuscatedName("ib")
+    @ObfuscatedSignature(
+            descriptor = "(Ldv;ZI)V",
+            garbageValue = "-1861126010"
+    )
+    static void addPlayerToScene(Player var0, boolean var1) {
       if (var0 != null && var0.isVisible() && !var0.isHidden) {
          var0.isUnanimated = false;
          if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.idleSequence == var0.movementSequence) {

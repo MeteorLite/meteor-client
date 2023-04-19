@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jg")
 public class Clips {
-   @ObfuscatedName("ou")
-   @Export("selectedSpellWidget")
-   static int selectedSpellWidget;
+    @ObfuscatedName("ou")
+    static int selectedSpellWidget;
    @ObfuscatedName("af")
    boolean field2234 = false;
    @ObfuscatedName("an")
@@ -14,13 +13,12 @@ public class Clips {
    @ObfuscatedName("aw")
    int field2225 = 0;
    @ObfuscatedName("ab")
-   public int field2227 = 512;
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Ljq;"
-   )
-   @Export("Rasterizer3D_textureLoader")
-   public TextureLoader Rasterizer3D_textureLoader;
+   public int viewportZoom = 512;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Ljq;"
+    )
+    public TextureLoader Rasterizer3D_textureLoader;
    @ObfuscatedName("ax")
    int field2231;
    @ObfuscatedName("ai")
@@ -37,9 +35,8 @@ public class Clips {
    int clipNegativeMidY;
    @ObfuscatedName("as")
    int field2238;
-   @ObfuscatedName("aj")
-   @Export("Rasterizer3D_rowOffsets")
-   int[] Rasterizer3D_rowOffsets = new int[1024];
+    @ObfuscatedName("aj")
+    int[] Rasterizer3D_rowOffsets = new int[1024];
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(

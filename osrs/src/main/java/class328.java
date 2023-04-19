@@ -3,7 +3,6 @@ import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("mo")
 public final class class328 {
-   @ObfuscatedName("aw")
-   @Export("WorldMapElement_count")
-   public static int WorldMapElement_count;
+    @ObfuscatedName("aw")
+    public static int WorldMapElement_count;
 }

@@ -63,9 +63,8 @@ public class class15 extends SSLSocketFactory {
       return null;
    }
 
-   @Export("createSocket")
-   @ObfuscatedName("createSocket")
-   public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
+    @ObfuscatedName("createSocket")
+    public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
       if (var1 == null) {
          var1 = new Socket();
       }

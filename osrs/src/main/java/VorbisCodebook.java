@@ -5,22 +5,18 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("bw")
 @Implements("VorbisCodebook")
 public class VorbisCodebook {
-   @ObfuscatedName("af")
-   @Export("dimensions")
-   int dimensions;
-   @ObfuscatedName("an")
-   @Export("entries")
-   int entries;
-   @ObfuscatedName("aw")
-   @Export("lengthMap")
-   int[] lengthMap;
+    @ObfuscatedName("af")
+    int dimensions;
+    @ObfuscatedName("an")
+    int entries;
+    @ObfuscatedName("aw")
+    int[] lengthMap;
    @ObfuscatedName("ac")
    int[] field263;
    @ObfuscatedName("au")
    float[][] field262;
-   @ObfuscatedName("ab")
-   @Export("keys")
-   int[] keys;
+    @ObfuscatedName("ab")
+    int[] keys;
 
    VorbisCodebook() {
       VorbisSample.readBits(24);
@@ -223,9 +219,8 @@ public class VorbisCodebook {
       return this.field262[this.method309()];
    }
 
-   @ObfuscatedName("af")
-   @Export("mapType1QuantValues")
-   static int mapType1QuantValues(int var0, int var1) {
+    @ObfuscatedName("af")
+    static int mapType1QuantValues(int var0, int var1) {
       int var2;
       for(var2 = (int)Math.pow((double)var0, 1.0D / (double)var1) + 1; Script.method460(var2, var1) > var0; --var2) {
          ;

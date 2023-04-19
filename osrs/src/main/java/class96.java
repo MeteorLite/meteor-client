@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dq")
 public class class96 {
-   @ObfuscatedName("ar")
-   @Export("cacheSubPaths")
-   public static String[] cacheSubPaths;
+    @ObfuscatedName("ar")
+    public static String[] cacheSubPaths;
    @ObfuscatedName("bh")
    @ObfuscatedSignature(
       descriptor = "Lqu;"
@@ -14,17 +13,15 @@ public class class96 {
    static Bounds field1063;
    @ObfuscatedName("ls")
    static int field1064;
-   @ObfuscatedName("qe")
-   @Export("widgetDragDuration")
-   static int widgetDragDuration;
+    @ObfuscatedName("qe")
+    static int widgetDragDuration;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)J",
-      garbageValue = "55191168"
-   )
-   @Export("clockNow")
-   public static final synchronized long clockNow() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)J",
+            garbageValue = "55191168"
+    )
+    public static final synchronized long clockNow() {
       long var0 = System.currentTimeMillis();
       if (var0 < class293.field2711) {
          class293.field2712 += class293.field2711 - var0;

@@ -9,40 +9,32 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class Archive extends AbstractArchive {
    @ObfuscatedName("up")
    static int field3467;
-   @ObfuscatedName("ao")
-   @Export("Archive_crc")
-   static CRC32 Archive_crc = new CRC32();
-   @ObfuscatedName("jn")
-   @Export("regionLandArchiveIds")
-   static int[] regionLandArchiveIds;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lqk;"
-   )
-   @Export("archiveDisk")
-   ArchiveDisk archiveDisk;
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Lqk;"
-   )
-   @Export("masterDisk")
-   ArchiveDisk masterDisk;
-   @ObfuscatedName("al")
-   @Export("index")
-   int index;
+    @ObfuscatedName("ao")
+    static CRC32 Archive_crc = new CRC32();
+    @ObfuscatedName("jn")
+    static int[] regionLandArchiveIds;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lqk;"
+    )
+    ArchiveDisk archiveDisk;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Lqk;"
+    )
+    ArchiveDisk masterDisk;
+    @ObfuscatedName("al")
+    int index;
    @ObfuscatedName("at")
    volatile int field3459 = 0;
    @ObfuscatedName("aa")
    boolean field3460 = false;
-   @ObfuscatedName("ay")
-   @Export("validGroups")
-   volatile boolean[] validGroups;
-   @ObfuscatedName("ax")
-   @Export("indexCrc")
-   int indexCrc;
-   @ObfuscatedName("ai")
-   @Export("indexVersion")
-   int indexVersion;
+    @ObfuscatedName("ay")
+    volatile boolean[] validGroups;
+    @ObfuscatedName("ax")
+    int indexCrc;
+    @ObfuscatedName("ai")
+    int indexVersion;
    @ObfuscatedName("ag")
    int field3462 = -1;
    @ObfuscatedName("ah")
@@ -106,13 +98,12 @@ public class Archive extends AbstractArchive {
       return this.field3459 == 1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "0"
-   )
-   @Export("percentage")
-   public int percentage() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "0"
+    )
+    public int percentage() {
       if (this.field3459 == 1 || this.field3465 && this.field3459 == 2) {
          return 100;
       } else if (super.groups != null) {
@@ -127,13 +118,12 @@ public class Archive extends AbstractArchive {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-2103539915"
-   )
-   @Export("loadRegionFromGroup")
-   void loadRegionFromGroup(int var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-2103539915"
+    )
+    void loadRegionFromGroup(int var1) {
       int var2 = this.index;
       long var3 = (long)((var2 << 16) + var1);
       NetFileRequest var5 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var3);
@@ -143,13 +133,12 @@ public class Archive extends AbstractArchive {
 
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "-1884547323"
-   )
-   @Export("loadGroup")
-   void loadGroup(int var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "-1884547323"
+    )
+    void loadGroup(int var1) {
       if (this.archiveDisk != null && this.validGroups != null && this.validGroups[var1]) {
          ArchiveDisk var2 = this.archiveDisk;
          byte[] var4 = null;
@@ -191,13 +180,12 @@ public class Archive extends AbstractArchive {
       super.files = new Object[0][];
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(III)V",
-      garbageValue = "-691028"
-   )
-   @Export("loadIndex")
-   void loadIndex(int var1, int var2) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(III)V",
+            garbageValue = "-691028"
+    )
+    void loadIndex(int var1, int var2) {
       this.indexCrc = var1;
       this.indexVersion = var2;
       if (this.masterDisk != null) {
@@ -226,13 +214,12 @@ public class Archive extends AbstractArchive {
 
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(I[BZZI)V",
-      garbageValue = "681088359"
-   )
-   @Export("write")
-   void write(int var1, byte[] var2, boolean var3, boolean var4) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(I[BZZI)V",
+            garbageValue = "681088359"
+    )
+    void write(int var1, byte[] var2, boolean var3, boolean var4) {
       if (var3) {
          if (this.field3459 == 1) {
             throw new RuntimeException();
@@ -259,13 +246,12 @@ public class Archive extends AbstractArchive {
 
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(Lqk;I[BZB)V",
-      garbageValue = "101"
-   )
-   @Export("load")
-   public void load(ArchiveDisk var1, int var2, byte[] var3, boolean var4) {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(Lqk;I[BZB)V",
+            garbageValue = "101"
+    )
+    public void load(ArchiveDisk var1, int var2, byte[] var3, boolean var4) {
       int var5;
       if (var1 == this.masterDisk) {
          if (this.field3459 == 1) {
@@ -338,13 +324,12 @@ public class Archive extends AbstractArchive {
 
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "302914766"
-   )
-   @Export("loadAllLocal")
-   void loadAllLocal() {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "302914766"
+    )
+    void loadAllLocal() {
       this.validGroups = new boolean[super.groups.length];
 
       int var1;
@@ -371,13 +356,12 @@ public class Archive extends AbstractArchive {
       }
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "-1973967810"
-   )
-   @Export("groupLoadPercent")
-   int groupLoadPercent(int var1) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(II)I",
+            garbageValue = "-1973967810"
+    )
+    int groupLoadPercent(int var1) {
       if (super.groups[var1] != null) {
          return 100;
       } else {
@@ -403,13 +387,12 @@ public class Archive extends AbstractArchive {
       return this.getGroupFileIds(var1) != null;
    }
 
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "4"
-   )
-   @Export("loadPercent")
-   public int loadPercent() {
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "4"
+    )
+    public int loadPercent() {
       int var1 = 0;
       int var2 = 0;
 
@@ -429,13 +412,12 @@ public class Archive extends AbstractArchive {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(CLnx;I)I",
-      garbageValue = "-1341614150"
-   )
-   @Export("lowercaseChar")
-   static int lowercaseChar(char var0, Language var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(CLnx;I)I",
+            garbageValue = "-1341614150"
+    )
+    static int lowercaseChar(char var0, Language var1) {
       int var2 = var0 << 4;
       if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) {
          var0 = Character.toLowerCase(var0);

@@ -21,44 +21,40 @@ public class class149 extends class139 {
       this.this$0 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1350 = var1.readInt();
       this.field1349 = var1.readStringCp1252NullTerminated();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.method863(this.field1350, this.field1349);
    }
 
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "(CI)Z",
-      garbageValue = "-200557618"
-   )
-   @Export("isDigit")
-   public static boolean isDigit(char var0) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "(CI)Z",
+            garbageValue = "-200557618"
+    )
+    public static boolean isDigit(char var0) {
       return var0 >= '0' && var0 <= '9';
    }
 
-   @ObfuscatedName("jy")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIII)V",
-      garbageValue = "-1290487561"
-   )
-   @Export("drawObject")
-   static final void drawObject(int var0, int var1, int var2, int var3, int var4) {
+    @ObfuscatedName("jy")
+    @ObfuscatedSignature(
+            descriptor = "(IIIIII)V",
+            garbageValue = "-1290487561"
+    )
+    static final void drawObject(int var0, int var1, int var2, int var3, int var4) {
       long var5 = class31.scene.getBoundaryObjectTag(var0, var1, var2);
       int var7;
       int var8;

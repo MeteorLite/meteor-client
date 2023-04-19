@@ -7,39 +7,34 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("na")
 @Implements("GrandExchangeOfferNameComparator")
 final class GrandExchangeOfferNameComparator implements Comparator {
-   @ObfuscatedName("au")
-   @Export("ArchiveDiskActionHandler_thread")
-   static Thread ArchiveDiskActionHandler_thread;
+    @ObfuscatedName("au")
+    static Thread ArchiveDiskActionHandler_thread;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnu;Lnu;I)I",
-      garbageValue = "-1449096527"
-   )
-   @Export("compare_bridged")
-   int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lnu;Lnu;I)I",
+            garbageValue = "-1449096527"
+    )
+    int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
       return var1.getOfferName().compareTo(var2.getOfferName());
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 
-   @ObfuscatedName("iv")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1926093694"
-   )
-   @Export("getWindowedMode")
-   static int getWindowedMode() {
+    @ObfuscatedName("iv")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "1926093694"
+    )
+    static int getWindowedMode() {
       return Client.isResizable ? 2 : 1;
    }
 }

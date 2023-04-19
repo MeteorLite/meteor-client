@@ -8,42 +8,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("sj")
 @Implements("BufferedFile")
 public class BufferedFile {
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lsy;"
-   )
-   @Export("accessFile")
-   AccessFile accessFile;
-   @ObfuscatedName("aw")
-   @Export("readBuffer")
-   byte[] readBuffer;
-   @ObfuscatedName("ac")
-   @Export("readBufferOffset")
-   long readBufferOffset = -1L;
-   @ObfuscatedName("au")
-   @Export("readBufferLength")
-   int readBufferLength;
-   @ObfuscatedName("ab")
-   @Export("writeBuffer")
-   byte[] writeBuffer;
-   @ObfuscatedName("aq")
-   @Export("writeBufferOffset")
-   long writeBufferOffset = -1L;
-   @ObfuscatedName("al")
-   @Export("writeBufferLength")
-   int writeBufferLength = 0;
-   @ObfuscatedName("at")
-   @Export("offset")
-   long offset;
-   @ObfuscatedName("aa")
-   @Export("fileLength")
-   long fileLength;
-   @ObfuscatedName("ay")
-   @Export("length")
-   long length;
-   @ObfuscatedName("ao")
-   @Export("fileOffset")
-   long fileOffset;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lsy;"
+    )
+    AccessFile accessFile;
+    @ObfuscatedName("aw")
+    byte[] readBuffer;
+    @ObfuscatedName("ac")
+    long readBufferOffset = -1L;
+    @ObfuscatedName("au")
+    int readBufferLength;
+    @ObfuscatedName("ab")
+    byte[] writeBuffer;
+    @ObfuscatedName("aq")
+    long writeBufferOffset = -1L;
+    @ObfuscatedName("al")
+    int writeBufferLength = 0;
+    @ObfuscatedName("at")
+    long offset;
+    @ObfuscatedName("aa")
+    long fileLength;
+    @ObfuscatedName("ay")
+    long length;
+    @ObfuscatedName("ao")
+    long fileOffset;
 
    @ObfuscatedSignature(
       descriptor = "(Lsy;II)V"
@@ -56,20 +45,18 @@ public class BufferedFile {
       this.offset = 0L;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1887935555"
-   )
-   @Export("close")
-   public void close() throws IOException {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1887935555"
+    )
+    public void close() throws IOException {
       this.flush();
       this.accessFile.close();
    }
 
-   @ObfuscatedName("an")
-   @Export("seek")
-   public void seek(long var1) throws IOException {
+    @ObfuscatedName("an")
+    public void seek(long var1) throws IOException {
       if (var1 < 0L) {
          throw new IOException("");
       } else {
@@ -77,33 +64,30 @@ public class BufferedFile {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(S)J",
-      garbageValue = "13501"
-   )
-   @Export("length")
-   public long length() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(S)J",
+            garbageValue = "13501"
+    )
+    public long length() {
       return this.length;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "([BI)V",
-      garbageValue = "421254913"
-   )
-   @Export("readFully")
-   public void readFully(byte[] var1) throws IOException {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "([BI)V",
+            garbageValue = "421254913"
+    )
+    public void readFully(byte[] var1) throws IOException {
       this.read(var1, 0, var1.length);
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "([BIII)V",
-      garbageValue = "-1982528940"
-   )
-   @Export("read")
-   public void read(byte[] var1, int var2, int var3) throws IOException {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "([BIII)V",
+            garbageValue = "-1982528940"
+    )
+    public void read(byte[] var1, int var2, int var3) throws IOException {
       try {
          if (var3 + var2 > var1.length) {
             throw new ArrayIndexOutOfBoundsException(var3 + var2 - var1.length);
@@ -203,13 +187,12 @@ public class BufferedFile {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-75"
-   )
-   @Export("load")
-   void load() throws IOException {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "-75"
+    )
+    void load() throws IOException {
       this.readBufferLength = 0;
       if (this.offset != this.fileOffset) {
          this.accessFile.seek(this.offset);
@@ -233,13 +216,12 @@ public class BufferedFile {
 
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "([BIIB)V",
-      garbageValue = "3"
-   )
-   @Export("write")
-   public void write(byte[] var1, int var2, int var3) throws IOException {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "([BIIB)V",
+            garbageValue = "3"
+    )
+    public void write(byte[] var1, int var2, int var3) throws IOException {
       try {
          if (this.offset + (long)var3 > this.length) {
             this.length = (long)var3 + this.offset;
@@ -311,13 +293,12 @@ public class BufferedFile {
       }
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "789688414"
-   )
-   @Export("flush")
-   void flush() throws IOException {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "789688414"
+    )
+    void flush() throws IOException {
       if (this.writeBufferOffset != -1L) {
          if (this.fileOffset != this.writeBufferOffset) {
             this.accessFile.seek(this.writeBufferOffset);

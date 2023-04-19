@@ -6,24 +6,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cg")
 @Implements("FriendSystem")
 public class FriendSystem {
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lsw;"
-   )
-   @Export("loginType")
-   final LoginType loginType;
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Lpo;"
-   )
-   @Export("friendsList")
-   public final FriendsList friendsList;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lpu;"
-   )
-   @Export("ignoreList")
-   public final IgnoreList ignoreList;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lsw;"
+    )
+    final LoginType loginType;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Lpo;"
+    )
+    public final FriendsList friendsList;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Lpu;"
+    )
+    public final IgnoreList ignoreList;
    @ObfuscatedName("aq")
    int field672 = 0;
 
@@ -54,13 +51,12 @@ public class FriendSystem {
       this.field672 = 1;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "734353750"
-   )
-   @Export("readUpdate")
-   final void readUpdate(Buffer var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "734353750"
+    )
+    final void readUpdate(Buffer var1, int var2) {
       this.friendsList.read(var1, var2);
       this.field672 = 2;
 
@@ -76,13 +72,12 @@ public class FriendSystem {
 
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1673735823"
-   )
-   @Export("processFriendUpdates")
-   final void processFriendUpdates() {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1673735823"
+    )
+    final void processFriendUpdates() {
       for(FriendLoginUpdate var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.previous()) {
          if ((long)var1.field3722 < class96.clockNow() / 1000L - 5L) {
             if (var1.worldId > 0) {
@@ -99,25 +94,23 @@ public class FriendSystem {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "108"
-   )
-   @Export("clear")
-   final void clear() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(B)V",
+            garbageValue = "108"
+    )
+    final void clear() {
       this.field672 = 0;
       this.friendsList.clear();
       this.ignoreList.clear();
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(Ltm;ZB)Z",
-      garbageValue = "-51"
-   )
-   @Export("isFriended")
-   final boolean isFriended(Username var1, boolean var2) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(Ltm;ZB)Z",
+            garbageValue = "-51"
+    )
+    final boolean isFriended(Username var1, boolean var2) {
       if (var1 == null) {
          return false;
       } else if (var1.equals(MusicPatchNode.localPlayer.username)) {
@@ -127,13 +120,12 @@ public class FriendSystem {
       }
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(Ltm;I)Z",
-      garbageValue = "-1193559293"
-   )
-   @Export("isIgnored")
-   final boolean isIgnored(Username var1) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(Ltm;I)Z",
+            garbageValue = "-1193559293"
+    )
+    final boolean isIgnored(Username var1) {
       if (var1 == null) {
          return false;
       } else {
@@ -141,13 +133,12 @@ public class FriendSystem {
       }
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)V",
-      garbageValue = "-60"
-   )
-   @Export("addFriend")
-   final void addFriend(String var1) {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;B)V",
+            garbageValue = "-60"
+    )
+    final void addFriend(String var1) {
       if (var1 != null) {
          Username var2 = new Username(var1, this.loginType);
          if (var2.hasCleanName()) {
@@ -169,23 +160,21 @@ public class FriendSystem {
       }
    }
 
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "-57"
-   )
-   @Export("friendsListIsFull")
-   final boolean friendsListIsFull() {
+    @ObfuscatedName("ao")
+    @ObfuscatedSignature(
+            descriptor = "(B)Z",
+            garbageValue = "-57"
+    )
+    final boolean friendsListIsFull() {
       return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.isMembers != 1;
    }
 
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "42988923"
-   )
-   @Export("addIgnore")
-   final void addIgnore(String var1) {
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)V",
+            garbageValue = "42988923"
+    )
+    final void addIgnore(String var1) {
       if (var1 != null) {
          Username var2 = new Username(var1, this.loginType);
          if (var2.hasCleanName()) {
@@ -207,23 +196,21 @@ public class FriendSystem {
       }
    }
 
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "(I)Z",
-      garbageValue = "-300357261"
-   )
-   @Export("canAddIgnore")
-   final boolean canAddIgnore() {
+    @ObfuscatedName("ag")
+    @ObfuscatedSignature(
+            descriptor = "(I)Z",
+            garbageValue = "-300357261"
+    )
+    final boolean canAddIgnore() {
       return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.isMembers != 1;
    }
 
-   @ObfuscatedName("ah")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "-1657474548"
-   )
-   @Export("removeFriend")
-   final void removeFriend(String var1) {
+    @ObfuscatedName("ah")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)V",
+            garbageValue = "-1657474548"
+    )
+    final void removeFriend(String var1) {
       if (var1 != null) {
          Username var2 = new Username(var1, this.loginType);
          if (var2.hasCleanName()) {
@@ -249,13 +236,12 @@ public class FriendSystem {
       }
    }
 
-   @ObfuscatedName("av")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;ZB)V",
-      garbageValue = "-43"
-   )
-   @Export("removeIgnore")
-   public final void removeIgnore(String var1, boolean var2) {
+    @ObfuscatedName("av")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;ZB)V",
+            garbageValue = "-43"
+    )
+    public final void removeIgnore(String var1, boolean var2) {
       if (var1 != null) {
          Username var3 = new Username(var1, this.loginType);
          if (var3.hasCleanName()) {
@@ -274,13 +260,12 @@ public class FriendSystem {
       }
    }
 
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "(Ltm;I)Z",
-      garbageValue = "-2018991784"
-   )
-   @Export("isFriendAndHasWorld")
-   final boolean isFriendAndHasWorld(Username var1) {
+    @ObfuscatedName("am")
+    @ObfuscatedSignature(
+            descriptor = "(Ltm;I)Z",
+            garbageValue = "-2018991784"
+    )
+    final boolean isFriendAndHasWorld(Username var1) {
       Friend var2 = (Friend)this.friendsList.getByUsername(var1);
       return var2 != null && var2.hasWorld();
    }

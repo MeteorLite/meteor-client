@@ -8,51 +8,41 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class WorldMapElement extends DualNode {
    @ObfuscatedName("uv")
    static int field1503;
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("WorldMapElement_archive")
-   static AbstractArchive WorldMapElement_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "[Lhw;"
-   )
-   @Export("WorldMapElement_cached")
-   static WorldMapElement[] WorldMapElement_cached;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("WorldMapElement_cachedSprites")
-   static EvictingDualNodeHashTable WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(256);
-   @ObfuscatedName("au")
-   @Export("objectId")
-   public final int objectId;
-   @ObfuscatedName("ab")
-   @Export("sprite1")
-   public int sprite1 = -1;
-   @ObfuscatedName("aq")
-   @Export("sprite2")
-   int sprite2 = -1;
-   @ObfuscatedName("al")
-   @Export("name")
-   public String name;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive WorldMapElement_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "[Lhw;"
+    )
+    static WorldMapElement[] WorldMapElement_cached;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(256);
+    @ObfuscatedName("au")
+    public final int objectId;
+    @ObfuscatedName("ab")
+    public int sprite1 = -1;
+    @ObfuscatedName("aq")
+    int sprite2 = -1;
+    @ObfuscatedName("al")
+    public String name;
    @ObfuscatedName("at")
    public int field1484;
-   @ObfuscatedName("aa")
-   @Export("textSize")
-   public int textSize = 0;
+    @ObfuscatedName("aa")
+    public int textSize = 0;
    @ObfuscatedName("ao")
    public boolean field1489 = true;
    @ObfuscatedName("ax")
    public boolean field1491 = false;
-   @ObfuscatedName("ai")
-   @Export("menuActions")
-   public String[] menuActions = new String[5];
-   @ObfuscatedName("ag")
-   @Export("menuTargetName")
-   public String menuTargetName;
+    @ObfuscatedName("ai")
+    public String[] menuActions = new String[5];
+    @ObfuscatedName("ag")
+    public String menuTargetName;
    @ObfuscatedName("ah")
    int[] field1480;
    @ObfuscatedName("av")
@@ -63,25 +53,22 @@ public class WorldMapElement extends DualNode {
    int field1496 = Integer.MIN_VALUE;
    @ObfuscatedName("as")
    int field1497 = Integer.MIN_VALUE;
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "Lhd;"
-   )
-   @Export("horizontalAlignment")
-   public HorizontalAlignment horizontalAlignment;
-   @ObfuscatedName("ak")
-   @ObfuscatedSignature(
-      descriptor = "Lhn;"
-   )
-   @Export("verticalAlignment")
-   public VerticalAlignment verticalAlignment;
+    @ObfuscatedName("aj")
+    @ObfuscatedSignature(
+            descriptor = "Lhd;"
+    )
+    public HorizontalAlignment horizontalAlignment;
+    @ObfuscatedName("ak")
+    @ObfuscatedSignature(
+            descriptor = "Lhn;"
+    )
+    public VerticalAlignment verticalAlignment;
    @ObfuscatedName("az")
    int[] field1500;
    @ObfuscatedName("ad")
    byte[] field1501;
-   @ObfuscatedName("ae")
-   @Export("category")
-   public int category;
+    @ObfuscatedName("ae")
+    public int category;
 
    WorldMapElement(int var1) {
       this.horizontalAlignment = HorizontalAlignment.HorizontalAlignment_centered;
@@ -90,13 +77,12 @@ public class WorldMapElement extends DualNode {
       this.objectId = var1;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1056093346"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1056093346"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -107,13 +93,12 @@ public class WorldMapElement extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "1073520708"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "1073520708"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.sprite1 = var1.method2516();
       } else if (var2 == 2) {
@@ -221,24 +206,22 @@ public class WorldMapElement extends DualNode {
 
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(ZI)Ltq;",
-      garbageValue = "-16711936"
-   )
-   @Export("getSpriteBool")
-   public SpritePixels getSpriteBool(boolean var1) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(ZI)Ltq;",
+            garbageValue = "-16711936"
+    )
+    public SpritePixels getSpriteBool(boolean var1) {
       int var2 = this.sprite1 * -771758991 * 1458003089;
       return this.getSprite(var2);
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(II)Ltq;",
-      garbageValue = "685104861"
-   )
-   @Export("getSprite")
-   SpritePixels getSprite(int var1) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(II)Ltq;",
+            garbageValue = "685104861"
+    )
+    SpritePixels getSprite(int var1) {
       if (var1 < 0) {
          return null;
       } else {
@@ -256,13 +239,12 @@ public class WorldMapElement extends DualNode {
       }
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "557788055"
-   )
-   @Export("getObjectId")
-   public int getObjectId() {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "557788055"
+    )
+    public int getObjectId() {
       return this.objectId;
    }
 

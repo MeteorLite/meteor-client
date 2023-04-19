@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ey")
 public class class126 implements class356 {
-   @ObfuscatedName("wt")
-   @ObfuscatedSignature(
-      descriptor = "Lrb;"
-   )
-   @Export("worldMap")
-   static WorldMap worldMap;
+    @ObfuscatedName("wt")
+    @ObfuscatedSignature(
+            descriptor = "Lrb;"
+    )
+    static WorldMap worldMap;
    @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "Ley;"
@@ -40,18 +39,16 @@ public class class126 implements class356 {
       descriptor = "Ley;"
    )
    static final class126 field1244 = new class126(5, 5, (String)null, 3);
-   @ObfuscatedName("fj")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive12")
-   static Archive archive12;
-   @ObfuscatedName("fm")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive15")
-   static Archive archive15;
+    @ObfuscatedName("fj")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive12;
+    @ObfuscatedName("fm")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive15;
    @ObfuscatedName("aq")
    final int field1245;
    @ObfuscatedName("al")
@@ -65,13 +62,12 @@ public class class126 implements class356 {
       this.field1242 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field1250;
    }
 

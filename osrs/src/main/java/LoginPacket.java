@@ -16,18 +16,16 @@ public class LoginPacket implements class285 {
       descriptor = "Llf;"
    )
    static final LoginPacket field2701 = new LoginPacket(15, 4);
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Llf;"
-   )
-   @Export("NEW_LOGIN_CONNECTION")
-   public static final LoginPacket NEW_LOGIN_CONNECTION = new LoginPacket(16, -2);
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Llf;"
-   )
-   @Export("RECONNECT_LOGIN_CONNECTION")
-   public static final LoginPacket RECONNECT_LOGIN_CONNECTION = new LoginPacket(18, -2);
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Llf;"
+    )
+    public static final LoginPacket NEW_LOGIN_CONNECTION = new LoginPacket(16, -2);
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Llf;"
+    )
+    public static final LoginPacket RECONNECT_LOGIN_CONNECTION = new LoginPacket(18, -2);
    @ObfuscatedName("au")
    @ObfuscatedSignature(
       descriptor = "Llf;"
@@ -43,9 +41,8 @@ public class LoginPacket implements class285 {
       descriptor = "[Llf;"
    )
    static final LoginPacket[] field2706 = new LoginPacket[32];
-   @ObfuscatedName("aq")
-   @Export("id")
-   public final int id;
+    @ObfuscatedName("aq")
+    public final int id;
 
    static {
       LoginPacket[] var0 = class33.method145();
@@ -64,13 +61,12 @@ public class LoginPacket implements class285 {
       this.id = var1;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "-496978963"
-   )
-   @Export("iLog")
-   public static int iLog(int var0) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(II)I",
+            garbageValue = "-496978963"
+    )
+    public static int iLog(int var0) {
       int var1 = 0;
       if (var0 < 0 || var0 >= 65536) {
          var0 >>>= 16;

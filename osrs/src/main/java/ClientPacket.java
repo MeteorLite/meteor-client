@@ -1,4 +1,3 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -15,14 +14,12 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPPLAYER3")
-   static final ClientPacket OPPLAYER3 = new ClientPacket(1, -1);
+   static final ClientPacket nkjasnda = new ClientPacket(1, -1);
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("IF_BUTTON2")
-   public static final ClientPacket IF_BUTTON2 = new ClientPacket(2, 0);
+   public static final ClientPacket lkjsadlka = new ClientPacket(2, 0);
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -47,13 +44,12 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPOBJT")
-   public static final ClientPacket OPOBJT = new ClientPacket(7, 3);
+   public static final ClientPacket OPPLAYER7 = new ClientPacket(7, 3);
    @ObfuscatedName("at")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2472 = new ClientPacket(8, 3);
+   public static final ClientPacket OPPLAYER8 = new ClientPacket(8, 3);
    @ObfuscatedName("aa")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -63,13 +59,12 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2474 = new ClientPacket(10, 7);
+   public static final ClientPacket OPOBJ1 = new ClientPacket(10, 7);
    @ObfuscatedName("ao")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPLOC4")
-   public static final ClientPacket OPLOC4 = new ClientPacket(11, 4);
+   public static final ClientPacket asfasgag = new ClientPacket(11, 4);
    @ObfuscatedName("ax")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -79,7 +74,7 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2477 = new ClientPacket(13, 6);
+   public static final ClientPacket CLICK = new ClientPacket(13, 6);
    @ObfuscatedName("ag")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -97,10 +92,9 @@ public class ClientPacket implements class285 {
    public static final ClientPacket field2480 = new ClientPacket(16, 5);
    @ObfuscatedName("ar")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("IF_BUTTON7")
-   static final ClientPacket IF_BUTTON7 = new ClientPacket(17, 2);
+   static final ClientPacket nkjnsckjan = new ClientPacket(17, 2);
    @ObfuscatedName("am")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -110,13 +104,12 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2483 = new ClientPacket(19, 7);
+   public static final ClientPacket OPLOC5 = new ClientPacket(19, 7);
    @ObfuscatedName("aj")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPNPC2")
-   public static final ClientPacket OPNPC2 = new ClientPacket(20, 8);
+   public static final ClientPacket IF_BUTTON5 = new ClientPacket(20, 8);
    @ObfuscatedName("ak")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -126,25 +119,22 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPLOC2")
-   public static final ClientPacket OPLOC2 = new ClientPacket(22, 3);
+   public static final ClientPacket OPPLAYER5 = new ClientPacket(22, 3);
    @ObfuscatedName("ad")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("IF_BUTTON6")
-   public static final ClientPacket IF_BUTTON6 = new ClientPacket(23, 16);
+   public static final ClientPacket IF_BUTTONT = new ClientPacket(23, 16);
    @ObfuscatedName("ae")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("IF_BUTTON9")
-   public static final ClientPacket IF_BUTTON9 = new ClientPacket(24, 15);
+   public static final ClientPacket OPOBJT = new ClientPacket(24, 15);
    @ObfuscatedName("ap")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2489 = new ClientPacket(25, 15);
+   public static final ClientPacket OPLOCT = new ClientPacket(25, 15);
    @ObfuscatedName("by")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -159,12 +149,12 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2492 = new ClientPacket(28, 7);
+   public static final ClientPacket OPLOC3 = new ClientPacket(28, 7);
    @ObfuscatedName("be")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2528 = new ClientPacket(29, 3);
+   public static final ClientPacket OPNPC4 = new ClientPacket(29, 3);
    @ObfuscatedName("bk")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -174,31 +164,27 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPPLAYER4")
-   public static final ClientPacket OPPLAYER4 = new ClientPacket(31, 11);
+   public static final ClientPacket iouujwuda = new ClientPacket(31, 11);
    @ObfuscatedName("bo")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPOBJ4")
-   public static final ClientPacket OPOBJ4 = new ClientPacket(32, 3);
+   public static final ClientPacket OPPLAYER3 = new ClientPacket(32, 3);
    @ObfuscatedName("bz")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2498 = new ClientPacket(33, 7);
+   public static final ClientPacket OPLOC2 = new ClientPacket(33, 7);
    @ObfuscatedName("bm")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("WALK")
-   public static final ClientPacket WALK = new ClientPacket(34, 8);
+   public static final ClientPacket IF_BUTTON9 = new ClientPacket(34, 8);
    @ObfuscatedName("bd")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("OPPLAYER5")
-   public static final ClientPacket OPPLAYER5 = new ClientPacket(35, 3);
+   public static final ClientPacket OPPLAYER2 = new ClientPacket(35, 3);
    @ObfuscatedName("bt")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -213,18 +199,17 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2558 = new ClientPacket(38, 8);
+   public static final ClientPacket IF_BUTTON7 = new ClientPacket(38, 8);
    @ObfuscatedName("bs")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2513 = new ClientPacket(39, 7);
+   public static final ClientPacket OPOBJ2 = new ClientPacket(39, 7);
    @ObfuscatedName("br")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPOBJ3")
-   static final ClientPacket OPOBJ3 = new ClientPacket(40, 2);
+   static final ClientPacket nkjsandkajsdn = new ClientPacket(40, 2);
    @ObfuscatedName("bg")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -234,20 +219,17 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPOBJ5")
-   public static final ClientPacket OPOBJ5 = new ClientPacket(42, -2);
+   public static final ClientPacket nkasjndakjsn = new ClientPacket(42, -2);
    @ObfuscatedName("bf")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPOBJ2")
-   public static final ClientPacket OPOBJ2 = new ClientPacket(43, 15);
+   public static final ClientPacket hklasjhfakjfh = new ClientPacket(43, 15);
    @ObfuscatedName("bq")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPLOCT")
-   public static final ClientPacket OPLOCT = new ClientPacket(44, 7);
+   public static final ClientPacket OPOBJ3 = new ClientPacket(44, 7);
    @ObfuscatedName("ba")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -262,19 +244,17 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2511 = new ClientPacket(47, 11);
+   public static final ClientPacket OPPLAYERT = new ClientPacket(47, 11);
    @ObfuscatedName("bp")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPNPCT")
-   public static final ClientPacket OPNPCT = new ClientPacket(48, 7);
+   public static final ClientPacket nkajsdnaskjdn = new ClientPacket(48, 7);
    @ObfuscatedName("bc")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("OPPLAYER8")
-   public static final ClientPacket OPPLAYER8 = new ClientPacket(49, 3);
+   public static final ClientPacket OPNPC5 = new ClientPacket(49, 3);
    @ObfuscatedName("bh")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -287,10 +267,9 @@ public class ClientPacket implements class285 {
    public static final ClientPacket field2515 = new ClientPacket(51, 16);
    @ObfuscatedName("ce")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("IF_BUTTON10")
-   public static final ClientPacket IF_BUTTON10 = new ClientPacket(52, 11);
+   public static final ClientPacket OPNPCT = new ClientPacket(52, 11);
    @ObfuscatedName("ci")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -315,8 +294,7 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("IF_BUTTONT")
-   public static final ClientPacket IF_BUTTONT = new ClientPacket(57, 3);
+   public static final ClientPacket OPPLAYER6 = new ClientPacket(57, 3);
    @ObfuscatedName("cu")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -326,7 +304,7 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2523 = new ClientPacket(59, -1);
+   public static final ClientPacket WALK = new ClientPacket(59, -1);
    @ObfuscatedName("cq")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -341,17 +319,16 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2526 = new ClientPacket(62, 3);
+   public static final ClientPacket OPPLAYER4 = new ClientPacket(62, 3);
    @ObfuscatedName("cl")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2527 = new ClientPacket(63, 8);
+   public static final ClientPacket IF_BUTTON8 = new ClientPacket(63, 8);
    @ObfuscatedName("cg")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("IF_BUTTON1")
    public static final ClientPacket IF_BUTTON1 = new ClientPacket(64, 8);
    @ObfuscatedName("cr")
    @ObfuscatedSignature(
@@ -367,42 +344,37 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPLOC3")
-   public static final ClientPacket OPLOC3 = new ClientPacket(67, 10);
+   public static final ClientPacket wawdawdad = new ClientPacket(67, 10);
    @ObfuscatedName("cv")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPNPC4")
-   public static final ClientPacket OPNPC4 = new ClientPacket(68, 2);
+   public static final ClientPacket nkasjdnak = new ClientPacket(68, 2);
    @ObfuscatedName("cb")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPPLAYERT")
-   public static final ClientPacket OPPLAYERT = new ClientPacket(69, 8);
+   public static final ClientPacket IF_BUTTON10 = new ClientPacket(69, 8);
    @ObfuscatedName("co")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPLOC5")
-   public static final ClientPacket OPLOC5 = new ClientPacket(70, 8);
+   public static final ClientPacket IF_BUTTON2 = new ClientPacket(70, 8);
    @ObfuscatedName("cz")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2535 = new ClientPacket(71, 8);
+   public static final ClientPacket IF_BUTTON6 = new ClientPacket(71, 8);
    @ObfuscatedName("cw")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2536 = new ClientPacket(72, 7);
+   public static final ClientPacket OPOBJ5 = new ClientPacket(72, 7);
    @ObfuscatedName("cj")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPPLAYER7")
-   public static final ClientPacket OPPLAYER7 = new ClientPacket(73, -1);
+   public static final ClientPacket okjsnafkajsfn = new ClientPacket(73, -1);
    @ObfuscatedName("ch")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -410,15 +382,13 @@ public class ClientPacket implements class285 {
    public static final ClientPacket field2538 = new ClientPacket(74, 0);
    @ObfuscatedName("ct")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("IF_BUTTON3")
-   public static final ClientPacket IF_BUTTON3 = new ClientPacket(75, 22);
+   public static final ClientPacket jkasjhfaaa = new ClientPacket(75, 22);
    @ObfuscatedName("cp")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("CONTINUE")
    public static final ClientPacket CONTINUE = new ClientPacket(76, 6);
    @ObfuscatedName("cd")
    @ObfuscatedSignature(
@@ -429,24 +399,22 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPOBJ1")
-   public static final ClientPacket OPOBJ1 = new ClientPacket(78, 6);
+   public static final ClientPacket jlaskjfalk = new ClientPacket(78, 6);
    @ObfuscatedName("dw")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2540 = new ClientPacket(79, 8);
+   public static final ClientPacket IF_BUTTON3 = new ClientPacket(79, 8);
    @ObfuscatedName("dc")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("OPPLAYER6")
-   public static final ClientPacket OPPLAYER6 = new ClientPacket(80, 3);
+   public static final ClientPacket OPNPC3 = new ClientPacket(80, 3);
    @ObfuscatedName("do")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2548 = new ClientPacket(81, 7);
+   public static final ClientPacket OPLOC1 = new ClientPacket(81, 7);
    @ObfuscatedName("di")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -454,10 +422,9 @@ public class ClientPacket implements class285 {
    public static final ClientPacket field2546 = new ClientPacket(82, -1);
    @ObfuscatedName("dr")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("CLICK")
-   public static final ClientPacket CLICK = new ClientPacket(83, 3);
+   public static final ClientPacket OPNPC2 = new ClientPacket(83, 3);
    @ObfuscatedName("dl")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -490,21 +457,19 @@ public class ClientPacket implements class285 {
    public static final ClientPacket field2543 = new ClientPacket(89, -1);
    @ObfuscatedName("de")
    @ObfuscatedSignature(
-      descriptor = "Llv;"
+           descriptor = "Llv;"
    )
-   @Export("OPPLAYER1")
    public static final ClientPacket OPPLAYER1 = new ClientPacket(90, 3);
    @ObfuscatedName("dh")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2555 = new ClientPacket(91, 3);
+   public static final ClientPacket OPNPC1 = new ClientPacket(91, 3);
    @ObfuscatedName("dp")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   @Export("OPNPC5")
-   public static final ClientPacket OPNPC5 = new ClientPacket(92, 8);
+   public static final ClientPacket IF_BUTTON4 = new ClientPacket(92, 8);
    @ObfuscatedName("du")
    @ObfuscatedSignature(
       descriptor = "Llv;"
@@ -514,17 +479,15 @@ public class ClientPacket implements class285 {
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
-   public static final ClientPacket field2487 = new ClientPacket(94, 7);
+   public static final ClientPacket OPLOC4 = new ClientPacket(94, 7);
    @ObfuscatedName("df")
    @ObfuscatedSignature(
       descriptor = "Llv;"
    )
    public static final ClientPacket field2559 = new ClientPacket(95, -1);
    @ObfuscatedName("dq")
-   @Export("id")
    final int id;
    @ObfuscatedName("dd")
-   @Export("length")
    final int length;
 
    ClientPacket(int var1, int var2) {
@@ -534,10 +497,9 @@ public class ClientPacket implements class285 {
 
    @ObfuscatedName("mp")
    @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "2"
+           descriptor = "(B)V",
+           garbageValue = "2"
    )
-   @Export("process")
    static void process() {
       for(InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
          int var1 = var0.group;

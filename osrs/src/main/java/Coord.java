@@ -6,15 +6,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("lb")
 @Implements("Coord")
 public class Coord {
-   @ObfuscatedName("af")
-   @Export("plane")
-   public int plane;
-   @ObfuscatedName("an")
-   @Export("x")
-   public int x;
-   @ObfuscatedName("aw")
-   @Export("y")
-   public int y;
+    @ObfuscatedName("af")
+    public int plane;
+    @ObfuscatedName("an")
+    public int x;
+    @ObfuscatedName("aw")
+    public int y;
 
    @ObfuscatedSignature(
       descriptor = "(Llb;)V"
@@ -42,23 +39,21 @@ public class Coord {
 
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-964267539"
-   )
-   @Export("packed")
-   public int packed() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-964267539"
+    )
+    public int packed() {
       return class282.method1589(this.plane, this.x, this.y);
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Llb;I)Z",
-      garbageValue = "1151983823"
-   )
-   @Export("equalsCoord")
-   boolean equalsCoord(Coord var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Llb;I)Z",
+            garbageValue = "1151983823"
+    )
+    boolean equalsCoord(Coord var1) {
       if (this.plane != var1.plane) {
          return false;
       } else if (this.x != var1.x) {
@@ -68,31 +63,27 @@ public class Coord {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "1584874808"
-   )
-   @Export("toString")
-   String toString(String var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+            garbageValue = "1584874808"
+    )
+    String toString(String var1) {
       return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return this.toString(",");
    }
 
-   @Export("hashCode")
-   @ObfuscatedName("hashCode")
-   public int hashCode() {
+    @ObfuscatedName("hashCode")
+    public int hashCode() {
       return this.packed();
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       if (this == var1) {
          return true;
       } else {

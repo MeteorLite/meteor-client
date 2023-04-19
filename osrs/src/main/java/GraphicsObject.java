@@ -6,42 +6,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cx")
 @Implements("GraphicsObject")
 public class GraphicsObject extends Renderable {
-   @ObfuscatedName("sl")
-   @Export("ClanChat_inClanChat")
-   static boolean ClanChat_inClanChat;
-   @ObfuscatedName("af")
-   @Export("id")
-   int id;
-   @ObfuscatedName("an")
-   @Export("cycleStart")
-   int cycleStart;
-   @ObfuscatedName("aw")
-   @Export("plane")
-   int plane;
-   @ObfuscatedName("ac")
-   @Export("x")
-   int x;
-   @ObfuscatedName("au")
-   @Export("y")
-   int y;
-   @ObfuscatedName("ab")
-   @Export("z")
-   int z;
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Lha;"
-   )
-   @Export("sequenceDefinition")
-   SequenceDefinition sequenceDefinition;
-   @ObfuscatedName("al")
-   @Export("frame")
-   int frame;
-   @ObfuscatedName("at")
-   @Export("frameCycle")
-   int frameCycle;
-   @ObfuscatedName("aa")
-   @Export("isFinished")
-   boolean isFinished;
+    @ObfuscatedName("sl")
+    static boolean ClanChat_inClanChat;
+    @ObfuscatedName("af")
+    int id;
+    @ObfuscatedName("an")
+    int cycleStart;
+    @ObfuscatedName("aw")
+    int plane;
+    @ObfuscatedName("ac")
+    int x;
+    @ObfuscatedName("au")
+    int y;
+    @ObfuscatedName("ab")
+    int z;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Lha;"
+    )
+    SequenceDefinition sequenceDefinition;
+    @ObfuscatedName("al")
+    int frame;
+    @ObfuscatedName("at")
+    int frameCycle;
+    @ObfuscatedName("aa")
+    boolean isFinished;
 
    GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       this.frame = 0;
@@ -63,13 +52,12 @@ public class GraphicsObject extends Renderable {
 
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IB)V",
-      garbageValue = "-34"
-   )
-   @Export("advance")
-   final void advance(int var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IB)V",
+            garbageValue = "-34"
+    )
+    final void advance(int var1) {
       if (!this.isFinished) {
          this.frameCycle += var1;
          if (!this.sequenceDefinition.isCachedModelIdSet()) {
@@ -91,13 +79,12 @@ public class GraphicsObject extends Renderable {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lit;",
-      garbageValue = "-112"
-   )
-   @Export("getModel")
-   protected final Model getModel() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lit;",
+            garbageValue = "-112"
+    )
+    protected final Model getModel() {
       SpotAnimationDefinition var1 = ItemContainer.SpotAnimationDefinition_get(this.id);
       Model var2;
       if (!this.isFinished) {

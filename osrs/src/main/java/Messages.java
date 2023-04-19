@@ -8,27 +8,22 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("eo")
 @Implements("Messages")
 public class Messages {
-   @ObfuscatedName("af")
-   @Export("Messages_channels")
-   static final Map Messages_channels = new HashMap();
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lro;"
-   )
-   @Export("Messages_hashTable")
-   static final IterableNodeHashTable Messages_hashTable = new IterableNodeHashTable(1024);
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lox;"
-   )
-   @Export("Messages_queue")
-   static final IterableDualNodeQueue Messages_queue = new IterableDualNodeQueue();
-   @ObfuscatedName("ac")
-   @Export("Messages_count")
-   static int Messages_count = 0;
-   @ObfuscatedName("cp")
-   @Export("otp")
-   static String otp;
+    @ObfuscatedName("af")
+    static final Map Messages_channels = new HashMap();
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lro;"
+    )
+    static final IterableNodeHashTable Messages_hashTable = new IterableNodeHashTable(1024);
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lox;"
+    )
+    static final IterableDualNodeQueue Messages_queue = new IterableDualNodeQueue();
+    @ObfuscatedName("ac")
+    static int Messages_count = 0;
+    @ObfuscatedName("cp")
+    static String otp;
 
    @ObfuscatedName("au")
    @ObfuscatedSignature(

@@ -6,17 +6,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("qw")
 @Implements("GraphicsDefaults")
 public class GraphicsDefaults {
-   @ObfuscatedName("af")
-   @Export("compass")
-   public int compass = -1;
+    @ObfuscatedName("af")
+    public int compass = -1;
    @ObfuscatedName("an")
    public int field3767 = -1;
-   @ObfuscatedName("aw")
-   @Export("mapScenes")
-   public int mapScenes = -1;
-   @ObfuscatedName("ac")
-   @Export("headIconsPk")
-   public int headIconsPk = -1;
+    @ObfuscatedName("aw")
+    public int mapScenes = -1;
+    @ObfuscatedName("ac")
+    public int headIconsPk = -1;
    @ObfuscatedName("au")
    public int field3775 = -1;
    @ObfuscatedName("ab")
@@ -32,13 +29,12 @@ public class GraphicsDefaults {
    @ObfuscatedName("ay")
    public int field3768 = -1;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;I)V",
-      garbageValue = "-1761039075"
-   )
-   @Export("decode")
-   public void decode(AbstractArchive var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lnm;I)V",
+            garbageValue = "-1761039075"
+    )
+    public void decode(AbstractArchive var1) {
       byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3766.group);
       Buffer var3 = new Buffer(var2);
 
@@ -68,13 +64,12 @@ public class GraphicsDefaults {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lgz;",
-      garbageValue = "-1565571529"
-   )
-   @Export("VarpDefinition_get")
-   public static VarpDefinition VarpDefinition_get(int var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lgz;",
+            garbageValue = "-1565571529"
+    )
+    public static VarpDefinition VarpDefinition_get(int var0) {
       VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;

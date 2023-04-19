@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dd")
 public class class97 {
-   @ObfuscatedName("ab")
-   @Export("SpriteBuffer_spriteWidths")
-   public static int[] SpriteBuffer_spriteWidths;
+    @ObfuscatedName("ab")
+    public static int[] SpriteBuffer_spriteWidths;
    @ObfuscatedName("af")
    int field1069;
    @ObfuscatedName("an")

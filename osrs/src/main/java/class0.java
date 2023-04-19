@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("af")
 public class class0 implements class3 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;)Lsg;"
-   )
-   @Export("vmethod12")
-   public Buffer vmethod12(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;)Lsg;"
+    )
+    public Buffer vmethod12(Buffer var1) {
       Buffer var2 = new Buffer(100);
       this.method1(var1, var2);
       return var2;

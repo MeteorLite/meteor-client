@@ -6,55 +6,44 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ch")
 @Implements("Script")
 public class Script extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("Script_cached")
-   static EvictingDualNodeHashTable Script_cached = new EvictingDualNodeHashTable(128);
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "Lno;"
-   )
-   @Export("NetCache_currentResponse")
-   public static NetFileRequest NetCache_currentResponse;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable Script_cached = new EvictingDualNodeHashTable(128);
+    @ObfuscatedName("ai")
+    @ObfuscatedSignature(
+            descriptor = "Lno;"
+    )
+    public static NetFileRequest NetCache_currentResponse;
    @ObfuscatedName("an")
    String field794;
-   @ObfuscatedName("aw")
-   @Export("opcodes")
-   int[] opcodes;
-   @ObfuscatedName("ac")
-   @Export("intOperands")
-   int[] intOperands;
-   @ObfuscatedName("au")
-   @Export("stringOperands")
-   String[] stringOperands;
-   @ObfuscatedName("ab")
-   @Export("localIntCount")
-   int localIntCount;
-   @ObfuscatedName("aq")
-   @Export("localStringCount")
-   int localStringCount;
-   @ObfuscatedName("al")
-   @Export("intArgumentCount")
-   int intArgumentCount;
-   @ObfuscatedName("at")
-   @Export("stringArgumentCount")
-   int stringArgumentCount;
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "[Lro;"
-   )
-   @Export("switches")
-   IterableNodeHashTable[] switches;
+    @ObfuscatedName("aw")
+    int[] opcodes;
+    @ObfuscatedName("ac")
+    int[] intOperands;
+    @ObfuscatedName("au")
+    String[] stringOperands;
+    @ObfuscatedName("ab")
+    int localIntCount;
+    @ObfuscatedName("aq")
+    int localStringCount;
+    @ObfuscatedName("al")
+    int intArgumentCount;
+    @ObfuscatedName("at")
+    int stringArgumentCount;
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "[Lro;"
+    )
+    IterableNodeHashTable[] switches;
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(II)[Lro;",
-      garbageValue = "-1544314186"
-   )
-   @Export("newIterableNodeHashTable")
-   IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(II)[Lro;",
+            garbageValue = "-1544314186"
+    )
+    IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
       return new IterableNodeHashTable[var1];
    }
 

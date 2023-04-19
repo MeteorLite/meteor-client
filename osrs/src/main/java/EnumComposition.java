@@ -21,52 +21,41 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hx")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("EnumDefinition_archive")
-   static AbstractArchive EnumDefinition_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("EnumDefinition_cached")
-   static EvictingDualNodeHashTable EnumDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive EnumDefinition_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable EnumDefinition_cached = new EvictingDualNodeHashTable(64);
    @ObfuscatedName("ay")
    static int field1536;
-   @ObfuscatedName("aw")
-   @Export("inputType")
-   public char inputType;
-   @ObfuscatedName("ac")
-   @Export("outputType")
-   public char outputType;
-   @ObfuscatedName("au")
-   @Export("defaultStr")
-   public String defaultStr = "null";
-   @ObfuscatedName("ab")
-   @Export("defaultInt")
-   public int defaultInt;
-   @ObfuscatedName("aq")
-   @Export("outputCount")
-   public int outputCount = 0;
-   @ObfuscatedName("al")
-   @Export("keys")
-   public int[] keys;
-   @ObfuscatedName("at")
-   @Export("intVals")
-   public int[] intVals;
-   @ObfuscatedName("aa")
-   @Export("strVals")
-   public String[] strVals;
+    @ObfuscatedName("aw")
+    public char inputType;
+    @ObfuscatedName("ac")
+    public char outputType;
+    @ObfuscatedName("au")
+    public String defaultStr = "null";
+    @ObfuscatedName("ab")
+    public int defaultInt;
+    @ObfuscatedName("aq")
+    public int outputCount = 0;
+    @ObfuscatedName("al")
+    public int[] keys;
+    @ObfuscatedName("at")
+    public int[] intVals;
+    @ObfuscatedName("aa")
+    public String[] strVals;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V",
-      garbageValue = "1"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;B)V",
+            garbageValue = "1"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -77,13 +66,12 @@ public class EnumComposition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "-1230554018"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "-1230554018"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 1) {
          this.inputType = (char)var1.readUnsignedByte();
       } else if (var2 == 2) {
@@ -117,13 +105,12 @@ public class EnumComposition extends DualNode {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-1771733315"
-   )
-   @Export("size")
-   public int size() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "-1771733315"
+    )
+    public int size() {
       return this.outputCount;
    }
 
@@ -1338,13 +1325,12 @@ public class EnumComposition extends DualNode {
 
    }
 
-   @ObfuscatedName("jb")
-   @ObfuscatedSignature(
-      descriptor = "(Llm;I)V",
-      garbageValue = "-302991134"
-   )
-   @Export("processZoneOperation")
-   static final void processZoneOperation(ZoneOperation var0) {
+    @ObfuscatedName("jb")
+    @ObfuscatedSignature(
+            descriptor = "(Llm;I)V",
+            garbageValue = "-302991134"
+    )
+    static final void processZoneOperation(ZoneOperation var0) {
       PacketBuffer var1 = Client.packetWriter.packetBuffer;
       int var2;
       int var5;
@@ -1365,15 +1351,15 @@ public class EnumComposition extends DualNode {
          var36 = var1.readUnsignedByte();
          var37 = (var36 >> 4 & 7) + class9.field28;
          var5 = (var36 & 7) + FontName.field3968;
-         var6 = var1.readUnsignedByteAdd() * 4;
+         var6 = var1._readUnsignedByteSub() * 4;
          var7 = var1.readUnsignedShortAdd();
-         var38 = var1.readUnsignedByteAdd();
+         var38 = var1._readUnsignedByteSub();
          var9 = var1.readUnsignedShort();
-         var10 = var1.method2535();
-         var11 = var1._readUnsignedByteSub() * 4;
+         var10 = var1.readByteNeg();
+         var11 = var1.readUnsignedByteNeg() * 4;
          var12 = var1.readUnsignedShort();
          var13 = var1.method2523();
-         byte var40 = var1.method2503();
+         byte var40 = var1.readUnsignedByteSub();
          var14 = var40 + var37;
          var39 = var10 + var5;
          if (var37 >= 0 && var5 >= 0 && var37 < 104 && var5 < 104 && var14 >= 0 && var39 >= 0 && var14 < 104 && var39 < 104 && var7 != 65535) {
@@ -1389,20 +1375,20 @@ public class EnumComposition extends DualNode {
       } else {
          if (ZoneOperation.field2563 == var0) {
             var2 = var1.readUnsignedShort();
-            byte var3 = var1.method2503();
-            byte var4 = var1.method2531();
-            var5 = var1.readUnsignedByteNeg();
+            byte var3 = var1.readUnsignedByteSub();
+            byte var4 = var1.readByteAdd();
+            var5 = var1.readUnsignedByteAdd();
             var6 = (var5 >> 4 & 7) + class9.field28;
             var7 = (var5 & 7) + FontName.field3968;
             byte var8 = var1.readByte();
             var9 = var1.readUnsignedShort();
-            var10 = var1.method2531();
+            var10 = var1.readByteAdd();
             var11 = var1.readUnsignedByte();
             var12 = var11 >> 2;
             var13 = var11 & 3;
             var14 = Client.field431[var12];
             int var31 = var1.readUnsignedShortAdd();
-            int var16 = var1.readUnsignedShortLE();
+            int var16 = var1.readUnsignedShortAddLE();
             Player var17;
             if (var2 == Client.localPlayerIndex) {
                var17 = MusicPatchNode.localPlayer;
@@ -1461,11 +1447,11 @@ public class EnumComposition extends DualNode {
          }
 
          if (ZoneOperation.field2562 == var0) {
-            var2 = var1.readUnsignedByteAdd();
+            var2 = var1._readUnsignedByteSub();
             var36 = (var2 >> 4 & 7) + class9.field28;
             var37 = (var2 & 7) + FontName.field3968;
             var5 = var1.readInt();
-            var6 = var1.readUnsignedShortLE();
+            var6 = var1.readUnsignedShortAddLE();
             var7 = var1.readInt();
             if (var36 >= 0 && var37 >= 0 && var36 < 104 && var37 < 104) {
                NodeDeque var42 = Client.groundItems[GameEngine.Client_plane][var36][var37];
@@ -1484,16 +1470,16 @@ public class EnumComposition extends DualNode {
          } else {
             TileItem var41;
             if (ZoneOperation.field2570 == var0) {
-               var1.readUnsignedByteNeg();
-               var2 = var1.method2518();
-               var36 = var1.readUnsignedByteNeg();
+               var1.readUnsignedByteAdd();
+               var2 = var1.readIntLE();
+               var36 = var1.readUnsignedByteAdd();
                var37 = var1.readUnsignedByte();
                var5 = (var37 >> 4 & 7) + class9.field28;
                var6 = (var37 & 7) + FontName.field3968;
                var7 = var1.readUnsignedShortAdd();
-               var1.readUnsignedShortAddLE();
+               var1.readUnsignedShortLE();
                var1.readUnsignedShortAdd();
-               var1._readUnsignedByteSub();
+               var1.readUnsignedByteNeg();
                if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                   var41 = new TileItem();
                   var41.id = var7;
@@ -1509,14 +1495,14 @@ public class EnumComposition extends DualNode {
 
             } else if (ZoneOperation.field2567 == var0) {
                var2 = var1.readUnsignedByte();
-               var36 = var1.readUnsignedByteAdd();
+               var36 = var1._readUnsignedByteSub();
                var37 = (var36 >> 4 & 7) + class9.field28;
                var5 = (var36 & 7) + FontName.field3968;
-               var6 = var1._readUnsignedByteSub();
+               var6 = var1.readUnsignedByteNeg();
                var7 = var6 >> 2;
                var38 = var6 & 3;
                var9 = Client.field431[var7];
-               var39 = var1.readUnsignedShortAddLE();
+               var39 = var1.readUnsignedShortLE();
                if (var37 >= 0 && var5 >= 0 && var37 < 104 && var5 < 104) {
                   class33.updatePendingSpawn(GameEngine.Client_plane, var37, var5, var9, var39, var7, var38, var2, 0, -1);
                }
@@ -1524,11 +1510,11 @@ public class EnumComposition extends DualNode {
             } else {
                NodeDeque var34;
                if (ZoneOperation.field2569 == var0) {
-                  var2 = var1._readUnsignedByteSub();
+                  var2 = var1.readUnsignedByteNeg();
                   var36 = (var2 >> 4 & 7) + class9.field28;
                   var37 = (var2 & 7) + FontName.field3968;
-                  var5 = var1.readUnsignedShortAddLE();
-                  var6 = var1.method2519();
+                  var5 = var1.readUnsignedShortLE();
+                  var6 = var1.readIntME();
                   if (var36 >= 0 && var37 >= 0 && var36 < 104 && var37 < 104) {
                      var34 = Client.groundItems[GameEngine.Client_plane][var36][var37];
                      if (var34 != null) {
@@ -1549,14 +1535,14 @@ public class EnumComposition extends DualNode {
 
                } else {
                   if (ZoneOperation.field2572 == var0) {
-                     var2 = var1.readUnsignedShortLE();
-                     var36 = var1._readUnsignedByteSub();
+                     var2 = var1.readUnsignedShortAddLE();
+                     var36 = var1.readUnsignedByteNeg();
                      var37 = var36 >> 4 & 15;
                      var5 = var36 & 7;
-                     var6 = var1.readUnsignedByteNeg();
+                     var6 = var1.readUnsignedByteAdd();
                      var7 = (var6 >> 4 & 7) + class9.field28;
                      var38 = (var6 & 7) + FontName.field3968;
-                     var9 = var1.readUnsignedByteAdd();
+                     var9 = var1._readUnsignedByteSub();
                      if (var7 >= 0 && var38 >= 0 && var7 < 104 && var38 < 104) {
                         var39 = var37 + 1;
                         if (MusicPatchNode.localPlayer.pathX[0] >= var7 - var39 && MusicPatchNode.localPlayer.pathX[0] <= var39 + var7 && MusicPatchNode.localPlayer.pathY[0] >= var38 - var39 && MusicPatchNode.localPlayer.pathY[0] <= var38 + var39 && class20.clientPreferences.getAreaSoundEffectsVolume() != 0 && var5 > 0 && Client.soundEffectCount < 50) {
@@ -1571,11 +1557,11 @@ public class EnumComposition extends DualNode {
                   }
 
                   if (ZoneOperation.field2568 == var0) {
-                     var2 = var1.readUnsignedShortLE();
-                     var36 = var1._readUnsignedByteSub();
+                     var2 = var1.readUnsignedShortAddLE();
+                     var36 = var1.readUnsignedByteNeg();
                      var37 = (var36 >> 4 & 7) + class9.field28;
                      var5 = (var36 & 7) + FontName.field3968;
-                     var6 = var1.readUnsignedByteNeg();
+                     var6 = var1.readUnsignedByteAdd();
                      if (var37 >= 0 && var5 >= 0 && var37 < 104 && var5 < 104) {
                         var34 = Client.groundItems[GameEngine.Client_plane][var37][var5];
                         if (var34 != null) {
@@ -1590,7 +1576,7 @@ public class EnumComposition extends DualNode {
 
                   } else if (ZoneOperation.field2564 != var0) {
                      if (ZoneOperation.field2571 == var0) {
-                        var2 = var1.readUnsignedByteNeg();
+                        var2 = var1.readUnsignedByteAdd();
                         var36 = (var2 >> 4 & 7) + class9.field28;
                         var37 = (var2 & 7) + FontName.field3968;
                         var5 = var1.readUnsignedByte();
@@ -1602,12 +1588,12 @@ public class EnumComposition extends DualNode {
                         }
 
                      } else if (ZoneOperation.field2566 == var0) {
-                        var2 = var1._readUnsignedByteSub();
+                        var2 = var1.readUnsignedByteNeg();
                         var36 = var1.readUnsignedShort();
-                        var37 = var1.readUnsignedByteAdd();
+                        var37 = var1._readUnsignedByteSub();
                         var5 = (var37 >> 4 & 7) + class9.field28;
                         var6 = (var37 & 7) + FontName.field3968;
-                        var7 = var1.readUnsignedShortAddLE();
+                        var7 = var1.readUnsignedShortLE();
                         if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
                            var5 = var5 * 128 + 64;
                            var6 = var6 * 128 + 64;
@@ -1620,8 +1606,8 @@ public class EnumComposition extends DualNode {
                      var2 = var1.readUnsignedByte();
                      var36 = (var2 >> 4 & 7) + class9.field28;
                      var37 = (var2 & 7) + FontName.field3968;
-                     var5 = var1.readUnsignedShortAddLE();
-                     var6 = var1._readUnsignedByteSub();
+                     var5 = var1.readUnsignedShortLE();
+                     var6 = var1.readUnsignedByteNeg();
                      var7 = var6 >> 2;
                      var38 = var6 & 3;
                      var9 = Client.field431[var7];

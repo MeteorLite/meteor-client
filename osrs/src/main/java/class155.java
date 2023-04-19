@@ -4,29 +4,26 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fu")
 public abstract class class155 extends Node {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1949352075"
-   )
-   @Export("vmethod3238")
-   abstract void vmethod3238(Buffer var1);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1949352075"
+    )
+    abstract void vmethod3238(Buffer var1);
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lgj;B)V",
-      garbageValue = "-49"
-   )
-   @Export("vmethod3239")
-   abstract void vmethod3239(ClanChannel var1);
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lgj;B)V",
+            garbageValue = "-49"
+    )
+    abstract void vmethod3239(ClanChannel var1);
 
-   @ObfuscatedName("mb")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;IIII)V",
-      garbageValue = "715793835"
-   )
-   @Export("drawMinimap")
-   static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
+    @ObfuscatedName("mb")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;IIII)V",
+            garbageValue = "715793835"
+    )
+    static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
       class323.playPcmPlayers();
       SpriteMask var4 = var0.getSpriteMask(false);
       if (var4 != null) {

@@ -21,33 +21,30 @@ public class class165 extends class177 {
       this.field1416 = var3;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "-41"
-   )
-   @Export("vmethod3379")
-   public int vmethod3379() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "-41"
+    )
+    public int vmethod3379() {
       return 1;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ljava/lang/String;",
-      garbageValue = "88"
-   )
-   @Export("vmethod3380")
-   public String vmethod3380() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Ljava/lang/String;",
+            garbageValue = "88"
+    )
+    public String vmethod3380() {
       return this.field1416;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lmq;",
-      garbageValue = "5"
-   )
-   @Export("getWidget")
-   public static Widget getWidget(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lmq;",
+            garbageValue = "5"
+    )
+    public static Widget getWidget(int var0) {
       int var1 = var0 >> 16;
       int var2 = var0 & '\uffff';
       if (VerticalAlignment.Widget_interfaceComponents[var1] == null || VerticalAlignment.Widget_interfaceComponents[var1][var2] == null) {

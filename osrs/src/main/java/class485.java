@@ -4,13 +4,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("sb")
 public class class485 {
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "([BI)V",
-      garbageValue = "1145263442"
-   )
-   @Export("SpriteBuffer_decode")
-   public static void SpriteBuffer_decode(byte[] var0) {
+    @ObfuscatedName("aa")
+    @ObfuscatedSignature(
+            descriptor = "([BI)V",
+            garbageValue = "1145263442"
+    )
+    public static void SpriteBuffer_decode(byte[] var0) {
       Buffer var1 = new Buffer(var0);
       var1.offset = var0.length - 2;
       class503.SpriteBuffer_spriteCount = var1.readUnsignedShort();
@@ -76,13 +75,12 @@ public class class485 {
 
    }
 
-   @ObfuscatedName("nw")
-   @ObfuscatedSignature(
-      descriptor = "(IIIILtq;Lll;I)V",
-      garbageValue = "1850494258"
-   )
-   @Export("worldToMinimap")
-   static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+    @ObfuscatedName("nw")
+    @ObfuscatedSignature(
+            descriptor = "(IIIILtq;Lll;I)V",
+            garbageValue = "1850494258"
+    )
+    static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
       int var6 = var3 * var3 + var2 * var2;
       if (var6 > 4225 && var6 < 90000) {
          int var7 = Client.camAngleY & 2047;

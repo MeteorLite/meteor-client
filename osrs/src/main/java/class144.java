@@ -8,9 +8,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class144 extends class139 {
    @ObfuscatedName("iz")
    static int field1333;
-   @ObfuscatedName("lf")
-   @Export("oculusOrbFocalPointY")
-   static int oculusOrbFocalPointY;
+    @ObfuscatedName("lf")
+    static int oculusOrbFocalPointY;
    @ObfuscatedName("af")
    int field1328;
    @ObfuscatedName("an")
@@ -32,26 +31,24 @@ public class class144 extends class139 {
       this.this$0 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1328 = var1.readInt();
       this.field1332 = var1.readInt();
       this.field1329 = var1.readUnsignedByte();
       this.field1330 = var1.readUnsignedByte();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.method862(this.field1328, this.field1332, this.field1329, this.field1330);
    }
 
@@ -286,13 +283,12 @@ public class class144 extends class139 {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IS)Lhq;",
-      garbageValue = "2415"
-   )
-   @Export("getObjectDefinition")
-   public static ObjectComposition getObjectDefinition(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IS)Lhq;",
+            garbageValue = "2415"
+    )
+    public static ObjectComposition getObjectDefinition(int var0) {
       ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -574,13 +570,12 @@ public class class144 extends class139 {
       }
    }
 
-   @ObfuscatedName("ma")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;I)V",
-      garbageValue = "-1541166442"
-   )
-   @Export("invalidateWidget")
-   public static void invalidateWidget(Widget var0) {
+    @ObfuscatedName("ma")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;I)V",
+            garbageValue = "-1541166442"
+    )
+    public static void invalidateWidget(Widget var0) {
       if (var0 != null && var0.cycle == Client.field527) {
          Client.field573[var0.rootIndex] = true;
       }

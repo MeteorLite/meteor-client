@@ -8,9 +8,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 class class395 implements Comparator {
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lpc;"
+           descriptor = "Lpc;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class394 this$0;
 
@@ -30,15 +29,13 @@ class class395 implements Comparator {
       return ((Float)var2.getValue()).compareTo((Float)var1.getValue());
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.method2118((Entry)var1, (Entry)var2);
    }
 
-   @Export("equals")
-   @ObfuscatedName("equals")
-   public boolean equals(Object var1) {
+    @ObfuscatedName("equals")
+    public boolean equals(Object var1) {
       return super.equals(var1);
    }
 }

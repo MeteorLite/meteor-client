@@ -9,30 +9,24 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("cd")
 @Implements("Tiles")
 public final class Tiles {
-   @ObfuscatedName("af")
-   @Export("Tiles_heights")
-   static int[][][] Tiles_heights = new int[4][105][105];
-   @ObfuscatedName("an")
-   @Export("Tiles_renderFlags")
-   static byte[][][] Tiles_renderFlags = new byte[4][104][104];
-   @ObfuscatedName("aw")
-   @Export("Tiles_minPlane")
-   static int Tiles_minPlane = 99;
-   @ObfuscatedName("au")
-   @Export("Tiles_overlays")
-   static short[][][] Tiles_overlays;
-   @ObfuscatedName("ab")
-   @Export("Tiles_shapes")
-   static byte[][][] Tiles_shapes;
+    @ObfuscatedName("af")
+    static int[][][] Tiles_heights = new int[4][105][105];
+    @ObfuscatedName("an")
+    static byte[][][] Tiles_renderFlags = new byte[4][104][104];
+    @ObfuscatedName("aw")
+    static int Tiles_minPlane = 99;
+    @ObfuscatedName("au")
+    static short[][][] Tiles_overlays;
+    @ObfuscatedName("ab")
+    static byte[][][] Tiles_shapes;
    @ObfuscatedName("aq")
    static byte[][][] field824;
    @ObfuscatedName("al")
    static byte[][][] field819;
    @ObfuscatedName("at")
    static int[][] field821;
-   @ObfuscatedName("ay")
-   @Export("Tiles_saturation")
-   static int[] Tiles_saturation;
+    @ObfuscatedName("ay")
+    static int[] Tiles_saturation;
    @ObfuscatedName("am")
    static final int[] field820 = new int[]{1, 2, 4, 8};
    @ObfuscatedName("as")
@@ -45,12 +39,10 @@ public final class Tiles {
    static final int[] field832 = new int[]{1, -1, -1, 1};
    @ObfuscatedName("ad")
    static final int[] field833 = new int[]{-1, -1, 1, 1};
-   @ObfuscatedName("ae")
-   @Export("rndHue")
-   static int rndHue = (int)(Math.random() * 17.0D) - 8;
-   @ObfuscatedName("ap")
-   @Export("rndLightness")
-   static int rndLightness = (int)(Math.random() * 33.0D) - 16;
+    @ObfuscatedName("ae")
+    static int rndHue = (int)(Math.random() * 17.0D) - 8;
+    @ObfuscatedName("ap")
+    static int rndLightness = (int)(Math.random() * 33.0D) - 16;
 
    @ObfuscatedName("aw")
    @ObfuscatedSignature(

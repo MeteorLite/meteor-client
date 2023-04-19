@@ -6,9 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bb")
 public class class27 {
-   @ObfuscatedName("bi")
-   @Export("loginScreenFontMetrics")
-   static FontMetrics loginScreenFontMetrics;
+    @ObfuscatedName("bi")
+    static FontMetrics loginScreenFontMetrics;
    @ObfuscatedName("aq")
    int[] field82 = new int[112];
    @ObfuscatedName("al")

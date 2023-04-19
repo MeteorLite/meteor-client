@@ -6,18 +6,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("qu")
 @Implements("Bounds")
 public class Bounds {
-   @ObfuscatedName("af")
-   @Export("lowX")
-   public int lowX;
-   @ObfuscatedName("an")
-   @Export("lowY")
-   public int lowY;
-   @ObfuscatedName("aw")
-   @Export("highX")
-   public int highX;
-   @ObfuscatedName("ac")
-   @Export("highY")
-   public int highY;
+    @ObfuscatedName("af")
+    public int lowX;
+    @ObfuscatedName("an")
+    public int lowY;
+    @ObfuscatedName("aw")
+    public int highX;
+    @ObfuscatedName("ac")
+    public int highY;
 
    public Bounds(int var1, int var2, int var3, int var4) {
       this.setLow(var1, var2);
@@ -28,24 +24,22 @@ public class Bounds {
       this(0, 0, var1, var2);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)V",
-      garbageValue = "26"
-   )
-   @Export("setLow")
-   public void setLow(int var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)V",
+            garbageValue = "26"
+    )
+    public void setLow(int var1, int var2) {
       this.lowX = var1;
       this.lowY = var2;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)V",
-      garbageValue = "-6"
-   )
-   @Export("setHigh")
-   public void setHigh(int var1, int var2) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)V",
+            garbageValue = "-6"
+    )
+    public void setHigh(int var1, int var2) {
       this.highX = var1;
       this.highY = var2;
    }
@@ -133,9 +127,8 @@ public class Bounds {
       return this.highY + this.lowY;
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return null;
    }
 }

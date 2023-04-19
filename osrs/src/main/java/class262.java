@@ -14,12 +14,10 @@ public class class262 {
       descriptor = "Lkd;"
    )
    static final class262 field2417 = new class262(1);
-   @ObfuscatedName("ak")
-   @Export("canvasHeight")
-   public static int canvasHeight;
-   @ObfuscatedName("aw")
-   @Export("value")
-   final int value;
+    @ObfuscatedName("ak")
+    public static int canvasHeight;
+    @ObfuscatedName("aw")
+    final int value;
 
    class262(int var1) {
       this.value = var1;

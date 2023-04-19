@@ -8,30 +8,26 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("eb")
 @Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
-   @ObfuscatedName("am")
-   @Export("ByteArrayPool_arrays")
-   static byte[][][] ByteArrayPool_arrays;
-   @ObfuscatedName("bb")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("Widget_archive")
-   public static AbstractArchive Widget_archive;
-   @ObfuscatedName("af")
-   @Export("reversed")
-   final boolean reversed;
+    @ObfuscatedName("am")
+    static byte[][][] ByteArrayPool_arrays;
+    @ObfuscatedName("bb")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive Widget_archive;
+    @ObfuscatedName("af")
+    final boolean reversed;
 
    public UserComparator3(boolean var1) {
       this.reversed = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpb;Lpb;B)I",
-      garbageValue = "-10"
-   )
-   @Export("compareBuddy")
-   int compareBuddy(Buddy var1, Buddy var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpb;Lpb;B)I",
+            garbageValue = "-10"
+    )
+    int compareBuddy(Buddy var1, Buddy var2) {
       if (var2.world != var1.world) {
          return this.reversed ? var1.world - var2.world : var2.world - var1.world;
       } else {
@@ -39,9 +35,8 @@ public class UserComparator3 extends AbstractUserComparator {
       }
    }
 
-   @Export("compare")
-   @ObfuscatedName("compare")
-   public int compare(Object var1, Object var2) {
+    @ObfuscatedName("compare")
+    public int compare(Object var1, Object var2) {
       return this.compareBuddy((Buddy)var1, (Buddy)var2);
    }
 
@@ -87,19 +82,18 @@ public class UserComparator3 extends AbstractUserComparator {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "2115875003"
-   )
-   @Export("readReflectionCheck")
-   public static void readReflectionCheck(Buffer var0, int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "2115875003"
+    )
+    public static void readReflectionCheck(Buffer var0, int var1) {
       ReflectionCheck var2 = new ReflectionCheck();
       var2.size = var0.readUnsignedByte();
       var2.id = var0.readInt();
       var2.operations = new int[var2.size];
       var2.creationErrors = new int[var2.size];
-      var2.field158 = new Field[var2.size];
+      var2.fields = new Field[var2.size];
       var2.intReplaceValues = new int[var2.size];
       var2.methods = new Method[var2.size];
       var2.arguments = new byte[var2.size][][];
@@ -184,7 +178,7 @@ public class UserComparator3 extends AbstractUserComparator {
                   throw new SecurityException();
                }
 
-               var2.field158[var3] = Reflection.findField(class33.loadClassFromDescriptor(var5), var6);
+               var2.fields[var3] = Reflection.findField(class33.loadClassFromDescriptor(var5), var6);
             }
          } catch (ClassNotFoundException var24) {
             var2.creationErrors[var3] = -1;

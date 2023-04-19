@@ -37,13 +37,12 @@ public enum class324 implements class356 {
       this.field3043 = var3;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field3043;
    }
 

@@ -20,15 +20,12 @@ public class RawPcmStream extends PcmStream {
    int field242;
    @ObfuscatedName("aq")
    int field243;
-   @ObfuscatedName("al")
-   @Export("numLoops")
-   int numLoops;
-   @ObfuscatedName("at")
-   @Export("start")
-   int start;
-   @ObfuscatedName("aa")
-   @Export("end")
-   int end;
+    @ObfuscatedName("al")
+    int numLoops;
+    @ObfuscatedName("at")
+    int start;
+    @ObfuscatedName("aa")
+    int end;
    @ObfuscatedName("ay")
    boolean field247;
    @ObfuscatedName("ao")
@@ -77,33 +74,29 @@ public class RawPcmStream extends PcmStream {
       this.field243 = method255(this.field245, this.field240);
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "()Lbp;"
-   )
-   @Export("firstSubStream")
-   protected PcmStream firstSubStream() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "()Lbp;"
+    )
+    protected PcmStream firstSubStream() {
       return null;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "()Lbp;"
-   )
-   @Export("nextSubStream")
-   protected PcmStream nextSubStream() {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "()Lbp;"
+    )
+    protected PcmStream nextSubStream() {
       return null;
    }
 
-   @ObfuscatedName("al")
-   @Export("vmethod5648")
-   protected int vmethod5648() {
+    @ObfuscatedName("al")
+    protected int vmethod5648() {
       return this.field245 == 0 && this.field248 == 0 ? 0 : 1;
    }
 
-   @ObfuscatedName("at")
-   @Export("fill")
-   public synchronized void fill(int[] var1, int var2, int var3) {
+    @ObfuscatedName("at")
+    public synchronized void fill(int[] var1, int var2, int var3) {
       if (this.field245 == 0 && this.field248 == 0) {
          this.skip(var3);
       } else {
@@ -283,15 +276,13 @@ public class RawPcmStream extends PcmStream {
       }
    }
 
-   @ObfuscatedName("aa")
-   @Export("setNumLoops")
-   public synchronized void setNumLoops(int var1) {
+    @ObfuscatedName("aa")
+    public synchronized void setNumLoops(int var1) {
       this.numLoops = var1;
    }
 
-   @ObfuscatedName("ay")
-   @Export("skip")
-   public synchronized void skip(int var1) {
+    @ObfuscatedName("ay")
+    public synchronized void skip(int var1) {
       if (this.field248 > 0) {
          if (var1 >= this.field248) {
             if (this.field245 == Integer.MIN_VALUE) {
@@ -822,9 +813,8 @@ public class RawPcmStream extends PcmStream {
       }
    }
 
-   @ObfuscatedName("ba")
-   @Export("vmethod1019")
-   int vmethod1019() {
+    @ObfuscatedName("ba")
+    int vmethod1019() {
       int var1 = this.field241 * 3 >> 6;
       var1 = (var1 ^ var1 >> 31) + (var1 >>> 31);
       if (this.numLoops == 0) {
@@ -846,12 +836,11 @@ public class RawPcmStream extends PcmStream {
       return var1 < 0 ? -var0 : (int)((double)var0 * Math.sqrt((double)var1 * 1.220703125E-4D) + 0.5D);
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lbr;II)Lbl;"
-   )
-   @Export("createRawPcmStream")
-   public static RawPcmStream createRawPcmStream(RawSound var0, int var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lbr;II)Lbl;"
+    )
+    public static RawPcmStream createRawPcmStream(RawSound var0, int var1, int var2) {
       return var0.samples != null && var0.samples.length != 0 ? new RawPcmStream(var0, (int)((long)var0.sampleRate * 256L * (long)var1 / (long)(PcmPlayer.field201 * 100)), var2 << 6) : null;
    }
 

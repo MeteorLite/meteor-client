@@ -13,20 +13,17 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("et")
 @Implements("UrlRequester")
 public abstract class UrlRequester implements Runnable {
-   @ObfuscatedName("tk")
-   @ObfuscatedSignature(
-      descriptor = "Ltq;"
-   )
-   @Export("sceneMinimapSprite")
-   static SpritePixels sceneMinimapSprite;
+    @ObfuscatedName("tk")
+    @ObfuscatedSignature(
+            descriptor = "Ltq;"
+    )
+    static SpritePixels sceneMinimapSprite;
    @ObfuscatedName("af")
    final Thread field1146 = new Thread(this);
-   @ObfuscatedName("an")
-   @Export("isClosed")
-   volatile boolean isClosed;
-   @ObfuscatedName("aw")
-   @Export("requests")
-   Queue requests = new LinkedList();
+    @ObfuscatedName("an")
+    volatile boolean isClosed;
+    @ObfuscatedName("aw")
+    Queue requests = new LinkedList();
    @ObfuscatedName("ac")
    int field1145;
 
@@ -36,13 +33,12 @@ public abstract class UrlRequester implements Runnable {
       this.field1145 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lez;B)V",
-      garbageValue = "16"
-   )
-   @Export("vmethod2700")
-   abstract void vmethod2700(UrlRequest var1) throws IOException;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lez;B)V",
+            garbageValue = "16"
+    )
+    abstract void vmethod2700(UrlRequest var1) throws IOException;
 
    @ObfuscatedName("an")
    @ObfuscatedSignature(
@@ -123,13 +119,12 @@ public abstract class UrlRequester implements Runnable {
 
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/net/URL;I)Lez;",
-      garbageValue = "-73486264"
-   )
-   @Export("request")
-   public UrlRequest request(URL var1) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/net/URL;I)Lez;",
+            garbageValue = "-73486264"
+    )
+    public UrlRequest request(URL var1) {
       UrlRequest var2 = new UrlRequest(var1);
       synchronized(this) {
          this.requests.add(var2);
@@ -138,13 +133,12 @@ public abstract class UrlRequester implements Runnable {
       }
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1770460847"
-   )
-   @Export("close")
-   public void close() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1770460847"
+    )
+    public void close() {
       this.isClosed = true;
 
       try {
@@ -159,9 +153,8 @@ public abstract class UrlRequester implements Runnable {
 
    }
 
-   @Export("run")
-   @ObfuscatedName("run")
-   public void run() {
+    @ObfuscatedName("run")
+    public void run() {
       while(!this.isClosed) {
          try {
             UrlRequest var1;

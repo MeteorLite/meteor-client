@@ -8,15 +8,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ad")
 @Implements("Canvas")
 public final class Canvas extends java.awt.Canvas {
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "Ltc;"
-   )
-   @Export("logoSprite")
-   static IndexedSprite logoSprite;
-   @ObfuscatedName("af")
-   @Export("component")
-   Component component;
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "Ltc;"
+    )
+    static IndexedSprite logoSprite;
+    @ObfuscatedName("af")
+    Component component;
 
    Canvas(Component var1) {
       this.component = var1;

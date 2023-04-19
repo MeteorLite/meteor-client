@@ -26,13 +26,12 @@ public class class152 extends class155 {
       this.field1380 = -1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1949352075"
-   )
-   @Export("vmethod3238")
-   void vmethod3238(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1949352075"
+    )
+    void vmethod3238(Buffer var1) {
       var1.readUnsignedByte();
       this.field1380 = var1.readUnsignedShort();
       this.field1381 = var1.readByte();
@@ -42,13 +41,12 @@ public class class152 extends class155 {
       var1.readUnsignedByte();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lgj;B)V",
-      garbageValue = "-49"
-   )
-   @Export("vmethod3239")
-   void vmethod3239(ClanChannel var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lgj;B)V",
+            garbageValue = "-49"
+    )
+    void vmethod3239(ClanChannel var1) {
       ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1380);
       var2.rank = this.field1381;
       var2.world = this.field1382;

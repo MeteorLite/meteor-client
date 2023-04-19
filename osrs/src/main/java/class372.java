@@ -4,13 +4,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("of")
 public class class372 {
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;IIIIIIB)V",
-      garbageValue = "-110"
-   )
-   @Export("loadTerrain")
-   static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;IIIIIIB)V",
+            garbageValue = "-110"
+    )
+    static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
       boolean var7 = var1 >= 0 && var1 < 4 && var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104;
       int var8;
       if (var7) {

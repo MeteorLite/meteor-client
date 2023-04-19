@@ -17,32 +17,29 @@ public class UrlRequest {
    final URL field1152;
    @ObfuscatedName("ac")
    volatile int field1149;
-   @ObfuscatedName("au")
-   @Export("response0")
-   volatile byte[] response0;
+    @ObfuscatedName("au")
+    volatile byte[] response0;
 
    UrlRequest(URL var1) {
       this.field1149 = field1151;
       this.field1152 = var1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "-54"
-   )
-   @Export("isDone")
-   public boolean isDone() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(B)Z",
+            garbageValue = "-54"
+    )
+    public boolean isDone() {
       return this.field1149 != field1151;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)[B",
-      garbageValue = "76"
-   )
-   @Export("getResponse")
-   public byte[] getResponse() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)[B",
+            garbageValue = "76"
+    )
+    public byte[] getResponse() {
       return this.response0;
    }
 
@@ -55,9 +52,8 @@ public class UrlRequest {
       return this.field1152.toString();
    }
 
-   @ObfuscatedName("ac")
-   @Export("Rasterizer3D_brighten")
-   static int Rasterizer3D_brighten(int var0, double var1) {
+    @ObfuscatedName("ac")
+    static int Rasterizer3D_brighten(int var0, double var1) {
       double var3 = (double)(var0 >> 16) / 256.0D;
       double var5 = (double)(var0 >> 8 & 255) / 256.0D;
       double var7 = (double)(var0 & 255) / 256.0D;

@@ -93,13 +93,12 @@ public class Timer {
       this.method2097();
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1606158047"
-   )
-   @Export("write")
-   public void write(Buffer var1) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1606158047"
+    )
+    public void write(Buffer var1) {
       long var2 = this.field3674;
       var2 /= 10L;
       if (var2 < 0L) {

@@ -8,9 +8,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class138 extends class139 {
    @ObfuscatedName("uu")
    static int field1314;
-   @ObfuscatedName("aq")
-   @Export("SpriteBuffer_spriteHeights")
-   public static int[] SpriteBuffer_spriteHeights;
+    @ObfuscatedName("aq")
+    public static int[] SpriteBuffer_spriteHeights;
    @ObfuscatedName("af")
    int field1315;
    // $FF: synthetic field
@@ -27,23 +26,21 @@ public class class138 extends class139 {
       this.field1315 = -1;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "168736686"
-   )
-   @Export("vmethod3254")
-   void vmethod3254(Buffer var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "168736686"
+    )
+    void vmethod3254(Buffer var1) {
       this.field1315 = var1.readUnsignedShort();
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lfj;I)V",
-      garbageValue = "1712319228"
-   )
-   @Export("vmethod3248")
-   void vmethod3248(ClanSettings var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lfj;I)V",
+            garbageValue = "1712319228"
+    )
+    void vmethod3248(ClanSettings var1) {
       var1.method855(this.field1315);
    }
 
@@ -52,13 +49,12 @@ public class class138 extends class139 {
       return Math.exp(var0 * -var0 / 2.0D) / Math.sqrt(6.283185307179586D);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)Ljava/io/File;",
-      garbageValue = "-1407581500"
-   )
-   @Export("getFile")
-   public static File getFile(String var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)Ljava/io/File;",
+            garbageValue = "-1407581500"
+    )
+    public static File getFile(String var0) {
       if (!FileSystem.FileSystem_hasPermissions) {
          throw new RuntimeException("");
       } else {
@@ -148,13 +144,12 @@ public class class138 extends class139 {
       Canvas.logoSprite.drawAt(Login.xPadding + 382 - Canvas.logoSprite.subWidth / 2, 18);
    }
 
-   @ObfuscatedName("hi")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "468091997"
-   )
-   @Export("updateGameState")
-   static void updateGameState(int var0) {
+    @ObfuscatedName("hi")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "468091997"
+    )
+    static void updateGameState(int var0) {
       if (var0 != Client.gameState) {
          if (Client.gameState == 30) {
             Client.field590.method1138();

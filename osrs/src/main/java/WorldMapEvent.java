@@ -6,21 +6,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ki")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-   @ObfuscatedName("af")
-   @Export("mapElement")
-   public int mapElement;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Llb;"
-   )
-   @Export("coord1")
-   public Coord coord1;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Llb;"
-   )
-   @Export("coord2")
-   public Coord coord2;
+    @ObfuscatedName("af")
+    public int mapElement;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Llb;"
+    )
+    public Coord coord1;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Llb;"
+    )
+    public Coord coord2;
 
    @ObfuscatedSignature(
       descriptor = "(ILlb;Llb;)V"

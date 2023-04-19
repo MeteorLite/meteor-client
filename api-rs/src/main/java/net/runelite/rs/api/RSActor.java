@@ -98,20 +98,15 @@ public interface RSActor extends RSRenderable, Actor
 	@Override
 	void setGraphic(int id);
 
-	@Import("spotAnimHeight")
 	@Override
 	int getGraphicHeight();
 
-	@Import("spotAnimHeight")
 	@Override
 	void setGraphicHeight(int height);
 
-	@Import("spotAnimationFrame")
-	int getSpotAnimFrame();
-
-	@Import("spotAnimationFrame")
+/*	@Import("spotAnimationFrame")
 	@Override
-	void setSpotAnimFrame(int id);
+	void setSpotAnimFrame(int id);*/
 
 	@Import("sequenceFrameCycle")
 	int getSpotAnimationFrameCycle();
@@ -221,19 +216,19 @@ public interface RSActor extends RSRenderable, Actor
 	@Import("sequenceDelay")
 	@Override
 	int getAnimationDelay();
-	@Import("spotAnimationStartCycle")
+/*	@Import("spotAnimationStartCycle")
 	@Override
-	int getGraphicStartCycle();
+	int getGraphicStartCycle();*/
 
 	@Import("movingOrientation")
 	@Override
 	int getFacedDirection();
 
-	@Import("exactMoveDeltaX1")
+/*	@Import("exactMoveDeltaX1")
 	@Override
-	int exactMoveDeltaX1();
+	int exactMoveDeltaX1();*/
 
-	@Import("exactMoveDeltaX2")
+/*	@Import("exactMoveDeltaX2")
 	@Override
 	int exactMoveDeltaX2();
 
@@ -243,15 +238,15 @@ public interface RSActor extends RSRenderable, Actor
 
 	@Import("exactMoveDeltaY2")
 	@Override
-	int exactMoveDeltaY2();
+	int exactMoveDeltaY2();*/
 
-	@Import("exactMoveArrive1Cycle")
+/*	@Import("exactMoveArrive1Cycle")
 	@Override
-	int exactMoveArrive1Cycle();
+	int exactMoveArrive1Cycle();*/
 
-	@Import("exactMoveArrive2Cycle")
+/*	@Import("exactMoveArrive2Cycle")
 	@Override
-	int exactMoveArrive2Cycle();
+	int exactMoveArrive2Cycle();*/
 
 	@Import("exactMoveDirection")
 	@Override
@@ -279,4 +274,8 @@ public interface RSActor extends RSRenderable, Actor
 	@Import("combatLevelChange")
 	@Override
 	int getCombatLevelOverride();
+
+	@Import("spotAnimations")
+	@Override
+	RSIterableNodeHashTable getGraphics();
 }

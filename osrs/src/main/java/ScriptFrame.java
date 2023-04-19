@@ -8,27 +8,22 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class ScriptFrame {
    @ObfuscatedName("ug")
    static int field343;
-   @ObfuscatedName("bc")
-   @Export("client")
-   @ObfuscatedSignature(
-      descriptor = "Lclient;"
-   )
-   static Client client;
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lch;"
-   )
-   @Export("script")
-   Script script;
-   @ObfuscatedName("an")
-   @Export("pc")
-   int pc = -1;
-   @ObfuscatedName("aw")
-   @Export("intLocals")
-   int[] intLocals;
-   @ObfuscatedName("ac")
-   @Export("stringLocals")
-   String[] stringLocals;
+    @ObfuscatedName("bc")
+    @ObfuscatedSignature(
+            descriptor = "Lclient;"
+    )
+    static Client client;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lch;"
+    )
+    Script script;
+    @ObfuscatedName("an")
+    int pc = -1;
+    @ObfuscatedName("aw")
+    int[] intLocals;
+    @ObfuscatedName("ac")
+    String[] stringLocals;
 
    @ObfuscatedName("ab")
    @ObfuscatedSignature(
@@ -39,13 +34,12 @@ public class ScriptFrame {
       return NPCComposition.method1035(ViewportMouse.ViewportMouse_entityTags[var0]);
    }
 
-   @ObfuscatedName("ls")
-   @ObfuscatedSignature(
-      descriptor = "(IIIII)V",
-      garbageValue = "-1708655552"
-   )
-   @Export("addSceneMenuOptions")
-   static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
+    @ObfuscatedName("ls")
+    @ObfuscatedSignature(
+            descriptor = "(IIIII)V",
+            garbageValue = "-1708655552"
+    )
+    static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
       if (Client.isItemSelected == 0 && !Client.isSpellSelected) {
          MenuAction.insertMenuItemNoShift("Walk here", "", 23, 0, var0 - var2, var1 - var3);
       }

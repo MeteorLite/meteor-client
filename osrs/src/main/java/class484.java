@@ -9,13 +9,12 @@ public class class484 {
    @ObfuscatedName("ac")
    static final int field4045 = (int)(Math.pow(2.0D, 8.0D) - 1.0D);
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;III)Ltq;",
-      garbageValue = "-1572989467"
-   )
-   @Export("SpriteBuffer_getSprite")
-   public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lnm;III)Ltq;",
+            garbageValue = "-1572989467"
+    )
+    public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
       byte[] var4 = var0.takeFile(var1, var2);
       boolean var3;
       if (var4 == null) {

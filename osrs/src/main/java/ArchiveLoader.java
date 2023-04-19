@@ -6,21 +6,17 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dw")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-   @ObfuscatedName("nc")
-   @Export("menuY")
-   static int menuY;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive")
-   final Archive archive;
-   @ObfuscatedName("aw")
-   @Export("groupCount")
-   final int groupCount;
-   @ObfuscatedName("ac")
-   @Export("loadedCount")
-   int loadedCount = 0;
+    @ObfuscatedName("nc")
+    static int menuY;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    final Archive archive;
+    @ObfuscatedName("aw")
+    final int groupCount;
+    @ObfuscatedName("ac")
+    int loadedCount = 0;
 
    @ObfuscatedSignature(
       descriptor = "(Lnd;Ljava/lang/String;)V"
@@ -30,13 +26,12 @@ public class ArchiveLoader {
       this.groupCount = var1.getGroupCount();
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(B)Z",
-      garbageValue = "46"
-   )
-   @Export("isLoaded")
-   boolean isLoaded() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(B)Z",
+            garbageValue = "46"
+    )
+    boolean isLoaded() {
       this.loadedCount = 0;
 
       for(int var1 = 0; var1 < this.groupCount; ++var1) {

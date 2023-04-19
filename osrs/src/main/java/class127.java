@@ -89,9 +89,8 @@ public class class127 implements class356 {
       descriptor = "Lec;"
    )
    static final class127 field1264 = new class127(16, 16, (String)null, 0, 5);
-   @ObfuscatedName("gc")
-   @Export("js5Port")
-   static int js5Port;
+    @ObfuscatedName("gc")
+    static int js5Port;
    @ObfuscatedName("ar")
    final int field1267;
    @ObfuscatedName("am")
@@ -109,13 +108,12 @@ public class class127 implements class356 {
       this.field1269 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field1268;
    }
 
@@ -128,13 +126,12 @@ public class class127 implements class356 {
       return this.field1269;
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(IZIZB)V",
-      garbageValue = "-41"
-   )
-   @Export("sortWorldList")
-   static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(IZIZB)V",
+            garbageValue = "-41"
+    )
+    static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
       if (class31.World_worlds != null) {
          class13.doWorldSorting(0, class31.World_worlds.length - 1, var0, var1, var2, var3);
       }
@@ -150,13 +147,12 @@ public class class127 implements class356 {
       ItemComposition.ItemDefinition_cachedSprites.clear();
    }
 
-   @ObfuscatedName("js")
-   @ObfuscatedSignature(
-      descriptor = "(ZLsq;B)V",
-      garbageValue = "24"
-   )
-   @Export("loadRegions")
-   static final void loadRegions(boolean var0, PacketBuffer var1) {
+    @ObfuscatedName("js")
+    @ObfuscatedSignature(
+            descriptor = "(ZLsq;B)V",
+            garbageValue = "24"
+    )
+    static final void loadRegions(boolean var0, PacketBuffer var1) {
       Client.isInInstance = var0;
       int var2;
       int var4;
@@ -164,8 +160,8 @@ public class class127 implements class356 {
       int var6;
       int var7;
       if (!Client.isInInstance) {
-         var2 = var1.readUnsignedShortAddLE();
-         int var3 = var1.readUnsignedShortAddLE();
+         var2 = var1.readUnsignedShortLE();
+         int var3 = var1.readUnsignedShortLE();
          var4 = var1.readUnsignedShort();
          GameObject.xteaKeys = new int[var4][4];
 
@@ -194,9 +190,9 @@ public class class127 implements class356 {
 
          Decimator.method331(var3, var2, true);
       } else {
-         var2 = var1.readUnsignedShortAddLE();
+         var2 = var1.readUnsignedShortLE();
          boolean var15 = var1.readUnsignedByte() == 1;
-         var4 = var1.readUnsignedShortLE();
+         var4 = var1.readUnsignedShortAddLE();
          var5 = var1.readUnsignedShort();
          var1.importIndex();
 
@@ -266,13 +262,12 @@ public class class127 implements class356 {
 
    }
 
-   @ObfuscatedName("mu")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)V",
-      garbageValue = "63"
-   )
-   @Export("runIntfCloseListeners")
-   static final void runIntfCloseListeners(int var0, int var1) {
+    @ObfuscatedName("mu")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)V",
+            garbageValue = "63"
+    )
+    static final void runIntfCloseListeners(int var0, int var1) {
       if (SoundSystem.loadInterface(var0)) {
          class143.runComponentCloseListeners(VerticalAlignment.Widget_interfaceComponents[var0], var1);
       }

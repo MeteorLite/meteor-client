@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bn")
 @Implements("PcmStreamMixer")
 public class PcmStreamMixer extends PcmStream {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnh;"
-   )
-   @Export("subStreams")
-   NodeDeque subStreams = new NodeDeque();
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnh;"
+    )
+    NodeDeque subStreams = new NodeDeque();
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "Lnh;"
@@ -22,21 +21,19 @@ public class PcmStreamMixer extends PcmStream {
    @ObfuscatedName("ac")
    int field171 = -1;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lbp;)V"
-   )
-   @Export("addSubStream")
-   public final synchronized void addSubStream(PcmStream var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lbp;)V"
+    )
+    public final synchronized void addSubStream(PcmStream var1) {
       this.subStreams.addLast(var1);
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lbp;)V"
-   )
-   @Export("removeSubStream")
-   public final synchronized void removeSubStream(PcmStream var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lbp;)V"
+    )
+    public final synchronized void removeSubStream(PcmStream var1) {
       var1.remove();
    }
 
@@ -82,33 +79,29 @@ public class PcmStreamMixer extends PcmStream {
 
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "()Lbp;"
-   )
-   @Export("firstSubStream")
-   protected PcmStream firstSubStream() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "()Lbp;"
+    )
+    protected PcmStream firstSubStream() {
       return (PcmStream)this.subStreams.last();
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "()Lbp;"
-   )
-   @Export("nextSubStream")
-   protected PcmStream nextSubStream() {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "()Lbp;"
+    )
+    protected PcmStream nextSubStream() {
       return (PcmStream)this.subStreams.previous();
    }
 
-   @ObfuscatedName("al")
-   @Export("vmethod5648")
-   protected int vmethod5648() {
+    @ObfuscatedName("al")
+    protected int vmethod5648() {
       return 0;
    }
 
-   @ObfuscatedName("at")
-   @Export("fill")
-   public final synchronized void fill(int[] var1, int var2, int var3) {
+    @ObfuscatedName("at")
+    public final synchronized void fill(int[] var1, int var2, int var3) {
       do {
          if (this.field171 < 0) {
             this.updateSubStreams(var1, var2, var3);
@@ -142,18 +135,16 @@ public class PcmStreamMixer extends PcmStream {
 
    }
 
-   @ObfuscatedName("aa")
-   @Export("updateSubStreams")
-   void updateSubStreams(int[] var1, int var2, int var3) {
+    @ObfuscatedName("aa")
+    void updateSubStreams(int[] var1, int var2, int var3) {
       for(PcmStream var4 = (PcmStream)this.subStreams.last(); var4 != null; var4 = (PcmStream)this.subStreams.previous()) {
          var4.update(var1, var2, var3);
       }
 
    }
 
-   @ObfuscatedName("ay")
-   @Export("skip")
-   public final synchronized void skip(int var1) {
+    @ObfuscatedName("ay")
+    public final synchronized void skip(int var1) {
       do {
          if (this.field171 < 0) {
             this.skipSubStreams(var1);
@@ -186,9 +177,8 @@ public class PcmStreamMixer extends PcmStream {
 
    }
 
-   @ObfuscatedName("ao")
-   @Export("skipSubStreams")
-   void skipSubStreams(int var1) {
+    @ObfuscatedName("ao")
+    void skipSubStreams(int var1) {
       for(PcmStream var2 = (PcmStream)this.subStreams.last(); var2 != null; var2 = (PcmStream)this.subStreams.previous()) {
          var2.skip(var1);
       }

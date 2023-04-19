@@ -6,41 +6,36 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ht")
 @Implements("StructComposition")
 public class StructComposition extends DualNode {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("StructDefinition_archive")
-   static AbstractArchive StructDefinition_archive;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lkh;"
-   )
-   @Export("StructDefinition_cached")
-   static EvictingDualNodeHashTable StructDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lro;"
-   )
-   @Export("params")
-   IterableNodeHashTable params;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    static AbstractArchive StructDefinition_archive;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lkh;"
+    )
+    static EvictingDualNodeHashTable StructDefinition_cached = new EvictingDualNodeHashTable(64);
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lro;"
+    )
+    IterableNodeHashTable params;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1436129588"
-   )
-   @Export("postDecode")
-   void postDecode() {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1436129588"
+    )
+    void postDecode() {
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1875219485"
-   )
-   @Export("decode")
-   void decode(Buffer var1) {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;I)V",
+            garbageValue = "-1875219485"
+    )
+    void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -51,26 +46,24 @@ public class StructComposition extends DualNode {
       }
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "-1196220711"
-   )
-   @Export("decodeNext")
-   void decodeNext(Buffer var1, int var2) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "-1196220711"
+    )
+    void decodeNext(Buffer var1, int var2) {
       if (var2 == 249) {
          this.params = ChatChannel.readStringIntParameters(var1, this.params);
       }
 
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)I",
-      garbageValue = "-33"
-   )
-   @Export("getIntParam")
-   public int getIntParam(int var1, int var2) {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "(IIB)I",
+            garbageValue = "-33"
+    )
+    public int getIntParam(int var1, int var2) {
       IterableNodeHashTable var4 = this.params;
       int var3;
       if (var4 == null) {
@@ -87,23 +80,21 @@ public class StructComposition extends DualNode {
       return var3;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
-      garbageValue = "1937714582"
-   )
-   @Export("getStringParam")
-   public String getStringParam(int var1, String var2) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
+            garbageValue = "1937714582"
+    )
+    public String getStringParam(int var1, String var2) {
       return EnumComposition.method1014(this.params, var1, var2);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "([Lnj;IS)Lnj;",
-      garbageValue = "173"
-   )
-   @Export("findEnumerated")
-   public static class356 findEnumerated(class356[] var0, int var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "([Lnj;IS)Lnj;",
+            garbageValue = "173"
+    )
+    public static class356 findEnumerated(class356[] var0, int var1) {
       class356[] var2 = var0;
 
       for(int var3 = 0; var3 < var2.length; ++var3) {

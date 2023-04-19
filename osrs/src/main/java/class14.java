@@ -8,12 +8,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ag")
 public class class14 {
-   @ObfuscatedName("iq")
-   @ObfuscatedSignature(
-      descriptor = "Let;"
-   )
-   @Export("urlRequester")
-   static UrlRequester urlRequester;
+    @ObfuscatedName("iq")
+    @ObfuscatedSignature(
+            descriptor = "Let;"
+    )
+    static UrlRequester urlRequester;
    @ObfuscatedName("af")
    final int field44;
    @ObfuscatedName("an")

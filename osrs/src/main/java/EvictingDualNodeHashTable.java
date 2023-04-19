@@ -6,30 +6,25 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kh")
 @Implements("EvictingDualNodeHashTable")
 public final class EvictingDualNodeHashTable {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lrk;"
-   )
-   @Export("dualNode")
-   DualNode dualNode = new DualNode();
-   @ObfuscatedName("an")
-   @Export("capacity")
-   int capacity;
-   @ObfuscatedName("aw")
-   @Export("remainingCapacity")
-   int remainingCapacity;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lro;"
-   )
-   @Export("hashTable")
-   IterableNodeHashTable hashTable;
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Lox;"
-   )
-   @Export("deque")
-   IterableDualNodeQueue deque = new IterableDualNodeQueue();
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lrk;"
+    )
+    DualNode dualNode = new DualNode();
+    @ObfuscatedName("an")
+    int capacity;
+    @ObfuscatedName("aw")
+    int remainingCapacity;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Lro;"
+    )
+    IterableNodeHashTable hashTable;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Lox;"
+    )
+    IterableDualNodeQueue deque = new IterableDualNodeQueue();
 
    public EvictingDualNodeHashTable(int var1) {
       this.capacity = var1;
@@ -43,12 +38,11 @@ public final class EvictingDualNodeHashTable {
       this.hashTable = new IterableNodeHashTable(var2);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(J)Lrk;"
-   )
-   @Export("get")
-   public DualNode get(long var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(J)Lrk;"
+    )
+    public DualNode get(long var1) {
       DualNode var3 = (DualNode)this.hashTable.get(var1);
       if (var3 != null) {
          this.deque.add(var3);
@@ -57,9 +51,8 @@ public final class EvictingDualNodeHashTable {
       return var3;
    }
 
-   @ObfuscatedName("an")
-   @Export("remove")
-   public void remove(long var1) {
+    @ObfuscatedName("an")
+    public void remove(long var1) {
       DualNode var3 = (DualNode)this.hashTable.get(var1);
       if (var3 != null) {
          var3.remove();
@@ -69,12 +62,11 @@ public final class EvictingDualNodeHashTable {
 
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(Lrk;J)V"
-   )
-   @Export("put")
-   public void put(DualNode var1, long var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(Lrk;J)V"
+    )
+    public void put(DualNode var1, long var2) {
       if (this.remainingCapacity == 0) {
          DualNode var4 = this.deque.removeLast();
          var4.remove();
@@ -92,9 +84,8 @@ public final class EvictingDualNodeHashTable {
       this.deque.add(var1);
    }
 
-   @ObfuscatedName("ac")
-   @Export("clear")
-   public void clear() {
+    @ObfuscatedName("ac")
+    public void clear() {
       this.deque.clear();
       this.hashTable.clear();
       this.dualNode = new DualNode();

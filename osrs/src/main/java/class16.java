@@ -8,21 +8,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class16 implements ThreadFactory {
    @ObfuscatedName("uq")
    static int field54;
-   @ObfuscatedName("dl")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("worldSelectFlagSprites")
-   static IndexedSprite[] worldSelectFlagSprites;
+    @ObfuscatedName("dl")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] worldSelectFlagSprites;
    @ObfuscatedName("af")
    final ThreadGroup field51;
    @ObfuscatedName("an")
    final AtomicInteger field52;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lag;"
+           descriptor = "Lag;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class14 this$0;
 
@@ -36,22 +34,20 @@ public class class16 implements ThreadFactory {
       this.field51 = var2 != null ? var2.getThreadGroup() : Thread.currentThread().getThreadGroup();
    }
 
-   @Export("newThread")
-   @ObfuscatedName("newThread")
-   public Thread newThread(Runnable var1) {
+    @ObfuscatedName("newThread")
+    public Thread newThread(Runnable var1) {
       Thread var2 = new Thread(this.field51, var1, this.this$0.field45 + "-rest-request-" + this.field52.getAndIncrement(), 0L);
       var2.setDaemon(true);
       var2.setPriority(5);
       return var2;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lnx;I)I",
-      garbageValue = "1629498841"
-   )
-   @Export("compareStrings")
-   public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lnx;I)I",
+            garbageValue = "1629498841"
+    )
+    public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {
       int var3 = var0.length();
       int var4 = var1.length();
       int var5 = 0;

@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lh")
 public class class294 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnm;"
-   )
-   @Export("VarcInt_archive")
-   public static AbstractArchive VarcInt_archive;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnm;"
+    )
+    public static AbstractArchive VarcInt_archive;
    @ObfuscatedName("ab")
    static int field2715;
    @ObfuscatedName("ix")

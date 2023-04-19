@@ -6,9 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hu")
 public class class186 {
-   @ObfuscatedName("ac")
-   @Export("Tiles_underlays")
-   static short[][][] Tiles_underlays;
+    @ObfuscatedName("ac")
+    static short[][][] Tiles_underlays;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(

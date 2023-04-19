@@ -6,27 +6,23 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ns")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lnh;"
-   )
-   @Export("ArchiveDiskActionHandler_requestQueue")
-   public static NodeDeque ArchiveDiskActionHandler_requestQueue = new NodeDeque();
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnh;"
-   )
-   @Export("ArchiveDiskActionHandler_responseQueue")
-   public static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lnh;"
+    )
+    public static NodeDeque ArchiveDiskActionHandler_requestQueue = new NodeDeque();
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnh;"
+    )
+    public static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
    @ObfuscatedName("aw")
    static int field3453 = 0;
-   @ObfuscatedName("ac")
-   @Export("ArchiveDiskActionHandler_lock")
-   static Object ArchiveDiskActionHandler_lock = new Object();
+    @ObfuscatedName("ac")
+    static Object ArchiveDiskActionHandler_lock = new Object();
 
-   @Export("run")
-   @ObfuscatedName("run")
-   public void run() {
+    @ObfuscatedName("run")
+    public void run() {
       try {
          while(true) {
             NodeDeque var2 = ArchiveDiskActionHandler_requestQueue;
@@ -80,13 +76,12 @@ public class ArchiveDiskActionHandler implements Runnable {
       }
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)Ljava/lang/String;",
-      garbageValue = "1319912203"
-   )
-   @Export("addImageTag")
-   static String addImageTag(int var0) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)Ljava/lang/String;",
+            garbageValue = "1319912203"
+    )
+    static String addImageTag(int var0) {
       return "<img=" + var0 + ">";
    }
 }

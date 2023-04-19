@@ -11,36 +11,27 @@ public class DynamicObject extends Renderable {
       descriptor = "Lnm;"
    )
    static AbstractArchive field813;
-   @ObfuscatedName("af")
-   @Export("id")
-   int id;
-   @ObfuscatedName("an")
-   @Export("type")
-   int type;
-   @ObfuscatedName("aw")
-   @Export("orientation")
-   int orientation;
-   @ObfuscatedName("ac")
-   @Export("plane")
-   int plane;
-   @ObfuscatedName("au")
-   @Export("x")
-   int x;
-   @ObfuscatedName("ab")
-   @Export("y")
-   int y;
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Lha;"
-   )
-   @Export("sequenceDefinition")
-   SequenceDefinition sequenceDefinition;
-   @ObfuscatedName("al")
-   @Export("frame")
-   int frame;
-   @ObfuscatedName("at")
-   @Export("cycleStart")
-   int cycleStart;
+    @ObfuscatedName("af")
+    int id;
+    @ObfuscatedName("an")
+    int type;
+    @ObfuscatedName("aw")
+    int orientation;
+    @ObfuscatedName("ac")
+    int plane;
+    @ObfuscatedName("au")
+    int x;
+    @ObfuscatedName("ab")
+    int y;
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "Lha;"
+    )
+    SequenceDefinition sequenceDefinition;
+    @ObfuscatedName("al")
+    int frame;
+    @ObfuscatedName("at")
+    int cycleStart;
 
    @ObfuscatedSignature(
       descriptor = "(IIIIIIIZLiv;)V"
@@ -77,13 +68,12 @@ public class DynamicObject extends Renderable {
 
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lit;",
-      garbageValue = "-112"
-   )
-   @Export("getModel")
-   protected final Model getModel() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Lit;",
+            garbageValue = "-112"
+    )
+    protected final Model getModel() {
       int var2;
       if (this.sequenceDefinition != null) {
          int var1 = Client.cycle - this.cycleStart;
@@ -165,23 +155,21 @@ public class DynamicObject extends Renderable {
       }
    }
 
-   @ObfuscatedName("bc")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;B)I",
-      garbageValue = "-115"
-   )
-   @Export("stringCp1252NullTerminatedByteSize")
-   public static int stringCp1252NullTerminatedByteSize(String var0) {
+    @ObfuscatedName("bc")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;B)I",
+            garbageValue = "-115"
+    )
+    public static int stringCp1252NullTerminatedByteSize(String var0) {
       return var0.length() + 1;
    }
 
-   @ObfuscatedName("iy")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)V",
-      garbageValue = "-2085867489"
-   )
-   @Export("doCheat")
-   static final void doCheat(String var0) {
+    @ObfuscatedName("iy")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;I)V",
+            garbageValue = "-2085867489"
+    )
+    static final void doCheat(String var0) {
       if (var0.equalsIgnoreCase("toggleroof")) {
          class20.clientPreferences.setRoofsHidden(!class20.clientPreferences.getRoofsHidden());
          if (class20.clientPreferences.getRoofsHidden()) {
@@ -254,13 +242,12 @@ public class DynamicObject extends Renderable {
       return Client.menuOptionsCount - 1;
    }
 
-   @ObfuscatedName("li")
-   @ObfuscatedSignature(
-      descriptor = "(Ldv;IIII)V",
-      garbageValue = "1402248095"
-   )
-   @Export("addPlayerToMenu")
-   static final void addPlayerToMenu(Player var0, int var1, int var2, int var3) {
+    @ObfuscatedName("li")
+    @ObfuscatedSignature(
+            descriptor = "(Ldv;IIII)V",
+            garbageValue = "1402248095"
+    )
+    static final void addPlayerToMenu(Player var0, int var1, int var2, int var3) {
       if (MusicPatchNode.localPlayer != var0) {
          if (Client.menuOptionsCount < 400) {
             String var4;
@@ -321,13 +308,12 @@ public class DynamicObject extends Renderable {
       }
    }
 
-   @ObfuscatedName("nz")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;IIII)V",
-      garbageValue = "759225225"
-   )
-   @Export("drawCompass")
-   static final void drawCompass(Widget var0, int var1, int var2, int var3) {
+    @ObfuscatedName("nz")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;IIII)V",
+            garbageValue = "759225225"
+    )
+    static final void drawCompass(Widget var0, int var1, int var2, int var3) {
       SpriteMask var4 = var0.getSpriteMask(false);
       if (var4 != null) {
          if (Client.minimapState < 3) {

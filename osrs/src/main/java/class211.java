@@ -7,18 +7,14 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("iw")
 public class class211 {
-   @ObfuscatedName("aw")
-   @Export("directions")
-   static int[][] directions = new int[128][128];
-   @ObfuscatedName("ac")
-   @Export("distances")
-   static int[][] distances = new int[128][128];
-   @ObfuscatedName("al")
-   @Export("bufferX")
-   static int[] bufferX = new int[4096];
-   @ObfuscatedName("at")
-   @Export("bufferY")
-   static int[] bufferY = new int[4096];
+    @ObfuscatedName("aw")
+    static int[][] directions = new int[128][128];
+    @ObfuscatedName("ac")
+    static int[][] distances = new int[128][128];
+    @ObfuscatedName("al")
+    static int[] bufferX = new int[4096];
+    @ObfuscatedName("at")
+    static int[] bufferY = new int[4096];
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(

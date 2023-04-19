@@ -6,66 +6,56 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jb")
 @Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Ljb;"
-   )
-   @Export("WORLDMAPSECTIONTYPE0")
-   WORLDMAPSECTIONTYPE0(1, (byte)0),
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Ljb;"
-   )
-   @Export("WORLDMAPSECTIONTYPE1")
-   WORLDMAPSECTIONTYPE1(0, (byte)1),
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Ljb;"
-   )
-   @Export("WORLDMAPSECTIONTYPE2")
-   WORLDMAPSECTIONTYPE2(3, (byte)2),
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Ljb;"
-   )
-   @Export("WORLDMAPSECTIONTYPE3")
-   WORLDMAPSECTIONTYPE3(2, (byte)3);
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Ljb;"
+    )
+    WORLDMAPSECTIONTYPE0(1, (byte)0),
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Ljb;"
+    )
+    WORLDMAPSECTIONTYPE1(0, (byte)1),
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Ljb;"
+    )
+    WORLDMAPSECTIONTYPE2(3, (byte)2),
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Ljb;"
+    )
+    WORLDMAPSECTIONTYPE3(2, (byte)3);
 
-   @ObfuscatedName("tj")
-   @ObfuscatedSignature(
-      descriptor = "Lcc;"
-   )
-   @Export("decimator")
-   static Decimator decimator;
-   @ObfuscatedName("aj")
-   @Export("formattedOperatingSystemName")
-   public static String formattedOperatingSystemName;
+    @ObfuscatedName("tj")
+    @ObfuscatedSignature(
+            descriptor = "Lcc;"
+    )
+    static Decimator decimator;
+    @ObfuscatedName("aj")
+    public static String formattedOperatingSystemName;
    @ObfuscatedName("ds")
    static boolean field2384;
-   @ObfuscatedName("ky")
-   @Export("cameraPitch")
-   static int cameraPitch;
+    @ObfuscatedName("ky")
+    static int cameraPitch;
    @ObfuscatedName("ow")
    static int field2385;
-   @ObfuscatedName("au")
-   @Export("type")
-   final int type;
-   @ObfuscatedName("ab")
-   @Export("id")
-   final byte id;
+    @ObfuscatedName("au")
+    final int type;
+    @ObfuscatedName("ab")
+    final byte id;
 
    WorldMapSectionType(int var3, byte var4) {
       this.type = var3;
       this.id = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
@@ -78,13 +68,12 @@ public enum WorldMapSectionType implements class356 {
       return class144.method826(var0, 0, var0.length);
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;I)Z",
-      garbageValue = "88944891"
-   )
-   @Export("isNumber")
-   public static boolean isNumber(CharSequence var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/CharSequence;I)Z",
+            garbageValue = "88944891"
+    )
+    public static boolean isNumber(CharSequence var0) {
       return UrlRequester.method671(var0, 10, true);
    }
 

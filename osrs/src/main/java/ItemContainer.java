@@ -6,31 +6,26 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dc")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lrc;"
-   )
-   @Export("itemContainers")
-   static NodeHashTable itemContainers = new NodeHashTable(32);
-   @ObfuscatedName("gf")
-   @Export("currentPort")
-   static int currentPort;
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lrc;"
+    )
+    static NodeHashTable itemContainers = new NodeHashTable(32);
+    @ObfuscatedName("gf")
+    static int currentPort;
    @ObfuscatedName("sv")
    static boolean field844;
-   @ObfuscatedName("an")
-   @Export("ids")
-   int[] ids = new int[]{-1};
-   @ObfuscatedName("aw")
-   @Export("quantities")
-   int[] quantities = new int[]{0};
+    @ObfuscatedName("an")
+    int[] ids = new int[]{-1};
+    @ObfuscatedName("aw")
+    int[] quantities = new int[]{0};
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lhh;",
-      garbageValue = "-707697126"
-   )
-   @Export("SpotAnimationDefinition_get")
-   public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(II)Lhh;",
+            garbageValue = "-707697126"
+    )
+    public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
       SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -47,13 +42,12 @@ public class ItemContainer extends Node {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lha;",
-      garbageValue = "28"
-   )
-   @Export("SequenceDefinition_get")
-   public static SequenceDefinition SequenceDefinition_get(int var0) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lha;",
+            garbageValue = "28"
+    )
+    public static SequenceDefinition SequenceDefinition_get(int var0) {
       SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;

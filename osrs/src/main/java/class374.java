@@ -12,13 +12,12 @@ public class class374 extends RuntimeException {
       super(String.format(var1, var2));
    }
 
-   @ObfuscatedName("jf")
-   @ObfuscatedSignature(
-      descriptor = "(IIII)V",
-      garbageValue = "-2014413605"
-   )
-   @Export("worldToScreen")
-   static final void worldToScreen(int var0, int var1, int var2) {
+    @ObfuscatedName("jf")
+    @ObfuscatedSignature(
+            descriptor = "(IIII)V",
+            garbageValue = "-2014413605"
+    )
+    static final void worldToScreen(int var0, int var1, int var2) {
       if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
          int var3 = class147.getTileHeight(var0, var1, GameEngine.Client_plane) - var2;
          var0 -= class36.cameraX;

@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("eh")
 public class class124 implements Callable {
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "Lon;"
-   )
-   @Export("ItemDefinition_fontPlain11")
-   public static Font ItemDefinition_fontPlain11;
+    @ObfuscatedName("ax")
+    @ObfuscatedSignature(
+            descriptor = "Lon;"
+    )
+    public static Font ItemDefinition_fontPlain11;
    @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "Lek;"
@@ -31,9 +30,8 @@ public class class124 implements Callable {
    final int field1211;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lfh;"
+           descriptor = "Lfh;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class133 this$0;
 
@@ -48,9 +46,8 @@ public class class124 implements Callable {
       this.field1211 = var5;
    }
 
-   @Export("call")
-   @ObfuscatedName("call")
-   public Object call() {
+    @ObfuscatedName("call")
+    public Object call() {
       this.field1212.method750();
       class125[][] var1;
       if (this.field1210 == class126.field1240) {

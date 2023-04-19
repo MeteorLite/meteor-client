@@ -9,10 +9,9 @@ public class class333 {
       descriptor = "Lph;"
    )
    static AbstractSocket field3090;
-   @ObfuscatedName("ju")
-   @ObfuscatedSignature(
-      descriptor = "[Ltc;"
-   )
-   @Export("mapSceneSprites")
-   static IndexedSprite[] mapSceneSprites;
+    @ObfuscatedName("ju")
+    @ObfuscatedSignature(
+            descriptor = "[Ltc;"
+    )
+    static IndexedSprite[] mapSceneSprites;
 }

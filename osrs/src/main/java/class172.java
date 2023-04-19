@@ -13,9 +13,8 @@ public class class172 {
    public float[] field1444;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lgy;"
+           descriptor = "Lgy;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class166 this$0;
 

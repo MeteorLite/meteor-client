@@ -32,18 +32,16 @@ public enum class123 implements class356 {
 
    @ObfuscatedName("uo")
    static int field1209;
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "Ltq;"
-   )
-   @Export("leftTitleSprite")
-   static SpritePixels leftTitleSprite;
-   @ObfuscatedName("rk")
-   @ObfuscatedSignature(
-      descriptor = "Lgf;"
-   )
-   @Export("mouseWheel")
-   static class170 mouseWheel;
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "Ltq;"
+    )
+    static SpritePixels leftTitleSprite;
+    @ObfuscatedName("rk")
+    @ObfuscatedSignature(
+            descriptor = "Lgf;"
+    )
+    static class170 mouseWheel;
    @ObfuscatedName("ab")
    final int field1206;
    @ObfuscatedName("aq")
@@ -54,23 +52,21 @@ public enum class123 implements class356 {
       this.field1205 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field1205;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "([Lcl;II[I[II)V",
-      garbageValue = "-139825594"
-   )
-   @Export("sortWorlds")
-   static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "([Lcl;II[I[II)V",
+            garbageValue = "-139825594"
+    )
+    static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
       if (var1 < var2) {
          int var5 = var1 - 1;
          int var6 = var2 + 1;

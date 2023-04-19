@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ta")
 public enum FillMode implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lta;"
-   )
-   @Export("SOLID")
-   SOLID(0, 0),
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lta;"
+    )
+    SOLID(0, 0),
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "Lta;"
@@ -31,23 +30,21 @@ public enum FillMode implements class356 {
       this.field4121 = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.field4121;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(III)V",
-      garbageValue = "-358854286"
-   )
-   @Export("changeWorldSelectSorting")
-   static void changeWorldSelectSorting(int var0, int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(III)V",
+            garbageValue = "-358854286"
+    )
+    static void changeWorldSelectSorting(int var0, int var1) {
       int[] var2 = new int[4];
       int[] var3 = new int[4];
       var2[0] = var0;

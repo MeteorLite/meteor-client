@@ -6,24 +6,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("lc")
 @Implements("MusicPatchPcmStream")
 public class MusicPatchPcmStream extends PcmStream {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lln;"
-   )
-   @Export("superStream")
-   MidiPcmStream superStream;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lnh;"
-   )
-   @Export("queue")
-   NodeDeque queue = new NodeDeque();
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lbn;"
-   )
-   @Export("mixer")
-   PcmStreamMixer mixer = new PcmStreamMixer();
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lln;"
+    )
+    MidiPcmStream superStream;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lnh;"
+    )
+    NodeDeque queue = new NodeDeque();
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lbn;"
+    )
+    PcmStreamMixer mixer = new PcmStreamMixer();
 
    @ObfuscatedSignature(
       descriptor = "(Lln;)V"
@@ -111,12 +108,11 @@ public class MusicPatchPcmStream extends PcmStream {
       var1.stream.skip(var2);
    }
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "()Lbp;"
-   )
-   @Export("firstSubStream")
-   protected PcmStream firstSubStream() {
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "()Lbp;"
+    )
+    protected PcmStream firstSubStream() {
       MusicPatchNode var1 = (MusicPatchNode)this.queue.last();
       if (var1 == null) {
          return null;
@@ -125,12 +121,11 @@ public class MusicPatchPcmStream extends PcmStream {
       }
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "()Lbp;"
-   )
-   @Export("nextSubStream")
-   protected PcmStream nextSubStream() {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "()Lbp;"
+    )
+    protected PcmStream nextSubStream() {
       MusicPatchNode var1;
       do {
          var1 = (MusicPatchNode)this.queue.previous();
@@ -142,15 +137,13 @@ public class MusicPatchPcmStream extends PcmStream {
       return var1.stream;
    }
 
-   @ObfuscatedName("al")
-   @Export("vmethod5648")
-   protected int vmethod5648() {
+    @ObfuscatedName("al")
+    protected int vmethod5648() {
       return 0;
    }
 
-   @ObfuscatedName("at")
-   @Export("fill")
-   protected void fill(int[] var1, int var2, int var3) {
+    @ObfuscatedName("at")
+    protected void fill(int[] var1, int var2, int var3) {
       this.mixer.fill(var1, var2, var3);
 
       for(MusicPatchNode var6 = (MusicPatchNode)this.queue.last(); var6 != null; var6 = (MusicPatchNode)this.queue.previous()) {
@@ -174,9 +167,8 @@ public class MusicPatchPcmStream extends PcmStream {
 
    }
 
-   @ObfuscatedName("ay")
-   @Export("skip")
-   protected void skip(int var1) {
+    @ObfuscatedName("ay")
+    protected void skip(int var1) {
       this.mixer.skip(var1);
 
       for(MusicPatchNode var3 = (MusicPatchNode)this.queue.last(); var3 != null; var3 = (MusicPatchNode)this.queue.previous()) {

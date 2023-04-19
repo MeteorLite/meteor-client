@@ -139,19 +139,17 @@ public class class426 {
       this.field3809 += var3;
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return this.field3810 + "," + this.field3801 + "," + this.field3804 + "," + this.field3807 + "\n" + this.field3799 + "," + this.field3802 + "," + this.field3805 + "," + this.field3808 + "\n" + this.field3800 + "," + this.field3803 + "," + this.field3806 + "," + this.field3809;
    }
 
-   @ObfuscatedName("ns")
-   @ObfuscatedSignature(
-      descriptor = "(IIIILtq;Lll;I)V",
-      garbageValue = "-1609285207"
-   )
-   @Export("drawSpriteOnMinimap")
-   static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+    @ObfuscatedName("ns")
+    @ObfuscatedSignature(
+            descriptor = "(IIIILtq;Lll;I)V",
+            garbageValue = "-1609285207"
+    )
+    static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
       if (var4 != null) {
          int var6 = Client.camAngleY & 2047;
          int var7 = var3 * var3 + var2 * var2;

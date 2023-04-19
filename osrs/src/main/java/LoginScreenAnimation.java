@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dp")
 @Implements("LoginScreenAnimation")
 public class LoginScreenAnimation {
-   @ObfuscatedName("jz")
-   @ObfuscatedSignature(
-      descriptor = "Ltq;"
-   )
-   @Export("redHintArrowSprite")
-   static SpritePixels redHintArrowSprite;
+    @ObfuscatedName("jz")
+    @ObfuscatedSignature(
+            descriptor = "Ltq;"
+    )
+    static SpritePixels redHintArrowSprite;
    @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "[Ltc;"
@@ -56,13 +55,12 @@ public class LoginScreenAnimation {
       this.initColors();
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1937774120"
-   )
-   @Export("initColors")
-   void initColors() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "1937774120"
+    )
+    void initColors() {
       this.field1027 = new int[256];
 
       int var1;
@@ -145,13 +143,12 @@ public class LoginScreenAnimation {
       this.field1025 = 0;
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(III)V",
-      garbageValue = "2057585866"
-   )
-   @Export("draw")
-   void draw(int var1, int var2) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(III)V",
+            garbageValue = "2057585866"
+    )
+    void draw(int var1, int var2) {
       if (this.field1022 == null) {
          this.initColors();
       }

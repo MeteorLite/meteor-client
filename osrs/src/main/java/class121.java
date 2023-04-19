@@ -226,13 +226,12 @@ public class class121 {
       class1.method4();
    }
 
-   @ObfuscatedName("kd")
-   @ObfuscatedSignature(
-      descriptor = "(III)V",
-      garbageValue = "1957371418"
-   )
-   @Export("updateItemPile")
-   static final void updateItemPile(int var0, int var1) {
+    @ObfuscatedName("kd")
+    @ObfuscatedSignature(
+            descriptor = "(III)V",
+            garbageValue = "1957371418"
+    )
+    static final void updateItemPile(int var0, int var1) {
       NodeDeque var2 = Client.groundItems[GameEngine.Client_plane][var0][var1];
       if (var2 == null) {
          class31.scene.removeGroundItemPile(GameEngine.Client_plane, var0, var1);

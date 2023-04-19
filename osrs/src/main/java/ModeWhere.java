@@ -74,14 +74,12 @@ public enum ModeWhere implements class356 {
    )
    field3562("", 13, new class355[]{class355.field3540});
 
-   @ObfuscatedName("ak")
-   @Export("operatingSystemName")
-   public static String operatingSystemName;
+    @ObfuscatedName("ak")
+    public static String operatingSystemName;
    @ObfuscatedName("gb")
    static String field3571;
-   @ObfuscatedName("ai")
-   @Export("id")
-   final int id;
+    @ObfuscatedName("ai")
+    final int id;
    @ObfuscatedName("ag")
    final Set field3570 = new HashSet();
 
@@ -107,33 +105,30 @@ public enum ModeWhere implements class356 {
       this.id = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(B)[Lne;",
-      garbageValue = "-88"
-   )
-   @Export("$values")
-   static ModeWhere[] $values() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(B)[Lne;",
+            garbageValue = "-88"
+    )
+    static ModeWhere[] $values() {
       return new ModeWhere[]{field3557, field3565, field3564, field3573, field3568, field3567, field3558, field3572, field3560, field3559, field3561, field3562, field3566};
    }
 
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;IB)V",
-      garbageValue = "17"
-   )
-   @Export("Widget_setKeyIgnoreHeld")
-   static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+    @ObfuscatedName("ay")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;IB)V",
+            garbageValue = "17"
+    )
+    static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
       if (var0.field2954 == null) {
          throw new RuntimeException();
       } else {

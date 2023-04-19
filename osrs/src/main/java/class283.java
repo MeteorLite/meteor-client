@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kn")
 public class class283 {
-   @ObfuscatedName("ao")
-   @Export("Tiles_lightness")
-   static int[] Tiles_lightness;
+    @ObfuscatedName("ao")
+    static int[] Tiles_lightness;
 
    @ObfuscatedName("af")
    @ObfuscatedSignature(

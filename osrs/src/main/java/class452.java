@@ -4,12 +4,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("rr")
 public class class452 extends class455 {
-   @ObfuscatedName("fv")
-   @ObfuscatedSignature(
-      descriptor = "Lnd;"
-   )
-   @Export("archive8")
-   static Archive archive8;
+    @ObfuscatedName("fv")
+    @ObfuscatedSignature(
+            descriptor = "Lnd;"
+    )
+    static Archive archive8;
    @ObfuscatedName("af")
    int field3884 = 0;
    @ObfuscatedName("an")
@@ -103,13 +102,12 @@ public class class452 extends class455 {
       return !var2 ? null : Strings.method1852();
    }
 
-   @ObfuscatedName("lb")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;I)Z",
-      garbageValue = "-1381305986"
-   )
-   @Export("runCs1")
-   static final boolean runCs1(Widget var0) {
+    @ObfuscatedName("lb")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;I)Z",
+            garbageValue = "-1381305986"
+    )
+    static final boolean runCs1(Widget var0) {
       if (var0.cs1Comparisons == null) {
          return false;
       } else {

@@ -11,9 +11,8 @@ public class DefaultsGroup {
       descriptor = "Lqp;"
    )
    static final DefaultsGroup field3766 = new DefaultsGroup(3);
-   @ObfuscatedName("an")
-   @Export("group")
-   final int group;
+    @ObfuscatedName("an")
+    final int group;
 
    DefaultsGroup(int var1) {
       this.group = var1;

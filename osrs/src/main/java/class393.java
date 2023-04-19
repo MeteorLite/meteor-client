@@ -30,13 +30,12 @@ public class class393 {
       return this.field3682;
    }
 
-   @ObfuscatedName("ny")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;B)Z",
-      garbageValue = "1"
-   )
-   @Export("isComponentHidden")
-   static boolean isComponentHidden(Widget var0) {
+    @ObfuscatedName("ny")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;B)Z",
+            garbageValue = "1"
+    )
+    static boolean isComponentHidden(Widget var0) {
       return var0.isHidden;
    }
 }

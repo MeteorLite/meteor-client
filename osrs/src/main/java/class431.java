@@ -8,22 +8,20 @@ public class class431 extends class432 {
       super(var1);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;II)V",
-      garbageValue = "489961361"
-   )
-   @Export("vmethod7769")
-   void vmethod7769(Buffer var1, int var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;II)V",
+            garbageValue = "489961361"
+    )
+    void vmethod7769(Buffer var1, int var2) {
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "2098730562"
-   )
-   @Export("ItemContainer_getCount")
-   static int ItemContainer_getCount(int var0, int var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(III)I",
+            garbageValue = "2098730562"
+    )
+    static int ItemContainer_getCount(int var0, int var1) {
       ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
       if (var2 == null) {
          return 0;

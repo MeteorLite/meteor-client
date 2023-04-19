@@ -6,51 +6,39 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("je")
 @Implements("WallDecoration")
 public final class WallDecoration {
-   @ObfuscatedName("io")
-   @ObfuscatedSignature(
-      descriptor = "Lon;"
-   )
-   @Export("fontPlain12")
-   static Font fontPlain12;
-   @ObfuscatedName("af")
-   @Export("z")
-   int z;
-   @ObfuscatedName("an")
-   @Export("xOffset")
-   int xOffset;
-   @ObfuscatedName("aw")
-   @Export("x")
-   int x;
-   @ObfuscatedName("ac")
-   @Export("y")
-   int y;
-   @ObfuscatedName("au")
-   @Export("orientation")
-   int orientation;
-   @ObfuscatedName("ab")
-   @Export("orientation2")
-   int orientation2;
-   @ObfuscatedName("aq")
-   @Export("yOffset")
-   int yOffset;
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("renderable1")
-   public Renderable renderable1;
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("renderable2")
-   public Renderable renderable2;
-   @ObfuscatedName("aa")
-   @Export("tag")
-   public long tag = 0L;
-   @ObfuscatedName("ay")
-   @Export("flags")
-   int flags = 0;
+    @ObfuscatedName("io")
+    @ObfuscatedSignature(
+            descriptor = "Lon;"
+    )
+    static Font fontPlain12;
+    @ObfuscatedName("af")
+    int z;
+    @ObfuscatedName("an")
+    int xOffset;
+    @ObfuscatedName("aw")
+    int x;
+    @ObfuscatedName("ac")
+    int y;
+    @ObfuscatedName("au")
+    int orientation;
+    @ObfuscatedName("ab")
+    int orientation2;
+    @ObfuscatedName("aq")
+    int yOffset;
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    public Renderable renderable1;
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    public Renderable renderable2;
+    @ObfuscatedName("aa")
+    public long tag = 0L;
+    @ObfuscatedName("ay")
+    int flags = 0;
 
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
@@ -101,13 +89,12 @@ public final class WallDecoration {
 
    }
 
-   @ObfuscatedName("lz")
-   @ObfuscatedSignature(
-      descriptor = "([Lmq;Lmq;ZB)V",
-      garbageValue = "44"
-   )
-   @Export("revalidateWidgetScroll")
-   static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
+    @ObfuscatedName("lz")
+    @ObfuscatedSignature(
+            descriptor = "([Lmq;Lmq;ZB)V",
+            garbageValue = "44"
+    )
+    static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
       int var3 = var1.scrollWidth != 0 ? var1.scrollWidth * -1469650905 * -773060713 : var1.width * -794961409 * 1774069247;
       int var4 = var1.scrollHeight != 0 ? var1.scrollHeight * -1357451643 * -1273374131 : var1.height * 1473950221 * 60157125;
       class135.resizeInterface(var0, var1.id, var3, var4, var2);

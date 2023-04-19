@@ -6,31 +6,23 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dl")
 @Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
-   @ObfuscatedName("at")
-   @Export("ItemDefinition_fileCount")
-   public static int ItemDefinition_fileCount;
-   @ObfuscatedName("af")
-   @Export("isRunning")
-   boolean isRunning = true;
-   @ObfuscatedName("an")
-   @Export("lock")
-   Object lock = new Object();
-   @ObfuscatedName("aw")
-   @Export("index")
-   int index = 0;
-   @ObfuscatedName("ac")
-   @Export("xs")
-   int[] xs = new int[500];
-   @ObfuscatedName("au")
-   @Export("ys")
-   int[] ys = new int[500];
-   @ObfuscatedName("ab")
-   @Export("millis")
-   long[] millis = new long[500];
+    @ObfuscatedName("at")
+    public static int ItemDefinition_fileCount;
+    @ObfuscatedName("af")
+    boolean isRunning = true;
+    @ObfuscatedName("an")
+    Object lock = new Object();
+    @ObfuscatedName("aw")
+    int index = 0;
+    @ObfuscatedName("ac")
+    int[] xs = new int[500];
+    @ObfuscatedName("au")
+    int[] ys = new int[500];
+    @ObfuscatedName("ab")
+    long[] millis = new long[500];
 
-   @Export("run")
-   @ObfuscatedName("run")
-   public void run() {
+    @ObfuscatedName("run")
+    public void run() {
       for(; this.isRunning; PlayerComposition.method1704(50L)) {
          Object var1 = this.lock;
          synchronized(this.lock) {
@@ -54,13 +46,12 @@ public class MouseRecorder implements Runnable {
       return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(IB)Lcq;",
-      garbageValue = "32"
-   )
-   @Export("Messages_getMessage")
-   static Message Messages_getMessage(int var0) {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(IB)Lcq;",
+            garbageValue = "32"
+    )
+    static Message Messages_getMessage(int var0) {
       return (Message)Messages.Messages_hashTable.get((long)var0);
    }
 

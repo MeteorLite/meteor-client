@@ -9,9 +9,8 @@ public abstract class class177 {
    String field1468;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lgy;"
+           descriptor = "Lgy;"
    )
-   @Export("this$0")
    @ObfuscatedName("this$0")
    final class166 this$0;
 
@@ -23,31 +22,28 @@ public abstract class class177 {
       this.field1468 = var2;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "-41"
-   )
-   @Export("vmethod3379")
-   public abstract int vmethod3379();
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "-41"
+    )
+    public abstract int vmethod3379();
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ljava/lang/String;",
-      garbageValue = "88"
-   )
-   @Export("vmethod3380")
-   public String vmethod3380() {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)Ljava/lang/String;",
+            garbageValue = "88"
+    )
+    public String vmethod3380() {
       return null;
    }
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "421671702"
-   )
-   @Export("vmethod3378")
-   public int vmethod3378() {
+    @ObfuscatedName("al")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "421671702"
+    )
+    public int vmethod3378() {
       return -1;
    }
 

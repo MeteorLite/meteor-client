@@ -9,27 +9,24 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("pi")
 @Implements("Ignored")
 public class Ignored extends User {
-   @ObfuscatedName("af")
-   @Export("id")
-   int id;
+    @ObfuscatedName("af")
+    int id;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpi;B)I",
-      garbageValue = "-21"
-   )
-   @Export("compareTo_ignored")
-   int compareTo_ignored(Ignored var1) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Lpi;B)I",
+            garbageValue = "-21"
+    )
+    int compareTo_ignored(Ignored var1) {
       return this.id - var1.id;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lpw;I)I",
-      garbageValue = "1093536041"
-   )
-   @Export("compareTo_user")
-   public int compareTo_user(User var1) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Lpw;I)I",
+            garbageValue = "1093536041"
+    )
+    public int compareTo_user(User var1) {
       return this.compareTo_ignored((Ignored)var1);
    }
 
@@ -38,13 +35,12 @@ public class Ignored extends User {
       return this.compareTo_ignored((Ignored)var1);
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;ZZB)V",
-      garbageValue = "-88"
-   )
-   @Export("openURL")
-   public static void openURL(String var0, boolean var1, boolean var2) {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;ZZB)V",
+            garbageValue = "-88"
+    )
+    public static void openURL(String var0, boolean var1, boolean var2) {
       if (var1) {
          if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
             try {

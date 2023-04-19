@@ -6,26 +6,23 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("lq")
 @Implements("MusicPatchNode")
 public class MusicPatchNode extends Node {
-   @ObfuscatedName("mi")
-   @ObfuscatedSignature(
-      descriptor = "Ldv;"
-   )
-   @Export("localPlayer")
-   static Player localPlayer;
+    @ObfuscatedName("mi")
+    @ObfuscatedSignature(
+            descriptor = "Ldv;"
+    )
+    static Player localPlayer;
    @ObfuscatedName("af")
    int field2801;
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Llz;"
-   )
-   @Export("patch")
-   MusicPatch patch;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lbr;"
-   )
-   @Export("rawSound")
-   RawSound rawSound;
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Llz;"
+    )
+    MusicPatch patch;
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "Lbr;"
+    )
+    RawSound rawSound;
    @ObfuscatedName("ac")
    @ObfuscatedSignature(
       descriptor = "Llp;"
@@ -59,12 +56,11 @@ public class MusicPatchNode extends Node {
    int field2799;
    @ObfuscatedName("ar")
    int field2791;
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "Lbl;"
-   )
-   @Export("stream")
-   RawPcmStream stream;
+    @ObfuscatedName("am")
+    @ObfuscatedSignature(
+            descriptor = "Lbl;"
+    )
+    RawPcmStream stream;
    @ObfuscatedName("as")
    int field2796;
    @ObfuscatedName("ak")
@@ -101,13 +97,12 @@ public class MusicPatchNode extends Node {
       return (var0 >> 20 & 1) != 0;
    }
 
-   @ObfuscatedName("iw")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;IIB)V",
-      garbageValue = "-122"
-   )
-   @Export("checkIfMinimapClicked")
-   static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
+    @ObfuscatedName("iw")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;IIB)V",
+            garbageValue = "-122"
+    )
+    static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
       if (Client.minimapState == 0 || Client.minimapState == 3) {
          if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !class473.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) {
             SpriteMask var3 = var0.getSpriteMask(true);
@@ -129,9 +124,9 @@ public class MusicPatchNode extends Node {
                int var12 = localPlayer.y - var10 >> 7;
                PacketBufferNode var13 = class330.getPacketBufferNode(ClientPacket.field2471, Client.packetWriter.isaacCipher);
                var13.packetBuffer.writeByte(18);
-               var13.packetBuffer.writeShortAdd(var12 + GameObject.baseY);
-               var13.packetBuffer.writeIntME(var11 + WorldMapData_0.baseX);
-               var13.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+               var13.packetBuffer.writeShortAddLE(var12 + GameObject.baseY);
+               var13.packetBuffer.writeShortLE(var11 + WorldMapData_0.baseX);
+               var13.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
                var13.packetBuffer.writeByte(var4);
                var13.packetBuffer.writeByte(var5);
                var13.packetBuffer.writeShort(Client.camAngleY);
@@ -151,13 +146,12 @@ public class MusicPatchNode extends Node {
       }
    }
 
-   @ObfuscatedName("nu")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;I)Ljava/lang/String;",
-      garbageValue = "603369429"
-   )
-   @Export("Widget_getSpellActionName")
-   static String Widget_getSpellActionName(Widget var0) {
+    @ObfuscatedName("nu")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;I)Ljava/lang/String;",
+            garbageValue = "603369429"
+    )
+    static String Widget_getSpellActionName(Widget var0) {
       if (class195.Widget_unpackTargetMask(KeyHandler.getWidgetFlags(var0)) == 0) {
          return null;
       } else {

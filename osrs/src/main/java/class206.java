@@ -4,9 +4,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hf")
 public class class206 extends Node {
-   @ObfuscatedName("ae")
-   @Export("BZip2Decompressor_block")
-   static int[] BZip2Decompressor_block;
+    @ObfuscatedName("ae")
+    static int[] BZip2Decompressor_block;
    @ObfuscatedName("aw")
    public int field1855;
    @ObfuscatedName("ac")

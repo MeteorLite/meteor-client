@@ -6,39 +6,31 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("iy")
 @Implements("ItemLayer")
 public final class ItemLayer {
-   @ObfuscatedName("af")
-   @Export("z")
-   int z;
-   @ObfuscatedName("an")
-   @Export("x")
-   int x;
-   @ObfuscatedName("aw")
-   @Export("y")
-   int y;
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("first")
-   Renderable first;
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("second")
-   Renderable second;
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Liv;"
-   )
-   @Export("third")
-   Renderable third;
-   @ObfuscatedName("aq")
-   @Export("tag")
-   long tag;
-   @ObfuscatedName("al")
-   @Export("height")
-   int height;
+    @ObfuscatedName("af")
+    int z;
+    @ObfuscatedName("an")
+    int x;
+    @ObfuscatedName("aw")
+    int y;
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    Renderable first;
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    Renderable second;
+    @ObfuscatedName("ab")
+    @ObfuscatedSignature(
+            descriptor = "Liv;"
+    )
+    Renderable third;
+    @ObfuscatedName("aq")
+    long tag;
+    @ObfuscatedName("al")
+    int height;
 
    @ObfuscatedName("au")
    @ObfuscatedSignature(

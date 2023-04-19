@@ -7,15 +7,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("al")
 public class class7 {
-   @ObfuscatedName("gm")
-   @Export("playerUUIDLength")
-   static int playerUUIDLength;
-   @ObfuscatedName("mp")
-   @ObfuscatedSignature(
-      descriptor = "Lim;"
-   )
-   @Export("textureProvider")
-   static TextureProvider textureProvider;
+    @ObfuscatedName("gm")
+    static int playerUUIDLength;
+    @ObfuscatedName("mp")
+    @ObfuscatedSignature(
+            descriptor = "Lim;"
+    )
+    static TextureProvider textureProvider;
    @ObfuscatedName("af")
    ExecutorService field16 = Executors.newSingleThreadExecutor();
    @ObfuscatedName("an")
@@ -81,13 +79,12 @@ public class class7 {
       this.field14 = this.field16.submit(new class1(this, this.field11, this.field12));
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(DIII)V",
-      garbageValue = "-1907908914"
-   )
-   @Export("Rasterizer3D_buildPalette")
-   static void Rasterizer3D_buildPalette(double var0, int var2, int var3) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(DIII)V",
+            garbageValue = "-1907908914"
+    )
+    static void Rasterizer3D_buildPalette(double var0, int var2, int var3) {
       int var4 = var2 * 128;
 
       for(int var5 = var2; var5 < var3; ++var5) {
@@ -164,13 +161,12 @@ public class class7 {
 
    }
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(Lmq;I[B[BI)V",
-      garbageValue = "1887295232"
-   )
-   @Export("Widget_setKey")
-   static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+    @ObfuscatedName("at")
+    @ObfuscatedSignature(
+            descriptor = "(Lmq;I[B[BI)V",
+            garbageValue = "1887295232"
+    )
+    static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
       if (var0.field2954 == null) {
          if (var2 == null) {
             return;
@@ -199,13 +195,12 @@ public class class7 {
       var0.field2955[var1] = var3;
    }
 
-   @ObfuscatedName("md")
-   @ObfuscatedSignature(
-      descriptor = "(II)V",
-      garbageValue = "2026496728"
-   )
-   @Export("changeGameOptions")
-   static final void changeGameOptions(int var0) {
+    @ObfuscatedName("md")
+    @ObfuscatedSignature(
+            descriptor = "(II)V",
+            garbageValue = "2026496728"
+    )
+    static final void changeGameOptions(int var0) {
       ClientPacket.process();
       class18.method71();
       int var1 = GraphicsDefaults.VarpDefinition_get(var0).type;

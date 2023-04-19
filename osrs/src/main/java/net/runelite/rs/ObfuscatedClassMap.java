@@ -315,7 +315,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("GrandExchangeOfferTotalQuantityComparator", "nn");
 		INSTANCE.put("GrandExchangeOfferUnitPriceComparator", "nt");
 		INSTANCE.put("GrandExchangeOfferWorldComparator", "ny");
-		INSTANCE.put("Graphic", "tt");
 		INSTANCE.put("GraphicsDefaults", "qw");
 		INSTANCE.put("GraphicsObject", "cx");
 		INSTANCE.put("GZipDecompressor", "tv");
@@ -439,6 +438,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("SoundEffect", "bs");
 		INSTANCE.put("SoundEnvelope", "bf");
 		INSTANCE.put("SoundSystem", "bq");
+		INSTANCE.put("SpotAnimation", "tt");
 		INSTANCE.put("SpotAnimationDefinition", "hh");
 		INSTANCE.put("SpriteMask", "ll");
 		INSTANCE.put("SpritePixels", "tq");

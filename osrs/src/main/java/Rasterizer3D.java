@@ -8,19 +8,16 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("in")
 @Implements("Rasterizer3D")
 public class Rasterizer3D {
-   @ObfuscatedName("af")
-   @Export("Rasterizer3D_colorPalette")
-   public static int[] Rasterizer3D_colorPalette = new int[65536];
+    @ObfuscatedName("af")
+    public static int[] Rasterizer3D_colorPalette = new int[65536];
    @ObfuscatedName("an")
    static int[] field1997 = new int[512];
    @ObfuscatedName("aw")
    static int[] field1993 = new int[2048];
-   @ObfuscatedName("ac")
-   @Export("Rasterizer3D_sine")
-   public static int[] Rasterizer3D_sine = new int[2048];
-   @ObfuscatedName("au")
-   @Export("Rasterizer3D_cosine")
-   public static int[] Rasterizer3D_cosine = new int[2048];
+    @ObfuscatedName("ac")
+    public static int[] Rasterizer3D_sine = new int[2048];
+    @ObfuscatedName("au")
+    public static int[] Rasterizer3D_cosine = new int[2048];
    @ObfuscatedName("ab")
    @ObfuscatedSignature(
       descriptor = "Ljg;"
@@ -65,13 +62,12 @@ public class Rasterizer3D {
       field1999 = field1998;
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Ljava/lang/String;ZB)Lsy;",
-      garbageValue = "-55"
-   )
-   @Export("getPreferencesFile")
-   public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/String;Ljava/lang/String;ZB)Lsy;",
+            garbageValue = "-55"
+    )
+    public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
       File var3 = new File(class335.cacheDir, "preferences" + var0 + ".dat");
       if (var3.exists()) {
          try {

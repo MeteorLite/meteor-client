@@ -8,15 +8,12 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("oj")
 @Implements("ByteArrayPool")
 public class ByteArrayPool {
-   @ObfuscatedName("au")
-   @Export("ByteArrayPool_smallCount")
-   static int ByteArrayPool_smallCount = 0;
-   @ObfuscatedName("ab")
-   @Export("ByteArrayPool_mediumCount")
-   static int ByteArrayPool_mediumCount = 0;
-   @ObfuscatedName("aq")
-   @Export("ByteArrayPool_largeCount")
-   static int ByteArrayPool_largeCount = 0;
+    @ObfuscatedName("au")
+    static int ByteArrayPool_smallCount = 0;
+    @ObfuscatedName("ab")
+    static int ByteArrayPool_mediumCount = 0;
+    @ObfuscatedName("aq")
+    static int ByteArrayPool_largeCount = 0;
    @ObfuscatedName("al")
    static int field3666 = 0;
    @ObfuscatedName("at")
@@ -27,25 +24,21 @@ public class ByteArrayPool {
    static int field3661 = 100;
    @ObfuscatedName("ao")
    static int field3655 = 50;
-   @ObfuscatedName("ax")
-   @Export("ByteArrayPool_small")
-   static byte[][] ByteArrayPool_small = new byte[1000][];
-   @ObfuscatedName("ai")
-   @Export("ByteArrayPool_medium")
-   static byte[][] ByteArrayPool_medium = new byte[250][];
-   @ObfuscatedName("ag")
-   @Export("ByteArrayPool_large")
-   static byte[][] ByteArrayPool_large = new byte[100][];
+    @ObfuscatedName("ax")
+    static byte[][] ByteArrayPool_small = new byte[1000][];
+    @ObfuscatedName("ai")
+    static byte[][] ByteArrayPool_medium = new byte[250][];
+    @ObfuscatedName("ag")
+    static byte[][] ByteArrayPool_large = new byte[100][];
    @ObfuscatedName("ah")
    static byte[][] field3664 = new byte[50][];
    @ObfuscatedName("as")
    static ArrayList field3662 = new ArrayList();
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "Lki;"
-   )
-   @Export("worldMapEvent")
-   static WorldMapEvent worldMapEvent;
+    @ObfuscatedName("aj")
+    @ObfuscatedSignature(
+            descriptor = "Lki;"
+    )
+    static WorldMapEvent worldMapEvent;
    @ObfuscatedName("ck")
    static int field3668;
 
@@ -54,13 +47,12 @@ public class ByteArrayPool {
       new HashMap();
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(IZB)[B",
-      garbageValue = "20"
-   )
-   @Export("ByteArrayPool_getArrayBool")
-   public static synchronized byte[] ByteArrayPool_getArrayBool(int var0, boolean var1) {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(IZB)[B",
+            garbageValue = "20"
+    )
+    public static synchronized byte[] ByteArrayPool_getArrayBool(int var0, boolean var1) {
       byte[] var2;
       if ((var0 == 100 || var0 < 100 && var1) && ByteArrayPool_smallCount > 0) {
          var2 = ByteArrayPool_small[--ByteArrayPool_smallCount];

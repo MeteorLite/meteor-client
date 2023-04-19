@@ -11,53 +11,47 @@ public enum VerticalAlignment implements class356 {
       descriptor = "Lhn;"
    )
    field1610(2, 0),
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lhn;"
-   )
-   @Export("VerticalAlignment_centered")
-   VerticalAlignment_centered(1, 1),
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "Lhn;"
+    )
+    VerticalAlignment_centered(1, 1),
    @ObfuscatedName("aw")
    @ObfuscatedSignature(
       descriptor = "Lhn;"
    )
    field1605(0, 2);
 
-   @ObfuscatedName("ap")
-   @ObfuscatedSignature(
-      descriptor = "[[Lmq;"
-   )
-   @Export("Widget_interfaceComponents")
-   public static Widget[][] Widget_interfaceComponents;
-   @ObfuscatedName("ac")
-   @Export("value")
-   public final int value;
-   @ObfuscatedName("au")
-   @Export("id")
-   final int id;
+    @ObfuscatedName("ap")
+    @ObfuscatedSignature(
+            descriptor = "[[Lmq;"
+    )
+    public static Widget[][] Widget_interfaceComponents;
+    @ObfuscatedName("ac")
+    public final int value;
+    @ObfuscatedName("au")
+    final int id;
 
    VerticalAlignment(int var3, int var4) {
       this.value = var3;
       this.id = var4;
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "741942848"
-   )
-   @Export("rsOrdinal")
-   public int rsOrdinal() {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(I)I",
+            garbageValue = "741942848"
+    )
+    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;I)I",
-      garbageValue = "270279938"
-   )
-   @Export("hashString")
-   public static int hashString(CharSequence var0) {
+    @ObfuscatedName("aq")
+    @ObfuscatedSignature(
+            descriptor = "(Ljava/lang/CharSequence;I)I",
+            garbageValue = "270279938"
+    )
+    public static int hashString(CharSequence var0) {
       int var1 = var0.length();
       int var2 = 0;
 

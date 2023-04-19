@@ -9,26 +9,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("kk")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-   @ObfuscatedName("jj")
-   @Export("regions")
-   static int[] regions;
-   @ObfuscatedName("ax")
-   @Export("worldMapData0Set")
-   HashSet worldMapData0Set;
-   @ObfuscatedName("ai")
-   @Export("worldMapData1Set")
-   HashSet worldMapData1Set;
-   @ObfuscatedName("ag")
-   @Export("iconList")
-   List iconList;
+    @ObfuscatedName("jj")
+    static int[] regions;
+    @ObfuscatedName("ax")
+    HashSet worldMapData0Set;
+    @ObfuscatedName("ai")
+    HashSet worldMapData1Set;
+    @ObfuscatedName("ag")
+    List iconList;
 
-   @ObfuscatedName("cl")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;Lsg;IZB)V",
-      garbageValue = "-7"
-   )
-   @Export("init")
-   void init(Buffer var1, Buffer var2, int var3, boolean var4) {
+    @ObfuscatedName("cl")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;Lsg;IZB)V",
+            garbageValue = "-7"
+    )
+    void init(Buffer var1, Buffer var2, int var3, boolean var4) {
       this.read(var1, var3);
       int var5 = var2.readUnsignedShort();
       this.worldMapData0Set = new HashSet(var5);
@@ -64,13 +59,12 @@ public class WorldMapAreaData extends WorldMapArea {
       this.initIconsList(var2, var4);
    }
 
-   @ObfuscatedName("cg")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;ZI)V",
-      garbageValue = "1022421975"
-   )
-   @Export("initIconsList")
-   void initIconsList(Buffer var1, boolean var2) {
+    @ObfuscatedName("cg")
+    @ObfuscatedSignature(
+            descriptor = "(Lsg;ZI)V",
+            garbageValue = "1022421975"
+    )
+    void initIconsList(Buffer var1, boolean var2) {
       this.iconList = new LinkedList();
       int var3 = var1.readUnsignedShort();
 

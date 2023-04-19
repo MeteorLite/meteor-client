@@ -9,27 +9,20 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("pn")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-   @ObfuscatedName("af")
-   @Export("thread")
-   Thread thread;
-   @ObfuscatedName("an")
-   @Export("inputStream")
-   InputStream inputStream;
-   @ObfuscatedName("aw")
-   @Export("capacity")
-   int capacity;
-   @ObfuscatedName("ac")
-   @Export("buffer")
-   byte[] buffer;
-   @ObfuscatedName("au")
-   @Export("position")
-   int position = 0;
-   @ObfuscatedName("ab")
-   @Export("limit")
-   int limit = 0;
-   @ObfuscatedName("aq")
-   @Export("exception")
-   IOException exception;
+    @ObfuscatedName("af")
+    Thread thread;
+    @ObfuscatedName("an")
+    InputStream inputStream;
+    @ObfuscatedName("aw")
+    int capacity;
+    @ObfuscatedName("ac")
+    byte[] buffer;
+    @ObfuscatedName("au")
+    int position = 0;
+    @ObfuscatedName("ab")
+    int limit = 0;
+    @ObfuscatedName("aq")
+    IOException exception;
 
    BufferedSource(InputStream var1, int var2) {
       this.inputStream = var1;
@@ -40,13 +33,12 @@ public class BufferedSource implements Runnable {
       this.thread.start();
    }
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "-1797531866"
-   )
-   @Export("isAvailable")
-   boolean isAvailable(int var1) throws IOException {
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "(II)Z",
+            garbageValue = "-1797531866"
+    )
+    boolean isAvailable(int var1) throws IOException {
       if (var1 == 0) {
          return true;
       } else if (var1 > 0 && var1 < this.capacity) {
@@ -74,13 +66,12 @@ public class BufferedSource implements Runnable {
       }
    }
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "25"
-   )
-   @Export("available")
-   int available() throws IOException {
+    @ObfuscatedName("an")
+    @ObfuscatedSignature(
+            descriptor = "(B)I",
+            garbageValue = "25"
+    )
+    int available() throws IOException {
       synchronized(this) {
          int var2;
          if (this.position <= this.limit) {
@@ -98,13 +89,12 @@ public class BufferedSource implements Runnable {
       }
    }
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(S)I",
-      garbageValue = "28528"
-   )
-   @Export("readUnsignedByte")
-   int readUnsignedByte() throws IOException {
+    @ObfuscatedName("aw")
+    @ObfuscatedSignature(
+            descriptor = "(S)I",
+            garbageValue = "28528"
+    )
+    int readUnsignedByte() throws IOException {
       synchronized(this) {
          if (this.limit == this.position) {
             if (this.exception != null) {
@@ -121,13 +111,12 @@ public class BufferedSource implements Runnable {
       }
    }
 
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "([BIII)I",
-      garbageValue = "-744884869"
-   )
-   @Export("read")
-   int read(byte[] var1, int var2, int var3) throws IOException {
+    @ObfuscatedName("ac")
+    @ObfuscatedSignature(
+            descriptor = "([BIII)I",
+            garbageValue = "-744884869"
+    )
+    int read(byte[] var1, int var2, int var3) throws IOException {
       if (var3 >= 0 && var2 >= 0 && var3 + var2 <= var1.length) {
          synchronized(this) {
             int var5;
@@ -162,13 +151,12 @@ public class BufferedSource implements Runnable {
       }
    }
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1118938495"
-   )
-   @Export("close")
-   void close() {
+    @ObfuscatedName("au")
+    @ObfuscatedSignature(
+            descriptor = "(I)V",
+            garbageValue = "-1118938495"
+    )
+    void close() {
       synchronized(this) {
          if (this.exception == null) {
             this.exception = new IOException("");
@@ -185,9 +173,8 @@ public class BufferedSource implements Runnable {
 
    }
 
-   @Export("run")
-   @ObfuscatedName("run")
-   public void run() {
+    @ObfuscatedName("run")
+    public void run() {
       while(true) {
          int var1;
          synchronized(this) {

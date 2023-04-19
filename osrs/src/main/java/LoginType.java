@@ -6,12 +6,11 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("sw")
 @Implements("LoginType")
 public class LoginType {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lsw;"
-   )
-   @Export("oldscape")
-   public static final LoginType oldscape = new LoginType(4, 0, "", "");
+    @ObfuscatedName("af")
+    @ObfuscatedSignature(
+            descriptor = "Lsw;"
+    )
+    public static final LoginType oldscape = new LoginType(4, 0, "", "");
    @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "Lsw;"
@@ -74,9 +73,8 @@ public class LoginType {
       this.field4000 = var4;
    }
 
-   @Export("toString")
-   @ObfuscatedName("toString")
-   public String toString() {
+    @ObfuscatedName("toString")
+    public String toString() {
       return this.field4000;
    }
 }
