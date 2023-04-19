@@ -3,30 +3,36 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("he")
+@ObfuscatedName("hn")
 @Implements("VerticalAlignment")
-public enum VerticalAlignment implements class352 {
-   @ObfuscatedName("aj")
+public enum VerticalAlignment implements class356 {
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "Lhe;"
+      descriptor = "Lhn;"
    )
-   field1592(1, 0),
-   @ObfuscatedName("al")
+   field1610(2, 0),
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lhe;"
+      descriptor = "Lhn;"
    )
    @Export("VerticalAlignment_centered")
-   VerticalAlignment_centered(2, 1),
-   @ObfuscatedName("ac")
+   VerticalAlignment_centered(1, 1),
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "Lhe;"
+      descriptor = "Lhn;"
    )
-   field1594(0, 2);
+   field1605(0, 2);
 
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ap")
+   @ObfuscatedSignature(
+      descriptor = "[[Lmq;"
+   )
+   @Export("Widget_interfaceComponents")
+   public static Widget[][] Widget_interfaceComponents;
+   @ObfuscatedName("ac")
    @Export("value")
    public final int value;
-   @ObfuscatedName("an")
+   @ObfuscatedName("au")
    @Export("id")
    final int id;
 
@@ -35,34 +41,39 @@ public enum VerticalAlignment implements class352 {
       this.id = var4;
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
       descriptor = "(I)I",
-      garbageValue = "-1409646049"
+      garbageValue = "741942848"
    )
    @Export("rsOrdinal")
    public int rsOrdinal() {
       return this.id;
    }
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("aq")
    @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1334130459"
+      descriptor = "(Ljava/lang/CharSequence;I)I",
+      garbageValue = "270279938"
    )
-   public static void method976() {
-      while(true) {
-         NodeDeque var1 = ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue;
-         ArchiveDiskAction var0;
-         synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-            var0 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_responseQueue.removeLast();
-         }
+   @Export("hashString")
+   public static int hashString(CharSequence var0) {
+      int var1 = var0.length();
+      int var2 = 0;
 
-         if (var0 == null) {
-            return;
-         }
-
-         var0.archive.load(var0.archiveDisk, (int)var0.key, var0.data, false);
+      for(int var3 = 0; var3 < var1; ++var3) {
+         var2 = (var2 << 5) - var2 + class100.charToByteCp1252(var0.charAt(var3));
       }
+
+      return var2;
+   }
+
+   @ObfuscatedName("at")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/String;I)V",
+      garbageValue = "-504948756"
+   )
+   static final void method1036(String var0) {
+      UserComparator5.addGameMessage(30, "", var0);
    }
 }

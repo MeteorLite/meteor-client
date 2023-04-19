@@ -1,67 +1,49 @@
+import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gg")
-public class class174 {
-   @ObfuscatedName("ab")
-   public String field1430;
-   @ObfuscatedName("an")
-   public float[] field1433;
-   @ObfuscatedName("ao")
-   public int field1431;
-   @ObfuscatedName("av")
-   public int field1429;
-   @ObfuscatedName("aq")
-   public int field1432;
+@ObfuscatedName("gk")
+public class class174 extends class177 {
+   @ObfuscatedName("hz")
+   @Export("secureRandom")
+   static SecureRandom secureRandom;
+   @ObfuscatedName("kv")
+   @Export("cameraY")
+   static int cameraY;
+   @ObfuscatedName("af")
+   int field1452;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lgs;"
+      descriptor = "Lgy;"
    )
-   @Export("this$0")
-   @ObfuscatedName("this$0")
-   final class167 this$0;
+   final class166 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Lgs;)V"
+      descriptor = "(Lgy;Ljava/lang/String;I)V"
    )
-   class174(class167 var1) {
+   class174(class166 var1, String var2, int var3) {
+      super(var1, var2);
       this.this$0 = var1;
-      this.field1433 = new float[4];
-      this.field1431 = 1;
-      this.field1429 = 1;
-      this.field1432 = 0;
+      this.field1452 = var3;
+   }
+
+   @ObfuscatedName("af")
+   @ObfuscatedSignature(
+      descriptor = "(B)I",
+      garbageValue = "-41"
+   )
+   public int vmethod3379() {
+      return 0;
    }
 
    @ObfuscatedName("al")
    @ObfuscatedSignature(
-      descriptor = "(Lne;I)I",
-      garbageValue = "-505461552"
+      descriptor = "(I)I",
+      garbageValue = "421671702"
    )
-   static int method905(AbstractArchive var0) {
-      int var1 = Login.field759.length + Login.field760.length;
-      String[] var2 = Login.field761;
-
-      for(int var3 = 0; var3 < var2.length; ++var3) {
-         String var4 = var2[var3];
-         if (var0.getGroupId(var4) != -1) {
-            ++var1;
-         }
-      }
-
-      return var1;
-   }
-
-   @ObfuscatedName("mz")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "106"
-   )
-   static final void method906() {
-      for(int var0 = 0; var0 < Players.Players_count; ++var0) {
-         Player var1 = Client.players[Players.Players_indices[var0]];
-         var1.clearIsInClanChat();
-      }
-
+   @Export("vmethod3378")
+   public int vmethod3378() {
+      return this.field1452;
    }
 }

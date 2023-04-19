@@ -3,33 +3,26 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mp")
+@ObfuscatedName("ns")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "Lnj;"
+      descriptor = "Lnh;"
    )
    @Export("ArchiveDiskActionHandler_requestQueue")
-   static NodeDeque ArchiveDiskActionHandler_requestQueue = new NodeDeque();
-   @ObfuscatedName("al")
+   public static NodeDeque ArchiveDiskActionHandler_requestQueue = new NodeDeque();
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lnj;"
+      descriptor = "Lnh;"
    )
    @Export("ArchiveDiskActionHandler_responseQueue")
-   static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
+   public static NodeDeque ArchiveDiskActionHandler_responseQueue = new NodeDeque();
+   @ObfuscatedName("aw")
+   static int field3453 = 0;
    @ObfuscatedName("ac")
-   static int field3409 = 0;
-   @ObfuscatedName("ab")
    @Export("ArchiveDiskActionHandler_lock")
    static Object ArchiveDiskActionHandler_lock = new Object();
-   @ObfuscatedName("ae")
-   @ObfuscatedSignature(
-      descriptor = "Ldt;"
-   )
-   static LoginScreenAnimation field3410;
-   @ObfuscatedName("ju")
-   static int field3408;
 
    @Export("run")
    @ObfuscatedName("run")
@@ -60,30 +53,40 @@ public class ArchiveDiskActionHandler implements Runnable {
 
                var14 = ArchiveDiskActionHandler_lock;
                synchronized(ArchiveDiskActionHandler_lock) {
-                  if (field3409 <= 1) {
-                     field3409 = 0;
+                  if (field3453 <= 1) {
+                     field3453 = 0;
                      ArchiveDiskActionHandler_lock.notifyAll();
                      return;
                   }
 
-                  field3409 = 600;
+                  field3453 = 600;
                }
             } else {
-               Login.method429(100L);
+               PlayerComposition.method1704(100L);
                var14 = ArchiveDiskActionHandler_lock;
                synchronized(ArchiveDiskActionHandler_lock) {
-                  if (field3409 <= 1) {
-                     field3409 = 0;
+                  if (field3453 <= 1) {
+                     field3453 = 0;
                      ArchiveDiskActionHandler_lock.notifyAll();
                      return;
                   }
 
-                  --field3409;
+                  --field3453;
                }
             }
          }
       } catch (Exception var13) {
-         class364.RunException_sendStackTrace((String)null, var13);
+         class387.RunException_sendStackTrace((String)null, var13);
       }
+   }
+
+   @ObfuscatedName("af")
+   @ObfuscatedSignature(
+      descriptor = "(II)Ljava/lang/String;",
+      garbageValue = "1319912203"
+   )
+   @Export("addImageTag")
+   static String addImageTag(int var0) {
+      return "<img=" + var0 + ">";
    }
 }

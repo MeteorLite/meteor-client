@@ -1,100 +1,83 @@
-import java.util.concurrent.Callable;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fr")
-class class131 implements Callable {
-   // $FF: synthetic field
+@ObfuscatedName("fs")
+public class class131 {
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lfl;"
+      descriptor = "(B)Lqx;",
+      garbageValue = "-20"
    )
-   @Export("this$0")
-   @ObfuscatedName("this$0")
-   final class134 this$0;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-      descriptor = "Lsy;"
-   )
-   @Export("val$p")
-   @ObfuscatedName("val$p")
-   final Buffer val$p;
-   // $FF: synthetic field
-   @Export("val$version")
-   @ObfuscatedName("val$version")
-   final int val$version;
-
-   @ObfuscatedSignature(
-      descriptor = "(Lfl;Lsy;I)V"
-   )
-   class131(class134 var1, Buffer var2, int var3) {
-      this.this$0 = var1;
-      this.val$p = var2;
-      this.val$version = var3;
-   }
-
-   @Export("call")
-   @ObfuscatedName("call")
-   public Object call() {
-      this.this$0.method729(this.val$p, this.val$version);
-      return null;
-   }
-
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "([BIIB)Ljava/lang/String;",
-      garbageValue = "1"
-   )
-   public static String method718(byte[] var0, int var1, int var2) {
-      char[] var3 = new char[var2];
-      int var4 = 0;
-      int var5 = var1;
-
-      int var8;
-      for(int var6 = var2 + var1; var5 < var6; var3[var4++] = (char)var8) {
-         int var7 = var0[var5++] & 255;
-         if (var7 < 128) {
-            if (var7 == 0) {
-               var8 = 65533;
-            } else {
-               var8 = var7;
-            }
-         } else if (var7 < 192) {
-            var8 = 65533;
-         } else if (var7 < 224) {
-            if (var5 < var6 && (var0[var5] & 192) == 128) {
-               var8 = (var7 & 31) << 6 | var0[var5++] & 63;
-               if (var8 < 128) {
-                  var8 = 65533;
-               }
-            } else {
-               var8 = 65533;
-            }
-         } else if (var7 < 240) {
-            if (var5 + 1 < var6 && (var0[var5] & 192) == 128 && (var0[var5 + 1] & 192) == 128) {
-               var8 = (var7 & 15) << 12 | (var0[var5++] & 63) << 6 | var0[var5++] & 63;
-               if (var8 < 2048) {
-                  var8 = 65533;
-               }
-            } else {
-               var8 = 65533;
-            }
-         } else if (var7 < 248) {
-            if (var5 + 2 < var6 && (var0[var5] & 192) == 128 && (var0[var5 + 1] & 192) == 128 && (var0[var5 + 2] & 192) == 128) {
-               var8 = (var7 & 7) << 18 | (var0[var5++] & 63) << 12 | (var0[var5++] & 63) << 6 | var0[var5++] & 63;
-               if (var8 >= 65536 && var8 <= 1114111) {
-                  var8 = 65533;
-               } else {
-                  var8 = 65533;
-               }
-            } else {
-               var8 = 65533;
-            }
+   public static class424 method767() {
+      class424[] var0 = class424.field3787;
+      synchronized(class424.field3787) {
+         if (class424.field3786 == 0) {
+            return new class424();
          } else {
-            var8 = 65533;
+            class424.field3787[--class424.field3786].method2244();
+            return class424.field3787[class424.field3786];
          }
       }
+   }
 
-      return new String(var3, 0, var4);
+   @ObfuscatedName("au")
+   @ObfuscatedSignature(
+      descriptor = "(ILch;ZI)I",
+      garbageValue = "1883190484"
+   )
+   static int method766(int var0, Script var1, boolean var2) {
+      int var3 = -1;
+      Widget var4;
+      if (var0 >= 2000) {
+         var0 -= 1000;
+         var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+         var4 = class165.getWidget(var3);
+      } else {
+         var4 = var2 ? SoundSystem.scriptDotWidget : class1.scriptActiveWidget;
+      }
+
+      if (var0 == 1000) {
+         Interpreter.Interpreter_intStackSize -= 4;
+         var4.rawX = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+         var4.rawY = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+         var4.xAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+         var4.yAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+         class144.invalidateWidget(var4);
+         ScriptFrame.client.alignWidget(var4);
+         if (var3 != -1 && var4.type == 0) {
+            WallDecoration.revalidateWidgetScroll(VerticalAlignment.Widget_interfaceComponents[var3 >> 16], var4, false);
+         }
+
+         return 1;
+      } else if (var0 == 1001) {
+         Interpreter.Interpreter_intStackSize -= 4;
+         var4.rawWidth = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+         var4.rawHeight = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+         var4.widthAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+         var4.heightAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+         class144.invalidateWidget(var4);
+         ScriptFrame.client.alignWidget(var4);
+         if (var3 != -1 && var4.type == 0) {
+            WallDecoration.revalidateWidgetScroll(VerticalAlignment.Widget_interfaceComponents[var3 >> 16], var4, false);
+         }
+
+         return 1;
+      } else if (var0 == 1003) {
+         boolean var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
+         if (var5 != var4.isHidden) {
+            var4.isHidden = var5;
+            class144.invalidateWidget(var4);
+         }
+
+         return 1;
+      } else if (var0 == 1005) {
+         var4.noClickThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
+         return 1;
+      } else if (var0 == 1006) {
+         var4.noScrollThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
+         return 1;
+      } else {
+         return 2;
+      }
    }
 }

@@ -3,51 +3,57 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lj")
+@ObfuscatedName("lp")
 @Implements("MusicPatchNode2")
 public class MusicPatchNode2 {
-   @ObfuscatedName("aj")
-   byte[] field2669;
-   @ObfuscatedName("al")
-   byte[] field2664;
-   @ObfuscatedName("ac")
-   int field2665;
-   @ObfuscatedName("ab")
-   int field2666;
+   @ObfuscatedName("af")
+   byte[] field2718;
    @ObfuscatedName("an")
-   int field2671;
-   @ObfuscatedName("ao")
-   int field2668;
-   @ObfuscatedName("av")
-   int field2670;
+   byte[] field2717;
+   @ObfuscatedName("aw")
+   int field2719;
+   @ObfuscatedName("ac")
+   int field2720;
+   @ObfuscatedName("au")
+   int field2725;
+   @ObfuscatedName("ab")
+   int field2722;
    @ObfuscatedName("aq")
-   int field2663;
-   @ObfuscatedName("ap")
-   int field2667;
-
+   int field2723;
    @ObfuscatedName("al")
+   int field2724;
+   @ObfuscatedName("at")
+   int field2721;
+
+   @ObfuscatedName("au")
    @ObfuscatedSignature(
-      descriptor = "(III)V",
-      garbageValue = "-287993147"
+      descriptor = "(Lnm;Ljava/lang/String;Ljava/lang/String;I)Ltc;",
+      garbageValue = "1319736369"
    )
-   @Export("changeWorldSelectSorting")
-   static void changeWorldSelectSorting(int var0, int var1) {
-      int[] var2 = new int[4];
-      int[] var3 = new int[4];
-      var2[0] = var0;
-      var3[0] = var1;
-      int var4 = 1;
-
-      for(int var5 = 0; var5 < 4; ++var5) {
-         if (World.World_sortOption1[var5] != var0) {
-            var2[var4] = World.World_sortOption1[var5];
-            var3[var4] = World.World_sortOption2[var5];
-            ++var4;
+   @Export("SpriteBuffer_getIndexedSpriteByName")
+   public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+      if (!var0.isValidFileName(var1, var2)) {
+         return null;
+      } else {
+         int var3 = var0.getGroupId(var1);
+         int var4 = var0.getFileId(var3, var2);
+         byte[] var7 = var0.takeFile(var3, var4);
+         boolean var6;
+         if (var7 == null) {
+            var6 = false;
+         } else {
+            class485.SpriteBuffer_decode(var7);
+            var6 = true;
          }
-      }
 
-      World.World_sortOption1 = var2;
-      World.World_sortOption2 = var3;
-      class16.sortWorlds(class260.World_worlds, 0, class260.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+         IndexedSprite var5;
+         if (!var6) {
+            var5 = null;
+         } else {
+            var5 = Strings.method1852();
+         }
+
+         return var5;
+      }
    }
 }

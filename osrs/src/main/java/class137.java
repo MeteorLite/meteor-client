@@ -2,71 +2,76 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ff")
-public class class137 extends class140 {
-   @ObfuscatedName("aj")
-   int field1291;
-   @ObfuscatedName("al")
-   int field1289;
-   @ObfuscatedName("ac")
-   int field1288;
-   @ObfuscatedName("ab")
-   int field1290;
+@ObfuscatedName("fx")
+public class class137 extends class139 {
+   @ObfuscatedName("ip")
+   @ObfuscatedSignature(
+      descriptor = "Lon;"
+   )
+   @Export("fontBold12")
+   static Font fontBold12;
+   @ObfuscatedName("af")
+   long field1311;
+   @ObfuscatedName("an")
+   String field1312;
    // $FF: synthetic field
    @ObfuscatedSignature(
-      descriptor = "Lfo;"
+      descriptor = "Lfa;"
    )
-   final class143 this$0;
+   final class142 this$0;
 
    @ObfuscatedSignature(
-      descriptor = "(Lfo;)V"
+      descriptor = "(Lfa;)V"
    )
-   class137(class143 var1) {
+   class137(class142 var1) {
       this.this$0 = var1;
-      this.field1291 = -1;
+      this.field1311 = -1L;
+      this.field1312 = null;
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;I)V",
-      garbageValue = "-1979280996"
+      descriptor = "(Lsg;I)V",
+      garbageValue = "168736686"
    )
    @Export("vmethod3254")
    void vmethod3254(Buffer var1) {
-      this.field1291 = var1.readUnsignedShort();
-      this.field1289 = var1.readInt();
-      this.field1288 = var1.readUnsignedByte();
-      this.field1290 = var1.readUnsignedByte();
+      if (var1.readUnsignedByte() != 255) {
+         --var1.offset;
+         this.field1311 = var1.readLong();
+      }
+
+      this.field1312 = var1.readStringCp1252NullTerminatedOrNull();
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(Lfi;B)V",
-      garbageValue = "29"
+      descriptor = "(Lfj;I)V",
+      garbageValue = "1712319228"
    )
    @Export("vmethod3248")
    void vmethod3248(ClanSettings var1) {
-      var1.method794(this.field1291, this.field1289, this.field1288, this.field1290);
+      var1.method849(this.field1311, this.field1312, 0);
    }
 
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(Lne;I)V",
-      garbageValue = "951788277"
+      descriptor = "(I)V",
+      garbageValue = "-876753180"
    )
-   public static void method740(AbstractArchive var0) {
-      StructComposition.StructDefinition_archive = var0;
-   }
-
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "1523830717"
-   )
-   static final int method738(int var0, int var1) {
-      int var2 = class11.method40(var0 - 1, var1 - 1) + class11.method40(var0 + 1, var1 - 1) + class11.method40(var0 - 1, var1 + 1) + class11.method40(var0 + 1, var1 + 1);
-      int var3 = class11.method40(var0 - 1, var1) + class11.method40(var0 + 1, var1) + class11.method40(var0, var1 - 1) + class11.method40(var0, var1 + 1);
-      int var4 = class11.method40(var0, var1);
-      return var2 / 16 + var3 / 8 + var4 / 4;
+   static void method792() {
+      Tiles.Tiles_minPlane = 99;
+      class186.Tiles_underlays = new short[4][104][104];
+      Tiles.Tiles_overlays = new short[4][104][104];
+      Tiles.Tiles_shapes = new byte[4][104][104];
+      Tiles.field824 = new byte[4][104][104];
+      class161.field1407 = new int[4][105][105];
+      Tiles.field819 = new byte[4][105][105];
+      Tiles.field821 = new int[105][105];
+      FileSystem.Tiles_hue = new int[104];
+      Tiles.Tiles_saturation = new int[104];
+      class283.Tiles_lightness = new int[104];
+      UserComparator4.Tiles_hueMultiplier = new int[104];
+      class31.field92 = new int[104];
    }
 }

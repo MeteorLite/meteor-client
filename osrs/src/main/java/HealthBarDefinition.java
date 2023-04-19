@@ -3,68 +3,68 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hn")
+@ObfuscatedName("hm")
 @Implements("HealthBarDefinition")
 public class HealthBarDefinition extends DualNode {
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "Lne;"
+      descriptor = "Lnm;"
    )
    @Export("HealthBarDefinition_archive")
    public static AbstractArchive HealthBarDefinition_archive;
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Lne;"
+      descriptor = "Lnm;"
    )
-   public static AbstractArchive field1512;
-   @ObfuscatedName("ac")
+   public static AbstractArchive field1522;
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "Lkt;"
+      descriptor = "Lkh;"
    )
    @Export("HealthBarDefinition_cached")
    public static EvictingDualNodeHashTable HealthBarDefinition_cached = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "Lkt;"
+      descriptor = "Lkh;"
    )
    @Export("HealthBarDefinition_cachedSprites")
-   public static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
-   @ObfuscatedName("an")
-   public int field1511;
-   @ObfuscatedName("aq")
+   static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
+   @ObfuscatedName("au")
+   public int field1521;
+   @ObfuscatedName("al")
    @Export("int1")
    public int int1 = 255;
-   @ObfuscatedName("ap")
+   @ObfuscatedName("at")
    @Export("int2")
    public int int2 = 255;
-   @ObfuscatedName("ar")
+   @ObfuscatedName("aa")
    @Export("int3")
    public int int3 = -1;
-   @ObfuscatedName("ak")
-   public int field1508 = 1;
-   @ObfuscatedName("ax")
+   @ObfuscatedName("ay")
+   public int field1533 = 1;
+   @ObfuscatedName("ao")
    @Export("int5")
    public int int5 = 70;
-   @ObfuscatedName("as")
+   @ObfuscatedName("ax")
    @Export("frontSpriteID")
    int frontSpriteID = -1;
-   @ObfuscatedName("ay")
+   @ObfuscatedName("ai")
    @Export("backSpriteID")
    int backSpriteID = -1;
-   @ObfuscatedName("am")
+   @ObfuscatedName("ag")
    @Export("width")
    public int width = 30;
-   @ObfuscatedName("az")
+   @ObfuscatedName("ah")
    @Export("widthPadding")
    public int widthPadding = 0;
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;B)V",
-      garbageValue = "67"
+      descriptor = "(Lsg;B)V",
+      garbageValue = "85"
    )
    @Export("decode")
-   void decode(Buffer var1) {
+   public void decode(Buffer var1) {
       while(true) {
          int var2 = var1.readUnsignedByte();
          if (var2 == 0) {
@@ -75,10 +75,10 @@ public class HealthBarDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;II)V",
-      garbageValue = "-442070903"
+      descriptor = "(Lsg;IB)V",
+      garbageValue = "-52"
    )
    @Export("decodeNext")
    void decodeNext(Buffer var1, int var2) {
@@ -95,9 +95,9 @@ public class HealthBarDefinition extends DualNode {
       } else if (var2 == 6) {
          var1.readUnsignedByte();
       } else if (var2 == 7) {
-         this.frontSpriteID = var1.method2423();
+         this.frontSpriteID = var1.method2516();
       } else if (var2 == 8) {
-         this.backSpriteID = var1.method2423();
+         this.backSpriteID = var1.method2516();
       } else if (var2 == 11) {
          this.int3 = var1.readUnsignedShort();
       } else if (var2 == 14) {
@@ -108,10 +108,10 @@ public class HealthBarDefinition extends DualNode {
 
    }
 
-   @ObfuscatedName("ab")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "(S)Lsn;",
-      garbageValue = "-18194"
+      descriptor = "(B)Ltq;",
+      garbageValue = "9"
    )
    @Export("getFrontSprite")
    public SpritePixels getFrontSprite() {
@@ -122,7 +122,7 @@ public class HealthBarDefinition extends DualNode {
          if (var1 != null) {
             return var1;
          } else {
-            var1 = WorldMapScaleHandler.SpriteBuffer_getSprite(field1512, this.frontSpriteID, 0);
+            var1 = class484.SpriteBuffer_getSprite(field1522, this.frontSpriteID, 0);
             if (var1 != null) {
                HealthBarDefinition_cachedSprites.put(var1, (long)this.frontSpriteID);
             }
@@ -132,10 +132,10 @@ public class HealthBarDefinition extends DualNode {
       }
    }
 
-   @ObfuscatedName("an")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
-      descriptor = "(B)Lsn;",
-      garbageValue = "99"
+      descriptor = "(I)Ltq;",
+      garbageValue = "-540655090"
    )
    @Export("getBackSprite")
    public SpritePixels getBackSprite() {
@@ -146,13 +146,39 @@ public class HealthBarDefinition extends DualNode {
          if (var1 != null) {
             return var1;
          } else {
-            var1 = WorldMapScaleHandler.SpriteBuffer_getSprite(field1512, this.backSpriteID, 0);
+            var1 = class484.SpriteBuffer_getSprite(field1522, this.backSpriteID, 0);
             if (var1 != null) {
                HealthBarDefinition_cachedSprites.put(var1, (long)this.backSpriteID);
             }
 
             return var1;
          }
+      }
+   }
+
+   @ObfuscatedName("an")
+   @ObfuscatedSignature(
+      descriptor = "(Ljava/lang/Object;ZI)[B",
+      garbageValue = "2040236777"
+   )
+   public static byte[] method1007(Object var0, boolean var1) {
+      if (var0 == null) {
+         return null;
+      } else if (var0 instanceof byte[]) {
+         byte[] var6 = (byte[])((byte[])var0);
+         if (var1) {
+            int var4 = var6.length;
+            byte[] var5 = new byte[var4];
+            System.arraycopy(var6, 0, var5, 0, var4);
+            return var5;
+         } else {
+            return var6;
+         }
+      } else if (var0 instanceof AbstractByteArrayCopier) {
+         AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
+         return var2.get();
+      } else {
+         throw new IllegalArgumentException();
       }
    }
 }

@@ -141,11 +141,11 @@ public class RasterizerAlpha extends AbstractInjector
 						if (pushesToSameVar(isubResult, alphaPusher))
 						{
 							shouldSubtractLocal = true;
-							alphaPusher = isubResult;
-							/*alphaPusher = resolveFieldThroughInvokes(alphaPop);
+							//alphaPusher = isubResult;
+							alphaPusher = resolveFieldThroughInvokes(alphaPop);
 
 							if (alphaPusher == null)
-								throw new RuntimeException("Alpha var is overwritten and we don't know what pushed it"); // cheeky unchecked*/
+								throw new RuntimeException("Alpha var is overwritten and we don't know what pushed it");
 						}
 
 						int storeIdx = instrs.getInstructions().indexOf(instruction);
@@ -156,6 +156,7 @@ public class RasterizerAlpha extends AbstractInjector
 							instrs.addInstruction(storeIdx++, new LDC(instrs, 255));
 							instrs.addInstruction(storeIdx++, new GetStatic(instrs, ((GetStatic) alphaPushI).getField()));
 							instrs.addInstruction(storeIdx++, new ISub(instrs, InstructionType.ISUB));
+							instrs.getInstructions().set(storeIdx, new InvokeStatic(instrs, DRAWALPHA));
 						}
 						else if (alphaPushI instanceof LVTInstruction)
 						{
@@ -169,9 +170,10 @@ public class RasterizerAlpha extends AbstractInjector
 							{
 								instrs.addInstruction(storeIdx++, new ILoad(instrs, ((LVTInstruction) alphaPushI).getVariableIndex()));
 							}
+							instrs.getInstructions().set(storeIdx, new InvokeStatic(instrs, DRAWALPHA));
 						}
 
-						instrs.getInstructions().set(storeIdx, new InvokeStatic(instrs, DRAWALPHA));
+
 						++count;
 						continue outer;
 					}
@@ -190,6 +192,8 @@ public class RasterizerAlpha extends AbstractInjector
 				{
 					continue;
 				}
+
+				System.out.println(colPushI.getClass());
 
 				// rasterPx[idx] = color | 0xff000000 (the | 0xff000000 is what's added)
 				int storeIdx = instrs.getInstructions().indexOf(instruction);

@@ -72,10 +72,10 @@ public abstract class ClickboxMixin implements RSClient
 
 		final int[] color3 = model.getFaceColors3();
 
-		final int zoom = client.get3dZoom();
+		final int zoom = client.get3dZoom$api();
 
-		final int centerX = client.getCenterX();
-		final int centerY = client.getCenterY();
+		final int centerX = client.getCenterX$api();
+		final int centerY = client.getCenterY$api();
 
 		int sin = 0;
 		int cos = 0;
@@ -216,13 +216,13 @@ public abstract class ClickboxMixin implements RSClient
 		final int yawSin = Perspective.SINE[cameraYaw];
 		final int yawCos = Perspective.COSINE[cameraYaw];
 
-		final int centerX = client.getCenterX();
-		final int centerY = client.getCenterY();
+		final int centerX = client.getCenterX$api();
+		final int centerY = client.getCenterY$api();
 
 		final int viewportMouseX = client.getViewportMouseX();
 		final int viewportMouseY = client.getViewportMouseY();
 
-		final int Rasterizer3D_zoom = client.get3dZoom();
+		final int Rasterizer3D_zoom = client.get3dZoom$api();
 
 		int var6 = (viewportMouseX - centerX) * CLICKBOX_CLOSE / Rasterizer3D_zoom;
 		int var7 = (viewportMouseY - centerY) * CLICKBOX_CLOSE / Rasterizer3D_zoom;

@@ -3,19 +3,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jb")
+@ObfuscatedName("ku")
 @Implements("WorldMapLabel")
 public class WorldMapLabel {
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @Export("text")
    String text;
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @Export("width")
    int width;
-   @ObfuscatedName("ac")
+   @ObfuscatedName("aw")
    @Export("height")
    int height;
-   @ObfuscatedName("ab")
+   @ObfuscatedName("ac")
    @ObfuscatedSignature(
       descriptor = "Ljd;"
    )
@@ -30,15 +30,5 @@ public class WorldMapLabel {
       this.width = var2;
       this.height = var3;
       this.size = var4;
-   }
-
-   @ObfuscatedName("bx")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)I",
-      garbageValue = "1857576391"
-   )
-   @Export("stringCp1252NullTerminatedByteSize")
-   public static int stringCp1252NullTerminatedByteSize(String var0) {
-      return var0.length() + 1;
    }
 }

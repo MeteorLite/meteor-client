@@ -761,8 +761,8 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 		uniformBuf
 				.put(yaw)
 				.put(pitch)
-				.put(client.getCenterX())
-				.put(client.getCenterY())
+				.put(client.getCenterX$api())
+				.put(client.getCenterY$api())
 				.put(client.getScale())
 				.put(cameraX)
 				.put(cameraY)
@@ -1411,13 +1411,13 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 		final int xzMag = model.getXYZMag();
 		final int bottomY = model.getBottomY();
-		final int zoom = client.get3dZoom();
+		final int zoom = client.get3dZoom$api();
 		final int modelHeight = model.getModelHeight();
 
-		int Rasterizer3D_clipMidX2 = client.getRasterizer3D_clipMidX2(); // width / 2
+		int Rasterizer3D_clipMidX2 = client.getClipMidX2$api(); // width / 2
 		int Rasterizer3D_clipNegativeMidX = client.getRasterizer3D_clipNegativeMidX(); // -width / 2
 		int Rasterizer3D_clipNegativeMidY = client.getRasterizer3D_clipNegativeMidY(); // -height / 2
-		int Rasterizer3D_clipMidY2 = client.getRasterizer3D_clipMidY2(); // height / 2
+		int Rasterizer3D_clipMidY2 = client.getClipMidY2$api(); // height / 2
 
 		int var11 = yawCos * z - yawSin * x >> 16;
 		int var12 = pitchSin * y + pitchCos * var11 >> 16;

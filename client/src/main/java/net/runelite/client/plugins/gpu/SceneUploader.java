@@ -25,11 +25,9 @@
 package net.runelite.client.plugins.gpu;
 
 import com.google.common.base.Stopwatch;
-import lombok.extern.slf4j.Slf4j;
 import meteor.Main;
 import net.runelite.api.*;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Arrays;
 
@@ -530,9 +528,9 @@ class SceneUploader
 		final int[] faceColors3 = model.getFaceColors3();
 		final byte[] faceRenderPriorities = model.getFaceRenderPriorities();
 
-		final int centerX = client.getCenterX();
-		final int centerY = client.getCenterY();
-		final int zoom = client.get3dZoom();
+		final int centerX = client.getCenterX$api();
+		final int centerY = client.getCenterY$api();
+		final int zoom = client.get3dZoom$api();
 
 		final int cameraX = client.getCameraX2();
 		final int cameraY = client.getCameraY2();

@@ -1,19 +1,14 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qf")
-public class class427 extends class428 {
-   public class427(int var1) {
-      super(var1);
-   }
+@ObfuscatedName("qs")
+public class class427 {
+   @ObfuscatedName("af")
+   float[] field3813;
+   @ObfuscatedName("an")
+   int field3812;
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(Lsy;IB)V",
-      garbageValue = "-66"
-   )
-   @Export("vmethod7769")
-   void vmethod7769(Buffer var1, int var2) {
+   class427(float[] var1, int var2) {
+      this.field3813 = var1;
+      this.field3812 = var2;
    }
 }

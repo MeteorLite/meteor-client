@@ -3,18 +3,22 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jo")
+@ObfuscatedName("jm")
 @Implements("WorldMapData_0")
 public class WorldMapData_0 extends AbstractWorldMapData {
-   @ObfuscatedName("aj")
+   @ObfuscatedName("ib")
+   @Export("baseX")
+   static int baseX;
+
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;I)V",
-      garbageValue = "-716170974"
+      descriptor = "(Lsg;I)V",
+      garbageValue = "-1901491736"
    )
    @Export("init")
    void init(Buffer var1) {
       int var2 = var1.readUnsignedByte();
-      if (var2 != WorldMapID.field2375.value) {
+      if (var2 != WorldMapID.field2418.value) {
          throw new IllegalStateException("");
       } else {
          super.minPlane = var1.readUnsignedByte();
@@ -23,26 +27,26 @@ public class WorldMapData_0 extends AbstractWorldMapData {
          super.regionYLow = var1.readUnsignedShort();
          super.regionX = var1.readUnsignedShort();
          super.regionY = var1.readUnsignedShort();
-         super.groupId = var1.method2423();
-         super.fileId = var1.method2423();
+         super.groupId = var1.method2516();
+         super.fileId = var1.method2516();
       }
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "(Lsy;I)V",
-      garbageValue = "-724858915"
+      descriptor = "(Lsg;S)V",
+      garbageValue = "2348"
    )
    @Export("readGeography")
    void readGeography(Buffer var1) {
       super.planes = Math.min(super.planes, 4);
       super.floorUnderlayIds = new short[1][64][64];
       super.floorOverlayIds = new short[super.planes][64][64];
-      super.field2347 = new byte[super.planes][64][64];
-      super.field2350 = new byte[super.planes][64][64];
+      super.field2390 = new byte[super.planes][64][64];
+      super.field2396 = new byte[super.planes][64][64];
       super.decorations = new WorldMapDecoration[super.planes][64][64][];
       int var2 = var1.readUnsignedByte();
-      if (var2 != class258.field2369.value) {
+      if (var2 != class262.field2414.value) {
          throw new IllegalStateException("");
       } else {
          int var3 = var1.readUnsignedByte();
@@ -67,7 +71,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
          return false;
       } else {
          WorldMapData_0 var2 = (WorldMapData_0)var1;
-         return super.regionX == var2.regionX && super.regionY == var2.regionY;
+         return var2.regionX == super.regionX && var2.regionY == super.regionY;
       }
    }
 
@@ -77,45 +81,24 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       return super.regionX | super.regionY << 8;
    }
 
-   @ObfuscatedName("ac")
+   @ObfuscatedName("hv")
    @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "-698742703"
+      descriptor = "(IB)I",
+      garbageValue = "-99"
    )
-   static int method1311(int var0, int var1) {
-      ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-      if (var2 == null) {
-         return 0;
-      } else if (var1 == -1) {
-         return 0;
-      } else {
-         int var3 = 0;
-
-         for(int var4 = 0; var4 < var2.quantities.length; ++var4) {
-            if (var2.ids[var4] == var1) {
-               var3 += var2.quantities[var4];
-            }
-         }
-
-         return var3;
-      }
+   static int method1389(int var0) {
+      return var0 * 3 + 600;
    }
 
-   @ObfuscatedName("jx")
+   @ObfuscatedName("nr")
    @ObfuscatedSignature(
-      descriptor = "(II)Z",
-      garbageValue = "1796138717"
+      descriptor = "(I)V",
+      garbageValue = "1629805896"
    )
-   static final boolean method1310(int var0) {
-      if (var0 < 0) {
-         return false;
-      } else {
-         int var1 = Client.menuOpcodes[var0];
-         if (var1 >= 2000) {
-            var1 -= 2000;
-         }
-
-         return var1 == 1007;
-      }
+   @Export("Clan_leaveChat")
+   static final void Clan_leaveChat() {
+      PacketBufferNode var0 = class330.getPacketBufferNode(ClientPacket.field2508, Client.packetWriter.isaacCipher);
+      var0.packetBuffer.writeByte(0);
+      Client.packetWriter.addNode(var0);
    }
 }

@@ -35,7 +35,6 @@ import javax.annotation.Nullable;
 import dev.hoot.api.MouseHandler;
 import dev.hoot.api.events.AutomatedMenu;
 import meteor.Logger;
-import meteor.PrivateServerConfiguration;
 import net.runelite.api.annotations.VarCInt;
 import net.runelite.api.annotations.Varbit;
 import net.runelite.api.packets.ClientPacket;
@@ -1975,11 +1974,11 @@ public interface Client extends GameEngine
 
 	void setGpu(boolean gpu);
 
-	int get3dZoom();
+	int get3dZoom$api();
 
-	int getCenterX();
+	int getCenterX$api();
 
-	int getCenterY();
+	int getCenterY$api();
 
 	int getCameraX2();
 
@@ -1993,13 +1992,13 @@ public interface Client extends GameEngine
 
 	void setRenderArea(boolean[][] renderArea);
 
-	int getRasterizer3D_clipMidX2();
+	int getClipMidX2$api();
 
 	int getRasterizer3D_clipNegativeMidX();
 
 	int getRasterizer3D_clipNegativeMidY();
 
-	int getRasterizer3D_clipMidY2();
+	int getClipMidY2$api();
 
 	void checkClickbox(Model model, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash);
 

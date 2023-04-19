@@ -11,6 +11,7 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+
 @Implements("JSONObject")
 @ObfuscatedName("org/json/JSONObject")
 public class JSONObject {
@@ -18,14 +19,10 @@ public class JSONObject {
    @ObfuscatedName("NULL")
    public static final Object NULL = new JSONObject$Null();
    @ObfuscatedName("map")
-   Map field4098;
+   Map field4181;
 
    public JSONObject() {
-      this.field4098 = new HashMap();
-   }
-
-   public JSONObject(String var1) throws JSONException {
-      this(new JSONTokener(var1));
+      this.field4181 = new HashMap();
    }
 
    @ObfuscatedSignature(
@@ -75,36 +72,40 @@ public class JSONObject {
       }
    }
 
+   public JSONObject(String var1) throws JSONException {
+      this(new JSONTokener(var1));
+   }
+
    public JSONObject(Object var1, boolean var2) {
       this();
       this.populateInternalMap(var1, var2);
    }
 
    public JSONObject(Map var1) {
-      this.field4098 = (Map)(var1 == null ? new HashMap() : var1);
+      this.field4181 = (Map)(var1 == null ? new HashMap() : var1);
    }
 
    public JSONObject(Map var1, boolean var2) {
-      this.field4098 = new HashMap();
+      this.field4181 = new HashMap();
       if (var1 != null) {
          Iterator var3 = var1.entrySet().iterator();
 
          while(var3.hasNext()) {
             Entry var4 = (Entry)var3.next();
-            this.field4098.put(var4.getKey(), new JSONObject(var4.getValue(), var2));
+            this.field4181.put(var4.getKey(), new JSONObject(var4.getValue(), var2));
          }
       }
 
    }
 
    @ObfuscatedName("opt")
-   public Object method2574(String var1) {
-      return var1 == null ? null : this.field4098.get(var1);
+   public Object method2651(String var1) {
+      return var1 == null ? null : this.field4181.get(var1);
    }
 
    @ObfuscatedName("get")
-   public Object method2576(String var1) throws JSONException {
-      Object var2 = this.method2574(var1);
+   public Object method2650(String var1) throws JSONException {
+      Object var2 = this.method2651(var1);
       if (var2 == null) {
          throw new JSONException("JSONObject[" + quote(var1) + "] not found.");
       } else {
@@ -116,13 +117,13 @@ public class JSONObject {
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;"
    )
-   public JSONObject method2575(String var1, Object var2) throws JSONException {
+   public JSONObject method2652(String var1, Object var2) throws JSONException {
       if (var1 == null) {
          throw new JSONException("Null key.");
       } else {
          if (var2 != null) {
             testValidity(var2);
-            this.field4098.put(var1, var2);
+            this.field4181.put(var1, var2);
          } else {
             this.remove(var1);
          }
@@ -131,17 +132,10 @@ public class JSONObject {
       }
    }
 
-   @Export("getLong")
-   @ObfuscatedName("getLong")
-   public long getLong(String var1) throws JSONException {
-      Object var2 = this.method2576(var1);
-      return var2 instanceof Number ? ((Number)var2).longValue() : (long)this.getDouble(var1);
-   }
-
    @Export("getBoolean")
    @ObfuscatedName("getBoolean")
    public boolean getBoolean(String var1) throws JSONException {
-      Object var2 = this.method2576(var1);
+      Object var2 = this.method2650(var1);
       if (var2.equals(Boolean.FALSE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("false")) {
          return false;
       } else if (var2.equals(Boolean.TRUE) || var2 instanceof String && ((String)var2).equalsIgnoreCase("true")) {
@@ -151,23 +145,30 @@ public class JSONObject {
       }
    }
 
+   @Export("getLong")
+   @ObfuscatedName("getLong")
+   public long getLong(String var1) throws JSONException {
+      Object var2 = this.method2650(var1);
+      return var2 instanceof Number ? ((Number)var2).longValue() : (long)this.getDouble(var1);
+   }
+
    @Export("getInt")
    @ObfuscatedName("getInt")
    public int getInt(String var1) throws JSONException {
-      Object var2 = this.method2576(var1);
+      Object var2 = this.method2650(var1);
       return var2 instanceof Number ? ((Number)var2).intValue() : (int)this.getDouble(var1);
    }
 
    @Export("keys")
    @ObfuscatedName("keys")
    public Iterator keys() {
-      return this.field4098.keySet().iterator();
+      return this.field4181.keySet().iterator();
    }
 
    @Export("length")
    @ObfuscatedName("length")
    public int length() {
-      return this.field4098.size();
+      return this.field4181.size();
    }
 
    @Export("getJSONArray")
@@ -176,7 +177,7 @@ public class JSONObject {
       descriptor = "(Ljava/lang/String;)Lorg/json/JSONArray;"
    )
    public JSONArray getJSONArray(String var1) throws JSONException {
-      Object var2 = this.method2576(var1);
+      Object var2 = this.method2650(var1);
       if (var2 instanceof JSONArray) {
          return (JSONArray)var2;
       } else {
@@ -214,19 +215,19 @@ public class JSONObject {
 
                Object var9 = Reflection.invoke(var6, var1, (Object[])null);
                if (var9 == null) {
-                  this.field4098.put(var8, NULL);
+                  this.field4181.put(var8, NULL);
                } else if (var9.getClass().isArray()) {
-                  this.field4098.put(var8, new JSONArray(var9, var2));
+                  this.field4181.put(var8, new JSONArray(var9, var2));
                } else if (var9 instanceof Collection) {
-                  this.field4098.put(var8, new JSONArray((Collection)var9, var2));
+                  this.field4181.put(var8, new JSONArray((Collection)var9, var2));
                } else if (var9 instanceof Map) {
-                  this.field4098.put(var8, new JSONObject((Map)var9, var2));
+                  this.field4181.put(var8, new JSONObject((Map)var9, var2));
                } else if (this.isStandardProperty(var9.getClass())) {
-                  this.field4098.put(var8, var9);
+                  this.field4181.put(var8, var9);
                } else if (!var9.getClass().getPackage().getName().startsWith("java") && var9.getClass().getClassLoader() != null) {
-                  this.field4098.put(var8, new JSONObject(var9, var2));
+                  this.field4181.put(var8, new JSONObject(var9, var2));
                } else {
-                  this.field4098.put(var8, var9.toString());
+                  this.field4181.put(var8, var9.toString());
                }
             }
          } catch (Exception var10) {
@@ -239,14 +240,16 @@ public class JSONObject {
    @Export("remove")
    @ObfuscatedName("remove")
    public Object remove(String var1) {
-      return this.field4098.remove(var1);
+      return this.field4181.remove(var1);
    }
 
+   @Export("getJSONObject")
+   @ObfuscatedName("getJSONObject")
    @ObfuscatedSignature(
       descriptor = "(Ljava/lang/String;)Lorg/json/JSONObject;"
    )
    public JSONObject getJSONObject(String var1) throws JSONException {
-      Object var2 = this.method2576(var1);
+      Object var2 = this.method2650(var1);
       if (var2 instanceof JSONObject) {
          return (JSONObject)var2;
       } else {
@@ -257,13 +260,13 @@ public class JSONObject {
    @Export("sortedKeys")
    @ObfuscatedName("sortedKeys")
    public Iterator sortedKeys() {
-      return (new TreeSet(this.field4098.keySet())).iterator();
+      return (new TreeSet(this.field4181.keySet())).iterator();
    }
 
    @Export("getDouble")
    @ObfuscatedName("getDouble")
    public double getDouble(String var1) throws JSONException {
-      Object var2 = this.method2576(var1);
+      Object var2 = this.method2650(var1);
 
       try {
          return var2 instanceof Number ? ((Number)var2).doubleValue() : Double.valueOf((String)var2);
@@ -287,7 +290,7 @@ public class JSONObject {
             var8 = var5.next();
             var6.append(quote(var8.toString()));
             var6.append(": ");
-            var6.append(valueToString(this.field4098.get(var8), var1, var2));
+            var6.append(valueToString(this.field4181.get(var8), var1, var2));
          } else {
             while(true) {
                int var3;
@@ -315,7 +318,7 @@ public class JSONObject {
 
                var6.append(quote(var8.toString()));
                var6.append(": ");
-               var6.append(valueToString(this.field4098.get(var8), var1, var7));
+               var6.append(valueToString(this.field4181.get(var8), var1, var7));
             }
          }
 
@@ -340,7 +343,7 @@ public class JSONObject {
             Object var4 = var3.next();
             var1.write(quote(var4.toString()));
             var1.write(58);
-            Object var5 = this.field4098.get(var4);
+            Object var5 = this.field4181.get(var4);
             if (var5 instanceof JSONObject) {
                ((JSONObject)var5).write(var1);
             } else if (var5 instanceof JSONArray) {
@@ -360,7 +363,7 @@ public class JSONObject {
    @Export("getString")
    @ObfuscatedName("getString")
    public String getString(String var1) throws JSONException {
-      return this.method2576(var1).toString();
+      return this.method2650(var1).toString();
    }
 
    @Export("toString")
@@ -378,7 +381,7 @@ public class JSONObject {
             Object var3 = var1.next();
             var2.append(quote(var3.toString()));
             var2.append(':');
-            var2.append(valueToString(this.field4098.get(var3)));
+            var2.append(valueToString(this.field4181.get(var3)));
          }
 
          var2.append('}');
@@ -395,11 +398,11 @@ public class JSONObject {
    )
    public JSONObject putOnce(String var1, Object var2) throws JSONException {
       if (var1 != null && var2 != null) {
-         if (this.method2574(var1) != null) {
+         if (this.method2651(var1) != null) {
             throw new JSONException("Duplicate key \"" + var1 + "\"");
          }
 
-         this.method2575(var1, var2);
+         this.method2652(var1, var2);
       }
 
       return this;
@@ -409,44 +412,6 @@ public class JSONObject {
    @ObfuscatedName("isStandardProperty")
    boolean isStandardProperty(Class var1) {
       return var1.isPrimitive() || var1.isAssignableFrom(Byte.class) || var1.isAssignableFrom(Short.class) || var1.isAssignableFrom(Integer.class) || var1.isAssignableFrom(Long.class) || var1.isAssignableFrom(Float.class) || var1.isAssignableFrom(Double.class) || var1.isAssignableFrom(Character.class) || var1.isAssignableFrom(String.class) || var1.isAssignableFrom(Boolean.class);
-   }
-
-   @Export("optString")
-   @ObfuscatedName("optString")
-   public String optString(String var1, String var2) {
-      Object var3 = this.method2574(var1);
-      return var3 != null ? var3.toString() : var2;
-   }
-
-   @Export("optBoolean")
-   @ObfuscatedName("optBoolean")
-   public boolean optBoolean(String var1, boolean var2) {
-      try {
-         return this.getBoolean(var1);
-      } catch (Exception var4) {
-         return var2;
-      }
-   }
-
-   @Export("optDouble")
-   @ObfuscatedName("optDouble")
-   public double optDouble(String var1, double var2) {
-      try {
-         Object var4 = this.method2574(var1);
-         return var4 instanceof Number ? ((Number)var4).doubleValue() : new Double((String)var4);
-      } catch (Exception var5) {
-         return var2;
-      }
-   }
-
-   @Export("optInt")
-   @ObfuscatedName("optInt")
-   public int optInt(String var1, int var2) {
-      try {
-         return this.getInt(var1);
-      } catch (Exception var4) {
-         return var2;
-      }
    }
 
    @Export("optLong")
@@ -466,10 +431,48 @@ public class JSONObject {
    )
    public JSONObject putOpt(String var1, Object var2) throws JSONException {
       if (var1 != null && var2 != null) {
-         this.method2575(var1, var2);
+         this.method2652(var1, var2);
       }
 
       return this;
+   }
+
+   @Export("optBoolean")
+   @ObfuscatedName("optBoolean")
+   public boolean optBoolean(String var1, boolean var2) {
+      try {
+         return this.getBoolean(var1);
+      } catch (Exception var4) {
+         return var2;
+      }
+   }
+
+   @Export("optDouble")
+   @ObfuscatedName("optDouble")
+   public double optDouble(String var1, double var2) {
+      try {
+         Object var4 = this.method2651(var1);
+         return var4 instanceof Number ? ((Number)var4).doubleValue() : new Double((String)var4);
+      } catch (Exception var5) {
+         return var2;
+      }
+   }
+
+   @Export("optInt")
+   @ObfuscatedName("optInt")
+   public int optInt(String var1, int var2) {
+      try {
+         return this.getInt(var1);
+      } catch (Exception var4) {
+         return var2;
+      }
+   }
+
+   @Export("optString")
+   @ObfuscatedName("optString")
+   public String optString(String var1, String var2) {
+      Object var3 = this.method2651(var1);
+      return var3 != null ? var3.toString() : var2;
    }
 
    @Export("getNames")

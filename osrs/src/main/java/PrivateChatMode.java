@@ -3,25 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("tg")
+@ObfuscatedName("tf")
 @Implements("PrivateChatMode")
 public class PrivateChatMode {
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "Ltg;"
+      descriptor = "Ltf;"
    )
-   static final PrivateChatMode field4083 = new PrivateChatMode(0);
-   @ObfuscatedName("al")
+   static final PrivateChatMode field4163 = new PrivateChatMode(0);
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
-      descriptor = "Ltg;"
+      descriptor = "Ltf;"
    )
-   public static final PrivateChatMode field4086 = new PrivateChatMode(1);
+   public static final PrivateChatMode field4161 = new PrivateChatMode(1);
+   @ObfuscatedName("aw")
+   @ObfuscatedSignature(
+      descriptor = "Ltf;"
+   )
+   static final PrivateChatMode field4162 = new PrivateChatMode(2);
    @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Ltg;"
-   )
-   static final PrivateChatMode field4085 = new PrivateChatMode(2);
-   @ObfuscatedName("ab")
    @Export("id")
    public final int id;
 

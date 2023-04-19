@@ -30,7 +30,7 @@ public abstract class RSRasterProviderMixin implements RSRasterProvider
 
 	@MethodHook(value = "<init>", end = true)
 	@Inject
-	public void init(int width, int height, Component canvas)
+	public void init(int width, int height, Component canvas, boolean pixelsFloat)
 	{
 		if (!client.isGpu())
 		{

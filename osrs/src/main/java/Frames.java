@@ -3,20 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iw")
+@ObfuscatedName("io")
 @Implements("Frames")
 public class Frames extends DualNode {
-   @ObfuscatedName("ax")
-   static int field2055;
-   @ObfuscatedName("aj")
+   @ObfuscatedName("af")
    @ObfuscatedSignature(
-      descriptor = "[Lig;"
+      descriptor = "[Lil;"
    )
    @Export("frames")
    Animation[] frames;
 
    @ObfuscatedSignature(
-      descriptor = "(Lne;Lne;IZ)V"
+      descriptor = "(Lnm;Lnm;IZ)V"
    )
    Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
       NodeDeque var5 = new NodeDeque();
@@ -53,267 +51,115 @@ public class Frames extends DualNode {
 
    }
 
-   @ObfuscatedName("al")
+   @ObfuscatedName("an")
    @ObfuscatedSignature(
       descriptor = "(II)Z",
-      garbageValue = "1355530944"
+      garbageValue = "997946133"
    )
    @Export("hasAlphaTransform")
    public boolean hasAlphaTransform(int var1) {
       return this.frames[var1].hasAlphaTransform;
    }
 
-   @ObfuscatedName("av")
+   @ObfuscatedName("aw")
    @ObfuscatedSignature(
-      descriptor = "(Lsq;ILdh;II)V",
-      garbageValue = "1494438010"
+      descriptor = "(Lqs;FFFI)F",
+      garbageValue = "905872105"
    )
-   static final void method1250(PacketBuffer var0, int var1, Player var2, int var3) {
-      byte var4 = MoveSpeed.STATIONARY.speed;
-      int var5;
-      if ((var3 & 8192) != 0) {
-         var2.spotAnimation = var0.readUnsignedShortAdd();
-         var5 = var0.readIntLE();
-         var2.spotAnimHeight = var5 >> 16;
-         var2.spotAnimationStartCycle = (var5 & '\uffff') + Client.cycle;
-         var2.spotAnimationFrame = 0;
-         var2.field964 = 0;
-         if (var2.spotAnimationStartCycle > Client.cycle) {
-            var2.spotAnimationFrame = -1;
-         }
-
-         if (var2.spotAnimation == 65535) {
-            var2.spotAnimation = -1;
-         }
-      }
-
-      if ((var3 & 64) != 0) {
-         var5 = var0.readUnsignedByte();
-         byte[] var6 = new byte[var5];
-         Buffer var7 = new Buffer(var6);
-         var0.readBytesAdd(var6, 0, var5);
-         Players.cachedAppearanceBuffer[var1] = var7;
-         var2.read(var7);
-      }
-
-      if ((var3 & 4096) != 0) {
-         var2.exactMoveDeltaX1 = var0.readByteAdd();
-         var2.exactMoveDeltaY1 = var0.readByteAdd();
-         var2.exactMoveDeltaX2 = var0.readByteAdd();
-         var2.exactMoveDeltaY2 = var0.readByteNeg();
-         var2.exactMoveArrive1Cycle = var0.readUnsignedShort() + Client.cycle;
-         var2.exactMoveArrive2Cycle = var0.readUnsignedShortAddLE() + Client.cycle;
-         var2.exactMoveDirection = var0.readUnsignedShortLE();
-         if (var2.hasMovementPending) {
-            var2.exactMoveDeltaX1 += var2.tileX;
-            var2.exactMoveDeltaY1 += var2.tileY;
-            var2.exactMoveDeltaX2 += var2.tileX;
-            var2.exactMoveDeltaY2 += var2.tileY;
-            var2.pathLength = 0;
-         } else {
-            var2.exactMoveDeltaX1 += var2.pathX[0];
-            var2.exactMoveDeltaY1 += var2.pathY[0];
-            var2.exactMoveDeltaX2 += var2.pathX[0];
-            var2.exactMoveDeltaY2 += var2.pathY[0];
-            var2.pathLength = 1;
-         }
-
-         var2.field1004 = 0;
-      }
-
-      int var8;
-      int var9;
-      int var12;
-      int var13;
-      if ((var3 & 4) != 0) {
-         var5 = var0._readUnsignedByteSub();
-         int var10;
-         int var11;
-         int var14;
-         if (var5 > 0) {
-            for(var13 = 0; var13 < var5; ++var13) {
-               var8 = -1;
-               var9 = -1;
-               var10 = -1;
-               var14 = var0.readUShortSmart();
-               if (var14 == 32767) {
-                  var14 = var0.readUShortSmart();
-                  var9 = var0.readUShortSmart();
-                  var8 = var0.readUShortSmart();
-                  var10 = var0.readUShortSmart();
-               } else if (var14 != 32766) {
-                  var9 = var0.readUShortSmart();
-               } else {
-                  var14 = -1;
-               }
-
-               var11 = var0.readUShortSmart();
-               var2.addHitSplat(var14, var9, var8, var10, Client.cycle, var11);
-            }
-         }
-
-         var13 = var0.readUnsignedByteAdd();
-         if (var13 > 0) {
-            for(var14 = 0; var14 < var13; ++var14) {
-               var8 = var0.readUShortSmart();
-               var9 = var0.readUShortSmart();
-               if (var9 != 32767) {
-                  var10 = var0.readUShortSmart();
-                  var11 = var0._readUnsignedByteSub();
-                  var12 = var9 > 0 ? var0._readUnsignedByteSub() : var11;
-                  var2.addHealthBar(var8, Client.cycle, var9, var10, var11, var12);
-               } else {
-                  var2.removeHealthBar(var8);
-               }
-            }
-         }
-      }
-
-      if ((var3 & 256) != 0) {
-         var4 = var0.readUnsignedByteSub();
-      }
-
-      if ((var3 & 1) != 0) {
-         var5 = var0.readUnsignedShortAdd();
-         PlayerType var17 = (PlayerType)SpriteMask.findEnumerated(MoveSpeed.PlayerType_values(), var0._readUnsignedByteSub());
-         boolean var19 = var0.readUnsignedByteNeg() == 1;
-         var8 = var0.readUnsignedByteNeg();
-         var9 = var0.offset;
-         if (var2.username != null && var2.appearance != null) {
-            boolean var18 = false;
-            if (var17.isUser && class6.friendSystem.isIgnored(var2.username)) {
-               var18 = true;
-            }
-
-            if (!var18 && Client.field540 == 0 && !var2.isHidden) {
-               Players.field1079.offset = 0;
-               var0.readBytesReversedAdd(Players.field1079.array, 0, var8);
-               Players.field1079.offset = 0;
-               String var15 = AbstractFont.escapeBrackets(class33.method136(class279.readString(Players.field1079)));
-               var2.overheadText = var15.trim();
-               var2.field952 = var5 >> 8;
-               var2.field945 = var5 & 255;
-               var2.overheadTextCyclesRemaining = 150;
-               var2.isAutoChatting = var19;
-               var2.showPublicPlayerChat = var2 != BuddyRankComparator.localPlayer && var17.isUser && "" != Client.field510 && var15.toLowerCase().indexOf(Client.field510) == -1;
-               if (var17.isPrivileged) {
-                  var12 = var19 ? 91 : 1;
-               } else {
-                  var12 = var19 ? 90 : 2;
-               }
-
-               if (var17.modIcon != -1) {
-                  MusicPatchNode.addGameMessage(var12, class7.addImageTag(var17.modIcon) + var2.username.getName(), var15);
-               } else {
-                  MusicPatchNode.addGameMessage(var12, var2.username.getName(), var15);
-               }
-            }
-         }
-
-         var0.offset = var9 + var8;
-      }
-
-      if ((var3 & 16384) != 0) {
-         Players.playerMovementSpeeds[var1] = (MoveSpeed)SpriteMask.findEnumerated(VarcInt.method938(), var0.readByteAdd());
-      }
-
-      if ((var3 & 16) != 0) {
-         var5 = var0.readUnsignedShort();
-         if (var5 == 65535) {
-            var5 = -1;
-         }
-
-         var13 = var0.readUnsignedByteNeg();
-         Language.performPlayerAnimation(var2, var5, var13);
-      }
-
-      if ((var3 & 2048) != 0) {
-         var2.recolourStartCycle = Client.cycle + var0.readUnsignedShort();
-         var2.recolourEndCycle = Client.cycle + var0.readUnsignedShortLE();
-         var2.recolourHue = var0.readByteAdd();
-         var2.recolourSaturation = var0.readByte();
-         var2.recolourLuminance = var0.readByteNeg();
-         var2.recolourAmount = (byte)var0._readUnsignedByteSub();
-      }
-
-      if ((var3 & 128) != 0) {
-         var2.movingOrientation = var0.readUnsignedShortAdd();
-         if (var2.pathLength == 0) {
-            var2.orientation = var2.movingOrientation;
-            var2.method507();
-         }
-      }
-
-      if ((var3 & 32) != 0) {
-         var2.overheadText = var0.readStringCp1252NullTerminated();
-         if (var2.overheadText.charAt(0) == '~') {
-            var2.overheadText = var2.overheadText.substring(1);
-            MusicPatchNode.addGameMessage(2, var2.username.getName(), var2.overheadText);
-         } else if (var2 == BuddyRankComparator.localPlayer) {
-            MusicPatchNode.addGameMessage(2, var2.username.getName(), var2.overheadText);
-         }
-
-         var2.isAutoChatting = false;
-         var2.field952 = 0;
-         var2.field945 = 0;
-         var2.overheadTextCyclesRemaining = 150;
-      }
-
-      if ((var3 & 1024) != 0) {
-         for(var5 = 0; var5 < 3; ++var5) {
-            var2.actions[var5] = var0.readStringCp1252NullTerminated();
-         }
-      }
-
-      if ((var3 & 8) != 0) {
-         var2.targetIndex = var0.readUnsignedShortLE();
-         var2.targetIndex += var0.readUnsignedByteNeg() << 16;
-         var5 = 16777215;
-         if (var2.targetIndex == var5) {
-            var2.targetIndex = -1;
-         }
-      }
-
-      if (var2.hasMovementPending) {
-         if (var4 == 127) {
-            var2.resetPath(var2.tileX, var2.tileY);
-         } else {
-            MoveSpeed var16;
-            if (var4 != MoveSpeed.STATIONARY.speed) {
-               var16 = (MoveSpeed)SpriteMask.findEnumerated(VarcInt.method938(), var4);
-            } else {
-               var16 = Players.playerMovementSpeeds[var1];
-            }
-
-            var2.move(var2.tileX, var2.tileY, var16);
-         }
-      }
-
-   }
-
-   @ObfuscatedName("md")
-   @ObfuscatedSignature(
-      descriptor = "(IIIILsn;Llx;I)V",
-      garbageValue = "1091031252"
-   )
-   @Export("worldToMinimap")
-   static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
-      int var6 = var3 * var3 + var2 * var2;
-      if (var6 > 4225 && var6 < 90000) {
-         int var7 = Client.camAngleY & 2047;
-         int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
-         int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
-         int var10 = var9 * var2 + var3 * var8 >> 16;
-         int var11 = var3 * var9 - var8 * var2 >> 16;
-         double var12 = Math.atan2((double)var10, (double)var11);
-         int var14 = var5.width / 2 - 25;
-         int var15 = (int)(Math.sin(var12) * (double)var14);
-         int var16 = (int)(Math.cos(var12) * (double)var14);
-         byte var17 = 20;
-         class136.redHintArrowSprite.method2542(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
+   static float method1297(class427 var0, float var1, float var2, float var3) {
+      float var4 = class424.method2245(var0.field3813, var0.field3812, var1);
+      if (Math.abs(var4) < class121.field1180) {
+         return var1;
       } else {
-         class149.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
-      }
+         float var5 = class424.method2245(var0.field3813, var0.field3812, var2);
+         if (Math.abs(var5) < class121.field1180) {
+            return var2;
+         } else {
+            float var6 = 0.0F;
+            float var7 = 0.0F;
+            float var8 = 0.0F;
+            float var13 = 0.0F;
+            boolean var14 = true;
+            boolean var15 = false;
 
+            do {
+               var15 = false;
+               if (var14) {
+                  var6 = var1;
+                  var13 = var4;
+                  var7 = var2 - var1;
+                  var8 = var7;
+                  var14 = false;
+               }
+
+               if (Math.abs(var13) < Math.abs(var5)) {
+                  var1 = var2;
+                  var2 = var6;
+                  var6 = var1;
+                  var4 = var5;
+                  var5 = var13;
+                  var13 = var4;
+               }
+
+               float var16 = class121.field1181 * Math.abs(var2) + var3 * 0.5F;
+               float var17 = 0.5F * (var6 - var2);
+               boolean var18 = Math.abs(var17) > var16 && var5 != 0.0F;
+               if (var18) {
+                  if (Math.abs(var8) >= var16 && Math.abs(var4) > Math.abs(var5)) {
+                     float var12 = var5 / var4;
+                     float var9;
+                     float var10;
+                     if (var6 == var1) {
+                        var9 = var12 * var17 * 2.0F;
+                        var10 = 1.0F - var12;
+                     } else {
+                        var10 = var4 / var13;
+                        float var11 = var5 / var13;
+                        var9 = ((var10 - var11) * var17 * 2.0F * var10 - (var2 - var1) * (var11 - 1.0F)) * var12;
+                        var10 = (var10 - 1.0F) * (var11 - 1.0F) * (var12 - 1.0F);
+                     }
+
+                     if ((double)var9 > 0.0D) {
+                        var10 = -var10;
+                     } else {
+                        var9 = -var9;
+                     }
+
+                     var12 = var8;
+                     var8 = var7;
+                     if (var9 * 2.0F < var17 * 3.0F * var10 - Math.abs(var16 * var10) && var9 < Math.abs(var12 * 0.5F * var10)) {
+                        var7 = var9 / var10;
+                     } else {
+                        var7 = var17;
+                        var8 = var17;
+                     }
+                  } else {
+                     var7 = var17;
+                     var8 = var17;
+                  }
+
+                  var1 = var2;
+                  var4 = var5;
+                  if (Math.abs(var7) > var16) {
+                     var2 += var7;
+                  } else if ((double)var17 > 0.0D) {
+                     var2 += var16;
+                  } else {
+                     var2 -= var16;
+                  }
+
+                  var5 = class424.method2245(var0.field3813, var0.field3812, var2);
+                  if ((double)(var5 * (var13 / Math.abs(var13))) > 0.0D) {
+                     var14 = true;
+                     var15 = true;
+                  } else {
+                     var15 = true;
+                  }
+               }
+            } while(var15);
+
+            return var2;
+         }
+      }
    }
 }
