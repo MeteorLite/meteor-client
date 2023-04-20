@@ -57,7 +57,7 @@ public abstract class RSKeyHandlerMixin implements RSKeyHandler
 	}
 
 	@Inject
-	@Replace("focusLost")
+	@MethodHook("focusLost")
 	public void onFocusLost(FocusEvent focusEvent)
 	{
 		final FocusChanged focusChanged = new FocusChanged(false);
