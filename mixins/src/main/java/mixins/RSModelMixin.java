@@ -430,4 +430,10 @@ public abstract class RSModelMixin implements RSModel
 		lastOrientation = orientation;
 		return getAABBMap().get(lastOrientation);
 	}
+
+	@Inject
+	@Override
+	public int getDiameter() {
+		return getRadius() * 2;
+	}
 }
