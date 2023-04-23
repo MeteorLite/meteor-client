@@ -141,6 +141,7 @@ import net.runelite.client.plugins.kourendlibrary.KourendLibraryPlugin
 import net.runelite.client.plugins.npcstatus.NpcAttackTimersPlugin
 import net.runelite.client.plugins.raids.RaidsPlugin
 import net.runelite.client.plugins.titheextended.TithePlugin
+import meteor.plugins.disablerenderer.DisableRenderingPlugin
 import rs117.hd.HdPlugin
 import java.io.File
 import java.net.JarURLConnection
