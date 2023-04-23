@@ -413,6 +413,10 @@ object PluginManager {
         return plugins.filterIsInstance<T>().first()
     }
 
+    inline fun <reified T : Plugin> getOrNull(): T? {
+        return plugins.filterIsInstance<T>().firstOrNull()
+    }
+
     inline fun <reified T : Plugin> restart() {
         val it = plugins.filterIsInstance<T>().first()
         stop(it)
