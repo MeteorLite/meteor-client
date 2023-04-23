@@ -203,6 +203,7 @@ object PluginManager {
             init<DefaultWorldPlugin>()
             init<DemonicGorillaPlugin>()
             init<DevToolsPlugin>()
+            init<DisableRendererPlugin>()
             init<DriftNetPlugin>()
             init<ExamplePlugin>()
             init<EmojiPlugin>()
