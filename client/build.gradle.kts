@@ -17,6 +17,7 @@ val majorRelease by rootProject.extra { "1.7" }
 val release by rootProject.extra { "2" }
 group = "meteor"
 version = "${majorRelease.split(".")[0]}.${majorRelease.split(".")[1]}.$release"
+
 publishing {
     repositories {
         mavenLocal()
@@ -25,12 +26,17 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = rootProject.group.toString()
-            artifactId = project.name
-            version = rootProject.project.version.toString()
-            from(components["java"])
+            artifactId = project.name + "-all"
+            version = "0.0.0"
+            afterEvaluate {
+                val shadowJar = tasks.findByName("shadowJar")
+                if (shadowJar == null) from(components["java"])
+                else artifact(shadowJar)
+            }
         }
     }
 }
+
 repositories {
     mavenLocal()
     maven {url = uri("https://androidx.dev/storage/compose-compiler/repository")}
@@ -149,9 +155,11 @@ compose {
     }
 }
 
+
 tasks {
-    named<ShadowJar>("shadowJar") {
-        archiveBaseName.set("shadow")
+    shadowJar {
+        baseName = "meteor-client-all"
+        classifier = ""
         mergeServiceFiles()
         manifest {
             attributes(mapOf("Main-Class" to "meteor.Main"))

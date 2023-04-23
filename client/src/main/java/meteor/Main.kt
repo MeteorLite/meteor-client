@@ -325,8 +325,8 @@ object Main : ApplicationScope, EventSubscriber() {
             if (it.data.group == Configuration.MASTER_GROUP)
                 if (it.data.key == "fullscreen") {
                     shouldExit = false
-                    val gpuIsRunning = PluginManager.get<GpuPlugin>().running
-                    val gpuHdIsRunning = PluginManager.get<HdPlugin>().running
+                    val gpuIsRunning = PluginManager.getOrNull<GpuPlugin>()?.running == true
+                    val gpuHdIsRunning = PluginManager.getOrNull<HdPlugin>()?.running == true
                     var enabledGPUPlugin = false
                     if (gpuIsRunning) {
                         PluginManager.stop(PluginManager.get<GpuPlugin>())

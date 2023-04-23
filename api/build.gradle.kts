@@ -1,7 +1,6 @@
 plugins {
     java
     kotlin("jvm")
-    `maven-publish`
 }
 
 group = "meteor"
@@ -9,20 +8,7 @@ version = "1.0.4"
 repositories {
     mavenCentral()
 }
-publishing {
-    repositories {
-        mavenLocal()
-    }
 
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = rootProject.group.toString()
-            artifactId = project.name
-            version = rootProject.project.version.toString()
-            from(components["java"])
-        }
-    }
-}
 dependencies {
     implementation(project(":annotations"))
     implementation(project(":logger"))
