@@ -402,7 +402,7 @@ object PluginManager {
                     ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
                 plugins.add(plugin)
-                classLoaders[plugin.getName().orEmpty()] = cl;
+                classLoaders[plugin.getName()] = cl;
                 runningMap[plugin] = plugin.shouldEnable()
                 if (runningMap[plugin]!!)
                     start(plugin)
