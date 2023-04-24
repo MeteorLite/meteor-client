@@ -5,6 +5,7 @@ import net.runelite.client.plugins.questhelper.QuestHelperPlugin
 import net.runelite.client.plugins.tileman.TilemanModePlugin
 import meteor.Configuration
 import meteor.Main
+import meteor.Main.logger
 import meteor.Main.pluginsEnabled
 import meteor.config.ConfigManager
 import meteor.external.ExternalManager
@@ -155,7 +156,7 @@ object PluginManager {
     var plugins = mutableStateListOf<Plugin>()
     val externalsDir = File(Configuration.METEOR_DIR, "externalplugins")
     val runningMap = HashMap<Plugin, Boolean>()
-
+    val classLoaders = HashMap<String, URLClassLoader>();
     init {
         init<Meteor>()
         if (pluginsEnabled) {
@@ -331,6 +332,18 @@ object PluginManager {
                     manifest?.let { manifest ->
                         if (manifest.mainAttributes.getValue("Main-Class") == plugin.javaClass.name) {
                             stop(plugin)
+
+                            try
+                            {
+                                var cl = classLoaders.remove(plugin.getName());
+                                cl?.close();
+
+                            }catch (e: Exception)
+                            {
+                                logger.error("Failed to close class loader for " + plugin.getName())
+                                e.printStackTrace();
+                            }
+
                             plugins.remove(plugin)
                             initExternalPlugin(it, manifest)
                             return
@@ -374,9 +387,9 @@ object PluginManager {
 
     private fun initExternalPlugin(jar: File, manifest: Manifest) {
         try {
-            URLClassLoader(arrayOf(jar.toURI().toURL())).use { classLoader ->
-                val plugin =
-                    classLoader.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
+            var cl = URLClassLoader(arrayOf(jar.toURI().toURL()));
+            val plugin =
+                    cl.loadClass(manifest.mainAttributes.getValue("Main-Class")).getDeclaredConstructor()
                         .newInstance() as Plugin
                 if (plugins.any { p -> p.getName().equals(plugin.getName()) })
                     throw RuntimeException("Duplicate plugin (${plugin.getName()}) not allowed")
@@ -389,10 +402,11 @@ object PluginManager {
                     ConfigManager.setConfiguration(plugin.javaClass.simpleName, "pluginEnabled", false)
 
                 plugins.add(plugin)
+                classLoaders[plugin.getName().orEmpty()] = cl;
                 runningMap[plugin] = plugin.shouldEnable()
                 if (runningMap[plugin]!!)
                     start(plugin)
-            }
+
         } catch (e: Exception) {
             e.printStackTrace()
             if (e is java.lang.RuntimeException) {
@@ -445,9 +459,17 @@ object PluginManager {
     }
 
     fun start(plugin: Plugin) {
-        plugin.start()
-        plugin.onStart()
-        runningMap[plugin] = true
+        try
+        {
+            plugin.start()
+            plugin.onStart()
+            runningMap[plugin] = true
+        }catch (e:Throwable)
+        {
+            runningMap[plugin] = false
+            logger.error("FAILED TO START PLUGIN")
+            e.printStackTrace()
+        }
     }
 
     fun shutdown() {
