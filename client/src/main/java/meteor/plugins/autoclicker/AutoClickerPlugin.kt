@@ -5,6 +5,7 @@ import meteor.input.KeyManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
 import meteor.rs.ClientThread
+import meteor.util.CalcUtils
 import meteor.util.HotkeyListener
 import net.runelite.api.GameState
 import net.runelite.api.Point
@@ -150,13 +151,7 @@ class AutoClickerPlugin : Plugin() {
         }
     }
     val betweenClicksDelay: Long
-        get() = if (config.weightedDistribution()) clamp(-ln(abs(random!!.nextGaussian())) * config.deviation() + config.target()).toLong() else clamp(
-            (random!!.nextGaussian() * config.deviation() + config.target()).roundToLong().toDouble()
-        ).toLong()
-
-    private fun clamp(`val`: Double): Double {
-        return max(config.minDelay().toDouble(), min(config.maxDelay().toDouble(), `val`))
-    }
+        get() = CalcUtils.getHumanizedDelay(config.weightedDistribution(), config.minDelay(), config.maxDelay(), config.deviation(), config.target()).roundToLong()
 
     fun click(p: Point?) {
         assert(!client.isClientThread)
