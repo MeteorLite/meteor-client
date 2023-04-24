@@ -25,7 +25,7 @@ open class Plugin(override var daemon: Boolean = false) : EventSubscriber(daemon
         return javaClass.getAnnotation(PluginDescriptor::class.java)
     }
 
-    open fun getName(): String? {
+    open fun getName(): String {
         return getDescriptor().name
     }
 
