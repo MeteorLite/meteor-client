@@ -142,6 +142,7 @@ import net.runelite.client.plugins.kourendlibrary.KourendLibraryPlugin
 import net.runelite.client.plugins.npcstatus.NpcAttackTimersPlugin
 import net.runelite.client.plugins.raids.RaidsPlugin
 import net.runelite.client.plugins.titheextended.TithePlugin
+import meteor.plugins.disablerenderer.DisableRenderingPlugin
 import rs117.hd.HdPlugin
 import java.io.File
 import java.net.JarURLConnection
@@ -204,6 +205,7 @@ object PluginManager {
             init<DefaultWorldPlugin>()
             init<DemonicGorillaPlugin>()
             init<DevToolsPlugin>()
+            init<DisableRenderingPlugin>()
             init<DriftNetPlugin>()
             init<ExamplePlugin>()
             init<EmojiPlugin>()
