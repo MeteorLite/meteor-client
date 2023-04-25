@@ -8,6 +8,7 @@ import meteor.api.Items
 import meteor.api.ClientPackets
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
+import meteor.util.CalcUtils
 import net.runelite.api.Skill
 import java.util.*
 import kotlin.math.roundToInt
@@ -27,7 +28,7 @@ class AutoAlchPlugin : Plugin() {
     override fun onStatChanged(it: StatChanged) {
         if (it.skill == Skill.MAGIC) {
             if (it.xp != 0) {
-                timeout = delay()
+                timeout = delay
             }
         }
     }
@@ -50,12 +51,6 @@ class AutoAlchPlugin : Plugin() {
         timeout--
     }
 
-    fun delay(): Int {
-        var delay: Int
-        do {
-            val random = rand.nextGaussian() * 1 + 3
-            delay = random.roundToInt()
-        } while (delay <= 1 || delay >= 9)
-        return delay
-    }
+    val delay: Int
+        get() = CalcUtils.getHumanizedTickDelay(false, 1, 9, 1, 3)
 }
