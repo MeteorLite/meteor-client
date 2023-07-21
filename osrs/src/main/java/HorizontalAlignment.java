@@ -3,59 +3,63 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hd")
+@ObfuscatedName("hz")
 @Implements("HorizontalAlignment")
-public enum HorizontalAlignment implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lhd;"
-   )
-   field1547(0, 0),
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "Lhd;"
-    )
-    HorizontalAlignment_centered(2, 1),
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lhd;"
-   )
-   field1549(1, 2);
+public enum HorizontalAlignment implements class372 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lhz;"
+	)
+	field1558(1, 0),
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lhz;"
+	)
+	@Export("HorizontalAlignment_centered")
+	HorizontalAlignment_centered(0, 1),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lhz;"
+	)
+	field1557(2, 2);
 
-    @ObfuscatedName("az")
-    public static String userHomeDirectory;
-    @ObfuscatedName("tt")
-    @ObfuscatedSignature(
-            descriptor = "Lbu;"
-    )
-    static PcmPlayer pcmPlayer1;
-    @ObfuscatedName("ac")
-    public final int value;
-    @ObfuscatedName("au")
-    final int id;
+	@ObfuscatedName("am")
+	@Export("value")
+	public final int value;
+	@ObfuscatedName("as")
+	@Export("id")
+	final int id;
 
-   HorizontalAlignment(int var3, int var4) {
-      this.value = var3;
-      this.id = var4;
-   }
+	HorizontalAlignment(int var3, int var4) {
+		this.value = var3;
+		this.id = var4;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "741942848"
-    )
-    public int rsOrdinal() {
-      return this.id;
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.id;
+	}
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(ZZB)I",
-      garbageValue = "-35"
-   )
-   public static int method1019(boolean var0, boolean var1) {
-      byte var2 = 0;
-      int var3 = var2 + NetCache.NetCache_pendingPriorityWritesCount + NetCache.NetCache_pendingPriorityResponsesCount;
-      return var3;
-   }
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-858932897"
+	)
+	public static boolean method960() {
+		return !class306.field2755.isEmpty();
+	}
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "(Lbj;I)V",
+		garbageValue = "-539334926"
+	)
+	public static final void method959(class51 var0) {
+		class309.pcmPlayerProvider = var0;
+	}
 }

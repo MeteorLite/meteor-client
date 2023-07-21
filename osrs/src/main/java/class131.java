@@ -1,83 +1,111 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
-public class class131 {
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(B)Lqx;",
-      garbageValue = "-20"
-   )
-   public static class424 method767() {
-      class424[] var0 = class424.field3787;
-      synchronized(class424.field3787) {
-         if (class424.field3786 == 0) {
-            return new class424();
-         } else {
-            class424.field3787[--class424.field3786].method2244();
-            return class424.field3787[class424.field3786];
-         }
-      }
-   }
+@ObfuscatedName("fa")
+public class class131 implements class372 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lfa;"
+	)
+	static final class131 field1255;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lfa;"
+	)
+	static final class131 field1256;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lfa;"
+	)
+	static final class131 field1253;
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lfa;"
+	)
+	static final class131 field1252;
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Lfa;"
+	)
+	static final class131 field1254;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Lfa;"
+	)
+	static final class131 field1251;
+	@ObfuscatedName("dr")
+	@ObfuscatedSignature(
+		descriptor = "[Lud;"
+	)
+	@Export("worldSelectBackSprites")
+	static SpritePixels[] worldSelectBackSprites;
+	@ObfuscatedName("ff")
+	@ObfuscatedSignature(
+		descriptor = "Lny;"
+	)
+	@Export("archive10")
+	static Archive archive10;
+	@ObfuscatedName("ag")
+	final int field1257;
+	@ObfuscatedName("az")
+	final int field1259;
+	@ObfuscatedName("av")
+	final int field1258;
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(ILch;ZI)I",
-      garbageValue = "1883190484"
-   )
-   static int method766(int var0, Script var1, boolean var2) {
-      int var3 = -1;
-      Widget var4;
-      if (var0 >= 2000) {
-         var0 -= 1000;
-         var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-         var4 = class165.getWidget(var3);
-      } else {
-         var4 = var2 ? SoundSystem.scriptDotWidget : class1.scriptActiveWidget;
-      }
+	static {
+		field1255 = new class131(0, 0, (String)null, 0);
+		field1256 = new class131(1, 1, (String)null, 9);
+		field1253 = new class131(2, 2, (String)null, 3);
+		field1252 = new class131(3, 3, (String)null, 6);
+		field1254 = new class131(4, 4, (String)null, 1);
+		field1251 = new class131(5, 5, (String)null, 3);
+	}
 
-      if (var0 == 1000) {
-         Interpreter.Interpreter_intStackSize -= 4;
-         var4.rawX = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-         var4.rawY = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-         var4.xAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-         var4.yAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-         class144.invalidateWidget(var4);
-         ScriptFrame.client.alignWidget(var4);
-         if (var3 != -1 && var4.type == 0) {
-            WallDecoration.revalidateWidgetScroll(VerticalAlignment.Widget_interfaceComponents[var3 >> 16], var4, false);
-         }
+	class131(int var1, int var2, String var3, int var4) {
+		this.field1257 = var1;
+		this.field1259 = var2;
+		this.field1258 = var4;
+	}
 
-         return 1;
-      } else if (var0 == 1001) {
-         Interpreter.Interpreter_intStackSize -= 4;
-         var4.rawWidth = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-         var4.rawHeight = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-         var4.widthAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-         var4.heightAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-         class144.invalidateWidget(var4);
-         ScriptFrame.client.alignWidget(var4);
-         if (var3 != -1 && var4.type == 0) {
-            WallDecoration.revalidateWidgetScroll(VerticalAlignment.Widget_interfaceComponents[var3 >> 16], var4, false);
-         }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1580346823"
+	)
+	int method719() {
+		return this.field1258;
+	}
 
-         return 1;
-      } else if (var0 == 1003) {
-         boolean var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
-         if (var5 != var4.isHidden) {
-            var4.isHidden = var5;
-            class144.invalidateWidget(var4);
-         }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1259;
+	}
 
-         return 1;
-      } else if (var0 == 1005) {
-         var4.noClickThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
-         return 1;
-      } else if (var0 == 1006) {
-         var4.noScrollThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
-         return 1;
-      } else {
-         return 2;
-      }
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lia;",
+		garbageValue = "-1250585364"
+	)
+	public static FloorOverlayDefinition method718(int var0) {
+		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0);
+			var1 = new FloorOverlayDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2), var0);
+			}
+
+			var1.postDecode();
+			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
 }

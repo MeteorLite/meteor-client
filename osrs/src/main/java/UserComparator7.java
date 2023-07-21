@@ -3,159 +3,233 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eu")
+@ObfuscatedName("eq")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-    @ObfuscatedName("af")
-    final boolean reversed;
+	@ObfuscatedName("ww")
+	@ObfuscatedSignature(
+		descriptor = "Loq;"
+	)
+	public static class370 field1171;
+	@ObfuscatedName("aw")
+	@Export("reversed")
+	final boolean reversed;
 
-   public UserComparator7(boolean var1) {
-      this.reversed = var1;
-   }
+	public UserComparator7(boolean var1) {
+		this.reversed = var1;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lpb;Lpb;B)I",
-            garbageValue = "-76"
-    )
-    int compareBuddy(Buddy var1, Buddy var2) {
-      if (var1.world != 0 && var2.world != 0) {
-         return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
-      } else {
-         return this.compareUser(var1, var2);
-      }
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lqa;Lqa;B)I",
+		garbageValue = "92"
+	)
+	@Export("compareBuddy")
+	int compareBuddy(Buddy var1, Buddy var2) {
+		if (var1.world != 0 && var2.world != 0) {
+			return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
+		} else {
+			return this.compareUser(var1, var2);
+		}
+	}
 
-    @ObfuscatedName("compare")
-    public int compare(Object var1, Object var2) {
-      return this.compareBuddy((Buddy)var1, (Buddy)var2);
-   }
+	@Export("compare")
+	@ObfuscatedName("compare")
+	public int compare(Object var1, Object var2) {
+		return this.compareBuddy((Buddy)var1, (Buddy)var2);
+	}
 
-   @ObfuscatedName("af")
-   public static final int method693(double var0, double var2, double var4) {
-      double var6 = var4;
-      double var8 = var4;
-      double var10 = var4;
-      if (var2 != 0.0D) {
-         double var12;
-         if (var4 < 0.5D) {
-            var12 = var4 * (var2 + 1.0D);
-         } else {
-            var12 = var4 + var2 - var2 * var4;
-         }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lnd;Lnd;B)V",
+		garbageValue = "7"
+	)
+	public static void method668(AbstractArchive var0, AbstractArchive var1) {
+		World.KitDefinition_archive = var0;
+		KitDefinition.KitDefinition_modelsArchive = var1;
+		KitDefinition.KitDefinition_fileCount = World.KitDefinition_archive.getGroupFileCount(3);
+	}
 
-         double var14 = var4 * 2.0D - var12;
-         double var16 = var0 + 0.3333333333333333D;
-         if (var16 > 1.0D) {
-            --var16;
-         }
+	@ObfuscatedName("ji")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "1065913503"
+	)
+	static final void method669(int var0, int var1, int var2, int var3) {
+		Client.overheadTextLimit = 0;
+		boolean var4 = false;
+		int var5 = -1;
+		int var6 = -1;
+		int var7 = Players.Players_count;
+		int[] var8 = Players.Players_indices;
 
-         double var20 = var0 - 0.3333333333333333D;
-         if (var20 < 0.0D) {
-            ++var20;
-         }
+		int var9;
+		for (var9 = 0; var9 < var7 + Client.npcCount; ++var9) {
+			Object var10;
+			if (var9 < var7) {
+				var10 = Client.players[var8[var9]];
+				if (var8[var9] == Client.combatTargetPlayerIndex) {
+					var4 = true;
+					var5 = var9;
+					continue;
+				}
 
-         if (var16 * 6.0D < 1.0D) {
-            var6 = 6.0D * (var12 - var14) * var16 + var14;
-         } else if (var16 * 2.0D < 1.0D) {
-            var6 = var12;
-         } else if (var16 * 3.0D < 2.0D) {
-            var6 = var14 + (0.6666666666666666D - var16) * (var12 - var14) * 6.0D;
-         } else {
-            var6 = var14;
-         }
+				if (var10 == class136.localPlayer) {
+					var6 = var9;
+					continue;
+				}
+			} else {
+				var10 = Client.npcs[Client.npcIndices[var9 - var7]];
+			}
 
-         if (var0 * 6.0D < 1.0D) {
-            var8 = var14 + 6.0D * (var12 - var14) * var0;
-         } else if (var0 * 2.0D < 1.0D) {
-            var8 = var12;
-         } else if (var0 * 3.0D < 2.0D) {
-            var8 = var14 + 6.0D * (var12 - var14) * (0.6666666666666666D - var0);
-         } else {
-            var8 = var14;
-         }
+			class303.drawActor2d((Actor)var10, var9, var0, var1, var2, var3);
+		}
 
-         if (var20 * 6.0D < 1.0D) {
-            var10 = 6.0D * (var12 - var14) * var20 + var14;
-         } else if (var20 * 2.0D < 1.0D) {
-            var10 = var12;
-         } else if (var20 * 3.0D < 2.0D) {
-            var10 = (0.6666666666666666D - var20) * (var12 - var14) * 6.0D + var14;
-         } else {
-            var10 = var14;
-         }
-      }
+		if (Client.field382 && var6 != -1) {
+			class303.drawActor2d(class136.localPlayer, var6, var0, var1, var2, var3);
+		}
 
-      int var22 = (int)(var6 * 256.0D);
-      int var13 = (int)(var8 * 256.0D);
-      int var23 = (int)(var10 * 256.0D);
-      int var15 = var23 + (var13 << 8) + (var22 << 16);
-      return var15;
-   }
+		if (var4) {
+			class303.drawActor2d(Client.players[Client.combatTargetPlayerIndex], var5, var0, var1, var2, var3);
+		}
 
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-1532029373"
-   )
-   public static int get3dZoom() {
-      return Rasterizer3D.clips.viewportZoom;
-   }
+		for (var9 = 0; var9 < Client.overheadTextLimit; ++var9) {
+			int var21 = Client.overheadTextXs[var9];
+			int var11 = Client.overheadTextYs[var9];
+			int var12 = Client.overheadTextXOffsets[var9];
+			int var13 = Client.overheadTextAscents[var9];
+			boolean var14 = true;
 
-   @ObfuscatedName("bv")
-   @ObfuscatedSignature(
-      descriptor = "(ILch;ZI)I",
-      garbageValue = "-1934960343"
-   )
-   static int method694(int var0, Script var1, boolean var2) {
-      return 2;
-   }
+			while (var14) {
+				var14 = false;
 
-   @ObfuscatedName("ky")
-   @ObfuscatedSignature(
-      descriptor = "(ILjava/lang/String;I)V",
-      garbageValue = "129719618"
-   )
-   static void method692(int var0, String var1) {
-      int var2 = Players.Players_count;
-      int[] var3 = Players.Players_indices;
-      boolean var4 = false;
-      Username var5 = new Username(var1, class70.loginType);
+				for (int var15 = 0; var15 < var9; ++var15) {
+					if (var11 + 2 > Client.overheadTextYs[var15] - Client.overheadTextAscents[var15] && var11 - var13 < Client.overheadTextYs[var15] + 2 && var21 - var12 < Client.overheadTextXs[var15] + Client.overheadTextXOffsets[var15] && var12 + var21 > Client.overheadTextXs[var15] - Client.overheadTextXOffsets[var15] && Client.overheadTextYs[var15] - Client.overheadTextAscents[var15] < var11) {
+						var11 = Client.overheadTextYs[var15] - Client.overheadTextAscents[var15];
+						var14 = true;
+					}
+				}
+			}
 
-      for(int var6 = 0; var6 < var2; ++var6) {
-         Player var7 = Client.players[var3[var6]];
-         if (var7 != null && var7 != MusicPatchNode.localPlayer && var7.username != null && var7.username.equals(var5)) {
-            PacketBufferNode var8;
-            if (var0 == 1) {
-               var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.writeByteSub(0);
-               var8.packetBuffer.writeShort(var3[var6]);
-               Client.packetWriter.addNode(var8);
-            } else if (var0 == 4) {
-               var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.writeByteNeg(0);
-               var8.packetBuffer.writeShortLE(var3[var6]);
-               Client.packetWriter.addNode(var8);
-            } else if (var0 == 6) {
-               var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.writeShortAdd(var3[var6]);
-               var8.packetBuffer.writeByteNeg(0);
-               Client.packetWriter.addNode(var8);
-            } else if (var0 == 7) {
-               var8 = class330.getPacketBufferNode(ClientPacket.OPPLAYER7, Client.packetWriter.isaacCipher);
-               var8.packetBuffer.writeShortAddLE(var3[var6]);
-               var8.packetBuffer.writeByteAdd(0);
-               Client.packetWriter.addNode(var8);
-            }
+			Client.viewportTempX = Client.overheadTextXs[var9];
+			Client.viewportTempY = Client.overheadTextYs[var9] = var11;
+			String var22 = Client.field599[var9];
+			if (Client.chatEffects == 0) {
+				int var16 = 16776960;
+				if (Client.overheadTextColors[var9] < 6) {
+					var16 = Client.field577[Client.overheadTextColors[var9]];
+				}
 
-            var4 = true;
-            break;
-         }
-      }
+				if (Client.overheadTextColors[var9] == 6) {
+					var16 = Client.viewportDrawCount % 20 < 10 ? 16711680 : 16776960;
+				}
 
-      if (!var4) {
-         UserComparator5.addGameMessage(4, "", "Unable to find " + var1);
-      }
+				if (Client.overheadTextColors[var9] == 7) {
+					var16 = Client.viewportDrawCount % 20 < 10 ? 255 : '\uffff';
+				}
 
-   }
+				if (Client.overheadTextColors[var9] == 8) {
+					var16 = Client.viewportDrawCount % 20 < 10 ? '뀀' : 8454016;
+				}
+
+				int var17;
+				if (Client.overheadTextColors[var9] == 9) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					if (var17 < 50) {
+						var16 = var17 * 1280 + 16711680;
+					} else if (var17 < 100) {
+						var16 = 16776960 - (var17 - 50) * 327680;
+					} else if (var17 < 150) {
+						var16 = (var17 - 100) * 5 + 65280;
+					}
+				}
+
+				if (Client.overheadTextColors[var9] == 10) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					if (var17 < 50) {
+						var16 = var17 * 5 + 16711680;
+					} else if (var17 < 100) {
+						var16 = 16711935 - (var17 - 50) * 327680;
+					} else if (var17 < 150) {
+						var16 = (var17 - 100) * 327680 + 255 - (var17 - 100) * 5;
+					}
+				}
+
+				if (Client.overheadTextColors[var9] == 11) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					if (var17 < 50) {
+						var16 = 16777215 - var17 * 327685;
+					} else if (var17 < 100) {
+						var16 = (var17 - 50) * 327685 + 65280;
+					} else if (var17 < 150) {
+						var16 = 16777215 - (var17 - 100) * 327680;
+					}
+				}
+
+				int var18;
+				if (Client.overheadTextColors[var9] == 12 && Client.field591[var9] == null) {
+					var17 = var22.length();
+					Client.field591[var9] = new int[var17];
+
+					for (var18 = 0; var18 < var17; ++var18) {
+						int var19 = (int)((float)var18 / (float)var17 * 64.0F);
+						int var20 = var19 << 10 | 896 | 64;
+						Client.field591[var9][var18] = class467.field3899[var20];
+					}
+				}
+
+				if (Client.overheadTextEffects[var9] == 0) {
+					Calendar.fontBold12.method2059(var22, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.field591[var9]);
+				}
+
+				if (Client.overheadTextEffects[var9] == 1) {
+					Calendar.fontBold12.method2056(var22, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount, Client.field591[var9]);
+				}
+
+				if (Client.overheadTextEffects[var9] == 2) {
+					Calendar.fontBold12.method2057(var22, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount, Client.field591[var9]);
+				}
+
+				if (Client.overheadTextEffects[var9] == 3) {
+					Calendar.fontBold12.method2058(var22, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var9], Client.field591[var9]);
+				}
+
+				if (Client.overheadTextEffects[var9] == 4) {
+					var17 = (150 - Client.overheadTextCyclesRemaining[var9]) * (Calendar.fontBold12.stringWidth(var22) + 100) / 150;
+					Rasterizer2D.Rasterizer2D_expandClip(var0 + Client.viewportTempX - 50, var1, var0 + Client.viewportTempX + 50, var3 + var1);
+					Calendar.fontBold12.method2060(var22, var0 + Client.viewportTempX + 50 - var17, Client.viewportTempY + var1, var16, 0, Client.field591[var9]);
+					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
+				}
+
+				if (Client.overheadTextEffects[var9] == 5) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					var18 = 0;
+					if (var17 < 25) {
+						var18 = var17 - 25;
+					} else if (var17 > 125) {
+						var18 = var17 - 125;
+					}
+
+					Rasterizer2D.Rasterizer2D_expandClip(var0, Client.viewportTempY + var1 - Calendar.fontBold12.ascent - 1, var0 + var2, Client.viewportTempY + var1 + 5);
+					Calendar.fontBold12.method2059(var22, var0 + Client.viewportTempX, var18 + Client.viewportTempY + var1, var16, 0, Client.field591[var9]);
+					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
+				}
+			} else {
+				Calendar.fontBold12.drawCentered(var22, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0);
+			}
+		}
+
+	}
+
+	@ObfuscatedName("ow")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1051570454"
+	)
+	static void method670() {
+		if (Client.oculusOrbState == 1) {
+			Client.oculusOrbOnLocalPlayer = true;
+		}
+
+	}
 }

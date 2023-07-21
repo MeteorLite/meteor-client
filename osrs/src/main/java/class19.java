@@ -4,92 +4,119 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("as")
+@ObfuscatedName("ao")
 public class class19 implements Callable {
-   @ObfuscatedName("bw")
-   @ObfuscatedSignature(
-      descriptor = "Lqu;"
-   )
-   static Bounds field60;
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lay;"
-   )
-   final class10 field61;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-           descriptor = "Lag;"
-   )
-   @ObfuscatedName("this$0")
-   final class14 this$0;
+	@ObfuscatedName("aj")
+	@Export("Tiles_shapes")
+	static byte[][][] Tiles_shapes;
+	@ObfuscatedName("ks")
+	@Export("cameraPitch")
+	static int cameraPitch;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Laq;"
+	)
+	final class10 field57;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Laa;"
+	)
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class14 this$0;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lag;Lay;)V"
-   )
-   class19(class14 var1, class10 var2) {
-      this.this$0 = var1;
-      this.field61 = var2;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Laa;Laq;)V"
+	)
+	class19(class14 var1, class10 var2) {
+		this.this$0 = var1;
+		this.field57 = var2;
+	}
 
-    @ObfuscatedName("call")
-    public Object call() throws Exception {
-      try {
-         while(this.field61.method37()) {
-            PlayerComposition.method1704(10L);
-         }
-      } catch (IOException var2) {
-         return new class20("Error servicing REST query: " + var2.getMessage());
-      }
+	@Export("call")
+	@ObfuscatedName("call")
+	public Object call() throws Exception {
+		try {
+			while (this.field57.method34()) {
+				class13.method44(10L);
+			}
+		} catch (IOException var2) {
+			return new class20("Error servicing REST query: " + var2.getMessage());
+		}
 
-      return this.field61.method35();
-   }
+		return this.field57.method35();
+	}
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "([BIIIIIIIII[Lif;I)V",
-      garbageValue = "146668751"
-   )
-   static final void method78(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, CollisionMap[] var10) {
-      int var12;
-      for(int var11 = 0; var11 < 8; ++var11) {
-         for(var12 = 0; var12 < 8; ++var12) {
-            if (var11 + var2 > 0 && var11 + var2 < 103 && var3 + var12 > 0 && var3 + var12 < 103) {
-               var10[var1].flags[var11 + var2][var12 + var3] &= -16777217;
-            }
-         }
-      }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-50"
+	)
+	public static void method66() {
+		class36.reflectionChecks = new IterableNodeDeque();
+	}
 
-      Buffer var24 = new Buffer(var0);
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-525719060"
+	)
+	static void method67() {
+		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) {
+			if (var0.obj != null) {
+				var0.set();
+			}
+		}
 
-      for(var12 = 0; var12 < 4; ++var12) {
-         for(int var13 = 0; var13 < 64; ++var13) {
-            for(int var14 = 0; var14 < 64; ++var14) {
-               if (var12 == var4 && var13 >= var5 && var13 < var5 + 8 && var14 >= var6 && var14 < var6 + 8) {
-                  int var15 = var2 + SpriteMask.method1682(var13 & 7, var14 & 7, var7);
-                  int var18 = var13 & 7;
-                  int var19 = var14 & 7;
-                  int var20 = var7 & 3;
-                  int var17;
-                  if (var20 == 0) {
-                     var17 = var19;
-                  } else if (var20 == 1) {
-                     var17 = 7 - var18;
-                  } else if (var20 == 2) {
-                     var17 = 7 - var19;
-                  } else {
-                     var17 = var18;
-                  }
+	}
 
-                  int var21 = var3 + var17;
-                  int var22 = (var13 & 7) + var8 + var2;
-                  int var23 = var3 + (var14 & 7) + var9;
-                  class372.loadTerrain(var24, var1, var15, var21, var22, var23, var7);
-               } else {
-                  class372.loadTerrain(var24, 0, -1, -1, 0, 0, 0);
-               }
-            }
-         }
-      }
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "([BIILiz;[Lij;I)V",
+		garbageValue = "-999166250"
+	)
+	static final void method68(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
+		Buffer var5 = new Buffer(var0);
+		int var6 = -1;
 
-   }
+		while (true) {
+			int var7 = var5.method2541();
+			if (var7 == 0) {
+				return;
+			}
+
+			var6 += var7;
+			int var8 = 0;
+
+			while (true) {
+				int var9 = var5.readUShortSmart();
+				if (var9 == 0) {
+					break;
+				}
+
+				var8 += var9 - 1;
+				int var10 = var8 & 63;
+				int var11 = var8 >> 6 & 63;
+				int var12 = var8 >> 12;
+				int var13 = var5.readUnsignedByte();
+				int var14 = var13 >> 2;
+				int var15 = var13 & 3;
+				int var16 = var11 + var1;
+				int var17 = var10 + var2;
+				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) {
+					int var18 = var12;
+					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) {
+						var18 = var12 - 1;
+					}
+
+					CollisionMap var19 = null;
+					if (var18 >= 0) {
+						var19 = var4[var18];
+					}
+
+					PendingSpawn.addObjects(var12, var16, var17, var6, var15, var14, var3, var19);
+				}
+			}
+		}
+	}
 }

@@ -1,109 +1,91 @@
+import java.net.MalformedURLException;
+import java.net.URL;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mg")
+@ObfuscatedName("mc")
 public class class327 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;B)V",
-      garbageValue = "6"
-   )
-   public static void method1842(AbstractArchive var0) {
-      DbRowType.field4040 = var0;
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lei;"
+	)
+	UrlRequest field2878;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lud;"
+	)
+	SpritePixels field2879;
 
-   @ObfuscatedName("bg")
-   @ObfuscatedSignature(
-      descriptor = "(ILch;ZB)I",
-      garbageValue = "46"
-   )
-   static int method1843(int var0, Script var1, boolean var2) {
-      if (var0 == 6200) {
-         Interpreter.Interpreter_intStackSize -= 2;
-         Client.field625 = (short)VertexNormal.method1346(Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]);
-         if (Client.field625 <= 0) {
-            Client.field625 = 256;
-         }
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Lej;)V"
+	)
+	class327(String var1, UrlRequester var2) {
+		try {
+			this.field2878 = var2.request(new URL(var1));
+		} catch (MalformedURLException var4) {
+			this.field2878 = null;
+		}
 
-         Client.field626 = (short)VertexNormal.method1346(Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]);
-         if (Client.field626 <= 0) {
-            Client.field626 = 256;
-         }
+	}
 
-         return 1;
-      } else if (var0 == 6201) {
-         Interpreter.Interpreter_intStackSize -= 2;
-         Client.zoomHeight = (short)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-         if (Client.zoomHeight <= 0) {
-            Client.zoomHeight = 256;
-         }
+	@ObfuscatedSignature(
+		descriptor = "(Lei;)V"
+	)
+	class327(UrlRequest var1) {
+		this.field2878 = var1;
+	}
 
-         Client.zoomWidth = (short)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-         if (Client.zoomWidth <= 0) {
-            Client.zoomWidth = 320;
-         }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lud;",
+		garbageValue = "915750590"
+	)
+	SpritePixels method1675() {
+		if (this.field2879 == null && this.field2878 != null && this.field2878.isDone()) {
+			if (this.field2878.getResponse() != null) {
+				this.field2879 = ClanChannelMember.method769(this.field2878.getResponse());
+			}
 
-         return 1;
-      } else if (var0 == 6202) {
-         Interpreter.Interpreter_intStackSize -= 4;
-         Client.field440 = (short)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-         if (Client.field440 <= 0) {
-            Client.field440 = 1;
-         }
+			this.field2878 = null;
+		}
 
-         Client.field630 = (short)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-         if (Client.field630 <= 0) {
-            Client.field630 = 32767;
-         } else if (Client.field630 < Client.field440) {
-            Client.field630 = Client.field440;
-         }
+		return this.field2879;
+	}
 
-         Client.field488 = (short)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-         if (Client.field488 <= 0) {
-            Client.field488 = 1;
-         }
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(IIZI)Ljava/lang/String;",
+		garbageValue = "175301623"
+	)
+	static String method1676(int var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) {
+			if (var2 && var0 >= 0) {
+				int var3 = 2;
 
-         Client.field562 = (short)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-         if (Client.field562 <= 0) {
-            Client.field562 = 32767;
-         } else if (Client.field562 < Client.field488) {
-            Client.field562 = Client.field488;
-         }
+				for (int var4 = var0 / var1; var4 != 0; ++var3) {
+					var4 /= var1;
+				}
 
-         return 1;
-      } else if (var0 == 6203) {
-         if (Client.viewportWidget != null) {
-            class36.setViewportShape(0, 0, Client.viewportWidget.width, Client.viewportWidget.height, false);
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.viewportWidth;
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.viewportHeight;
-         } else {
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-         }
+				char[] var5 = new char[var3];
+				var5[0] = '+';
 
-         return 1;
-      } else if (var0 == 6204) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.zoomHeight;
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.zoomWidth;
-         return 1;
-      } else if (var0 == 6205) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = SoundSystem.method246(Client.field625);
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = SoundSystem.method246(Client.field626);
-         return 1;
-      } else if (var0 == 6220) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-         return 1;
-      } else if (var0 == 6221) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-         return 1;
-      } else if (var0 == 6222) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = GameEngine.canvasWidth;
-         return 1;
-      } else if (var0 == 6223) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class262.canvasHeight;
-         return 1;
-      } else {
-         return 2;
-      }
-   }
+				for (int var6 = var3 - 1; var6 > 0; --var6) {
+					int var7 = var0;
+					var0 /= var1;
+					int var8 = var7 - var0 * var1;
+					if (var8 >= 10) {
+						var5[var6] = (char)(var8 + 87);
+					} else {
+						var5[var6] = (char)(var8 + 48);
+					}
+				}
+
+				return new String(var5);
+			} else {
+				return Integer.toString(var0, var1);
+			}
+		} else {
+			throw new IllegalArgumentException("" + var1);
+		}
+	}
 }

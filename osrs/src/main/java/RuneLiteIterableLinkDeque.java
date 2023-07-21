@@ -1,6 +1,5 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import net.runelite.mapping.Export;
 
 public class RuneLiteIterableLinkDeque implements Iterator {
 	public final LinkDeque linkDeque;

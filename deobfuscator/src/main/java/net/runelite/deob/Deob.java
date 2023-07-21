@@ -70,7 +70,7 @@ public class Deob
 
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		ClassGroup group = JarUtil.load(new File("./deobfuscator/star-213.jar"), true);
+		ClassGroup group = JarUtil.load(new File("./deobfuscator/star-215.jar"), true);
 
 		// remove except RuntimeException
 		run(group, new RuntimeExceptions());
@@ -130,7 +130,7 @@ public class Deob
 		//new MaxMemoryTransformer().transform(group);
 		//new RuneliteBufferTransformer().transform(group);
 
-		JarUtil.save(group, new File("./deobfuscator/deob-212.jar"));
+		JarUtil.save(group, new File("./deobfuscator/deob-215.jar"));
 
 		stopwatch.stop();
 		logger.info("Done in {}", stopwatch);

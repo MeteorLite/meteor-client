@@ -1,50 +1,62 @@
-import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ei")
-class class128 implements Callable {
-    @ObfuscatedName("fg")
-    @ObfuscatedSignature(
-            descriptor = "Lnd;"
-    )
-    static Archive archive13;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-           descriptor = "Lfh;"
-   )
-   @ObfuscatedName("this$0")
-   final class133 this$0;
-   // $FF: synthetic field
-   @ObfuscatedName("val$workStart")
-   final int val$workStart;
-   // $FF: synthetic field
-   @ObfuscatedName("val$workEnd")
-   final int val$workEnd;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-           descriptor = "[Leh;"
-   )
-   @ObfuscatedName("val$curveLoadJobs")
-   final class124[] val$curveLoadJobs;
+@ObfuscatedName("eu")
+public enum class128 implements class372 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
+	)
+	field1217(0, 0),
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
+	)
+	field1218(1, 1),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
+	)
+	field1215(2, 2),
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
+	)
+	field1214(3, 3),
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
+	)
+	field1216(4, 4);
 
-   @ObfuscatedSignature(
-      descriptor = "(Lfh;II[Leh;)V"
-   )
-   class128(class133 var1, int var2, int var3, class124[] var4) {
-      this.this$0 = var1;
-      this.val$workStart = var2;
-      this.val$workEnd = var3;
-      this.val$curveLoadJobs = var4;
-   }
+	@ObfuscatedName("aj")
+	final int field1220;
+	@ObfuscatedName("ag")
+	final int field1219;
 
-    @ObfuscatedName("call")
-    public Object call() {
-      for(int var1 = this.val$workStart; var1 < this.val$workEnd; ++var1) {
-         this.val$curveLoadJobs[var1].call();
-      }
+	class128(int var3, int var4) {
+		this.field1220 = var3;
+		this.field1219 = var4;
+	}
 
-      return null;
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1219;
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)I",
+		garbageValue = "-25"
+	)
+	static final int method706(int var0, int var1, int var2, int var3) {
+		int var4 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var2 * 1024 / var3] >> 1;
+		return ((65536 - var4) * var0 >> 16) + (var4 * var1 >> 16);
+	}
 }

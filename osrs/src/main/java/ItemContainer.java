@@ -3,90 +3,53 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dc")
+@ObfuscatedName("do")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "Lrc;"
-    )
-    static NodeHashTable itemContainers = new NodeHashTable(32);
-    @ObfuscatedName("gf")
-    static int currentPort;
-   @ObfuscatedName("sv")
-   static boolean field844;
-    @ObfuscatedName("an")
-    int[] ids = new int[]{-1};
-    @ObfuscatedName("aw")
-    int[] quantities = new int[]{0};
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lsm;"
+	)
+	@Export("itemContainers")
+	static NodeHashTable itemContainers;
+	@ObfuscatedName("ay")
+	@Export("ids")
+	int[] ids;
+	@ObfuscatedName("ar")
+	@Export("quantities")
+	int[] quantities;
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(II)Lhh;",
-            garbageValue = "-707697126"
-    )
-    public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
-      SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
-         var1 = new SpotAnimationDefinition();
-         var1.id = var0;
-         if (var2 != null) {
-            var1.decode(new Buffer(var2));
-         }
+	static {
+		itemContainers = new NodeHashTable(32);
+	}
 
-         SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0);
-         return var1;
-      }
-   }
+	ItemContainer() {
+		this.ids = new int[]{-1};
+		this.quantities = new int[]{0};
+	}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(IB)Lha;",
-            garbageValue = "28"
-    )
-    public static SequenceDefinition SequenceDefinition_get(int var0) {
-      SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0);
-         var1 = new SequenceDefinition();
-         if (var2 != null) {
-            var1.decode(new Buffer(var2));
-         }
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "0"
+	)
+	public static boolean method466() {
+		if (!class306.field2760.isEmpty()) {
+			return true;
+		} else {
+			return !class306.field2756.isEmpty() && class306.field2756.get(0) != null && ((class318)class306.field2756.get(0)).field2857 != null ? ((class318)class306.field2756.get(0)).field2857.isReady() : false;
+		}
+	}
 
-         var1.postDecode();
-         SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0);
-         return var1;
-      }
-   }
-
-   @ObfuscatedName("lu")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)Ljava/lang/String;",
-      garbageValue = "27"
-   )
-   static final String method480(int var0, int var1) {
-      int var2 = var1 - var0;
-      if (var2 < -9) {
-         return class383.colorStartTag(16711680);
-      } else if (var2 < -6) {
-         return class383.colorStartTag(16723968);
-      } else if (var2 < -3) {
-         return class383.colorStartTag(16740352);
-      } else if (var2 < 0) {
-         return class383.colorStartTag(16756736);
-      } else if (var2 > 9) {
-         return class383.colorStartTag(65280);
-      } else if (var2 > 6) {
-         return class383.colorStartTag(4259584);
-      } else if (var2 > 3) {
-         return class383.colorStartTag(8453888);
-      } else {
-         return var2 > 0 ? class383.colorStartTag(12648192) : class383.colorStartTag(16776960);
-      }
-   }
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "409263053"
+	)
+	static final void method467(String var0) {
+		PacketBufferNode var1 = class503.getPacketBufferNode(ClientPacket.field2537, Client.packetWriter.isaacCipher);
+		var1.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var0));
+		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+		Client.packetWriter.addNode(var1);
+	}
 }

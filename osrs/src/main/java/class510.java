@@ -1,42 +1,36 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("to")
-public abstract class class510 {
-   @ObfuscatedName("ao")
-   static final String[] field4167 = new String[32];
+@ObfuscatedName("th")
+public class class510 {
+	@ObfuscatedName("jp")
+	@ObfuscatedSignature(
+		descriptor = "(ZB)V",
+		garbageValue = "24"
+	)
+	@Export("addNpcsToScene")
+	static final void addNpcsToScene(boolean var0) {
+		for (int var1 = 0; var1 < Client.npcCount; ++var1) {
+			NPC var2 = Client.npcs[Client.npcIndices[var1]];
+			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {
+				int var3 = var2.x >> 7;
+				int var4 = var2.y >> 7;
+				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
+					if (var2.field976 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
+						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
+							continue;
+						}
 
-   static {
-      field4167[0] = "MEMBERS";
-      field4167[1] = "QUICKCHAT";
-      field4167[2] = "PVPWORLD";
-      field4167[3] = "LOOTSHARE";
-      field4167[4] = "DEDICATEDACTIVITY";
-      field4167[5] = "BOUNTYWORLD";
-      field4167[6] = "PVPARENA";
-      field4167[7] = "HIGHLEVELONLY_1500";
-      field4167[8] = "SPEEDRUN";
-      field4167[9] = "EXISTINGPLAYERSONLY";
-      field4167[10] = "EXTRAHARDWILDERNESS";
-      field4167[11] = "DUNGEONEERING";
-      field4167[12] = "INSTANCE_SHARD";
-      field4167[13] = "RENTABLE";
-      field4167[14] = "LASTMANSTANDING";
-      field4167[15] = "NEW_PLAYERS";
-      field4167[16] = "BETA_WORLD";
-      field4167[17] = "STAFF_IP_ONLY";
-      field4167[18] = "HIGHLEVELONLY_2000";
-      field4167[19] = "HIGHLEVELONLY_2400";
-      field4167[20] = "VIPS_ONLY";
-      field4167[21] = "HIDDEN_WORLD";
-      field4167[22] = "LEGACY_ONLY";
-      field4167[23] = "EOC_ONLY";
-      field4167[24] = "BEHIND_PROXY";
-      field4167[25] = "NOSAVE_MODE";
-      field4167[26] = "TOURNAMENT_WORLD";
-      field4167[27] = "FRESHSTART";
-      field4167[28] = "HIGHLEVELONLY_1750";
-      field4167[29] = "DEADMAN";
-      field4167[30] = "SEASONAL";
-      field4167[31] = "EXTERNAL_PARTNER_ONLY";
-   }
+						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount;
+					}
+
+					long var5 = BufferedNetSocket.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
+					var2.playerCycle = Client.cycle;
+					UserComparator5.scene.drawEntity(class36.Client_plane, var2.x, var2.y, class306.getTileHeight(var2.field976 * 64 - 64 + var2.x, var2.field976 * 64 - 64 + var2.y, class36.Client_plane), var2.field976 * 64 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
+				}
+			}
+		}
+
+	}
 }

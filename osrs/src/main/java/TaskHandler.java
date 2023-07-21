@@ -7,210 +7,222 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gd")
+@ObfuscatedName("gv")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-    @ObfuscatedName("af")
-    public static String javaVendor;
-    @ObfuscatedName("an")
-    public static String javaVersion;
-    @ObfuscatedName("aw")
-    @ObfuscatedSignature(
-            descriptor = "Lgp;"
-    )
-    Task current = null;
-    @ObfuscatedName("ac")
-    @ObfuscatedSignature(
-            descriptor = "Lgp;"
-    )
-    Task task = null;
-    @ObfuscatedName("au")
-    Thread thread;
-    @ObfuscatedName("ab")
-    boolean isClosed = false;
+	@ObfuscatedName("aw")
+	@Export("javaVendor")
+	public static String javaVendor;
+	@ObfuscatedName("ay")
+	@Export("javaVersion")
+	public static String javaVersion;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lgu;"
+	)
+	@Export("current")
+	Task current;
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lgu;"
+	)
+	@Export("task")
+	Task task;
+	@ObfuscatedName("as")
+	@Export("thread")
+	Thread thread;
+	@ObfuscatedName("aj")
+	@Export("isClosed")
+	boolean isClosed;
 
-   public TaskHandler() {
-      javaVendor = "Unknown";
-      javaVersion = "1.6";
+	public TaskHandler() {
+		this.current = null;
+		this.task = null;
+		this.isClosed = false;
+		javaVendor = "Unknown";
+		javaVersion = "1.6";
 
-      try {
-         javaVendor = System.getProperty("java.vendor");
-         javaVersion = System.getProperty("java.version");
-      } catch (Exception var2) {
-         ;
-      }
+		try {
+			javaVendor = System.getProperty("java.vendor");
+			javaVersion = System.getProperty("java.version");
+		} catch (Exception var2) {
+		}
 
-      this.isClosed = false;
-      this.thread = new Thread(this);
-      this.thread.setPriority(10);
-      this.thread.setDaemon(true);
-      this.thread.start();
-   }
+		this.isClosed = false;
+		this.thread = new Thread(this);
+		this.thread.setPriority(10);
+		this.thread.setDaemon(true);
+		this.thread.start();
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(I)V",
-            garbageValue = "-1782899864"
-    )
-    public final void close() {
-      synchronized(this) {
-         this.isClosed = true;
-         this.notifyAll();
-      }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-226500506"
+	)
+	@Export("close")
+	public final void close() {
+		synchronized(this) {
+			this.isClosed = true;
+			this.notifyAll();
+		}
 
-      try {
-         this.thread.join();
-      } catch (InterruptedException var3) {
-         ;
-      }
+		try {
+			this.thread.join();
+		} catch (InterruptedException var3) {
+		}
 
-   }
+	}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(IIILjava/lang/Object;I)Lgp;",
-            garbageValue = "1775674834"
-    )
-    final Task newTask(int var1, int var2, int var3, Object var4) {
-      Task var5 = new Task();
-      var5.type = var1;
-      var5.intArgument = var2;
-      var5.objectArgument = var4;
-      synchronized(this) {
-         if (this.task != null) {
-            this.task.next = var5;
-            this.task = var5;
-         } else {
-            this.task = this.current = var5;
-         }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(IIILjava/lang/Object;I)Lgu;",
+		garbageValue = "1529565884"
+	)
+	@Export("newTask")
+	final Task newTask(int var1, int var2, int var3, Object var4) {
+		Task var5 = new Task();
+		var5.type = var1;
+		var5.intArgument = var2;
+		var5.objectArgument = var4;
+		synchronized(this) {
+			if (this.task != null) {
+				this.task.next = var5;
+				this.task = var5;
+			} else {
+				this.task = this.current = var5;
+			}
 
-         this.notify();
-         return var5;
-      }
-   }
+			this.notify();
+			return var5;
+		}
+	}
 
-    @ObfuscatedName("aw")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/lang/String;II)Lgp;",
-            garbageValue = "-1731609371"
-    )
-    public final Task newSocketTask(String var1, int var2) {
-      return this.newTask(1, var2, 0, var1);
-   }
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;II)Lgu;",
+		garbageValue = "-907549820"
+	)
+	@Export("newSocketTask")
+	public final Task newSocketTask(String var1, int var2) {
+		return this.newTask(1, var2, 0, var1);
+	}
 
-    @ObfuscatedName("ac")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/lang/Runnable;IB)Lgp;",
-            garbageValue = "0"
-    )
-    public final Task newThreadTask(Runnable var1, int var2) {
-      return this.newTask(2, var2, 0, var1);
-   }
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Runnable;II)Lgu;",
+		garbageValue = "2145317836"
+	)
+	@Export("newThreadTask")
+	public final Task newThreadTask(Runnable var1, int var2) {
+		return this.newTask(2, var2, 0, var1);
+	}
 
-    @ObfuscatedName("run")
-    public final void run() {
-      while(true) {
-         Task var1;
-         synchronized(this) {
-            while(true) {
-               if (this.isClosed) {
-                  return;
-               }
+	@Export("run")
+	@ObfuscatedName("run")
+	public final void run() {
+		while (true) {
+			Task var1;
+			synchronized(this) {
+				while (true) {
+					if (this.isClosed) {
+						return;
+					}
 
-               if (this.current != null) {
-                  var1 = this.current;
-                  this.current = this.current.next;
-                  if (this.current == null) {
-                     this.task = null;
-                  }
-                  break;
-               }
+					if (this.current != null) {
+						var1 = this.current;
+						this.current = this.current.next;
+						if (this.current == null) {
+							this.task = null;
+						}
+						break;
+					}
 
-               try {
-                  this.wait();
-               } catch (InterruptedException var8) {
-                  ;
-               }
-            }
-         }
+					try {
+						this.wait();
+					} catch (InterruptedException var8) {
+					}
+				}
+			}
 
-         try {
-            int var5 = var1.type;
-            if (var5 == 1) {
-               var1.result = new Socket(InetAddress.getByName((String)var1.objectArgument), var1.intArgument);
-            } else if (var5 == 2) {
-               Thread var3 = new Thread((Runnable)var1.objectArgument);
-               var3.setDaemon(true);
-               var3.start();
-               var3.setPriority(var1.intArgument);
-               var1.result = var3;
-            } else if (var5 == 4) {
-               var1.result = new DataInputStream(((URL)var1.objectArgument).openStream());
-            }
+			try {
+				int var5 = var1.type;
+				if (var5 == 1) {
+					var1.result = new Socket(InetAddress.getByName((String)var1.objectArgument), var1.intArgument);
+				} else if (var5 == 2) {
+					Thread var3 = new Thread((Runnable)var1.objectArgument);
+					var3.setDaemon(true);
+					var3.start();
+					var3.setPriority(var1.intArgument);
+					var1.result = var3;
+				} else if (var5 == 4) {
+					var1.result = new DataInputStream(((URL)var1.objectArgument).openStream());
+				}
 
-            var1.status = 1;
-         } catch (ThreadDeath var6) {
-            throw var6;
-         } catch (Throwable var7) {
-            var1.status = 2;
-         }
-      }
-   }
+				var1.status = 1;
+			} catch (ThreadDeath var6) {
+				throw var6;
+			} catch (Throwable var7) {
+				var1.status = 2;
+			}
+		}
+	}
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-219755023"
-   )
-   static int getClipMidX() {
-      return Rasterizer3D.clips.field2231;
-   }
+	@ObfuscatedName("bk")
+	@ObfuscatedSignature(
+		descriptor = "(Lmt;III)V",
+		garbageValue = "-302173760"
+	)
+	public static void method898(Widget var0, int var1, int var2) {
+		PlayerComposition var3 = var0.field3081;
+		boolean var4 = var2 != var3.field2900;
+		var3.field2900 = var2;
+		if (var4) {
+			int var5;
+			int var10;
+			if (var3.field2900 == var1) {
+				for (var5 = 0; var5 < PlayerComposition.equipmentIndices.length; ++var5) {
+					var10 = PlayerComposition.equipmentIndices[var5];
+					if (var3.equipment[var10] > 0 && var3.equipment[var10] < 512) {
+						var3.equipment[var10] = var3.field2894[var10];
+					}
+				}
+			} else {
+				label84: {
+					if (var3.equipment[0] >= 512) {
+						boolean var11;
+						if (var3.equipment[0] < 512) {
+							var11 = false;
+						} else {
+							ItemComposition var6 = class125.ItemDefinition_get(var3.equipment[0] - 512);
+							var11 = var6.maleModel1 != class210.field1837.field1848 && var6.maleModel2 != class210.field1837.field1848;
+						}
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)[Lmr;",
-      garbageValue = "2087958579"
-   )
-   public static StudioGame[] method951() {
-      return new StudioGame[]{StudioGame.game3, StudioGame.game4, StudioGame.runescape, StudioGame.stellardawn, StudioGame.game5, StudioGame.oldscape};
-   }
+						if (!var11) {
+							break label84;
+						}
+					}
 
-   @ObfuscatedName("bj")
-   @ObfuscatedSignature(
-      descriptor = "(ILch;ZI)I",
-      garbageValue = "-898403827"
-   )
-   static int method949(int var0, Script var1, boolean var2) {
-      int var3;
-      if (var0 == 5504) {
-         Interpreter.Interpreter_intStackSize -= 2;
-         var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-         int var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-         if (!Client.isCameraLocked) {
-            Client.camAngleX = var3;
-            Client.camAngleY = var4;
-         }
+					var3.equipment[class210.field1837.field1848] = 1;
+				}
 
-         return 1;
-      } else if (var0 == 5505) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camAngleX;
-         return 1;
-      } else if (var0 == 5506) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camAngleY;
-         return 1;
-      } else if (var0 == 5530) {
-         var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-         if (var3 < 0) {
-            var3 = 0;
-         }
+				for (var5 = 0; var5 < 7; ++var5) {
+					var10 = PlayerComposition.equipmentIndices[var5];
+					if (var3.equipment[var10] > 0 && var3.equipment[var10] < 512) {
+						int[] var7 = var3.equipment;
 
-         Client.camFollowHeight = var3;
-         return 1;
-      } else if (var0 == 5531) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camFollowHeight;
-         return 1;
-      } else {
-         return 2;
-      }
-   }
+						for (int var8 = 0; var8 < KitDefinition.KitDefinition_fileCount; ++var8) {
+							KitDefinition var9 = class132.KitDefinition_get(var8);
+							if (var9 != null && !var9.nonSelectable && (var2 == 1 ? 7 : 0) + var5 == var9.bodypartID) {
+								var7[PlayerComposition.equipmentIndices[var5]] = var8 + 256;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		var3.method1690();
+	}
 }

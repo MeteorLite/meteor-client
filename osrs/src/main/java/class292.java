@@ -1,47 +1,59 @@
-import java.util.HashMap;
-import java.util.TimeZone;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lu")
-public final class class292 {
-   @ObfuscatedName("aw")
-   static final HashMap field2709 = new HashMap();
-    @ObfuscatedName("ab")
-    @ObfuscatedSignature(
-            descriptor = "Ltc;"
-    )
-    static IndexedSprite titlebuttonSprite;
+public class class292 {
+	@ObfuscatedName("ce")
+	static String field2478;
+	@ObfuscatedName("do")
+	@ObfuscatedSignature(
+		descriptor = "[Luu;"
+	)
+	@Export("worldSelectFlagSprites")
+	static IndexedSprite[] worldSelectFlagSprites;
 
-   static {
-      java.util.Calendar.getInstance(method1604("Europe/London"));
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;B)Ljava/lang/String;",
+		garbageValue = "-1"
+	)
+	@Export("readString")
+	public static String readString(Buffer var0) {
+		String var1;
+		try {
+			int var2 = var0.readUShortSmart();
+			if (var2 > 32767) {
+				var2 = 32767;
+			}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;I)Ljava/util/TimeZone;",
-      garbageValue = "-1017888567"
-   )
-   static TimeZone method1604(String var0) {
-      HashMap var1 = field2709;
-      synchronized(field2709) {
-         TimeZone var2 = (TimeZone)field2709.get(var0);
-         if (var2 == null) {
-            var2 = TimeZone.getTimeZone(var0);
-            field2709.put(var0, var2);
-         }
+			byte[] var3 = new byte[var2];
+			var0.offset += class335.huffman.decompress(var0.array, var0.offset, var3, 0, var2);
+			String var4 = LoginType.decodeStringCp1252(var3, 0, var2);
+			var1 = var4;
+		} catch (Exception var6) {
+			var1 = "Cabbage";
+		}
 
-         return var2;
-      }
-   }
+		return var1;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(II)Z",
-            garbageValue = "-964267539"
-    )
-    public static boolean isWorldMapEvent(int var0) {
-      return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
-   }
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-924567891"
+	)
+	static void method1567() {
+		synchronized(ArchiveDiskActionHandler.field3500) {
+			if (ArchiveDiskActionHandler.field3499 == 0) {
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler());
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true);
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start();
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5);
+			}
+
+			ArchiveDiskActionHandler.field3499 = 600;
+			ArchiveDiskActionHandler.field3498 = false;
+		}
+	}
 }

@@ -2,87 +2,64 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gr")
-public class class156 {
-   @ObfuscatedName("af")
-   long field1389;
-   @ObfuscatedName("an")
-   long field1388 = -1L;
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Loi;"
-   )
-   IterableNodeDeque field1390 = new IterableNodeDeque();
+@ObfuscatedName("gc")
+public class class156 extends class159 {
+	@ObfuscatedName("be")
+	@ObfuscatedSignature(
+		descriptor = "Luk;"
+	)
+	@Export("rasterProvider")
+	public static AbstractRasterProvider rasterProvider;
+	@ObfuscatedName("aw")
+	int field1392;
+	@ObfuscatedName("ay")
+	byte field1390;
+	@ObfuscatedName("ar")
+	int field1391;
+	@ObfuscatedName("am")
+	String field1393;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lgs;"
+	)
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class160 this$0;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;)V"
-   )
-   public class156(Buffer var1) {
-      this.method887(var1);
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Lgs;)V"
+	)
+	class156(class160 var1) {
+		this.this$0 = var1;
+		this.field1392 = -1;
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;I)V",
-      garbageValue = "-1593521254"
-   )
-   void method887(Buffer var1) {
-      this.field1389 = var1.readLong();
-      this.field1388 = var1.readLong();
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;B)V",
+		garbageValue = "-43"
+	)
+	@Export("vmethod3238")
+	void vmethod3238(Buffer var1) {
+		var1.readUnsignedByte();
+		this.field1392 = var1.readUnsignedShort();
+		this.field1390 = var1.readByte();
+		this.field1391 = var1.readUnsignedShort();
+		var1.readLong();
+		this.field1393 = var1.readStringCp1252NullTerminated();
+		var1.readUnsignedByte();
+	}
 
-      for(int var2 = var1.readUnsignedByte(); var2 != 0; var2 = var1.readUnsignedByte()) {
-         Object var3;
-         if (var2 == 1) {
-            var3 = new class151(this);
-         } else if (var2 == 4) {
-            var3 = new class162(this);
-         } else if (var2 == 3) {
-            var3 = new class147(this);
-         } else if (var2 == 2) {
-            var3 = new class145(this);
-         } else {
-            if (var2 != 5) {
-               throw new RuntimeException("");
-            }
-
-            var3 = new class152(this);
-         }
-
-         ((class155)var3).vmethod3238(var1);
-         this.field1390.addFirst((Node)var3);
-      }
-
-   }
-
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lgj;B)V",
-      garbageValue = "-101"
-   )
-   public void method888(ClanChannel var1) {
-      if (this.field1389 == var1.key && this.field1388 == var1.field1399) {
-         for(class155 var2 = (class155)this.field1390.last(); var2 != null; var2 = (class155)this.field1390.previous()) {
-            var2.vmethod3239(var1);
-         }
-
-         ++var1.field1399;
-      } else {
-         throw new RuntimeException("");
-      }
-   }
-
-    @ObfuscatedName("kw")
-    @ObfuscatedSignature(
-            descriptor = "(I)V",
-            garbageValue = "-742935767"
-    )
-    static void addCancelMenuEntry() {
-      Client.menuOptionsCount = 0;
-      Client.isMenuOpen = false;
-      Client.menuActions[0] = "Cancel";
-      Client.menuTargets[0] = "";
-      Client.menuOpcodes[0] = 1006;
-      Client.menuShiftClick[0] = false;
-      Client.menuOptionsCount = 1;
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lgh;I)V",
+		garbageValue = "-2132107044"
+	)
+	@Export("vmethod3239")
+	void vmethod3239(ClanChannel var1) {
+		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1392);
+		var2.rank = this.field1390;
+		var2.world = this.field1391;
+		var2.username = new Username(this.field1393);
+	}
 }

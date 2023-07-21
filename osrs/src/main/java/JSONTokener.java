@@ -10,210 +10,222 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("JSONTokener")
 @ObfuscatedName("org/json/JSONTokener")
 public class JSONTokener {
-    @ObfuscatedName("useLastChar")
-   boolean useLastChar;
-    @ObfuscatedName("reader")
-   Reader reader;
-    @ObfuscatedName("index")
-   int index;
-    @ObfuscatedName("lastChar")
-   char lastChar;
+	@Export("useLastChar")
+	@ObfuscatedName("useLastChar")
+	boolean useLastChar;
+	@Export("reader")
+	@ObfuscatedName("reader")
+	Reader reader;
+	@Export("index")
+	@ObfuscatedName("index")
+	int index;
+	@Export("lastChar")
+	@ObfuscatedName("lastChar")
+	char lastChar;
 
-   public JSONTokener(String var1) {
-      this((Reader)(new StringReader(var1)));
-   }
+	public JSONTokener(String var1) {
+		this((Reader)(new StringReader(var1)));
+	}
 
-   public JSONTokener(Reader var1) {
-      this.reader = (Reader)(var1.markSupported() ? var1 : new BufferedReader(var1));
-      this.useLastChar = false;
-      this.index = 0;
-   }
+	public JSONTokener(Reader var1) {
+		this.reader = (Reader)(var1.markSupported() ? var1 : new BufferedReader(var1));
+		this.useLastChar = false;
+		this.index = 0;
+	}
 
-    @ObfuscatedName("nextClean")
-    public char nextClean() throws JSONException {
-      char var1;
-      do {
-         var1 = this.next();
-      } while(var1 != 0 && var1 <= ' ');
+	@Export("nextClean")
+	@ObfuscatedName("nextClean")
+	public char nextClean() throws JSONException {
+		char var1;
+		do {
+			var1 = this.next();
+		} while(var1 != 0 && var1 <= ' ');
 
-      return var1;
-   }
+		return var1;
+	}
 
-    @ObfuscatedName("next")
-    public char next() throws JSONException {
-      if (this.useLastChar) {
-         this.useLastChar = false;
-         if (this.lastChar != 0) {
-            ++this.index;
-         }
+	@Export("next")
+	@ObfuscatedName("next")
+	public char next() throws JSONException {
+		if (this.useLastChar) {
+			this.useLastChar = false;
+			if (this.lastChar != 0) {
+				++this.index;
+			}
 
-         return this.lastChar;
-      } else {
-         int var1;
-         try {
-            var1 = this.reader.read();
-         } catch (IOException var3) {
-            throw new JSONException(var3);
-         }
+			return this.lastChar;
+		} else {
+			int var1;
+			try {
+				var1 = this.reader.read();
+			} catch (IOException var3) {
+				throw new JSONException(var3);
+			}
 
-         if (var1 <= 0) {
-            this.lastChar = 0;
-            return '\u0000';
-         } else {
-            ++this.index;
-            this.lastChar = (char)var1;
-            return this.lastChar;
-         }
-      }
-   }
+			if (var1 <= 0) {
+				this.lastChar = 0;
+				return '\u0000';
+			} else {
+				++this.index;
+				this.lastChar = (char)var1;
+				return this.lastChar;
+			}
+		}
+	}
 
-    @ObfuscatedName("nextString")
-    public String nextTo(char var1) throws JSONException {
-      StringBuffer var3 = new StringBuffer();
+	@Export("nextTo")
+	@ObfuscatedName("nextString")
+	public String nextTo(char var1) throws JSONException {
+		StringBuffer var3 = new StringBuffer();
 
-      while(true) {
-         char var2 = this.next();
-         switch(var2) {
-         case '\u0000':
-         case '\n':
-         case '\r':
-            throw this.syntaxError("Unterminated string");
-         case '\\':
-            var2 = this.next();
-            switch(var2) {
-            case 'b':
-               var3.append('\b');
-               continue;
-            case 'c':
-            case 'd':
-            case 'e':
-            case 'g':
-            case 'h':
-            case 'i':
-            case 'j':
-            case 'k':
-            case 'l':
-            case 'm':
-            case 'o':
-            case 'p':
-            case 'q':
-            case 's':
-            case 'v':
-            case 'w':
-            default:
-               var3.append(var2);
-               continue;
-            case 'f':
-               var3.append('\f');
-               continue;
-            case 'n':
-               var3.append('\n');
-               continue;
-            case 'r':
-               var3.append('\r');
-               continue;
-            case 't':
-               var3.append('\t');
-               continue;
-            case 'u':
-               var3.append((char)Integer.parseInt(this.next(4), 16));
-               continue;
-            case 'x':
-               var3.append((char)Integer.parseInt(this.next(2), 16));
-               continue;
-            }
-         default:
-            if (var2 == var1) {
-               return var3.toString();
-            }
+		while (true) {
+			char var2 = this.next();
+			switch(var2) {
+			case '\u0000':
+			case '\n':
+			case '\r':
+				throw this.syntaxError("Unterminated string");
+			case '\\':
+				var2 = this.next();
+				switch(var2) {
+				case 'b':
+					var3.append('\b');
+					continue;
+				case 'c':
+				case 'd':
+				case 'e':
+				case 'g':
+				case 'h':
+				case 'i':
+				case 'j':
+				case 'k':
+				case 'l':
+				case 'm':
+				case 'o':
+				case 'p':
+				case 'q':
+				case 's':
+				case 'v':
+				case 'w':
+				default:
+					var3.append(var2);
+					continue;
+				case 'f':
+					var3.append('\f');
+					continue;
+				case 'n':
+					var3.append('\n');
+					continue;
+				case 'r':
+					var3.append('\r');
+					continue;
+				case 't':
+					var3.append('\t');
+					continue;
+				case 'u':
+					var3.append((char)Integer.parseInt(this.next(4), 16));
+					continue;
+				case 'x':
+					var3.append((char)Integer.parseInt(this.next(2), 16));
+					continue;
+				}
+			default:
+				if (var2 == var1) {
+					return var3.toString();
+				}
 
-            var3.append(var2);
-         }
-      }
-   }
+				var3.append(var2);
+			}
+		}
+	}
 
-    @ObfuscatedName("toString")
-    public String toString() {
-      return " at character " + this.index;
-   }
+	@Export("toString")
+	@ObfuscatedName("toString")
+	public String toString() {
+		return " at character " + this.index;
+	}
 
-    @ObfuscatedName("back")
-    public void back() throws JSONException {
-      if (!this.useLastChar && this.index > 0) {
-         --this.index;
-         this.useLastChar = true;
-      } else {
-         throw new JSONException("Stepping back two steps is not supported");
-      }
-   }
+	@Export("back")
+	@ObfuscatedName("back")
+	public void back() throws JSONException {
+		if (!this.useLastChar && this.index > 0) {
+			--this.index;
+			this.useLastChar = true;
+		} else {
+			throw new JSONException("Stepping back two steps is not supported");
+		}
+	}
 
-    @ObfuscatedName("syntaxError")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/lang/String;)Lorg/json/JSONException;"
-    )
-    public JSONException syntaxError(String var1) {
-      return new JSONException(var1 + this.toString());
-   }
+	@Export("syntaxError")
+	@ObfuscatedName("syntaxError")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;)Lorg/json/JSONException;"
+	)
+	public JSONException syntaxError(String var1) {
+		return new JSONException(var1 + this.toString());
+	}
 
-    @ObfuscatedName("next")
-    public String next(int var1) throws JSONException {
-      if (var1 == 0) {
-         return "";
-      } else {
-         char[] var2 = new char[var1];
-         int var3 = 0;
-         if (this.useLastChar) {
-            this.useLastChar = false;
-            var2[0] = this.lastChar;
-            var3 = 1;
-         }
+	@Export("next")
+	@ObfuscatedName("next")
+	public String next(int var1) throws JSONException {
+		if (var1 == 0) {
+			return "";
+		} else {
+			char[] var2 = new char[var1];
+			int var3 = 0;
+			if (this.useLastChar) {
+				this.useLastChar = false;
+				var2[0] = this.lastChar;
+				var3 = 1;
+			}
 
-         int var4;
-         try {
-            while(var3 < var1 && (var4 = this.reader.read(var2, var3, var1 - var3)) != -1) {
-               var3 += var4;
-            }
-         } catch (IOException var6) {
-            throw new JSONException(var6);
-         }
+			int var4;
+			try {
+				while (var3 < var1 && (var4 = this.reader.read(var2, var3, var1 - var3)) != -1) {
+					var3 += var4;
+				}
+			} catch (IOException var6) {
+				throw new JSONException(var6);
+			}
 
-         this.index += var3;
-         if (var3 < var1) {
-            throw this.syntaxError("Substring bounds error");
-         } else {
-            this.lastChar = var2[var1 - 1];
-            return new String(var2);
-         }
-      }
-   }
+			this.index += var3;
+			if (var3 < var1) {
+				throw this.syntaxError("Substring bounds error");
+			} else {
+				this.lastChar = var2[var1 - 1];
+				return new String(var2);
+			}
+		}
+	}
 
-    @ObfuscatedName("nextValue")
-    public Object nextValue() throws JSONException {
-      char var1 = this.nextClean();
-      switch(var1) {
-      case '"':
-      case '\'':
-         return this.nextTo(var1);
-      case '(':
-      case '[':
-         this.back();
-         return new JSONArray(this);
-      case '{':
-         this.back();
-         return new JSONObject(this);
-      default:
-         StringBuffer var3;
-         for(var3 = new StringBuffer(); var1 >= ' ' && ",:]}/\\\"[{;=#".indexOf(var1) < 0; var1 = this.next()) {
-            var3.append(var1);
-         }
+	@Export("nextValue")
+	@ObfuscatedName("nextValue")
+	public Object nextValue() throws JSONException {
+		char var1 = this.nextClean();
+		switch(var1) {
+		case '"':
+		case '\'':
+			return this.nextTo(var1);
+		case '(':
+		case '[':
+			this.back();
+			return new JSONArray(this);
+		case '{':
+			this.back();
+			return new JSONObject(this);
+		default:
+			StringBuffer var3;
+			for (var3 = new StringBuffer(); var1 >= ' ' && ",:]}/\\\"[{;=#".indexOf(var1) < 0; var1 = this.next()) {
+				var3.append(var1);
+			}
 
-         this.back();
-         String var2 = var3.toString().trim();
-         if (var2.equals("")) {
-            throw this.syntaxError("Missing value");
-         } else {
-            return JSONObject.stringToValue(var2);
-         }
-      }
-   }
+			this.back();
+			String var2 = var3.toString().trim();
+			if (var2.equals("")) {
+				throw this.syntaxError("Missing value");
+			} else {
+				return JSONObject.stringToValue(var2);
+			}
+		}
+	}
 }

@@ -2,65 +2,79 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fk")
-public class class152 extends class155 {
-   @ObfuscatedName("af")
-   int field1380;
-   @ObfuscatedName("an")
-   byte field1381;
-   @ObfuscatedName("aw")
-   int field1382;
-   @ObfuscatedName("ac")
-   String field1383;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-      descriptor = "Lgr;"
-   )
-   final class156 this$0;
+@ObfuscatedName("fe")
+public class class152 extends class143 {
+	@ObfuscatedName("ad")
+	@Export("ByteArrayPool_arrays")
+	public static byte[][][] ByteArrayPool_arrays;
+	@ObfuscatedName("aw")
+	String field1355;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lfr;"
+	)
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class146 this$0;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lgr;)V"
-   )
-   class152(class156 var1) {
-      this.this$0 = var1;
-      this.field1380 = -1;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Lfr;)V"
+	)
+	class152(class146 var1) {
+		this.this$0 = var1;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;I)V",
-            garbageValue = "-1949352075"
-    )
-    void vmethod3238(Buffer var1) {
-      var1.readUnsignedByte();
-      this.field1380 = var1.readUnsignedShort();
-      this.field1381 = var1.readByte();
-      this.field1382 = var1.readUnsignedShort();
-      var1.readLong();
-      this.field1383 = var1.readStringCp1252NullTerminated();
-      var1.readUnsignedByte();
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;B)V",
+		garbageValue = "1"
+	)
+	@Export("vmethod3254")
+	void vmethod3254(Buffer var1) {
+		this.field1355 = var1.readStringCp1252NullTerminated();
+		var1.readInt();
+	}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(Lgj;B)V",
-            garbageValue = "-49"
-    )
-    void vmethod3239(ClanChannel var1) {
-      ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1380);
-      var2.rank = this.field1381;
-      var2.world = this.field1382;
-      var2.username = new Username(this.field1383);
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lfx;B)V",
+		garbageValue = "-72"
+	)
+	@Export("vmethod3248")
+	void vmethod3248(ClanSettings var1) {
+		var1.name = this.field1355;
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;Lnm;Lnm;I)V",
-      garbageValue = "1755632957"
-   )
-   public static void method878(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
-      SequenceDefinition.SequenceDefinition_archive = var0;
-      SequenceDefinition.SequenceDefinition_animationsArchive = var1;
-      SequenceDefinition.SequenceDefinition_skeletonsArchive = var2;
-   }
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "42723484"
+	)
+	static int method794(int var0, int var1) {
+		for (int var2 = 0; var2 < 8; ++var2) {
+			if (var1 <= var0 + 30) {
+				return var2;
+			}
+
+			var0 += 30;
+			var0 += var2 != 1 && var2 != 3 ? 5 : 20;
+		}
+
+		return 0;
+	}
+
+	@ObfuscatedName("nc")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-2070877225"
+	)
+	@Export("Clan_joinChat")
+	static final void Clan_joinChat(String var0) {
+		if (!var0.equals("")) {
+			PacketBufferNode var1 = class503.getPacketBufferNode(ClientPacket.field2482, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
+		}
+	}
 }

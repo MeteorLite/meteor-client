@@ -3,60 +3,61 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("es")
+@ObfuscatedName("ee")
 @Implements("UserComparator5")
 public class UserComparator5 extends AbstractUserComparator {
-    @ObfuscatedName("sb")
-    @ObfuscatedSignature(
-            descriptor = "Lps;"
-    )
-    static FriendsChat friendsChat;
-    @ObfuscatedName("af")
-    final boolean reversed;
+	@ObfuscatedName("ie")
+	@ObfuscatedSignature(
+		descriptor = "Lqh;"
+	)
+	static AbstractSocket field1175;
+	@ObfuscatedName("jc")
+	@ObfuscatedSignature(
+		descriptor = "Liz;"
+	)
+	@Export("scene")
+	static Scene scene;
+	@ObfuscatedName("nq")
+	@Export("menuWidth")
+	static int menuWidth;
+	@ObfuscatedName("aw")
+	@Export("reversed")
+	final boolean reversed;
 
-   public UserComparator5(boolean var1) {
-      this.reversed = var1;
-   }
+	public UserComparator5(boolean var1) {
+		this.reversed = var1;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lpb;Lpb;I)I",
-            garbageValue = "318450924"
-    )
-    int compareBuddy(Buddy var1, Buddy var2) {
-      if (var1.world != 0) {
-         if (var2.world == 0) {
-            return this.reversed ? -1 : 1;
-         }
-      } else if (var2.world != 0) {
-         return this.reversed ? 1 : -1;
-      }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lqa;Lqa;I)I",
+		garbageValue = "-382682288"
+	)
+	@Export("compareBuddy")
+	int compareBuddy(Buddy var1, Buddy var2) {
+		if (var1.world != 0) {
+			if (var2.world == 0) {
+				return this.reversed ? -1 : 1;
+			}
+		} else if (var2.world != 0) {
+			return this.reversed ? 1 : -1;
+		}
 
-      return this.compareUser(var1, var2);
-   }
+		return this.compareUser(var1, var2);
+	}
 
-    @ObfuscatedName("compare")
-    public int compare(Object var1, Object var2) {
-      return this.compareBuddy((Buddy)var1, (Buddy)var2);
-   }
+	@Export("compare")
+	@ObfuscatedName("compare")
+	public int compare(Object var1, Object var2) {
+		return this.compareBuddy((Buddy)var1, (Buddy)var2);
+	}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
-            garbageValue = "-397121414"
-    )
-    static void addGameMessage(int var0, String var1, String var2) {
-      class136.addChatMessage(var0, var1, var2, (String)null);
-   }
-
-   @ObfuscatedName("hx")
-   @ObfuscatedSignature(
-      descriptor = "(Lnd;Ljava/lang/String;I)V",
-      garbageValue = "967968354"
-   )
-   static void method696(Archive var0, String var1) {
-      ArchiveLoader var2 = new ArchiveLoader(var0, var1);
-      Client.archiveLoaders.add(var2);
-      Client.field397 += var2.groupCount;
-   }
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "55"
+	)
+	static final void method672() {
+		Tile.method1160("Your ignore list is full. Max of 100 for free users, and 400 for members");
+	}
 }

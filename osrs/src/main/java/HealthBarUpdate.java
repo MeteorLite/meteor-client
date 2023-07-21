@@ -1,115 +1,134 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dh")
+@ObfuscatedName("dp")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-    @ObfuscatedName("af")
-    int cycle;
-    @ObfuscatedName("an")
-    int health;
-    @ObfuscatedName("aw")
-    int health2;
-    @ObfuscatedName("ac")
-    int cycleOffset;
+	@ObfuscatedName("aw")
+	@Export("cycle")
+	int cycle;
+	@ObfuscatedName("ay")
+	@Export("health")
+	int health;
+	@ObfuscatedName("ar")
+	@Export("health2")
+	int health2;
+	@ObfuscatedName("am")
+	@Export("cycleOffset")
+	int cycleOffset;
 
-   HealthBarUpdate(int var1, int var2, int var3, int var4) {
-      this.cycle = var1;
-      this.health = var2;
-      this.health2 = var3;
-      this.cycleOffset = var4;
-   }
+	HealthBarUpdate(int var1, int var2, int var3, int var4) {
+		this.cycle = var1;
+		this.health = var2;
+		this.health2 = var3;
+		this.cycleOffset = var4;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(IIIII)V",
-            garbageValue = "470045969"
-    )
-    void set(int var1, int var2, int var3, int var4) {
-      this.cycle = var1;
-      this.health = var2;
-      this.health2 = var3;
-      this.cycleOffset = var4;
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "-2011079863"
+	)
+	@Export("set")
+	void set(int var1, int var2, int var3, int var4) {
+		this.cycle = var1;
+		this.health = var2;
+		this.health2 = var3;
+		this.cycleOffset = var4;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(IB)Lhz;",
-            garbageValue = "36"
-    )
-    public static ItemComposition ItemDefinition_get(int var0) {
-      ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = class355.ItemDefinition_archive.takeFile(10, var0);
-         var1 = new ItemComposition();
-         var1.id = var0;
-         if (var2 != null) {
-            var1.decode(new Buffer(var2));
-         }
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Throwable;I)Ljava/lang/String;",
+		garbageValue = "2092480098"
+	)
+	static String method532(Throwable var0) throws IOException {
+		String var1;
+		if (var0 instanceof RunException) {
+			RunException var2 = (RunException)var0;
+			var1 = var2.field4249 + " | ";
+			var0 = var2.field4250;
+		} else {
+			var1 = "";
+		}
 
-         var1.post();
-         if (var1.noteTemplate != -1) {
-            var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
-         }
+		StringWriter var12 = new StringWriter();
+		PrintWriter var3 = new PrintWriter(var12);
+		var0.printStackTrace(var3);
+		var3.close();
+		String var4 = var12.toString();
+		BufferedReader var5 = new BufferedReader(new StringReader(var4));
+		String var6 = var5.readLine();
 
-         if (var1.notedId != -1) {
-            var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
-         }
+		while (true) {
+			while (true) {
+				String var7 = var5.readLine();
+				if (var7 == null) {
+					var1 = var1 + "| " + var6;
+					return var1;
+				}
 
-         if (var1.placeholderTemplate != -1) {
-            var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
-         }
+				int var8 = var7.indexOf(40);
+				int var9 = var7.indexOf(41, var8 + 1);
+				if (var8 >= 0 && var9 >= 0) {
+					String var10 = var7.substring(var8 + 1, var9);
+					int var11 = var10.indexOf(".java:");
+					if (var11 >= 0) {
+						var10 = var10.substring(0, var11) + var10.substring(var11 + 5);
+						var1 = var1 + var10 + ' ';
+						continue;
+					}
 
-         if (!FileSystem.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
-            var1.name = "Members object";
-            var1.isTradable = false;
+					var7 = var7.substring(0, var8);
+				}
 
-            int var3;
-            for(var3 = 0; var3 < var1.groundActions.length; ++var3) {
-               var1.groundActions[var3] = null;
-            }
+				var7 = var7.trim();
+				var7 = var7.substring(var7.lastIndexOf(32) + 1);
+				var7 = var7.substring(var7.lastIndexOf(9) + 1);
+				var1 = var1 + var7 + ' ';
+			}
+		}
+	}
 
-            for(var3 = 0; var3 < var1.inventoryActions.length; ++var3) {
-               if (var3 != 4) {
-                  var1.inventoryActions[var3] = null;
-               }
-            }
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(ILdc;ZI)I",
+		garbageValue = "-1197133658"
+	)
+	static int method533(int var0, Script var1, boolean var2) {
+		Widget var3 = VarbitComposition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+		if (var0 == 2800) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class273.Widget_unpackTargetMask(UserComparator8.getWidgetFlags(var3));
+			return 1;
+		} else if (var0 != 2801) {
+			if (var0 == 2802) {
+				if (var3.dataText == null) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
+				} else {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.dataText;
+				}
 
-            var1.shiftClickIndex = -2;
-            var1.team = 0;
-            if (var1.params != null) {
-               boolean var6 = false;
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			int var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			--var4;
+			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.actions[var4];
+			} else {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
+			}
 
-               for(Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-                  ParamComposition var5 = class33.getParamDefinition((int)var4.key);
-                  if (var5.autoDisable) {
-                     var4.remove();
-                  } else {
-                     var6 = true;
-                  }
-               }
-
-               if (!var6) {
-                  var1.params = null;
-               }
-            }
-         }
-
-         ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
-         return var1;
-      }
-   }
-
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Ldr;B)V",
-            garbageValue = "5"
-    )
-    public static void runScriptEvent(ScriptEvent var0) {
-      PlayerType.runScript(var0, 500000, 475000);
-   }
+			return 1;
+		}
+	}
 }

@@ -1,78 +1,47 @@
-import java.awt.image.BufferedImage;
-import java.awt.image.PixelGrabber;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mk")
+@ObfuscatedName("nz")
 @Implements("Strings")
 public class Strings {
-   @ObfuscatedName("fi")
-   public static String field3226 = "Please visit the support page for assistance.";
-   @ObfuscatedName("la")
-   public static String field3267 = "";
-   @ObfuscatedName("lp")
-   public static String field3291 = "Page has opened in the browser.";
-   @ObfuscatedName("ly")
-   public static String field3376 = "";
+	@ObfuscatedName("fg")
+	public static String field3291;
+	@ObfuscatedName("kl")
+	public static String field3412;
+	@ObfuscatedName("ks")
+	public static String field3419;
+	@ObfuscatedName("kj")
+	public static String field3410;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "([BI)Ltq;",
-      garbageValue = "504889561"
-   )
-   public static final SpritePixels method1853(byte[] var0) {
-      BufferedImage var1 = null;
+	static {
+		field3291 = "Please visit the support page for assistance.";
+		field3412 = "";
+		field3419 = "Page has opened in the browser.";
+		field3410 = "";
+	}
 
-      try {
-         Class var2 = ImageIO.class;
-         synchronized(ImageIO.class) {
-            var1 = ImageIO.read(new ByteArrayInputStream(var0));
-         }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(II)F",
+		garbageValue = "189737600"
+	)
+	static final float method1841(int var0) {
+		float var1 = 10075.0F - (float)var0;
+		return (1.0075567F * var1 - 75.56675F) / var1;
+	}
 
-         int var6 = var1.getWidth();
-         int var7 = var1.getHeight();
-         int[] var4 = new int[var6 * var7];
-         PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var6, var7, var4, 0, var6);
-         var5.grabPixels();
-         return new SpritePixels(var4, var6, var7);
-      } catch (IOException var9) {
-         ;
-      } catch (InterruptedException var10) {
-         ;
-      }
-
-      return new SpritePixels(0, 0);
-   }
-
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(B)Ltc;",
-      garbageValue = "1"
-   )
-   static IndexedSprite method1852() {
-      IndexedSprite var0 = new IndexedSprite();
-      var0.width = class503.SpriteBuffer_spriteWidth;
-      var0.height = class503.SpriteBuffer_spriteHeight;
-      var0.xOffset = class503.SpriteBuffer_xOffsets[0];
-      var0.yOffset = class17.SpriteBuffer_yOffsets[0];
-      var0.subWidth = class97.SpriteBuffer_spriteWidths[0];
-      var0.subHeight = class138.SpriteBuffer_spriteHeights[0];
-      var0.palette = class394.SpriteBuffer_spritePalette;
-      var0.pixels = VarbitComposition.SpriteBuffer_pixels[0];
-      class398.method2125();
-      return var0;
-   }
-
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1979549952"
-   )
-   public static void method1854() {
-      WorldMapElement.WorldMapElement_cachedSprites.clear();
-   }
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-2120353581"
+	)
+	static int method1842(int var0) {
+		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
+		if (var1 == null) {
+			return -1;
+		} else {
+			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
+		}
+	}
 }

@@ -3,96 +3,102 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("gn")
 @Implements("MilliClock")
 public class MilliClock extends Clock {
-   @ObfuscatedName("ux")
-   static int field1455;
-   @ObfuscatedName("af")
-   long[] field1461 = new long[10];
-   @ObfuscatedName("an")
-   int field1456 = 256;
-   @ObfuscatedName("aw")
-   int field1457 = 1;
-   @ObfuscatedName("ac")
-   long field1458 = class96.clockNow();
-   @ObfuscatedName("au")
-   int field1460 = 0;
-   @ObfuscatedName("ab")
-   int field1459;
+	@ObfuscatedName("aw")
+	long[] field1474;
+	@ObfuscatedName("ay")
+	int field1472;
+	@ObfuscatedName("ar")
+	int field1470;
+	@ObfuscatedName("am")
+	long field1473;
+	@ObfuscatedName("as")
+	int field1471;
+	@ObfuscatedName("aj")
+	int field1469;
 
-   MilliClock() {
-      for(int var1 = 0; var1 < 10; ++var1) {
-         this.field1461[var1] = this.field1458;
-      }
+	public MilliClock() {
+		this.field1474 = new long[10];
+		this.field1472 = 256;
+		this.field1470 = 1;
+		this.field1471 = 0;
+		this.field1473 = class113.clockNow();
 
-   }
+		for (int var1 = 0; var1 < 10; ++var1) {
+			this.field1474[var1] = this.field1473;
+		}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(I)V",
-            garbageValue = "-331366942"
-    )
-    public void mark() {
-      for(int var1 = 0; var1 < 10; ++var1) {
-         this.field1461[var1] = 0L;
-      }
+	}
 
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1541664401"
+	)
+	@Export("mark")
+	public void mark() {
+		for (int var1 = 0; var1 < 10; ++var1) {
+			this.field1474[var1] = 0L;
+		}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(III)I",
-            garbageValue = "-1491982008"
-    )
-    public int wait(int var1, int var2) {
-      int var3 = this.field1456;
-      int var4 = this.field1457;
-      this.field1456 = 300;
-      this.field1457 = 1;
-      this.field1458 = class96.clockNow();
-      if (0L == this.field1461[this.field1459]) {
-         this.field1456 = var3;
-         this.field1457 = var4;
-      } else if (this.field1458 > this.field1461[this.field1459]) {
-         this.field1456 = (int)((long)(var1 * 2560) / (this.field1458 - this.field1461[this.field1459]));
-      }
+	}
 
-      if (this.field1456 < 25) {
-         this.field1456 = 25;
-      }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)I",
+		garbageValue = "64"
+	)
+	@Export("wait")
+	public int wait(int var1, int var2) {
+		int var3 = this.field1472;
+		int var4 = this.field1470;
+		this.field1472 = 300;
+		this.field1470 = 1;
+		this.field1473 = class113.clockNow();
+		if (0L == this.field1474[this.field1469]) {
+			this.field1472 = var3;
+			this.field1470 = var4;
+		} else if (this.field1473 > this.field1474[this.field1469]) {
+			this.field1472 = (int)((long)(var1 * 2560) / (this.field1473 - this.field1474[this.field1469]));
+		}
 
-      if (this.field1456 > 256) {
-         this.field1456 = 256;
-         this.field1457 = (int)((long)var1 - (this.field1458 - this.field1461[this.field1459]) / 10L);
-      }
+		if (this.field1472 < 25) {
+			this.field1472 = 25;
+		}
 
-      if (this.field1457 > var1) {
-         this.field1457 = var1;
-      }
+		if (this.field1472 > 256) {
+			this.field1472 = 256;
+			this.field1470 = (int)((long)var1 - (this.field1473 - this.field1474[this.field1469]) / 10L);
+		}
 
-      this.field1461[this.field1459] = this.field1458;
-      this.field1459 = (this.field1459 + 1) % 10;
-      int var5;
-      if (this.field1457 > 1) {
-         for(var5 = 0; var5 < 10; ++var5) {
-            if (0L != this.field1461[var5]) {
-               this.field1461[var5] += (long)this.field1457;
-            }
-         }
-      }
+		if (this.field1470 > var1) {
+			this.field1470 = var1;
+		}
 
-      if (this.field1457 < var2) {
-         this.field1457 = var2;
-      }
+		this.field1474[this.field1469] = this.field1473;
+		this.field1469 = (this.field1469 + 1) % 10;
+		int var5;
+		if (this.field1470 > 1) {
+			for (var5 = 0; var5 < 10; ++var5) {
+				if (this.field1474[var5] != 0L) {
+					this.field1474[var5] += (long)this.field1470;
+				}
+			}
+		}
 
-      PlayerComposition.method1704((long)this.field1457);
+		if (this.field1470 < var2) {
+			this.field1470 = var2;
+		}
 
-      for(var5 = 0; this.field1460 < 256; this.field1460 += this.field1456) {
-         ++var5;
-      }
+		class13.method44((long)this.field1470);
 
-      this.field1460 &= 255;
-      return var5;
-   }
+		for (var5 = 0; this.field1471 < 256; this.field1471 += this.field1472) {
+			++var5;
+		}
+
+		this.field1471 &= 255;
+		return var5;
+	}
 }

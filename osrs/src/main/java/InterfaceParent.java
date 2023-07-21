@@ -1,56 +1,162 @@
+import java.io.IOException;
+import java.util.ArrayList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("di")
+@ObfuscatedName("dn")
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
-    @ObfuscatedName("af")
-    int group;
-    @ObfuscatedName("an")
-    int type;
-   @ObfuscatedName("aw")
-   boolean field848 = false;
+	@ObfuscatedName("aw")
+	@Export("group")
+	int group;
+	@ObfuscatedName("ay")
+	@Export("type")
+	int type;
+	@ObfuscatedName("ar")
+	boolean field856;
 
-    @ObfuscatedName("au")
-    @ObfuscatedSignature(
-            descriptor = "([BB)V",
-            garbageValue = "7"
-    )
-    public static synchronized void ByteArrayPool_release(byte[] var0) {
-      if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field3659) {
-         ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
-      } else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field3660) {
-         ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
-      } else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field3661) {
-         ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
-      } else if (var0.length == 30000 && ByteArrayPool.field3666 < ByteArrayPool.field3655) {
-         ByteArrayPool.field3664[++ByteArrayPool.field3666 - 1] = var0;
-      } else {
-         if (UserComparator3.ByteArrayPool_arrays != null) {
-            for(int var1 = 0; var1 < ClanChannel.ByteArrayPool_alternativeSizes.length; ++var1) {
-               if (var0.length == ClanChannel.ByteArrayPool_alternativeSizes[var1] && class136.ByteArrayPool_altSizeArrayCounts[var1] < UserComparator3.ByteArrayPool_arrays[var1].length) {
-                  UserComparator3.ByteArrayPool_arrays[var1][class136.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
-                  return;
-               }
-            }
-         }
+	InterfaceParent() {
+		this.field856 = false;
+	}
 
-      }
-   }
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "143844531"
+	)
+	public static boolean method470(int var0) {
+		boolean var1 = false;
+		boolean var2 = false;
+		if (!class306.field2760.isEmpty()) {
+			class407 var3 = (class407)class306.field2760.get(0);
+			if (var3 == null) {
+				class306.field2760.remove(0);
+			} else if (var3.vmethod2107(var0)) {
+				if (var3.method2098()) {
+					System.out.println("Error in midimanager.service: " + var3.method2100());
+					var1 = true;
+				} else {
+					if (var3.method2101() != null) {
+						class306.field2760.add(1, var3.method2101());
+					}
 
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1880388281"
-   )
-   public static void method488() {
-      StructComposition.StructDefinition_cached.clear();
-   }
+					var2 = var3.method2099();
+				}
 
-    @ObfuscatedName("at")
-    public static int Entity_unpackID(long var0) {
-      return (int)(var0 >>> 17 & 4294967295L);
-   }
+				class306.field2760.remove(0);
+			} else {
+				var2 = var3.method2099();
+			}
+		}
+
+		if (var1) {
+			class306.field2760.clear();
+			ArrayList var4 = class162.method847();
+			class306.field2760.add(new class402((class407)null, var4));
+		}
+
+		return var2;
+	}
+
+	@ObfuscatedName("hv")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-2055389038"
+	)
+	static void method471() {
+		if (PendingSpawn.varcs.hasUnwrittenChanges()) {
+			PendingSpawn.varcs.write();
+		}
+
+		if (class497.mouseRecorder != null) {
+			class497.mouseRecorder.isRunning = false;
+		}
+
+		class497.mouseRecorder = null;
+		Client.packetWriter.close();
+		if (GameEngine.taskHandler != null) {
+			try {
+				GameEngine.taskHandler.close();
+			} catch (Exception var3) {
+			}
+		}
+
+		GameEngine.taskHandler = null;
+		class159.method836();
+		class197.archive2.clearFiles();
+		FontName.archive13.clearFiles();
+		ReflectionCheck.field151.clearFiles();
+		class191.field1546.clearFiles();
+		World.field670.clearFiles();
+		class106.field1099.clearFiles();
+		Varcs.field1130.clearFiles();
+		Interpreter.field713.clearFiles();
+		class10.compass = null;
+		SoundCache.redHintArrowSprite = null;
+		class282.mapSceneSprites = null;
+		DbTableType.headIconPkSprites = null;
+		class17.headIconPrayerSprites = null;
+		class345.headIconHintSprites = null;
+		DynamicObject.field819 = null;
+		class211.crossSprites = null;
+		MusicPatchNode2.field2741 = null;
+		class302.scrollBarSprites = null;
+		AbstractWorldMapIcon.field2442 = null;
+		UserComparator5.scene.clear();
+
+		int var1;
+		for (var1 = 0; var1 < 4; ++var1) {
+			Client.collisionMaps[var1].clear();
+		}
+
+		class127.worldMap = null;
+		RouteStrategy.method1107(0, 0);
+		class306.field2755.clear();
+		Client.playingJingle = false;
+		class133.method727();
+		if (VerticalAlignment.pcmPlayer1 != null) {
+			VerticalAlignment.pcmPlayer1.shutdown();
+		}
+
+		class153.field1356.method1904();
+		ArchiveDiskAction.method1847();
+		if (WorldMapLabel.urlRequester != null) {
+			WorldMapLabel.urlRequester.close();
+		}
+
+		try {
+			JagexCache.JagexCache_dat2File.close();
+
+			for (var1 = 0; var1 < JagexCache.field1450; ++var1) {
+				class302.JagexCache_idxFiles[var1].close();
+			}
+
+			JagexCache.JagexCache_idx255File.close();
+			JagexCache.JagexCache_randomDat.close();
+		} catch (Exception var4) {
+		}
+
+		JagexCache.JagexCache_dat2File = null;
+		JagexCache.JagexCache_idx255File = null;
+		class302.JagexCache_idxFiles = null;
+		FileSystem.FileSystem_cacheFiles.clear();
+		class158.masterDisk = null;
+		Client.archiveLoaders.clear();
+		Client.field548 = 0;
+		class153.field1356 = new class360();
+		WorldMapLabel.urlRequester = new class113(TileItem.client.field655, 215);
+
+		try {
+			ObjTypeCustomisation.method923("oldschool", VarpDefinition.field1494, ArchiveLoader.field849.name, 0, 22);
+		} catch (IOException var2) {
+			throw new RuntimeException(var2);
+		}
+
+		class158.masterDisk = new ArchiveDisk(255, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idx255File, 500000);
+		GameEngine.taskHandler = new TaskHandler();
+		Client.field412 = class92.field937;
+		class129.updateGameState(0);
+	}
 }

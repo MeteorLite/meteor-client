@@ -3,147 +3,73 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ea")
+@ObfuscatedName("es")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-   @ObfuscatedName("at")
-   static int field1157;
-    @ObfuscatedName("gd")
-    static String worldHost;
-    @ObfuscatedName("af")
-    final boolean reversed;
+	@ObfuscatedName("aw")
+	@Export("reversed")
+	final boolean reversed;
 
-   public UserComparator8(boolean var1) {
-      this.reversed = var1;
-   }
+	public UserComparator8(boolean var1) {
+		this.reversed = var1;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lpb;Lpb;I)I",
-            garbageValue = "-1369824853"
-    )
-    int compareBuddy(Buddy var1, Buddy var2) {
-      if (Client.worldId == var1.world) {
-         if (var2.world != Client.worldId) {
-            return this.reversed ? -1 : 1;
-         }
-      } else if (var2.world == Client.worldId) {
-         return this.reversed ? 1 : -1;
-      }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lqa;Lqa;I)I",
+		garbageValue = "315336460"
+	)
+	@Export("compareBuddy")
+	int compareBuddy(Buddy var1, Buddy var2) {
+		if (Client.worldId == var1.world) {
+			if (var2.world != Client.worldId) {
+				return this.reversed ? -1 : 1;
+			}
+		} else if (var2.world == Client.worldId) {
+			return this.reversed ? 1 : -1;
+		}
 
-      return this.compareUser(var1, var2);
-   }
+		return this.compareUser(var1, var2);
+	}
 
-    @ObfuscatedName("compare")
-    public int compare(Object var1, Object var2) {
-      return this.compareBuddy((Buddy)var1, (Buddy)var2);
-   }
+	@Export("compare")
+	@ObfuscatedName("compare")
+	public int compare(Object var1, Object var2) {
+		return this.compareBuddy((Buddy)var1, (Buddy)var2);
+	}
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "62977818"
-   )
-   public static int method688(int var0, int var1) {
-      return (int)Math.round(Math.atan2((double)var0, (double)var1) * 2607.5945876176133D) & 16383;
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Ldi;III)V",
+		garbageValue = "-574325390"
+	)
+	@Export("runScript")
+	static void runScript(ScriptEvent var0, int var1, int var2) {
+		Object[] var3 = var0.args;
+		Script var4;
+		if (class345.isWorldMapEvent(var0.type)) {
+			ScriptFrame.worldMapEvent = (WorldMapEvent)var3[0];
+			WorldMapElement var5 = SequenceDefinition.WorldMapElement_get(ScriptFrame.worldMapEvent.mapElement);
+			var4 = GameEngine.getWorldMapScript(var0.type, var5.objectId, var5.category);
+		} else {
+			int var6 = (Integer)var3[0];
+			var4 = Interpreter.getScript(var6);
+		}
 
-   @ObfuscatedName("as")
-   @ObfuscatedSignature(
-      descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;I)[F",
-      garbageValue = "-1286212275"
-   )
-   static float[] method686(JSONObject var0, String var1) throws JSONException {
-      float[] var2 = new float[4];
+		if (var4 != null) {
+			class18.method64(var0, var4, var1, var2);
+		}
 
-      try {
-         JSONArray var3 = var0.getJSONArray(var1);
-         var2[0] = (float)var3.optDouble(0, 0.0D);
-         var2[1] = (float)var3.optDouble(1, 0.0D);
-         var2[2] = (float)var3.optDouble(2, 1.0D);
-         var2[3] = (float)var3.optDouble(3, 1.0D);
-      } catch (JSONException var4) {
-         var2[0] = 0.0F;
-         var2[1] = 0.0F;
-         var2[2] = 1.0F;
-         var2[3] = 1.0F;
-      }
+	}
 
-      return var2;
-   }
-
-   @ObfuscatedName("iu")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-116"
-   )
-   static final void method689() {
-      if (GameEngine.Client_plane != Client.field596) {
-         Client.field596 = GameEngine.Client_plane;
-         int var0 = GameEngine.Client_plane;
-         int[] var1 = UrlRequester.sceneMinimapSprite.pixels;
-         int var2 = var1.length;
-
-         int var3;
-         for(var3 = 0; var3 < var2; ++var3) {
-            var1[var3] = 0;
-         }
-
-         int var4;
-         int var5;
-         for(var3 = 1; var3 < 103; ++var3) {
-            var4 = (103 - var3) * 2048 + 24628;
-
-            for(var5 = 1; var5 < 103; ++var5) {
-               if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) {
-                  class31.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
-               }
-
-               if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
-                  class31.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3);
-               }
-
-               var4 += 4;
-            }
-         }
-
-         var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10);
-         var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16;
-         UrlRequester.sceneMinimapSprite.setRaster();
-
-         int var6;
-         for(var5 = 1; var5 < 103; ++var5) {
-            for(var6 = 1; var6 < 103; ++var6) {
-               if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) {
-                  class149.drawObject(var0, var6, var5, var3, var4);
-               }
-
-               if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) {
-                  class149.drawObject(var0 + 1, var6, var5, var3, var4);
-               }
-            }
-         }
-
-         Client.mapIconCount = 0;
-
-         for(var5 = 0; var5 < 104; ++var5) {
-            for(var6 = 0; var6 < 104; ++var6) {
-               long var7 = class31.scene.getFloorDecorationTag(GameEngine.Client_plane, var5, var6);
-               if (var7 != 0L) {
-                  int var9 = InterfaceParent.Entity_unpackID(var7);
-                  int var10 = class144.getObjectDefinition(var9).mapIconId;
-                  if (var10 >= 0 && class354.WorldMapElement_get(var10).field1491) {
-                     Client.mapIcons[Client.mapIconCount] = class354.WorldMapElement_get(var10).getSpriteBool(false);
-                     Client.mapIconXs[Client.mapIconCount] = var5;
-                     Client.mapIconYs[Client.mapIconCount] = var6;
-                     ++Client.mapIconCount;
-                  }
-               }
-            }
-         }
-
-         RouteStrategy.rasterProvider.apply();
-      }
-
-   }
+	@ObfuscatedName("nt")
+	@ObfuscatedSignature(
+		descriptor = "(Lmt;B)I",
+		garbageValue = "-68"
+	)
+	@Export("getWidgetFlags")
+	static int getWidgetFlags(Widget var0) {
+		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32));
+		return var1 != null ? var1.integer : var0.flags;
+	}
 }

@@ -3,62 +3,142 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ir")
+@ObfuscatedName("jd")
 @Implements("FaceNormal")
 public class FaceNormal {
-    @ObfuscatedName("af")
-    int x;
-    @ObfuscatedName("an")
-    int y;
-    @ObfuscatedName("aw")
-    int z;
+	@ObfuscatedName("aw")
+	@Export("x")
+	int x;
+	@ObfuscatedName("ay")
+	@Export("y")
+	int y;
+	@ObfuscatedName("ar")
+	@Export("z")
+	int z;
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "-1628059522"
-   )
-   public static int method1294(int var0) {
-      long var2 = ViewportMouse.ViewportMouse_entityTags[var0];
-      int var1 = (int)(var2 >>> 0 & 127L);
-      return var1;
-   }
+	FaceNormal() {
+	}
 
-    @ObfuscatedName("aq")
-    @ObfuscatedSignature(
-            descriptor = "(I)Lcl;",
-            garbageValue = "-285053165"
-    )
-    static World worldListStart() {
-      World.World_listCount = 0;
-      return Interpreter.getNextWorldListWorld();
-   }
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIZI)Lud;",
+		garbageValue = "1537290681"
+	)
+	@Export("getItemSprite")
+	public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
+		if (var1 == -1) {
+			var4 = 0;
+		} else if (var4 == 2 && var1 != 1) {
+			var4 = 1;
+		}
 
-    @ObfuscatedName("aa")
-    @ObfuscatedSignature(
-            descriptor = "(IIIZII)J",
-            garbageValue = "1232964320"
-    )
-    public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-      long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17;
-      if (var3) {
-         var5 |= 65536L;
-      }
+		long var6 = ((long)var3 << 42) + ((long)var1 << 16) + (long)var0 + ((long)var2 << 38) + ((long)var4 << 40);
+		SpritePixels var8;
+		if (!var5) {
+			var8 = (SpritePixels)ItemComposition.ItemDefinition_cachedSprites.get(var6);
+			if (var8 != null) {
+				return var8;
+			}
+		}
 
-      return var5;
-   }
+		ItemComposition var9 = class125.ItemDefinition_get(var0);
+		if (var1 > 1 && var9.countobj != null) {
+			int var10 = -1;
 
-    @ObfuscatedName("ay")
-    @ObfuscatedSignature(
-            descriptor = "(II)I",
-            garbageValue = "858932471"
-    )
-    static int Messages_getLastChatID(int var0) {
-      Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-      if (var1 == null) {
-         return -1;
-      } else {
-         return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count;
-      }
-   }
+			for (int var11 = 0; var11 < 10; ++var11) {
+				if (var1 >= var9.countco[var11] && var9.countco[var11] != 0) {
+					var10 = var9.countobj[var11];
+				}
+			}
+
+			if (var10 != -1) {
+				var9 = class125.ItemDefinition_get(var10);
+			}
+		}
+
+		Model var20 = var9.getModel(1);
+		if (var20 == null) {
+			return null;
+		} else {
+			SpritePixels var21 = null;
+			if (var9.noteTemplate != -1) {
+				var21 = getItemSprite(var9.note, 10, 1, 0, 0, true);
+				if (var21 == null) {
+					return null;
+				}
+			} else if (var9.notedId != -1) {
+				var21 = getItemSprite(var9.unnotedId, var1, var2, var3, 0, false);
+				if (var21 == null) {
+					return null;
+				}
+			} else if (var9.placeholderTemplate != -1) {
+				var21 = getItemSprite(var9.placeholder, var1, 0, 0, 0, false);
+				if (var21 == null) {
+					return null;
+				}
+			}
+
+			int[] var12 = Rasterizer2D.Rasterizer2D_pixels;
+			int var13 = Rasterizer2D.Rasterizer2D_width;
+			int var14 = Rasterizer2D.Rasterizer2D_height;
+			float[] var15 = Rasterizer2D.field4171;
+			int[] var16 = new int[4];
+			Rasterizer2D.Rasterizer2D_getClipArray(var16);
+			var8 = new SpritePixels(36, 32);
+			Rasterizer3D.method1175(var8.pixels, 36, 32, (float[])null);
+			Rasterizer2D.Rasterizer2D_clear();
+			Rasterizer3D.method1176();
+			Rasterizer3D.method1179(16, 16);
+			Rasterizer3D.field2012.field2252 = false;
+			if (var9.placeholderTemplate != -1) {
+				var21.drawTransBgAt(0, 0);
+			}
+
+			int var17 = var9.zoom2d;
+			if (var5) {
+				var17 = (int)((double)var17 * 1.5D);
+			} else if (var2 == 2) {
+				var17 = (int)((double)var17 * 1.04D);
+			}
+
+			int var18 = var17 * Rasterizer3D.Rasterizer3D_sine[var9.xan2d] >> 16;
+			int var19 = var17 * Rasterizer3D.Rasterizer3D_cosine[var9.xan2d] >> 16;
+			var20.calculateBoundsCylinder();
+			var20.method1309(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var20.height / 2 + var18 + var9.offsetY2d, var19 + var9.offsetY2d);
+			if (var9.notedId != -1) {
+				var21.drawTransBgAt(0, 0);
+			}
+
+			if (var2 >= 1) {
+				var8.outline(1);
+			}
+
+			if (var2 >= 2) {
+				var8.outline(16777215);
+			}
+
+			if (var3 != 0) {
+				var8.shadow(var3);
+			}
+
+			Rasterizer3D.method1175(var8.pixels, 36, 32, (float[])null);
+			if (var9.noteTemplate != -1) {
+				var21.drawTransBgAt(0, 0);
+			}
+
+			if (var4 == 1 || var4 == 2 && var9.isStackable == 1) {
+				FloorDecoration.ItemDefinition_fontPlain11.draw(class177.method909(var1), 0, 9, 16776960, 1);
+			}
+
+			if (!var5) {
+				ItemComposition.ItemDefinition_cachedSprites.put(var8, var6);
+			}
+
+			Rasterizer3D.method1175(var12, var13, var14, var15);
+			Rasterizer2D.Rasterizer2D_setClipArray(var16);
+			Rasterizer3D.method1176();
+			Rasterizer3D.field2012.field2252 = true;
+			return var8;
+		}
+	}
 }

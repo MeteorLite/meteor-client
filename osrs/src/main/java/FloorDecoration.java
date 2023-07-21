@@ -3,76 +3,118 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ig")
+@ObfuscatedName("ip")
 @Implements("FloorDecoration")
 public final class FloorDecoration {
-    @ObfuscatedName("af")
-    int z;
-    @ObfuscatedName("an")
-    int x;
-    @ObfuscatedName("aw")
-    int y;
-    @ObfuscatedName("ac")
-    @ObfuscatedSignature(
-            descriptor = "Liv;"
-    )
-    public Renderable renderable;
-    @ObfuscatedName("au")
-    public long tag;
-    @ObfuscatedName("ab")
-    int flags;
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Lpc;"
+	)
+	@Export("ItemDefinition_fontPlain11")
+	static Font ItemDefinition_fontPlain11;
+	@ObfuscatedName("aw")
+	@Export("z")
+	int z;
+	@ObfuscatedName("ay")
+	@Export("x")
+	int x;
+	@ObfuscatedName("ar")
+	@Export("y")
+	int y;
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lit;"
+	)
+	@Export("renderable")
+	public Renderable renderable;
+	@ObfuscatedName("as")
+	@Export("tag")
+	public long tag;
+	@ObfuscatedName("aj")
+	@Export("flags")
+	int flags;
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(III)I",
-      garbageValue = "769773533"
-   )
-   static final int method1209(int var0, int var1) {
-      var1 = (var0 & 127) * var1 >> 7;
-      if (var1 < 2) {
-         var1 = 2;
-      } else if (var1 > 126) {
-         var1 = 126;
-      }
+	FloorDecoration() {
+	}
 
-      return (var0 & 'ﾀ') + var1;
-   }
+	@ObfuscatedName("bb")
+	@ObfuscatedSignature(
+		descriptor = "(ILdc;ZB)I",
+		garbageValue = "116"
+	)
+	static int method1155(int var0, Script var1, boolean var2) {
+		int var3;
+		int var4;
+		int var6;
+		if (var0 == 3400) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			EnumComposition var5 = class371.getEnum(var3);
+			if (var5.outputType != 's') {
+			}
 
-   @ObfuscatedName("am")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIIFFFIIIIIIIIIIIIIB)V",
-      garbageValue = "12"
-   )
-   static void method1210(int var0, int var1, int var2, int var3, int var4, int var5, float var6, float var7, float var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19, int var20, int var21) {
-      Rasterizer3D.field1999.vmethod1362(var0, var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17, var18, var19, var20, var21);
-   }
+			for (var6 = 0; var6 < var5.outputCount; ++var6) {
+				if (var4 == var5.keys[var6]) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.strVals[var6];
+					var5 = null;
+					break;
+				}
+			}
 
-    @ObfuscatedName("iq")
-    @ObfuscatedSignature(
-            descriptor = "(Ldv;III)V",
-            garbageValue = "-1059867527"
-    )
-    static void performPlayerAnimation(Player var0, int var1, int var2) {
-      if (var0.sequence == var1 && var1 != -1) {
-         int var3 = ItemContainer.SequenceDefinition_get(var1).replyMode;
-         if (var3 == 1) {
-            var0.sequenceFrame = 0;
-            var0.sequenceFrameCycle = 0;
-            var0.sequenceDelay = var2;
-            var0.currentSequenceFrameIndex = 0;
-         }
+			if (var5 != null) {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.defaultStr;
+			}
 
-         if (var3 == 2) {
-            var0.currentSequenceFrameIndex = 0;
-         }
-      } else if (var1 == -1 || var0.sequence == -1 || ItemContainer.SequenceDefinition_get(var1).forcedPriority >= ItemContainer.SequenceDefinition_get(var0.sequence).forcedPriority) {
-         var0.sequence = var1;
-         var0.sequenceFrame = 0;
-         var0.sequenceFrameCycle = 0;
-         var0.sequenceDelay = var2;
-         var0.currentSequenceFrameIndex = 0;
-         var0.field1006 = var0.pathLength;
-      }
+			return 1;
+		} else if (var0 != 3408) {
+			if (var0 == 3411) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				EnumComposition var10 = class371.getEnum(var3);
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var10.size();
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			Interpreter.Interpreter_intStackSize -= 4;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			int var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+			var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+			EnumComposition var7 = class371.getEnum(var9);
+			if (var3 == var7.inputType && var4 == var7.outputType) {
+				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
+					if (var6 == var7.keys[var8]) {
+						if (var4 == 115) {
+							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.strVals[var8];
+						} else {
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.intVals[var8];
+						}
 
-   }
+						var7 = null;
+						break;
+					}
+				}
+
+				if (var7 != null) {
+					if (var4 == 115) {
+						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.defaultStr;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.defaultInt;
+					}
+				}
+
+				return 1;
+			} else {
+				if (var4 == 115) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "null";
+				} else {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+				}
+
+				return 1;
+			}
+		}
+	}
 }

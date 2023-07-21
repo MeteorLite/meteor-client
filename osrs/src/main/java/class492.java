@@ -1,11 +1,19 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("sp")
-public interface class492 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;B)V"
-   )
-   void method2556(Buffer var1);
+@ObfuscatedName("sn")
+public class class492 {
+	@ObfuscatedName("am")
+	@Export("SpriteBuffer_xOffsets")
+	public static int[] SpriteBuffer_xOffsets;
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "645086624"
+	)
+	static int method2438(int var0, int var1, int var2) {
+		return var0 << 28 | var1 << 14 | var2;
+	}
 }

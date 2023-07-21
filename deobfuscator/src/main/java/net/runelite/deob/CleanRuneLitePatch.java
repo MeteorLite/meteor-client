@@ -56,8 +56,8 @@ public class CleanRuneLitePatch
 	{
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		ClassGroup group1 = JarUtil.load(new File("./patch1.jar"), false);
-		ClassGroup group2 = JarUtil.load(new File("./patch2.jar"), false);
+		ClassGroup group1 = JarUtil.load(new File("./patch3.jar"), false);
+		ClassGroup group2 = JarUtil.load(new File("./patch4.jar"), false);
 
 		RemoveNamedAnnotations.run(group1);
 		RemoveNamedAnnotations.run(group2);
@@ -67,8 +67,8 @@ public class CleanRuneLitePatch
 
 		SyncRuneLitePatches.run(group1, group2);
 
-		JarUtil.save(group1, new File("./patch1-clean.jar"));
-		JarUtil.save(group2, new File("./patch2-clean.jar"));
+		JarUtil.save(group1, new File("./patch3-clean.jar"));
+		JarUtil.save(group2, new File("./patch4-clean.jar"));
 
 		stopwatch.stop();
 		logger.info("Done in {}", stopwatch);

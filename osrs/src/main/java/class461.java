@@ -1,60 +1,36 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rg")
+@ObfuscatedName("rs")
 public class class461 {
-   @ObfuscatedName("af")
-   public final Object field3972;
-   @ObfuscatedName("an")
-   public final Object field3973;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lrs;"
+	)
+	public static final class461 field3889;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lrs;"
+	)
+	static final class461 field3890;
+	@ObfuscatedName("ar")
+	String field3891;
 
-   public class461(Object var1, Object var2) {
-      this.field3972 = var1;
-      this.field3973 = var2;
-   }
+	static {
+		field3889 = new class461("application/json");
+		field3890 = new class461("text/plain");
+	}
 
-    @ObfuscatedName("toString")
-    public String toString() {
-      return this.field3972 + ", " + this.field3973;
-   }
+	class461(String var1) {
+		this.field3891 = var1;
+	}
 
-    @ObfuscatedName("hashCode")
-    public int hashCode() {
-      int var1 = 0;
-      if (this.field3972 != null) {
-         var1 += this.field3972.hashCode();
-      }
-
-      if (this.field3973 != null) {
-         var1 += 31 * this.field3973.hashCode();
-      }
-
-      return var1;
-   }
-
-    @ObfuscatedName("equals")
-    public boolean equals(Object var1) {
-      if (var1 != null && var1 instanceof class461) {
-         class461 var2 = (class461)var1;
-         if (this.field3972 == null) {
-            if (var2.field3972 != null) {
-               return false;
-            }
-         } else if (!this.field3972.equals(var2.field3972)) {
-            return false;
-         }
-
-         if (this.field3973 == null) {
-            if (var2.field3973 != null) {
-               return false;
-            }
-         } else if (!this.field3973.equals(var2.field3973)) {
-            return false;
-         }
-
-         return true;
-      } else {
-         return false;
-      }
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "15"
+	)
+	public String method2309() {
+		return this.field3891;
+	}
 }
