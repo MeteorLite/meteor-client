@@ -286,7 +286,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 					if (!var11 && Client.field485 == 0 && !var3.isHidden) {
 						Players.field1111.offset = 0;
-						var0.method2581(Players.field1111.array, 0, var9);
+						var0.readBytesReversedAdd(Players.field1111.array, 0, var9);
 						Players.field1111.offset = 0;
 						String var12 = AbstractFont.escapeBrackets(class153.method797(class292.readString(Players.field1111)));
 						var3.overheadText = var12.trim();

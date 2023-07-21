@@ -1122,7 +1122,7 @@ public class Buffer extends Node {
 		descriptor = "([BIII)V",
 		garbageValue = "25112654"
 	)
-	public void method2581(byte[] var1, int var2, int var3) {
+	public void readBytesReversedAdd(byte[] var1, int var2, int var3) {
 		for (int var4 = var3 + var2 - 1; var4 >= var2; --var4) {
 			var1[var4] = (byte)(this.array[++this.offset - 1] - 128);
 		}
