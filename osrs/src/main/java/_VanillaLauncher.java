@@ -22,9 +22,10 @@ public class _VanillaLauncher implements AppletStub, AppletContext {
     public static JFrame gameWindow = new JFrame("Old-School Runescape");
     public static BorderLayout borderLayout = new BorderLayout();
     public static JPanel game = new JPanel(borderLayout);
-    static Map<String, String> parameters = new HashMap<>();
-    static Map<String, String> properties = new HashMap<>();
-    static Map<String, String> pavalirameters = new HashMap<>();
+
+     static Map<String, String> properties = new HashMap<>();
+
+     static Map<String, String> parameters = new HashMap<>();
 
     public static boolean isVanilla = false;
 
