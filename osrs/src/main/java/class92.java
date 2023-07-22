@@ -114,9 +114,9 @@ public class class92 {
 	)
 	static int method505(int var0, Script var1, boolean var2) {
 		if (var0 == 3600) {
-			if (class177.friendSystem.field679 == 0) {
+			if (class177.friendSystem.friendListStatus == 0) {
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -2;
-			} else if (class177.friendSystem.field679 == 1) {
+			} else if (class177.friendSystem.friendListStatus == 1) {
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
 			} else {
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class177.friendSystem.friendsList.getSize();

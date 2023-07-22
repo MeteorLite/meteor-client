@@ -26,13 +26,13 @@ public class FriendSystem {
 	@Export("ignoreList")
 	public final IgnoreList ignoreList;
 	@ObfuscatedName("ag")
-	int field679;
+	int friendListStatus;
 
 	@ObfuscatedSignature(
 		descriptor = "(Lsi;)V"
 	)
 	FriendSystem(LoginType var1) {
-		this.field679 = 0;
+		this.friendListStatus = 0;
 		this.loginType = var1;
 		this.friendsList = new FriendsList(var1);
 		this.ignoreList = new IgnoreList(var1);
@@ -44,7 +44,7 @@ public class FriendSystem {
 		garbageValue = "106"
 	)
 	boolean method406() {
-		return this.field679 == 2;
+		return this.friendListStatus == 2;
 	}
 
 	@ObfuscatedName("ay")
@@ -52,8 +52,8 @@ public class FriendSystem {
 		descriptor = "(B)V",
 		garbageValue = "109"
 	)
-	final void method407() {
-		this.field679 = 1;
+	final void setFriendListToLoaded() {
+		this.friendListStatus = 1;
 	}
 
 	@ObfuscatedName("ar")
@@ -64,7 +64,7 @@ public class FriendSystem {
 	@Export("readUpdate")
 	final void readUpdate(Buffer var1, int var2) {
 		this.friendsList.read(var1, var2);
-		this.field679 = 2;
+		this.friendListStatus = 2;
 
 		for (int var3 = 0; var3 < Players.Players_count; ++var3) {
 			Player var4 = Client.players[Players.Players_indices[var3]];
@@ -108,7 +108,7 @@ public class FriendSystem {
 	)
 	@Export("clear")
 	final void clear() {
-		this.field679 = 0;
+		this.friendListStatus = 0;
 		this.friendsList.clear();
 		this.ignoreList.clear();
 	}

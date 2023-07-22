@@ -44,7 +44,7 @@ public enum WorldMapSectionType implements class372 {
 	@ObfuscatedName("gf")
 	static int field2392;
 	@ObfuscatedName("jx")
-	static int field2393;
+	static int ZONE_X;
 	@ObfuscatedName("as")
 	@Export("type")
 	final int type;

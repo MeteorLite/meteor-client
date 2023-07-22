@@ -18,7 +18,7 @@ public final class class387 {
 	@ObfuscatedName("ah")
 	static int field3645;
 	@ObfuscatedName("js")
-	static int field3646;
+	static int ZONE_Y;
 
 	@ObfuscatedName("bg")
 	@ObfuscatedSignature(

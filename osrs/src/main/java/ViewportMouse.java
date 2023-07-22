@@ -48,8 +48,20 @@ public class ViewportMouse {
 		descriptor = "(I)[Llo;",
 		garbageValue = "719974539"
 	)
-	public static ZoneOperation[] method1320() {
-		return new ZoneOperation[]{ZoneOperation.field2588, ZoneOperation.field2589, ZoneOperation.field2585, ZoneOperation.field2582, ZoneOperation.field2586, ZoneOperation.field2581, ZoneOperation.field2580, ZoneOperation.field2590, ZoneOperation.field2587, ZoneOperation.field2583, ZoneOperation.field2584};
+	public static ZoneOperation[] ZoneOperationOrder() {
+		return new ZoneOperation[] {
+				ZoneOperation.OBJ_DEL_LEGACY,
+				ZoneOperation.OBJ_ADD,
+				ZoneOperation.AREA_SOUND,
+				ZoneOperation.LOC_ANIM,
+				ZoneOperation.OBJ_COUNT,
+				ZoneOperation.PREFETCH_GAMEOBJECTS,
+				ZoneOperation.LOC_DEL,
+				ZoneOperation.LOC_ADD_CHANGE,
+				ZoneOperation.OBJ_DEL,
+				ZoneOperation.MAP_ANIM,
+				ZoneOperation.MAPPROJ_ANIM
+		};
 	}
 
 	@ObfuscatedName("aw")
