@@ -209,10 +209,10 @@ public class PacketWriter {
 								PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON3, Client.packetWriter.isaacCipher);
 								var4.packetBuffer.writeShortAddLE(var0.field1856.childIndex);
 								var4.packetBuffer.writeIntME(var3[1]);
-								var4.packetBuffer.writeIntLE(var0.field1856.method1799());
-								var4.packetBuffer.method2574(var3[2]);
-								var4.packetBuffer.method2574(var3[0]);
-								var4.packetBuffer.writeIntLE(var0.field1856.id);
+								var4.packetBuffer.writeIntIME(var0.field1856.method1799());
+								var4.packetBuffer.writeIntLE(var3[2]);
+								var4.packetBuffer.writeIntLE(var3[0]);
+								var4.packetBuffer.writeIntIME(var0.field1856.id);
 								Client.packetWriter.addNode(var4);
 							}
 						}

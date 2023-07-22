@@ -596,7 +596,7 @@ public class ServerPacket {
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
 	)
-	public static final ServerPacket field2702;
+	public static final ServerPacket IF_SETPLAYERHEAD;
 	@ObfuscatedName("ej")
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
@@ -767,7 +767,7 @@ public class ServerPacket {
 		UPDATE_RUNENERGY = new ServerPacket(108, 6);
 		MESSAGE_PRIVATE = new ServerPacket(109, -1);
 		field2712 = new ServerPacket(110, 14);
-		field2702 = new ServerPacket(111, 4);
+		IF_SETPLAYERHEAD = new ServerPacket(111, 4);
 		field2709 = new ServerPacket(112, 4);
 		REBUILD_REGION_NORMAL = new ServerPacket(113, 7);
 		field2708 = new ServerPacket(114, 6);

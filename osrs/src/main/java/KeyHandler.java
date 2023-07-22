@@ -250,7 +250,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 			int var17;
 			if ((var4 & 32) != 0) {
-				var3.targetIndex = var0.readUnsignedShortAdd();
+				var3.targetIndex = var0.readUnsignedShortAddLE();
 				var3.targetIndex += var0.readUnsignedByte() << 16;
 				var17 = 16777215;
 				if (var17 == var3.targetIndex) {
@@ -260,12 +260,12 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 			int var7;
 			if ((var4 & 2) != 0) {
-				var17 = var0.readUnsignedByteAdd();
+				var17 = var0.readUnsignedShortLE();
 				if (var17 == 65535) {
 					var17 = -1;
 				}
 
-				var7 = var0.method2556();
+				var7 = var0.readUnsignedByteAdd();
 				WorldMapSectionType.performPlayerAnimation(var3, var17, var7);
 			}
 
@@ -274,9 +274,9 @@ public class KeyHandler implements KeyListener, FocusListener {
 			int var13;
 			if ((var4 & 16) != 0) {
 				var17 = var0.readUnsignedShort();
-				PlayerType var18 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.method2557());
+				PlayerType var18 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.readUnsignedByteNeg());
 				boolean var19 = var0.readUnsignedByte() == 1;
-				var9 = var0._readUnsignedByteSub();
+				var9 = var0.readUnsignedByteSub();
 				var10 = var0.offset;
 				if (var3.username != null && var3.appearance != null) {
 					boolean var11 = false;
@@ -320,13 +320,13 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			if ((var4 & 4096) != 0) {
-				var3.field1013 = var0.readUnsignedByteSub();
+				var3.field1013 = var0.readSignedByteSub();
 				var3.field1007 = var0.readByteAdd();
 				var3.field1011 = var0.readByteAdd();
-				var3.field1010 = var0.readUnsignedByteSub();
-				var3.spotAnimation = var0.readUnsignedShortAddLE() + Client.cycle;
-				var3.exactMoveArrive1Cycle = var0.readUnsignedShortAdd() + Client.cycle;
-				var3.exactMoveDirection = var0.readUnsignedShortAdd();
+				var3.field1010 = var0.readSignedByteSub();
+				var3.spotAnimation = var0.readUnsignedShortAdd() + Client.cycle;
+				var3.exactMoveArrive1Cycle = var0.readUnsignedShortAddLE() + Client.cycle;
+				var3.exactMoveDirection = var0.readUnsignedShortAddLE();
 				if (var3.hasMovementPending) {
 					var3.field1013 += var3.tileX;
 					var3.field1007 += var3.tileY;
@@ -360,19 +360,19 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			if ((var4 & 32768) != 0) {
-				var5 = var0.readUnsignedByteSub();
+				var5 = var0.readSignedByteSub();
 			}
 
 			int var21;
 			int var25;
 			int var29;
 			if ((var4 & 2048) != 0) {
-				var17 = var0.readUnsignedShortAdd();
+				var17 = var0.readUnsignedShortAddLE();
 				var7 = var17 >> 8;
 				var29 = var7 >= 13 && var7 <= 20 ? var7 - 12 : 0;
-				PlayerType var20 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.method2556());
-				boolean var24 = var0.method2556() == 1;
-				var25 = var0.method2556();
+				PlayerType var20 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.readUnsignedByteAdd());
+				boolean var24 = var0.readUnsignedByteAdd() == 1;
+				var25 = var0.readUnsignedByteAdd();
 				var21 = var0.offset;
 				if (var3.username != null && var3.appearance != null) {
 					boolean var26 = false;
@@ -382,7 +382,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 					if (!var26 && Client.field485 == 0 && !var3.isHidden) {
 						Players.field1111.offset = 0;
-						var0.method2580(Players.field1111.array, 0, var25);
+						var0.readBytesReversed(Players.field1111.array, 0, var25);
 						Players.field1111.offset = 0;
 						String var14 = AbstractFont.escapeBrackets(class153.method797(class292.readString(Players.field1111)));
 						var3.overheadText = var14.trim();
@@ -420,18 +420,18 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			if ((var4 & 65536) != 0) {
-				var17 = var0.method2556();
+				var17 = var0.readUnsignedByteAdd();
 
 				for (var7 = 0; var7 < var17; ++var7) {
-					var29 = var0._readUnsignedByteSub();
+					var29 = var0.readUnsignedByteSub();
 					var9 = var0.readUnsignedShort();
-					var10 = var0.method2579();
+					var10 = var0.readIntIME();
 					var3.updateSpotAnimation(var29, var9, var10 >> 16, var10 & 65535);
 				}
 			}
 
 			if ((var4 & 8) != 0) {
-				var17 = var0.method2556();
+				var17 = var0.readUnsignedByteAdd();
 				if (var17 > 0) {
 					for (var7 = 0; var7 < var17; ++var7) {
 						var9 = -1;
@@ -454,7 +454,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 					}
 				}
 
-				var7 = var0.method2557();
+				var7 = var0.readUnsignedByteNeg();
 				if (var7 > 0) {
 					for (var29 = 0; var29 < var7; ++var29) {
 						var9 = var0.readUShortSmart();
@@ -462,7 +462,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 						if (var10 != 32767) {
 							var25 = var0.readUShortSmart();
 							var21 = var0.readUnsignedByte();
-							var13 = var10 > 0 ? var0.method2557() : var21;
+							var13 = var10 > 0 ? var0.readUnsignedByteNeg() : var21;
 							var3.addHealthBar(var9, Client.cycle, var10, var25, var21, var13);
 						} else {
 							var3.removeHealthBar(var9);
@@ -472,7 +472,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			if ((var4 & 128) != 0) {
-				var3.movingOrientation = var0.readUnsignedShortAddLE();
+				var3.movingOrientation = var0.readUnsignedShortAdd();
 				if (var3.pathLength == 0) {
 					var3.orientation = var3.movingOrientation;
 					var3.method526();
@@ -481,8 +481,8 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 			if ((var4 & 256) != 0) {
 				var3.recolourStartCycle = Client.cycle + var0.readUnsignedShort();
-				var3.recolourEndCycle = Client.cycle + var0.readUnsignedShortAdd();
-				var3.recolourHue = var0.readUnsignedByteSub();
+				var3.recolourEndCycle = Client.cycle + var0.readUnsignedShortAddLE();
+				var3.recolourHue = var0.readSignedByteSub();
 				var3.recolourSaturation = var0.readByteNeg();
 				var3.recolourLuminance = var0.readByte();
 				var3.recolourAmount = (byte)var0.readUnsignedByte();
@@ -492,7 +492,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 				var17 = var0.readUnsignedByte();
 				byte[] var27 = new byte[var17];
 				Buffer var23 = new Buffer(var27);
-				var0.method2580(var27, 0, var17);
+				var0.readBytesReversed(var27, 0, var17);
 				Players.cachedAppearanceBuffer[var2] = var23;
 				var3.read(var23);
 			}

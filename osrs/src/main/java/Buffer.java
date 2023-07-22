@@ -816,7 +816,7 @@ public class Buffer extends Node {
 		descriptor = "(IS)V",
 		garbageValue = "3631"
 	)
-	public void method2553(int var1) {
+	public void writeByteAdd(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 + 128);
 	}
 
@@ -825,7 +825,7 @@ public class Buffer extends Node {
 		descriptor = "(IB)V",
 		garbageValue = "1"
 	)
-	public void method2554(int var1) {
+	public void writeByteNeg(int var1) {
 		this.array[++this.offset - 1] = (byte)(0 - var1);
 	}
 
@@ -834,7 +834,7 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "1114683794"
 	)
-	public void method2555(int var1) {
+	public void writeByteSub(int var1) {
 		this.array[++this.offset - 1] = (byte)(128 - var1);
 	}
 
@@ -843,7 +843,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "660455721"
 	)
-	public int method2556() {
+	public int readUnsignedByteAdd() {
 		return this.array[++this.offset - 1] - 128 & 255;
 	}
 
@@ -852,7 +852,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-778478825"
 	)
-	public int method2557() {
+	public int readUnsignedByteNeg() {
 		return 0 - this.array[++this.offset - 1] & 255;
 	}
 
@@ -862,7 +862,7 @@ public class Buffer extends Node {
 		garbageValue = "27227"
 	)
 	@Export("_readUnsignedByteSub")
-	public int _readUnsignedByteSub() {
+	public int readUnsignedByteSub() {
 		return 128 - this.array[++this.offset - 1] & 255;
 	}
 
@@ -889,7 +889,7 @@ public class Buffer extends Node {
 		descriptor = "(I)B",
 		garbageValue = "-963591919"
 	)
-	public byte readUnsignedByteSub() {
+	public byte readSignedByteSub() {
 		return (byte)(128 - this.array[++this.offset - 1]);
 	}
 
@@ -899,7 +899,7 @@ public class Buffer extends Node {
 		garbageValue = "-1732670980"
 	)
 	@Export("writeShortAdd")
-	public void writeShortAdd(int var1) {
+	public void writeShortLE(int var1) {
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 	}
@@ -910,7 +910,7 @@ public class Buffer extends Node {
 		garbageValue = "1935689498"
 	)
 	@Export("writeByteNeg")
-	public void writeByteNeg(int var1) {
+	public void writeShortAdd(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)(var1 + 128);
 	}
@@ -932,7 +932,7 @@ public class Buffer extends Node {
 		garbageValue = "-1581813727"
 	)
 	@Export("readUnsignedByteAdd")
-	public int readUnsignedByteAdd() {
+	public int readUnsignedShortLE() {
 		this.offset += 2;
 		return ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] & 255);
 	}
@@ -943,7 +943,7 @@ public class Buffer extends Node {
 		garbageValue = "-35"
 	)
 	@Export("readUnsignedShortAddLE")
-	public int readUnsignedShortAddLE() {
+	public int readUnsignedShortAdd() {
 		this.offset += 2;
 		return (this.array[this.offset - 1] - 128 & 255) + ((this.array[this.offset - 2] & 255) << 8);
 	}
@@ -954,7 +954,7 @@ public class Buffer extends Node {
 		garbageValue = "601175876"
 	)
 	@Export("readUnsignedShortAdd")
-	public int readUnsignedShortAdd() {
+	public int readUnsignedShortAddLE() {
 		this.offset += 2;
 		return ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] - 128 & 255);
 	}
@@ -964,7 +964,7 @@ public class Buffer extends Node {
 		descriptor = "(B)I",
 		garbageValue = "-128"
 	)
-	public int method2568() {
+	public int readSignedShortLE() {
 		this.offset += 2;
 		int var1 = ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] & 255);
 		if (var1 > 32767) {
@@ -995,7 +995,7 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "176308421"
 	)
-	public void method2570(int var1) {
+	public void writeMed0(int var1) {
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)(var1 >> 16);
@@ -1006,7 +1006,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-225477546"
 	)
-	public int method2571() {
+	public int readUMed2() {
 		this.offset += 3;
 		return (this.array[this.offset - 3] & 255) + ((this.array[this.offset - 2] & 255) << 8) + ((this.array[this.offset - 1] & 255) << 16);
 	}
@@ -1016,7 +1016,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-1135039814"
 	)
-	public int method2572() {
+	public int readUMed1() {
 		this.offset += 3;
 		return ((this.array[this.offset - 1] & 255) << 8) + ((this.array[this.offset - 3] & 255) << 16) + (this.array[this.offset - 2] & 255);
 	}
@@ -1026,7 +1026,7 @@ public class Buffer extends Node {
 		descriptor = "(B)I",
 		garbageValue = "25"
 	)
-	public int method2573() {
+	public int readSMed0() {
 		this.offset += 3;
 		int var1 = (this.array[this.offset - 1] & 255) + ((this.array[this.offset - 3] & 255) << 8) + ((this.array[this.offset - 2] & 255) << 16);
 		if (var1 > 8388607) {
@@ -1041,7 +1041,7 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "-1385470000"
 	)
-	public void method2574(int var1) {
+	public void writeIntLE(int var1) {
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)(var1 >> 16);
@@ -1067,7 +1067,7 @@ public class Buffer extends Node {
 		garbageValue = "48"
 	)
 	@Export("writeIntLE")
-	public void writeIntLE(int var1) {
+	public void writeIntIME(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 16);
 		this.array[++this.offset - 1] = (byte)(var1 >> 24);
 		this.array[++this.offset - 1] = (byte)var1;
@@ -1080,7 +1080,7 @@ public class Buffer extends Node {
 		garbageValue = "-1217320965"
 	)
 	@Export("readUnsignedByteNeg")
-	public int readUnsignedByteNeg() {
+	public int readIntLE() {
 		this.offset += 4;
 		return (this.array[this.offset - 4] & 255) + ((this.array[this.offset - 3] & 255) << 8) + ((this.array[this.offset - 2] & 255) << 16) + ((this.array[this.offset - 1] & 255) << 24);
 	}
@@ -1090,7 +1090,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-1244908443"
 	)
-	public int method2578() {
+	public int readIntME() {
 		this.offset += 4;
 		return ((this.array[this.offset - 2] & 255) << 24) + ((this.array[this.offset - 4] & 255) << 8) + (this.array[this.offset - 3] & 255) + ((this.array[this.offset - 1] & 255) << 16);
 	}
@@ -1100,7 +1100,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-1942437295"
 	)
-	public int method2579() {
+	public int readIntIME() {
 		this.offset += 4;
 		return ((this.array[this.offset - 1] & 255) << 8) + ((this.array[this.offset - 4] & 255) << 16) + (this.array[this.offset - 2] & 255) + ((this.array[this.offset - 3] & 255) << 24);
 	}
@@ -1110,7 +1110,7 @@ public class Buffer extends Node {
 		descriptor = "([BIII)V",
 		garbageValue = "1978153967"
 	)
-	public void method2580(byte[] var1, int var2, int var3) {
+	public void readBytesReversed(byte[] var1, int var2, int var3) {
 		for (int var4 = var3 + var2 - 1; var4 >= var2; --var4) {
 			var1[var4] = this.array[++this.offset - 1];
 		}

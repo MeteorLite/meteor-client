@@ -110,8 +110,8 @@ public class class30 {
 			PacketBufferNode var15 = class503.getPacketBufferNode(ClientPacket.field2498, Client.packetWriter.isaacCipher);
 			var15.packetBuffer.writeIntME(Client.field363);
 			var15.packetBuffer.writeShortAddLE(var13);
-			var15.packetBuffer.method2553(var12);
-			var15.packetBuffer.writeByteNeg(var14);
+			var15.packetBuffer.writeByteAdd(var12);
+			var15.packetBuffer.writeShortAdd(var14);
 			Client.packetWriter.addNode(var15);
 		}
 

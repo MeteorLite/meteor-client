@@ -85,8 +85,8 @@ public class class166 extends class159 {
 					PacketBufferNode var13 = class503.getPacketBufferNode(ClientPacket.field2502, Client.packetWriter.isaacCipher);
 					var13.packetBuffer.writeByte(18);
 					var13.packetBuffer.writeShort(var11 + AbstractArchive.baseX);
-					var13.packetBuffer.method2553(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
-					var13.packetBuffer.writeShortAdd(var12 + class148.baseY);
+					var13.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
+					var13.packetBuffer.writeShortLE(var12 + class148.baseY);
 					var13.packetBuffer.writeByte(var4);
 					var13.packetBuffer.writeByte(var5);
 					var13.packetBuffer.writeShort(Client.camAngleY);

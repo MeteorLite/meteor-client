@@ -75,22 +75,22 @@ public class class28 {
 				if (var0 == 1) {
 					var8 = class503.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeShortAddLE(var3[var6]);
-					var8.packetBuffer.method2555(0);
+					var8.packetBuffer.writeByteSub(0);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 4) {
 					var8 = class503.getPacketBufferNode(ClientPacket.field2531, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeByteNeg(var3[var6]);
+					var8.packetBuffer.writeShortAdd(var3[var6]);
 					var8.packetBuffer.writeByte(0);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 6) {
 					var8 = class503.getPacketBufferNode(ClientPacket.IF_BUTTONT, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeShortAddLE(var3[var6]);
-					var8.packetBuffer.method2555(0);
+					var8.packetBuffer.writeByteSub(0);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 7) {
 					var8 = class503.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeShort(var3[var6]);
-					var8.packetBuffer.method2554(0);
+					var8.packetBuffer.writeByteNeg(0);
 					Client.packetWriter.addNode(var8);
 				}
 

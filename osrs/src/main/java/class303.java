@@ -726,9 +726,9 @@ public class class303 {
 
 			class385.method1984(var3, var2, true);
 		} else {
-			var2 = var1.readUnsignedShortAddLE();
-			var3 = var1.readUnsignedByteAdd();
-			boolean var15 = var1._readUnsignedByteSub() == 1;
+			var2 = var1.readUnsignedShortAdd();
+			var3 = var1.readUnsignedShortLE();
+			boolean var15 = var1.readUnsignedByteSub() == 1;
 			var5 = var1.readUnsignedShort();
 			var1.importIndex();
 
