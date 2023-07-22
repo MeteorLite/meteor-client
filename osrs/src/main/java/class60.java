@@ -259,7 +259,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var15 = class503.getPacketBufferNode(ClientPacket.IF_BUTTONT, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeShortAddLE(var3);
-				var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var15.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -291,7 +291,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var15 = class503.getPacketBufferNode(ClientPacket.field2548, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeShortAddLE(var3);
-				var15.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var15.packetBuffer.method2554(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -307,7 +307,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var15 = class503.getPacketBufferNode(ClientPacket.field2540, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeShortAddLE(var3);
-				var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var15.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -334,7 +334,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var15 = class503.getPacketBufferNode(ClientPacket.field2546, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeByteNeg(var3);
-				var15.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var15.packetBuffer.method2554(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -458,7 +458,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeShortAddLE(var3);
-				var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var15.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -521,7 +521,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var15 = class503.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeShort(var3);
-				var15.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var15.packetBuffer.method2554(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -666,7 +666,7 @@ public class class60 {
 				var16.packetBuffer.writeByteNeg(var0 + AbstractArchive.baseX);
 				var16.packetBuffer.writeByteNeg(var3);
 				var16.packetBuffer.writeShortAdd(class148.baseY + var1);
-				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2554(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var16);
 			}
 
@@ -683,7 +683,7 @@ public class class60 {
 				var16.packetBuffer.writeByteNeg(var3);
 				var16.packetBuffer.method2574(class33.selectedSpellWidget);
 				var16.packetBuffer.writeByteNeg(Client.selectedSpellItemId);
-				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2554(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShort(var0 + AbstractArchive.baseX);
 				Client.packetWriter.addNode(var16);
 			}
@@ -697,7 +697,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var16 = class503.getPacketBufferNode(ClientPacket.field2543, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortAdd(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2554(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShortAdd(var3);
 				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
 				Client.packetWriter.addNode(var16);
@@ -727,7 +727,7 @@ public class class60 {
 				Client.destinationX = var0;
 				Client.destinationY = var1;
 				var16 = class503.getPacketBufferNode(ClientPacket.field2557, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2554(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShort(Client.selectedSpellItemId);
 				var16.packetBuffer.writeShort(var3);
 				var16.packetBuffer.writeShort(class148.baseY + var1);
@@ -747,7 +747,7 @@ public class class60 {
 				var16 = class503.getPacketBufferNode(ClientPacket.field2528, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortAdd(class148.baseY + var1);
 				var16.packetBuffer.writeShortAdd(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShort(var3);
 				Client.packetWriter.addNode(var16);
 			}
@@ -777,7 +777,7 @@ public class class60 {
 				Client.destinationY = var1;
 				var16 = class503.getPacketBufferNode(ClientPacket.field2516, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeByteNeg(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeByteNeg(class148.baseY + var1);
 				var16.packetBuffer.writeShortAddLE(var3);
 				Client.packetWriter.addNode(var16);
@@ -791,7 +791,7 @@ public class class60 {
 				Client.destinationX = var0;
 				Client.destinationY = var1;
 				var16 = class503.getPacketBufferNode(ClientPacket.field2535, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShortAdd(var3);
 				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
 				var16.packetBuffer.writeShortAddLE(var0 + AbstractArchive.baseX);
@@ -806,7 +806,7 @@ public class class60 {
 				Client.destinationX = var0;
 				Client.destinationY = var1;
 				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				var16.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
 				var16.packetBuffer.writeShortAddLE(var3);
 				var16.packetBuffer.writeShortAddLE(var0 + AbstractArchive.baseX);
@@ -868,7 +868,7 @@ public class class60 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var15 = class503.getPacketBufferNode(ClientPacket.field2511, Client.packetWriter.isaacCipher);
-					var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+					var15.packetBuffer.method2555(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 					var15.packetBuffer.writeShort(var3);
 					Client.packetWriter.addNode(var15);
 				}

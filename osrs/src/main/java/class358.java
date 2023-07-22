@@ -215,7 +215,7 @@ public class class358 extends DualNode {
 				} else {
 					var16 = null;
 					if ((var15 & 2) == 2) {
-						var8 = var1.readUnsignedByteNeg();
+						var8 = var1.method2557();
 						var16 = new int[var8];
 
 						for (var9 = 0; var9 < var8; ++var9) {
@@ -270,7 +270,7 @@ public class class358 extends DualNode {
 				} else {
 					var16 = null;
 					if ((var15 & 2) == 2) {
-						var8 = var1.readUnsignedByteAdd();
+						var8 = var1.method2556();
 						var16 = new int[var8];
 
 						for (var9 = 0; var9 < var8; ++var9) {
@@ -310,7 +310,7 @@ public class class358 extends DualNode {
 
 					var25 = false;
 					if ((var15 & 16) != 0) {
-						var25 = var1.readUnsignedByteNeg() == 1;
+						var25 = var1.method2557() == 1;
 					}
 
 					var19 = (long)(++NPC.field1068 - 1);
@@ -338,10 +338,10 @@ public class class358 extends DualNode {
 			}
 
 			if ((var23 & 131072) != 0) {
-				var15 = var1.readUnsignedByteNeg();
+				var15 = var1.method2557();
 
 				for (var7 = 0; var7 < var15; ++var7) {
-					var8 = var1.readUnsignedByteNeg();
+					var8 = var1.method2557();
 					var9 = var1.readUnsignedShort();
 					var10 = var1.method2578();
 					var14.updateSpotAnimation(var8, var9, var10 >> 16, var10 & 65535);
@@ -432,7 +432,7 @@ public class class358 extends DualNode {
 			}
 
 			if ((var23 & 8192) != 0) {
-				var14.method584(var1.readUnsignedByteNeg());
+				var14.method584(var1.method2557());
 			}
 
 			if ((var23 & 16384) != 0) {
@@ -440,7 +440,7 @@ public class class358 extends DualNode {
 			}
 
 			if ((var23 & 65536) != 0) {
-				var15 = var1.readUnsignedByteAdd();
+				var15 = var1.method2556();
 				var16 = new int[8];
 				var17 = new short[8];
 

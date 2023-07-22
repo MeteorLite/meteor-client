@@ -825,7 +825,7 @@ public class Buffer extends Node {
 		descriptor = "(IB)V",
 		garbageValue = "1"
 	)
-	public void writeByteNeg(int var1) {
+	public void method2554(int var1) {
 		this.array[++this.offset - 1] = (byte)(0 - var1);
 	}
 
@@ -834,7 +834,7 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "1114683794"
 	)
-	public void writeByteSub(int var1) {
+	public void method2555(int var1) {
 		this.array[++this.offset - 1] = (byte)(128 - var1);
 	}
 
@@ -843,7 +843,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "660455721"
 	)
-	public int readUnsignedByteAdd() {
+	public int method2556() {
 		return this.array[++this.offset - 1] - 128 & 255;
 	}
 
@@ -852,7 +852,7 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-778478825"
 	)
-	public int readUnsignedByteNeg() {
+	public int method2557() {
 		return 0 - this.array[++this.offset - 1] & 255;
 	}
 
@@ -898,8 +898,8 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "-1732670980"
 	)
-
-	public void writeShortLE(int var1) {
+	@Export("writeShortAdd")
+	public void writeShortAdd(int var1) {
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 	}
@@ -909,8 +909,8 @@ public class Buffer extends Node {
 		descriptor = "(II)V",
 		garbageValue = "1935689498"
 	)
-
-	public void writeShortAdd(int var1) {
+	@Export("writeByteNeg")
+	public void writeByteNeg(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)(var1 + 128);
 	}
@@ -931,8 +931,8 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-1581813727"
 	)
-
-	public int readUnsignedShortLE() {
+	@Export("readUnsignedByteAdd")
+	public int readUnsignedByteAdd() {
 		this.offset += 2;
 		return ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] & 255);
 	}
@@ -1079,8 +1079,8 @@ public class Buffer extends Node {
 		descriptor = "(I)I",
 		garbageValue = "-1217320965"
 	)
-
-	public int readIntLE() {
+	@Export("readUnsignedByteNeg")
+	public int readUnsignedByteNeg() {
 		this.offset += 4;
 		return (this.array[this.offset - 4] & 255) + ((this.array[this.offset - 3] & 255) << 8) + ((this.array[this.offset - 2] & 255) << 16) + ((this.array[this.offset - 1] & 255) << 24);
 	}

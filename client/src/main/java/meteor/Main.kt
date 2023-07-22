@@ -265,7 +265,7 @@ object Main : ApplicationScope, EventSubscriber() {
         }
 
         xpDropManager = XpDropManager()
-        SessionManager.start()
+        //SessionManager.start()
         startupTimer.stop()
 
         GlobalScope.launch {

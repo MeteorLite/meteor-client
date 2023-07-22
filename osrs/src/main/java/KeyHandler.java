@@ -265,7 +265,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 					var17 = -1;
 				}
 
-				var7 = var0.readUnsignedByteAdd();
+				var7 = var0.method2556();
 				WorldMapSectionType.performPlayerAnimation(var3, var17, var7);
 			}
 
@@ -274,7 +274,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			int var13;
 			if ((var4 & 16) != 0) {
 				var17 = var0.readUnsignedShort();
-				PlayerType var18 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.readUnsignedByteNeg());
+				PlayerType var18 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.method2557());
 				boolean var19 = var0.readUnsignedByte() == 1;
 				var9 = var0._readUnsignedByteSub();
 				var10 = var0.offset;
@@ -370,9 +370,9 @@ public class KeyHandler implements KeyListener, FocusListener {
 				var17 = var0.readUnsignedShortAdd();
 				var7 = var17 >> 8;
 				var29 = var7 >= 13 && var7 <= 20 ? var7 - 12 : 0;
-				PlayerType var20 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.readUnsignedByteAdd());
-				boolean var24 = var0.readUnsignedByteAdd() == 1;
-				var25 = var0.readUnsignedByteAdd();
+				PlayerType var20 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.method2556());
+				boolean var24 = var0.method2556() == 1;
+				var25 = var0.method2556();
 				var21 = var0.offset;
 				if (var3.username != null && var3.appearance != null) {
 					boolean var26 = false;
@@ -420,7 +420,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			if ((var4 & 65536) != 0) {
-				var17 = var0.readUnsignedByteAdd();
+				var17 = var0.method2556();
 
 				for (var7 = 0; var7 < var17; ++var7) {
 					var29 = var0._readUnsignedByteSub();
@@ -431,7 +431,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			if ((var4 & 8) != 0) {
-				var17 = var0.readUnsignedByteAdd();
+				var17 = var0.method2556();
 				if (var17 > 0) {
 					for (var7 = 0; var7 < var17; ++var7) {
 						var9 = -1;
@@ -454,7 +454,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 					}
 				}
 
-				var7 = var0.readUnsignedByteNeg();
+				var7 = var0.method2557();
 				if (var7 > 0) {
 					for (var29 = 0; var29 < var7; ++var29) {
 						var9 = var0.readUShortSmart();
@@ -462,7 +462,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 						if (var10 != 32767) {
 							var25 = var0.readUShortSmart();
 							var21 = var0.readUnsignedByte();
-							var13 = var10 > 0 ? var0.readUnsignedByteNeg() : var21;
+							var13 = var10 > 0 ? var0.method2557() : var21;
 							var3.addHealthBar(var9, Client.cycle, var10, var25, var21, var13);
 						} else {
 							var3.removeHealthBar(var9);

@@ -519,10 +519,10 @@ public class class27 {
 		int var9;
 		int var10;
 		if (ZoneOperation.field2585 == var0) {
-			var2 = var1.readUnsignedByteNeg();
+			var2 = var1.method2557();
 			var3 = var2 >> 4 & 15;
 			var4 = var2 & 7;
-			var5 = var1.readUnsignedByteAdd();
+			var5 = var1.method2556();
 			var6 = var1._readUnsignedByteSub();
 			var7 = (var6 >> 4 & 7) + WorldMapSectionType.field2393;
 			var8 = (var6 & 7) + class387.field3646;
@@ -545,7 +545,7 @@ public class class27 {
 			var2 = var1.readUnsignedByteNeg();
 			var3 = var1._readUnsignedByteSub();
 			var1.readUnsignedShort();
-			var1.readUnsignedByteNeg();
+			var1.method2557();
 			var4 = var1.readUnsignedShort();
 			var5 = var1.readUnsignedByte();
 			var6 = (var5 >> 4 & 7) + WorldMapSectionType.field2393;
@@ -651,7 +651,7 @@ public class class27 {
 				}
 
 			} else if (ZoneOperation.field2586 == var0) {
-				var2 = var1.readUnsignedByteAdd();
+				var2 = var1.method2556();
 				var3 = (var2 >> 4 & 7) + WorldMapSectionType.field2393;
 				var4 = (var2 & 7) + class387.field3646;
 				var5 = var1.readUnsignedShort();
@@ -695,7 +695,7 @@ public class class27 {
 					var2 = var1._readUnsignedByteSub();
 					var3 = (var2 >> 4 & 7) + WorldMapSectionType.field2393;
 					var4 = (var2 & 7) + class387.field3646;
-					var5 = var1.readUnsignedByteAdd();
+					var5 = var1.method2556();
 					var6 = var1.readUnsignedByteAdd();
 					var7 = var1.readUnsignedByte();
 					var8 = var7 >> 2;
@@ -711,7 +711,7 @@ public class class27 {
 					int var14;
 					if (ZoneOperation.field2581 == var0) {
 						byte var36 = var1.readByteAdd();
-						var3 = var1.readUnsignedByteAdd();
+						var3 = var1.method2556();
 						var4 = (var3 >> 4 & 7) + WorldMapSectionType.field2393;
 						var5 = (var3 & 7) + class387.field3646;
 						var6 = var1.readUnsignedShortAddLE();
@@ -785,17 +785,17 @@ public class class27 {
 					if (ZoneOperation.field2584 == var0) {
 						var2 = var1.readUnsignedShort();
 						var3 = var1.method2573();
-						var4 = var1.readUnsignedByteNeg();
+						var4 = var1.method2557();
 						byte var37 = var1.readUnsignedByteSub();
-						var6 = var1.readUnsignedByteNeg();
+						var6 = var1.method2557();
 						var7 = (var6 >> 4 & 7) + WorldMapSectionType.field2393;
 						var8 = (var6 & 7) + class387.field3646;
-						var9 = var1.readUnsignedByteAdd();
+						var9 = var1.method2556();
 						var10 = var1.readUnsignedShortAddLE();
 						var11 = var1.readUnsignedShortAddLE();
 						byte var39 = var1.readByteAdd();
-						var13 = var1.readUnsignedByteAdd() * 4;
-						var14 = var1.readUnsignedByteNeg() * 4;
+						var13 = var1.method2556() * 4;
+						var14 = var1.method2557() * 4;
 						var5 = var37 + var7;
 						var12 = var39 + var8;
 						if (var7 >= 0 && var8 >= 0 && var7 < 104 && var8 < 104 && var5 >= 0 && var12 >= 0 && var5 < 104 && var12 < 104 && var11 != 65535) {
@@ -825,7 +825,7 @@ public class class27 {
 					} else {
 						var2 = var1.readUnsignedByteNeg();
 						var3 = var1.readUnsignedShort();
-						var4 = var1.readUnsignedByteNeg();
+						var4 = var1.method2557();
 						var5 = (var4 >> 4 & 7) + WorldMapSectionType.field2393;
 						var6 = (var4 & 7) + class387.field3646;
 						if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
