@@ -99,9 +99,9 @@ public class InterfaceParent extends Node {
 		DbTableType.headIconPkSprites = null;
 		class17.headIconPrayerSprites = null;
 		class345.headIconHintSprites = null;
-		DynamicObject.field819 = null;
+		DynamicObject.mapMarkerSprites = null;
 		class211.crossSprites = null;
-		MusicPatchNode2.field2741 = null;
+		MusicPatchNode2.mapDotSprites = null;
 		class302.scrollBarSprites = null;
 		AbstractWorldMapIcon.field2442 = null;
 		UserComparator5.scene.clear();
@@ -145,7 +145,7 @@ public class InterfaceParent extends Node {
 		class158.masterDisk = null;
 		Client.archiveLoaders.clear();
 		Client.field548 = 0;
-		class153.field1356 = new class360();
+		class153.field1356 = new JagNetThread();
 		WorldMapLabel.urlRequester = new class113(TileItem.client.field655, 215);
 
 		try {

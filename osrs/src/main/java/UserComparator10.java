@@ -100,7 +100,7 @@ public class UserComparator10 extends AbstractUserComparator {
 			}
 
 			class306.field2755.clear();
-			class360 var6 = class153.field1356;
+			JagNetThread var6 = class153.field1356;
 			var6.method1896(false);
 			Login.clearLoginScreen = true;
 			Login.xPadding = (GrandExchangeOfferTotalQuantityComparator.canvasWidth - 765) / 2;

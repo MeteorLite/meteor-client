@@ -112,7 +112,7 @@ public class FontName {
 				var8 = ClanChannelMember.method770(var7, 96);
 				return Rasterizer3D.Rasterizer3D_colorPalette[var8] | -16777216;
 			} else if (var2.texture >= 0) {
-				int var3 = ClanChannelMember.method770(Rasterizer3D.field2012.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture), 96);
+				int var3 = ClanChannelMember.method770(Rasterizer3D.clips.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture), 96);
 				return Rasterizer3D.Rasterizer3D_colorPalette[var3] | -16777216;
 			} else if (var2.primaryRgb == 16711935) {
 				return var1;

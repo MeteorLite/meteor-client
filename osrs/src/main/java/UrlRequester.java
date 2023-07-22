@@ -196,7 +196,7 @@ public abstract class UrlRequester implements Runnable {
 		var0 = 100 - var0;
 		float var1 = 0.5F + (float)var0 / 200.0F;
 		Rasterizer3D.method1164((double)var1);
-		((TextureProvider)Rasterizer3D.field2012.Rasterizer3D_textureLoader).setBrightness((double)var1);
+		((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness((double)var1);
 		HealthBar.method581();
 		class150.clientPreferences.setBrightness((double)var1);
 	}

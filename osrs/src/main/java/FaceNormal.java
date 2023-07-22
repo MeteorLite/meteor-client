@@ -89,7 +89,7 @@ public class FaceNormal {
 			Rasterizer2D.Rasterizer2D_clear();
 			Rasterizer3D.method1176();
 			Rasterizer3D.method1179(16, 16);
-			Rasterizer3D.field2012.field2252 = false;
+			Rasterizer3D.clips.field2252 = false;
 			if (var9.placeholderTemplate != -1) {
 				var21.drawTransBgAt(0, 0);
 			}
@@ -137,7 +137,7 @@ public class FaceNormal {
 			Rasterizer3D.method1175(var12, var13, var14, var15);
 			Rasterizer2D.Rasterizer2D_setClipArray(var16);
 			Rasterizer3D.method1176();
-			Rasterizer3D.field2012.field2252 = true;
+			Rasterizer3D.clips.field2252 = true;
 			return var8;
 		}
 	}

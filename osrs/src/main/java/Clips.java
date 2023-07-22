@@ -3,7 +3,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jq")
-public class class245 {
+public class Clips {
 	@ObfuscatedName("aw")
 	boolean field2241;
 	@ObfuscatedName("ay")
@@ -27,18 +27,18 @@ public class class245 {
 	@ObfuscatedName("au")
 	int field2249;
 	@ObfuscatedName("ae")
-	int field2245;
+	int clipNegativeMidX;
 	@ObfuscatedName("ab")
 	int field2243;
 	@ObfuscatedName("ad")
-	int field2244;
+	int clipNegativeMidY;
 	@ObfuscatedName("ao")
 	int field2247;
 	@ObfuscatedName("ac")
 	@Export("Rasterizer3D_rowOffsets")
 	int[] Rasterizer3D_rowOffsets;
 
-	class245() {
+	Clips() {
 		this.field2241 = false;
 		this.field2252 = true;
 		this.field2248 = 0;
@@ -50,9 +50,9 @@ public class class245 {
 	void method1333() {
 		this.field2246 = this.field2242 / 2;
 		this.field2250 = this.field2249 / 2;
-		this.field2245 = -this.field2246;
+		this.clipNegativeMidX = -this.field2246;
 		this.field2243 = this.field2242 - this.field2246;
-		this.field2244 = -this.field2250;
+		this.clipNegativeMidY = -this.field2250;
 		this.field2247 = this.field2249 - this.field2250;
 	}
 
@@ -60,9 +60,9 @@ public class class245 {
 	void method1334(int var1, int var2, int var3, int var4) {
 		this.field2246 = var1 - var2;
 		this.field2250 = var3 - var4;
-		this.field2245 = -this.field2246;
+		this.clipNegativeMidX = -this.field2246;
 		this.field2243 = this.field2242 - this.field2246;
-		this.field2244 = -this.field2250;
+		this.clipNegativeMidY = -this.field2250;
 		this.field2247 = this.field2249 - this.field2250;
 	}
 

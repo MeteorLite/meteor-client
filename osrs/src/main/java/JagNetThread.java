@@ -4,7 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("nq")
-public class class360 {
+public class JagNetThread {
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "Lqh;"
@@ -89,7 +89,7 @@ public class class360 {
 	@ObfuscatedName("al")
 	public int field3561;
 
-	public class360() {
+	public JagNetThread() {
 		this.field3546 = 0;
 		this.field3554 = new NodeHashTable(4096);
 		this.field3544 = 0;

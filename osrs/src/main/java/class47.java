@@ -460,7 +460,7 @@ public class class47 {
 
 		IterableNodeHashTableIterator var15 = new IterableNodeHashTableIterator(var0.method523());
 
-		for (class536 var12 = (class536)var15.method2423(); var12 != null; var12 = (class536)var15.next()) {
+		for (SpotAnimation var12 = (SpotAnimation)var15.method2423(); var12 != null; var12 = (SpotAnimation)var15.next()) {
 			if (var12.field4238 != -1 && Client.cycle >= var12.field4235) {
 				var4 = NPCComposition.SpotAnimationDefinition_get(var12.field4238).sequence;
 				if (var4 == -1) {

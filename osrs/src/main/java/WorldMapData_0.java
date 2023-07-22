@@ -95,7 +95,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 			class465.field3894 = null;
 			class165.field1419.method536();
 			RouteStrategy.method1107(0, 100);
-			class360 var0 = class153.field1356;
+			JagNetThread var0 = class153.field1356;
 			var0.method1896(true);
 			Login.clearLoginScreen = false;
 		}
@@ -354,7 +354,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket.field2509, Client.packetWriter.isaacCipher);
 		var2.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var0) + 1);
 		var2.packetBuffer.writeStringCp1252NullTerminated(var0);
-		var2.packetBuffer.method2555(var1);
+		var2.packetBuffer.writeByteSub(var1);
 		Client.packetWriter.addNode(var2);
 	}
 }

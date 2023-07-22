@@ -200,7 +200,7 @@ public class class126 {
 						for (var3 = 0; var3 < 13; ++var3) {
 							for (var4 = 0; var4 < 13; ++var4) {
 								boolean var19 = false;
-								var6 = Client.field593[var15][var3][var4];
+								var6 = Client.instanceChunkTemplates[var15][var3][var4];
 								if (var6 != -1) {
 									var7 = var6 >> 24 & 3;
 									var8 = var6 >> 1 & 3;
@@ -228,7 +228,7 @@ public class class126 {
 
 					for (var15 = 0; var15 < 13; ++var15) {
 						for (var3 = 0; var3 < 13; ++var3) {
-							var4 = Client.field593[0][var15][var3];
+							var4 = Client.instanceChunkTemplates[0][var15][var3];
 							if (var4 == -1) {
 								class203.method1002(var15 * 8, var3 * 8, 8, 8);
 							}
@@ -242,7 +242,7 @@ public class class126 {
 
 						for (var3 = 0; var3 < 13; ++var3) {
 							for (var4 = 0; var4 < 13; ++var4) {
-								var17 = Client.field593[var15][var3][var4];
+								var17 = Client.instanceChunkTemplates[var15][var3][var4];
 								if (var17 != -1) {
 									var6 = var17 >> 24 & 3;
 									var7 = var17 >> 1 & 3;

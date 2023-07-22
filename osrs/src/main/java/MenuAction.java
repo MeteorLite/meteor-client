@@ -64,28 +64,28 @@ public class MenuAction {
 			if (var1 == 1) {
 				if (var2 == 1) {
 					Rasterizer3D.method1164(0.9D);
-					((TextureProvider)Rasterizer3D.field2012.Rasterizer3D_textureLoader).setBrightness(0.9D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.9D);
 					HealthBar.method581();
 					class150.clientPreferences.setBrightness(0.9D);
 				}
 
 				if (var2 == 2) {
 					Rasterizer3D.method1164(0.8D);
-					((TextureProvider)Rasterizer3D.field2012.Rasterizer3D_textureLoader).setBrightness(0.8D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.8D);
 					HealthBar.method581();
 					class150.clientPreferences.setBrightness(0.8D);
 				}
 
 				if (var2 == 3) {
 					Rasterizer3D.method1164(0.7D);
-					((TextureProvider)Rasterizer3D.field2012.Rasterizer3D_textureLoader).setBrightness(0.7D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.7D);
 					HealthBar.method581();
 					class150.clientPreferences.setBrightness(0.7D);
 				}
 
 				if (var2 == 4) {
 					Rasterizer3D.method1164(0.6D);
-					((TextureProvider)Rasterizer3D.field2012.Rasterizer3D_textureLoader).setBrightness(0.6D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.6D);
 					HealthBar.method581();
 					class150.clientPreferences.setBrightness(0.6D);
 				}

@@ -336,7 +336,7 @@ public class class9 implements class372 {
 							var6.packetBuffer.writeShort(1 + class501.stringCp1252NullTerminatedByteSize(var7) + class501.stringCp1252NullTerminatedByteSize(var9));
 							var6.packetBuffer.writeStringCp1252NullTerminated(var9);
 							var6.packetBuffer.writeStringCp1252NullTerminated(var7);
-							var6.packetBuffer.method2554(var8);
+							var6.packetBuffer.writeByteNeg(var8);
 							Client.packetWriter.addNode(var6);
 							return 1;
 						}

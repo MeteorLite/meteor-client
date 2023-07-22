@@ -10,7 +10,7 @@ public class MusicPatchNode2 {
 	@ObfuscatedSignature(
 		descriptor = "[Lud;"
 	)
-	static SpritePixels[] field2741;
+	static SpritePixels[] mapDotSprites;
 	@ObfuscatedName("aw")
 	byte[] field2742;
 	@ObfuscatedName("ay")

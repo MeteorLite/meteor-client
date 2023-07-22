@@ -1205,8 +1205,8 @@ public class Model extends Renderable {
 			var23 = var21 * var17 - var22 * var16 >> 16;
 			var22 = var21 * var16 + var22 * var17 >> 16;
 			field2166[var19] = var22 - var18;
-			modelViewportXs[var19] = var8 + var20 * Rasterizer3D.method1173() / var22;
-			modelViewportYs[var19] = var9 + var23 * Rasterizer3D.method1173() / var22;
+			modelViewportXs[var19] = var8 + var20 * Rasterizer3D.get3dZoom() / var22;
+			modelViewportYs[var19] = var9 + var23 * Rasterizer3D.get3dZoom() / var22;
 			field2155[var19] = Strings.method1841(var22);
 			if (this.field2216 > 0) {
 				field2160[var19] = var20;
@@ -1269,8 +1269,8 @@ public class Model extends Renderable {
 			var24 = var22 * var18 - var23 * var17 >> 16;
 			var23 = var22 * var17 + var23 * var18 >> 16;
 			field2166[var20] = var23 - var19;
-			modelViewportXs[var20] = var9 + var21 * Rasterizer3D.method1173() / var8;
-			modelViewportYs[var20] = var10 + var24 * Rasterizer3D.method1173() / var8;
+			modelViewportXs[var20] = var9 + var21 * Rasterizer3D.get3dZoom() / var8;
+			modelViewportYs[var20] = var10 + var24 * Rasterizer3D.get3dZoom() / var8;
 			field2155[var20] = Strings.method1841(var8);
 			if (this.field2216 > 0) {
 				field2160[var20] = var21;
@@ -1551,11 +1551,11 @@ public class Model extends Renderable {
 			int var2 = this.indices1[var1];
 			int var3 = this.indices2[var1];
 			int var4 = this.indices3[var1];
-			Rasterizer3D.field2012.field2241 = field2149[var1];
+			Rasterizer3D.clips.field2241 = field2149[var1];
 			if (this.faceAlphas == null) {
-				Rasterizer3D.field2012.field2248 = 0;
+				Rasterizer3D.clips.field2248 = 0;
 			} else {
-				Rasterizer3D.field2012.field2248 = (this.faceAlphas[var1] == -1 ? 253 : this.faceAlphas[var1]) & 255;
+				Rasterizer3D.clips.field2248 = (this.faceAlphas[var1] == -1 ? 253 : this.faceAlphas[var1]) & 255;
 			}
 
 			this.method1315(var1, modelViewportYs[var2], modelViewportYs[var3], modelViewportYs[var4], modelViewportXs[var2], modelViewportXs[var3], modelViewportXs[var4], field2155[var2], field2155[var3], field2155[var4], this.faceColors1[var1], this.faceColors2[var1], this.faceColors3[var1]);
@@ -1616,9 +1616,9 @@ public class Model extends Renderable {
 		int var9 = field2163[var6];
 		int var10 = field2163[var7];
 		if (this.faceAlphas == null) {
-			Rasterizer3D.field2012.field2248 = 0;
+			Rasterizer3D.clips.field2248 = 0;
 		} else {
-			Rasterizer3D.field2012.field2248 = this.faceAlphas[var1] & 255;
+			Rasterizer3D.clips.field2248 = this.faceAlphas[var1] & 255;
 		}
 
 		int var11;
@@ -1636,16 +1636,16 @@ public class Model extends Renderable {
 			var13 = this.faceColors1[var1];
 			if (var10 >= 50) {
 				var14 = field2176[var10 - var8] * (50 - var8);
-				field2170[var4] = var2 + (var11 + ((field2160[var7] - var11) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
-				field2171[var4] = var3 + (var12 + ((field2164[var7] - var12) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
+				field2170[var4] = var2 + (var11 + ((field2160[var7] - var11) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
+				field2171[var4] = var3 + (var12 + ((field2164[var7] - var12) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
 				field2156[var4] = field2183;
 				field2175[var4++] = var13 + ((this.faceColors3[var1] - var13) * var14 >> 16);
 			}
 
 			if (var9 >= 50) {
 				var14 = field2176[var9 - var8] * (50 - var8);
-				field2170[var4] = var2 + (var11 + ((field2160[var6] - var11) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
-				field2171[var4] = var3 + (var12 + ((field2164[var6] - var12) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
+				field2170[var4] = var2 + (var11 + ((field2160[var6] - var11) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
+				field2171[var4] = var3 + (var12 + ((field2164[var6] - var12) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
 				field2156[var4] = field2183;
 				field2175[var4++] = var13 + ((this.faceColors2[var1] - var13) * var14 >> 16);
 			}
@@ -1662,16 +1662,16 @@ public class Model extends Renderable {
 			var13 = this.faceColors2[var1];
 			if (var8 >= 50) {
 				var14 = field2176[var8 - var9] * (50 - var9);
-				field2170[var4] = var2 + (var11 + ((field2160[var5] - var11) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
-				field2171[var4] = var3 + (var12 + ((field2164[var5] - var12) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
+				field2170[var4] = var2 + (var11 + ((field2160[var5] - var11) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
+				field2171[var4] = var3 + (var12 + ((field2164[var5] - var12) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
 				field2156[var4] = field2183;
 				field2175[var4++] = var13 + ((this.faceColors1[var1] - var13) * var14 >> 16);
 			}
 
 			if (var10 >= 50) {
 				var14 = field2176[var10 - var9] * (50 - var9);
-				field2170[var4] = var2 + (var11 + ((field2160[var7] - var11) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
-				field2171[var4] = var3 + (var12 + ((field2164[var7] - var12) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
+				field2170[var4] = var2 + (var11 + ((field2160[var7] - var11) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
+				field2171[var4] = var3 + (var12 + ((field2164[var7] - var12) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
 				field2175[var4++] = var13 + ((this.faceColors3[var1] - var13) * var14 >> 16);
 			}
 		}
@@ -1687,16 +1687,16 @@ public class Model extends Renderable {
 			var13 = this.faceColors3[var1];
 			if (var9 >= 50) {
 				var14 = field2176[var9 - var10] * (50 - var10);
-				field2170[var4] = var2 + (var11 + ((field2160[var6] - var11) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
-				field2171[var4] = var3 + (var12 + ((field2164[var6] - var12) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
+				field2170[var4] = var2 + (var11 + ((field2160[var6] - var11) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
+				field2171[var4] = var3 + (var12 + ((field2164[var6] - var12) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
 				field2156[var4] = field2183;
 				field2175[var4++] = var13 + ((this.faceColors2[var1] - var13) * var14 >> 16);
 			}
 
 			if (var8 >= 50) {
 				var14 = field2176[var8 - var10] * (50 - var10);
-				field2170[var4] = var2 + (var11 + ((field2160[var5] - var11) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
-				field2171[var4] = var3 + (var12 + ((field2164[var5] - var12) * var14 >> 16)) * Rasterizer3D.method1173() / 50;
+				field2170[var4] = var2 + (var11 + ((field2160[var5] - var11) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
+				field2171[var4] = var3 + (var12 + ((field2164[var5] - var12) * var14 >> 16)) * Rasterizer3D.get3dZoom() / 50;
 				field2156[var4] = field2183;
 				field2175[var4++] = var13 + ((this.faceColors1[var1] - var13) * var14 >> 16);
 			}
@@ -1711,11 +1711,11 @@ public class Model extends Renderable {
 		float var17 = field2156[0];
 		float var18 = field2156[1];
 		float var19 = field2156[2];
-		Rasterizer3D.field2012.field2241 = false;
+		Rasterizer3D.clips.field2241 = false;
 		int var20 = Rasterizer3D.method1174();
 		if (var4 == 3) {
 			if (var11 < 0 || var12 < 0 || var13 < 0 || var11 > var20 || var12 > var20 || var13 > var20) {
-				Rasterizer3D.field2012.field2241 = true;
+				Rasterizer3D.clips.field2241 = true;
 			}
 
 			this.method1315(var1, var14, var15, var16, var11, var12, var13, var17, var18, var19, field2175[0], field2175[1], field2175[2]);
@@ -1723,7 +1723,7 @@ public class Model extends Renderable {
 
 		if (var4 == 4) {
 			if (var11 < 0 || var12 < 0 || var13 < 0 || var11 > var20 || var12 > var20 || var13 > var20 || field2170[3] < 0 || field2170[3] > var20) {
-				Rasterizer3D.field2012.field2241 = true;
+				Rasterizer3D.clips.field2241 = true;
 			}
 
 			int var22;
@@ -1829,17 +1829,17 @@ public class Model extends Renderable {
 		int var14 = var12 + var13;
 		if (var14 > 50 && var12 < 3500) {
 			int var15 = var8 * var4 + var5 * var6 >> 16;
-			int var16 = (var15 - this.xzRadius) * Rasterizer3D.method1173();
-			if (var16 / var14 < Rasterizer3D.method1170()) {
-				int var17 = (var15 + this.xzRadius) * Rasterizer3D.method1173();
+			int var16 = (var15 - this.xzRadius) * Rasterizer3D.get3dZoom();
+			if (var16 / var14 < Rasterizer3D.getClipMidX2()) {
+				int var17 = (var15 + this.xzRadius) * Rasterizer3D.get3dZoom();
 				if (var17 / var14 > Rasterizer3D.method1169()) {
 					int var18 = var3 * var7 - var11 * var2 >> 16;
 					int var19 = var2 * this.xzRadius >> 16;
 					int var20 = (var3 * this.bottomY >> 16) + var19;
-					int var21 = (var18 + var20) * Rasterizer3D.method1173();
+					int var21 = (var18 + var20) * Rasterizer3D.get3dZoom();
 					if (var21 / var14 > Rasterizer3D.method1172()) {
 						int var22 = (var3 * super.height >> 16) + var19;
-						int var23 = (var18 - var22) * Rasterizer3D.method1173();
+						int var23 = (var18 - var22) * Rasterizer3D.get3dZoom();
 						if (var23 / var14 < Rasterizer3D.method1171()) {
 							int var24 = var13 + (var2 * super.height >> 16);
 							boolean var25 = false;
@@ -1935,8 +1935,8 @@ public class Model extends Renderable {
 								var43 = var42 * var2 + var3 * var43 >> 16;
 								field2166[var40] = var43 - var12;
 								if (var43 >= 50) {
-									modelViewportXs[var40] = var49 + var41 * Rasterizer3D.method1173() / var43;
-									modelViewportYs[var40] = var37 + var44 * Rasterizer3D.method1173() / var43;
+									modelViewportXs[var40] = var49 + var41 * Rasterizer3D.get3dZoom() / var43;
+									modelViewportYs[var40] = var37 + var44 * Rasterizer3D.get3dZoom() / var43;
 									field2155[var40] = Strings.method1841(var43);
 								} else {
 									modelViewportXs[var40] = -5000;

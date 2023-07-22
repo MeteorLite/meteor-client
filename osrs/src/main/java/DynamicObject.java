@@ -11,7 +11,7 @@ public class DynamicObject extends Renderable {
 	@ObfuscatedSignature(
 		descriptor = "[Lud;"
 	)
-	static SpritePixels[] field819;
+	static SpritePixels[] mapMarkerSprites;
 	@ObfuscatedName("se")
 	@Export("ClanChat_inClanChat")
 	static boolean ClanChat_inClanChat;

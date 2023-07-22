@@ -155,7 +155,7 @@ public abstract class Actor extends Renderable {
 	@ObfuscatedSignature(
 		descriptor = "Lsa;"
 	)
-	IterableNodeHashTable field1032;
+	IterableNodeHashTable spotAnimations;
 	@ObfuscatedName("dy")
 	int field1017;
 	@ObfuscatedName("dr")
@@ -274,7 +274,7 @@ public abstract class Actor extends Renderable {
 		this.sequenceFrameCycle = 0;
 		this.sequenceDelay = 0;
 		this.currentSequenceFrameIndex = 0;
-		this.field1032 = new IterableNodeHashTable(4);
+		this.spotAnimations = new IterableNodeHashTable(4);
 		this.field1017 = 0;
 		this.npcCycle = 0;
 		this.defaultHeight = 200;
@@ -494,21 +494,21 @@ public abstract class Actor extends Renderable {
 		descriptor = "(IIIII)V",
 		garbageValue = "921981147"
 	)
-	void method522(int var1, int var2, int var3, int var4) {
-		int var5 = var4 + Client.cycle;
-		class536 var6 = (class536)this.field1032.get((long)var1);
+	void updateSpotAnimation(int idx, int graphicHeight, int graphicStart, int graphicStartCycle) {
+		int var5 = graphicStartCycle + Client.cycle;
+		SpotAnimation var6 = (SpotAnimation)this.spotAnimations.get((long)idx);
 		if (var6 != null) {
 			var6.remove();
 			--this.field1017;
 		}
 
-		if (var2 != 65535 && var2 != -1) {
+		if (graphicHeight != 65535 && graphicHeight != -1) {
 			byte var7 = 0;
-			if (var4 > 0) {
+			if (graphicStartCycle > 0) {
 				var7 = -1;
 			}
 
-			this.field1032.put(new class536(var2, var3, var5, var7), (long)var1);
+			this.spotAnimations.put(new SpotAnimation(graphicHeight, graphicStart, var5, var7), (long)idx);
 			++this.field1017;
 		}
 	}
@@ -519,7 +519,7 @@ public abstract class Actor extends Renderable {
 		garbageValue = "655512297"
 	)
 	IterableNodeHashTable method523() {
-		return this.field1032;
+		return this.spotAnimations;
 	}
 
 	@ObfuscatedName("cz")
@@ -528,9 +528,9 @@ public abstract class Actor extends Renderable {
 		garbageValue = "-1776103193"
 	)
 	void method524() {
-		IterableNodeHashTableIterator var1 = new IterableNodeHashTableIterator(this.field1032);
+		IterableNodeHashTableIterator var1 = new IterableNodeHashTableIterator(this.spotAnimations);
 
-		for (class536 var2 = (class536)var1.method2423(); var2 != null; var2 = (class536)var1.next()) {
+		for (SpotAnimation var2 = (SpotAnimation)var1.method2423(); var2 != null; var2 = (SpotAnimation)var1.next()) {
 			var2.remove();
 		}
 
@@ -546,13 +546,13 @@ public abstract class Actor extends Renderable {
 		if (this.field1017 == 0) {
 			return var1;
 		} else {
-			IterableNodeHashTableIterator var2 = new IterableNodeHashTableIterator(this.field1032);
+			IterableNodeHashTableIterator var2 = new IterableNodeHashTableIterator(this.spotAnimations);
 			int var3 = var1.verticesCount;
 			int var4 = var1.indicesCount;
 			int var5 = var1.field2216;
 			byte var6 = var1.field2211;
 
-			for (class536 var7 = (class536)var2.method2423(); var7 != null; var7 = (class536)var2.next()) {
+			for (SpotAnimation var7 = (SpotAnimation)var2.method2423(); var7 != null; var7 = (SpotAnimation)var2.next()) {
 				if (var7.field4239 != -1) {
 					Model var8 = NPCComposition.SpotAnimationDefinition_get(var7.field4238).method985();
 					if (var8 != null) {
@@ -566,7 +566,7 @@ public abstract class Actor extends Renderable {
 			Model var10 = new Model(var3, var4, var5, var6);
 			var10.method1285(var1);
 
-			for (class536 var11 = (class536)var2.method2423(); var11 != null; var11 = (class536)var2.next()) {
+			for (SpotAnimation var11 = (SpotAnimation)var2.method2423(); var11 != null; var11 = (SpotAnimation)var2.next()) {
 				if (var11.field4239 != -1) {
 					Model var9 = NPCComposition.SpotAnimationDefinition_get(var11.field4238).getModel(var11.field4239);
 					if (var9 != null) {

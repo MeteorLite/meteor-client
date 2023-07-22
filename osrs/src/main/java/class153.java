@@ -8,7 +8,7 @@ public class class153 extends class143 {
 	@ObfuscatedSignature(
 		descriptor = "Lnq;"
 	)
-	static class360 field1356;
+	static JagNetThread field1356;
 	@ObfuscatedName("aw")
 	int field1357;
 	@ObfuscatedName("ay")

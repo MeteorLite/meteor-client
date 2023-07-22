@@ -475,8 +475,8 @@ public class Skeleton extends Node {
 						++var0;
 					}
 
-					if (DynamicObject.field819 == null) {
-						DynamicObject.field819 = class453.method2294(class386.archive8, class350.field3154.field3832, 0);
+					if (DynamicObject.mapMarkerSprites == null) {
+						DynamicObject.mapMarkerSprites = class453.method2294(class386.archive8, class350.field3154.field3832, 0);
 					} else {
 						++var0;
 					}
@@ -487,8 +487,8 @@ public class Skeleton extends Node {
 						++var0;
 					}
 
-					if (MusicPatchNode2.field2741 == null) {
-						MusicPatchNode2.field2741 = class453.method2294(class386.archive8, class350.field3154.field3839, 0);
+					if (MusicPatchNode2.mapDotSprites == null) {
+						MusicPatchNode2.mapDotSprites = class453.method2294(class386.archive8, class350.field3154.field3839, 0);
 					} else {
 						++var0;
 					}

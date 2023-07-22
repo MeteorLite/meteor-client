@@ -186,7 +186,7 @@ class class12 extends SSLSocket {
 			}
 		}
 
-		Client.field536 = 0;
+		Client.mapIconCount = 0;
 
 		for (var5 = 0; var5 < 104; ++var5) {
 			for (var6 = 0; var6 < 104; ++var6) {
@@ -195,10 +195,10 @@ class class12 extends SSLSocket {
 					int var9 = class458.Entity_unpackID(var7);
 					int var10 = class90.getObjectDefinition(var9).mapIconId;
 					if (var10 >= 0 && SequenceDefinition.WorldMapElement_get(var10).field1506) {
-						Client.field645[Client.field536] = SequenceDefinition.WorldMapElement_get(var10).getSpriteBool(false);
-						Client.field583[Client.field536] = var5;
-						Client.field579[Client.field536] = var6;
-						++Client.field536;
+						Client.mapIcons[Client.mapIconCount] = SequenceDefinition.WorldMapElement_get(var10).getSpriteBool(false);
+						Client.mapIconXs[Client.mapIconCount] = var5;
+						Client.mapIconYs[Client.mapIconCount] = var6;
+						++Client.mapIconCount;
 					}
 				}
 			}

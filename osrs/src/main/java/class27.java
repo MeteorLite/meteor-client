@@ -410,7 +410,7 @@ public class class27 {
 
 		for (var12 = 0; var12 < 5; ++var12) {
 			if (Client.field406[var12]) {
-				var13 = (int)(Math.random() * (double)(Client.field587[var12] * 2 + 1) - (double)Client.field587[var12] + Math.sin((double)Client.field588[var12] / 100.0D * (double)Client.field585[var12]) * (double)Client.field586[var12]);
+				var13 = (int)(Math.random() * (double)(Client.field587[var12] * 2 + 1) - (double)Client.field587[var12] + Math.sin((double)Client.field588[var12] / 100.0D * (double)Client.cameraShakeCycle[var12]) * (double)Client.field586[var12]);
 				if (var12 == 0) {
 					class157.cameraX += var13;
 				}
@@ -463,27 +463,27 @@ public class class27 {
 		class105.method618();
 		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, 0);
 		class105.method618();
-		var14 = Rasterizer3D.method1173();
+		var14 = Rasterizer3D.get3dZoom();
 		Rasterizer3D.method1162(TileItem.client.field121);
-		Rasterizer3D.field2012.field2253 = Client.viewportZoom;
+		Rasterizer3D.clips.field2253 = Client.viewportZoom;
 		UserComparator5.scene.draw(class157.cameraX, class384.cameraY, SoundSystem.cameraZ, class19.cameraPitch, class456.cameraYaw, var6);
 		Rasterizer3D.method1162(false);
 		if (Client.renderSelf) {
 			Rasterizer2D.method2625();
 		}
 
-		Rasterizer3D.field2012.field2253 = var14;
+		Rasterizer3D.clips.field2253 = var14;
 		class105.method618();
 		UserComparator5.scene.clearTempGameObjects();
 		UserComparator7.method669(var0, var1, var2, var3);
 		if (Client.hintArrowType == 2) {
-			ReflectionCheck.worldToScreen((Client.field435 - AbstractArchive.baseX << 7) + Client.field427, (Client.field433 - class148.baseY << 7) + Client.field437, Client.field426 * 2);
+			ReflectionCheck.worldToScreen((Client.hintArrowX - AbstractArchive.baseX << 7) + Client.hintArrowSubX, (Client.hintArrowY - class148.baseY << 7) + Client.hintArrowSubY, Client.hintArrowHeight * 2);
 			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
 				class345.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
 			}
 		}
 
-		((TextureProvider)Rasterizer3D.field2012.Rasterizer3D_textureLoader).animate(Client.field452);
+		((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).animate(Client.field452);
 		FriendLoginUpdate.method2176();
 		class157.cameraX = var7;
 		class384.cameraY = var8;
@@ -519,11 +519,11 @@ public class class27 {
 		int var9;
 		int var10;
 		if (ZoneOperation.field2585 == var0) {
-			var2 = var1.method2557();
+			var2 = var1.readUnsignedByteNeg();
 			var3 = var2 >> 4 & 15;
 			var4 = var2 & 7;
-			var5 = var1.method2556();
-			var6 = var1.readUnsignedShortLE();
+			var5 = var1.readUnsignedByteAdd();
+			var6 = var1._readUnsignedByteSub();
 			var7 = (var6 >> 4 & 7) + WorldMapSectionType.field2393;
 			var8 = (var6 & 7) + class387.field3646;
 			var9 = var1.readUnsignedByteAdd();
@@ -543,9 +543,9 @@ public class class27 {
 		TileItem var31;
 		if (ZoneOperation.field2589 == var0) {
 			var2 = var1.readUnsignedByteNeg();
-			var3 = var1.readUnsignedShortLE();
+			var3 = var1._readUnsignedByteSub();
 			var1.readUnsignedShort();
-			var1.method2557();
+			var1.readUnsignedByteNeg();
 			var4 = var1.readUnsignedShort();
 			var5 = var1.readUnsignedByte();
 			var6 = (var5 >> 4 & 7) + WorldMapSectionType.field2393;
@@ -572,7 +572,7 @@ public class class27 {
 				var3 = var1.readUnsignedByte();
 				var4 = (var3 >> 4 & 7) + WorldMapSectionType.field2393;
 				var5 = (var3 & 7) + class387.field3646;
-				var6 = var1.readUnsignedShortLE();
+				var6 = var1._readUnsignedByteSub();
 				var7 = var6 >> 2;
 				var8 = var6 & 3;
 				var9 = Client.field648[var7];
@@ -637,7 +637,7 @@ public class class27 {
 				}
 
 			} else if (ZoneOperation.field2583 == var0) {
-				var2 = var1.readUnsignedShortLE();
+				var2 = var1._readUnsignedByteSub();
 				var3 = var1.readUnsignedByte();
 				var4 = (var3 >> 4 & 7) + WorldMapSectionType.field2393;
 				var5 = (var3 & 7) + class387.field3646;
@@ -651,7 +651,7 @@ public class class27 {
 				}
 
 			} else if (ZoneOperation.field2586 == var0) {
-				var2 = var1.method2556();
+				var2 = var1.readUnsignedByteAdd();
 				var3 = (var2 >> 4 & 7) + WorldMapSectionType.field2393;
 				var4 = (var2 & 7) + class387.field3646;
 				var5 = var1.readUnsignedShort();
@@ -692,10 +692,10 @@ public class class27 {
 					}
 
 				} else if (ZoneOperation.field2590 == var0) {
-					var2 = var1.readUnsignedShortLE();
+					var2 = var1._readUnsignedByteSub();
 					var3 = (var2 >> 4 & 7) + WorldMapSectionType.field2393;
 					var4 = (var2 & 7) + class387.field3646;
-					var5 = var1.method2556();
+					var5 = var1.readUnsignedByteAdd();
 					var6 = var1.readUnsignedByteAdd();
 					var7 = var1.readUnsignedByte();
 					var8 = var7 >> 2;
@@ -710,8 +710,8 @@ public class class27 {
 					int var13;
 					int var14;
 					if (ZoneOperation.field2581 == var0) {
-						byte var36 = var1.method2559();
-						var3 = var1.method2556();
+						byte var36 = var1.readByteAdd();
+						var3 = var1.readUnsignedByteAdd();
 						var4 = (var3 >> 4 & 7) + WorldMapSectionType.field2393;
 						var5 = (var3 & 7) + class387.field3646;
 						var6 = var1.readUnsignedShortAddLE();
@@ -723,7 +723,7 @@ public class class27 {
 						var12 = var11 >> 2;
 						var13 = var11 & 3;
 						var14 = Client.field648[var12];
-						byte var15 = var1.method2559();
+						byte var15 = var1.readByteAdd();
 						byte var16 = var1.readByte();
 						Player var17;
 						if (var6 == Client.localPlayerIndex) {
@@ -785,17 +785,17 @@ public class class27 {
 					if (ZoneOperation.field2584 == var0) {
 						var2 = var1.readUnsignedShort();
 						var3 = var1.method2573();
-						var4 = var1.method2557();
-						byte var37 = var1.method2561();
-						var6 = var1.method2557();
+						var4 = var1.readUnsignedByteNeg();
+						byte var37 = var1.readUnsignedByteSub();
+						var6 = var1.readUnsignedByteNeg();
 						var7 = (var6 >> 4 & 7) + WorldMapSectionType.field2393;
 						var8 = (var6 & 7) + class387.field3646;
-						var9 = var1.method2556();
+						var9 = var1.readUnsignedByteAdd();
 						var10 = var1.readUnsignedShortAddLE();
 						var11 = var1.readUnsignedShortAddLE();
-						byte var39 = var1.method2559();
-						var13 = var1.method2556() * 4;
-						var14 = var1.method2557() * 4;
+						byte var39 = var1.readByteAdd();
+						var13 = var1.readUnsignedByteAdd() * 4;
+						var14 = var1.readUnsignedByteNeg() * 4;
 						var5 = var37 + var7;
 						var12 = var39 + var8;
 						if (var7 >= 0 && var8 >= 0 && var7 < 104 && var8 < 104 && var5 >= 0 && var12 >= 0 && var5 < 104 && var12 < 104 && var11 != 65535) {
@@ -810,7 +810,7 @@ public class class27 {
 
 					} else if (ZoneOperation.field2587 != var0) {
 						if (ZoneOperation.field2580 == var0) {
-							var2 = var1.readUnsignedShortLE();
+							var2 = var1._readUnsignedByteSub();
 							var3 = (var2 >> 4 & 7) + WorldMapSectionType.field2393;
 							var4 = (var2 & 7) + class387.field3646;
 							var5 = var1.readUnsignedByte();
@@ -825,7 +825,7 @@ public class class27 {
 					} else {
 						var2 = var1.readUnsignedByteNeg();
 						var3 = var1.readUnsignedShort();
-						var4 = var1.method2557();
+						var4 = var1.readUnsignedByteNeg();
 						var5 = (var4 >> 4 & 7) + WorldMapSectionType.field2393;
 						var6 = (var4 & 7) + class387.field3646;
 						if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {

@@ -14,12 +14,12 @@ public abstract class class229 extends Rasterizer2D {
 	@ObfuscatedSignature(
 		descriptor = "Ljq;"
 	)
-	class245 field2023;
+    Clips field2023;
 
 	@ObfuscatedSignature(
 		descriptor = "(Ljq;)V"
 	)
-	class229(class245 var1) {
+	class229(Clips var1) {
 		this.field2020 = false;
 		this.field2021 = false;
 		this.field2022 = Rasterizer3D.Rasterizer3D_colorPalette;

@@ -78,7 +78,7 @@ public abstract class class159 extends Node {
 		Client.Widget_cachedFonts.clear();
 		PlayerComposition.PlayerAppearance_cachedModels.clear();
 		class59.method322();
-		((TextureProvider)Rasterizer3D.field2012.Rasterizer3D_textureLoader).clear();
+		((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).clear();
 		Script.Script_cached.clear();
 		Client.archive5.method2150();
 		class151.field1352.clearFiles();

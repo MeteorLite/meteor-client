@@ -7,7 +7,7 @@ public class class244 extends class229 {
 	@ObfuscatedSignature(
 		descriptor = "(Ljq;)V"
 	)
-	class244(class245 var1) {
+	class244(Clips var1) {
 		super(var1);
 	}
 
