@@ -391,9 +391,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	@Export("oculusOrbOnLocalPlayer")
 	static boolean oculusOrbOnLocalPlayer;
 	@ObfuscatedName("lp")
-	static int field469;
+	static int packetIndicator;
 	@ObfuscatedName("lf")
-	static boolean field379;
+	static boolean emitPackets;
 	@ObfuscatedName("ly")
 	static int field475;
 	@ObfuscatedName("lk")
@@ -1051,8 +1051,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 		oculusOrbSlowedSpeed = 6;
 		field363 = 0;
 		oculusOrbOnLocalPlayer = false;
-		field469 = 0;
-		field379 = false;
+		packetIndicator = 0;
+		emitPackets = false;
 		field475 = 0;
 		overheadTextLimit = 0;
 		overheadTextCount = 50;
@@ -2593,8 +2593,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 			if (gameState == 30) {
 				int var2;
 				PacketBufferNode var14;
+
 				while (GraphicsObject.method430()) {
-					var14 = class503.getPacketBufferNode(ClientPacket.field2538, packetWriter.isaacCipher);
+					var14 = class503.getPacketBufferNode(ClientPacket.REFLECTION_CHECK_REPLY, packetWriter.isaacCipher);
 					var14.packetBuffer.writeByte(0);
 					var2 = var14.packetBuffer.offset;
 					ArchiveDiskAction.performReflectionCheck(var14.packetBuffer);
@@ -2603,7 +2604,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				}
 
 				if (timer.field3747) {
-					var14 = class503.getPacketBufferNode(ClientPacket.field2539, packetWriter.isaacCipher);
+					var14 = class503.getPacketBufferNode(ClientPacket.LOGIN_STATISTICS, packetWriter.isaacCipher);
 					var14.packetBuffer.writeByte(0);
 					var2 = var14.packetBuffer.offset;
 					timer.write(var14.packetBuffer);
@@ -2782,18 +2783,18 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					packetWriter.addNode(var14);
 				}
 
-				if (field469 > 0) {
-					--field469;
+				if (packetIndicator > 0) {
+					--packetIndicator;
 				}
 
 				if (keyHandlerInstance.getKeyPressed(96) || keyHandlerInstance.getKeyPressed(97) || keyHandlerInstance.getKeyPressed(98) || keyHandlerInstance.getKeyPressed(99)) {
-					field379 = true;
+					emitPackets = true;
 				}
 
-				if (field379 && field469 <= 0) {
-					field469 = 20;
-					field379 = false;
-					var14 = class503.getPacketBufferNode(ClientPacket.field2559, packetWriter.isaacCipher);
+				if (emitPackets && packetIndicator <= 0) {
+					packetIndicator = 20;
+					emitPackets = false;
+					var14 = class503.getPacketBufferNode(ClientPacket.EVENT_CAMERA_POSITION, packetWriter.isaacCipher);
 					var14.packetBuffer.writeShort(camAngleY);
 					var14.packetBuffer.writeShort(camAngleX);
 					packetWriter.addNode(var14);
@@ -3100,7 +3101,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																	if (Scene.shouldSendWalk()) {
 																		var3 = Scene.Scene_selectedX;
 																		var4 = Scene.Scene_selectedY;
-																		PacketBufferNode var48 = class503.getPacketBufferNode(ClientPacket.field2569, packetWriter.isaacCipher);
+																		PacketBufferNode var48 = class503.getPacketBufferNode(ClientPacket.MOVE_GAMECLICK, packetWriter.isaacCipher);
 																		var48.packetBuffer.writeByte(5);
 																		var48.packetBuffer.writeShort(var3 + AbstractArchive.baseX);
 																		var48.packetBuffer.writeByteAdd(keyHandlerInstance.getKeyPressed(82) ? (keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);
@@ -3271,7 +3272,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																		}
 
 																		if (keyHandlerInstance.getKeyPressed(13)) {
-																			packetWriter.addNode(class503.getPacketBufferNode(ClientPacket.field2555, packetWriter.isaacCipher));
+																			packetWriter.addNode(class503.getPacketBufferNode(ClientPacket.EXIT_FREECAM, packetWriter.isaacCipher));
 																			oculusOrbState = 0;
 																		}
 																	}
@@ -3462,7 +3463,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	public void vmethod1644(int var1, int var2) {
 		if (packetWriter != null && packetWriter.isaacCipher != null) {
 			if (var1 > -1 && class150.clientPreferences.getCurrentMusicVolume() > 0 && !playingJingle) {
-				PacketBufferNode var3 = class503.getPacketBufferNode(ClientPacket.field2561, packetWriter.isaacCipher);
+				PacketBufferNode var3 = class503.getPacketBufferNode(ClientPacket.SOUND_SONGEND, packetWriter.isaacCipher);
 				var3.packetBuffer.writeInt(var1);
 				packetWriter.addNode(var3);
 			}
@@ -5877,7 +5878,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (draggedOnWidget != null && WorldMapEvent.method1547(clickedWidget) != null) {
-						PacketBufferNode var13 = class503.getPacketBufferNode(ClientPacket.field2558, packetWriter.isaacCipher);
+						PacketBufferNode var13 = class503.getPacketBufferNode(ClientPacket.IF_BUTTOND, packetWriter.isaacCipher);
 						var13.packetBuffer.writeShort(clickedWidget.itemId);
 						var13.packetBuffer.writeShortLE(clickedWidget.childIndex);
 						var13.packetBuffer.writeShort(draggedOnWidget.childIndex);
@@ -6133,7 +6134,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
 			if (var3.rank == -1) {
 				String var4 = var3.username.getName();
-				PacketBufferNode var5 = class503.getPacketBufferNode(ClientPacket.field2515, packetWriter.isaacCipher);
+				PacketBufferNode var5 = class503.getPacketBufferNode(ClientPacket.CLANCHANNEL_KICKUSER, packetWriter.isaacCipher);
 				var5.packetBuffer.writeByte(3 + class501.stringCp1252NullTerminatedByteSize(var4));
 				var5.packetBuffer.writeByte(var0);
 				var5.packetBuffer.writeShort(var1);

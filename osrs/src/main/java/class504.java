@@ -43,7 +43,7 @@ final class class504 implements class499 {
 			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method851()) {
 				ClanChannelMember var2 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
 				if (var2.rank == -1) {
-					PacketBufferNode var3 = class503.getPacketBufferNode(ClientPacket.field2563, Client.packetWriter.isaacCipher);
+					PacketBufferNode var3 = class503.getPacketBufferNode(ClientPacket.AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL, Client.packetWriter.isaacCipher);
 					var3.packetBuffer.writeByte(3 + class501.stringCp1252NullTerminatedByteSize(var2.username.getName()));
 					var3.packetBuffer.writeByte(var0);
 					var3.packetBuffer.writeShort(var1);

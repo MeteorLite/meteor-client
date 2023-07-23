@@ -132,7 +132,7 @@ public class ClientPacket implements class294 {
 	@ObfuscatedName("bi")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("OPOBJ3")
-	public static final ClientPacket _OPOBJ3 = new ClientPacket(40, 3);
+	public static final ClientPacket OPPLAYER3 = new ClientPacket(40, 3);
 	@ObfuscatedName("bu")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket RESUME_P_OBJDIALOG = new ClientPacket(41, 2);
@@ -168,7 +168,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket RESUME_P_COUNTDIALOG = new ClientPacket(50, 4);
 	@ObfuscatedName("bj")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2515 = new ClientPacket(51, -1);
+	public static final ClientPacket CLANCHANNEL_KICKUSER = new ClientPacket(51, -1);
 	@ObfuscatedName("ct")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("OPNPC5")
@@ -178,7 +178,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPOBJ4 = new ClientPacket(53, 7);
 	@ObfuscatedName("cz")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2555 = new ClientPacket(54, 0);
+	public static final ClientPacket EXIT_FREECAM = new ClientPacket(54, 0);
 	@ObfuscatedName("cb")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket OPPLAYER4 = new ClientPacket(55, 3);
@@ -187,7 +187,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPPLAYER2 = new ClientPacket(56, 3);
 	@ObfuscatedName("cj")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2539 = new ClientPacket(57, -1);
+	public static final ClientPacket LOGIN_STATISTICS = new ClientPacket(57, -1);
 	@ObfuscatedName("cn")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket OPOBJ2 = new ClientPacket(58, 7);
@@ -223,7 +223,7 @@ public class ClientPacket implements class294 {
 	@ObfuscatedName("cd")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("CONTINUE")
-	public static final ClientPacket _CONTINUE = new ClientPacket(68, 6);
+	public static final ClientPacket CONTINUE = new ClientPacket(68, 6);
 	@ObfuscatedName("cy")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("OPPLAYER4")
@@ -243,10 +243,10 @@ public class ClientPacket implements class294 {
 	@ObfuscatedName("cg")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("IF_BUTTON3")
-	public static final ClientPacket _IF_BUTTON3 = new ClientPacket(74, 22);
+	public static final ClientPacket CAMVIEW_CLICK = new ClientPacket(74, 22);
 	@ObfuscatedName("ci")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2538 = new ClientPacket(75, -1);
+	public static final ClientPacket REFLECTION_CHECK_REPLY = new ClientPacket(75, -1);
 	@ObfuscatedName("cv")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket OPNPC2 = new ClientPacket(76, 3);
@@ -257,7 +257,7 @@ public class ClientPacket implements class294 {
 	@ObfuscatedName("dc")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("OPOBJ1")
-	public static final ClientPacket _OPOBJ1 = new ClientPacket(78, 0);
+	public static final ClientPacket MAP_BUILD_COMPLETE = new ClientPacket(78, 0);
 	@ObfuscatedName("dq")
 	@ObfuscatedSignature(descriptor = "Llw;") @Export("OPPLAYER1")
 	public static final ClientPacket OPPLAYER1 = new ClientPacket(79, 3);
@@ -280,35 +280,35 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket IF_BUTTON8 = new ClientPacket(84, 8);
 	@ObfuscatedName("dk")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2563 = new ClientPacket(85, -1);
+	public static final ClientPacket AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL = new ClientPacket(85, -1);
 	@ObfuscatedName("dn")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2564 = new ClientPacket(86, 3);
+	public static final ClientPacket SET_CHATFILTERSETTINGS = new ClientPacket(86, 3);
 	@ObfuscatedName("di")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2561 = new ClientPacket(87, 4);
+	public static final ClientPacket SOUND_SONGEND = new ClientPacket(87, 4);
 	@ObfuscatedName("de")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2558 = new ClientPacket(88, 16);
+	public static final ClientPacket IF_BUTTOND = new ClientPacket(88, 16);
 	@ObfuscatedName("dd")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket OPLOCT = new ClientPacket(89, 15);
 	@ObfuscatedName("dt")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("OPPLAYER5")
-	public static final ClientPacket _OPPLAYER5 = new ClientPacket(90, 11);
+	public static final ClientPacket OPPLAYERT = new ClientPacket(90, 11);
 	@ObfuscatedName("df")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2559 = new ClientPacket(91, 4);
+	public static final ClientPacket EVENT_CAMERA_POSITION = new ClientPacket(91, 4);
 	@ObfuscatedName("dm")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2577 = new ClientPacket(92, 2);
+	public static final ClientPacket NATIVE_PACKET5 = new ClientPacket(92, 2);
 	@ObfuscatedName("du")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2569 = new ClientPacket(93, -1);
+	public static final ClientPacket MOVE_GAMECLICK = new ClientPacket(93, -1);
 	@ObfuscatedName("dz")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2572 = new ClientPacket(94, -1);
+	public static final ClientPacket MESSAGE_PUBLIC = new ClientPacket(94, -1);
 	@ObfuscatedName("dx")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket EVENT_MOUSE_SCROLl = new ClientPacket(95, 2);

@@ -29,7 +29,7 @@ public class class396 {
 		garbageValue = "946533133"
 	)
 	public static PacketBufferNode method2039(int var0, String var1, Language var2, int var3) {
-		PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.field2572, Client.packetWriter.isaacCipher);
+		PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.MESSAGE_PUBLIC, Client.packetWriter.isaacCipher);
 		var4.packetBuffer.writeByte(0);
 		int var5 = var4.packetBuffer.offset;
 		var4.packetBuffer.writeByte(var0);

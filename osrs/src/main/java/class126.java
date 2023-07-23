@@ -316,7 +316,7 @@ public class class126 {
 				class129.updateGameState(30);
 				class105.method618();
 				class164.method859();
-				var18 = class503.getPacketBufferNode(ClientPacket._OPOBJ1, Client.packetWriter.isaacCipher);
+				var18 = class503.getPacketBufferNode(ClientPacket.MAP_BUILD_COMPLETE, Client.packetWriter.isaacCipher);
 				Client.packetWriter.addNode(var18);
 				HealthBarDefinition.method953();
 			}

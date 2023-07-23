@@ -614,7 +614,7 @@ public class class60 {
 					Client.mouseCrossState = 0;
 					Client.destinationX = param0;
 					Client.destinationY = param1;
-					var15 = class503.getPacketBufferNode(ClientPacket._OPOBJ3, Client.packetWriter.isaacCipher);
+					var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER3, Client.packetWriter.isaacCipher);
 					var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 					var15.packetBuffer.writeShort(var3_item_npc_index);
 					Client.packetWriter.addNode(var15);
@@ -630,7 +630,7 @@ public class class60 {
 					Client.mouseCrossState = 0;
 					Client.destinationX = param0;
 					Client.destinationY = param1;
-					var15 = class503.getPacketBufferNode(ClientPacket._OPPLAYER5, Client.packetWriter.isaacCipher);
+					var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYERT, Client.packetWriter.isaacCipher);
 					var15.packetBuffer.writeShortAdd(var3_item_npc_index);
 					var15.packetBuffer.writeIntME(class33.selectedSpellWidget);
 					var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);

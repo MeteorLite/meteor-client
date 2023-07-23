@@ -206,7 +206,7 @@ public class PacketWriter {
 						if (var5) {
 							int[] var3 = var0.field1856.method1801();
 							if (var3 != null) {
-								PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket._IF_BUTTON3, Client.packetWriter.isaacCipher);
+								PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.CAMVIEW_CLICK, Client.packetWriter.isaacCipher);
 								var4.packetBuffer.writeShortAddLE(var0.field1856.childIndex);
 								var4.packetBuffer.writeIntME(var3[1]);
 								var4.packetBuffer.writeIntIME(var0.field1856.method1799());

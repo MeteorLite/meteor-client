@@ -35,7 +35,7 @@ public class class335 {
 			}
 
 			Client.tradeChatMode = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-			PacketBufferNode var11 = class503.getPacketBufferNode(ClientPacket.field2564, Client.packetWriter.isaacCipher);
+			PacketBufferNode var11 = class503.getPacketBufferNode(ClientPacket.SET_CHATFILTERSETTINGS, Client.packetWriter.isaacCipher);
 			var11.packetBuffer.writeByte(Client.publicChatMode);
 			var11.packetBuffer.writeByte(class14.privateChatMode.id);
 			var11.packetBuffer.writeByte(Client.tradeChatMode);
