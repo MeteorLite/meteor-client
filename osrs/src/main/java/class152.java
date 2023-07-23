@@ -71,7 +71,7 @@ public class class152 extends class143 {
 	@Export("Clan_joinChat")
 	static final void Clan_joinChat(String var0) {
 		if (!var0.equals("")) {
-			PacketBufferNode var1 = class503.getPacketBufferNode(ClientPacket.field2482, Client.packetWriter.isaacCipher);
+			PacketBufferNode var1 = class503.getPacketBufferNode(ClientPacket.CLAN_JOINCHAT_LEAVECHAT, Client.packetWriter.isaacCipher);
 			var1.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var0));
 			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
 			Client.packetWriter.addNode(var1);

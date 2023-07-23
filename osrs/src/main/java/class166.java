@@ -82,7 +82,7 @@ public class class166 extends class159 {
 					int var10 = var8 * var5 - var4 * var7 >> 11;
 					int var11 = var9 + class136.localPlayer.x >> 7;
 					int var12 = class136.localPlayer.y - var10 >> 7;
-					PacketBufferNode var13 = class503.getPacketBufferNode(ClientPacket.field2502, Client.packetWriter.isaacCipher);
+					PacketBufferNode var13 = class503.getPacketBufferNode(ClientPacket.MOVE_MINIMAPCLICK, Client.packetWriter.isaacCipher);
 					var13.packetBuffer.writeByte(18);
 					var13.packetBuffer.writeShort(var11 + AbstractArchive.baseX);
 					var13.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? (Client.keyHandlerInstance.getKeyPressed(81) ? 2 : 1) : 0);

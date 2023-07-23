@@ -51,7 +51,7 @@ public class class335 {
 				Interpreter.Interpreter_intStackSize -= 2;
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var6 = class503.getPacketBufferNode(ClientPacket.OPPLAYER7, Client.packetWriter.isaacCipher);
+				var6 = class503.getPacketBufferNode(ClientPacket.SEND_SNAPSHOT, Client.packetWriter.isaacCipher);
 				var6.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var3) + 2);
 				var6.packetBuffer.writeStringCp1252NullTerminated(var3);
 				var6.packetBuffer.writeByte(var4 - 1);

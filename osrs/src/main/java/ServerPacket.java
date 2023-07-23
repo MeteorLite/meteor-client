@@ -194,7 +194,7 @@ public class ServerPacket {
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
 	)
-	public static final ServerPacket NO_NAME_YET4;
+	public static final ServerPacket PLAYER_ANIM_SPECIFIC;
 	@ObfuscatedName("br")
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
@@ -481,7 +481,7 @@ public class ServerPacket {
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
 	)
-	public static final ServerPacket MIDI_SONG;
+	public static final ServerPacket MIDI_SONG_LEGACY;
 	@ObfuscatedName("dt")
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
@@ -632,22 +632,22 @@ public class ServerPacket {
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
 	)
-	public static final ServerPacket NO_NAME_YET;
+	public static final ServerPacket MIDI_SONG;
 	@ObfuscatedName("eg")
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
 	)
-	public static final ServerPacket NO_NAME_YET2;
+	public static final ServerPacket MIDI_SONG_STOP;
 	@ObfuscatedName("ey")
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
 	)
-	public static final ServerPacket NO_NAME_YET5;
+	public static final ServerPacket MIDI_SONG_WITH_SECONDARY;
 	@ObfuscatedName("ed")
 	@ObfuscatedSignature(
 		descriptor = "Lls;"
 	)
-	public static final ServerPacket NO_NAME_YET3;
+	public static final ServerPacket MIDI_SWAP;
 	@ObfuscatedName("ea")
 	@Export("id")
 	public final int id;
@@ -691,7 +691,7 @@ public class ServerPacket {
 		NPC_SPOTANIM_SPECIFIC = new ServerPacket(32, 9);
 		HEAT_MAP = new ServerPacket(33, 1);
 		LOC_ADD_CHANGE = new ServerPacket(34, 5);
-		NO_NAME_YET4 = new ServerPacket(35, 3);
+		PLAYER_ANIM_SPECIFIC = new ServerPacket(35, 3);
 		OBJ_ADD = new ServerPacket(36, 14);
 		TRADING_POST_RESULTS = new ServerPacket(37, -2);
 		SPOTANIM_SPECIFIC = new ServerPacket(38, 8);
@@ -745,7 +745,7 @@ public class ServerPacket {
 		VARCLAN_DISABLE = new ServerPacket(86, 0);
 		ENTER_FREECAM = new ServerPacket(87, 1);
 		CLANCHANNEL_FULL = new ServerPacket(88, -2);
-		MIDI_SONG = new ServerPacket(89, 2);
+		MIDI_SONG_LEGACY = new ServerPacket(89, 2);
 		IF_SETHIDE = new ServerPacket(90, 5);
 		MESSAGE_CLANCHANNEL_SYSTEM = new ServerPacket(91, -1);
 		OBJ_DEL_LEGACY = new ServerPacket(92, 4);
@@ -774,10 +774,10 @@ public class ServerPacket {
 		NPC_INFO_LARGE = new ServerPacket(115, -2);
 		IF_SETPLAYERMODEL_SELF = new ServerPacket(116, 5);
 		UPDATE_FRIENDCHAT_CHANNEL_FULL = new ServerPacket(117, -2);
-		NO_NAME_YET = new ServerPacket(118, 10);
-		NO_NAME_YET2 = new ServerPacket(119, 4);
-		NO_NAME_YET5 = new ServerPacket(120, 12);
-		NO_NAME_YET3 = new ServerPacket(121, 8);
+		MIDI_SONG = new ServerPacket(118, 10);
+		MIDI_SONG_STOP = new ServerPacket(119, 4);
+		MIDI_SONG_WITH_SECONDARY = new ServerPacket(120, 12);
+		MIDI_SWAP = new ServerPacket(121, 8);
 	}
 
 	ServerPacket(int var1, int var2) {

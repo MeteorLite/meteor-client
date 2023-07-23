@@ -274,7 +274,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 2) {
-						var10 = class503.getPacketBufferNode(ClientPacket.OPLOC5, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON2, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -282,7 +282,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 3) {
-						var10 = class503.getPacketBufferNode(ClientPacket.field2487, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON3, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -290,7 +290,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 4) {
-						var10 = class503.getPacketBufferNode(ClientPacket.OPNPC5, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON4, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -298,7 +298,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 5) {
-						var10 = class503.getPacketBufferNode(ClientPacket.OPNPC2, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON5, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -306,7 +306,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 6) {
-						var10 = class503.getPacketBufferNode(ClientPacket.field2517, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON6, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -314,7 +314,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 7) {
-						var10 = class503.getPacketBufferNode(ClientPacket.field2571, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON7, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -322,7 +322,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 8) {
-						var10 = class503.getPacketBufferNode(ClientPacket.field2565, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON8, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -330,7 +330,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 9) {
-						var10 = class503.getPacketBufferNode(ClientPacket.WALK, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON9, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);
@@ -338,7 +338,7 @@ public class BufferedSource implements Runnable {
 					}
 
 					if (var0 == 10) {
-						var10 = class503.getPacketBufferNode(ClientPacket.OPPLAYERT, Client.packetWriter.isaacCipher);
+						var10 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON10, Client.packetWriter.isaacCipher);
 						var10.packetBuffer.writeInt(var1);
 						var10.packetBuffer.writeShort(var2);
 						var10.packetBuffer.writeShort(var3);

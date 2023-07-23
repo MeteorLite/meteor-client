@@ -277,7 +277,7 @@ public class class467 {
 			}
 
 			if (var1 == 326) {
-				PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.field2484, Client.packetWriter.isaacCipher);
+				PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.UPDATE_APPEARANCE, Client.packetWriter.isaacCipher);
 				Client.playerAppearance.write(var4.packetBuffer);
 				Client.packetWriter.addNode(var4);
 				return true;

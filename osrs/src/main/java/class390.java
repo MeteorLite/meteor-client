@@ -13,7 +13,7 @@ public class class390 extends RuntimeException {
 		garbageValue = "-79"
 	)
 	static final void method1987() {
-		PacketBufferNode var0 = class503.getPacketBufferNode(ClientPacket.field2562, Client.packetWriter.isaacCipher);
+		PacketBufferNode var0 = class503.getPacketBufferNode(ClientPacket.CLOSE_MODAL, Client.packetWriter.isaacCipher);
 		Client.packetWriter.addNode(var0);
 		Interpreter.field699 = true;
 

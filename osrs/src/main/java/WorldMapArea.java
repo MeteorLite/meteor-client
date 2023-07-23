@@ -383,7 +383,7 @@ public class WorldMapArea {
 	)
 	@Export("resumePauseWidget")
 	static void resumePauseWidget(int var0, int var1) {
-		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket.CONTINUE, Client.packetWriter.isaacCipher);
+		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket._CONTINUE, Client.packetWriter.isaacCipher);
 		var2.packetBuffer.writeShortAddLE(var1);
 		var2.packetBuffer.writeIntME(var0);
 		Client.packetWriter.addNode(var2);

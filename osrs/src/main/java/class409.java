@@ -94,7 +94,7 @@ public class class409 extends class407 {
 		garbageValue = "115"
 	)
 	static void method2108() {
-		PacketBufferNode var0 = class503.getPacketBufferNode(ClientPacket.field2507, Client.packetWriter.isaacCipher);
+		PacketBufferNode var0 = class503.getPacketBufferNode(ClientPacket.WINDOW_STATUS, Client.packetWriter.isaacCipher);
 		var0.packetBuffer.writeByte(Huffman.getWindowedMode());
 		var0.packetBuffer.writeShort(GrandExchangeOfferTotalQuantityComparator.canvasWidth);
 		var0.packetBuffer.writeShort(WorldMapArchiveLoader.canvasHeight);

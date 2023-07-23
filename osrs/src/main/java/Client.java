@@ -2651,7 +2651,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 
 							if (var9 != lastMouseRecordX || var8 != lastMouseRecordY) {
 								if (var15 == null) {
-									var15 = class503.getPacketBufferNode(ClientPacket.field2483, packetWriter.isaacCipher);
+									var15 = class503.getPacketBufferNode(ClientPacket.EVENT_MOUSE_MOVE, packetWriter.isaacCipher);
 									var15.packetBuffer.writeByte(0);
 									var3 = var15.packetBuffer.offset;
 									var10000 = var15.packetBuffer;
@@ -2748,7 +2748,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					var5 = (int)var16;
-					var18 = class503.getPacketBufferNode(ClientPacket.field2485, packetWriter.isaacCipher);
+					var18 = class503.getPacketBufferNode(ClientPacket.F_EVENT_MOUSE_SCROLL, packetWriter.isaacCipher);
 					var18.packetBuffer.writeShort((var5 << 1) + (MouseHandler.MouseHandler_lastButton == 2 ? 1 : 0));
 					var18.packetBuffer.writeShort(var4);
 					var18.packetBuffer.writeShort(var3);
@@ -2756,13 +2756,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				}
 
 				if (mouseWheelRotation != 0) {
-					var14 = class503.getPacketBufferNode(ClientPacket.field2570, packetWriter.isaacCipher);
+					var14 = class503.getPacketBufferNode(ClientPacket.EVENT_MOUSE_SCROLl, packetWriter.isaacCipher);
 					var14.packetBuffer.writeShort(mouseWheelRotation);
 					packetWriter.addNode(var14);
 				}
 
 				if (keyHandlerInstance.pressedKeysCount > 0) {
-					var14 = class503.getPacketBufferNode(ClientPacket.field2494, packetWriter.isaacCipher);
+					var14 = class503.getPacketBufferNode(ClientPacket.EVENT_KEYBOARD, packetWriter.isaacCipher);
 					var14.packetBuffer.writeShort(0);
 					var2 = var14.packetBuffer.offset;
 					long var19 = class113.clockNow();
@@ -2801,14 +2801,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 
 				if (class326.hasFocus && !hadFocus) {
 					hadFocus = true;
-					var14 = class503.getPacketBufferNode(ClientPacket.field2505, packetWriter.isaacCipher);
+					var14 = class503.getPacketBufferNode(ClientPacket.EVENT_APPLET_FOCUS, packetWriter.isaacCipher);
 					var14.packetBuffer.writeByte(1);
 					packetWriter.addNode(var14);
 				}
 
 				if (!class326.hasFocus && hadFocus) {
 					hadFocus = false;
-					var14 = class503.getPacketBufferNode(ClientPacket.field2505, packetWriter.isaacCipher);
+					var14 = class503.getPacketBufferNode(ClientPacket.EVENT_APPLET_FOCUS, packetWriter.isaacCipher);
 					var14.packetBuffer.writeByte(0);
 					packetWriter.addNode(var14);
 				}
@@ -3048,7 +3048,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 							if (var3 != class136.localPlayer.plane) {
 								var4 = class136.localPlayer.pathX[0] + AbstractArchive.baseX;
 								var5 = class136.localPlayer.pathY[0] + class148.baseY;
-								var18 = class503.getPacketBufferNode(ClientPacket.field2498, packetWriter.isaacCipher);
+								var18 = class503.getPacketBufferNode(ClientPacket.TELEPORT, packetWriter.isaacCipher);
 								var18.packetBuffer.writeIntME(0);
 								var18.packetBuffer.writeShortAddLE(var4);
 								var18.packetBuffer.writeByteAdd(var3);
@@ -3389,7 +3389,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																	if (var3 > 15000 && var5 > 15000) {
 																		logoutTimer = 250;
 																		ApproximateRouteStrategy.method349(14500);
-																		var18 = class503.getPacketBufferNode(ClientPacket.IF_BUTTON2, packetWriter.isaacCipher);
+																		var18 = class503.getPacketBufferNode(ClientPacket.IDLE_LOGOUT, packetWriter.isaacCipher);
 																		packetWriter.addNode(var18);
 																	}
 
@@ -3397,7 +3397,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																	class146.method776();
 																	++packetWriter.pendingWrites;
 																	if (packetWriter.pendingWrites > 50) {
-																		var18 = class503.getPacketBufferNode(ClientPacket.field2519, packetWriter.isaacCipher);
+																		var18 = class503.getPacketBufferNode(ClientPacket.NO_TIMEOUT, packetWriter.isaacCipher);
 																		packetWriter.addNode(var18);
 																	}
 
@@ -3898,12 +3898,12 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					return true;
 				}
 
-				if (ServerPacket.NO_NAME_YET == var1.serverPacket) {
-					var7 = var3.readUnsignedShortAddLE();
-					var5 = var3.readUnsignedShortAddLE();
-					var8 = var3.readUnsignedShort();
-					flags = var3.readUnsignedShortAdd();
-					var20 = var3.readUnsignedShortAdd();
+				if (ServerPacket.MIDI_SONG == var1.serverPacket) {
+					var7 = var3.readUnsignedShortAddLE(); // Song
+					var5 = var3.readUnsignedShortAddLE(); // fadeOutDelay
+					var8 = var3.readUnsignedShort(); // fadeOutSpeed
+					flags = var3.readUnsignedShortAdd(); // fadeInDelay
+					var20 = var3.readUnsignedShortAdd(); // fadeInSpeed
 					if (var20 == 65535) {
 						var20 = -1;
 					}
@@ -4118,7 +4118,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					return true;
 				}
 
-				if (ServerPacket.NO_NAME_YET2 == var1.serverPacket) {
+				if (ServerPacket.MIDI_SONG_STOP == var1.serverPacket) {
 					var5 = var3.readUnsignedShortAddLE();
 					var20 = var3.readUnsignedShortAddLE();
 					RouteStrategy.method1107(var20, var5);
@@ -4667,7 +4667,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					return true;
 				}
 
-				if (ServerPacket.NO_NAME_YET3 == var1.serverPacket) {
+				if (ServerPacket.MIDI_SWAP == var1.serverPacket) {
 					var5 = var3.readUnsignedShort();
 					var7 = var3.readUnsignedShort();
 					var20 = var3.readUnsignedShortLE();
@@ -4694,7 +4694,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					return true;
 				}
 
-				if (ServerPacket.NO_NAME_YET4 == var1.serverPacket) {
+				if (ServerPacket.PLAYER_ANIM_SPECIFIC == var1.serverPacket) {
 					var20 = var3.readUnsignedByteNeg();
 					var5 = var3.readUnsignedShortAdd();
 					if (var5 == 65535) {
@@ -4757,7 +4757,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					return true;
 				}
 
-				if (ServerPacket.NO_NAME_YET5 == var1.serverPacket) {
+				if (ServerPacket.MIDI_SONG_WITH_SECONDARY == var1.serverPacket) {
 					var8 = var3.readUnsignedShortAddLE();
 					var5 = var3.readUnsignedShort();
 					if (var5 == 65535) {
@@ -5014,7 +5014,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					return true;
 				}
 
-				if (ServerPacket.MIDI_SONG == var1.serverPacket) {
+				if (ServerPacket.MIDI_SONG_LEGACY == var1.serverPacket) {
 					var20 = var3.readUnsignedShort();
 					if (var20 == 65535) {
 						var20 = -1;
@@ -5262,7 +5262,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var20 = var3.readInt();
 					var5 = var3.readInt();
 					flags = class27.getGcDuration();
-					PacketBufferNode var24 = class503.getPacketBufferNode(ClientPacket.field2527, packetWriter.isaacCipher);
+					PacketBufferNode var24 = class503.getPacketBufferNode(ClientPacket.SEND_PING_REPLY, packetWriter.isaacCipher);
 					var24.packetBuffer.writeByteNeg(flags);
 					var24.packetBuffer.writeByteAdd(GameEngine.fps);
 					var24.packetBuffer.writeIntLE(var20);

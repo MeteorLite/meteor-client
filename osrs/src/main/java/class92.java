@@ -160,7 +160,7 @@ public class class92 {
 				if (var0 == 3604) {
 					var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
 					int var9 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					WorldMapData_0.method1362(var5, var9);
+					WorldMapData_0.setFriendsRank(var5, var9);
 					return 1;
 				} else if (var0 == 3605) {
 					var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];

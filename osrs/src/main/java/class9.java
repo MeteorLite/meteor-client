@@ -259,7 +259,7 @@ public class class9 implements class372 {
 					var10 = class306.method1584(var3);
 				}
 
-				PacketBufferNode var15 = class503.getPacketBufferNode(ClientPacket.OPLOC4, Client.packetWriter.isaacCipher);
+				PacketBufferNode var15 = class503.getPacketBufferNode(ClientPacket.RESUME_P_COUNTDIALOG, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeInt(var10);
 				Client.packetWriter.addNode(var15);
 				return 1;
@@ -267,14 +267,14 @@ public class class9 implements class372 {
 				PacketBufferNode var12;
 				if (var0 == 3105) {
 					var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-					var12 = class503.getPacketBufferNode(ClientPacket.field2506, Client.packetWriter.isaacCipher);
+					var12 = class503.getPacketBufferNode(ClientPacket.RESUME_P_NAMEDIALOG, Client.packetWriter.isaacCipher);
 					var12.packetBuffer.writeByte(var3.length() + 1);
 					var12.packetBuffer.writeStringCp1252NullTerminated(var3);
 					Client.packetWriter.addNode(var12);
 					return 1;
 				} else if (var0 == 3106) {
 					var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-					var12 = class503.getPacketBufferNode(ClientPacket.field2510, Client.packetWriter.isaacCipher);
+					var12 = class503.getPacketBufferNode(ClientPacket.RESUME_P_STRINGDIALOG, Client.packetWriter.isaacCipher);
 					var12.packetBuffer.writeByte(var3.length() + 1);
 					var12.packetBuffer.writeStringCp1252NullTerminated(var3);
 					Client.packetWriter.addNode(var12);
@@ -318,7 +318,7 @@ public class class9 implements class372 {
 						return 1;
 					} else if (var0 == 3115) {
 						var8 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-						var12 = class503.getPacketBufferNode(ClientPacket.field2526, Client.packetWriter.isaacCipher);
+						var12 = class503.getPacketBufferNode(ClientPacket.RESUME_P_OBJDIALOG, Client.packetWriter.isaacCipher);
 						var12.packetBuffer.writeShort(var8);
 						Client.packetWriter.addNode(var12);
 						return 1;
@@ -332,7 +332,7 @@ public class class9 implements class372 {
 						} else if (var9.length() > 500) {
 							return 1;
 						} else {
-							PacketBufferNode var6 = class503.getPacketBufferNode(ClientPacket.OPOBJ5, Client.packetWriter.isaacCipher);
+							PacketBufferNode var6 = class503.getPacketBufferNode(ClientPacket.BUG_REPORT, Client.packetWriter.isaacCipher);
 							var6.packetBuffer.writeShort(1 + class501.stringCp1252NullTerminatedByteSize(var7) + class501.stringCp1252NullTerminatedByteSize(var9));
 							var6.packetBuffer.writeStringCp1252NullTerminated(var9);
 							var6.packetBuffer.writeStringCp1252NullTerminated(var7);

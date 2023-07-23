@@ -350,8 +350,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 		descriptor = "(Ljava/lang/String;IB)V",
 		garbageValue = "18"
 	)
-	static final void method1362(String var0, int var1) {
-		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket.field2509, Client.packetWriter.isaacCipher);
+	static final void setFriendsRank(String var0, int var1) {
+		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket.FRIEND_SETRANK, Client.packetWriter.isaacCipher);
 		var2.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var0) + 1);
 		var2.packetBuffer.writeStringCp1252NullTerminated(var0);
 		var2.packetBuffer.writeByteSub(var1);

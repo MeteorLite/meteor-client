@@ -1193,7 +1193,7 @@ public class Buffer extends Node {
 			}
 		}
 
-		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket.field2491, Client.packetWriter.isaacCipher);
+		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket.CLIENT_CHEAT, Client.packetWriter.isaacCipher);
 		var2.packetBuffer.writeByte(var0.length() + 1);
 		var2.packetBuffer.writeStringCp1252NullTerminated(var0);
 		Client.packetWriter.addNode(var2);

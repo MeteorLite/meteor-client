@@ -148,7 +148,7 @@ public class class150 extends class143 {
 		if (Client.currentClanChannels[var0] != null) {
 			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method851()) {
 				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
-				PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.field2529, Client.packetWriter.isaacCipher);
+				PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.AFFINEDCLANSETTINGS_SETMUTED_FROMCHANNEL, Client.packetWriter.isaacCipher);
 				var4.packetBuffer.writeByte(4 + class501.stringCp1252NullTerminatedByteSize(var3.username.getName()));
 				var4.packetBuffer.writeByte(var0);
 				var4.packetBuffer.writeShort(var1);

@@ -683,7 +683,7 @@ public class Skeleton extends Node {
 	)
 	@Export("Clan_leaveChat")
 	static final void Clan_leaveChat() {
-		PacketBufferNode var0 = class503.getPacketBufferNode(ClientPacket.field2482, Client.packetWriter.isaacCipher);
+		PacketBufferNode var0 = class503.getPacketBufferNode(ClientPacket.CLAN_JOINCHAT_LEAVECHAT, Client.packetWriter.isaacCipher);
 		var0.packetBuffer.writeByte(0);
 		Client.packetWriter.addNode(var0);
 	}

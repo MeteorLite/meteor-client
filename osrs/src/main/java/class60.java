@@ -200,7 +200,7 @@ public class class60 {
 		garbageValue = "14"
 	)
 	@Export("menuAction")
-	static final void menuAction(int var0, int var1, int var2, int var3, int var4, String var5, String var6, int var7, int var8) {
+	static final void menuAction(int param0, int param1, int var2, int var3_item_npc_index, int var4, String var5, String var6, int var7, int var8) {
 		if (var2 >= 2000) {
 			var2 -= 2000;
 		}
@@ -212,7 +212,7 @@ public class class60 {
 			Client.mouseCrossY = var8;
 			Client.mouseCrossColor = 2;
 			Client.mouseCrossState = 0;
-			var9 = Client.npcs[var3];
+			var9 = Client.npcs[var3_item_npc_index];
 			if (var9 != null) {
 				NPCComposition var10 = var9.definition;
 				if (var10.transforms != null) {
@@ -220,7 +220,7 @@ public class class60 {
 				}
 
 				if (var10 != null) {
-					var11 = class503.getPacketBufferNode(ClientPacket.field2492, Client.packetWriter.isaacCipher);
+					var11 = class503.getPacketBufferNode(ClientPacket.OPNPC6, Client.packetWriter.isaacCipher);
 					var11.packetBuffer.writeShortAdd(var10.id);
 					Client.packetWriter.addNode(var11);
 				}
@@ -229,19 +229,19 @@ public class class60 {
 
 		PacketBufferNode var15;
 		if (var2 == 7) {
-			var9 = Client.npcs[var3];
+			var9 = Client.npcs[var3_item_npc_index];
 			if (var9 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER8, Client.packetWriter.isaacCipher);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPNPCU, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeShortAdd(class301.field2732);
 				var15.packetBuffer.writeShortAddLE(SecureRandomCallable.field846);
 				var15.packetBuffer.writeIntIME(DirectByteArrayCopier.field3095);
-				var15.packetBuffer.writeShortAdd(var3);
+				var15.packetBuffer.writeShortAdd(var3_item_npc_index);
 				var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
@@ -249,65 +249,65 @@ public class class60 {
 
 		Player var14;
 		if (var2 == 49) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.IF_BUTTONT, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortAddLE(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShortAddLE(var3_item_npc_index);
 				var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
 
 		if (var2 == 9) {
-			var9 = Client.npcs[var3];
+			var9 = Client.npcs[var3_item_npc_index];
 			if (var9 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.field2524, Client.packetWriter.isaacCipher);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPNPC1, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var15.packetBuffer.writeShortAddLE(var3);
+				var15.packetBuffer.writeShortAddLE(var3_item_npc_index);
 				Client.packetWriter.addNode(var15);
 			}
 		}
 
 		if (var2 == 45) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.field2548, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortAddLE(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER2, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShortAddLE(var3_item_npc_index);
 				var15.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
 
 		if (var2 == 51) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.field2540, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortAddLE(var3);
-				var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER8, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShortAddLE(var3_item_npc_index);
+				var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0); // Movement
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -318,22 +318,22 @@ public class class60 {
 			Client.mouseCrossY = var8;
 			Client.mouseCrossColor = 2;
 			Client.mouseCrossState = 0;
-			var16 = class503.getPacketBufferNode(ClientPacket.field2541, Client.packetWriter.isaacCipher);
-			var16.packetBuffer.writeShort(var3);
+			var16 = class503.getPacketBufferNode(ClientPacket.OPLOC6, Client.packetWriter.isaacCipher);
+			var16.packetBuffer.writeShort(var3_item_npc_index);
 			Client.packetWriter.addNode(var16);
 		}
 
 		if (var2 == 48) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.field2546, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortAdd(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER5, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShortAdd(var3_item_npc_index);
 				var15.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
@@ -344,27 +344,27 @@ public class class60 {
 			Client.mouseCrossY = var8;
 			Client.mouseCrossColor = 2;
 			Client.mouseCrossState = 0;
-			Client.destinationX = var0;
-			Client.destinationY = var1;
-			var16 = class503.getPacketBufferNode(ClientPacket.OPPLAYER3, Client.packetWriter.isaacCipher);
+			Client.destinationX = param0;
+			Client.destinationY = param1;
+			var16 = class503.getPacketBufferNode(ClientPacket.OPLOC5, Client.packetWriter.isaacCipher);
 			var16.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-			var16.packetBuffer.writeShortAddLE(var3);
-			var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
-			var16.packetBuffer.writeShortAddLE(var0 + AbstractArchive.baseX);
+			var16.packetBuffer.writeShortAddLE(var3_item_npc_index);
+			var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
+			var16.packetBuffer.writeShortAddLE(param0 + AbstractArchive.baseX);
 			Client.packetWriter.addNode(var16);
 		}
 
 		if (var2 == 12) {
-			var9 = Client.npcs[var3];
+			var9 = Client.npcs[var3_item_npc_index];
 			if (var9 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER6, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortLE(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPNPC4, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShortLE(var3_item_npc_index);
 				var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
@@ -372,43 +372,43 @@ public class class60 {
 
 		Widget var17;
 		if (var2 == 58) {
-			var17 = MouseRecorder.getWidgetChild(var1, var0);
+			var17 = MouseRecorder.getWidgetChild(param1, param0);
 			if (var17 != null) {
 				if (var17.field3042 != null) {
 					ScriptEvent var18 = new ScriptEvent();
 					var18.widget = var17;
-					var18.opIndex = var3;
+					var18.opIndex = var3_item_npc_index;
 					var18.targetName = var6;
 					var18.args = var17.field3042;
 					GrandExchangeOfferOwnWorldComparator.runScriptEvent(var18);
 				}
 
-				var15 = class503.getPacketBufferNode(ClientPacket.field2500, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
-				var15.packetBuffer.writeShortLE(var0);
-				var15.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
-				var15.packetBuffer.writeShortAddLE(var4);
-				var15.packetBuffer.writeIntME(class33.selectedSpellWidget);
-				var15.packetBuffer.writeIntME(var1);
+				var15 = class503.getPacketBufferNode(ClientPacket.IF_BUTTONT, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShortAdd(Client.selectedSpellItemId); // fromItem
+				var15.packetBuffer.writeShortLE(param0); // toSlot
+				var15.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex); // fromSlot
+				var15.packetBuffer.writeShortAddLE(var4); // toItem
+				var15.packetBuffer.writeIntME(class33.selectedSpellWidget); // from_component_hash
+				var15.packetBuffer.writeIntME(param1); // to_component_hash
 				Client.packetWriter.addNode(var15);
 			}
 		}
 
 		if (var2 == 8) {
-			var9 = Client.npcs[var3];
+			var9 = Client.npcs[var3_item_npc_index];
 			if (var9 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.field2501, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeIntIME(class33.selectedSpellWidget);
-				var15.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
-				var15.packetBuffer.writeShortLE(Client.selectedSpellItemId);
-				var15.packetBuffer.writeShortLE(var3);
-				var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPNPCT, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeIntIME(class33.selectedSpellWidget); // component hash
+				var15.packetBuffer.writeShortLE(Client.selectedSpellChildIndex); // component Slot
+				var15.packetBuffer.writeShortLE(Client.selectedSpellItemId); // verify
+				var15.packetBuffer.writeShortLE(var3_item_npc_index); // npc index
+				var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0); // movement
 				Client.packetWriter.addNode(var15);
 			}
 		}
@@ -418,62 +418,62 @@ public class class60 {
 			Client.mouseCrossY = var8;
 			Client.mouseCrossColor = 2;
 			Client.mouseCrossState = 0;
-			Client.destinationX = var0;
-			Client.destinationY = var1;
-			var16 = class503.getPacketBufferNode(ClientPacket.field2508, Client.packetWriter.isaacCipher);
-			var16.packetBuffer.writeShortLE(var3);
+			Client.destinationX = param0;
+			Client.destinationY = param1;
+			var16 = class503.getPacketBufferNode(ClientPacket.OPLOCU, Client.packetWriter.isaacCipher);
+			var16.packetBuffer.writeShortLE(var3_item_npc_index);
 			var16.packetBuffer.writeShortLE(SecureRandomCallable.field846);
 			var16.packetBuffer.writeShortLE(class301.field2732);
-			var16.packetBuffer.writeShortLE(var0 + AbstractArchive.baseX);
+			var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX);
 			var16.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 			var16.packetBuffer.writeInt(DirectByteArrayCopier.field3095);
-			var16.packetBuffer.writeShortLE(class148.baseY + var1);
+			var16.packetBuffer.writeShortLE(class148.baseY + param1);
 			Client.packetWriter.addNode(var16);
 		}
 
 		if (var2 == 47) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.field2531, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortAdd(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShortAdd(var3_item_npc_index);
 				var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
 
 		if (var2 == 44) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
+				Client.destinationX = param0;
+				Client.destinationY = param1;
 				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER1, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShortAddLE(var3);
+				var15.packetBuffer.writeShortAddLE(var3_item_npc_index);
 				var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
 
 		if (var2 == 11) {
-			var9 = Client.npcs[var3];
+			var9 = Client.npcs[var3_item_npc_index];
 			if (var9 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.field2499, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShort(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPNPC3, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShort(var3_item_npc_index);
 				var15.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
@@ -482,10 +482,10 @@ public class class60 {
 		int var12;
 		Widget var19;
 		if (var2 == 29) {
-			var16 = class503.getPacketBufferNode(ClientPacket.field2490, Client.packetWriter.isaacCipher);
-			var16.packetBuffer.writeInt(var1);
+			var16 = class503.getPacketBufferNode(ClientPacket.BUTTON_CLICK, Client.packetWriter.isaacCipher);
+			var16.packetBuffer.writeInt(param1);
 			Client.packetWriter.addNode(var16);
-			var19 = VarbitComposition.getWidget(var1);
+			var19 = VarbitComposition.getWidget(param1);
 			if (var19 != null && var19.cs1Instructions != null && var19.cs1Instructions[0][0] == 5) {
 				var12 = var19.cs1Instructions[0][1];
 				if (Varps.Varps_main[var12] != var19.cs1ComparisonValues[0]) {
@@ -500,46 +500,46 @@ public class class60 {
 			Client.mouseCrossY = var8;
 			Client.mouseCrossColor = 2;
 			Client.mouseCrossState = 0;
-			Client.destinationX = var0;
-			Client.destinationY = var1;
-			var16 = class503.getPacketBufferNode(ClientPacket.field2513, Client.packetWriter.isaacCipher);
-			var16.packetBuffer.writeShortAdd(var0 + AbstractArchive.baseX);
+			Client.destinationX = param0;
+			Client.destinationY = param1;
+			var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ5, Client.packetWriter.isaacCipher);
+			var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX);
 			var16.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-			var16.packetBuffer.writeShortAdd(var3);
-			var16.packetBuffer.writeShortAdd(class148.baseY + var1);
+			var16.packetBuffer.writeShortAdd(var3_item_npc_index);
+			var16.packetBuffer.writeShortAdd(class148.baseY + param1);
 			Client.packetWriter.addNode(var16);
 		}
 
 		if (var2 == 50) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
-				var15.packetBuffer.writeShort(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER7, Client.packetWriter.isaacCipher);
+				var15.packetBuffer.writeShort(var3_item_npc_index);
 				var15.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
 		}
 
 		if (var2 == 14) {
-			var14 = Client.players[var3];
+			var14 = Client.players[var3_item_npc_index];
 			if (var14 != null) {
 				Client.mouseCrossX = var7;
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER4, Client.packetWriter.isaacCipher);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYERU, Client.packetWriter.isaacCipher);
 				var15.packetBuffer.writeShortAddLE(SecureRandomCallable.field846);
 				var15.packetBuffer.writeShortAddLE(class301.field2732);
 				var15.packetBuffer.writeIntLE(DirectByteArrayCopier.field3095);
-				var15.packetBuffer.writeShort(var3);
+				var15.packetBuffer.writeShort(var3_item_npc_index);
 				var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var15);
 			}
@@ -553,7 +553,7 @@ public class class60 {
 			if (Client.isMenuOpen) {
 				UserComparator5.scene.setViewportWalking();
 			} else {
-				UserComparator5.scene.menuOpen(class36.Client_plane, var0, var1, true);
+				UserComparator5.scene.menuOpen(class36.Client_plane, param0, param1, true);
 			}
 		}
 
@@ -562,31 +562,31 @@ public class class60 {
 			Client.mouseCrossY = var8;
 			Client.mouseCrossColor = 2;
 			Client.mouseCrossState = 0;
-			Client.destinationX = var0;
-			Client.destinationY = var1;
-			var16 = class503.getPacketBufferNode(ClientPacket.field2520, Client.packetWriter.isaacCipher);
+			Client.destinationX = param0;
+			Client.destinationY = param1;
+			var16 = class503.getPacketBufferNode(ClientPacket.OPOBJU, Client.packetWriter.isaacCipher);
 			var16.packetBuffer.writeShortLE(class301.field2732);
 			var16.packetBuffer.writeShortLE(SecureRandomCallable.field846);
-			var16.packetBuffer.writeShortLE(var3);
-			var16.packetBuffer.writeShortLE(class148.baseY + var1);
-			var16.packetBuffer.writeShortAddLE(var0 + AbstractArchive.baseX);
+			var16.packetBuffer.writeShortLE(var3_item_npc_index);
+			var16.packetBuffer.writeShortLE(class148.baseY + param1);
+			var16.packetBuffer.writeShortAddLE(param0 + AbstractArchive.baseX);
 			var16.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 			var16.packetBuffer.writeIntME(DirectByteArrayCopier.field3095);
 			Client.packetWriter.addNode(var16);
 		}
 
 		if (var2 == 57 || var2 == 1007) {
-			var17 = MouseRecorder.getWidgetChild(var1, var0);
+			var17 = MouseRecorder.getWidgetChild(param1, param0);
 			if (var17 != null) {
-				BufferedSource.widgetDefaultMenuAction(var3, var1, var0, var4, var6);
+				BufferedSource.widgetDefaultMenuAction(var3_item_npc_index, param1, param0, var4, var6);
 			}
 		}
 
 		if (var2 == 25) {
-			var17 = MouseRecorder.getWidgetChild(var1, var0);
+			var17 = MouseRecorder.getWidgetChild(param1, param0);
 			if (var17 != null) {
 				SoundCache.Widget_runOnTargetLeave();
-				ArchiveDiskAction.selectSpell(var1, var0, class273.Widget_unpackTargetMask(UserComparator8.getWidgetFlags(var17)), var4);
+				ArchiveDiskAction.selectSpell(param1, param0, class273.Widget_unpackTargetMask(UserComparator8.getWidgetFlags(var17)), var4);
 				Client.isItemSelected = 0;
 				Client.field597 = class13.Widget_getSpellActionName(var17);
 				if (Client.field597 == null) {
@@ -602,36 +602,36 @@ public class class60 {
 
 		} else {
 			if (var2 == 1008 || var2 == 1009 || var2 == 1010 || var2 == 1011 || var2 == 1012) {
-				class127.worldMap.worldMapMenuAction(var2, var3, new Coord(var0), new Coord(var1));
+				class127.worldMap.worldMapMenuAction(var2, var3_item_npc_index, new Coord(param0), new Coord(param1));
 			}
 
 			if (var2 == 46) {
-				var14 = Client.players[var3];
+				var14 = Client.players[var3_item_npc_index];
 				if (var14 != null) {
 					Client.mouseCrossX = var7;
 					Client.mouseCrossY = var8;
 					Client.mouseCrossColor = 2;
 					Client.mouseCrossState = 0;
-					Client.destinationX = var0;
-					Client.destinationY = var1;
-					var15 = class503.getPacketBufferNode(ClientPacket.OPOBJ3, Client.packetWriter.isaacCipher);
+					Client.destinationX = param0;
+					Client.destinationY = param1;
+					var15 = class503.getPacketBufferNode(ClientPacket._OPOBJ3, Client.packetWriter.isaacCipher);
 					var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-					var15.packetBuffer.writeShort(var3);
+					var15.packetBuffer.writeShort(var3_item_npc_index);
 					Client.packetWriter.addNode(var15);
 				}
 			}
 
 			if (var2 == 15) {
-				var14 = Client.players[var3];
+				var14 = Client.players[var3_item_npc_index];
 				if (var14 != null) {
 					Client.mouseCrossX = var7;
 					Client.mouseCrossY = var8;
 					Client.mouseCrossColor = 2;
 					Client.mouseCrossState = 0;
-					Client.destinationX = var0;
-					Client.destinationY = var1;
-					var15 = class503.getPacketBufferNode(ClientPacket.OPPLAYER5, Client.packetWriter.isaacCipher);
-					var15.packetBuffer.writeShortAdd(var3);
+					Client.destinationX = param0;
+					Client.destinationY = param1;
+					var15 = class503.getPacketBufferNode(ClientPacket._OPPLAYER5, Client.packetWriter.isaacCipher);
+					var15.packetBuffer.writeShortAdd(var3_item_npc_index);
 					var15.packetBuffer.writeIntME(class33.selectedSpellWidget);
 					var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 					var15.packetBuffer.writeShort(Client.selectedSpellItemId);
@@ -645,12 +645,12 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2552, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
-				var16.packetBuffer.writeShortLE(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeShort(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC4, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
+				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX);
+				var16.packetBuffer.writeShort(var3_item_npc_index);
 				var16.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var16);
 			}
@@ -660,12 +660,12 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2545, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortAdd(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeShortAdd(var3);
-				var16.packetBuffer.writeShortLE(class148.baseY + var1);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ3, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX);
+				var16.packetBuffer.writeShortAdd(var3_item_npc_index);
+				var16.packetBuffer.writeShortLE(class148.baseY + param1);
 				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var16);
 			}
@@ -675,16 +675,16 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2523, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortLE(class148.baseY + var1);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortLE(class148.baseY + param1);
 				var16.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
-				var16.packetBuffer.writeShortAdd(var3);
+				var16.packetBuffer.writeShortAdd(var3_item_npc_index);
 				var16.packetBuffer.writeIntLE(class33.selectedSpellWidget);
 				var16.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
 				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShort(var0 + AbstractArchive.baseX);
+				var16.packetBuffer.writeShort(param0 + AbstractArchive.baseX);
 				Client.packetWriter.addNode(var16);
 			}
 
@@ -693,28 +693,28 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2543, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortLE(var0 + AbstractArchive.baseX);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX);
 				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShortLE(var3);
-				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
+				var16.packetBuffer.writeShortLE(var3_item_npc_index);
+				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
 				Client.packetWriter.addNode(var16);
 			}
 
 			if (var2 == 10) {
-				var9 = Client.npcs[var3];
+				var9 = Client.npcs[var3_item_npc_index];
 				if (var9 != null) {
 					Client.mouseCrossX = var7;
 					Client.mouseCrossY = var8;
 					Client.mouseCrossColor = 2;
 					Client.mouseCrossState = 0;
-					Client.destinationX = var0;
-					Client.destinationY = var1;
-					var15 = class503.getPacketBufferNode(ClientPacket.field2551, Client.packetWriter.isaacCipher);
+					Client.destinationX = param0;
+					Client.destinationY = param1;
+					var15 = class503.getPacketBufferNode(ClientPacket.OPNPC2, Client.packetWriter.isaacCipher);
 					var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-					var15.packetBuffer.writeShortLE(var3);
+					var15.packetBuffer.writeShortLE(var3_item_npc_index);
 					Client.packetWriter.addNode(var15);
 				}
 			}
@@ -724,16 +724,16 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2557, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShort(Client.selectedSpellItemId);
-				var16.packetBuffer.writeShort(var3);
-				var16.packetBuffer.writeShort(class148.baseY + var1);
-				var16.packetBuffer.writeShortAdd(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
-				var16.packetBuffer.writeIntIME(class33.selectedSpellWidget);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOCT, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0); // Movement
+				var16.packetBuffer.writeShort(Client.selectedSpellItemId); // Item
+				var16.packetBuffer.writeShort(var3_item_npc_index); // object
+				var16.packetBuffer.writeShort(class148.baseY + param1); // Z
+				var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX); // x
+				var16.packetBuffer.writeShortLE(Client.selectedSpellChildIndex); // Slot
+				var16.packetBuffer.writeIntIME(class33.selectedSpellWidget); // hash
 				Client.packetWriter.addNode(var16);
 			}
 
@@ -742,18 +742,18 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2528, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortLE(class148.baseY + var1);
-				var16.packetBuffer.writeShortLE(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShort(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC1, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortLE(class148.baseY + param1); // z
+				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX); // x
+				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0); // movement
+				var16.packetBuffer.writeShort(var3_item_npc_index); // ObjectId
 				Client.packetWriter.addNode(var16);
 			}
 
 			if (var2 == 24) {
-				var17 = VarbitComposition.getWidget(var1);
+				var17 = VarbitComposition.getWidget(param1);
 				if (var17 != null) {
 					boolean var13 = true;
 					if (var17.contentType > 0) {
@@ -761,8 +761,8 @@ public class class60 {
 					}
 
 					if (var13) {
-						var11 = class503.getPacketBufferNode(ClientPacket.field2490, Client.packetWriter.isaacCipher);
-						var11.packetBuffer.writeInt(var1);
+						var11 = class503.getPacketBufferNode(ClientPacket.BUTTON_CLICK, Client.packetWriter.isaacCipher);
+						var11.packetBuffer.writeInt(param1);
 						Client.packetWriter.addNode(var11);
 					}
 				}
@@ -773,13 +773,13 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2516, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortAdd(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShortAdd(class148.baseY + var1);
-				var16.packetBuffer.writeShortAddLE(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC3, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX); // x
+				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0); // movement
+				var16.packetBuffer.writeShortAdd(class148.baseY + param1); // z
+				var16.packetBuffer.writeShortAddLE(var3_item_npc_index); // id
 				Client.packetWriter.addNode(var16);
 			}
 
@@ -788,13 +788,13 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2535, Client.packetWriter.isaacCipher);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ4, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShortLE(var3);
-				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
-				var16.packetBuffer.writeShortAddLE(var0 + AbstractArchive.baseX);
+				var16.packetBuffer.writeShortLE(var3_item_npc_index);
+				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
+				var16.packetBuffer.writeShortAddLE(param0 + AbstractArchive.baseX);
 				Client.packetWriter.addNode(var16);
 			}
 
@@ -803,19 +803,19 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ1, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
-				var16.packetBuffer.writeShortAddLE(var3);
-				var16.packetBuffer.writeShortAddLE(var0 + AbstractArchive.baseX);
+				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
+				var16.packetBuffer.writeShortAddLE(var3_item_npc_index);
+				var16.packetBuffer.writeShortAddLE(param0 + AbstractArchive.baseX);
 				Client.packetWriter.addNode(var16);
 			}
 
 			if (var2 == 30 && Client.meslayerContinueWidget == null) {
-				WorldMapArea.resumePauseWidget(var1, var0);
-				Client.meslayerContinueWidget = MouseRecorder.getWidgetChild(var1, var0);
+				WorldMapArea.resumePauseWidget(param1, param0);
+				Client.meslayerContinueWidget = MouseRecorder.getWidgetChild(param1, param0);
 				class200.invalidateWidget(Client.meslayerContinueWidget);
 			}
 
@@ -824,10 +824,10 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2488, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortLE(var0 + AbstractArchive.baseX);
-				var16.packetBuffer.writeShortAdd(var3);
-				var16.packetBuffer.writeShortAddLE(class148.baseY + var1);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ6, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX);
+				var16.packetBuffer.writeShortAdd(var3_item_npc_index);
+				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
 				Client.packetWriter.addNode(var16);
 			}
 
@@ -836,21 +836,21 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				Client.destinationX = var0;
-				Client.destinationY = var1;
-				var16 = class503.getPacketBufferNode(ClientPacket.field2495, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeShortLE(class148.baseY + var1);
-				var16.packetBuffer.writeShortAddLE(var3);
+				Client.destinationX = param0;
+				Client.destinationY = param1;
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC2, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeShortLE(class148.baseY + param1);
+				var16.packetBuffer.writeShortAddLE(var3_item_npc_index);
 				var16.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-				var16.packetBuffer.writeShortAdd(var0 + AbstractArchive.baseX);
+				var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX);
 				Client.packetWriter.addNode(var16);
 			}
 
 			if (var2 == 28) {
-				var16 = class503.getPacketBufferNode(ClientPacket.field2490, Client.packetWriter.isaacCipher);
-				var16.packetBuffer.writeInt(var1);
+				var16 = class503.getPacketBufferNode(ClientPacket.BUTTON_CLICK, Client.packetWriter.isaacCipher);
+				var16.packetBuffer.writeInt(param1);
 				Client.packetWriter.addNode(var16);
-				var19 = VarbitComposition.getWidget(var1);
+				var19 = VarbitComposition.getWidget(param1);
 				if (var19 != null && var19.cs1Instructions != null && var19.cs1Instructions[0][0] == 5) {
 					var12 = var19.cs1Instructions[0][1];
 					Varps.Varps_main[var12] = 1 - Varps.Varps_main[var12];
@@ -859,17 +859,17 @@ public class class60 {
 			}
 
 			if (var2 == 13) {
-				var9 = Client.npcs[var3];
+				var9 = Client.npcs[var3_item_npc_index];
 				if (var9 != null) {
 					Client.mouseCrossX = var7;
 					Client.mouseCrossY = var8;
 					Client.mouseCrossColor = 2;
 					Client.mouseCrossState = 0;
-					Client.destinationX = var0;
-					Client.destinationY = var1;
-					var15 = class503.getPacketBufferNode(ClientPacket.field2511, Client.packetWriter.isaacCipher);
+					Client.destinationX = param0;
+					Client.destinationY = param1;
+					var15 = class503.getPacketBufferNode(ClientPacket.OPNPC5, Client.packetWriter.isaacCipher);
 					var15.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-					var15.packetBuffer.writeShort(var3);
+					var15.packetBuffer.writeShort(var3_item_npc_index);
 					Client.packetWriter.addNode(var15);
 				}
 			}
