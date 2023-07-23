@@ -696,8 +696,8 @@ public class class303 {
 		int var6;
 		int var7;
 		if (!Client.isInInstance) {
-			var2 = var1.readUnsignedShort();
-			var3 = var1.readUnsignedShort();
+			var2 = var1.readUnsignedShort(); // Z
+			var3 = var1.readUnsignedShort(); // X
 			int var4 = var1.readUnsignedShort();
 			class18.xteaKeys = new int[var4][4];
 
@@ -724,7 +724,7 @@ public class class303 {
 				}
 			}
 
-			class385.method1984(var3, var2, true);
+			class385.method1984(var3, var2, true);  // X Z
 		} else {
 			var2 = var1.readUnsignedShortAdd();
 			var3 = var1.readUnsignedShortLE();
@@ -793,7 +793,7 @@ public class class303 {
 				}
 			}
 
-			class385.method1984(var2, var3, !var15);
+			class385.method1984(var2, var3, !var15); // X Z
 		}
 
 	}

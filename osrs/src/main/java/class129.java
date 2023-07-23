@@ -73,7 +73,7 @@ public class class129 implements Callable {
 			}
 
 			if (var0 == 20 || var0 == 40 || var0 == 45 || var0 == 50) {
-				BuddyRankComparator.method686(0);
+				BuddyRankComparator.setLoginState(0);
 				Client.field440 = 0;
 				Client.field441 = 0;
 				Client.timer.method2115(var0);

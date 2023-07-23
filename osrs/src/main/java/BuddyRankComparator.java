@@ -41,7 +41,7 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		descriptor = "(II)V",
 		garbageValue = "-1036481495"
 	)
-	static void method686(int var0) {
+	static void setLoginState(int var0) {
 		if (var0 != Client.loginState) {
 			Client.loginState = var0;
 		}

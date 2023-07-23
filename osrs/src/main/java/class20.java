@@ -396,7 +396,7 @@ public class class20 {
 				ScriptFrame.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
 				Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18);
 				if (var7) {
-					InterfaceParent.method471();
+					InterfaceParent.reloadJS5();
 				}
 
 				return;

@@ -65,7 +65,7 @@ public class InterfaceParent extends Node {
 		descriptor = "(I)V",
 		garbageValue = "-2055389038"
 	)
-	static void method471() {
+	static void reloadJS5() {
 		if (PendingSpawn.varcs.hasUnwrittenChanges()) {
 			PendingSpawn.varcs.write();
 		}

@@ -70,9 +70,9 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
 			Login.field747 = 2;
 			Actor.setLoginResponseString("Either your account is still logged in, or the last", "world you were using has become unavailable.", "Please try again later.");
 		} else if (var0 == 68) {
-			if (!Client.field371) {
-				Client.field371 = true;
-				InterfaceParent.method471();
+			if (!Client.reloadJS5) {
+				Client.reloadJS5 = true;
+				InterfaceParent.reloadJS5();
 				return;
 			}
 

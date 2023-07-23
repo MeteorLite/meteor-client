@@ -233,6 +233,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			int var2 = Players.Players_pendingUpdateIndices[var1];
 			Player var3 = Client.players[var2];
 			int var4 = var0.readUnsignedByte();
+
 			// Excess Flag 8 Bytes
 			if ((var4 & 4) != 0) {
 				var4 += var0.readUnsignedByte() << 8;
@@ -375,7 +376,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			if ((var4 & 2048) != 0) {
 				var17 = var0.readUnsignedShortAddLE();
 				var7 = var17 >> 8;
-				var29 = var7 >= 13 && var7 <= 20 ? var7 - 12 : 0;
+				var29 = var7 >= 13 && var7 <= 20 ? var7 - 12 : 0; // @TODO
 				PlayerType var20 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.readUnsignedByteAdd());
 				boolean var24 = var0.readUnsignedByteAdd() == 1;
 				var25 = var0.readUnsignedByteAdd();
@@ -385,7 +386,6 @@ public class KeyHandler implements KeyListener, FocusListener {
 					if (var20.isUser && class177.friendSystem.isIgnored(var3.username)) {
 						var26 = true;
 					}
-
 					if (!var26 && Client.field485 == 0 && !var3.isHidden) {
 						Players.field1111.offset = 0;
 						var0.readBytesReversed(Players.field1111.array, 0, var25);
@@ -424,7 +424,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 				var0.offset = var29 + var21 + var25;
 			}
-
+			// Gfx
 			if ((var4 & 65536) != 0) {
 				var17 = var0.readUnsignedByteAdd();
 
@@ -435,7 +435,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 					var3.updateSpotAnimation(var29, var9, var10 >> 16, var10 & 65535);
 				}
 			}
-
+			// Hitmark
 			if ((var4 & 8) != 0) {
 				var17 = var0.readUnsignedByteAdd();
 				if (var17 > 0) {
@@ -476,7 +476,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 					}
 				}
 			}
-
+			// face tile
 			if ((var4 & 128) != 0) {
 				var3.movingOrientation = var0.readUnsignedShortAdd();
 				if (var3.pathLength == 0) {
@@ -484,7 +484,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 					var3.method526();
 				}
 			}
-
+			// Apply Tint
 			if ((var4 & 256) != 0) {
 				var3.recolourStartCycle = Client.cycle + var0.readUnsignedShort();
 				var3.recolourEndCycle = Client.cycle + var0.readUnsignedShortAddLE();
@@ -493,7 +493,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 				var3.recolourLuminance = var0.readByte();
 				var3.recolourAmount = (byte)var0.readUnsignedByte();
 			}
-
+			// Appearance
 			if ((var4 & 1) != 0) {
 				var17 = var0.readUnsignedByte();
 				byte[] var27 = new byte[var17];

@@ -963,7 +963,7 @@ public class Buffer extends Node {
 		descriptor = "(B)I",
 		garbageValue = "-128"
 	)
-	public int readSignedShortAddLE() {
+	public int readSignedShortLE() {
 		this.offset += 2;
 		int var1 = ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] & 255);
 		if (var1 > 32767) {
