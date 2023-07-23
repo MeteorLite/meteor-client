@@ -91,7 +91,7 @@ public class class30 {
 
 		if (Client.isCameraLocked) {
 			class422.field3755 = var0 - var9;
-			class406.field3706 = var1 - var10;
+			FadeInTask.field3706 = var1 - var10;
 			ModeWhere.field3604 = var2 - var11;
 			class165.field1420 = var3;
 			class4.field3 = var4;

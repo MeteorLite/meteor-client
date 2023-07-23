@@ -10,7 +10,7 @@ public class class157 extends class143 {
 	@Export("cameraX")
 	static int cameraX;
 	@ObfuscatedName("ur")
-	static int field1395;
+	static int cameraLookAtAcceleration;
 	@ObfuscatedName("aw")
 	int field1397;
 	// $FF: synthetic field

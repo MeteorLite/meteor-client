@@ -80,7 +80,7 @@ public enum ModeWhere implements class372 {
 	@Export("menuHeight")
 	static int menuHeight;
 	@ObfuscatedName("uc")
-	static int field3603;
+	static int cameraMoveToHeight;
 	@ObfuscatedName("ax")
 	@Export("id")
 	final int id;

@@ -143,7 +143,7 @@ class class12 extends SSLSocket {
 		garbageValue = "1183286606"
 	)
 	static final void method43(int var0) {
-		int[] var1 = Frames.field2097.pixels;
+		int[] var1 = Frames.sceneMinimapSprite.pixels;
 		int var2 = var1.length;
 
 		int var3;
@@ -171,7 +171,7 @@ class class12 extends SSLSocket {
 
 		var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10);
 		var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16;
-		Frames.field2097.setRaster();
+		Frames.sceneMinimapSprite.setRaster();
 
 		int var6;
 		for (var5 = 1; var5 < 103; ++var5) {

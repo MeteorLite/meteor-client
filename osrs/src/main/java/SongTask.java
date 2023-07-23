@@ -3,7 +3,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pp")
-public abstract class class407 {
+public abstract class SongTask {
 	@ObfuscatedName("av")
 	@ObfuscatedSignature(
 		descriptor = "Lud;"
@@ -14,7 +14,7 @@ public abstract class class407 {
 	@ObfuscatedSignature(
 		descriptor = "Lpp;"
 	)
-	class407 field3714;
+    SongTask field3714;
 	@ObfuscatedName("as")
 	String field3713;
 	@ObfuscatedName("aj")
@@ -27,7 +27,7 @@ public abstract class class407 {
 	@ObfuscatedSignature(
 		descriptor = "(Lpp;)V"
 	)
-	class407(class407 var1) {
+    SongTask(SongTask var1) {
 		this.field3714 = var1;
 	}
 
@@ -70,7 +70,7 @@ public abstract class class407 {
 		descriptor = "(S)Lpp;",
 		garbageValue = "276"
 	)
-	public class407 method2101() {
+	public SongTask method2101() {
 		return this.field3714;
 	}
 

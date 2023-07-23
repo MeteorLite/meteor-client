@@ -1164,8 +1164,8 @@ public class Model extends Renderable {
 			this.method1292();
 		}
 
-		int var8 = Rasterizer3D.method1167();
-		int var9 = Rasterizer3D.method1168();
+		int var8 = Rasterizer3D.getClipMidX();
+		int var9 = Rasterizer3D.getClipMidY();
 		int var10 = field2174[var1];
 		int var11 = field2172[var1];
 		int var12 = field2174[var2];
@@ -1228,8 +1228,8 @@ public class Model extends Renderable {
 			this.method1292();
 		}
 
-		int var9 = Rasterizer3D.method1167();
-		int var10 = Rasterizer3D.method1168();
+		int var9 = Rasterizer3D.getClipMidX();
+		int var10 = Rasterizer3D.getClipMidY();
 		int var11 = field2174[var1];
 		int var12 = field2172[var1];
 		int var13 = field2174[var2];
@@ -1606,8 +1606,8 @@ public class Model extends Renderable {
 
 	@ObfuscatedName("bq")
 	final void method1316(int var1) {
-		int var2 = Rasterizer3D.method1167();
-		int var3 = Rasterizer3D.method1168();
+		int var2 = Rasterizer3D.getClipMidX();
+		int var3 = Rasterizer3D.getClipMidY();
 		int var4 = 0;
 		int var5 = this.indices1[var1];
 		int var6 = this.indices2[var1];
@@ -1840,7 +1840,7 @@ public class Model extends Renderable {
 					if (var21 / var14 > Rasterizer3D.method1172()) {
 						int var22 = (var3 * super.height >> 16) + var19;
 						int var23 = (var18 - var22) * Rasterizer3D.get3dZoom();
-						if (var23 / var14 < Rasterizer3D.method1171()) {
+						if (var23 / var14 < Rasterizer3D.getClipMidY2()) {
 							int var24 = var13 + (var2 * super.height >> 16);
 							boolean var25 = false;
 							boolean var26 = false;
@@ -1889,8 +1889,8 @@ public class Model extends Renderable {
 										var23 /= var37;
 									}
 
-									var38 = var28 - Rasterizer3D.method1167();
-									var39 = var30 - Rasterizer3D.method1168();
+									var38 = var28 - Rasterizer3D.getClipMidX();
+									var39 = var30 - Rasterizer3D.getClipMidY();
 									if (var38 > var16 && var38 < var17 && var39 > var23 && var39 < var21) {
 										var36 = true;
 									}
@@ -1905,8 +1905,8 @@ public class Model extends Renderable {
 								}
 							}
 
-							int var49 = Rasterizer3D.method1167();
-							var37 = Rasterizer3D.method1168();
+							int var49 = Rasterizer3D.getClipMidX();
+							var37 = Rasterizer3D.getClipMidY();
 							var38 = 0;
 							var39 = 0;
 							if (var1 != 0) {

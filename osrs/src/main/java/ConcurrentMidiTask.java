@@ -3,14 +3,14 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pf")
-public class class408 extends class407 {
+public class ConcurrentMidiTask extends SongTask {
 	@ObfuscatedName("aw")
 	ArrayList field3715;
 
 	@ObfuscatedSignature(
 		descriptor = "(Lpp;Ljava/util/ArrayList;)V"
 	)
-	public class408(class407 var1, ArrayList var2) {
+	public ConcurrentMidiTask(SongTask var1, ArrayList var2) {
 		super(var1);
 		this.field3715 = var2;
 		super.field3712 = "ConcurrentMidiTask";
@@ -23,7 +23,7 @@ public class class408 extends class407 {
 	)
 	public boolean vmethod2107(int var1) {
 		for (int var2 = 0; var2 < this.field3715.size(); ++var2) {
-			class407 var3 = (class407)this.field3715.get(var2);
+			SongTask var3 = (SongTask)this.field3715.get(var2);
 			if (var3 == null) {
 				this.field3715.remove(var2);
 				--var2;

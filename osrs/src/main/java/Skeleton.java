@@ -100,7 +100,7 @@ public class Skeleton extends Node {
 				Client.collisionMaps[var0] = new CollisionMap(104, 104);
 			}
 
-			Frames.field2097 = new SpritePixels(512, 512);
+			Frames.sceneMinimapSprite = new SpritePixels(512, 512);
 			Login.Login_loadingText = "Starting game engine...";
 			Login.Login_loadingPercent = 5;
 			Client.field412 = class92.field939;
@@ -331,7 +331,7 @@ public class Skeleton extends Node {
 						NPCComposition.field1567 = var53;
 						class20.method69(class197.archive2);
 						Interpreter.method426(class197.archive2, class7.archive11, Client.isMembersWorld, ItemComposition.fontPlain11);
-						class407.method2103(class197.archive2, class151.field1352, TileItem.archive7);
+						SongTask.method2103(class197.archive2, class151.field1352, TileItem.archive7);
 						Archive var45 = class197.archive2;
 						Archive var7 = class7.archive11;
 						SpotAnimationDefinition.SpotAnimationDefinition_archive = var45;

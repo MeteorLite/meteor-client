@@ -37,7 +37,7 @@ public class ItemContainer extends Node {
 		if (!class306.field2760.isEmpty()) {
 			return true;
 		} else {
-			return !class306.field2756.isEmpty() && class306.field2756.get(0) != null && ((class318)class306.field2756.get(0)).field2857 != null ? ((class318)class306.field2756.get(0)).field2857.isReady() : false;
+			return !class306.musicSongs.isEmpty() && class306.musicSongs.get(0) != null && ((MusicSong)class306.musicSongs.get(0)).midiPcmStream != null ? ((MusicSong)class306.musicSongs.get(0)).midiPcmStream.isReady() : false;
 		}
 	}
 

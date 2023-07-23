@@ -11,7 +11,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
 	@ObfuscatedName("ud")
-	static int field803;
+	static int cameraMoveToAcceleration;
 	@ObfuscatedName("aw")
 	@Export("executor")
 	ExecutorService executor;

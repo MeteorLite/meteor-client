@@ -60,7 +60,7 @@ public class class144 extends class143 {
 		Iterator var2 = var0.iterator();
 
 		while (var2.hasNext()) {
-			class318 var3 = (class318)var2.next();
+			MusicSong var3 = (MusicSong)var2.next();
 			if (var3.field2856 != -1 && var3.field2855 != -1) {
 				if (!var1) {
 					class306.field2755.add(var3);

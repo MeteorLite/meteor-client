@@ -175,7 +175,7 @@ public class ViewportMouse {
 								var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 								var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
 								var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-								class452.method2293(var3, var4, var5, var6);
+								class452.someMusicMethod(var3, var4, var5, var6);
 								return 1;
 							} else {
 								return 2;

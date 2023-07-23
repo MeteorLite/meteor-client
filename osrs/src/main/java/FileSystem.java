@@ -59,7 +59,7 @@ public class FileSystem {
 				class150.clientPreferences.getTitleMusicDisabled(!class150.clientPreferences.getTitleMusicDisabled());
 				if (!class150.clientPreferences.getTitleMusicDisabled()) {
 					ArrayList var3 = new ArrayList();
-					var3.add(new class318(class13.archive6, "scape main", "", 255, false));
+					var3.add(new MusicSong(class13.archive6, "scape main", "", 255, false));
 					UserComparator4.method663(var3, 0, 0, 0, 100, false);
 				} else {
 					RouteStrategy.method1107(0, 0);

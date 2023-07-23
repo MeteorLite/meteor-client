@@ -30,7 +30,7 @@ public class InterfaceParent extends Node {
 		boolean var1 = false;
 		boolean var2 = false;
 		if (!class306.field2760.isEmpty()) {
-			class407 var3 = (class407)class306.field2760.get(0);
+			SongTask var3 = (SongTask)class306.field2760.get(0);
 			if (var3 == null) {
 				class306.field2760.remove(0);
 			} else if (var3.vmethod2107(var0)) {
@@ -54,7 +54,7 @@ public class InterfaceParent extends Node {
 		if (var1) {
 			class306.field2760.clear();
 			ArrayList var4 = class162.method847();
-			class306.field2760.add(new class402((class407)null, var4));
+			class306.field2760.add(new class402((SongTask)null, var4));
 		}
 
 		return var2;

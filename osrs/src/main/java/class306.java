@@ -31,7 +31,7 @@ public class class306 {
 	@ObfuscatedName("as")
 	public static LinkedList field2758;
 	@ObfuscatedName("aj")
-	public static ArrayList field2756;
+	public static ArrayList musicSongs;
 	@ObfuscatedName("ag")
 	public static ArrayList field2755;
 	@ObfuscatedName("az")
@@ -51,7 +51,7 @@ public class class306 {
 	static {
 		midiPcmStream = null;
 		field2758 = new LinkedList();
-		field2756 = new ArrayList(3);
+		musicSongs = new ArrayList(3);
 		field2755 = new ArrayList(3);
 		field2760 = new ArrayList();
 		field2759 = new ArrayList();

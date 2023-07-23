@@ -4,11 +4,11 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("pe")
-public class class400 extends class407 {
+public class AddRequestTask extends SongTask {
 	@ObfuscatedSignature(
 		descriptor = "(Lpp;)V"
 	)
-	public class400(class407 var1) {
+	public AddRequestTask(SongTask var1) {
 		super(var1);
 		super.field3712 = "AddRequestTask";
 	}
@@ -20,12 +20,12 @@ public class class400 extends class407 {
 	)
 	public boolean vmethod2107(int var1) {
 		while (!class306.field2758.isEmpty()) {
-			class318 var2 = (class318)class306.field2758.peek();
+			MusicSong var2 = (MusicSong)class306.field2758.peek();
 			if (var2 == null) {
 				class306.field2758.pop();
 			} else {
-				var2.field2857 = this.method2084();
-				class306.field2756.add(var2);
+				var2.midiPcmStream = this.method2084();
+				class306.musicSongs.add(var2);
 				class306.field2758.pop();
 			}
 		}

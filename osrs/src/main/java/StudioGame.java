@@ -85,7 +85,7 @@ public enum StudioGame implements class372 {
 							Iterator var4 = class306.field2755.iterator();
 
 							while (var4.hasNext()) {
-								class318 var5 = (class318)var4.next();
+								MusicSong var5 = (MusicSong)var4.next();
 								var5.field2852 = false;
 								var5.field2849 = false;
 								var5.field2851 = false;

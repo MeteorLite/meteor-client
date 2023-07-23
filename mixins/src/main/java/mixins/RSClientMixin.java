@@ -3023,21 +3023,21 @@ public abstract class RSClientMixin implements RSClient {
 
     // Kris's events
 
-/*    @FieldHook("cameraShakeSpeed")
+   @FieldHook("cameraShakeSpeed")
     @Inject
     public static void cameraShakeSpeedChange(int idx) {
         client.getCallbacks().post(Events.CAMERA_SHAKE_EVENT,
                 new CameraShakeEvent(idx, client.cameraShakeIntensity()[idx], client.cameraMoveIntensity()[idx],
                         client.cameraShakeSpeed()[idx]));
-    }*/
+    }
 
-/*    @FieldHook("cameraShaking")
+    @FieldHook("cameraShaking")
     @Inject
     public static void cameraShakingChange(int idx) {
         client.getCallbacks().post(Events.CAMERA_RESET_EVENT, new CameraResetEvent(idx));
-    }*/
+    }
 
-/*    @FieldHook("cameraMoveToAcceleration")
+    @FieldHook("cameraMoveToAcceleration")
     @Inject
     public static void cameraMoveTo(int idx) {
         client.getCallbacks().post(Events.CAMERA_MOVE_TO_EVENT,
@@ -3051,7 +3051,7 @@ public abstract class RSClientMixin implements RSClient {
         client.getCallbacks().post(Events.CAMERA_LOOK_AT_EVENT,
                 new CameraLookAtEvent(client.cameraLookAtX(), client.cameraLookAtY(), client.cameraLookAtHeight(),
                         client.cameraLookAtSpeed(), client.cameraLookAtAcceleration()));
-    }*/
+    }
 
     @Shadow("clips")
     static RSClips clips;

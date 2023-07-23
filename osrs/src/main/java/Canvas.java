@@ -24,7 +24,7 @@ public final class Canvas extends java.awt.Canvas {
 	@Export("friendsChat")
 	static FriendsChat friendsChat;
 	@ObfuscatedName("um")
-	static int field64;
+	static int cameraLookAtX;
 	@ObfuscatedName("aw")
 	@Export("component")
 	Component component;

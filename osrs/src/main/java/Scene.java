@@ -1829,14 +1829,14 @@ public class Scene {
 					var21 = var20 * var4 - var3 * var15 >> 16;
 					var15 = var3 * var20 + var15 * var4 >> 16;
 					if (var15 >= 50) {
-						int var22 = Rasterizer3D.method1167() + var10 * Rasterizer3D.get3dZoom() / var12;
-						int var23 = Rasterizer3D.method1168() + var17 * Rasterizer3D.get3dZoom() / var12;
-						int var24 = Rasterizer3D.method1167() + var14 * Rasterizer3D.get3dZoom() / var11;
-						int var25 = Rasterizer3D.method1168() + var18 * Rasterizer3D.get3dZoom() / var11;
-						int var26 = Rasterizer3D.method1167() + var13 * Rasterizer3D.get3dZoom() / var16;
-						int var27 = Rasterizer3D.method1168() + var19 * Rasterizer3D.get3dZoom() / var16;
-						int var28 = Rasterizer3D.method1167() + var9 * Rasterizer3D.get3dZoom() / var15;
-						int var29 = Rasterizer3D.method1168() + var21 * Rasterizer3D.get3dZoom() / var15;
+						int var22 = Rasterizer3D.getClipMidX() + var10 * Rasterizer3D.get3dZoom() / var12;
+						int var23 = Rasterizer3D.getClipMidY() + var17 * Rasterizer3D.get3dZoom() / var12;
+						int var24 = Rasterizer3D.getClipMidX() + var14 * Rasterizer3D.get3dZoom() / var11;
+						int var25 = Rasterizer3D.getClipMidY() + var18 * Rasterizer3D.get3dZoom() / var11;
+						int var26 = Rasterizer3D.getClipMidX() + var13 * Rasterizer3D.get3dZoom() / var16;
+						int var27 = Rasterizer3D.getClipMidY() + var19 * Rasterizer3D.get3dZoom() / var16;
+						int var28 = Rasterizer3D.getClipMidX() + var9 * Rasterizer3D.get3dZoom() / var15;
+						int var29 = Rasterizer3D.getClipMidY() + var21 * Rasterizer3D.get3dZoom() / var15;
 						float var30 = Strings.method1841(var12);
 						float var31 = Strings.method1841(var11);
 						float var32 = Strings.method1841(var16);
@@ -1934,8 +1934,8 @@ public class Scene {
 				SceneTileModel.field2125[var9] = var12;
 			}
 
-			SceneTileModel.field2129[var9] = Rasterizer3D.method1167() + var10 * Rasterizer3D.get3dZoom() / var12;
-			SceneTileModel.field2127[var9] = Rasterizer3D.method1168() + var13 * Rasterizer3D.get3dZoom() / var12;
+			SceneTileModel.field2129[var9] = Rasterizer3D.getClipMidX() + var10 * Rasterizer3D.get3dZoom() / var12;
+			SceneTileModel.field2127[var9] = Rasterizer3D.getClipMidY() + var13 * Rasterizer3D.get3dZoom() / var12;
 			SceneTileModel.field2124[var9] = Strings.method1841(var12);
 		}
 

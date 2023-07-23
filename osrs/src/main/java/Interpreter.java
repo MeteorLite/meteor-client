@@ -151,7 +151,7 @@ public class Interpreter {
 	static void playJingle(int var0, int var1) {
 		if (class150.clientPreferences.getCurrentMusicVolume() != 0 && var0 != -1) {
 			ArrayList var2 = new ArrayList();
-			var2.add(new class318(GrandExchangeOfferOwnWorldComparator.field358, var0, 0, class150.clientPreferences.getCurrentMusicVolume(), false));
+			var2.add(new MusicSong(GrandExchangeOfferOwnWorldComparator.field358, var0, 0, class150.clientPreferences.getCurrentMusicVolume(), false));
 			UserComparator4.method663(var2, 0, 0, 0, 0, true);
 			Client.playingJingle = true;
 		}

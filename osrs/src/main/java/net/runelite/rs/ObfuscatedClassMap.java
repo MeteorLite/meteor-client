@@ -17,6 +17,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("AbstractWorldMapIcon", "kv");
 		INSTANCE.put("AccessFile", "tn");
 		INSTANCE.put("Actor", "dx");
+		INSTANCE.put("AddRequestTask", "pe");
 		INSTANCE.put("Animation", "im");
 		INSTANCE.put("ApproximateRouteStrategy", "co");
 		INSTANCE.put("Archive", "ny");
@@ -163,7 +164,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("class312", "mn");
 		INSTANCE.put("class313", "mf");
 		INSTANCE.put("class317", "mh");
-		INSTANCE.put("class318", "mj");
 		INSTANCE.put("class319", "mx");
 		INSTANCE.put("class324", "mv");
 		INSTANCE.put("class325", "my");
@@ -205,16 +205,8 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("class397", "pz");
 		INSTANCE.put("class399", "po");
 		INSTANCE.put("class4", "as");
-		INSTANCE.put("class400", "pe");
-		INSTANCE.put("class401", "pj");
 		INSTANCE.put("class402", "pu");
-		INSTANCE.put("class403", "pn");
 		INSTANCE.put("class404", "pi");
-		INSTANCE.put("class405", "px");
-		INSTANCE.put("class406", "pb");
-		INSTANCE.put("class407", "pp");
-		INSTANCE.put("class408", "pf");
-		INSTANCE.put("class409", "ps");
 		INSTANCE.put("class410", "py");
 		INSTANCE.put("class411", "pw");
 		INSTANCE.put("class415", "pr");
@@ -304,11 +296,13 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("CollisionMap", "ij");
 		INSTANCE.put("com/jagex/oldscape/pub/RefreshAccessTokenRequester", "com/jagex/oldscape/pub/RefreshAccessTokenRequester");
 		INSTANCE.put("com/jagex/oldscape/pub/RefreshAccessTokenResponse", "com/jagex/oldscape/pub/RefreshAccessTokenResponse");
+		INSTANCE.put("ConcurrentMidiTask", "pf");
 		INSTANCE.put("Coord", "mr");
 		INSTANCE.put("DbRowType", "tu");
 		INSTANCE.put("DbTableType", "tk");
 		INSTANCE.put("Decimator", "cj");
 		INSTANCE.put("DefaultsGroup", "rf");
+		INSTANCE.put("DelayFadeTask", "pn");
 		INSTANCE.put("DemotingHashTable", "lj");
 		INSTANCE.put("DesktopPlatformInfoProvider", "su");
 		INSTANCE.put("DevicePcmPlayer", "ai");
@@ -321,6 +315,8 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("EnumComposition", "hm");
 		INSTANCE.put("EvictingDualNodeHashTable", "ld");
 		INSTANCE.put("FaceNormal", "jd");
+		INSTANCE.put("FadeInTask", "pb");
+		INSTANCE.put("FadeOutTask", "px");
 		INSTANCE.put("FileSystem", "gk");
 		INSTANCE.put("FloorDecoration", "ip");
 		INSTANCE.put("FloorOverlayDefinition", "ia");
@@ -387,6 +383,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("Language", "ot");
 		INSTANCE.put("Link", "sp");
 		INSTANCE.put("LinkDeque", "om");
+		INSTANCE.put("LoadSongTask", "ps");
 		INSTANCE.put("Login", "ci");
 		INSTANCE.put("LoginPacket", "lx");
 		INSTANCE.put("LoginScreenAnimation", "ds");
@@ -410,6 +407,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("MusicPatchNode", "mw");
 		INSTANCE.put("MusicPatchNode2", "lk");
 		INSTANCE.put("MusicPatchPcmStream", "mm");
+		INSTANCE.put("MusicSong", "mj");
 		INSTANCE.put("MusicTrack", "mp");
 		INSTANCE.put("NanoClock", "gy");
 		INSTANCE.put("net/runelite/rs/Opcodes", "net/runelite/rs/Opcodes");
@@ -464,6 +462,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("Skeleton", "ik");
 		INSTANCE.put("Skills", "nh");
 		INSTANCE.put("SoftWrapper", "lr");
+		INSTANCE.put("SongTask", "pp");
 		INSTANCE.put("SoundCache", "bh");
 		INSTANCE.put("SoundEffect", "bc");
 		INSTANCE.put("SoundEnvelope", "bz");
@@ -475,6 +474,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("Strings", "nz");
 		INSTANCE.put("StructComposition", "ht");
 		INSTANCE.put("StudioGame", "nu");
+		INSTANCE.put("SwapSongTask", "pj");
 		INSTANCE.put("Task", "gu");
 		INSTANCE.put("TaskHandler", "gv");
 		INSTANCE.put("Texture", "ic");

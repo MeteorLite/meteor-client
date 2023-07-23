@@ -3,7 +3,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ps")
-public class class409 extends class407 {
+public class LoadSongTask extends SongTask {
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "Lnd;"
@@ -23,7 +23,7 @@ public class class409 extends class407 {
 	@ObfuscatedSignature(
 		descriptor = "(Lpp;Lnd;Lnd;Lnd;)V"
 	)
-	public class409(class407 var1, AbstractArchive var2, AbstractArchive var3, AbstractArchive var4) {
+	public LoadSongTask(SongTask var1, AbstractArchive var2, AbstractArchive var3, AbstractArchive var4) {
 		super(var1);
 		this.field3717 = var2;
 		this.field3718 = var3;
@@ -38,12 +38,12 @@ public class class409 extends class407 {
 	)
 	public boolean vmethod2107(int var1) {
 		int var2 = 0;
-		Iterator var3 = class306.field2756.iterator();
+		Iterator var3 = class306.musicSongs.iterator();
 
 		while (true) {
 			while (var3.hasNext()) {
-				class318 var4 = (class318)var3.next();
-				if (var4 != null && var4.field2857.field2795 > 1 && var4.field2857.method1596()) {
+				MusicSong var4 = (MusicSong)var3.next();
+				if (var4 != null && var4.midiPcmStream.field2795 > 1 && var4.midiPcmStream.method1596()) {
 					this.method2102("Attempted to load patches of already loading midiplayer!");
 					return true;
 				}
@@ -62,10 +62,10 @@ public class class409 extends class407 {
 								var4.field2848 = new SoundCache(this.field3716, this.field3718);
 							}
 
-							if (var4.field2857.method1589(var4.field2858, this.field3717, var4.field2848)) {
+							if (var4.midiPcmStream.method1589(var4.field2858, this.field3717, var4.field2848)) {
 								++var2;
 								var4.field2849 = true;
-								var4.field2857.method1590();
+								var4.midiPcmStream.method1590();
 							}
 						} else {
 							++var2;
@@ -80,7 +80,7 @@ public class class409 extends class407 {
 				}
 			}
 
-			if (var2 == class306.field2756.size()) {
+			if (var2 == class306.musicSongs.size()) {
 				return true;
 			}
 

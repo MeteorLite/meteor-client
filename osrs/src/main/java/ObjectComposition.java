@@ -897,7 +897,7 @@ public class ObjectComposition extends DualNode {
 				if (class306.field2755.isEmpty()) {
 					var6 = false;
 				} else {
-					class318 var7 = (class318)class306.field2755.get(0);
+					MusicSong var7 = (MusicSong)class306.field2755.get(0);
 					var6 = var7 != null && var5 == var7.field2856;
 				}
 
@@ -905,7 +905,7 @@ public class ObjectComposition extends DualNode {
 					ArrayList var9 = new ArrayList();
 
 					for (int var8 = 0; var8 < var0.size(); ++var8) {
-						var9.add(new class318(class13.archive6, (Integer)var0.get(var8), 0, class150.clientPreferences.getCurrentMusicVolume(), false));
+						var9.add(new MusicSong(class13.archive6, (Integer)var0.get(var8), 0, class150.clientPreferences.getCurrentMusicVolume(), false));
 					}
 
 					if (Client.playingJingle) {

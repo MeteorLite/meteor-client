@@ -62,42 +62,42 @@ public enum class89 implements class372 {
 	)
 	static final void method482(int var0, int var1, int var2) {
 		if (class157.cameraX < var0) {
-			class157.cameraX = (var0 - class157.cameraX) * SecureRandomFuture.field803 / 1000 + class157.cameraX + Client.field538;
+			class157.cameraX = (var0 - class157.cameraX) * SecureRandomFuture.cameraMoveToAcceleration / 1000 + class157.cameraX + Client.cameraMoveToSpeed;
 			if (class157.cameraX > var0) {
 				class157.cameraX = var0;
 			}
 		}
 
 		if (class157.cameraX > var0) {
-			class157.cameraX -= (class157.cameraX - var0) * SecureRandomFuture.field803 / 1000 + Client.field538;
+			class157.cameraX -= (class157.cameraX - var0) * SecureRandomFuture.cameraMoveToAcceleration / 1000 + Client.cameraMoveToSpeed;
 			if (class157.cameraX < var0) {
 				class157.cameraX = var0;
 			}
 		}
 
 		if (class384.cameraY < var1) {
-			class384.cameraY = (var1 - class384.cameraY) * SecureRandomFuture.field803 / 1000 + class384.cameraY + Client.field538;
+			class384.cameraY = (var1 - class384.cameraY) * SecureRandomFuture.cameraMoveToAcceleration / 1000 + class384.cameraY + Client.cameraMoveToSpeed;
 			if (class384.cameraY > var1) {
 				class384.cameraY = var1;
 			}
 		}
 
 		if (class384.cameraY > var1) {
-			class384.cameraY -= (class384.cameraY - var1) * SecureRandomFuture.field803 / 1000 + Client.field538;
+			class384.cameraY -= (class384.cameraY - var1) * SecureRandomFuture.cameraMoveToAcceleration / 1000 + Client.cameraMoveToSpeed;
 			if (class384.cameraY < var1) {
 				class384.cameraY = var1;
 			}
 		}
 
 		if (SoundSystem.cameraZ < var2) {
-			SoundSystem.cameraZ = (var2 - SoundSystem.cameraZ) * SecureRandomFuture.field803 / 1000 + SoundSystem.cameraZ + Client.field538;
+			SoundSystem.cameraZ = (var2 - SoundSystem.cameraZ) * SecureRandomFuture.cameraMoveToAcceleration / 1000 + SoundSystem.cameraZ + Client.cameraMoveToSpeed;
 			if (SoundSystem.cameraZ > var2) {
 				SoundSystem.cameraZ = var2;
 			}
 		}
 
 		if (SoundSystem.cameraZ > var2) {
-			SoundSystem.cameraZ -= (SoundSystem.cameraZ - var2) * SecureRandomFuture.field803 / 1000 + Client.field538;
+			SoundSystem.cameraZ -= (SoundSystem.cameraZ - var2) * SecureRandomFuture.cameraMoveToAcceleration / 1000 + Client.cameraMoveToSpeed;
 			if (SoundSystem.cameraZ < var2) {
 				SoundSystem.cameraZ = var2;
 			}

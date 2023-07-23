@@ -73,7 +73,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	@Export("archiveLoaders")
 	static ArrayList archiveLoaders;
 	@ObfuscatedName("vf")
-	static boolean[] field406;
+	static boolean[] cameraShaking;
 	@ObfuscatedName("wb")
 	@Export("archiveLoadersDone")
 	static int archiveLoadersDone;
@@ -106,7 +106,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	@Export("viewportHeight")
 	static int viewportHeight;
 	@ObfuscatedName("vl")
-	static int[] field586;
+	static int[] cameraMoveIntensity;
 	@ObfuscatedName("vc")
 	@Export("zoomWidth")
 	static short zoomWidth;
@@ -120,9 +120,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	@Export("grandExchangeOffers")
 	static GrandExchangeOffer[] grandExchangeOffers;
 	@ObfuscatedName("vn")
-	static int[] field587;
+	static int[] cameraShakeIntensity;
 	@ObfuscatedName("vs")
-	static int[] field588;
+	static int[] cameraShakeSpeed;
 	@ObfuscatedName("vj")
 	static int[] cameraShakeCycle;
 	@ObfuscatedName("we")
@@ -799,9 +799,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	@ObfuscatedName("sd")
 	static String field598;
 	@ObfuscatedName("sl")
-	static long[] field613;
+	static long[] crossWorldMessageIds;
 	@ObfuscatedName("sk")
-	static int field530;
+	static int crossWorldMessageIdsIndex;
 	@ObfuscatedName("st")
 	@ObfuscatedSignature(
 		descriptor = "Lih;"
@@ -884,7 +884,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	@Export("isCameraLocked")
 	static boolean isCameraLocked;
 	@ObfuscatedName("uu")
-	static int field538;
+	static int cameraMoveToSpeed;
 	@ObfuscatedName("uv")
 	static boolean field398;
 	@ObfuscatedName("uz")
@@ -1185,8 +1185,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 		publicChatMode = 0;
 		tradeChatMode = 0;
 		field598 = "";
-		field613 = new long[100];
-		field530 = 0;
+		crossWorldMessageIds = new long[100];
+		crossWorldMessageIdsIndex = 0;
 		keyHandlerInstance = new class213();
 		field594 = new class211();
 		field529 = 0;
@@ -1218,10 +1218,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 		field642 = null;
 		field643 = null;
 		field397 = false;
-		field406 = new boolean[5];
-		field587 = new int[5];
-		field586 = new int[5];
-		field588 = new int[5];
+		cameraShaking = new boolean[5];
+		cameraShakeIntensity = new int[5];
+		cameraMoveIntensity = new int[5];
+		cameraShakeSpeed = new int[5];
 		cameraShakeCycle = new int[5];
 		field634 = 256;
 		field637 = 205;
@@ -2429,7 +2429,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 							field403[var13] = true;
 						}
 
-						class409.method2108();
+						LoadSongTask.method2108();
 						Canvas.friendsChat = null;
 						class11.guestClanSettings = null;
 						Arrays.fill(currentClanSettings, (Object)null);
@@ -2538,7 +2538,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 								field403[var14] = true;
 							}
 
-							class409.method2108();
+							LoadSongTask.method2108();
 							class164.updatePlayer(var2);
 							if (var13 != var2.offset) {
 								throw new RuntimeException();
@@ -2954,7 +2954,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 								Iterator var38 = class306.field2755.iterator();
 
 								while (var38.hasNext()) {
-									class318 var41 = (class318)var38.next();
+									MusicSong var41 = (MusicSong)var38.next();
 									var41.field2852 = false;
 									var41.field2849 = false;
 									var41.field2851 = false;
@@ -3009,9 +3009,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 						}
 
 						Widget var35 = WorldMapScaleHandler.mousedOverWidgetIf1;
-						Widget var37 = class403.field3700;
+						Widget var37 = DelayFadeTask.field3700;
 						WorldMapScaleHandler.mousedOverWidgetIf1 = null;
-						class403.field3700 = null;
+						DelayFadeTask.field3700 = null;
 						draggedOnWidget = null;
 						field393 = false;
 						field391 = false;
@@ -3126,21 +3126,21 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																		}
 																	}
 
-																	if (var37 != class403.field3700 && field493 == field494) {
+																	if (var37 != DelayFadeTask.field3700 && field493 == field494) {
 																		if (var37 != null) {
 																			class200.invalidateWidget(var37);
 																		}
 
-																		if (class403.field3700 != null) {
-																			class200.invalidateWidget(class403.field3700);
+																		if (DelayFadeTask.field3700 != null) {
+																			class200.invalidateWidget(DelayFadeTask.field3700);
 																		}
 																	}
 
-																	if (class403.field3700 != null) {
+																	if (DelayFadeTask.field3700 != null) {
 																		if (field494 < field493) {
 																			++field494;
 																			if (field493 == field494) {
-																				class200.invalidateWidget(class403.field3700);
+																				class200.invalidateWidget(DelayFadeTask.field3700);
 																			}
 																		}
 																	} else if (field494 > 0) {
@@ -3316,32 +3316,32 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																	}
 
 																	if (field397) {
-																		class89.method482(class422.field3755, class406.field3706, ModeWhere.field3604);
+																		class89.method482(class422.field3755, FadeInTask.field3706, ModeWhere.field3604);
 																		class184.method926(class165.field1420, class4.field3);
-																		if (class157.cameraX == class422.field3755 && class406.field3706 == class384.cameraY && ModeWhere.field3604 == SoundSystem.cameraZ && class165.field1420 == class19.cameraPitch && class456.cameraYaw == class4.field3) {
+																		if (class157.cameraX == class422.field3755 && FadeInTask.field3706 == class384.cameraY && ModeWhere.field3604 == SoundSystem.cameraZ && class165.field1420 == class19.cameraPitch && class456.cameraYaw == class4.field3) {
 																			field397 = false;
 																			isCameraLocked = false;
 																			field398 = false;
 																			field400 = false;
-																			Canvas.field64 = 0;
-																			ObjTypeCustomisation.field1483 = 0;
-																			FontName.field4032 = 0;
-																			class18.field51 = 0;
-																			class157.field1395 = 0;
-																			SecureRandomFuture.field803 = 0;
-																			field538 = 0;
-																			WorldMapIcon_1.field2301 = 0;
-																			class132.field1260 = 0;
-																			ModeWhere.field3603 = 0;
+																			Canvas.cameraLookAtX = 0;
+																			ObjTypeCustomisation.cameraLookAtY = 0;
+																			FontName.cameraLookAtHeight = 0;
+																			class18.cameraLookAtSpeed = 0;
+																			class157.cameraLookAtAcceleration = 0;
+																			SecureRandomFuture.cameraMoveToAcceleration = 0;
+																			cameraMoveToSpeed = 0;
+																			WorldMapIcon_1.cameraMoveToX = 0;
+																			class132.cameraMoveToY = 0;
+																			ModeWhere.cameraMoveToHeight = 0;
 																			field638 = null;
 																			field643 = null;
 																			field642 = null;
 																		}
 																	} else if (isCameraLocked) {
 																		if (!field398) {
-																			var3 = WorldMapIcon_1.field2301 * 128 + 64;
-																			var4 = class132.field1260 * 128 + 64;
-																			var5 = class306.getTileHeight(var3, var4, class36.Client_plane) - ModeWhere.field3603;
+																			var3 = WorldMapIcon_1.cameraMoveToX * 128 + 64;
+																			var4 = class132.cameraMoveToY * 128 + 64;
+																			var5 = class306.getTileHeight(var3, var4, class36.Client_plane) - ModeWhere.cameraMoveToHeight;
 																			class89.method482(var3, var5, var4);
 																		} else if (field638 != null) {
 																			class157.cameraX = field638.vmethod2349();
@@ -3356,9 +3356,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																		}
 
 																		if (!field400) {
-																			var3 = Canvas.field64 * 128 + 64;
-																			var4 = ObjTypeCustomisation.field1483 * 128 + 64;
-																			var5 = class306.getTileHeight(var3, var4, class36.Client_plane) - FontName.field4032;
+																			var3 = Canvas.cameraLookAtX * 128 + 64;
+																			var4 = ObjTypeCustomisation.cameraLookAtY * 128 + 64;
+																			var5 = class306.getTileHeight(var3, var4, class36.Client_plane) - FontName.cameraLookAtHeight;
 																			var6 = var3 - class157.cameraX;
 																			var7 = var5 - class384.cameraY;
 																			var8 = var4 - SoundSystem.cameraZ;
@@ -3768,16 +3768,16 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					isCameraLocked = true;
 					field397 = false;
 					field398 = true;
-					WorldMapIcon_1.field2301 = var3.readUnsignedByte();
-					class132.field1260 = var3.readUnsignedByte();
+					WorldMapIcon_1.cameraMoveToX = var3.readUnsignedByte();
+					class132.cameraMoveToY = var3.readUnsignedByte();
 					var20 = var3.readUnsignedShort();
 					var5 = var3.readUnsignedByte() * 128 + 64;
 					flags = var3.readUnsignedByte() * 128 + 64;
 					var7 = var3.readUnsignedShort();
 					field399 = var3.readBoolean();
 					var8 = var3.readUnsignedByte();
-					var57 = WorldMapIcon_1.field2301 * 128 + 64;
-					var59 = class132.field1260 * 128 + 64;
+					var57 = WorldMapIcon_1.cameraMoveToX * 128 + 64;
+					var59 = class132.cameraMoveToY * 128 + 64;
 					var62 = false;
 					var23 = false;
 					if (field399) {
@@ -3922,14 +3922,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					isCameraLocked = true;
 					field397 = false;
 					field400 = true;
-					Canvas.field64 = var3.readUnsignedByte();
-					ObjTypeCustomisation.field1483 = var3.readUnsignedByte();
-					FontName.field4032 = var3.readUnsignedShort();
+					Canvas.cameraLookAtX = var3.readUnsignedByte();
+					ObjTypeCustomisation.cameraLookAtY = var3.readUnsignedByte();
+					FontName.cameraLookAtHeight = var3.readUnsignedShort();
 					var20 = var3.readUnsignedShort();
 					var5 = var3.readUnsignedByte();
-					flags = Canvas.field64 * 128 + 64;
-					var7 = ObjTypeCustomisation.field1483 * 128 + 64;
-					var8 = class306.getTileHeight(flags, var7, class36.Client_plane) - FontName.field4032;
+					flags = Canvas.cameraLookAtX * 128 + 64;
+					var7 = ObjTypeCustomisation.cameraLookAtY * 128 + 64;
+					var8 = class306.getTileHeight(flags, var7, class36.Client_plane) - FontName.cameraLookAtHeight;
 					var57 = flags - class157.cameraX;
 					var59 = var8 - class384.cameraY;
 					var11 = var7 - SoundSystem.cameraZ;
@@ -3967,15 +3967,15 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					isCameraLocked = true;
 					field397 = false;
 					field400 = false;
-					Canvas.field64 = var3.readUnsignedByte();
-					ObjTypeCustomisation.field1483 = var3.readUnsignedByte();
-					FontName.field4032 = var3.readUnsignedShort();
-					class18.field51 = var3.readUnsignedByte();
-					class157.field1395 = var3.readUnsignedByte();
-					if (class157.field1395 >= 100) {
-						var20 = Canvas.field64 * 128 + 64;
-						var5 = ObjTypeCustomisation.field1483 * 128 + 64;
-						flags = class306.getTileHeight(var20, var5, class36.Client_plane) - FontName.field4032;
+					Canvas.cameraLookAtX = var3.readUnsignedByte();
+					ObjTypeCustomisation.cameraLookAtY = var3.readUnsignedByte();
+					FontName.cameraLookAtHeight = var3.readUnsignedShort();
+					class18.cameraLookAtSpeed = var3.readUnsignedByte();
+					class157.cameraLookAtAcceleration = var3.readUnsignedByte();
+					if (class157.cameraLookAtAcceleration >= 100) {
+						var20 = Canvas.cameraLookAtX * 128 + 64;
+						var5 = ObjTypeCustomisation.cameraLookAtY * 128 + 64;
+						flags = class306.getTileHeight(var20, var5, class36.Client_plane) - FontName.cameraLookAtHeight;
 						var7 = var20 - class157.cameraX;
 						var8 = flags - class384.cameraY;
 						var57 = var5 - SoundSystem.cameraZ;
@@ -4056,7 +4056,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					field398 = false;
 
 					for (var20 = 0; var20 < 5; ++var20) {
-						field406[var20] = false;
+						cameraShaking[var20] = false;
 					}
 
 					var1.serverPacket = null;
@@ -4094,7 +4094,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					boolean var70 = false;
 
 					for (var15 = 0; var15 < 100; ++var15) {
-						if (field613[var15] == var26) {
+						if (crossWorldMessageIds[var15] == var26) {
 							var70 = true;
 							break;
 						}
@@ -4105,8 +4105,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (!var70 && field485 == 0) {
-						field613[field530] = var26;
-						field530 = (field530 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var26;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var36 = AbstractFont.escapeBrackets(class153.method797(class292.readString(var3)));
 						if (var91.modIcon != -1) {
 							class213.addChatMessage(9, SecureRandomCallable.addImageTag(var91.modIcon) + var52, var36, class170.base37DecodeLong(var29));
@@ -4182,23 +4182,23 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					isCameraLocked = false;
 					field398 = false;
 					field400 = false;
-					Canvas.field64 = 0;
-					ObjTypeCustomisation.field1483 = 0;
-					FontName.field4032 = 0;
+					Canvas.cameraLookAtX = 0;
+					ObjTypeCustomisation.cameraLookAtY = 0;
+					FontName.cameraLookAtHeight = 0;
 					field399 = false;
-					class18.field51 = 0;
-					class157.field1395 = 0;
-					SecureRandomFuture.field803 = 0;
-					field538 = 0;
-					WorldMapIcon_1.field2301 = 0;
-					class132.field1260 = 0;
-					ModeWhere.field3603 = 0;
+					class18.cameraLookAtSpeed = 0;
+					class157.cameraLookAtAcceleration = 0;
+					SecureRandomFuture.cameraMoveToAcceleration = 0;
+					cameraMoveToSpeed = 0;
+					WorldMapIcon_1.cameraMoveToX = 0;
+					class132.cameraMoveToY = 0;
+					ModeWhere.cameraMoveToHeight = 0;
 					field638 = null;
 					field643 = null;
 					field642 = null;
 
 					for (var20 = 0; var20 < 5; ++var20) {
-						field406[var20] = false;
+						cameraShaking[var20] = false;
 					}
 
 					var1.serverPacket = null;
@@ -4231,7 +4231,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 						var62 = true;
 					} else {
 						for (var13 = 0; var13 < 100; ++var13) {
-							if (var33 == field613[var13]) {
+							if (var33 == crossWorldMessageIds[var13]) {
 								var62 = true;
 								break;
 							}
@@ -4239,8 +4239,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (!var62) {
-						field613[field530] = var33;
-						field530 = (field530 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var33;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var38 = class292.readString(var3);
 						var69 = var72 >= 0 ? 43 : 46;
 						class213.addChatMessage(var69, "", var38, var12.name);
@@ -4392,7 +4392,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.UPDATE_UID192 == var1.serverPacket) {
 					var3.offset += 28;
 					if (var3.checkCrc()) {
-						class403.method2091(var3, var3.offset - 28);
+						DelayFadeTask.method2091(var3, var3.offset - 28);
 					}
 
 					var1.serverPacket = null;
@@ -4673,7 +4673,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var7 = var3.readUnsignedShort();
 					var20 = var3.readUnsignedShortLE();
 					flags = var3.readUnsignedShortLE();
-					class452.method2293(var20, var5, flags, var7);
+					class452.someMusicMethod(var20, var5, flags, var7);
 					var1.serverPacket = null;
 					return true;
 				}
@@ -4864,7 +4864,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 								break;
 							}
 
-							if (var44 == field613[var15]) {
+							if (var44 == crossWorldMessageIds[var15]) {
 								var65 = true;
 								break;
 							}
@@ -4874,8 +4874,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (!var65) {
-						field613[field530] = var44;
-						field530 = (field530 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var44;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var36 = AbstractFont.escapeBrackets(class292.readString(var3));
 						var16 = var72 >= 0 ? 41 : 44;
 						if (var28.modIcon != -1) {
@@ -5324,7 +5324,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var23 = false;
 
 					for (var13 = 0; var13 < 100; ++var13) {
-						if (var46 == field613[var13]) {
+						if (var46 == crossWorldMessageIds[var13]) {
 							var23 = true;
 							break;
 						}
@@ -5335,8 +5335,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (!var23 && field485 == 0) {
-						field613[field530] = var46;
-						field530 = (field530 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var46;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var38 = AbstractFont.escapeBrackets(class153.method797(class292.readString(var3)));
 						byte var14;
 						if (var25.isPrivileged) {
@@ -5596,10 +5596,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var5 = var3.readUnsignedByte();
 					flags = var3.readUnsignedByte();
 					var7 = var3.readUnsignedByte();
-					field406[var20] = true;
-					field587[var20] = var5;
-					field586[var20] = flags;
-					field588[var20] = var7;
+					cameraShaking[var20] = true;
+					cameraShakeIntensity[var20] = var5;
+					cameraMoveIntensity[var20] = flags;
+					cameraShakeSpeed[var20] = var7;
 					cameraShakeCycle[var20] = 0;
 					var1.serverPacket = null;
 					return true;
@@ -5615,15 +5615,15 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					isCameraLocked = true;
 					field397 = false;
 					field398 = false;
-					WorldMapIcon_1.field2301 = var3.readUnsignedByte();
-					class132.field1260 = var3.readUnsignedByte();
-					ModeWhere.field3603 = var3.readUnsignedShort();
-					field538 = var3.readUnsignedByte();
-					SecureRandomFuture.field803 = var3.readUnsignedByte();
-					if (SecureRandomFuture.field803 >= 100) {
-						class157.cameraX = WorldMapIcon_1.field2301 * 128 + 64;
-						SoundSystem.cameraZ = class132.field1260 * 128 + 64;
-						class384.cameraY = class306.getTileHeight(class157.cameraX, SoundSystem.cameraZ, class36.Client_plane) - ModeWhere.field3603;
+					WorldMapIcon_1.cameraMoveToX = var3.readUnsignedByte();
+					class132.cameraMoveToY = var3.readUnsignedByte();
+					ModeWhere.cameraMoveToHeight = var3.readUnsignedShort();
+					cameraMoveToSpeed = var3.readUnsignedByte();
+					SecureRandomFuture.cameraMoveToAcceleration = var3.readUnsignedByte();
+					if (SecureRandomFuture.cameraMoveToAcceleration >= 100) {
+						class157.cameraX = WorldMapIcon_1.cameraMoveToX * 128 + 64;
+						SoundSystem.cameraZ = class132.cameraMoveToY * 128 + 64;
+						class384.cameraY = class306.getTileHeight(class157.cameraX, SoundSystem.cameraZ, class36.Client_plane) - ModeWhere.cameraMoveToHeight;
 					}
 
 					var1.serverPacket = null;
@@ -5648,14 +5648,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					isCameraLocked = true;
 					field397 = false;
 					field398 = true;
-					WorldMapIcon_1.field2301 = var3.readUnsignedByte();
-					class132.field1260 = var3.readUnsignedByte();
+					WorldMapIcon_1.cameraMoveToX = var3.readUnsignedByte();
+					class132.cameraMoveToY = var3.readUnsignedByte();
 					var20 = var3.readUnsignedShort();
 					var5 = var3.readUnsignedShort();
 					field399 = var3.readBoolean();
 					flags = var3.readUnsignedByte();
-					var7 = WorldMapIcon_1.field2301 * 128 + 64;
-					var8 = class132.field1260 * 128 + 64;
+					var7 = WorldMapIcon_1.cameraMoveToX * 128 + 64;
+					var8 = class132.cameraMoveToY * 128 + 64;
 					boolean var9 = false;
 					boolean var10 = false;
 					if (field399) {

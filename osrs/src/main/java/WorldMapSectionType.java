@@ -119,13 +119,13 @@ public enum WorldMapSectionType implements class372 {
 			if (class306.field2755.isEmpty()) {
 				var1 = false;
 			} else {
-				class318 var2 = (class318)class306.field2755.get(0);
+				MusicSong var2 = (MusicSong)class306.field2755.get(0);
 				var1 = var2 != null && var0 == var2.field2856;
 			}
 
 			if (!var1 && class150.clientPreferences.getCurrentMusicVolume() != 0) {
 				ArrayList var3 = new ArrayList();
-				var3.add(new class318(class13.archive6, var0, 0, class150.clientPreferences.getCurrentMusicVolume(), false));
+				var3.add(new MusicSong(class13.archive6, var0, 0, class150.clientPreferences.getCurrentMusicVolume(), false));
 				if (Client.playingJingle) {
 					class306.field2755.clear();
 					class306.field2755.addAll(var3);

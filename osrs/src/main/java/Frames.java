@@ -16,7 +16,7 @@ public class Frames extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Lud;"
 	)
-	static SpritePixels field2097;
+	static SpritePixels sceneMinimapSprite;
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "[Lim;"

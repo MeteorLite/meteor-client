@@ -39,13 +39,13 @@ public abstract class RouteStrategy {
 	public static void method1107(int var0, int var1) {
 		ArchiveLoader.method464(var0, var1, 0, 0);
 		class306.field2755.clear();
-		if (!class306.field2756.isEmpty() && (var0 != 0 || var1 != 0)) {
-			class306.field2760.add(new class403((class407)null, class306.musicPlayerStatus));
-			class306.field2760.add(new class405((class407)null, 0, false, class306.field2753));
+		if (!class306.musicSongs.isEmpty() && (var0 != 0 || var1 != 0)) {
+			class306.field2760.add(new DelayFadeTask((SongTask)null, class306.musicPlayerStatus));
+			class306.field2760.add(new FadeOutTask((SongTask)null, 0, false, class306.field2753));
 		}
 
 		ArrayList var2 = class162.method847();
-		class306.field2760.add(new class402((class407)null, var2));
+		class306.field2760.add(new class402((SongTask)null, var2));
 	}
 
 	@ObfuscatedName("bc")
@@ -83,7 +83,7 @@ public abstract class RouteStrategy {
 		}
 
 		if (Client.gameState >= 25) {
-			class409.method2108();
+			LoadSongTask.method2108();
 		}
 
 	}

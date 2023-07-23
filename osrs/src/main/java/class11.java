@@ -83,10 +83,10 @@ class class11 implements TlsAuthentication {
 			int var3 = Scene.Scene_cameraYawCosine;
 			byte var4 = 50;
 			short var5 = 3500;
-			int var6 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.method1167()) * var4 / Rasterizer3D.get3dZoom();
-			int var7 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.method1168()) * var4 / Rasterizer3D.get3dZoom();
-			int var8 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.method1167()) * var5 / Rasterizer3D.get3dZoom();
-			int var9 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.method1168()) * var5 / Rasterizer3D.get3dZoom();
+			int var6 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.getClipMidX()) * var4 / Rasterizer3D.get3dZoom();
+			int var7 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.getClipMidY()) * var4 / Rasterizer3D.get3dZoom();
+			int var8 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.getClipMidX()) * var5 / Rasterizer3D.get3dZoom();
+			int var9 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.getClipMidY()) * var5 / Rasterizer3D.get3dZoom();
 			int var11 = var7 * var1 + var0 * var4 >> 16;
 			int var12 = var4 * var1 - var7 * var0 >> 16;
 			int var13 = var1 * var9 + var5 * var0 >> 16;

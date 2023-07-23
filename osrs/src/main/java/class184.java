@@ -21,12 +21,12 @@ final class class184 implements ThreadFactory {
 		}
 
 		if (class19.cameraPitch < var0) {
-			class19.cameraPitch = (var0 - class19.cameraPitch) * class157.field1395 / 1000 + class19.cameraPitch + class18.field51;
+			class19.cameraPitch = (var0 - class19.cameraPitch) * class157.cameraLookAtAcceleration / 1000 + class19.cameraPitch + class18.cameraLookAtSpeed;
 			if (class19.cameraPitch > var0) {
 				class19.cameraPitch = var0;
 			}
 		} else if (class19.cameraPitch > var0) {
-			class19.cameraPitch -= (class19.cameraPitch - var0) * class157.field1395 / 1000 + class18.field51;
+			class19.cameraPitch -= (class19.cameraPitch - var0) * class157.cameraLookAtAcceleration / 1000 + class18.cameraLookAtSpeed;
 			if (class19.cameraPitch < var0) {
 				class19.cameraPitch = var0;
 			}
@@ -41,10 +41,10 @@ final class class184 implements ThreadFactory {
 		}
 
 		if (var2 > 0) {
-			class456.cameraYaw = class456.cameraYaw + class18.field51 + var2 * class157.field1395 / 1000;
+			class456.cameraYaw = class456.cameraYaw + class18.cameraLookAtSpeed + var2 * class157.cameraLookAtAcceleration / 1000;
 			class456.cameraYaw &= 2047;
 		} else if (var2 < 0) {
-			class456.cameraYaw -= -var2 * class157.field1395 / 1000 + class18.field51;
+			class456.cameraYaw -= -var2 * class157.cameraLookAtAcceleration / 1000 + class18.cameraLookAtSpeed;
 			class456.cameraYaw &= 2047;
 		}
 

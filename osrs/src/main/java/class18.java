@@ -9,7 +9,7 @@ public class class18 {
 	@Export("xteaKeys")
 	static int[][] xteaKeys;
 	@ObfuscatedName("uj")
-	static int field51;
+	static int cameraLookAtSpeed;
 	@ObfuscatedName("aw")
 	Future field54;
 	@ObfuscatedName("ay")

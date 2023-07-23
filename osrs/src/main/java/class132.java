@@ -90,7 +90,7 @@ public class class132 implements class372 {
 	)
 	static final class132 field1262;
 	@ObfuscatedName("uk")
-	static int field1260;
+	static int cameraMoveToY;
 	@ObfuscatedName("ab")
 	final int field1278;
 	@ObfuscatedName("ad")

@@ -2,7 +2,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("mj")
-public class class318 {
+public class MusicSong {
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "Lnd;"
@@ -28,7 +28,7 @@ public class class318 {
 	@ObfuscatedSignature(
 		descriptor = "Llc;"
 	)
-	public MidiPcmStream field2857;
+	public MidiPcmStream midiPcmStream;
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
 		descriptor = "Lbh;"
@@ -43,7 +43,7 @@ public class class318 {
 	@ObfuscatedSignature(
 		descriptor = "(Lnd;IIIZ)V"
 	)
-	public class318(AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
+	public MusicSong(AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
 		this.field2856 = -1;
 		this.field2855 = -1;
 		this.field2854 = 0;
@@ -56,7 +56,7 @@ public class class318 {
 	@ObfuscatedSignature(
 		descriptor = "(Lnd;Ljava/lang/String;Ljava/lang/String;IZ)V"
 	)
-	public class318(AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
+	public MusicSong(AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
 		this.field2856 = -1;
 		this.field2855 = -1;
 		this.field2854 = 0;

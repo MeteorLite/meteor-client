@@ -134,19 +134,19 @@ public class class7 {
 		garbageValue = "-89265387"
 	)
 	public static void method18(int var0) {
-		if (!class306.field2756.isEmpty()) {
-			Iterator var1 = class306.field2756.iterator();
+		if (!class306.musicSongs.isEmpty()) {
+			Iterator var1 = class306.musicSongs.iterator();
 
 			while (var1.hasNext()) {
-				class318 var2 = (class318)var1.next();
+				MusicSong var2 = (MusicSong)var1.next();
 				if (var2 != null) {
 					var2.field2854 = var0;
 				}
 			}
 
-			class318 var3 = (class318)class306.field2756.get(0);
-			if (var3 != null && var3.field2857 != null && var3.field2857.isReady() && !var3.field2851) {
-				var3.field2857.setPcmStreamVolume(var0);
+			MusicSong var3 = (MusicSong)class306.musicSongs.get(0);
+			if (var3 != null && var3.midiPcmStream != null && var3.midiPcmStream.isReady() && !var3.field2851) {
+				var3.midiPcmStream.setPcmStreamVolume(var0);
 				var3.field2853 = (float)var0;
 			}
 		}

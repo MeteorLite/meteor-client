@@ -158,7 +158,7 @@ public class class9 implements class372 {
 						var5 = 10;
 						var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]};
 						byte[] var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]};
-						class400.Widget_setKey(var4, var5, var9, var10);
+						AddRequestTask.Widget_setKey(var4, var5, var9, var10);
 						return 1;
 					} else if (var0 == 1352) {
 						Interpreter.Interpreter_intStackSize -= 3;
@@ -219,7 +219,7 @@ public class class9 implements class372 {
 
 					var7 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] - 1;
 					if (var7 >= 0 && var7 <= 9) {
-						class400.Widget_setKey(var4, var7, var8, var9);
+						AddRequestTask.Widget_setKey(var4, var7, var8, var9);
 						return 1;
 					} else {
 						throw new RuntimeException();

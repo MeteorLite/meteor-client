@@ -610,10 +610,10 @@ public class Rasterizer2D extends DualNode {
 	@ObfuscatedName("fp")
 	@Export("Rasterizer2D_drawRectangle")
 	public static void Rasterizer2D_drawRectangle(int var0, int var1, int var2, int var3, int var4) {
-		method2617(var0, var1, var2, var4);
-		method2617(var0, var3 + var1 - 1, var2, var4);
-		method2619(var0, var1, var3, var4);
-		method2619(var0 + var2 - 1, var1, var3, var4);
+		Rasterizer2D_drawHorizontalLine(var0, var1, var2, var4);
+		Rasterizer2D_drawHorizontalLine(var0, var3 + var1 - 1, var2, var4);
+		Rasterizer2D_drawVerticalLine(var0, var1, var3, var4);
+		Rasterizer2D_drawVerticalLine(var0 + var2 - 1, var1, var3, var4);
 	}
 
 	@ObfuscatedName("fz")
@@ -629,7 +629,7 @@ public class Rasterizer2D extends DualNode {
 	}
 
 	@ObfuscatedName("fj")
-	public static void method2617(int var0, int var1, int var2, int var3) {
+	public static void Rasterizer2D_drawHorizontalLine(int var0, int var1, int var2, int var3) {
 		if (var1 >= Rasterizer2D_yClipStart && var1 < Rasterizer2D_yClipEnd) {
 			if (var0 < Rasterizer2D_xClipStart) {
 				var2 -= Rasterizer2D_xClipStart - var0;
@@ -680,7 +680,7 @@ public class Rasterizer2D extends DualNode {
 	}
 
 	@ObfuscatedName("fl")
-	public static void method2619(int var0, int var1, int var2, int var3) {
+	public static void Rasterizer2D_drawVerticalLine(int var0, int var1, int var2, int var3) {
 		if (var0 >= Rasterizer2D_xClipStart && var0 < Rasterizer2D_xClipEnd) {
 			if (var1 < Rasterizer2D_yClipStart) {
 				var2 -= Rasterizer2D_yClipStart - var1;
@@ -738,16 +738,16 @@ public class Rasterizer2D extends DualNode {
 		var3 -= var1;
 		if (var3 == 0) {
 			if (var2 >= 0) {
-				method2617(var0, var1, var2 + 1, var4);
+				Rasterizer2D_drawHorizontalLine(var0, var1, var2 + 1, var4);
 			} else {
-				method2617(var0 + var2, var1, -var2 + 1, var4);
+				Rasterizer2D_drawHorizontalLine(var0 + var2, var1, -var2 + 1, var4);
 			}
 
 		} else if (var2 == 0) {
 			if (var3 >= 0) {
-				method2619(var0, var1, var3 + 1, var4);
+				Rasterizer2D_drawVerticalLine(var0, var1, var3 + 1, var4);
 			} else {
-				method2619(var0, var3 + var1, -var3 + 1, var4);
+				Rasterizer2D_drawVerticalLine(var0, var3 + var1, -var3 + 1, var4);
 			}
 
 		} else {

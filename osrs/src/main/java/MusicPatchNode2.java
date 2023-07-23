@@ -62,7 +62,7 @@ public class MusicPatchNode2 {
 				var10 = var4;
 			}
 
-			int[] var19 = Frames.field2097.pixels;
+			int[] var19 = Frames.sceneMinimapSprite.pixels;
 			var26 = var1 * 4 + (103 - var2) * 2048 + 24624;
 			var14 = class458.Entity_unpackID(var5);
 			ObjectComposition var15 = class90.getObjectDefinition(var14);
@@ -162,7 +162,7 @@ public class MusicPatchNode2 {
 					var25 = 15597568;
 				}
 
-				int[] var22 = Frames.field2097.pixels;
+				int[] var22 = Frames.sceneMinimapSprite.pixels;
 				int var29 = var1 * 4 + (103 - var2) * 2048 + 24624;
 				if (var8 != 0 && var8 != 2) {
 					var22[var29] = var25;

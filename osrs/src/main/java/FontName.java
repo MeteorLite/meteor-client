@@ -55,7 +55,7 @@ public class FontName {
 	@Export("archive13")
 	static Archive archive13;
 	@ObfuscatedName("un")
-	static int field4032;
+	static int cameraLookAtHeight;
 	@ObfuscatedName("ag")
 	@Export("name")
 	String name;

@@ -82,7 +82,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 			Login.titleboxSprite = null;
 			Login.titlebuttonSprite = null;
 			Login.runesSprite = null;
-			class407.leftTitleSprite = null;
+			SongTask.leftTitleSprite = null;
 			ScriptFrame.rightTitleSprite = null;
 			Login.logoSprite = null;
 			class304.title_muteSprite = null;

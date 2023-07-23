@@ -185,12 +185,12 @@ public class Rasterizer3D {
 	}
 
 	@ObfuscatedName("aj")
-	static int method1167() {
+	static int getClipMidX() {
 		return clips.field2246;
 	}
 
 	@ObfuscatedName("ag")
-	static int method1168() {
+	static int getClipMidY() {
 		return clips.field2250;
 	}
 
@@ -205,7 +205,7 @@ public class Rasterizer3D {
 	}
 
 	@ObfuscatedName("ap")
-	static int method1171() {
+	static int getClipMidY2() {
 		return clips.field2247;
 	}
 

@@ -16,7 +16,7 @@ public class ObjTypeCustomisation {
 	@Export("secureRandom")
 	static SecureRandom secureRandom;
 	@ObfuscatedName("ut")
-	static int field1483;
+	static int cameraLookAtY;
 	@ObfuscatedName("ar")
 	@Export("recol")
 	public short[] recol;

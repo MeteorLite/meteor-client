@@ -63,8 +63,8 @@ public class UserComparator10 extends AbstractUserComparator {
 
 			Rasterizer2D.Rasterizer2D_clear();
 			byte[] var4 = var0.takeFileByNames("title.jpg", "");
-			class407.leftTitleSprite = ClanChannelMember.method769(var4);
-			ScriptFrame.rightTitleSprite = class407.leftTitleSprite.mirrorHorizontally();
+			SongTask.leftTitleSprite = ClanChannelMember.method769(var4);
+			ScriptFrame.rightTitleSprite = SongTask.leftTitleSprite.mirrorHorizontally();
 			class425.method2154(var1, Client.worldProperties);
 			Login.titleboxSprite = class451.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", "");
 			Login.titlebuttonSprite = class451.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", "");
@@ -93,7 +93,7 @@ public class UserComparator10 extends AbstractUserComparator {
 			Login.worldSelectOpen = false;
 			if (!class150.clientPreferences.getTitleMusicDisabled()) {
 				ArrayList var5 = new ArrayList();
-				var5.add(new class318(class13.archive6, "scape main", "", 255, false));
+				var5.add(new MusicSong(class13.archive6, "scape main", "", 255, false));
 				UserComparator4.method663(var5, 0, 0, 0, 100, false);
 			} else {
 				RouteStrategy.method1107(0, 0);
@@ -106,7 +106,7 @@ public class UserComparator10 extends AbstractUserComparator {
 			Login.xPadding = (GrandExchangeOfferTotalQuantityComparator.canvasWidth - 765) / 2;
 			Login.loginBoxX = Login.xPadding + 202;
 			Script.loginBoxCenter = Login.loginBoxX + 180;
-			class407.leftTitleSprite.drawAt(Login.xPadding, 0);
+			SongTask.leftTitleSprite.drawAt(Login.xPadding, 0);
 			ScriptFrame.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
 			Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18);
 		}

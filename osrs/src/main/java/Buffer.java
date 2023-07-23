@@ -525,7 +525,7 @@ public class Buffer extends Node {
 	public String method2536() {
 		byte var1 = this.array[++this.offset - 1];
 		int var2 = this.readVarInt();
-		String var3 = class403.method2088(this.array, this.offset, var2);
+		String var3 = DelayFadeTask.method2088(this.array, this.offset, var2);
 		this.offset += var2;
 		return var3;
 	}

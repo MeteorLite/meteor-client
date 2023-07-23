@@ -2,28 +2,28 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("px")
-public class class405 extends class407 {
+public class FadeOutTask extends SongTask {
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "Lmj;"
 	)
-	class318 field3705;
+	MusicSong field3705;
 	@ObfuscatedName("ay")
 	int field3704;
 
 	@ObfuscatedSignature(
 		descriptor = "(Lpp;IZI)V"
 	)
-	public class405(class407 var1, int var2, boolean var3, int var4) {
+	public FadeOutTask(SongTask var1, int var2, boolean var3, int var4) {
 		super(var1);
 		this.field3705 = null;
 		this.field3704 = 0;
 		super.field3712 = "FadeOutTask";
 		if (var2 >= 0) {
 			if (var3 && var2 < class306.field2758.size()) {
-				this.field3705 = (class318)class306.field2758.get(var2);
-			} else if (!var3 && var2 < class306.field2756.size()) {
-				this.field3705 = (class318)class306.field2756.get(var2);
+				this.field3705 = (MusicSong)class306.field2758.get(var2);
+			} else if (!var3 && var2 < class306.musicSongs.size()) {
+				this.field3705 = (MusicSong)class306.musicSongs.get(var2);
 			}
 
 			this.field3704 = var4;
@@ -36,19 +36,19 @@ public class class405 extends class407 {
 		garbageValue = "994462530"
 	)
 	public boolean vmethod2107(int var1) {
-		if (this.field3705 != null && this.field3705.field2857 != null) {
+		if (this.field3705 != null && this.field3705.midiPcmStream != null) {
 			this.field3705.field2851 = true;
 
 			try {
-				if (this.field3705.field2853 > 0.0F && this.field3705.field2857.isReady()) {
+				if (this.field3705.field2853 > 0.0F && this.field3705.midiPcmStream.isReady()) {
 					float var2 = this.field3704 == 0 ? (float)this.field3704 : (float)this.field3705.field2854 / (float)this.field3704;
-					class318 var10000 = this.field3705;
+					MusicSong var10000 = this.field3705;
 					var10000.field2853 -= 0.0F == var2 ? (float)this.field3705.field2854 : var2;
 					if (this.field3705.field2853 < 0.0F) {
 						this.field3705.field2853 = 0.0F;
 					}
 
-					this.field3705.field2857.setPcmStreamVolume((int)this.field3705.field2853);
+					this.field3705.midiPcmStream.setPcmStreamVolume((int)this.field3705.field2853);
 					return false;
 				}
 			} catch (Exception var4) {

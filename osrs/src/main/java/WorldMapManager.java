@@ -503,7 +503,7 @@ public final class WorldMapManager {
 				int var5 = Client.camAngleY & 2047;
 				int var6 = class136.localPlayer.x / 32 + 48;
 				int var7 = 464 - class136.localPlayer.y / 32;
-				Frames.field2097.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths);
+				Frames.sceneMinimapSprite.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths);
 
 				int var8;
 				int var9;

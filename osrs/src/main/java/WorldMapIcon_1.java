@@ -7,7 +7,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("WorldMapIcon_1")
 public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 	@ObfuscatedName("us")
-	static int field2301;
+	static int cameraMoveToX;
 	@ObfuscatedName("aw")
 	@Export("objectDefId")
 	final int objectDefId;
