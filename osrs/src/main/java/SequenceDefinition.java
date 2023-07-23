@@ -362,25 +362,25 @@ public class SequenceDefinition extends DualNode {
 		descriptor = "(Ljo;II)Ljo;",
 		garbageValue = "1735736185"
 	)
-	Model method1062(Model var1, int var2) {
+	Model transformSpotAnimationModel(Model var1, int var2) {
 		Model var4;
 		if (!this.isCachedModelIdSet()) {
 			var2 = this.frameIds[var2];
 			Frames var5 = class157.getFrames(var2 >> 16);
 			var2 &= 65535;
 			if (var5 == null) {
-				return var1.method1288(true);
+				return var1.toSharedSpotAnimationModel(true);
 			} else {
-				var4 = var1.method1288(!var5.hasAlphaTransform(var2));
+				var4 = var1.toSharedSpotAnimationModel(!var5.hasAlphaTransform(var2));
 				var4.animate(var5, var2);
 				return var4;
 			}
 		} else {
 			class137 var3 = class181.method917(this.SequenceDefinition_cachedModelId);
 			if (var3 == null) {
-				return var1.method1288(true);
+				return var1.toSharedSpotAnimationModel(true);
 			} else {
-				var4 = var1.method1288(!var3.method737());
+				var4 = var1.toSharedSpotAnimationModel(!var3.method737());
 				var4.method1296(var3, var2);
 				return var4;
 			}

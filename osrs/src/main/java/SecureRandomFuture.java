@@ -251,7 +251,7 @@ public class SecureRandomFuture {
 				return 1;
 			} else if (var0 == 1125) {
 				var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				class525 var12 = (class525)ClientPreferences.findEnumerated(ItemLayer.FillMode_values(), var10);
+				FillMode var12 = (FillMode)ClientPreferences.findEnumerated(ItemLayer.FillMode_values(), var10);
 				if (var12 != null) {
 					var3.fillMode = var12;
 					class200.invalidateWidget(var3);

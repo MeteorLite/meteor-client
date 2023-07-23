@@ -43,7 +43,7 @@ public class class402 extends SongTask {
 								var3.midiPcmStream.setPcmStreamVolume(0);
 							}
 
-							FloorOverlayDefinition.method1052(var3.field2856, var3.field2855);
+							FloorOverlayDefinition.method1052(var3.musicTrackGroupId, var3.musicTrackFileId);
 							class306.musicSongs.remove(var3);
 						}
 					}

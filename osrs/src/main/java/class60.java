@@ -186,7 +186,7 @@ public class class60 {
 			boolean var1;
 			if (class136.localPlayer != var0) {
 				var1 = (Client.drawPlayerNames & 4) != 0;
-				return var1 || WorldMapIcon_1.method1373() && var0.isFriend() || ModeWhere.method1946() && var0.method491();
+				return var1 || WorldMapIcon_1.method1373() && var0.isFriend() || ModeWhere.method1946() && var0.isFriendsChatMember();
 			} else {
 				var1 = (Client.drawPlayerNames & 8) != 0;
 				return var1;

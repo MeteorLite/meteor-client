@@ -41,9 +41,9 @@ public class FadeOutTask extends SongTask {
 
 			try {
 				if (this.field3705.field2853 > 0.0F && this.field3705.midiPcmStream.isReady()) {
-					float var2 = this.field3704 == 0 ? (float)this.field3704 : (float)this.field3705.field2854 / (float)this.field3704;
+					float var2 = this.field3704 == 0 ? (float)this.field3704 : (float)this.field3705.musicTrackVolume / (float)this.field3704;
 					MusicSong var10000 = this.field3705;
-					var10000.field2853 -= 0.0F == var2 ? (float)this.field3705.field2854 : var2;
+					var10000.field2853 -= 0.0F == var2 ? (float)this.field3705.musicTrackVolume : var2;
 					if (this.field3705.field2853 < 0.0F) {
 						this.field3705.field2853 = 0.0F;
 					}

@@ -2063,14 +2063,22 @@ public abstract class RSClientMixin implements RSClient {
 
     // this exists because the original got inlined
     @Inject
-    public void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5) {
-        client.setMusicPlayerStatus(1);
-        client.setMusicTrackArchive(var1);
-        client.setMusicTrackGroupId(var2);
-        client.setMusicTrackFileId(var3);
-        client.setMusicTrackVolume(var4);
-        client.setMusicTrackBoolean(var5);
-        client.setPcmSampleLength(var0);
+    public void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5)
+    {
+        for (RSMusicSong musicSong : client.getMusicSongs())
+        {
+            if (musicSong.getMusicTrackGroupId() == var2)
+            {
+                client.setMusicPlayerStatus(1);
+                musicSong.setMusicTrackArchive(var1);
+                musicSong.setMusicTrackGroupId(var2);
+                musicSong.setMusicTrackFileId(var3);
+                musicSong.setMusicTrackVolume(var4);
+                musicSong.setMusicTrackBoolean(var5);
+                //musicSong.setPcmSampleLength(var0);
+                break;
+            }
+        }
     }
 
     @Inject
@@ -2155,7 +2163,7 @@ public abstract class RSClientMixin implements RSClient {
         return client.getPreferences().getMusicVolume();
     }
 
-    @Inject
+/*    @Inject
     @Override
     public void setMusicVolume(int volume) {
         if (volume > 0 && client.getPreferences().getMusicVolume() <= 0 && client.getCurrentTrackGroupId() != -1) {
@@ -2167,7 +2175,7 @@ public abstract class RSClientMixin implements RSClient {
         if (client.getMidiPcmStream() != null) {
             client.getMidiPcmStream().setPcmStreamVolume$api(volume);
         }
-    }
+    }*/
 
     @Inject
     @MethodHook("closeInterface")

@@ -27,12 +27,12 @@ public class class404 extends SongTask {
 					var3.midiPcmStream.method1591();
 					var3.midiPcmStream.setPcmStreamVolume(0);
 					if (var3.field2858 != null) {
-						var3.midiPcmStream.setMusicTrack(var3.field2858, var3.field2850);
+						var3.midiPcmStream.setMusicTrack(var3.field2858, var3.musicTrackBoolean);
 					}
 
 					var3.field2858 = null;
 					var3.field2848 = null;
-					var3.field2859 = null;
+					var3.musicTrackArchive = null;
 					var3.field2852 = true;
 				} catch (Exception var5) {
 					var5.printStackTrace();

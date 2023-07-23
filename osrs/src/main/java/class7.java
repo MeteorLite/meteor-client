@@ -140,7 +140,7 @@ public class class7 {
 			while (var1.hasNext()) {
 				MusicSong var2 = (MusicSong)var1.next();
 				if (var2 != null) {
-					var2.field2854 = var0;
+					var2.musicTrackVolume = var0;
 				}
 			}
 

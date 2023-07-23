@@ -2958,8 +2958,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 									var41.field2852 = false;
 									var41.field2849 = false;
 									var41.field2851 = false;
-									var41.field2859 = var32;
-									var41.field2854 = var2;
+									var41.musicTrackArchive = var32;
+									var41.musicTrackVolume = var2;
 									var41.field2853 = 0.0F;
 									var25.add(var41);
 								}
@@ -5161,7 +5161,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.IF_SETPOSITION == var1.serverPacket) {
 					var20 = var3.readSignedShortAdd();
 					var5 = var3.readIntIME();
-					flags = var3.readSignedShortLE();
+					flags = var3.readSignedShortAddLE();
 					var80 = VarbitComposition.getWidget(var5);
 					if (var20 != var80.rawX || flags != var80.rawY || var80.xAlignment != 0 || var80.yAlignment != 0) {
 						var80.rawX = var20;
@@ -5384,7 +5384,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 
 				if (ServerPacket.NPC_HEADICON_SPECIFIC == var1.serverPacket) {
 					var20 = var3.readIntIME();
-					short var58 = (short)var3.readSignedShortLE();
+					short var58 = (short)var3.readSignedShortAddLE();
 					flags = var3.readUnsignedByteAdd();
 					var7 = var3.readUnsignedShortLE();
 					var92 = npcs[var7];

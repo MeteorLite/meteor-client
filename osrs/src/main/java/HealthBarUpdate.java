@@ -54,7 +54,7 @@ public class HealthBarUpdate extends Node {
 		if (var0 instanceof RunException) {
 			RunException var2 = (RunException)var0;
 			var1 = var2.field4249 + " | ";
-			var0 = var2.field4250;
+			var0 = var2.parent;
 		} else {
 			var1 = "";
 		}

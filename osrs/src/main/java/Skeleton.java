@@ -587,13 +587,13 @@ public class Skeleton extends Node {
 						Login.Login_loadingText = "Loading textures - " + "0%";
 						Login.Login_loadingPercent = 90;
 					} else {
-						class113.field1158 = new TextureProvider(class148.field1335, class386.archive8, 20, class150.clientPreferences.getBrightness(), Client.isLowDetail ? 64 : 128);
-						Rasterizer3D.method1163(class113.field1158);
+						class113.textureProvider = new TextureProvider(class148.field1335, class386.archive8, 20, class150.clientPreferences.getBrightness(), Client.isLowDetail ? 64 : 128);
+						Rasterizer3D.method1163(class113.textureProvider);
 						Rasterizer3D.method1164(class150.clientPreferences.getBrightness());
 						Client.field412 = class92.field931;
 					}
 				} else if (Client.field412 == class92.field931) {
-					var0 = class113.field1158.getLoadedPercentage();
+					var0 = class113.textureProvider.getLoadedPercentage();
 					if (var0 < 100) {
 						Login.Login_loadingText = "Loading textures - " + var0 + "%";
 						Login.Login_loadingPercent = 90;

@@ -7,17 +7,17 @@ public class MusicSong {
 	@ObfuscatedSignature(
 		descriptor = "Lnd;"
 	)
-	public AbstractArchive field2859;
+	public AbstractArchive musicTrackArchive;
 	@ObfuscatedName("ay")
-	public int field2856;
+	public int musicTrackGroupId;
 	@ObfuscatedName("ar")
-	public int field2855;
+	public int musicTrackFileId;
 	@ObfuscatedName("am")
-	public int field2854;
+	public int musicTrackVolume;
 	@ObfuscatedName("as")
 	public float field2853;
 	@ObfuscatedName("aj")
-	public boolean field2850;
+	public boolean musicTrackBoolean;
 	@ObfuscatedName("ag")
 	public boolean field2849;
 	@ObfuscatedName("az")
@@ -44,11 +44,11 @@ public class MusicSong {
 		descriptor = "(Lnd;IIIZ)V"
 	)
 	public MusicSong(AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
-		this.field2856 = -1;
-		this.field2855 = -1;
-		this.field2854 = 0;
+		this.musicTrackGroupId = -1;
+		this.musicTrackFileId = -1;
+		this.musicTrackVolume = 0;
 		this.field2853 = 0.0F;
-		this.field2850 = false;
+		this.musicTrackBoolean = false;
 		this.field2851 = false;
 		this.method1664(var1, var2, var3, var4, var5);
 	}
@@ -57,15 +57,15 @@ public class MusicSong {
 		descriptor = "(Lnd;Ljava/lang/String;Ljava/lang/String;IZ)V"
 	)
 	public MusicSong(AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
-		this.field2856 = -1;
-		this.field2855 = -1;
-		this.field2854 = 0;
+		this.musicTrackGroupId = -1;
+		this.musicTrackFileId = -1;
+		this.musicTrackVolume = 0;
 		this.field2853 = 0.0F;
-		this.field2850 = false;
+		this.musicTrackBoolean = false;
 		this.field2851 = false;
-		this.field2856 = var1.getGroupId(var2);
-		this.field2855 = var1.getFileId(this.field2856, var3);
-		this.method1664(var1, this.field2856, this.field2855, var4, var5);
+		this.musicTrackGroupId = var1.getGroupId(var2);
+		this.musicTrackFileId = var1.getFileId(this.musicTrackGroupId, var3);
+		this.method1664(var1, this.musicTrackGroupId, this.musicTrackFileId, var4, var5);
 	}
 
 	@ObfuscatedName("aw")
@@ -74,10 +74,10 @@ public class MusicSong {
 		garbageValue = "10"
 	)
 	void method1664(AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
-		this.field2859 = var1;
-		this.field2856 = var2;
-		this.field2855 = var3;
-		this.field2854 = var4;
-		this.field2850 = var5;
+		this.musicTrackArchive = var1;
+		this.musicTrackGroupId = var2;
+		this.musicTrackFileId = var3;
+		this.musicTrackVolume = var4;
+		this.musicTrackBoolean = var5;
 	}
 }

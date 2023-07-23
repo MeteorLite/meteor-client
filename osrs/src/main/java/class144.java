@@ -61,7 +61,7 @@ public class class144 extends class143 {
 
 		while (var2.hasNext()) {
 			MusicSong var3 = (MusicSong)var2.next();
-			if (var3.field2856 != -1 && var3.field2855 != -1) {
+			if (var3.musicTrackGroupId != -1 && var3.musicTrackFileId != -1) {
 				if (!var1) {
 					class306.field2755.add(var3);
 				}

@@ -898,7 +898,7 @@ public class ObjectComposition extends DualNode {
 					var6 = false;
 				} else {
 					MusicSong var7 = (MusicSong)class306.field2755.get(0);
-					var6 = var7 != null && var5 == var7.field2856;
+					var6 = var7 != null && var5 == var7.musicTrackGroupId;
 				}
 
 				if (!var6 && class150.clientPreferences.getCurrentMusicVolume() != 0) {

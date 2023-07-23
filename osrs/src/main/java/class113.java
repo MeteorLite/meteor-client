@@ -18,7 +18,7 @@ public class class113 extends UrlRequester {
 	@ObfuscatedSignature(
 		descriptor = "Ljb;"
 	)
-	static TextureProvider field1158;
+	static TextureProvider textureProvider;
 	@ObfuscatedName("as")
 	final boolean field1160;
 

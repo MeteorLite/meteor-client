@@ -149,9 +149,9 @@ public class SpotAnimationDefinition extends DualNode {
 		Model var2 = this.method985();
 		Model var3;
 		if (this.sequence != -1 && var1 != -1) {
-			var3 = class135.SequenceDefinition_get(this.sequence).method1062(var2, var1);
+			var3 = class135.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
 		} else {
-			var3 = var2.method1288(true);
+			var3 = var2.toSharedSpotAnimationModel(true);
 		}
 
 		if (this.widthScale != 128 || this.heightScale != 128) {

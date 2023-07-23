@@ -143,8 +143,7 @@ public class Widget extends Node {
 	@ObfuscatedSignature(
 		descriptor = "Luc;"
 	)
-	@Export("fillMode")
-	public class525 fillMode;
+	public FillMode fillMode;
 	@ObfuscatedName("ck")
 	@Export("transparencyTop")
 	public int transparencyTop;
@@ -530,7 +529,7 @@ public class Widget extends Node {
 		this.mouseOverColor = 0;
 		this.mouseOverColor2 = 0;
 		this.fill = false;
-		this.fillMode = class525.SOLID;
+		this.fillMode = FillMode.SOLID;
 		this.transparencyTop = 0;
 		this.transparencyBot = 0;
 		this.lineWid = 1;

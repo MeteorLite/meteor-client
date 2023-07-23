@@ -42,12 +42,12 @@ public class FadeInTask extends SongTask {
 			this.field3708.field2851 = true;
 
 			try {
-				if (this.field3708.field2853 < (float)this.field3708.field2854 && this.field3708.midiPcmStream.isReady()) {
-					float var2 = this.field3707 == 0 ? (float)this.field3707 : (float)this.field3708.field2854 / (float)this.field3707;
+				if (this.field3708.field2853 < (float)this.field3708.musicTrackVolume && this.field3708.midiPcmStream.isReady()) {
+					float var2 = this.field3707 == 0 ? (float)this.field3707 : (float)this.field3708.musicTrackVolume / (float)this.field3707;
 					MusicSong var10000 = this.field3708;
-					var10000.field2853 += var2 == 0.0F ? (float)this.field3708.field2854 : var2;
-					if (this.field3708.field2853 > (float)this.field3708.field2854) {
-						this.field3708.field2853 = (float)this.field3708.field2854;
+					var10000.field2853 += var2 == 0.0F ? (float)this.field3708.musicTrackVolume : var2;
+					if (this.field3708.field2853 > (float)this.field3708.musicTrackVolume) {
+						this.field3708.field2853 = (float)this.field3708.musicTrackVolume;
 					}
 
 					this.field3708.midiPcmStream.setPcmStreamVolume((int)this.field3708.field2853);

@@ -50,9 +50,9 @@ public class LoadSongTask extends SongTask {
 
 				if (var4 != null && !var4.field2849) {
 					try {
-						if (var4.field2859 != null && var4.field2856 != -1 && var4.field2855 != -1) {
+						if (var4.musicTrackArchive != null && var4.musicTrackGroupId != -1 && var4.musicTrackFileId != -1) {
 							if (var4.field2858 == null) {
-								var4.field2858 = MusicTrack.readTrack(var4.field2859, var4.field2856, var4.field2855);
+								var4.field2858 = MusicTrack.readTrack(var4.musicTrackArchive, var4.musicTrackGroupId, var4.musicTrackFileId);
 								if (var4.field2858 == null) {
 									continue;
 								}

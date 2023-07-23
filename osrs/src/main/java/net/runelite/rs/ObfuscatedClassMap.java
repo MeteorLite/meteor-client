@@ -269,7 +269,6 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("class518", "tf");
 		INSTANCE.put("class521", "ul");
 		INSTANCE.put("class522", "uh");
-		INSTANCE.put("class525", "uc");
 		INSTANCE.put("class528", "uv");
 		INSTANCE.put("class53", "cf");
 		INSTANCE.put("class531", "um");
@@ -318,6 +317,7 @@ public class ObfuscatedClassMap extends HashMap<String, String> {
 		INSTANCE.put("FadeInTask", "pb");
 		INSTANCE.put("FadeOutTask", "px");
 		INSTANCE.put("FileSystem", "gk");
+		INSTANCE.put("FillMode", "uc");
 		INSTANCE.put("FloorDecoration", "ip");
 		INSTANCE.put("FloorOverlayDefinition", "ia");
 		INSTANCE.put("FloorUnderlayDefinition", "hj");

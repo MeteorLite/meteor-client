@@ -89,8 +89,8 @@ public enum StudioGame implements class372 {
 								var5.field2852 = false;
 								var5.field2849 = false;
 								var5.field2851 = false;
-								var5.field2859 = var2;
-								var5.field2854 = var0;
+								var5.musicTrackArchive = var2;
+								var5.musicTrackVolume = var0;
 								var5.field2853 = 0.0F;
 								var3.add(var5);
 							}

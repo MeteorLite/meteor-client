@@ -1969,7 +1969,7 @@ public class Scene {
 
 				if (var1.triangleTextureId != null && var1.triangleTextureId[var9] != -1) {
 					if (!Scene_isLowDetail) {
-						if (var1.field2132) {
+						if (var1.isFlat) {
 							Rasterizer3D.method1184(var16, var17, var18, var13, var14, var15, var19, var20, var21, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field2126[0], SceneTileModel.field2126[1], SceneTileModel.field2126[3], SceneTileModel.field2128[0], SceneTileModel.field2128[1], SceneTileModel.field2128[3], SceneTileModel.field2125[0], SceneTileModel.field2125[1], SceneTileModel.field2125[3], var1.triangleTextureId[var9]);
 						} else {
 							Rasterizer3D.method1184(var16, var17, var18, var13, var14, var15, var19, var20, var21, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field2126[var10], SceneTileModel.field2126[var11], SceneTileModel.field2126[var12], SceneTileModel.field2128[var10], SceneTileModel.field2128[var11], SceneTileModel.field2128[var12], SceneTileModel.field2125[var10], SceneTileModel.field2125[var11], SceneTileModel.field2125[var12], var1.triangleTextureId[var9]);

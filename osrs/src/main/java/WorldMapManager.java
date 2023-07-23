@@ -555,7 +555,7 @@ public final class WorldMapManager {
 							GameEngine.drawSpriteOnMinimap(var1, var2, var12, var13, MusicPatchNode2.mapDotSprites[3], var4);
 						} else if (class136.localPlayer.team != 0 && var11.team != 0 && var11.team == class136.localPlayer.team) {
 							GameEngine.drawSpriteOnMinimap(var1, var2, var12, var13, MusicPatchNode2.mapDotSprites[4], var4);
-						} else if (var11.method491()) {
+						} else if (var11.isFriendsChatMember()) {
 							GameEngine.drawSpriteOnMinimap(var1, var2, var12, var13, MusicPatchNode2.mapDotSprites[5], var4);
 						} else if (var11.isClanMember()) {
 							GameEngine.drawSpriteOnMinimap(var1, var2, var12, var13, MusicPatchNode2.mapDotSprites[6], var4);

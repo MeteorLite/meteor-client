@@ -120,7 +120,7 @@ public enum WorldMapSectionType implements class372 {
 				var1 = false;
 			} else {
 				MusicSong var2 = (MusicSong)class306.field2755.get(0);
-				var1 = var2 != null && var0 == var2.field2856;
+				var1 = var2 != null && var0 == var2.musicTrackGroupId;
 			}
 
 			if (!var1 && class150.clientPreferences.getCurrentMusicVolume() != 0) {
