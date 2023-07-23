@@ -125,7 +125,7 @@ public class class335 {
 							Interpreter.Interpreter_stringStackSize -= 2;
 							var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
 							String var13 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-							var12 = class503.getPacketBufferNode(ClientPacket.field2550, Client.packetWriter.isaacCipher);
+							var12 = class503.getPacketBufferNode(ClientPacket.MESSAGE_PRIVATE, Client.packetWriter.isaacCipher);
 							var12.packetBuffer.writeShort(0);
 							int var10 = var12.packetBuffer.offset;
 							var12.packetBuffer.writeStringCp1252NullTerminated(var3);

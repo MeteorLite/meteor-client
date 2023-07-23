@@ -202,7 +202,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPPLAYER5 = new ClientPacket(61, 3);
 	@ObfuscatedName("cm")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2542 = new ClientPacket(62, -1);
+	public static final ClientPacket CLAN_KICKUSER = new ClientPacket(62, -1);
 	@ObfuscatedName("ca")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket NATIVE_PACKET2 = new ClientPacket(63, -1);
@@ -212,10 +212,10 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPPLAYER6 = new ClientPacket(64, 3);
 	@ObfuscatedName("co")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2544 = new ClientPacket(65, 4);
+	public static final ClientPacket DETECT_MODIFIED_CLIENT = new ClientPacket(65, 4);
 	@ObfuscatedName("cu")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket field2550 = new ClientPacket(66, -2);
+	public static final ClientPacket MESSAGE_PRIVATE = new ClientPacket(66, -2);
 	@ObfuscatedName("cr")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("OPOBJ2")

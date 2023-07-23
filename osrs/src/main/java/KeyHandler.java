@@ -233,15 +233,17 @@ public class KeyHandler implements KeyListener, FocusListener {
 			int var2 = Players.Players_pendingUpdateIndices[var1];
 			Player var3 = Client.players[var2];
 			int var4 = var0.readUnsignedByte();
+			// Excess Flag 8 Bytes
 			if ((var4 & 4) != 0) {
 				var4 += var0.readUnsignedByte() << 8;
 			}
-
+			// Excess Flag 16 Bytes
 			if ((var4 & 16384) != 0) {
 				var4 += var0.readUnsignedByte() << 16;
 			}
 
 			byte var5 = MoveSpeed.STATIONARY.speed;
+			// Move Speed
 			if ((var4 & 512) != 0) {
 				MoveSpeed[] var6 = Players.playerMovementSpeeds;
 				MoveSpeed[] var8 = new MoveSpeed[]{MoveSpeed.STATIONARY, MoveSpeed.WALK, MoveSpeed.CRAWL, MoveSpeed.RUN};
@@ -249,6 +251,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			int var17;
+			// Face Pawn
 			if ((var4 & 32) != 0) {
 				var3.targetIndex = var0.readUnsignedShortAddLE();
 				var3.targetIndex += var0.readUnsignedByte() << 16;
@@ -259,6 +262,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			}
 
 			int var7;
+			// Animation
 			if ((var4 & 2) != 0) {
 				var17 = var0.readUnsignedShortLE();
 				if (var17 == 65535) {
@@ -272,6 +276,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			int var9;
 			int var10;
 			int var13;
+			// Public Chat legacy
 			if ((var4 & 16) != 0) {
 				var17 = var0.readUnsignedShort();
 				PlayerType var18 = (PlayerType)ClientPreferences.findEnumerated(PendingSpawn.PlayerType_values(), var0.readUnsignedByteNeg());
@@ -312,13 +317,13 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 				var0.offset = var10 + var9;
 			}
-
+			// Context Menu
 			if ((var4 & 8192) != 0) {
 				for (var17 = 0; var17 < 3; ++var17) {
 					var3.actions[var17] = var0.readStringCp1252NullTerminated();
 				}
 			}
-
+			// Force Movement
 			if ((var4 & 4096) != 0) {
 				var3.field1013 = var0.readSignedByteSub();
 				var3.field1007 = var0.readByteAdd();
@@ -343,7 +348,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 
 				var3.field1018 = 0;
 			}
-
+			// Force Chat
 			if ((var4 & 64) != 0) {
 				var3.overheadText = var0.readStringCp1252NullTerminated();
 				if (var3.overheadText.charAt(0) == '~') {
@@ -358,7 +363,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 				var3.field994 = 0;
 				var3.overheadTextCyclesRemaining = 150;
 			}
-
+			// Movement (one-tick state) temp move
 			if ((var4 & 32768) != 0) {
 				var5 = var0.readSignedByteSub();
 			}
@@ -366,6 +371,7 @@ public class KeyHandler implements KeyListener, FocusListener {
 			int var21;
 			int var25;
 			int var29;
+			// Public Chat
 			if ((var4 & 2048) != 0) {
 				var17 = var0.readUnsignedShortAddLE();
 				var7 = var17 >> 8;

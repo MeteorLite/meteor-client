@@ -92,7 +92,7 @@ public class PacketBufferNode extends Node {
 	@Export("clanKickUser")
 	static final void clanKickUser(String var0) {
 		if (Canvas.friendsChat != null) {
-			PacketBufferNode var1 = class503.getPacketBufferNode(ClientPacket.field2542, Client.packetWriter.isaacCipher);
+			PacketBufferNode var1 = class503.getPacketBufferNode(ClientPacket.CLAN_KICKUSER, Client.packetWriter.isaacCipher);
 			var1.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var0));
 			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
 			Client.packetWriter.addNode(var1);

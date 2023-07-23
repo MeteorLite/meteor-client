@@ -292,7 +292,7 @@ public class class126 {
 				ObjectComposition.ObjectDefinition_cachedModelData.clear();
 				PacketBufferNode var18;
 				if (TileItem.client.hasFrame()) {
-					var18 = class503.getPacketBufferNode(ClientPacket.field2544, Client.packetWriter.isaacCipher);
+					var18 = class503.getPacketBufferNode(ClientPacket.DETECT_MODIFIED_CLIENT, Client.packetWriter.isaacCipher);
 					var18.packetBuffer.writeInt(1057001181);
 					Client.packetWriter.addNode(var18);
 				}
