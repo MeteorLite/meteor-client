@@ -156,9 +156,13 @@ public class class393 extends AbstractQueue {
 	@Export("offer")
 	@ObfuscatedName("offer")
 	public boolean offer(Object var1) {
-		if (this.field3657.containsKey(var1)) {
-			throw new IllegalArgumentException("");
-		} else {
+		/**
+		 * @TODO
+		 *	Can't pass dialogues when this is here ;-; Cba debuging
+		 */
+		//if (this.field3657.containsKey(var1)) {
+		//	throw new IllegalArgumentException("field3657 already contains: " + var1);
+		//} else {
 			++this.field3656;
 			int var2 = this.field3655;
 			if (var2 >= this.field3658.length) {
@@ -176,7 +180,7 @@ public class class393 extends AbstractQueue {
 			}
 
 			return true;
-		}
+	//	}
 	}
 
 	@Export("poll")
