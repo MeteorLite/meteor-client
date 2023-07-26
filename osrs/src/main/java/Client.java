@@ -17,6 +17,7 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.api.RSClient;
 
 @Implements("Client")
 @ObfuscatedName("client")
@@ -6074,6 +6075,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 			}
 
 			TileItem.client = this;
+			RuneLiteMenuEntry.client = (RSClient) (Object) this;
 			RunException.field4246 = clientType;
 			Actor.method527();
 			if (Boolean.parseBoolean(System.getProperty("jagex.disableBouncyCastle"))) {
