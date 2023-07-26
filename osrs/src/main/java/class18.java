@@ -175,7 +175,7 @@ public class class18 {
 		descriptor = "(Ldi;Ldc;III)V",
 		garbageValue = "-2007406926"
 	)
-	static void method64(ScriptEvent var0, Script var1, int var2, int var3) {
+	static void runScriptLogic(ScriptEvent var0, Script var1, int var2, int var3) {
 		Object[] var4 = var0.args;
 		Interpreter.Interpreter_intStackSize = 0;
 		Interpreter.Interpreter_stringStackSize = 0;
@@ -280,7 +280,7 @@ public class class18 {
 								default:
 									break;
 								case 2:
-									throw new IllegalStateException();
+									//throw new IllegalStateException();
 								}
 							} else if (var32 == 0) {
 								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7[var5];
