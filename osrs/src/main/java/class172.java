@@ -2,59 +2,124 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gi")
+@ObfuscatedName("gl")
 public class class172 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lez;"
-   )
-   public UrlRequest field1445;
-   @ObfuscatedName("an")
-   public float[] field1444;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-           descriptor = "Lgy;"
-   )
-   @ObfuscatedName("this$0")
-   final class166 this$0;
+	@ObfuscatedName("aj")
+	@Export("SpriteBuffer_spriteWidths")
+	public static int[] SpriteBuffer_spriteWidths;
+	@ObfuscatedName("ap")
+	@Export("Tiles_hue")
+	static int[] Tiles_hue;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lgy;)V"
-   )
-   class172(class166 var1) {
-      this.this$0 = var1;
-      this.field1444 = new float[4];
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(IILin;Lij;Liq;I)Z",
+		garbageValue = "135723678"
+	)
+	static final boolean method899(int var0, int var1, RouteStrategy var2, CollisionMap var3, class217 var4) {
+		int var5 = var4.method1115();
+		int var6 = var4.method1116();
+		int[][] var7 = var4.method1118();
+		int[][] var8 = var4.method1117();
+		int[] var9 = var4.method1119();
+		int[] var10 = var4.method1120();
+		int var11 = var4.method1121();
+		int var12 = var0;
+		int var13 = var1;
+		int var14 = var5 >> 1;
+		int var15 = var6 >> 1;
+		int var16 = var0 - var14;
+		int var17 = var1 - var15;
+		var8[var14][var15] = 99;
+		var7[var14][var15] = 0;
+		byte var18 = 0;
+		int var19 = 0;
+		var9[var18] = var0;
+		byte var10001 = var18;
+		int var24 = var18 + 1;
+		var10[var10001] = var1;
+		int[][] var20 = var3.flags;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/CharSequence;I)J",
-      garbageValue = "-1475560106"
-   )
-   static long method954(CharSequence var0) {
-      long var1 = 0L;
-      int var3 = var0.length();
+		while (var19 != var24) {
+			var12 = var9[var19];
+			var13 = var10[var19];
+			var19 = var19 + 1 & var11;
+			var14 = var12 - var16;
+			var15 = var13 - var17;
+			int var21 = var12 - var3.xInset;
+			int var22 = var13 - var3.yInset;
+			if (var2.hasArrived(1, var12, var13, var3)) {
+				var4.method1112(var12, var13);
+				return true;
+			}
 
-      for(int var4 = 0; var4 < var3; ++var4) {
-         var1 *= 37L;
-         char var5 = var0.charAt(var4);
-         if (var5 >= 'A' && var5 <= 'Z') {
-            var1 += (long)(var5 + 1 - 65);
-         } else if (var5 >= 'a' && var5 <= 'z') {
-            var1 += (long)(var5 + 1 - 97);
-         } else if (var5 >= '0' && var5 <= '9') {
-            var1 += (long)(var5 + 27 - 48);
-         }
+			int var23 = var7[var14][var15] + 1;
+			if (var14 > 0 && var8[var14 - 1][var15] == 0 && (var20[var21 - 1][var22] & 19136776) == 0) {
+				var9[var24] = var12 - 1;
+				var10[var24] = var13;
+				var24 = var24 + 1 & var11;
+				var8[var14 - 1][var15] = 2;
+				var7[var14 - 1][var15] = var23;
+			}
 
-         if (var1 >= 177917621779460413L) {
-            break;
-         }
-      }
+			if (var14 < var5 - 1 && var8[var14 + 1][var15] == 0 && (var20[var21 + 1][var22] & 19136896) == 0) {
+				var9[var24] = var12 + 1;
+				var10[var24] = var13;
+				var24 = var24 + 1 & var11;
+				var8[var14 + 1][var15] = 8;
+				var7[var14 + 1][var15] = var23;
+			}
 
-      while(0L == var1 % 37L && 0L != var1) {
-         var1 /= 37L;
-      }
+			if (var15 > 0 && var8[var14][var15 - 1] == 0 && (var20[var21][var22 - 1] & 19136770) == 0) {
+				var9[var24] = var12;
+				var10[var24] = var13 - 1;
+				var24 = var24 + 1 & var11;
+				var8[var14][var15 - 1] = 1;
+				var7[var14][var15 - 1] = var23;
+			}
 
-      return var1;
-   }
+			if (var15 < var6 - 1 && var8[var14][var15 + 1] == 0 && (var20[var21][var22 + 1] & 19136800) == 0) {
+				var9[var24] = var12;
+				var10[var24] = var13 + 1;
+				var24 = var24 + 1 & var11;
+				var8[var14][var15 + 1] = 4;
+				var7[var14][var15 + 1] = var23;
+			}
+
+			if (var14 > 0 && var15 > 0 && var8[var14 - 1][var15 - 1] == 0 && (var20[var21 - 1][var22 - 1] & 19136782) == 0 && (var20[var21 - 1][var22] & 19136776) == 0 && (var20[var21][var22 - 1] & 19136770) == 0) {
+				var9[var24] = var12 - 1;
+				var10[var24] = var13 - 1;
+				var24 = var24 + 1 & var11;
+				var8[var14 - 1][var15 - 1] = 3;
+				var7[var14 - 1][var15 - 1] = var23;
+			}
+
+			if (var14 < var5 - 1 && var15 > 0 && var8[var14 + 1][var15 - 1] == 0 && (var20[var21 + 1][var22 - 1] & 19136899) == 0 && (var20[var21 + 1][var22] & 19136896) == 0 && (var20[var21][var22 - 1] & 19136770) == 0) {
+				var9[var24] = var12 + 1;
+				var10[var24] = var13 - 1;
+				var24 = var24 + 1 & var11;
+				var8[var14 + 1][var15 - 1] = 9;
+				var7[var14 + 1][var15 - 1] = var23;
+			}
+
+			if (var14 > 0 && var15 < var6 - 1 && var8[var14 - 1][var15 + 1] == 0 && (var20[var21 - 1][var22 + 1] & 19136824) == 0 && (var20[var21 - 1][var22] & 19136776) == 0 && (var20[var21][var22 + 1] & 19136800) == 0) {
+				var9[var24] = var12 - 1;
+				var10[var24] = var13 + 1;
+				var24 = var24 + 1 & var11;
+				var8[var14 - 1][var15 + 1] = 6;
+				var7[var14 - 1][var15 + 1] = var23;
+			}
+
+			if (var14 < var5 - 1 && var15 < var6 - 1 && var8[var14 + 1][var15 + 1] == 0 && (var20[var21 + 1][var22 + 1] & 19136992) == 0 && (var20[var21 + 1][var22] & 19136896) == 0 && (var20[var21][var22 + 1] & 19136800) == 0) {
+				var9[var24] = var12 + 1;
+				var10[var24] = var13 + 1;
+				var24 = var24 + 1 & var11;
+				var8[var14 + 1][var15 + 1] = 12;
+				var7[var14 + 1][var15 + 1] = var23;
+			}
+		}
+
+		var4.method1112(var12, var13);
+		return false;
+	}
 }

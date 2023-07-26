@@ -1,33 +1,28 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("si")
-final class class479 implements class474 {
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/lang/Object;Lsg;I)V",
-            garbageValue = "-1451264347"
-    )
-    public void vmethod8274(Object var1, Buffer var2) {
-      this.method2443((String)var1, var2);
-   }
+@ObfuscatedName("ss")
+public class class479 extends class481 {
+	@ObfuscatedName("aw")
+	int field3956;
+	@ObfuscatedName("ay")
+	int field3957;
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;I)Ljava/lang/Object;",
-            garbageValue = "-1690934499"
-    )
-    public Object vmethod8273(Buffer var1) {
-      return var1.readStringCp1252NullTerminated();
-   }
+	public class479(int var1, int var2, int var3, int var4) {
+		super(var3, var4);
+		this.field3956 = 0;
+		this.field3957 = 0;
+		this.field3956 = var1;
+		this.field3957 = var2;
+	}
 
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Lsg;B)V",
-      garbageValue = "-97"
-   )
-   void method2443(String var1, Buffer var2) {
-      var2.writeStringCp1252NullTerminated(var1);
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-84"
+	)
+	public int method2346() {
+		double var1 = this.method2352();
+		return (int)Math.round(var1 * (double)(this.field3957 - this.field3956) + (double)this.field3956);
+	}
 }

@@ -3,95 +3,104 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("tm")
+@ObfuscatedName("ui")
 @Implements("Username")
 public class Username implements Comparable {
-    @ObfuscatedName("af")
-    String name;
-    @ObfuscatedName("an")
-    String cleanName;
+	@ObfuscatedName("aw")
+	@Export("name")
+	String name;
+	@ObfuscatedName("ay")
+	@Export("cleanName")
+	String cleanName;
 
-   @ObfuscatedSignature(
-      descriptor = "(Ljava/lang/String;Lsw;)V"
-   )
-   public Username(String var1, LoginType var2) {
-      this.name = var1;
-      this.cleanName = class30.method132(var1, var2);
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Lsi;)V"
+	)
+	public Username(String var1, LoginType var2) {
+		this.name = var1;
+		this.cleanName = FriendsChat.method2165(var1, var2);
+	}
 
-   public Username(String var1) {
-      this.name = var1;
-      this.cleanName = class30.method132(var1, LoginType.oldscape);
-   }
+	public Username(String var1) {
+		this.name = var1;
+		this.cleanName = FriendsChat.method2165(var1, LoginType.oldscape);
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(I)Ljava/lang/String;",
-            garbageValue = "-710264960"
-    )
-    public String getName() {
-      return this.name;
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "880493347"
+	)
+	@Export("getName")
+	public String getName() {
+		return this.name;
+	}
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)Ljava/lang/String;",
-      garbageValue = "-1558017121"
-   )
-   public String method2643() {
-      return this.cleanName;
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-1828095462"
+	)
+	public String method2682() {
+		return this.cleanName;
+	}
 
-    @ObfuscatedName("aw")
-    @ObfuscatedSignature(
-            descriptor = "(I)Z",
-            garbageValue = "-1688194993"
-    )
-    public boolean hasCleanName() {
-      return this.cleanName != null;
-   }
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "115"
+	)
+	@Export("hasCleanName")
+	public boolean hasCleanName() {
+		return this.cleanName != null;
+	}
 
-    @ObfuscatedName("aq")
-    @ObfuscatedSignature(
-            descriptor = "(Ltm;B)I",
-            garbageValue = "58"
-    )
-    public int compareToTyped(Username var1) {
-      if (this.cleanName == null) {
-         return var1.cleanName == null ? 0 : 1;
-      } else {
-         return var1.cleanName == null ? -1 : this.cleanName.compareTo(var1.cleanName);
-      }
-   }
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(Lui;I)I",
+		garbageValue = "704664306"
+	)
+	@Export("compareToTyped")
+	public int compareToTyped(Username var1) {
+		if (this.cleanName == null) {
+			return var1.cleanName == null ? 0 : 1;
+		} else {
+			return var1.cleanName == null ? -1 : this.cleanName.compareTo(var1.cleanName);
+		}
+	}
 
-    @ObfuscatedName("equals")
-    public boolean equals(Object var1) {
-      if (var1 instanceof Username) {
-         Username var2 = (Username)var1;
-         if (this.cleanName == null) {
-            return var2.cleanName == null;
-         } else if (var2.cleanName == null) {
-            return false;
-         } else {
-            return this.hashCode() != var2.hashCode() ? false : this.cleanName.equals(var2.cleanName);
-         }
-      } else {
-         return false;
-      }
-   }
+	@Export("equals")
+	@ObfuscatedName("equals")
+	public boolean equals(Object var1) {
+		if (var1 instanceof Username) {
+			Username var2 = (Username)var1;
+			if (this.cleanName == null) {
+				return var2.cleanName == null;
+			} else if (var2.cleanName == null) {
+				return false;
+			} else {
+				return this.hashCode() != var2.hashCode() ? false : this.cleanName.equals(var2.cleanName);
+			}
+		} else {
+			return false;
+		}
+	}
 
-    @ObfuscatedName("hashCode")
-    public int hashCode() {
-      return this.cleanName == null ? 0 : this.cleanName.hashCode();
-   }
+	@Export("hashCode")
+	@ObfuscatedName("hashCode")
+	public int hashCode() {
+		return this.cleanName == null ? 0 : this.cleanName.hashCode();
+	}
 
-    @ObfuscatedName("compareTo")
-    public int compareTo(Object var1) {
-      return this.compareToTyped((Username)var1);
-   }
+	@Export("toString")
+	@ObfuscatedName("toString")
+	public String toString() {
+		return this.getName();
+	}
 
-    @ObfuscatedName("toString")
-    public String toString() {
-      return this.getName();
-   }
+	@Export("compareTo")
+	@ObfuscatedName("compareTo")
+	public int compareTo(Object var1) {
+		return this.compareToTyped((Username)var1);
+	}
 }

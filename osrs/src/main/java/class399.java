@@ -1,83 +1,149 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pj")
-public final class class399 implements Comparable {
-    @ObfuscatedName("wm")
-    static short[] foundItemIds;
-    @ObfuscatedName("ay")
-    @ObfuscatedSignature(
-            descriptor = "Lgv;"
-    )
-    static Clock clock;
-    @ObfuscatedName("fw")
-    @ObfuscatedSignature(
-            descriptor = "Lnd;"
-    )
-    static Archive archive6;
-   @ObfuscatedName("af")
-   Object field3699;
-   @ObfuscatedName("an")
-   Object field3700;
-   @ObfuscatedName("aw")
-   long field3701;
-   @ObfuscatedName("ac")
-   long field3702;
+@ObfuscatedName("po")
+public class class399 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lpt;"
+	)
+	class395 field3698;
+	@ObfuscatedName("ay")
+	int field3697;
+	@ObfuscatedName("ar")
+	int field3696;
 
-   class399(Object var1, Object var2) {
-      this.field3699 = var1;
-      this.field3700 = var2;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Lpt;II)V"
+	)
+	class399(class395 var1, int var2, int var3) {
+		this.field3697 = 0;
+		this.field3696 = 0;
+		this.field3698 = var1;
+		this.field3697 = var2;
+		this.field3696 = var3;
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lpj;I)I",
-      garbageValue = "-331222916"
-   )
-   int method2128(class399 var1) {
-      if (this.field3702 < var1.field3702) {
-         return -1;
-      } else {
-         return this.field3702 > var1.field3702 ? 1 : 0;
-      }
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-1809601354"
+	)
+	public String method2074() {
+		if (this.method2076()) {
+			return "";
+		} else {
+			StringBuilder var1 = new StringBuilder(this.method2077());
 
-    @ObfuscatedName("equals")
-    public boolean equals(Object var1) {
-      if (var1 instanceof class399) {
-         return this.field3700.equals(((class399)var1).field3700);
-      } else {
-         throw new IllegalArgumentException();
-      }
-   }
+			for (int var2 = this.field3697; var2 < this.field3696; ++var2) {
+				class397 var3 = this.field3698.method1995(var2);
+				var1.append(var3.field3671);
+			}
 
-    @ObfuscatedName("hashCode")
-    public int hashCode() {
-      return this.field3700.hashCode();
-   }
+			return var1.toString();
+		}
+	}
 
-    @ObfuscatedName("compareTo")
-    public int compareTo(Object var1) {
-      return this.method2128((class399)var1);
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "1827126332"
+	)
+	boolean method2075(int var1) {
+		return this.field3698.method2027() == 2 || this.field3698.method2027() == 1 && (!this.field3698.field3660 || this.field3696 - 1 != var1);
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(II)Ltf;",
-      garbageValue = "-108064052"
-   )
-   public static PrivateChatMode method2129(int var0) {
-      PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field4163, PrivateChatMode.field4162, PrivateChatMode.field4161};
-      PrivateChatMode[] var2 = var1;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-587840558"
+	)
+	public boolean method2076() {
+		return this.field3697 == this.field3696;
+	}
 
-      for(int var3 = 0; var3 < var2.length; ++var3) {
-         PrivateChatMode var4 = var2[var3];
-         if (var0 == var4.id) {
-            return var4;
-         }
-      }
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "107"
+	)
+	public int method2077() {
+		return this.field3696 - this.field3697;
+	}
 
-      return null;
-   }
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(Lpz;I)Z",
+		garbageValue = "-1646717603"
+	)
+	boolean method2078(class397 var1) {
+		if (this.field3698.field3665 == 2) {
+			return true;
+		} else if (this.field3698.field3665 == 0) {
+			return false;
+		} else {
+			return this.field3698.method1996() != var1;
+		}
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1502136655"
+	)
+	int method2079() {
+		if (this.method2076()) {
+			return 0;
+		} else {
+			class397 var1 = this.field3698.method1995(this.field3696 - 1);
+			if (var1.field3671 == '\n') {
+				return 0;
+			} else if (this.method2078(var1)) {
+				return this.field3698.field3669.advances[42];
+			} else {
+				int var2 = this.field3698.field3669.advances[var1.field3671];
+				if (var2 == 0) {
+					return var1.field3671 == '\t' ? this.field3698.field3669.advances[32] * 3 : this.field3698.field3669.advances[32];
+				} else {
+					return var2;
+				}
+			}
+		}
+	}
+
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lsf;",
+		garbageValue = "-631307887"
+	)
+	public class486 method2080() {
+		if (this.method2076()) {
+			return new class486(0, 0);
+		} else {
+			class397 var1 = this.field3698.method1995(this.field3696 - 1);
+			return new class486(var1.field3673 + this.method2079(), var1.field3672);
+		}
+	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lpz;",
+		garbageValue = "-2132806837"
+	)
+	public class397 method2081(int var1) {
+		return var1 >= 0 && var1 < this.method2077() ? this.field3698.method1995(this.field3697 + var1) : null;
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "687406142"
+	)
+	static int method2082(int var0, int var1, int var2) {
+		if ((Tiles.Tiles_renderFlags[var0][var1][var2] & 8) != 0) {
+			return 0;
+		} else {
+			return var0 > 0 && (Tiles.Tiles_renderFlags[1][var1][var2] & 2) != 0 ? var0 - 1 : var0;
+		}
+	}
 }

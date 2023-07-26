@@ -8,7 +8,7 @@ public interface Buffer extends Node
     void writeMediumMiddle$api(int i);
     int readUnsignedByteAdd$api();
     int readUnsignedByteNeg$api();
-    int _readUnsignedByteSub$api();
+
     byte readByteAdd();
     byte readByteNeg();
     byte readUnsignedByteSub$api();

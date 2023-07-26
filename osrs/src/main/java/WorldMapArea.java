@@ -8,544 +8,384 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("js")
 @Implements("WorldMapArea")
 public class WorldMapArea {
-    @ObfuscatedName("af")
-    int id = -1;
-    @ObfuscatedName("an")
-    String internalName;
-    @ObfuscatedName("aw")
-    String externalName;
-    @ObfuscatedName("ac")
-    int backGroundColor = -1;
-    @ObfuscatedName("au")
-    int zoom = -1;
-    @ObfuscatedName("ab")
-    @ObfuscatedSignature(
-            descriptor = "Llb;"
-    )
-    Coord origin = null;
-    @ObfuscatedName("aq")
-    int regionLowX = Integer.MAX_VALUE;
-    @ObfuscatedName("al")
-    int regionHighX = 0;
-    @ObfuscatedName("at")
-    int regionLowY = Integer.MAX_VALUE;
-    @ObfuscatedName("aa")
-    int regionHighY = 0;
-    @ObfuscatedName("ay")
-    boolean isMain = false;
-    @ObfuscatedName("ao")
-    LinkedList sections;
+	@ObfuscatedName("aw")
+	@Export("id")
+	int id;
+	@ObfuscatedName("ay")
+	@Export("internalName")
+	String internalName;
+	@ObfuscatedName("ar")
+	@Export("externalName")
+	String externalName;
+	@ObfuscatedName("am")
+	@Export("backGroundColor")
+	int backGroundColor;
+	@ObfuscatedName("as")
+	@Export("zoom")
+	int zoom;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	@Export("origin")
+	Coord origin;
+	@ObfuscatedName("ag")
+	@Export("regionLowX")
+	int regionLowX;
+	@ObfuscatedName("az")
+	@Export("regionHighX")
+	int regionHighX;
+	@ObfuscatedName("av")
+	@Export("regionLowY")
+	int regionLowY;
+	@ObfuscatedName("ap")
+	@Export("regionHighY")
+	int regionHighY;
+	@ObfuscatedName("aq")
+	@Export("isMain")
+	boolean isMain;
+	@ObfuscatedName("at")
+	@Export("sections")
+	LinkedList sections;
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;IB)V",
-            garbageValue = "-126"
-    )
-    public void read(Buffer var1, int var2) {
-      this.id = var2;
-      this.internalName = var1.readStringCp1252NullTerminated();
-      this.externalName = var1.readStringCp1252NullTerminated();
-      this.origin = new Coord(var1.readInt());
-      this.backGroundColor = var1.readInt();
-      var1.readUnsignedByte();
-      this.isMain = var1.readUnsignedByte() == 1;
-      this.zoom = var1.readUnsignedByte();
-      int var3 = var1.readUnsignedByte();
-      this.sections = new LinkedList();
+	public WorldMapArea() {
+		this.id = -1;
+		this.backGroundColor = -1;
+		this.zoom = -1;
+		this.origin = null;
+		this.regionLowX = Integer.MAX_VALUE;
+		this.regionHighX = 0;
+		this.regionLowY = Integer.MAX_VALUE;
+		this.regionHighY = 0;
+		this.isMain = false;
+	}
 
-      for(int var4 = 0; var4 < var3; ++var4) {
-         this.sections.add(this.readWorldMapSection(var1));
-      }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;II)V",
+		garbageValue = "1472949028"
+	)
+	@Export("read")
+	public void read(Buffer var1, int var2) {
+		this.id = var2;
+		this.internalName = var1.readStringCp1252NullTerminated();
+		this.externalName = var1.readStringCp1252NullTerminated();
+		this.origin = new Coord(var1.readInt());
+		this.backGroundColor = var1.readInt();
+		var1.readUnsignedByte();
+		this.isMain = var1.readUnsignedByte() == 1;
+		this.zoom = var1.readUnsignedByte();
+		int var3 = var1.readUnsignedByte();
+		this.sections = new LinkedList();
 
-      this.setBounds();
-   }
+		for (int var4 = 0; var4 < var3; ++var4) {
+			this.sections.add(this.readWorldMapSection(var1));
+		}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;I)Lkw;",
-            garbageValue = "427135973"
-    )
-    WorldMapSection readWorldMapSection(Buffer var1) {
-      int var2 = var1.readUnsignedByte();
-      WorldMapSectionType var3 = (WorldMapSectionType)StructComposition.findEnumerated(WorldMapSectionType.method1508(), var2);
-      Object var4 = null;
-      switch(var3.type) {
-      case 0:
-         var4 = new WorldMapSection1();
-         break;
-      case 1:
-         var4 = new WorldMapSection2();
-         break;
-      case 2:
-         var4 = new class252();
-         break;
-      case 3:
-         var4 = new WorldMapSection0();
-         break;
-      default:
-         throw new IllegalStateException("");
-      }
+		this.setBounds();
+	}
 
-      ((WorldMapSection)var4).read(var1);
-      return (WorldMapSection)var4;
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;I)Lkz;",
+		garbageValue = "2141604791"
+	)
+	@Export("readWorldMapSection")
+	WorldMapSection readWorldMapSection(Buffer var1) {
+		int var2 = var1.readUnsignedByte();
+		WorldMapSectionType[] var3 = new WorldMapSectionType[]{WorldMapSectionType.WORLDMAPSECTIONTYPE3, WorldMapSectionType.WORLDMAPSECTIONTYPE1, WorldMapSectionType.WORLDMAPSECTIONTYPE0, WorldMapSectionType.WORLDMAPSECTIONTYPE2};
+		WorldMapSectionType var4 = (WorldMapSectionType)ClientPreferences.findEnumerated(var3, var2);
+		Object var5 = null;
+		switch(var4.type) {
+		case 0:
+			var5 = new WorldMapSection1();
+			break;
+		case 1:
+			var5 = new WorldMapSection2();
+			break;
+		case 2:
+			var5 = new class261();
+			break;
+		case 3:
+			var5 = new WorldMapSection0();
+			break;
+		default:
+			throw new IllegalStateException("");
+		}
 
-    @ObfuscatedName("aw")
-    @ObfuscatedSignature(
-            descriptor = "(IIII)Z",
-            garbageValue = "-1323143702"
-    )
-    public boolean containsCoord(int var1, int var2, int var3) {
-      Iterator var4 = this.sections.iterator();
+		((WorldMapSection)var5).read(var1);
+		return (WorldMapSection)var5;
+	}
 
-      WorldMapSection var5;
-      do {
-         if (!var4.hasNext()) {
-            return false;
-         }
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)Z",
+		garbageValue = "2035965907"
+	)
+	@Export("containsCoord")
+	public boolean containsCoord(int var1, int var2, int var3) {
+		Iterator var4 = this.sections.iterator();
 
-         var5 = (WorldMapSection)var4.next();
-      } while(!var5.containsCoord(var1, var2, var3));
+		WorldMapSection var5;
+		do {
+			if (!var4.hasNext()) {
+				return false;
+			}
 
-      return true;
-   }
+			var5 = (WorldMapSection)var4.next();
+		} while(!var5.containsCoord(var1, var2, var3));
 
-    @ObfuscatedName("ac")
-    @ObfuscatedSignature(
-            descriptor = "(III)Z",
-            garbageValue = "1764440845"
-    )
-    public boolean containsPosition(int var1, int var2) {
-      int var3 = var1 / 64;
-      int var4 = var2 / 64;
-      if (var3 >= this.regionLowX && var3 <= this.regionHighX) {
-         if (var4 >= this.regionLowY && var4 <= this.regionHighY) {
-            Iterator var5 = this.sections.iterator();
+		return true;
+	}
 
-            WorldMapSection var6;
-            do {
-               if (!var5.hasNext()) {
-                  return false;
-               }
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(III)Z",
+		garbageValue = "-1924447461"
+	)
+	@Export("containsPosition")
+	public boolean containsPosition(int var1, int var2) {
+		int var3 = var1 / 64;
+		int var4 = var2 / 64;
+		if (var3 >= this.regionLowX && var3 <= this.regionHighX) {
+			if (var4 >= this.regionLowY && var4 <= this.regionHighY) {
+				Iterator var5 = this.sections.iterator();
 
-               var6 = (WorldMapSection)var5.next();
-            } while(!var6.containsPosition(var1, var2));
+				WorldMapSection var6;
+				do {
+					if (!var5.hasNext()) {
+						return false;
+					}
 
-            return true;
-         } else {
-            return false;
-         }
-      } else {
-         return false;
-      }
-   }
+					var6 = (WorldMapSection)var5.next();
+				} while(!var6.containsPosition(var1, var2));
 
-    @ObfuscatedName("au")
-    @ObfuscatedSignature(
-            descriptor = "(IIIB)[I",
-            garbageValue = "6"
-    )
-    public int[] position(int var1, int var2, int var3) {
-      Iterator var4 = this.sections.iterator();
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
-      WorldMapSection var5;
-      do {
-         if (!var4.hasNext()) {
-            return null;
-         }
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(IIIB)[I",
+		garbageValue = "-40"
+	)
+	@Export("position")
+	public int[] position(int var1, int var2, int var3) {
+		Iterator var4 = this.sections.iterator();
 
-         var5 = (WorldMapSection)var4.next();
-      } while(!var5.containsCoord(var1, var2, var3));
+		WorldMapSection var5;
+		do {
+			if (!var4.hasNext()) {
+				return null;
+			}
 
-      return var5.getBorderTileLengths(var1, var2, var3);
-   }
+			var5 = (WorldMapSection)var4.next();
+		} while(!var5.containsCoord(var1, var2, var3));
 
-    @ObfuscatedName("ab")
-    @ObfuscatedSignature(
-            descriptor = "(III)Llb;",
-            garbageValue = "2133508945"
-    )
-    public Coord coord(int var1, int var2) {
-      Iterator var3 = this.sections.iterator();
+		return var5.getBorderTileLengths(var1, var2, var3);
+	}
 
-      WorldMapSection var4;
-      do {
-         if (!var3.hasNext()) {
-            return null;
-         }
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(III)Lmr;",
+		garbageValue = "322661377"
+	)
+	@Export("coord")
+	public Coord coord(int var1, int var2) {
+		Iterator var3 = this.sections.iterator();
 
-         var4 = (WorldMapSection)var3.next();
-      } while(!var4.containsPosition(var1, var2));
+		WorldMapSection var4;
+		do {
+			if (!var3.hasNext()) {
+				return null;
+			}
 
-      return var4.coord(var1, var2);
-   }
+			var4 = (WorldMapSection)var3.next();
+		} while(!var4.containsPosition(var1, var2));
 
-    @ObfuscatedName("aq")
-    @ObfuscatedSignature(
-            descriptor = "(I)V",
-            garbageValue = "1510562162"
-    )
-    void setBounds() {
-      Iterator var1 = this.sections.iterator();
+		return var4.coord(var1, var2);
+	}
 
-      while(var1.hasNext()) {
-         WorldMapSection var2 = (WorldMapSection)var1.next();
-         var2.expandBounds(this);
-      }
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-2141810509"
+	)
+	@Export("setBounds")
+	void setBounds() {
+		Iterator var1 = this.sections.iterator();
 
-   }
+		while (var1.hasNext()) {
+			WorldMapSection var2 = (WorldMapSection)var1.next();
+			var2.expandBounds(this);
+		}
 
-    @ObfuscatedName("al")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "-964267539"
-    )
-    public int getId() {
-      return this.id;
-   }
+	}
 
-    @ObfuscatedName("at")
-    @ObfuscatedSignature(
-            descriptor = "(I)Z",
-            garbageValue = "-926489840"
-    )
-    public boolean getIsMain() {
-      return this.isMain;
-   }
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-104"
+	)
+	@Export("getId")
+	public int getId() {
+		return this.id;
+	}
 
-    @ObfuscatedName("aa")
-    @ObfuscatedSignature(
-            descriptor = "(I)Ljava/lang/String;",
-            garbageValue = "1181486070"
-    )
-    public String getInternalName() {
-      return this.internalName;
-   }
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "12"
+	)
+	@Export("getIsMain")
+	public boolean getIsMain() {
+		return this.isMain;
+	}
 
-    @ObfuscatedName("ay")
-    @ObfuscatedSignature(
-            descriptor = "(S)Ljava/lang/String;",
-            garbageValue = "25057"
-    )
-    public String getExternalName() {
-      return this.externalName;
-   }
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-1427046787"
+	)
+	@Export("getInternalName")
+	public String getInternalName() {
+		return this.internalName;
+	}
 
-    @ObfuscatedName("ao")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "-2082932774"
-    )
-    int getBackGroundColor() {
-      return this.backGroundColor;
-   }
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "7"
+	)
+	@Export("getExternalName")
+	public String getExternalName() {
+		return this.externalName;
+	}
 
-    @ObfuscatedName("ax")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "447952954"
-    )
-    public int getZoom() {
-      return this.zoom;
-   }
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-128"
+	)
+	@Export("getBackGroundColor")
+	int getBackGroundColor() {
+		return this.backGroundColor;
+	}
 
-    @ObfuscatedName("ai")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "16748608"
-    )
-    public int getRegionLowX() {
-      return this.regionLowX;
-   }
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "16"
+	)
+	@Export("getZoom")
+	public int getZoom() {
+		return this.zoom;
+	}
 
-    @ObfuscatedName("ag")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "-1231382819"
-    )
-    public int getRegionHighX() {
-      return this.regionHighX;
-   }
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-77"
+	)
+	@Export("getRegionLowX")
+	public int getRegionLowX() {
+		return this.regionLowX;
+	}
 
-    @ObfuscatedName("ah")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "-599342073"
-    )
-    public int getRegionLowY() {
-      return this.regionLowY;
-   }
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1981016427"
+	)
+	@Export("getRegionHighX")
+	public int getRegionHighX() {
+		return this.regionHighX;
+	}
 
-    @ObfuscatedName("av")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "1746970873"
-    )
-    public int getRegionHighY() {
-      return this.regionHighY;
-   }
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-389390805"
+	)
+	@Export("getRegionLowY")
+	public int getRegionLowY() {
+		return this.regionLowY;
+	}
 
-    @ObfuscatedName("ar")
-    @ObfuscatedSignature(
-            descriptor = "(B)I",
-            garbageValue = "126"
-    )
-    public int getOriginX() {
-      return this.origin.x;
-   }
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-155817671"
+	)
+	@Export("getRegionHighY")
+	public int getRegionHighY() {
+		return this.regionHighY;
+	}
 
-    @ObfuscatedName("am")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "-2019541929"
-    )
-    public int getOriginPlane() {
-      return this.origin.plane;
-   }
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-1352292707"
+	)
+	@Export("getOriginX")
+	public int getOriginX() {
+		return this.origin.x;
+	}
 
-    @ObfuscatedName("as")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "-151833963"
-    )
-    public int getOriginY() {
-      return this.origin.y;
-   }
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-101"
+	)
+	@Export("getOriginPlane")
+	public int getOriginPlane() {
+		return this.origin.plane;
+	}
 
-    @ObfuscatedName("aj")
-    @ObfuscatedSignature(
-            descriptor = "(B)Llb;",
-            garbageValue = "19"
-    )
-    public Coord getOrigin() {
-      return new Coord(this.origin);
-   }
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "32"
+	)
+	@Export("getOriginY")
+	public int getOriginY() {
+		return this.origin.y;
+	}
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(Lsg;Ljava/lang/String;I)I",
-      garbageValue = "-53610141"
-   )
-   public static int method1432(Buffer var0, String var1) {
-      int var2 = var0.offset;
-      byte[] var3 = RouteStrategy.method1176(var1);
-      var0.writeSmartByteShort(var3.length);
-      var0.offset += class319.huffman.compress(var3, 0, var3.length, var0.array, var0.offset);
-      return var0.offset - var2;
-   }
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lmr;",
+		garbageValue = "117"
+	)
+	@Export("getOrigin")
+	public Coord getOrigin() {
+		return new Coord(this.origin);
+	}
 
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "(IIB)V",
-      garbageValue = "32"
-   )
-   public static void method1433(int var0, int var1) {
-      int var2 = Rasterizer3D.clips.Rasterizer3D_rowOffsets[0];
-      int var3 = var2 / Rasterizer2D.Rasterizer2D_width;
-      int var4 = var2 - var3 * Rasterizer2D.Rasterizer2D_width;
-      Rasterizer3D.clips.method1359(var0, var4, var1, var3);
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-1522833237"
+	)
+	static final boolean method1383(char var0) {
+		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
+	}
 
-   @ObfuscatedName("bu")
-   @ObfuscatedSignature(
-      descriptor = "(ILch;ZI)I",
-      garbageValue = "1955008701"
-   )
-   static int method1431(int var0, Script var1, boolean var2) {
-      if (var0 == 6500) {
-         Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Players.loadWorlds() ? 1 : 0;
-         return 1;
-      } else {
-         World var3;
-         if (var0 == 6501) {
-            var3 = FaceNormal.worldListStart();
-            if (var3 != null) {
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.id;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.properties;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var3.activity;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.location;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.population;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var3.host;
-            } else {
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-            }
-
-            return 1;
-         } else if (var0 == 6502) {
-            var3 = Interpreter.getNextWorldListWorld();
-            if (var3 != null) {
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.id;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.properties;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var3.activity;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.location;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.population;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var3.host;
-            } else {
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-               Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-            }
-
-            return 1;
-         } else {
-            World var4;
-            int var5;
-            int var7;
-            if (var0 == 6506) {
-               var7 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-               var4 = null;
-
-               for(var5 = 0; var5 < World.World_count; ++var5) {
-                  if (var7 == class31.World_worlds[var5].id) {
-                     var4 = class31.World_worlds[var5];
-                     break;
-                  }
-               }
-
-               if (var4 != null) {
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.id;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.properties;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var4.activity;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.location;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.population;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var4.host;
-               } else {
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-               }
-
-               return 1;
-            } else if (var0 == 6507) {
-               Interpreter.Interpreter_intStackSize -= 4;
-               var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-               boolean var10 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1] == 1;
-               var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-               boolean var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3] == 1;
-               class127.sortWorldList(var7, var10, var5, var6);
-               return 1;
-            } else if (var0 != 6511) {
-               if (var0 == 6512) {
-                  Client.followerOpsLowPriority = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
-                  return 1;
-               } else {
-                  int var8;
-                  ParamComposition var9;
-                  if (var0 == 6513) {
-                     Interpreter.Interpreter_intStackSize -= 2;
-                     var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-                     var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-                     var9 = class33.getParamDefinition(var8);
-                     if (var9.isString()) {
-                        Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = AbstractArchive.getNpcDefinition(var7).getStringParam(var8, var9.defaultStr);
-                     } else {
-                        Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = AbstractArchive.getNpcDefinition(var7).getIntParam(var8, var9.defaultInt);
-                     }
-
-                     return 1;
-                  } else if (var0 == 6514) {
-                     Interpreter.Interpreter_intStackSize -= 2;
-                     var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-                     var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-                     var9 = class33.getParamDefinition(var8);
-                     if (var9.isString()) {
-                        Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = class144.getObjectDefinition(var7).getStringParam(var8, var9.defaultStr);
-                     } else {
-                        Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class144.getObjectDefinition(var7).getIntParam(var8, var9.defaultInt);
-                     }
-
-                     return 1;
-                  } else if (var0 == 6515) {
-                     Interpreter.Interpreter_intStackSize -= 2;
-                     var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-                     var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-                     var9 = class33.getParamDefinition(var8);
-                     if (var9.isString()) {
-                        Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = HealthBarUpdate.ItemDefinition_get(var7).getStringParam(var8, var9.defaultStr);
-                     } else {
-                        Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = HealthBarUpdate.ItemDefinition_get(var7).getIntParam(var8, var9.defaultInt);
-                     }
-
-                     return 1;
-                  } else if (var0 == 6516) {
-                     Interpreter.Interpreter_intStackSize -= 2;
-                     var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-                     var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-                     var9 = class33.getParamDefinition(var8);
-                     if (var9.isString()) {
-                        Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = class195.StructDefinition_getStructDefinition(var7).getStringParam(var8, var9.defaultStr);
-                     } else {
-                        Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class195.StructDefinition_getStructDefinition(var7).getIntParam(var8, var9.defaultInt);
-                     }
-
-                     return 1;
-                  } else if (var0 == 6518) {
-                     Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.onMobile ? 1 : 0;
-                     return 1;
-                  } else if (var0 == 6519) {
-                     Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.clientType;
-                     return 1;
-                  } else if (var0 == 6520) {
-                     return 1;
-                  } else if (var0 == 6521) {
-                     return 1;
-                  } else if (var0 == 6522) {
-                     --SecureRandomCallable.Interpreter_stringStackSize;
-                     --Interpreter.Interpreter_intStackSize;
-                     return 1;
-                  } else if (var0 == 6523) {
-                     --SecureRandomCallable.Interpreter_stringStackSize;
-                     --Interpreter.Interpreter_intStackSize;
-                     return 1;
-                  } else if (var0 == 6524) {
-                     Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-                     return 1;
-                  } else if (var0 == 6525) {
-                     Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
-                     return 1;
-                  } else if (var0 == 6526) {
-                     Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
-                     return 1;
-                  } else if (var0 == 6527) {
-                     Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.field363;
-                     return 1;
-                  } else {
-                     return 2;
-                  }
-               }
-            } else {
-               var7 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-               if (var7 >= 0 && var7 < World.World_count) {
-                  var4 = class31.World_worlds[var7];
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.id;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.properties;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var4.activity;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.location;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.population;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var4.host;
-               } else {
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-                  Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = "";
-               }
-
-               return 1;
-            }
-         }
-      }
-   }
+	@ObfuscatedName("lr")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "-1581255918"
+	)
+	@Export("resumePauseWidget")
+	static void resumePauseWidget(int var0, int var1) {
+		PacketBufferNode var2 = class503.getPacketBufferNode(ClientPacket.CONTINUE, Client.packetWriter.isaacCipher);
+		var2.packetBuffer.writeShortAddLE(var1);
+		var2.packetBuffer.writeIntME(var0);
+		Client.packetWriter.addNode(var2);
+	}
 }

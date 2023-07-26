@@ -1,58 +1,70 @@
+import java.util.Date;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rs")
-public class class453 extends class455 {
-   @ObfuscatedName("af")
-   int field3887 = 0;
-   @ObfuscatedName("an")
-   int field3891 = 0;
-   @ObfuscatedName("aw")
-   int field3888 = 0;
-   @ObfuscatedName("ac")
-   int field3886 = 0;
-   @ObfuscatedName("au")
-   int field3890 = 0;
-   @ObfuscatedName("ab")
-   int field3889 = 0;
+@ObfuscatedName("rp")
+public class class453 {
+	@ObfuscatedName("cp")
+	static int field3874;
+	@ObfuscatedName("aw")
+	float[] field3875;
+	@ObfuscatedName("ay")
+	int field3876;
 
-   public class453(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
-      super(var7, var8);
-      this.field3887 = var1;
-      this.field3891 = var2;
-      this.field3888 = var3;
-      this.field3886 = var4;
-      this.field3890 = var5;
-      this.field3889 = var6;
-   }
+	class453(float[] var1, int var2) {
+		this.field3875 = var1;
+		this.field3876 = var2;
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "2116561795"
-   )
-   public int vmethod2321() {
-      double var1 = this.method2323();
-      return (int)Math.round((double)(this.field3886 - this.field3887) * var1 + (double)this.field3887);
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lnd;III)[Lud;",
+		garbageValue = "-2024085770"
+	)
+	public static SpritePixels[] method2294(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2);
+		boolean var3;
+		if (var4 == null) {
+			var3 = false;
+		} else {
+			VarbitComposition.SpriteBuffer_decode(var4);
+			var3 = true;
+		}
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "2107399454"
-   )
-   public int vmethod2319() {
-      double var1 = this.method2323();
-      return (int)Math.round(var1 * (double)(this.field3890 - this.field3891) + (double)this.field3891);
-   }
+		if (!var3) {
+			return null;
+		} else {
+			SpritePixels[] var5 = new SpritePixels[class528.SpriteBuffer_spriteCount];
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "0"
-   )
-   public int vmethod2320() {
-      double var1 = this.method2323();
-      return (int)Math.round((double)this.field3888 + (double)(this.field3889 - this.field3888) * var1);
-   }
+			for (int var6 = 0; var6 < class528.SpriteBuffer_spriteCount; ++var6) {
+				SpritePixels var7 = var5[var6] = new SpritePixels();
+				var7.width = class528.SpriteBuffer_spriteWidth;
+				var7.height = class528.SpriteBuffer_spriteHeight;
+				var7.xOffset = class492.SpriteBuffer_xOffsets[var6];
+				var7.yOffset = class134.SpriteBuffer_yOffsets[var6];
+				var7.subWidth = class172.SpriteBuffer_spriteWidths[var6];
+				var7.subHeight = class528.SpriteBuffer_spriteHeights[var6];
+				int var8 = var7.subWidth * var7.subHeight;
+				byte[] var9 = ArchiveDiskAction.SpriteBuffer_pixels[var6];
+				var7.pixels = new int[var8];
+
+				for (int var10 = 0; var10 < var8; ++var10) {
+					var7.pixels[var10] = class528.SpriteBuffer_spritePalette[var9[var10] & 255];
+				}
+			}
+
+			DbTableType.method2483();
+			return var5;
+		}
+	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/util/Date;I)Z",
+		garbageValue = "-2100779061"
+	)
+	static boolean method2295(Date var0) {
+		Date var1 = WorldMapElement.method939();
+		return var0.after(var1);
+	}
 }

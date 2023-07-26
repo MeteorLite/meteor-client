@@ -2063,14 +2063,22 @@ public abstract class RSClientMixin implements RSClient {
 
     // this exists because the original got inlined
     @Inject
-    public void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5) {
-        client.setMusicPlayerStatus(1);
-        client.setMusicTrackArchive(var1);
-        client.setMusicTrackGroupId(var2);
-        client.setMusicTrackFileId(var3);
-        client.setMusicTrackVolume(var4);
-        client.setMusicTrackBoolean(var5);
-        client.setPcmSampleLength(var0);
+    public void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5)
+    {
+        for (RSMusicSong musicSong : client.getMusicSongs())
+        {
+            if (musicSong.getMusicTrackGroupId() == var2)
+            {
+                client.setMusicPlayerStatus(1);
+                musicSong.setMusicTrackArchive(var1);
+                musicSong.setMusicTrackGroupId(var2);
+                musicSong.setMusicTrackFileId(var3);
+                musicSong.setMusicTrackVolume(var4);
+                musicSong.setMusicTrackBoolean(var5);
+                //musicSong.setPcmSampleLength(var0);
+                break;
+            }
+        }
     }
 
     @Inject
@@ -2155,7 +2163,7 @@ public abstract class RSClientMixin implements RSClient {
         return client.getPreferences().getMusicVolume();
     }
 
-    @Inject
+/*    @Inject
     @Override
     public void setMusicVolume(int volume) {
         if (volume > 0 && client.getPreferences().getMusicVolume() <= 0 && client.getCurrentTrackGroupId() != -1) {
@@ -2167,7 +2175,7 @@ public abstract class RSClientMixin implements RSClient {
         if (client.getMidiPcmStream() != null) {
             client.getMidiPcmStream().setPcmStreamVolume$api(volume);
         }
-    }
+    }*/
 
     @Inject
     @MethodHook("closeInterface")
@@ -3023,21 +3031,21 @@ public abstract class RSClientMixin implements RSClient {
 
     // Kris's events
 
-/*    @FieldHook("cameraShakeSpeed")
+   @FieldHook("cameraShakeSpeed")
     @Inject
     public static void cameraShakeSpeedChange(int idx) {
         client.getCallbacks().post(Events.CAMERA_SHAKE_EVENT,
                 new CameraShakeEvent(idx, client.cameraShakeIntensity()[idx], client.cameraMoveIntensity()[idx],
                         client.cameraShakeSpeed()[idx]));
-    }*/
+    }
 
-/*    @FieldHook("cameraShaking")
+    @FieldHook("cameraShaking")
     @Inject
     public static void cameraShakingChange(int idx) {
         client.getCallbacks().post(Events.CAMERA_RESET_EVENT, new CameraResetEvent(idx));
-    }*/
+    }
 
-/*    @FieldHook("cameraMoveToAcceleration")
+    @FieldHook("cameraMoveToAcceleration")
     @Inject
     public static void cameraMoveTo(int idx) {
         client.getCallbacks().post(Events.CAMERA_MOVE_TO_EVENT,
@@ -3051,7 +3059,7 @@ public abstract class RSClientMixin implements RSClient {
         client.getCallbacks().post(Events.CAMERA_LOOK_AT_EVENT,
                 new CameraLookAtEvent(client.cameraLookAtX(), client.cameraLookAtY(), client.cameraLookAtHeight(),
                         client.cameraLookAtSpeed(), client.cameraLookAtAcceleration()));
-    }*/
+    }
 
     @Shadow("clips")
     static RSClips clips;

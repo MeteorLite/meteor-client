@@ -2,274 +2,250 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ec")
-public class class127 implements class356 {
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1252 = new class127(0, 0, (String)null, -1, -1);
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1254 = new class127(1, 1, (String)null, 0, 2);
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1253 = new class127(2, 2, (String)null, 1, 2);
-   @ObfuscatedName("ac")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1251 = new class127(3, 3, (String)null, 2, 2);
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1271 = new class127(4, 4, (String)null, 3, 1);
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1266 = new class127(5, 5, (String)null, 4, 1);
-   @ObfuscatedName("aq")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1257 = new class127(6, 6, (String)null, 5, 1);
-   @ObfuscatedName("al")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1258 = new class127(7, 7, (String)null, 6, 3);
-   @ObfuscatedName("at")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1259 = new class127(8, 8, (String)null, 7, 3);
-   @ObfuscatedName("aa")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1260 = new class127(9, 9, (String)null, 8, 3);
-   @ObfuscatedName("ay")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1261 = new class127(10, 10, (String)null, 0, 7);
-   @ObfuscatedName("ao")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1255 = new class127(11, 11, (String)null, 1, 7);
-   @ObfuscatedName("ax")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1263 = new class127(12, 12, (String)null, 2, 7);
-   @ObfuscatedName("ai")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1256 = new class127(13, 13, (String)null, 3, 7);
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1262 = new class127(14, 14, (String)null, 4, 7);
-   @ObfuscatedName("ah")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1265 = new class127(15, 15, (String)null, 5, 7);
-   @ObfuscatedName("av")
-   @ObfuscatedSignature(
-      descriptor = "Lec;"
-   )
-   static final class127 field1264 = new class127(16, 16, (String)null, 0, 5);
-    @ObfuscatedName("gc")
-    static int js5Port;
-   @ObfuscatedName("ar")
-   final int field1267;
-   @ObfuscatedName("am")
-   final int field1268;
-   @ObfuscatedName("as")
-   final int field1269;
+@ObfuscatedName("ek")
+public class class127 {
+	@ObfuscatedName("wn")
+	@ObfuscatedSignature(
+		descriptor = "Lsq;"
+	)
+	@Export("worldMap")
+	static WorldMap worldMap;
+	@ObfuscatedName("aw")
+	public final int field1213;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lek;"
+	)
+	public class127 field1212;
+	@ObfuscatedName("ar")
+	float[][] field1203;
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "[Lrm;"
+	)
+	final class451[] field1211;
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "[Lrm;"
+	)
+	class451[] field1210;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "[Lrm;"
+	)
+	class451[] field1209;
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Lrm;"
+	)
+	class451 field1206;
+	@ObfuscatedName("az")
+	boolean field1201;
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Lrm;"
+	)
+	class451 field1208;
+	@ObfuscatedName("ap")
+	boolean field1200;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Lrm;"
+	)
+	class451 field1207;
+	@ObfuscatedName("at")
+	float[][] field1204;
+	@ObfuscatedName("ah")
+	float[][] field1202;
+	@ObfuscatedName("ax")
+	float[][] field1205;
 
-   @ObfuscatedSignature(
-      descriptor = "(IILjava/lang/String;II)V",
-      garbageValue = "-1"
-   )
-   class127(int var1, int var2, String var3, int var4, int var5) {
-      this.field1267 = var1;
-      this.field1268 = var2;
-      this.field1269 = var4;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(ILty;Z)V"
+	)
+	public class127(int var1, Buffer var2, boolean var3) {
+		this.field1206 = new class451();
+		this.field1201 = true;
+		this.field1208 = new class451();
+		this.field1200 = true;
+		this.field1207 = new class451();
+		this.field1213 = var2.readShort();
+		this.field1211 = new class451[var1];
+		this.field1210 = new class451[this.field1211.length];
+		this.field1209 = new class451[this.field1211.length];
+		this.field1203 = new float[this.field1211.length][3];
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(I)I",
-            garbageValue = "741942848"
-    )
-    public int rsOrdinal() {
-      return this.field1268;
-   }
+		for (int var4 = 0; var4 < this.field1211.length; ++var4) {
+			this.field1211[var4] = new class451(var2, var3);
+			this.field1203[var4][0] = var2.method2531();
+			this.field1203[var4][1] = var2.method2531();
+			this.field1203[var4][2] = var2.method2531();
+		}
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "12"
-   )
-   int method756() {
-      return this.field1269;
-   }
+		this.method693();
+	}
 
-    @ObfuscatedName("ac")
-    @ObfuscatedSignature(
-            descriptor = "(IZIZB)V",
-            garbageValue = "-41"
-    )
-    static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-      if (class31.World_worlds != null) {
-         class13.doWorldSorting(0, class31.World_worlds.length - 1, var0, var1, var2, var3);
-      }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1463837860"
+	)
+	void method693() {
+		this.field1204 = new float[this.field1211.length][3];
+		this.field1202 = new float[this.field1211.length][3];
+		this.field1205 = new float[this.field1211.length][3];
+		class451 var1 = class138.method744();
 
-   }
+		for (int var2 = 0; var2 < this.field1211.length; ++var2) {
+			class451 var3 = this.method694(var2);
+			var1.method2278(var3);
+			var1.method2286();
+			this.field1204[var2] = var1.method2274();
+			this.field1202[var2][0] = var3.field3861[12];
+			this.field1202[var2][1] = var3.field3861[13];
+			this.field1202[var2][2] = var3.field3861[14];
+			this.field1205[var2] = var3.method2287();
+		}
 
-   @ObfuscatedName("aj")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "1285226307"
-   )
-   public static void method761() {
-      ItemComposition.ItemDefinition_cachedSprites.clear();
-   }
+		var1.method2271();
+	}
 
-    @ObfuscatedName("js")
-    @ObfuscatedSignature(
-            descriptor = "(ZLsq;B)V",
-            garbageValue = "24"
-    )
-    static final void loadRegions(boolean var0, PacketBuffer var1) {
-      Client.isInInstance = var0;
-      int var2;
-      int var4;
-      int var5;
-      int var6;
-      int var7;
-      if (!Client.isInInstance) {
-         var2 = var1.readUnsignedShortLE();
-         int var3 = var1.readUnsignedShortLE();
-         var4 = var1.readUnsignedShort();
-         GameObject.xteaKeys = new int[var4][4];
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lrm;",
+		garbageValue = "-961715639"
+	)
+	class451 method694(int var1) {
+		return this.field1211[var1];
+	}
 
-         for(var5 = 0; var5 < var4; ++var5) {
-            for(var6 = 0; var6 < 4; ++var6) {
-               GameObject.xteaKeys[var5][var6] = var1.readInt();
-            }
-         }
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lrm;",
+		garbageValue = "-318230111"
+	)
+	class451 method695(int var1) {
+		if (this.field1210[var1] == null) {
+			this.field1210[var1] = new class451(this.method694(var1));
+			if (this.field1212 != null) {
+				this.field1210[var1].method2282(this.field1212.method695(var1));
+			} else {
+				this.field1210[var1].method2282(class451.field3857);
+			}
+		}
 
-         WorldMapAreaData.regions = new int[var4];
-         FontName.regionMapArchiveIds = new int[var4];
-         Archive.regionLandArchiveIds = new int[var4];
-         class4.regionLandArchives = new byte[var4][];
-         ObjectSound.regionMapArchives = new byte[var4][];
-         var4 = 0;
+		return this.field1210[var1];
+	}
 
-         for(var5 = (var3 - 6) / 8; var5 <= (var3 + 6) / 8; ++var5) {
-            for(var6 = (var2 - 6) / 8; var6 <= (var2 + 6) / 8; ++var6) {
-               var7 = var6 + (var5 << 8);
-               WorldMapAreaData.regions[var4] = var7;
-               FontName.regionMapArchiveIds[var4] = GrandExchangeOfferTotalQuantityComparator.archive9.getGroupId("m" + var5 + "_" + var6);
-               Archive.regionLandArchiveIds[var4] = GrandExchangeOfferTotalQuantityComparator.archive9.getGroupId("l" + var5 + "_" + var6);
-               ++var4;
-            }
-         }
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Lrm;",
+		garbageValue = "81"
+	)
+	class451 method696(int var1) {
+		if (this.field1209[var1] == null) {
+			this.field1209[var1] = new class451(this.method695(var1));
+			this.field1209[var1].method2286();
+		}
 
-         Decimator.method331(var3, var2, true);
-      } else {
-         var2 = var1.readUnsignedShortLE();
-         boolean var15 = var1.readUnsignedByte() == 1;
-         var4 = var1.readUnsignedShortAddLE();
-         var5 = var1.readUnsignedShort();
-         var1.importIndex();
+		return this.field1209[var1];
+	}
 
-         int var8;
-         int var9;
-         for(var6 = 0; var6 < 4; ++var6) {
-            for(var7 = 0; var7 < 13; ++var7) {
-               for(var8 = 0; var8 < 13; ++var8) {
-                  var9 = var1.readBits(1);
-                  if (var9 == 1) {
-                     Client.instanceChunkTemplates[var6][var7][var8] = var1.readBits(26);
-                  } else {
-                     Client.instanceChunkTemplates[var6][var7][var8] = -1;
-                  }
-               }
-            }
-         }
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(Lrm;I)V",
+		garbageValue = "1524637069"
+	)
+	void method697(class451 var1) {
+		this.field1206.method2278(var1);
+		this.field1201 = true;
+		this.field1200 = true;
+	}
 
-         var1.exportIndex();
-         GameObject.xteaKeys = new int[var5][4];
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lrm;",
+		garbageValue = "144980279"
+	)
+	class451 method698() {
+		return this.field1206;
+	}
 
-         for(var6 = 0; var6 < var5; ++var6) {
-            for(var7 = 0; var7 < 4; ++var7) {
-               GameObject.xteaKeys[var6][var7] = var1.readInt();
-            }
-         }
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lrm;",
+		garbageValue = "0"
+	)
+	class451 method699() {
+		if (this.field1201) {
+			this.field1208.method2278(this.method698());
+			if (this.field1212 != null) {
+				this.field1208.method2282(this.field1212.method699());
+			}
 
-         WorldMapAreaData.regions = new int[var5];
-         FontName.regionMapArchiveIds = new int[var5];
-         Archive.regionLandArchiveIds = new int[var5];
-         class4.regionLandArchives = new byte[var5][];
-         ObjectSound.regionMapArchives = new byte[var5][];
-         var5 = 0;
+			this.field1201 = false;
+		}
 
-         for(var6 = 0; var6 < 4; ++var6) {
-            for(var7 = 0; var7 < 13; ++var7) {
-               for(var8 = 0; var8 < 13; ++var8) {
-                  var9 = Client.instanceChunkTemplates[var6][var7][var8];
-                  if (var9 != -1) {
-                     int var10 = var9 >> 14 & 1023;
-                     int var11 = var9 >> 3 & 2047;
-                     int var12 = (var10 / 8 << 8) + var11 / 8;
+		return this.field1208;
+	}
 
-                     int var13;
-                     for(var13 = 0; var13 < var5; ++var13) {
-                        if (WorldMapAreaData.regions[var13] == var12) {
-                           var12 = -1;
-                           break;
-                        }
-                     }
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Lrm;",
+		garbageValue = "2"
+	)
+	public class451 method700(int var1) {
+		if (this.field1200) {
+			this.field1207.method2278(this.method696(var1));
+			this.field1207.method2282(this.method699());
+			this.field1200 = false;
+		}
 
-                     if (var12 != -1) {
-                        WorldMapAreaData.regions[var5] = var12;
-                        var13 = var12 >> 8 & 255;
-                        int var14 = var12 & 255;
-                        FontName.regionMapArchiveIds[var5] = GrandExchangeOfferTotalQuantityComparator.archive9.getGroupId("m" + var13 + "_" + var14);
-                        Archive.regionLandArchiveIds[var5] = GrandExchangeOfferTotalQuantityComparator.archive9.getGroupId("l" + var13 + "_" + var14);
-                        ++var5;
-                     }
-                  }
-               }
-            }
-         }
+		return this.field1207;
+	}
 
-         Decimator.method331(var2, var4, !var15);
-      }
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(II)[F",
+		garbageValue = "-1038210043"
+	)
+	float[] method701(int var1) {
+		return this.field1204[var1];
+	}
 
-   }
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(II)[F",
+		garbageValue = "-2141591558"
+	)
+	float[] method702(int var1) {
+		return this.field1202[var1];
+	}
 
-    @ObfuscatedName("mu")
-    @ObfuscatedSignature(
-            descriptor = "(IIB)V",
-            garbageValue = "63"
-    )
-    static final void runIntfCloseListeners(int var0, int var1) {
-      if (SoundSystem.loadInterface(var0)) {
-         class143.runComponentCloseListeners(VerticalAlignment.Widget_interfaceComponents[var0], var1);
-      }
-   }
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(IB)[F",
+		garbageValue = "0"
+	)
+	float[] method703(int var1) {
+		return this.field1205[var1];
+	}
+
+	@ObfuscatedName("ks")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "552746163"
+	)
+	static final boolean method704(int var0) {
+		if (var0 < 0) {
+			return false;
+		} else {
+			int var1 = Client.menuOpcodes[var0];
+			if (var1 >= 2000) {
+				var1 -= 2000;
+			}
+
+			return var1 == 1007;
+		}
+	}
 }

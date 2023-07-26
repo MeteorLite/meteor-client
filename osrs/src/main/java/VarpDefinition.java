@@ -3,78 +3,201 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gz")
+@ObfuscatedName("hg")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "Lnm;"
-    )
-    public static AbstractArchive VarpDefinition_archive;
-   @ObfuscatedName("an")
-   public static int field1475;
-    @ObfuscatedName("aw")
-    @ObfuscatedSignature(
-            descriptor = "Lkh;"
-    )
-    public static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
-    @ObfuscatedName("al")
-    public static int musicTrackFileId;
-    @ObfuscatedName("ac")
-    public int type = 0;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lnd;"
+	)
+	@Export("VarpDefinition_archive")
+	public static AbstractArchive VarpDefinition_archive;
+	@ObfuscatedName("ay")
+	public static int field1491;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lld;"
+	)
+	@Export("VarpDefinition_cached")
+	public static EvictingDualNodeHashTable VarpDefinition_cached;
+	@ObfuscatedName("hr")
+	static String field1494;
+	@ObfuscatedName("am")
+	@Export("type")
+	public int type;
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;I)V",
-            garbageValue = "955579844"
-    )
-    void decode(Buffer var1) {
-      while(true) {
-         int var2 = var1.readUnsignedByte();
-         if (var2 == 0) {
-            return;
-         }
+	static {
+		VarpDefinition_cached = new EvictingDualNodeHashTable(64);
+	}
 
-         this.decodeNext(var1, var2);
-      }
-   }
+	VarpDefinition() {
+		this.type = 0;
+	}
 
-    @ObfuscatedName("aw")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;II)V",
-            garbageValue = "1359565158"
-    )
-    void decodeNext(Buffer var1, int var2) {
-      if (var2 == 5) {
-         this.type = var1.readUnsignedShort();
-      }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;I)V",
+		garbageValue = "1223419566"
+	)
+	@Export("decode")
+	void decode(Buffer var1) {
+		while (true) {
+			int var2 = var1.readUnsignedByte();
+			if (var2 == 0) {
+				return;
+			}
 
-   }
+			this.decodeNext(var1, var2);
+		}
+	}
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IIII)Ltq;",
-      garbageValue = "2091722822"
-   )
-   static SpritePixels method982(int var0, int var1, int var2) {
-      return (SpritePixels)WorldMapRegion.WorldMapRegion_cachedSprites.get(BuddyRankComparator.method710(var0, var1, var2));
-   }
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;II)V",
+		garbageValue = "512935442"
+	)
+	@Export("decodeNext")
+	void decodeNext(Buffer var1, int var2) {
+		if (var2 == 5) {
+			this.type = var1.readUnsignedShort();
+		}
 
-   @ObfuscatedName("au")
-   @ObfuscatedSignature(
-      descriptor = "(I)[Ley;",
-      garbageValue = "335062925"
-   )
-   static class126[] method983() {
-      return new class126[]{class126.field1243, class126.field1240, class126.field1241, class126.field1246, class126.field1247, class126.field1244};
-   }
+	}
 
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "(IIII)V",
-      garbageValue = "-1740756415"
-   )
-   public static void method981(int var0, int var1, int var2) {
-      Rasterizer3D.clips.method1360(var0, var1, var2);
-   }
+	@ObfuscatedName("lw")
+	@ObfuscatedSignature(
+		descriptor = "(Ldh;IIIB)V",
+		garbageValue = "79"
+	)
+	@Export("addNpcToMenu")
+	static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
+		NPCComposition var4 = var0.definition;
+		if (Client.menuOptionsCount < 400) {
+			if (var4.transforms != null) {
+				var4 = var4.transform();
+			}
+
+			if (var4 != null) {
+				if (var4.isInteractable) {
+					if (!var4.isFollower || Client.followerIndex == var1) {
+						String var5 = var0.method586();
+						int var6;
+						int var9;
+						if (var4.combatLevel != 0 && var0.combatLevelChange != 0) {
+							var6 = var0.combatLevelChange != -1 ? var0.combatLevelChange * -473541083 * 1655690669 : var4.combatLevel * 985027529 * -1879689607;
+							var9 = class136.localPlayer.combatLevel;
+							int var10 = var9 - var6;
+							String var8;
+							if (var10 < -9) {
+								var8 = MusicPatchPcmStream.colorStartTag(16711680);
+							} else if (var10 < -6) {
+								var8 = MusicPatchPcmStream.colorStartTag(16723968);
+							} else if (var10 < -3) {
+								var8 = MusicPatchPcmStream.colorStartTag(16740352);
+							} else if (var10 < 0) {
+								var8 = MusicPatchPcmStream.colorStartTag(16756736);
+							} else if (var10 > 9) {
+								var8 = MusicPatchPcmStream.colorStartTag(65280);
+							} else if (var10 > 6) {
+								var8 = MusicPatchPcmStream.colorStartTag(4259584);
+							} else if (var10 > 3) {
+								var8 = MusicPatchPcmStream.colorStartTag(8453888);
+							} else if (var10 > 0) {
+								var8 = MusicPatchPcmStream.colorStartTag(12648192);
+							} else {
+								var8 = MusicPatchPcmStream.colorStartTag(16776960);
+							}
+
+							var5 = var5 + var8 + " " + " (" + "level-" + var6 + ")";
+						}
+
+						if (var4.isFollower && Client.followerOpsLowPriority) {
+							JagexCache.insertMenuItemNoShift("Examine", MusicPatchPcmStream.colorStartTag(16776960) + var5, 1003, var1, var2, var3);
+						}
+
+						if (Client.isItemSelected == 1) {
+							JagexCache.insertMenuItemNoShift("Use", Client.field595 + " " + "->" + " " + MusicPatchPcmStream.colorStartTag(16776960) + var5, 7, var1, var2, var3);
+						} else if (Client.isSpellSelected) {
+							if ((PcmPlayer.selectedSpellFlags & 2) == 2) {
+								JagexCache.insertMenuItemNoShift(Client.field597, Client.field596 + " " + "->" + " " + MusicPatchPcmStream.colorStartTag(16776960) + var5, 8, var1, var2, var3);
+							}
+						} else {
+							var6 = var4.isFollower && Client.followerOpsLowPriority ? 2000 : 0;
+							String[] var7 = var4.actions;
+							int var11;
+							if (var7 != null) {
+								for (var11 = 4; var11 >= 0; --var11) {
+									if (var0.method585(var11) && var7[var11] != null && !var7[var11].equalsIgnoreCase("Attack")) {
+										var9 = 0;
+										if (var11 == 0) {
+											var9 = var6 + 9;
+										}
+
+										if (var11 == 1) {
+											var9 = var6 + 10;
+										}
+
+										if (var11 == 2) {
+											var9 = var6 + 11;
+										}
+
+										if (var11 == 3) {
+											var9 = var6 + 12;
+										}
+
+										if (var11 == 4) {
+											var9 = var6 + 13;
+										}
+
+										JagexCache.insertMenuItemNoShift(var7[var11], MusicPatchPcmStream.colorStartTag(16776960) + var5, var9, var1, var2, var3);
+									}
+								}
+							}
+
+							if (var7 != null) {
+								for (var11 = 4; var11 >= 0; --var11) {
+									if (var0.method585(var11) && var7[var11] != null && var7[var11].equalsIgnoreCase("Attack")) {
+										short var12 = 0;
+										if (AttackOption.AttackOption_hidden != Client.npcAttackOption) {
+											if (Client.npcAttackOption == AttackOption.AttackOption_alwaysRightClick || Client.npcAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var4.combatLevel > class136.localPlayer.combatLevel) {
+												var12 = 2000;
+											}
+
+											var9 = 0;
+											if (var11 == 0) {
+												var9 = var12 + 9;
+											}
+
+											if (var11 == 1) {
+												var9 = var12 + 10;
+											}
+
+											if (var11 == 2) {
+												var9 = var12 + 11;
+											}
+
+											if (var11 == 3) {
+												var9 = var12 + 12;
+											}
+
+											if (var11 == 4) {
+												var9 = var12 + 13;
+											}
+
+											JagexCache.insertMenuItemNoShift(var7[var11], MusicPatchPcmStream.colorStartTag(16776960) + var5, var9, var1, var2, var3);
+										}
+									}
+								}
+							}
+
+							if (!var4.isFollower || !Client.followerOpsLowPriority) {
+								JagexCache.insertMenuItemNoShift("Examine", MusicPatchPcmStream.colorStartTag(16776960) + var5, 1003, var1, var2, var3);
+							}
+						}
+
+					}
+				}
+			}
+		}
+	}
 }

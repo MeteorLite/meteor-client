@@ -10,143 +10,200 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 
-@ObfuscatedName("ax")
+@ObfuscatedName("ah")
 class class12 extends SSLSocket {
-    @ObfuscatedName("an")
-    static boolean clearLoginScreen;
-   @ObfuscatedName("af")
-   Certificate[] field40;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-           descriptor = "Lah;"
-   )
-   @ObfuscatedName("this$0")
-   final class15 this$0;
-   // $FF: synthetic field
-   @ObfuscatedName("val$tlsClientProtocol")
-   final TlsClientProtocol val$tlsClientProtocol;
-   // $FF: synthetic field
-   @ObfuscatedName("val$host")
-   final String val$host;
+	@ObfuscatedName("aw")
+	Certificate[] field38;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lau;"
+	)
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class15 this$0;
+	// $FF: synthetic field
+	@Export("val$tlsClientProtocol")
+	@ObfuscatedName("val$tlsClientProtocol")
+	final TlsClientProtocol val$tlsClientProtocol;
+	// $FF: synthetic field
+	@Export("val$host")
+	@ObfuscatedName("val$host")
+	final String val$host;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lah;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;Ljava/lang/String;)V"
-   )
-   class12(class15 var1, TlsClientProtocol var2, String var3) {
-      this.this$0 = var1;
-      this.val$tlsClientProtocol = var2;
-      this.val$host = var3;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Lau;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;Ljava/lang/String;)V"
+	)
+	class12(class15 var1, TlsClientProtocol var2, String var3) {
+		this.this$0 = var1;
+		this.val$tlsClientProtocol = var2;
+		this.val$host = var3;
+	}
 
-   public InputStream getInputStream() throws IOException {
-      return this.val$tlsClientProtocol.getInputStream();
-   }
+	public InputStream getInputStream() throws IOException {
+		return this.val$tlsClientProtocol.getInputStream();
+	}
 
-    @ObfuscatedName("close")
-    public synchronized void close() throws IOException {
-      this.val$tlsClientProtocol.close();
-   }
+	public OutputStream getOutputStream() throws IOException {
+		return this.val$tlsClientProtocol.getOutputStream();
+	}
 
-   public void addHandshakeCompletedListener(HandshakeCompletedListener var1) {
-   }
+	@Export("close")
+	@ObfuscatedName("close")
+	public synchronized void close() throws IOException {
+		this.val$tlsClientProtocol.close();
+	}
 
-   public String[] getEnabledCipherSuites() {
-      return null;
-   }
+	public void addHandshakeCompletedListener(HandshakeCompletedListener var1) {
+	}
 
-   public String[] getEnabledProtocols() {
-      return null;
-   }
+	public boolean getEnableSessionCreation() {
+		return false;
+	}
 
-   public boolean getNeedClientAuth() {
-      return false;
-   }
+	public String[] getEnabledCipherSuites() {
+		return null;
+	}
 
-   public boolean getUseClientMode() {
-      return false;
-   }
+	public String[] getEnabledProtocols() {
+		return null;
+	}
 
-   public boolean getWantClientAuth() {
-      return false;
-   }
+	public boolean getNeedClientAuth() {
+		return false;
+	}
 
-   public void removeHandshakeCompletedListener(HandshakeCompletedListener var1) {
-   }
+	@Export("getSession")
+	@ObfuscatedName("getSession")
+	public SSLSession getSession() {
+		return new class17(this);
+	}
 
-   public void setEnableSessionCreation(boolean var1) {
-   }
+	public String[] getSupportedProtocols() {
+		return null;
+	}
 
-   public void setEnabledCipherSuites(String[] var1) {
-   }
+	public String[] getSupportedCipherSuites() {
+		return null;
+	}
 
-   public void setEnabledProtocols(String[] var1) {
-   }
+	public boolean getUseClientMode() {
+		return false;
+	}
 
-   public void setNeedClientAuth(boolean var1) {
-   }
+	public boolean getWantClientAuth() {
+		return false;
+	}
 
-    @ObfuscatedName("startHandshake")
-    public void startHandshake() throws IOException {
-      this.val$tlsClientProtocol.connect(new class13(this));
-   }
+	public void removeHandshakeCompletedListener(HandshakeCompletedListener var1) {
+	}
 
-   public void setWantClientAuth(boolean var1) {
-   }
+	public void setEnableSessionCreation(boolean var1) {
+	}
 
-   public boolean getEnableSessionCreation() {
-      return false;
-   }
+	public void setEnabledCipherSuites(String[] var1) {
+	}
 
-   public void setUseClientMode(boolean var1) {
-   }
+	public void setEnabledProtocols(String[] var1) {
+	}
 
-    @ObfuscatedName("getSession")
-    public SSLSession getSession() {
-      return new class17(this);
-   }
+	public void setNeedClientAuth(boolean var1) {
+	}
 
-   public String[] getSupportedCipherSuites() {
-      return null;
-   }
+	public void setUseClientMode(boolean var1) {
+	}
 
-   public OutputStream getOutputStream() throws IOException {
-      return this.val$tlsClientProtocol.getOutputStream();
-   }
+	public void setWantClientAuth(boolean var1) {
+	}
 
-   public String[] getSupportedProtocols() {
-      return null;
-   }
+	@Export("startHandshake")
+	@ObfuscatedName("startHandshake")
+	public void startHandshake() throws IOException {
+		this.val$tlsClientProtocol.connect(new class13(this));
+	}
 
-   @ObfuscatedName("ab")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "1626941955"
-   )
-   static int getClipMidY() {
-      return Rasterizer3D.clips.field2229;
-   }
+	@ObfuscatedName("bm")
+	@ObfuscatedSignature(
+		descriptor = "(ILdc;ZI)I",
+		garbageValue = "-1021477297"
+	)
+	static int method42(int var0, Script var1, boolean var2) {
+		if (var0 == 6809) {
+			int var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			ObjectComposition var4 = class90.getObjectDefinition(var3);
+			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4 != null ? var4.name : "";
+			return 1;
+		} else {
+			return 2;
+		}
+	}
 
-    @ObfuscatedName("ci")
-    @ObfuscatedSignature(
-            descriptor = "(IB)V",
-            garbageValue = "120"
-    )
-    static void runWidgetOnLoadListener(int var0) {
-      if (var0 != -1) {
-         if (SoundSystem.loadInterface(var0)) {
-            Widget[] var1 = VerticalAlignment.Widget_interfaceComponents[var0];
+	@ObfuscatedName("js")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "1183286606"
+	)
+	static final void method43(int var0) {
+		int[] var1 = Frames.sceneMinimapSprite.pixels;
+		int var2 = var1.length;
 
-            for(int var2 = 0; var2 < var1.length; ++var2) {
-               Widget var3 = var1[var2];
-               if (var3.onLoad != null) {
-                  ScriptEvent var4 = new ScriptEvent();
-                  var4.widget = var3;
-                  var4.args = var3.onLoad;
-                  PlayerType.runScript(var4, 5000000, 0);
-               }
-            }
+		int var3;
+		for (var3 = 0; var3 < var2; ++var3) {
+			var1[var3] = 0;
+		}
 
-         }
-      }
-   }
+		int var4;
+		int var5;
+		for (var3 = 1; var3 < 103; ++var3) {
+			var4 = (103 - var3) * 2048 + 24628;
+
+			for (var5 = 1; var5 < 103; ++var5) {
+				if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) {
+					UserComparator5.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
+				}
+
+				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
+					UserComparator5.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3);
+				}
+
+				var4 += 4;
+			}
+		}
+
+		var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10);
+		var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16;
+		Frames.sceneMinimapSprite.setRaster();
+
+		int var6;
+		for (var5 = 1; var5 < 103; ++var5) {
+			for (var6 = 1; var6 < 103; ++var6) {
+				if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) {
+					MusicPatchNode2.drawObject(var0, var6, var5, var3, var4);
+				}
+
+				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) {
+					MusicPatchNode2.drawObject(var0 + 1, var6, var5, var3, var4);
+				}
+			}
+		}
+
+		Client.mapIconCount = 0;
+
+		for (var5 = 0; var5 < 104; ++var5) {
+			for (var6 = 0; var6 < 104; ++var6) {
+				long var7 = UserComparator5.scene.getFloorDecorationTag(class36.Client_plane, var5, var6);
+				if (var7 != 0L) {
+					int var9 = class458.Entity_unpackID(var7);
+					int var10 = class90.getObjectDefinition(var9).mapIconId;
+					if (var10 >= 0 && SequenceDefinition.WorldMapElement_get(var10).field1506) {
+						Client.mapIcons[Client.mapIconCount] = SequenceDefinition.WorldMapElement_get(var10).getSpriteBool(false);
+						Client.mapIconXs[Client.mapIconCount] = var5;
+						Client.mapIconYs[Client.mapIconCount] = var6;
+						++Client.mapIconCount;
+					}
+				}
+			}
+		}
+
+		class156.rasterProvider.apply();
+	}
 }

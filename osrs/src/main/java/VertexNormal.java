@@ -3,37 +3,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ib")
+@ObfuscatedName("jk")
 @Implements("VertexNormal")
 public class VertexNormal {
-    @ObfuscatedName("af")
-    int x;
-    @ObfuscatedName("an")
-    int y;
-    @ObfuscatedName("aw")
-    int z;
-    @ObfuscatedName("ac")
-    int magnitude;
+	@ObfuscatedName("aw")
+	@Export("x")
+	int x;
+	@ObfuscatedName("ay")
+	@Export("y")
+	int y;
+	@ObfuscatedName("ar")
+	@Export("z")
+	int z;
+	@ObfuscatedName("am")
+	@Export("magnitude")
+	int magnitude;
 
-   VertexNormal() {
-   }
+	VertexNormal() {
+	}
 
-   @ObfuscatedSignature(
-      descriptor = "(Lib;)V"
-   )
-   VertexNormal(VertexNormal var1) {
-      this.x = var1.x;
-      this.y = var1.y;
-      this.z = var1.z;
-      this.magnitude = var1.magnitude;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Ljk;)V"
+	)
+	VertexNormal(VertexNormal var1) {
+		this.x = var1.x;
+		this.y = var1.y;
+		this.z = var1.z;
+		this.magnitude = var1.magnitude;
+	}
 
-   @ObfuscatedName("bs")
-   @ObfuscatedSignature(
-      descriptor = "(II)I",
-      garbageValue = "-2041739406"
-   )
-   static int method1346(int var0) {
-      return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
-   }
+	@ObfuscatedName("ng")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;I)V",
+		garbageValue = "1893711820"
+	)
+	static void method1323(Buffer var0) {
+		if (Client.randomDatData != null) {
+			var0.writeBytes(Client.randomDatData, 0, Client.randomDatData.length);
+		} else {
+			byte[] var1 = class215.method1106();
+			var0.writeBytes(var1, 0, var1.length);
+		}
+	}
 }

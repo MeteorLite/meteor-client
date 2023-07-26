@@ -1,26 +1,47 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rf")
-public class class454 extends class456 {
-   @ObfuscatedName("af")
-   int field3892 = 0;
-   @ObfuscatedName("an")
-   int field3893 = 0;
+@ObfuscatedName("rr")
+public enum class454 implements class372 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lrr;"
+	)
+	field3879(3, 1),
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lrr;"
+	)
+	field3880(0, 2),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lrr;"
+	)
+	field3878(1, 3),
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lrr;"
+	)
+	field3877(2, 10);
 
-   public class454(int var1, int var2, int var3, int var4) {
-      super(var3, var4);
-      this.field3892 = var1;
-      this.field3893 = var2;
-   }
+	@ObfuscatedName("as")
+	final int field3882;
+	@ObfuscatedName("aj")
+	final int field3881;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "-1656253558"
-   )
-   public int method2318() {
-      double var1 = this.method2323();
-      return (int)Math.round((double)this.field3892 + (double)(this.field3893 - this.field3892) * var1);
-   }
+	class454(int var3, int var4) {
+		this.field3882 = var3;
+		this.field3881 = var4;
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field3881;
+	}
 }

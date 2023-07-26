@@ -1,22 +1,27 @@
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("tt")
+@ObfuscatedName("ub")
 public class SpotAnimation extends Node {
-   @ObfuscatedName("af")
-   public int id = -1;
-   @ObfuscatedName("an")
-   public int field4169 = 0;
-   @ObfuscatedName("aw")
-   public int field4168 = 0;
-   @ObfuscatedName("ac")
-   public int frame = 0;
-   @ObfuscatedName("au")
-   public int height = 0;
+	@ObfuscatedName("aw")
+	public int field4238;
+	@ObfuscatedName("ay")
+	public int field4239;
+	@ObfuscatedName("ar")
+	public int field4236;
+	@ObfuscatedName("am")
+	public int field4235;
+	@ObfuscatedName("as")
+	public int field4237;
 
-   public SpotAnimation(int id, int height, int frame, int var4) {
-      this.id = id;
-      this.height = height;
-      this.frame = frame;
-      this.field4169 = var4;
-   }
+	public SpotAnimation(int var1, int var2, int var3, int var4) {
+		this.field4238 = -1;
+		this.field4239 = 0;
+		this.field4236 = 0;
+		this.field4235 = 0;
+		this.field4237 = 0;
+		this.field4238 = var1;
+		this.field4237 = var2;
+		this.field4235 = var3;
+		this.field4239 = var4;
+	}
 }

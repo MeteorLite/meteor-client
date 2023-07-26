@@ -1,30 +1,34 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rm")
-public abstract class class455 extends class456 {
-   class455(int var1, int var2) {
-      super(var1, var2);
-   }
+@ObfuscatedName("rt")
+public class class455 implements class460 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lse;"
+	)
+	public final class490 field3883;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "2116561795"
-   )
-   public abstract int vmethod2321();
+	@ObfuscatedSignature(
+		descriptor = "(Lsj;)V"
+	)
+	class455(class491 var1) {
+		this.field3883 = var1;
+	}
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(I)I",
-      garbageValue = "2107399454"
-   )
-   public abstract int vmethod2319();
+	@ObfuscatedSignature(
+		descriptor = "(Lrn;)V"
+	)
+	public class455(class456 var1) {
+		this(new class491(var1));
+	}
 
-   @ObfuscatedName("aw")
-   @ObfuscatedSignature(
-      descriptor = "(B)I",
-      garbageValue = "0"
-   )
-   public abstract int vmethod2320();
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "2097742109"
+	)
+	public int method2297(int var1) {
+		return this.field3883.vmethod8144(var1);
+	}
 }

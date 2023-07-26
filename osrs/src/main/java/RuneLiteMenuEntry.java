@@ -1,12 +1,12 @@
-import java.util.function.Consumer;
 import net.runelite.api.Actor;
 import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
 import net.runelite.api.NPC;
 import net.runelite.api.Player;
+import net.runelite.api.*;
 import net.runelite.api.widgets.Widget;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSNPC;
+
+import java.util.function.Consumer;
 
 public class RuneLiteMenuEntry implements MenuEntry
 {

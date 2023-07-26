@@ -1,151 +1,122 @@
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gs")
-public class class158 extends class139 {
-    @ObfuscatedName("ag")
-    @ObfuscatedSignature(
-            descriptor = "Ltc;"
-    )
-    static IndexedSprite options_buttons_2Sprite;
-   @ObfuscatedName("af")
-   int field1394;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-      descriptor = "Lfa;"
-   )
-   final class142 this$0;
+@ObfuscatedName("ga")
+public class class158 extends class143 {
+	@ObfuscatedName("wa")
+	@ObfuscatedSignature(
+		descriptor = "Lrg;"
+	)
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
+	@ObfuscatedName("am")
+	static File field1398;
+	@ObfuscatedName("aw")
+	long field1402;
+	@ObfuscatedName("ay")
+	String field1401;
+	@ObfuscatedName("ar")
+	int field1400;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lfr;"
+	)
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class146 this$0;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lfa;)V"
-   )
-   class158(class142 var1) {
-      this.this$0 = var1;
-      this.field1394 = -1;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Lfr;)V"
+	)
+	class158(class146 var1) {
+		this.this$0 = var1;
+		this.field1402 = -1L;
+		this.field1401 = null;
+		this.field1400 = 0;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;I)V",
-            garbageValue = "168736686"
-    )
-    void vmethod3254(Buffer var1) {
-      this.field1394 = var1.readUnsignedShort();
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;B)V",
+		garbageValue = "1"
+	)
+	@Export("vmethod3254")
+	void vmethod3254(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			this.field1402 = var1.readLong();
+		}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(Lfj;I)V",
-            garbageValue = "1712319228"
-    )
-    void vmethod3248(ClanSettings var1) {
-      var1.method850(this.field1394);
-   }
+		this.field1401 = var1.readStringCp1252NullTerminatedOrNull();
+		this.field1400 = var1.readUnsignedShort();
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "4"
-   )
-   static void method896() {
-      if (TaskHandler.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
-         class28.KeyHandler_keyCodes[186] = 57;
-         class28.KeyHandler_keyCodes[187] = 27;
-         class28.KeyHandler_keyCodes[188] = 71;
-         class28.KeyHandler_keyCodes[189] = 26;
-         class28.KeyHandler_keyCodes[190] = 72;
-         class28.KeyHandler_keyCodes[191] = 73;
-         class28.KeyHandler_keyCodes[192] = 58;
-         class28.KeyHandler_keyCodes[219] = 42;
-         class28.KeyHandler_keyCodes[220] = 74;
-         class28.KeyHandler_keyCodes[221] = 43;
-         class28.KeyHandler_keyCodes[222] = 59;
-         class28.KeyHandler_keyCodes[223] = 28;
-      } else {
-         class28.KeyHandler_keyCodes[44] = 71;
-         class28.KeyHandler_keyCodes[45] = 26;
-         class28.KeyHandler_keyCodes[46] = 72;
-         class28.KeyHandler_keyCodes[47] = 73;
-         class28.KeyHandler_keyCodes[59] = 57;
-         class28.KeyHandler_keyCodes[61] = 27;
-         class28.KeyHandler_keyCodes[91] = 42;
-         class28.KeyHandler_keyCodes[92] = 74;
-         class28.KeyHandler_keyCodes[93] = 43;
-         class28.KeyHandler_keyCodes[192] = 28;
-         class28.KeyHandler_keyCodes[222] = 58;
-         class28.KeyHandler_keyCodes[520] = 59;
-      }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lfx;B)V",
+		garbageValue = "-72"
+	)
+	@Export("vmethod3248")
+	void vmethod3248(ClanSettings var1) {
+		var1.method808(this.field1402, this.field1401, this.field1400);
+	}
 
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lhg;",
+		garbageValue = "1969817280"
+	)
+	@Export("VarpDefinition_get")
+	public static VarpDefinition VarpDefinition_get(int var0) {
+		VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = VarpDefinition.VarpDefinition_archive.takeFile(16, var0);
+			var1 = new VarpDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
 
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(II)Lhg;",
-      garbageValue = "-1334878542"
-   )
-   public static VarbitComposition method894(int var0) {
-      VarbitComposition var1 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
-      if (var1 != null) {
-         return var1;
-      } else {
-         byte[] var2 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
-         var1 = new VarbitComposition();
-         if (var2 != null) {
-            var1.decode(new Buffer(var2));
-         }
+			VarpDefinition.VarpDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
 
-         VarbitComposition.VarbitDefinition_cached.put(var1, (long)var0);
-         return var1;
-      }
-   }
+	@ObfuscatedName("no")
+	@ObfuscatedSignature(
+		descriptor = "(IIIILud;Lmi;I)V",
+		garbageValue = "-750705418"
+	)
+	@Export("worldToMinimap")
+	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+		int var6 = var3 * var3 + var2 * var2;
+		if (var6 > 4225 && var6 < 90000) {
+			int var7 = Client.camAngleY & 2047;
+			int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
+			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
+			int var10 = var9 * var2 + var3 * var8 >> 16;
+			int var11 = var3 * var9 - var8 * var2 >> 16;
+			double var12 = Math.atan2((double)var10, (double)var11);
+			int var14 = var5.width / 2 - 25;
+			int var15 = (int)(Math.sin(var12) * (double)var14);
+			int var16 = (int)(Math.cos(var12) * (double)var14);
+			byte var17 = 20;
+			SoundCache.redHintArrowSprite.method2667(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
+		} else {
+			GameEngine.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
+		}
 
-    @ObfuscatedName("lq")
-    @ObfuscatedSignature(
-            descriptor = "(Lmq;IIZI)V",
-            garbageValue = "-2141631151"
-    )
-    static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
-      int var4 = var0.width;
-      int var5 = var0.height;
-      if (var0.widthAlignment == 0) {
-         var0.width = var0.rawWidth;
-      } else if (var0.widthAlignment == 1) {
-         var0.width = var1 - var0.rawWidth;
-      } else if (var0.widthAlignment == 2) {
-         var0.width = var0.rawWidth * var1 >> 14;
-      }
+	}
 
-      if (var0.heightAlignment == 0) {
-         var0.height = var0.rawHeight;
-      } else if (var0.heightAlignment == 1) {
-         var0.height = var2 - var0.rawHeight;
-      } else if (var0.heightAlignment == 2) {
-         var0.height = var2 * var0.rawHeight >> 14;
-      }
-
-      if (var0.widthAlignment == 4) {
-         var0.width = var0.field2896 * var0.height / var0.field2897;
-      }
-
-      if (var0.heightAlignment == 4) {
-         var0.height = var0.field2897 * var0.width / var0.field2896;
-      }
-
-      if (var0.contentType == 1337) {
-         Client.viewportWidget = var0;
-      }
-
-      if (var0.type == 12) {
-         var0.method1815().method1710(var0.width, var0.height);
-      }
-
-      if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
-         ScriptEvent var6 = new ScriptEvent();
-         var6.widget = var0;
-         var6.args = var0.onResize;
-         Client.scriptEvents.addFirst(var6);
-      }
-
-   }
+	@ObfuscatedName("nj")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "2067489904"
+	)
+	public static boolean method835() {
+		return Client.staffModLevel >= 2;
+	}
 }

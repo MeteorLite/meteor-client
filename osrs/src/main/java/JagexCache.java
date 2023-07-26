@@ -4,38 +4,73 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gc")
+@ObfuscatedName("gd")
 @Implements("JagexCache")
 public class JagexCache {
-    @ObfuscatedName("ac")
-    static File JagexCache_locationFile;
-    @ObfuscatedName("ab")
-    public static int idxCount;
-    @ObfuscatedName("ao")
-    @ObfuscatedSignature(
-            descriptor = "Lsj;"
-    )
-    public static BufferedFile JagexCache_randomDat = null;
-    @ObfuscatedName("ax")
-    @ObfuscatedSignature(
-            descriptor = "Lsj;"
-    )
-    public static BufferedFile JagexCache_dat2File = null;
-    @ObfuscatedName("ai")
-    @ObfuscatedSignature(
-            descriptor = "Lsj;"
-    )
-    public static BufferedFile JagexCache_idx255File = null;
-    @ObfuscatedName("ah")
-    public static int cacheGamebuild;
+	@ObfuscatedName("wt")
+	@Export("foundItemIdCount")
+	static int foundItemIdCount;
+	@ObfuscatedName("as")
+	@Export("cacheDir")
+	static File cacheDir;
+	@ObfuscatedName("aj")
+	public static int field1450;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lts;"
+	)
+	@Export("JagexCache_randomDat")
+	public static BufferedFile JagexCache_randomDat;
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Lts;"
+	)
+	@Export("JagexCache_dat2File")
+	public static BufferedFile JagexCache_dat2File;
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Lts;"
+	)
+	@Export("JagexCache_idx255File")
+	public static BufferedFile JagexCache_idx255File;
 
-   @ObfuscatedName("ag")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIB)I",
-      garbageValue = "-40"
-   )
-   static final int method952(int var0, int var1, int var2, int var3) {
-      int var4 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var2 * 1024 / var3] >> 1;
-      return ((65536 - var4) * var0 >> 16) + (var4 * var1 >> 16);
-   }
+	static {
+		JagexCache_randomDat = null;
+		JagexCache_dat2File = null;
+		JagexCache_idx255File = null;
+	}
+
+	@ObfuscatedName("la")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
+		garbageValue = "-50"
+	)
+	@Export("insertMenuItemNoShift")
+	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+		class7.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
+	}
+
+	@ObfuscatedName("mb")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "206796942"
+	)
+	static final int method901() {
+		float var0 = 200.0F * ((float)class150.clientPreferences.getBrightness() - 0.5F);
+		return 100 - Math.round(var0);
+	}
+
+	@ObfuscatedName("os")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Ltx;",
+		garbageValue = "52"
+	)
+	static class507 method902(int var0) {
+		class507 var1 = (class507)Client.Widget_cachedFonts.get((long)var0);
+		if (var1 == null) {
+			var1 = new class507(class176.field1459, var0);
+		}
+
+		return var1;
+	}
 }

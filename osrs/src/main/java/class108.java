@@ -1,137 +1,111 @@
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URLConnection;
-import javax.net.ssl.HttpsURLConnection;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ef")
-public class class108 extends UrlRequester {
-    @ObfuscatedName("cm")
-    static String param9;
-   @ObfuscatedName("au")
-   final boolean field1147;
+@ObfuscatedName("er")
+public class class108 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1125;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1127;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1120;
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1117;
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1121;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1116;
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1114;
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1128;
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1124;
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1118;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1119;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1122;
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1115;
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1126;
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1113;
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Ler;"
+	)
+	static final class108 field1123;
+	@ObfuscatedName("ae")
+	int field1129;
 
-   public class108(boolean var1, int var2) {
-      super(var2);
-      this.field1147 = var1;
-   }
+	static {
+		field1125 = new class108(0);
+		field1127 = new class108(1);
+		field1120 = new class108(2);
+		field1117 = new class108(3);
+		field1121 = new class108(4);
+		field1116 = new class108(5);
+		field1114 = new class108(6);
+		field1128 = new class108(7);
+		field1124 = new class108(8);
+		field1118 = new class108(9);
+		field1119 = new class108(10);
+		field1122 = new class108(11);
+		field1115 = new class108(12);
+		field1126 = new class108(13);
+		field1113 = new class108(14);
+		field1123 = new class108(15);
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lez;B)V",
-            garbageValue = "16"
-    )
-    void vmethod2700(UrlRequest var1) throws IOException {
-      URLConnection var2 = null;
-      boolean var9 = false;
-
-      HttpURLConnection var12;
-      label139: {
-         label131: {
-            try {
-               label134: {
-                  var9 = true;
-                  String var3 = var1.field1152.getProtocol();
-                  if (var3.equals("http")) {
-                     var2 = this.method673(var1);
-                  } else {
-                     if (!var3.equals("https")) {
-                        var1.field1149 = UrlRequest.field1150;
-                        var9 = false;
-                        break label134;
-                     }
-
-                     var2 = this.method674(var1);
-                  }
-
-                  this.method669(var2, var1);
-                  var9 = false;
-                  break label139;
-               }
-            } catch (IOException var10) {
-               var1.field1149 = UrlRequest.field1150;
-               var9 = false;
-               break label131;
-            } finally {
-               if (var9) {
-                  if (var2 != null && var2 instanceof HttpURLConnection) {
-                     HttpURLConnection var6 = (HttpURLConnection)var2;
-                     var6.disconnect();
-                  }
-
-               }
-            }
-
-            if (var2 != null && var2 instanceof HttpURLConnection) {
-               HttpURLConnection var4 = (HttpURLConnection)var2;
-               var4.disconnect();
-            }
-
-            return;
-         }
-
-         if (var2 != null && var2 instanceof HttpURLConnection) {
-            var12 = (HttpURLConnection)var2;
-            var12.disconnect();
-         }
-
-         return;
-      }
-
-      if (var2 != null && var2 instanceof HttpURLConnection) {
-         var12 = (HttpURLConnection)var2;
-         var12.disconnect();
-      }
-
-   }
-
-   @ObfuscatedName("ad")
-   @ObfuscatedSignature(
-      descriptor = "(Lez;B)Ljava/net/URLConnection;",
-      garbageValue = "106"
-   )
-   URLConnection method673(UrlRequest var1) throws IOException {
-      URLConnection var2 = var1.field1152.openConnection();
-      this.method668(var2);
-      return var2;
-   }
-
-   @ObfuscatedName("ae")
-   @ObfuscatedSignature(
-      descriptor = "(Lez;I)Ljava/net/URLConnection;",
-      garbageValue = "241059257"
-   )
-   URLConnection method674(UrlRequest var1) throws IOException {
-      HttpsURLConnection var2 = (HttpsURLConnection)var1.field1152.openConnection();
-      if (!this.field1147) {
-         if (class15.field50 == null) {
-            class15.field50 = new class15();
-         }
-
-         class15 var4 = class15.field50;
-         var2.setSSLSocketFactory(var4);
-      }
-
-      this.method668(var2);
-      return var2;
-   }
-
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "([BZI)Ljava/lang/Object;",
-      garbageValue = "2127722280"
-   )
-   public static Object method675(byte[] var0, boolean var1) {
-      if (var0 == null) {
-         return null;
-      } else if (var0.length > 136) {
-         DirectByteArrayCopier var2 = new DirectByteArrayCopier();
-         var2.set(var0);
-         return var2;
-      } else {
-         return var0;
-      }
-   }
+	class108(int var1) {
+		this.field1129 = var1;
+	}
 }

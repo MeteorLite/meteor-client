@@ -160,13 +160,16 @@ public abstract class ScriptVMMixin implements RSClient
 
 	@Inject
 	public static int currentQuestRow = -1;
-	@Copy("runScript")
-	static void rs$runScript(RSScriptEvent event, int maxExecutionTime, int var2) {
-
+	@Copy("runScriptLogic")
+	@Replace("runScriptLogic")
+	static void copy$runScriptLogic(RSScriptEvent event, RSScript var4, int maxExecutionTime, int var2)
+	{
+		copy$runScriptLogic(event, var4, maxExecutionTime, var2);
 	}
 
+	@Copy("runScript")
 	@Replace("runScript")
-	static void rl$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
+	static void copy$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
 		Object[] arguments = event.getArguments();
 		if (!(arguments != null && arguments.length > 0)) {
@@ -189,7 +192,7 @@ public abstract class ScriptVMMixin implements RSClient
 			try
 			{
 				rootScriptEvent = event;
-				rs$runScript(event, maxExecutionTime, var2);
+				copy$runScript(event, maxExecutionTime, var2);
 			}
 			catch (Exception exception) {
 				exception.printStackTrace();

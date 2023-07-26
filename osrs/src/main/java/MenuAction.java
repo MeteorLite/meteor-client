@@ -3,82 +3,197 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
+@ObfuscatedName("ch")
 @Implements("MenuAction")
 public class MenuAction {
-    @ObfuscatedName("qh")
-    @ObfuscatedSignature(
-            descriptor = "Lsu;"
-    )
-    static class473 HitSplatDefinition_cached;
-    @ObfuscatedName("af")
-    int param0;
-    @ObfuscatedName("an")
-    int param1;
-    @ObfuscatedName("aw")
-    int opcode;
-    @ObfuscatedName("ac")
-    int identifier;
-    @ObfuscatedName("au")
-    int itemId;
-    @ObfuscatedName("ab")
-    String action;
-    @ObfuscatedName("aq")
-    String target;
+	@ObfuscatedName("aw")
+	@Export("param0")
+	int param0;
+	@ObfuscatedName("ay")
+	@Export("param1")
+	int param1;
+	@ObfuscatedName("ar")
+	@Export("opcode")
+	int opcode;
+	@ObfuscatedName("am")
+	@Export("identifier")
+	int identifier;
+	@ObfuscatedName("as")
+	@Export("itemId")
+	int itemId;
+	@ObfuscatedName("aj")
+	@Export("action")
+	String action;
+	@ObfuscatedName("ag")
+	@Export("target")
+	String target;
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(I[BLqk;B)V",
-      garbageValue = "73"
-   )
-   static void method439(int var0, byte[] var1, ArchiveDisk var2) {
-      ArchiveDiskAction var3 = new ArchiveDiskAction();
-      var3.type = 0;
-      var3.key = (long)var0;
-      var3.data = var1;
-      var3.archiveDisk = var2;
-      NodeDeque var4 = ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue;
-      synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-         ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3);
-      }
+	MenuAction() {
+	}
 
-      class124.method741();
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Lfg;",
+		garbageValue = "-994330440"
+	)
+	static class132[] method434() {
+		return new class132[]{class132.field1274, class132.field1276, class132.field1269, class132.field1266, class132.field1270, class132.field1265, class132.field1263, class132.field1277, class132.field1273, class132.field1267, class132.field1268, class132.field1271, class132.field1264, class132.field1275, class132.field1261, class132.field1272, class132.field1262};
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;Lnm;I)V",
-      garbageValue = "1515081265"
-   )
-   public static void method438(AbstractArchive var0, AbstractArchive var1) {
-      NPCComposition.NpcDefinition_archive = var0;
-      NPCComposition.field1559 = var1;
-   }
+	@ObfuscatedName("cf")
+	@ObfuscatedSignature(
+		descriptor = "(ILdc;ZB)I",
+		garbageValue = "4"
+	)
+	static int method435(int var0, Script var1, boolean var2) {
+		return 2;
+	}
 
-   @ObfuscatedName("af")
-   @ObfuscatedSignature(
-      descriptor = "(Lnm;I)V",
-      garbageValue = "-1939733213"
-   )
-   public static void method441(AbstractArchive var0) {
-      VarbitComposition.VarbitDefinition_archive = var0;
-   }
+	@ObfuscatedName("mk")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-1834048836"
+	)
+	@Export("changeGameOptions")
+	static final void changeGameOptions(int var0) {
+		DbRowType.process();
+		class19.method67();
+		int var1 = class158.VarpDefinition_get(var0).type;
+		if (var1 != 0) {
+			int var2 = Varps.Varps_main[var0];
+			if (var1 == 1) {
+				if (var2 == 1) {
+					Rasterizer3D.method1164(0.9D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.9D);
+					HealthBar.method581();
+					class150.clientPreferences.setBrightness(0.9D);
+				}
 
-    @ObfuscatedName("ay")
-    @ObfuscatedSignature(
-            descriptor = "(CI)Z",
-            garbageValue = "-2123095492"
-    )
-    public static boolean isAlphaNumeric(char var0) {
-      return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
-   }
+				if (var2 == 2) {
+					Rasterizer3D.method1164(0.8D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.8D);
+					HealthBar.method581();
+					class150.clientPreferences.setBrightness(0.8D);
+				}
 
-    @ObfuscatedName("kz")
-    @ObfuscatedSignature(
-            descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
-            garbageValue = "116"
-    )
-    public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-      SceneTilePaint.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
-   }
+				if (var2 == 3) {
+					Rasterizer3D.method1164(0.7D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.7D);
+					HealthBar.method581();
+					class150.clientPreferences.setBrightness(0.7D);
+				}
+
+				if (var2 == 4) {
+					Rasterizer3D.method1164(0.6D);
+					((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(0.6D);
+					HealthBar.method581();
+					class150.clientPreferences.setBrightness(0.6D);
+				}
+			}
+
+			if (var1 == 3) {
+				if (var2 == 0) {
+					StudioGame.method1839(255);
+				}
+
+				if (var2 == 1) {
+					StudioGame.method1839(192);
+				}
+
+				if (var2 == 2) {
+					StudioGame.method1839(128);
+				}
+
+				if (var2 == 3) {
+					StudioGame.method1839(64);
+				}
+
+				if (var2 == 4) {
+					StudioGame.method1839(0);
+				}
+			}
+
+			if (var1 == 4) {
+				if (var2 == 0) {
+					ClanMate.method2184(127);
+				}
+
+				if (var2 == 1) {
+					ClanMate.method2184(96);
+				}
+
+				if (var2 == 2) {
+					ClanMate.method2184(64);
+				}
+
+				if (var2 == 3) {
+					ClanMate.method2184(32);
+				}
+
+				if (var2 == 4) {
+					ClanMate.method2184(0);
+				}
+			}
+
+			if (var1 == 5) {
+				Client.leftClickOpensMenu = var2 == 1;
+			}
+
+			if (var1 == 6) {
+				Client.chatEffects = var2;
+			}
+
+			if (var1 == 9) {
+			}
+
+			if (var1 == 10) {
+				if (var2 == 0) {
+					Interpreter.method429(127);
+				}
+
+				if (var2 == 1) {
+					Interpreter.method429(96);
+				}
+
+				if (var2 == 2) {
+					Interpreter.method429(64);
+				}
+
+				if (var2 == 3) {
+					Interpreter.method429(32);
+				}
+
+				if (var2 == 4) {
+					Interpreter.method429(0);
+				}
+			}
+
+			if (var1 == 17) {
+				Client.followerIndex = var2 & 65535;
+			}
+
+			if (var1 == 18) {
+				Client.playerAttackOption = (AttackOption)ClientPreferences.findEnumerated(ItemLayer.method1129(), var2);
+				if (Client.playerAttackOption == null) {
+					Client.playerAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+			if (var1 == 19) {
+				if (var2 == -1) {
+					Client.combatTargetPlayerIndex = -1;
+				} else {
+					Client.combatTargetPlayerIndex = var2 & 2047;
+				}
+			}
+
+			if (var1 == 22) {
+				Client.npcAttackOption = (AttackOption)ClientPreferences.findEnumerated(ItemLayer.method1129(), var2);
+				if (Client.npcAttackOption == null) {
+					Client.npcAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+		}
+	}
 }

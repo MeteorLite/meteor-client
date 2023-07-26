@@ -2,177 +2,93 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bt")
+@ObfuscatedName("br")
 public class class36 {
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "Loi;"
-    )
-    public static IterableNodeDeque reflectionChecks = new IterableNodeDeque();
-    @ObfuscatedName("jl")
-    @ObfuscatedSignature(
-            descriptor = "[Ltq;"
-    )
-    static SpritePixels[] headIconPkSprites;
-    @ObfuscatedName("kx")
-    static int cameraX;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lor;"
+	)
+	@Export("reflectionChecks")
+	static IterableNodeDeque reflectionChecks;
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "Lmt;"
+	)
+	@Export("scriptDotWidget")
+	static Widget scriptDotWidget;
+	@ObfuscatedName("cq")
+	@Export("param9")
+	static String param9;
+	@ObfuscatedName("le")
+	@Export("oculusOrbFocalPointY")
+	static int oculusOrbFocalPointY;
+	@ObfuscatedName("mo")
+	@Export("Client_plane")
+	static int Client_plane;
 
-   @ObfuscatedName("ie")
-   @ObfuscatedSignature(
-      descriptor = "(B)V",
-      garbageValue = "-32"
-   )
-   static void method198() {
-      if (class126.worldMap != null) {
-         class126.worldMap.method2381(GameEngine.Client_plane, (MusicPatchNode.localPlayer.x >> 7) + WorldMapData_0.baseX, (MusicPatchNode.localPlayer.y >> 7) + GameObject.baseY, false);
-         class126.worldMap.loadCache();
-      }
+	static {
+		reflectionChecks = new IterableNodeDeque();
+	}
 
-   }
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "475151817"
+	)
+	static final int method173(int var0, int var1, int var2) {
+		if (var2 > 179) {
+			var1 /= 2;
+		}
 
-    @ObfuscatedName("it")
-    @ObfuscatedSignature(
-            descriptor = "(IIIIZI)V",
-            garbageValue = "-1386012109"
-    )
-    static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
-      if (var2 < 1) {
-         var2 = 1;
-      }
+		if (var2 > 192) {
+			var1 /= 2;
+		}
 
-      if (var3 < 1) {
-         var3 = 1;
-      }
+		if (var2 > 217) {
+			var1 /= 2;
+		}
 
-      int var5 = var3 - 334;
-      int var6;
-      if (var5 < 0) {
-         var6 = Client.field625;
-      } else if (var5 >= 100) {
-         var6 = Client.field626;
-      } else {
-         var6 = (Client.field626 - Client.field625) * var5 / 100 + Client.field625;
-      }
+		if (var2 > 243) {
+			var1 /= 2;
+		}
 
-      int var7 = var3 * var6 * 512 / (var2 * 334);
-      int var8;
-      int var9;
-      short var17;
-      if (var7 < Client.field488) {
-         var17 = Client.field488;
-         var6 = var17 * var2 * 334 / (var3 * 512);
-         if (var6 > Client.field630) {
-            var6 = Client.field630;
-            var8 = var3 * var6 * 512 / (var17 * 334);
-            var9 = (var2 - var8) / 2;
-            if (var4) {
-               Rasterizer2D.Rasterizer2D_resetClip();
-               Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216);
-               Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216);
-            }
+		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
+		return var3;
+	}
 
-            var0 += var9;
-            var2 -= var9 * 2;
-         }
-      } else if (var7 > Client.field562) {
-         var17 = Client.field562;
-         var6 = var17 * var2 * 334 / (var3 * 512);
-         if (var6 < Client.field440) {
-            var6 = Client.field440;
-            var8 = var17 * var2 * 334 / (var6 * 512);
-            var9 = (var3 - var8) / 2;
-            if (var4) {
-               Rasterizer2D.Rasterizer2D_resetClip();
-               Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216);
-               Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216);
-            }
+	@ObfuscatedName("lk")
+	@ObfuscatedSignature(
+		descriptor = "([Lmt;IIIZS)V",
+		garbageValue = "-18913"
+	)
+	@Export("resizeInterface")
+	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
+		for (int var5 = 0; var5 < var0.length; ++var5) {
+			Widget var6 = var0[var5];
+			if (var6 != null && var6.parentId == var1) {
+				FriendSystem.alignWidgetSize(var6, var2, var3, var4);
+				class17.alignWidgetPosition(var6, var2, var3);
+				if (var6.scrollX > var6.scrollWidth - var6.width) {
+					var6.scrollX = var6.scrollWidth - var6.width;
+				}
 
-            var1 += var9;
-            var3 -= var9 * 2;
-         }
-      }
+				if (var6.scrollX < 0) {
+					var6.scrollX = 0;
+				}
 
-      Client.viewportZoom = var3 * var6 / 334;
-      if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
-         int[] var16 = new int[9];
+				if (var6.scrollY > var6.scrollHeight - var6.height) {
+					var6.scrollY = var6.scrollHeight - var6.height;
+				}
 
-         for(var9 = 0; var9 < var16.length; ++var9) {
-            int var10 = var9 * 32 + 15 + 128;
-            int var11 = WorldMapData_0.method1389(var10);
-            int var12 = Rasterizer3D.Rasterizer3D_sine[var10];
-            int var14 = var3 - 334;
-            if (var14 < 0) {
-               var14 = 0;
-            } else if (var14 > 100) {
-               var14 = 100;
-            }
+				if (var6.scrollY < 0) {
+					var6.scrollY = 0;
+				}
 
-            int var15 = (Client.zoomWidth - Client.zoomHeight) * var14 / 100 + Client.zoomHeight;
-            int var13 = var11 * var15 / 256;
-            var16[var9] = var13 * var12 >> 16;
-         }
+				if (var6.type == 0) {
+					SoundCache.revalidateWidgetScroll(var0, var6, var4);
+				}
+			}
+		}
 
-         Scene.Scene_buildVisiblityMap(var16, 500, 800, var2 * 334 / var3, 334);
-      }
-
-      Client.viewportOffsetX = var0;
-      Client.viewportOffsetY = var1;
-      Client.viewportWidth = var2;
-      Client.viewportHeight = var3;
-   }
-
-   @ObfuscatedName("la")
-   @ObfuscatedSignature(
-      descriptor = "(IIIIIIB)V",
-      garbageValue = "109"
-   )
-   static final void method196(int var0, int var1, int var2, int var3, int var4, int var5) {
-      int var6 = var2 - var0;
-      int var7 = var3 - var1;
-      int var8 = var6 >= 0 ? var6 : -var6;
-      int var9 = var7 >= 0 ? var7 : -var7;
-      int var10 = var8;
-      if (var8 < var9) {
-         var10 = var9;
-      }
-
-      if (var10 != 0) {
-         int var11 = (var6 << 16) / var10;
-         int var12 = (var7 << 16) / var10;
-         if (var12 <= var11) {
-            var11 = -var11;
-         } else {
-            var12 = -var12;
-         }
-
-         int var13 = var5 * var12 >> 17;
-         int var14 = var5 * var12 + 1 >> 17;
-         int var15 = var5 * var11 >> 17;
-         int var16 = var5 * var11 + 1 >> 17;
-         var0 -= Rasterizer2D.Rasterizer2D_xClipStart;
-         var1 -= Rasterizer2D.Rasterizer2D_yClipStart;
-         int var17 = var0 + var13;
-         int var18 = var0 - var14;
-         int var19 = var0 + var6 - var14;
-         int var20 = var0 + var6 + var13;
-         int var21 = var15 + var1;
-         int var22 = var1 - var16;
-         int var23 = var7 + var1 - var16;
-         int var24 = var7 + var15 + var1;
-         VarpDefinition.method981(var17, var18, var19);
-         class144.method825(var21, var22, var23, var17, var18, var19, 0.0F, 0.0F, 0.0F, var4);
-         VarpDefinition.method981(var17, var19, var20);
-         class144.method825(var21, var23, var24, var17, var19, var20, 0.0F, 0.0F, 0.0F, var4);
-      }
-   }
-
-   @ObfuscatedName("no")
-   @ObfuscatedSignature(
-      descriptor = "(I)V",
-      garbageValue = "-1230139284"
-   )
-   static final void method199() {
-      Client.field559 = Client.cycleCntr;
-      ItemContainer.field844 = true;
-   }
+	}
 }

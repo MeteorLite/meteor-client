@@ -2,51 +2,60 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fn")
-public class class140 extends class139 {
-   @ObfuscatedName("af")
-   int field1318;
-   @ObfuscatedName("an")
-   boolean field1317;
-   // $FF: synthetic field
-   @ObfuscatedSignature(
-      descriptor = "Lfa;"
-   )
-   final class142 this$0;
+@ObfuscatedName("fl")
+public class class140 extends class143 {
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Lnd;"
+	)
+	@Export("ItemDefinition_modelArchive")
+	static AbstractArchive ItemDefinition_modelArchive;
+	@ObfuscatedName("jh")
+	static int field1314;
+	@ObfuscatedName("aw")
+	int field1318;
+	@ObfuscatedName("ay")
+	int field1319;
+	@ObfuscatedName("ar")
+	int field1317;
+	@ObfuscatedName("am")
+	int field1316;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lfr;"
+	)
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class146 this$0;
 
-   @ObfuscatedSignature(
-      descriptor = "(Lfa;)V"
-   )
-   class140(class142 var1) {
-      this.this$0 = var1;
-      this.field1318 = -1;
-   }
+	@ObfuscatedSignature(
+		descriptor = "(Lfr;)V"
+	)
+	class140(class146 var1) {
+		this.this$0 = var1;
+		this.field1318 = -1;
+	}
 
-    @ObfuscatedName("af")
-    @ObfuscatedSignature(
-            descriptor = "(Lsg;I)V",
-            garbageValue = "168736686"
-    )
-    void vmethod3254(Buffer var1) {
-      this.field1318 = var1.readUnsignedShort();
-      this.field1317 = var1.readUnsignedByte() == 1;
-   }
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lty;B)V",
+		garbageValue = "1"
+	)
+	@Export("vmethod3254")
+	void vmethod3254(Buffer var1) {
+		this.field1318 = var1.readUnsignedShort();
+		this.field1319 = var1.readInt();
+		this.field1317 = var1.readUnsignedByte();
+		this.field1316 = var1.readUnsignedByte();
+	}
 
-    @ObfuscatedName("an")
-    @ObfuscatedSignature(
-            descriptor = "(Lfj;I)V",
-            garbageValue = "1712319228"
-    )
-    void vmethod3248(ClanSettings var1) {
-      var1.method860(this.field1318, this.field1317);
-   }
-
-   @ObfuscatedName("an")
-   @ObfuscatedSignature(
-      descriptor = "(IB)I",
-      garbageValue = "81"
-   )
-   public static int method806(int var0) {
-      return class295.field2716[var0];
-   }
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lfx;B)V",
+		garbageValue = "-72"
+	)
+	@Export("vmethod3248")
+	void vmethod3248(ClanSettings var1) {
+		var1.method817(this.field1318, this.field1319, this.field1317, this.field1316);
+	}
 }

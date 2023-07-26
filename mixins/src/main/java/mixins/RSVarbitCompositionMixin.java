@@ -18,7 +18,9 @@ public abstract class RSVarbitCompositionMixin implements RSVarbitComposition
 	@Inject
 	public static void rl$clinit()
 	{
-		RSEvictingDualNodeHashTable varbitCache = client.getVarbitCache();
-		varbitCache.resize(256);
+		if (client != null) {
+			RSEvictingDualNodeHashTable varbitCache = client.getVarbitCache();
+			varbitCache.resize(256);
+		}
 	}
 }

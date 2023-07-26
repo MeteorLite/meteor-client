@@ -87,10 +87,10 @@ public class UpdateMappings
 	public static void main(String[] args) throws IOException
 	{
 		UpdateMappings u = new UpdateMappings(
-			JarUtil.load(new File("./deobfuscator/osrs-212.jar")),
-			JarUtil.load(new File("./deobfuscator/deob-213.jar"))
+			JarUtil.load(new File("./deobfuscator/osrs-213.jar")),
+			JarUtil.load(new File("./deobfuscator/deob-215.jar"))
 		);
 		u.update();
-		u.save(new File("./deobfuscator/osrs-213.jar"));
+		u.save(new File("./deobfuscator/osrs-215.jar"));
 	}
 }
