@@ -35,7 +35,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPNPCT = new ClientPacket(8, 11);
 	@ObfuscatedName("ap")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPLOC2 = new ClientPacket(9, 7);
+	public static final ClientPacket OPOBJ2 = new ClientPacket(9, 7);
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket CLICKWORLDMAP = new ClientPacket(10, 4);
@@ -44,7 +44,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPNPC3 = new ClientPacket(11, 3);
 	@ObfuscatedName("ah")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPOBJ6 = new ClientPacket(12, 6);
+	public static final ClientPacket OPLOC6 = new ClientPacket(12, 6);
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket FRIENDLIST_DEL = new ClientPacket(13, -1);
@@ -56,7 +56,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket IF_BUTTONT = new ClientPacket(15, 16);
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket F_EVENT_MOUSE_SCROLL = new ClientPacket(16, 6);
+	public static final ClientPacket EVENT_MOUSE_CLICK = new ClientPacket(16, 6);
 	@ObfuscatedName("ab")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("IF_BUTTON7")
@@ -122,7 +122,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPOBJT = new ClientPacket(36, 15);
 	@ObfuscatedName("bw")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPLOC1 = new ClientPacket(37, 7);
+	public static final ClientPacket OPOBJ1 = new ClientPacket(37, 7);
 	@ObfuscatedName("be")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket RESUME_P_STRINGDIALOG = new ClientPacket(38, -1);
@@ -138,7 +138,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket RESUME_P_OBJDIALOG = new ClientPacket(41, 2);
 	@ObfuscatedName("bk")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPLOC3 = new ClientPacket(42, 7);
+	public static final ClientPacket OPOBJ3 = new ClientPacket(42, 7);
 	@ObfuscatedName("bz")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket NATIVE_PACKET = new ClientPacket(43, 7);
@@ -175,7 +175,7 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket IF_BUTTON4 = new ClientPacket(52, 8);
 	@ObfuscatedName("cf")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPOBJ4 = new ClientPacket(53, 7);
+	public static final ClientPacket OPLOC4 = new ClientPacket(53, 7);
 	@ObfuscatedName("cz")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket EXIT_FREECAM = new ClientPacket(54, 0);
@@ -190,10 +190,10 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket LOGIN_STATISTICS = new ClientPacket(57, -1);
 	@ObfuscatedName("cn")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPOBJ2 = new ClientPacket(58, 7);
+	public static final ClientPacket OPLOC2 = new ClientPacket(58, 7);
 	@ObfuscatedName("cw")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPLOC4 = new ClientPacket(59, 7);
+	public static final ClientPacket OPOBJ4 = new ClientPacket(59, 7);
 	@ObfuscatedName("ce")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket IGNORELIST_DEL = new ClientPacket(60, -1);
@@ -219,7 +219,7 @@ public class ClientPacket implements class294 {
 	@ObfuscatedName("cr")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("OPOBJ2")
-	public static final ClientPacket OPOBJ1 = new ClientPacket(67, 7);
+	public static final ClientPacket OPLOC1 = new ClientPacket(67, 7);
 	@ObfuscatedName("cd")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	@Export("CONTINUE")
@@ -233,10 +233,10 @@ public class ClientPacket implements class294 {
 	public static final ClientPacket OPPLAYER8 = new ClientPacket(70, 3);
 	@ObfuscatedName("cl")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPLOC6 = new ClientPacket(71, 2);
+	public static final ClientPacket OPOBJ6 = new ClientPacket(71, 2);
 	@ObfuscatedName("cp")
 	@ObfuscatedSignature(descriptor = "Llw;")
-	public static final ClientPacket OPOBJ3 = new ClientPacket(72, 7);
+	public static final ClientPacket OPLOC3 = new ClientPacket(72, 7);
 	@ObfuscatedName("ch")
 	@ObfuscatedSignature(descriptor = "Llw;")
 	public static final ClientPacket IGNORELIST_ADD = new ClientPacket(73, -1);

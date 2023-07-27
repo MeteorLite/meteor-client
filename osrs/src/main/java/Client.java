@@ -2755,7 +2755,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					var5 = (int)var16;
-					var18 = class503.getPacketBufferNode(ClientPacket.F_EVENT_MOUSE_SCROLL, packetWriter.isaacCipher);
+					var18 = class503.getPacketBufferNode(ClientPacket.EVENT_MOUSE_CLICK, packetWriter.isaacCipher);
 					var18.packetBuffer.writeShort((var5 << 1) + (MouseHandler.MouseHandler_lastButton == 2 ? 1 : 0));
 					var18.packetBuffer.writeShort(var4);
 					var18.packetBuffer.writeShort(var3);
@@ -3722,7 +3722,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 
 				if (ServerPacketsEnum.getById(var1.serverPacket.id) != null) {
 					String packet = ServerPacketsEnum.getById(var1.serverPacket.id).name();
-					System.out.println("Received-Packet : " + packet);
+					//System.out.println("Received-Packet : " + packet);
 				}
 
 

@@ -318,7 +318,7 @@ public class class60 {
 			Client.mouseCrossY = var8;
 			Client.mouseCrossColor = 2;
 			Client.mouseCrossState = 0;
-			var16 = class503.getPacketBufferNode(ClientPacket.OPLOC6, Client.packetWriter.isaacCipher);
+			var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ6, Client.packetWriter.isaacCipher);
 			var16.packetBuffer.writeShort(var3_item_npc_index);
 			Client.packetWriter.addNode(var16);
 		}
@@ -647,12 +647,13 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC4, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ4, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
 				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX);
 				var16.packetBuffer.writeShort(var3_item_npc_index);
 				var16.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var16);
+
 			}
 
 			if (var2 == 20) {
@@ -662,7 +663,7 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ3, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC3, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX);
 				var16.packetBuffer.writeShortAdd(var3_item_npc_index);
 				var16.packetBuffer.writeShortLE(class148.baseY + param1);
@@ -695,7 +696,7 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC2, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX);
 				var16.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShortLE(var3_item_npc_index);
@@ -716,6 +717,7 @@ public class class60 {
 					var15.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 					var15.packetBuffer.writeShortLE(var3_item_npc_index);
 					Client.packetWriter.addNode(var15);
+
 				}
 			}
 
@@ -744,7 +746,7 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC1, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ1, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortLE(class148.baseY + param1); // z
 				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX); // x
 				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0); // movement
@@ -775,7 +777,7 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC3, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ3, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX); // x
 				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0); // movement
 				var16.packetBuffer.writeShortAdd(class148.baseY + param1); // z
@@ -790,7 +792,7 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ4, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC4, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShortLE(var3_item_npc_index);
 				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
@@ -805,7 +807,7 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ1, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC1, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
 				var16.packetBuffer.writeShortAddLE(var3_item_npc_index);
@@ -824,7 +826,7 @@ public class class60 {
 				Client.mouseCrossY = var8;
 				Client.mouseCrossColor = 2;
 				Client.mouseCrossState = 0;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ6, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC6, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortLE(param0 + AbstractArchive.baseX);
 				var16.packetBuffer.writeShortAdd(var3_item_npc_index);
 				var16.packetBuffer.writeShortAddLE(class148.baseY + param1);
@@ -838,12 +840,13 @@ public class class60 {
 				Client.mouseCrossState = 0;
 				Client.destinationX = param0;
 				Client.destinationY = param1;
-				var16 = class503.getPacketBufferNode(ClientPacket.OPLOC2, Client.packetWriter.isaacCipher);
+				var16 = class503.getPacketBufferNode(ClientPacket.OPOBJ2, Client.packetWriter.isaacCipher);
 				var16.packetBuffer.writeShortLE(class148.baseY + param1);
 				var16.packetBuffer.writeShortAddLE(var3_item_npc_index);
 				var16.packetBuffer.writeByte(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var16.packetBuffer.writeShortAdd(param0 + AbstractArchive.baseX);
 				Client.packetWriter.addNode(var16);
+
 			}
 
 			if (var2 == 28) {
