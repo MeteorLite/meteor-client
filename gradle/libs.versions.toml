@@ -1,0 +1,58 @@
+[versions]
+kotlin = "1.8.0-RC2"
+coroutines = "1.6.4"
+
+[libraries]
+jocl = {group = "net.runelite.jocl", name = "jocl", version = "_"}
+jocl-macos-x64 = {group = "net.runelite.jocl", name = "jocl", version = "_"}
+jocl-macos-arm64 = {group = "net.runelite.jocl", name = "jocl", version = "_"}
+rlawt = {group = "net.runelite", name = "rlawt", version = "_"}
+lwjgl = {group = "org.lwjgl", name = "lwjgl", version = "_"}
+lwjgl-opengl = {group = "org.lwjgl", name = "lwjgl-opengl", version = "_"}
+commons-lang3 = {group = "org.apache.commons", name = "commons-lang3", version = "_"}
+discord = {group = "net.runelite", name = "discord", version = "1.4"}
+flatlaf = {group = "com.formdev", name = "flatlaf", version = "_"}
+flatlaf-intellij-themes = {group = "com.formdev", name = "flatlaf-intellij-themes", version = "_"}
+svg-salamander = {group = "com.kitfox.svg", name = "svg-salamander", version = "_"}
+flatlaf-extras = {group = "com.formdev", name = "flatlaf-extras", version = "_"}
+godaddy-colorpicker = {group = "com.godaddy.android.colorpicker", name = "compose-color-picker-jvm", version = "_"}
+octicions = { group = "br.com.devsrsouza.compose.icons.jetbrains", name = "octicons", version = "_"}
+tabler-icons = { group = "br.com.devsrsouza.compose.icons.jetbrains", name = "tabler-icons", version = "_"}
+line-awesome = { group = "br.com.devsrsouza.compose.icons.jetbrains", name = "line-awesome", version = "_"}
+jna = {group = "net.java.dev.jna", name = "jna", version = "_"}
+miglayout = {group = "com.miglayout", name = "miglayout", version = "_"}
+
+
+proguard = {group = "com.guardsquare", name = "proguard-gradle", version = "7.2.2"}
+guice = {group = "com.google.inject", name = "guice", version = "_"}
+sisu-inject = {group = "org.eclipse.sisu", name = "org.eclipse.sisu.inject", version = "_"}
+maven-plugin-annotations = {group = "org.apache.maven.plugin-tools", name = "maven-plugin-annotations", version = "_"}
+maven-plugin-api = {group = "org.apache.maven", name = "maven-plugin-api", version = "_"}
+junit-jupiter-api = {group = "org.junit.jupiter", name = "junit-jupiter-api", version = "_"}
+junit-jupiter-engine = {group = "org.junit.jupiter", name = "junit-jupiter-engine", version = "_"}
+json = {group = "org.json", name = "json", version = "_"}
+bouncycastle = {group = "org.bouncycastle", name = "bcprov-jdk15on", version = "1.64"}
+java-inject = {group = "javax.inject", name = "javax.inject", version = "_"}
+jopt-simple = {group = "net.sf.jopt-simple", name = "jopt-simple", version = "_"}
+kotlin-logging = {group = "io.github.microutils", name = "kotlin-logging", version = "_"}
+asm = {group = "org.ow2.asm", name = "asm", version = "_"}
+asm-util = {group = "org.ow2.asm", name = "asm-util", version = "_"}
+fernflower = {group = "net.runelite", name = "fernflower", version = "07082019"}
+lombok = {group = "org.projectlombok", name = "lombok", version = "1.18.20"}
+gson = {group = "com.google.code.gson", name = "gson", version = "2.8.9"}
+kotlin_stdlib = {group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin"}
+kotlin_coroutines = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref = "coroutines"}
+guava = {group = "com.google.guava", name = "guava", version = "_"}
+commons-io = {group = "commons-io", name = "commons-io", version = "_"}
+commons-csv = {group = "org.apache.commons", name = "commons-csv", version = "_"}
+commons-cli = {group = "commons-cli", name = "commons-cli", version = "1.4"}
+netty-buffer = {group = "io.netty", name = "netty-buffer", version = "4.1.68.Final"}
+okhttp = {group = "com.squareup.okhttp3", name = "okhttp", version = "4.9.2"}
+atlr4-runtime = {group = "org.antlr", name = "antlr4-runtime", version = "4.9.2"}
+commons-compress = {group = "org.apache.commons", name = "commons-compress", version = "1.21"}
+commons-text = {group = "org.apache.commons", name = "commons-text", version = "_"}
+slf4j-simple = {group = "org.slf4j", name = "slf4j-simple", version = "_"}
+slf4j-api = {group = "org.slf4j", name = "slf4j-api", version = "1.7.32"}
+junit = {group = "junit", name = "junit", version = "4.13.2"}
+jsr305 = {group = "com.google.code.findbugs", name = "jsr305", version = "_" }
+annotations = {group = "org.jetbrains", name = "annotations", version = "_"}

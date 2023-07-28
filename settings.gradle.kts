@@ -4,6 +4,7 @@ pluginManagement {
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 plugins {
     id("de.fayard.refreshVersions") version("0.51.0")
 }

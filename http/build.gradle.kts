@@ -11,15 +11,14 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":api"))
-    implementation(project(":logger"))
-
-    annotationProcessor(group = "org.projectlombok", name = "lombok", version = "_")
-    compileOnly(group = "org.projectlombok", name = "lombok", version = "_")
-    implementation(group = "com.google.code.gson", name = "gson", version = "_")
-    implementation(group = "com.google.guava", name = "guava", version = "_")
-    implementation("com.squareup.okhttp3:okhttp:_")
-    implementation(group = "org.apache.commons", name = "commons-csv", version = "_")
+    implementation(projects.api)
+    implementation(projects.logger)
+    annotationProcessor(libs.lombok)
+    compileOnly(libs.lombok)
+    implementation(libs.gson)
+    implementation(libs.guava)
+    implementation(libs.okhttp)
+    implementation(libs.commons.csv)
 }
 
 tasks.test {

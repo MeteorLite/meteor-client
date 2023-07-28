@@ -10,15 +10,15 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":annotations"))
-    implementation(project(":logger"))
-    implementation(group = "com.google.code.findbugs", name = "jsr305", version = "_")
-    implementation(group = "com.google.guava", name = "guava", version = "_")
-    implementation(group = "org.apache.commons", name = "commons-text", version = "_")
-    implementation(group = "com.google.code.findbugs", name = "jsr305", version = "_")
-    compileOnly("org.projectlombok:lombok:_")
-    annotationProcessor("org.projectlombok:lombok:_")
-    implementation("org.jetbrains:annotations:_")
+    implementation(projects.annotations)
+    implementation(projects.logger)
+    implementation(libs.jsr305)
+    implementation(libs.guava)
+    implementation(libs.commons.text)
+    implementation(libs.jsr305)
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+    implementation(libs.annotations)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {

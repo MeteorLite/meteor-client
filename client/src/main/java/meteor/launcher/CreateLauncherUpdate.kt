@@ -9,11 +9,13 @@ import java.util.zip.CRC32
 import kotlin.math.ceil
 
 object CreateLauncherUpdate {
-    private val releaseVersion = "286"
-    private val runtimeVersion = "17.0.5"
+    private val releaseVersion = "292"
+    private val runtimeVersion = "17.0.2"
 
     private val release = LauncherUpdate()
-    private val releaseDir = java.io.File(".\\build\\release\\")
+    private val releaseDir = java.io.File("./client/build/release/")
+    private val clientBat = java.io.File("./client/build/compose/binaries/main/app/client/client.bat")
+
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -23,15 +25,17 @@ object CreateLauncherUpdate {
 
         if (releaseDir.exists())
             releaseDir.deleteRecursively()
+            releaseDir.mkdir()
 
-        releaseDir.mkdirs()
-        java.io.File("./build/compose/binaries/main/app/client/client.bat")
-            .writeText(
-                "\"%USERPROFILE%\\.meteor\\launcher\\client.exe\"\n" +
-                        "pause")
-        crawlDirectory(java.io.File("./build/compose/binaries/main/app/client/"))
-        java.io.File("./build/release/release.json").writeText(gson.toJson(release))
-        java.io.File("./build/release/runtime.version").writeText(runtimeVersion)
+        if (!clientBat.exists()) clientBat.createNewFile()
+            clientBat.writeText("\"%USERPROFILE%\\.meteor\\launcher\\client.exe\"\n" + "pause")
+
+        crawlDirectory(java.io.File("./client/build/compose/binaries/main/app/client/"))
+
+        java.io.File("./client/build/release/release.json").writeText(gson.toJson(release))
+
+        java.io.File("./client/build/release/runtime.version").writeText(runtimeVersion)
+
     }
 
     private fun crawlDirectory(dir: java.io.File) {

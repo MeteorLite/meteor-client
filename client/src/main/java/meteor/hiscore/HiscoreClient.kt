@@ -101,7 +101,7 @@ class HiscoreClient @Inject constructor() {
             }
             throw IOException("Error retrieving data from Jagex Hiscores: $response")
         }
-        val responseStr = response.body.string()
+        val responseStr = response.body?.string()
         val skills = ImmutableMap.builder<HiscoreSkill, Skill>()
         val map = mappings[endpoint]!!.iterator()
         for (line in NEWLINE_SPLITTER.split(responseStr)) {

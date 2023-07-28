@@ -78,7 +78,7 @@ object RuntimeConfigLoader : Supplier<RuntimeConfig?> {
             override fun onResponse(call: Call, response: Response) {
                 try  // NOPMD: UseTryWithResources
                 {
-                    val config = RuneLiteAPI.GSON.fromJson(response.body.charStream(), RuntimeConfig::class.java)
+                    val config = RuneLiteAPI.GSON.fromJson(response.body?.charStream(), RuntimeConfig::class.java)
                     future.complete(config)
                 } catch (ex: Throwable) {
                     future.completeExceptionally(ex)

@@ -57,7 +57,7 @@ internal class SessionClient {
             log.warn("Built URI: $url")
             client.newCall(request).execute().use { response ->
                 val body = response.body
-                val `in` = body.byteStream()
+                val `in` = body?.byteStream()
                 return RuneLiteAPI.GSON.fromJson(InputStreamReader(`in`, StandardCharsets.UTF_8), UUID::class.java)
             }
         } catch (ex: JsonParseException) // UUID.fromString can throw IllegalArgumentException
