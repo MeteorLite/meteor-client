@@ -1,6 +1,4 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
 
 plugins {
@@ -54,69 +52,74 @@ repositories {
 dependencies {
 
     // meteor-api
-    implementation(projects.apiRs)
-    implementation(projects.api)
-    implementation(projects.http)
-    implementation(projects.annotations)
-    implementation(projects.logger)
-    implementation(libs.guice)
-    implementation(libs.java.inject)
-    runtimeOnly(projects.scripts)
-    runtimeOnly(files("./src/main/resources/injected-client.jar"))
+    with(projects) {
+        implementation(apiRs)
+        implementation(api)
+        implementation(http)
+        implementation(annotations)
+        implementation(logger)
+        runtimeOnly(scripts)
+    }
 
-    //Deob
-    implementation(libs.bouncycastle)
-    implementation(libs.proguard)
-    //GPU
-    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-    implementation(libs.jocl)
-    implementation(libs.lwjgl)
-    implementation(libs.lwjgl.opengl)
-    implementation(libs.rlawt)
-    implementation(variantOf(libs.jocl){ classifier("macos-x64") } )
-    implementation(variantOf(libs.jocl){ classifier("macos-arm64") } )
-    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-windows") } )
-    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-windows-x86") } )
-    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-linux") } )
-    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-macos") } )
-    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-macos-arm64") } )
-    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-windows") } )
-    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-windows-x86") } )
-    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-linux") } )
-    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-macos") } )
-    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-macos-arm64") } )
+    with(libs) {
+        implementation(guice)
+        implementation(java.inject)
+        runtimeOnly(files("./src/main/resources/injected-client.jar"))
 
+        //Deob
+        implementation(bouncycastle)
+        implementation(proguard)
 
-    //RuneLite Plugins
-    implementation(libs.slf4j.api)
-    implementation(libs.slf4j.simple)
-    compileOnly(libs.lombok)
-    annotationProcessor(libs.lombok)
+        //GPU
+        //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+        implementation(jocl)
+        implementation(lwjgl)
+        implementation(lwjgl.opengl)
+        implementation(rlawt)
+        implementation(variantOf(jocl) { classifier("macos-x64") })
+        implementation(variantOf(jocl) { classifier("macos-arm64") })
+        runtimeOnly(variantOf(lwjgl) { classifier("natives-windows") })
+        runtimeOnly(variantOf(lwjgl) { classifier("natives-windows-x86") })
+        runtimeOnly(variantOf(lwjgl) { classifier("natives-linux") })
+        runtimeOnly(variantOf(lwjgl) { classifier("natives-macos") })
+        runtimeOnly(variantOf(lwjgl) { classifier("natives-macos-arm64") })
+        runtimeOnly(variantOf(lwjgl.opengl) { classifier("natives-windows") })
+        runtimeOnly(variantOf(lwjgl.opengl) { classifier("natives-windows-x86") })
+        runtimeOnly(variantOf(lwjgl.opengl) { classifier("natives-linux") })
+        runtimeOnly(variantOf(lwjgl.opengl) { classifier("natives-macos") })
+        runtimeOnly(variantOf(lwjgl.opengl) { classifier("natives-macos-arm64") })
 
-    //Util
-    implementation(libs.json)
-    implementation(projects.eventbus)
-    implementation(libs.commons.lang3)
-    implementation(libs.okhttp)
-    implementation(libs.guava)
-    implementation(libs.commons.text)
-    implementation(libs.commons.io)
-    implementation(libs.jopt.simple)
-    implementation(libs.gson)
-    implementation(libs.discord)
-    implementation(libs.flatlaf)
-    implementation(libs.flatlaf.intellij.themes)
-    implementation(libs.miglayout)
-    implementation(libs.svg.salamander)
-    implementation(libs.flatlaf.extras)
-    implementation(libs.godaddy.colorpicker)
-    implementation(libs.octicions)
-    implementation(libs.tabler.icons)
-    implementation(libs.line.awesome)
-    implementation(libs.jna)
+        //RuneLite Plugins
+        implementation(slf4j.api)
+        implementation(slf4j.simple)
+        compileOnly(lombok)
+        annotationProcessor(lombok)
+
+        //Util
+        implementation(json)
+        implementation(projects.eventbus)
+        implementation(commons.lang3)
+        implementation(okhttp)
+        implementation(guava)
+        implementation(commons.text)
+        implementation(commons.io)
+        implementation(jopt.simple)
+        implementation(gson)
+        implementation(discord)
+        implementation(flatlaf)
+        implementation(flatlaf.intellij.themes)
+        implementation(miglayout)
+        implementation(svg.salamander)
+        implementation(flatlaf.extras)
+        implementation(godaddy.colorpicker)
+        implementation(octicions)
+        implementation(tabler.icons)
+        implementation(line.awesome)
+        implementation(jna)
+    }
+
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
-
     implementation(compose.desktop.currentOs)
 
 }
@@ -230,7 +233,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
         // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.
         freeCompilerArgs = listOf( //"-Xuse-k2",
             "-Xjvm-default=all",
-            "-Xbackend-threads=4")
+            "-Xbackend-threads=4"
+        )
     }
 }
 

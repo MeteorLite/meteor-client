@@ -16,16 +16,24 @@ repositories {
 }
 
 dependencies {
+
     compileOnly(gradleApi())
-    compileOnly(libs.guava)
-    compileOnly(libs.java.inject)
-    compileOnly(libs.commons.io)
-    compileOnly(projects.annotations)
-    compileOnly(projects.apiRs)
-    compileOnly(projects.osrs)
-    compileOnly(projects.api)
-    compileOnly(projects.logger)
-    compileOnly(projects.cache)
+
+    with(libs){
+        compileOnly(guava)
+        compileOnly(java.inject)
+        compileOnly(commons.io)
+    }
+
+    with(projects){
+        compileOnly(api)
+        compileOnly(apiRs)
+        compileOnly(annotations)
+        compileOnly(logger)
+        compileOnly(osrs)
+        compileOnly(cache)
+    }
+
 }
 tasks{
     test {

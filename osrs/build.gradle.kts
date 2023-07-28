@@ -7,18 +7,24 @@ version = "1.0-SNAPSHOT"
 repositories{
     mavenCentral()
 }
-dependencies{
-    implementation(projects.api)
-    implementation(projects.apiRs)
-    implementation(projects.annotations)
-    implementation(projects.logger)
-    implementation(libs.bouncycastle)
-    implementation(libs.json)
-    testImplementation(libs.junit.jupiter.api)
-    testRuntimeOnly(libs.junit.jupiter.api)
-    implementation(libs.gson)
-}
+dependencies {
 
+    with(projects) {
+        implementation(api)
+        implementation(apiRs)
+        implementation(annotations)
+        implementation(logger)
+    }
+
+    with(libs) {
+        implementation(bouncycastle)
+        implementation(json)
+        testImplementation(junit.jupiter.api)
+        testRuntimeOnly(junit.jupiter.api)
+        implementation(gson)
+    }
+
+}
 tasks{
     jar {
         outputs.upToDateWhen {

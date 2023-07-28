@@ -12,20 +12,27 @@ repositories {
 
 dependencies {
 
-    implementation(projects.annotations)
-    implementation(projects.api)
-    implementation(projects.apiRs)
-    implementation(projects.logger)
-    implementation(projects.cache)
-    annotationProcessor(libs.lombok)
-    implementation(libs.annotations)
-    implementation(libs.asm)
-    implementation(libs.asm.util)
-    implementation(libs.fernflower)
-    implementation(libs.gson)
-    implementation(libs.guava)
-    compileOnly(libs.lombok)
+    with(projects) {
+        implementation(annotations)
+        implementation(api)
+        implementation(apiRs)
+        implementation(logger)
+        implementation(cache)
+    }
+
+    with(libs) {
+        annotationProcessor(lombok)
+        implementation(annotations)
+        implementation(asm)
+        implementation(asm.util)
+        implementation(fernflower)
+        implementation(gson)
+        implementation(guava)
+        compileOnly(lombok)
+    }
+
 }
+
 
 tasks.test {
     useJUnitPlatform()

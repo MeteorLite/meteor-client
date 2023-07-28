@@ -10,18 +10,24 @@ repositories{
     mavenCentral()
 }
 dependencies {
-    annotationProcessor(libs.sisu.inject)
-    compileOnly(libs.maven.plugin.annotations)
-    implementation(projects.cache)
-    implementation(projects.api)
-    implementation(projects.logger)
-    implementation(libs.guava)
-    runtimeOnly(libs.maven.plugin.api)
-    implementation(libs.slf4j.simple)
-    testImplementation(libs.junit.jupiter.api)
-    testRuntimeOnly(libs.junit.jupiter.engine)
-}
 
+    with(projects) {
+        implementation(cache)
+        implementation(api)
+        implementation(logger)
+    }
+
+    with(libs) {
+        annotationProcessor(sisu.inject)
+        compileOnly(maven.plugin.annotations)
+        implementation(guava)
+        runtimeOnly(maven.plugin.api)
+        implementation(slf4j.simple)
+        testImplementation(junit.jupiter.api)
+        testRuntimeOnly(junit.jupiter.engine)
+    }
+
+}
 tasks{
     jar {
         from("build") {

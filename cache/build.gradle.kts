@@ -23,8 +23,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import org.apache.tools.ant.filters.ReplaceTokens
-
 description = "Cache"
 
 plugins {
@@ -39,17 +37,21 @@ repositories {
 dependencies {
 
     compileOnly(projects.http)
-    annotationProcessor(libs.lombok)
-    compileOnly(libs.lombok)
-    implementation(libs.gson)
-    implementation(libs.guava)
-    implementation(libs.commons.cli)
-    implementation(libs.netty.buffer)
-    implementation(libs.okhttp)
-    implementation(libs.atlr4.runtime)
-    implementation(libs.commons.compress)
-    implementation(libs.slf4j.api)
-    testImplementation(libs.junit)
+
+    with(libs) {
+        annotationProcessor(lombok)
+        compileOnly(lombok)
+        implementation(gson)
+        implementation(guava)
+        implementation(commons.cli)
+        implementation(netty.buffer)
+        implementation(okhttp)
+        implementation(atlr4.runtime)
+        implementation(commons.compress)
+        implementation(slf4j.api)
+        testImplementation(junit)
+    }
+
 }
 
 tasks {
