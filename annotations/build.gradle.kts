@@ -10,7 +10,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:_")
+    implementation(libs.kotlin.stdlib)
 }
 
 tasks.compileJava {

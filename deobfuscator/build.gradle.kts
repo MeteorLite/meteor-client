@@ -11,20 +11,20 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor(group = "org.projectlombok", name = "lombok", version = "_")
 
-    implementation(project(":annotations"))
-    implementation(project(":api"))
-    implementation(project(":api-rs"))
-    implementation(project(":logger"))
-    implementation(group = "org.jetbrains", name = "annotations", version = "_")
-    implementation(group = "org.ow2.asm", name = "asm", version = "_")
-    implementation(group = "org.ow2.asm", name = "asm-util", version = "_")
-    implementation(group = "net.runelite", name = "fernflower", version = "07082019")
-    implementation(project(":cache"))
-    implementation(group = "com.google.code.gson", name = "gson", version = "_")
-    implementation(group = "com.google.guava", name = "guava", version = "_")
-    compileOnly("org.projectlombok:lombok:_")
+    implementation(projects.annotations)
+    implementation(projects.api)
+    implementation(projects.apiRs)
+    implementation(projects.logger)
+    implementation(projects.cache)
+    annotationProcessor(libs.lombok)
+    implementation(libs.annotations)
+    implementation(libs.asm)
+    implementation(libs.asm.util)
+    implementation(libs.fernflower)
+    implementation(libs.gson)
+    implementation(libs.guava)
+    compileOnly(libs.lombok)
 }
 
 tasks.test {

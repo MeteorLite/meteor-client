@@ -1,15 +1,15 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Dmg
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 
 plugins {
-    kotlin("jvm")
-    id("org.jetbrains.compose") version "1.3.0"
-    kotlin("plugin.serialization") version "1.7.21"
-    id("org.jetbrains.dokka") version "1.7.20"
     java
     `maven-publish`
+    kotlin("jvm")
+    kotlin("plugin.serialization") version "1.7.21"
+    id("org.jetbrains.compose") version "1.4.3"
+    id("org.jetbrains.dokka") version "1.7.20"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
@@ -19,6 +19,7 @@ group = "meteor"
 version = "${majorRelease.split(".")[0]}.${majorRelease.split(".")[1]}.$release"
 
 publishing {
+
     repositories {
         mavenLocal()
     }
@@ -37,94 +38,97 @@ publishing {
     }
 }
 
+
 repositories {
-    mavenLocal()
-    maven {url = uri("https://androidx.dev/storage/compose-compiler/repository")}
-    maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
-    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/")}
-    maven { url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev/") }
     google()
+    mavenLocal()
     mavenCentral()
+    maven { url = uri("https://androidx.dev/storage/compose-compiler/repository") }
+    maven { url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master/") }
+    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev/") }
+    maven { url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev/") }
     maven { url = uri("https://jitpack.io") }
     maven { url = uri("https://raw.githubusercontent.com/MeteorLite/hosting/main/repo/") }
 }
 
 dependencies {
-    @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+
     // meteor-api
-    implementation("com.google.inject:guice:4.0")
-    implementation(project(":api-rs"))
-    implementation(project(":api"))
-    implementation(project(":http"))
-    implementation(project(":annotations"))
-    implementation(project(":logger"))
+    implementation(projects.apiRs)
+    implementation(projects.api)
+    implementation(projects.http)
+    implementation(projects.annotations)
+    implementation(projects.logger)
+    implementation(libs.guice)
+    implementation(libs.java.inject)
+    runtimeOnly(projects.scripts)
     runtimeOnly(files("./src/main/resources/injected-client.jar"))
-    runtimeOnly(project(":scripts"))
 
     //Deob
-    implementation(group = "org.bouncycastle", name = "bcprov-jdk15on", version = "1.64")
-
+    implementation(libs.bouncycastle)
+    implementation(libs.proguard)
     //GPU
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-    implementation(group = "net.runelite.jocl", name = "jocl", version = "_")
-    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-x64")
-    runtimeOnly(group = "net.runelite.jocl", name = "jocl", version = "_", classifier = "macos-arm64")
-    implementation(group = "net.runelite", name = "rlawt", version = "_")
-    implementation(group = "org.lwjgl", name = "lwjgl", version = "_")
-    implementation(group = "org.lwjgl", name = "lwjgl-opengl", version = "_")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-linux")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-windows")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-windows-x86")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-macos")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl", version = "_", classifier = "natives-macos-arm64")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-linux")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-windows")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-windows-x86")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-macos")
-    runtimeOnly(group = "org.lwjgl", name = "lwjgl-opengl", version = "_", classifier = "natives-macos-arm64")
+    //implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+    implementation(libs.jocl)
+    implementation(libs.lwjgl)
+    implementation(libs.lwjgl.opengl)
+    implementation(libs.rlawt)
+    implementation(variantOf(libs.jocl){ classifier("macos-x64") } )
+    implementation(variantOf(libs.jocl){ classifier("macos-arm64") } )
+    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-windows") } )
+    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-windows-x86") } )
+    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-linux") } )
+    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-macos") } )
+    runtimeOnly(variantOf(libs.lwjgl){ classifier("natives-macos-arm64") } )
+    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-windows") } )
+    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-windows-x86") } )
+    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-linux") } )
+    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-macos") } )
+    runtimeOnly(variantOf(libs.lwjgl.opengl){ classifier("natives-macos-arm64") } )
+
 
     //RuneLite Plugins
-    implementation("org.slf4j:slf4j-api:_")
-    implementation("org.slf4j:slf4j-simple:_")
-    compileOnly(group= "org.projectlombok", name= "lombok", version= "_")
-    annotationProcessor(group= "org.projectlombok", name= "lombok", version= "_")
+    implementation(libs.slf4j.api)
+    implementation(libs.slf4j.simple)
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
 
     //Util
-    implementation(group = "org.json", name = "json", version = "20220924")
-    implementation(project(":eventbus"))
-    implementation(group = "org.apache.commons", name = "commons-lang3", version = "_")
-    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "_")
-    implementation(group = "com.google.guava", name = "guava", version = "_")
-    implementation(group = "org.apache.commons", name = "commons-text", version = "_")
-    implementation(group = "commons-io", name = "commons-io", version = "_")
-    implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "_")
-    implementation(group = "com.google.code.gson", name = "gson", version = "_")
-    implementation(group = "net.runelite", name = "discord", version = "1.4")
-    implementation("com.formdev:flatlaf:_")
-    implementation("com.formdev:flatlaf-intellij-themes:_")
-    implementation("com.miglayout:miglayout:_")
-    implementation("com.kitfox.svg:svg-salamander:_")
-    implementation("com.formdev:flatlaf-extras:_")
-    implementation("com.godaddy.android.colorpicker:compose-color-picker-jvm:_")
-    implementation("br.com.devsrsouza.compose.icons.jetbrains:octicons:_")
-    implementation("br.com.devsrsouza.compose.icons.jetbrains:tabler-icons:1.0.0")
-    implementation("br.com.devsrsouza.compose.icons.jetbrains:line-awesome:1.0.0")
-    implementation(kotlin("stdlib-jdk8:1.8.0-RC2"))
+    implementation(libs.json)
+    implementation(projects.eventbus)
+    implementation(libs.commons.lang3)
+    implementation(libs.okhttp)
+    implementation(libs.guava)
+    implementation(libs.commons.text)
+    implementation(libs.commons.io)
+    implementation(libs.jopt.simple)
+    implementation(libs.gson)
+    implementation(libs.discord)
+    implementation(libs.flatlaf)
+    implementation(libs.flatlaf.intellij.themes)
+    implementation(libs.miglayout)
+    implementation(libs.svg.salamander)
+    implementation(libs.flatlaf.extras)
+    implementation(libs.godaddy.colorpicker)
+    implementation(libs.octicions)
+    implementation(libs.tabler.icons)
+    implementation(libs.line.awesome)
+    implementation(libs.jna)
+    implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
-    implementation("net.java.dev.jna:jna:_")
 
     implementation(compose.desktop.currentOs)
 
 }
 
 compose {
-    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:1.4.0")
+    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:_")
 
     desktop {
         application {
             mainClass = "meteor.Main"
             nativeDistributions {
-                version = "1.5.10"
+                version = "1.9.0"
                 targetFormats(Exe, Deb, Dmg)
                 includeAllModules = true
                 windows {
@@ -158,8 +162,8 @@ compose {
 
 tasks {
     shadowJar {
-        baseName = "meteor-client-all"
-        classifier = ""
+        archiveBaseName.set("meteor-client-all")
+        archiveClassifier.set("")
         mergeServiceFiles()
         manifest {
             attributes(mapOf("Main-Class" to "meteor.Main"))
@@ -220,7 +224,7 @@ tasks.compileJava {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
-        apiVersion = "1.8"
+        //apiVersion = ""
         languageVersion = "1.8"
         jvmTarget = "17"
         // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.

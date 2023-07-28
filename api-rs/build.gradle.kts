@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":annotations"))
-    implementation(project(":api"))
+    implementation(projects.annotations)
+    implementation(projects.api)
 }
 
 java {

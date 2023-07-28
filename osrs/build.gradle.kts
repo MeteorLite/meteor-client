@@ -8,16 +8,15 @@ repositories{
     mavenCentral()
 }
 dependencies{
-    implementation(project(":api"))
-    implementation(project(":api-rs"))
-    implementation(project(":annotations"))
-    implementation(project(":logger"))
-    implementation(group = "org.bouncycastle", name = "bcprov-jdk15on", version = "1.64")
-    implementation(group = "org.json", name = "json", version = "_")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:_")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-api:_")
-    implementation("com.google.code.gson:gson:_")
+    implementation(projects.api)
+    implementation(projects.apiRs)
+    implementation(projects.annotations)
+    implementation(projects.logger)
+    implementation(libs.bouncycastle)
+    implementation(libs.json)
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.api)
+    implementation(libs.gson)
 }
 
 tasks{
@@ -36,7 +35,7 @@ tasks{
         disableAutoTargetJvm()
     }
     withType<JavaExec>(){
-       classpath = sourceSets["main"].runtimeClasspath
+        classpath = sourceSets["main"].runtimeClasspath
         mainClass.set("net.runelite.rs.UpdateRefMap")
     }
     test{

@@ -10,17 +10,16 @@ repositories{
     mavenCentral()
 }
 dependencies {
-    annotationProcessor(group = "org.eclipse.sisu", name = "org.eclipse.sisu.inject", version = "_")
-
-    compileOnly(group = "org.apache.maven.plugin-tools", name = "maven-plugin-annotations", version = "_")
-    implementation(project(":cache"))
-    implementation(project(":api"))
-    implementation(project(":logger"))
-    implementation("com.google.guava:guava:31.1-jre")
-    runtimeOnly(group = "org.apache.maven", name = "maven-plugin-api", version = "_")
-    implementation("org.slf4j:slf4j-simple:2.0.6")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:_")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:_")
+    annotationProcessor(libs.sisu.inject)
+    compileOnly(libs.maven.plugin.annotations)
+    implementation(projects.cache)
+    implementation(projects.api)
+    implementation(projects.logger)
+    implementation(libs.guava)
+    runtimeOnly(libs.maven.plugin.api)
+    implementation(libs.slf4j.simple)
+    testImplementation(libs.junit.jupiter.api)
+    testRuntimeOnly(libs.junit.jupiter.engine)
 }
 
 tasks{
@@ -29,15 +28,15 @@ tasks{
             include( "scripts/runelite/**" )
         }
     }
-    processResources {
-        dependsOn(":injector:inject")
-    }
     test{
         useJUnitPlatform()
     }
     register<JavaExec>("assembleScripts"){
         classpath(sourceSets["main"].runtimeClasspath)
         mainClass.set("meteor.scripts.AssembleScripts")
+    }
+    processResources {
+        dependsOn(":injector:inject")
     }
     java{
         sourceCompatibility = JavaVersion.VERSION_17
