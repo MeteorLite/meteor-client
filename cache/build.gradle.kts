@@ -35,7 +35,6 @@ repositories {
 }
 
 dependencies {
-
     compileOnly(projects.http)
 
     with(libs) {
@@ -51,7 +50,6 @@ dependencies {
         implementation(slf4j.api)
         testImplementation(junit)
     }
-
 }
 
 tasks {

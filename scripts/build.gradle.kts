@@ -10,7 +10,6 @@ repositories{
     mavenCentral()
 }
 dependencies {
-
     with(projects) {
         implementation(cache)
         implementation(api)
@@ -26,7 +25,6 @@ dependencies {
         testImplementation(junit.jupiter.api)
         testRuntimeOnly(junit.jupiter.engine)
     }
-
 }
 tasks{
     jar {

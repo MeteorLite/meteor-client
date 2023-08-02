@@ -1,6 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
 
-
 plugins {
     java
     `maven-publish`
@@ -50,8 +49,11 @@ repositories {
 }
 
 dependencies {
-
-    // meteor-api
+  
+    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("reflect"))
+    implementation(compose.desktop.currentOs)
+    
     with(projects) {
         implementation(apiRs)
         implementation(api)
@@ -117,11 +119,6 @@ dependencies {
         implementation(line.awesome)
         implementation(jna)
     }
-
-    implementation(kotlin("stdlib-jdk8"))
-    implementation(kotlin("reflect"))
-    implementation(compose.desktop.currentOs)
-
 }
 
 compose {

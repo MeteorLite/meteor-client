@@ -11,7 +11,6 @@ repositories {
 }
 
 dependencies {
-
     with(projects) {
         implementation(api)
         implementation(logger)
@@ -25,7 +24,6 @@ dependencies {
         implementation(okhttp)
         implementation(commons.csv)
     }
-
 }
 tasks.test {
     useJUnitPlatform()

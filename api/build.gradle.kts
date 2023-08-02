@@ -10,7 +10,6 @@ repositories {
 }
 
 dependencies {
-
     with(projects) {
         implementation(annotations)
         implementation(logger)

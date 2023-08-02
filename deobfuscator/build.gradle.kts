@@ -11,7 +11,6 @@ repositories {
 }
 
 dependencies {
-
     with(projects) {
         implementation(annotations)
         implementation(api)
@@ -30,7 +29,6 @@ dependencies {
         implementation(guava)
         compileOnly(lombok)
     }
-
 }
 
 

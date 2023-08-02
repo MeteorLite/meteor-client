@@ -33,7 +33,6 @@ dependencies {
         compileOnly(osrs)
         compileOnly(cache)
     }
-
 }
 tasks{
     test {

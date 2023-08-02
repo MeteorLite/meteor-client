@@ -12,7 +12,6 @@ repositories{
 }
 
 dependencies{
-
     with(projects){
         implementation(annotations)
         implementation(deobfuscator)
@@ -33,7 +32,6 @@ dependencies{
             implementation(jopt.simple)
             implementation(annotations)
     }
-
 }
 
 tasks{
