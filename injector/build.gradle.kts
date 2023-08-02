@@ -12,23 +12,26 @@ repositories{
 }
 
 dependencies{
-    compileOnly(libs.lombok)
-    annotationProcessor(libs.lombok)
+    with(projects){
+        implementation(annotations)
+        implementation(deobfuscator)
+        implementation(apiRs)
+        implementation(logger)
+        implementation(cache)
 
-    implementation(projects.annotations)
-    implementation(projects.deobfuscator)
-    implementation(projects.apiRs)
-    implementation(projects.logger)
-    implementation(projects.cache)
-    implementation(libs.java.inject)
-    implementation(libs.gson)
+    }
 
-    implementation(libs.asm)
-    implementation(libs.asm.util)
-    implementation(libs.annotations)
-    implementation(libs.guava)
-    implementation(libs.jopt.simple)
-
+    with(libs){
+            compileOnly(lombok)
+            annotationProcessor(lombok)
+            implementation(gson)
+            implementation(java.inject)
+            implementation(asm)
+            implementation(asm.util)
+            implementation(guava)
+            implementation(jopt.simple)
+            implementation(annotations)
+    }
 }
 
 tasks{
