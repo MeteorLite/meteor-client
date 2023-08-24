@@ -1,33 +1,32 @@
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ko")
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+
+@ObfuscatedName("kv")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-	@ObfuscatedName("wi")
-	static List field2453;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("al")
 	@Export("worldMapData0Set")
 	HashSet worldMapData0Set;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("an")
 	@Export("worldMapData1Set")
 	HashSet worldMapData1Set;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ar")
 	@Export("iconList")
 	List iconList;
 
 	WorldMapAreaData() {
 	}
 
-	@ObfuscatedName("cv")
+	@ObfuscatedName("cu")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;Lty;IZB)V",
-		garbageValue = "-92"
+		descriptor = "(Ltm;Ltm;IZI)V",
+		garbageValue = "1963374909"
 	)
 	@Export("init")
 	void init(Buffer var1, Buffer var2, int var3, boolean var4) {
@@ -66,10 +65,10 @@ public class WorldMapAreaData extends WorldMapArea {
 		this.initIconsList(var2, var4);
 	}
 
-	@ObfuscatedName("cc")
+	@ObfuscatedName("ch")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;ZB)V",
-		garbageValue = "7"
+		descriptor = "(Ltm;ZB)V",
+		garbageValue = "-123"
 	)
 	@Export("initIconsList")
 	void initIconsList(Buffer var1, boolean var2) {
@@ -77,7 +76,7 @@ public class WorldMapAreaData extends WorldMapArea {
 		int var3 = var1.readUnsignedShort();
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			int var5 = var1.method2543();
+			int var5 = var1.method2563();
 			Coord var6 = new Coord(var1.readInt());
 			boolean var7 = var1.readUnsignedByte() == 1;
 			if (var2 || !var7) {
@@ -87,96 +86,73 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	}
 
-	@ObfuscatedName("lo")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Ldf;IIIS)V",
-		garbageValue = "10482"
+		descriptor = "(ZI)V",
+		garbageValue = "2073842388"
 	)
-	@Export("addPlayerToMenu")
-	static final void addPlayerToMenu(Player var0, int var1, int var2, int var3) {
-		if (class136.localPlayer != var0) {
-			if (Client.menuOptionsCount < 400) {
-				String var4;
-				int var7;
-				if (var0.skillLevel == 0) {
-					String var5 = var0.actions[0] + var0.username + var0.actions[1];
-					var7 = var0.combatLevel;
-					int var8 = class136.localPlayer.combatLevel;
-					int var9 = var8 - var7;
-					String var6;
-					if (var9 < -9) {
-						var6 = MusicPatchPcmStream.colorStartTag(16711680);
-					} else if (var9 < -6) {
-						var6 = MusicPatchPcmStream.colorStartTag(16723968);
-					} else if (var9 < -3) {
-						var6 = MusicPatchPcmStream.colorStartTag(16740352);
-					} else if (var9 < 0) {
-						var6 = MusicPatchPcmStream.colorStartTag(16756736);
-					} else if (var9 > 9) {
-						var6 = MusicPatchPcmStream.colorStartTag(65280);
-					} else if (var9 > 6) {
-						var6 = MusicPatchPcmStream.colorStartTag(4259584);
-					} else if (var9 > 3) {
-						var6 = MusicPatchPcmStream.colorStartTag(8453888);
-					} else if (var9 > 0) {
-						var6 = MusicPatchPcmStream.colorStartTag(12648192);
-					} else {
-						var6 = MusicPatchPcmStream.colorStartTag(16776960);
-					}
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
+		if (!class219.client.method352() && !class219.client.method354() && !class219.client.method353()) {
+			Login.Login_response1 = "";
+			Login.Login_response2 = "Enter your username/email & password.";
+			Login.Login_response3 = "";
+			PcmPlayer.method212(2);
+			if (var0) {
+				Login.Login_password = "";
+			}
 
-					var4 = var5 + var6 + " " + " (" + "level-" + var0.combatLevel + ")" + var0.actions[2];
+			if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+				if (class449.clientPreferences.getUsernameToRemember() != null) {
+					Login.Login_username = class449.clientPreferences.getUsernameToRemember();
+					Client.Login_isUsernameRemembered = true;
 				} else {
-					var4 = var0.actions[0] + var0.username + var0.actions[1] + " " + " (" + "skill-" + var0.skillLevel + ")" + var0.actions[2];
+					Client.Login_isUsernameRemembered = false;
 				}
+			}
 
-				int var10;
-				if (Client.isItemSelected == 1) {
-					JagexCache.insertMenuItemNoShift("Use", Client.field595 + " " + "->" + " " + MusicPatchPcmStream.colorStartTag(16777215) + var4, 14, var1, var2, var3);
-				} else if (Client.isSpellSelected) {
-					if ((PcmPlayer.selectedSpellFlags & 8) == 8) {
-						JagexCache.insertMenuItemNoShift(Client.field597, Client.field596 + " " + "->" + " " + MusicPatchPcmStream.colorStartTag(16777215) + var4, 15, var1, var2, var3);
-					}
-				} else {
-					for (var10 = 7; var10 >= 0; --var10) {
-						if (Client.playerMenuActions[var10] != null) {
-							short var11 = 0;
-							if (Client.playerMenuActions[var10].equalsIgnoreCase("Attack")) {
-								if (Client.playerAttackOption == AttackOption.AttackOption_hidden) {
-									continue;
-								}
+			ObjectComposition.method1042();
+		} else {
+			PcmPlayer.method212(10);
+		}
+	}
 
-								if (Client.playerAttackOption == AttackOption.AttackOption_alwaysRightClick || Client.playerAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var0.combatLevel > class136.localPlayer.combatLevel) {
-									var11 = 2000;
-								}
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(ZB)V",
+		garbageValue = "54"
+	)
+	static void method1574(boolean var0) {
+		byte var1 = 0;
+		boolean var2 = class449.clientPreferences.method564() >= Client.param21;
+		if (!var2) {
+			var1 = 12;
+		} else if (class219.client.method352() || class219.client.method354() || class219.client.method353()) {
+			var1 = 10;
+		}
 
-								if (class136.localPlayer.team != 0 && var0.team != 0) {
-									if (var0.team == class136.localPlayer.team) {
-										var11 = 2000;
-									} else {
-										var11 = 0;
-									}
-								} else if (AttackOption.field1090 == Client.playerAttackOption && var0.isClanMember()) {
-									var11 = 2000;
-								}
-							} else if (Client.playerOptionsPriorities[var10]) {
-								var11 = 2000;
-							}
+		PcmPlayer.method212(var1);
+		if (var0) {
+			Login.Login_username = "";
+			Login.Login_password = "";
+			class503.field4107 = 0;
+			class369.otp = "";
+		}
 
-							boolean var12 = false;
-							var7 = Client.playerMenuOpcodes[var10] + var11;
-							JagexCache.insertMenuItemNoShift(Client.playerMenuActions[var10], MusicPatchPcmStream.colorStartTag(16777215) + var4, var7, var1, var2, var3);
-						}
-					}
-				}
-
-				for (var10 = 0; var10 < Client.menuOptionsCount; ++var10) {
-					if (Client.menuOpcodes[var10] == 23) {
-						Client.menuTargets[var10] = MusicPatchPcmStream.colorStartTag(16777215) + var4;
-						break;
-					}
-				}
-
+		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+			if (class449.clientPreferences.getUsernameToRemember() != null) {
+				Login.Login_username = class449.clientPreferences.getUsernameToRemember();
+				Client.Login_isUsernameRemembered = true;
+			} else {
+				Client.Login_isUsernameRemembered = false;
 			}
 		}
+
+		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
+			Login.currentLoginField = 1;
+		} else {
+			Login.currentLoginField = 0;
+		}
+
 	}
 }

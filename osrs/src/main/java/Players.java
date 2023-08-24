@@ -3,56 +3,65 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
+@ObfuscatedName("ee")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("activityFlags")
 	static byte[] activityFlags;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "[Lio;"
+		descriptor = "[Lin;"
 	)
 	@Export("playerMovementSpeeds")
 	static MoveSpeed[] playerMovementSpeeds;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "[Lty;"
+		descriptor = "[Ltm;"
 	)
 	@Export("cachedAppearanceBuffer")
 	static Buffer[] cachedAppearanceBuffer;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("av")
+	@ObfuscatedName("aa")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("af")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("ad")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("at")
+	@ObfuscatedName("aq")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("al")
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("an")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lty;"
+		descriptor = "Ltm;"
 	)
-	static Buffer field1111;
+	static Buffer field1121;
+	@ObfuscatedName("sg")
+	@ObfuscatedSignature(
+		descriptor = "Lfi;"
+	)
+	@Export("guestClanSettings")
+	static ClanSettings guestClanSettings;
+	@ObfuscatedName("uq")
+	@Export("cameraMoveToX")
+	static int cameraMoveToX;
 
 	static {
 		activityFlags = new byte[2048];
@@ -67,15 +76,39 @@ public class Players {
 		Players_targetIndices = new int[2048];
 		Players_pendingUpdateCount = 0;
 		Players_pendingUpdateIndices = new int[2048];
-		field1111 = new Buffer(new byte[5000]);
+		field1121 = new Buffer(new byte[5000]);
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1685678133"
+		descriptor = "(II)Lhc;",
+		garbageValue = "-1692851000"
 	)
-	public static boolean method622(int var0) {
-		return var0 == WorldMapDecorationType.field3117.id;
+	@Export("StructDefinition_getStructDefinition")
+	public static StructComposition StructDefinition_getStructDefinition(int var0) {
+		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0);
+			var1 = new StructComposition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			StructComposition.StructDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-831991142"
+	)
+	public static final void method619() {
+		ViewportMouse.ViewportMouse_isInViewport = false;
+		ViewportMouse.ViewportMouse_entityCount = 0;
 	}
 }

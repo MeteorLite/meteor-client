@@ -1,36 +1,24 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rs")
-public class class461 {
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "Lrs;"
-	)
-	public static final class461 field3889;
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "Lrs;"
-	)
-	static final class461 field3890;
-	@ObfuscatedName("ar")
-	String field3891;
+import java.io.UnsupportedEncodingException;
 
-	static {
-		field3889 = new class461("application/json");
-		field3890 = new class461("text/plain");
-	}
-
-	class461(String var1) {
-		this.field3891 = var1;
-	}
-
-	@ObfuscatedName("aw")
+@ObfuscatedName("rf")
+public interface class461 {
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "15"
+		descriptor = "(I)Lre;",
+		garbageValue = "1843960357"
 	)
-	public String method2309() {
-		return this.field3891;
-	}
+	@Export("vmethod2213")
+	class460 vmethod2213();
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(I)[B",
+		garbageValue = "-2012768243"
+	)
+	@Export("vmethod7797")
+	byte[] vmethod7797() throws UnsupportedEncodingException;
 }

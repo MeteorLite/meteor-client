@@ -2,38 +2,100 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ti")
-final class class502 implements class499 {
+@ObfuscatedName("tb")
+public class class502 implements class371 {
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Ltb;"
+	)
+	public static final class502 field4101;
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "Ltb;"
+	)
+	public static final class502 field4099;
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Ltb;"
+	)
+	public static final class502 field4100;
+	@ObfuscatedName("ke")
+	@ObfuscatedSignature(
+		descriptor = "[Lui;"
+	)
+	@Export("headIconPrayerSprites")
+	static SpritePixels[] headIconPrayerSprites;
+	@ObfuscatedName("at")
+	public final int field4104;
+	@ObfuscatedName("ac")
+	public final int field4103;
+	@ObfuscatedName("ai")
+	public final Class field4105;
 	@ObfuscatedName("az")
-	@Export("ItemDefinition_inMembersWorld")
-	static boolean ItemDefinition_inMembersWorld;
-
-	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;Lty;I)V",
-		garbageValue = "-791895690"
+		descriptor = "Ltj;"
 	)
-	@Export("vmethod8274")
-	public void vmethod8274(Object var1, Buffer var2) {
-		this.method2465((Long)var1, var2);
+	public final class498 field4106;
+
+	static {
+		field4101 = new class502(1, 0, Integer.class, new class499());
+		field4099 = new class502(0, 1, Long.class, new class501());
+		field4100 = new class502(2, 2, String.class, new class503());
 	}
 
-	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;I)Ljava/lang/Object;",
-		garbageValue = "1270618633"
+		descriptor = "(IILjava/lang/Class;Ltj;)V"
 	)
-	@Export("vmethod8273")
-	public Object vmethod8273(Buffer var1) {
-		return var1.readLong();
+	class502(int var1, int var2, Class var3, class498 var4) {
+		this.field4104 = var1;
+		this.field4103 = var2;
+		this.field4105 = var3;
+		this.field4106 = var4;
 	}
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Long;Lty;I)V",
-		garbageValue = "-338210683"
+		descriptor = "(B)I",
+		garbageValue = "41"
 	)
-	void method2465(Long var1, Buffer var2) {
-		var2.writeLong(var1);
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4103;
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(Ltm;S)Ljava/lang/Object;",
+		garbageValue = "5018"
+	)
+	public Object method2497(Buffer var1) {
+		return this.field4106.vmethod8273(var1);
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(B)[Ltb;",
+		garbageValue = "44"
+	)
+	public static class502[] method2494() {
+		return new class502[]{field4101, field4100, field4099};
+	}
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Class;B)Ltb;",
+		garbageValue = "82"
+	)
+	public static class502 method2495(Class var0) {
+		class502[] var1 = method2494();
+
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			class502 var3 = var1[var2];
+			if (var3.field4105 == var0) {
+				return var3;
+			}
+		}
+
+		return null;
 	}
 }

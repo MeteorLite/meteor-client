@@ -1,33 +1,36 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pl")
-public class class390 extends RuntimeException {
-	public class390(String var1, Object[] var2) {
-		super(String.format(var1, var2));
+@ObfuscatedName("ps")
+public final class class390 {
+	@ObfuscatedName("wq")
+	@ObfuscatedSignature(
+		descriptor = "Lod;"
+	)
+	public static class369 field3656;
+	@ObfuscatedName("au")
+	final Object field3658;
+	@ObfuscatedName("ae")
+	int field3657;
+
+	class390(Object var1, int var2) {
+		this.field3658 = var1;
+		this.field3657 = var2;
 	}
 
-	@ObfuscatedName("ml")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-79"
+		descriptor = "(Lmi;I)I",
+		garbageValue = "-490718469"
 	)
-	static final void method1987() {
-		PacketBufferNode var0 = class503.getPacketBufferNode(ClientPacket.CLOSE_MODAL, Client.packetWriter.isaacCipher);
-		Client.packetWriter.addNode(var0);
-		Interpreter.field699 = true;
-
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) {
-			if (var1.type == 0 || var1.type == 3) {
-				Actor.closeInterface(var1, true);
-			}
+	static int method2030(Widget var0) {
+		if (var0.type != 11) {
+			Interpreter.Interpreter_stringStack[class137.Interpreter_stringStackSize - 1] = "";
+			return 1;
+		} else {
+			String var1 = Interpreter.Interpreter_stringStack[--class137.Interpreter_stringStackSize];
+			Interpreter.Interpreter_stringStack[++class137.Interpreter_stringStackSize - 1] = var0.method1836(var1);
+			return 1;
 		}
-
-		if (Client.meslayerContinueWidget != null) {
-			class200.invalidateWidget(Client.meslayerContinueWidget);
-			Client.meslayerContinueWidget = null;
-		}
-
-		Interpreter.field699 = false;
 	}
 }

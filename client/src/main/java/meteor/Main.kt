@@ -59,6 +59,7 @@ import meteor.plugins.privateserver.PrivateServerConfig
 import meteor.rmi.handshake.HandshakeService
 import meteor.rmi.handshake.HandshakeClient
 import meteor.ui.composables.preferences.uiColor
+import net.runelite.api.packets.ClientPacket
 import net.runelite.client.plugins.gpu.GpuPlugin
 import net.runelite.http.api.chat.ChatClient
 import net.runelite.http.api.xp.XpClient
@@ -102,6 +103,7 @@ object Main : ApplicationScope, EventSubscriber() {
     lateinit var chatMessageManager: ChatMessageManager
     lateinit var chatCommandManager: ChatCommandManager
     lateinit var xpDropManager: XpDropManager
+
     var logger = Logger("Main")
     val eventBus = EventBus
     val httpClient = OkHttpClient()

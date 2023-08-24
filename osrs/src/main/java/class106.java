@@ -1,82 +1,71 @@
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ec")
-final class class106 implements class324 {
-	@ObfuscatedName("gc")
+@ObfuscatedName("ey")
+final class class106 implements class323 {
+	@ObfuscatedName("ae")
+	@Export("javaVersion")
+	public static String javaVersion;
+	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
-		descriptor = "Lny;"
+		descriptor = "Lnk;"
 	)
-	static Archive field1099;
+	static Archive field1107;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lmt;"
+		descriptor = "Lmi;"
 	)
 	@Export("val$cc")
 	@ObfuscatedName("val$cc")
 	final Widget val$cc;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lmt;)V"
+		descriptor = "(Lmi;)V"
 	)
 	class106(Widget var1) {
 		this.val$cc = var1;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-3"
+		garbageValue = "17"
 	)
 	@Export("vmethod5708")
 	public void vmethod5708() {
-		if (this.val$cc != null && this.val$cc.method1808().field2884 != null) {
+		if (this.val$cc != null && this.val$cc.method1847().field2900 != null) {
 			ScriptEvent var1 = new ScriptEvent();
-			var1.method474(this.val$cc);
-			var1.setArgs(this.val$cc.method1808().field2884);
-			ClientPacket.getScriptEvents().addFirst(var1);
+			var1.method479(this.val$cc);
+			var1.setArgs(this.val$cc.method1847().field2900);
+			class30.getScriptEvents().addFirst(var1);
 		}
 
 	}
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "16"
+		descriptor = "(IIIB)I",
+		garbageValue = "-47"
 	)
-	static void method619() {
-		Iterator var0 = Messages.Messages_hashTable.iterator();
-
-		while (var0.hasNext()) {
-			Message var1 = (Message)var0.next();
-			var1.clearIsFromFriend();
+	static final int method617(int var0, int var1, int var2) {
+		if (var2 > 179) {
+			var1 /= 2;
 		}
 
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;I)[F",
-		garbageValue = "1061757144"
-	)
-	static float[] method620(JSONObject var0, String var1) throws JSONException {
-		float[] var2 = new float[4];
-
-		try {
-			JSONArray var3 = var0.getJSONArray(var1);
-			var2[0] = (float)var3.optDouble(0, 0.0D);
-			var2[1] = (float)var3.optDouble(1, 0.0D);
-			var2[2] = (float)var3.optDouble(2, 1.0D);
-			var2[3] = (float)var3.optDouble(3, 1.0D);
-		} catch (JSONException var4) {
-			var2[0] = 0.0F;
-			var2[1] = 0.0F;
-			var2[2] = 1.0F;
-			var2[3] = 1.0F;
+		if (var2 > 192) {
+			var1 /= 2;
 		}
 
-		return var2;
+		if (var2 > 217) {
+			var1 /= 2;
+		}
+
+		if (var2 > 243) {
+			var1 /= 2;
+		}
+
+		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
+		return var3;
 	}
 }

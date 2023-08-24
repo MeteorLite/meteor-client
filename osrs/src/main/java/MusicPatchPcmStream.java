@@ -3,30 +3,39 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mm")
+@ObfuscatedName("mh")
 @Implements("MusicPatchPcmStream")
 public class MusicPatchPcmStream extends PcmStream {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("cq")
+	@Export("param9")
+	static String param9;
+	@ObfuscatedName("da")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "[Luk;"
+	)
+	@Export("worldSelectArrows")
+	static IndexedSprite[] worldSelectArrows;
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Llf;"
 	)
 	@Export("superStream")
 	MidiPcmStream superStream;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lod;"
+		descriptor = "Low;"
 	)
 	@Export("queue")
 	NodeDeque queue;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lbe;"
+		descriptor = "Lbl;"
 	)
 	@Export("mixer")
 	PcmStreamMixer mixer;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llc;)V"
+		descriptor = "(Llf;)V"
 	)
 	MusicPatchPcmStream(MidiPcmStream var1) {
 		this.queue = new NodeDeque();
@@ -34,26 +43,26 @@ public class MusicPatchPcmStream extends PcmStream {
 		this.superStream = var1;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lmw;[IIIIB)V",
-		garbageValue = "106"
+		descriptor = "(Lmg;[IIIII)V",
+		garbageValue = "-1470888543"
 	)
-	void method1654(MusicPatchNode var1, int[] var2, int var3, int var4, int var5) {
-		if ((this.superStream.field2780[var1.field2843] & 4) != 0 && var1.field2829 < 0) {
-			int var6 = this.superStream.field2775[var1.field2843] / PcmPlayer.field181;
+	void method1693(MusicPatchNode var1, int[] var2, int var3, int var4, int var5) {
+		if ((this.superStream.field2790[var1.field2854] & 4) != 0 && var1.field2853 < 0) {
+			int var6 = this.superStream.field2798[var1.field2854] / PcmPlayer.field181;
 
 			while (true) {
-				int var7 = (var6 + 1048575 - var1.field2835) / var6;
+				int var7 = (var6 + 1048575 - var1.field2855) / var6;
 				if (var7 > var4) {
-					var1.field2835 += var6 * var4;
+					var1.field2855 += var6 * var4;
 					break;
 				}
 
 				var1.stream.fill(var2, var3, var7);
 				var3 += var7;
 				var4 -= var7;
-				var1.field2835 += var7 * var6 - 1048576;
+				var1.field2855 += var7 * var6 - 1048576;
 				int var8 = PcmPlayer.field181 / 100;
 				int var9 = 262144 / var6;
 				if (var9 < var8) {
@@ -61,21 +70,21 @@ public class MusicPatchPcmStream extends PcmStream {
 				}
 
 				RawPcmStream var10 = var1.stream;
-				if (this.superStream.field2779[var1.field2843] == 0) {
-					var1.stream = RawPcmStream.method240(var1.rawSound, var10.method255(), var10.method246(), var10.method247());
+				if (this.superStream.field2792[var1.field2854] == 0) {
+					var1.stream = RawPcmStream.method235(var1.rawSound, var10.method250(), var10.method241(), var10.method242());
 				} else {
-					var1.stream = RawPcmStream.method240(var1.rawSound, var10.method255(), 0, var10.method247());
-					this.superStream.method1601(var1, var1.table.field2818[var1.field2834] < 0);
-					var1.stream.method251(var8, var10.method246());
+					var1.stream = RawPcmStream.method235(var1.rawSound, var10.method250(), 0, var10.method242());
+					this.superStream.method1642(var1, var1.table.field2830[var1.field2847] < 0);
+					var1.stream.method246(var8, var10.method241());
 				}
 
-				if (var1.table.field2818[var1.field2834] < 0) {
+				if (var1.table.field2830[var1.field2847] < 0) {
 					var1.stream.setNumLoops(-1);
 				}
 
-				var10.method253(var8);
+				var10.method248(var8);
 				var10.fill(var2, var3, var5 - var3);
-				if (var10.method257()) {
+				if (var10.method252()) {
 					this.mixer.addSubStream(var10);
 				}
 			}
@@ -84,38 +93,38 @@ public class MusicPatchPcmStream extends PcmStream {
 		var1.stream.fill(var2, var3, var4);
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lmw;IB)V",
-		garbageValue = "1"
+		descriptor = "(Lmg;II)V",
+		garbageValue = "-2042371851"
 	)
-	void method1655(MusicPatchNode var1, int var2) {
-		if ((this.superStream.field2780[var1.field2843] & 4) != 0 && var1.field2829 < 0) {
-			int var3 = this.superStream.field2775[var1.field2843] / PcmPlayer.field181;
-			int var4 = (var3 + 1048575 - var1.field2835) / var3;
-			var1.field2835 = var3 * var2 + var1.field2835 & 1048575;
+	void method1694(MusicPatchNode var1, int var2) {
+		if ((this.superStream.field2790[var1.field2854] & 4) != 0 && var1.field2853 < 0) {
+			int var3 = this.superStream.field2798[var1.field2854] / PcmPlayer.field181;
+			int var4 = (var3 + 1048575 - var1.field2855) / var3;
+			var1.field2855 = var3 * var2 + var1.field2855 & 1048575;
 			if (var4 <= var2) {
-				if (this.superStream.field2779[var1.field2843] == 0) {
-					var1.stream = RawPcmStream.method240(var1.rawSound, var1.stream.method255(), var1.stream.method246(), var1.stream.method247());
+				if (this.superStream.field2792[var1.field2854] == 0) {
+					var1.stream = RawPcmStream.method235(var1.rawSound, var1.stream.method250(), var1.stream.method241(), var1.stream.method242());
 				} else {
-					var1.stream = RawPcmStream.method240(var1.rawSound, var1.stream.method255(), 0, var1.stream.method247());
-					this.superStream.method1601(var1, var1.table.field2818[var1.field2834] < 0);
+					var1.stream = RawPcmStream.method235(var1.rawSound, var1.stream.method250(), 0, var1.stream.method242());
+					this.superStream.method1642(var1, var1.table.field2830[var1.field2847] < 0);
 				}
 
-				if (var1.table.field2818[var1.field2834] < 0) {
+				if (var1.table.field2830[var1.field2847] < 0) {
 					var1.stream.setNumLoops(-1);
 				}
 
-				var2 = var1.field2835 / var3;
+				var2 = var1.field2855 / var3;
 			}
 		}
 
 		var1.stream.skip(var2);
 	}
 
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "()Lby;"
+		descriptor = "()Lbw;"
 	)
 	@Export("firstSubStream")
 	protected PcmStream firstSubStream() {
@@ -127,9 +136,9 @@ public class MusicPatchPcmStream extends PcmStream {
 		}
 	}
 
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "()Lby;"
+		descriptor = "()Lbw;"
 	)
 	@Export("nextSubStream")
 	protected PcmStream nextSubStream() {
@@ -144,106 +153,68 @@ public class MusicPatchPcmStream extends PcmStream {
 		return var1.stream;
 	}
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@Export("vmethod5648")
 	protected int vmethod5648() {
 		return 0;
 	}
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("aa")
 	@Export("fill")
 	protected void fill(int[] var1, int var2, int var3) {
 		this.mixer.fill(var1, var2, var3);
 
 		for (MusicPatchNode var6 = (MusicPatchNode)this.queue.last(); var6 != null; var6 = (MusicPatchNode)this.queue.previous()) {
-			if (!this.superStream.method1623(var6)) {
+			if (!this.superStream.method1665(var6)) {
 				int var4 = var2;
 				int var5 = var3;
 
 				do {
-					if (var5 <= var6.field2836) {
-						this.method1654(var6, var1, var4, var5, var4 + var5);
-						var6.field2836 -= var5;
+					if (var5 <= var6.field2846) {
+						this.method1693(var6, var1, var4, var5, var5 + var4);
+						var6.field2846 -= var5;
 						break;
 					}
 
-					this.method1654(var6, var1, var4, var6.field2836, var5 + var4);
-					var4 += var6.field2836;
-					var5 -= var6.field2836;
-				} while(!this.superStream.method1624(var6, var1, var4, var5));
+					this.method1693(var6, var1, var4, var6.field2846, var4 + var5);
+					var4 += var6.field2846;
+					var5 -= var6.field2846;
+				} while(!this.superStream.method1666(var6, var1, var4, var5));
 			}
 		}
 
 	}
 
-	@ObfuscatedName("aq")
+	@ObfuscatedName("ad")
 	@Export("skip")
 	protected void skip(int var1) {
 		this.mixer.skip(var1);
 
 		for (MusicPatchNode var3 = (MusicPatchNode)this.queue.last(); var3 != null; var3 = (MusicPatchNode)this.queue.previous()) {
-			if (!this.superStream.method1623(var3)) {
+			if (!this.superStream.method1665(var3)) {
 				int var2 = var1;
 
 				do {
-					if (var2 <= var3.field2836) {
-						this.method1655(var3, var2);
-						var3.field2836 -= var2;
+					if (var2 <= var3.field2846) {
+						this.method1694(var3, var2);
+						var3.field2846 -= var2;
 						break;
 					}
 
-					this.method1655(var3, var3.field2836);
-					var2 -= var3.field2836;
-				} while(!this.superStream.method1624(var3, (int[])null, 0, var2));
+					this.method1694(var3, var3.field2846);
+					var2 -= var3.field2846;
+				} while(!this.superStream.method1666(var3, (int[])null, 0, var2));
 			}
 		}
 
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;S)Ljava/lang/String;",
-		garbageValue = "-15982"
+		descriptor = "(S)I",
+		garbageValue = "8192"
 	)
-	public static String method1652(CharSequence var0) {
-		long var3 = 0L;
-		int var5 = var0.length();
-
-		for (int var6 = 0; var6 < var5; ++var6) {
-			var3 *= 37L;
-			char var7 = var0.charAt(var6);
-			if (var7 >= 'A' && var7 <= 'Z') {
-				var3 += (long)(var7 + 1 - 65);
-			} else if (var7 >= 'a' && var7 <= 'z') {
-				var3 += (long)(var7 + 1 - 97);
-			} else if (var7 >= '0' && var7 <= '9') {
-				var3 += (long)(var7 + 27 - 48);
-			}
-
-			if (var3 >= 177917621779460413L) {
-				break;
-			}
-		}
-
-		while (0L == var3 % 37L && var3 != 0L) {
-			var3 /= 37L;
-		}
-
-		String var8 = class170.base37DecodeLong(var3);
-		if (var8 == null) {
-			var8 = "";
-		}
-
-		return var8;
-	}
-
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ljava/lang/String;",
-		garbageValue = "-1653228105"
-	)
-	@Export("colorStartTag")
-	static String colorStartTag(int var0) {
-		return "<col=" + Integer.toHexString(var0) + ">";
+	public static int method1690() {
+		return ++MouseHandler.MouseHandler_idleCycles - 1;
 	}
 }

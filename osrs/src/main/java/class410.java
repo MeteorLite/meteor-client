@@ -1,71 +1,30 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("py")
+@ObfuscatedName("ph")
 public class class410 {
-	@ObfuscatedName("aw")
-	@Export("writeRandomDat")
-	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		if (var2 == var0) {
-			if (var3 == var1) {
-				return;
-			}
+	@ObfuscatedName("ax")
+	@Export("ByteArrayPool_arrays")
+	static byte[][][] ByteArrayPool_arrays;
+	@ObfuscatedName("au")
+	int field3733;
+	@ObfuscatedName("ae")
+	int field3730;
+	@ObfuscatedName("ao")
+	int field3731;
+	@ObfuscatedName("at")
+	int field3732;
 
-			if (var3 > var1 && var3 < var4 + var1) {
-				--var4;
-				var1 += var4;
-				var3 += var4;
-				var4 = var1 - var4;
-
-				for (var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) {
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-				}
-
-				for (var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) {
-				}
-
-				return;
-			}
-		}
-
-		var4 += var1;
-
-		for (var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) {
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-		}
-
-		for (var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) {
-		}
-
-	}
-
-	@ObfuscatedName("ap")
-	@Export("clearIntArray")
-	public static void clearIntArray(int[] var0, int var1, int var2) {
-		for (var2 = var2 + var1 - 7; var1 < var2; var0[var1++] = 0) {
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-		}
-
-		for (var2 += 7; var1 < var2; var0[var1++] = 0) {
-		}
-
+	@Export("toString")
+	@ObfuscatedName("toString")
+	public String toString() {
+		boolean var1 = true;
+		int var2 = 10 - Integer.toString(this.field3733).length();
+		int var3 = 10 - Integer.toString(this.field3731).length();
+		int var4 = 10 - Integer.toString(this.field3730).length();
+		String var5 = "          ".substring(10 - var2);
+		String var6 = "          ".substring(10 - var3);
+		String var7 = "          ".substring(10 - var4);
+		return "    Size: " + this.field3733 + var5 + "Created: " + this.field3730 + var7 + "Total used: " + this.field3731 + var6 + "Max-In-Use: " + this.field3732;
 	}
 }

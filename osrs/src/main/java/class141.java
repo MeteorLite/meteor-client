@@ -2,111 +2,74 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fd")
+@ObfuscatedName("fp")
 public class class141 extends class143 {
-	@ObfuscatedName("aw")
-	long field1321;
-	@ObfuscatedName("ay")
-	String field1320;
+	@ObfuscatedName("fc")
+	@ObfuscatedSignature(
+		descriptor = "Lnk;"
+	)
+	@Export("archive10")
+	static Archive archive10;
+	@ObfuscatedName("au")
+	long field1335;
+	@ObfuscatedName("ae")
+	String field1334;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lfr;"
+		descriptor = "Lfn;"
 	)
-	@Export("this$0")
-	@ObfuscatedName("this$0")
 	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfr;)V"
+		descriptor = "(Lfn;)V"
 	)
 	class141(class146 var1) {
 		this.this$0 = var1;
-		this.field1321 = -1L;
-		this.field1320 = null;
+		this.field1335 = -1L;
+		this.field1334 = null;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;B)V",
-		garbageValue = "1"
+		descriptor = "(Ltm;I)V",
+		garbageValue = "209179459"
 	)
 	@Export("vmethod3254")
 	void vmethod3254(Buffer var1) {
 		if (var1.readUnsignedByte() != 255) {
 			--var1.offset;
-			this.field1321 = var1.readLong();
+			this.field1335 = var1.readLong();
 		}
 
-		this.field1320 = var1.readStringCp1252NullTerminatedOrNull();
+		this.field1334 = var1.readStringCp1252NullTerminatedOrNull();
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lfx;B)V",
-		garbageValue = "-72"
+		descriptor = "(Lfi;B)V",
+		garbageValue = "73"
 	)
 	@Export("vmethod3248")
 	void vmethod3248(ClanSettings var1) {
-		var1.method808(this.field1321, this.field1320, 0);
+		var1.method812(this.field1335, this.field1334, 0);
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;Lsa;B)Lsa;",
-		garbageValue = "-36"
+		descriptor = "(IIIB)I",
+		garbageValue = "49"
 	)
-	@Export("readStringIntParameters")
-	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
-		int var2 = var0.readUnsignedByte();
-		int var3;
-		if (var1 == null) {
-			var3 = UrlRequest.method657(var2);
-			var1 = new IterableNodeHashTable(var3);
-		}
-
-		for (var3 = 0; var3 < var2; ++var3) {
-			boolean var4 = var0.readUnsignedByte() == 1;
-			int var5 = var0.readMedium();
-			Object var6;
-			if (var4) {
-				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
-			} else {
-				var6 = new IntegerNode(var0.readInt());
-			}
-
-			var1.put((Node)var6, (long)var5);
-		}
-
-		return var1;
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "(Ltc;I)I",
-		garbageValue = "-1334865028"
-	)
-	static int method753(PacketBuffer var0) {
-		int var1 = var0.readBits(2);
-		int var2;
-		if (var1 == 0) {
-			var2 = 0;
-		} else if (var1 == 1) {
-			var2 = var0.readBits(5);
-		} else if (var1 == 2) {
-			var2 = var0.readBits(8);
-		} else {
-			var2 = var0.readBits(11);
-		}
-
-		return var2;
-	}
-
-	@ObfuscatedName("je")
-	@ObfuscatedSignature(
-		descriptor = "(Ldx;II)V",
-		garbageValue = "-1017792324"
-	)
-	static final void method754(Actor var0, int var1) {
-		ReflectionCheck.worldToScreen(var0.x, var0.y, var1);
+	static final int method765(int var0, int var1, int var2) {
+		int var3 = var0 / var2;
+		int var4 = var0 & var2 - 1;
+		int var5 = var1 / var2;
+		int var6 = var1 & var2 - 1;
+		int var7 = class312.method1685(var3, var5);
+		int var8 = class312.method1685(var3 + 1, var5);
+		int var9 = class312.method1685(var3, var5 + 1);
+		int var10 = class312.method1685(var3 + 1, var5 + 1);
+		int var11 = class19.method61(var7, var8, var4, var2);
+		int var12 = class19.method61(var9, var10, var4, var2);
+		return class19.method61(var11, var12, var6, var2);
 	}
 }

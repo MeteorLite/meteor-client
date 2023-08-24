@@ -34,7 +34,7 @@ byte readByteNeg();
 
 @Import("readUnsignedByteSub")
 @Override
-byte readUnsignedByteSub$api();
+int readUnsignedByteSub$api();
 
 @Import("readUnsignedByte")
 @Override

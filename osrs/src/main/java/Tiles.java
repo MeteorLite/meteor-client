@@ -3,79 +3,103 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dj")
+@ObfuscatedName("du")
 @Implements("Tiles")
 public final class Tiles {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("Tiles_heights")
 	static int[][][] Tiles_heights;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@Export("Tiles_renderFlags")
 	static byte[][][] Tiles_renderFlags;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("Tiles_minPlane")
 	static int Tiles_minPlane;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("Tiles_underlays")
 	static short[][][] Tiles_underlays;
-	@ObfuscatedName("as")
-	@Export("Tiles_overlays")
-	static short[][][] Tiles_overlays;
-	@ObfuscatedName("at")
+	@ObfuscatedName("aq")
 	@Export("Tiles_lightness")
 	static int[] Tiles_lightness;
-	@ObfuscatedName("ad")
-	static final int[] field840;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ax")
 	static final int[] field844;
-	@ObfuscatedName("ac")
-	static final int[] field839;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ah")
+	static final int[] field840;
+	@ObfuscatedName("as")
 	static final int[] field842;
-	@ObfuscatedName("an")
-	static final int[] field843;
-	@ObfuscatedName("af")
+	@ObfuscatedName("ay")
+	static final int[] field845;
+	@ObfuscatedName("aj")
 	static final int[] field841;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("av")
+	static final int[] field843;
+	@ObfuscatedName("aw")
 	@Export("rndHue")
 	static int rndHue;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ak")
 	@Export("rndLightness")
 	static int rndLightness;
+	@ObfuscatedName("fi")
+	@ObfuscatedSignature(
+		descriptor = "Lnk;"
+	)
+	static Archive field838;
+	@ObfuscatedName("jc")
+	@Export("timeOfPreviousKeyPress")
+	static int timeOfPreviousKeyPress;
 
 	static {
 		Tiles_heights = new int[4][105][105];
 		Tiles_renderFlags = new byte[4][104][104];
 		Tiles_minPlane = 99;
-		field840 = new int[]{1, 2, 4, 8};
-		field844 = new int[]{16, 32, 64, 128};
-		field839 = new int[]{1, 0, -1, 0};
-		field842 = new int[]{0, -1, 0, 1};
-		field843 = new int[]{1, -1, -1, 1};
-		field841 = new int[]{-1, -1, 1, 1};
+		field844 = new int[]{1, 2, 4, 8};
+		field840 = new int[]{16, 32, 64, 128};
+		field842 = new int[]{1, 0, -1, 0};
+		field845 = new int[]{0, -1, 0, 1};
+		field841 = new int[]{1, -1, -1, 1};
+		field843 = new int[]{-1, -1, 1, 1};
 		rndHue = (int)(Math.random() * 17.0D) - 8;
 		rndLightness = (int)(Math.random() * 33.0D) - 16;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lnr;",
-		garbageValue = "57"
+		descriptor = "(B)[Lhy;",
+		garbageValue = "1"
 	)
-	public static class353[] method459() {
-		return new class353[]{class353.field3468, class353.field3470, class353.field3467, class353.field3469};
+	static VerticalAlignment[] method457() {
+		return new VerticalAlignment[]{VerticalAlignment.VerticalAlignment_centered, VerticalAlignment.field1634, VerticalAlignment.field1633};
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "([BIIIIIIILiz;[Lij;)V"
+		descriptor = "(IIIII)I",
+		garbageValue = "-360252292"
 	)
-	static final void method460(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap[] var9) {
+	static final int method456(int var0, int var1, int var2, int var3) {
+		return var0 * var2 - var3 * var1 >> 16;
+	}
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(Lnu;III)Lui;",
+		garbageValue = "1499324687"
+	)
+	@Export("SpriteBuffer_getSprite")
+	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+		return !ApproximateRouteStrategy.method345(var0, var1, var2) ? null : UserComparator6.method693();
+	}
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "([BIIIIIIILiv;[Lis;)V"
+	)
+	static final void method459(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap[] var9) {
 		Buffer var10 = new Buffer(var0);
 		int var11 = -1;
 
 		while (true) {
-			int var12 = var10.method2541();
+			int var12 = var10.method2561();
 			if (var12 == 0) {
 				return;
 			}
@@ -97,24 +121,111 @@ public final class Tiles {
 				int var19 = var18 >> 2;
 				int var20 = var18 & 3;
 				if (var17 == var4 && var16 >= var5 && var16 < var5 + 8 && var15 >= var6 && var15 < var6 + 8) {
-					ObjectComposition var21 = class90.getObjectDefinition(var11);
-					int var22 = var2 + GameObject.method1358(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20);
-					int var23 = var3 + World.method392(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20);
-					if (var22 > 0 && var23 > 0 && var22 < 103 && var23 < 103) {
-						int var24 = var1;
-						if ((Tiles_renderFlags[1][var22][var23] & 2) == 2) {
-							var24 = var1 - 1;
+					ObjectComposition var21 = WorldMapElement.getObjectDefinition(var11);
+					int var24 = var16 & 7;
+					int var25 = var15 & 7;
+					int var27 = var21.sizeX;
+					int var28 = var21.sizeY;
+					int var29;
+					if ((var20 & 1) == 1) {
+						var29 = var27;
+						var27 = var28;
+						var28 = var29;
+					}
+
+					int var26 = var7 & 3;
+					int var23;
+					if (var26 == 0) {
+						var23 = var24;
+					} else if (var26 == 1) {
+						var23 = var25;
+					} else if (var26 == 2) {
+						var23 = 7 - var24 - (var27 - 1);
+					} else {
+						var23 = 7 - var25 - (var28 - 1);
+					}
+
+					var29 = var2 + var23;
+					int var30 = var3 + InterfaceParent.method473(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20);
+					if (var29 > 0 && var30 > 0 && var29 < 103 && var30 < 103) {
+						int var31 = var1;
+						if ((Tiles_renderFlags[1][var29][var30] & 2) == 2) {
+							var31 = var1 - 1;
 						}
 
-						CollisionMap var25 = null;
-						if (var24 >= 0) {
-							var25 = var9[var24];
+						CollisionMap var32 = null;
+						if (var31 >= 0) {
+							var32 = var9[var31];
 						}
 
-						PendingSpawn.addObjects(var1, var22, var23, var11, var20 + var7 & 3, var19, var8, var25);
+						class128.addObjects(var1, var29, var30, var11, var20 + var7 & 3, var19, var8, var32);
 					}
 				}
 			}
 		}
+	}
+
+	@ObfuscatedName("be")
+	@ObfuscatedSignature(
+		descriptor = "(Lmi;III)V",
+		garbageValue = "2062613871"
+	)
+	public static void method460(Widget var0, int var1, int var2) {
+		var0.field3101.bodyColors[var1] = var2;
+		var0.field3101.method1729();
+	}
+
+	@ObfuscatedName("hx")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "645111513"
+	)
+	static final void method461() {
+		Renderable.method1290();
+		FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear();
+		class153.method802();
+		UserComparator9.method685();
+		NPCComposition.NpcDefinition_cached.clear();
+		NPCComposition.NpcDefinition_cachedModels.clear();
+		ItemComposition.ItemDefinition_cached.clear();
+		ItemComposition.ItemDefinition_cachedModels.clear();
+		ItemComposition.ItemDefinition_cachedSprites.clear();
+		SequenceDefinition.SequenceDefinition_cached.clear();
+		SequenceDefinition.SequenceDefinition_cachedFrames.clear();
+		SequenceDefinition.SequenceDefinition_cachedModel.clear();
+		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
+		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
+		VarbitComposition.VarbitDefinition_cached.clear();
+		VarpDefinition.VarpDefinition_cached.clear();
+		class47.HitSplatDefinition_cachedSprites.method2483();
+		SwapSongTask.HitSplatDefinition_cached.method2483();
+		class394.method2053();
+		HealthBarDefinition.HealthBarDefinition_cached.clear();
+		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
+		StructComposition.StructDefinition_cached.clear();
+		class126.method700();
+		WorldMapElement.WorldMapElement_cachedSprites.clear();
+		class219.method1150();
+		class19.method60();
+		Client.Widget_cachedModels.clear();
+		Client.Widget_cachedFonts.clear();
+		PlayerComposition.PlayerAppearance_cachedModels.clear();
+		class261.method1501();
+		((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).clear();
+		Script.Script_cached.clear();
+		Client.archive5.method2184();
+		AttackOption.field1096.clearFiles();
+		class318.archive7.clearFiles();
+		ObjectSound.archive4.clearFiles();
+		class28.field81.clearFiles();
+		class499.archive9.clearFiles();
+		class385.archive6.clearFiles();
+		Message.archive11.clearFiles();
+		PcmPlayer.archive8.clearFiles();
+		class147.field1348.clearFiles();
+		class141.archive10.clearFiles();
+		class388.field3655.clearFiles();
+		GrandExchangeOffer.archive12.clearFiles();
+		class343.field3148.clearFiles();
 	}
 }

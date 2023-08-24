@@ -2,48 +2,68 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ib")
-public class class219 {
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "[Liq;"
-	)
-	public static class217[] field1905;
+import java.util.Comparator;
 
-	@ObfuscatedName("ay")
+@ObfuscatedName("it")
+public class class219 implements Comparator {
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lht;",
-		garbageValue = "-74"
+		descriptor = "Luk;"
 	)
-	@Export("StructDefinition_getStructDefinition")
-	public static StructComposition StructDefinition_getStructDefinition(int var0) {
-		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	@Export("titlebuttonSprite")
+	static IndexedSprite titlebuttonSprite;
+	@ObfuscatedName("bw")
+	@Export("client")
+	@ObfuscatedSignature(
+		descriptor = "Lclient;"
+	)
+	static Client client;
+
+	class219() {
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(Lio;Lio;I)I",
+		garbageValue = "-975759787"
+	)
+	int method1148(class214 var1, class214 var2) {
+		return var1.method1123() - var2.method1123();
+	}
+
+	@Export("compare")
+	@ObfuscatedName("compare")
+	public int compare(Object var1, Object var2) {
+		return this.method1148((class214)var1, (class214)var2);
+	}
+
+	@Export("equals")
+	@ObfuscatedName("equals")
+	public boolean equals(Object var1) {
+		return super.equals(var1);
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(Lnu;Ljava/lang/String;Ljava/lang/String;B)[Luk;",
+		garbageValue = "-64"
+	)
+	public static IndexedSprite[] method1149(AbstractArchive var0, String var1, String var2) {
+		if (!var0.isValidFileName(var1, var2)) {
+			return null;
 		} else {
-			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0);
-			var1 = new StructComposition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode();
-			StructComposition.StructDefinition_cached.put(var1, (long)var0);
-			return var1;
+			int var3 = var0.getGroupId(var1);
+			int var4 = var0.getFileId(var3, var2);
+			return class28.method110(var0, var3, var4);
 		}
 	}
 
-	@ObfuscatedName("by")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(ILdc;ZB)I",
-		garbageValue = "61"
+		descriptor = "(B)V",
+		garbageValue = "-38"
 	)
-	static int method1124(int var0, Script var1, boolean var2) {
-		if (var0 == 7108) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = AttackOption.method611() ? 1 : 0;
-			return 1;
-		} else {
-			return 2;
-		}
+	public static void method1150() {
+		DbTableType.DBTableType_cache.clear();
 	}
 }

@@ -1,35 +1,36 @@
-import java.io.IOException;
-import java.io.OutputStream;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rh")
+import java.io.IOException;
+import java.io.OutputStream;
+
+@ObfuscatedName("qh")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@Export("position")
 	int position;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@Export("closed")
 	boolean closed;
 
@@ -44,10 +45,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1093105883"
+		descriptor = "(S)Z",
+		garbageValue = "8226"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -69,10 +70,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "([BIII)V",
-		garbageValue = "-1711047468"
+		descriptor = "([BIIB)V",
+		garbageValue = "37"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -109,10 +110,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2122797894"
+		garbageValue = "-210183735"
 	)
 	@Export("close")
 	void close() {
@@ -188,25 +189,5 @@ public class BufferedSink implements Runnable {
 			}
 		} while(!this.isClosed());
 
-	}
-
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "8211"
-	)
-	public static void method2247() {
-		while (true) {
-			ArchiveDiskAction var0;
-			synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-				var0 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_responseQueue.removeLast();
-			}
-
-			if (var0 == null) {
-				return;
-			}
-
-			var0.archive.load(var0.archiveDisk, (int)var0.key, var0.data, false);
-		}
 	}
 }

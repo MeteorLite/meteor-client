@@ -1,37 +1,35 @@
-import java.io.DataInputStream;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gv")
+import java.io.DataInputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.URL;
+
+@ObfuscatedName("gh")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("ay")
-	@Export("javaVersion")
-	public static String javaVersion;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lgu;"
+		descriptor = "Lgz;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lgu;"
+		descriptor = "Lgz;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -40,11 +38,11 @@ public class TaskHandler implements Runnable {
 		this.task = null;
 		this.isClosed = false;
 		javaVendor = "Unknown";
-		javaVersion = "1.6";
+		class106.javaVersion = "1.6";
 
 		try {
 			javaVendor = System.getProperty("java.vendor");
-			javaVersion = System.getProperty("java.version");
+			class106.javaVersion = System.getProperty("java.version");
 		} catch (Exception var2) {
 		}
 
@@ -55,10 +53,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-226500506"
+		garbageValue = "629286454"
 	)
 	@Export("close")
 	public final void close() {
@@ -74,10 +72,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;I)Lgu;",
-		garbageValue = "1529565884"
+		descriptor = "(IIILjava/lang/Object;B)Lgz;",
+		garbageValue = "-15"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -98,20 +96,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)Lgu;",
-		garbageValue = "-907549820"
+		descriptor = "(Ljava/lang/String;II)Lgz;",
+		garbageValue = "1426154941"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lgu;",
-		garbageValue = "2145317836"
+		descriptor = "(Ljava/lang/Runnable;II)Lgz;",
+		garbageValue = "1501831193"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -166,63 +164,5 @@ public class TaskHandler implements Runnable {
 				var1.status = 2;
 			}
 		}
-	}
-
-	@ObfuscatedName("bk")
-	@ObfuscatedSignature(
-		descriptor = "(Lmt;III)V",
-		garbageValue = "-302173760"
-	)
-	public static void method898(Widget var0, int var1, int var2) {
-		PlayerComposition var3 = var0.field3081;
-		boolean var4 = var2 != var3.field2900;
-		var3.field2900 = var2;
-		if (var4) {
-			int var5;
-			int var10;
-			if (var3.field2900 == var1) {
-				for (var5 = 0; var5 < PlayerComposition.equipmentIndices.length; ++var5) {
-					var10 = PlayerComposition.equipmentIndices[var5];
-					if (var3.equipment[var10] > 0 && var3.equipment[var10] < 512) {
-						var3.equipment[var10] = var3.field2894[var10];
-					}
-				}
-			} else {
-				label84: {
-					if (var3.equipment[0] >= 512) {
-						boolean var11;
-						if (var3.equipment[0] < 512) {
-							var11 = false;
-						} else {
-							ItemComposition var6 = class125.ItemDefinition_get(var3.equipment[0] - 512);
-							var11 = var6.maleModel1 != class210.field1837.field1848 && var6.maleModel2 != class210.field1837.field1848;
-						}
-
-						if (!var11) {
-							break label84;
-						}
-					}
-
-					var3.equipment[class210.field1837.field1848] = 1;
-				}
-
-				for (var5 = 0; var5 < 7; ++var5) {
-					var10 = PlayerComposition.equipmentIndices[var5];
-					if (var3.equipment[var10] > 0 && var3.equipment[var10] < 512) {
-						int[] var7 = var3.equipment;
-
-						for (int var8 = 0; var8 < KitDefinition.KitDefinition_fileCount; ++var8) {
-							KitDefinition var9 = class132.KitDefinition_get(var8);
-							if (var9 != null && !var9.nonSelectable && (var2 == 1 ? 7 : 0) + var5 == var9.bodypartID) {
-								var7[PlayerComposition.equipmentIndices[var5]] = var8 + 256;
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		var3.method1690();
 	}
 }

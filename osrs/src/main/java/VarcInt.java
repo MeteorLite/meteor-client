@@ -3,22 +3,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("he")
+import java.util.List;
+
+@ObfuscatedName("hk")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("wz")
+	static List field1532;
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
+		descriptor = "Lnu;"
 	)
 	@Export("VarcInt_archive")
 	public static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lld;"
+		descriptor = "Lle;"
 	)
 	@Export("VarcInt_cached")
 	static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("dy")
+	@ObfuscatedSignature(
+		descriptor = "Luk;"
+	)
+	static IndexedSprite field1534;
+	@ObfuscatedName("if")
+	@ObfuscatedSignature(
+		descriptor = "Lgz;"
+	)
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("ao")
 	@Export("persist")
 	public boolean persist;
 
@@ -30,61 +45,41 @@ public class VarcInt extends DualNode {
 		this.persist = false;
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;I)V",
-		garbageValue = "1325526126"
+		descriptor = "(Ltm;I)V",
+		garbageValue = "-2131192855"
 	)
-	void method940(Buffer var1) {
+	void method954(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
 				return;
 			}
 
-			this.method941(var1, var2);
+			this.method955(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;IB)V",
-		garbageValue = "109"
+		descriptor = "(Ltm;IB)V",
+		garbageValue = "-12"
 	)
-	void method941(Buffer var1, int var2) {
+	void method955(Buffer var1, int var2) {
 		if (var2 == 2) {
 			this.persist = true;
 		}
 
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "(ILdc;ZI)I",
-		garbageValue = "1683320936"
+		descriptor = "(I)Lch;",
+		garbageValue = "-580226644"
 	)
-	static int method942(int var0, Script var1, boolean var2) {
-		Widget var3 = VarbitComposition.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-		if (var0 == 2500) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.x;
-			return 1;
-		} else if (var0 == 2501) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.y;
-			return 1;
-		} else if (var0 == 2502) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.width;
-			return 1;
-		} else if (var0 == 2503) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.height;
-			return 1;
-		} else if (var0 == 2504) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
-			return 1;
-		} else if (var0 == 2505) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.parentId;
-			return 1;
-		} else {
-			return 2;
-		}
+	@Export("getNextWorldListWorld")
+	static World getNextWorldListWorld() {
+		return World.World_listCount < World.World_count ? class176.World_worlds[++World.World_listCount - 1] : null;
 	}
 }

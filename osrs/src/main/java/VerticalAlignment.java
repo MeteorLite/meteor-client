@@ -3,38 +3,41 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hl")
+@ObfuscatedName("hy")
 @Implements("VerticalAlignment")
-public enum VerticalAlignment implements class372 {
-	@ObfuscatedName("aw")
+public enum VerticalAlignment implements class371 {
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lhl;"
+		descriptor = "Lhy;"
 	)
-	field1616(0, 0),
-	@ObfuscatedName("ay")
+	field1634(1, 0),
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lhl;"
+		descriptor = "Lhy;"
 	)
 	@Export("VerticalAlignment_centered")
-	VerticalAlignment_centered(2, 1),
-	@ObfuscatedName("ar")
+	VerticalAlignment_centered(0, 1),
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lhl;"
+		descriptor = "Lhy;"
 	)
-	field1615(1, 2);
+	field1633(2, 2);
 
-	@ObfuscatedName("wk")
-	static long field1614;
-	@ObfuscatedName("ty")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lbk;"
+		descriptor = "Luk;"
 	)
-	@Export("pcmPlayer1")
-	static PcmPlayer pcmPlayer1;
-	@ObfuscatedName("am")
+	static IndexedSprite field1631;
+	@ObfuscatedName("td")
+	@ObfuscatedSignature(
+		descriptor = "Lgo;"
+	)
+	@Export("guestClanChannel")
+	static ClanChannel guestClanChannel;
+	@ObfuscatedName("at")
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@Export("id")
 	final int id;
 
@@ -43,13 +46,50 @@ public enum VerticalAlignment implements class372 {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1644350448"
+		descriptor = "(B)I",
+		garbageValue = "41"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
+	}
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "([Ljava/lang/String;[IIII)V",
+		garbageValue = "807517970"
+	)
+	public static void method998(String[] var0, int[] var1, int var2, int var3) {
+		if (var2 < var3) {
+			int var4 = (var3 + var2) / 2;
+			int var5 = var2;
+			String var6 = var0[var4];
+			var0[var4] = var0[var3];
+			var0[var3] = var6;
+			int var7 = var1[var4];
+			var1[var4] = var1[var3];
+			var1[var3] = var7;
+
+			for (int var8 = var2; var8 < var3; ++var8) {
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
+					String var9 = var0[var8];
+					var0[var8] = var0[var5];
+					var0[var5] = var9;
+					int var10 = var1[var8];
+					var1[var8] = var1[var5];
+					var1[var5++] = var10;
+				}
+			}
+
+			var0[var3] = var0[var5];
+			var0[var5] = var6;
+			var1[var3] = var1[var5];
+			var1[var5] = var7;
+			method998(var0, var1, var2, var5 - 1);
+			method998(var0, var1, var5 + 1, var3);
+		}
+
 	}
 }

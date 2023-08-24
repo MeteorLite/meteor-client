@@ -3,20 +3,20 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rf")
+@ObfuscatedName("rh")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lrf;"
+		descriptor = "Lrh;"
 	)
-	static final DefaultsGroup field3830;
-	@ObfuscatedName("ay")
+	static final DefaultsGroup field3844;
+	@ObfuscatedName("ae")
 	@Export("group")
 	final int group;
 
 	static {
-		field3830 = new DefaultsGroup(3);
+		field3844 = new DefaultsGroup(3);
 	}
 
 	DefaultsGroup(int var1) {

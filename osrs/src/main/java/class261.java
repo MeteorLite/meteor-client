@@ -1,138 +1,53 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kd")
-public class class261 implements WorldMapSection {
-	@ObfuscatedName("aw")
-	int field2368;
-	@ObfuscatedName("ay")
-	int field2369;
-	@ObfuscatedName("ar")
-	int field2365;
-	@ObfuscatedName("am")
-	int field2363;
-	@ObfuscatedName("as")
-	int field2366;
-	@ObfuscatedName("aj")
-	int field2362;
-	@ObfuscatedName("ag")
-	int field2361;
-	@ObfuscatedName("az")
-	int field2370;
-	@ObfuscatedName("av")
-	int field2367;
+@ObfuscatedName("kt")
+public class class261 {
 	@ObfuscatedName("ap")
-	int field2364;
+	static int field2396;
 
-	class261() {
-	}
-
-	@ObfuscatedName("aw")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Ljs;I)V",
-		garbageValue = "104966018"
+		descriptor = "([BIIII[Lis;I)V",
+		garbageValue = "657439907"
 	)
-	@Export("expandBounds")
-	public void expandBounds(WorldMapArea var1) {
-		if (var1.regionLowX > this.field2366) {
-			var1.regionLowX = this.field2366;
+	static final void method1500(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
+		int var7;
+		int var8;
+		for (int var6 = 0; var6 < 4; ++var6) {
+			for (var7 = 0; var7 < 64; ++var7) {
+				for (var8 = 0; var8 < 64; ++var8) {
+					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) {
+						int[] var10000 = var5[var6].flags[var7 + var1];
+						var10000[var2 + var8] &= -16777217;
+					}
+				}
+			}
 		}
 
-		if (var1.regionHighX < this.field2366) {
-			var1.regionHighX = this.field2366;
+		Buffer var12 = new Buffer(var0);
+
+		for (var7 = 0; var7 < 4; ++var7) {
+			for (var8 = 0; var8 < 64; ++var8) {
+				for (int var9 = 0; var9 < 64; ++var9) {
+					int var10 = var8 + var1;
+					int var11 = var9 + var2;
+					SecureRandomFuture.loadTerrain(var12, var7, var10, var11, var3 + var10, var11 + var4, 0);
+				}
+			}
 		}
 
-		if (var1.regionLowY > this.field2362) {
-			var1.regionLowY = this.field2362;
-		}
-
-		if (var1.regionHighY < this.field2362) {
-			var1.regionHighY = this.field2362;
-		}
-
-	}
-
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(IIIB)Z",
-		garbageValue = "37"
-	)
-	@Export("containsCoord")
-	public boolean containsCoord(int var1, int var2, int var3) {
-		if (var1 >= this.field2368 && var1 < this.field2368 + this.field2369) {
-			return var2 >= (this.field2365 << 6) + (this.field2361 << 3) && var2 <= (this.field2365 << 6) + (this.field2361 << 3) + 7 && var3 >= (this.field2363 << 6) + (this.field2370 << 3) && var3 <= (this.field2363 << 6) + (this.field2370 << 3) + 7;
-		} else {
-			return false;
-		}
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "-1055724816"
-	)
-	@Export("containsPosition")
-	public boolean containsPosition(int var1, int var2) {
-		return var1 >= (this.field2366 << 6) + (this.field2367 << 3) && var1 <= (this.field2366 << 6) + (this.field2367 << 3) + 7 && var2 >= (this.field2362 << 6) + (this.field2364 << 3) && var2 <= (this.field2362 << 6) + (this.field2364 << 3) + 7;
-	}
-
-	@ObfuscatedName("am")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)[I",
-		garbageValue = "1968685542"
-	)
-	@Export("getBorderTileLengths")
-	public int[] getBorderTileLengths(int var1, int var2, int var3) {
-		if (!this.containsCoord(var1, var2, var3)) {
-			return null;
-		} else {
-			int[] var4 = new int[]{var2 + (this.field2366 * 64 - this.field2365 * 64) + (this.field2367 * 8 - this.field2361 * 8), var3 + (this.field2362 * 64 - this.field2363 * 64) + (this.field2364 * 8 - this.field2370 * 8)};
-			return var4;
-		}
-	}
-
-	@ObfuscatedName("as")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)Lmr;",
-		garbageValue = "119"
-	)
-	@Export("coord")
-	public Coord coord(int var1, int var2) {
-		if (!this.containsPosition(var1, var2)) {
-			return null;
-		} else {
-			int var3 = this.field2365 * 64 - this.field2366 * 64 + (this.field2361 * 8 - this.field2367 * 8) + var1;
-			int var4 = var2 + (this.field2363 * 64 - this.field2362 * 64) + (this.field2370 * 8 - this.field2364 * 8);
-			return new Coord(this.field2368, var3, var4);
-		}
-	}
-
-	@ObfuscatedName("aj")
-	@ObfuscatedSignature(
-		descriptor = "(Lty;I)V",
-		garbageValue = "706418314"
-	)
-	@Export("read")
-	public void read(Buffer var1) {
-		this.field2368 = var1.readUnsignedByte();
-		this.field2369 = var1.readUnsignedByte();
-		this.field2365 = var1.readUnsignedShort();
-		this.field2361 = var1.readUnsignedByte();
-		this.field2363 = var1.readUnsignedShort();
-		this.field2370 = var1.readUnsignedByte();
-		this.field2366 = var1.readUnsignedShort();
-		this.field2367 = var1.readUnsignedByte();
-		this.field2362 = var1.readUnsignedShort();
-		this.field2364 = var1.readUnsignedByte();
-		this.method1467();
 	}
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "522198435"
+		garbageValue = "-1102761288"
 	)
-	void method1467() {
+	public static void method1501() {
+		Widget.Widget_cachedSprites.clear();
+		Widget.Widget_cachedModels.clear();
+		Widget.Widget_cachedFonts.clear();
+		Widget.Widget_cachedSpriteMasks.clear();
 	}
 }

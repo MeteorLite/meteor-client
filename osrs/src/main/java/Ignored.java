@@ -3,30 +3,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qn")
+@ObfuscatedName("qu")
 @Implements("Ignored")
 public class Ignored extends User {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("id")
 	int id;
 
 	Ignored() {
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqn;I)I",
-		garbageValue = "-315070761"
+		descriptor = "(Lqu;I)I",
+		garbageValue = "-1019476190"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
 		return this.id - var1.id;
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lqe;B)I",
-		garbageValue = "114"
+		descriptor = "(Lqs;I)I",
+		garbageValue = "1756748027"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(User var1) {
@@ -38,26 +38,76 @@ public class Ignored extends User {
 		return this.compareTo_ignored((Ignored)var1);
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("kp")
 	@ObfuscatedSignature(
-		descriptor = "([BI)[I",
-		garbageValue = "-957986123"
+		descriptor = "(B)V",
+		garbageValue = "44"
 	)
-	public static int[] method2221(byte[] var0) {
-		if (var0 != null && var0.length != 0 && var0.length <= 8) {
-			int[] var1 = new int[var0.length];
-
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				if (var0[var2] < 0 || var0[var2] > class538.field4243.length) {
-					return null;
-				}
-
-				var1[var2] = class538.field4243[var0[var2]];
+	static final void method2249() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
+			if (var0.endCycle > 0) {
+				--var0.endCycle;
 			}
 
-			return var1;
-		} else {
-			return null;
+			boolean var1;
+			int var2;
+			int var3;
+			ObjectComposition var4;
+			if (var0.endCycle == 0) {
+				if (var0.objectId >= 0) {
+					var2 = var0.objectId;
+					var3 = var0.field956;
+					var4 = WorldMapElement.getObjectDefinition(var2);
+					if (var3 == 11) {
+						var3 = 10;
+					}
+
+					if (var3 >= 5 && var3 <= 8) {
+						var3 = 4;
+					}
+
+					var1 = var4.method1040(var3);
+					if (!var1) {
+						continue;
+					}
+				}
+
+				WorldMap.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field948, var0.field956, var0.field945);
+				var0.remove();
+			} else {
+				if (var0.startCycle > 0) {
+					--var0.startCycle;
+				}
+
+				if (var0.startCycle == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102) {
+					if (var0.id >= 0) {
+						var2 = var0.id;
+						var3 = var0.objectType;
+						var4 = WorldMapElement.getObjectDefinition(var2);
+						if (var3 == 11) {
+							var3 = 10;
+						}
+
+						if (var3 >= 5 && var3 <= 8) {
+							var3 = 4;
+						}
+
+						var1 = var4.method1040(var3);
+						if (!var1) {
+							continue;
+						}
+					}
+
+					WorldMap.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.rotation, var0.objectType, var0.field945);
+					var0.startCycle = -1;
+					if (var0.id == var0.objectId && var0.objectId == -1) {
+						var0.remove();
+					} else if (var0.id == var0.objectId && var0.rotation == var0.field948 && var0.field956 == var0.objectType) {
+						var0.remove();
+					}
+				}
+			}
 		}
+
 	}
 }

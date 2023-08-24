@@ -1,31 +1,36 @@
-import java.util.HashMap;
-import java.util.Map;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eo")
+import java.io.DataInputStream;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
+@ObfuscatedName("ea")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lsa;"
+		descriptor = "Lsf;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Loz;"
+		descriptor = "Lou;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("Messages_count")
 	static int Messages_count;
+	@ObfuscatedName("as")
+	public static String field1146;
 
 	static {
 		Messages_channels = new HashMap();
@@ -34,12 +39,60 @@ public class Messages {
 		Messages_count = 0;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lls;",
-		garbageValue = "-1826957735"
+		descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
+		garbageValue = "886881488"
 	)
-	public static ServerPacket[] method635() {
-		return new ServerPacket[]{ServerPacket.NPC_ANIM_SPECIFIC, ServerPacket.AREA_SOUND, ServerPacket.TRADING_POST_UPDATE, ServerPacket.SEND_PING, ServerPacket.UPDATE_REBOOT_TIMER, ServerPacket.IF_SETEVENTS, ServerPacket.NEW_PACKET_CAM_RESET_V2, ServerPacket.SET_PLAYER_OP, ServerPacket.VARP_LARGE, ServerPacket.IF_SETOBJECT, ServerPacket.OPEN_URL, ServerPacket.IF_MOVESUB, ServerPacket.CAM_LOOKAT_EASED_ANGLE_ABSOLUTE, ServerPacket.CAM_MOVETO_EASED_CIRCULAR, ServerPacket.IF_SETTEXT, ServerPacket.REFLECTIONCHECK_FRIENDLIST, ServerPacket.MAPPROJ_ANIM, ServerPacket.GAMEFRAME_FULL, ServerPacket.UPDATE_INV_STOP_TRANSMIT, ServerPacket.MESSAGE_PRIVATE_ECHO, ServerPacket.RUN_CLIENTSCRIPT, ServerPacket.VARCLAN_ENABLE, ServerPacket.MAPPROJ_ANIM_SPECIFIC, ServerPacket.UPDATE_RUNENERGY, ServerPacket.CAM_SHAKE, ServerPacket.MESSAGE_CLANCHANNEL, ServerPacket.IF_SETNPCHEAD, ServerPacket.IF_CLOSESUB, ServerPacket.UPDATE_STAT, ServerPacket.UPDATE_IGNORELIST, ServerPacket.IF_SETCOLOUR, ServerPacket.MAP_ANIM, ServerPacket.NPC_SPOTANIM_SPECIFIC, ServerPacket.HEAT_MAP, ServerPacket.LOC_ADD_CHANGE, ServerPacket.PLAYER_ANIM_SPECIFIC, ServerPacket.OBJ_ADD, ServerPacket.TRADING_POST_RESULTS, ServerPacket.SPOTANIM_SPECIFIC, ServerPacket.VARP_SMALL, ServerPacket.CHAT_FILTER_SETTINGS, ServerPacket.UPDATE_RUNWEIGHT, ServerPacket.UPDATE_ZONE_PARTIAL_FOLLOWS, ServerPacket.RESET_ANIMS, ServerPacket.SYNTH_SOUND, ServerPacket.MIDI_JINGLE, ServerPacket.IF1_MODELROTATE, ServerPacket.HINT_ARROW, ServerPacket.NEW_PACK_215, ServerPacket.IF_SETPLAYERMODEL_BASECOLOUR, ServerPacket.IF_SETANGLE, ServerPacket.NPC_HEADICON_SPECIFIC, ServerPacket.MESSAGE_PRIVATE, ServerPacket.IF_SETSCROLLPOS, ServerPacket.REBUILD_REGION, ServerPacket.LOC_ANIM_SPECIFIC, ServerPacket.MESSAGE_GAME, ServerPacket.UPDATE_INV_FULL, ServerPacket.IF_SETANIM, ServerPacket.IF_OPENSUB, ServerPacket.IF_SETMODEL, ServerPacket.UPDATE_UID192, ServerPacket.SYNC_CLIENT_VARCACHE, ServerPacket.CLANSETTINGS_FULL, ServerPacket.CAM_LOOKAT, ServerPacket.SET_MAP_FLAG, ServerPacket.MINIMAP_TOGGLE, ServerPacket.UPDATE_FRIENDLIST, ServerPacket.TRIGGER_ONDIALOGABORT, ServerPacket.IF_SETPLAYERMODEL_OBJ, ServerPacket.PLAYER_SPOTANIM_SPECIFIC, ServerPacket.OBJ_COUNT, ServerPacket.IF_SETPOSITION, ServerPacket.UPDATE_INV_PARTIAL, ServerPacket.RESET_CLIENT_VARCACHE, ServerPacket.FRIENDLIST_LOADED, ServerPacket.NPC_INFO_SMALL, ServerPacket.MESSAGE_FRIENDCHANNEL, ServerPacket.CHAT_FILTER_SETTINGS_PRIVATECHAT, ServerPacket.PLAYER_INFO, ServerPacket.IF_SETPLAYERMODEL_BODYTYPE, ServerPacket.TOGGLE_OCULUS_ORB, ServerPacket.CAM_MOVETO_EASED, ServerPacket.VARCLAN, ServerPacket.LOC_DEL, ServerPacket.REFLECTION_CHECK, ServerPacket.VARCLAN_DISABLE, ServerPacket.ENTER_FREECAM, ServerPacket.CLANCHANNEL_FULL, ServerPacket.MIDI_SONG_LEGACY, ServerPacket.IF_SETHIDE, ServerPacket.MESSAGE_CLANCHANNEL_SYSTEM, ServerPacket.OBJ_DEL_LEGACY, ServerPacket.CLANSETTINGS_DELTA, ServerPacket.UPDATE_ZONE_FULL_FOLLOWS, ServerPacket.UPDATE_INV_CLEAR, ServerPacket.CLANCHANNEL_DELTA, ServerPacket.CAM_RESET, ServerPacket.EMPTY_PACKET, ServerPacket.REBUILD_REGION_NORMAL, ServerPacket.LOGOUT, ServerPacket.LOGOUT_FULL, ServerPacket.UPDATE_ZONE_PARTIAL_ENCLOSED, ServerPacket.CAM_LOOKAT_EASED_COORD, ServerPacket.CAM_LOOKAT_EASED_ANGLE_RELATIVE, ServerPacket.UPDATE_FRIENDCHAT_CHANNEL_FULL_V2, ServerPacket.IF_OPENTOP, ServerPacket.field2719, ServerPacket.CAM_MOVETO, ServerPacket.UPDATE_SITESETTINGS, ServerPacket.PREFETCH_GAMEOBJECTS, ServerPacket.IF_SETPLAYERHEAD, ServerPacket.LOC_ANIM, ServerPacket.OBJ_DEL, ServerPacket.LOGIN_SCREEN_PACKET, ServerPacket.NPC_INFO_LARGE, ServerPacket.IF_SETPLAYERMODEL_SELF, ServerPacket.UPDATE_FRIENDCHAT_CHANNEL_FULL, ServerPacket.MIDI_SONG, ServerPacket.MIDI_SONG_STOP, ServerPacket.MIDI_SONG_WITH_SECONDARY, ServerPacket.MIDI_SWAP};
+	@Export("RunException_sendStackTrace")
+	public static void RunException_sendStackTrace(String var0, Throwable var1) {
+		if (var1 != null) {
+			var1.printStackTrace();
+		} else {
+			try {
+				String var2 = "";
+				if (var1 != null) {
+					var2 = class493.method2465(var1);
+				}
+
+				if (var0 != null) {
+					if (var1 != null) {
+						var2 = var2 + " | ";
+					}
+
+					var2 = var2 + var0;
+				}
+
+				System.out.println("Error: " + var2);
+				var2 = var2.replace(':', '.');
+				var2 = var2.replace('@', '_');
+				var2 = var2.replace('&', '_');
+				var2 = var2.replace('#', '_');
+				if (RunException.RunException_applet == null) {
+					return;
+				}
+
+				URL var3 = new URL(RunException.RunException_applet.getCodeBase(), "clienterror.ws?cv=" + RunException.RunException_revision + "&cs=" + RunException.field4287 + "&u=" + RunException.field4289 + "&v1=" + TaskHandler.javaVendor + "&v2=" + class106.javaVersion + "&ct=" + RunException.field4285 + "&e=" + var2);
+				DataInputStream var4 = new DataInputStream(var3.openStream());
+				var4.read();
+				var4.close();
+			} catch (Exception var5) {
+			}
+
+		}
+	}
+
+	@ObfuscatedName("bw")
+	@ObfuscatedSignature(
+		descriptor = "(ILdh;ZI)I",
+		garbageValue = "1446947589"
+	)
+	static int method635(int var0, Script var1, boolean var2) {
+		if (var0 == 7108) {
+			Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = UserList.method2244() ? 1 : 0;
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 }

@@ -3,25 +3,31 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oc")
+@ObfuscatedName("oh")
 @Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("fm")
+	@ObfuscatedSignature(
+		descriptor = "Lnk;"
+	)
+	@Export("archive12")
+	static Archive archive12;
+	@ObfuscatedName("au")
 	@Export("state")
 	byte state;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@Export("id")
 	public int id;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("unitPrice")
 	public int unitPrice;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("totalQuantity")
 	public int totalQuantity;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@Export("currentQuantity")
 	public int currentQuantity;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("currentPrice")
 	public int currentPrice;
 
@@ -29,7 +35,7 @@ public class GrandExchangeOffer {
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Lty;Z)V",
+		descriptor = "(Ltm;Z)V",
 		garbageValue = "0"
 	)
 	public GrandExchangeOffer(Buffer var1, boolean var2) {
@@ -41,42 +47,42 @@ public class GrandExchangeOffer {
 		this.currentPrice = var1.readInt();
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1630378592"
+		descriptor = "(B)I",
+		garbageValue = "-104"
 	)
 	@Export("status")
 	public int status() {
 		return this.state & 7;
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1876480089"
+		garbageValue = "-247945963"
 	)
 	@Export("type")
 	public int type() {
 		return (this.state & 8) == 8 ? 1 : 0;
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1208558885"
+		garbageValue = "-847011160"
 	)
-	void method1924(int var1) {
+	void method1958(int var1) {
 		this.state &= -8;
 		this.state = (byte)(this.state | var1 & 7);
 	}
 
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "336856274"
+		descriptor = "(IB)V",
+		garbageValue = "-48"
 	)
-	void method1925(int var1) {
+	void method1959(int var1) {
 		this.state &= -9;
 		if (var1 == 1) {
 			this.state = (byte)(this.state | 8);
@@ -84,17 +90,14 @@ public class GrandExchangeOffer {
 
 	}
 
-	@ObfuscatedName("cb")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(ILmr;ZI)V",
-		garbageValue = "1667240320"
+		descriptor = "(IS)V",
+		garbageValue = "11520"
 	)
-	static void method1926(int var0, Coord var1, boolean var2) {
-		WorldMapArea var3 = class102.getWorldMap().getMapArea(var0);
-		int var4 = class136.localPlayer.plane;
-		int var5 = (class136.localPlayer.x >> 7) + AbstractArchive.baseX;
-		int var6 = (class136.localPlayer.y >> 7) + class148.baseY;
-		Coord var7 = new Coord(var4, var5, var6);
-		class102.getWorldMap().method2375(var3, var7, var1, var2);
+	static void method1954(int var0) {
+		class449.field3867 = var0;
+		class449.field3868 = new class449[var0];
+		class338.field3112 = 0;
 	}
 }

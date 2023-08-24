@@ -3,35 +3,35 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kf")
+@ObfuscatedName("ki")
 @Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
-	@ObfuscatedName("qo")
-	static int field2371;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("th")
+	static boolean field2397;
+	@ObfuscatedName("au")
 	@Export("element")
 	final int element;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Lkq;"
 	)
 	@Export("label")
 	final WorldMapLabel label;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("subWidth")
 	final int subWidth;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("subHeight")
 	final int subHeight;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lmr;Lmr;ILka;)V"
+		descriptor = "(Lmc;Lmc;ILkq;)V"
 	)
 	WorldMapIcon_0(Coord var1, Coord var2, int var3, WorldMapLabel var4) {
 		super(var1, var2);
 		this.element = var3;
 		this.label = var4;
-		WorldMapElement var5 = SequenceDefinition.WorldMapElement_get(this.getElement());
+		WorldMapElement var5 = class138.WorldMapElement_get(this.getElement());
 		SpritePixels var6 = var5.getSpriteBool(false);
 		if (var6 != null) {
 			this.subWidth = var6.subWidth;
@@ -43,40 +43,40 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1799088869"
+		garbageValue = "2135662389"
 	)
 	@Export("getElement")
 	public int getElement() {
 		return this.element;
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lka;",
-		garbageValue = "8220"
+		descriptor = "(I)Lkq;",
+		garbageValue = "-2114244458"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label;
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "81"
+		descriptor = "(I)I",
+		garbageValue = "-655814171"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth;
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-565304787"
+		garbageValue = "-816534170"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {

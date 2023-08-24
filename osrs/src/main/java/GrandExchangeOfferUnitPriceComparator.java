@@ -1,16 +1,17 @@
-import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ov")
+import java.util.Comparator;
+
+@ObfuscatedName("oy")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lol;Lol;I)I",
-		garbageValue = "693078358"
+		descriptor = "(Loz;Loz;I)I",
+		garbageValue = "-370241365"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -27,42 +28,5 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 	@ObfuscatedName("equals")
 	public boolean equals(Object var1) {
 		return super.equals(var1);
-	}
-
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "17"
-	)
-	public static int method1927(int var0, int var1) {
-		return (int)Math.round(Math.atan2((double)var0, (double)var1) * 2607.5945876176133D) & 16383;
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "-890105680"
-	)
-	@Export("ByteArrayPool_release")
-	public static synchronized void ByteArrayPool_release(byte[] var0) {
-		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field3735) {
-			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
-		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field3731) {
-			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
-		} else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field3732) {
-			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
-		} else if (var0.length == 30000 && ByteArrayPool.field3736 < ByteArrayPool.field3734) {
-			ByteArrayPool.field3727[++ByteArrayPool.field3736 - 1] = var0;
-		} else {
-			if (class152.ByteArrayPool_arrays != null) {
-				for (int var1 = 0; var1 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var1) {
-					if (var0.length == ByteArrayPool.ByteArrayPool_alternativeSizes[var1] && class125.ByteArrayPool_altSizeArrayCounts[var1] < class152.ByteArrayPool_arrays[var1].length) {
-						class152.ByteArrayPool_arrays[var1][class125.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
-						return;
-					}
-				}
-			}
-
-		}
 	}
 }
