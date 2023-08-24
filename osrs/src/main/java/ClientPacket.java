@@ -273,7 +273,7 @@ public class ClientPacket implements class293 {
 		descriptor = "Llw;"
 	)
 	@Export("OPOBJ5")
-	static final ClientPacket OPOBJ5;
+	public static final ClientPacket OPOBJ5_;
 	@ObfuscatedName("bz")
 	@ObfuscatedSignature(
 		descriptor = "Llw;"
@@ -424,7 +424,7 @@ public class ClientPacket implements class293 {
 		descriptor = "Llw;"
 	)
 	@Export("OPOBJ6")
-	public static final ClientPacket OPOBJ6;
+	public static final ClientPacket OPOBJ5;
 	@ObfuscatedName("cj")
 	@ObfuscatedSignature(
 		descriptor = "Llw;"
@@ -461,7 +461,7 @@ public class ClientPacket implements class293 {
 	@ObfuscatedSignature(
 		descriptor = "Llw;"
 	)
-	public static final ClientPacket field2576;
+	public static final ClientPacket OPNPCT;
 	@ObfuscatedName("dj")
 	@ObfuscatedSignature(
 		descriptor = "Llw;"
@@ -623,7 +623,7 @@ public class ClientPacket implements class293 {
 		OPOBJ3 = new ClientPacket(42, -1);
 		REFLECTION_CHECK_REPLY = new ClientPacket(43, -1);
 		OPOBJ4 = new ClientPacket(44, 7);
-		OPOBJ5 = new ClientPacket(45, 7);
+		OPOBJ5_ = new ClientPacket(45, 7);
 		OPOBJE = new ClientPacket(46, 6);
 		EVENT_APPLET_FOCUS = new ClientPacket(47, 1);
 		OPPLAYER6 = new ClientPacket(48, 3);
@@ -649,14 +649,14 @@ public class ClientPacket implements class293 {
 		IF_BUTTON3 = new ClientPacket(68, 8);
 		OPPLAYERU = new ClientPacket(69, 11);
 		AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL = new ClientPacket(70, -1);
-		OPOBJ6 = new ClientPacket(71, 7);
+		OPOBJ5 = new ClientPacket(71, 7);
 		notsure = new ClientPacket(72, -1);
 		OPLOC4 = new ClientPacket(73, 7);
 		FRIEND_SETRANK = new ClientPacket(74, -1);
 		field2569 = new ClientPacket(75, 0);
 		IF_BUTTON9 = new ClientPacket(76, 8);
 		OPOBJT = new ClientPacket(77, 15);
-		field2576 = new ClientPacket(78, 11);
+		OPNPCT = new ClientPacket(78, 11);
 		OPLOC1 = new ClientPacket(79, 7);
 		SET_CHATFILTERSETTINGS = new ClientPacket(80, 3);
 		OPNPC3 = new ClientPacket(81, 3);
