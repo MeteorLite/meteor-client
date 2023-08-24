@@ -18,6 +18,7 @@ dependencies {
 
     with(libs) {
         implementation(bouncycastle)
+        implementation(json)
         testImplementation(junit.jupiter.api)
         testRuntimeOnly(junit.jupiter.api)
         implementation(gson)
