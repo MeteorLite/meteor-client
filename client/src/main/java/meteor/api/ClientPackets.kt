@@ -1,6 +1,7 @@
 @file:Suppress("DEPRECATION")
 package meteor.api
 
+import ClientPacket
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
 import dev.hoot.api.game.Game.getClientPacket
@@ -10,7 +11,6 @@ import meteor.Main
 import meteor.plugins.meteor.AutoInteractOverlay
 import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
-import net.runelite.api.packets.ClientPacket
 import net.runelite.api.packets.PacketBufferNode
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetType
@@ -26,7 +26,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction1Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ1())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON1)
         bufferNode.packetBuffer.`writeShortAddLE$api`(groundItemId)
         bufferNode.packetBuffer.`writeShort$api`(worldY)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
@@ -38,7 +38,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction2Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ2())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON2)
         bufferNode.packetBuffer.`writeShortAdd$api`(worldY)
         bufferNode.packetBuffer.`writeShortAddLE$api`(groundItemId)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
@@ -50,7 +50,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction3Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ3())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON3)
         bufferNode.packetBuffer.`writeShortAdd$api`(worldX)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortAddLE$api`(groundItemId)
@@ -378,7 +378,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON1())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON1)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -560,7 +560,6 @@ object ClientPackets {
         )
     }
     fun preparePacketBuffer(clientPacket: ClientPacket): PacketBufferNode {
-
         val clientPacket = Main.client.createClientPacket(clientPacket.id, clientPacket.length)
         return Main.client.preparePacket(
             clientPacket,

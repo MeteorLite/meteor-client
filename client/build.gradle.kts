@@ -53,7 +53,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
     implementation(compose.desktop.currentOs)
-    
+    implementation(projects.osrs)
     with(projects) {
         implementation(apiRs)
         implementation(api)

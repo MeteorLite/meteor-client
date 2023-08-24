@@ -1,7 +1,7 @@
 # meteor-client
 
  ![Kotlin](https://img.shields.io/badge/kotlin-%230095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white) ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)  
-![OSRS](https://img.shields.io/badge/osrs-215-blue.svg) ![Build Status](https://img.shields.io/github/actions/workflow/status/meteorlite/meteor-client/build.yml?branch=main)  
+![OSRS](https://img.shields.io/badge/osrs-216-blue.svg) ![Build Status](https://img.shields.io/github/actions/workflow/status/meteorlite/meteor-client/build.yml?branch=main)  
 Join our Discord https://discord.gg/Y85d6NH6z3
 
 A modern Old School Runescape client

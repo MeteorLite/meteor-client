@@ -572,10 +572,10 @@ public class ClientPacket implements class293 {
 	public static final ClientPacket field2572;
 	@ObfuscatedName("dp")
 	@Export("id")
-	final int id;
+	public final int id;
 	@ObfuscatedName("dm")
 	@Export("length")
-	final int length;
+	public final int length;
 
 	static {
 		field2592 = new ClientPacket(0, 2);
