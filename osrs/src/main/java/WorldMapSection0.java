@@ -3,59 +3,59 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kg")
+@ObfuscatedName("kj")
 @Implements("WorldMapSection0")
 public class WorldMapSection0 implements WorldMapSection {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("oldZ")
 	int oldZ;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@Export("newZ")
 	int newZ;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("oldX")
 	int oldX;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("oldY")
 	int oldY;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@Export("newX")
 	int newX;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("newY")
 	int newY;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@Export("oldChunkXLow")
 	int oldChunkXLow;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@Export("oldChunkYLow")
 	int oldChunkYLow;
-	@ObfuscatedName("av")
+	@ObfuscatedName("aa")
 	@Export("oldChunkXHigh")
 	int oldChunkXHigh;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("af")
 	@Export("oldChunkYHigh")
 	int oldChunkYHigh;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("ad")
 	@Export("newChunkXLow")
 	int newChunkXLow;
-	@ObfuscatedName("at")
+	@ObfuscatedName("aq")
 	@Export("newChunkYLow")
 	int newChunkYLow;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("al")
 	@Export("newChunkXHigh")
 	int newChunkXHigh;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("an")
 	@Export("newChunkYHigh")
 	int newChunkYHigh;
 
 	WorldMapSection0() {
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Ljs;I)V",
-		garbageValue = "104966018"
+		descriptor = "(Ljf;I)V",
+		garbageValue = "-474032336"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -77,34 +77,34 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(IIIB)Z",
-		garbageValue = "37"
+		descriptor = "(IIII)Z",
+		garbageValue = "509257779"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
-		if (var1 >= this.oldZ && var1 < this.oldZ + this.newZ) {
+		if (var1 >= this.oldZ && var1 < this.newZ + this.oldZ) {
 			return var2 >= (this.oldX << 6) + (this.oldChunkXLow << 3) && var2 <= (this.oldX << 6) + (this.oldChunkXHigh << 3) + 7 && var3 >= (this.oldY << 6) + (this.oldChunkYLow << 3) && var3 <= (this.oldY << 6) + (this.oldChunkYHigh << 3) + 7;
 		} else {
 			return false;
 		}
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "-1055724816"
+		descriptor = "(IIB)Z",
+		garbageValue = "-94"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >= (this.newX << 6) + (this.newChunkXLow << 3) && var1 <= (this.newX << 6) + (this.newChunkXHigh << 3) + 7 && var2 >= (this.newY << 6) + (this.newChunkYLow << 3) && var2 <= (this.newY << 6) + (this.newChunkYHigh << 3) + 7;
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)[I",
-		garbageValue = "1968685542"
+		garbageValue = "1978048199"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -116,10 +116,10 @@ public class WorldMapSection0 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)Lmr;",
-		garbageValue = "119"
+		descriptor = "(III)Lmc;",
+		garbageValue = "-1281040923"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -132,10 +132,10 @@ public class WorldMapSection0 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;I)V",
-		garbageValue = "706418314"
+		descriptor = "(Ltm;B)V",
+		garbageValue = "47"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -156,12 +156,21 @@ public class WorldMapSection0 implements WorldMapSection {
 		this.postRead();
 	}
 
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-33"
+		descriptor = "(I)V",
+		garbageValue = "-1295172600"
 	)
 	@Export("postRead")
 	void postRead() {
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(B)[Lls;",
+		garbageValue = "14"
+	)
+	public static ZoneOperation[] method1506() {
+		return new ZoneOperation[]{ZoneOperation.MAPPROJ_ANIM, ZoneOperation.LOC_DEL, ZoneOperation.OBJ_COUNT, ZoneOperation.field2607, ZoneOperation.LOC_ADD_CHANGE, ZoneOperation.AREA_SOUND, ZoneOperation.LOC_ANIM, ZoneOperation.OBJ_ADD, ZoneOperation.OBJ_DEL_LEGACY, ZoneOperation.MAP_ANIM, ZoneOperation.PREFETCH_GAMEOBJECTS, ZoneOperation.OBJ_DEL};
 	}
 }

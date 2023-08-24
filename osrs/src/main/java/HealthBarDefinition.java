@@ -3,58 +3,53 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ha")
+@ObfuscatedName("hl")
 @Implements("HealthBarDefinition")
 public class HealthBarDefinition extends DualNode {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
+		descriptor = "Lnu;"
 	)
 	@Export("HealthBarDefinition_archive")
 	public static AbstractArchive HealthBarDefinition_archive;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
-	)
-	public static AbstractArchive field1534;
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "Lld;"
+		descriptor = "Lle;"
 	)
 	@Export("HealthBarDefinition_cached")
 	public static EvictingDualNodeHashTable HealthBarDefinition_cached;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lld;"
+		descriptor = "Lle;"
 	)
 	@Export("HealthBarDefinition_cachedSprites")
-	static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites;
-	@ObfuscatedName("as")
-	public int field1541;
-	@ObfuscatedName("az")
+	public static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites;
+	@ObfuscatedName("ac")
+	public int field1555;
+	@ObfuscatedName("ap")
 	@Export("int1")
 	public int int1;
-	@ObfuscatedName("av")
+	@ObfuscatedName("aa")
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("af")
 	@Export("int3")
 	public int int3;
+	@ObfuscatedName("ad")
+	public int field1556;
 	@ObfuscatedName("aq")
-	public int field1540;
-	@ObfuscatedName("at")
 	@Export("int5")
 	public int int5;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("al")
 	@Export("frontSpriteID")
 	int frontSpriteID;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("an")
 	@Export("backSpriteID")
 	int backSpriteID;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ar")
 	@Export("width")
 	public int width;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ab")
 	@Export("widthPadding")
 	public int widthPadding;
 
@@ -67,7 +62,7 @@ public class HealthBarDefinition extends DualNode {
 		this.int1 = 255;
 		this.int2 = 255;
 		this.int3 = -1;
-		this.field1540 = 1;
+		this.field1556 = 1;
 		this.int5 = 70;
 		this.frontSpriteID = -1;
 		this.backSpriteID = -1;
@@ -75,10 +70,10 @@ public class HealthBarDefinition extends DualNode {
 		this.widthPadding = 0;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;I)V",
-		garbageValue = "-1925241492"
+		descriptor = "(Ltm;B)V",
+		garbageValue = "-25"
 	)
 	@Export("decode")
 	public void decode(Buffer var1) {
@@ -92,10 +87,10 @@ public class HealthBarDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;II)V",
-		garbageValue = "-562332706"
+		descriptor = "(Ltm;II)V",
+		garbageValue = "1395373315"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -112,9 +107,9 @@ public class HealthBarDefinition extends DualNode {
 		} else if (var2 == 6) {
 			var1.readUnsignedByte();
 		} else if (var2 == 7) {
-			this.frontSpriteID = var1.method2543();
+			this.frontSpriteID = var1.method2563();
 		} else if (var2 == 8) {
-			this.backSpriteID = var1.method2543();
+			this.backSpriteID = var1.method2563();
 		} else if (var2 == 11) {
 			this.int3 = var1.readUnsignedShort();
 		} else if (var2 == 14) {
@@ -125,10 +120,10 @@ public class HealthBarDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lud;",
-		garbageValue = "5771"
+		descriptor = "(B)Lui;",
+		garbageValue = "26"
 	)
 	@Export("getFrontSprite")
 	public SpritePixels getFrontSprite() {
@@ -139,7 +134,7 @@ public class HealthBarDefinition extends DualNode {
 			if (var1 != null) {
 				return var1;
 			} else {
-				var1 = WorldMap.SpriteBuffer_getSprite(field1534, this.frontSpriteID, 0);
+				var1 = Tiles.SpriteBuffer_getSprite(class422.field3769, this.frontSpriteID, 0);
 				if (var1 != null) {
 					HealthBarDefinition_cachedSprites.put(var1, (long)this.frontSpriteID);
 				}
@@ -149,10 +144,10 @@ public class HealthBarDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lud;",
-		garbageValue = "44"
+		descriptor = "(I)Lui;",
+		garbageValue = "314676722"
 	)
 	@Export("getBackSprite")
 	public SpritePixels getBackSprite() {
@@ -163,7 +158,7 @@ public class HealthBarDefinition extends DualNode {
 			if (var1 != null) {
 				return var1;
 			} else {
-				var1 = WorldMap.SpriteBuffer_getSprite(field1534, this.backSpriteID, 0);
+				var1 = Tiles.SpriteBuffer_getSprite(class422.field3769, this.backSpriteID, 0);
 				if (var1 != null) {
 					HealthBarDefinition_cachedSprites.put(var1, (long)this.backSpriteID);
 				}
@@ -173,23 +168,33 @@ public class HealthBarDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("bo")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1108196628"
+		descriptor = "(II)I",
+		garbageValue = "-293165010"
 	)
-	protected static final void method953() {
-		FloorUnderlayDefinition.clock.mark();
+	@Export("Widget_unpackTargetMask")
+	public static int Widget_unpackTargetMask(int var0) {
+		return var0 >> 11 & 63;
+	}
 
-		int var0;
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameEngine.graphicsTickTimes[var0] = 0L;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "([BI)Lpi;",
+		garbageValue = "-1270824804"
+	)
+	static Font method969(byte[] var0) {
+		if (var0 == null) {
+			return null;
+		} else {
+			Font var1 = new Font(var0, class529.SpriteBuffer_xOffsets, class152.SpriteBuffer_yOffsets, HealthBarUpdate.SpriteBuffer_spriteWidths, SpriteMask.SpriteBuffer_spriteHeights, DbTableType.SpriteBuffer_spritePalette, Coord.SpriteBuffer_pixels);
+			class529.SpriteBuffer_xOffsets = null;
+			class152.SpriteBuffer_yOffsets = null;
+			HealthBarUpdate.SpriteBuffer_spriteWidths = null;
+			SpriteMask.SpriteBuffer_spriteHeights = null;
+			DbTableType.SpriteBuffer_spritePalette = null;
+			Coord.SpriteBuffer_pixels = null;
+			return var1;
 		}
-
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameEngine.clientTickTimes[var0] = 0L;
-		}
-
-		class313.gameCyclesToDo = 0;
 	}
 }

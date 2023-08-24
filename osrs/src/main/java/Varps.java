@@ -1,22 +1,23 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mq")
+@ObfuscatedName("mz")
 @Implements("Varps")
 public class Varps {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("Varps_masks")
 	static int[] Varps_masks;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@Export("Varps_temp")
 	public static int[] Varps_temp;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("Varps_main")
 	public static int[] Varps_main;
-	@ObfuscatedName("gv")
-	@Export("currentPort")
-	static int currentPort;
+	@ObfuscatedName("at")
+	@Export("Interpreter_intLocals")
+	static int[] Interpreter_intLocals;
 
 	static {
 		Varps_masks = new int[32];
@@ -29,5 +30,14 @@ public class Varps {
 
 		Varps_temp = new int[4000];
 		Varps_main = new int[4000];
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Ldl;",
+		garbageValue = "-195730682"
+	)
+	static class89[] method1708() {
+		return new class89[]{class89.field881, class89.field883, class89.field882, class89.field880, class89.field884};
 	}
 }

@@ -1,13 +1,14 @@
-import java.util.zip.Inflater;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("un")
+import java.util.zip.Inflater;
+
+@ObfuscatedName("us")
 @Implements("GZipDecompressor")
 public class GZipDecompressor {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("inflater")
 	Inflater inflater;
 
@@ -22,10 +23,10 @@ public class GZipDecompressor {
 	GZipDecompressor(int var1, int var2, int var3) {
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;[BB)V",
-		garbageValue = "0"
+		descriptor = "(Ltm;[BI)V",
+		garbageValue = "1223236718"
 	)
 	@Export("decompress")
 	public void decompress(Buffer var1, byte[] var2) {
@@ -46,14 +47,5 @@ public class GZipDecompressor {
 		} else {
 			throw new RuntimeException("");
 		}
-	}
-
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(S)[Lfj;",
-		garbageValue = "12402"
-	)
-	static class138[] method2679() {
-		return new class138[]{class138.field1301, class138.field1302, class138.field1298, class138.field1297, class138.field1299, class138.field1296, class138.field1295, class138.field1303, class138.field1300};
 	}
 }

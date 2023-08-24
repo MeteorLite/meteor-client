@@ -1,23 +1,22 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qe")
+@ObfuscatedName("qs")
 @Implements("User")
 public class User implements Comparable {
-	@ObfuscatedName("ar")
+	@ObfuscatedName("cj")
+	static int field3801;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lui;"
+		descriptor = "Luc;"
 	)
 	@Export("username")
 	Username username;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lui;"
+		descriptor = "Luc;"
 	)
 	@Export("previousUsername")
 	Username previousUsername;
@@ -25,50 +24,50 @@ public class User implements Comparable {
 	User() {
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lqe;B)I",
-		garbageValue = "114"
+		descriptor = "(Lqs;I)I",
+		garbageValue = "1756748027"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(User var1) {
 		return this.username.compareToTyped(var1.username);
 	}
 
-	@ObfuscatedName("af")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lui;",
-		garbageValue = "-157442645"
+		descriptor = "(I)Luc;",
+		garbageValue = "807179111"
 	)
 	@Export("getUsername")
 	public Username getUsername() {
 		return this.username;
 	}
 
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "7"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-346787089"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.username == null ? "" : this.username.getName();
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "8"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "1703373764"
 	)
 	@Export("getPreviousName")
 	public String getPreviousName() {
 		return this.previousUsername == null ? "" : this.previousUsername.getName();
 	}
 
-	@ObfuscatedName("bd")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(Lui;Lui;I)V",
-		garbageValue = "-1440171953"
+		descriptor = "(Luc;Luc;I)V",
+		garbageValue = "-733820505"
 	)
 	@Export("set")
 	void set(Username var1, Username var2) {
@@ -84,43 +83,5 @@ public class User implements Comparable {
 	@ObfuscatedName("compareTo")
 	public int compareTo(Object var1) {
 		return this.compareTo_user((User)var1);
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "15"
-	)
-	static void method2191() {
-		try {
-			File var0 = new File(Bounds.userHomeDirectory, "random.dat");
-			int var2;
-			if (var0.exists()) {
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
-			} else {
-				label34:
-				for (int var1 = 0; var1 < ByteArrayPool.field3737.length; ++var1) {
-					for (var2 = 0; var2 < class157.field1396.length; ++var2) {
-						File var3 = new File(class157.field1396[var2] + ByteArrayPool.field3737[var1] + File.separatorChar + "random.dat");
-						if (var3.exists()) {
-							JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var3, "rw", 25L), 24, 0);
-							break label34;
-						}
-					}
-				}
-			}
-
-			if (JagexCache.JagexCache_randomDat == null) {
-				RandomAccessFile var4 = new RandomAccessFile(var0, "rw");
-				var2 = var4.read();
-				var4.seek(0L);
-				var4.write(var2);
-				var4.seek(0L);
-				var4.close();
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
-			}
-		} catch (IOException var5) {
-		}
-
 	}
 }

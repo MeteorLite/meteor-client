@@ -1,14 +1,14 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mv")
-public interface class324 {
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-3"
-	)
-	@Export("vmethod5708")
-	void vmethod5708();
+@ObfuscatedName("ml")
+public class class324 {
+	@ObfuscatedName("au")
+	public int field2892;
+	@ObfuscatedName("ae")
+	public int field2890;
+	@ObfuscatedName("ao")
+	public int field2891;
+
+	class324() {
+	}
 }

@@ -2452,6 +2452,8 @@ public interface Client extends GameEngine
 
 	ClientPacket createClientPacket(int opcode, int length);
 
+
+
 	String getPassword();
 
 	long[] getEntitiesAtMouse();

@@ -1,27 +1,16 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ku")
+@ObfuscatedName("kx")
 public class class272 {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "(IB)V",
+		garbageValue = "119"
 	)
-	static final class272 field2432;
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	static final class272 field2433;
-	@ObfuscatedName("ar")
-	final int field2434;
-
-	static {
-		field2432 = new class272(0);
-		field2433 = new class272(1);
-	}
-
-	class272(int var1) {
-		this.field2434 = var1;
+	static void method1544(int var0) {
+		GrandExchangeOfferOwnWorldComparator.field361 = var0;
+		class450.field3873 = new class450[var0];
+		class462.field3904 = 0;
 	}
 }

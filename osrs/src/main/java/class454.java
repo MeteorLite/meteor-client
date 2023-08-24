@@ -1,47 +1,77 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("rr")
-public enum class454 implements class372 {
-	@ObfuscatedName("aw")
+@ObfuscatedName("rs")
+public class class454 implements class459 {
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lrr;"
+		descriptor = "Lsu;"
 	)
-	field3879(3, 1),
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "Lrr;"
-	)
-	field3880(0, 2),
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "Lrr;"
-	)
-	field3878(1, 3),
-	@ObfuscatedName("am")
-	@ObfuscatedSignature(
-		descriptor = "Lrr;"
-	)
-	field3877(2, 10);
+	public final class489 field3899;
 
-	@ObfuscatedName("as")
-	final int field3882;
-	@ObfuscatedName("aj")
-	final int field3881;
-
-	class454(int var3, int var4) {
-		this.field3882 = var3;
-		this.field3881 = var4;
+	@ObfuscatedSignature(
+		descriptor = "(Lsx;)V"
+	)
+	class454(class490 var1) {
+		this.field3899 = var1;
 	}
 
-	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1644350448"
+		descriptor = "(Lrp;)V"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field3881;
+	public class454(class455 var1) {
+		this(new class490(var1));
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "530420265"
+	)
+	public int method2320(int var1) {
+		return this.field3899.vmethod8144(var1);
+	}
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(Lfh;FS)F",
+		garbageValue = "26313"
+	)
+	static float method2321(class130 var0, float var1) {
+		if (var0 == null) {
+			return 0.0F;
+		} else {
+			float var2;
+			if (var0.field1258 == var1) {
+				var2 = 0.0F;
+			} else if (var1 == var0.field1254) {
+				var2 = 1.0F;
+			} else {
+				var2 = (var1 - var0.field1258) / (var0.field1254 - var0.field1258);
+			}
+
+			float var3;
+			if (var0.field1242) {
+				var3 = var2;
+			} else {
+				class126.field1206[3] = var0.field1255;
+				class126.field1206[2] = var0.field1249;
+				class126.field1206[1] = var0.field1250;
+				class126.field1206[0] = var0.field1247 - var2;
+				class126.field1207[0] = 0.0F;
+				class126.field1207[1] = 0.0F;
+				class126.field1207[2] = 0.0F;
+				class126.field1207[3] = 0.0F;
+				class126.field1207[4] = 0.0F;
+				int var4 = ModelData0.method1381(class126.field1206, 3, 0.0F, true, 1.0F, true, class126.field1207);
+				if (var4 == 1) {
+					var3 = class126.field1207[0];
+				} else {
+					var3 = 0.0F;
+				}
+			}
+
+			return var3 * (var0.field1253 + var3 * (var3 * var0.field1248 + var0.field1256)) + var0.field1252;
+		}
 	}
 }

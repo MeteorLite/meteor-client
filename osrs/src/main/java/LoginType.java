@@ -3,117 +3,118 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("si")
+@ObfuscatedName("sl")
 @Implements("LoginType")
 public class LoginType {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
 	@Export("oldscape")
 	public static final LoginType oldscape;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
-	static final LoginType field4062;
-	@ObfuscatedName("ar")
+	static final LoginType field4069;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
-	static final LoginType field4060;
-	@ObfuscatedName("am")
+	static final LoginType field4071;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
-	static final LoginType field4059;
-	@ObfuscatedName("as")
+	static final LoginType field4073;
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
-	static final LoginType field4061;
-	@ObfuscatedName("aj")
+	static final LoginType field4068;
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
-	static final LoginType field4058;
-	@ObfuscatedName("ag")
-	@ObfuscatedSignature(
-		descriptor = "Lsi;"
-	)
-	static final LoginType field4057;
+	static final LoginType field4070;
 	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
-	static final LoginType field4063;
-	@ObfuscatedName("av")
-	@ObfuscatedSignature(
-		descriptor = "Lsi;"
-	)
-	public static final LoginType field4055;
+	static final LoginType field4074;
 	@ObfuscatedName("ap")
-	final int field4064;
-	@ObfuscatedName("aq")
-	final String field4065;
+	@ObfuscatedSignature(
+		descriptor = "Lsl;"
+	)
+	static final LoginType field4072;
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "Lsl;"
+	)
+	public static final LoginType field4066;
+	@ObfuscatedName("af")
+	public final int field4076;
+	@ObfuscatedName("ad")
+	final String field4075;
 
 	static {
-		oldscape = new LoginType(4, 0, "", "");
-		field4062 = new LoginType(1, 1, "", "");
-		field4060 = new LoginType(6, 2, "", "");
-		field4059 = new LoginType(7, 3, "", "");
-		field4061 = new LoginType(5, 4, "", "");
-		field4058 = new LoginType(8, 5, "", "");
-		field4057 = new LoginType(0, 6, "", "");
-		field4063 = new LoginType(2, 7, "", "");
-		field4055 = new LoginType(3, -1, "", "", true, new LoginType[]{oldscape, field4062, field4060, field4061, field4059});
+		oldscape = new LoginType(8, 0, "", "");
+		field4069 = new LoginType(4, 1, "", "");
+		field4071 = new LoginType(1, 2, "", "");
+		field4073 = new LoginType(6, 3, "", "");
+		field4068 = new LoginType(2, 4, "", "");
+		field4070 = new LoginType(0, 5, "", "");
+		field4074 = new LoginType(5, 6, "", "");
+		field4072 = new LoginType(7, 7, "", "");
+		field4066 = new LoginType(3, -1, "", "", true, new LoginType[]{oldscape, field4069, field4071, field4068, field4073});
 	}
 
 	LoginType(int var1, int var2, String var3, String var4) {
-		this.field4064 = var1;
-		this.field4065 = var4;
+		this.field4076 = var1;
+		this.field4075 = var4;
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(IILjava/lang/String;Ljava/lang/String;Z[Lsi;)V"
+		descriptor = "(IILjava/lang/String;Ljava/lang/String;Z[Lsl;)V"
 	)
 	LoginType(int var1, int var2, String var3, String var4, boolean var5, LoginType[] var6) {
-		this.field4064 = var1;
-		this.field4065 = var4;
+		this.field4076 = var1;
+		this.field4075 = var4;
 	}
 
 	@Export("toString")
 	@ObfuscatedName("toString")
 	public String toString() {
-		return this.field4065;
+		return this.field4075;
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("ik")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)Ljava/lang/String;",
-		garbageValue = "-10"
+		descriptor = "(Ldf;III)V",
+		garbageValue = "-1416218434"
 	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2];
-		int var4 = 0;
-
-		for (int var5 = 0; var5 < var2; ++var5) {
-			int var6 = var0[var5 + var1] & 255;
-			if (var6 != 0) {
-				if (var6 >= 128 && var6 < 160) {
-					char var7 = class385.cp1252AsciiExtension[var6 - 128];
-					if (var7 == 0) {
-						var7 = '?';
-					}
-
-					var6 = var7;
-				}
-
-				var3[var4++] = (char)var6;
+	@Export("performPlayerAnimation")
+	static void performPlayerAnimation(Player var0, int var1, int var2) {
+		if (var0.sequence == var1 && var1 != -1) {
+			int var3 = EnumComposition.SequenceDefinition_get(var1).replyMode;
+			if (var3 == 1) {
+				var0.sequenceFrame = 0;
+				var0.sequenceFrameCycle = 0;
+				var0.sequenceDelay = var2;
+				var0.currentSequenceFrameIndex = 0;
 			}
+
+			if (var3 == 2) {
+				var0.currentSequenceFrameIndex = 0;
+			}
+		} else if (var1 == -1 || var0.sequence == -1 || EnumComposition.SequenceDefinition_get(var1).forcedPriority >= EnumComposition.SequenceDefinition_get(var0.sequence).forcedPriority) {
+			var0.sequence = var1;
+			var0.sequenceFrame = 0;
+			var0.sequenceFrameCycle = 0;
+			var0.sequenceDelay = var2;
+			var0.currentSequenceFrameIndex = 0;
+			var0.field1022 = var0.pathLength;
 		}
 
-		return new String(var3, 0, var4);
 	}
 }

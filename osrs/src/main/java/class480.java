@@ -1,30 +1,51 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("sl")
-public abstract class class480 extends class481 {
+@ObfuscatedName("sc")
+public abstract class class480 {
+	@ObfuscatedName("gv")
+	@Export("worldPort")
+	static int worldPort;
+	@ObfuscatedName("ap")
+	int field3974;
+	@ObfuscatedName("aa")
+	int field3972;
+	@ObfuscatedName("af")
+	double field3971;
+	@ObfuscatedName("ad")
+	int field3973;
+
 	class480(int var1, int var2) {
-		super(var1, var2);
+		this.field3974 = 0;
+		this.field3972 = 0;
+		this.field3971 = 0.0D;
+		this.field3973 = 0;
+		this.field3974 = var1;
+		this.field3972 = 0;
+		this.field3973 = var2 >= 0 && var2 <= 27 ? var2 : 0;
+		this.field3971 = class302.method1623(this.field3972, this.field3974, this.field3973);
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(S)I",
-		garbageValue = "2587"
+		descriptor = "(I)V",
+		garbageValue = "-299202193"
 	)
-	public abstract int vmethod2349();
+	public void method2376() {
+		if (this.field3972 < this.field3974) {
+			++this.field3972;
+			this.field3971 = class302.method1623(this.field3972, this.field3974, this.field3973);
+		}
 
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1657628972"
-	)
-	public abstract int vmethod2347();
+	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(S)I",
-		garbageValue = "10605"
+		descriptor = "(I)D",
+		garbageValue = "1467440127"
 	)
-	public abstract int vmethod2320();
+	double method2377() {
+		return this.field3971;
+	}
 }

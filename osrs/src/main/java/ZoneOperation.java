@@ -1,83 +1,101 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lo")
+@ObfuscatedName("ls")
 @Implements("ZoneOperation")
 public class ZoneOperation {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Llo;"
+		descriptor = "Lls;"
 	)
-	public static final ZoneOperation OBJ_DEL_LEGACY;
-	@ObfuscatedName("ay")
+	@Export("MAPPROJ_ANIM")
+	public static final ZoneOperation MAPPROJ_ANIM;
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Llo;"
+		descriptor = "Lls;"
 	)
-	public static final ZoneOperation OBJ_ADD;
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "Llo;"
-	)
-	public static final ZoneOperation AREA_SOUND;
-	@ObfuscatedName("am")
-	@ObfuscatedSignature(
-		descriptor = "Llo;"
-	)
-	public static final ZoneOperation LOC_ANIM;
-	@ObfuscatedName("as")
-	@ObfuscatedSignature(
-		descriptor = "Llo;"
-	)
-	public static final ZoneOperation OBJ_COUNT;
-	@ObfuscatedName("aj")
-	@ObfuscatedSignature(
-		descriptor = "Llo;"
-	)
-	public static final ZoneOperation PREFETCH_GAMEOBJECTS;
-	@ObfuscatedName("ag")
-	@ObfuscatedSignature(
-		descriptor = "Llo;"
-	)
+	@Export("LOC_DEL")
 	public static final ZoneOperation LOC_DEL;
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("OBJ_COUNT")
+	public static final ZoneOperation OBJ_COUNT;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	public static final ZoneOperation field2607;
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("LOC_ADD_CHANGE")
+	public static final ZoneOperation LOC_ADD_CHANGE;
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("AREA_SOUND")
+	public static final ZoneOperation AREA_SOUND;
 	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Llo;"
+		descriptor = "Lls;"
 	)
-	public static final ZoneOperation LOC_ADD_CHANGE;
-	@ObfuscatedName("av")
-	@ObfuscatedSignature(
-		descriptor = "Llo;"
-	)
-	public static final ZoneOperation OBJ_DEL;
+	@Export("LOC_ANIM")
+	public static final ZoneOperation LOC_ANIM;
 	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Llo;"
+		descriptor = "Lls;"
 	)
+	@Export("OBJ_ADD")
+	public static final ZoneOperation OBJ_ADD;
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("OBJ_DEL_LEGACY")
+	public static final ZoneOperation OBJ_DEL_LEGACY;
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("MAP_ANIM")
 	public static final ZoneOperation MAP_ANIM;
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("PREFETCH_GAMEOBJECTS")
+	public static final ZoneOperation PREFETCH_GAMEOBJECTS;
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Llo;"
+		descriptor = "Lls;"
 	)
-	public static final ZoneOperation MAPPROJ_ANIM;
+	@Export("OBJ_DEL")
+	public static final ZoneOperation OBJ_DEL;
 
 	static {
-		OBJ_DEL_LEGACY = new ZoneOperation(4);
+		MAPPROJ_ANIM = new ZoneOperation(5);
+		LOC_DEL = new ZoneOperation(16);
+		OBJ_COUNT = new ZoneOperation(4);
+		field2607 = new ZoneOperation(4);
+		LOC_ADD_CHANGE = new ZoneOperation(2);
+		AREA_SOUND = new ZoneOperation(11);
+		LOC_ANIM = new ZoneOperation(6);
 		OBJ_ADD = new ZoneOperation(14);
-		AREA_SOUND = new ZoneOperation(5);
-		LOC_ANIM = new ZoneOperation(4);
-		OBJ_COUNT = new ZoneOperation(11);
-		PREFETCH_GAMEOBJECTS = new ZoneOperation(14);
-		LOC_DEL = new ZoneOperation(2);
-		LOC_ADD_CHANGE = new ZoneOperation(5);
-		OBJ_DEL = new ZoneOperation(7);
-		MAP_ANIM = new ZoneOperation(6);
-		MAPPROJ_ANIM = new ZoneOperation(16);
+		OBJ_DEL_LEGACY = new ZoneOperation(14);
+		MAP_ANIM = new ZoneOperation(5);
+		PREFETCH_GAMEOBJECTS = new ZoneOperation(7);
+		OBJ_DEL = new ZoneOperation(19);
 	}
 
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "4"
+		garbageValue = "5"
 	)
 	ZoneOperation(int var1) {
 	}

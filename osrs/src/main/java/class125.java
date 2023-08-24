@@ -2,121 +2,102 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
+import java.net.URL;
+
+@ObfuscatedName("eg")
 public class class125 {
-	@ObfuscatedName("ab")
-	@Export("ByteArrayPool_altSizeArrayCounts")
-	public static int[] ByteArrayPool_altSizeArrayCounts;
-	@ObfuscatedName("aw")
-	int field1193;
-	@ObfuscatedName("ay")
-	float field1192;
-	@ObfuscatedName("ar")
-	float field1190;
-	@ObfuscatedName("am")
-	float field1189;
-	@ObfuscatedName("as")
-	float field1191;
-	@ObfuscatedName("aj")
-	float field1188;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("iy")
+	static long field1195;
+	@ObfuscatedName("jh")
+	static int field1193;
+	@ObfuscatedName("lw")
+	static int field1194;
+	@ObfuscatedName("au")
+	int field1202;
+	@ObfuscatedName("ae")
+	float field1198;
+	@ObfuscatedName("ao")
+	float field1200;
+	@ObfuscatedName("at")
+	float field1201;
+	@ObfuscatedName("ac")
+	float field1197;
+	@ObfuscatedName("ai")
+	float field1199;
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lev;"
+		descriptor = "Leg;"
 	)
-	class125 field1187;
+	class125 field1196;
 
 	class125() {
-		this.field1190 = Float.MAX_VALUE;
-		this.field1189 = Float.MAX_VALUE;
-		this.field1191 = Float.MAX_VALUE;
-		this.field1188 = Float.MAX_VALUE;
+		this.field1200 = Float.MAX_VALUE;
+		this.field1201 = Float.MAX_VALUE;
+		this.field1197 = Float.MAX_VALUE;
+		this.field1199 = Float.MAX_VALUE;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;IB)V",
-		garbageValue = "25"
+		descriptor = "(Ltm;IS)V",
+		garbageValue = "249"
 	)
-	void method688(Buffer var1, int var2) {
-		this.field1193 = var1.readShort();
-		this.field1192 = var1.method2531();
-		this.field1190 = var1.method2531();
-		this.field1189 = var1.method2531();
-		this.field1191 = var1.method2531();
-		this.field1188 = var1.method2531();
+	void method696(Buffer var1, int var2) {
+		this.field1202 = var1.readShort();
+		this.field1198 = var1.method2551();
+		this.field1200 = var1.method2551();
+		this.field1201 = var1.method2551();
+		this.field1197 = var1.method2551();
+		this.field1199 = var1.method2551();
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lhc;",
-		garbageValue = "-1218756149"
+		descriptor = "(I)Z",
+		garbageValue = "1201510681"
 	)
-	@Export("ItemDefinition_get")
-	public static ItemComposition ItemDefinition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = Frames.ItemDefinition_archive.takeFile(10, var0);
-			var1 = new ItemComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
+	@Export("loadWorlds")
+	static boolean loadWorlds() {
+		try {
+			if (WorldMapLabelSize.World_request == null) {
+				WorldMapLabelSize.World_request = FriendsChat.urlRequester.request(new URL(class200.field1669));
+			} else if (WorldMapLabelSize.World_request.isDone()) {
+				byte[] var0 = WorldMapLabelSize.World_request.getResponse();
+				Buffer var1 = new Buffer(var0);
+				var1.readInt();
+				World.World_count = var1.readUnsignedShort();
+				class176.World_worlds = new World[World.World_count];
 
-			var1.post();
-			if (var1.noteTemplate != -1) {
-				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) {
-				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) {
-				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
-			}
-
-			if (!class502.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
-				if (var1.noteTemplate == -1 && var1.notedId == -1 && var1.placeholderTemplate == -1) {
-					var1.name = var1.name + " (Members)";
+				World var3;
+				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) {
+					var3 = class176.World_worlds[var2] = new World();
+					var3.id = var1.readUnsignedShort();
+					var3.properties = var1.readInt();
+					var3.host = var1.readStringCp1252NullTerminated();
+					var3.activity = var1.readStringCp1252NullTerminated();
+					var3.location = var1.readUnsignedByte();
+					var3.population = var1.readShort();
 				}
 
-				var1.isTradable = false;
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) {
-					var1.groundActions[var3] = null;
-				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) {
-					if (var3 != 4) {
-						var1.inventoryActions[var3] = null;
-					}
-				}
-
-				var1.shiftClickIndex = -2;
-				var1.team = 0;
-				if (var1.params != null) {
-					boolean var6 = false;
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-						ParamComposition var5 = MusicPatchNode.getParamDefinition((int)var4.key);
-						if (var5.autoDisable) {
-							var4.remove();
-						} else {
-							var6 = true;
-						}
-					}
-
-					if (!var6) {
-						var1.params = null;
-					}
-				}
+				GameEngine.sortWorlds(class176.World_worlds, 0, class176.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+				WorldMapLabelSize.World_request = null;
+				return true;
 			}
-
-			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
-			return var1;
+		} catch (Exception var4) {
+			var4.printStackTrace();
+			WorldMapLabelSize.World_request = null;
 		}
+
+		return false;
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(IB)[B",
+		garbageValue = "-47"
+	)
+	@Export("ByteArrayPool_getArray")
+	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
+		return ByteArrayPool.ByteArrayPool_getArrayBool(var0, false);
 	}
 }

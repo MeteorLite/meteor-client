@@ -2,35 +2,41 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fr")
+@ObfuscatedName("fn")
 public class class146 {
-	@ObfuscatedName("aw")
-	long field1329;
-	@ObfuscatedName("ay")
-	int field1328;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ol")
 	@ObfuscatedSignature(
-		descriptor = "Lor;"
+		descriptor = "Lmi;"
 	)
-	IterableNodeDeque field1330;
+	@Export("mousedOverWidgetIf1")
+	static Widget mousedOverWidgetIf1;
+	@ObfuscatedName("au")
+	long field1345;
+	@ObfuscatedName("ae")
+	public int field1347;
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Loc;"
+	)
+	IterableNodeDeque field1346;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lty;)V"
+		descriptor = "(Ltm;)V"
 	)
 	public class146(Buffer var1) {
-		this.field1328 = -1;
-		this.field1330 = new IterableNodeDeque();
-		this.method773(var1);
+		this.field1347 = -1;
+		this.field1346 = new IterableNodeDeque();
+		this.method780(var1);
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;I)V",
-		garbageValue = "-625880362"
+		descriptor = "(Ltm;B)V",
+		garbageValue = "-82"
 	)
-	void method773(Buffer var1) {
-		this.field1329 = var1.readLong();
-		this.field1328 = var1.readInt();
+	void method780(Buffer var1) {
+		this.field1345 = var1.readLong();
+		this.field1347 = var1.readInt();
 
 		for (int var2 = var1.readUnsignedByte(); var2 != 0; var2 = var1.readUnsignedByte()) {
 			Object var3;
@@ -71,86 +77,34 @@ public class class146 {
 			}
 
 			((class143)var3).vmethod3254(var1);
-			this.field1330.addFirst((Node)var3);
+			this.field1346.addFirst((Node)var3);
 		}
 
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lfx;I)V",
-		garbageValue = "-955904177"
+		descriptor = "(Lfi;I)V",
+		garbageValue = "192399010"
 	)
-	public void method774(ClanSettings var1) {
-		if (this.field1329 == var1.field1366 && this.field1328 == var1.field1363) {
-			for (class143 var2 = (class143)this.field1330.last(); var2 != null; var2 = (class143)this.field1330.previous()) {
+	public void method781(ClanSettings var1) {
+		if (var1.field1377 == this.field1345 && this.field1347 == var1.field1388) {
+			for (class143 var2 = (class143)this.field1346.last(); var2 != null; var2 = (class143)this.field1346.previous()) {
 				var2.vmethod3248(var1);
 			}
 
-			++var1.field1363;
+			++var1.field1388;
 		} else {
 			throw new RuntimeException("");
 		}
 	}
 
-	@ObfuscatedName("nx")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)V",
-		garbageValue = "0"
+		descriptor = "(B)Lly;",
+		garbageValue = "-1"
 	)
-	@Export("findItemDefinitions")
-	static void findItemDefinitions(String var0, boolean var1) {
-		var0 = var0.toLowerCase();
-		short[] var2 = new short[16];
-		int var3 = 0;
-
-		for (int var4 = 0; var4 < class239.ItemDefinition_fileCount; ++var4) {
-			ItemComposition var5 = class125.ItemDefinition_get(var4);
-			if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
-				if (var3 >= 250) {
-					JagexCache.foundItemIdCount = -1;
-					MouseRecorder.foundItemIds = null;
-					return;
-				}
-
-				if (var3 >= var2.length) {
-					short[] var6 = new short[var2.length * 2];
-
-					for (int var7 = 0; var7 < var3; ++var7) {
-						var6[var7] = var2[var7];
-					}
-
-					var2 = var6;
-				}
-
-				var2[var3++] = (short)var4;
-			}
-		}
-
-		MouseRecorder.foundItemIds = var2;
-		ClanSettings.foundItemIndex = 0;
-		JagexCache.foundItemIdCount = var3;
-		String[] var8 = new String[JagexCache.foundItemIdCount];
-
-		for (int var9 = 0; var9 < JagexCache.foundItemIdCount; ++var9) {
-			var8[var9] = class125.ItemDefinition_get(var2[var9]).name;
-		}
-
-		class481.method2350(var8, MouseRecorder.foundItemIds);
-	}
-
-	@ObfuscatedName("ox")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-618232336"
-	)
-	static void method776() {
-		for (int var0 = 0; var0 < Client.field605.size(); ++var0) {
-			if (class273.method1504((Integer)Client.field605.get(var0)) != 2) {
-				Client.field605.remove(var0);
-				--var0;
-			}
-		}
-
+	public static PacketBufferNode method779() {
+		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
 	}
 }

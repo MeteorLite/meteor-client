@@ -11,7 +11,7 @@ public interface Buffer extends Node
 
     byte readByteAdd();
     byte readByteNeg();
-    byte readUnsignedByteSub$api();
+    int readUnsignedByteSub$api();
 	int readUnsignedByte$api();
 	byte readByte$api();
 	int readUnsignedShort$api();

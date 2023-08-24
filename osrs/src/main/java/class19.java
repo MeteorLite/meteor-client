@@ -1,122 +1,84 @@
-import java.io.IOException;
-import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ao")
+import java.io.IOException;
+import java.util.concurrent.Callable;
+
+@ObfuscatedName("ah")
 public class class19 implements Callable {
-	@ObfuscatedName("aj")
-	@Export("Tiles_shapes")
-	static byte[][][] Tiles_shapes;
-	@ObfuscatedName("ks")
-	@Export("cameraPitch")
-	static int cameraPitch;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Laq;"
+		descriptor = "Lad;"
 	)
-	final class10 field57;
+	final class10 field54;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Laa;"
+		descriptor = "Lar;"
 	)
 	@Export("this$0")
 	@ObfuscatedName("this$0")
 	final class14 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Laa;Laq;)V"
+		descriptor = "(Lar;Lad;)V"
 	)
 	class19(class14 var1, class10 var2) {
 		this.this$0 = var1;
-		this.field57 = var2;
+		this.field54 = var2;
 	}
 
 	@Export("call")
 	@ObfuscatedName("call")
 	public Object call() throws Exception {
 		try {
-			while (this.field57.method34()) {
-				class13.method44(10L);
+			while (this.field54.method30()) {
+				PendingSpawn.method505(10L);
 			}
 		} catch (IOException var2) {
 			return new class20("Error servicing REST query: " + var2.getMessage());
 		}
 
-		return this.field57.method35();
+		return this.field54.method31();
 	}
 
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-50"
-	)
-	public static void method66() {
-		class36.reflectionChecks = new IterableNodeDeque();
-	}
-
-	@ObfuscatedName("ay")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-525719060"
+		garbageValue = "1773391988"
 	)
-	static void method67() {
-		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) {
-			if (var0.obj != null) {
-				var0.set();
-			}
-		}
-
+	public static void method60() {
+		DbRowType.DBRowType_cache.clear();
 	}
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "([BIILiz;[Lij;I)V",
-		garbageValue = "-999166250"
+		descriptor = "(IIIII)I",
+		garbageValue = "1020330780"
 	)
-	static final void method68(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
-		Buffer var5 = new Buffer(var0);
-		int var6 = -1;
+	static final int method61(int var0, int var1, int var2, int var3) {
+		int var4 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var2 * 1024 / var3] >> 1;
+		return ((65536 - var4) * var0 >> 16) + (var4 * var1 >> 16);
+	}
 
-		while (true) {
-			int var7 = var5.method2541();
-			if (var7 == 0) {
-				return;
-			}
+	@ObfuscatedName("my")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-274496968"
+	)
+	@Export("Widget_resetModelFrames")
+	static final void Widget_resetModelFrames(int var0) {
+		if (ModeWhere.loadInterface(var0)) {
+			Widget[] var1 = PacketBufferNode.Widget_interfaceComponents[var0];
 
-			var6 += var7;
-			int var8 = 0;
-
-			while (true) {
-				int var9 = var5.readUShortSmart();
-				if (var9 == 0) {
-					break;
-				}
-
-				var8 += var9 - 1;
-				int var10 = var8 & 63;
-				int var11 = var8 >> 6 & 63;
-				int var12 = var8 >> 12;
-				int var13 = var5.readUnsignedByte();
-				int var14 = var13 >> 2;
-				int var15 = var13 & 3;
-				int var16 = var11 + var1;
-				int var17 = var10 + var2;
-				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) {
-					int var18 = var12;
-					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) {
-						var18 = var12 - 1;
-					}
-
-					CollisionMap var19 = null;
-					if (var18 >= 0) {
-						var19 = var4[var18];
-					}
-
-					PendingSpawn.addObjects(var12, var16, var17, var6, var15, var14, var3, var19);
+			for (int var2 = 0; var2 < var1.length; ++var2) {
+				Widget var3 = var1[var2];
+				if (var3 != null) {
+					var3.modelFrame = 0;
+					var3.modelFrameCycle = 0;
 				}
 			}
+
 		}
 	}
 }

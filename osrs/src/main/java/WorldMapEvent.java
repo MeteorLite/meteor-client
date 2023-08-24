@@ -3,27 +3,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 @ObfuscatedName("kl")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lmr;"
+		descriptor = "Lmc;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lmr;"
+		descriptor = "Lmc;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		descriptor = "(ILmr;Lmr;)V"
+		descriptor = "(ILmc;Lmc;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1;
@@ -31,39 +34,53 @@ public class WorldMapEvent {
 		this.coord2 = var3;
 	}
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("nm")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "-1720811535"
+		descriptor = "(II)V",
+		garbageValue = "307364041"
 	)
-	public static int method1546(int var0, int var1) {
-		int var2;
-		for (var2 = 0; var1 > 0; --var1) {
-			var2 = var2 << 1 | var0 & 1;
-			var0 >>>= 1;
-		}
+	static final void method1588(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 255);
+		if (var0 != class449.clientPreferences.getCurrentMusicVolume()) {
+			label36: {
+				if (class449.clientPreferences.getCurrentMusicVolume() == 0) {
+					boolean var1 = !class305.field2773.isEmpty();
+					if (var1) {
+						Archive var2 = class385.archive6;
+						if (!class305.field2773.isEmpty()) {
+							ArrayList var3 = new ArrayList();
+							Iterator var4 = class305.field2773.iterator();
 
-		return var2;
-	}
+							while (var4.hasNext()) {
+								MusicSong var5 = (MusicSong)var4.next();
+								var5.field2865 = false;
+								var5.field2866 = false;
+								var5.field2862 = false;
+								var5.field2863 = false;
+								var5.musicTrackArchive = var2;
+								var5.musicTrackVolume = var0;
+								var5.field2867 = 0.0F;
+								var3.add(var5);
+							}
 
-	@ObfuscatedName("nz")
-	@ObfuscatedSignature(
-		descriptor = "(Lmt;B)Lmt;",
-		garbageValue = "84"
-	)
-	static Widget method1547(Widget var0) {
-		int var1 = ClientPacket.method1569(UserComparator8.getWidgetFlags(var0));
-		if (var1 == 0) {
-			return null;
-		} else {
-			for (int var2 = 0; var2 < var1; ++var2) {
-				var0 = VarbitComposition.getWidget(var0.parentId);
-				if (var0 == null) {
-					return null;
+							class53.method291(var3, class305.musicPlayerStatus, class305.field2766, class305.field2769, class305.field2768, false);
+						}
+
+						Client.playingJingle = false;
+						break label36;
+					}
+				}
+
+				if (var0 == 0) {
+					Script.method445(0, 0);
+					Client.playingJingle = false;
+				} else {
+					class300.method1620(var0);
 				}
 			}
 
-			return var0;
+			class449.clientPreferences.setCurrentMusicVolume(var0);
 		}
+
 	}
 }

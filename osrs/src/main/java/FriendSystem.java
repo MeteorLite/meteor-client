@@ -1,35 +1,37 @@
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cd")
+import java.util.Iterator;
+
+@ObfuscatedName("ci")
 @Implements("FriendSystem")
 public class FriendSystem {
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lsi;"
+		descriptor = "Lsl;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lqp;"
+		descriptor = "Lqk;"
 	)
 	@Export("friendsList")
 	public final FriendsList friendsList;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lqm;"
+		descriptor = "Lqq;"
 	)
 	@Export("ignoreList")
 	public final IgnoreList ignoreList;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
+	@Export("friendListStatus")
 	int friendListStatus;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lsi;)V"
+		descriptor = "(Lsl;)V"
 	)
 	FriendSystem(LoginType var1) {
 		this.friendListStatus = 0;
@@ -38,28 +40,28 @@ public class FriendSystem {
 		this.ignoreList = new IgnoreList(var1);
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "106"
+		descriptor = "(I)Z",
+		garbageValue = "1751365649"
 	)
-	boolean method406() {
+	boolean method398() {
 		return this.friendListStatus == 2;
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "109"
+		descriptor = "(I)V",
+		garbageValue = "-641955560"
 	)
-	final void setFriendListToLoaded() {
+	final void method399() {
 		this.friendListStatus = 1;
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;II)V",
-		garbageValue = "1175550458"
+		descriptor = "(Ltm;II)V",
+		garbageValue = "-479200024"
 	)
 	@Export("readUpdate")
 	final void readUpdate(Buffer var1, int var2) {
@@ -71,28 +73,34 @@ public class FriendSystem {
 			var4.clearIsFriend();
 		}
 
-		class106.method619();
-		if (Canvas.friendsChat != null) {
-			Canvas.friendsChat.clearFriends();
+		Iterator var5 = Messages.Messages_hashTable.iterator();
+
+		while (var5.hasNext()) {
+			Message var6 = (Message)var5.next();
+			var6.clearIsFromFriend();
+		}
+
+		if (ReflectionCheck.friendsChat != null) {
+			ReflectionCheck.friendsChat.clearFriends();
 		}
 
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-119"
+		descriptor = "(I)V",
+		garbageValue = "-676446193"
 	)
 	@Export("processFriendUpdates")
 	final void processFriendUpdates() {
 		for (FriendLoginUpdate var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.previous()) {
-			if ((long)var1.field3784 < class113.clockNow() / 1000L - 5L) {
+			if ((long)var1.field3796 < GameEngine.clockNow() / 1000L - 5L) {
 				if (var1.worldId > 0) {
-					class415.addGameMessage(5, "", var1.friendUsername + " has logged in.");
+					MouseHandler.addGameMessage(5, "", var1.friendUsername + " has logged in.");
 				}
 
 				if (var1.worldId == 0) {
-					class415.addGameMessage(5, "", var1.friendUsername + " has logged out.");
+					MouseHandler.addGameMessage(5, "", var1.friendUsername + " has logged out.");
 				}
 
 				var1.remove();
@@ -101,10 +109,10 @@ public class FriendSystem {
 
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1126290435"
+		descriptor = "(B)V",
+		garbageValue = "60"
 	)
 	@Export("clear")
 	final void clear() {
@@ -113,26 +121,26 @@ public class FriendSystem {
 		this.ignoreList.clear();
 	}
 
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(Lui;ZB)Z",
-		garbageValue = "77"
+		descriptor = "(Luc;ZI)Z",
+		garbageValue = "496878304"
 	)
 	@Export("isFriended")
 	final boolean isFriended(Username var1, boolean var2) {
 		if (var1 == null) {
 			return false;
-		} else if (var1.equals(class136.localPlayer.username)) {
+		} else if (var1.equals(VarbitComposition.localPlayer.username)) {
 			return true;
 		} else {
 			return this.friendsList.isFriended(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(Lui;I)Z",
-		garbageValue = "1453652382"
+		descriptor = "(Luc;I)Z",
+		garbageValue = "-1644388901"
 	)
 	@Export("isIgnored")
 	final boolean isIgnored(Username var1) {
@@ -143,10 +151,10 @@ public class FriendSystem {
 		}
 	}
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "119"
+		garbageValue = "76"
 	)
 	@Export("addFriend")
 	final void addFriend(String var1) {
@@ -154,34 +162,34 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.friendsListIsFull()) {
-					Tile.method1160("Your friend list is full. Max of 200 for free users, and 400 for members");
-				} else if (class136.localPlayer.username.equals(var2)) {
-					class220.method1126();
+					UserComparator8.method673("Your friend list is full. Max of 200 for free users, and 400 for members");
+				} else if (VarbitComposition.localPlayer.username.equals(var2)) {
+					Clock.method931();
 				} else if (this.isFriended(var2, false)) {
-					WorldMapSectionType.method1481(var1);
+					Strings.method1877(var1);
 				} else if (this.isIgnored(var2)) {
-					Tile.method1160("Please remove " + var1 + " from your ignore list first");
+					UserComparator8.method673("Please remove " + var1 + " from your ignore list first");
 				} else {
-					Canvas.method83(var1);
+					MouseHandler.method171(var1);
 				}
 			}
 		}
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-30"
+		descriptor = "(I)Z",
+		garbageValue = "1246160052"
 	)
 	@Export("friendsListIsFull")
 	final boolean friendsListIsFull() {
 		return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.isMembers != 1;
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "109"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "541901649"
 	)
 	@Export("addIgnore")
 	final void addIgnore(String var1) {
@@ -189,34 +197,37 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.canAddIgnore()) {
-					UserComparator5.method672();
-				} else if (class136.localPlayer.username.equals(var2)) {
-					Tile.method1160("You can't add yourself to your own ignore list");
+					UserComparator8.method673("Your ignore list is full. Max of 100 for free users, and 400 for members");
+				} else if (VarbitComposition.localPlayer.username.equals(var2)) {
+					class503.method2501();
 				} else if (this.isIgnored(var2)) {
-					MusicPatchNode.method1660(var1);
+					class31.method121(var1);
 				} else if (this.isFriended(var2, false)) {
-					Tile.method1160("Please remove " + var1 + " from your friend list first");
+					UserComparator8.method673("Please remove " + var1 + " from your friend list first");
 				} else {
-					ItemContainer.method467(var1);
+					PacketBufferNode var3 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IGNORELIST_ADD, Client.packetWriter.isaacCipher);
+					var3.packetBuffer.writeByte(AbstractSocket.stringCp1252NullTerminatedByteSize(var1));
+					var3.packetBuffer.writeStringCp1252NullTerminated(var1);
+					Client.packetWriter.addNode(var3);
 				}
 			}
 		}
 	}
 
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-876943227"
+		garbageValue = "203788977"
 	)
 	@Export("canAddIgnore")
 	final boolean canAddIgnore() {
 		return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.isMembers != 1;
 	}
 
-	@ObfuscatedName("ad")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1474613294"
+		garbageValue = "2045043911"
 	)
 	@Export("removeFriend")
 	final void removeFriend(String var1) {
@@ -224,9 +235,9 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.friendsList.removeByUsername(var2)) {
-					Client.field516 = Client.cycleCntr;
-					PacketBufferNode var3 = class503.getPacketBufferNode(ClientPacket.FRIENDLIST_DEL, Client.packetWriter.isaacCipher);
-					var3.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var1));
+					class113.method663();
+					PacketBufferNode var3 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.FRIENDLIST_DEL, Client.packetWriter.isaacCipher);
+					var3.packetBuffer.writeByte(AbstractSocket.stringCp1252NullTerminatedByteSize(var1));
 					var3.packetBuffer.writeStringCp1252NullTerminated(var1);
 					Client.packetWriter.addNode(var3);
 				}
@@ -236,19 +247,25 @@ public class FriendSystem {
 					var4.clearIsFriend();
 				}
 
-				class106.method619();
-				if (Canvas.friendsChat != null) {
-					Canvas.friendsChat.clearFriends();
+				Iterator var6 = Messages.Messages_hashTable.iterator();
+
+				while (var6.hasNext()) {
+					Message var7 = (Message)var6.next();
+					var7.clearIsFromFriend();
+				}
+
+				if (ReflectionCheck.friendsChat != null) {
+					ReflectionCheck.friendsChat.clearFriends();
 				}
 
 			}
 		}
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)V",
-		garbageValue = "-31"
+		descriptor = "(Ljava/lang/String;ZI)V",
+		garbageValue = "81642025"
 	)
 	@Export("removeIgnore")
 	public final void removeIgnore(String var1, boolean var2) {
@@ -256,24 +273,24 @@ public class FriendSystem {
 			Username var3 = new Username(var1, this.loginType);
 			if (var3.hasCleanName()) {
 				if (this.ignoreList.removeByUsername(var3)) {
-					Client.field516 = Client.cycleCntr;
+					class113.method663();
 					if (var2) {
-						PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.IGNORELIST_DEL, Client.packetWriter.isaacCipher);
-						var4.packetBuffer.writeByte(class501.stringCp1252NullTerminatedByteSize(var1));
+						PacketBufferNode var4 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.IGNORELIST_DEL, Client.packetWriter.isaacCipher);
+						var4.packetBuffer.writeByte(AbstractSocket.stringCp1252NullTerminatedByteSize(var1));
 						var4.packetBuffer.writeStringCp1252NullTerminated(var1);
 						Client.packetWriter.addNode(var4);
 					}
 				}
 
-				GameBuild.FriendSystem_invalidateIgnoreds();
+				AbstractSocket.FriendSystem_invalidateIgnoreds();
 			}
 		}
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(Lui;B)Z",
-		garbageValue = "24"
+		descriptor = "(Luc;I)Z",
+		garbageValue = "1021453892"
 	)
 	@Export("isFriendAndHasWorld")
 	final boolean isFriendAndHasWorld(Username var1) {
@@ -281,255 +298,60 @@ public class FriendSystem {
 		return var2 != null && var2.hasWorld();
 	}
 
-	@ObfuscatedName("bq")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(ILdc;ZI)I",
-		garbageValue = "-1211828959"
+		descriptor = "([Ljava/lang/String;[SIIB)V",
+		garbageValue = "108"
 	)
-	static int method420(int var0, Script var1, boolean var2) {
-		String var3;
-		int var4;
-		if (var0 == 4100) {
-			var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-			var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var4;
-			return 1;
-		} else {
-			String var9;
-			if (var0 == 4101) {
-				Interpreter.Interpreter_stringStackSize -= 2;
-				var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-				var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var9;
-				return 1;
-			} else if (var0 == 4102) {
-				var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-				var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + class509.intToString(var4, true);
-				return 1;
-			} else if (var0 == 4103) {
-				var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.toLowerCase();
-				return 1;
-			} else {
-				int var6;
-				int var10;
-				if (var0 == 4104) {
-					var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					long var11 = (11745L + (long)var10) * 86400000L;
-					Interpreter.Interpreter_calendar.setTime(new Date(var11));
-					var6 = Interpreter.Interpreter_calendar.get(5);
-					int var17 = Interpreter.Interpreter_calendar.get(2);
-					int var8 = Interpreter.Interpreter_calendar.get(1);
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var6 + "-" + Interpreter.Interpreter_MONTHS[var17] + "-" + var8;
-					return 1;
-				} else if (var0 != 4105) {
-					if (var0 == 4106) {
-						var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = Integer.toString(var10);
-						return 1;
-					} else if (var0 == 4107) {
-						Interpreter.Interpreter_stringStackSize -= 2;
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = GrandExchangeOfferTotalQuantityComparator.method1909(FloorOverlayDefinition.compareStrings(Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1], Interpreter.clientLanguage));
-						return 1;
-					} else {
-						int var5;
-						byte[] var13;
-						Font var14;
-						if (var0 == 4108) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							Interpreter.Interpreter_intStackSize -= 2;
-							var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-							var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-							var13 = FontName.archive13.takeFile(var5, 0);
-							var14 = new Font(var13);
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var14.lineCount(var3, var4);
-							return 1;
-						} else if (var0 == 4109) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							Interpreter.Interpreter_intStackSize -= 2;
-							var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-							var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-							var13 = FontName.archive13.takeFile(var5, 0);
-							var14 = new Font(var13);
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var14.lineWidth(var3, var4);
-							return 1;
-						} else if (var0 == 4110) {
-							Interpreter.Interpreter_stringStackSize -= 2;
-							var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-							var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-							if (Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1) {
-								Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
-							} else {
-								Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
-							}
+	@Export("sortItemsByName")
+	public static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
+		if (var2 < var3) {
+			int var4 = (var3 + var2) / 2;
+			int var5 = var2;
+			String var6 = var0[var4];
+			var0[var4] = var0[var3];
+			var0[var3] = var6;
+			short var7 = var1[var4];
+			var1[var4] = var1[var3];
+			var1[var3] = var7;
 
-							return 1;
-						} else if (var0 == 4111) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = AbstractFont.escapeBrackets(var3);
-							return 1;
-						} else if (var0 == 4112) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + (char)var4;
-							return 1;
-						} else if (var0 == 4113) {
-							var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = ChatChannel.isCharPrintable((char)var10) ? 1 : 0;
-							return 1;
-						} else if (var0 == 4114) {
-							var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class126.isAlphaNumeric((char)var10) ? 1 : 0;
-							return 1;
-						} else if (var0 == 4115) {
-							var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Canvas.isCharAlphabetic((char)var10) ? 1 : 0;
-							return 1;
-						} else if (var0 == 4116) {
-							var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class164.isDigit((char)var10) ? 1 : 0;
-							return 1;
-						} else if (var0 == 4117) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							if (var3 != null) {
-								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.length();
-							} else {
-								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
-							}
-
-							return 1;
-						} else if (var0 == 4118) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							Interpreter.Interpreter_intStackSize -= 2;
-							var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-							var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.substring(var4, var5);
-							return 1;
-						} else if (var0 == 4119) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							StringBuilder var18 = new StringBuilder(var3.length());
-							boolean var16 = false;
-
-							for (var6 = 0; var6 < var3.length(); ++var6) {
-								char var7 = var3.charAt(var6);
-								if (var7 == '<') {
-									var16 = true;
-								} else if (var7 == '>') {
-									var16 = false;
-								} else if (!var16) {
-									var18.append(var7);
-								}
-							}
-
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var18.toString();
-							return 1;
-						} else if (var0 == 4120) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.indexOf(var4);
-							return 1;
-						} else if (var0 == 4121) {
-							Interpreter.Interpreter_stringStackSize -= 2;
-							var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-							var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-							var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.indexOf(var9, var5);
-							return 1;
-						} else if (var0 == 4122) {
-							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.toUpperCase();
-							return 1;
-						} else if (var0 == 4123) {
-							Interpreter.Interpreter_stringStackSize -= 3;
-							var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-							var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-							String var15 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 2];
-							if (class136.localPlayer.appearance == null) {
-								Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var15;
-								return 1;
-							} else {
-								switch(class136.localPlayer.appearance.field2899) {
-								case 0:
-									Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
-									break;
-								case 1:
-									Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
-									break;
-								case 2:
-								default:
-									Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var15;
-								}
-
-								return 1;
-							}
-						} else {
-							return 2;
-						}
-					}
-				} else {
-					Interpreter.Interpreter_stringStackSize -= 2;
-					var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-					var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-					if (class136.localPlayer.appearance != null && class136.localPlayer.appearance.field2900 != 0) {
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
-					} else {
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
-					}
-
-					return 1;
+			for (int var8 = var2; var8 < var3; ++var8) {
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
+					String var9 = var0[var8];
+					var0[var8] = var0[var5];
+					var0[var5] = var9;
+					short var10 = var1[var8];
+					var1[var8] = var1[var5];
+					var1[var5++] = var10;
 				}
 			}
+
+			var0[var3] = var0[var5];
+			var0[var5] = var6;
+			var1[var3] = var1[var5];
+			var1[var5] = var7;
+			sortItemsByName(var0, var1, var2, var5 - 1);
+			sortItemsByName(var0, var1, var5 + 1, var3);
 		}
+
 	}
 
-	@ObfuscatedName("lq")
+	@ObfuscatedName("hu")
 	@ObfuscatedSignature(
-		descriptor = "(Lmt;IIZI)V",
-		garbageValue = "-593729074"
+		descriptor = "(I)I",
+		garbageValue = "284694724"
 	)
-	@Export("alignWidgetSize")
-	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
-		int var4 = var0.width;
-		int var5 = var0.height;
-		if (var0.widthAlignment == 0) {
-			var0.width = var0.rawWidth;
-		} else if (var0.widthAlignment == 1) {
-			var0.width = var1 - var0.rawWidth;
-		} else if (var0.widthAlignment == 2) {
-			var0.width = var0.rawWidth * var1 >> 14;
-		}
+	static int method412() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+			int var0 = 0;
 
-		if (var0.heightAlignment == 0) {
-			var0.height = var0.rawHeight;
-		} else if (var0.heightAlignment == 1) {
-			var0.height = var2 - var0.rawHeight;
-		} else if (var0.heightAlignment == 2) {
-			var0.height = var2 * var0.rawHeight >> 14;
-		}
+			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) {
+				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount;
+			}
 
-		if (var0.widthAlignment == 4) {
-			var0.width = var0.height * var0.field2990 / var0.field2981;
+			return var0 * 10000 / Client.field550;
+		} else {
+			return 10000;
 		}
-
-		if (var0.heightAlignment == 4) {
-			var0.height = var0.width * var0.field2981 / var0.field2990;
-		}
-
-		if (var0.contentType == 1337) {
-			Client.viewportWidget = var0;
-		}
-
-		if (var0.type == 12) {
-			var0.method1805().method1699(var0.width, var0.height);
-		}
-
-		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
-			ScriptEvent var6 = new ScriptEvent();
-			var6.widget = var0;
-			var6.args = var0.onResize;
-			Client.scriptEvents.addFirst(var6);
-		}
-
 	}
 }

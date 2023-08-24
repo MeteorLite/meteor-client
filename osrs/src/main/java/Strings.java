@@ -2,46 +2,43 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nz")
+@ObfuscatedName("nr")
 @Implements("Strings")
 public class Strings {
-	@ObfuscatedName("fg")
-	public static String field3291;
+	@ObfuscatedName("fs")
+	public static String field3315;
 	@ObfuscatedName("kl")
-	public static String field3412;
-	@ObfuscatedName("ks")
-	public static String field3419;
-	@ObfuscatedName("kj")
-	public static String field3410;
+	public static String field3423;
+	@ObfuscatedName("kk")
+	public static String field3422;
+	@ObfuscatedName("kc")
+	public static String field3414;
 
 	static {
-		field3291 = "Please visit the support page for assistance.";
-		field3412 = "";
-		field3419 = "Page has opened in the browser.";
-		field3410 = "";
+		field3315 = "Please visit the support page for assistance.";
+		field3423 = "";
+		field3422 = "Page has opened in the browser.";
+		field3414 = "";
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(II)F",
-		garbageValue = "189737600"
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "64"
 	)
-	static final float method1841(int var0) {
-		float var1 = 10075.0F - (float)var0;
-		return (1.0075567F * var1 - 75.56675F) / var1;
+	static final void method1877(String var0) {
+		UserComparator8.method673(var0 + " is already on your friend list");
 	}
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2120353581"
+		descriptor = "(IIB)I",
+		garbageValue = "-116"
 	)
-	static int method1842(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
-		} else {
-			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
-		}
+	static final int method1878(int var0, int var1) {
+		int var2 = var1 * 57 + var0;
+		var2 ^= var2 << 13;
+		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
+		return var3 >> 19 & 255;
 	}
 }

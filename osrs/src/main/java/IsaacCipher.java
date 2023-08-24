@@ -3,25 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("uy")
+@ObfuscatedName("ux")
 @Implements("IsaacCipher")
 public final class IsaacCipher {
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("valuesRemaining")
 	int valuesRemaining;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@Export("results")
 	int[] results;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("mm")
 	int[] mm;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@Export("aa")
 	int aa;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@Export("bb")
 	int bb;
-	@ObfuscatedName("av")
+	@ObfuscatedName("aa")
 	@Export("cc")
 	int cc;
 
@@ -33,13 +33,13 @@ public final class IsaacCipher {
 			this.results[var2] = var1[var2];
 		}
 
-		this.method2674();
+		this.method2693();
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1840020352"
+		garbageValue = "-66287514"
 	)
 	@Export("nextInt")
 	public final int nextInt() {
@@ -51,12 +51,12 @@ public final class IsaacCipher {
 		return this.results[--this.valuesRemaining];
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "18"
+		descriptor = "(I)I",
+		garbageValue = "1374032282"
 	)
-	public final int method2672() {
+	public final int method2691() {
 		if (this.valuesRemaining == 0) {
 			this.generateMoreResults();
 			this.valuesRemaining = 256;
@@ -65,10 +65,10 @@ public final class IsaacCipher {
 		return this.results[this.valuesRemaining - 1];
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "3"
+		descriptor = "(I)V",
+		garbageValue = "1084555952"
 	)
 	@Export("generateMoreResults")
 	final void generateMoreResults() {
@@ -96,12 +96,12 @@ public final class IsaacCipher {
 
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-312675449"
+		descriptor = "(B)V",
+		garbageValue = "4"
 	)
-	final void method2674() {
+	final void method2693() {
 		int var9 = -1640531527;
 		int var8 = -1640531527;
 		int var7 = -1640531527;

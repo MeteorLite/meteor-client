@@ -3,12 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ea")
+@ObfuscatedName("ek")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("ha")
-	static String field1182;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -16,10 +14,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;Lqa;I)I",
-		garbageValue = "1135205552"
+		descriptor = "(Lqb;Lqb;I)I",
+		garbageValue = "-1874488966"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,14 +34,24 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("ov")
+	@ObfuscatedName("oa")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1036481495"
+		descriptor = "(Lmi;I)Lmi;",
+		garbageValue = "915415331"
 	)
-	static void setLoginState(int var0) {
-		if (var0 != Client.loginState) {
-			Client.loginState = var0;
+	static Widget method691(Widget var0) {
+		int var1 = SpriteMask.method1706(NewShit.getWidgetFlags(var0));
+		if (var1 == 0) {
+			return null;
+		} else {
+			for (int var2 = 0; var2 < var1; ++var2) {
+				var0 = class92.getWidget(var0.parentId);
+				if (var0 == null) {
+					return null;
+				}
+			}
+
+			return var0;
 		}
 	}
 }

@@ -3,21 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mr")
+@ObfuscatedName("mc")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("aa")
+	@Export("SpriteBuffer_pixels")
+	static byte[][] SpriteBuffer_pixels;
+	@ObfuscatedName("au")
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@Export("x")
 	public int x;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lmr;)V"
+		descriptor = "(Lmc;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -42,20 +45,24 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1164685435"
+		garbageValue = "1852623783"
 	)
 	@Export("packed")
 	public int packed() {
-		return class492.method2438(this.plane, this.x, this.y);
+		int var2 = this.plane;
+		int var3 = this.x;
+		int var4 = this.y;
+		int var1 = var2 << 28 | var3 << 14 | var4;
+		return var1;
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lmr;I)Z",
-		garbageValue = "916547059"
+		descriptor = "(Lmc;B)Z",
+		garbageValue = "-109"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -68,10 +75,10 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "16"
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "1357161194"
 	)
 	@Export("toString")
 	String toString(String var1) {

@@ -1,25 +1,17 @@
-import java.applet.Applet;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
+import netscape.js.JSObject;
 
-@ObfuscatedName("bd")
+import java.applet.Applet;
+
+@ObfuscatedName("bh")
 public class class26 {
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/applet/Applet;Ljava/lang/String;I)V",
-		garbageValue = "-2105892284"
-	)
-	public static void method100(Applet var0, String var1) throws Throwable {
-		//JSObject.getWindow(var0).eval(var1);
-	}
-
-	@ObfuscatedName("ay")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/applet/Applet;Ljava/lang/String;[Ljava/lang/Object;I)Ljava/lang/Object;",
-		garbageValue = "-865413810"
+		garbageValue = "-1868178316"
 	)
-	public static Object method101(Applet var0, String var1, Object[] var2) throws Throwable {
-		return null; //JSObject.getWindow(var0).call(var1, var2);
+	public static Object method95(Applet var0, String var1, Object[] var2) throws Throwable {
+		return JSObject.getWindow(var0).call(var1, var2);
 	}
 }

@@ -1,86 +1,63 @@
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bw")
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+@ObfuscatedName("ba")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("fo")
+	@ObfuscatedName("sh")
 	@ObfuscatedSignature(
-		descriptor = "Lny;"
+		descriptor = "Lqc;"
 	)
-	static Archive field151;
-	@ObfuscatedName("aw")
+	@Export("friendsChat")
+	static FriendsChat friendsChat;
+	@ObfuscatedName("au")
 	@Export("id")
 	int id;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@Export("size")
 	int size;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@Export("operations")
 	int[] operations;
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@Export("creationErrors")
 	int[] creationErrors;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	Field[] fields;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("intReplaceValues")
 	int[] intReplaceValues;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@Export("methods")
 	Method[] methods;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@Export("arguments")
 	byte[][][] arguments;
 
 	ReflectionCheck() {
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("bi")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;B)V",
-		garbageValue = "-7"
+		descriptor = "(Lmi;II)V",
+		garbageValue = "-1454269975"
 	)
-	public static void method175(AbstractArchive var0) {
-		VarbitComposition.VarbitDefinition_archive = var0;
-	}
-
-	@ObfuscatedName("jy")
-	@ObfuscatedSignature(
-		descriptor = "(IIIB)V",
-		garbageValue = "6"
-	)
-	@Export("worldToScreen")
-	static final void worldToScreen(int var0, int var1, int var2) {
-		if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
-			int var3 = class306.getTileHeight(var0, var1, class36.Client_plane) - var2;
-			var0 -= class157.cameraX;
-			var3 -= class384.cameraY;
-			var1 -= SoundSystem.cameraZ;
-			int var4 = Rasterizer3D.Rasterizer3D_sine[class19.cameraPitch];
-			int var5 = Rasterizer3D.Rasterizer3D_cosine[class19.cameraPitch];
-			int var6 = Rasterizer3D.Rasterizer3D_sine[class456.cameraYaw];
-			int var7 = Rasterizer3D.Rasterizer3D_cosine[class456.cameraYaw];
-			int var8 = var6 * var1 + var0 * var7 >> 16;
-			var1 = var7 * var1 - var0 * var6 >> 16;
-			var0 = var8;
-			var8 = var5 * var3 - var4 * var1 >> 16;
-			var1 = var5 * var1 + var3 * var4 >> 16;
-			if (var1 >= 50) {
-				Client.viewportTempX = var0 * Client.viewportZoom / var1 + Client.viewportWidth / 2;
-				Client.viewportTempY = Client.viewportHeight / 2 + var8 * Client.viewportZoom / var1;
-			} else {
-				Client.viewportTempX = -1;
-				Client.viewportTempY = -1;
-			}
-
-		} else {
-			Client.viewportTempX = -1;
-			Client.viewportTempY = -1;
+	public static void method174(Widget var0, int var1) {
+		ItemComposition var2 = InvDefinition.ItemDefinition_get(var1);
+		var0.field3101.equipment[var2.maleModel] = var1 + 512;
+		if (var2.maleModel1 != -1) {
+			var0.field3101.equipment[var2.maleModel1] = 0;
 		}
+
+		if (var2.maleModel2 != -1) {
+			var0.field3101.equipment[var2.maleModel2] = 0;
+		}
+
+		var0.field3101.method1729();
 	}
 }

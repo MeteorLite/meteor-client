@@ -1,23 +1,16 @@
-import java.lang.management.GarbageCollectorMXBean;
-import java.util.ArrayList;
-import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
+import java.util.Comparator;
+
 @ObfuscatedName("en")
 @Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
-	@ObfuscatedName("ag")
-	public static int field1166;
-	@ObfuscatedName("bh")
-	@Export("garbageCollector")
-	static GarbageCollectorMXBean garbageCollector;
-	@ObfuscatedName("ji")
-	@Export("regionMapArchiveIds")
-	static int[] regionMapArchiveIds;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("vv")
+	static int field1180;
+	@ObfuscatedName("au")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -25,10 +18,10 @@ public class UserComparator4 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;Lqa;B)I",
-		garbageValue = "95"
+		descriptor = "(Lqb;Lqb;I)I",
+		garbageValue = "-1072568679"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Buddy var1, Buddy var2) {
@@ -47,36 +40,94 @@ public class UserComparator4 implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/ArrayList;IIIIZB)V",
-		garbageValue = "-72"
+		descriptor = "(Lfh;FZI)F",
+		garbageValue = "-229947551"
 	)
-	public static void method663(ArrayList var0, int var1, int var2, int var3, int var4, boolean var5) {
-		if (var5 || !class306.field2758.isEmpty() && !var0.isEmpty()) {
-			class306.field2758.clear();
-			class306.field2760.clear();
-		}
-
-		if (!var0.isEmpty()) {
-			class144.method764(var0, var5);
-			if (!class306.field2758.isEmpty()) {
-				ArchiveLoader.method464(var1, var2, var3, var4);
-				class306.field2760.add(new AddRequestTask((SongTask)null));
-				class306.field2760.add(new LoadSongTask((SongTask)null, class306.musicPatchesArchive, class306.musicSamplesArchive, class306.soundEffectsArchive));
-				if (!class306.musicSongs.isEmpty()) {
-					ArrayList var6 = new ArrayList();
-					var6.add(new DelayFadeTask(new class404(new FadeInTask((SongTask)null, 0, true, class306.field2751)), class306.field2754));
-					ArrayList var7 = class162.method847();
-					var6.add(new DelayFadeTask(new FadeOutTask(new class402((SongTask)null, var7), 0, false, class306.field2753), class306.musicPlayerStatus));
-					class306.field2760.add(new ConcurrentMidiTask((SongTask)null, var6));
+	static float method669(class130 var0, float var1, boolean var2) {
+		float var3 = 0.0F;
+		if (var0 != null && var0.method726() != 0) {
+			float var4 = (float)var0.field1244[0].field1202;
+			float var5 = (float)var0.field1244[var0.method726() - 1].field1202;
+			float var6 = var5 - var4;
+			if ((double)var6 == 0.0D) {
+				return var0.field1244[0].field1198;
+			} else {
+				float var7 = 0.0F;
+				if (var1 > var5) {
+					var7 = (var1 - var5) / var6;
 				} else {
-					class306.field2760.add(new DelayFadeTask((SongTask)null, class306.field2754));
-					class306.field2760.add(new class404((SongTask)null));
-					class306.field2760.add(new FadeInTask((SongTask)null, 0, true, class306.field2751));
+					var7 = (var1 - var4) / var6;
 				}
 
+				double var8 = (double)((int)var7);
+				float var10 = Math.abs((float)((double)var7 - var8));
+				float var11 = var10 * var6;
+				var8 = Math.abs(1.0D + var8);
+				double var12 = var8 / 2.0D;
+				double var14 = (double)((int)var12);
+				var10 = (float)(var12 - var14);
+				float var16;
+				float var17;
+				if (var2) {
+					if (var0.field1245 == class128.field1225) {
+						if ((double)var10 != 0.0D) {
+							var11 += var4;
+						} else {
+							var11 = var5 - var11;
+						}
+					} else if (var0.field1245 != class128.field1227 && var0.field1245 != class128.field1228) {
+						if (var0.field1245 == class128.field1226) {
+							var11 = var4 - var1;
+							var16 = var0.field1244[0].field1200;
+							var17 = var0.field1244[0].field1201;
+							var3 = var0.field1244[0].field1198;
+							if (0.0D != (double)var16) {
+								var3 -= var11 * var17 / var16;
+							}
+
+							return var3;
+						}
+					} else {
+						var11 = var5 - var11;
+					}
+				} else if (var0.field1246 == class128.field1225) {
+					if ((double)var10 != 0.0D) {
+						var11 = var5 - var11;
+					} else {
+						var11 += var4;
+					}
+				} else if (var0.field1246 != class128.field1227 && var0.field1246 != class128.field1228) {
+					if (var0.field1246 == class128.field1226) {
+						var11 = var1 - var5;
+						var16 = var0.field1244[var0.method726() - 1].field1197;
+						var17 = var0.field1244[var0.method726() - 1].field1199;
+						var3 = var0.field1244[var0.method726() - 1].field1198;
+						if (0.0D != (double)var16) {
+							var3 += var17 * var11 / var16;
+						}
+
+						return var3;
+					}
+				} else {
+					var11 += var4;
+				}
+
+				var3 = Skeleton.method1229(var0, var11);
+				float var18;
+				if (var2 && var0.field1245 == class128.field1228) {
+					var18 = var0.field1244[var0.method726() - 1].field1198 - var0.field1244[0].field1198;
+					var3 = (float)((double)var3 - (double)var18 * var8);
+				} else if (!var2 && var0.field1246 == class128.field1228) {
+					var18 = var0.field1244[var0.method726() - 1].field1198 - var0.field1244[0].field1198;
+					var3 = (float)((double)var3 + (double)var18 * var8);
+				}
+
+				return var3;
 			}
+		} else {
+			return var3;
 		}
 	}
 }

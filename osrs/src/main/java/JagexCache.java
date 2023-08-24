@@ -1,38 +1,43 @@
-import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gd")
+import java.io.File;
+
+@ObfuscatedName("gp")
 @Implements("JagexCache")
 public class JagexCache {
-	@ObfuscatedName("wt")
-	@Export("foundItemIdCount")
-	static int foundItemIdCount;
-	@ObfuscatedName("as")
+	@ObfuscatedName("at")
+	static File field1463;
+	@ObfuscatedName("ac")
 	@Export("cacheDir")
 	static File cacheDir;
-	@ObfuscatedName("aj")
-	public static int field1450;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ai")
+	static int field1461;
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Lts;"
+		descriptor = "Ltd;"
 	)
 	@Export("JagexCache_randomDat")
 	public static BufferedFile JagexCache_randomDat;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lts;"
+		descriptor = "Ltd;"
 	)
 	@Export("JagexCache_dat2File")
 	public static BufferedFile JagexCache_dat2File;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lts;"
+		descriptor = "Ltd;"
 	)
 	@Export("JagexCache_idx255File")
 	public static BufferedFile JagexCache_idx255File;
+	@ObfuscatedName("ab")
+	@Export("cacheGamebuild")
+	static int cacheGamebuild;
+	@ObfuscatedName("am")
+	static String[] field1464;
 
 	static {
 		JagexCache_randomDat = null;
@@ -40,37 +45,12 @@ public class JagexCache {
 		JagexCache_idx255File = null;
 	}
 
-	@ObfuscatedName("la")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
-		garbageValue = "-50"
+		descriptor = "(II)I",
+		garbageValue = "-812306716"
 	)
-	@Export("insertMenuItemNoShift")
-	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-		class7.insertMenuItem(var0, var1, var2, var3, var4, var5, -1, false);
-	}
-
-	@ObfuscatedName("mb")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "206796942"
-	)
-	static final int method901() {
-		float var0 = 200.0F * ((float)class150.clientPreferences.getBrightness() - 0.5F);
-		return 100 - Math.round(var0);
-	}
-
-	@ObfuscatedName("os")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Ltx;",
-		garbageValue = "52"
-	)
-	static class507 method902(int var0) {
-		class507 var1 = (class507)Client.Widget_cachedFonts.get((long)var0);
-		if (var1 == null) {
-			var1 = new class507(class176.field1459, var0);
-		}
-
-		return var1;
+	static int method909(int var0) {
+		return class28.KeyHandler_keyCodes[var0];
 	}
 }

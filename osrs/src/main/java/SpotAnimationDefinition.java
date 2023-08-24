@@ -3,61 +3,75 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hw")
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+@ObfuscatedName("ha")
 @Implements("SpotAnimationDefinition")
 public class SpotAnimationDefinition extends DualNode {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
+		descriptor = "Lnu;"
 	)
 	@Export("SpotAnimationDefinition_archive")
 	public static AbstractArchive SpotAnimationDefinition_archive;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lld;"
+		descriptor = "Lnu;"
+	)
+	@Export("SpotAnimationDefinition_modelArchive")
+	public static AbstractArchive SpotAnimationDefinition_modelArchive;
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Lle;"
 	)
 	@Export("SpotAnimationDefinition_cached")
-	static EvictingDualNodeHashTable SpotAnimationDefinition_cached;
-	@ObfuscatedName("am")
+	public static EvictingDualNodeHashTable SpotAnimationDefinition_cached;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lld;"
+		descriptor = "Lle;"
 	)
 	@Export("SpotAnimationDefinition_cachedModels")
-	static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
-	@ObfuscatedName("as")
+	public static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
+	@ObfuscatedName("sl")
+	@Export("ClanChat_inClanChat")
+	static boolean ClanChat_inClanChat;
+	@ObfuscatedName("ac")
 	@Export("id")
 	int id;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ai")
 	@Export("archive")
 	int archive;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("az")
 	@Export("sequence")
 	public int sequence;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ap")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("av")
+	@ObfuscatedName("aa")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("af")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("ad")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("at")
+	@ObfuscatedName("aq")
 	@Export("widthScale")
 	int widthScale;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("al")
 	@Export("heightScale")
 	int heightScale;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("an")
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ar")
 	@Export("ambient")
 	int ambient;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ab")
 	@Export("contrast")
 	int contrast;
 
@@ -75,10 +89,10 @@ public class SpotAnimationDefinition extends DualNode {
 		this.contrast = 0;
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;B)V",
-		garbageValue = "26"
+		descriptor = "(Ltm;B)V",
+		garbageValue = "127"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -92,10 +106,10 @@ public class SpotAnimationDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Lty;II)V",
-		garbageValue = "-797026654"
+		descriptor = "(Ltm;IB)V",
+		garbageValue = "83"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -139,17 +153,17 @@ public class SpotAnimationDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(II)Ljo;",
-		garbageValue = "-2055096855"
+		descriptor = "(II)Ljr;",
+		garbageValue = "620606809"
 	)
 	@Export("getModel")
 	public final Model getModel(int var1) {
-		Model var2 = this.method985();
+		Model var2 = this.method1002();
 		Model var3;
 		if (this.sequence != -1 && var1 != -1) {
-			var3 = class135.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
+			var3 = EnumComposition.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
 		} else {
 			var3 = var2.toSharedSpotAnimationModel(true);
 		}
@@ -178,15 +192,15 @@ public class SpotAnimationDefinition extends DualNode {
 		return var3;
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljo;",
-		garbageValue = "1754203875"
+		descriptor = "(B)Ljr;",
+		garbageValue = "-10"
 	)
-	public final Model method985() {
+	public final Model method1002() {
 		Model var1 = (Model)SpotAnimationDefinition_cachedModels.get((long)this.id);
 		if (var1 == null) {
-			ModelData var2 = ModelData.ModelData_get(class53.SpotAnimationDefinition_modelArchive, this.archive, 0);
+			ModelData var2 = ModelData.ModelData_get(SpotAnimationDefinition_modelArchive, this.archive, 0);
 			if (var2 == null) {
 				return null;
 			}
@@ -209,5 +223,31 @@ public class SpotAnimationDefinition extends DualNode {
 		}
 
 		return var1;
+	}
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/util/Date;",
+		garbageValue = "1382100876"
+	)
+	static Date method1003() throws ParseException {
+		SimpleDateFormat var0 = new SimpleDateFormat("ddMMyyyyHH", Locale.ENGLISH);
+		var0.setLenient(false);
+		StringBuilder var1 = new StringBuilder();
+		String[] var2 = Login.field768;
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			String var4 = var2[var3];
+			if (var4 == null) {
+				PcmPlayer.method212(7);
+				class318.setLoginResponseString("Date not valid.", "Please ensure all characters are populated.", "");
+				return null;
+			}
+
+			var1.append(var4);
+		}
+
+		var1.append("12");
+		return var0.parse(var1.toString());
 	}
 }

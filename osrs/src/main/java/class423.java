@@ -1,199 +1,199 @@
-import java.util.Comparator;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qo")
-class class423 implements Comparator {
-	// $FF: synthetic field
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+
+@ObfuscatedName("qv")
+public final class class423 {
+	@ObfuscatedName("au")
+	final Comparator field3771;
+	@ObfuscatedName("ae")
+	final Map field3772;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lql;"
+		descriptor = "Lpa;"
 	)
-	@Export("this$0")
-	@ObfuscatedName("this$0")
-	final class424 this$0;
+	final class392 field3774;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lpa;"
+	)
+	final class392 field3775;
+	@ObfuscatedName("ac")
+	final long field3773;
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "Lqm;"
+	)
+	final class421 field3776;
+	@ObfuscatedName("az")
+	final int field3770;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lql;)V"
+		descriptor = "(JILqm;)V"
 	)
-	class423(class424 var1) {
-		this.this$0 = var1;
+	class423(long var1, int var3, class421 var4) {
+		this.field3771 = new class422(this);
+		this.field3773 = var1;
+		this.field3770 = var3;
+		this.field3776 = var4;
+		if (this.field3770 == -1) {
+			this.field3772 = new HashMap(64);
+			this.field3774 = new class392(64, this.field3771);
+			this.field3775 = null;
+		} else {
+			if (this.field3776 == null) {
+				throw new IllegalArgumentException("");
+			}
+
+			this.field3772 = new HashMap(this.field3770);
+			this.field3774 = new class392(this.field3770, this.field3771);
+			this.field3775 = new class392(this.field3770);
+		}
+
 	}
 
-	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lqr;Lqr;I)I",
-		garbageValue = "1927816429"
+		descriptor = "(ILqm;)V"
 	)
-	int method2142(class425 var1, class425 var2) {
-		if (var1.field3770 > var2.field3770) {
-			return 1;
-		} else {
-			return var1.field3770 < var2.field3770 ? -1 : 0;
+	public class423(int var1, class421 var2) {
+		this(-1L, var1, var2);
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1594986015"
+	)
+	boolean method2179() {
+		return this.field3770 != -1;
+	}
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Object;B)Ljava/lang/Object;",
+		garbageValue = "-31"
+	)
+	public Object method2180(Object var1) {
+		synchronized(this) {
+			if (this.field3773 != -1L) {
+				this.method2183();
+			}
+
+			class424 var3 = (class424)this.field3772.get(var1);
+			if (var3 == null) {
+				return null;
+			} else {
+				this.method2182(var3, false);
+				return var3.field3778;
+			}
 		}
 	}
 
-	@Export("compare")
-	@ObfuscatedName("compare")
-	public int compare(Object var1, Object var2) {
-		return this.method2142((class425)var1, (class425)var2);
-	}
-
-	@Export("equals")
-	@ObfuscatedName("equals")
-	public boolean equals(Object var1) {
-		return super.equals(var1);
-	}
-
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(ILdc;ZB)I",
-		garbageValue = "1"
+		descriptor = "(Ljava/lang/Object;Ljava/lang/Object;I)Ljava/lang/Object;",
+		garbageValue = "-396691149"
 	)
-	static int method2143(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class36.scriptDotWidget : class351.scriptActiveWidget;
-		if (var0 == 1600) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollX;
-			return 1;
-		} else if (var0 == 1601) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollY;
-			return 1;
-		} else {
-			class330 var7;
-			if (var0 == 1602) {
-				if (var3.type == 12) {
-					var7 = var3.method1805();
-					if (var7 != null) {
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.method1742().method2000();
-						return 1;
-					}
-				}
+	public Object method2181(Object var1, Object var2) {
+		synchronized(this) {
+			if (this.field3773 != -1L) {
+				this.method2183();
+			}
 
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.text;
-				return 1;
-			} else if (var0 == 1603) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollWidth;
-				return 1;
-			} else if (var0 == 1604) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollHeight;
-				return 1;
-			} else if (var0 == 1605) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelZoom;
-				return 1;
-			} else if (var0 == 1606) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelAngleX;
-				return 1;
-			} else if (var0 == 1607) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelAngleZ;
-				return 1;
-			} else if (var0 == 1608) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelAngleY;
-				return 1;
-			} else if (var0 == 1609) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.transparencyTop;
-				return 1;
-			} else if (var0 == 1610) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.transparencyBot;
-				return 1;
-			} else if (var0 == 1611) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.color;
-				return 1;
-			} else if (var0 == 1612) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.color2;
-				return 1;
-			} else if (var0 == 1613) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
-				return 1;
-			} else if (var0 == 1614) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
-				return 1;
+			class424 var4 = (class424)this.field3772.get(var1);
+			if (var4 != null) {
+				Object var8 = var4.field3778;
+				var4.field3778 = var2;
+				this.method2182(var4, false);
+				return var8;
 			} else {
-				class325 var4;
-				if (var0 == 1617) {
-					var4 = var3.method1806();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4 != null ? var4.field2874 * 486674949 * -392959283 : 0;
+				class424 var5;
+				if (this.method2179() && this.field3772.size() == this.field3770) {
+					var5 = (class424)this.field3775.remove();
+					this.field3772.remove(var5.field3777);
+					this.field3774.remove(var5);
 				}
 
-				if (var0 == 1618) {
-					var4 = var3.method1806();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4 != null ? var4.field2875 * 226510377 * 987280921 : 0;
-					return 1;
-				} else if (var0 == 1619) {
-					var7 = var3.method1805();
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1743().method2000() : "";
-					return 1;
-				} else if (var0 == 1620) {
-					var4 = var3.method1806();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4 != null ? var4.field2873 * 1386938305 * -1999040447 : 0;
-					return 1;
-				} else if (var0 == 1621) {
-					var7 = var3.method1805();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1753() : 0;
-					return 1;
-				} else if (var0 == 1622) {
-					var7 = var3.method1805();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1754() : 0;
-					return 1;
-				} else if (var0 == 1623) {
-					var7 = var3.method1805();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1755() : 0;
-					return 1;
-				} else if (var0 == 1624) {
-					var7 = var3.method1805();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null && var7.method1745() ? 1 : 0;
-					return 1;
-				} else if (var0 != 1625) {
-					if (var0 == 1626) {
-						var7 = var3.method1805();
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7 != null ? var7.method1744().method2074() : "";
-						return 1;
-					} else if (var0 == 1627) {
-						var7 = var3.method1805();
-						int var5 = var7 != null ? var7.method1749() : 0;
-						int var6 = var7 != null ? var7.method1748() : 0;
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Math.min(var5, var6);
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Math.max(var5, var6);
-						return 1;
-					} else if (var0 == 1628) {
-						var7 = var3.method1805();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1748() : 0;
-						return 1;
-					} else if (var0 == 1629) {
-						var7 = var3.method1805();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1757() : 0;
-						return 1;
-					} else if (var0 == 1630) {
-						var7 = var3.method1805();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1756() : 0;
-						return 1;
-					} else if (var0 == 1631) {
-						var7 = var3.method1805();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1758() : 0;
-						return 1;
-					} else if (var0 == 1632) {
-						var7 = var3.method1805();
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null ? var7.method1759() : 0;
-						return 1;
-					} else {
-						class27 var8;
-						if (var0 == 1633) {
-							var8 = var3.method1807();
-							Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1] = var8 != null ? var8.method104(Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1]) : 0;
-							return 1;
-						} else if (var0 == 1634) {
-							var8 = var3.method1807();
-							Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1] = var8 != null ? var8.method105((char)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1]) : 0;
-							return 1;
-						} else {
-							return 2;
-						}
-					}
-				} else {
-					var7 = var3.method1805();
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7 != null && var7.method1746() ? 1 : 0;
-					return 1;
+				var5 = new class424(var2, var1);
+				this.field3772.put(var1, var5);
+				this.method2182(var5, true);
+				return null;
+			}
+		}
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(Lqj;ZB)V",
+		garbageValue = "16"
+	)
+	void method2182(class424 var1, boolean var2) {
+		if (!var2) {
+			this.field3774.remove(var1);
+			if (this.method2179() && !this.field3775.remove(var1)) {
+				throw new IllegalStateException("");
+			}
+		}
+
+		var1.field3779 = System.currentTimeMillis();
+		if (this.method2179()) {
+			switch(this.field3776.field3768) {
+			case 0:
+				var1.field3780 = var1.field3779;
+				break;
+			case 1:
+				++var1.field3780;
+			}
+
+			this.field3775.add(var1);
+		}
+
+		this.field3774.add(var1);
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1791287945"
+	)
+	void method2183() {
+		if (this.field3773 == -1L) {
+			throw new IllegalStateException("");
+		} else {
+			long var1 = System.currentTimeMillis() - this.field3773;
+
+			while (!this.field3774.isEmpty()) {
+				class424 var3 = (class424)this.field3774.peek();
+				if (var3.field3779 >= var1) {
+					return;
+				}
+
+				this.field3772.remove(var3.field3777);
+				this.field3774.remove(var3);
+				if (this.method2179()) {
+					this.field3775.remove(var3);
 				}
 			}
+
+		}
+	}
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "33"
+	)
+	public void method2184() {
+		synchronized(this) {
+			this.field3772.clear();
+			this.field3774.clear();
+			if (this.method2179()) {
+				this.field3775.clear();
+			}
+
 		}
 	}
 }
