@@ -1,16 +1,15 @@
 @file:Suppress("DEPRECATION")
 package meteor.api
 
+import ClientPacket
 import dev.hoot.api.InteractionException
 import dev.hoot.api.events.AutomatedMenu
-import dev.hoot.api.game.Game.getClientPacket
 import dev.hoot.api.packets.WidgetPackets
 import dev.hoot.api.widgets.Widgets
 import meteor.Main
 import meteor.plugins.meteor.AutoInteractOverlay
 import meteor.rs.ClientThread.invoke
 import net.runelite.api.MenuAction
-import net.runelite.api.packets.ClientPacket
 import net.runelite.api.packets.PacketBufferNode
 import net.runelite.api.widgets.Widget
 import net.runelite.api.widgets.WidgetType
@@ -26,7 +25,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction1Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ1())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON1)
         bufferNode.packetBuffer.`writeShortAddLE$api`(groundItemId)
         bufferNode.packetBuffer.`writeShort$api`(worldY)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
@@ -38,7 +37,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction2Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ2())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON2)
         bufferNode.packetBuffer.`writeShortAdd$api`(worldY)
         bufferNode.packetBuffer.`writeShortAddLE$api`(groundItemId)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
@@ -50,7 +49,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction3Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ3())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON3)
         bufferNode.packetBuffer.`writeShortAdd$api`(worldX)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortAddLE$api`(groundItemId)
@@ -62,7 +61,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction4Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ4())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPOBJ4)
         bufferNode.packetBuffer.`writeShortAdd$api`(worldX)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortAddLE$api`(worldY)
@@ -74,7 +73,7 @@ object ClientPackets {
     // param0: worldX
     // param1: worldY
     fun createGroundItemAction5Packet(groundItemId: Int, worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPOBJ5())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPOBJ5)
         bufferNode.packetBuffer.`writeShortLE$api`(worldY)
         bufferNode.packetBuffer.`writeByteNeg$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShort$api`(worldX)
@@ -91,7 +90,7 @@ object ClientPackets {
         worldY: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPLOC1())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPLOC1)
         bufferNode.packetBuffer.`writeShort$api`(worldX)
         bufferNode.packetBuffer.`writeIntME$api`(worldY)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
@@ -108,7 +107,7 @@ object ClientPackets {
         worldY: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPLOC2())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPLOC2)
         bufferNode.packetBuffer.`writeShort$api`(worldX)
         bufferNode.packetBuffer.`writeShort$api`(worldY)
         bufferNode.packetBuffer.`writeIntME$api`(objectID)
@@ -125,7 +124,7 @@ object ClientPackets {
         worldY: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPLOC3())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPLOC3)
         bufferNode.packetBuffer.`writeShort$api`(objectID)
         bufferNode.packetBuffer.`writeShortAddLE$api`(worldX)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
@@ -142,7 +141,7 @@ object ClientPackets {
         worldY: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPLOC4())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPLOC4)
         bufferNode.packetBuffer.`writeShortAdd$api`(objectID)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortAdd$api`(worldY)
@@ -159,7 +158,7 @@ object ClientPackets {
         worldY: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPLOC5())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPLOC5)
         bufferNode.packetBuffer.`writeShortAddLE$api`(worldY)
         bufferNode.packetBuffer.`writeIntME$api`(worldX)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
@@ -179,7 +178,7 @@ object ClientPackets {
         itemWidgetID: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPLOCT())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPLOCT)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortLE$api`(objectID)
         bufferNode.packetBuffer.`writeShortLE$api`(itemId)
@@ -198,7 +197,7 @@ object ClientPackets {
         itemSlot: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPNPCT())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPNPCT)
         bufferNode.packetBuffer.`writeIntIME$api`(itemWidgetID)
         bufferNode.packetBuffer.`writeShortLE$api`(itemSlot)
         bufferNode.packetBuffer.`writeShortLE$api`(itemID)
@@ -209,7 +208,7 @@ object ClientPackets {
 
     //OPNPC1
     fun createNPCAction1Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPNPC1())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPNPC1)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortAdd$api`(npcIdx)
         return bufferNode
@@ -217,7 +216,7 @@ object ClientPackets {
 
     //OPNPC2
     fun createNPCAction2Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPNPC2())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPNPC2)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeIntME$api`(npcIdx)
         return bufferNode
@@ -225,7 +224,7 @@ object ClientPackets {
 
     //OPNPC3
     fun createNPCAction3Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPNPC3())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPNPC3)
         bufferNode.packetBuffer.`writeShort$api`(npcIdx)
         bufferNode.packetBuffer.`writeByteAdd$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -233,7 +232,7 @@ object ClientPackets {
 
     //OPNPC4
     fun createNPCAction4Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPNPC4())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPNPC4)
         bufferNode.packetBuffer.`writeByteAdd$api`(npcIdx)
         bufferNode.packetBuffer.`writeShort$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -241,7 +240,7 @@ object ClientPackets {
 
     //OPNPC5
     fun createNPCAction5Packet(npcIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPNPC5())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPNPC5)
         bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeIntME$api`(npcIdx)
         return bufferNode
@@ -255,7 +254,7 @@ object ClientPackets {
         itemWidgetID: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYERT())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYERT)
         bufferNode.packetBuffer.`writeShortAdd$api`(playerIdx)
         bufferNode.packetBuffer.`writeIntME$api`(itemWidgetID)
         bufferNode.packetBuffer.`writeIntIME$api`(itemSlot)
@@ -266,7 +265,7 @@ object ClientPackets {
 
     ///OPPLAYER1
     fun createPlayerAction1Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER1())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER1)
         bufferNode.packetBuffer.`writeShortAddLE$api`(playerIdx)
         bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -274,7 +273,7 @@ object ClientPackets {
 
     ///OPPLAYER2
     fun createPlayerAction2Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER2())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER2)
         bufferNode.packetBuffer.`writeShortAddLE$api`(playerIdx)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -282,7 +281,7 @@ object ClientPackets {
 
     ///OPPLAYER3
     fun createPlayerAction3Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER3())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER3)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShort$api`(playerIdx)
         return bufferNode
@@ -290,7 +289,7 @@ object ClientPackets {
 
     ///OPPLAYER4
     fun createPlayerAction4Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER4())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER4)
         bufferNode.packetBuffer.`writeShortAdd$api`(playerIdx)
         bufferNode.packetBuffer.`writeByteNeg$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -298,7 +297,7 @@ object ClientPackets {
 
     ///OPPLAYER5
     fun createPlayerAction5Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER5())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER5)
         bufferNode.packetBuffer.`writeShortAdd$api`(playerIdx)
         bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -306,7 +305,7 @@ object ClientPackets {
 
     ///OPPLAYER6
     fun createPlayerAction6Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER6())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER6)
         bufferNode.packetBuffer.`writeShortAdd$api`(playerIdx)
         bufferNode.packetBuffer.`writeByteSub$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -314,7 +313,7 @@ object ClientPackets {
 
     ///OPPLAYER7
     fun createPlayerAction7Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER7())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER7)
         bufferNode.packetBuffer.`writeIntME$api`(playerIdx)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
         return bufferNode
@@ -322,7 +321,7 @@ object ClientPackets {
 
     ///OPPLAYER8
     fun createPlayerAction8Packet(playerIdx: Int, shiftPressed: Boolean): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPPLAYER8())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPPLAYER8)
         bufferNode.packetBuffer.`writeByte$api`(if (shiftPressed) 1 else 0)
         bufferNode.packetBuffer.`writeShortAdd$api`(playerIdx)
         return bufferNode
@@ -338,7 +337,7 @@ object ClientPackets {
         itemWidgetID: Int,
         shiftPressed: Boolean
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().OPLOCT())
+        val bufferNode = preparePacketBuffer(ClientPacket.OPLOCT)
         bufferNode.packetBuffer.`writeIntIME$api`(itemWidgetID)
         bufferNode.packetBuffer.`writeShort$api`(groundItemID)
         bufferNode.packetBuffer.`writeShort$api`(itemID)
@@ -360,7 +359,7 @@ object ClientPackets {
         destinationSlot: Int,
         destinationItemId: Int
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTONT())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTONT)
         bufferNode.packetBuffer.`writeShort$api`(destinationItemId)
         bufferNode.packetBuffer.`writeIntME$api`(sourceWidgetId)
         bufferNode.packetBuffer.`writeShortLE$api`(destinationSlot)
@@ -378,7 +377,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON1())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON1)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -393,7 +392,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON2())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON2)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -408,7 +407,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON3())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON3)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -423,7 +422,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON4())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON4)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -438,7 +437,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON5())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON5)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -453,7 +452,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON6())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON6)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -468,7 +467,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON7())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON7)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -483,7 +482,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON8())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON8)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -498,7 +497,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON9())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON9)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -513,7 +512,7 @@ object ClientPackets {
         itemId: Int,
         childId: Int,
     ): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().IF_BUTTON10())
+        val bufferNode = preparePacketBuffer(ClientPacket.IF_BUTTON10)
         bufferNode.packetBuffer.`writeInt$api`(widgetId)
         bufferNode.packetBuffer.`writeShort$api`(childId)
         bufferNode.packetBuffer.`writeShort$api`(itemId)
@@ -522,7 +521,7 @@ object ClientPackets {
 
     // CLICK
     fun createClickPacket(mouseInfo: Int, x: Int, y: Int): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().EVENT_MOUSE_CLICK())
+        val bufferNode = preparePacketBuffer(ClientPacket.EVENT_MOUSE_CLICK)
         bufferNode.packetBuffer.`writeShort$api`(mouseInfo)
         bufferNode.packetBuffer.`writeShort$api`(y)
         bufferNode.packetBuffer.`writeShort$api`(x)
@@ -532,7 +531,7 @@ object ClientPackets {
     // WALK
     fun createMovementPacket(worldX: Int, worldY: Int, shiftPressed: Boolean): PacketBufferNode {
 
-        val bufferNode = preparePacketBuffer(getClientPacket().MOVE_GAMECLICK())
+        val bufferNode = preparePacketBuffer(ClientPacket.MOVE_GAMECLICK)
         bufferNode.packetBuffer.`writeByte$api`(5)
         bufferNode.packetBuffer.`writeShortAddLE$api`(worldX)
         bufferNode.packetBuffer.`writeShortAdd$api`(worldY)
@@ -542,7 +541,7 @@ object ClientPackets {
 
     // CONTINUE
     fun createContinuePacket(widgetId: Int, childId: Int): PacketBufferNode {
-        val bufferNode = preparePacketBuffer(getClientPacket().RESUME_PAUSEBUTTON())
+        val bufferNode = preparePacketBuffer(ClientPacket.CONTINUE)
         bufferNode.packetBuffer.`writeIntME$api`(widgetId)
         bufferNode.packetBuffer.`writeShortLE$api`(childId)
         return bufferNode
@@ -560,7 +559,6 @@ object ClientPackets {
         )
     }
     fun preparePacketBuffer(clientPacket: ClientPacket): PacketBufferNode {
-
         val clientPacket = Main.client.createClientPacket(clientPacket.id, clientPacket.length)
         return Main.client.preparePacket(
             clientPacket,

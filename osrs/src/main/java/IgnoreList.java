@@ -299,7 +299,7 @@ public class IgnoreList extends UserList {
 				Client.mouseCrossState = 0;
 				Client.destinationX = var0;
 				Client.destinationY = var1;
-				var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.field2576, Client.packetWriter.isaacCipher);
+				var10 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.OPNPCT, Client.packetWriter.isaacCipher);
 				var10.packetBuffer.writeByteSub(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				var10.packetBuffer.writeShortAdd(var3);
 				var10.packetBuffer.writeIntME(Client.selectedSpellItemId);
@@ -606,7 +606,7 @@ public class IgnoreList extends UserList {
 			Client.mouseCrossState = 0;
 			Client.destinationX = var0;
 			Client.destinationY = var1;
-			var16 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.OPOBJ6, Client.packetWriter.isaacCipher);
+			var16 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.OPOBJ5, Client.packetWriter.isaacCipher);
 			var16.packetBuffer.writeShortAddLE(var0 + UrlRequester.baseX);
 			var16.packetBuffer.writeShort(class47.baseY + var1);
 			var16.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
