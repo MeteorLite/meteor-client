@@ -150,7 +150,6 @@ public class MixinInjector extends AbstractInjector
 		{
 			for (ClassFile mixinClass : inject.getMixins())
 			{
-				System.out.println(mixinClass.getClassName());
 				final List<ClassFile> ret = getMixins(mixinClass);
 				builder.put(
 					(ret.size() > 1 ? mixinProvider(mixinClass) : () -> mixinClass),

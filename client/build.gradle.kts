@@ -5,7 +5,7 @@ plugins {
     `maven-publish`
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.7.21"
-    id("org.jetbrains.compose") version "1.4.3"
+    id("org.jetbrains.compose") version "1.5.0"
     id("org.jetbrains.dokka") version "1.7.20"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
@@ -122,7 +122,6 @@ dependencies {
 }
 
 compose {
-    kotlinCompilerPlugin.set("androidx.compose.compiler:compiler:_")
 
     desktop {
         application {
@@ -224,11 +223,9 @@ tasks.compileJava {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
-        //apiVersion = ""
-        languageVersion = "1.8"
+        languageVersion = "2.0"
         jvmTarget = "17"
-        // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.
-        freeCompilerArgs = listOf( //"-Xuse-k2",
+        freeCompilerArgs = listOf(
             "-Xjvm-default=all",
             "-Xbackend-threads=4"
         )

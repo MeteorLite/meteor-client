@@ -66,7 +66,6 @@ public class JarUtil
 					continue;
 				}
 
-				System.out.println(entry.getName());
 
 				InputStream is = jar.getInputStream(entry);
 

@@ -262,7 +262,6 @@ public class Frame
 					InstructionContext pushed = stacki.getPushed();
 					Frame frame = pushed.getFrame();
 
-					System.err.println(pushed.getInstruction());
 				}
 				System.err.println("end of stack");
 				ex.printStackTrace();

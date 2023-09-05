@@ -28,11 +28,9 @@ dependencies {
 }
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions {
-        apiVersion = "1.7"
-        languageVersion = "1.7"
+        languageVersion = "2.0"
         jvmTarget = "17"
-        // We can't use K2 yet due to using some kotlin compiler plugins which aren't supported yet.
-        freeCompilerArgs = listOf( //"-Xuse-k2",
+        freeCompilerArgs = listOf(
             "-Xjvm-default=all",
             "-Xbackend-threads=4"
         )

@@ -36,7 +36,7 @@ open class Plugin(override var daemon: Boolean = false) : EventSubscriber(daemon
         return c
     }
 
-    inline fun <reified T : Config?> configuration(): T {
+    inline fun <reified T : Config> configuration(): T {
         val c: Config = getConfig(T::class.java)!!
         setDefaultConfiguration(c, false)
         configuration = c

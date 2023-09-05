@@ -149,7 +149,6 @@ public class ScriptVM extends AbstractInjector
 				if (storedVarCtx.getType().getInternalName().equals("Script"))
 				{
 					scriptStores.add(store);
-					System.out.println("Stored script");
 				}
 
 				// Find AStores that store the instructions
