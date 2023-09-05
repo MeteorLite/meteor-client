@@ -3,7 +3,7 @@ package meteor.config.legacy
 @Retention(AnnotationRetention.RUNTIME)
     @Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
     annotation class ConfigItem(
-    val position: Int = Int.MAX_VALUE,
+    val position: Int = 100000,
     val keyName: String,
     val name: String,
     val description: String,

@@ -136,7 +136,6 @@ import net.runelite.client.plugins.puzzlesolver.PuzzleSolverPlugin
 import net.runelite.client.plugins.slayer.SlayerPlugin
 import net.runelite.client.plugins.timers.TimersPlugin
 import net.runelite.client.plugins.timestamp.TimestampPlugin
-import net.runelite.client.plugins.zulrah.ZulrahPlugin
 import org.apache.commons.lang3.time.StopWatch
 import net.runelite.client.plugins.kourendlibrary.KourendLibraryPlugin
 import net.runelite.client.plugins.npcstatus.NpcAttackTimersPlugin
@@ -297,7 +296,6 @@ object PluginManager {
             init<WorldMapWalkerPlugin>()
             init<WintertodtHelper>()
             init<XpTrackerPlugin>()
-            init<ZulrahPlugin>()
         }
     }
 

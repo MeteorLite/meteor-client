@@ -140,7 +140,7 @@ internal class GroundMarkerSharingManager(
             .collect(Collectors.groupingBy(GroundMarkerPoint::regionId))
 
         // now import each region into the config
-        regionGroupedPoints.forEach { (regionId: Int?, groupedPoints: List<GroundMarkerPoint>) ->
+        regionGroupedPoints.forEach { (regionId: Int, groupedPoints: List<GroundMarkerPoint>) ->
             // combine imported points with existing region points
             log.debug("Importing {} points to region {}", groupedPoints.size, regionId)
             val regionPoints: Collection<GroundMarkerPoint> = plugin.getPoints(regionId!!)

@@ -193,8 +193,6 @@ public class RasterizerAlpha extends AbstractInjector
 					continue;
 				}
 
-				System.out.println(colPushI.getClass());
-
 				// rasterPx[idx] = color | 0xff000000 (the | 0xff000000 is what's added)
 				int storeIdx = instrs.getInstructions().indexOf(instruction);
 

@@ -100,7 +100,6 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		for (ClassFile cf : injector.vanilla)
 			if (cf.getName().endsWith("Reflection")) {
-				System.out.println("should have found");
 				reflection = cf;
 			}
 
