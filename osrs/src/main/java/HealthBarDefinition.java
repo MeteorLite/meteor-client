@@ -21,8 +21,8 @@ public class HealthBarDefinition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llr;"
 	)
-	@Export("NpcDefinition_cachedModels")
-	public static EvictingDualNodeHashTable NpcDefinition_cachedModels;
+	@Export("HealthBarDefinition_cached")
+	public static EvictingDualNodeHashTable HealthBarDefinition_cached;
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "Llr;"
@@ -68,7 +68,7 @@ public class HealthBarDefinition extends DualNode {
 	public int widthPadding;
 
 	static {
-		NpcDefinition_cachedModels = new EvictingDualNodeHashTable(64);
+		HealthBarDefinition_cached = new EvictingDualNodeHashTable(64);
 		ItemDefinition_cachedModels = new EvictingDualNodeHashTable(64);
 	}
 

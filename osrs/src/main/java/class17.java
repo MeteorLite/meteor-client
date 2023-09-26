@@ -181,7 +181,7 @@ class class17 implements SSLSession {
 		if (var0 >= 2000) {
 			var0 -= 1000;
 			var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			var3 = class33.field89.method1740(var4);
+			var3 = class33.widgetDefinition.method1740(var4);
 		} else {
 			var3 = var2 ? class416.scriptDotWidget : class306.scriptActiveWidget;
 		}
@@ -333,7 +333,7 @@ class class17 implements SSLSession {
 					var3.scrollHeight = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 					ClanChannelMember.invalidateWidget(var3);
 					if (var4 != -1 && var3.type == 0) {
-						PendingSpawn.revalidateWidgetScroll(class33.field89.Widget_interfaceComponents[var4 >> 16], var3, false);
+						PendingSpawn.revalidateWidgetScroll(class33.widgetDefinition.Widget_interfaceComponents[var4 >> 16], var3, false);
 					}
 
 					return 1;

@@ -43,11 +43,11 @@ public class Varps {
 	static int method1735(int var0, Script var1, boolean var2) {
 		Widget var3;
 		if (var0 == 2700) {
-			var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemId;
 			return 1;
 		} else if (var0 == 2701) {
-			var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			if (var3.itemId != -1) {
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemQuantity;
 			} else {
@@ -69,14 +69,14 @@ public class Varps {
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.rootInterface;
 			return 1;
 		} else if (var0 == 2707) {
-			var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.method1867() ? 1 : 0;
 			return 1;
 		} else if (var0 == 2708) {
-			var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			return class110.method624(var3);
 		} else if (var0 == 2709) {
-			var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			return Canvas.method88(var3);
 		} else {
 			return 2;

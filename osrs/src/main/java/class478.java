@@ -78,7 +78,7 @@ public class class478 implements class476 {
 		garbageValue = "2037077846"
 	)
 	static void method2385(int var0, int var1, int var2, int var3) {
-		Widget var4 = class33.field89.getWidgetChild(var0, var1);
+		Widget var4 = class33.widgetDefinition.getWidgetChild(var0, var1);
 		if (var4 != null && var4.onTargetEnter != null) {
 			ScriptEvent var5 = new ScriptEvent();
 			var5.widget = var4;

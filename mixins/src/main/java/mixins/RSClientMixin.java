@@ -2436,6 +2436,12 @@ public abstract class RSClientMixin implements RSClient {
 
         dualNodeHashTable.getDeque().add(dualNodeHashTable.getDualNode());
     }
+    @Inject
+    @Override
+    public RSEvictingDualNodeHashTable getWidgetSpriteCache()
+    {
+        return getWidgetDefinition() != null ? getWidgetDefinition().getWidgetSpriteCache() : null;
+    }
 
     @Inject
     public static void checkResize() {

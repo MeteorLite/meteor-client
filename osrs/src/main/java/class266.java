@@ -66,7 +66,7 @@ public class class266 {
 						var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 						var10 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 						int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
-						Widget var11 = class33.field89.method1740(var5);
+						Widget var11 = class33.widgetDefinition.method1740(var5);
 						TaskHandler.clickWidget(var11, var8, var10);
 						return 1;
 					} else if (var0 == 3109) {

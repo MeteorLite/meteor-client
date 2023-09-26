@@ -688,7 +688,7 @@ public class ClientPacket implements class307 {
 		garbageValue = "1044263127"
 	)
 	static int method1640(int var0, Script var1, boolean var2) {
-		Widget var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+		Widget var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 		if (var0 == 2800) {
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = KitDefinition.Widget_unpackTargetMask(MouseRecorder.getWidgetFlags(var3));
 			return 1;
@@ -748,7 +748,7 @@ public class ClientPacket implements class307 {
 
 				if (var1 == 1 && var3.onSubChange != null) {
 					if (var3.childIndex >= 0) {
-						Widget var6 = class33.field89.method1740(var3.id);
+						Widget var6 = class33.widgetDefinition.method1740(var3.id);
 						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
 							continue;
 						}

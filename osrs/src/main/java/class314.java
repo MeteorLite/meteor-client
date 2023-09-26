@@ -672,7 +672,7 @@ public final class class314 {
 								Archive var6 = SoundSystem.archive2;
 								VarpDefinition.VarpDefinition_archive = var6;
 								VarpDefinition.field1501 = VarpDefinition.VarpDefinition_archive.getGroupFileCount(16);
-								class33.field89 = new WidgetDefinition(AbstractByteArrayCopier.field3136, GrandExchangeOfferOwnWorldComparator.field361, class199.archive8, class27.archive13, class319.field2799);
+								class33.widgetDefinition = new WidgetDefinition(AbstractByteArrayCopier.field3136, GrandExchangeOfferOwnWorldComparator.field361, class199.archive8, class27.archive13, class319.field2799);
 								Decimator.method313(SoundSystem.archive2);
 								class275.method1537(SoundSystem.archive2);
 								class135.method727(SoundSystem.archive2);

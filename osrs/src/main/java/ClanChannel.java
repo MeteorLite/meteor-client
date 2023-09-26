@@ -206,14 +206,14 @@ public class ClanChannel extends Node {
 		var3.type = var2;
 		Client.interfaceParents.put(var3, (long)var0);
 		class357.method1901(var1);
-		Widget var4 = class33.field89.method1740(var0);
+		Widget var4 = class33.widgetDefinition.method1740(var0);
 		ClanChannelMember.invalidateWidget(var4);
 		if (Client.meslayerContinueWidget != null) {
 			ClanChannelMember.invalidateWidget(Client.meslayerContinueWidget);
 			Client.meslayerContinueWidget = null;
 		}
 
-		PendingSpawn.revalidateWidgetScroll(class33.field89.Widget_interfaceComponents[var0 >> 16], var4, false);
+		PendingSpawn.revalidateWidgetScroll(class33.widgetDefinition.Widget_interfaceComponents[var0 >> 16], var4, false);
 		VerticalAlignment.runWidgetOnLoadListener(var1);
 		if (Client.rootInterface != -1) {
 			Interpreter.method418(Client.rootInterface, 1);

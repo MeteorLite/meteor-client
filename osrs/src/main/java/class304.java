@@ -137,9 +137,9 @@ public class class304 {
 	static void method1636() {
 		for (InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
 			int var1 = var0.group;
-			if (class33.field89.method1742(var1)) {
+			if (class33.widgetDefinition.method1742(var1)) {
 				boolean var2 = true;
-				Widget[] var3 = class33.field89.Widget_interfaceComponents[var1];
+				Widget[] var3 = class33.widgetDefinition.Widget_interfaceComponents[var1];
 
 				int var4;
 				for (var4 = 0; var4 < var3.length; ++var4) {
@@ -151,7 +151,7 @@ public class class304 {
 
 				if (!var2) {
 					var4 = (int)var0.key;
-					Widget var5 = class33.field89.method1740(var4);
+					Widget var5 = class33.widgetDefinition.method1740(var4);
 					if (var5 != null) {
 						ClanChannelMember.invalidateWidget(var5);
 					}

@@ -387,11 +387,11 @@ public final class ArchiveDisk {
 		int var3 = (int)var0.key;
 		var0.remove();
 		if (var1) {
-			class33.field89.method1743(var2);
+			class33.widgetDefinition.method1743(var2);
 		}
 
 		class379.method1983(var2);
-		Widget var4 = class33.field89.method1740(var3);
+		Widget var4 = class33.widgetDefinition.method1740(var3);
 		if (var4 != null) {
 			ClanChannelMember.invalidateWidget(var4);
 		}

@@ -10,7 +10,8 @@ public class class33 {
 	@ObfuscatedSignature(
 		descriptor = "Lnt;"
 	)
-	static WidgetDefinition field89;
+	@Export("widgetDefinition")
+	static WidgetDefinition widgetDefinition;
 	@ObfuscatedName("rv")
 	@ObfuscatedSignature(
 		descriptor = "Lek;"
@@ -111,7 +112,7 @@ public class class33 {
 			var9 = ClanChannelMember.getPacketBufferNode(ClientPacket.WIDGET_TYPE, Client.packetWriter.isaacCipher);
 			var9.packetBuffer.writeInt(var1);
 			Client.packetWriter.addNode(var9);
-			var10 = field89.method1740(var1);
+			var10 = widgetDefinition.method1740(var1);
 			if (var10 != null && var10.cs1Instructions != null && var10.cs1Instructions[0][0] == 5) {
 				var11 = var10.cs1Instructions[0][1];
 				Varps.Varps_main[var11] = 1 - Varps.Varps_main[var11];
@@ -225,7 +226,7 @@ public class class33 {
 
 		Widget var17;
 		if (var2 == 57 || var2 == 1007) {
-			var17 = field89.getWidgetChild(var1, var0);
+			var17 = widgetDefinition.getWidgetChild(var1, var0);
 			if (var17 != null) {
 				TextureProvider.widgetDefaultMenuAction(var3, var1, var0, var4, var6);
 			}
@@ -421,7 +422,7 @@ public class class33 {
 		}
 
 		if (var2 == 24) {
-			var17 = field89.method1740(var1);
+			var17 = widgetDefinition.method1740(var1);
 			if (var17 != null) {
 				boolean var13 = true;
 				if (var17.contentType > 0) {
@@ -456,7 +457,7 @@ public class class33 {
 
 		if (var2 == 30 && Client.meslayerContinueWidget == null) {
 			class174.resumePauseWidget(var1, var0);
-			Client.meslayerContinueWidget = field89.getWidgetChild(var1, var0);
+			Client.meslayerContinueWidget = widgetDefinition.getWidgetChild(var1, var0);
 			ClanChannelMember.invalidateWidget(Client.meslayerContinueWidget);
 		}
 
@@ -627,7 +628,7 @@ public class class33 {
 		}
 
 		if (var2 == 58) {
-			var17 = field89.getWidgetChild(var1, var0);
+			var17 = widgetDefinition.getWidgetChild(var1, var0);
 			if (var17 != null) {
 				if (var17.field3105 != null) {
 					ScriptEvent var19 = new ScriptEvent();
@@ -683,7 +684,7 @@ public class class33 {
 			var9 = ClanChannelMember.getPacketBufferNode(ClientPacket.WIDGET_TYPE, Client.packetWriter.isaacCipher);
 			var9.packetBuffer.writeInt(var1);
 			Client.packetWriter.addNode(var9);
-			var10 = field89.method1740(var1);
+			var10 = widgetDefinition.method1740(var1);
 			if (var10 != null && var10.cs1Instructions != null && var10.cs1Instructions[0][0] == 5) {
 				var11 = var10.cs1Instructions[0][1];
 				if (Varps.Varps_main[var11] != var10.cs1ComparisonValues[0]) {
@@ -714,7 +715,7 @@ public class class33 {
 		}
 
 		if (var2 == 25) {
-			var17 = field89.getWidgetChild(var1, var0);
+			var17 = widgetDefinition.getWidgetChild(var1, var0);
 			if (var17 != null) {
 				class286.method1575();
 				class478.method2385(var1, var0, KitDefinition.Widget_unpackTargetMask(MouseRecorder.getWidgetFlags(var17)), var4);
@@ -753,7 +754,7 @@ public class class33 {
 
 			if (Client.isItemSelected != 0) {
 				Client.isItemSelected = 0;
-				ClanChannelMember.invalidateWidget(field89.method1740(class4.field2));
+				ClanChannelMember.invalidateWidget(widgetDefinition.method1740(class4.field2));
 			}
 
 			if (Client.isSpellSelected) {

@@ -3209,7 +3209,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 																			break;
 																		}
 
-																		var32 = class33.field89.method1740(var55.field1888.parentId);
+																		var32 = class33.widgetDefinition.method1740(var55.field1888.parentId);
 																	} while(var32 == null || var32.children == null || var32.children.length == 0 || var55.field1888.childIndex >= var32.children.length || var55.field1888 != var32.children[var55.field1888.childIndex]);
 
 																	if (var55.field1888.type == 11 && var55.field1886 == 0) {
@@ -3259,7 +3259,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 															break;
 														}
 
-														var51 = class33.field89.method1740(var32.parentId);
+														var51 = class33.widgetDefinition.method1740(var32.parentId);
 													} while(var51 == null || var51.children == null || var32.childIndex >= var51.children.length || var32 != var51.children[var32.childIndex]);
 
 													Interpreter.runScriptEvent(var54);
@@ -3271,7 +3271,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 												break;
 											}
 
-											var51 = class33.field89.method1740(var32.parentId);
+											var51 = class33.widgetDefinition.method1740(var32.parentId);
 										} while(var51 == null || var51.children == null || var32.childIndex >= var51.children.length || var32 != var51.children[var32.childIndex]);
 
 										Interpreter.runScriptEvent(var54);
@@ -3283,7 +3283,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 									break;
 								}
 
-								var51 = class33.field89.method1740(var32.parentId);
+								var51 = class33.widgetDefinition.method1740(var32.parentId);
 							} while(var51 == null || var51.children == null || var32.childIndex >= var51.children.length || var32 != var51.children[var32.childIndex]);
 
 							Interpreter.runScriptEvent(var54);
@@ -3755,7 +3755,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.RESET_CLIENT_VARCACHE == var1.serverPacket) {
 					var20 = var3.readInt();
 					var21 = var3.readStringCp1252NullTerminated();
-					var6 = class33.field89.method1740(var20);
+					var6 = class33.widgetDefinition.method1740(var20);
 					if (!var21.equals(var6.text)) {
 						var6.text = var21;
 						ClanChannelMember.invalidateWidget(var6);
@@ -3854,7 +3854,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.CAM_MOVETO == var1.serverPacket) {
 					var20 = var3.readUnsignedIntME();
 					var5 = var3.readIntME();
-					var6 = class33.field89.method1740(var20);
+					var6 = class33.widgetDefinition.method1740(var20);
 					if (var6.modelType != 1 || var5 != var6.modelId) {
 						var6.modelType = 1;
 						var6.modelId = var5;
@@ -3927,7 +3927,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.OBJ_DEL == var1.serverPacket) {
 					var20 = var3.readUnsignedIntLE();
 					var5 = var3.readUnsignedByteAdd();
-					var6 = class33.field89.method1740(var20);
+					var6 = class33.widgetDefinition.method1740(var20);
 					UrlRequester.method653(var6, TextureProvider.localPlayer.appearance.field2950, var5);
 					ClanChannelMember.invalidateWidget(var6);
 					var1.serverPacket = null;
@@ -3991,7 +3991,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.HEAT_MAP == var1.serverPacket) {
 					var20 = var3.readUnsignedShortAdd();
 					var5 = var3.readUnsignedIntIME();
-					var6 = class33.field89.method1740(var5);
+					var6 = class33.widgetDefinition.method1740(var5);
 					if (var6.modelType != 6 || var20 != var6.modelId) {
 						var6.modelType = 6;
 						var6.modelId = var20;
@@ -4028,7 +4028,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				Widget var79;
 				if (ServerPacket.VARCLAN == var1.serverPacket) {
 					var20 = var3.readUnsignedIntLE();
-					var79 = class33.field89.method1740(var20);
+					var79 = class33.widgetDefinition.method1740(var20);
 					var79.modelType = 3;
 					var79.modelId = TextureProvider.localPlayer.appearance.getChatHeadId();
 					ClanChannelMember.invalidateWidget(var79);
@@ -4155,7 +4155,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					var22 = var3.readUnsignedIntIME();
-					var23 = class33.field89.method1740(var22);
+					var23 = class33.widgetDefinition.method1740(var22);
 					ItemComposition var92;
 					if (!var23.isIf3) {
 						if (var5 == -1) {
@@ -4222,15 +4222,15 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 						interfaceParents.put(var65, (long)var5);
 					}
 
-					var33 = class33.field89.method1740(var20);
+					var33 = class33.widgetDefinition.method1740(var20);
 					if (var33 != null) {
 						ClanChannelMember.invalidateWidget(var33);
 					}
 
-					var33 = class33.field89.method1740(var5);
+					var33 = class33.widgetDefinition.method1740(var5);
 					if (var33 != null) {
 						ClanChannelMember.invalidateWidget(var33);
-						PendingSpawn.revalidateWidgetScroll(class33.field89.Widget_interfaceComponents[var33.id >>> 16], var33, true);
+						PendingSpawn.revalidateWidgetScroll(class33.widgetDefinition.Widget_interfaceComponents[var33.id >>> 16], var33, true);
 					}
 
 					if (rootInterface != -1) {
@@ -4293,7 +4293,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 
 				if (ServerPacket.MIDI_JINGLE == var1.serverPacket) {
 					var20 = var3.readUnsignedIntIME();
-					var79 = class33.field89.method1740(var20);
+					var79 = class33.widgetDefinition.method1740(var20);
 
 					for (var22 = 0; var22 < var79.field3082.length; ++var22) {
 						var79.field3082[var22] = -1;
@@ -4489,7 +4489,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var20 = var3.readShort();
 					var5 = var3.readUnsignedIntLE();
 					var22 = var3.method2625();
-					var23 = class33.field89.method1740(var5);
+					var23 = class33.widgetDefinition.method1740(var5);
 					if (var20 != var23.rawX || var22 != var23.rawY || var23.xAlignment != 0 || var23.yAlignment != 0) {
 						var23.rawX = var20;
 						var23.rawY = var22;
@@ -4498,7 +4498,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 						ClanChannelMember.invalidateWidget(var23);
 						this.alignWidget(var23);
 						if (var23.type == 0) {
-							PendingSpawn.revalidateWidgetScroll(class33.field89.Widget_interfaceComponents[var5 >> 16], var23, false);
+							PendingSpawn.revalidateWidgetScroll(class33.widgetDefinition.Widget_interfaceComponents[var5 >> 16], var23, false);
 						}
 					}
 
@@ -4510,7 +4510,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var20 = var3.readInt();
 					var5 = var3.readUnsignedByteSub();
 					var22 = var3.readUnsignedByte();
-					var23 = class33.field89.method1740(var20);
+					var23 = class33.widgetDefinition.method1740(var20);
 					UrlRequest.method664(var23, var22, var5);
 					ClanChannelMember.invalidateWidget(var23);
 					var1.serverPacket = null;
@@ -4524,7 +4524,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var7 = var20 >> 5 & 31;
 					var8 = var20 & 31;
 					var24 = (var7 << 11) + (var22 << 19) + (var8 << 3);
-					Widget var97 = class33.field89.method1740(var5);
+					Widget var97 = class33.widgetDefinition.method1740(var5);
 					if (var24 != var97.color) {
 						var97.color = var24;
 						ClanChannelMember.invalidateWidget(var97);
@@ -4552,7 +4552,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.NEW_PACKET_CAM_RESET_V2 == var1.serverPacket) {
 					var20 = var3.readUnsignedIntIME();
 					var61 = var3.readUnsignedByte() == 1;
-					var6 = class33.field89.method1740(var20);
+					var6 = class33.widgetDefinition.method1740(var20);
 					Strings.method1908(var6, TextureProvider.localPlayer.appearance, var61);
 					ClanChannelMember.invalidateWidget(var6);
 					var1.serverPacket = null;
@@ -4713,7 +4713,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.TRADING_POST_RESULTS == var1.serverPacket) {
 					var20 = var3.readInt();
 					var5 = var3.readInt();
-					var6 = class33.field89.method1740(var5);
+					var6 = class33.widgetDefinition.method1740(var5);
 					ZoneOperation.method1645(var6, var20);
 					ClanChannelMember.invalidateWidget(var6);
 					var1.serverPacket = null;
@@ -4804,7 +4804,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.PREFETCH_GAMEOBJECTS == var1.serverPacket) {
 					var20 = var3.readInt();
 					var61 = var3.readUnsignedByte() == 1;
-					var6 = class33.field89.method1740(var20);
+					var6 = class33.widgetDefinition.method1740(var20);
 					if (var61 != var6.isHidden) {
 						var6.isHidden = var61;
 						ClanChannelMember.invalidateWidget(var6);
@@ -4834,7 +4834,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.VARCLAN_DISABLE == var1.serverPacket) {
 					var20 = var3.readUnsignedIntLE();
 					var5 = var3.readUnsignedShortAddLE();
-					var6 = class33.field89.method1740(var20);
+					var6 = class33.widgetDefinition.method1740(var20);
 					if (var6 != null && var6.type == 0) {
 						if (var5 > var6.scrollHeight - var6.height) {
 							var5 = var6.scrollHeight - var6.height;
@@ -5056,7 +5056,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (var20 >= 0) {
-						var6 = class33.field89.method1740(var20);
+						var6 = class33.widgetDefinition.method1740(var20);
 					} else {
 						var6 = null;
 					}
@@ -5114,7 +5114,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.IF_OPENSUB == var1.serverPacket) {
 					var20 = var3.readInt();
 					var5 = var3.readUnsignedShortAdd();
-					var6 = class33.field89.method1740(var20);
+					var6 = class33.widgetDefinition.method1740(var20);
 					if (var6.modelType != 2 || var5 != var6.modelId) {
 						var6.modelType = 2;
 						var6.modelId = var5;
@@ -5129,7 +5129,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var20 = var3.readUnsignedIntME();
 					var5 = var3.readIntME();
 					var22 = var3.readUnsignedShort();
-					var23 = class33.field89.method1740(var20);
+					var23 = class33.widgetDefinition.method1740(var20);
 					var23.rotationKey = var5 + (var22 << 16);
 					var1.serverPacket = null;
 					return true;
@@ -5176,7 +5176,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					}
 
 					if (var20 >= 0) {
-						var6 = class33.field89.method1740(var20);
+						var6 = class33.widgetDefinition.method1740(var20);
 					} else {
 						var6 = null;
 					}
@@ -5448,7 +5448,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 				if (ServerPacket.LOC_ADD_CHANGE == var1.serverPacket) {
 					var20 = var3.method2623();
 					var5 = var3.readUnsignedIntIME();
-					var6 = class33.field89.method1740(var5);
+					var6 = class33.widgetDefinition.method1740(var5);
 					if (var20 != var6.sequenceId || var20 == -1) {
 						var6.sequenceId = var20;
 						var6.modelFrame = 0;
@@ -5642,7 +5642,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 					var5 = var3.readUnsignedIntLE();
 					var22 = var3.readUnsignedShort();
 					var7 = var3.readUnsignedShortAddLE();
-					var33 = class33.field89.method1740(var5);
+					var33 = class33.widgetDefinition.method1740(var5);
 					if (var20 != var33.modelAngleX || var7 != var33.modelAngleY || var22 != var33.modelZoom) {
 						var33.modelAngleX = var20;
 						var33.modelAngleY = var7;
@@ -5817,8 +5817,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 		int var2 = rootInterface;
 		int var3 = class340.canvasWidth;
 		int var4 = class491.canvasHeight;
-		if (class33.field89.method1742(var2)) {
-			class360.resizeInterface(class33.field89.Widget_interfaceComponents[var2], -1, var3, var4, var1);
+		if (class33.widgetDefinition.method1742(var2)) {
+			class360.resizeInterface(class33.widgetDefinition.Widget_interfaceComponents[var2], -1, var3, var4, var1);
 		}
 
 	}
@@ -5830,7 +5830,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 	)
 	@Export("alignWidget")
 	void alignWidget(Widget var1) {
-		Widget var2 = var1.parentId == -1 ? null : class33.field89.method1740(var1.parentId);
+		Widget var2 = var1.parentId == -1 ? null : class33.widgetDefinition.method1740(var1.parentId);
 		int var3;
 		int var4;
 		if (var2 == null) {

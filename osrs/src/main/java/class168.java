@@ -70,7 +70,7 @@ public class class168 extends class161 {
 			if (var4 == 0) {
 				throw new RuntimeException();
 			} else {
-				Widget var6 = class33.field89.method1740(var3);
+				Widget var6 = class33.widgetDefinition.method1740(var3);
 				if (var6.children == null) {
 					var6.children = new Widget[var5 + 1];
 				}
@@ -114,18 +114,18 @@ public class class168 extends class161 {
 			Widget var9;
 			if (var0 == 101) {
 				var9 = var2 ? class416.scriptDotWidget : class306.scriptActiveWidget;
-				Widget var10 = class33.field89.method1740(var9.id);
+				Widget var10 = class33.widgetDefinition.method1740(var9.id);
 				var10.children[var9.childIndex] = null;
 				ClanChannelMember.invalidateWidget(var10);
 				return 1;
 			} else if (var0 == 102) {
-				var9 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+				var9 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 				var9.children = null;
 				ClanChannelMember.invalidateWidget(var9);
 				return 1;
 			} else if (var0 != 200) {
 				if (var0 == 201) {
-					var9 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+					var9 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 					if (var9 != null) {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
 						if (var2) {
@@ -145,7 +145,7 @@ public class class168 extends class161 {
 				Interpreter.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				Widget var11 = class33.field89.getWidgetChild(var3, var4);
+				Widget var11 = class33.widgetDefinition.getWidgetChild(var3, var4);
 				if (var11 != null && var4 != -1) {
 					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
 					if (var2) {

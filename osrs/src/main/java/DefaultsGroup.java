@@ -29,7 +29,7 @@ public class DefaultsGroup {
 		garbageValue = "-1"
 	)
 	public static HealthBarDefinition method2315(int var0) {
-		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.NpcDefinition_cachedModels.get((long)var0);
+		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
@@ -40,7 +40,7 @@ public class DefaultsGroup {
 				var1.decode(new Buffer(var2));
 			}
 
-			HealthBarDefinition.NpcDefinition_cachedModels.put(var1, (long)var0);
+			HealthBarDefinition.HealthBarDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}

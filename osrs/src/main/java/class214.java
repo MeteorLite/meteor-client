@@ -217,7 +217,7 @@ public class class214 extends DualNode {
 		EnumComposition.EnumDefinition_cached.clear();
 		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
 		FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear();
-		HealthBarDefinition.NpcDefinition_cachedModels.clear();
+		HealthBarDefinition.HealthBarDefinition_cached.clear();
 		HealthBarDefinition.ItemDefinition_cachedModels.clear();
 		HitSplatDefinition.HitSplatDefinition_cached.clear();
 		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
@@ -253,7 +253,7 @@ public class class214 extends DualNode {
 		PlayerComposition.PlayerAppearance_cachedModels.clear();
 		PlayerComposition.field2939.clearFiles();
 		PlayerComposition.field2937 = 0;
-		class33.field89.method1744();
+		class33.widgetDefinition.method1744();
 		((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).clear();
 		Script.Script_cached.clear();
 		Client.field631.clearFiles();

@@ -291,7 +291,7 @@ final class class108 implements class337 {
 				}
 
 				if (var9.type == 11) {
-					if (var9.method1874(class33.field89, AbstractWorldMapIcon.urlRequester)) {
+					if (var9.method1874(class33.widgetDefinition, AbstractWorldMapIcon.urlRequester)) {
 						if (var9.method1867()) {
 							ClanChannelMember.invalidateWidget(var9);
 							PendingSpawn.revalidateWidgetScroll(var9.children, var9, true);
@@ -304,7 +304,7 @@ final class class108 implements class337 {
 							Client.scriptEvents.addFirst(var10);
 						}
 					}
-				} else if (var9.type == 12 && var9.method1882(class33.field89)) {
+				} else if (var9.type == 12 && var9.method1882(class33.widgetDefinition)) {
 					ClanChannelMember.invalidateWidget(var9);
 				}
 

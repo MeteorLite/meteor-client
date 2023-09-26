@@ -375,7 +375,7 @@ public final class Tile extends Node {
 										Rasterizer2D.Rasterizer2D_drawRectangleAlpha(var12, var13, var10.width, var10.height, var19, 256 - (var14 & 255));
 									}
 								} else if (var10.type == 4) {
-									Font var40 = var10.getFont(class33.field89);
+									Font var40 = var10.getFont(class33.widgetDefinition);
 									if (var40 == null) {
 										if (Widget.field2978) {
 											ClanChannelMember.invalidateWidget(var10);
@@ -428,7 +428,7 @@ public final class Tile extends Node {
 									if (var10.type == 5) {
 										SpritePixels var38;
 										if (!var10.isIf3) {
-											var38 = var10.getSprite(class33.field89, UserComparator9.runCs1(var10), AbstractWorldMapIcon.urlRequester);
+											var38 = var10.getSprite(class33.widgetDefinition, UserComparator9.runCs1(var10), AbstractWorldMapIcon.urlRequester);
 											if (var38 != null) {
 												var38.drawTransBgAt(var12, var13);
 											} else if (Widget.field2978) {
@@ -438,7 +438,7 @@ public final class Tile extends Node {
 											if (var10.itemId != -1) {
 												var38 = class158.getItemSprite(var10.itemId, var10.itemQuantity, var10.outline, var10.spriteShadow, var10.itemQuantityMode, false);
 											} else {
-												var38 = var10.getSprite(class33.field89, false, AbstractWorldMapIcon.urlRequester);
+												var38 = var10.getSprite(class33.widgetDefinition, false, AbstractWorldMapIcon.urlRequester);
 											}
 
 											if (var38 == null) {
@@ -533,7 +533,7 @@ public final class Tile extends Node {
 													var34 = var10.modelFrame;
 												}
 
-												var39 = var10.getModel(class33.field89, var33, var34, var36, TextureProvider.localPlayer.appearance, var45, var32);
+												var39 = var10.getModel(class33.widgetDefinition, var33, var34, var36, TextureProvider.localPlayer.appearance, var45, var32);
 												if (var39 == null && Widget.field2978) {
 													ClanChannelMember.invalidateWidget(var10);
 												}
@@ -638,7 +638,7 @@ public final class Tile extends Node {
 												class344 var37 = var10.method1877();
 												class339 var35 = var10.method1878();
 												if (var37 != null && var35 != null && var37.method1819()) {
-													var29 = var10.getFont(class33.field89);
+													var29 = var10.getFont(class33.widgetDefinition);
 													if (var29 != null) {
 														Client.field649.method2734(var12, var13, var10.width, var10.height, var37.method1820(), var37.method1821(), var37.method1817(), var37.method1818(), var37.method1816());
 														var22 = var10.textShadowed ? var10.spriteShadow * -2035927347 * 1142466053 : -1;

@@ -73,7 +73,7 @@ public final class class4 {
 		Widget var4;
 		if (var0 >= 2000) {
 			var0 -= 1000;
-			var4 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			var4 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			var3 = false;
 		} else {
 			var4 = var2 ? class416.scriptDotWidget : class306.scriptActiveWidget;
@@ -95,7 +95,7 @@ public final class class4 {
 				Interpreter.Interpreter_intStackSize -= 2;
 				var11 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var4.parent = class33.field89.getWidgetChild(var11, var6);
+				var4.parent = class33.widgetDefinition.getWidgetChild(var11, var6);
 				return 1;
 			} else if (var0 == 1302) {
 				var4.isScrollBar = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;

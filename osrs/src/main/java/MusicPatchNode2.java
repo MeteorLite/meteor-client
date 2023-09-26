@@ -143,7 +143,7 @@ public class MusicPatchNode2 {
 		class33.varcs.clearTransient();
 		Client.followerIndex = -1;
 		if (Client.rootInterface != -1) {
-			class33.field89.method1743(Client.rootInterface);
+			class33.widgetDefinition.method1743(Client.rootInterface);
 		}
 
 		for (InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.first(); var4 != null; var4 = (InterfaceParent)Client.interfaceParents.next()) {

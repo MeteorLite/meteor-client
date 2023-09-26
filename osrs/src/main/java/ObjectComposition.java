@@ -43,13 +43,14 @@ public class ObjectComposition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llr;"
 	)
-	@Export("HitSplatDefinition_cachedSprites")
-	static EvictingDualNodeHashTable HitSplatDefinition_cachedSprites;
+	@Export("ObjectDefinition_cachedModels")
+	static EvictingDualNodeHashTable ObjectDefinition_cachedModels;
 	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "[Ljw;"
 	)
-	static ModelData[] field1721;
+	@Export("modelDataArray")
+	static ModelData[] modelDataArray;
 	@ObfuscatedName("gn")
 	@Export("worldPort")
 	static int worldPort;
@@ -194,8 +195,8 @@ public class ObjectComposition extends DualNode {
 		ObjectDefinition_cached = new EvictingDualNodeHashTable(4096);
 		ObjectDefinition_cachedModelData = new EvictingDualNodeHashTable(500);
 		ObjectDefinition_cachedEntities = new EvictingDualNodeHashTable(30);
-		HitSplatDefinition_cachedSprites = new EvictingDualNodeHashTable(30);
-		field1721 = new ModelData[4];
+		ObjectDefinition_cachedModels = new EvictingDualNodeHashTable(30);
+		modelDataArray = new ModelData[4];
 	}
 
 	ObjectComposition() {
@@ -567,7 +568,7 @@ public class ObjectComposition extends DualNode {
 			var7 = (long)(var2 + (var1 << 3) + (this.id << 10));
 		}
 
-		Model var9 = (Model)HitSplatDefinition_cachedSprites.get(var7);
+		Model var9 = (Model) ObjectDefinition_cachedModels.get(var7);
 		if (var9 == null) {
 			ModelData var10 = this.getModelData(var1, var2);
 			if (var10 == null) {
@@ -575,7 +576,7 @@ public class ObjectComposition extends DualNode {
 			}
 
 			var9 = var10.toModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
-			HitSplatDefinition_cachedSprites.put(var9, var7);
+			ObjectDefinition_cachedModels.put(var9, var7);
 		}
 
 		if (this.clipType >= 0) {
@@ -599,7 +600,7 @@ public class ObjectComposition extends DualNode {
 			var9 = (long)(var2 + (var1 << 3) + (this.id << 10));
 		}
 
-		Model var11 = (Model)HitSplatDefinition_cachedSprites.get(var9);
+		Model var11 = (Model) ObjectDefinition_cachedModels.get(var9);
 		if (var11 == null) {
 			ModelData var12 = this.getModelData(var1, var2);
 			if (var12 == null) {
@@ -607,7 +608,7 @@ public class ObjectComposition extends DualNode {
 			}
 
 			var11 = var12.toModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
-			HitSplatDefinition_cachedSprites.put(var11, var9);
+			ObjectDefinition_cachedModels.put(var11, var9);
 		}
 
 		if (var7 == null && this.clipType == -1) {
@@ -675,12 +676,12 @@ public class ObjectComposition extends DualNode {
 				}
 
 				if (var5 > 1) {
-					field1721[var6] = var3;
+					modelDataArray[var6] = var3;
 				}
 			}
 
 			if (var5 > 1) {
-				var3 = new ModelData(field1721, var5);
+				var3 = new ModelData(modelDataArray, var5);
 			}
 		} else {
 			int var9 = -1;

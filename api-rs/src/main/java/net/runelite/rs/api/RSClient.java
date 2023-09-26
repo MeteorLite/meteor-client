@@ -1644,7 +1644,8 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("widgetDefaultMenuAction")
 	void invokeWidgetAction(int identifier, int param1, int param0, int itemId, String target);
-
+	@Import("widgetDefinition")
+	RSWidgetDefinition getWidgetDefinition();
 
 	// Kris changes
 	@Override

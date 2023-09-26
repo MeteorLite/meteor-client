@@ -129,8 +129,8 @@ public class class357 {
 		garbageValue = "1825300957"
 	)
 	static final void method1901(int var0) {
-		if (class33.field89.method1742(var0)) {
-			Widget[] var1 = class33.field89.Widget_interfaceComponents[var0];
+		if (class33.widgetDefinition.method1742(var0)) {
+			Widget[] var1 = class33.widgetDefinition.Widget_interfaceComponents[var0];
 
 			for (int var2 = 0; var2 < var1.length; ++var2) {
 				Widget var3 = var1[var2];

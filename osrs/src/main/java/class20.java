@@ -157,7 +157,7 @@ public class class20 {
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 				int var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
 				if (var8 >= 1 && var8 <= 10) {
-					class104 var6 = new class104(var8, var7, var4, class33.field89.method1740(var7).itemId);
+					class104 var6 = new class104(var8, var7, var4, class33.widgetDefinition.method1740(var7).itemId);
 					Interpreter.field713.add(var6);
 					return 1;
 				} else {
@@ -170,7 +170,7 @@ public class class20 {
 			throw new RuntimeException();
 		} else {
 			if (var0 >= 2000) {
-				var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+				var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			} else {
 				var3 = var2 ? class416.scriptDotWidget : class306.scriptActiveWidget;
 			}

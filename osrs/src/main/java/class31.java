@@ -51,7 +51,7 @@ public class class31 {
 		Widget var3;
 		if (var0 >= 2000) {
 			var0 -= 1000;
-			var3 = class33.field89.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			var3 = class33.widgetDefinition.method1740(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 		} else {
 			var3 = var2 ? class416.scriptDotWidget : class306.scriptActiveWidget;
 		}
