@@ -5,21 +5,21 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.util.Iterator;
 
-@ObfuscatedName("ot")
+@ObfuscatedName("pj")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Loc;"
+		descriptor = "Lpy;"
 	)
 	@Export("deque")
 	IterableNodeDeque deque;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "Lsj;"
 	)
-	Node field3634;
-	@ObfuscatedName("ao")
+	Node field3672;
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "Lsj;"
 	)
@@ -27,16 +27,16 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 	Node last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Loc;)V"
+		descriptor = "(Lpy;)V"
 	)
 	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
 		this.last = null;
 		this.setDeque(var1);
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Loc;)V"
+		descriptor = "(Lpy;)V"
 	)
 	@Export("setDeque")
 	void setDeque(IterableNodeDeque var1) {
@@ -44,22 +44,22 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("start")
 	void start() {
-		this.field3634 = this.deque != null ? this.deque.sentinel.previous : null;
+		this.field3672 = this.deque != null ? this.deque.sentinel.previous : null;
 		this.last = null;
 	}
 
 	@Export("next")
 	@ObfuscatedName("next")
 	public Object next() {
-		Node var1 = this.field3634;
+		Node var1 = this.field3672;
 		if (var1 == this.deque.sentinel) {
 			var1 = null;
-			this.field3634 = null;
+			this.field3672 = null;
 		} else {
-			this.field3634 = var1.previous;
+			this.field3672 = var1.previous;
 		}
 
 		this.last = var1;
@@ -69,7 +69,7 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 	@Export("hasNext")
 	@ObfuscatedName("hasNext")
 	public boolean hasNext() {
-		return this.deque.sentinel != this.field3634 && this.field3634 != null;
+		return this.deque.sentinel != this.field3672 && this.field3672 != null;
 	}
 
 	@Export("remove")

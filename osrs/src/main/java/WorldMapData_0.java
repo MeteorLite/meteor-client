@@ -3,49 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jx")
+@ObfuscatedName("kj")
 @Implements("WorldMapData_0")
 public class WorldMapData_0 extends AbstractWorldMapData {
 	WorldMapData_0() {
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;B)V",
-		garbageValue = "0"
+		descriptor = "(Lul;B)V",
+		garbageValue = "15"
 	)
 	@Export("init")
 	void init(Buffer var1) {
 		int var2 = var1.readUnsignedByte();
-		if (var2 != class271.field2456.field2457) {
+		if (var2 != class285.field2467.field2469) {
 			throw new IllegalStateException("");
 		} else {
-			super.field2428 = var1.readUnsignedByte();
+			super.field2444 = var1.readUnsignedByte();
 			super.planes = var1.readUnsignedByte();
-			super.field2429 = var1.readUnsignedShort();
-			super.field2432 = var1.readUnsignedShort();
+			super.field2445 = var1.readUnsignedShort();
+			super.field2443 = var1.readUnsignedShort();
 			super.regionX = var1.readUnsignedShort();
 			super.regionY = var1.readUnsignedShort();
-			super.groupId = var1.method2563();
-			super.fileId = var1.method2563();
+			super.groupId = var1.readNullableLargeSmart();
+			super.fileId = var1.readNullableLargeSmart();
 		}
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;I)V",
-		garbageValue = "2049371979"
+		descriptor = "(Lul;I)V",
+		garbageValue = "2115325709"
 	)
 	@Export("readGeography")
 	void readGeography(Buffer var1) {
 		super.planes = Math.min(super.planes, 4);
 		super.floorUnderlayIds = new short[1][64][64];
 		super.floorOverlayIds = new short[super.planes][64][64];
-		super.field2427 = new byte[super.planes][64][64];
-		super.field2426 = new byte[super.planes][64][64];
+		super.field2439 = new byte[super.planes][64][64];
+		super.field2438 = new byte[super.planes][64][64];
 		super.decorations = new WorldMapDecoration[super.planes][64][64][];
 		int var2 = var1.readUnsignedByte();
-		if (var2 != class270.field2453.field2454) {
+		if (var2 != class284.field2464.field2466) {
 			throw new IllegalStateException("");
 		} else {
 			int var3 = var1.readUnsignedByte();
@@ -70,7 +70,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 			return false;
 		} else {
 			WorldMapData_0 var2 = (WorldMapData_0)var1;
-			return super.regionX == var2.regionX && super.regionY == var2.regionY;
+			return var2.regionX == super.regionX && var2.regionY == super.regionY;
 		}
 	}
 
@@ -78,64 +78,5 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 	@ObfuscatedName("hashCode")
 	public int hashCode() {
 		return super.regionX | super.regionY << 8;
-	}
-
-	@ObfuscatedName("ae")
-	static final void method1390(long var0) {
-		try {
-			Thread.sleep(var0);
-		} catch (InterruptedException var3) {
-		}
-
-	}
-
-	@ObfuscatedName("jj")
-	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "-100"
-	)
-	@Export("addNpcsToScene")
-	static final void addNpcsToScene(boolean var0) {
-		for (int var1 = 0; var1 < Client.npcCount; ++var1) {
-			NPC var2 = Client.npcs[Client.npcIndices[var1]];
-			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {
-				int var3 = var2.x >> 7;
-				int var4 = var2.y >> 7;
-				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
-					if (var2.field976 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
-						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
-							continue;
-						}
-
-						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount;
-					}
-
-					long var5 = FontName.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
-					var2.playerCycle = Client.cycle;
-					class130.scene.drawEntity(HealthBar.Client_plane, var2.x, var2.y, class18.getTileHeight(var2.field976 * 64 - 64 + var2.x, var2.field976 * 64 - 64 + var2.y, HealthBar.Client_plane), var2.field976 * 64 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
-				}
-			}
-		}
-
-	}
-
-	@ObfuscatedName("lh")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Ljava/lang/String;",
-		garbageValue = "20"
-	)
-	@Export("formatItemStacks")
-	static final String formatItemStacks(int var0) {
-		String var1 = Integer.toString(var0);
-
-		for (int var2 = var1.length() - 3; var2 > 0; var2 -= 3) {
-			var1 = var1.substring(0, var2) + "," + var1.substring(var2);
-		}
-
-		if (var1.length() > 9) {
-			return " " + MoveSpeed.colorStartTag(65408) + var1.substring(0, var1.length() - 8) + "M" + " " + " (" + var1 + ")" + "</col>";
-		} else {
-			return var1.length() > 6 ? " " + MoveSpeed.colorStartTag(16777215) + var1.substring(0, var1.length() - 4) + "K" + " " + " (" + var1 + ")" + "</col>" : " " + MoveSpeed.colorStartTag(16776960) + var1 + "</col>";
-		}
 	}
 }

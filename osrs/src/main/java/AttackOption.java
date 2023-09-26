@@ -3,50 +3,41 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dc")
+@ObfuscatedName("em")
 @Implements("AttackOption")
-public enum AttackOption implements class371 {
-	@ObfuscatedName("au")
+public enum AttackOption implements class386 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Ldc;"
+		descriptor = "Lem;"
 	)
 	@Export("AttackOption_dependsOnCombatLevels")
 	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Ldc;"
+		descriptor = "Lem;"
 	)
 	@Export("AttackOption_alwaysRightClick")
 	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Ldc;"
+		descriptor = "Lem;"
 	)
-	field1099(2),
-	@ObfuscatedName("at")
+	field1100(2),
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Ldc;"
+		descriptor = "Lem;"
 	)
 	@Export("AttackOption_hidden")
 	AttackOption_hidden(3),
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Ldc;"
+		descriptor = "Lem;"
 	)
-	field1097(4);
+	field1102(4);
 
-	@ObfuscatedName("bl")
-	@ObfuscatedSignature(
-		descriptor = "Luq;"
-	)
-	@Export("rasterProvider")
-	public static AbstractRasterProvider rasterProvider;
-	@ObfuscatedName("fr")
-	@ObfuscatedSignature(
-		descriptor = "Lnk;"
-	)
-	static Archive field1096;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("il")
+	static long field1098;
+	@ObfuscatedName("ah")
 	@Export("id")
 	final int id;
 
@@ -54,158 +45,46 @@ public enum AttackOption implements class371 {
 		this.id = var3;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "41"
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("bf")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(ILdh;ZB)I",
-		garbageValue = "-76"
+		descriptor = "(Ltp;III)I",
+		garbageValue = "1550710334"
 	)
-	static int method607(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == 4200) {
-			var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++class137.Interpreter_stringStackSize - 1] = InvDefinition.ItemDefinition_get(var3).name;
-			return 1;
+	static int method607(IterableNodeHashTable var0, int var1, int var2) {
+		if (var0 == null) {
+			return var2;
 		} else {
-			int var4;
-			ItemComposition var5;
-			if (var0 == 4201) {
-				SoundCache.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[SoundCache.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[SoundCache.Interpreter_intStackSize + 1];
-				var5 = InvDefinition.ItemDefinition_get(var3);
-				if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
-					Interpreter.Interpreter_stringStack[++class137.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
-				} else {
-					Interpreter.Interpreter_stringStack[++class137.Interpreter_stringStackSize - 1] = "";
-				}
-
-				return 1;
-			} else if (var0 == 4202) {
-				SoundCache.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[SoundCache.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[SoundCache.Interpreter_intStackSize + 1];
-				var5 = InvDefinition.ItemDefinition_get(var3);
-				if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
-					Interpreter.Interpreter_stringStack[++class137.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
-				} else {
-					Interpreter.Interpreter_stringStack[++class137.Interpreter_stringStackSize - 1] = "";
-				}
-
-				return 1;
-			} else if (var0 == 4203) {
-				var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = InvDefinition.ItemDefinition_get(var3).price;
-				return 1;
-			} else if (var0 == 4204) {
-				var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = InvDefinition.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
-				return 1;
-			} else {
-				ItemComposition var6;
-				if (var0 == 4205) {
-					var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-					var6 = InvDefinition.ItemDefinition_get(var3);
-					if (var6.noteTemplate == -1 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var6.note;
-					} else {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == 4206) {
-					var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-					var6 = InvDefinition.ItemDefinition_get(var3);
-					if (var6.noteTemplate >= 0 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var6.note;
-					} else {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == 4207) {
-					var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-					Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = InvDefinition.ItemDefinition_get(var3).isMembersOnly ? 1 : 0;
-					return 1;
-				} else if (var0 == 4208) {
-					var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-					var6 = InvDefinition.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate == -1 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var6.placeholder;
-					} else {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == 4209) {
-					var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-					var6 = InvDefinition.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate >= 0 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var6.placeholder;
-					} else {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == 4210) {
-					String var7 = Interpreter.Interpreter_stringStack[--class137.Interpreter_stringStackSize];
-					var4 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-					class161.findItemDefinitions(var7, var4 == 1);
-					Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = class28.foundItemIdCount;
-					return 1;
-				} else if (var0 != 4211) {
-					if (var0 == 4212) {
-						class372.foundItemIndex = 0;
-						return 1;
-					} else if (var0 == 4213) {
-						var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-						var4 = InvDefinition.ItemDefinition_get(var3).getShiftClickIndex();
-						if (var4 == -1) {
-							Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var4;
-						} else {
-							Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var4 + 1;
-						}
-
-						return 1;
-					} else if (var0 == 4214) {
-						var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = InvDefinition.ItemDefinition_get(var3).maleModel;
-						return 1;
-					} else if (var0 == 4215) {
-						var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = InvDefinition.ItemDefinition_get(var3).maleModel1;
-						return 1;
-					} else if (var0 == 4216) {
-						var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = InvDefinition.ItemDefinition_get(var3).maleModel2;
-						return 1;
-					} else if (var0 == 4217) {
-						var3 = Interpreter.Interpreter_intStack[--SoundCache.Interpreter_intStackSize];
-						var6 = InvDefinition.ItemDefinition_get(var3);
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = var6.field1806;
-						return 1;
-					} else {
-						return 2;
-					}
-				} else {
-					if (class156.foundItemIds != null && class372.foundItemIndex < class28.foundItemIdCount) {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = class156.foundItemIds[++class372.foundItemIndex - 1] & '\uffff';
-					} else {
-						Interpreter.Interpreter_intStack[++SoundCache.Interpreter_intStackSize - 1] = -1;
-					}
-
-					return 1;
-				}
-			}
+			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
+			return var3 == null ? var2 : var3.integer;
 		}
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;I)Z",
+		garbageValue = "1281251233"
+	)
+	@Export("isNumber")
+	public static boolean isNumber(CharSequence var0) {
+		return class135.method728(var0, 10, true);
+	}
+
+	@ObfuscatedName("lv")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-860429671"
+	)
+	static final int method609() {
+		return Client.menuOptionsCount - 1;
 	}
 }

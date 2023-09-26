@@ -1,45 +1,51 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qn")
-public class class418 {
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "Lqn;"
-	)
-	static final class418 field3759;
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "Lqn;"
-	)
-	static final class418 field3758;
-	@ObfuscatedName("ao")
-	final String field3760;
+import java.util.Iterator;
 
-	static {
-		field3759 = new class418("Basic");
-		field3758 = new class418("Bearer");
+@ObfuscatedName("qw")
+public class class418 extends SongTask {
+	@ObfuscatedSignature(
+		descriptor = "(Lqm;)V"
+	)
+	public class418(SongTask var1) {
+		super(var1);
+		super.field3753 = "StartSongTask";
 	}
 
-	class418(String var1) {
-		this.field3760 = var1;
-	}
-
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "75"
+		descriptor = "(B)Z",
+		garbageValue = "-90"
 	)
-	String method2162() {
-		return this.field3760;
-	}
+	@Export("vmethod2142")
+	public boolean vmethod2142() {
+		Iterator var1 = class319.musicSongs.iterator();
 
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lrq;",
-		garbageValue = "-2125486223"
-	)
-	static class453[] method2163() {
-		return new class453[]{class453.field3896, class453.field3893, class453.field3894, class453.field3895};
+		while (var1.hasNext()) {
+			MusicSong var2 = (MusicSong)var1.next();
+			if (var2 != null && !var2.field2884 && var2.midiPcmStream != null) {
+				try {
+					var2.midiPcmStream.method1665();
+					var2.midiPcmStream.setPcmStreamVolume(0);
+					if (var2.field2892 != null) {
+						var2.midiPcmStream.setMusicTrack(var2.field2892, var2.musicTrackBoolean);
+					}
+
+					var2.field2892 = null;
+					var2.field2883 = null;
+					var2.musicTrackArchive = null;
+					var2.field2884 = true;
+				} catch (Exception var4) {
+					class190.RunException_sendStackTrace((String)null, var4);
+					this.method2170(var4.getMessage());
+					return true;
+				}
+			}
+		}
+
+		super.field3752 = true;
+		return true;
 	}
 }

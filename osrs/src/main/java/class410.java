@@ -1,30 +1,88 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ph")
+@ObfuscatedName("pb")
 public class class410 {
-	@ObfuscatedName("ax")
-	@Export("ByteArrayPool_arrays")
-	static byte[][][] ByteArrayPool_arrays;
-	@ObfuscatedName("au")
-	int field3733;
-	@ObfuscatedName("ae")
-	int field3730;
-	@ObfuscatedName("ao")
-	int field3731;
-	@ObfuscatedName("at")
-	int field3732;
+	@ObfuscatedName("ac")
+	int field3711;
 
-	@Export("toString")
-	@ObfuscatedName("toString")
-	public String toString() {
-		boolean var1 = true;
-		int var2 = 10 - Integer.toString(this.field3733).length();
-		int var3 = 10 - Integer.toString(this.field3731).length();
-		int var4 = 10 - Integer.toString(this.field3730).length();
-		String var5 = "          ".substring(10 - var2);
-		String var6 = "          ".substring(10 - var3);
-		String var7 = "          ".substring(10 - var4);
-		return "    Size: " + this.field3733 + var5 + "Created: " + this.field3730 + var7 + "Total used: " + this.field3731 + var6 + "Max-In-Use: " + this.field3732;
+	@ObfuscatedSignature(
+		descriptor = "(IZ)V",
+		garbageValue = "1"
+	)
+	class410(int var1, boolean var2) {
+		this.field3711 = var1;
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(S)I",
+		garbageValue = "-15695"
+	)
+	public int method2107() {
+		return this.field3711;
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-1656605881"
+	)
+	static final boolean method2108(char var0) {
+		if (Character.isISOControl(var0)) {
+			return false;
+		} else if (Decimator.isAlphaNumeric(var0)) {
+			return true;
+		} else {
+			char[] var1 = class508.field4108;
+
+			int var2;
+			char var3;
+			for (var2 = 0; var2 < var1.length; ++var2) {
+				var3 = var1[var2];
+				if (var0 == var3) {
+					return true;
+				}
+			}
+
+			var1 = class508.field4109;
+
+			for (var2 = 0; var2 < var1.length; ++var2) {
+				var3 = var1[var2];
+				if (var0 == var3) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+	}
+
+	@ObfuscatedName("lz")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIIII)V",
+		garbageValue = "-1849908879"
+	)
+	@Export("drawWidgets")
+	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+		if (class33.field89.method1742(var0)) {
+			class9.field16 = null;
+			Tile.drawInterface(class33.field89.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
+			if (class9.field16 != null) {
+				Tile.drawInterface(class9.field16, -1412584499, var1, var2, var3, var4, GrandExchangeEvent.field3617, class10.field24, var7);
+				class9.field16 = null;
+			}
+
+		} else {
+			if (var7 != -1) {
+				Client.field408[var7] = true;
+			} else {
+				for (int var8 = 0; var8 < 100; ++var8) {
+					Client.field408[var8] = true;
+				}
+			}
+
+		}
 	}
 }

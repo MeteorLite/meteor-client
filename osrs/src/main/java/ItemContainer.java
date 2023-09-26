@@ -3,24 +3,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dd")
+@ObfuscatedName("dk")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lso;"
+		descriptor = "Ltf;"
 	)
 	@Export("itemContainers")
 	static NodeHashTable itemContainers;
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "Luk;"
-	)
-	static IndexedSprite field853;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("ids")
 	int[] ids;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("quantities")
 	int[] quantities;
 
@@ -33,27 +28,19 @@ public class ItemContainer extends Node {
 		this.quantities = new int[]{0};
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("cg")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-96469770"
+		descriptor = "(Ltr;I)Ljava/lang/Object;",
+		garbageValue = "1234966456"
 	)
-	public static void method468() {
-		FileSystem.FileSystem_cacheFiles.clear();
-	}
-
-	@ObfuscatedName("js")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "2139499432"
-	)
-	static final void method469(int var0, int var1) {
-		if (Client.hintArrowType == 2) {
-			HealthBar.worldToScreen((Client.hintArrowX - UrlRequester.baseX << 7) + Client.hintArrowSubX, (Client.hintArrowY - class47.baseY << 7) + Client.hintArrowSubY, Client.hintArrowHeight * 2);
-			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
-				ArchiveLoader.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
-			}
-
+	static Object method460(class517 var0) {
+		switch(var0.field4133) {
+		case 0:
+			return Interpreter.Interpreter_stringStack[--class180.Interpreter_stringStackSize];
+		case 2:
+			return Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+		default:
+			throw new IllegalStateException("popValueOfType() failure - unsupported type");
 		}
 	}
 }

@@ -5,13 +5,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.util.Comparator;
 
-@ObfuscatedName("oy")
+@ObfuscatedName("oj")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Loz;Loz;I)I",
-		garbageValue = "-370241365"
+		descriptor = "(Lod;Lod;I)I",
+		garbageValue = "-1207503699"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -28,5 +28,26 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 	@ObfuscatedName("equals")
 	public boolean equals(Object var1) {
 		return super.equals(var1);
+	}
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)I",
+		garbageValue = "73"
+	)
+	static final int method1992(int var0, int var1, int var2, int var3) {
+		return var2 * var1 - var3 * var0 >> 16;
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "-21"
+	)
+	static void method1994(int var0) {
+		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var1 != null) {
+			var1.remove();
+		}
 	}
 }

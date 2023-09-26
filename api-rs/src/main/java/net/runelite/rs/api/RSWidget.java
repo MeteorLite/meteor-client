@@ -534,7 +534,7 @@ public interface RSWidget extends Widget
 	Object[] getOnInvTransmitListener();
 
 	@Import("getSprite")
-	RSSpritePixels getSprite(boolean b, RSUrlRequester urlRequester);
+	RSSpritePixels getSprite(RSWidgetDefinition widgetDefinition,boolean b, RSUrlRequester urlRequester);
 
 	@Import("onRelease")
 	@Override

@@ -3,75 +3,75 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jl")
+@ObfuscatedName("jb")
 @Implements("Clips")
 public class Clips {
-	@ObfuscatedName("au")
-	boolean field2268;
-	@ObfuscatedName("ae")
-	public boolean field2279;
-	@ObfuscatedName("ao")
-	int field2275;
-	@ObfuscatedName("ai")
-	public int field2280;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ac")
+	boolean field2278;
+	@ObfuscatedName("al")
+	public boolean field2289;
+	@ObfuscatedName("ak")
+	int field2282;
+	@ObfuscatedName("ah")
+	public int field2290;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Ljs;"
+		descriptor = "Lkg;"
 	)
 	@Export("Rasterizer3D_textureLoader")
 	public TextureLoader Rasterizer3D_textureLoader;
-	@ObfuscatedName("al")
-	int field2272;
+	@ObfuscatedName("ap")
+	int field2284;
+	@ObfuscatedName("ay")
+	int field2287;
+	@ObfuscatedName("as")
+	int field2285;
+	@ObfuscatedName("aj")
+	int field2281;
 	@ObfuscatedName("an")
-	int field2274;
-	@ObfuscatedName("ar")
-	int field2276;
-	@ObfuscatedName("ab")
-	int field2269;
-	@ObfuscatedName("ag")
 	@Export("clipNegativeMidX")
 	int clipNegativeMidX;
-	@ObfuscatedName("am")
-	int field2273;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("au")
+	int field2286;
+	@ObfuscatedName("ai")
 	@Export("clipNegativeMidY")
 	int clipNegativeMidY;
-	@ObfuscatedName("ah")
-	int field2271;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ae")
+	int field2279;
+	@ObfuscatedName("aw")
 	@Export("Rasterizer3D_rowOffsets")
 	int[] Rasterizer3D_rowOffsets;
 
 	Clips() {
-		this.field2268 = false;
-		this.field2279 = true;
-		this.field2275 = 0;
-		this.field2280 = 512;
+		this.field2278 = false;
+		this.field2289 = true;
+		this.field2282 = 0;
+		this.field2290 = 512;
 		this.Rasterizer3D_rowOffsets = new int[1024];
 	}
 
-	@ObfuscatedName("au")
-	void method1361() {
-		this.field2272 = this.field2276 / 2;
-		this.field2274 = this.field2269 / 2;
-		this.clipNegativeMidX = -this.field2272;
-		this.field2273 = this.field2276 - this.field2272;
-		this.clipNegativeMidY = -this.field2274;
-		this.field2271 = this.field2269 - this.field2274;
+	@ObfuscatedName("ac")
+	void method1400() {
+		this.field2284 = this.field2285 / 2;
+		this.field2287 = this.field2281 / 2;
+		this.clipNegativeMidX = -this.field2284;
+		this.field2286 = this.field2285 - this.field2284;
+		this.clipNegativeMidY = -this.field2287;
+		this.field2279 = this.field2281 - this.field2287;
 	}
 
-	@ObfuscatedName("ae")
-	void method1362(int var1, int var2, int var3, int var4) {
-		this.field2272 = var1 - var2;
-		this.field2274 = var3 - var4;
-		this.clipNegativeMidX = -this.field2272;
-		this.field2273 = this.field2276 - this.field2272;
-		this.clipNegativeMidY = -this.field2274;
-		this.field2271 = this.field2269 - this.field2274;
+	@ObfuscatedName("al")
+	void method1401(int var1, int var2, int var3, int var4) {
+		this.field2284 = var1 - var2;
+		this.field2287 = var3 - var4;
+		this.clipNegativeMidX = -this.field2284;
+		this.field2286 = this.field2285 - this.field2284;
+		this.clipNegativeMidY = -this.field2287;
+		this.field2279 = this.field2281 - this.field2287;
 	}
 
-	@ObfuscatedName("ao")
-	void method1363(int var1, int var2, int var3) {
-		this.field2268 = var1 < 0 || var1 > this.field2276 || var2 < 0 || var2 > this.field2276 || var3 < 0 || var3 > this.field2276;
+	@ObfuscatedName("ak")
+	void method1402(int var1, int var2, int var3) {
+		this.field2278 = var1 < 0 || var1 > this.field2285 || var2 < 0 || var2 > this.field2285 || var3 < 0 || var3 > this.field2285;
 	}
 }

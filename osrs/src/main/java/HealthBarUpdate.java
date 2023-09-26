@@ -3,28 +3,22 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("do")
+@ObfuscatedName("dt")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-	@ObfuscatedName("ai")
-	@Export("SpriteBuffer_spriteWidths")
-	static int[] SpriteBuffer_spriteWidths;
-	@ObfuscatedName("ik")
-	@ObfuscatedSignature(
-		descriptor = "Lpi;"
-	)
-	@Export("fontPlain11")
-	static Font fontPlain11;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ab")
+	@Export("ItemDefinition_inMembersWorld")
+	static boolean ItemDefinition_inMembersWorld;
+	@ObfuscatedName("ac")
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("health")
 	int health;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("cycleOffset")
 	int cycleOffset;
 
@@ -35,10 +29,10 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "75"
+		descriptor = "(IIIII)V",
+		garbageValue = "-104835898"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -48,37 +42,75 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("at")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-2006181389"
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "-53586823"
 	)
-	public static int method524(CharSequence var0) {
-		return DevicePcmPlayerProvider.method75(var0, 10, true);
+	public static String method523(String var0) {
+		int var1 = var0.length();
+		char[] var2 = new char[var1];
+		byte var3 = 2;
+
+		for (int var4 = 0; var4 < var1; ++var4) {
+			char var5 = var0.charAt(var4);
+			if (var3 == 0) {
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) {
+				var5 = StudioGame.method1905(var5);
+			}
+
+			if (Character.isLetter(var5)) {
+				var3 = 0;
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') {
+				if (Character.isSpaceChar(var5)) {
+					if (var3 != 2) {
+						var3 = 1;
+					}
+				} else {
+					var3 = 1;
+				}
+			} else {
+				var3 = 2;
+			}
+
+			var2[var4] = var5;
+		}
+
+		return new String(var2);
 	}
 
-	@ObfuscatedName("ai")
+	@ObfuscatedName("br")
 	@ObfuscatedSignature(
-		descriptor = "(Lch;Lch;IZIZI)I",
-		garbageValue = "1278568965"
+		descriptor = "(ILds;ZI)I",
+		garbageValue = "-2085144575"
 	)
-	static int method525(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
-		int var6 = class139.compareWorlds(var0, var1, var2, var3);
-		if (var6 != 0) {
-			return var3 ? -var6 : var6;
-		} else if (var4 == -1) {
-			return 0;
+	static int method524(int var0, Script var1, boolean var2) {
+		if (var0 == 5630) {
+			Client.logoutTimer = 250;
+			return 1;
 		} else {
-			int var7 = class139.compareWorlds(var0, var1, var4, var5);
-			return var5 ? -var7 : var7;
+			return 2;
 		}
 	}
 
-	@ObfuscatedName("na")
-	static final void method526(double var0) {
-		Rasterizer3D.method1187(var0);
-		((TextureProvider)Rasterizer3D.clips.Rasterizer3D_textureLoader).setBrightness(var0);
-		UrlRequester.method653();
-		class449.clientPreferences.setBrightness(var0);
+	@ObfuscatedName("nq")
+	@ObfuscatedSignature(
+		descriptor = "(IIZI)V",
+		garbageValue = "2104594196"
+	)
+	static final void method525(int var0, int var1, boolean var2) {
+		if (Client.currentClanChannels[var0] != null) {
+			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method868()) {
+				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
+				PacketBufferNode var4 = ClanChannelMember.getPacketBufferNode(ClientPacket.f10, Client.packetWriter.isaacCipher);
+				var4.packetBuffer.writeByte(4 + class478.stringCp1252NullTerminatedByteSize(var3.username.getName()));
+				var4.packetBuffer.writeByte(var0);
+				var4.packetBuffer.writeShort(var1);
+				var4.packetBuffer.writeBoolean(var2);
+				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName());
+				Client.packetWriter.addNode(var4);
+			}
+		}
 	}
 }

@@ -7,28 +7,28 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 
-@ObfuscatedName("qa")
+@ObfuscatedName("rj")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("position")
 	int position;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ar")
 	@Export("exception")
 	IOException exception;
 
@@ -43,10 +43,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(IB)Z",
-		garbageValue = "23"
+		garbageValue = "0"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -77,10 +77,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "719652359"
+		garbageValue = "1929996335"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -101,10 +101,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "102"
+		descriptor = "(I)I",
+		garbageValue = "-1702106506"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
@@ -124,10 +124,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)I",
-		garbageValue = "360959196"
+		garbageValue = "171624144"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -165,10 +165,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "-20258"
+		descriptor = "(I)V",
+		garbageValue = "-189717411"
 	)
 	@Export("close")
 	void close() {
@@ -237,12 +237,36 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;B)V",
-		garbageValue = "-122"
+		descriptor = "([BIIII[Lih;I)V",
+		garbageValue = "-2138792122"
 	)
-	public static void method2268(AbstractArchive var0) {
-		DbTableType.field4110 = var0;
+	static final void method2298(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
+		int var7;
+		int var8;
+		for (int var6 = 0; var6 < 4; ++var6) {
+			for (var7 = 0; var7 < 64; ++var7) {
+				for (var8 = 0; var8 < 64; ++var8) {
+					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) {
+						int[] var10000 = var5[var6].flags[var7 + var1];
+						var10000[var2 + var8] &= -16777217;
+					}
+				}
+			}
+		}
+
+		Buffer var12 = new Buffer(var0);
+
+		for (var7 = 0; var7 < 4; ++var7) {
+			for (var8 = 0; var8 < 64; ++var8) {
+				for (int var9 = 0; var9 < 64; ++var9) {
+					int var10 = var8 + var1;
+					int var11 = var9 + var2;
+					class104.loadTerrain(var12, var7, var10, var11, var3 + var10, var11 + var4, 0);
+				}
+			}
+		}
+
 	}
 }

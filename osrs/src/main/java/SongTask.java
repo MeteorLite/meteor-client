@@ -3,144 +3,97 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pm")
+@ObfuscatedName("qm")
 @Implements("SongTask")
 public abstract class SongTask {
-	@ObfuscatedName("ao")
+	@ObfuscatedName("fq")
 	@ObfuscatedSignature(
-		descriptor = "Lpm;"
+		descriptor = "Lok;"
 	)
-	SongTask field3724;
-	@ObfuscatedName("at")
-	String field3723;
-	@ObfuscatedName("ac")
-	String field3722;
-	@ObfuscatedName("ai")
-	boolean field3720;
-	@ObfuscatedName("az")
-	boolean field3721;
+	@Export("archive12")
+	static Archive archive12;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Lqm;"
+	)
+	SongTask field3755;
+	@ObfuscatedName("ax")
+	String field3754;
+	@ObfuscatedName("ao")
+	String field3753;
+	@ObfuscatedName("ah")
+	boolean field3751;
+	@ObfuscatedName("ar")
+	boolean field3752;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpm;)V"
+		descriptor = "(Lqm;)V"
 	)
 	SongTask(SongTask var1) {
-		this.field3724 = var1;
+		this.field3755 = var1;
 	}
 
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1604030758"
-	)
-	public abstract boolean vmethod2142();
-
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "3"
+		garbageValue = "-90"
 	)
-	public boolean method2132() {
-		return this.field3720;
-	}
+	@Export("vmethod2142")
+	public abstract boolean vmethod2142();
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1850076782"
+		garbageValue = "1050307233"
 	)
-	public boolean method2134() {
-		return this.field3721;
+	public boolean method2165() {
+		return this.field3751;
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "45"
+	)
+	public boolean method2167() {
+		return this.field3752;
+	}
+
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "2126528347"
+		garbageValue = "-1522187493"
 	)
-	public String method2135() {
-		return "Error in task: " + this.field3722 + ", Error message: " + this.field3723;
+	public String method2168() {
+		return "Error in task: " + this.field3753 + ", Error message: " + this.field3754;
+	}
+
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lqm;",
+		garbageValue = "-1213560262"
+	)
+	public SongTask method2169() {
+		return this.field3755;
 	}
 
 	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lpm;",
-		garbageValue = "255"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "225620137"
 	)
-	public SongTask method2136() {
-		return this.field3724;
+	void method2170(String var1) {
+		this.field3751 = true;
+		this.field3754 = var1;
 	}
 
-	@ObfuscatedName("af")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "14"
-	)
-	void method2138(String var1) {
-		this.field3720 = true;
-		this.field3723 = var1;
-	}
-
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "-7"
+		descriptor = "(II)Z",
+		garbageValue = "1674491330"
 	)
 	@Export("isWorldMapEvent")
 	public static boolean isWorldMapEvent(int var0) {
 		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-1563316878"
-	)
-	public static int method2137(int var0) {
-		return class464.field3908[var0 & 16383];
-	}
-
-	@ObfuscatedName("mg")
-	@ObfuscatedSignature(
-		descriptor = "(Lmi;IIIIIIB)V",
-		garbageValue = "-68"
-	)
-	static final void method2139(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (Client.field382) {
-			Client.alternativeScrollbarWidth = 32;
-		} else {
-			Client.alternativeScrollbarWidth = 0;
-		}
-
-		Client.field382 = false;
-		int var7;
-		if (MouseHandler.MouseHandler_currentButton == 1 || !ObjTypeCustomisation.mouseCam && MouseHandler.MouseHandler_currentButton == 4) {
-			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
-				var0.scrollY -= 4;
-				class218.invalidateWidget(var0);
-			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) {
-				var0.scrollY += 4;
-				class218.invalidateWidget(var0);
-			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) {
-				var7 = var3 * (var3 - 32) / var4;
-				if (var7 < 8) {
-					var7 = 8;
-				}
-
-				int var8 = var6 - var2 - 16 - var7 / 2;
-				int var9 = var3 - 32 - var7;
-				var0.scrollY = var8 * (var4 - var3) / var9;
-				class218.invalidateWidget(var0);
-				Client.field382 = true;
-			}
-		}
-
-		if (Client.mouseWheelRotation != 0) {
-			var7 = var0.width;
-			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) {
-				var0.scrollY += Client.mouseWheelRotation * 45;
-				class218.invalidateWidget(var0);
-			}
-		}
-
 	}
 }

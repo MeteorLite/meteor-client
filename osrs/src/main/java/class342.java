@@ -1,51 +1,35 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nd")
+@ObfuscatedName("no")
 public class class342 {
-	@ObfuscatedName("gk")
-	static int field3146;
-
-	@ObfuscatedName("lo")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "1771943161"
+		descriptor = "Lnz;"
 	)
-	static void method1867(int var0, int var1) {
-		int var2 = class59.fontBold12.stringWidth("Choose Option");
+	public class344 field2936;
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "Lnx;"
+	)
+	class339 field2931;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Lbk;"
+	)
+	class27 field2930;
+	@ObfuscatedName("ax")
+	public Object[] field2935;
+	@ObfuscatedName("ao")
+	public Object[] field2933;
+	@ObfuscatedName("ah")
+	public Object[] field2932;
+	@ObfuscatedName("ar")
+	public Object[] field2934;
 
-		int var3;
-		int var4;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) {
-			var4 = class59.fontBold12.stringWidth(class181.method928(var3));
-			if (var4 > var2) {
-				var2 = var4;
-			}
-		}
-
-		var2 += 8;
-		var3 = Client.menuOptionsCount * 15 + 22;
-		var4 = var0 - var2 / 2;
-		if (var4 + var2 > class113.canvasWidth) {
-			var4 = class113.canvasWidth - var2;
-		}
-
-		if (var4 < 0) {
-			var4 = 0;
-		}
-
-		int var5 = var1;
-		if (var1 + var3 > class177.canvasHeight) {
-			var5 = class177.canvasHeight - var3;
-		}
-
-		if (var5 < 0) {
-			var5 = 0;
-		}
-
-		class12.menuX = var4;
-		class419.menuY = var5;
-		class316.menuWidth = var2;
-		Occluder.menuHeight = Client.menuOptionsCount * 15 + 22;
+	class342() {
+		this.field2936 = new class344();
+		this.field2931 = new class339();
+		this.field2930 = new class27();
 	}
 }

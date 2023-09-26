@@ -3,10 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
+@ObfuscatedName("et")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("au")
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "[Ltl;"
+	)
+	@Export("JagexCache_idxFiles")
+	public static BufferedFile[] JagexCache_idxFiles;
+	@ObfuscatedName("ev")
+	@Export("mouseCam")
+	static boolean mouseCam;
+	@ObfuscatedName("kn")
+	@ObfuscatedSignature(
+		descriptor = "[Lud;"
+	)
+	@Export("headIconHintSprites")
+	static SpritePixels[] headIconHintSprites;
+	@ObfuscatedName("ac")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +29,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lqb;Lqb;I)I",
-		garbageValue = "-1255726150"
+		descriptor = "(Lri;Lri;B)I",
+		garbageValue = "0"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,207 +53,76 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("kn")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-334645983"
+		descriptor = "(B)V",
+		garbageValue = "0"
 	)
-	static void method671() {
-		synchronized(ArchiveDiskActionHandler.field3513) {
-			if (ArchiveDiskActionHandler.field3512 == 0) {
-				class167.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler());
-				class167.ArchiveDiskActionHandler_thread.setDaemon(true);
-				class167.ArchiveDiskActionHandler_thread.start();
-				class167.ArchiveDiskActionHandler_thread.setPriority(5);
+	static final void method669() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
+			if (var0.endCycle > 0) {
+				--var0.endCycle;
 			}
 
-			ArchiveDiskActionHandler.field3512 = 600;
-			ArchiveDiskActionHandler.field3511 = false;
-		}
-	}
+			boolean var1;
+			int var2;
+			int var3;
+			ObjectComposition var4;
+			if (var0.endCycle == 0) {
+				if (var0.objectId >= 0) {
+					var2 = var0.objectId;
+					var3 = var0.field953;
+					var4 = class91.getObjectDefinition(var2);
+					if (var3 == 11) {
+						var3 = 10;
+					}
 
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(Lto;II)V",
-		garbageValue = "-32046829"
-	)
-	@Export("updatePlayers")
-	static final void updatePlayers(PacketBuffer var0, int var1) {
-		int var2 = var0.offset;
-		Players.Players_pendingUpdateCount = 0;
-		int var3 = 0;
-		var0.importIndex();
+					if (var3 >= 5 && var3 <= 8) {
+						var3 = 4;
+					}
 
-		byte[] var10000;
-		int var4;
-		int var5;
-		int var6;
-		for (var4 = 0; var4 < Players.Players_count; ++var4) {
-			var5 = Players.Players_indices[var4];
-			if ((Players.activityFlags[var5] & 1) == 0) {
-				if (var3 > 0) {
-					--var3;
-					var10000 = Players.activityFlags;
-					var10000[var5] = (byte)(var10000[var5] | 2);
-				} else {
-					var6 = var0.readBits(1);
-					if (var6 == 0) {
-						var3 = class20.method68(var0);
-						var10000 = Players.activityFlags;
-						var10000[var5] = (byte)(var10000[var5] | 2);
-					} else {
-						AbstractArchive.readPlayerUpdate(var0, var5);
+					var1 = var4.method1078(var3);
+					if (!var1) {
+						continue;
 					}
 				}
-			}
-		}
 
-		var0.exportIndex();
-		if (var3 != 0) {
-			throw new RuntimeException();
-		} else {
-			var0.importIndex();
-
-			for (var4 = 0; var4 < Players.Players_count; ++var4) {
-				var5 = Players.Players_indices[var4];
-				if ((Players.activityFlags[var5] & 1) != 0) {
-					if (var3 > 0) {
-						--var3;
-						var10000 = Players.activityFlags;
-						var10000[var5] = (byte)(var10000[var5] | 2);
-					} else {
-						var6 = var0.readBits(1);
-						if (var6 == 0) {
-							var3 = class20.method68(var0);
-							var10000 = Players.activityFlags;
-							var10000[var5] = (byte)(var10000[var5] | 2);
-						} else {
-							AbstractArchive.readPlayerUpdate(var0, var5);
-						}
-					}
-				}
-			}
-
-			var0.exportIndex();
-			if (var3 != 0) {
-				throw new RuntimeException();
+				class115.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field947, var0.field953, var0.field946);
+				var0.remove();
 			} else {
-				var0.importIndex();
-
-				for (var4 = 0; var4 < Players.Players_emptyIdxCount; ++var4) {
-					var5 = Players.Players_emptyIndices[var4];
-					if ((Players.activityFlags[var5] & 1) != 0) {
-						if (var3 > 0) {
-							--var3;
-							var10000 = Players.activityFlags;
-							var10000[var5] = (byte)(var10000[var5] | 2);
-						} else {
-							var6 = var0.readBits(1);
-							if (var6 == 0) {
-								var3 = class20.method68(var0);
-								var10000 = Players.activityFlags;
-								var10000[var5] = (byte)(var10000[var5] | 2);
-							} else if (KitDefinition.updateExternalPlayer(var0, var5)) {
-								var10000 = Players.activityFlags;
-								var10000[var5] = (byte)(var10000[var5] | 2);
-							}
-						}
-					}
+				if (var0.startCycle > 0) {
+					--var0.startCycle;
 				}
 
-				var0.exportIndex();
-				if (var3 != 0) {
-					throw new RuntimeException();
-				} else {
-					var0.importIndex();
+				if (var0.startCycle == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102) {
+					if (var0.id >= 0) {
+						var2 = var0.id;
+						var3 = var0.objectType;
+						var4 = class91.getObjectDefinition(var2);
+						if (var3 == 11) {
+							var3 = 10;
+						}
 
-					for (var4 = 0; var4 < Players.Players_emptyIdxCount; ++var4) {
-						var5 = Players.Players_emptyIndices[var4];
-						if ((Players.activityFlags[var5] & 1) == 0) {
-							if (var3 > 0) {
-								--var3;
-								var10000 = Players.activityFlags;
-								var10000[var5] = (byte)(var10000[var5] | 2);
-							} else {
-								var6 = var0.readBits(1);
-								if (var6 == 0) {
-									var3 = class20.method68(var0);
-									var10000 = Players.activityFlags;
-									var10000[var5] = (byte)(var10000[var5] | 2);
-								} else if (KitDefinition.updateExternalPlayer(var0, var5)) {
-									var10000 = Players.activityFlags;
-									var10000[var5] = (byte)(var10000[var5] | 2);
-								}
-							}
+						if (var3 >= 5 && var3 <= 8) {
+							var3 = 4;
+						}
+
+						var1 = var4.method1078(var3);
+						if (!var1) {
+							continue;
 						}
 					}
 
-					var0.exportIndex();
-					if (var3 != 0) {
-						throw new RuntimeException();
-					} else {
-						Players.Players_count = 0;
-						Players.Players_emptyIdxCount = 0;
-
-						for (var4 = 1; var4 < 2048; ++var4) {
-							var10000 = Players.activityFlags;
-							var10000[var4] = (byte)(var10000[var4] >> 1);
-							Player var7 = Client.players[var4];
-							if (var7 != null) {
-								Players.Players_indices[++Players.Players_count - 1] = var4;
-							} else {
-								Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var4;
-							}
-						}
-
-						class85.method471(var0);
-						if (var0.offset - var2 != var1) {
-							throw new RuntimeException(var0.offset - var2 + " " + var1);
-						}
+					class115.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.rotation, var0.objectType, var0.field946);
+					var0.startCycle = -1;
+					if (var0.objectId == var0.id && var0.objectId == -1) {
+						var0.remove();
+					} else if (var0.objectId == var0.id && var0.rotation == var0.field947 && var0.objectType == var0.field953) {
+						var0.remove();
 					}
 				}
 			}
 		}
-	}
 
-	@ObfuscatedName("aa")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "1"
-	)
-	static final void method673(String var0) {
-		MouseHandler.addGameMessage(30, "", var0);
-	}
-
-	@ObfuscatedName("ic")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "-33"
-	)
-	static final int method674(int var0) {
-		return Math.min(Math.max(var0, 128), 383);
-	}
-
-	@ObfuscatedName("lk")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZI)V",
-		garbageValue = "-1798702842"
-	)
-	@Export("insertMenuItem")
-	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
-		if (!Client.isMenuOpen) {
-			if (Client.menuOptionsCount < 500) {
-				Client.menuActions[Client.menuOptionsCount] = var0;
-				Client.menuTargets[Client.menuOptionsCount] = var1;
-				Client.menuOpcodes[Client.menuOptionsCount] = var2;
-				Client.menuIdentifiers[Client.menuOptionsCount] = var3;
-				Client.menuArguments1[Client.menuOptionsCount] = var4;
-				Client.menuArguments2[Client.menuOptionsCount] = var5;
-				Client.menuItemIds[Client.menuOptionsCount] = var6;
-				Client.menuShiftClick[Client.menuOptionsCount] = var7;
-				++Client.menuOptionsCount;
-			}
-
-		}
 	}
 }

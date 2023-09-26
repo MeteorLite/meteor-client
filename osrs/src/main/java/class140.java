@@ -2,103 +2,201 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fq")
-public class class140 extends class143 {
-	@ObfuscatedName("aq")
-	public static short[][] field1328;
-	@ObfuscatedName("au")
-	int field1332;
-	@ObfuscatedName("ae")
-	int field1329;
+import java.io.IOException;
+
+@ObfuscatedName("fy")
+public enum class140 implements class386 {
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1301(0, 0),
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1304(1, 1),
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1303(2, 2),
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1308(3, 3),
 	@ObfuscatedName("ao")
-	int field1330;
-	@ObfuscatedName("at")
-	int field1331;
-	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lfn;"
+		descriptor = "Lfy;"
 	)
-	final class146 this$0;
+	field1306(4, 4),
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1302(5, 5),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1307(6, 6),
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1300(7, 7),
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	field1305(8, 8);
 
+	@ObfuscatedName("tr")
 	@ObfuscatedSignature(
-		descriptor = "(Lfn;)V"
+		descriptor = "Lbm;"
 	)
-	class140(class146 var1) {
-		this.this$0 = var1;
-		this.field1332 = -1;
+	@Export("pcmStreamMixer")
+	static PcmStreamMixer pcmStreamMixer;
+	@ObfuscatedName("av")
+	final int field1310;
+	@ObfuscatedName("ag")
+	final int field1309;
+
+	class140(int var3, int var4) {
+		this.field1310 = var3;
+		this.field1309 = var4;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ltm;I)V",
-		garbageValue = "209179459"
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
 	)
-	@Export("vmethod3254")
-	void vmethod3254(Buffer var1) {
-		this.field1332 = var1.readUnsignedShort();
-		this.field1329 = var1.readInt();
-		this.field1330 = var1.readUnsignedByte();
-		this.field1331 = var1.readUnsignedByte();
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1309;
 	}
 
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(Lfi;B)V",
-		garbageValue = "73"
-	)
-	@Export("vmethod3248")
-	void vmethod3248(ClanSettings var1) {
-		var1.method820(this.field1332, this.field1329, this.field1330, this.field1331);
-	}
-
-	@ObfuscatedName("ii")
+	@ObfuscatedName("hu")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-64"
+		garbageValue = "71"
 	)
-	static final void method762() {
-		int var0;
-		int var1;
-		int var2;
-		if (!Client.field402) {
-			var0 = Players.cameraMoveToX * 128 + 64;
-			var1 = class33.cameraMoveToY * 128 + 64;
-			var2 = class18.getTileHeight(var0, var1, HealthBar.Client_plane) - VarpDefinition.cameraMoveToHeight;
-			class126.method702(var0, var2, var1);
-		} else if (Client.field642 != null) {
-			NPCComposition.cameraX = Client.field642.vmethod2349();
-			class139.cameraZ = Client.field642.vmethod2347();
-			if (Client.field401) {
-				class133.cameraY = Client.field642.vmethod2320();
-			} else {
-				class133.cameraY = class18.getTileHeight(NPCComposition.cameraX, class139.cameraZ, HealthBar.Client_plane) - Client.field642.vmethod2320();
-			}
-
-			Client.field642.method2376();
+	@Export("reloadJS5")
+	static void reloadJS5() {
+		if (class33.varcs.hasUnwrittenChanges()) {
+			class33.varcs.write();
 		}
 
-		if (!Client.field404) {
-			var0 = PendingSpawn.cameraLookAtX * 128 + 64;
-			var1 = VarbitComposition.cameraLookAtY * 128 + 64;
-			var2 = class18.getTileHeight(var0, var1, HealthBar.Client_plane) - MusicPatchNode2.cameraLookAtHeight;
-			int var3 = var0 - NPCComposition.cameraX;
-			int var4 = var2 - class133.cameraY;
-			int var5 = var1 - class139.cameraZ;
-			int var6 = (int)Math.sqrt((double)(var5 * var5 + var3 * var3));
-			int var7 = (int)(Math.atan2((double)var4, (double)var6) * 325.9490051269531D) & 2047;
-			int var8 = (int)(Math.atan2((double)var3, (double)var5) * -325.9490051269531D) & 2047;
-			class416.method2161(var7, var8);
-		} else {
-			if (Client.field647 != null) {
-				class129.cameraPitch = Client.field647.method2371();
-				class129.cameraPitch = Math.min(Math.max(class129.cameraPitch, 128), 383);
-				Client.field647.method2376();
-			}
+		MusicPatchNode2.method1658();
+		if (class233.mouseRecorder != null) {
+			class233.mouseRecorder.isRunning = false;
+		}
 
-			if (Client.field646 != null) {
-				UserComparator10.cameraYaw = Client.field646.method2371() & 2047;
-				Client.field646.method2376();
+		class233.mouseRecorder = null;
+		Client.packetWriter.close();
+		if (GameEngine.taskHandler != null) {
+			try {
+				GameEngine.taskHandler.close();
+			} catch (Exception var3) {
 			}
+		}
+
+		GameEngine.taskHandler = null;
+		class214.method1052();
+		WorldMapSection0.method1551();
+		class10.scene.clear();
+
+		for (int var1 = 0; var1 < 4; ++var1) {
+			Client.collisionMaps[var1].clear();
+		}
+
+		class434.worldMap = null;
+		ItemComposition.method1088(0, 0);
+		class470.method2362();
+		Client.playingJingle = false;
+		SoundCache.method228();
+		if (class171.pcmPlayer1 != null) {
+			class171.pcmPlayer1.shutdown();
+		}
+
+		class59.field309.method1969();
+		WorldMapDecorationType.method1898();
+		if (AbstractWorldMapIcon.urlRequester != null) {
+			AbstractWorldMapIcon.urlRequester.close();
+		}
+
+		HealthBar.method577();
+		JagexCache.JagexCache_dat2File = null;
+		JagexCache.JagexCache_idx255File = null;
+		UserComparator8.JagexCache_idxFiles = null;
+		class232.method1192();
+		UserComparator10.field1188 = null;
+		Client.archiveLoaders.clear();
+		Client.field551 = 0;
+		class59.field309 = new JagNetThread();
+		AbstractWorldMapIcon.urlRequester = new class115(class159.client.field660, 217);
+
+		try {
+			class139.method735("oldschool", UserComparator3.field1184, SoundSystem.field211.name, 0, 23);
+		} catch (IOException var2) {
+			throw new RuntimeException(var2);
+		}
+
+		UserComparator10.field1188 = new ArchiveDisk(255, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idx255File, 500000);
+		GameEngine.taskHandler = new TaskHandler();
+		class159.client.method155();
+		Client.field416 = class94.field929;
+		DefaultsGroup.updateGameState(0);
+	}
+
+	@ObfuscatedName("lu")
+	@ObfuscatedSignature(
+		descriptor = "(Lnm;IIZI)V",
+		garbageValue = "1653848905"
+	)
+	@Export("alignWidgetSize")
+	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
+		int var4 = var0.width;
+		int var5 = var0.height;
+		if (var0.widthAlignment == 0) {
+			var0.width = var0.rawWidth;
+		} else if (var0.widthAlignment == 1) {
+			var0.width = var1 - var0.rawWidth;
+		} else if (var0.widthAlignment == 2) {
+			var0.width = var0.rawWidth * var1 >> 14;
+		}
+
+		if (var0.heightAlignment == 0) {
+			var0.height = var0.rawHeight;
+		} else if (var0.heightAlignment == 1) {
+			var0.height = var2 - var0.rawHeight;
+		} else if (var0.heightAlignment == 2) {
+			var0.height = var2 * var0.rawHeight >> 14;
+		}
+
+		if (var0.widthAlignment == 4) {
+			var0.width = var0.height * var0.field3017 / var0.field3012;
+		}
+
+		if (var0.heightAlignment == 4) {
+			var0.height = var0.field3012 * var0.width / var0.field3017;
+		}
+
+		if (var0.contentType == 1337) {
+			Client.viewportWidget = var0;
+		}
+
+		if (var0.type == 12) {
+			var0.method1877().method1768(var0.width, var0.height);
+		}
+
+		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
+			ScriptEvent var6 = new ScriptEvent();
+			var6.widget = var0;
+			var6.args = var0.onResize;
+			Client.scriptEvents.addFirst(var6);
 		}
 
 	}

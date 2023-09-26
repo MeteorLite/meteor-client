@@ -2,83 +2,92 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fb")
-public enum class138 implements class371 {
-	@ObfuscatedName("au")
+import java.util.concurrent.Callable;
+
+@ObfuscatedName("fi")
+class class138 implements Callable {
+	@ObfuscatedName("we")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lfb;"
+		descriptor = "Lfk;"
 	)
-	field1314(0, 0),
-	@ObfuscatedName("ae")
+	@Export("this$0")
+	@ObfuscatedName("this$0")
+	final class139 this$0;
+	// $FF: synthetic field
+	@Export("val$workStart")
+	@ObfuscatedName("val$workStart")
+	final int val$workStart;
+	// $FF: synthetic field
+	@Export("val$workEnd")
+	@ObfuscatedName("val$workEnd")
+	final int val$workEnd;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lfb;"
+		descriptor = "[Lfh;"
 	)
-	field1309(1, 1),
-	@ObfuscatedName("ao")
+	@Export("val$curveLoadJobs")
+	@ObfuscatedName("val$curveLoadJobs")
+	final class131[] val$curveLoadJobs;
+
 	@ObfuscatedSignature(
-		descriptor = "Lfb;"
+		descriptor = "(Lfk;II[Lfh;)V"
 	)
-	field1311(2, 2),
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "Lfb;"
-	)
-	field1313(3, 3),
+	class138(class139 var1, int var2, int var3, class131[] var4) {
+		this.this$0 = var1;
+		this.val$workStart = var2;
+		this.val$workEnd = var3;
+		this.val$curveLoadJobs = var4;
+	}
+
+	@Export("call")
+	@ObfuscatedName("call")
+	public Object call() {
+		for (int var1 = this.val$workStart; var1 < this.val$workEnd; ++var1) {
+			this.val$curveLoadJobs[var1].call();
+		}
+
+		return null;
+	}
+
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lfb;"
+		descriptor = "(Lom;Lom;Lom;I)V",
+		garbageValue = "1994646383"
 	)
-	field1308(4, 4),
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "Lfb;"
-	)
-	field1310(5, 5),
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		descriptor = "Lfb;"
-	)
-	field1315(6, 6),
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "Lfb;"
-	)
-	field1312(7, 7),
-	@ObfuscatedName("aa")
-	@ObfuscatedSignature(
-		descriptor = "Lfb;"
-	)
-	field1307(8, 8);
-
-	@ObfuscatedName("ix")
-	static int field1306;
-	@ObfuscatedName("af")
-	final int field1317;
-	@ObfuscatedName("ad")
-	final int field1316;
-
-	class138(int var3, int var4) {
-		this.field1317 = var3;
-		this.field1316 = var4;
+	public static void method732(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
+		class295.SequenceDefinition_archive = var0;
+		SequenceDefinition.SequenceDefinition_animationsArchive = var1;
+		SequenceDefinition.SequenceDefinition_skeletonsArchive = var2;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "41"
+		descriptor = "(II)V",
+		garbageValue = "1830136563"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field1316;
+	public static void method733(int var0) {
+		MouseHandler.MouseHandler_idleCycles = var0;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ha")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lhd;",
-		garbageValue = "-2092352148"
+		descriptor = "(I)I",
+		garbageValue = "-1629606373"
 	)
-	@Export("WorldMapElement_get")
-	public static WorldMapElement WorldMapElement_get(int var0) {
-		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
+	static int method734() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+			int var0 = 0;
+
+			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) {
+				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount;
+			}
+
+			return var0 * 10000 / Client.field551;
+		} else {
+			return 10000;
+		}
 	}
 }

@@ -1,26 +1,32 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ip")
+@ObfuscatedName("jl")
 @Implements("AABB")
 public class AABB {
-	@ObfuscatedName("au")
+	@ObfuscatedName("gi")
+	@ObfuscatedSignature(
+		descriptor = "Lok;"
+	)
+	static Archive field2123;
+	@ObfuscatedName("ac")
 	@Export("xMid")
 	int xMid;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("yMid")
 	int yMid;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("zMid")
 	int zMid;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("xMidOffset")
 	int xMidOffset;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("yMidOffset")
 	int yMidOffset;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@Export("zMidOffset")
 	int zMidOffset;
 

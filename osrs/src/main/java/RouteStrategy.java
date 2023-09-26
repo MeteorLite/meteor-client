@@ -3,42 +3,60 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iw")
+import java.util.Iterator;
+
+@ObfuscatedName("iq")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("approxDestinationX")
 	public int approxDestinationX;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("approxDestinationY")
 	public int approxDestinationY;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("approxDestinationSizeX")
 	public int approxDestinationSizeX;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("approxDestinationSizeY")
 	public int approxDestinationSizeY;
 
 	protected RouteStrategy() {
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(IIILis;B)Z",
-		garbageValue = "85"
+		descriptor = "(IIILih;B)Z",
+		garbageValue = "0"
 	)
 	@Export("hasArrived")
 	protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
 
-	@ObfuscatedName("ja")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1131670989"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "517814479"
 	)
-	static void method1125() {
-		if (Client.field386) {
-			class92.addPlayerToScene(VarbitComposition.localPlayer, false);
+	static String method1170() {
+		StringBuilder var0 = new StringBuilder();
+
+		Message var2;
+		for (Iterator var1 = Messages.Messages_hashTable.iterator(); var1.hasNext(); var0.append(var2.text).append('\n')) {
+			var2 = (Message)var1.next();
+			if (var2.sender != null && !var2.sender.isEmpty()) {
+				var0.append(var2.sender).append(':');
+			}
 		}
 
+		return var0.toString();
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "972272925"
+	)
+	static final void method1171() {
+		class436.method2211("You can't add yourself to your own ignore list");
 	}
 }

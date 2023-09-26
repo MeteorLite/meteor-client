@@ -1,33 +1,14 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.util.regex.Pattern;
-
-
-@ObfuscatedName("op")
-public final class class386 {
-	static {
-		Pattern.compile("^\\D*(\\d+)\\D*$");
-	}
-
-	@ObfuscatedName("no")
+@ObfuscatedName("on")
+public interface class386 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "289831668"
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
 	)
-	static final void method2027(int var0, int var1) {
-		if (Client.currentClanChannels[var0] != null) {
-			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method859()) {
-				ClanChannelMember var2 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
-				if (var2.rank == -1) {
-					PacketBufferNode var3 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.AFFINEDCLANSETTINGS_ADDBANNED_FROMCHANNEL, Client.packetWriter.isaacCipher);
-					var3.packetBuffer.writeByte(3 + AbstractSocket.stringCp1252NullTerminatedByteSize(var2.username.getName()));
-					var3.packetBuffer.writeByte(var0);
-					var3.packetBuffer.writeShort(var1);
-					var3.packetBuffer.writeStringCp1252NullTerminated(var2.username.getName());
-					Client.packetWriter.addNode(var3);
-				}
-			}
-		}
-	}
+	@Export("rsOrdinal")
+	int rsOrdinal();
 }

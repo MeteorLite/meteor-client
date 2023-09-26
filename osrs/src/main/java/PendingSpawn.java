@@ -3,123 +3,114 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-@ObfuscatedName("dv")
+@ObfuscatedName("dw")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("ub")
-	@Export("cameraLookAtX")
-	static int cameraLookAtX;
-	@ObfuscatedName("au")
+	@ObfuscatedName("dz")
+	@ObfuscatedSignature(
+		descriptor = "[Lun;"
+	)
+	@Export("worldSelectFlagSprites")
+	static IndexedSprite[] worldSelectFlagSprites;
+	@ObfuscatedName("ac")
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@Export("type")
 	int type;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("x")
 	int x;
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@Export("y")
 	int y;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("objectId")
 	int objectId;
-	@ObfuscatedName("ai")
-	int field948;
-	@ObfuscatedName("az")
-	int field956;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ah")
+	int field947;
+	@ObfuscatedName("ar")
+	int field953;
+	@ObfuscatedName("ab")
 	@Export("id")
 	int id;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("am")
 	@Export("rotation")
 	int rotation;
-	@ObfuscatedName("af")
+	@ObfuscatedName("av")
 	@Export("objectType")
 	int objectType;
-	@ObfuscatedName("ad")
-	int field945;
-	@ObfuscatedName("al")
-	int field949;
-	@ObfuscatedName("an")
+	@ObfuscatedName("ag")
+	int field946;
+	@ObfuscatedName("ap")
+	int field952;
+	@ObfuscatedName("ay")
 	@Export("startCycle")
 	int startCycle;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("as")
 	@Export("endCycle")
 	int endCycle;
 
 	PendingSpawn() {
-		this.field949 = 31;
+		this.field952 = 31;
 		this.startCycle = 0;
 		this.endCycle = -1;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-390756021"
+		garbageValue = "1554580645"
 	)
 	void method506(int var1) {
-		this.field949 = var1;
+		this.field952 = var1;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "-1725061454"
+		garbageValue = "585710320"
 	)
 	boolean method507(int var1) {
 		if (var1 >= 0 && var1 <= 4) {
-			return (this.field949 & 1 << var1) != 0;
+			return (this.field952 & 1 << var1) != 0;
 		} else {
 			return true;
 		}
 	}
 
-	@ObfuscatedName("au")
-	public static final void method505(long var0) {
-		if (var0 > 0L) {
-			if (0L == var0 % 10L) {
-				WorldMapData_0.method1390(var0 - 1L);
-				WorldMapData_0.method1390(1L);
-			} else {
-				WorldMapData_0.method1390(var0);
-			}
-
-		}
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "-121"
+	)
+	static final void method508(String var0) {
+		class436.method2211(var0 + " is already on your friend list");
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("lq")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Z",
-		garbageValue = "1525376195"
+		descriptor = "([Lnm;Lnm;ZB)V",
+		garbageValue = "-37"
 	)
-	static boolean method508(String var0) {
-		if (var0 == null) {
-			return false;
-		} else {
-			try {
-				new URL(var0);
-				return true;
-			} catch (MalformedURLException var2) {
-				return false;
+	@Export("revalidateWidgetScroll")
+	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
+		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth * -935068743 * -231105911 : var1.width * -2052421073 * -1523778353;
+		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight * -356890711 * -111326055 : var1.height * -2112445931 * -503112387;
+		class360.resizeInterface(var0, var1.id, var3, var4, var2);
+		if (var1.children != null) {
+			class360.resizeInterface(var1.children, var1.id, var3, var4, var2);
+		}
+
+		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
+		if (var5 != null) {
+			int var6 = var5.group;
+			if (class33.field89.method1742(var6)) {
+				class360.resizeInterface(class33.field89.Widget_interfaceComponents[var6], -1, var3, var4, var2);
 			}
 		}
-	}
 
-	@ObfuscatedName("hm")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "-1915855915"
-	)
-	static final void method509(boolean var0) {
-		if (var0) {
-			Client.field421 = Login.field743 ? class139.field1319 : class139.field1321;
-		} else {
-			Client.field421 = class449.clientPreferences.method568(Login.Login_username) ? class139.field1322 : class139.field1320;
+		if (var1.contentType == 1337) {
 		}
 
 	}

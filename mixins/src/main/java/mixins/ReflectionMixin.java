@@ -81,21 +81,21 @@ public abstract class ReflectionMixin implements RSReflection
 	public static void reportInvoke(Method method, Object reference, Object[] args) {
 		String className = method.getClass().getName();
 		int arg = 0;
-		client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - " + className + "." + method.getName());
+		client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - " + className + "." + method.getName());
 		if (reference != null)
-			client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - reference - " + reference.getClass().getName());
+			client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - reference - " + reference.getClass().getName());
 		for (Object o : args) {
-			client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - arg" + arg + " - " + o.getClass().getName());
+			client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - arg" + arg + " - " + o.getClass().getName());
 			if (o instanceof Integer)
-				client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - intValue" + arg + " - " + o);
+				client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - intValue" + arg + " - " + o);
 			if (o instanceof String)
-				client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - strValue" + arg + " - " + o);
+				client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - strValue" + arg + " - " + o);
 			if (o instanceof Long)
-				client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - longValue" + arg + " - " + o);
+				client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - longValue" + arg + " - " + o);
 			if (o instanceof Byte)
-				client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - byteValue" + arg + " - " + o);
+				client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - byteValue" + arg + " - " + o);
 			if (o instanceof Boolean)
-				client.getLogger().error("net.runelite.net.runelite.rs.Reflection:INVOKE - boolValue" + arg + " - " + o);
+				client.getLogger().error("net.runelite.net.runelite.net.runelite.net.runelite.rs.Reflection:INVOKE - boolValue" + arg + " - " + o);
 			arg++;
 		}
 	}

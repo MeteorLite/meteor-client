@@ -5,69 +5,78 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 import java.awt.event.*;
 
-@ObfuscatedName("bf")
+@ObfuscatedName("bo")
 @Implements("MouseHandler")
 public class MouseHandler implements MouseListener, MouseMotionListener, FocusListener {
-	@ObfuscatedName("at")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lbf;"
+		descriptor = "Lbo;"
 	)
 	@Export("MouseHandler_instance")
 	public static MouseHandler MouseHandler_instance;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ao")
 	@Export("MouseHandler_idleCycles")
-	static volatile int MouseHandler_idleCycles;
-	@ObfuscatedName("ai")
+	public static volatile int MouseHandler_idleCycles;
+	@ObfuscatedName("ah")
 	@Export("MouseHandler_currentButtonVolatile")
 	public static volatile int MouseHandler_currentButtonVolatile;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ar")
 	@Export("MouseHandler_xVolatile")
 	public static volatile int MouseHandler_xVolatile;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ab")
 	@Export("MouseHandler_yVolatile")
 	public static volatile int MouseHandler_yVolatile;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("am")
 	@Export("MouseHandler_lastMovedVolatile")
 	public static volatile long MouseHandler_lastMovedVolatile;
-	@ObfuscatedName("af")
+	@ObfuscatedName("av")
 	@Export("MouseHandler_currentButton")
 	public static int MouseHandler_currentButton;
-	@ObfuscatedName("ad")
+	@ObfuscatedName("ag")
 	@Export("MouseHandler_x")
 	public static int MouseHandler_x;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("aa")
 	@Export("MouseHandler_y")
 	public static int MouseHandler_y;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ap")
 	@Export("MouseHandler_millis")
 	public static long MouseHandler_millis;
-	@ObfuscatedName("an")
+	@ObfuscatedName("ay")
 	@Export("MouseHandler_lastButtonVolatile")
 	public static volatile int MouseHandler_lastButtonVolatile;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("as")
 	@Export("MouseHandler_lastPressedXVolatile")
 	public static volatile int MouseHandler_lastPressedXVolatile;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("aj")
 	@Export("MouseHandler_lastPressedYVolatile")
 	public static volatile int MouseHandler_lastPressedYVolatile;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("an")
 	@Export("MouseHandler_lastPressedTimeMillisVolatile")
 	public static volatile long MouseHandler_lastPressedTimeMillisVolatile;
-	@ObfuscatedName("am")
+	@ObfuscatedName("au")
 	@Export("MouseHandler_lastButton")
 	public static int MouseHandler_lastButton;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ai")
 	@Export("MouseHandler_lastPressedX")
 	public static int MouseHandler_lastPressedX;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("ae")
 	@Export("MouseHandler_lastPressedY")
 	public static int MouseHandler_lastPressedY;
-	@ObfuscatedName("as")
+	@ObfuscatedName("aw")
 	@Export("MouseHandler_lastPressedTimeMillis")
 	public static long MouseHandler_lastPressedTimeMillis;
-	@ObfuscatedName("uf")
-	@Export("cameraMoveToAcceleration")
-	static int cameraMoveToAcceleration;
+	@ObfuscatedName("gy")
+	@Export("worldHost")
+	static String worldHost;
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		descriptor = "Lhi;"
+	)
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("ul")
+	@Export("cameraMoveToY")
+	static int cameraMoveToY;
 
 	static {
 		MouseHandler_instance = new MouseHandler();
@@ -93,10 +102,10 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 	MouseHandler() {
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/event/MouseEvent;I)I",
-		garbageValue = "-343088867"
+		descriptor = "(Ljava/awt/event/MouseEvent;B)I",
+		garbageValue = "29"
 	)
 	@Export("getButton")
 	final int getButton(MouseEvent var1) {
@@ -125,7 +134,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 			MouseHandler_idleCycles = 0;
 			MouseHandler_lastPressedXVolatile = var1.getX();
 			MouseHandler_lastPressedYVolatile = var1.getY();
-			MouseHandler_lastPressedTimeMillisVolatile = GameEngine.clockNow();
+			MouseHandler_lastPressedTimeMillisVolatile = GrandExchangeOfferTotalQuantityComparator.method1971();
 			MouseHandler_lastButtonVolatile = this.getButton(var1);
 			if (MouseHandler_lastButtonVolatile != 0) {
 				MouseHandler_currentButtonVolatile = MouseHandler_lastButtonVolatile;
@@ -189,46 +198,136 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "-463307133"
+		descriptor = "(I)V",
+		garbageValue = "1381957040"
 	)
-	@Export("addGameMessage")
-	static void addGameMessage(int var0, String var1, String var2) {
-		class416.addChatMessage(var0, var1, var2, (String)null);
+	public static void method173() {
+		class189.field1494.clear();
 	}
 
-	@ObfuscatedName("aq")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "412937353"
+		descriptor = "(III)V",
+		garbageValue = "-948962256"
 	)
-	static final void method171(String var0) {
-		PacketBufferNode var1 = ApproximateRouteStrategy.getPacketBufferNode(ClientPacket.FRIENDLIST_ADD, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(AbstractSocket.stringCp1252NullTerminatedByteSize(var0));
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
-	}
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4];
+		int[] var3 = new int[4];
+		var2[0] = var0;
+		var3[0] = var1;
+		int var4 = 1;
 
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)V",
-		garbageValue = "1731210540"
-	)
-	static void method172(int var0, int var1, int var2) {
-		if (var0 != 0) {
-			int var3 = var0 >> 8;
-			int var4 = var0 >> 4 & 7;
-			int var5 = var0 & 15;
-			Client.soundEffectIds[Client.soundEffectCount] = var3;
-			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var4;
-			Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
-			Client.soundEffects[Client.soundEffectCount] = null;
-			int var6 = (var1 - 64) / 128;
-			int var7 = (var2 - 64) / 128;
-			Client.soundLocations[Client.soundEffectCount] = var5 + (var7 << 8) + (var6 << 16);
-			++Client.soundEffectCount;
+		for (int var5 = 0; var5 < 4; ++var5) {
+			if (World.World_sortOption1[var5] != var0) {
+				var2[var4] = World.World_sortOption1[var5];
+				var3[var4] = World.World_sortOption2[var5];
+				++var4;
+			}
 		}
+
+		World.World_sortOption1 = var2;
+		World.World_sortOption2 = var3;
+		class12.sortWorlds(UserComparator3.World_worlds, 0, UserComparator3.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+	}
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "(III)Lds;",
+		garbageValue = "332721621"
+	)
+	static Script method175(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
+		if (var2 != null) {
+			return var2;
+		} else {
+			String var3 = String.valueOf(var0);
+			int var4 = SongTask.archive12.getGroupId(var3);
+			if (var4 == -1) {
+				return null;
+			} else {
+				byte[] var5 = SongTask.archive12.takeFileFlat(var4);
+				if (var5 != null) {
+					if (var5.length <= 1) {
+						return null;
+					}
+
+					var2 = class224.newScript(var5);
+					if (var2 != null) {
+						Script.Script_cached.put(var2, (long)(var0 << 16));
+						return var2;
+					}
+				}
+
+				return null;
+			}
+		}
+	}
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)V",
+		garbageValue = "65"
+	)
+	static void method177(int var0, int var1, int var2, int var3) {
+		class319.musicPlayerStatus = var0;
+		class319.field2794 = var1;
+		class319.field2793 = var2;
+		class319.field2795 = var3;
+	}
+
+	@ObfuscatedName("bq")
+	@ObfuscatedSignature(
+		descriptor = "(ILds;ZI)I",
+		garbageValue = "671130802"
+	)
+	static int method179(int var0, Script var1, boolean var2) {
+		return 2;
+	}
+
+	@ObfuscatedName("hj")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1315584412"
+	)
+	static void method178() {
+		Client.packetWriter.clearBuffer();
+		Client.packetWriter.packetBuffer.offset = 0;
+		Client.packetWriter.serverPacket = null;
+		Client.packetWriter.field1153 = null;
+		Client.packetWriter.field1154 = null;
+		Client.packetWriter.field1156 = null;
+		Client.packetWriter.serverPacketLength = 0;
+		Client.packetWriter.field1152 = 0;
+		Client.rebootTimer = 0;
+		class91.method483();
+		Client.minimapState = 0;
+		Client.destinationX = 0;
+
+		int var0;
+		for (var0 = 0; var0 < 2048; ++var0) {
+			Client.players[var0] = null;
+		}
+
+		TextureProvider.localPlayer = null;
+
+		for (var0 = 0; var0 < Client.npcs.length; ++var0) {
+			NPC var1 = Client.npcs[var0];
+			if (var1 != null) {
+				var1.targetIndex = -1;
+				var1.false0 = false;
+			}
+		}
+
+		Tile.method1231();
+		DefaultsGroup.updateGameState(30);
+
+		for (var0 = 0; var0 < 100; ++var0) {
+			Client.field408[var0] = true;
+		}
+
+		class517.method2533();
 	}
 }

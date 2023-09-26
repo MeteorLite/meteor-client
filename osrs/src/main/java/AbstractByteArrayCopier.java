@@ -3,36 +3,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ma")
+@ObfuscatedName("nn")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
+	@ObfuscatedName("ft")
+	@ObfuscatedSignature(
+		descriptor = "Lok;"
+	)
+	static Archive field3136;
+
 	AbstractByteArrayCopier() {
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "(I)[B",
-		garbageValue = "-962589916"
+		garbageValue = "1381422717"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "([BI)V",
-		garbageValue = "1426025249"
+		garbageValue = "-2137536013"
 	)
 	@Export("set")
 	public abstract void set(byte[] var1);
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)Lco;",
-		garbageValue = "64"
+		descriptor = "(II)Lfy;",
+		garbageValue = "-1206517900"
 	)
-	@Export("Messages_getByChannelAndID")
-	static Message Messages_getByChannelAndID(int var0, int var1) {
-		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
-		return var2.getMessage(var1);
+	static class140 method1886(int var0) {
+		class140[] var1 = new class140[]{class140.field1301, class140.field1304, class140.field1303, class140.field1308, class140.field1306, class140.field1302, class140.field1307, class140.field1300, class140.field1305};
+		class140 var2 = (class140)SequenceDefinition.findEnumerated(var1, var0);
+		if (var2 == null) {
+			var2 = class140.field1305;
+		}
+
+		return var2;
 	}
 }

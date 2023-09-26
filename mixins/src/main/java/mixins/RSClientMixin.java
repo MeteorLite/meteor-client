@@ -519,7 +519,8 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
-    public Widget getWidget(WidgetInfo widget) {
+    public Widget getWidget(WidgetInfo widget)
+    {
         int groupId = widget.getGroupId();
         int childId = widget.getChildId();
 
@@ -528,16 +529,19 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
-    public Widget getWidget(int id) {
+    public Widget getWidget(int id)
+    {
         return getWidget(WidgetInfo.TO_GROUP(id), WidgetInfo.TO_CHILD(id));
     }
 
     @Inject
     @Override
-    public RSWidget[] getGroup(int groupId) {
+    public RSWidget[] getGroup(int groupId)
+    {
         RSWidget[][] widgets = getWidgets();
 
-        if (widgets == null || groupId < 0 || groupId >= widgets.length || widgets[groupId] == null) {
+        if (widgets == null || groupId < 0 || groupId >= widgets.length || widgets[groupId] == null)
+        {
             return null;
         }
 
@@ -546,21 +550,23 @@ public abstract class RSClientMixin implements RSClient {
 
     @Inject
     @Override
-    public Widget getWidget(int groupId, int childId) {
+    public Widget getWidget(int groupId, int childId)
+    {
         RSWidget[][] widgets = getWidgets();
 
-        if (widgets == null || widgets.length <= groupId) {
+        if (widgets == null || widgets.length <= groupId)
+        {
             return null;
         }
 
         RSWidget[] childWidgets = widgets[groupId];
-        if (childWidgets == null || childWidgets.length <= childId) {
+        if (childWidgets == null || childWidgets.length <= childId)
+        {
             return null;
         }
 
         return childWidgets[childId];
     }
-
     @Inject
     @Override
     public int getVar(VarPlayer varPlayer) {

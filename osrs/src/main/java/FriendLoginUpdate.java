@@ -3,29 +3,26 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qg")
+@ObfuscatedName("rr")
 @Implements("FriendLoginUpdate")
 public class FriendLoginUpdate extends Link {
-	@ObfuscatedName("la")
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("au")
-	public int field3796;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ac")
+	public int field3826;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Luc;"
+		descriptor = "Lvf;"
 	)
 	@Export("friendUsername")
 	public Username friendUsername;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("ak")
 	@Export("worldId")
 	public short worldId;
 
 	@ObfuscatedSignature(
-		descriptor = "(Luc;I)V"
+		descriptor = "(Lvf;I)V"
 	)
 	FriendLoginUpdate(Username var1, int var2) {
-		this.field3796 = (int)(GameEngine.clockNow() / 1000L);
+		this.field3826 = (int)(GrandExchangeOfferTotalQuantityComparator.method1971() / 1000L);
 		this.friendUsername = var1;
 		this.worldId = (short)var2;
 	}

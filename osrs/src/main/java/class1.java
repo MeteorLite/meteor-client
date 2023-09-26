@@ -2,55 +2,54 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
-@ObfuscatedName("ae")
+@ObfuscatedName("al")
 public class class1 implements Callable {
-	@ObfuscatedName("fp")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lnk;"
+		descriptor = "Lul;"
 	)
-	@Export("archive2")
-	static Archive archive2;
-	@ObfuscatedName("au")
+	final Buffer field1;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Ltm;"
+		descriptor = "Lax;"
 	)
-	final Buffer field2;
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "Lat;"
-	)
-	final class3 field1;
+	final class3 field0;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lap;"
+		descriptor = "Lab;"
 	)
 	@Export("this$0")
 	@ObfuscatedName("this$0")
 	final class7 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lap;Ltm;Lat;)V"
+		descriptor = "(Lab;Lul;Lax;)V"
 	)
 	class1(class7 var1, Buffer var2, class3 var3) {
 		this.this$0 = var1;
-		this.field2 = var2;
-		this.field1 = var3;
+		this.field1 = var2;
+		this.field0 = var3;
 	}
 
 	@Export("call")
 	@ObfuscatedName("call")
 	public Object call() {
-		return this.field1.vmethod12(this.field2);
+		return this.field0.vmethod12(this.field1);
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-262419719"
+		descriptor = "(Lom;Lom;Lom;Ljava/util/ArrayList;B)Z",
+		garbageValue = "-86"
 	)
-	static int method2() {
-		return class28.KeyHandler_keyCodes.length;
+	public static boolean method2(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, ArrayList var3) {
+		class319.field2800 = var0;
+		class319.field2802 = var1;
+		class319.field2801 = var2;
+		class319.midiPcmStream = var3;
+		return true;
 	}
 }

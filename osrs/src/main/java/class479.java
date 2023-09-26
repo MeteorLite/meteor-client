@@ -1,34 +1,21 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("sn")
-public abstract class class479 extends class480 {
-	class479(int var1, int var2) {
-		super(var1, var2);
-	}
-
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "818000115"
-	)
-	@Export("vmethod2349")
-	public abstract int vmethod2349();
-
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "363084355"
-	)
-	@Export("vmethod2347")
-	public abstract int vmethod2347();
-
+@ObfuscatedName("sy")
+public class class479 {
 	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1706544959"
-	)
-	@Export("vmethod2320")
-	public abstract int vmethod2320();
+	static final int[] field3939;
+	@ObfuscatedName("ah")
+	static final int[] field3938;
+
+	static {
+		field3939 = new int[16384];
+		field3938 = new int[16384];
+		double var0 = 3.834951969714103E-4D;
+
+		for (int var2 = 0; var2 < 16384; ++var2) {
+			field3939[var2] = (int)(16384.0D * Math.sin(var0 * (double)var2));
+			field3938[var2] = (int)(16384.0D * Math.cos((double)var2 * var0));
+		}
+
+	}
 }

@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ek")
+@ObfuscatedName("eu")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lqb;Lqb;I)I",
-		garbageValue = "-1874488966"
+		descriptor = "(Lri;Lri;I)I",
+		garbageValue = "383953435"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -34,24 +34,32 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("oa")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Lmi;I)Lmi;",
-		garbageValue = "915415331"
+		descriptor = "(I)V",
+		garbageValue = "1321294301"
 	)
-	static Widget method691(Widget var0) {
-		int var1 = SpriteMask.method1706(NewShit.getWidgetFlags(var0));
-		if (var1 == 0) {
-			return null;
-		} else {
-			for (int var2 = 0; var2 < var1; ++var2) {
-				var0 = class92.getWidget(var0.parentId);
-				if (var0 == null) {
-					return null;
-				}
-			}
+	static void method687() {
+		World.Tiles_underlays = null;
+		VertexNormal.Tiles_overlays = null;
+		SecureRandomFuture.Tiles_shapes = null;
+		class199.field1563 = null;
+		UserComparator6.field1191 = null;
+		Tiles.field835 = null;
+		class158.field1387 = null;
+		SecureRandomFuture.Tiles_hue = null;
+		class135.Tiles_saturation = null;
+		Tiles.Tiles_lightness = null;
+		WorldMapSection2.Tiles_hueMultiplier = null;
+		Script.field812 = null;
+	}
 
-			return var0;
-		}
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "0"
+	)
+	protected static final int method688() {
+		return GameEngine.keyHandler.getIdleCycles();
 	}
 }
