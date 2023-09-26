@@ -28,7 +28,7 @@ public class class36 {
 	)
 	@Export("getVarbit")
 	public static int getVarbit(int var0) {
-		VarbitComposition var1 = Messages.method638(var0);
+		VarbitComposition var1 = Messages.getWidget(var0);
 		int var2 = var1.baseVar;
 		int var3 = var1.startBit;
 		int var4 = var1.endBit;

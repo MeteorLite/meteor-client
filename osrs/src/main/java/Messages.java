@@ -40,7 +40,8 @@ public class Messages {
 		descriptor = "(II)Lis;",
 		garbageValue = "517783557"
 	)
-	public static VarbitComposition method638(int var0) {
+	@Export("getWidget")
+	public static VarbitComposition getWidget(int var0) {
 		VarbitComposition var1 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;

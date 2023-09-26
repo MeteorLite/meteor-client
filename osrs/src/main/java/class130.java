@@ -60,7 +60,7 @@ public enum class130 implements class386 {
 		garbageValue = "861803654"
 	)
 	public static void method704(int var0, int var1) {
-		VarbitComposition var2 = Messages.method638(var0);
+		VarbitComposition var2 = Messages.getWidget(var0);
 		int var3 = var2.baseVar;
 		int var4 = var2.startBit;
 		int var5 = var2.endBit;
