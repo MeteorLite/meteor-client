@@ -89,7 +89,7 @@ public class Interpreter {
 		garbageValue = "1205286290"
 	)
 	static final void method418(int var0, int var1) {
-		if (class33.widgetDefinition.method1742(var0)) {
+		if (class33.widgetDefinition.loadInterface(var0)) {
 			ClientPacket.runComponentCloseListeners(class33.widgetDefinition.Widget_interfaceComponents[var0], var1);
 		}
 	}

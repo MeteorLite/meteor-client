@@ -137,7 +137,7 @@ public class class304 {
 	static void method1636() {
 		for (InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
 			int var1 = var0.group;
-			if (class33.widgetDefinition.method1742(var1)) {
+			if (class33.widgetDefinition.loadInterface(var1)) {
 				boolean var2 = true;
 				Widget[] var3 = class33.widgetDefinition.Widget_interfaceComponents[var1];
 

@@ -105,7 +105,7 @@ public final class PendingSpawn extends Node {
 		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
 		if (var5 != null) {
 			int var6 = var5.group;
-			if (class33.widgetDefinition.method1742(var6)) {
+			if (class33.widgetDefinition.loadInterface(var6)) {
 				class360.resizeInterface(class33.widgetDefinition.Widget_interfaceComponents[var6], -1, var3, var4, var2);
 			}
 		}

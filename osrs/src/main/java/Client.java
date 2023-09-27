@@ -5817,7 +5817,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi, cla
 		int var2 = rootInterface;
 		int var3 = class340.canvasWidth;
 		int var4 = class491.canvasHeight;
-		if (class33.widgetDefinition.method1742(var2)) {
+		if (class33.widgetDefinition.loadInterface(var2)) {
 			class360.resizeInterface(class33.widgetDefinition.Widget_interfaceComponents[var2], -1, var3, var4, var1);
 		}
 

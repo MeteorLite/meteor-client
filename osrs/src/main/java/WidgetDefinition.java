@@ -109,7 +109,7 @@ public class WidgetDefinition {
 		int var2 = var1 >> 16;
 		int var3 = var1 & 65535;
 		if (this.Widget_interfaceComponents[var2] == null || this.Widget_interfaceComponents[var2][var3] == null) {
-			boolean var4 = this.method1742(var2);
+			boolean var4 = this.loadInterface(var2);
 			if (!var4) {
 				return null;
 			}
@@ -138,7 +138,8 @@ public class WidgetDefinition {
 		descriptor = "(IS)Z",
 		garbageValue = "-8971"
 	)
-	public boolean method1742(int var1) {
+	@Export("loadInterface")
+	public boolean loadInterface(int var1) {
 		if (AbstractUserComparator.field3833[var1]) {
 			return true;
 		} else if (!this.widgetArchive.tryLoadGroup(var1)) {

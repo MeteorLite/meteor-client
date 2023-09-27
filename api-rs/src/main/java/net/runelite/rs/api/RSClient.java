@@ -198,6 +198,7 @@ public interface RSClient extends RSGameEngine, Client
 	int getDragTime();
 
 	@Import("Widget_interfaceComponents")
+	@Override
 	RSWidget[][] getWidgets();
 
 	/**

@@ -61,7 +61,7 @@ public enum VerticalAlignment implements class386 {
 	@Export("runWidgetOnLoadListener")
 	static void runWidgetOnLoadListener(int var0) {
 		if (var0 != -1) {
-			if (class33.widgetDefinition.method1742(var0)) {
+			if (class33.widgetDefinition.loadInterface(var0)) {
 				Widget[] var1 = class33.widgetDefinition.Widget_interfaceComponents[var0];
 
 				for (int var2 = 0; var2 < var1.length; ++var2) {
