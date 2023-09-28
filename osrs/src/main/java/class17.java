@@ -356,7 +356,7 @@ class class17 implements SSLSession {
 					return 1;
 				} else if (var0 == 1125) {
 					var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					class541 var13 = (class541)SequenceDefinition.findEnumerated(class472.FillMode_values(), var10);
+					FillMode var13 = (FillMode)SequenceDefinition.findEnumerated(class472.FillMode_values(), var10);
 					if (var13 != null) {
 						var3.fillMode = var13;
 						ClanChannelMember.invalidateWidget(var3);

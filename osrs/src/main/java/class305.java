@@ -43,16 +43,16 @@ public class class305 {
 						Field var5;
 						int var6;
 						if (var4 == 0) {
-							var5 = var1.field156[var3];
+							var5 = var1.fields[var3];
 							var6 = Reflection.getInt(var5, (Object)null);
 							var0.writeByte(0);
 							var0.writeInt(var6);
 						} else if (var4 == 1) {
-							var5 = var1.field156[var3];
+							var5 = var1.fields[var3];
 							Reflection.setInt(var5, (Object)null, var1.intReplaceValues[var3]);
 							var0.writeByte(0);
 						} else if (var4 == 2) {
-							var5 = var1.field156[var3];
+							var5 = var1.fields[var3];
 							var6 = var5.getModifiers();
 							var0.writeByte(0);
 							var0.writeInt(var6);

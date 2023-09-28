@@ -86,9 +86,9 @@ public class class478 implements class476 {
 			Interpreter.runScriptEvent(var5);
 		}
 
-		Client.field503 = var3;
+		Client.selectedSpellItemId = var3;
 		Client.isSpellSelected = true;
-		JagexCache.field1449 = var0;
+		JagexCache.selectedSpellWidget = var0;
 		Client.selectedSpellChildIndex = var1;
 		class31.field82 = var2;
 		ClanChannelMember.invalidateWidget(var4);

@@ -197,7 +197,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int getDragTime();
 
-	@Import("Widget_interfaceComponents")
+	//@Import("Widget_interfaceComponents")
 	@Override
 	RSWidget[][] getWidgets();
 
@@ -1503,15 +1503,15 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("Widget_cachedModels")
 	RSEvictingDualNodeHashTable getModelsCache();
-
+/*
 	@Import("Widget_cachedFonts")
-	RSEvictingDualNodeHashTable getFontsCache();
+	RSEvictingDualNodeHashTable getFontsCache();*/
 
 	@Import("Widget_cachedSpriteMasks")
 	RSEvictingDualNodeHashTable getSpriteMasksCache();
 
-	@Import("WorldMapElement_cachedSprites")
-	RSEvictingDualNodeHashTable getSpritesCache();
+	//@Import("WorldMapElement_cachedSprites")
+	//RSEvictingDualNodeHashTable getSpritesCache();
 
 	@Construct
 	RSIterableNodeHashTable createIterableNodeHashTable(int size);

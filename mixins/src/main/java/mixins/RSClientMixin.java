@@ -2478,9 +2478,9 @@ public abstract class RSClientMixin implements RSClient {
         check("VarcInt_cached", client.getVarcIntCache());
         check("VarpDefinition_cached", client.getVarpDefinitionCache());
         check("Widget_cachedModels", client.getModelsCache());
-        check("Widget_cachedFonts", client.getFontsCache());
+    //    check("Widget_cachedFonts", client.getFontsCache());
         check("Widget_cachedSpriteMasks", client.getSpriteMasksCache());
-        check("WorldMapElement_cachedSprites", client.getSpritesCache());
+     //   check("WorldMapElement_cachedSprites", client.getSpritesCache());
     }
 
     @Inject

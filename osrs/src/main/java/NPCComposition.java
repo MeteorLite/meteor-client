@@ -27,8 +27,8 @@ public class NPCComposition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llr;"
 	)
-	@Export("HitSplatDefinition_cachedFonts")
-	static EvictingDualNodeHashTable HitSplatDefinition_cachedFonts;
+	@Export("NpcDefinition_cachedModels")
+	static EvictingDualNodeHashTable NpcDefinition_cachedModels;
 	@ObfuscatedName("ah")
 	@Export("id")
 	public int id;
@@ -160,7 +160,7 @@ public class NPCComposition extends DualNode {
 
 	static {
 		NpcDefinition_cached = new EvictingDualNodeHashTable(64);
-		HitSplatDefinition_cachedFonts = new EvictingDualNodeHashTable(50);
+		NpcDefinition_cachedModels = new EvictingDualNodeHashTable(50);
 	}
 
 	NPCComposition() {
@@ -402,7 +402,7 @@ public class NPCComposition extends DualNode {
 				var10 |= var5.field1594 << 16;
 			}
 
-			Model var8 = (Model)HitSplatDefinition_cachedFonts.get(var10);
+			Model var8 = (Model) NpcDefinition_cachedModels.get(var10);
 			if (var8 == null) {
 				ModelData var9 = this.method1013(this.models, var5);
 				if (var9 == null) {
@@ -410,7 +410,7 @@ public class NPCComposition extends DualNode {
 				}
 
 				var8 = var9.toModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
-				HitSplatDefinition_cachedFonts.put(var8, var10);
+				NpcDefinition_cachedModels.put(var8, var10);
 			}
 
 			Model var12;

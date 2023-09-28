@@ -20,7 +20,7 @@ public class class357 {
 		var2.id = var0.readInt();
 		var2.operations = new int[var2.size];
 		var2.creationErrors = new int[var2.size];
-		var2.field156 = new Field[var2.size];
+		var2.fields = new Field[var2.size];
 		var2.intReplaceValues = new int[var2.size];
 		var2.methods = new Method[var2.size];
 		var2.arguments = new byte[var2.size][][];
@@ -105,7 +105,7 @@ public class class357 {
 						throw new SecurityException();
 					}
 
-					var2.field156[var3] = Reflection.findField(class18.loadClassFromDescriptor(var5), var6);
+					var2.fields[var3] = Reflection.findField(class18.loadClassFromDescriptor(var5), var6);
 				}
 			} catch (ClassNotFoundException var24) {
 				var2.creationErrors[var3] = -1;

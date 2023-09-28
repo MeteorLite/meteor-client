@@ -30,7 +30,8 @@ public class JagexCache {
 	@Export("JagexCache_idx255File")
 	public static BufferedFile JagexCache_idx255File;
 	@ObfuscatedName("pl")
-	static int field1449;
+	@Export("selectedSpellWidget" )
+	static int selectedSpellWidget;
 	@ObfuscatedName("vz")
 	static int field1450;
 

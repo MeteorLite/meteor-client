@@ -33,7 +33,8 @@ public class HitSplatDefinition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llr;"
 	)
-	public static EvictingDualNodeHashTable field1697;
+	@Export("HitSplatDefinition_cachedFonts")
+	public static EvictingDualNodeHashTable HitSplatDefinition_cachedFonts;
 	@ObfuscatedName("aa")
 	@Export("fontId")
 	int fontId;
@@ -75,7 +76,7 @@ public class HitSplatDefinition extends DualNode {
 	static {
 		HitSplatDefinition_cached = new EvictingDualNodeHashTable(64);
 		HitSplatDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
-		field1697 = new EvictingDualNodeHashTable(20);
+		HitSplatDefinition_cachedFonts = new EvictingDualNodeHashTable(20);
 	}
 
 	HitSplatDefinition() {
@@ -327,7 +328,7 @@ public class HitSplatDefinition extends DualNode {
 		if (this.fontId == -1) {
 			return null;
 		} else {
-			Font var1 = (Font)field1697.get((long)this.fontId);
+			Font var1 = (Font) HitSplatDefinition_cachedFonts.get((long)this.fontId);
 			if (var1 != null) {
 				return var1;
 			} else {
@@ -352,7 +353,7 @@ public class HitSplatDefinition extends DualNode {
 				}
 
 				if (var2 != null) {
-					field1697.put(var2, (long)this.fontId);
+					HitSplatDefinition_cachedFonts.put(var2, (long)this.fontId);
 				}
 
 				return var2;

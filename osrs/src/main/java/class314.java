@@ -459,7 +459,7 @@ public final class class314 {
 				class92.field888 = class202.newArchive(0, false, true, true, false);
 				class199.field1567 = class202.newArchive(1, false, true, true, false);
 				SoundSystem.archive2 = class202.newArchive(2, true, false, true, false);
-				AbstractByteArrayCopier.field3136 = class202.newArchive(3, false, true, true, false);
+				AbstractByteArrayCopier.archive4 = class202.newArchive(3, false, true, true, false);
 				class469.field3930 = class202.newArchive(4, false, true, true, false);
 				class198.archive9 = class202.newArchive(5, true, true, true, false);
 				CollisionMap.archive6 = class202.newArchive(6, true, true, true, false);
@@ -492,7 +492,7 @@ public final class class314 {
 				var0 = var33 + class92.field888.percentage() * 4 / 100;
 				var0 += class199.field1567.percentage() * 4 / 100;
 				var0 += SoundSystem.archive2.percentage() * 2 / 100;
-				var0 += AbstractByteArrayCopier.field3136.percentage() * 2 / 100;
+				var0 += AbstractByteArrayCopier.archive4.percentage() * 2 / 100;
 				var0 += class469.field3930.percentage() * 6 / 100;
 				var0 += class198.archive9.percentage() * 4 / 100;
 				var0 += CollisionMap.archive6.percentage() * 2 / 100;
@@ -672,7 +672,7 @@ public final class class314 {
 								Archive var6 = SoundSystem.archive2;
 								VarpDefinition.VarpDefinition_archive = var6;
 								VarpDefinition.field1501 = VarpDefinition.VarpDefinition_archive.getGroupFileCount(16);
-								class33.widgetDefinition = new WidgetDefinition(AbstractByteArrayCopier.field3136, GrandExchangeOfferOwnWorldComparator.field361, class199.archive8, class27.archive13, class319.field2799);
+								class33.widgetDefinition = new WidgetDefinition(AbstractByteArrayCopier.archive4, GrandExchangeOfferOwnWorldComparator.field361, class199.archive8, class27.archive13, class319.field2799);
 								Decimator.method313(SoundSystem.archive2);
 								class275.method1537(SoundSystem.archive2);
 								class135.method727(SoundSystem.archive2);
@@ -998,8 +998,8 @@ public final class class314 {
 								Client.field416 = class94.field942;
 							}
 						} else if (class94.field942 == Client.field416) {
-							if (!AbstractByteArrayCopier.field3136.isFullyLoaded()) {
-								Login.Login_loadingText = "Loading interfaces - " + AbstractByteArrayCopier.field3136.loadPercent() * 4 / 5 + "%";
+							if (!AbstractByteArrayCopier.archive4.isFullyLoaded()) {
+								Login.Login_loadingText = "Loading interfaces - " + AbstractByteArrayCopier.archive4.loadPercent() * 4 / 5 + "%";
 								Login.Login_loadingPercent = 96;
 							} else if (!class319.field2799.isFullyLoaded()) {
 								Login.Login_loadingText = "Loading interfaces - " + class319.field2799.loadPercent() * 4 / 5 + "%";

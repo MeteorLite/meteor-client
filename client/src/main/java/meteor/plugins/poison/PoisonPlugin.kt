@@ -31,7 +31,6 @@ import meteor.game.FontManager.runescapeSmallFont
 import meteor.game.SpriteManager
 import meteor.plugins.Plugin
 import meteor.plugins.PluginDescriptor
-import meteor.plugins.attackstyles.AttackStylesConfig
 import meteor.rs.ClientThread
 import meteor.ui.overlay.infobox.InfoBoxManager
 import meteor.util.ColorUtil.wrapWithColorTag

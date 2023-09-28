@@ -27,7 +27,7 @@ public class class286 {
 	)
 	static void method1575() {
 		if (Client.isSpellSelected) {
-			Widget var0 = class33.widgetDefinition.getWidgetChild(JagexCache.field1449, Client.selectedSpellChildIndex);
+			Widget var0 = class33.widgetDefinition.getWidgetChild(JagexCache.selectedSpellWidget, Client.selectedSpellChildIndex);
 			if (var0 != null && var0.onTargetLeave != null) {
 				ScriptEvent var1 = new ScriptEvent();
 				var1.widget = var0;
@@ -35,7 +35,7 @@ public class class286 {
 				Interpreter.runScriptEvent(var1);
 			}
 
-			Client.field503 = -1;
+			Client.selectedSpellItemId = -1;
 			Client.isSpellSelected = false;
 			ClanChannelMember.invalidateWidget(var0);
 		}

@@ -18,7 +18,7 @@ public class class198 {
 	)
 	public static void method992() {
 		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
-		SpotAnimationDefinition.Widget_cachedFonts.clear();
+		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
 	}
 
 	@ObfuscatedName("hc")

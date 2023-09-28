@@ -22,7 +22,8 @@ public class ReflectionCheck extends Node {
 	@Export("creationErrors")
 	int[] creationErrors;
 	@ObfuscatedName("ao")
-	Field[] field156;
+	@Export("fields")
+	Field[] fields;
 	@ObfuscatedName("ah")
 	@Export("intReplaceValues")
 	int[] intReplaceValues;

@@ -8,7 +8,7 @@ public interface RSWidgetDefinition
     RSWidget[][] getWidgets();
 
     @Import("loadInterface")
-    boolean loadInterface(int interfaceId);
+    boolean loadInterface$api(int interfaceId);
 
     @Import("Widget_cachedSprites")
     RSEvictingDualNodeHashTable getWidgetSpriteCache();

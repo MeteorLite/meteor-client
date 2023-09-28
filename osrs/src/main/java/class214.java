@@ -221,7 +221,7 @@ public class class214 extends DualNode {
 		HealthBarDefinition.ItemDefinition_cachedModels.clear();
 		HitSplatDefinition.HitSplatDefinition_cached.clear();
 		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
-		HitSplatDefinition.field1697.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear();
 		MouseHandler.method173();
 		KitDefinition.KitDefinition_cached.clear();
 		ObjTypeCustomisation.method947();
@@ -265,7 +265,7 @@ public class class214 extends DualNode {
 		class313.field2770.method1950();
 		WorldMapDecorationType.field3154.method1950();
 		class27.archive13.method1950();
-		AbstractByteArrayCopier.field3136.method1950();
+		AbstractByteArrayCopier.archive4.method1950();
 		class319.field2799.method1950();
 		class469.field3930.method1950();
 		Language.field3643.method1950();

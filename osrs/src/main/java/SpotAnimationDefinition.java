@@ -28,8 +28,8 @@ public class SpotAnimationDefinition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Llr;"
 	)
-	@Export("Widget_cachedFonts")
-	static EvictingDualNodeHashTable Widget_cachedFonts;
+	@Export("SpotAnimationDefinition_cachedModels")
+	static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
 	@ObfuscatedName("ao")
 	@Export("id")
 	int id;
@@ -69,7 +69,7 @@ public class SpotAnimationDefinition extends DualNode {
 
 	static {
 		SpotAnimationDefinition_cached = new EvictingDualNodeHashTable(64);
-		Widget_cachedFonts = new EvictingDualNodeHashTable(30);
+		SpotAnimationDefinition_cachedModels = new EvictingDualNodeHashTable(30);
 	}
 
 	SpotAnimationDefinition() {
@@ -190,7 +190,7 @@ public class SpotAnimationDefinition extends DualNode {
 		garbageValue = "6"
 	)
 	public final Model method1037() {
-		Model var1 = (Model)Widget_cachedFonts.get((long)this.id);
+		Model var1 = (Model) SpotAnimationDefinition_cachedModels.get((long)this.id);
 		if (var1 == null) {
 			ModelData var2 = ModelData.ModelData_get(SpotAnimationDefinition_modelArchive, this.archive, 0);
 			if (var2 == null) {
@@ -211,7 +211,7 @@ public class SpotAnimationDefinition extends DualNode {
 			}
 
 			var1 = var2.toModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
-			Widget_cachedFonts.put(var1, (long)this.id);
+			SpotAnimationDefinition_cachedModels.put(var1, (long)this.id);
 		}
 
 		return var1;

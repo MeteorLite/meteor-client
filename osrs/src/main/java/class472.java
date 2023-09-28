@@ -90,8 +90,8 @@ public abstract class class472 implements class294 {
 		garbageValue = "-1429373012"
 	)
 	@Export("FillMode_values")
-	public static class541[] FillMode_values() {
-		return new class541[]{class541.field4257, class541.SOLID, class541.field4258};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4257, FillMode.SOLID, FillMode.field4258};
 	}
 
 	@ObfuscatedName("bw")

@@ -110,7 +110,7 @@ public class Widget extends Node {
 		descriptor = "Luf;"
 	)
 	@Export("fillMode")
-	public class541 fillMode;
+	public FillMode fillMode;
 	@ObfuscatedName("cy")
 	@Export("transparencyTop")
 	public int transparencyTop;
@@ -403,7 +403,8 @@ public class Widget extends Node {
 	@Export("buttonText")
 	public String buttonText;
 	@ObfuscatedName("gm")
-	public int[] field3082;
+	@Export("itemIds")
+	public int[] itemIds;
 	@ObfuscatedName("gb")
 	public int[] field3079;
 	@ObfuscatedName("gx")
@@ -489,7 +490,7 @@ public class Widget extends Node {
 		this.mouseOverColor = 0;
 		this.mouseOverColor2 = 0;
 		this.fill = false;
-		this.fillMode = class541.SOLID;
+		this.fillMode = FillMode.SOLID;
 		this.transparencyTop = 0;
 		this.transparencyBot = 0;
 		this.lineWid = 1;

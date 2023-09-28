@@ -69,7 +69,7 @@ public class class33 {
 		garbageValue = "973188034"
 	)
 	public static void method135() {
-		WorldMapElement.HitSplatDefinition_cached.clear();
+		WorldMapElement.HitSplatDefinition_cached2.clear();
 	}
 
 	@ObfuscatedName("ll")
@@ -381,9 +381,9 @@ public class class33 {
 				Client.destinationX = var0;
 				Client.destinationY = var1;
 				var14 = ClanChannelMember.getPacketBufferNode(ClientPacket.OPPLAYERT, Client.packetWriter.isaacCipher);
-				var14.packetBuffer.writeShort(Client.field503);
+				var14.packetBuffer.writeShort(Client.selectedSpellItemId);
 				var14.packetBuffer.writeShortAdd(Client.selectedSpellChildIndex);
-				var14.packetBuffer.writeIntLE(JagexCache.field1449);
+				var14.packetBuffer.writeIntLE(JagexCache.selectedSpellWidget);
 				var14.packetBuffer.writeShortLE(var3);
 				var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 				Client.packetWriter.addNode(var14);
@@ -448,10 +448,10 @@ public class class33 {
 			var9.packetBuffer.writeByteNeg(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 			var9.packetBuffer.writeShortAddLE(Client.selectedSpellChildIndex);
 			var9.packetBuffer.writeShort(var0 + class20.baseX);
-			var9.packetBuffer.writeIntIME(JagexCache.field1449);
+			var9.packetBuffer.writeIntIME(JagexCache.selectedSpellWidget);
 			var9.packetBuffer.writeShortLE(var3);
 			var9.packetBuffer.writeShortLE(class19.baseY + var1);
-			var9.packetBuffer.writeShortAdd(Client.field503);
+			var9.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
 			Client.packetWriter.addNode(var9);
 		}
 
@@ -544,8 +544,8 @@ public class class33 {
 			var9 = ClanChannelMember.getPacketBufferNode(ClientPacket.OPOBJT, Client.packetWriter.isaacCipher);
 			var9.packetBuffer.writeShortAdd(var3);
 			var9.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
-			var9.packetBuffer.writeInt(JagexCache.field1449);
-			var9.packetBuffer.writeShort(Client.field503);
+			var9.packetBuffer.writeInt(JagexCache.selectedSpellWidget);
+			var9.packetBuffer.writeShort(Client.selectedSpellItemId);
 			var9.packetBuffer.writeShortAddLE(class19.baseY + var1);
 			var9.packetBuffer.writeShortAddLE(var0 + class20.baseX);
 			var9.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
@@ -643,8 +643,8 @@ public class class33 {
 				var14.packetBuffer.writeShortAddLE(Client.selectedSpellChildIndex);
 				var14.packetBuffer.writeInt(var1);
 				var14.packetBuffer.writeShortAdd(var4);
-				var14.packetBuffer.writeIntIME(JagexCache.field1449);
-				var14.packetBuffer.writeShortAddLE(Client.field503);
+				var14.packetBuffer.writeIntIME(JagexCache.selectedSpellWidget);
+				var14.packetBuffer.writeShortAddLE(Client.selectedSpellItemId);
 				var14.packetBuffer.writeShortAddLE(var0);
 				Client.packetWriter.addNode(var14);
 			}
@@ -743,8 +743,8 @@ public class class33 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var14 = ClanChannelMember.getPacketBufferNode(ClientPacket.OPNPCT, Client.packetWriter.isaacCipher);
-					var14.packetBuffer.writeIntIME(JagexCache.field1449);
-					var14.packetBuffer.writeShortAdd(Client.field503);
+					var14.packetBuffer.writeIntIME(JagexCache.selectedSpellWidget);
+					var14.packetBuffer.writeShortAdd(Client.selectedSpellItemId);
 					var14.packetBuffer.writeByteAdd(Client.keyHandlerInstance.getKeyPressed(82) ? 1 : 0);
 					var14.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
 					var14.packetBuffer.writeShortAddLE(var3);
